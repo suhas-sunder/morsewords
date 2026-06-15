@@ -1,62 +1,12 @@
-# The three musketeers rights review notes
+# The Three Musketeers
 
-- Source file: ../the-three-musketeers.txt
-- Gutenberg ID: 1257
-- Source URL: https://www.gutenberg.org/ebooks/1257
-- Metadata status: draft
-- Manual review required: yes
-- Approval status: approved
-- Approval source: external-authority
-- Duplicate resolution source: not-needed
-- Processing allowed: yes
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+Processed by pilot write pass 3.
 
-## Rights evidence found
+- Source: app/client/assets/temp-books/the-three-musketeers.txt
+- Start boundary: line 112 (Batch-3 pre-write review preserved the real Author's Preface while still excluding the preceding table of contents.)
+- End boundary: line 31131 (Dry-run 3 selected this as the final real readable line before end/source matter: cardinal had him informed that he would provide for him so that he should never want for anything in future. In fact, M. Bonacieux, having left his house at seven o’clock in the evening to go to the Louvre, never appeared again in the Rue des Fossoyeurs; the opinion of those who seemed to be best informed was that he was fed and lodged in some royal castle, at the expense of his generous Eminence.)
+- Selected structure: chapter-based roman numerals
+- Sections: 68
+- Recommendation: needs manual review before scaling
 
-- Author death year authority: project-gutenberg-rdf 1184 https://www.gutenberg.org/cache/epub/1184/pg1184.rdf
-- Original publication authority: wikidata Q140527 https://www.wikidata.org/wiki/Q140527
-- Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of
-- U.S. reuse language: he Project Gutenberg eBook of The three musketeers This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
-- Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The three musketeers Author:
-
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: March 1, 1998
-- Last updated: October 29, 2024
-- Original publication: 1844
-- Credits: John P. Roberts III, Roger Labbe, Scott David Gray, Sue Asscher, Anita Martin, David Muller and David Widger
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
-
-## Risks found
-
-- Translation risk: none
-- Edition risk: none
-- Trademark or character brand risk: none
-- Content brand-safety risk: none
-- Later copyright notice: no
-- Permission-based language: no
-- Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: no
-- Duplicate Gutenberg ID: no unresolved duplicate found
-
-## Command warnings
-
-- No command warnings.
-
-## Manual review reasons
-
-- No manual review blockers from the current rights gate.
-
-## Next action
-
-- Keep rights evidence attached; only publish after an explicit product approval step.
+This output is intentionally review-gated before larger batch processing or Cloudflare export.

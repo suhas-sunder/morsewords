@@ -1196,15 +1196,12 @@ function MorseBookWorkspace({
         .sort((a, b) => a.order - b.order),
     [loadedSections, scopeSectionIds],
   );
-  const deferredSelectedScopeSections = React.useDeferredValue(selectedScopeSections);
-  const selectionUpdating = deferredSelectedScopeSections !== selectedScopeSections;
   const scopeReady =
     scopeSectionIds.length > 0 &&
-    selectedScopeSections.length === scopeSectionIds.length &&
-    !selectionUpdating;
+    selectedScopeSections.length === scopeSectionIds.length;
   const translatorSource = React.useMemo(
-    () => createBookTranslatorSourceFromSections(book, deferredSelectedScopeSections),
-    [book, deferredSelectedScopeSections],
+    () => createBookTranslatorSourceFromSections(book, selectedScopeSections),
+    [book, selectedScopeSections],
   );
   const cleanedExportText = React.useMemo(
     () => applyExportPunctuationMode(translatorSource.sourceText, exportSettings),
@@ -1593,7 +1590,7 @@ function MorseBookWorkspace({
   const loadingSelectedSections =
     fullBookLoading ||
     scopeSectionIds.length > 0 &&
-    (!scopeReady || sectionStatus === "loading" || selectionUpdating);
+    (!scopeReady || sectionStatus === "loading");
   const sectionControlsDisabled = fullBookLoading;
 
   React.useEffect(() => {

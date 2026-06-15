@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-tempest",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Dramatis Personae",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "THE TEMPEST.\n\n\nDRAMATIS PERSONÆ.\n\n\n ALONSO, King of Naples.\n SEBASTIAN, his brother.\n PROSPERO, the right Duke of Milan.\n ANTONIO, his brother, the usurping Duke of Milan.\n FERDINAND, son to the King of Naples.\n GONZALO, an honest old Counsellor.\n ADRIAN, Lord\n FRANCISCO, „\n CALIBAN, a savage and deformed Slave.\n TRINCULO, a Jester.\n STEPHANO, a drunken Butler.\n Master of a Ship.\n Boatswain.\n Mariners.\n\n MIRANDA, daughter to Prospero.\n\n ARIEL, an airy Spirit.\n IRIS, presented by Spirits.\n CERES, „ „\n JUNO, „ „\n Nymphs, „ „\n Reapers, „ „\n\n Other Spirits attending on Prospero.\n\nSCENE--_A ship at sea: an uninhabited island._\n\n\n Footnotes:\n\n 1: DRAMATIS PERSONÆ] NAMES OF THE ACTORS F1 at the end of the Play.\n 2: _presented by_] Edd.\n 3: _Other ... Prospero_] Theobald.\n 4: A ship at sea:] At sea: Capell.]\n\n\nTHE TEMPEST.",
+  "morseSourceText": "THE TEMPEST.\n\n\nDRAMATIS PERSONÆ.\n\n\n ALONSO, King of Naples.\n SEBASTIAN, his brother.\n PROSPERO, the right Duke of Milan.\n ANTONIO, his brother, the usurping Duke of Milan.\n FERDINAND, son to the King of Naples.\n GONZALO, an honest old Counsellor.\n ADRIAN, Lord\n FRANCISCO, „\n CALIBAN, a savage and deformed Slave.\n TRINCULO, a Jester.\n STEPHANO, a drunken Butler.\n Master of a Ship.\n Boatswain.\n Mariners.\n\n MIRANDA, daughter to Prospero.\n\n ARIEL, an airy Spirit.\n IRIS, presented by Spirits.\n CERES, „ „\n JUNO, „ „\n Nymphs, „ „\n Reapers, „ „\n\n Other Spirits attending on Prospero.\n\nSCENE--_A ship at sea: an uninhabited island._\n\n\n Footnotes:\n\n 1: DRAMATIS PERSONÆ] NAMES OF THE ACTORS F1 at the end of the Play.\n 2: _presented by_] Edd.\n 3: _Other ... Prospero_] Theobald.\n 4: A ship at sea:] At sea: Capell.]\n\n\nTHE TEMPEST.",
+  "paragraphs": [
+    "THE TEMPEST.",
+    "DRAMATIS PERSONÆ.",
+    "ALONSO, King of Naples. SEBASTIAN, his brother. PROSPERO, the right Duke of Milan. ANTONIO, his brother, the usurping Duke of Milan. FERDINAND, son to the King of Naples. GONZALO, an honest old Counsellor. ADRIAN, Lord FRANCISCO, „ CALIBAN, a savage and deformed Slave. TRINCULO, a Jester. STEPHANO, a drunken Butler. Master of a Ship. Boatswain. Mariners.",
+    "MIRANDA, daughter to Prospero.",
+    "ARIEL, an airy Spirit. IRIS, presented by Spirits. CERES, „ „ JUNO, „ „ Nymphs, „ „ Reapers, „ „",
+    "Other Spirits attending on Prospero.",
+    "SCENE--_A ship at sea: an uninhabited island._",
+    "Footnotes:",
+    "1: DRAMATIS PERSONÆ] NAMES OF THE ACTORS F1 at the end of the Play. 2: _presented by_] Edd. 3: _Other ... Prospero_] Theobald. 4: A ship at sea:] At sea: Capell.]",
+    "THE TEMPEST."
+  ],
+  "wordCount": 121,
+  "characterCount": 826,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4252,
+  "unsupportedCharacterSummary": {
+    "Æ": 2,
+    "„": 9,
+    "]": 5
+  },
+  "textPreview": "THE TEMPEST. DRAMATIS PERSONÆ. ALONSO, King of Naples. SEBASTIAN, his brother. PROSPERO, the right Duke of Milan. ANTONIO, his brother, the usurping Duke of Mi...",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 829
+  }
+}

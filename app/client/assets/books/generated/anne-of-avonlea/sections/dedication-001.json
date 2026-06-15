@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "anne-of-avonlea",
+  "sectionId": "dedication-001",
+  "kind": "dedication",
+  "label": "Dedication and epigraph",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "To\nmy former teacher\nHATTIE GORDON SMITH\nin grateful remembrance of her\nsympathy and encouragement.\n\n\nFlowers spring to blossom where she walks\n The careful ways of duty,\nOur hard, stiff lines of life with her\n Are flowing curves of beauty.\n-WHITTIER",
+  "morseSourceText": "To\nmy former teacher\nHATTIE GORDON SMITH\nin grateful remembrance of her\nsympathy and encouragement.\n\n\nFlowers spring to blossom where she walks\n The careful ways of duty,\nOur hard, stiff lines of life with her\n Are flowing curves of beauty.\n-WHITTIER",
+  "paragraphs": [
+    "To my former teacher HATTIE GORDON SMITH in grateful remembrance of her sympathy and encouragement.",
+    "Flowers spring to blossom where she walks The careful ways of duty, Our hard, stiff lines of life with her Are flowing curves of beauty. -WHITTIER"
+  ],
+  "wordCount": 41,
+  "characterCount": 250,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1334,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "To my former teacher HATTIE GORDON SMITH in grateful remembrance of her sympathy and encouragement. Flowers spring to blossom where she walks The careful ways...",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 252
+  }
+}

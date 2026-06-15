@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "macbeth",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Opening section",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "Dramatis Personæ\n\nDUNCAN, King of Scotland.\nMALCOLM, his Son.\nDONALBAIN, his Son.\nMACBETH, General in the King's Army.\nBANQUO, General in the King's Army.\nMACDUFF, Nobleman of Scotland.\nLENNOX, Nobleman of Scotland.\nROSS, Nobleman of Scotland.\nMENTEITH, Nobleman of Scotland.\nANGUS, Nobleman of Scotland.\nCAITHNESS, Nobleman of Scotland.\nFLEANCE, Son to Banquo.\nSIWARD, Earl of Northumberland, General of the English Forces.\nYOUNG SIWARD, his Son.\nSEYTON, an Officer attending on Macbeth.\nBOY, Son to Macduff.\nAn English Doctor.\nA Scottish Doctor.\nA Soldier.\nA Porter.\nAn Old Man.\n\nLADY MACBETH.\nLADY MACDUFF.\nGentlewoman attending on Lady Macbeth.\nHECATE, and three Witches.\n\nLords, Gentlemen, Officers, Soldiers, Murderers, Attendants and\nMessengers.\n\nThe Ghost of Banquo and several other Apparitions.\n\nSCENE: In the end of the Fourth Act, in England; through the rest of\nthe Play, in Scotland; and chiefly at Macbeth's Castle.",
+  "morseSourceText": "Dramatis Personæ\n\nDUNCAN, King of Scotland.\nMALCOLM, his Son.\nDONALBAIN, his Son.\nMACBETH, General in the King's Army.\nBANQUO, General in the King's Army.\nMACDUFF, Nobleman of Scotland.\nLENNOX, Nobleman of Scotland.\nROSS, Nobleman of Scotland.\nMENTEITH, Nobleman of Scotland.\nANGUS, Nobleman of Scotland.\nCAITHNESS, Nobleman of Scotland.\nFLEANCE, Son to Banquo.\nSIWARD, Earl of Northumberland, General of the English Forces.\nYOUNG SIWARD, his Son.\nSEYTON, an Officer attending on Macbeth.\nBOY, Son to Macduff.\nAn English Doctor.\nA Scottish Doctor.\nA Soldier.\nA Porter.\nAn Old Man.\n\nLADY MACBETH.\nLADY MACDUFF.\nGentlewoman attending on Lady Macbeth.\nHECATE, and three Witches.\n\nLords, Gentlemen, Officers, Soldiers, Murderers, Attendants and\nMessengers.\n\nThe Ghost of Banquo and several other Apparitions.\n\nSCENE: In the end of the Fourth Act, in England; through the rest of\nthe Play, in Scotland; and chiefly at Macbeth's Castle.",
+  "paragraphs": [
+    "Dramatis Personæ",
+    "DUNCAN, King of Scotland. MALCOLM, his Son. DONALBAIN, his Son. MACBETH, General in the King's Army. BANQUO, General in the King's Army. MACDUFF, Nobleman of Scotland. LENNOX, Nobleman of Scotland. ROSS, Nobleman of Scotland. MENTEITH, Nobleman of Scotland. ANGUS, Nobleman of Scotland. CAITHNESS, Nobleman of Scotland. FLEANCE, Son to Banquo. SIWARD, Earl of Northumberland, General of the English Forces. YOUNG SIWARD, his Son. SEYTON, an Officer attending on Macbeth. BOY, Son to Macduff. An English Doctor. A Scottish Doctor. A Soldier. A Porter. An Old Man.",
+    "LADY MACBETH. LADY MACDUFF. Gentlewoman attending on Lady Macbeth. HECATE, and three Witches.",
+    "Lords, Gentlemen, Officers, Soldiers, Murderers, Attendants and Messengers.",
+    "The Ghost of Banquo and several other Apparitions.",
+    "SCENE: In the end of the Fourth Act, in England; through the rest of the Play, in Scotland; and chiefly at Macbeth's Castle."
+  ],
+  "wordCount": 140,
+  "characterCount": 930,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 5145,
+  "unsupportedCharacterSummary": {
+    "Æ": 1
+  },
+  "textPreview": "Dramatis Personæ DUNCAN, King of Scotland. MALCOLM, his Son. DONALBAIN, his Son. MACBETH, General in the King's Army. BANQUO, General in the King's Army. MACDU...",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 933
+  }
+}

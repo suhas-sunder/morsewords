@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-king-in-yellow",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Opening epigraph",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "THE KING IN YELLOW\n IS DEDICATED\n TO\n MY BROTHER\n\n \"Along the shore the cloud waves break,\n The twin suns sink behind the lake,\n The shadows lengthen\n In Carcosa.\n\n Strange is the night where black stars rise,\n And strange moons circle through the skies\n But stranger still is\n Lost Carcosa.\n\n Songs that the Hyades shall sing,\n Where flap the tatters of the King,\n Must die unheard in\n Dim Carcosa.\n\n Song of my soul, my voice is dead;\n Die thou, unsung, as tears unshed\n Shall dry and die in\n Lost Carcosa.\"\n\n Cassilda's Song in \"The King in Yellow,\"\n Act i, Scene 2.",
+  "morseSourceText": "THE KING IN YELLOW\n IS DEDICATED\n TO\n MY BROTHER\n\n \"Along the shore the cloud waves break,\n The twin suns sink behind the lake,\n The shadows lengthen\n In Carcosa.\n\n Strange is the night where black stars rise,\n And strange moons circle through the skies\n But stranger still is\n Lost Carcosa.\n\n Songs that the Hyades shall sing,\n Where flap the tatters of the King,\n Must die unheard in\n Dim Carcosa.\n\n Song of my soul, my voice is dead;\n Die thou, unsung, as tears unshed\n Shall dry and die in\n Lost Carcosa.\"\n\n Cassilda's Song in \"The King in Yellow,\"\n Act i, Scene 2.",
+  "paragraphs": [
+    "THE KING IN YELLOW IS DEDICATED TO MY BROTHER",
+    "\"Along the shore the cloud waves break, The twin suns sink behind the lake, The shadows lengthen In Carcosa.",
+    "Strange is the night where black stars rise, And strange moons circle through the skies But stranger still is Lost Carcosa.",
+    "Songs that the Hyades shall sing, Where flap the tatters of the King, Must die unheard in Dim Carcosa.",
+    "Song of my soul, my voice is dead; Die thou, unsung, as tears unshed Shall dry and die in Lost Carcosa.\"",
+    "Cassilda's Song in \"The King in Yellow,\" Act i, Scene 2."
+  ],
+  "wordCount": 100,
+  "characterCount": 569,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2941,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE KING IN YELLOW IS DEDICATED TO MY BROTHER \"Along the shore the cloud waves break, The twin suns sink behind the lake, The shadows lengthen In Carcosa. Stra...",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 572
+  }
+}

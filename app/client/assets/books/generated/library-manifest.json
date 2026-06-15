@@ -353,8 +353,8 @@
       "author": [
         "Jules Verne"
       ],
-      "contentVersion": "21a075d24924c49c",
-      "contentHash": "21a075d24924c49c5ef151502fd3adece895e7353ed0cbbac405aade1d041e08",
+      "contentVersion": "b5730ed13022dc4d",
+      "contentHash": "b5730ed13022dc4d23c8a357dee91292bfd81ede88afcd70bd172ba3fd27fce8",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -374,7 +374,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
       },
       "cover": {
         "src": null,
@@ -382,10 +382,10 @@
         "alt": "Placeholder cover for Around the World in Eighty Days"
       },
       "stats": {
-        "originalCharacterCount": 388411,
-        "cleanedCharacterCount": 369112,
-        "wordCount": 63925,
-        "sectionCount": 39,
+        "originalCharacterCount": 396836,
+        "cleanedCharacterCount": 365693,
+        "wordCount": 62808,
+        "sectionCount": 37,
         "includedSectionCount": 37
       },
       "defaults": {
@@ -839,12 +839,12 @@
     },
     {
       "slug": "frankenstein",
-      "title": "Frankenstein; or, the modern prometheus",
+      "title": "Frankenstein; or, the Modern Prometheus",
       "author": [
         "Mary Wollstonecraft Shelley"
       ],
-      "contentVersion": "4e29b83aeac2a920",
-      "contentHash": "4e29b83aeac2a920fc3b458e482722a5fb41335792a6f81243dd7b585ba53d55",
+      "contentVersion": "34c4b7441eb30724",
+      "contentHash": "34c4b7441eb307242c0d96c507b57c4014d28af2a40ff04c7de564c1a077052e",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -864,22 +864,23 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
       },
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for Frankenstein; or, the modern prometheus"
+        "alt": "Placeholder cover for Frankenstein; or, the Modern Prometheus"
       },
       "stats": {
-        "originalCharacterCount": 438729,
-        "cleanedCharacterCount": 419264,
-        "wordCount": 75273,
-        "sectionCount": 26,
-        "includedSectionCount": 24
+        "originalCharacterCount": 446580,
+        "cleanedCharacterCount": 418795,
+        "wordCount": 75020,
+        "sectionCount": 28,
+        "includedSectionCount": 28
       },
       "defaults": {
         "includeKinds": [
+          "letter",
           "chapter"
         ],
         "preferredPreset": "main-narrative"
@@ -1578,8 +1579,8 @@
       "author": [
         "Jane Austen"
       ],
-      "contentVersion": "918315d84639b3e1",
-      "contentHash": "918315d84639b3e125f038dc8f5acc0178ec794125d0f86aa145eb6decde1af5",
+      "contentVersion": "0863fe685a14994c",
+      "contentHash": "0863fe685a14994cd818e3cdf822bb8afa772ed6f7803fbee7418641e8c9a46e",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1599,7 +1600,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
       },
       "cover": {
         "src": null,
@@ -1607,10 +1608,10 @@
         "alt": "Placeholder cover for Sense and Sensibility"
       },
       "stats": {
-        "originalCharacterCount": 689802,
-        "cleanedCharacterCount": 670572,
-        "wordCount": 120545,
-        "sectionCount": 52,
+        "originalCharacterCount": 703000,
+        "cleanedCharacterCount": 669672,
+        "wordCount": 119250,
+        "sectionCount": 50,
         "includedSectionCount": 50
       },
       "defaults": {
@@ -3283,12 +3284,12 @@
     },
     {
       "slug": "the-three-musketeers",
-      "title": "The three musketeers",
+      "title": "The Three Musketeers",
       "author": [
         "Alexandre Dumas Auguste Maquet"
       ],
-      "contentVersion": "dc6789b0d8910e0b",
-      "contentHash": "dc6789b0d8910e0b3c74368ba960608854c2f1334b27f3a3ac4d2bfbb117cfeb",
+      "contentVersion": "117fe21e8265df4f",
+      "contentHash": "117fe21e8265df4fb95daed97a30b78ec13d64f5121758097be52b4808e8e8b6",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3308,18 +3309,18 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
       },
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for The three musketeers"
+        "alt": "Placeholder cover for The Three Musketeers"
       },
       "stats": {
-        "originalCharacterCount": 1317195,
-        "cleanedCharacterCount": 1297823,
-        "wordCount": 233801,
-        "sectionCount": 71,
+        "originalCharacterCount": 1348857,
+        "cleanedCharacterCount": 1294904,
+        "wordCount": 229787,
+        "sectionCount": 68,
         "includedSectionCount": 67
       },
       "defaults": {
@@ -4358,6 +4359,1039 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "triplanetary/manifest.json"
+    },
+    {
+      "slug": "a-tale-of-two-cities",
+      "title": "A Tale of Two Cities",
+      "author": [
+        "Charles Dickens"
+      ],
+      "contentVersion": "87f975b1a0c50cf3",
+      "contentHash": "87f975b1a0c50cf3deb7b6fc277e26012b393ed560bf44d7b795eded1b0cc886",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "98",
+        "releaseDate": "January 1, 1994",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/98",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Tale of Two Cities"
+      },
+      "stats": {
+        "originalCharacterCount": 793193,
+        "cleanedCharacterCount": 755521,
+        "wordCount": 136387,
+        "sectionCount": 45,
+        "includedSectionCount": 45
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-tale-of-two-cities/manifest.json"
+    },
+    {
+      "slug": "cranford",
+      "title": "Cranford",
+      "author": [
+        "Elizabeth Cleghorn Gaskell"
+      ],
+      "contentVersion": "651591fa72504245",
+      "contentHash": "651591fa72504245b6838e446ba698f06b7d3a2bbf1971dac0e05955890cc2f9",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "394",
+        "releaseDate": "January 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/394",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Cranford"
+      },
+      "stats": {
+        "originalCharacterCount": 415783,
+        "cleanedCharacterCount": 385004,
+        "wordCount": 70834,
+        "sectionCount": 16,
+        "includedSectionCount": 16
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "cranford/manifest.json"
+    },
+    {
+      "slug": "little-fuzzy",
+      "title": "Little Fuzzy",
+      "author": [
+        "H. Beam Piper"
+      ],
+      "contentVersion": "bb4875298784f91e",
+      "contentHash": "bb4875298784f91ec0fe3b949f92252b76c526a9ee80a1f35413043ca67f51c5",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "18137",
+        "releaseDate": "April 9, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/18137",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Little Fuzzy"
+      },
+      "stats": {
+        "originalCharacterCount": 365038,
+        "cleanedCharacterCount": 336317,
+        "wordCount": 59137,
+        "sectionCount": 17,
+        "includedSectionCount": 17
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "little-fuzzy/manifest.json"
+    },
+    {
+      "slug": "macbeth",
+      "title": "Macbeth",
+      "author": [
+        "William Shakespeare"
+      ],
+      "contentVersion": "0226abdea44f95d6",
+      "contentHash": "0226abdea44f95d61a33d6a9d5df284aa5c0ef070faf1aa39f962554a8aaed3c",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1533",
+        "releaseDate": "November 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1533",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Macbeth"
+      },
+      "stats": {
+        "originalCharacterCount": 128338,
+        "cleanedCharacterCount": 103226,
+        "wordCount": 18268,
+        "sectionCount": 6,
+        "includedSectionCount": 5
+      },
+      "defaults": {
+        "includeKinds": [
+          "part",
+          "scene"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "macbeth/manifest.json"
+    },
+    {
+      "slug": "persuasion",
+      "title": "Persuasion",
+      "author": [
+        "Jane Austen"
+      ],
+      "contentVersion": "962d4fa30c3053e1",
+      "contentHash": "962d4fa30c3053e1c057b302b111845d92b3787be8c1297a88597edf1dbe31c9",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "105",
+        "releaseDate": "February 1, 1994",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/105",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Persuasion"
+      },
+      "stats": {
+        "originalCharacterCount": 492870,
+        "cleanedCharacterCount": 464387,
+        "wordCount": 83326,
+        "sectionCount": 24,
+        "includedSectionCount": 24
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "persuasion/manifest.json"
+    },
+    {
+      "slug": "pygmalion",
+      "title": "Pygmalion",
+      "author": [
+        "Bernard Shaw"
+      ],
+      "contentVersion": "09d24e1d78a97f18",
+      "contentHash": "09d24e1d78a97f1822cd1746a97397ca53976e5f6ba79ac5f99757dd21314cf8",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3825",
+        "releaseDate": "March 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3825",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Pygmalion"
+      },
+      "stats": {
+        "originalCharacterCount": 212314,
+        "cleanedCharacterCount": 187891,
+        "wordCount": 33577,
+        "sectionCount": 6,
+        "includedSectionCount": 5
+      },
+      "defaults": {
+        "includeKinds": [
+          "part",
+          "scene"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "pygmalion/manifest.json"
+    },
+    {
+      "slug": "the-adventures-of-tom-sawyer",
+      "title": "The Adventures of Tom Sawyer",
+      "author": [
+        "Mark Twain"
+      ],
+      "contentVersion": "b9d2b4d867fe9f45",
+      "contentHash": "b9d2b4d867fe9f45aca72102f7a0e535298cee93a6ddfba5844fab06cb8d595c",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "74",
+        "releaseDate": "July 1, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/74",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Adventures of Tom Sawyer"
+      },
+      "stats": {
+        "originalCharacterCount": 421358,
+        "cleanedCharacterCount": 386698,
+        "wordCount": 70216,
+        "sectionCount": 36,
+        "includedSectionCount": 35
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-adventures-of-tom-sawyer/manifest.json"
+    },
+    {
+      "slug": "the-door-in-the-wall",
+      "title": "The Door in the Wall",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "ecd2c160a30c71ce",
+      "contentHash": "ecd2c160a30c71cef30c0545c9b979408738aec6d45bd3a1279cf19feb278218",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "456",
+        "releaseDate": "March, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/456",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Door in the Wall"
+      },
+      "stats": {
+        "originalCharacterCount": 37406,
+        "cleanedCharacterCount": 36264,
+        "wordCount": 6668,
+        "sectionCount": 4,
+        "includedSectionCount": 4
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-door-in-the-wall/manifest.json"
+    },
+    {
+      "slug": "the-hound-of-the-baskervilles",
+      "title": "The Hound of the Baskervilles",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "c6bf7cc132c192f5",
+      "contentHash": "c6bf7cc132c192f513d502231ac1280da0cbe3235656c142c50b99f841c70066",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2852",
+        "releaseDate": "October 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2852",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Hound of the Baskervilles"
+      },
+      "stats": {
+        "originalCharacterCount": 381205,
+        "cleanedCharacterCount": 323528,
+        "wordCount": 59198,
+        "sectionCount": 16,
+        "includedSectionCount": 15
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-hound-of-the-baskervilles/manifest.json"
+    },
+    {
+      "slug": "the-king-in-yellow",
+      "title": "The King in Yellow",
+      "author": [
+        "Robert W. Chambers"
+      ],
+      "contentVersion": "09335206c61557c5",
+      "contentHash": "09335206c61557c5ddbe497e6339897dc6b132442c690c010489f183c9cf343a",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "8492",
+        "releaseDate": "July 1, 2005",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/8492",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The King in Yellow"
+      },
+      "stats": {
+        "originalCharacterCount": 431209,
+        "cleanedCharacterCount": 398237,
+        "wordCount": 71951,
+        "sectionCount": 11,
+        "includedSectionCount": 10
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-king-in-yellow/manifest.json"
+    },
+    {
+      "slug": "the-life-and-adventures-of-robinson-crusoe",
+      "title": "The Life and Adventures of Robinson Crusoe",
+      "author": [
+        "Daniel Defoe"
+      ],
+      "contentVersion": "fff923cbcf97efb2",
+      "contentHash": "fff923cbcf97efb242ea752c06d23f9da39fc23888d7ad62957e421cf4a658e4",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "521",
+        "releaseDate": "May 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/521",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Life and Adventures of Robinson Crusoe"
+      },
+      "stats": {
+        "originalCharacterCount": 651447,
+        "cleanedCharacterCount": 620608,
+        "wordCount": 120957,
+        "sectionCount": 20,
+        "includedSectionCount": 20
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-life-and-adventures-of-robinson-crusoe/manifest.json"
+    },
+    {
+      "slug": "the-maltese-falcon",
+      "title": "The Maltese Falcon",
+      "author": [
+        "Dashiell Hammett"
+      ],
+      "contentVersion": "57f017ffb4ec2d8d",
+      "contentHash": "57f017ffb4ec2d8d52d9531d9327e7ef6d2e6b0ca8f2d01695ce04d43d1dab67",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "77600",
+        "releaseDate": "January 1, 2026",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/77600",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Maltese Falcon"
+      },
+      "stats": {
+        "originalCharacterCount": 401664,
+        "cleanedCharacterCount": 368664,
+        "wordCount": 66684,
+        "sectionCount": 21,
+        "includedSectionCount": 20
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-maltese-falcon/manifest.json"
+    },
+    {
+      "slug": "the-tempest",
+      "title": "The Tempest",
+      "author": [
+        "William Shakespeare"
+      ],
+      "contentVersion": "987228905a017586",
+      "contentHash": "987228905a017586d0bc9890b374d858afd21be51593fbd4bd7cf750e181234e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "23042",
+        "releaseDate": "October 26, 2007",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/23042",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Tempest"
+      },
+      "stats": {
+        "originalCharacterCount": 172282,
+        "cleanedCharacterCount": 121659,
+        "wordCount": 21553,
+        "sectionCount": 6,
+        "includedSectionCount": 5
+      },
+      "defaults": {
+        "includeKinds": [
+          "part",
+          "scene"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-tempest/manifest.json"
+    },
+    {
+      "slug": "the-turn-of-the-screw",
+      "title": "The Turn of the Screw",
+      "author": [
+        "Henry James"
+      ],
+      "contentVersion": "5abe012275e9341c",
+      "contentHash": "5abe012275e9341c01945047dafbd4d68764d7e4e60412499446a00b8ccda087",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "209",
+        "releaseDate": "February 1, 1995",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/209",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Turn of the Screw"
+      },
+      "stats": {
+        "originalCharacterCount": 252688,
+        "cleanedCharacterCount": 228271,
+        "wordCount": 42351,
+        "sectionCount": 25,
+        "includedSectionCount": 25
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-turn-of-the-screw/manifest.json"
+    },
+    {
+      "slug": "the-war-of-the-worlds",
+      "title": "The War of the Worlds",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "add803927f4073d9",
+      "contentHash": "add803927f4073d9cdd258366314e14eb22f528bbe0a33d3e6866a015d796e6d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "36",
+        "releaseDate": "October 1, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/36",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The War of the Worlds"
+      },
+      "stats": {
+        "originalCharacterCount": 363438,
+        "cleanedCharacterCount": 336271,
+        "wordCount": 59890,
+        "sectionCount": 27,
+        "includedSectionCount": 0
+      },
+      "defaults": {
+        "includeKinds": [
+          "book",
+          "part"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-war-of-the-worlds/manifest.json"
+    },
+    {
+      "slug": "the-wendigo",
+      "title": "The Wendigo",
+      "author": [
+        "Algernon Blackwood"
+      ],
+      "contentVersion": "55590681e7395da8",
+      "contentHash": "55590681e7395da83346c6d719dd3136bedab249dc2a3fa53e7c03c68524c093",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "10897",
+        "releaseDate": "January 1, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/10897",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Wendigo"
+      },
+      "stats": {
+        "originalCharacterCount": 128175,
+        "cleanedCharacterCount": 106187,
+        "wordCount": 18645,
+        "sectionCount": 9,
+        "includedSectionCount": 9
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-wendigo/manifest.json"
+    },
+    {
+      "slug": "wuthering-heights",
+      "title": "Wuthering Heights",
+      "author": [
+        "Emily Brontë"
+      ],
+      "contentVersion": "2950978335c7d835",
+      "contentHash": "2950978335c7d8354323ad37a4b121cff171a72e485fee21131c164d7914459e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "768",
+        "releaseDate": "December 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/768",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Wuthering Heights"
+      },
+      "stats": {
+        "originalCharacterCount": 677607,
+        "cleanedCharacterCount": 645375,
+        "wordCount": 116109,
+        "sectionCount": 34,
+        "includedSectionCount": 34
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "wuthering-heights/manifest.json"
+    },
+    {
+      "slug": "anne-of-avonlea",
+      "title": "Anne of Avonlea",
+      "author": [
+        "L. M. Montgomery"
+      ],
+      "contentVersion": "7f02dd8b94db5b5a",
+      "contentHash": "7f02dd8b94db5b5aaa01b0ad584bdcb8e009cece2fd7bac89923f76721afb0f6",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "47",
+        "releaseDate": "March 8, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/47",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Anne of Avonlea"
+      },
+      "stats": {
+        "originalCharacterCount": 517536,
+        "cleanedCharacterCount": 486802,
+        "wordCount": 88680,
+        "sectionCount": 31,
+        "includedSectionCount": 30
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "anne-of-avonlea/manifest.json"
+    },
+    {
+      "slug": "five-weeks-in-a-balloon",
+      "title": "Five Weeks in a Balloon",
+      "author": [
+        "Jules Verne"
+      ],
+      "contentVersion": "66e462aab228e009",
+      "contentHash": "66e462aab228e00912a782862b4d7a133f101f2dda7b7ed4639c89c6c0ad8056",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3526",
+        "releaseDate": "November 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3526",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Five Weeks in a Balloon"
+      },
+      "stats": {
+        "originalCharacterCount": 567579,
+        "cleanedCharacterCount": 524001,
+        "wordCount": 90956,
+        "sectionCount": 45,
+        "includedSectionCount": 44
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "five-weeks-in-a-balloon/manifest.json"
+    },
+    {
+      "slug": "moby-dick",
+      "title": "Moby-Dick; or, The Whale",
+      "author": [
+        "Herman Melville"
+      ],
+      "contentVersion": "3d6b1370e7185921",
+      "contentHash": "3d6b1370e71859215a3aa1646cfd3ffba9962bf0343c726628341df467b9b7e1",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2701",
+        "releaseDate": "July 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2701",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Moby-Dick; or, The Whale"
+      },
+      "stats": {
+        "originalCharacterCount": 1260591,
+        "cleanedCharacterCount": 1213468,
+        "wordCount": 212919,
+        "sectionCount": 136,
+        "includedSectionCount": 135
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "moby-dick/manifest.json"
+    },
+    {
+      "slug": "tales-of-war",
+      "title": "Tales of War",
+      "author": [
+        "Lord Dunsany"
+      ],
+      "contentVersion": "a34b8eee8963cc66",
+      "contentHash": "a34b8eee8963cc6698293c9a2040c3b52ae726656097993b6781c5c8c8b0bd92",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "5713",
+        "releaseDate": "May 1, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/5713",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Tales of War"
+      },
+      "stats": {
+        "originalCharacterCount": 160975,
+        "cleanedCharacterCount": 138359,
+        "wordCount": 25804,
+        "sectionCount": 31,
+        "includedSectionCount": 31
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "tales-of-war/manifest.json"
     }
   ]
 }

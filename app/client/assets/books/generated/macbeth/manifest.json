@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "slug": "macbeth",
+  "title": "Macbeth",
+  "author": [
+    "William Shakespeare"
+  ],
+  "contentVersion": "0226abdea44f95d6",
+  "contentHash": "0226abdea44f95d61a33d6a9d5df284aa5c0ef070faf1aa39f962554a8aaed3c",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "1533",
+    "releaseDate": "November 1, 1998",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/1533",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Macbeth"
+  },
+  "stats": {
+    "originalCharacterCount": 128338,
+    "cleanedCharacterCount": 103226,
+    "wordCount": 18268,
+    "sectionCount": 6,
+    "includedSectionCount": 5
+  },
+  "defaults": {
+    "includeKinds": [
+      "part",
+      "scene"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/title-page-001.json",
+      "characterCount": 930,
+      "wordCount": 140,
+      "estimatedTypingMinutes": 4,
+      "estimatedListeningMinutes": 6,
+      "morseCharacterEstimate": 5145,
+      "textPreview": "Dramatis Personæ DUNCAN, King of Scotland. MALCOLM, his Son. DONALBAIN, his Son. MACBETH, General in the King's Army. BANQUO, General in the King's Army. MACDU..."
+    },
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Act 1",
+      "title": null,
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-001.json",
+      "characterCount": 22899,
+      "wordCount": 4038,
+      "estimatedTypingMinutes": 101,
+      "estimatedListeningMinutes": 138,
+      "morseCharacterEstimate": 123731,
+      "textPreview": "ACT I SCENE I. An open Place. Thunder and Lightning. Enter three Witches. FIRST WITCH. When shall we three meet again? In thunder, lightning, or in rain? SECON..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Act 2",
+      "title": null,
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-002.json",
+      "characterCount": 16546,
+      "wordCount": 2890,
+      "estimatedTypingMinutes": 73,
+      "estimatedListeningMinutes": 100,
+      "morseCharacterEstimate": 89641,
+      "textPreview": "ACT II SCENE I. Inverness. Court within the Castle. Enter Banquo and Fleance with a torch before him. BANQUO. How goes the night, boy? FLEANCE. The moon is dow..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Act 3",
+      "title": null,
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-003.json",
+      "characterCount": 22107,
+      "wordCount": 3969,
+      "estimatedTypingMinutes": 100,
+      "estimatedListeningMinutes": 133,
+      "morseCharacterEstimate": 119645,
+      "textPreview": "ACT III SCENE I. Forres. A Room in the Palace. Enter Banquo. BANQUO. Thou hast it now, King, Cawdor, Glamis, all, As the Weird Women promis'd; and, I fear, Tho..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Act 4",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-004.json",
+      "characterCount": 22600,
+      "wordCount": 4013,
+      "estimatedTypingMinutes": 101,
+      "estimatedListeningMinutes": 137,
+      "morseCharacterEstimate": 123028,
+      "textPreview": "ACT IV SCENE I. A dark Cave. In the middle, a Cauldron Boiling. Thunder. Enter the three Witches. FIRST WITCH. Thrice the brinded cat hath mew'd. SECOND WITCH...."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Act 5",
+      "title": null,
+      "order": 6,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-005.json",
+      "characterCount": 18129,
+      "wordCount": 3218,
+      "estimatedTypingMinutes": 81,
+      "estimatedListeningMinutes": 109,
+      "morseCharacterEstimate": 97964,
+      "textPreview": "ACT V SCENE I. Dunsinane. A Room in the Castle. Enter a Doctor of Physic and a Waiting-Gentlewoman. DOCTOR. I have two nights watched with you, but can perceiv..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 128338,
+    "cleanedCharacterCount": 103226,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "medium",
+    "warnings": []
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 3; review before scaling to larger batches or Cloudflare export."
+  ]
+}

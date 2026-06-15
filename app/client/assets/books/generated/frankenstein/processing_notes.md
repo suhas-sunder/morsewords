@@ -1,54 +1,12 @@
-# Frankenstein; or, the modern prometheus processing notes
+# Frankenstein; or, the Modern Prometheus
 
-- Source file: ../../temp-books/Frankenstein.txt
-- Gutenberg ID: 84
-- Source URL: https://www.gutenberg.org/ebooks/84
-- Approval status: approved
-- Approval source: external-authority
-- Duplicate resolution source: not-needed
-- Processing allowed: yes
-- processed_book.json emitted: yes
+Processed by pilot write pass 3.
 
-## Rights evidence found
+- Source: app/client/assets/temp-books/Frankenstein.txt
+- Start boundary: line 71 (Batch-3 pre-write review moved the start from Chapter 1 to Letter 1 so the real framing letters remain default readable content.)
+- End boundary: line 7386 (Dry-run 3 selected this as the final real readable line before end/source matter: will sleep in peace, or if it thinks, it will not surely think thus. Farewell.” He sprang from the cabin-window as he said this, upon the ice raft which lay close to the vessel. He was soon borne away by the waves and lost in darkness and distance.)
+- Selected structure: chapter-based arabic numbers; custom source-backed sectioning
+- Sections: 28
+- Recommendation: needs manual review before scaling
 
-- Author death year authority: project-gutenberg-rdf 84 https://www.gutenberg.org/cache/epub/84/pg84.rdf
-- Original publication authority: wikidata Q150827 https://www.wikidata.org/wiki/Q150827
-- Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of
-- U.S. reuse language: g eBook of Frankenstein; or, the modern prometheus This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
-- Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Frankenstein; or, the modern pro
-
-## Risks found
-
-- Translation risk: none
-- Edition risk: none
-- Trademark or character brand risk: none
-- Content brand-safety risk: none
-- Later copyright notice: no
-- Permission-based language: no
-- Creative Commons notice: no
-
-## Cleaning actions
-
-- Original characters: 438729
-- Cleaned characters: 419264
-- Header stripped: yes
-- Footer stripped: yes
-- Cleaning confidence: high
-
-## Skipped or excluded material
-
-- title-page-001: title-page (Opening section)
-- title-page-002: title-page (Contents)
-
-## Section detection summary
-
-- Generated sections: 26
-- Included by default: 24
-
-## Manual review reasons
-
-- No manual review blockers from the current rights gate.
-
-## Next metadata needed
-
-- Keep the metadata and rights report together when publishing the page.
+This output is intentionally review-gated before larger batch processing or Cloudflare export.

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-adventures-of-tom-sawyer",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Opening section",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "PREFACE\n\n\nMost of the adventures recorded in this book really occurred; one or two\nwere experiences of my own, the rest those of boys who were schoolmates\nof mine. Huck Finn is drawn from life; Tom Sawyer also, but not from an\nindividual-he is a combination of the characteristics of three boys whom\nI knew, and therefore belongs to the composite order of architecture.\n\nThe odd superstitions touched upon were all prevalent among children and\nslaves in the West at the period of this story-that is to say, thirty or\nforty years ago.\n\nAlthough my book is intended mainly for the entertainment of boys and\ngirls, I hope it will not be shunned by men and women on that account,\nfor part of my plan has been to try to pleasantly remind adults of what\nthey once were themselves, and of how they felt and thought and talked,\nand what queer enterprises they sometimes engaged in.\n\nTHE AUTHOR.\n\nHARTFORD, 1876.",
+  "morseSourceText": "PREFACE\n\n\nMost of the adventures recorded in this book really occurred; one or two\nwere experiences of my own, the rest those of boys who were schoolmates\nof mine. Huck Finn is drawn from life; Tom Sawyer also, but not from an\nindividual-he is a combination of the characteristics of three boys whom\nI knew, and therefore belongs to the composite order of architecture.\n\nThe odd superstitions touched upon were all prevalent among children and\nslaves in the West at the period of this story-that is to say, thirty or\nforty years ago.\n\nAlthough my book is intended mainly for the entertainment of boys and\ngirls, I hope it will not be shunned by men and women on that account,\nfor part of my plan has been to try to pleasantly remind adults of what\nthey once were themselves, and of how they felt and thought and talked,\nand what queer enterprises they sometimes engaged in.\n\nTHE AUTHOR.\n\nHARTFORD, 1876.",
+  "paragraphs": [
+    "PREFACE",
+    "Most of the adventures recorded in this book really occurred; one or two were experiences of my own, the rest those of boys who were schoolmates of mine. Huck Finn is drawn from life; Tom Sawyer also, but not from an individual-he is a combination of the characteristics of three boys whom I knew, and therefore belongs to the composite order of architecture.",
+    "The odd superstitions touched upon were all prevalent among children and slaves in the West at the period of this story-that is to say, thirty or forty years ago.",
+    "Although my book is intended mainly for the entertainment of boys and girls, I hope it will not be shunned by men and women on that account, for part of my plan has been to try to pleasantly remind adults of what they once were themselves, and of how they felt and thought and talked, and what queer enterprises they sometimes engaged in.",
+    "THE AUTHOR.",
+    "HARTFORD, 1876."
+  ],
+  "wordCount": 160,
+  "characterCount": 903,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4802,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "PREFACE Most of the adventures recorded in this book really occurred; one or two were experiences of my own, the rest those of boys who were schoolmates of min...",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 906
+  }
+}

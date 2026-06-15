@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "five-weeks-in-a-balloon",
+  "sectionId": "preface-001",
+  "kind": "preface",
+  "label": "Publisher's Note",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "PUBLISHERS' NOTE.\n\n\n\"Five Weeks in a Balloon\" is, in a measure, a satire on modern books of\nAfrican travel. So far as the geography, the inhabitants, the animals,\nand the features of the countries the travellers pass over are\ndescribed, it is entirely accurate. It gives, in some particulars, a\nsurvey of nearly the whole field of African discovery, and in this way\nwill often serve to refresh the memory of the reader. The mode of\nlocomotion is, of course, purely imaginary, and the incidents and\nadventures fictitious. The latter are abundantly amusing, and, in view\nof the wonderful \"travellers' tales\" with which we have been\nentertained by African explorers, they can scarcely be considered\nextravagant; while the ingenuity and invention of the author will be\nsure to excite the surprise and the admiration of the reader, who will\nfind M. VERNE as much at home in voyaging through the air as in\njourneying \"Twenty Thousand Leagues under the Seas.\"\n\nFIVE WEEKS IN A BALLOON.",
+  "morseSourceText": "PUBLISHERS' NOTE.\n\n\n\"Five Weeks in a Balloon\" is, in a measure, a satire on modern books of\nAfrican travel. So far as the geography, the inhabitants, the animals,\nand the features of the countries the travellers pass over are\ndescribed, it is entirely accurate. It gives, in some particulars, a\nsurvey of nearly the whole field of African discovery, and in this way\nwill often serve to refresh the memory of the reader. The mode of\nlocomotion is, of course, purely imaginary, and the incidents and\nadventures fictitious. The latter are abundantly amusing, and, in view\nof the wonderful \"travellers' tales\" with which we have been\nentertained by African explorers, they can scarcely be considered\nextravagant; while the ingenuity and invention of the author will be\nsure to excite the surprise and the admiration of the reader, who will\nfind M. VERNE as much at home in voyaging through the air as in\njourneying \"Twenty Thousand Leagues under the Seas.\"\n\nFIVE WEEKS IN A BALLOON.",
+  "paragraphs": [
+    "PUBLISHERS' NOTE.",
+    "\"Five Weeks in a Balloon\" is, in a measure, a satire on modern books of African travel. So far as the geography, the inhabitants, the animals, and the features of the countries the travellers pass over are described, it is entirely accurate. It gives, in some particulars, a survey of nearly the whole field of African discovery, and in this way will often serve to refresh the memory of the reader. The mode of locomotion is, of course, purely imaginary, and the incidents and adventures fictitious. The latter are abundantly amusing, and, in view of the wonderful \"travellers' tales\" with which we have been entertained by African explorers, they can scarcely be considered extravagant; while the ingenuity and invention of the author will be sure to excite the surprise and the admiration of the reader, who will find M. VERNE as much at home in voyaging through the air as in journeying \"Twenty Thousand Leagues under the Seas.\"",
+    "FIVE WEEKS IN A BALLOON."
+  ],
+  "wordCount": 165,
+  "characterCount": 978,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 5242,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "PUBLISHERS' NOTE. \"Five Weeks in a Balloon\" is, in a measure, a satire on modern books of African travel. So far as the geography, the inhabitants, the animals...",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 981
+  }
+}

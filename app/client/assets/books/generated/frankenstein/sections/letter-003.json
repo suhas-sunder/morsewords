@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "frankenstein",
+  "sectionId": "letter-003",
+  "kind": "letter",
+  "label": "Letter 3",
+  "title": "_To Mrs. Saville, England._",
+  "order": 3,
+  "includeByDefault": true,
+  "displayText": "Letter 3\n\n_To Mrs. Saville, England._\n\nJuly 7th, 17-.\n\n\nMy dear Sister,\n\nI write a few lines in haste to say that I am safe-and well advanced\non my voyage. This letter will reach England by a merchantman now on\nits homeward voyage from Archangel; more fortunate than I, who may not\nsee my native land, perhaps, for many years. I am, however, in good\nspirits: my men are bold and apparently firm of purpose, nor do the\nfloating sheets of ice that continually pass us, indicating the dangers\nof the region towards which we are advancing, appear to dismay them. We\nhave already reached a very high latitude; but it is the height of\nsummer, and although not so warm as in England, the southern gales,\nwhich blow us speedily towards those shores which I so ardently desire\nto attain, breathe a degree of renovating warmth which I had not\nexpected.\n\nNo incidents have hitherto befallen us that would make a figure in a\nletter. One or two stiff gales and the springing of a leak are\naccidents which experienced navigators scarcely remember to record, and\nI shall be well content if nothing worse happen to us during our voyage.\n\nAdieu, my dear Margaret. Be assured that for my own sake, as well as\nyours, I will not rashly encounter danger. I will be cool,\npersevering, and prudent.\n\nBut success _shall_ crown my endeavours. Wherefore not? Thus far I\nhave gone, tracing a secure way over the pathless seas, the very stars\nthemselves being witnesses and testimonies of my triumph. Why not\nstill proceed over the untamed yet obedient element? What can stop the\ndetermined heart and resolved will of man?\n\nMy swelling heart involuntarily pours itself out thus. But I must\nfinish. Heaven bless my beloved sister!\n\nR.W.",
+  "morseSourceText": "Letter 3\n\n_To Mrs. Saville, England._\n\nJuly 7th, 17-.\n\n\nMy dear Sister,\n\nI write a few lines in haste to say that I am safe-and well advanced\non my voyage. This letter will reach England by a merchantman now on\nits homeward voyage from Archangel; more fortunate than I, who may not\nsee my native land, perhaps, for many years. I am, however, in good\nspirits: my men are bold and apparently firm of purpose, nor do the\nfloating sheets of ice that continually pass us, indicating the dangers\nof the region towards which we are advancing, appear to dismay them. We\nhave already reached a very high latitude; but it is the height of\nsummer, and although not so warm as in England, the southern gales,\nwhich blow us speedily towards those shores which I so ardently desire\nto attain, breathe a degree of renovating warmth which I had not\nexpected.\n\nNo incidents have hitherto befallen us that would make a figure in a\nletter. One or two stiff gales and the springing of a leak are\naccidents which experienced navigators scarcely remember to record, and\nI shall be well content if nothing worse happen to us during our voyage.\n\nAdieu, my dear Margaret. Be assured that for my own sake, as well as\nyours, I will not rashly encounter danger. I will be cool,\npersevering, and prudent.\n\nBut success _shall_ crown my endeavours. Wherefore not? Thus far I\nhave gone, tracing a secure way over the pathless seas, the very stars\nthemselves being witnesses and testimonies of my triumph. Why not\nstill proceed over the untamed yet obedient element? What can stop the\ndetermined heart and resolved will of man?\n\nMy swelling heart involuntarily pours itself out thus. But I must\nfinish. Heaven bless my beloved sister!\n\nR.W.",
+  "paragraphs": [
+    "Letter 3",
+    "_To Mrs. Saville, England._",
+    "July 7th, 17-.",
+    "My dear Sister,",
+    "I write a few lines in haste to say that I am safe-and well advanced on my voyage. This letter will reach England by a merchantman now on its homeward voyage from Archangel; more fortunate than I, who may not see my native land, perhaps, for many years. I am, however, in good spirits: my men are bold and apparently firm of purpose, nor do the floating sheets of ice that continually pass us, indicating the dangers of the region towards which we are advancing, appear to dismay them. We have already reached a very high latitude; but it is the height of summer, and although not so warm as in England, the southern gales, which blow us speedily towards those shores which I so ardently desire to attain, breathe a degree of renovating warmth which I had not expected.",
+    "No incidents have hitherto befallen us that would make a figure in a letter. One or two stiff gales and the springing of a leak are accidents which experienced navigators scarcely remember to record, and I shall be well content if nothing worse happen to us during our voyage.",
+    "Adieu, my dear Margaret. Be assured that for my own sake, as well as yours, I will not rashly encounter danger. I will be cool, persevering, and prudent.",
+    "But success _shall_ crown my endeavours. Wherefore not? Thus far I have gone, tracing a secure way over the pathless seas, the very stars themselves being witnesses and testimonies of my triumph. Why not still proceed over the untamed yet obedient element? What can stop the determined heart and resolved will of man?",
+    "My swelling heart involuntarily pours itself out thus. But I must finish. Heaven bless my beloved sister!",
+    "R.W."
+  ],
+  "wordCount": 301,
+  "characterCount": 1707,
+  "estimatedTypingMinutes": 8,
+  "estimatedListeningMinutes": 11,
+  "morseCharacterEstimate": 9138,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Letter 3 _To Mrs. Saville, England._ July 7th, 17-. My dear Sister, I write a few lines in haste to say that I am safe-and well advanced on my voyage. This let...",
+  "sourceOffsets": {
+    "start": 14211,
+    "end": 15921
+  }
+}

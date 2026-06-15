@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-wendigo",
+  "title": "The Wendigo",
+  "author": [
+    "Algernon Blackwood"
+  ],
+  "contentVersion": "55590681e7395da8",
+  "contentHash": "55590681e7395da83346c6d719dd3136bedab249dc2a3fa53e7c03c68524c093",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "10897",
+    "releaseDate": "January 1, 2004",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/10897",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Wendigo"
+  },
+  "stats": {
+    "originalCharacterCount": 128175,
+    "cleanedCharacterCount": 106187,
+    "wordCount": 18645,
+    "sectionCount": 9,
+    "includedSectionCount": 9
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 14563,
+      "wordCount": 2574,
+      "estimatedTypingMinutes": 65,
+      "estimatedListeningMinutes": 88,
+      "morseCharacterEstimate": 78359,
+      "textPreview": "I A considerable number of hunting parties were out that year without finding so much as a fresh trail; for the moose were uncommonly shy, and the various Nimr..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 24166,
+      "wordCount": 4230,
+      "estimatedTypingMinutes": 106,
+      "estimatedListeningMinutes": 145,
+      "morseCharacterEstimate": 130171,
+      "textPreview": "II In the morning the camp was astir before the sun. There had been a light fall of snow during the night and the air was sharp. Punk had done his duty betimes..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 3154,
+      "wordCount": 566,
+      "estimatedTypingMinutes": 15,
+      "estimatedListeningMinutes": 19,
+      "morseCharacterEstimate": 16965,
+      "textPreview": "III Thus, it seemed to him, at least. Yet it was true that the lap of the water, just beyond the tent door, still beat time with his lessening pulses when he r..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 16062,
+      "wordCount": 2830,
+      "estimatedTypingMinutes": 71,
+      "estimatedListeningMinutes": 96,
+      "morseCharacterEstimate": 85902,
+      "textPreview": "IV But sleep, in the long run, proves greater than all emotions. His thoughts soon wandered again; he lay there, warm as toast, exceedingly weary; the night so..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 9406,
+      "wordCount": 1635,
+      "estimatedTypingMinutes": 41,
+      "estimatedListeningMinutes": 56,
+      "morseCharacterEstimate": 50390,
+      "textPreview": "V For a man of his years and inexperience, only a canny Scot, perhaps, grounded in common sense and established in logic, could have preserved even that measur..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "order": 6,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-006.json",
+      "characterCount": 13636,
+      "wordCount": 2395,
+      "estimatedTypingMinutes": 60,
+      "estimatedListeningMinutes": 82,
+      "morseCharacterEstimate": 73278,
+      "textPreview": "VI The sudden entrance of his prosaic uncle into this world of wizardry and horror that had haunted him without interruption now for two days and two nights, h..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "order": 7,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-007.json",
+      "characterCount": 7527,
+      "wordCount": 1308,
+      "estimatedTypingMinutes": 33,
+      "estimatedListeningMinutes": 46,
+      "morseCharacterEstimate": 40612,
+      "textPreview": "VII A wall of silence wrapped them in, for the snow, though not thick, was sufficient to deaden any noise, and the frost held things pretty tight besides. No s..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "order": 8,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-008.json",
+      "characterCount": 12134,
+      "wordCount": 2142,
+      "estimatedTypingMinutes": 54,
+      "estimatedListeningMinutes": 73,
+      "morseCharacterEstimate": 65259,
+      "textPreview": "VIII Then at length the darkness, having thus laboriously conceived, brought forth--a figure. It drew forward into the zone of uncertain light where fire and s..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "order": 9,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-009.json",
+      "characterCount": 5515,
+      "wordCount": 965,
+      "estimatedTypingMinutes": 25,
+      "estimatedListeningMinutes": 33,
+      "morseCharacterEstimate": 29623,
+      "textPreview": "IX They talked little, and then only of the most wholesome and common things, for their minds were charged with painful thoughts that clamoured for explanation..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 128175,
+    "cleanedCharacterCount": 106187,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "medium",
+    "warnings": []
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 3; review before scaling to larger batches or Cloudflare export."
+  ]
+}

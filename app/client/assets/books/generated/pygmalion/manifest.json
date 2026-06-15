@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "slug": "pygmalion",
+  "title": "Pygmalion",
+  "author": [
+    "Bernard Shaw"
+  ],
+  "contentVersion": "09d24e1d78a97f18",
+  "contentHash": "09d24e1d78a97f1822cd1746a97397ca53976e5f6ba79ac5f99757dd21314cf8",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "3825",
+    "releaseDate": "March 1, 2003",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/3825",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Pygmalion"
+  },
+  "stats": {
+    "originalCharacterCount": 212314,
+    "cleanedCharacterCount": 187891,
+    "wordCount": 33577,
+    "sectionCount": 6,
+    "includedSectionCount": 5
+  },
+  "defaults": {
+    "includeKinds": [
+      "part",
+      "scene"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/title-page-001.json",
+      "characterCount": 8704,
+      "wordCount": 1510,
+      "estimatedTypingMinutes": 38,
+      "estimatedListeningMinutes": 52,
+      "morseCharacterEstimate": 46519,
+      "textPreview": "PREFACE TO PYGMALION. A Professor of Phonetics. As will be seen later on, Pygmalion needs, not a preface, but a sequel, which I have supplied in its due place...."
+    },
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Act 1",
+      "title": null,
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-001.json",
+      "characterCount": 19881,
+      "wordCount": 3537,
+      "estimatedTypingMinutes": 89,
+      "estimatedListeningMinutes": 118,
+      "morseCharacterEstimate": 105883,
+      "textPreview": "ACT I Covent Garden at 11.15 p.m. Torrents of heavy summer rain. Cab whistles blowing frantically in all directions. Pedestrians running for shelter into the m..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Act 2",
+      "title": null,
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-002.json",
+      "characterCount": 48718,
+      "wordCount": 8851,
+      "estimatedTypingMinutes": 222,
+      "estimatedListeningMinutes": 291,
+      "morseCharacterEstimate": 261590,
+      "textPreview": "ACT II Next day at 11 a.m. Higgins's laboratory in Wimpole Street. It is a room on the first floor, looking on the street, and was meant for the drawing-room...."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Act 3",
+      "title": null,
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-003.json",
+      "characterCount": 26963,
+      "wordCount": 4682,
+      "estimatedTypingMinutes": 118,
+      "estimatedListeningMinutes": 161,
+      "morseCharacterEstimate": 144876,
+      "textPreview": "ACT III It is Mrs. Higgins's at-home day. Nobody has yet arrived. Her drawing-room, in a flat on Chelsea embankment, has three windows looking on the river; an..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Act 4",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-004.json",
+      "characterCount": 14955,
+      "wordCount": 2691,
+      "estimatedTypingMinutes": 68,
+      "estimatedListeningMinutes": 89,
+      "morseCharacterEstimate": 80014,
+      "textPreview": "ACT IV The Wimpole Street laboratory. Midnight. Nobody in the room. The clock on the mantelpiece strikes twelve. The fire is not alight: it is a summer night...."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Act 5",
+      "title": null,
+      "order": 6,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-005.json",
+      "characterCount": 68655,
+      "wordCount": 12306,
+      "estimatedTypingMinutes": 308,
+      "estimatedListeningMinutes": 410,
+      "morseCharacterEstimate": 368222,
+      "textPreview": "ACT V Mrs. Higgins's drawing-room. She is at her writing-table as before. The parlor-maid comes in. THE PARLOR-MAID [at the door] Mr. Henry, mam, is downstairs..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 212314,
+    "cleanedCharacterCount": 187891,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "medium",
+    "warnings": []
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 3; review before scaling to larger batches or Cloudflare export."
+  ]
+}

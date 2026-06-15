@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-king-in-yellow",
+  "title": "The King in Yellow",
+  "author": [
+    "Robert W. Chambers"
+  ],
+  "contentVersion": "09335206c61557c5",
+  "contentHash": "09335206c61557c5ddbe497e6339897dc6b132442c690c010489f183c9cf343a",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "8492",
+    "releaseDate": "July 1, 2005",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/8492",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The King in Yellow"
+  },
+  "stats": {
+    "originalCharacterCount": 431209,
+    "cleanedCharacterCount": 398237,
+    "wordCount": 71951,
+    "sectionCount": 11,
+    "includedSectionCount": 10
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening epigraph",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/title-page-001.json",
+      "characterCount": 569,
+      "wordCount": 100,
+      "estimatedTypingMinutes": 3,
+      "estimatedListeningMinutes": 4,
+      "morseCharacterEstimate": 2941,
+      "textPreview": "THE KING IN YELLOW IS DEDICATED TO MY BROTHER \"Along the shore the cloud waves break, The twin suns sink behind the lake, The shadows lengthen In Carcosa. Stra..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "The Repairer Of Reputations",
+      "title": null,
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 68215,
+      "wordCount": 12213,
+      "estimatedTypingMinutes": 306,
+      "estimatedListeningMinutes": 408,
+      "morseCharacterEstimate": 366561,
+      "textPreview": "THE REPAIRER OF REPUTATIONS I \"Ne raillons pas les fous; leur folie dure plus longtemps que la nôtre.... Voila toute la différence.\" Toward the end of the year..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "The Mask",
+      "title": null,
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 35864,
+      "wordCount": 6696,
+      "estimatedTypingMinutes": 168,
+      "estimatedListeningMinutes": 213,
+      "morseCharacterEstimate": 191502,
+      "textPreview": "THE MASK CAMILLA: You, sir, should unmask. STRANGER: Indeed? CASSILDA: Indeed it's time. We all have laid aside disguise but you. STRANGER: I wear no mask. CAM..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "In The Court Of The Dragon",
+      "title": null,
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 18192,
+      "wordCount": 3382,
+      "estimatedTypingMinutes": 85,
+      "estimatedListeningMinutes": 108,
+      "morseCharacterEstimate": 97075,
+      "textPreview": "IN THE COURT OF THE DRAGON \"Oh, thou who burn'st in heart for those who burn In Hell, whose fires thyself shall feed in turn; How long be crying-'Mercy on them..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "The Yellow Sign",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 39059,
+      "wordCount": 7351,
+      "estimatedTypingMinutes": 184,
+      "estimatedListeningMinutes": 233,
+      "morseCharacterEstimate": 209036,
+      "textPreview": "THE YELLOW SIGN \"Let the red dawn surmise What we shall do, When this blue starlight dies And all is through.\" I There are so many things which are impossible..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "The Demoiselle D'Ys",
+      "title": null,
+      "order": 6,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 31511,
+      "wordCount": 5847,
+      "estimatedTypingMinutes": 147,
+      "estimatedListeningMinutes": 188,
+      "morseCharacterEstimate": 168651,
+      "textPreview": "THE DEMOISELLE D'YS \"Mais je croy que je Suis descendu on puiz Ténébreux onquel disoit Heraclytus estre Vereté cachée.\" \"There be three things which are too wo..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "The Prophets' Paradise",
+      "title": null,
+      "order": 7,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-006.json",
+      "characterCount": 5764,
+      "wordCount": 1043,
+      "estimatedTypingMinutes": 27,
+      "estimatedListeningMinutes": 35,
+      "morseCharacterEstimate": 31099,
+      "textPreview": "THE PROPHETS' PARADISE \"If but the Vine and Love Abjuring Band Are in the Prophets' Paradise to stand, Alack, I doubt the Prophets' Paradise, Were empty as the..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "The Street Of The Four Winds",
+      "title": null,
+      "order": 8,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-007.json",
+      "characterCount": 12801,
+      "wordCount": 2342,
+      "estimatedTypingMinutes": 59,
+      "estimatedListeningMinutes": 77,
+      "morseCharacterEstimate": 68723,
+      "textPreview": "THE STREET OF THE FOUR WINDS \"Ferme tes yeux à demi, Croise tes bras sur ton sein, Et de ton cœur endormi Chasse à jamais tout dessein.\" \"Je chante la nature,..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "The Street Of The First Shell",
+      "title": null,
+      "order": 9,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-008.json",
+      "characterCount": 66982,
+      "wordCount": 11952,
+      "estimatedTypingMinutes": 299,
+      "estimatedListeningMinutes": 401,
+      "morseCharacterEstimate": 360374,
+      "textPreview": "THE STREET OF THE FIRST SHELL \"Be of Good Cheer, the Sullen Month will die, And a young Moon requite us by and by: Look how the Old one, meagre, bent, and wan..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "The Street Of Our Lady Of The Fields",
+      "title": null,
+      "order": 10,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-009.json",
+      "characterCount": 73859,
+      "wordCount": 13023,
+      "estimatedTypingMinutes": 326,
+      "estimatedListeningMinutes": 444,
+      "morseCharacterEstimate": 399349,
+      "textPreview": "THE STREET OF OUR LADY OF THE FIELDS \"Et tout les jours passés dans la tristesse Nous sont comptés comme des jours heureux!\" I The street is not fashionable, n..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Rue Barree",
+      "title": null,
+      "order": 11,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-010.json",
+      "characterCount": 45381,
+      "wordCount": 8002,
+      "estimatedTypingMinutes": 201,
+      "estimatedListeningMinutes": 272,
+      "morseCharacterEstimate": 244339,
+      "textPreview": "RUE BARRÉE \"For let Philosopher and Doctor preach Of what they will and what they will not,-each Is but one link in an eternal chain That none can slip nor bre..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 431209,
+    "cleanedCharacterCount": 398237,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "medium",
+    "warnings": [
+      "Batch-3 custom source-backed sectioning applied to preserve real openings or story boundaries."
+    ]
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 3; review before scaling to larger batches or Cloudflare export.",
+    "Batch-3 custom source-backed sectioning applied to preserve real openings or story boundaries."
+  ]
+}

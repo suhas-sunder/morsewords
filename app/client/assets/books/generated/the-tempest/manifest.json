@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-tempest",
+  "title": "The Tempest",
+  "author": [
+    "William Shakespeare"
+  ],
+  "contentVersion": "987228905a017586",
+  "contentHash": "987228905a017586d0bc9890b374d858afd21be51593fbd4bd7cf750e181234e",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "23042",
+    "releaseDate": "October 26, 2007",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/23042",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 3 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Tempest"
+  },
+  "stats": {
+    "originalCharacterCount": 172282,
+    "cleanedCharacterCount": 121659,
+    "wordCount": 21553,
+    "sectionCount": 6,
+    "includedSectionCount": 5
+  },
+  "defaults": {
+    "includeKinds": [
+      "part",
+      "scene"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Dramatis Personae",
+      "title": null,
+      "order": 1,
+      "includeByDefault": false,
+      "sectionJsonPath": "sections/title-page-001.json",
+      "characterCount": 826,
+      "wordCount": 121,
+      "estimatedTypingMinutes": 4,
+      "estimatedListeningMinutes": 5,
+      "morseCharacterEstimate": 4252,
+      "textPreview": "THE TEMPEST. DRAMATIS PERSONÆ. ALONSO, King of Naples. SEBASTIAN, his brother. PROSPERO, the right Duke of Milan. ANTONIO, his brother, the usurping Duke of Mi..."
+    },
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Act 1",
+      "title": null,
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-001.json",
+      "characterCount": 36011,
+      "wordCount": 6338,
+      "estimatedTypingMinutes": 159,
+      "estimatedListeningMinutes": 223,
+      "morseCharacterEstimate": 200513,
+      "textPreview": "ACT I. SCENE I. _On a ship at sea: a tempestuous noise of thunder and lightning heard._ _Enter _a Ship-Master_ and _a Boatswain_._ _Mast._ Boatswain! _Boats._..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Act 2",
+      "title": null,
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-002.json",
+      "characterCount": 28452,
+      "wordCount": 5099,
+      "estimatedTypingMinutes": 128,
+      "estimatedListeningMinutes": 176,
+      "morseCharacterEstimate": 158128,
+      "textPreview": "ACT II. SCENE I. _Another part of the island._ _Enter ALONSO, SEBASTIAN, ANTONIO, GONZALO, ADRIAN, FRANCISCO, and others._ _Gon._ Beseech you, sir, be merry; y..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Act 3",
+      "title": null,
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-003.json",
+      "characterCount": 21281,
+      "wordCount": 3839,
+      "estimatedTypingMinutes": 96,
+      "estimatedListeningMinutes": 131,
+      "morseCharacterEstimate": 117702,
+      "textPreview": "ACT III. SCENE I. _Before PROSPERO'S cell._ _Enter FERDINAND, bearing a log._ _Fer._ There be some sports are painful, and their labour Delight in them sets of..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Act 4",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-004.json",
+      "characterCount": 15612,
+      "wordCount": 2695,
+      "estimatedTypingMinutes": 68,
+      "estimatedListeningMinutes": 97,
+      "morseCharacterEstimate": 86679,
+      "textPreview": "ACT IV. SCENE I. _Before PROSPERO'S cell._ _Enter PROSPERO, FERDINAND, and MIRANDA._ _Pros._ If I have too austerely punish'd you, Your compensation makes amen..."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Act 5",
+      "title": null,
+      "order": 6,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/part-005.json",
+      "characterCount": 19462,
+      "wordCount": 3461,
+      "estimatedTypingMinutes": 87,
+      "estimatedListeningMinutes": 121,
+      "morseCharacterEstimate": 108042,
+      "textPreview": "ACT V. SCENE I. _Before the cell of Prospero._ _Enter PROSPERO in his magic robes, and ARIEL._ _Pros._ Now does my project gather to a head: My charms crack no..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 172282,
+    "cleanedCharacterCount": 121659,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "medium",
+    "warnings": [
+      "body headings were found but rejected by the selected strategy",
+      "Batch-3 custom source-backed sectioning applied to preserve real openings or story boundaries.",
+      "Structure strategy changed after detector repair from act-prefixed to all-caps-title."
+    ]
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 3; review before scaling to larger batches or Cloudflare export.",
+    "body headings were found but rejected by the selected strategy",
+    "Batch-3 custom source-backed sectioning applied to preserve real openings or story boundaries.",
+    "Structure strategy changed after detector repair from act-prefixed to all-caps-title."
+  ]
+}

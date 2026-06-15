@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-maltese-falcon",
+  "sectionId": "dedication-001",
+  "kind": "dedication",
+  "label": "Dedication",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "TO _JOSE_",
+  "morseSourceText": "TO _JOSE_",
+  "paragraphs": [
+    "TO _JOSE_"
+  ],
+  "wordCount": 2,
+  "characterCount": 9,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 52,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "TO _JOSE_",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 12
+  }
+}
