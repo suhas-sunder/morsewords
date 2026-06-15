@@ -1,0 +1,55 @@
+# the-lord-of-the-dynamos
+
+- Source: `app/client/assets/temp-books/THE LORD OF THE DYNAMOS.txt`
+- Title: The Stolen Bacillus and Other Incidents
+- Author: H. G. Wells
+- Raw words: 3659
+- Detected convention: story or titled-section headings
+- Confidence: low (0.541)
+- Recommended handling: needs manual sectioning review
+- Fallback required: no
+- Fallback reason: not required
+- Fallback legitimacy: not required
+
+## Candidate Patterns
+
+| Pattern | Candidates | Body-like | TOC-like | Selected | Rejection reason |
+| --- | ---: | ---: | ---: | --- | --- |
+| all-caps-title | 9 | 5 | 4 | yes |  |
+| arabic-only | 1 | 0 | 1 | no | rejected as TOC-like or front-matter-only evidence |
+| isolated-title-case | 1 | 0 | 1 | no | rejected as TOC-like or front-matter-only evidence |
+
+## Body Heading Examples
+
+- L1: THE STOLEN BACILLUS AND OTHER INCIDENTS
+- L3: BY H.G. WELLS
+- L16: H.B. MARRIOTT WATSON
+- L26: H.G. WELLS.
+- L29: THE LORD OF THE DYNAMOS
+
+## Rejected TOC-like Examples
+
+- L5: AUTHOR OF "THE TIME MACHINE"
+- L7: METHUEN & CO.
+- L8: 36 ESSEX STREET, STRAND
+- L9: LONDON
+
+## Section Size Sanity
+
+- Sections: 5
+- Min/median/max words: 3/20/3406
+- Notes: many very small sections; headings may include TOC, captions, or fragments; largest section is much bigger than the median section
+
+## Boundary Confidence
+
+- Start: medium
+- End: medium
+- Missing Project Gutenberg end marker; footer text was not destructively stripped.
+
+## Generated Comparison
+
+- No existing generated manifest found for this slug.
+
+## Red Flags
+
+- TOC/body confusion is likely
