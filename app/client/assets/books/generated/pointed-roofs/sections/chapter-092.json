@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "pointed-roofs",
+  "sectionId": "chapter-092",
+  "kind": "chapter",
+  "label": "Section 2",
+  "title": null,
+  "order": 93,
+  "includeByDefault": true,
+  "displayText": "2\n\nOne morning she knew that there was going to be a change. The term was\ncoming to an end. There was to be a going away. The girls were talking\nabout \"Norderney.\"\n\n\"Going to Norderney, Hendy?\" Jimmie said suddenly.\n\n\"Ah!\" she responded mysteriously. For the rest of that day she sat\ncontracted and fearful.",
+  "morseSourceText": "2\n\nOne morning she knew that there was going to be a change. The term was\ncoming to an end. There was to be a going away. The girls were talking\nabout \"Norderney.\"\n\n\"Going to Norderney, Hendy?\" Jimmie said suddenly.\n\n\"Ah!\" she responded mysteriously. For the rest of that day she sat\ncontracted and fearful.",
+  "paragraphs": [
+    "2",
+    "One morning she knew that there was going to be a change. The term was coming to an end. There was to be a going away. The girls were talking about \"Norderney.\"",
+    "\"Going to Norderney, Hendy?\" Jimmie said suddenly.",
+    "\"Ah!\" she responded mysteriously. For the rest of that day she sat contracted and fearful."
+  ],
+  "wordCount": 55,
+  "characterCount": 307,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1638,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "2 One morning she knew that there was going to be a change. The term was coming to an end. There was to be a going away. The girls were talking about \"Norderne...",
+  "sourceOffsets": {
+    "start": 280543,
+    "end": 280854
+  }
+}

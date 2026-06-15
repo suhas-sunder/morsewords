@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "violet-fairy-book",
+  "sectionId": "chapter-027",
+  "kind": "chapter",
+  "label": "And I'Ll Bite,",
+  "title": "And I'll bite,",
+  "order": 28,
+  "includeByDefault": true,
+  "displayText": "And I'll bite,\n If my neck a twist you gave\n I'd bring you to an early grave.'\n\nQuite frightened, the dwarf set down the cage, and the goose gazed at\nhim with sad wise-looking eyes and sighed again.",
+  "morseSourceText": "And I'll bite,\n If my neck a twist you gave\n I'd bring you to an early grave.'\n\nQuite frightened, the dwarf set down the cage, and the goose gazed at\nhim with sad wise-looking eyes and sighed again.",
+  "paragraphs": [
+    "And I'll bite, If my neck a twist you gave I'd bring you to an early grave.'",
+    "Quite frightened, the dwarf set down the cage, and the goose gazed at him with sad wise-looking eyes and sighed again."
+  ],
+  "wordCount": 38,
+  "characterCount": 198,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1044,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "And I'll bite, If my neck a twist you gave I'd bring you to an early grave.' Quite frightened, the dwarf set down the cage, and the goose gazed at him with sad...",
+  "sourceOffsets": {
+    "start": 332146,
+    "end": 332347
+  }
+}

@@ -1,72 +1,12 @@
-# The Wonderful Wizard of Oz rights review notes
+# The Wonderful Wizard of Oz
 
-- Source file: ../the-wonderful-wizard-of-oz.txt
-- Gutenberg ID: 55
-- Source URL: https://www.gutenberg.org/ebooks/55
-- Metadata status: draft
-- Manual review required: yes
-- Approval status: needs_manual_review
-- Approval source: manual-review
-- Duplicate resolution source: not-needed
-- Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+Processed by pilot write pass 2.
 
-## Rights evidence found
+- Source: app/client/assets/temp-books/the-wonderful-wizard-of-oz.txt
+- Start boundary: line 106 (Dry-run 2 selected this as the first real readable line: Chapter I The Cyclone Dorothy lived in the midst of the great Kansas prairies, with Uncle Henry, who was a farmer, and Aunt Em, who was the farmer’s wife. Their)
+- End boundary: line 4778 (Dry-run 2 selected this as the final real readable line before end/source matter: “My darling child!” she cried, folding the little girl in her arms and covering her face with kisses. “Where in the world did you come from?” “From the Land of Oz,” said Dorothy gravely. “And here is Toto, too. And oh, Aunt Em! I’m so glad to be at home again!”)
+- Selected structure: chapter-based roman numerals
+- Sections: 24
+- Recommendation: needs manual review before scaling
 
-- Author death year authority: wikidata Q207544 https://www.wikidata.org/wiki/Q207544
-- Original publication authority: wikidata Q130295 https://www.wikidata.org/wiki/Q130295
-- Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of
-- U.S. reuse language: ject Gutenberg eBook of The Wonderful Wizard of Oz This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
-- Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Wonderful Wizard of Oz Au
-- Illustration or image reference: *** START OF THE PROJECT GUTENBERG EBOOK THE WONDERFUL WIZARD OF OZ *** [Illustration] The Wonderful Wizard of Oz by L. Frank Baum This book is dedicated to my good friend & comrade My Wife L.F.B. Conte
-
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: February 1, 1993
-- Last updated: December 29, 2024
-- Original publication: 1900
-- Credits: missing
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
-
-## Risks found
-
-- Translation risk: none
-- Edition risk: none
-- Trademark or character brand risk: none
-- Content brand-safety risk: none
-- Later copyright notice: no
-- Permission-based language: no
-- Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: yes
-- Duplicate Gutenberg ID: no unresolved duplicate found
-
-## Command warnings
-
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
-
-## Manual review reasons
-
-- Illustrations or image references need manual handling.
-- Metadata rightsReviewed is false.
-- Owner-reviewed book approval is missing.
-- Rights basis "unknown" is not publish-ready.
-- Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
-
-## Next action
-
-- Manual rights review required before processing or publishing.
+This output is intentionally review-gated before larger batch processing or Cloudflare export.

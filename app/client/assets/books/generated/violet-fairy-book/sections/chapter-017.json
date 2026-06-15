@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "violet-fairy-book",
+  "sectionId": "chapter-017",
+  "kind": "chapter",
+  "label": "Oh! Oh!'",
+  "title": "Oh! Oh!'",
+  "order": 18,
+  "includeByDefault": true,
+  "displayText": "Oh! Oh!'\n\nThe woman screamed out: 'Old man, old man! Come here, quick! Here are\ntwo ruffians pommelling me fit to break my bones.'\n\nHer husband only strolled up and down and laughed, as he said: 'Yes,\nthey'll beat you well, old lady.'\n\nAnd the two thumped away and sang again:\n\n 'Blows will hurt, remember, crone,\n We mean you well, we mean you well;\n In future leave the stick alone,\n\n For how it hurts, you now can tell,",
+  "morseSourceText": "Oh! Oh!'\n\nThe woman screamed out: 'Old man, old man! Come here, quick! Here are\ntwo ruffians pommelling me fit to break my bones.'\n\nHer husband only strolled up and down and laughed, as he said: 'Yes,\nthey'll beat you well, old lady.'\n\nAnd the two thumped away and sang again:\n\n 'Blows will hurt, remember, crone,\n We mean you well, we mean you well;\n In future leave the stick alone,\n\n For how it hurts, you now can tell,",
+  "paragraphs": [
+    "Oh! Oh!'",
+    "The woman screamed out: 'Old man, old man! Come here, quick! Here are two ruffians pommelling me fit to break my bones.'",
+    "Her husband only strolled up and down and laughed, as he said: 'Yes, they'll beat you well, old lady.'",
+    "And the two thumped away and sang again:",
+    "'Blows will hurt, remember, crone, We mean you well, we mean you well; In future leave the stick alone,",
+    "For how it hurts, you now can tell,"
+  ],
+  "wordCount": 78,
+  "characterCount": 422,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2294,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Oh! Oh!' The woman screamed out: 'Old man, old man! Come here, quick! Here are two ruffians pommelling me fit to break my bones.' Her husband only strolled up...",
+  "sourceOffsets": {
+    "start": 214983,
+    "end": 215407
+  }
+}

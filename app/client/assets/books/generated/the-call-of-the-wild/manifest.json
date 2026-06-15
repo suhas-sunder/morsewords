@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "slug": "the-call-of-the-wild",
-  "title": "The call of the wild",
+  "title": "The Call of the Wild",
   "author": [
     "Jack London"
   ],
-  "contentVersion": "36f513056d2926d0",
-  "contentHash": "36f513056d2926d0e427f7a1b5cba309424992e491ed42d9a492c398b1e8f57c",
+  "contentVersion": "abadab9ef6050157",
+  "contentHash": "abadab9ef6050157af80335907ab6cee25db911a310fd4053f736da1ccb33053",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -26,18 +26,18 @@
     "rightsReportPath": "rights_report.json",
     "processedBookPath": "processed_book.json",
     "cleanedBookPath": "cleaned_book.json",
-    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+    "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
   },
   "cover": {
     "src": null,
     "placeholder": true,
-    "alt": "Placeholder cover for The call of the wild"
+    "alt": "Placeholder cover for The Call of the Wild"
   },
   "stats": {
-    "originalCharacterCount": 194856,
-    "cleanedCharacterCount": 175571,
-    "wordCount": 32173,
-    "sectionCount": 9,
+    "originalCharacterCount": 198367,
+    "cleanedCharacterCount": 175246,
+    "wordCount": 31857,
+    "sectionCount": 7,
     "includedSectionCount": 7
   },
   "defaults": {
@@ -48,76 +48,46 @@
   },
   "sections": [
     {
-      "id": "title-page-001",
-      "kind": "title-page",
-      "label": "Opening section",
-      "title": null,
-      "order": 1,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/title-page-001.json",
-      "characterCount": 44,
-      "wordCount": 9,
-      "estimatedTypingMinutes": 1,
-      "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 226,
-      "textPreview": "cover The Call of the Wild by Jack London"
-    },
-    {
-      "id": "title-page-002",
-      "kind": "title-page",
-      "label": "Contents",
-      "title": null,
-      "order": 2,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/title-page-002.json",
-      "characterCount": 275,
-      "wordCount": 50,
-      "estimatedTypingMinutes": 2,
-      "estimatedListeningMinutes": 2,
-      "morseCharacterEstimate": 1433,
-      "textPreview": "Contents Chapter I. Into the Primitive Chapter II. The Law of Club and Fang Chapter III. The Dominant Primordial Beast Chapter IV. Who Has Won to Mastership Ch..."
-    },
-    {
       "id": "chapter-001",
       "kind": "chapter",
       "label": "Chapter 1",
       "title": "Into the Primitive",
-      "order": 3,
+      "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
       "characterCount": 20613,
-      "wordCount": 3791,
-      "estimatedTypingMinutes": 95,
+      "wordCount": 3748,
+      "estimatedTypingMinutes": 94,
       "estimatedListeningMinutes": 123,
       "morseCharacterEstimate": 110639,
-      "textPreview": "Chapter I. Into the Primitive “Old longings nomadic leap, Chafing at custom’s chain; Again from its brumal sleep Wakens the ferine strain.” Buck did not read t..."
+      "textPreview": "Chapter I. Into the Primitive \"Old longings nomadic leap, Chafing at custom's chain; Again from its brumal sleep Wakens the ferine strain.\" Buck did not read t..."
     },
     {
       "id": "chapter-002",
       "kind": "chapter",
       "label": "Chapter 2",
       "title": "The Law of Club and Fang",
-      "order": 4,
+      "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-002.json",
       "characterCount": 18336,
-      "wordCount": 3356,
+      "wordCount": 3336,
       "estimatedTypingMinutes": 84,
       "estimatedListeningMinutes": 110,
       "morseCharacterEstimate": 98255,
-      "textPreview": "Chapter II. The Law of Club and Fang Buck’s first day on the Dyea beach was like a nightmare. Every hour was filled with shock and surprise. He had been sudden..."
+      "textPreview": "Chapter II. The Law of Club and Fang Buck's first day on the Dyea beach was like a nightmare. Every hour was filled with shock and surprise. He had been sudden..."
     },
     {
       "id": "chapter-003",
       "kind": "chapter",
       "label": "Chapter 3",
       "title": "The Dominant Primordial Beast",
-      "order": 5,
+      "order": 3,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-003.json",
       "characterCount": 28375,
-      "wordCount": 5211,
-      "estimatedTypingMinutes": 131,
+      "wordCount": 5181,
+      "estimatedTypingMinutes": 130,
       "estimatedListeningMinutes": 170,
       "morseCharacterEstimate": 152171,
       "textPreview": "Chapter III. The Dominant Primordial Beast The dominant primordial beast was strong in Buck, and under the fierce conditions of trail life it grew and grew. Ye..."
@@ -127,27 +97,27 @@
       "kind": "chapter",
       "label": "Chapter 4",
       "title": "Who Has Won to Mastership",
-      "order": 6,
+      "order": 4,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-004.json",
       "characterCount": 17538,
-      "wordCount": 3260,
+      "wordCount": 3248,
       "estimatedTypingMinutes": 82,
       "estimatedListeningMinutes": 105,
       "morseCharacterEstimate": 93852,
-      "textPreview": "Chapter IV. Who Has Won to Mastership “Eh? Wot I say? I spik true w’en I say dat Buck two devils.” This was François’s speech next morning when he discovered S..."
+      "textPreview": "Chapter IV. Who Has Won to Mastership \"Eh? Wot I say? I spik true w'en I say dat Buck two devils.\" This was François's speech next morning when he discovered S..."
     },
     {
       "id": "chapter-005",
       "kind": "chapter",
       "label": "Chapter 5",
       "title": "The Toil of Trace and Trail",
-      "order": 7,
+      "order": 5,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-005.json",
       "characterCount": 29627,
-      "wordCount": 5418,
-      "estimatedTypingMinutes": 136,
+      "wordCount": 5352,
+      "estimatedTypingMinutes": 134,
       "estimatedListeningMinutes": 177,
       "morseCharacterEstimate": 158874,
       "textPreview": "Chapter V. The Toil of Trace and Trail Thirty days from the time it left Dawson, the Salt Water Mail, with Buck and his mates at the fore, arrived at Skaguay...."
@@ -157,12 +127,12 @@
       "kind": "chapter",
       "label": "Chapter 6",
       "title": "For the Love of a Man",
-      "order": 8,
+      "order": 6,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-006.json",
       "characterCount": 26422,
-      "wordCount": 4815,
-      "estimatedTypingMinutes": 121,
+      "wordCount": 4751,
+      "estimatedTypingMinutes": 119,
       "estimatedListeningMinutes": 158,
       "morseCharacterEstimate": 142027,
       "textPreview": "Chapter VI. For the Love of a Man When John Thornton froze his feet in the previous December his partners had made him comfortable and left him to get well, go..."
@@ -172,11 +142,11 @@
       "kind": "chapter",
       "label": "Chapter 7",
       "title": "The Sounding of the Call",
-      "order": 9,
+      "order": 7,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-007.json",
       "characterCount": 34317,
-      "wordCount": 6263,
+      "wordCount": 6241,
       "estimatedTypingMinutes": 157,
       "estimatedListeningMinutes": 204,
       "morseCharacterEstimate": 183401,
@@ -184,12 +154,14 @@
     }
   ],
   "cleaning": {
-    "originalCharacterCount": 194856,
-    "cleanedCharacterCount": 175571,
+    "originalCharacterCount": 198367,
+    "cleanedCharacterCount": 175246,
     "headerStripped": true,
     "footerStripped": true,
-    "confidence": "high",
+    "confidence": "medium",
     "warnings": []
   },
-  "warnings": []
+  "warnings": [
+    "Generated by controlled pilot write pass 2; review before scaling to larger batches or Cloudflare export."
+  ]
 }

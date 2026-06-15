@@ -96,6 +96,7 @@ export type BookStructureAnalysis = {
   selectedHeadingStrategy: BookHeadingPatternSummary | null;
   rejectedHeadingStrategies: RejectedBookHeadingStrategy[];
   selectedBodyHeadings: BookHeadingCandidate[];
+  supportBodyHeadings: BookHeadingCandidate[];
   estimatedSectionCount: number;
   fallbackRequired: boolean;
   fallbackReason: string | null;
@@ -411,6 +412,16 @@ export function analyzeBookStructure(
         )
         .sort((left, right) => left.offset - right.offset)
     : [];
+  const supportBodyHeadings = selectedSummary
+    ? candidates
+        .filter(
+          (candidate) =>
+            candidate.patternId !== selectedSummary.patternId &&
+            candidate.isBodyLike &&
+            ["book", "part", "volume", "chapter", "front-back-matter"].includes(candidate.kind),
+        )
+        .sort((left, right) => left.offset - right.offset)
+    : [];
   const fallbackRequired = selectedSummary === null;
   const fallbackReason = fallbackRequired
     ? candidates.length > 0
@@ -478,6 +489,7 @@ export function analyzeBookStructure(
         reason: summary.rejectionReason ?? "not selected",
       })),
     selectedBodyHeadings,
+    supportBodyHeadings,
     estimatedSectionCount: selectedSummary?.bodyLikeCount ?? 0,
     fallbackRequired,
     fallbackReason,
@@ -851,17 +863,18 @@ function annotateCandidates(
     const duplicateLater = (bySignature.get(headingSignature(candidate)) ?? []).some(
       (other) => other.lineNumber > candidate.lineNumber + 30,
     );
+    const next = nextReadablePreview(lines, index);
+    const shortListDensity = nearbyShortListDensity(lines, index);
 
     if (isInRanges(candidate.lineNumber, tocRanges)) tocReasons.push("inside explicit contents range");
     if (PAGE_LEADER_PATTERN.test(candidate.normalized)) tocReasons.push("line ends like a TOC page leader");
-    if (candidate.lineRatio < 0.23 && duplicateLater) {
+    if (candidate.lineRatio < 0.23 && duplicateLater && !next.bodyLike && shortListDensity >= 7) {
       tocReasons.push("matching heading appears later in the body");
     }
-    if (candidate.lineRatio < 0.2 && nearbyShortListDensity(lines, index) >= 7) {
+    if (candidate.lineRatio < 0.2 && shortListDensity >= 7) {
       tocReasons.push("surrounded by compact short-list entries near the front");
     }
 
-    const next = nextReadablePreview(lines, index);
     if (next.bodyLike) bodyReasons.push(...next.reasons);
     if (!tocReasons.length && candidate.lineRatio >= 0.08) {
       bodyReasons.push("outside early front-matter zone");
@@ -1135,43 +1148,19 @@ function buildStructureBoundaries(
   text: string,
   analysis: BookStructureAnalysis,
 ): SectionBoundary[] {
-  const selectedPatternId = analysis.selectedHeadingStrategy?.patternId;
   const boundaries = new Map<number, SectionBoundary>();
 
   const addCandidate = (candidate: BookHeadingCandidate) => {
     const boundary = boundaryForCandidate(candidate);
+    const nearbyMajor = nearbyMajorHeadingBefore(candidate, analysis.supportBodyHeadings);
+    if (nearbyMajor) {
+      boundary.offset = nearbyMajor.offset;
+      boundary.title = joinedTitle(nearbyMajor.normalized, boundary.title);
+    }
     boundaries.set(boundary.offset, boundary);
   };
 
   for (const candidate of analysis.selectedBodyHeadings) addCandidate(candidate);
-
-  if (selectedPatternId) {
-    const supportKinds = new Set<BookHeadingKind>([
-      "front-back-matter",
-      "book",
-      "part",
-      "volume",
-    ]);
-    const supportPatternIds = new Set(
-      analysis.allCandidateHeadingPatternsFound
-        .filter((summary) => supportKinds.has(summary.kind) && summary.bodyLikeCount > 0)
-        .map((summary) => summary.patternId),
-    );
-    for (const summary of analysis.allCandidateHeadingPatternsFound) {
-      if (!supportPatternIds.has(summary.patternId) || summary.patternId === selectedPatternId) {
-        continue;
-      }
-      for (const example of summary.bodyExamples) {
-        const lineNumber = Number(example.match(/^L(\d+):/)?.[1] ?? 0);
-        const candidate = findCandidateByLineAndPattern(
-          analysis,
-          lineNumber,
-          summary.patternId,
-        );
-        if (candidate) addCandidate(candidate);
-      }
-    }
-  }
 
   const sorted = [...boundaries.values()].sort((left, right) => left.offset - right.offset);
   const firstOffset = sorted[0]?.offset ?? 0;
@@ -1188,18 +1177,27 @@ function buildStructureBoundaries(
   return sorted;
 }
 
-function findCandidateByLineAndPattern(
-  analysis: BookStructureAnalysis,
-  lineNumber: number,
-  patternId: string,
+function nearbyMajorHeadingBefore(
+  candidate: BookHeadingCandidate,
+  supportBodyHeadings: BookHeadingCandidate[],
 ): BookHeadingCandidate | null {
-  if (!lineNumber) return null;
-  if (analysis.selectedHeadingStrategy?.patternId === patternId) {
-    return (
-      analysis.selectedBodyHeadings.find((candidate) => candidate.lineNumber === lineNumber) ?? null
-    );
-  }
-  return null;
+  if (!["chapter", "scene", "section"].includes(candidate.kind)) return null;
+  const major = [...supportBodyHeadings]
+    .filter(
+      (support) =>
+        ["book", "part", "volume", "chapter"].includes(support.kind) &&
+        support.kind !== candidate.kind &&
+        support.offset < candidate.offset &&
+        candidate.offset - support.offset < 600,
+    )
+    .sort((left, right) => right.offset - left.offset)[0];
+  return major ?? null;
+}
+
+function joinedTitle(majorHeading: string, existingTitle: string | null): string | null {
+  const major = titleCase(majorHeading.replace(/\s+/g, " "));
+  if (!existingTitle) return major;
+  return `${major} - ${existingTitle}`;
 }
 
 function boundaryForCandidate(candidate: BookHeadingCandidate): SectionBoundary {

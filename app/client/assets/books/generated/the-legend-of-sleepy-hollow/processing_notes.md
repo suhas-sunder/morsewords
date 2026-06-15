@@ -1,71 +1,12 @@
-# The Legend of Sleepy Hollow rights review notes
+# The Legend of Sleepy Hollow
 
-- Source file: ../the-legend-of-sleepy-hollow.txt
-- Gutenberg ID: 41
-- Source URL: https://www.gutenberg.org/ebooks/41
-- Metadata status: draft
-- Manual review required: yes
-- Approval status: needs_manual_review
-- Approval source: manual-review
-- Duplicate resolution source: not-needed
-- Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+Processed by pilot write pass 2.
 
-## Rights evidence found
+- Source: app/client/assets/temp-books/the-legend-of-sleepy-hollow.txt
+- Start boundary: line 42 (Dry-run 2 selected this as the first real readable line: A pleasing land of drowsy head it was, Of dreams that wave before the half-shut eye; And of gay castles in the clouds that pass, Forever flushing round a summer sky. CASTLE OF INDOLENCE.)
+- End boundary: line 1157 (Dry-run 2 selected this as the final real readable line before end/source matter: extravagant--there were one or two points on which he had his doubts. “Faith, sir,” replied the story-teller, “as to that matter, I don’t believe one-half of it myself.” D. K. THE END.)
+- Selected structure: story or titled-section headings
+- Sections: 2
+- Recommendation: needs manual review before scaling
 
-- Author death year authority: project-gutenberg-rdf 41 https://www.gutenberg.org/cache/epub/41/pg41.rdf
-- Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of
-- U.S. reuse language: ect Gutenberg eBook of The Legend of Sleepy Hollow This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
-- Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Legend of Sleepy Hollow A
-
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: June 27, 2008
-- Last updated: February 10, 2026
-- Original publication: missing
-- Credits: Ilana M. (Kingsley) Newby and Greg Newby
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
-
-## Risks found
-
-- Translation risk: none
-- Edition risk: none
-- Trademark or character brand risk: none
-- Content brand-safety risk: none
-- Later copyright notice: no
-- Permission-based language: no
-- Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: no
-- Illustration or image references: no
-- Duplicate Gutenberg ID: no unresolved duplicate found
-
-## Command warnings
-
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
-
-## Manual review reasons
-
-- Original publication metadata was not found.
-- Original publication year is missing or not before 1931.
-- Metadata rightsReviewed is false.
-- Owner-reviewed book approval is missing.
-- Rights basis "unknown" is not publish-ready.
-- Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
-
-## Next action
-
-- Add original publication evidence before approval.
+This output is intentionally review-gated before larger batch processing or Cloudflare export.

@@ -4,26 +4,26 @@
   "sectionId": "chapter-024",
   "kind": "chapter",
   "label": "Chapter 24",
-  "title": null,
-  "order": 28,
+  "title": "Home Again",
+  "order": 24,
   "includeByDefault": true,
-  "displayText": "Chapter XXIV\nHome Again\n\n\nAunt Em had just come out of the house to water the cabbages when she\nlooked up and saw Dorothy running toward her.\n\n“My darling child!” she cried, folding the little girl in her arms and\ncovering her face with kisses. “Where in the world did you come from?”\n\n“From the Land of Oz,” said Dorothy gravely. “And here is Toto, too.\nAnd oh, Aunt Em! I’m so glad to be at home again!”",
-  "morseSourceText": "Chapter XXIV\nHome Again\n\n\nAunt Em had just come out of the house to water the cabbages when she\nlooked up and saw Dorothy running toward her.\n\n“My darling child!” she cried, folding the little girl in her arms and\ncovering her face with kisses. “Where in the world did you come from?”\n\n“From the Land of Oz,” said Dorothy gravely. “And here is Toto, too.\nAnd oh, Aunt Em! I’m so glad to be at home again!”",
+  "displayText": "Chapter XXIV\nHome Again\n\n\nAunt Em had just come out of the house to water the cabbages when she\nlooked up and saw Dorothy running toward her.\n\n\"My darling child!\" she cried, folding the little girl in her arms and\ncovering her face with kisses. \"Where in the world did you come from?\"\n\n\"From the Land of Oz,\" said Dorothy gravely. \"And here is Toto, too.\nAnd oh, Aunt Em! I'm so glad to be at home again!\"",
+  "morseSourceText": "Chapter XXIV\nHome Again\n\n\nAunt Em had just come out of the house to water the cabbages when she\nlooked up and saw Dorothy running toward her.\n\n\"My darling child!\" she cried, folding the little girl in her arms and\ncovering her face with kisses. \"Where in the world did you come from?\"\n\n\"From the Land of Oz,\" said Dorothy gravely. \"And here is Toto, too.\nAnd oh, Aunt Em! I'm so glad to be at home again!\"",
   "paragraphs": [
     "Chapter XXIV Home Again",
     "Aunt Em had just come out of the house to water the cabbages when she looked up and saw Dorothy running toward her.",
-    "“My darling child!” she cried, folding the little girl in her arms and covering her face with kisses. “Where in the world did you come from?”",
-    "“From the Land of Oz,” said Dorothy gravely. “And here is Toto, too. And oh, Aunt Em! I’m so glad to be at home again!”"
+    "\"My darling child!\" she cried, folding the little girl in her arms and covering her face with kisses. \"Where in the world did you come from?\"",
+    "\"From the Land of Oz,\" said Dorothy gravely. \"And here is Toto, too. And oh, Aunt Em! I'm so glad to be at home again!\""
   ],
-  "wordCount": 79,
+  "wordCount": 78,
   "characterCount": 405,
   "estimatedTypingMinutes": 2,
   "estimatedListeningMinutes": 3,
   "morseCharacterEstimate": 2192,
   "unsupportedCharacterSummary": {},
-  "textPreview": "Chapter XXIV Home Again Aunt Em had just come out of the house to water the cabbages when she looked up and saw Dorothy running toward her. “My darling child!”...",
+  "textPreview": "Chapter XXIV Home Again Aunt Em had just come out of the house to water the cabbages when she looked up and saw Dorothy running toward her. \"My darling child!\"...",
   "sourceOffsets": {
-    "start": 207359,
-    "end": 207764
+    "start": 205028,
+    "end": 205433
   }
 }

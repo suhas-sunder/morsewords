@@ -171,12 +171,12 @@
     {
       "slug": "anne-of-green-gables",
       "path": "/book-previews/anne-of-green-gables.preview.json",
-      "contentVersion": "26a1eea0f758baf6",
-      "contentHash": "26a1eea0f758baf6a76de2b2b8b17d019df31c8c02af448a5ddc68d75a818324",
+      "contentVersion": "5dc009da0177cd43",
+      "contentHash": "5dc009da0177cd43371eda929459324a3bcb27e8cdc7447d67340448e4095036",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10949,
+      "previewBytes": 10749,
       "previewCharacterCount": 9856,
-      "estimatedRuntimeSeconds": 3557,
+      "estimatedRuntimeSeconds": 3540,
       "truncated": true
     },
     {
@@ -336,12 +336,12 @@
     {
       "slug": "jack-and-jill",
       "path": "/book-previews/jack-and-jill.preview.json",
-      "contentVersion": "503dac44013c98e6",
-      "contentHash": "503dac44013c98e69c5533bf926449661ab65b75c2dcef452bd19f9598ad3fc6",
+      "contentVersion": "c640945de17801f6",
+      "contentHash": "c640945de17801f6d0d0ab780bd18ee10e4c27d6c9f3803d0e96af5f15ed70ae",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11850,
-      "previewCharacterCount": 10693,
-      "estimatedRuntimeSeconds": 3880,
+      "previewBytes": 10888,
+      "previewCharacterCount": 9932,
+      "estimatedRuntimeSeconds": 3590,
       "truncated": true
     },
     {
@@ -523,12 +523,12 @@
     {
       "slug": "the-call-of-the-wild",
       "path": "/book-previews/the-call-of-the-wild.preview.json",
-      "contentVersion": "b403812b215ac3e2",
-      "contentHash": "b403812b215ac3e2e2ea5d1db59b11a3b43aeb11554aab506740a960882ed081",
+      "contentVersion": "abadab9ef6050157",
+      "contentHash": "abadab9ef6050157af80335907ab6cee25db911a310fd4053f736da1ccb33053",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11560,
-      "previewCharacterCount": 10459,
-      "estimatedRuntimeSeconds": 3745,
+      "previewBytes": 10468,
+      "previewCharacterCount": 9584,
+      "estimatedRuntimeSeconds": 3437,
       "truncated": true
     },
     {
@@ -633,12 +633,12 @@
     {
       "slug": "the-legend-of-sleepy-hollow",
       "path": "/book-previews/the-legend-of-sleepy-hollow.preview.json",
-      "contentVersion": "764eb33a384af0af",
-      "contentHash": "764eb33a384af0afafe2fc16b1792fba081c26229fe79b3245c4087dd3d6b9d8",
-      "defaultSectionId": "part-001",
-      "previewBytes": 11076,
-      "previewCharacterCount": 10140,
-      "estimatedRuntimeSeconds": 3652,
+      "contentVersion": "053685b686dc878e",
+      "contentHash": "053685b686dc878e30a208631d9e409ce30e48653aed0a03d9f140c8f6b590de",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10818,
+      "previewCharacterCount": 9954,
+      "estimatedRuntimeSeconds": 3564,
       "truncated": true
     },
     {
@@ -776,13 +776,13 @@
     {
       "slug": "the-wonderful-wizard-of-oz",
       "path": "/book-previews/the-wonderful-wizard-of-oz.preview.json",
-      "contentVersion": "4a9b0990c6c9b9d8",
-      "contentHash": "4a9b0990c6c9b9d839bee1c0cd0f5232a202ca62ac66e4f5c51579e3ab09c351",
+      "contentVersion": "831ed73fb9ba380f",
+      "contentHash": "831ed73fb9ba380fb2726467f72d9e705418fcc996add083a5eae8d7114dd94d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6883,
-      "previewCharacterCount": 5982,
-      "estimatedRuntimeSeconds": 2160,
-      "truncated": false
+      "previewBytes": 10845,
+      "previewCharacterCount": 9951,
+      "estimatedRuntimeSeconds": 3552,
+      "truncated": true
     },
     {
       "slug": "through-the-looking-glass",
@@ -881,6 +881,105 @@
       "previewBytes": 10803,
       "previewCharacterCount": 9876,
       "estimatedRuntimeSeconds": 3459,
+      "truncated": true
+    },
+    {
+      "slug": "pointed-roofs",
+      "path": "/book-previews/pointed-roofs.preview.json",
+      "contentVersion": "eb8d34dd5665edb3",
+      "contentHash": "eb8d34dd5665edb30d9bf17af892ee9b9fed4a020cbaa5485a2c4689ca52c19d",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10942,
+      "previewCharacterCount": 9850,
+      "estimatedRuntimeSeconds": 3585,
+      "truncated": true
+    },
+    {
+      "slug": "the-lost-world",
+      "path": "/book-previews/the-lost-world.preview.json",
+      "contentVersion": "1cc3a66a0188db38",
+      "contentHash": "1cc3a66a0188db387619d75ea2471a695e12382f5ff27577e0e0282d9ac146ed",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10739,
+      "previewCharacterCount": 9780,
+      "estimatedRuntimeSeconds": 3533,
+      "truncated": true
+    },
+    {
+      "slug": "the-red-thumb-mark",
+      "path": "/book-previews/the-red-thumb-mark.preview.json",
+      "contentVersion": "319379f71945a100",
+      "contentHash": "319379f71945a100771eb84313040d37c71228c0ca7c550dcdb46fabdc4aa39c",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10911,
+      "previewCharacterCount": 9915,
+      "estimatedRuntimeSeconds": 3575,
+      "truncated": true
+    },
+    {
+      "slug": "violet-fairy-book",
+      "path": "/book-previews/violet-fairy-book.preview.json",
+      "contentVersion": "3b3ad3fd59f05393",
+      "contentHash": "3b3ad3fd59f05393dca70ffa0e65a19955083d38ffa4b73751ed3301d3aa81af",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10920,
+      "previewCharacterCount": 9936,
+      "estimatedRuntimeSeconds": 3523,
+      "truncated": true
+    },
+    {
+      "slug": "four-day-planet",
+      "path": "/book-previews/four-day-planet.preview.json",
+      "contentVersion": "ff6f9c3ebddf8923",
+      "contentHash": "ff6f9c3ebddf892303598a68430a3769cf1cf41d8bc1a2f4ee4470dd53d44db4",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10572,
+      "previewCharacterCount": 9670,
+      "estimatedRuntimeSeconds": 3466,
+      "truncated": true
+    },
+    {
+      "slug": "room-13",
+      "path": "/book-previews/room-13.preview.json",
+      "contentVersion": "c326ca1aac2da025",
+      "contentHash": "c326ca1aac2da0251f5691f7ac62485736301f093d2a914b6b0a05715b309af4",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10759,
+      "previewCharacterCount": 9802,
+      "estimatedRuntimeSeconds": 3546,
+      "truncated": true
+    },
+    {
+      "slug": "the-octopus-a-story-of-california",
+      "path": "/book-previews/the-octopus-a-story-of-california.preview.json",
+      "contentVersion": "0c6cb4553ca2bfe0",
+      "contentHash": "0c6cb4553ca2bfe0ea63881d0ece143af6dda60cf8975ce23cfa8487d6b665f3",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 9907,
+      "previewCharacterCount": 8999,
+      "estimatedRuntimeSeconds": 3240,
+      "truncated": true
+    },
+    {
+      "slug": "the-prince-and-the-pauper",
+      "path": "/book-previews/the-prince-and-the-pauper.preview.json",
+      "contentVersion": "d784fa09c26b0596",
+      "contentHash": "d784fa09c26b0596ec9c5fefd27fc64a6eb36ecd9ea12388676c0d3ca5b14287",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10750,
+      "previewCharacterCount": 9890,
+      "estimatedRuntimeSeconds": 3539,
+      "truncated": true
+    },
+    {
+      "slug": "triplanetary",
+      "path": "/book-previews/triplanetary.preview.json",
+      "contentVersion": "c460637b84b8f8ea",
+      "contentHash": "c460637b84b8f8eae26af02c6a12ddcc989f4846a00461da000e817f74f1c6a4",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 9837,
+      "previewCharacterCount": 8964,
+      "estimatedRuntimeSeconds": 3244,
       "truncated": true
     }
   ],

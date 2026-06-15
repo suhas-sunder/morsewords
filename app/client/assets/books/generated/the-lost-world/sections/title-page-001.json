@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-lost-world",
+  "sectionId": "title-page-001",
+  "kind": "title-page",
+  "label": "Opening section",
+  "title": null,
+  "order": 1,
+  "includeByDefault": false,
+  "displayText": "Foreword\n\n Mr. E. D. Malone desires to state that\n both the injunction for restraint and the\n libel action have been withdrawn unreservedly\n by Professor G. E. Challenger, who, being\n satisfied that no criticism or comment in\n this book is meant in an offensive spirit,\n has guaranteed that he will place no\n impediment to its publication and circulation.\n\n\n Contents\n\nCHAPTER\n\n I. \"THERE ARE HEROISMS ALL ROUND US\"\n II. \"TRY YOUR LUCK WITH PROFESSOR CHALLENGER\"\n III. \"HE IS A PERFECTLY IMPOSSIBLE PERSON\"\n IV. \"IT'S JUST THE VERY BIGGEST THING IN THE WORLD\"\n V. \"QUESTION!\"\n VI. \"I WAS THE FLAIL OF THE LORD\"\n VII. \"TO-MORROW WE DISAPPEAR INTO THE UNKNOWN\"\n VIII. \"THE OUTLYING PICKETS OF THE NEW WORLD\"\n IX. \"WHO COULD HAVE FORESEEN IT?\"\n X. \"THE MOST WONDERFUL THINGS HAVE HAPPENED\"\n XI. \"FOR ONCE I WAS THE HERO\"\n XII. \"IT WAS DREADFUL IN THE FOREST\"\n XIII. \"A SIGHT I SHALL NEVER FORGET\"\n XIV. \"THOSE WERE THE REAL CONQUESTS\"\n XV. \"OUR EYES HAVE SEEN GREAT WONDERS\"\n XVI. \"A PROCESSION! A PROCESSION!\"\n\n\n THE LOST WORLD\n\n\n The Lost World",
+  "morseSourceText": "Foreword\n\n Mr. E. D. Malone desires to state that\n both the injunction for restraint and the\n libel action have been withdrawn unreservedly\n by Professor G. E. Challenger, who, being\n satisfied that no criticism or comment in\n this book is meant in an offensive spirit,\n has guaranteed that he will place no\n impediment to its publication and circulation.\n\n\n Contents\n\nCHAPTER\n\n I. \"THERE ARE HEROISMS ALL ROUND US\"\n II. \"TRY YOUR LUCK WITH PROFESSOR CHALLENGER\"\n III. \"HE IS A PERFECTLY IMPOSSIBLE PERSON\"\n IV. \"IT'S JUST THE VERY BIGGEST THING IN THE WORLD\"\n V. \"QUESTION!\"\n VI. \"I WAS THE FLAIL OF THE LORD\"\n VII. \"TO-MORROW WE DISAPPEAR INTO THE UNKNOWN\"\n VIII. \"THE OUTLYING PICKETS OF THE NEW WORLD\"\n IX. \"WHO COULD HAVE FORESEEN IT?\"\n X. \"THE MOST WONDERFUL THINGS HAVE HAPPENED\"\n XI. \"FOR ONCE I WAS THE HERO\"\n XII. \"IT WAS DREADFUL IN THE FOREST\"\n XIII. \"A SIGHT I SHALL NEVER FORGET\"\n XIV. \"THOSE WERE THE REAL CONQUESTS\"\n XV. \"OUR EYES HAVE SEEN GREAT WONDERS\"\n XVI. \"A PROCESSION! A PROCESSION!\"\n\n\n THE LOST WORLD\n\n\n The Lost World",
+  "paragraphs": [
+    "Foreword",
+    "Mr. E. D. Malone desires to state that both the injunction for restraint and the libel action have been withdrawn unreservedly by Professor G. E. Challenger, who, being satisfied that no criticism or comment in this book is meant in an offensive spirit, has guaranteed that he will place no impediment to its publication and circulation.",
+    "Contents",
+    "CHAPTER",
+    "I. \"THERE ARE HEROISMS ALL ROUND US\" II. \"TRY YOUR LUCK WITH PROFESSOR CHALLENGER\" III. \"HE IS A PERFECTLY IMPOSSIBLE PERSON\" IV. \"IT'S JUST THE VERY BIGGEST THING IN THE WORLD\" V. \"QUESTION!\" VI. \"I WAS THE FLAIL OF THE LORD\" VII. \"TO-MORROW WE DISAPPEAR INTO THE UNKNOWN\" VIII. \"THE OUTLYING PICKETS OF THE NEW WORLD\" IX. \"WHO COULD HAVE FORESEEN IT?\" X. \"THE MOST WONDERFUL THINGS HAVE HAPPENED\" XI. \"FOR ONCE I WAS THE HERO\" XII. \"IT WAS DREADFUL IN THE FOREST\" XIII. \"A SIGHT I SHALL NEVER FORGET\" XIV. \"THOSE WERE THE REAL CONQUESTS\" XV. \"OUR EYES HAVE SEEN GREAT WONDERS\" XVI. \"A PROCESSION! A PROCESSION!\"",
+    "THE LOST WORLD",
+    "The Lost World"
+  ],
+  "wordCount": 173,
+  "characterCount": 1043,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 7,
+  "morseCharacterEstimate": 5550,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Foreword Mr. E. D. Malone desires to state that both the injunction for restraint and the libel action have been withdrawn unreservedly by Professor G. E. Chal...",
+  "sourceOffsets": {
+    "start": 0,
+    "end": 1045
+  }
+}

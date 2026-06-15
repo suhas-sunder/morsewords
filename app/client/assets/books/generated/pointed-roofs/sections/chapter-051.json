@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "pointed-roofs",
+  "sectionId": "chapter-051",
+  "kind": "chapter",
+  "label": "Section 16",
+  "title": null,
+  "order": 52,
+  "includeByDefault": true,
+  "displayText": "16\n\nEven Emma had a \"jüngling.\" He had a very vulgar surname, too vulgar to\nbe spoken; it was breathed against Miriam's shoulder in the half-light.\nMiriam was begged to forget it at once and to remember only the\nbeautiful little name that preceded it.\n\nAt the time she had timidly responded to all these stories and had felt\nglad that the confidences had come to her.\n\nMademoiselle, she knew, had never received them.\n\nBut after these confidences there were no more serious attempts at\ngeneral conversation.",
+  "morseSourceText": "16\n\nEven Emma had a \"jüngling.\" He had a very vulgar surname, too vulgar to\nbe spoken; it was breathed against Miriam's shoulder in the half-light.\nMiriam was begged to forget it at once and to remember only the\nbeautiful little name that preceded it.\n\nAt the time she had timidly responded to all these stories and had felt\nglad that the confidences had come to her.\n\nMademoiselle, she knew, had never received them.\n\nBut after these confidences there were no more serious attempts at\ngeneral conversation.",
+  "paragraphs": [
+    "16",
+    "Even Emma had a \"jüngling.\" He had a very vulgar surname, too vulgar to be spoken; it was breathed against Miriam's shoulder in the half-light. Miriam was begged to forget it at once and to remember only the beautiful little name that preceded it.",
+    "At the time she had timidly responded to all these stories and had felt glad that the confidences had come to her.",
+    "Mademoiselle, she knew, had never received them.",
+    "But after these confidences there were no more serious attempts at general conversation."
+  ],
+  "wordCount": 88,
+  "characterCount": 507,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2648,
+  "unsupportedCharacterSummary": {
+    "Ü": 1
+  },
+  "textPreview": "16 Even Emma had a \"jüngling.\" He had a very vulgar surname, too vulgar to be spoken; it was breathed against Miriam's shoulder in the half-light. Miriam was b...",
+  "sourceOffsets": {
+    "start": 159369,
+    "end": 159880
+  }
+}

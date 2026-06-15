@@ -5,8 +5,8 @@
   "author": [
     "Washington Irving"
   ],
-  "contentVersion": "fc5816acb081aa8a",
-  "contentHash": "fc5816acb081aa8a374e7beabcf671f22d693dd798679155fdb10a2ba3d37768",
+  "contentVersion": "053685b686dc878e",
+  "contentHash": "053685b686dc878e30a208631d9e409ce30e48653aed0a03d9f140c8f6b590de",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -26,7 +26,7 @@
     "rightsReportPath": "rights_report.json",
     "processedBookPath": "processed_book.json",
     "cleanedBookPath": "cleaned_book.json",
-    "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+    "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
   },
   "cover": {
     "src": null,
@@ -34,11 +34,11 @@
     "alt": "Placeholder cover for The Legend of Sleepy Hollow"
   },
   "stats": {
-    "originalCharacterCount": 89064,
-    "cleanedCharacterCount": 69755,
-    "wordCount": 12277,
-    "sectionCount": 4,
-    "includedSectionCount": 0
+    "originalCharacterCount": 90621,
+    "cleanedCharacterCount": 69568,
+    "wordCount": 12228,
+    "sectionCount": 2,
+    "includedSectionCount": 2
   },
   "defaults": {
     "includeKinds": [
@@ -48,81 +48,45 @@
   },
   "sections": [
     {
-      "id": "part-001",
-      "kind": "part",
-      "label": "Part 1",
-      "title": null,
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Castle Of Indolence.",
+      "title": "CASTLE OF INDOLENCE.",
       "order": 1,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 28651,
-      "wordCount": 5002,
-      "estimatedTypingMinutes": 126,
-      "estimatedListeningMinutes": 172,
-      "morseCharacterEstimate": 153953,
-      "textPreview": "The Legend of Sleepy Hollow by Washington Irving FOUND AMONG THE PAPERS OF THE LATE DIEDRICH KNICKERBOCKER. A pleasing land of drowsy head it was, Of dreams th..."
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 67066,
+      "wordCount": 11789,
+      "estimatedTypingMinutes": 295,
+      "estimatedListeningMinutes": 402,
+      "morseCharacterEstimate": 360905,
+      "textPreview": "A pleasing land of drowsy head it was, Of dreams that wave before the half-shut eye; And of gay castles in the clouds that pass, Forever flushing round a summe..."
     },
     {
-      "id": "part-002",
-      "kind": "part",
-      "label": "Part 2",
-      "title": null,
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Found In The Handwriting Of Mr. Knickerbocker.",
+      "title": "FOUND IN THE HANDWRITING OF MR. KNICKERBOCKER.",
       "order": 2,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 28966,
-      "wordCount": 5111,
-      "estimatedTypingMinutes": 128,
-      "estimatedListeningMinutes": 173,
-      "morseCharacterEstimate": 155614,
-      "textPreview": "To have taken the field openly against his rival would have been madness; for he was not a man to be thwarted in his amours, any more than that stormy lover, A..."
-    },
-    {
-      "id": "part-003",
-      "kind": "part",
-      "label": "Part 3",
-      "title": null,
-      "order": 3,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-003.json",
-      "characterCount": 12124,
-      "wordCount": 2162,
-      "estimatedTypingMinutes": 55,
-      "estimatedListeningMinutes": 73,
-      "morseCharacterEstimate": 65307,
-      "textPreview": "The hair of the affrighted pedagogue rose upon his head with terror. What was to be done? To turn and fly was now too late; and besides, what chance was there..."
-    },
-    {
-      "id": "part-004",
-      "kind": "part",
-      "label": "Part 4",
-      "title": null,
-      "order": 4,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-004.json",
-      "characterCount": 8,
-      "wordCount": 2,
-      "estimatedTypingMinutes": 1,
-      "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 40,
-      "textPreview": "THE END."
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 2499,
+      "wordCount": 439,
+      "estimatedTypingMinutes": 11,
+      "estimatedListeningMinutes": 15,
+      "morseCharacterEstimate": 13433,
+      "textPreview": "POSTSCRIPT. FOUND IN THE HANDWRITING OF MR. KNICKERBOCKER. The preceding tale is given almost in the precise words in which I heard it related at a Corporation..."
     }
   ],
   "cleaning": {
-    "originalCharacterCount": 89064,
-    "cleanedCharacterCount": 69755,
+    "originalCharacterCount": 90621,
+    "cleanedCharacterCount": 69568,
     "headerStripped": true,
     "footerStripped": true,
-    "confidence": "high",
+    "confidence": "medium",
     "warnings": []
   },
   "warnings": [
-    "No chapter headings were detected; generated fallback parts instead.",
-    "Rights have not been reviewed; generated book is not publish-ready.",
-    "Rights basis \"unknown\" is not publish-ready.",
-    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
-    "Rights gate did not allow processed public story output.",
-    "Owner-reviewed website approval is missing.",
-    "Website publication is not allowed by the active approval path."
+    "Generated by controlled pilot write pass 2; review before scaling to larger batches or Cloudflare export."
   ]
 }

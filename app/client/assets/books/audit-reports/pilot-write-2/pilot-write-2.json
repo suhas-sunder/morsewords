@@ -1,0 +1,2750 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-write-2",
+  "generatedAt": "2026-06-15T04:17:12.989Z",
+  "inputReports": {
+    "pass1": "app/client/assets/books/audit-reports/book-processing-audit-pass-1.json",
+    "pass2": "app/client/assets/books/audit-reports/book-processing-audit-pass-2.json",
+    "structureAudit1": "app/client/assets/books/audit-reports/book-structure-audit-1/book-structure-audit-1.json",
+    "pilotDryRun2": "app/client/assets/books/audit-reports/pilot-dry-run-2/pilot-dry-run-2.json"
+  },
+  "paths": {
+    "tempBooksRoot": "app/client/assets/temp-books",
+    "generatedRoot": "app/client/assets/books/generated",
+    "cloudflareRoot": "app/client/assets/books/cloudflare-export",
+    "previewRoot": "public/book-previews"
+  },
+  "approvedPilotSlugs": [
+    "anne-of-green-gables",
+    "pointed-roofs",
+    "the-lost-world",
+    "the-red-thumb-mark",
+    "violet-fairy-book",
+    "jack-and-jill",
+    "the-wonderful-wizard-of-oz",
+    "the-legend-of-sleepy-hollow",
+    "four-day-planet",
+    "room-13",
+    "the-octopus-a-story-of-california",
+    "the-prince-and-the-pauper",
+    "triplanetary",
+    "the-call-of-the-wild"
+  ],
+  "individualReviewSlugs": [
+    "a-christmas-carol",
+    "dr-jekyll-and-mr-hyde",
+    "a-catastrophe",
+    "new-text-document",
+    "screenshot-2026-06-13-014010"
+  ],
+  "totals": {
+    "considered": 14,
+    "written": 14,
+    "skipped": 0
+  },
+  "books": [
+    {
+      "slug": "anne-of-green-gables",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/Anne of Green Gables.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/anne-of-green-gables/manifest.json",
+        "app/client/assets/books/generated/anne-of-green-gables/cleaned_book.json",
+        "app/client/assets/books/generated/anne-of-green-gables/processed_book.json",
+        "app/client/assets/books/generated/anne-of-green-gables/rights_report.json",
+        "app/client/assets/books/generated/anne-of-green-gables/processing_notes.md",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-001.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-002.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-003.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-004.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-005.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-006.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-007.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-008.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-009.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-010.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-011.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-012.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-013.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-014.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-015.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-016.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-017.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-018.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-019.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-020.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-021.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-022.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-023.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-024.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-025.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-026.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-027.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-028.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-029.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-030.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-031.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-032.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-033.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-034.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-035.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-036.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-037.json",
+        "app/client/assets/books/generated/anne-of-green-gables/sections/chapter-038.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/anne-of-green-gables.preview.json",
+      "candidateTitle": "Anne of Green Gables",
+      "candidateAuthor": [
+        "L. M. Montgomery"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 82,
+        "reason": "Dry-run 2 selected this as the first real readable line: CHAPTER I. Mrs. Rachel Lynde Is Surprised MRS. Rachel Lynde lived just where the Avonlea main road dipped down into a little hollow, fringed with alders and ladies’ eardrops and traversed by a brook that had its source away back in the woods of the",
+        "snippet": "CHAPTER I. Mrs. Rachel Lynde Is Surprised MRS. Rachel Lynde lived just where the Avonlea main road dipped down into a little hollow, fringed with alders and ladies’ eardrops and traversed by a brook that had its source away back in the woo...",
+        "linesBefore": [
+          "L70:      CHAPTER XXXIII     The Hotel Concert",
+          "L71:      CHAPTER XXXIV      A Queen’s Girl",
+          "L72:      CHAPTER XXXV       The Winter at Queen’s",
+          "L73:      CHAPTER XXXVI      The Glory and the Dream",
+          "L74:      CHAPTER XXXVII     The Reaper Whose Name Is Death",
+          "L75:      CHAPTER XXXVIII    The Bend in the Road",
+          "L76: ",
+          "L77: ",
+          "L78: ",
+          "L79: ",
+          "L80: ANNE OF GREEN GABLES",
+          "L81: ",
+          "L82: CHAPTER I. Mrs. Rachel Lynde Is Surprised"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 10809,
+        "reason": "Dry-run 2 selected this as the final real readable line before end/source matter: The joy of sincere work and worthy aspiration and congenial friendship were to be hers; nothing could rob her of her birthright of fancy or her ideal world of dreams. And there was always the bend in the road! “‘God’s in his heaven, all’s right with the world,’” whispered Anne softly.",
+        "snippet": "softly. *** END OF THE PROJECT GUTENBERG EBOOK ANNE OF GREEN GABLES ***",
+        "linesAfter": [
+          "L10809: softly.",
+          "L10810: ",
+          "L10811: ",
+          "L10812: ",
+          "L10813: *** END OF THE PROJECT GUTENBERG EBOOK ANNE OF GREEN GABLES ***",
+          "L10814: ",
+          "L10815: ",
+          "L10816:     ",
+          "L10817: ",
+          "L10818: Updated editions will replace the previous one—the old editions will",
+          "L10819: be renamed.",
+          "L10820: ",
+          "L10821: Creating the works from print editions not protected by U.S. copyright"
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 427,
+        "lineRange": "1-81"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3005,
+        "lineRange": "10810-11163"
+      },
+      "sectionCount": 38,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Mrs. Rachel Lynde Is Surprised",
+          "wordCount": 2864
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "Matthew Cuthbert Is Surprised",
+          "wordCount": 4955
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "Marilla Cuthbert Is Surprised",
+          "wordCount": 2166
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "Morning at Green Gables",
+          "wordCount": 2295
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": "Anne's History",
+          "wordCount": 2119
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-034",
+          "label": "Chapter 34",
+          "title": "A Queen's Girl",
+          "wordCount": 2522
+        },
+        {
+          "id": "chapter-035",
+          "label": "Chapter 35",
+          "title": "The Winter at Queen's",
+          "wordCount": 1631
+        },
+        {
+          "id": "chapter-036",
+          "label": "Chapter 36",
+          "title": "The Glory and the Dream",
+          "wordCount": 1935
+        },
+        {
+          "id": "chapter-037",
+          "label": "Chapter 37",
+          "title": "The Reaper Whose Name Is Death",
+          "wordCount": 2356
+        },
+        {
+          "id": "chapter-038",
+          "label": "Chapter 38",
+          "title": "The Bend in the Road",
+          "wordCount": 2932
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": {
+        "exists": true,
+        "manifestPath": "app/client/assets/books/generated/anne-of-green-gables/manifest.json",
+        "sectionCount": 39,
+        "includedSectionCount": 38,
+        "firstSectionPreview": "ANNE OF GREEN GABLES By Lucy Maud Montgomery Table of Contents CHAPTER I Mrs. Rachel Lynde Is Surprised CHAPTER II Matthew Cuthbert Is Surprised CHAPTER III Ma...",
+        "lastSectionPreview": "CHAPTER XXXVIII. The Bend in the Road MARILLA went to town the next day and returned in the evening. Anne had gone over to Orchard Slope with Diana and came ba...",
+        "suspiciousShortSections": [],
+        "suspiciousLongSections": [],
+        "apparentDamage": []
+      },
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "structureDetectionStatus": "high",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "pointed-roofs",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/Pointed Roofs.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/pointed-roofs/manifest.json",
+        "app/client/assets/books/generated/pointed-roofs/cleaned_book.json",
+        "app/client/assets/books/generated/pointed-roofs/processed_book.json",
+        "app/client/assets/books/generated/pointed-roofs/rights_report.json",
+        "app/client/assets/books/generated/pointed-roofs/processing_notes.md",
+        "app/client/assets/books/generated/pointed-roofs/sections/title-page-001.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-001.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-002.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-003.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-004.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-005.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-006.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-007.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-008.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-009.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-010.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-011.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-012.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-013.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-014.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-015.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-016.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-017.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-018.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-019.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-020.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-021.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-022.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-023.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-024.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-025.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-026.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-027.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-028.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-029.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-030.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-031.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-032.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-033.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-034.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-035.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-036.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-037.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-038.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-039.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-040.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-041.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-042.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-043.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-044.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-045.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-046.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-047.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-048.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-049.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-050.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-051.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-052.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-053.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-054.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-055.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-056.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-057.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-058.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-059.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-060.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-061.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-062.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-063.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-064.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-065.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-066.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-067.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-068.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-069.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-070.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-071.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-072.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-073.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-074.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-075.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-076.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-077.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-078.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-079.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-080.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-081.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-082.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-083.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-084.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-085.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-086.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-087.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-088.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-089.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-090.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-091.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-092.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-093.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-094.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-095.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-096.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-097.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-098.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-099.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-100.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-101.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-102.json",
+        "app/client/assets/books/generated/pointed-roofs/sections/chapter-103.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/pointed-roofs.preview.json",
+      "candidateTitle": "Pointed Roofs",
+      "candidateAuthor": [
+        "Dorothy M. Richardson"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 74,
+        "reason": "Dry-run 2 selected this as the first real readable line: INTRODUCTION I have read \"Pointed Roofs\" three times. The first time it came to me with its original wardrobe, a different",
+        "snippet": "INTRODUCTION I have read \"Pointed Roofs\" three times. The first time it came to me with its original wardrobe, a different dress for every mood; and in some places the handwriting of the",
+        "linesBefore": [
+          "L62: ",
+          "L63: ",
+          "L64:                                    TO",
+          "L65:                               WINIFRED RAY",
+          "L66: ",
+          "L67: ",
+          "L68:                           All rights reserved",
+          "L69:                         Second Impression, 1921",
+          "L70: ",
+          "L71: ",
+          "L72: ",
+          "L73: ",
+          "L74:                               INTRODUCTION"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 6870,
+        "reason": "Dry-run 2 selected this as the final real readable line before end/source matter: _The Mayflower Press, Plymouth, England._ William Brendon & Son, Ltd.",
+        "snippet": "Transcriber's Notes On page 113, \"Marie\" was changed into \"Clara\" in later editions but preserved here.",
+        "linesAfter": [
+          "L6870: ",
+          "L6871:                           Transcriber's Notes",
+          "L6872: ",
+          "L6873: ",
+          "L6874: On page 113, \"Marie\" was changed into \"Clara\" in later editions but",
+          "L6875: preserved here.",
+          "L6876: ",
+          "L6877: The original spelling and punctuation were mostly preserved. A few",
+          "L6878: obvious typographical errors were silently corrected. Further careful",
+          "L6879: corrections, some after consulting other editions, are listed here",
+          "L6880: (before/after):",
+          "L6881: ",
+          "L6882:    [p. 66]:"
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 229,
+        "lineRange": "1-73"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3303,
+        "lineRange": "6871-7303"
+      },
+      "sectionCount": 104,
+      "firstFiveSections": [
+        {
+          "id": "title-page-001",
+          "label": "Opening section",
+          "title": null,
+          "wordCount": 797
+        },
+        {
+          "id": "chapter-001",
+          "label": "Section 1",
+          "title": "Chapter I",
+          "wordCount": 753
+        },
+        {
+          "id": "chapter-002",
+          "label": "Section 2",
+          "title": null,
+          "wordCount": 1211
+        },
+        {
+          "id": "chapter-003",
+          "label": "Section 3",
+          "title": null,
+          "wordCount": 1419
+        },
+        {
+          "id": "chapter-004",
+          "label": "Section 1",
+          "title": "Chapter Ii",
+          "wordCount": 448
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-099",
+          "label": "Section 9",
+          "title": null,
+          "wordCount": 412
+        },
+        {
+          "id": "chapter-100",
+          "label": "Section 10",
+          "title": null,
+          "wordCount": 502
+        },
+        {
+          "id": "chapter-101",
+          "label": "Section 11",
+          "title": null,
+          "wordCount": 1242
+        },
+        {
+          "id": "chapter-102",
+          "label": "Section 12",
+          "title": null,
+          "wordCount": 1222
+        },
+        {
+          "id": "chapter-103",
+          "label": "Section 13",
+          "title": null,
+          "wordCount": 821
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": false,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [
+        "body headings were found but rejected by the selected strategy"
+      ],
+      "firstHourPreviewSourceSections": [
+        "chapter-001",
+        "chapter-002"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": {
+        "exists": false,
+        "manifestPath": null,
+        "sectionCount": 0,
+        "includedSectionCount": 0,
+        "firstSectionPreview": null,
+        "lastSectionPreview": null,
+        "suspiciousShortSections": [],
+        "suspiciousLongSections": [],
+        "apparentDamage": []
+      },
+      "selectedStructuralConvention": "standalone arabic-numbered sections",
+      "structureDetectionStatus": "high",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "the-lost-world",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/The Lost World.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/the-lost-world/manifest.json",
+        "app/client/assets/books/generated/the-lost-world/cleaned_book.json",
+        "app/client/assets/books/generated/the-lost-world/processed_book.json",
+        "app/client/assets/books/generated/the-lost-world/rights_report.json",
+        "app/client/assets/books/generated/the-lost-world/processing_notes.md",
+        "app/client/assets/books/generated/the-lost-world/sections/title-page-001.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-lost-world/sections/chapter-016.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/the-lost-world.preview.json",
+      "candidateTitle": "The Lost World",
+      "candidateAuthor": [
+        "Arthur Conan Doyle"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 49,
+        "reason": "Dry-run 2 selected this as the first real readable line: Foreword Mr. E. D. Malone desires to state that both the injunction for restraint and the libel action have been withdrawn unreservedly by Professor G. E. Challenger, who, being",
+        "snippet": "Foreword Mr. E. D. Malone desires to state that both the injunction for restraint and the libel action have been withdrawn unreservedly by Professor G. E. Challenger, who, being satisfied that no criticism or comment in",
+        "linesBefore": [
+          "L37: ",
+          "L38:                           The Lost World",
+          "L39: ",
+          "L40: ",
+          "L41:                                 By",
+          "L42: ",
+          "L43:                      SIR ARTHUR CONAN DOYLE",
+          "L44: ",
+          "L45:                          COPYRIGHT, 1912",
+          "L46: ",
+          "L47: ",
+          "L48: ",
+          "L49:                              Foreword"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 8005,
+        "reason": "Dry-run 2 selected this as the final real readable line before end/source matter: \"Not just yet,\" said I, with a rueful smile. \"I think, if you will have me, that I would rather go with you.\" Lord Roxton said nothing, but a brown hand was stretched out to me across the table.",
+        "snippet": "across the table.",
+        "linesAfter": [
+          "L8005: across the table.",
+          "L8006: ",
+          "L8007: ",
+          "L8008: ",
+          "L8009: ",
+          "L8010: ",
+          "L8011: ",
+          "L8012: ",
+          "L8013: ",
+          "L8014: ",
+          "L8015: ",
+          "L8016: ",
+          "L8017: *** END OF THE PROJECT GUTENBERG EBOOK THE LOST WORLD ***"
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 183,
+        "lineRange": "1-48"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3004,
+        "lineRange": "8006-8367"
+      },
+      "sectionCount": 17,
+      "firstFiveSections": [
+        {
+          "id": "title-page-001",
+          "label": "Opening section",
+          "title": null,
+          "wordCount": 173
+        },
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "wordCount": 2109
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "wordCount": 2337
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "wordCount": 2421
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "wordCount": 5450
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-012",
+          "label": "Chapter 12",
+          "title": null,
+          "wordCount": 5703
+        },
+        {
+          "id": "chapter-013",
+          "label": "Chapter 13",
+          "title": null,
+          "wordCount": 5482
+        },
+        {
+          "id": "chapter-014",
+          "label": "Chapter 14",
+          "title": null,
+          "wordCount": 5409
+        },
+        {
+          "id": "chapter-015",
+          "label": "Chapter 15",
+          "title": null,
+          "wordCount": 6008
+        },
+        {
+          "id": "chapter-016",
+          "label": "Chapter 16",
+          "title": null,
+          "wordCount": 6328
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": false,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": {
+        "exists": false,
+        "manifestPath": null,
+        "sectionCount": 0,
+        "includedSectionCount": 0,
+        "firstSectionPreview": null,
+        "lastSectionPreview": null,
+        "suspiciousShortSections": [],
+        "suspiciousLongSections": [],
+        "apparentDamage": []
+      },
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "structureDetectionStatus": "high",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "the-red-thumb-mark",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/The Red Thumb Mark.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/the-red-thumb-mark/manifest.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/cleaned_book.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/processed_book.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/rights_report.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/processing_notes.md",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/title-page-001.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-red-thumb-mark/sections/chapter-017.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/the-red-thumb-mark.preview.json",
+      "candidateTitle": "The Red Thumb Mark",
+      "candidateAuthor": [
+        "R. Austin Freeman"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 36,
+        "reason": "Dry-run 2 selected this as the first real readable line: PREFACE In writing the following story, the author has had in view no purpose other than that of affording entertainment to such readers as are interested in problems of crime and their solutions; and the story itself differs in no respect from others of its class, excepting in that",
+        "snippet": "PREFACE In writing the following story, the author has had in view no purpose other than that of affording entertainment to such readers as are interested in problems of crime and their solutions; and the story itself differs in no respect...",
+        "linesBefore": [
+          "L24: Credits: Produced by Steven desJardins and Distributed Proofreaders",
+          "L25: ",
+          "L26: ",
+          "L27: *** START OF THE PROJECT GUTENBERG EBOOK THE RED THUMB MARK ***",
+          "L28: THE RED THUMB MARK",
+          "L29: ",
+          "L30: ",
+          "L31: BY R. AUSTIN FREEMAN",
+          "L32: ",
+          "L33: ",
+          "L34: ",
+          "L35: ",
+          "L36: PREFACE"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 8357,
+        "reason": "Dry-run 2 selected this as the final real readable line before end/source matter: She laid her hand in mine for a moment with a gentle pressure and then drew it away; and so we passed through into the cloisters. THE END",
+        "snippet": "THE END *** END OF THE PROJECT GUTENBERG EBOOK THE RED THUMB MARK ***",
+        "linesAfter": [
+          "L8357: THE END",
+          "L8358: ",
+          "L8359: ",
+          "L8360: ",
+          "L8361: *** END OF THE PROJECT GUTENBERG EBOOK THE RED THUMB MARK ***",
+          "L8362: ",
+          "L8363: ",
+          "L8364:     ",
+          "L8365: ",
+          "L8366: Updated editions will replace the previous one—the old editions will",
+          "L8367: be renamed.",
+          "L8368: ",
+          "L8369: Creating the works from print editions not protected by U.S. copyright"
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 152,
+        "lineRange": "1-35"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3005,
+        "lineRange": "8358-8711"
+      },
+      "sectionCount": 18,
+      "firstFiveSections": [
+        {
+          "id": "title-page-001",
+          "label": "Opening section",
+          "title": null,
+          "wordCount": 306
+        },
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "MY LEARNED BROTHER",
+          "wordCount": 1940
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "THE SUSPECT",
+          "wordCount": 3887
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "A LADY IN THE CASE",
+          "wordCount": 4782
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "CONFIDENCES",
+          "wordCount": 4053
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-013",
+          "label": "Chapter 13",
+          "title": "MURDER BY POST",
+          "wordCount": 4896
+        },
+        {
+          "id": "chapter-014",
+          "label": "Chapter 14",
+          "title": "A STARTLING DISCOVERY",
+          "wordCount": 3738
+        },
+        {
+          "id": "chapter-015",
+          "label": "Chapter 15",
+          "title": "THE FINGER-PRINT EXPERTS",
+          "wordCount": 9509
+        },
+        {
+          "id": "chapter-016",
+          "label": "Chapter 16",
+          "title": "THORNDYKE PLAYS HIS CARD",
+          "wordCount": 8990
+        },
+        {
+          "id": "chapter-017",
+          "label": "Chapter 17",
+          "title": "AT LAST",
+          "wordCount": 2115
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": false,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": {
+        "exists": false,
+        "manifestPath": null,
+        "sectionCount": 0,
+        "includedSectionCount": 0,
+        "firstSectionPreview": null,
+        "lastSectionPreview": null,
+        "suspiciousShortSections": [],
+        "suspiciousLongSections": [],
+        "apparentDamage": []
+      },
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "structureDetectionStatus": "high",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "violet-fairy-book",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/Violet Fairy Book.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/violet-fairy-book/manifest.json",
+        "app/client/assets/books/generated/violet-fairy-book/cleaned_book.json",
+        "app/client/assets/books/generated/violet-fairy-book/processed_book.json",
+        "app/client/assets/books/generated/violet-fairy-book/rights_report.json",
+        "app/client/assets/books/generated/violet-fairy-book/processing_notes.md",
+        "app/client/assets/books/generated/violet-fairy-book/sections/title-page-001.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-001.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-002.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-003.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-004.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-005.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-006.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-007.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-008.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-009.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-010.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-011.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-012.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-013.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-014.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-015.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-016.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-017.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-018.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-019.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-020.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-021.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-022.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-023.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-024.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-025.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-026.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-027.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-028.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-029.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-030.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-031.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-032.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-033.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-034.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-035.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-036.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-037.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-038.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-039.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-040.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-041.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-042.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-043.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-044.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/violet-fairy-book.preview.json",
+      "candidateTitle": "The Violet Fairy Book",
+      "candidateAuthor": [
+        "Andrew Lang"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 53,
+        "reason": "Dry-run 2 selected this as the first real readable line: PREFACE The Editor takes this opportunity to repeat what he has often said before, that he is not the author of the stories in the Fairy Books; that he did not invent them ‘out of his own head.’ He is accustomed to",
+        "snippet": "PREFACE The Editor takes this opportunity to repeat what he has often said before, that he is not the author of the stories in the Fairy Books; that he did not invent them ‘out of his own head.’ He is accustomed to being asked, by ladies,...",
+        "linesBefore": [
+          "L41: ",
+          "L42: Edited By Andrew Lang",
+          "L43: ",
+          "L44: ",
+          "L45: ",
+          "L46:      TO VIOLET MYERS",
+          "L47:      IS DEDICATED",
+          "L48:      THE VIOLET FAIRY BOOK",
+          "L49: ",
+          "L50: ",
+          "L51: ",
+          "L52: ",
+          "L53: PREFACE"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 11140,
+        "reason": "Dry-run 2 selected this as the final real readable line before end/source matter: as he wished. And they went together to the palace, where Mogarzea was still waiting for him, and the marriage was celebrated by the emperor himself. But every May they returned to the Milk Lake, they and their children, and bathed in its waters. (Olumanische Marchen.)",
+        "snippet": "(Olumanische Marchen.)",
+        "linesAfter": [
+          "L11140: (Olumanische Marchen.)",
+          "L11141: ",
+          "L11142: ",
+          "L11143: ",
+          "L11144: ",
+          "L11145: ",
+          "L11146: ",
+          "L11147: ",
+          "L11148: ",
+          "L11149: *** END OF THE PROJECT GUTENBERG EBOOK THE VIOLET FAIRY BOOK ***",
+          "L11150: ",
+          "L11151: ",
+          "L11152:     "
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 170,
+        "lineRange": "1-52"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3005,
+        "lineRange": "11141-11499"
+      },
+      "sectionCount": 45,
+      "firstFiveSections": [
+        {
+          "id": "title-page-001",
+          "label": "Opening section",
+          "title": null,
+          "wordCount": 486
+        },
+        {
+          "id": "chapter-001",
+          "label": "'The Wonderful Beggars,' 'The Lute Player,' 'Two In A Sack,' And 'The",
+          "title": "'The Wonderful Beggars,' 'The Lute Player,' 'Two in a Sack,' and 'The",
+          "wordCount": 4576
+        },
+        {
+          "id": "chapter-002",
+          "label": "(From Ehstnische Marchen.)",
+          "title": "(From Ehstnische Marchen.)",
+          "wordCount": 1553
+        },
+        {
+          "id": "chapter-003",
+          "label": "(Volksmarchen Der Serben.)",
+          "title": "(Volksmarchen der Serben.)",
+          "wordCount": 2762
+        },
+        {
+          "id": "chapter-004",
+          "label": "(From The Serbian.)",
+          "title": "(From the Serbian.)",
+          "wordCount": 1135
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-040",
+          "label": "(Marchen Und Gedichte Aus Der Stadt Tripolis. Hans Von Stumme.)",
+          "title": "(Marchen und Gedichte aus der Stadt Tripolis. Hans von Stumme.)",
+          "wordCount": 2350
+        },
+        {
+          "id": "chapter-041",
+          "label": "(From The Portuguese.)",
+          "title": "(From the Portuguese.)",
+          "wordCount": 215
+        },
+        {
+          "id": "chapter-042",
+          "label": "Virgilius!'",
+          "title": "Virgilius!'",
+          "wordCount": 1520
+        },
+        {
+          "id": "chapter-043",
+          "label": "'Preservation Of Rome.'",
+          "title": "'Preservation of Rome.'",
+          "wordCount": 1459
+        },
+        {
+          "id": "chapter-044",
+          "label": "(Adapted From 'Virgilius The Sorcerer.')",
+          "title": "(Adapted from 'Virgilius the Sorcerer.')",
+          "wordCount": 1881
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": {
+        "exists": false,
+        "manifestPath": null,
+        "sectionCount": 0,
+        "includedSectionCount": 0,
+        "firstSectionPreview": null,
+        "lastSectionPreview": null,
+        "suspiciousShortSections": [],
+        "suspiciousLongSections": [],
+        "apparentDamage": []
+      },
+      "selectedStructuralConvention": "isolated titled sections",
+      "structureDetectionStatus": "high",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "jack-and-jill",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/jack-and-jill.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/jack-and-jill/manifest.json",
+        "app/client/assets/books/generated/jack-and-jill/cleaned_book.json",
+        "app/client/assets/books/generated/jack-and-jill/processed_book.json",
+        "app/client/assets/books/generated/jack-and-jill/rights_report.json",
+        "app/client/assets/books/generated/jack-and-jill/processing_notes.md",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-001.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-002.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-003.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-004.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-005.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-006.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-007.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-008.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-009.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-010.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-011.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-012.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-013.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-014.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-015.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-016.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-017.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-018.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-019.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-020.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-021.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-022.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-023.json",
+        "app/client/assets/books/generated/jack-and-jill/sections/chapter-024.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/jack-and-jill.preview.json",
+      "candidateTitle": "Jack and Jill",
+      "candidateAuthor": [
+        "Louisa May Alcott"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 95,
+        "reason": "Dry-run 2 selected this as the first real readable line: Chapter I. The Catastrophe “Clear the lulla!” was the general cry on a bright December afternoon, when all the boys and girls of Harmony Village were out enjoying the first good snow of the season. Up and down three long coasts they went",
+        "snippet": "Chapter I. The Catastrophe “Clear the lulla!” was the general cry on a bright December afternoon, when all the boys and girls of Harmony Village were out enjoying the first good snow of the season. Up and down three long coasts they went a...",
+        "linesBefore": [
+          "L83: ",
+          "L84: JACK AND JILL",
+          "L85: ",
+          "L86: ",
+          "L87:     Jack and Jill went up the hill",
+          "L88:     To coast with fun and laughter;",
+          "L89:     Jack fell down and broke his crown,",
+          "L90:     And Jill came tumbling after.",
+          "L91: ",
+          "L92: ",
+          "L93: ",
+          "L94: ",
+          "L95: Chapter I. The Catastrophe"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 9836,
+        "reason": "Dry-run 2 selected this as the final real readable line before end/source matter: There are many such boys and girls, full of high hopes, lovely possibilities, and earnest plans, pausing a moment before they push their little boats from the safe shore. Let those who launch them see to it that they have good health to man the oars, good education for ballast, and good principles as pilots to guide them as they voyage down an ever-widening river to the sea.",
+        "snippet": "an ever-widening river to the sea.",
+        "linesAfter": [
+          "L9836: an ever-widening river to the sea.",
+          "L9837: ",
+          "L9838: ",
+          "L9839: ",
+          "L9840: ",
+          "L9841: ",
+          "L9842: ",
+          "L9843: ",
+          "L9844: *** END OF THE PROJECT GUTENBERG EBOOK JACK AND JILL ***",
+          "L9845: ",
+          "L9846: ",
+          "L9847:     ",
+          "L9848: "
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 321,
+        "lineRange": "1-94"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3004,
+        "lineRange": "9837-10194"
+      },
+      "sectionCount": 24,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "The Catastrophe",
+          "wordCount": 2910
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "Two Penitents",
+          "wordCount": 2089
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "Ward No. 1",
+          "wordCount": 3897
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "Ward No. 2",
+          "wordCount": 3145
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": "Secrets",
+          "wordCount": 1674
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-020",
+          "label": "Chapter 20",
+          "title": "A Sweet Memory",
+          "wordCount": 3729
+        },
+        {
+          "id": "chapter-021",
+          "label": "Chapter 21",
+          "title": "Pebbly Beach",
+          "wordCount": 5641
+        },
+        {
+          "id": "chapter-022",
+          "label": "Chapter 22",
+          "title": "A Happy Day",
+          "wordCount": 3092
+        },
+        {
+          "id": "chapter-023",
+          "label": "Chapter 23",
+          "title": "Cattle Show",
+          "wordCount": 4672
+        },
+        {
+          "id": "chapter-024",
+          "label": "Chapter 24",
+          "title": "Down the River",
+          "wordCount": 4439
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 1,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": {
+        "exists": true,
+        "manifestPath": "app/client/assets/books/generated/jack-and-jill/manifest.json",
+        "sectionCount": 26,
+        "includedSectionCount": 24,
+        "firstSectionPreview": "JACK AND JILL By Louisa May Alcott To the schoolmates of ELLSWORTH DEVENS, Whose lovely character will not soon be forgotten, This Village Story is affectionat...",
+        "lastSectionPreview": "Chapter XXIV. Down the River A fortnight later, the boys were picking apples one golden October afternoon, and the girls were hurrying to finish their work, th...",
+        "suspiciousShortSections": [
+          {
+            "id": "title-page-001",
+            "label": "Opening section",
+            "wordCount": 34
+          }
+        ],
+        "suspiciousLongSections": [],
+        "apparentDamage": [
+          "suspiciously short generated sections"
+        ]
+      },
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "structureDetectionStatus": "high",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "the-wonderful-wizard-of-oz",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/the-wonderful-wizard-of-oz.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/manifest.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/cleaned_book.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/processed_book.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/rights_report.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/processing_notes.md",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-wonderful-wizard-of-oz/sections/chapter-024.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/the-wonderful-wizard-of-oz.preview.json",
+      "candidateTitle": "The Wonderful Wizard of Oz",
+      "candidateAuthor": [
+        "L. Frank Baum"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 106,
+        "reason": "Dry-run 2 selected this as the first real readable line: Chapter I The Cyclone Dorothy lived in the midst of the great Kansas prairies, with Uncle Henry, who was a farmer, and Aunt Em, who was the farmer’s wife. Their",
+        "snippet": "Chapter I The Cyclone Dorothy lived in the midst of the great Kansas prairies, with Uncle Henry, who was a farmer, and Aunt Em, who was the farmer’s wife. Their house was small, for the lumber to build it had to be carried by wagon",
+        "linesBefore": [
+          "L94: the heartaches and nightmares are left out.",
+          "L95: ",
+          "L96: L. Frank Baum",
+          "L97: Chicago, April, 1900.",
+          "L98: ",
+          "L99: ",
+          "L100: ",
+          "L101: The Wonderful Wizard of Oz",
+          "L102: ",
+          "L103: ",
+          "L104: ",
+          "L105: ",
+          "L106: Chapter I"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 4778,
+        "reason": "Dry-run 2 selected this as the final real readable line before end/source matter: “My darling child!” she cried, folding the little girl in her arms and covering her face with kisses. “Where in the world did you come from?” “From the Land of Oz,” said Dorothy gravely. “And here is Toto, too. And oh, Aunt Em! I’m so glad to be at home again!”",
+        "snippet": "And oh, Aunt Em! I’m so glad to be at home again!” *** END OF THE PROJECT GUTENBERG EBOOK THE WONDERFUL WIZARD OF OZ ***",
+        "linesAfter": [
+          "L4778: And oh, Aunt Em! I’m so glad to be at home again!”",
+          "L4779: ",
+          "L4780: ",
+          "L4781: ",
+          "L4782: ",
+          "L4783: *** END OF THE PROJECT GUTENBERG EBOOK THE WONDERFUL WIZARD OF OZ ***",
+          "L4784: ",
+          "L4785: ",
+          "L4786:     ",
+          "L4787: ",
+          "L4788: Updated editions will replace the previous one—the old editions will",
+          "L4789: be renamed.",
+          "L4790: "
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 519,
+        "lineRange": "1-105"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3006,
+        "lineRange": "4779-5133"
+      },
+      "sectionCount": 24,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "The Cyclone",
+          "wordCount": 1145
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "wordCount": 2004
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "wordCount": 1962
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "wordCount": 1441
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "wordCount": 2061
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-020",
+          "label": "Chapter 20",
+          "title": "The Dainty China Country",
+          "wordCount": 1506
+        },
+        {
+          "id": "chapter-021",
+          "label": "Chapter 21",
+          "title": null,
+          "wordCount": 900
+        },
+        {
+          "id": "chapter-022",
+          "label": "Chapter 22",
+          "title": null,
+          "wordCount": 938
+        },
+        {
+          "id": "chapter-023",
+          "label": "Chapter 23",
+          "title": null,
+          "wordCount": 1257
+        },
+        {
+          "id": "chapter-024",
+          "label": "Chapter 24",
+          "title": "Home Again",
+          "wordCount": 78
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": true
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001",
+        "chapter-002"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": {
+        "exists": true,
+        "manifestPath": "app/client/assets/books/generated/the-wonderful-wizard-of-oz/manifest.json",
+        "sectionCount": 28,
+        "includedSectionCount": 24,
+        "firstSectionPreview": "[Illustration] The Wonderful Wizard of Oz by L. Frank Baum This book is dedicated to my good friend & comrade My Wife L.F.B.",
+        "lastSectionPreview": "Chapter XXIV Home Again Aunt Em had just come out of the house to water the cabbages when she looked up and saw Dorothy running toward her. “My darling child!”...",
+        "suspiciousShortSections": [
+          {
+            "id": "title-page-001",
+            "label": "Opening section",
+            "wordCount": 24
+          },
+          {
+            "id": "title-page-002",
+            "label": "Contents",
+            "wordCount": 1
+          },
+          {
+            "id": "chapter-024",
+            "label": "Chapter 24",
+            "wordCount": 79
+          }
+        ],
+        "suspiciousLongSections": [],
+        "apparentDamage": [
+          "suspiciously short generated sections"
+        ]
+      },
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "structureDetectionStatus": "high",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "the-legend-of-sleepy-hollow",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/the-legend-of-sleepy-hollow.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/the-legend-of-sleepy-hollow/manifest.json",
+        "app/client/assets/books/generated/the-legend-of-sleepy-hollow/cleaned_book.json",
+        "app/client/assets/books/generated/the-legend-of-sleepy-hollow/processed_book.json",
+        "app/client/assets/books/generated/the-legend-of-sleepy-hollow/rights_report.json",
+        "app/client/assets/books/generated/the-legend-of-sleepy-hollow/processing_notes.md",
+        "app/client/assets/books/generated/the-legend-of-sleepy-hollow/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-legend-of-sleepy-hollow/sections/chapter-002.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/the-legend-of-sleepy-hollow.preview.json",
+      "candidateTitle": "The Legend of Sleepy Hollow",
+      "candidateAuthor": [
+        "Washington Irving"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 42,
+        "reason": "Dry-run 2 selected this as the first real readable line: A pleasing land of drowsy head it was, Of dreams that wave before the half-shut eye; And of gay castles in the clouds that pass, Forever flushing round a summer sky. CASTLE OF INDOLENCE.",
+        "snippet": "A pleasing land of drowsy head it was, Of dreams that wave before the half-shut eye; And of gay castles in the clouds that pass, Forever flushing round a summer sky. CASTLE OF INDOLENCE.",
+        "linesBefore": [
+          "L30: ",
+          "L31: ",
+          "L32: The Legend of Sleepy Hollow",
+          "L33: ",
+          "L34: by Washington Irving",
+          "L35: ",
+          "L36: ",
+          "L37: ",
+          "L38: ",
+          "L39: FOUND AMONG THE PAPERS OF THE LATE DIEDRICH KNICKERBOCKER.",
+          "L40: ",
+          "L41: ",
+          "L42:         A pleasing land of drowsy head it was,"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 1157,
+        "reason": "Dry-run 2 selected this as the final real readable line before end/source matter: extravagant--there were one or two points on which he had his doubts. “Faith, sir,” replied the story-teller, “as to that matter, I don’t believe one-half of it myself.” D. K. THE END.",
+        "snippet": "THE END. *** END OF THE PROJECT GUTENBERG EBOOK THE LEGEND OF SLEEPY HOLLOW ***",
+        "linesAfter": [
+          "L1157: THE END.",
+          "L1158: ",
+          "L1159: ",
+          "L1160: ",
+          "L1161: ",
+          "L1162: ",
+          "L1163: *** END OF THE PROJECT GUTENBERG EBOOK THE LEGEND OF SLEEPY HOLLOW ***",
+          "L1164: ",
+          "L1165: ",
+          "L1166:     ",
+          "L1167: ",
+          "L1168: Updated editions will replace the previous one—the old editions will",
+          "L1169: be renamed."
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 163,
+        "lineRange": "1-41"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3006,
+        "lineRange": "1158-1513"
+      },
+      "sectionCount": 2,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Castle Of Indolence.",
+          "title": "CASTLE OF INDOLENCE.",
+          "wordCount": 11789
+        },
+        {
+          "id": "chapter-002",
+          "label": "Found In The Handwriting Of Mr. Knickerbocker.",
+          "title": "FOUND IN THE HANDWRITING OF MR. KNICKERBOCKER.",
+          "wordCount": 439
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Castle Of Indolence.",
+          "title": "CASTLE OF INDOLENCE.",
+          "wordCount": 11789
+        },
+        {
+          "id": "chapter-002",
+          "label": "Found In The Handwriting Of Mr. Knickerbocker.",
+          "title": "FOUND IN THE HANDWRITING OF MR. KNICKERBOCKER.",
+          "wordCount": 439
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": {
+        "exists": true,
+        "manifestPath": "app/client/assets/books/generated/the-legend-of-sleepy-hollow/manifest.json",
+        "sectionCount": 4,
+        "includedSectionCount": 0,
+        "firstSectionPreview": "The Legend of Sleepy Hollow by Washington Irving FOUND AMONG THE PAPERS OF THE LATE DIEDRICH KNICKERBOCKER. A pleasing land of drowsy head it was, Of dreams th...",
+        "lastSectionPreview": "THE END.",
+        "suspiciousShortSections": [
+          {
+            "id": "part-004",
+            "label": "Part 4",
+            "wordCount": 2
+          }
+        ],
+        "suspiciousLongSections": [],
+        "apparentDamage": [
+          "no default included sections",
+          "suspiciously short generated sections"
+        ]
+      },
+      "selectedStructuralConvention": "story or titled-section headings",
+      "structureDetectionStatus": "medium",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "four-day-planet",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/Four-Day Planet.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/four-day-planet/manifest.json",
+        "app/client/assets/books/generated/four-day-planet/cleaned_book.json",
+        "app/client/assets/books/generated/four-day-planet/processed_book.json",
+        "app/client/assets/books/generated/four-day-planet/rights_report.json",
+        "app/client/assets/books/generated/four-day-planet/processing_notes.md",
+        "app/client/assets/books/generated/four-day-planet/sections/title-page-001.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-001.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-002.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-003.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-004.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-005.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-006.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-007.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-008.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-009.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-010.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-011.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-012.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-013.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-014.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-015.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-016.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-017.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-018.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-019.json",
+        "app/client/assets/books/generated/four-day-planet/sections/chapter-020.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/four-day-planet.preview.json",
+      "candidateTitle": "Four-Day Planet",
+      "candidateAuthor": [
+        "H. Beam Piper"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 76,
+        "reason": "Dry-run 2 selected this as the first real readable line: DEDICATION For Betty and Vall, with loving remembrance * * * * *",
+        "snippet": "DEDICATION For Betty and Vall, with loving remembrance * * * * *",
+        "linesBefore": [
+          "L64:                        New York, New York 10010",
+          "L65: ",
+          "L66: ",
+          "L67: ",
+          "L68:                   Copyright © 1961 by H. Beam Piper",
+          "L69: ",
+          "L70: ",
+          "L71:                     _Cover art by Michael Whelan_",
+          "L72: ",
+          "L73:        *       *       *       *       *",
+          "L74: ",
+          "L75: ",
+          "L76: DEDICATION"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 6710,
+        "reason": "Dry-run 2 selected this as the final real readable line before end/source matter: dangerous. Unfortunately it's common knowledge that the s'Srauff are evolved from canine ancestors--and not a Texan alive is about to be scared of a talking dog! But unless he can get them to act, and fast, there won't be a Texan alive, scared or otherwise! * * * * *",
+        "snippet": "* * * * *",
+        "linesAfter": [
+          "L6710:        *       *       *       *       *",
+          "L6711: ",
+          "L6712: ",
+          "L6713: ",
+          "L6714: ",
+          "L6715: ",
+          "L6716: ",
+          "L6717: ",
+          "L6718: *** END OF THE PROJECT GUTENBERG EBOOK FOUR-DAY PLANET ***",
+          "L6719: ",
+          "L6720: ",
+          "L6721:     ",
+          "L6722: "
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 233,
+        "lineRange": "1-75"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3003,
+        "lineRange": "6711-7068"
+      },
+      "sectionCount": 21,
+      "firstFiveSections": [
+        {
+          "id": "title-page-001",
+          "label": "Opening section",
+          "title": null,
+          "wordCount": 84
+        },
+        {
+          "id": "chapter-001",
+          "label": "Section 1",
+          "title": "THE SHIP FROM TERRA",
+          "wordCount": 3992
+        },
+        {
+          "id": "chapter-002",
+          "label": "Section 2",
+          "title": "REPORTER WORKING",
+          "wordCount": 3492
+        },
+        {
+          "id": "chapter-003",
+          "label": "Section 3",
+          "title": "BOTTOM LEVEL",
+          "wordCount": 3019
+        },
+        {
+          "id": "chapter-004",
+          "label": "Section 4",
+          "title": "MAIN CITY LEVEL",
+          "wordCount": 2926
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-016",
+          "label": "Section 16",
+          "title": "CIVIL WAR POSTPONED",
+          "wordCount": 2327
+        },
+        {
+          "id": "chapter-017",
+          "label": "Section 17",
+          "title": "TALLOW-WAX FIRE",
+          "wordCount": 3088
+        },
+        {
+          "id": "chapter-018",
+          "label": "Section 18",
+          "title": "THE TREASON OF BISH WARE",
+          "wordCount": 2916
+        },
+        {
+          "id": "chapter-019",
+          "label": "Section 19",
+          "title": "MASKS OFF",
+          "wordCount": 4777
+        },
+        {
+          "id": "chapter-020",
+          "label": "Section 20",
+          "title": "FINALE",
+          "wordCount": 4501
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 10,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": false,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": {
+        "exists": false,
+        "manifestPath": null,
+        "sectionCount": 0,
+        "includedSectionCount": 0,
+        "firstSectionPreview": null,
+        "lastSectionPreview": null,
+        "suspiciousShortSections": [],
+        "suspiciousLongSections": [],
+        "apparentDamage": []
+      },
+      "selectedStructuralConvention": "standalone arabic-numbered sections",
+      "structureDetectionStatus": "high",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "room-13",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/Room 13.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/room-13/manifest.json",
+        "app/client/assets/books/generated/room-13/cleaned_book.json",
+        "app/client/assets/books/generated/room-13/processed_book.json",
+        "app/client/assets/books/generated/room-13/rights_report.json",
+        "app/client/assets/books/generated/room-13/processing_notes.md",
+        "app/client/assets/books/generated/room-13/sections/chapter-001.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-002.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-003.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-004.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-005.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-006.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-007.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-008.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-009.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-010.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-011.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-012.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-013.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-014.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-015.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-016.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-017.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-018.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-019.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-020.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-021.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-022.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-023.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-024.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-025.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-026.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-027.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-028.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-029.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-030.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-031.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-032.json",
+        "app/client/assets/books/generated/room-13/sections/chapter-033.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/room-13.preview.json",
+      "candidateTitle": "Room 13",
+      "candidateAuthor": [
+        "Edgar Wallace"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 115,
+        "reason": "Dry-run 2 selected this as the first real readable line: CHAPTER I Over the grim stone archway was carved the words: PARCERE SUBJECTIS.",
+        "snippet": "CHAPTER I Over the grim stone archway was carved the words: PARCERE SUBJECTIS.",
+        "linesBefore": [
+          "L103:  Chapter XXVIII",
+          "L104:  Chapter XXIX",
+          "L105:  Chapter XXX",
+          "L106:  Chapter XXXI",
+          "L107:  Chapter XXXII",
+          "L108:  Chapter XXXIII",
+          "L109: ",
+          "L110: ",
+          "L111: ",
+          "L112: ",
+          "L113:  ROOM 13",
+          "L114: ",
+          "L115:  CHAPTER I"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 8287,
+        "reason": "Dry-run 2 selected this as the final real readable line before end/source matter: [Chapter XXXI] “_John_ listened at the door; he was coming alone” to _Johnny_. [End of text]",
+        "snippet": "[End of text]",
+        "linesAfter": [
+          "L8287:  [End of text]",
+          "L8288: ",
+          "L8289: ",
+          "L8290: ",
+          "L8291: ",
+          "L8292: ",
+          "L8293: ",
+          "L8294: ",
+          "L8295: ",
+          "L8296: *** END OF THE PROJECT GUTENBERG EBOOK ROOM 13 ***",
+          "L8297: ",
+          "L8298: ",
+          "L8299:     "
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 260,
+        "lineRange": "1-114"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3003,
+        "lineRange": "8288-8646"
+      },
+      "sectionCount": 33,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "wordCount": 2282
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "wordCount": 2520
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "wordCount": 1992
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "wordCount": 1177
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "wordCount": 1452
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-029",
+          "label": "Chapter 29",
+          "title": null,
+          "wordCount": 1904
+        },
+        {
+          "id": "chapter-030",
+          "label": "Chapter 30",
+          "title": null,
+          "wordCount": 1265
+        },
+        {
+          "id": "chapter-031",
+          "label": "Chapter 31",
+          "title": null,
+          "wordCount": 2043
+        },
+        {
+          "id": "chapter-032",
+          "label": "Chapter 32",
+          "title": null,
+          "wordCount": 1644
+        },
+        {
+          "id": "chapter-033",
+          "label": "Chapter 33",
+          "title": null,
+          "wordCount": 1283
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 2,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": {
+        "exists": false,
+        "manifestPath": null,
+        "sectionCount": 0,
+        "includedSectionCount": 0,
+        "firstSectionPreview": null,
+        "lastSectionPreview": null,
+        "suspiciousShortSections": [],
+        "suspiciousLongSections": [],
+        "apparentDamage": []
+      },
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "structureDetectionStatus": "high",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "the-octopus-a-story-of-california",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/The Octopus - A Story of California.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/manifest.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/cleaned_book.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/processed_book.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/rights_report.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/processing_notes.md",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-octopus-a-story-of-california/sections/chapter-015.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/the-octopus-a-story-of-california.preview.json",
+      "candidateTitle": "The Octopus: A Story of California",
+      "candidateAuthor": [
+        "Frank Norris"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 48,
+        "reason": "Dry-run 2 selected this as the first real readable line: BOOK 1 CHAPTER I",
+        "snippet": "BOOK 1 CHAPTER I",
+        "linesBefore": [
+          "L36: ",
+          "L37: ",
+          "L38: THE OCTOPUS",
+          "L39: ",
+          "L40: A Story of California",
+          "L41: ",
+          "L42: by Frank Norris",
+          "L43: ",
+          "L44: ",
+          "L45: ",
+          "L46: ",
+          "L47: ",
+          "L48: BOOK 1"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 21245,
+        "reason": "Dry-run 2 selected this as the final real readable line before end/source matter: fade and vanish away. Greed, cruelty, selfishness, and inhumanity are short-lived; the individual suffers, but the race goes on. Annixter dies, but in a far distant corner of the world a thousand lives are saved. The larger view always and through all shams, all wickednesses, discovers the Truth that will, in the end, prevail, and all things, surely, inevitably, resistlessly work together for good.",
+        "snippet": "surely, inevitably, resistlessly work together for good.",
+        "linesAfter": [
+          "L21245: surely, inevitably, resistlessly work together for good.",
+          "L21246: ",
+          "L21247: ",
+          "L21248: ",
+          "L21249: ",
+          "L21250: ",
+          "L21251: ",
+          "L21252: ",
+          "L21253: *** END OF THE PROJECT GUTENBERG EBOOK THE OCTOPUS : A STORY OF CALIFORNIA ***",
+          "L21254: ",
+          "L21255: ",
+          "L21256:     ",
+          "L21257: "
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 162,
+        "lineRange": "1-47"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3007,
+        "lineRange": "21246-21603"
+      },
+      "sectionCount": 15,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Book 1",
+          "wordCount": 15242
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "wordCount": 13151
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "wordCount": 8997
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "wordCount": 10854
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "wordCount": 16117
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-011",
+          "label": "Chapter 5",
+          "title": null,
+          "wordCount": 11596
+        },
+        {
+          "id": "chapter-012",
+          "label": "Chapter 6",
+          "title": null,
+          "wordCount": 10068
+        },
+        {
+          "id": "chapter-013",
+          "label": "Chapter 7",
+          "title": null,
+          "wordCount": 11627
+        },
+        {
+          "id": "chapter-014",
+          "label": "Chapter 8",
+          "title": null,
+          "wordCount": 15888
+        },
+        {
+          "id": "chapter-015",
+          "label": "Chapter 9",
+          "title": null,
+          "wordCount": 11567
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Book 1",
+          "wordCount": 15242
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "wordCount": 13151
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "wordCount": 16117
+        },
+        {
+          "id": "chapter-006",
+          "label": "Chapter 6",
+          "title": null,
+          "wordCount": 21717
+        },
+        {
+          "id": "chapter-008",
+          "label": "Chapter 2",
+          "title": null,
+          "wordCount": 14299
+        },
+        {
+          "id": "chapter-010",
+          "label": "Chapter 4",
+          "title": null,
+          "wordCount": 16657
+        },
+        {
+          "id": "chapter-014",
+          "label": "Chapter 8",
+          "title": null,
+          "wordCount": 15888
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 15,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [
+        "long book has huge sections despite detected headings"
+      ],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": {
+        "exists": false,
+        "manifestPath": null,
+        "sectionCount": 0,
+        "includedSectionCount": 0,
+        "firstSectionPreview": null,
+        "lastSectionPreview": null,
+        "suspiciousShortSections": [],
+        "suspiciousLongSections": [],
+        "apparentDamage": []
+      },
+      "selectedStructuralConvention": "chapter-based roman numerals with book divisions",
+      "structureDetectionStatus": "high",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "the-prince-and-the-pauper",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/The Prince and the Pauper.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/the-prince-and-the-pauper/manifest.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/cleaned_book.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/processed_book.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/rights_report.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/processing_notes.md",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-024.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-025.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-026.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-027.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-028.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-029.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-030.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-031.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-032.json",
+        "app/client/assets/books/generated/the-prince-and-the-pauper/sections/chapter-033.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/the-prince-and-the-pauper.preview.json",
+      "candidateTitle": "The Prince and the Pauper",
+      "candidateAuthor": [
+        "Mark Twain"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 480,
+        "reason": "Dry-run 2 selected this as the first real readable line: CHAPTER I. The birth of the Prince and the Pauper. In the ancient city of London, on a certain autumn day in the second quarter of the sixteenth century, a boy was born to a poor family of the name of Canty, who did not want him. On the same day another English child was born to a rich family of the name of Tudor, who did want him.",
+        "snippet": "CHAPTER I. The birth of the Prince and the Pauper. In the ancient city of London, on a certain autumn day in the second quarter of the sixteenth century, a boy was born to a poor family of the name of Canty, who did not want him. On the sa...",
+        "linesBefore": [
+          "L468: ",
+          "L469: “STRIP THIS ROBBER”",
+          "L470: ",
+          "L471: “TOM ROSE AND KISSED THE KING’S HAND”",
+          "L472: ",
+          "L473: JUSTICE AND RETRIBUTION",
+          "L474: ",
+          "L475: NOTES",
+          "L476: ",
+          "L477: ",
+          "L478: ",
+          "L479: ",
+          "L480: CHAPTER I. The birth of the Prince and the Pauper."
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 8184,
+        "reason": "Dry-run 2 selected this as the final real readable line before end/source matter: There has never been a time--under the Blue Laws or any other--when above _fourteen_ crimes were punishable by death in Connecticut. But in England, within the memory of men who are still hale in body and mind, _two hundred and twenty-three_ crimes were punishable by death! {10} These facts are worth knowing--and worth thinking about, too.",
+        "snippet": "These facts are worth knowing--and worth thinking about, too.",
+        "linesAfter": [
+          "L8184:  These facts are worth knowing--and worth thinking about, too.",
+          "L8185: ",
+          "L8186: ",
+          "L8187: ",
+          "L8188: ",
+          "L8189: ",
+          "L8190: ",
+          "L8191: *** END OF THE PROJECT GUTENBERG EBOOK THE PRINCE AND THE PAUPER ***",
+          "L8192: ",
+          "L8193: ",
+          "L8194:     ",
+          "L8195: ",
+          "L8196: Updated editions will replace the previous one—the old editions will"
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 1384,
+        "lineRange": "1-479"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3006,
+        "lineRange": "8185-8541"
+      },
+      "sectionCount": 33,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "The birth of the Prince and the Pauper",
+          "wordCount": 269
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "Tom's early life",
+          "wordCount": 1629
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "Tom's meeting with the Prince",
+          "wordCount": 2192
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "The Prince's troubles begin",
+          "wordCount": 1253
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": "Tom as a Patrician",
+          "wordCount": 2366
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-029",
+          "label": "Chapter 29",
+          "title": "To London",
+          "wordCount": 724
+        },
+        {
+          "id": "chapter-030",
+          "label": "Chapter 30",
+          "title": "Tom's progress",
+          "wordCount": 864
+        },
+        {
+          "id": "chapter-031",
+          "label": "Chapter 31",
+          "title": "The Recognition procession",
+          "wordCount": 2078
+        },
+        {
+          "id": "chapter-032",
+          "label": "Chapter 32",
+          "title": "Coronation Day",
+          "wordCount": 4076
+        },
+        {
+          "id": "chapter-033",
+          "label": "Chapter 33",
+          "title": "Edward as King",
+          "wordCount": 5839
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001",
+        "chapter-002"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": {
+        "exists": false,
+        "manifestPath": null,
+        "sectionCount": 0,
+        "includedSectionCount": 0,
+        "firstSectionPreview": null,
+        "lastSectionPreview": null,
+        "suspiciousShortSections": [],
+        "suspiciousLongSections": [],
+        "apparentDamage": []
+      },
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "structureDetectionStatus": "high",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "triplanetary",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/Triplanetary.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/triplanetary/manifest.json",
+        "app/client/assets/books/generated/triplanetary/cleaned_book.json",
+        "app/client/assets/books/generated/triplanetary/processed_book.json",
+        "app/client/assets/books/generated/triplanetary/rights_report.json",
+        "app/client/assets/books/generated/triplanetary/processing_notes.md",
+        "app/client/assets/books/generated/triplanetary/sections/chapter-001.json",
+        "app/client/assets/books/generated/triplanetary/sections/chapter-002.json",
+        "app/client/assets/books/generated/triplanetary/sections/chapter-003.json",
+        "app/client/assets/books/generated/triplanetary/sections/chapter-004.json",
+        "app/client/assets/books/generated/triplanetary/sections/chapter-005.json",
+        "app/client/assets/books/generated/triplanetary/sections/chapter-006.json",
+        "app/client/assets/books/generated/triplanetary/sections/chapter-007.json",
+        "app/client/assets/books/generated/triplanetary/sections/chapter-008.json",
+        "app/client/assets/books/generated/triplanetary/sections/chapter-009.json",
+        "app/client/assets/books/generated/triplanetary/sections/chapter-010.json",
+        "app/client/assets/books/generated/triplanetary/sections/chapter-011.json",
+        "app/client/assets/books/generated/triplanetary/sections/chapter-012.json",
+        "app/client/assets/books/generated/triplanetary/sections/chapter-013.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/triplanetary.preview.json",
+      "candidateTitle": "Triplanetary",
+      "candidateAuthor": [
+        "E. E. Smith"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 79,
+        "reason": "Dry-run 2 selected this as the first real readable line: CHAPTER I Pirates of Space Apparently motionless to her passengers and crew, the Interplanetary",
+        "snippet": "CHAPTER I Pirates of Space Apparently motionless to her passengers and crew, the Interplanetary liner _Hyperion_ bored serenely onward through space at normal",
+        "linesBefore": [
+          "L67:   of the \"Skylark\" stories which were so much appreciated by",
+          "L68:   our readers. We think that they will find this story",
+          "L69:   superior to the earlier ones. Dr. Smith certainly has the",
+          "L70:   narrative power, and that, joined with his scientific",
+          "L71:   position, makes him an ideal author for our columns.",
+          "L72: ",
+          "L73: ",
+          "L74: Illustrated by MOREY",
+          "L75: ",
+          "L76: ",
+          "L77: ",
+          "L78: ",
+          "L79: CHAPTER I"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 6286,
+        "reason": "Dry-run 2 selected this as the final real readable line before end/source matter: \"You can talk all you want to, Conway, but I don't like them a bit. They give me the purple jitters! I suppose that they are really estimable folks; talented, cultured, and everything; but just the same I'll bet that it will be a long, long time before anybody on earth will really, truly _like_ them!\"",
+        "snippet": "truly _like_ them!\"",
+        "linesAfter": [
+          "L6286: truly _like_ them!\"",
+          "L6287: ",
+          "L6288: ",
+          "L6289: ",
+          "L6290: ",
+          "L6291: ",
+          "L6292: ",
+          "L6293: ",
+          "L6294: *** END OF THE PROJECT GUTENBERG EBOOK TRIPLANETARY ***",
+          "L6295: ",
+          "L6296: ",
+          "L6297:     ",
+          "L6298: "
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 336,
+        "lineRange": "1-78"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3002,
+        "lineRange": "6287-6644"
+      },
+      "sectionCount": 13,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "wordCount": 6234
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "In Roger's Planetoid",
+          "wordCount": 5742
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "Fleet Against Planetoid",
+          "wordCount": 3680
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "wordCount": 5884
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": "Nevian Strife",
+          "wordCount": 6169
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-009",
+          "label": "Chapter 9",
+          "title": "Specimens",
+          "wordCount": 1420
+        },
+        {
+          "id": "chapter-010",
+          "label": "Chapter 10",
+          "title": null,
+          "wordCount": 4764
+        },
+        {
+          "id": "chapter-011",
+          "label": "Chapter 11",
+          "title": "Roger Carries On",
+          "wordCount": 4803
+        },
+        {
+          "id": "chapter-012",
+          "label": "Chapter 12",
+          "title": "The Specimens Escape",
+          "wordCount": 6097
+        },
+        {
+          "id": "chapter-013",
+          "label": "Chapter 13",
+          "title": null,
+          "wordCount": 4256
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 4,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": false,
+        "dashesNormalized": false
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": {
+        "exists": false,
+        "manifestPath": null,
+        "sectionCount": 0,
+        "includedSectionCount": 0,
+        "firstSectionPreview": null,
+        "lastSectionPreview": null,
+        "suspiciousShortSections": [],
+        "suspiciousLongSections": [],
+        "apparentDamage": []
+      },
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "structureDetectionStatus": "high",
+      "finalRecommendation": "needs manual review before scaling"
+    },
+    {
+      "slug": "the-call-of-the-wild",
+      "status": "written",
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/The call of the wild.txt",
+      "generatedOutputFilesChanged": [
+        "app/client/assets/books/generated/the-call-of-the-wild/manifest.json",
+        "app/client/assets/books/generated/the-call-of-the-wild/cleaned_book.json",
+        "app/client/assets/books/generated/the-call-of-the-wild/processed_book.json",
+        "app/client/assets/books/generated/the-call-of-the-wild/rights_report.json",
+        "app/client/assets/books/generated/the-call-of-the-wild/processing_notes.md",
+        "app/client/assets/books/generated/the-call-of-the-wild/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-call-of-the-wild/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-call-of-the-wild/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-call-of-the-wild/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-call-of-the-wild/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-call-of-the-wild/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-call-of-the-wild/sections/chapter-007.json"
+      ],
+      "previewAssetFileChanged": "public/book-previews/the-call-of-the-wild.preview.json",
+      "candidateTitle": "The Call of the Wild",
+      "candidateAuthor": [
+        "Jack London"
+      ],
+      "pass2RiskLevel": "medium",
+      "startBoundaryUsed": {
+        "line": 57,
+        "reason": "Dry-run 2 selected this as the first real readable line: Chapter I. Into the Primitive “Old longings nomadic leap, Chafing at custom’s chain; Again from its brumal sleep",
+        "snippet": "Chapter I. Into the Primitive “Old longings nomadic leap, Chafing at custom’s chain; Again from its brumal sleep Wakens the ferine strain.”",
+        "linesBefore": [
+          "L45: ",
+          "L46:  Chapter I. Into the Primitive",
+          "L47:  Chapter II. The Law of Club and Fang",
+          "L48:  Chapter III. The Dominant Primordial Beast",
+          "L49:  Chapter IV. Who Has Won to Mastership",
+          "L50:  Chapter V. The Toil of Trace and Trail",
+          "L51:  Chapter VI. For the Love of a Man",
+          "L52:  Chapter VII. The Sounding of the Call",
+          "L53: ",
+          "L54: ",
+          "L55: ",
+          "L56: ",
+          "L57: Chapter I. Into the Primitive"
+        ]
+      },
+      "endBoundaryUsed": {
+        "line": 3097,
+        "reason": "Dry-run 2 selected this as the final real readable line before end/source matter: But he is not always alone. When the long winter nights come on and the wolves follow their meat into the lower valleys, he may be seen running at the head of the pack through the pale moonlight or glimmering borealis, leaping gigantic above his fellows, his great throat a-bellow as he sings a song of the younger world, which is the song of the pack.",
+        "snippet": "as he sings a song of the younger world, which is the song of the pack. *** END OF THE PROJECT GUTENBERG EBOOK THE CALL OF THE WILD ***",
+        "linesAfter": [
+          "L3097: as he sings a song of the younger world, which is the song of the pack.",
+          "L3098: ",
+          "L3099: ",
+          "L3100: ",
+          "L3101: ",
+          "L3102: *** END OF THE PROJECT GUTENBERG EBOOK THE CALL OF THE WILD ***",
+          "L3103: ",
+          "L3104: ",
+          "L3105:     ",
+          "L3106: ",
+          "L3107: Updated editions will replace the previous one—the old editions will",
+          "L3108: be renamed.",
+          "L3109: "
+        ]
+      },
+      "removedFrontMatterSummary": {
+        "wordCountEstimate": 207,
+        "lineRange": "1-56"
+      },
+      "removedEndMatterSummary": {
+        "wordCountEstimate": 3006,
+        "lineRange": "3098-3452"
+      },
+      "sectionCount": 7,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Into the Primitive",
+          "wordCount": 3748
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "The Law of Club and Fang",
+          "wordCount": 3336
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "The Dominant Primordial Beast",
+          "wordCount": 5181
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "Who Has Won to Mastership",
+          "wordCount": 3248
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": "The Toil of Trace and Trail",
+          "wordCount": 5352
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "The Dominant Primordial Beast",
+          "wordCount": 5181
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "Who Has Won to Mastership",
+          "wordCount": 3248
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": "The Toil of Trace and Trail",
+          "wordCount": 5352
+        },
+        {
+          "id": "chapter-006",
+          "label": "Chapter 6",
+          "title": "For the Love of a Man",
+          "wordCount": 4751
+        },
+        {
+          "id": "chapter-007",
+          "label": "Chapter 7",
+          "title": "The Sounding of the Call",
+          "wordCount": 6241
+        }
+      ],
+      "suspiciouslyShortSections": [],
+      "suspiciouslyLongSections": [],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": true
+      },
+      "remainingWarnings": [],
+      "firstHourPreviewSourceSections": [
+        "chapter-001"
+      ],
+      "comparisonAgainstPriorGeneratedOutput": {
+        "exists": true,
+        "manifestPath": "app/client/assets/books/generated/the-call-of-the-wild/manifest.json",
+        "sectionCount": 9,
+        "includedSectionCount": 7,
+        "firstSectionPreview": "cover The Call of the Wild by Jack London",
+        "lastSectionPreview": "Chapter VII. The Sounding of the Call When Buck earned sixteen hundred dollars in five minutes for John Thornton, he made it possible for his master to pay off...",
+        "suspiciousShortSections": [
+          {
+            "id": "title-page-001",
+            "label": "Opening section",
+            "wordCount": 9
+          },
+          {
+            "id": "title-page-002",
+            "label": "Contents",
+            "wordCount": 50
+          }
+        ],
+        "suspiciousLongSections": [],
+        "apparentDamage": [
+          "suspiciously short generated sections"
+        ]
+      },
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "structureDetectionStatus": "high",
+      "finalRecommendation": "needs manual review before scaling"
+    }
+  ],
+  "confirmations": {
+    "tempBooksModified": false,
+    "cloudflareExportModified": false,
+    "processedOnlyApprovedPilotBooks": true,
+    "allBookBuildRun": false,
+    "previewAssetsOnlyForWrittenPilotBooks": true
+  }
+}

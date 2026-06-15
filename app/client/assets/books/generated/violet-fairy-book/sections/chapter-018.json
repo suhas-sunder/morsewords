@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "violet-fairy-book",
+  "sectionId": "chapter-018",
+  "kind": "chapter",
+  "label": "One--Two--'",
+  "title": "One--two--'",
+  "order": 19,
+  "includeByDefault": true,
+  "displayText": "One--two--'\n\nAt last her husband took pity on her, and cried:\n\n'Two into the sack.'\n\nHe had hardly said the words before they were back in the sack again.\n\nFrom this time the man and his wife lived so happily together that it\nwas a pleasure to see them, and so the story has an end.",
+  "morseSourceText": "One--two--'\n\nAt last her husband took pity on her, and cried:\n\n'Two into the sack.'\n\nHe had hardly said the words before they were back in the sack again.\n\nFrom this time the man and his wife lived so happily together that it\nwas a pleasure to see them, and so the story has an end.",
+  "paragraphs": [
+    "One--two--'",
+    "At last her husband took pity on her, and cried:",
+    "'Two into the sack.'",
+    "He had hardly said the words before they were back in the sack again.",
+    "From this time the man and his wife lived so happily together that it was a pleasure to see them, and so the story has an end."
+  ],
+  "wordCount": 57,
+  "characterCount": 282,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1489,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "One--two--' At last her husband took pity on her, and cried: 'Two into the sack.' He had hardly said the words before they were back in the sack again. From th...",
+  "sourceOffsets": {
+    "start": 215407,
+    "end": 215692
+  }
+}

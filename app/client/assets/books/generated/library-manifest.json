@@ -255,8 +255,8 @@
       "author": [
         "L. M. Montgomery"
       ],
-      "contentVersion": "28db773d29255867",
-      "contentHash": "28db773d29255867505225e06be7aebaa53073bfc946439976ac12d1c0f91047",
+      "contentVersion": "5dc009da0177cd43",
+      "contentHash": "5dc009da0177cd43371eda929459324a3bcb27e8cdc7447d67340448e4095036",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -272,11 +272,11 @@
         "rightsStatus": "approved",
         "processingAllowed": true,
         "approvalSource": "external-authority",
-        "duplicateResolutionSource": "deterministic-file-match",
+        "duplicateResolutionSource": "not-needed",
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+        "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
       },
       "cover": {
         "src": null,
@@ -284,10 +284,10 @@
         "alt": "Placeholder cover for Anne of Green Gables"
       },
       "stats": {
-        "originalCharacterCount": 580332,
-        "cleanedCharacterCount": 561065,
-        "wordCount": 106781,
-        "sectionCount": 39,
+        "originalCharacterCount": 591610,
+        "cleanedCharacterCount": 558614,
+        "wordCount": 102898,
+        "sectionCount": 38,
         "includedSectionCount": 38
       },
       "defaults": {
@@ -1088,8 +1088,8 @@
       "author": [
         "Louisa May Alcott"
       ],
-      "contentVersion": "269cb4e53d1a5322",
-      "contentHash": "269cb4e53d1a532207b3627f9930a0323bbb3006de9b783650106cbdbf439783",
+      "contentVersion": "c640945de17801f6",
+      "contentHash": "c640945de17801f6d0d0ab780bd18ee10e4c27d6c9f3803d0e96af5f15ed70ae",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1109,7 +1109,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+        "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
       },
       "cover": {
         "src": null,
@@ -1117,10 +1117,10 @@
         "alt": "Placeholder cover for Jack and Jill"
       },
       "stats": {
-        "originalCharacterCount": 517085,
-        "cleanedCharacterCount": 497781,
-        "wordCount": 93059,
-        "sectionCount": 26,
+        "originalCharacterCount": 527378,
+        "cleanedCharacterCount": 496378,
+        "wordCount": 92885,
+        "sectionCount": 24,
         "includedSectionCount": 24
       },
       "defaults": {
@@ -1964,12 +1964,12 @@
     },
     {
       "slug": "the-call-of-the-wild",
-      "title": "The call of the wild",
+      "title": "The Call of the Wild",
       "author": [
         "Jack London"
       ],
-      "contentVersion": "36f513056d2926d0",
-      "contentHash": "36f513056d2926d0e427f7a1b5cba309424992e491ed42d9a492c398b1e8f57c",
+      "contentVersion": "abadab9ef6050157",
+      "contentHash": "abadab9ef6050157af80335907ab6cee25db911a310fd4053f736da1ccb33053",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1989,18 +1989,18 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+        "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
       },
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for The call of the wild"
+        "alt": "Placeholder cover for The Call of the Wild"
       },
       "stats": {
-        "originalCharacterCount": 194856,
-        "cleanedCharacterCount": 175571,
-        "wordCount": 32173,
-        "sectionCount": 9,
+        "originalCharacterCount": 198367,
+        "cleanedCharacterCount": 175246,
+        "wordCount": 31857,
+        "sectionCount": 7,
         "includedSectionCount": 7
       },
       "defaults": {
@@ -2650,8 +2650,8 @@
       "author": [
         "Washington Irving"
       ],
-      "contentVersion": "fc5816acb081aa8a",
-      "contentHash": "fc5816acb081aa8a374e7beabcf671f22d693dd798679155fdb10a2ba3d37768",
+      "contentVersion": "053685b686dc878e",
+      "contentHash": "053685b686dc878e30a208631d9e409ce30e48653aed0a03d9f140c8f6b590de",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2671,7 +2671,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+        "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
       },
       "cover": {
         "src": null,
@@ -2679,11 +2679,11 @@
         "alt": "Placeholder cover for The Legend of Sleepy Hollow"
       },
       "stats": {
-        "originalCharacterCount": 89064,
-        "cleanedCharacterCount": 69755,
-        "wordCount": 12277,
-        "sectionCount": 4,
-        "includedSectionCount": 0
+        "originalCharacterCount": 90621,
+        "cleanedCharacterCount": 69568,
+        "wordCount": 12228,
+        "sectionCount": 2,
+        "includedSectionCount": 2
       },
       "defaults": {
         "includeKinds": [
@@ -3385,8 +3385,8 @@
       "author": [
         "L. Frank Baum"
       ],
-      "contentVersion": "809e6c15b8f5c8ca",
-      "contentHash": "809e6c15b8f5c8ca7b30310de83c0f8a93b67f6e150d1c2b87d337270d8a33de",
+      "contentVersion": "831ed73fb9ba380f",
+      "contentHash": "831ed73fb9ba380fb2726467f72d9e705418fcc996add083a5eae8d7114dd94d",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3406,7 +3406,7 @@
         "rightsReportPath": "rights_report.json",
         "processedBookPath": "processed_book.json",
         "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
+        "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
       },
       "cover": {
         "src": null,
@@ -3414,10 +3414,10 @@
         "alt": "Placeholder cover for The Wonderful Wizard of Oz"
       },
       "stats": {
-        "originalCharacterCount": 227016,
-        "cleanedCharacterCount": 207764,
-        "wordCount": 39915,
-        "sectionCount": 28,
+        "originalCharacterCount": 232240,
+        "cleanedCharacterCount": 205433,
+        "wordCount": 39277,
+        "sectionCount": 24,
         "includedSectionCount": 24
       },
       "defaults": {
@@ -3917,6 +3917,447 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "a-journal-of-the-plague-year/manifest.json"
+    },
+    {
+      "slug": "pointed-roofs",
+      "title": "Pointed Roofs",
+      "author": [
+        "Dorothy M. Richardson"
+      ],
+      "contentVersion": "eb8d34dd5665edb3",
+      "contentHash": "eb8d34dd5665edb30d9bf17af892ee9b9fed4a020cbaa5485a2c4689ca52c19d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3019",
+        "releaseDate": "January 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3019",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Pointed Roofs"
+      },
+      "stats": {
+        "originalCharacterCount": 364828,
+        "cleanedCharacterCount": 330933,
+        "wordCount": 57428,
+        "sectionCount": 104,
+        "includedSectionCount": 103
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "pointed-roofs/manifest.json"
+    },
+    {
+      "slug": "the-lost-world",
+      "title": "The Lost World",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "1cc3a66a0188db38",
+      "contentHash": "1cc3a66a0188db387619d75ea2471a695e12382f5ff27577e0e0282d9ac146ed",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "139",
+        "releaseDate": "June 1, 1994",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/139",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Lost World"
+      },
+      "stats": {
+        "originalCharacterCount": 451718,
+        "cleanedCharacterCount": 419619,
+        "wordCount": 76065,
+        "sectionCount": 17,
+        "includedSectionCount": 16
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-lost-world/manifest.json"
+    },
+    {
+      "slug": "the-red-thumb-mark",
+      "title": "The Red Thumb Mark",
+      "author": [
+        "R. Austin Freeman"
+      ],
+      "contentVersion": "319379f71945a100",
+      "contentHash": "319379f71945a100771eb84313040d37c71228c0ca7c550dcdb46fabdc4aa39c",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "11128",
+        "releaseDate": "February 1, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/11128",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Red Thumb Mark"
+      },
+      "stats": {
+        "originalCharacterCount": 425912,
+        "cleanedCharacterCount": 397753,
+        "wordCount": 70636,
+        "sectionCount": 18,
+        "includedSectionCount": 17
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-red-thumb-mark/manifest.json"
+    },
+    {
+      "slug": "violet-fairy-book",
+      "title": "The Violet Fairy Book",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "3b3ad3fd59f05393",
+      "contentHash": "3b3ad3fd59f05393dca70ffa0e65a19955083d38ffa4b73751ed3301d3aa81af",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Violet Fairy Book"
+      },
+      "stats": {
+        "originalCharacterCount": 564233,
+        "cleanedCharacterCount": 532205,
+        "wordCount": 102746,
+        "sectionCount": 45,
+        "includedSectionCount": 44
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "violet-fairy-book/manifest.json"
+    },
+    {
+      "slug": "four-day-planet",
+      "title": "Four-Day Planet",
+      "author": [
+        "H. Beam Piper"
+      ],
+      "contentVersion": "ff6f9c3ebddf8923",
+      "contentHash": "ff6f9c3ebddf892303598a68430a3769cf1cf41d8bc1a2f4ee4470dd53d44db4",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "19478",
+        "releaseDate": "October 6, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/19478",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Four-Day Planet"
+      },
+      "stats": {
+        "originalCharacterCount": 343606,
+        "cleanedCharacterCount": 315807,
+        "wordCount": 57856,
+        "sectionCount": 21,
+        "includedSectionCount": 20
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "four-day-planet/manifest.json"
+    },
+    {
+      "slug": "room-13",
+      "title": "Room 13",
+      "author": [
+        "Edgar Wallace"
+      ],
+      "contentVersion": "c326ca1aac2da025",
+      "contentHash": "c326ca1aac2da0251f5691f7ac62485736301f093d2a914b6b0a05715b309af4",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "76168",
+        "releaseDate": "May 27, 2025",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/76168",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Room 13"
+      },
+      "stats": {
+        "originalCharacterCount": 357340,
+        "cleanedCharacterCount": 328628,
+        "wordCount": 59509,
+        "sectionCount": 33,
+        "includedSectionCount": 33
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "room-13/manifest.json"
+    },
+    {
+      "slug": "the-octopus-a-story-of-california",
+      "title": "The Octopus: A Story of California",
+      "author": [
+        "Frank Norris"
+      ],
+      "contentVersion": "0c6cb4553ca2bfe0",
+      "contentHash": "0c6cb4553ca2bfe0ea63881d0ece143af6dda60cf8975ce23cfa8487d6b665f3",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "268",
+        "releaseDate": "July 11, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/268",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Octopus: A Story of California"
+      },
+      "stats": {
+        "originalCharacterCount": 1158125,
+        "cleanedCharacterCount": 1116789,
+        "wordCount": 196863,
+        "sectionCount": 15,
+        "includedSectionCount": 15
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-octopus-a-story-of-california/manifest.json"
+    },
+    {
+      "slug": "the-prince-and-the-pauper",
+      "title": "The Prince and the Pauper",
+      "author": [
+        "Mark Twain"
+      ],
+      "contentVersion": "d784fa09c26b0596",
+      "contentHash": "d784fa09c26b0596ec9c5fefd27fc64a6eb36ecd9ea12388676c0d3ca5b14287",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1837",
+        "releaseDate": "July 5, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1837",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Prince and the Pauper"
+      },
+      "stats": {
+        "originalCharacterCount": 423899,
+        "cleanedCharacterCount": 386756,
+        "wordCount": 69631,
+        "sectionCount": 33,
+        "includedSectionCount": 33
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-prince-and-the-pauper/manifest.json"
+    },
+    {
+      "slug": "triplanetary",
+      "title": "Triplanetary",
+      "author": [
+        "E. E. Smith"
+      ],
+      "contentVersion": "c460637b84b8f8ea",
+      "contentHash": "c460637b84b8f8eae26af02c6a12ddcc989f4846a00461da000e817f74f1c6a4",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "20782",
+        "releaseDate": "March 8, 2007",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/20782",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 2 processed this source from the audited Project Gutenberg text using the shared structure detector. Review generated output before scaling the processor."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Triplanetary"
+      },
+      "stats": {
+        "originalCharacterCount": 364680,
+        "cleanedCharacterCount": 337182,
+        "wordCount": 57430,
+        "sectionCount": 13,
+        "includedSectionCount": 13
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "triplanetary/manifest.json"
     }
   ]
 }
