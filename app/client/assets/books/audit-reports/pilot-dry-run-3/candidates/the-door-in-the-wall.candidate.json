@@ -1,0 +1,273 @@
+{
+  "slug": "the-door-in-the-wall",
+  "selectionReason": "High-confidence standalone Roman sections in a short collection-like source, selected to test titled/numbered short-work handling.",
+  "title": "The Door in the Wall And Other Stories",
+  "author": [
+    "H. G. Wells"
+  ],
+  "sourcePath": "app/client/assets/temp-books/THE DOOR IN THE WALL.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 19,
+    "startIndex": 925,
+    "startSnippet": "One confidential evening, not three months ago, Lionel Wallace told me this story of the Door in the Wall. And at the time I thought that so far as he was concerned it was a true story. He told it me with such a direct simplicity of conviction that I could not do otherwise than believe in him. But in the morning, in my own flat, I woke to a different atmosphere, and as I lay in bed and recalled the things he had told me, stripped of the glamour of his earnest slow voice, denuded of the focussed...",
+    "endLine": 218,
+    "endIndex": 37187,
+    "endSnippet": "It would seem he walked all the way from the House that night—he has frequently walked home during the past Session—and so it is I figure his dark form coming along the late and empty streets, wrapped up, intent. And then did the pale electric lights near the station cheat the rough planking into a semblance of white? Did that fatal unfastened door awaken some memory? Was there, after all, ever any green door in the wall at all? I do not know. I have told his story as he told it to me. There ar..."
+  },
+  "wordCounts": {
+    "raw": 6992,
+    "kept": 6824,
+    "removedFrontMatter": 168,
+    "removedEndMatter": 0
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 3397,
+      "characterCount": 18186,
+      "estimatedListeningMinutes": 108,
+      "textPreview": "One confidential evening, not three months ago, Lionel Wallace told me this story of the Door in the Wall. And at the time I thought that so far as he was conc..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1255,
+      "characterCount": 6669,
+      "estimatedListeningMinutes": 40,
+      "textPreview": "II He looked up with a sudden smile. “Did you ever play North-West Passage with me? . . . . . No, of course you didn’t come my way!” “It was the sort of game,”..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1749,
+      "characterCount": 9107,
+      "estimatedListeningMinutes": 54,
+      "textPreview": "III For a time my friend stared silently into the red heart of the fire. Then he said: “I never saw it again until I was seventeen. “It leapt upon me for the t..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 423,
+      "characterCount": 2294,
+      "estimatedListeningMinutes": 13,
+      "textPreview": "IV I can see now his rather pallid face, and the unfamiliar sombre fire that had come into his eyes. I see him very vividly to-night. I sit recalling his words..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "standalone roman numeral sections",
+    "selectedHeadingStrategy": {
+      "patternId": "roman-only",
+      "label": "Standalone Roman numeral",
+      "convention": "standalone roman numeral sections",
+      "kind": "chapter",
+      "candidateCount": 3,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 3,
+      "examples": [
+        "L93: II",
+        "L136: III",
+        "L189: IV"
+      ],
+      "bodyExamples": [
+        "L93: II",
+        "L136: III",
+        "L189: IV"
+      ],
+      "tocExamples": [],
+      "score": 0.6040000000000001,
+      "confidence": "medium",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 3,
+        "minimumWords": 423,
+        "medianWords": 1255,
+        "maximumWords": 1749,
+        "averageWords": 1142,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "roman-only",
+        "label": "Standalone Roman numeral",
+        "convention": "standalone roman numeral sections",
+        "kind": "chapter",
+        "candidateCount": 3,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 3,
+        "examples": [
+          "L93: II",
+          "L136: III",
+          "L189: IV"
+        ],
+        "bodyExamples": [
+          "L93: II",
+          "L136: III",
+          "L189: IV"
+        ],
+        "tocExamples": [],
+        "score": 0.6040000000000001,
+        "confidence": "medium",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 3,
+          "minimumWords": 423,
+          "medianWords": 1255,
+          "maximumWords": 1749,
+          "averageWords": 1142,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L89: “Rather!”"
+        ],
+        "bodyExamples": [
+          "L89: “Rather!”"
+        ],
+        "tocExamples": [],
+        "score": 0.191,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy roman-only",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 3444,
+          "medianWords": 3444,
+          "maximumWords": 3444,
+          "averageWords": 3444,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy roman-only"
+      }
+    ],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 3,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "warn",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L93: II",
+      "L136: III",
+      "L189: IV"
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": false
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 6759,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 263,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "“",
+          "”",
+          "“",
+          "’",
+          "”"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 111,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 2"
+    ],
+    "approximateWordCount": 1255,
+    "startsAtRealReadableContent": true,
+    "snippet": "II He looked up with a sudden smile. “Did you ever play North-West Passage with me? . . . . . No, of course you didn’t come my way!” “It was the sort of game,” he went on, “that every imaginative child plays all day. The idea was the discovery of a North-West Passage to school. The way to school was plain enough; the game consisted in finding some way that...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content.",
+    "Review the structure-detection warnings and confirm TOC entries were not selected as body sections."
+  ]
+}

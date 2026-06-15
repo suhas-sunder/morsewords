@@ -1,0 +1,376 @@
+{
+  "slug": "pygmalion",
+  "selectionReason": "High-confidence play structure with explicit acts, selected to test dramatic text parsing without expanding to chaotic plays.",
+  "title": "Pygmalion",
+  "author": [
+    "Bernard Shaw"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Pygmalion.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 49,
+    "startIndex": 1089,
+    "startSnippet": "PREFACE TO PYGMALION. A Professor of Phonetics. As will be seen later on, Pygmalion needs, not a preface, but a sequel, which I have supplied in its due place. The English have no respect for",
+    "endLine": 4379,
+    "endIndex": 189120,
+    "endSnippet": "private imaginations of that sort. But when it comes to business, to the life that she really leads as distinguished from the life of dreams and fancies, she likes Freddy and she likes the Colonel; and she does not like Higgins and Mr. Doolittle. Galatea never does quite like Pygmalion: his relation to her is too godlike to be altogether agreeable."
+  },
+  "wordCounts": {
+    "raw": 37941,
+    "kept": 34762,
+    "removedFrontMatter": 177,
+    "removedEndMatter": 3002
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 1514,
+      "characterCount": 8704,
+      "estimatedListeningMinutes": 52,
+      "textPreview": "PREFACE TO PYGMALION. A Professor of Phonetics. As will be seen later on, Pygmalion needs, not a preface, but a sequel, which I have supplied in its due place...."
+    },
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Act 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3676,
+      "characterCount": 19881,
+      "estimatedListeningMinutes": 118,
+      "textPreview": "ACT I Covent Garden at 11.15 p.m. Torrents of heavy summer rain. Cab whistles blowing frantically in all directions. Pedestrians running for shelter into the m..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Act 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 9273,
+      "characterCount": 48749,
+      "estimatedListeningMinutes": 291,
+      "textPreview": "ACT II Next day at 11 a.m. Higgins’s laboratory in Wimpole Street. It is a room on the first floor, looking on the street, and was meant for the drawing-room...."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Act 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4847,
+      "characterCount": 27018,
+      "estimatedListeningMinutes": 161,
+      "textPreview": "ACT III It is Mrs. Higgins’s at-home day. Nobody has yet arrived. Her drawing-room, in a flat on Chelsea embankment, has three windows looking on the river; an..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Act 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2795,
+      "characterCount": 14955,
+      "estimatedListeningMinutes": 89,
+      "textPreview": "ACT IV The Wimpole Street laboratory. Midnight. Nobody in the room. The clock on the mantelpiece strikes twelve. The fire is not alight: it is a summer night...."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Act 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 12657,
+      "characterCount": 68699,
+      "estimatedListeningMinutes": 409,
+      "textPreview": "ACT V Mrs. Higgins’s drawing-room. She is at her writing-table as before. The parlor-maid comes in. THE PARLOR-MAID [at the door] Mr. Henry, mam, is downstairs..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "play acts",
+    "selectedHeadingStrategy": {
+      "patternId": "act-prefixed",
+      "label": "Act heading",
+      "convention": "play acts",
+      "kind": "act",
+      "candidateCount": 5,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 5,
+      "examples": [
+        "L139: ACT I",
+        "L641: ACT II",
+        "L1835: ACT III",
+        "L2543: ACT IV",
+        "L2896: ACT V"
+      ],
+      "bodyExamples": [
+        "L139: ACT I",
+        "L641: ACT II",
+        "L1835: ACT III",
+        "L2543: ACT IV",
+        "L2896: ACT V"
+      ],
+      "tocExamples": [],
+      "score": 0.8700000000000001,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 5,
+        "minimumWords": 2795,
+        "medianWords": 4847,
+        "maximumWords": 12657,
+        "averageWords": 6650,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "act-prefixed",
+        "label": "Act heading",
+        "convention": "play acts",
+        "kind": "act",
+        "candidateCount": 5,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 5,
+        "examples": [
+          "L139: ACT I",
+          "L641: ACT II",
+          "L1835: ACT III",
+          "L2543: ACT IV",
+          "L2896: ACT V"
+        ],
+        "bodyExamples": [
+          "L139: ACT I",
+          "L641: ACT II",
+          "L1835: ACT III",
+          "L2543: ACT IV",
+          "L2896: ACT V"
+        ],
+        "tocExamples": [],
+        "score": 0.8700000000000001,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 5,
+          "minimumWords": 2795,
+          "medianWords": 4847,
+          "maximumWords": 12657,
+          "averageWords": 6650,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 12,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 12,
+        "examples": [
+          "L1: PREFACE TO PYGMALION.",
+          "L285: THE GENTLEMAN. Phew!",
+          "L1394: PICKERING. Oh!",
+          "L1913: HIGGINS. Why?",
+          "L2454: MRS. HIGGINS. What!",
+          "L2717: LIZA. No."
+        ],
+        "bodyExamples": [
+          "L1: PREFACE TO PYGMALION.",
+          "L285: THE GENTLEMAN. Phew!",
+          "L1394: PICKERING. Oh!",
+          "L1913: HIGGINS. Why?",
+          "L2454: MRS. HIGGINS. What!",
+          "L2717: LIZA. No.",
+          "L2722: LIZA. No.",
+          "L2726: LIZA. No."
+        ],
+        "tocExamples": [],
+        "score": 0.851,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy act-prefixed",
+        "sectionSizeNotes": {
+          "sectionCount": 12,
+          "minimumWords": 15,
+          "medianWords": 1961,
+          "maximumWords": 9833,
+          "averageWords": 2897,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 2,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 63,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 63,
+        "examples": [
+          "L193: THE MOTHER. Did you try Trafalgar Square?",
+          "L197: THE DAUGHTER. Did you try?",
+          "L303: THE FLOWER GIRL. I can give you change, Captain,",
+          "L578: THE NOTE TAKER [eagerly] Are you? Do you know Colonel Pickering, the",
+          "L581: THE GENTLEMAN. I am Colonel Pickering. Who are you?",
+          "L638: FREDDY. Well, I’m dashed!"
+        ],
+        "bodyExamples": [
+          "L193: THE MOTHER. Did you try Trafalgar Square?",
+          "L197: THE DAUGHTER. Did you try?",
+          "L303: THE FLOWER GIRL. I can give you change, Captain,",
+          "L578: THE NOTE TAKER [eagerly] Are you? Do you know Colonel Pickering, the",
+          "L581: THE GENTLEMAN. I am Colonel Pickering. Who are you?",
+          "L638: FREDDY. Well, I’m dashed!",
+          "L809: HIGGINS. How much?",
+          "L839: Eliza, Elizabeth, Betsy and Bess,"
+        ],
+        "tocExamples": [],
+        "score": 0.651,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy act-prefixed",
+        "sectionSizeNotes": {
+          "sectionCount": 63,
+          "minimumWords": 1,
+          "medianWords": 217,
+          "maximumWords": 5244,
+          "averageWords": 522,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 16,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 12,
+        "bodyLikeCount": 12,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy act-prefixed"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 63,
+        "bodyLikeCount": 63,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy act-prefixed"
+      }
+    ],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 5,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L139: ACT I",
+      "L641: ACT II",
+      "L1835: ACT III",
+      "L2543: ACT IV",
+      "L2896: ACT V"
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": false
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 33655,
+    "actions": [
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 1,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L3871: ***********************"
+        ]
+      },
+      {
+        "action": "normalize-smart-quotes",
+        "count": 1152,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "“",
+          "”",
+          "’",
+          "’"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 169,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "part-001 Act 1"
+    ],
+    "approximateWordCount": 3676,
+    "startsAtRealReadableContent": true,
+    "snippet": "ACT I Covent Garden at 11.15 p.m. Torrents of heavy summer rain. Cab whistles blowing frantically in all directions. Pedestrians running for shelter into the market and under the portico of St. Paul’s Church, where there are already several people, among them a lady and her daughter in evening dress. They are all peering out gloomily at the rain, except one...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

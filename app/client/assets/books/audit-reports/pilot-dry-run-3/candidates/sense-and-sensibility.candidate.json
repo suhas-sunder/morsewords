@@ -1,0 +1,885 @@
+{
+  "slug": "sense-and-sensibility",
+  "selectionReason": "High-confidence chapter-Roman structure with regular boundaries and a useful existing-output comparison.",
+  "title": "Sense and Sensibility",
+  "author": [
+    "Jane Austen"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Sense and Sensibility.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 95,
+    "startIndex": 1562,
+    "startSnippet": "CHAPTER I. The family of Dashwood had long been settled in Sussex. Their estate was large, and their residence was at Norland Park, in the centre of their property, where, for many generations, they had lived in so",
+    "endLine": 12699,
+    "endIndex": 671474,
+    "endSnippet": "merits and the happiness of Elinor and Marianne, let it not be ranked as the least considerable, that though sisters, and living almost within sight of each other, they could live without disagreement between themselves, or producing coolness between their husbands. THE END"
+  },
+  "wordCounts": {
+    "raw": 123681,
+    "kept": 120436,
+    "removedFrontMatter": 241,
+    "removedEndMatter": 3004
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1573,
+      "characterCount": 8895,
+      "estimatedListeningMinutes": 53,
+      "textPreview": "CHAPTER I. The family of Dashwood had long been settled in Sussex. Their estate was large, and their residence was at Norland Park, in the centre of their prop..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1973,
+      "characterCount": 10750,
+      "estimatedListeningMinutes": 64,
+      "textPreview": "CHAPTER II. Mrs. John Dashwood now installed herself mistress of Norland; and her mother and sisters-in-law were degraded to the condition of visitors. As such..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1546,
+      "characterCount": 8803,
+      "estimatedListeningMinutes": 52,
+      "textPreview": "CHAPTER III. Mrs. Dashwood remained at Norland several months; not from any disinclination to move when the sight of every well known spot ceased to raise the..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1953,
+      "characterCount": 11012,
+      "estimatedListeningMinutes": 65,
+      "textPreview": "CHAPTER IV. “What a pity it is, Elinor,” said Marianne, “that Edward should have no taste for drawing.” “No taste for drawing!” replied Elinor, “why should you..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1031,
+      "characterCount": 5816,
+      "estimatedListeningMinutes": 35,
+      "textPreview": "CHAPTER V. No sooner was her answer dispatched, than Mrs. Dashwood indulged herself in the pleasure of announcing to her son-in-law and his wife that she was p..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1349,
+      "characterCount": 7501,
+      "estimatedListeningMinutes": 44,
+      "textPreview": "CHAPTER VI. The first part of their journey was performed in too melancholy a disposition to be otherwise than tedious and unpleasant. But as they drew towards..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1297,
+      "characterCount": 7376,
+      "estimatedListeningMinutes": 44,
+      "textPreview": "CHAPTER VII. Barton Park was about half a mile from the cottage. The ladies had passed near it in their way along the valley, but it was screened from their vi..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1254,
+      "characterCount": 7016,
+      "estimatedListeningMinutes": 42,
+      "textPreview": "CHAPTER VIII. Mrs. Jennings was a widow with an ample jointure. She had only two daughters, both of whom she had lived to see respectably married, and she had..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1868,
+      "characterCount": 10490,
+      "estimatedListeningMinutes": 63,
+      "textPreview": "CHAPTER IX. The Dashwoods were now settled at Barton with tolerable comfort to themselves. The house and the garden, with all the objects surrounding them, wer..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2063,
+      "characterCount": 11985,
+      "estimatedListeningMinutes": 72,
+      "textPreview": "CHAPTER X. Marianne’s preserver, as Margaret, with more elegance than precision, styled Willoughby, called at the cottage early the next morning to make his pe..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1443,
+      "characterCount": 8405,
+      "estimatedListeningMinutes": 50,
+      "textPreview": "CHAPTER XI. Little had Mrs. Dashwood or her daughters imagined when they first came into Devonshire, that so many engagements would arise to occupy their time..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1685,
+      "characterCount": 9211,
+      "estimatedListeningMinutes": 55,
+      "textPreview": "CHAPTER XII. As Elinor and Marianne were walking together the next morning the latter communicated a piece of news to her sister, which in spite of all that sh..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2120,
+      "characterCount": 11527,
+      "estimatedListeningMinutes": 69,
+      "textPreview": "CHAPTER XIII. Their intended excursion to Whitwell turned out very different from what Elinor had expected. She was prepared to be wet through, fatigued, and f..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1514,
+      "characterCount": 8373,
+      "estimatedListeningMinutes": 50,
+      "textPreview": "CHAPTER XIV. The sudden termination of Colonel Brandon’s visit at the park, with his steadiness in concealing its cause, filled the mind, and raised the wonder..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2534,
+      "characterCount": 14273,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "CHAPTER XV. Mrs. Dashwood’s visit to Lady Middleton took place the next day, and two of her daughters went with her; but Marianne excused herself from being of..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1992,
+      "characterCount": 11435,
+      "estimatedListeningMinutes": 68,
+      "textPreview": "CHAPTER XVI. Marianne would have thought herself very inexcusable had she been able to sleep at all the first night after parting from Willoughby. She would ha..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1631,
+      "characterCount": 9138,
+      "estimatedListeningMinutes": 55,
+      "textPreview": "CHAPTER XVII. Mrs. Dashwood was surprised only for a moment at seeing him; for his coming to Barton was, in her opinion, of all things the most natural. Her jo..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1525,
+      "characterCount": 8676,
+      "estimatedListeningMinutes": 52,
+      "textPreview": "CHAPTER XVIII. Elinor saw, with great uneasiness the low spirits of her friend. His visit afforded her but a very partial satisfaction, while his own enjoyment..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2948,
+      "characterCount": 16179,
+      "estimatedListeningMinutes": 96,
+      "textPreview": "CHAPTER XIX. Edward remained a week at the cottage; he was earnestly pressed by Mrs. Dashwood to stay longer; but, as if he were bent only on self-mortificatio..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2463,
+      "characterCount": 12881,
+      "estimatedListeningMinutes": 77,
+      "textPreview": "CHAPTER XX. As the Miss Dashwoods entered the drawing-room of the park the next day, at one door, Mrs. Palmer came running in at the other, looking as good hum..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2976,
+      "characterCount": 16581,
+      "estimatedListeningMinutes": 99,
+      "textPreview": "CHAPTER XXI. The Palmers returned to Cleveland the next day, and the two families at Barton were again left to entertain each other. But this did not last long..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2847,
+      "characterCount": 15507,
+      "estimatedListeningMinutes": 93,
+      "textPreview": "CHAPTER XXII. Marianne, who had never much toleration for any thing like impertinence, vulgarity, inferiority of parts, or even difference of taste from hersel..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2395,
+      "characterCount": 13653,
+      "estimatedListeningMinutes": 81,
+      "textPreview": "CHAPTER XXIII. However small Elinor’s general dependence on Lucy’s veracity might be, it was impossible for her on serious reflection to suspect it in the pres..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 24",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2126,
+      "characterCount": 11546,
+      "estimatedListeningMinutes": 69,
+      "textPreview": "CHAPTER XXIV. In a firm, though cautious tone, Elinor thus began. “I should be undeserving of the confidence you have honoured me with, if I felt no desire for..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 25",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1955,
+      "characterCount": 10828,
+      "estimatedListeningMinutes": 65,
+      "textPreview": "CHAPTER XXV. Though Mrs. Jennings was in the habit of spending a large portion of the year at the houses of her children and friends, she was not without a set..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 26",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2550,
+      "characterCount": 14394,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "CHAPTER XXVI. Elinor could not find herself in the carriage with Mrs. Jennings, and beginning a journey to London under her protection, and as her guest, witho..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Chapter 27",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2505,
+      "characterCount": 14197,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "CHAPTER XXVII. “If this open weather holds much longer,” said Mrs. Jennings, when they met at breakfast the following morning, “Sir John will not like leaving..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "Chapter 28",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1454,
+      "characterCount": 8312,
+      "estimatedListeningMinutes": 49,
+      "textPreview": "CHAPTER XXVIII. Nothing occurred during the next three or four days, to make Elinor regret what she had done, in applying to her mother; for Willoughby neither..."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "Chapter 29",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3854,
+      "characterCount": 21315,
+      "estimatedListeningMinutes": 127,
+      "textPreview": "CHAPTER XXIX. Before the housemaid had lit their fire the next day, or the sun gained any power over a cold, gloomy morning in January, Marianne, only half dre..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3106,
+      "characterCount": 16401,
+      "estimatedListeningMinutes": 98,
+      "textPreview": "CHAPTER XXX. Mrs. Jennings came immediately to their room on her return, and without waiting to have her request of admittance answered, opened the door and wa..."
+    },
+    {
+      "id": "chapter-031",
+      "kind": "chapter",
+      "label": "Chapter 31",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3818,
+      "characterCount": 21259,
+      "estimatedListeningMinutes": 127,
+      "textPreview": "CHAPTER XXXI. From a night of more sleep than she had expected, Marianne awoke the next morning to the same consciousness of misery in which she had closed her..."
+    },
+    {
+      "id": "chapter-032",
+      "kind": "chapter",
+      "label": "Chapter 32",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2618,
+      "characterCount": 14594,
+      "estimatedListeningMinutes": 87,
+      "textPreview": "CHAPTER XXXII. When the particulars of this conversation were repeated by Miss Dashwood to her sister, as they very soon were, the effect on her was not entire..."
+    },
+    {
+      "id": "chapter-033",
+      "kind": "chapter",
+      "label": "Chapter 33",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3061,
+      "characterCount": 16818,
+      "estimatedListeningMinutes": 100,
+      "textPreview": "CHAPTER XXXIII. After some opposition, Marianne yielded to her sister’s entreaties, and consented to go out with her and Mrs. Jennings one morning for half an..."
+    },
+    {
+      "id": "chapter-034",
+      "kind": "chapter",
+      "label": "Chapter 34",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2669,
+      "characterCount": 15234,
+      "estimatedListeningMinutes": 91,
+      "textPreview": "CHAPTER XXXIV. Mrs. John Dashwood had so much confidence in her husband’s judgment, that she waited the very next day both on Mrs. Jennings and her daughter; a..."
+    },
+    {
+      "id": "chapter-035",
+      "kind": "chapter",
+      "label": "Chapter 35",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2367,
+      "characterCount": 12994,
+      "estimatedListeningMinutes": 78,
+      "textPreview": "CHAPTER XXXV. Elinor’s curiosity to see Mrs. Ferrars was satisfied. She had found in her every thing that could tend to make a farther connection between the f..."
+    },
+    {
+      "id": "chapter-036",
+      "kind": "chapter",
+      "label": "Chapter 36",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3112,
+      "characterCount": 17423,
+      "estimatedListeningMinutes": 104,
+      "textPreview": "CHAPTER XXXVI. Within a few days after this meeting, the newspapers announced to the world, that the lady of Thomas Palmer, Esq. was safely delivered of a son..."
+    },
+    {
+      "id": "chapter-037",
+      "kind": "chapter",
+      "label": "Chapter 37",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4525,
+      "characterCount": 24534,
+      "estimatedListeningMinutes": 147,
+      "textPreview": "CHAPTER XXXVII. Mrs. Palmer was so well at the end of a fortnight, that her mother felt it no longer necessary to give up the whole of her time to her; and, co..."
+    },
+    {
+      "id": "chapter-038",
+      "kind": "chapter",
+      "label": "Chapter 38",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3189,
+      "characterCount": 16624,
+      "estimatedListeningMinutes": 100,
+      "textPreview": "CHAPTER XXXVIII. Mrs. Jennings was very warm in her praise of Edward’s conduct, but only Elinor and Marianne understood its true merit. _They_ only knew how li..."
+    },
+    {
+      "id": "chapter-039",
+      "kind": "chapter",
+      "label": "Chapter 39",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2010,
+      "characterCount": 11204,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "CHAPTER XXXIX. The Miss Dashwoods had now been rather more than two months in town, and Marianne’s impatience to be gone increased every day. She sighed for th..."
+    },
+    {
+      "id": "chapter-040",
+      "kind": "chapter",
+      "label": "Chapter 40",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2651,
+      "characterCount": 14266,
+      "estimatedListeningMinutes": 86,
+      "textPreview": "CHAPTER XL. “Well, Miss Dashwood,” said Mrs. Jennings, sagaciously smiling, as soon as the gentleman had withdrawn, “I do not ask you what the Colonel has been..."
+    },
+    {
+      "id": "chapter-041",
+      "kind": "chapter",
+      "label": "Chapter 41",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2645,
+      "characterCount": 14466,
+      "estimatedListeningMinutes": 87,
+      "textPreview": "CHAPTER XLI. Edward, having carried his thanks to Colonel Brandon, proceeded with his happiness to Lucy; and such was the excess of it by the time he reached B..."
+    },
+    {
+      "id": "chapter-042",
+      "kind": "chapter",
+      "label": "Chapter 42",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1818,
+      "characterCount": 10357,
+      "estimatedListeningMinutes": 62,
+      "textPreview": "CHAPTER XLII. One other short call in Harley Street, in which Elinor received her brother’s congratulations on their travelling so far towards Barton without a..."
+    },
+    {
+      "id": "chapter-043",
+      "kind": "chapter",
+      "label": "Chapter 43",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3432,
+      "characterCount": 19689,
+      "estimatedListeningMinutes": 118,
+      "textPreview": "CHAPTER XLIII. Marianne got up the next morning at her usual time; to every inquiry replied that she was better, and tried to prove herself so, by engaging in..."
+    },
+    {
+      "id": "chapter-044",
+      "kind": "chapter",
+      "label": "Chapter 44",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5524,
+      "characterCount": 30053,
+      "estimatedListeningMinutes": 180,
+      "textPreview": "CHAPTER XLIV. Elinor, starting back with a look of horror at the sight of him, obeyed the first impulse of her heart in turning instantly to quit the room, and..."
+    },
+    {
+      "id": "chapter-045",
+      "kind": "chapter",
+      "label": "Chapter 45",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2139,
+      "characterCount": 12125,
+      "estimatedListeningMinutes": 73,
+      "textPreview": "CHAPTER XLV. Elinor, for some time after he left her, for some time even after the sound of his carriage had died away, remained too much oppressed by a crowd..."
+    },
+    {
+      "id": "chapter-046",
+      "kind": "chapter",
+      "label": "Chapter 46",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2890,
+      "characterCount": 16415,
+      "estimatedListeningMinutes": 98,
+      "textPreview": "CHAPTER XLVI. Marianne’s illness, though weakening in its kind, had not been long enough to make her recovery slow; and with youth, natural strength, and her m..."
+    },
+    {
+      "id": "chapter-047",
+      "kind": "chapter",
+      "label": "Chapter 47",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2375,
+      "characterCount": 13480,
+      "estimatedListeningMinutes": 81,
+      "textPreview": "CHAPTER XLVII. Mrs. Dashwood did not hear unmoved the vindication of her former favourite. She rejoiced in his being cleared from some part of his imputed guil..."
+    },
+    {
+      "id": "chapter-048",
+      "kind": "chapter",
+      "label": "Chapter 48",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1309,
+      "characterCount": 7311,
+      "estimatedListeningMinutes": 44,
+      "textPreview": "CHAPTER XLVIII. Elinor now found the difference between the expectation of an unpleasant event, however certain the mind may be told to consider it, and certai..."
+    },
+    {
+      "id": "chapter-049",
+      "kind": "chapter",
+      "label": "Chapter 49",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4269,
+      "characterCount": 23827,
+      "estimatedListeningMinutes": 142,
+      "textPreview": "CHAPTER XLIX. Unaccountable, however, as the circumstances of his release might appear to the whole family, it was certain that Edward was free; and to what pu..."
+    },
+    {
+      "id": "chapter-050",
+      "kind": "chapter",
+      "label": "Chapter 50",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2485,
+      "characterCount": 14518,
+      "estimatedListeningMinutes": 87,
+      "textPreview": "CHAPTER L. After a proper resistance on the part of Mrs. Ferrars, just so violent and so steady as to preserve her from that reproach which she always seemed f..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 50,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 50,
+      "examples": [
+        "L1: CHAPTER I.",
+        "L153: CHAPTER II.",
+        "L355: CHAPTER III.",
+        "L518: CHAPTER IV.",
+        "L712: CHAPTER V.",
+        "L812: CHAPTER VI."
+      ],
+      "bodyExamples": [
+        "L1: CHAPTER I.",
+        "L153: CHAPTER II.",
+        "L355: CHAPTER III.",
+        "L518: CHAPTER IV.",
+        "L712: CHAPTER V.",
+        "L812: CHAPTER VI.",
+        "L939: CHAPTER VII.",
+        "L1064: CHAPTER VIII."
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 50,
+        "minimumWords": 1031,
+        "medianWords": 2375,
+        "maximumWords": 5524,
+        "averageWords": 2409,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 50,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 50,
+        "examples": [
+          "L1: CHAPTER I.",
+          "L153: CHAPTER II.",
+          "L355: CHAPTER III.",
+          "L518: CHAPTER IV.",
+          "L712: CHAPTER V.",
+          "L812: CHAPTER VI."
+        ],
+        "bodyExamples": [
+          "L1: CHAPTER I.",
+          "L153: CHAPTER II.",
+          "L355: CHAPTER III.",
+          "L518: CHAPTER IV.",
+          "L712: CHAPTER V.",
+          "L812: CHAPTER VI.",
+          "L939: CHAPTER VII.",
+          "L1064: CHAPTER VIII."
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 50,
+          "minimumWords": 1031,
+          "medianWords": 2375,
+          "maximumWords": 5524,
+          "averageWords": 2409,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 9,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 9,
+        "examples": [
+          "L4457: END OF THE FIRST VOLUME",
+          "L5910: MY DEAR MADAM,",
+          "L5936: “JOHN WILLOUGHBY.”",
+          "L6069: “M.D.”",
+          "L6089: “M.D.”",
+          "L6116: “M.D.”"
+        ],
+        "bodyExamples": [
+          "L4457: END OF THE FIRST VOLUME",
+          "L5910: MY DEAR MADAM,",
+          "L5936: “JOHN WILLOUGHBY.”",
+          "L6069: “M.D.”",
+          "L6089: “M.D.”",
+          "L6116: “M.D.”",
+          "L8347: END OF THE SECOND VOLUME",
+          "L11987: “DEAR SIR,"
+        ],
+        "tocExamples": [],
+        "score": 0.781,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 9,
+          "minimumWords": 174,
+          "medianWords": 1106,
+          "maximumWords": 35995,
+          "averageWords": 8762,
+          "hugeSectionCount": 2,
+          "tinySectionCount": 0,
+          "notes": [
+            "2 section(s) exceed 18000 words",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 28,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 27,
+        "examples": [
+          "L330: “Certainly,” returned Mrs. John Dashwood. “But, however, _one_ thing",
+          "L602: “Esteem him! Like him! Cold-hearted Elinor! Oh! worse than",
+          "L1167: Norland?”",
+          "L1317: Thursday.”",
+          "L1380: Brandon.”",
+          "L1882: Margaret,"
+        ],
+        "bodyExamples": [
+          "L330: “Certainly,” returned Mrs. John Dashwood. “But, however, _one_ thing",
+          "L602: “Esteem him! Like him! Cold-hearted Elinor! Oh! worse than",
+          "L1167: Norland?”",
+          "L1317: Thursday.”",
+          "L1380: Brandon.”",
+          "L1882: Margaret,",
+          "L2114: “Indeed!”",
+          "L2330: Barton.”"
+        ],
+        "tocExamples": [
+          "L2081: winter, Miss Dashwood?”"
+        ],
+        "score": 0.631,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 27,
+          "minimumWords": 33,
+          "medianWords": 2022,
+          "maximumWords": 28935,
+          "averageWords": 4337,
+          "hugeSectionCount": 2,
+          "tinySectionCount": 1,
+          "notes": [
+            "2 section(s) exceed 18000 words",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 9,
+        "bodyLikeCount": 9,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 28,
+        "bodyLikeCount": 27,
+        "tocLikeCount": 1,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 50,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 50,
+    "bodyHeadingExamples": [
+      "L1: CHAPTER I.",
+      "L153: CHAPTER II.",
+      "L355: CHAPTER III.",
+      "L518: CHAPTER IV.",
+      "L712: CHAPTER V.",
+      "L812: CHAPTER VI.",
+      "L939: CHAPTER VII.",
+      "L1064: CHAPTER VIII."
+    ],
+    "tocHeadingExamples": [
+      "L38: CHAPTER I",
+      "L39: CHAPTER II",
+      "L40: CHAPTER III",
+      "L41: CHAPTER IV",
+      "L42: CHAPTER V",
+      "L43: CHAPTER VI",
+      "L44: CHAPTER VII",
+      "L45: CHAPTER VIII"
+    ],
+    "priorTwoSectionCollapseFixed": true
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 119623,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 3997,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "’",
+          "’",
+          "’",
+          "’"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 865,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 1573,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER I. The family of Dashwood had long been settled in Sussex. Their estate was large, and their residence was at Norland Park, in the centre of their property, where, for many generations, they had lived in so respectable a manner as to engage the general good opinion of their surrounding acquaintance. The late owner of this estate was a single man, wh...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": true,
+    "manifestPath": "app/client/assets/books/generated/sense-and-sensibility/manifest.json",
+    "sectionCount": 52,
+    "includedSectionCount": 50,
+    "firstSectionPreview": "[Illustration] Sense and Sensibility by Jane Austen (1811)",
+    "lastSectionPreview": "CHAPTER L. After a proper resistance on the part of Mrs. Ferrars, just so violent and so steady as to preserve her from that reproach which she always seemed f...",
+    "suspiciousShortSections": [
+      {
+        "id": "title-page-001",
+        "label": "Opening section",
+        "wordCount": 8
+      }
+    ],
+    "suspiciousLongSections": [],
+    "apparentDamage": [
+      "suspiciously short generated sections"
+    ]
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content.",
+    "Compare candidate output against existing generated output because pass 2 flagged generated-output damage."
+  ]
+}

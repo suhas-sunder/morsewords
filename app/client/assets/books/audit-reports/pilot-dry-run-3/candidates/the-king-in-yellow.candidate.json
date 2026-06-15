@@ -1,0 +1,693 @@
+{
+  "slug": "the-king-in-yellow",
+  "selectionReason": "High-confidence standalone Roman sections, selected to test story/section boundaries in a collection-shaped work.",
+  "title": "The King in Yellow",
+  "author": [
+    "Robert W. Chambers"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The King in Yellow.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 231,
+    "startIndex": 10373,
+    "startSnippet": "allowed the blow to fall afterward with more awful effect. It was, I remember, the 13th day of April, 1920, that the first Government Lethal Chamber was established on the south side of Washington Square, between Wooster Street and South Fifth Avenue. The block which had formerly consisted of a lot of shabby old buildings,",
+    "endLine": 8823,
+    "endIndex": 403566,
+    "endSnippet": "room, opened the door. The landing was dark and silent, but the girl lifted the lamp and gliding past him slipped down the polished stairs to the hallway. Then unchaining the bolts, she drew open the iron wicket. Through this he passed with his rose."
+  },
+  "wordCounts": {
+    "raw": 75998,
+    "kept": 71271,
+    "removedFrontMatter": 1722,
+    "removedEndMatter": 3005
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 1873,
+      "characterCount": 10676,
+      "estimatedListeningMinutes": 64,
+      "textPreview": "allowed the blow to fall afterward with more awful effect. It was, I remember, the 13th day of April, 1920, that the first Government Lethal Chamber was establ..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4127,
+      "characterCount": 23311,
+      "estimatedListeningMinutes": 139,
+      "textPreview": "II I climbed the three dilapidated flights of stairs, which I had so often climbed before, and knocked at a small door at the end of the corridor. Mr. Wilde op..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4976,
+      "characterCount": 26744,
+      "estimatedListeningMinutes": 159,
+      "textPreview": "III One morning early in May I stood before the steel safe in my bedroom, trying on the golden jewelled crown. The diamonds flashed fire as I turned to the mir..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1575,
+      "characterCount": 8510,
+      "estimatedListeningMinutes": 51,
+      "textPreview": "I Although I knew nothing of chemistry, I listened fascinated. He picked up an Easter lily which Geneviève had brought that morning from Notre Dame, and droppe..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1199,
+      "characterCount": 6381,
+      "estimatedListeningMinutes": 38,
+      "textPreview": "II Some work that I was doing about this time on the decorations for Geneviève’s boudoir kept me constantly at the quaint little hotel in the Rue Sainte-Cécile..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2610,
+      "characterCount": 13733,
+      "estimatedListeningMinutes": 82,
+      "textPreview": "III At noon next day when I called, I found Boris walking restlessly about his studio. “Geneviève is asleep just now,” he told me, “the sprain is nothing, but..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4736,
+      "characterCount": 25421,
+      "estimatedListeningMinutes": 149,
+      "textPreview": "IV The same evening I took the keys and went into the house I had known so well. Everything was in order, but the silence was terrible. Though I went twice to..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1884,
+      "characterCount": 9992,
+      "estimatedListeningMinutes": 60,
+      "textPreview": "I There are so many things which are impossible to explain! Why should certain chords in music make me think of the brown and golden tints of autumn foliage? W..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3987,
+      "characterCount": 20862,
+      "estimatedListeningMinutes": 124,
+      "textPreview": "II The next morning, Thomas, the bell-boy, brought me the _Herald_ and a bit of news. The church next door had been sold. I thanked Heaven for it, not that bei..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1615,
+      "characterCount": 8592,
+      "estimatedListeningMinutes": 50,
+      "textPreview": "III The day following was a disastrous one for me. While moving a framed canvas from one easel to another my foot slipped on the polished floor, and I fell hea..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2484,
+      "characterCount": 13436,
+      "estimatedListeningMinutes": 80,
+      "textPreview": "I The utter desolation of the scene began to have its effect; I sat down to face the situation and, if possible, recall to mind some landmark which might aid m..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4430,
+      "characterCount": 24380,
+      "estimatedListeningMinutes": 142,
+      "textPreview": "II I awoke next morning with the music of the horn in my ears, and leaping out of the ancient bed, went to a curtained window where the sunlight filtered throu..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1077,
+      "characterCount": 5982,
+      "estimatedListeningMinutes": 36,
+      "textPreview": "I The animal paused on the threshold, interrogative, alert, ready for flight if necessary. Severn laid down his palette, and held out a hand of welcome. The ca..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1266,
+      "characterCount": 6758,
+      "estimatedListeningMinutes": 40,
+      "textPreview": "II “It is fortunate,” said Severn, sitting up and stretching, “that we have tided over the dinner hour, for I have nothing to offer you for supper but what may..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2461,
+      "characterCount": 13653,
+      "estimatedListeningMinutes": 80,
+      "textPreview": "I. The room was already dark. The high roofs opposite cut off what little remained of the December daylight. The girl drew her chair nearer the window, and cho..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4609,
+      "characterCount": 26078,
+      "estimatedListeningMinutes": 153,
+      "textPreview": "II West, standing in the doorway of a house in the rue Serpentine, was speaking angrily. He said he didn’t care whether Hartman liked it or not; he was telling..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3292,
+      "characterCount": 18089,
+      "estimatedListeningMinutes": 108,
+      "textPreview": "III It was four in the morning when he came out of the Prison of the Condemned with the Secretary of the American Legation. A knot of people had gathered aroun..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1757,
+      "characterCount": 9997,
+      "estimatedListeningMinutes": 59,
+      "textPreview": "IV When midnight sounded from the belfry of St. Sulpice the gates of Paris were still choked with fragments of what had once been an army. They entered with th..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 978,
+      "characterCount": 5523,
+      "estimatedListeningMinutes": 33,
+      "textPreview": "I The street is not fashionable, neither is it shabby. It is a pariah among streets—a street without a Quarter. It is generally understood to lie outside the p..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1202,
+      "characterCount": 6889,
+      "estimatedListeningMinutes": 41,
+      "textPreview": "II “An’ you are pleas wiz Paris, Monsieur’ Astang?” demanded Madame Marotte the next morning as Hastings came into the breakfast-room of the pension, rosy from..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2518,
+      "characterCount": 13926,
+      "estimatedListeningMinutes": 84,
+      "textPreview": "III The Luxembourg was a blaze of flowers. He walked slowly through the long avenues of trees, past mossy marbles and old-time columns, and threading the grove..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4631,
+      "characterCount": 25562,
+      "estimatedListeningMinutes": 154,
+      "textPreview": "IV “There is a nouveau here,” drawled Laffat, leaning around his easel and addressing his friend Bowles, “there is a nouveau here who is so tender and green an..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1474,
+      "characterCount": 8441,
+      "estimatedListeningMinutes": 51,
+      "textPreview": "V The month passed quickly for Hastings, and left few definite impressions after it. It did leave some, however. One was a painful impression of meeting Mr. Bl..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2520,
+      "characterCount": 14283,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "VI It was with another quick heart-beat that he awoke next morning, for his first thought was of Valentine. The sun already gilded the towers of Notre Dame, th..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1556,
+      "characterCount": 8839,
+      "estimatedListeningMinutes": 53,
+      "textPreview": "I One morning at Julian’s, a student said to Selby, “That is Foxhall Clifford,” pointing with his brushes at a young man who sat before an easel, doing nothing..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1134,
+      "characterCount": 6366,
+      "estimatedListeningMinutes": 38,
+      "textPreview": "II Twenty-four hours later Selby had completely forgotten Rue Barrée. During the week he worked with might and main at the studio, and Saturday night found him..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 991,
+      "characterCount": 5718,
+      "estimatedListeningMinutes": 34,
+      "textPreview": "III About five o’clock that afternoon, the little sad-eyed woman who fills the position of concierge at the Hôtel du Sénat held up her hands in amazement to se..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1982,
+      "characterCount": 11209,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "IV Monday morning at Julian’s, students fought for places; students with prior claims drove away others who had been anxiously squatting on coveted tabourets s..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2327,
+      "characterCount": 12766,
+      "estimatedListeningMinutes": 76,
+      "textPreview": "V It took Clifford a month to entirely recover, although at the end of the first week he was pronounced convalescent by Elliott, who was an authority, and his..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "standalone roman numeral sections",
+    "selectedHeadingStrategy": {
+      "patternId": "roman-only",
+      "label": "Standalone Roman numeral",
+      "convention": "standalone roman numeral sections",
+      "kind": "chapter",
+      "candidateCount": 28,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 28,
+      "examples": [
+        "L210: II",
+        "L712: III",
+        "L1261: I",
+        "L1449: II",
+        "L1576: III",
+        "L1815: IV"
+      ],
+      "bodyExamples": [
+        "L210: II",
+        "L712: III",
+        "L1261: I",
+        "L1449: II",
+        "L1576: III",
+        "L1815: IV",
+        "L2298: I",
+        "L2533: II"
+      ],
+      "tocExamples": [],
+      "score": 0.8766666666666667,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 28,
+        "minimumWords": 978,
+        "medianWords": 2327,
+        "maximumWords": 4976,
+        "averageWords": 2479,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "roman-only",
+        "label": "Standalone Roman numeral",
+        "convention": "standalone roman numeral sections",
+        "kind": "chapter",
+        "candidateCount": 28,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 28,
+        "examples": [
+          "L210: II",
+          "L712: III",
+          "L1261: I",
+          "L1449: II",
+          "L1576: III",
+          "L1815: IV"
+        ],
+        "bodyExamples": [
+          "L210: II",
+          "L712: III",
+          "L1261: I",
+          "L1449: II",
+          "L1576: III",
+          "L1815: IV",
+          "L2298: I",
+          "L2533: II"
+        ],
+        "tocExamples": [],
+        "score": 0.8766666666666667,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 28,
+          "minimumWords": 978,
+          "medianWords": 2327,
+          "maximumWords": 4976,
+          "averageWords": 2479,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 34,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 34,
+        "examples": [
+          "L64: HAWBERK, ARMOURER.",
+          "L345: “THE IMPERIAL DYNASTY OF AMERICA.”",
+          "L686: “MR. WILDE,",
+          "L687: REPAIRER OF REPUTATIONS.",
+          "L881: MR. WILDE,",
+          "L882: REPAIRER OF REPUTATIONS."
+        ],
+        "bodyExamples": [
+          "L64: HAWBERK, ARMOURER.",
+          "L345: “THE IMPERIAL DYNASTY OF AMERICA.”",
+          "L686: “MR. WILDE,",
+          "L687: REPAIRER OF REPUTATIONS.",
+          "L881: MR. WILDE,",
+          "L882: REPAIRER OF REPUTATIONS.",
+          "L1245: THE MASK",
+          "L1942: IN THE COURT OF THE DRAGON"
+        ],
+        "tocExamples": [],
+        "score": 0.851,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy roman-only",
+        "sectionSizeNotes": {
+          "sectionCount": 34,
+          "minimumWords": 2,
+          "medianWords": 233,
+          "maximumWords": 11405,
+          "averageWords": 2077,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 13,
+          "notes": [
+            "many very small sections; headings may include TOC, captions, or fragments",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 106,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 106,
+        "examples": [
+          "L5: Washington Square, between Wooster Street and South Fifth Avenue. The",
+          "L29: Surgeon-General Lanceford, the staff of the National Free Hospital,",
+          "L30: Senators Wyse and Franklin of New York, and the Commissioner of Public",
+          "L186: Constance—”",
+          "L262: Retainer $100.”",
+          "L270: “Mrs. C. Hamilton Chester, of Chester Park, New York City. Called April"
+        ],
+        "bodyExamples": [
+          "L5: Washington Square, between Wooster Street and South Fifth Avenue. The",
+          "L29: Surgeon-General Lanceford, the staff of the National Free Hospital,",
+          "L30: Senators Wyse and Franklin of New York, and the Commissioner of Public",
+          "L186: Constance—”",
+          "L262: Retainer $100.”",
+          "L270: “Mrs. C. Hamilton Chester, of Chester Park, New York City. Called April",
+          "L274: “Note.—C. Hamilton Chester, Captain U.S.S. ‘Avalanche’, ordered home",
+          "L275: from South Sea Squadron October 1st.”"
+        ],
+        "tocExamples": [],
+        "score": 0.651,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy roman-only",
+        "sectionSizeNotes": {
+          "sectionCount": 106,
+          "minimumWords": 1,
+          "medianWords": 246,
+          "maximumWords": 11606,
+          "averageWords": 672,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 37,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "arabic-numbered-title",
+        "label": "Arabic numbered titled heading",
+        "convention": "arabic-numbered titled sections",
+        "kind": "section",
+        "candidateCount": 3,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 3,
+        "examples": [
+          "L5823: 1. For Porter please oppress once.",
+          "L5824: 2. For Servant please oppress twice.",
+          "L5825: 3. For Parlour please oppress thrice."
+        ],
+        "bodyExamples": [
+          "L5823: 1. For Porter please oppress once.",
+          "L5824: 2. For Servant please oppress twice.",
+          "L5825: 3. For Parlour please oppress thrice."
+        ],
+        "tocExamples": [],
+        "score": 0.44,
+        "confidence": "low",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy roman-only",
+        "sectionSizeNotes": {
+          "sectionCount": 3,
+          "minimumWords": 6,
+          "medianWords": 6,
+          "maximumWords": 20972,
+          "averageWords": 6995,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 2,
+          "notes": [
+            "1 section(s) exceed 18000 words",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 34,
+        "bodyLikeCount": 34,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy roman-only"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 106,
+        "bodyLikeCount": 106,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy roman-only"
+      },
+      {
+        "patternId": "arabic-numbered-title",
+        "convention": "arabic-numbered titled sections",
+        "candidateCount": 3,
+        "bodyLikeCount": 3,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy roman-only"
+      }
+    ],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 28,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L210: II",
+      "L712: III",
+      "L1261: I",
+      "L1449: II",
+      "L1576: III",
+      "L1815: IV",
+      "L2298: I",
+      "L2533: II"
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": false
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 70639,
+    "actions": [
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 12,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L2241: * * * * *",
+          "candidate L3044: * * * * *",
+          "candidate L3113: * * * * *",
+          "candidate L3751: * * * * *",
+          "candidate L3974: * * * *",
+          "candidate L4285: +-------------------------+",
+          "candidate L4289: +-------------------------+",
+          "candidate L6602: +---------------------------+"
+        ]
+      },
+      {
+        "action": "normalize-smart-quotes",
+        "count": 4295,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "“",
+          "”",
+          "’",
+          "“",
+          "”"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 522,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 2"
+    ],
+    "approximateWordCount": 4127,
+    "startsAtRealReadableContent": true,
+    "snippet": "II I climbed the three dilapidated flights of stairs, which I had so often climbed before, and knocked at a small door at the end of the corridor. Mr. Wilde opened the door and I walked in. When he had double-locked the door and pushed a heavy chest against it, he came and sat down beside me, peering up into my face with his little light-coloured eyes. Half...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

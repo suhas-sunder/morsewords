@@ -1,0 +1,756 @@
+{
+  "slug": "around-the-world-in-eighty-days",
+  "selectionReason": "High-confidence chapter-Roman structure with regular chapters and low cleanup risk.",
+  "title": "Around the World in Eighty Days",
+  "author": [
+    "Jules Verne"
+  ],
+  "sourcePath": "app/client/assets/temp-books/around-the-world-in-eighty-days.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 82,
+    "startIndex": 4261,
+    "startSnippet": "CHAPTER I. IN WHICH PHILEAS FOGG AND PASSEPARTOUT ACCEPT EACH OTHER, THE ONE AS MASTER, THE OTHER AS MAN Mr. Phileas Fogg lived, in 1872, at No. 7, Saville Row, Burlington",
+    "endLine": 7958,
+    "endIndex": 370047,
+    "endSnippet": "from this long and weary journey? Nothing, say you? Perhaps so; nothing but a charming woman, who, strange as it may appear, made him the happiest of men! Truly, would you not for less than that make the tour around the world?"
+  },
+  "wordCounts": {
+    "raw": 67077,
+    "kept": 63348,
+    "removedFrontMatter": 722,
+    "removedEndMatter": 3007
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1484,
+      "characterCount": 8467,
+      "estimatedListeningMinutes": 50,
+      "textPreview": "CHAPTER I. IN WHICH PHILEAS FOGG AND PASSEPARTOUT ACCEPT EACH OTHER, THE ONE AS MASTER, THE OTHER AS MAN Mr. Phileas Fogg lived, in 1872, at No. 7, Saville Row..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1145,
+      "characterCount": 6638,
+      "estimatedListeningMinutes": 40,
+      "textPreview": "CHAPTER II. IN WHICH PASSEPARTOUT IS CONVINCED THAT HE HAS AT LAST FOUND HIS IDEAL “Faith,” muttered Passepartout, somewhat flurried, “I’ve seen people at Mada..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2011,
+      "characterCount": 11781,
+      "estimatedListeningMinutes": 72,
+      "textPreview": "CHAPTER III. IN WHICH A CONVERSATION TAKES PLACE WHICH SEEMS LIKELY TO COST PHILEAS FOGG DEAR Phileas Fogg, having shut the door of his house at half-past elev..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 970,
+      "characterCount": 5673,
+      "estimatedListeningMinutes": 34,
+      "textPreview": "CHAPTER IV. IN WHICH PHILEAS FOGG ASTOUNDS PASSEPARTOUT, HIS SERVANT Having won twenty guineas at whist, and taken leave of his friends, Phileas Fogg, at twent..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 954,
+      "characterCount": 5551,
+      "estimatedListeningMinutes": 33,
+      "textPreview": "CHAPTER V. IN WHICH A NEW SPECIES OF FUNDS, UNKNOWN TO THE MONEYED MEN, APPEARS ON ’CHANGE Phileas Fogg rightly suspected that his departure from London would..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1333,
+      "characterCount": 7625,
+      "estimatedListeningMinutes": 46,
+      "textPreview": "CHAPTER VI. IN WHICH FIX, THE DETECTIVE, BETRAYS A VERY NATURAL IMPATIENCE The circumstances under which this telegraphic dispatch about Phileas Fogg was sent..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 800,
+      "characterCount": 4463,
+      "estimatedListeningMinutes": 27,
+      "textPreview": "CHAPTER VII. WHICH ONCE MORE DEMONSTRATES THE USELESSNESS OF PASSPORTS AS AIDS TO DETECTIVES The detective passed down the quay, and rapidly made his way to th..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1108,
+      "characterCount": 6138,
+      "estimatedListeningMinutes": 37,
+      "textPreview": "CHAPTER VIII. IN WHICH PASSEPARTOUT TALKS RATHER MORE, PERHAPS, THAN IS PRUDENT Fix soon rejoined Passepartout, who was lounging and looking about on the quay,..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1579,
+      "characterCount": 9212,
+      "estimatedListeningMinutes": 55,
+      "textPreview": "CHAPTER IX. IN WHICH THE RED SEA AND THE INDIAN OCEAN PROVE PROPITIOUS TO THE DESIGNS OF PHILEAS FOGG The distance between Suez and Aden is precisely thirteen..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1580,
+      "characterCount": 9314,
+      "estimatedListeningMinutes": 56,
+      "textPreview": "CHAPTER X. IN WHICH PASSEPARTOUT IS ONLY TOO GLAD TO GET OFF WITH THE LOSS OF HIS SHOES Everybody knows that the great reversed triangle of land, with its base..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2565,
+      "characterCount": 15271,
+      "estimatedListeningMinutes": 92,
+      "textPreview": "CHAPTER XI. IN WHICH PHILEAS FOGG SECURES A CURIOUS MEANS OF CONVEYANCE AT A FABULOUS PRICE The train had started punctually. Among the passengers were a numbe..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2113,
+      "characterCount": 12512,
+      "estimatedListeningMinutes": 75,
+      "textPreview": "CHAPTER XII. IN WHICH PHILEAS FOGG AND HIS COMPANIONS VENTURE ACROSS THE INDIAN FORESTS, AND WHAT ENSUED In order to shorten the journey, the guide passed to t..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2063,
+      "characterCount": 11706,
+      "estimatedListeningMinutes": 70,
+      "textPreview": "CHAPTER XIII. IN WHICH PASSEPARTOUT RECEIVES A NEW PROOF THAT FORTUNE FAVORS THE BRAVE The project was a bold one, full of difficulty, perhaps impracticable. M..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1954,
+      "characterCount": 11521,
+      "estimatedListeningMinutes": 69,
+      "textPreview": "CHAPTER XIV. IN WHICH PHILEAS FOGG DESCENDS THE WHOLE LENGTH OF THE BEAUTIFUL VALLEY OF THE GANGES WITHOUT EVER THINKING OF SEEING IT The rash exploit had been..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1859,
+      "characterCount": 10882,
+      "estimatedListeningMinutes": 65,
+      "textPreview": "CHAPTER XV. IN WHICH THE BAG OF BANKNOTES DISGORGES SOME THOUSANDS OF POUNDS MORE The train entered the station, and Passepartout jumping out first, was follow..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1645,
+      "characterCount": 9343,
+      "estimatedListeningMinutes": 56,
+      "textPreview": "CHAPTER XVI. IN WHICH FIX DOES NOT SEEM TO UNDERSTAND IN THE LEAST WHAT IS SAID TO HIM The “Rangoon”—one of the Peninsular and Oriental Company’s boats plying..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1758,
+      "characterCount": 10206,
+      "estimatedListeningMinutes": 61,
+      "textPreview": "CHAPTER XVII. SHOWING WHAT HAPPENED ON THE VOYAGE FROM SINGAPORE TO HONG KONG The detective and Passepartout met often on deck after this interview, though Fix..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1365,
+      "characterCount": 7906,
+      "estimatedListeningMinutes": 47,
+      "textPreview": "CHAPTER XVIII. IN WHICH PHILEAS FOGG, PASSEPARTOUT, AND FIX GO EACH ABOUT HIS BUSINESS The weather was bad during the latter days of the voyage. The wind, obst..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2112,
+      "characterCount": 12057,
+      "estimatedListeningMinutes": 72,
+      "textPreview": "CHAPTER XIX. IN WHICH PASSEPARTOUT TAKES A TOO GREAT INTEREST IN HIS MASTER, AND WHAT COMES OF IT Hong Kong is an island which came into the possession of the..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1764,
+      "characterCount": 10057,
+      "estimatedListeningMinutes": 61,
+      "textPreview": "CHAPTER XX. IN WHICH FIX COMES FACE TO FACE WITH PHILEAS FOGG While these events were passing at the opium-house, Mr. Fogg, unconscious of the danger he was in..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2601,
+      "characterCount": 14479,
+      "estimatedListeningMinutes": 86,
+      "textPreview": "CHAPTER XXI. IN WHICH THE MASTER OF THE “TANKADERE” RUNS GREAT RISK OF LOSING A REWARD OF TWO HUNDRED POUNDS This voyage of eight hundred miles was a perilous..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2103,
+      "characterCount": 12264,
+      "estimatedListeningMinutes": 74,
+      "textPreview": "CHAPTER XXII. IN WHICH PASSEPARTOUT FINDS OUT THAT, EVEN AT THE ANTIPODES, IT IS CONVENIENT TO HAVE SOME MONEY IN ONE’S POCKET The “Carnatic,” setting sail fro..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1957,
+      "characterCount": 11399,
+      "estimatedListeningMinutes": 68,
+      "textPreview": "CHAPTER XXIII. IN WHICH PASSEPARTOUT’S NOSE BECOMES OUTRAGEOUSLY LONG The next morning poor, jaded, famished Passepartout said to himself that he must get some..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 24",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1984,
+      "characterCount": 11374,
+      "estimatedListeningMinutes": 68,
+      "textPreview": "CHAPTER XXIV. DURING WHICH MR. FOGG AND PARTY CROSS THE PACIFIC OCEAN What happened when the pilot-boat came in sight of Shanghai will be easily guessed. The s..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 25",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2030,
+      "characterCount": 11735,
+      "estimatedListeningMinutes": 70,
+      "textPreview": "CHAPTER XXV. IN WHICH A SLIGHT GLIMPSE IS HAD OF SAN FRANCISCO It was seven in the morning when Mr. Fogg, Aouda, and Passepartout set foot upon the American co..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 26",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1631,
+      "characterCount": 9640,
+      "estimatedListeningMinutes": 57,
+      "textPreview": "CHAPTER XXVI. IN WHICH PHILEAS FOGG AND PARTY TRAVEL BY THE PACIFIC RAILROAD “From ocean to ocean”—so say the Americans; and these four words compose the gener..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Chapter 27",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1983,
+      "characterCount": 11718,
+      "estimatedListeningMinutes": 70,
+      "textPreview": "CHAPTER XXVII. IN WHICH PASSEPARTOUT UNDERGOES, AT A SPEED OF TWENTY MILES AN HOUR, A COURSE OF MORMON HISTORY During the night of the 5th of December, the tra..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "Chapter 28",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2477,
+      "characterCount": 14423,
+      "estimatedListeningMinutes": 86,
+      "textPreview": "CHAPTER XXVIII. IN WHICH PASSEPARTOUT DOES NOT SUCCEED IN MAKING ANYBODY LISTEN TO REASON The train, on leaving Great Salt Lake at Ogden, passed northward for..."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "Chapter 29",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2158,
+      "characterCount": 12489,
+      "estimatedListeningMinutes": 75,
+      "textPreview": "CHAPTER XXIX. IN WHICH CERTAIN INCIDENTS ARE NARRATED WHICH ARE ONLY TO BE MET WITH ON AMERICAN RAILROADS The train pursued its course, that evening, without i..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2153,
+      "characterCount": 12317,
+      "estimatedListeningMinutes": 74,
+      "textPreview": "CHAPTER XXX. IN WHICH PHILEAS FOGG SIMPLY DOES HIS DUTY Three passengers including Passepartout had disappeared. Had they been killed in the struggle? Were the..."
+    },
+    {
+      "id": "chapter-031",
+      "kind": "chapter",
+      "label": "Chapter 31",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1866,
+      "characterCount": 10528,
+      "estimatedListeningMinutes": 63,
+      "textPreview": "CHAPTER XXXI. IN WHICH FIX, THE DETECTIVE, CONSIDERABLY FURTHERS THE INTERESTS OF PHILEAS FOGG Phileas Fogg found himself twenty hours behind time. Passepartou..."
+    },
+    {
+      "id": "chapter-032",
+      "kind": "chapter",
+      "label": "Chapter 32",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1071,
+      "characterCount": 6116,
+      "estimatedListeningMinutes": 37,
+      "textPreview": "CHAPTER XXXII. IN WHICH PHILEAS FOGG ENGAGES IN A DIRECT STRUGGLE WITH BAD FORTUNE The “China,” in leaving, seemed to have carried off Phileas Fogg’s last hope..."
+    },
+    {
+      "id": "chapter-033",
+      "kind": "chapter",
+      "label": "Chapter 33",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2510,
+      "characterCount": 14274,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "CHAPTER XXXIII. IN WHICH PHILEAS FOGG SHOWS HIMSELF EQUAL TO THE OCCASION An hour after, the “Henrietta” passed the lighthouse which marks the entrance of the..."
+    },
+    {
+      "id": "chapter-034",
+      "kind": "chapter",
+      "label": "Chapter 34",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1002,
+      "characterCount": 5565,
+      "estimatedListeningMinutes": 33,
+      "textPreview": "CHAPTER XXXIV. IN WHICH PHILEAS FOGG AT LAST REACHES LONDON Phileas Fogg was in prison. He had been shut up in the Custom House, and he was to be transferred t..."
+    },
+    {
+      "id": "chapter-035",
+      "kind": "chapter",
+      "label": "Chapter 35",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1600,
+      "characterCount": 8943,
+      "estimatedListeningMinutes": 54,
+      "textPreview": "CHAPTER XXXV. IN WHICH PHILEAS FOGG DOES NOT HAVE TO REPEAT HIS ORDERS TO PASSEPARTOUT TWICE The dwellers in Saville Row would have been surprised the next day..."
+    },
+    {
+      "id": "chapter-036",
+      "kind": "chapter",
+      "label": "Chapter 36",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1083,
+      "characterCount": 6313,
+      "estimatedListeningMinutes": 38,
+      "textPreview": "CHAPTER XXXVI. IN WHICH PHILEAS FOGG’S NAME IS ONCE MORE AT A PREMIUM ON ’CHANGE It is time to relate what a change took place in English public opinion when i..."
+    },
+    {
+      "id": "chapter-037",
+      "kind": "chapter",
+      "label": "Chapter 37",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 977,
+      "characterCount": 5706,
+      "estimatedListeningMinutes": 34,
+      "textPreview": "CHAPTER XXXVII. IN WHICH IT IS SHOWN THAT PHILEAS FOGG GAINED NOTHING BY HIS TOUR AROUND THE WORLD, UNLESS IT WERE HAPPINESS Yes; Phileas Fogg in person. The r..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 37,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 37,
+      "examples": [
+        "L1: CHAPTER I.",
+        "L166: CHAPTER II.",
+        "L280: CHAPTER III.",
+        "L555: CHAPTER IV.",
+        "L703: CHAPTER V.",
+        "L811: CHAPTER VI."
+      ],
+      "bodyExamples": [
+        "L1: CHAPTER I.",
+        "L166: CHAPTER II.",
+        "L280: CHAPTER III.",
+        "L555: CHAPTER IV.",
+        "L703: CHAPTER V.",
+        "L811: CHAPTER VI.",
+        "L981: CHAPTER VII.",
+        "L1107: CHAPTER VIII."
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 37,
+        "minimumWords": 800,
+        "medianWords": 1764,
+        "maximumWords": 2601,
+        "averageWords": 1712,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 37,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 37,
+        "examples": [
+          "L1: CHAPTER I.",
+          "L166: CHAPTER II.",
+          "L280: CHAPTER III.",
+          "L555: CHAPTER IV.",
+          "L703: CHAPTER V.",
+          "L811: CHAPTER VI."
+        ],
+        "bodyExamples": [
+          "L1: CHAPTER I.",
+          "L166: CHAPTER II.",
+          "L280: CHAPTER III.",
+          "L555: CHAPTER IV.",
+          "L703: CHAPTER V.",
+          "L811: CHAPTER VI.",
+          "L981: CHAPTER VII.",
+          "L1107: CHAPTER VIII."
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 37,
+          "minimumWords": 800,
+          "medianWords": 1764,
+          "maximumWords": 2601,
+          "averageWords": 1712,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 63,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 63,
+        "examples": [
+          "L2: IN WHICH PHILEAS FOGG AND PASSEPARTOUT ACCEPT EACH OTHER, THE ONE AS",
+          "L3: MASTER, THE OTHER AS MAN",
+          "L167: IN WHICH PASSEPARTOUT IS CONVINCED THAT HE HAS AT LAST FOUND HIS IDEAL",
+          "L281: IN WHICH A CONVERSATION TAKES PLACE WHICH SEEMS LIKELY TO COST PHILEAS",
+          "L282: FOGG DEAR",
+          "L556: IN WHICH PHILEAS FOGG ASTOUNDS PASSEPARTOUT, HIS SERVANT"
+        ],
+        "bodyExamples": [
+          "L2: IN WHICH PHILEAS FOGG AND PASSEPARTOUT ACCEPT EACH OTHER, THE ONE AS",
+          "L3: MASTER, THE OTHER AS MAN",
+          "L167: IN WHICH PASSEPARTOUT IS CONVINCED THAT HE HAS AT LAST FOUND HIS IDEAL",
+          "L281: IN WHICH A CONVERSATION TAKES PLACE WHICH SEEMS LIKELY TO COST PHILEAS",
+          "L282: FOGG DEAR",
+          "L556: IN WHICH PHILEAS FOGG ASTOUNDS PASSEPARTOUT, HIS SERVANT",
+          "L704: IN WHICH A NEW SPECIES OF FUNDS, UNKNOWN TO THE MONEYED MEN, APPEARS ON",
+          "L705: ’CHANGE"
+        ],
+        "tocExamples": [],
+        "score": 0.851,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 63,
+          "minimumWords": 2,
+          "medianWords": 1002,
+          "maximumWords": 3504,
+          "averageWords": 1005,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 25,
+          "notes": [
+            "many very small sections; headings may include TOC, captions, or fragments"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 104,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 104,
+        "examples": [
+          "L6: Mr. Phileas Fogg lived, in 1872, at No. 7, Saville Row, Burlington",
+          "L123: John?”",
+          "L331: “No.”",
+          "L359: hastened off to Liverpool, Glasgow, Havre, Suez, Brindisi, New York,",
+          "L392: “Pshaw!”",
+          "L425: _Daily Telegraph:_—"
+        ],
+        "bodyExamples": [
+          "L6: Mr. Phileas Fogg lived, in 1872, at No. 7, Saville Row, Burlington",
+          "L123: John?”",
+          "L331: “No.”",
+          "L359: hastened off to Liverpool, Glasgow, Havre, Suez, Brindisi, New York,",
+          "L392: “Pshaw!”",
+          "L425: _Daily Telegraph:_—",
+          "L431: From Calcutta to Hong Kong, by steamer ............. 13 ”",
+          "L432: From Hong Kong to Yokohama (Japan), by steamer ..... 6 ”"
+        ],
+        "tocExamples": [],
+        "score": 0.651,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 104,
+          "minimumWords": 1,
+          "medianWords": 167,
+          "maximumWords": 6608,
+          "averageWords": 609,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 44,
+          "notes": [
+            "many very small sections; headings may include TOC, captions, or fragments",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 63,
+        "bodyLikeCount": 63,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 104,
+        "bodyLikeCount": 104,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 37,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 37,
+    "bodyHeadingExamples": [
+      "L1: CHAPTER I.",
+      "L166: CHAPTER II.",
+      "L280: CHAPTER III.",
+      "L555: CHAPTER IV.",
+      "L703: CHAPTER V.",
+      "L811: CHAPTER VI.",
+      "L981: CHAPTER VII.",
+      "L1107: CHAPTER VIII."
+    ],
+    "tocHeadingExamples": [
+      "L38: CHAPTER I. IN WHICH PHILEAS FOGG AND PASSEPARTOUT ACCEPT EACH OTHER, THE ONE AS MASTER, THE OTHER AS MAN",
+      "L39: CHAPTER II. IN WHICH PASSEPARTOUT IS CONVINCED THAT HE HAS AT LAST FOUND HIS IDEAL",
+      "L40: CHAPTER III. IN WHICH A CONVERSATION TAKES PLACE WHICH SEEMS LIKELY TO COST PHILEAS FOGG DEAR",
+      "L41: CHAPTER IV. IN WHICH PHILEAS FOGG ASTOUNDS PASSEPARTOUT, HIS SERVANT",
+      "L42: CHAPTER V. IN WHICH A NEW SPECIES OF FUNDS, UNKNOWN TO THE MONEYED MEN, APPEARS ON ’CHANGE",
+      "L43: CHAPTER VI. IN WHICH FIX, THE DETECTIVE, BETRAYS A VERY NATURAL IMPATIENCE",
+      "L44: CHAPTER VII. WHICH ONCE MORE DEMONSTRATES THE USELESSNESS OF PASSPORTS AS AIDS TO DETECTIVES",
+      "L45: CHAPTER VIII. IN WHICH PASSEPARTOUT TALKS RATHER MORE, PERHAPS, THAN IS PRUDENT"
+    ],
+    "priorTwoSectionCollapseFixed": true
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 62915,
+    "actions": [
+      {
+        "action": "remove-numbered-reference-markers",
+        "count": 2,
+        "recommendation": "Remove inline numeric reference markers from playback text; keep footnote prose only after manual review.",
+        "samples": [
+          "[1]",
+          "[1]"
+        ]
+      },
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 1,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L436: -------"
+        ]
+      },
+      {
+        "action": "normalize-smart-quotes",
+        "count": 3181,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "“",
+          "”",
+          "’",
+          "’"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 190,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 1484,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER I. IN WHICH PHILEAS FOGG AND PASSEPARTOUT ACCEPT EACH OTHER, THE ONE AS MASTER, THE OTHER AS MAN Mr. Phileas Fogg lived, in 1872, at No. 7, Saville Row, Burlington Gardens, the house in which Sheridan died in 1814. He was one of the most noticeable members of the Reform Club, though he seemed always to avoid attracting attention; an enigmatical pers...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": true,
+    "manifestPath": "app/client/assets/books/generated/around-the-world-in-eighty-days/manifest.json",
+    "sectionCount": 39,
+    "includedSectionCount": 37,
+    "firstSectionPreview": "[Illustration] Around the World in Eighty Days by Jules Verne",
+    "lastSectionPreview": "CHAPTER XXXVII. IN WHICH IT IS SHOWN THAT PHILEAS FOGG GAINED NOTHING BY HIS TOUR AROUND THE WORLD, UNLESS IT WERE HAPPINESS Yes; Phileas Fogg in person. The r...",
+    "suspiciousShortSections": [
+      {
+        "id": "title-page-001",
+        "label": "Opening section",
+        "wordCount": 10
+      }
+    ],
+    "suspiciousLongSections": [],
+    "apparentDamage": [
+      "suspiciously short generated sections"
+    ]
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content.",
+    "Compare candidate output against existing generated output because pass 2 flagged generated-output damage."
+  ]
+}

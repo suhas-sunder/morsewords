@@ -1,0 +1,1201 @@
+{
+  "slug": "the-three-musketeers",
+  "selectionReason": "High-confidence chapter-Roman structure with many regular chapters, selected to test longer adventure fiction without severe boundary ambiguity.",
+  "title": "The three musketeers",
+  "author": [
+    "Alexandre Dumas Auguste Maquet"
+  ],
+  "sourcePath": "app/client/assets/temp-books/the-three-musketeers.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 206,
+    "startIndex": 8265,
+    "startSnippet": "Chapter I. THE THREE PRESENTS OF D’ARTAGNAN THE ELDER On the first Monday of the month of April, 1625, the market town of Meung, in which the author of _Romance of the Rose_ was born, appeared",
+    "endLine": 31131,
+    "endIndex": 1298906,
+    "endSnippet": "cardinal had him informed that he would provide for him so that he should never want for anything in future. In fact, M. Bonacieux, having left his house at seven o’clock in the evening to go to the Louvre, never appeared again in the Rue des Fossoyeurs; the opinion of those who seemed to be best informed was that he was fed and lodged in some royal castle, at the expense of his generous Eminence."
+  },
+  "wordCounts": {
+    "raw": 236958,
+    "kept": 232555,
+    "removedFrontMatter": 1399,
+    "removedEndMatter": 3004
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5855,
+      "characterCount": 32704,
+      "estimatedListeningMinutes": 195,
+      "textPreview": "Chapter I. THE THREE PRESENTS OF D’ARTAGNAN THE ELDER On the first Monday of the month of April, 1625, the market town of Meung, in which the author of _Romanc..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3993,
+      "characterCount": 22378,
+      "estimatedListeningMinutes": 133,
+      "textPreview": "Chapter II. THE ANTECHAMBER OF M. DE TRÉVILLE M. de Troisville, as his family was still called in Gascony, or M. de Tréville, as he has ended by styling himsel..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4349,
+      "characterCount": 23661,
+      "estimatedListeningMinutes": 141,
+      "textPreview": "Chapter III. THE AUDIENCE M. de Tréville was at the moment in rather ill-humor, nevertheless he saluted the young man politely, who bowed to the very ground; a..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2961,
+      "characterCount": 16287,
+      "estimatedListeningMinutes": 98,
+      "textPreview": "Chapter IV. THE SHOULDER OF ATHOS, THE BALDRIC OF PORTHOS AND THE HANDKERCHIEF OF ARAMIS D’Artagnan, in a state of fury, crossed the antechamber at three bound..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3732,
+      "characterCount": 20730,
+      "estimatedListeningMinutes": 125,
+      "textPreview": "Chapter V. THE KING’S MUSKETEERS AND THE CARDINAL’S GUARDS D’Artagnan was acquainted with nobody in Paris. He went therefore to his appointment with Athos with..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 7223,
+      "characterCount": 39140,
+      "estimatedListeningMinutes": 233,
+      "textPreview": "Chapter VI. HIS MAJESTY KING LOUIS XIII. This affair made a great noise. M. de Tréville scolded his Musketeers in public, and congratulated them in private; bu..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3352,
+      "characterCount": 18929,
+      "estimatedListeningMinutes": 113,
+      "textPreview": "Chapter VII. THE INTERIOR OF THE MUSKETEERS When D’Artagnan was out of the Louvre, and consulted his friends upon the use he had best make of his share of the..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2804,
+      "characterCount": 15580,
+      "estimatedListeningMinutes": 93,
+      "textPreview": "Chapter VIII. CONCERNING A COURT INTRIGUE In the meantime, the forty pistoles of King Louis XIII., like all other things of this world, after having had a begi..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2635,
+      "characterCount": 14851,
+      "estimatedListeningMinutes": 90,
+      "textPreview": "Chapter IX. D’ARTAGNAN SHOWS HIMSELF As Athos and Porthos had foreseen, at the expiration of a half hour, D’Artagnan returned. He had again missed his man, who..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3411,
+      "characterCount": 18723,
+      "estimatedListeningMinutes": 112,
+      "textPreview": "Chapter X. A MOUSETRAP IN THE SEVENTEENTH CENTURY The invention of the mousetrap does not date from our days; as soon as societies, in forming, had invented an..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6104,
+      "characterCount": 33657,
+      "estimatedListeningMinutes": 201,
+      "textPreview": "Chapter XI. IN WHICH THE PLOT THICKENS His visit to M. de Tréville being paid, the pensive D’Artagnan took the longest way homeward. On what was D’Artagnan thi..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3108,
+      "characterCount": 16715,
+      "estimatedListeningMinutes": 100,
+      "textPreview": "Chapter XII. GEORGE VILLIERS, DUKE OF BUCKINGHAM Mme. Bonacieux and the duke entered the Louvre without difficulty. Mme. Bonacieux was known to belong to the q..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2971,
+      "characterCount": 16727,
+      "estimatedListeningMinutes": 100,
+      "textPreview": "Chapter XIII. MONSIEUR BONACIEUX There was in all this, as may have been observed, one personage concerned, of whom, notwithstanding his precarious position, w..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3258,
+      "characterCount": 18508,
+      "estimatedListeningMinutes": 111,
+      "textPreview": "Chapter XIV. THE MAN OF MEUNG The crowd was caused, not by the expectation of a man to be hanged, but by the contemplation of a man who was hanged. The carriag..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2865,
+      "characterCount": 15903,
+      "estimatedListeningMinutes": 95,
+      "textPreview": "Chapter XV. MEN OF THE ROBE AND MEN OF THE SWORD On the day after these events had taken place, Athos not having reappeared, M. de Tréville was informed by D’A..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4150,
+      "characterCount": 23028,
+      "estimatedListeningMinutes": 137,
+      "textPreview": "Chapter XVI. IN WHICH M. SÉGUIER, KEEPER OF THE SEALS, LOOKS MORE THAN ONCE FOR THE BELL It is impossible to form an idea of the impression these few words mad..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4477,
+      "characterCount": 24789,
+      "estimatedListeningMinutes": 149,
+      "textPreview": "Chapter XVII. BONACIEUX AT HOME It was the second time the cardinal had mentioned these diamond studs to the king. Louis XIII. was struck with this insistence,..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2177,
+      "characterCount": 12122,
+      "estimatedListeningMinutes": 73,
+      "textPreview": "Chapter XVIII. LOVER AND HUSBAND Ah, Madame,” said D’Artagnan, entering by the door which the young woman opened for him, “allow me to tell you that you have a..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2854,
+      "characterCount": 15651,
+      "estimatedListeningMinutes": 94,
+      "textPreview": "Chapter XIX. PLAN OF CAMPAIGN D’Artagnan went straight to M. de Tréville’s. He had reflected that in a few minutes the cardinal would be warned by this cursed..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4048,
+      "characterCount": 22333,
+      "estimatedListeningMinutes": 133,
+      "textPreview": "Chapter XX. THE JOURNEY At two o’clock in the morning, our four adventurers left Paris by the Barrière St. Denis. As long as it was dark they remained silent;..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3517,
+      "characterCount": 19074,
+      "estimatedListeningMinutes": 114,
+      "textPreview": "Chapter XXI. THE COUNTESS DE WINTER As they rode along, the duke endeavored to draw from D’Artagnan, not all that had happened, but what D’Artagnan himself kne..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2594,
+      "characterCount": 14349,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "Chapter XXII. THE BALLET OF LA MERLAISON On the morrow, nothing was talked of in Paris but the ball which the aldermen of the city were to give to the king and..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3671,
+      "characterCount": 20235,
+      "estimatedListeningMinutes": 121,
+      "textPreview": "Chapter XXIII. THE RENDEZVOUS D’Artagnan ran home immediately, and although it was three o’clock in the morning and he had some of the worst quarters of Paris..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 24",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3702,
+      "characterCount": 20177,
+      "estimatedListeningMinutes": 120,
+      "textPreview": "Chapter XXIV. THE PAVILION At nine o’clock D’Artagnan was at the Hôtel des Gardes; he found Planchet all ready. The fourth horse had arrived. Planchet was arme..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 25",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6754,
+      "characterCount": 36900,
+      "estimatedListeningMinutes": 221,
+      "textPreview": "Chapter XXV. PORTHOS Instead of returning directly home, D’Artagnan alighted at the door of M. de Tréville, and ran quickly up the stairs. This time he had dec..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 26",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5741,
+      "characterCount": 32261,
+      "estimatedListeningMinutes": 193,
+      "textPreview": "Chapter XXVI. ARAMIS AND HIS THESIS D’Artagnan had said nothing to Porthos of his wound or of his procurator’s wife. Our Béarnais was a prudent lad, however yo..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Chapter 27",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6750,
+      "characterCount": 37644,
+      "estimatedListeningMinutes": 226,
+      "textPreview": "Chapter XXVII. THE WIFE OF ATHOS We have now to search for Athos,” said D’Artagnan to the vivacious Aramis, when he had informed him of all that had passed sin..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "Chapter 28",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4734,
+      "characterCount": 26290,
+      "estimatedListeningMinutes": 159,
+      "textPreview": "Chapter XXVIII. THE RETURN D’Artagnan was astounded by the terrible confidence of Athos; yet many things appeared very obscure to him in this half revelation...."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "Chapter 29",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2924,
+      "characterCount": 16536,
+      "estimatedListeningMinutes": 100,
+      "textPreview": "Chapter XXIX. HUNTING FOR THE EQUIPMENTS The most preoccupied of the four friends was certainly D’Artagnan, although he, in his quality of Guardsman, would be..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2719,
+      "characterCount": 14787,
+      "estimatedListeningMinutes": 88,
+      "textPreview": "Chapter XXX. D’ARTAGNAN AND THE ENGLISHMAN D’Artagnan followed Milady without being perceived by her. He saw her get into her carriage, and heard her order the..."
+    },
+    {
+      "id": "chapter-031",
+      "kind": "chapter",
+      "label": "Chapter 31",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2690,
+      "characterCount": 14979,
+      "estimatedListeningMinutes": 89,
+      "textPreview": "Chapter XXXI. ENGLISH AND FRENCH The hour having come, they went with their four lackeys to a spot behind the Luxembourg given up to the feeding of goats. Atho..."
+    },
+    {
+      "id": "chapter-032",
+      "kind": "chapter",
+      "label": "Chapter 32",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3280,
+      "characterCount": 18734,
+      "estimatedListeningMinutes": 112,
+      "textPreview": "Chapter XXXII. A PROCURATOR’S DINNER However brilliant had been the part played by Porthos in the duel, it had not made him forget the dinner of the procurator..."
+    },
+    {
+      "id": "chapter-033",
+      "kind": "chapter",
+      "label": "Chapter 33",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3253,
+      "characterCount": 17736,
+      "estimatedListeningMinutes": 106,
+      "textPreview": "Chapter XXXIII. SOUBRETTE AND MISTRESS Meantime, as we have said, despite the cries of his conscience and the wise counsels of Athos, D’Artagnan became hourly..."
+    },
+    {
+      "id": "chapter-034",
+      "kind": "chapter",
+      "label": "Chapter 34",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2896,
+      "characterCount": 16107,
+      "estimatedListeningMinutes": 97,
+      "textPreview": "Chapter XXXIV. IN WHICH THE EQUIPMENT OF ARAMIS AND PORTHOS IS TREATED OF Since the four friends had been each in search of his equipments, there had been no f..."
+    },
+    {
+      "id": "chapter-035",
+      "kind": "chapter",
+      "label": "Chapter 35",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2565,
+      "characterCount": 13989,
+      "estimatedListeningMinutes": 83,
+      "textPreview": "Chapter XXXV. A GASCON A MATCH FOR CUPID The evening so impatiently waited for by Porthos and by D’Artagnan at last arrived. As was his custom, D’Artagnan pres..."
+    },
+    {
+      "id": "chapter-036",
+      "kind": "chapter",
+      "label": "Chapter 36",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2365,
+      "characterCount": 13122,
+      "estimatedListeningMinutes": 79,
+      "textPreview": "Chapter XXXVI. DREAM OF VENGEANCE That evening Milady gave orders that when M. d’Artagnan came as usual, he should be immediately admitted; but he did not come..."
+    },
+    {
+      "id": "chapter-037",
+      "kind": "chapter",
+      "label": "Chapter 37",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2411,
+      "characterCount": 13355,
+      "estimatedListeningMinutes": 80,
+      "textPreview": "Chapter XXXVII. MILADY’S SECRET D’Artagnan left the hôtel instead of going up at once to Kitty’s chamber, as she endeavored to persuade him to do—and that for..."
+    },
+    {
+      "id": "chapter-038",
+      "kind": "chapter",
+      "label": "Chapter 38",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3126,
+      "characterCount": 17240,
+      "estimatedListeningMinutes": 104,
+      "textPreview": "Chapter XXXVIII. HOW, WITHOUT INCOMMDING HIMSELF, ATHOS PROCURES HIS EQUIPMENT D’Artagnan was so completely bewildered that without taking any heed of what mig..."
+    },
+    {
+      "id": "chapter-039",
+      "kind": "chapter",
+      "label": "Chapter 39",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3136,
+      "characterCount": 17472,
+      "estimatedListeningMinutes": 104,
+      "textPreview": "Chapter XXXIX. A VISION At four o’clock the four friends were all assembled with Athos. Their anxiety about their outfits had all disappeared, and each counten..."
+    },
+    {
+      "id": "chapter-040",
+      "kind": "chapter",
+      "label": "Chapter 40",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2787,
+      "characterCount": 15606,
+      "estimatedListeningMinutes": 93,
+      "textPreview": "Chapter XL. A TERRIBLE VISION The cardinal leaned his elbow on his manuscript, his cheek upon his hand, and looked intently at the young man for a moment. No o..."
+    },
+    {
+      "id": "chapter-041",
+      "kind": "chapter",
+      "label": "Chapter 41",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4630,
+      "characterCount": 25448,
+      "estimatedListeningMinutes": 151,
+      "textPreview": "Chapter XLI. THE SIEGE OF LA ROCHELLE The Siege of La Rochelle was one of the great political events of the reign of Louis XIII., and one of the great military..."
+    },
+    {
+      "id": "chapter-042",
+      "kind": "chapter",
+      "label": "Chapter 42",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2552,
+      "characterCount": 14202,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "Chapter XLII. THE ANJOU WINE After the most disheartening news of the king’s health, a report of his convalescence began to prevail in the camp; and as he was..."
+    },
+    {
+      "id": "chapter-043",
+      "kind": "chapter",
+      "label": "Chapter 43",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2810,
+      "characterCount": 16003,
+      "estimatedListeningMinutes": 95,
+      "textPreview": "Chapter XLIII. THE SIGN OF THE RED DOVECOT Meanwhile the king, who, with more reason than the cardinal, showed his hatred for Buckingham, although scarcely arr..."
+    },
+    {
+      "id": "chapter-044",
+      "kind": "chapter",
+      "label": "Chapter 44",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2827,
+      "characterCount": 15682,
+      "estimatedListeningMinutes": 94,
+      "textPreview": "Chapter XLIV. THE UTILITY OF STOVEPIPES It was evident that without suspecting it, and actuated solely by their chivalrous and adventurous character, our three..."
+    },
+    {
+      "id": "chapter-045",
+      "kind": "chapter",
+      "label": "Chapter 45",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2077,
+      "characterCount": 11510,
+      "estimatedListeningMinutes": 69,
+      "textPreview": "Chapter XLV. A CONJUGAL SCENE As Athos had foreseen, it was not long before the cardinal came down. He opened the door of the room in which the Musketeers were..."
+    },
+    {
+      "id": "chapter-046",
+      "kind": "chapter",
+      "label": "Chapter 46",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2276,
+      "characterCount": 12728,
+      "estimatedListeningMinutes": 76,
+      "textPreview": "Chapter XLVI. THE BASTION SAINT-GERVAIS On arriving at the lodgings of his three friends, D’Artagnan found them assembled in the same chamber. Athos was medita..."
+    },
+    {
+      "id": "chapter-047",
+      "kind": "chapter",
+      "label": "Chapter 47",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5521,
+      "characterCount": 30920,
+      "estimatedListeningMinutes": 186,
+      "textPreview": "Chapter XLVII. THE COUNCIL OF THE MUSKETEERS As Athos had foreseen, the bastion was only occupied by a dozen corpses, French and Rochellais. “Gentlemen,” said..."
+    },
+    {
+      "id": "chapter-048",
+      "kind": "chapter",
+      "label": "Chapter 48",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4985,
+      "characterCount": 27856,
+      "estimatedListeningMinutes": 168,
+      "textPreview": "Chapter XLVIII. A FAMILY AFFAIR Athos had invented the phrase, family affair. A family affair was not subject to the investigation of the cardinal; a family af..."
+    },
+    {
+      "id": "chapter-049",
+      "kind": "chapter",
+      "label": "Chapter 49",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2817,
+      "characterCount": 15936,
+      "estimatedListeningMinutes": 95,
+      "textPreview": "Chapter XLIX. FATALITY Meantime Milady, drunk with passion, roaring on the deck like a lioness that has been embarked, had been tempted to throw herself into t..."
+    },
+    {
+      "id": "chapter-050",
+      "kind": "chapter",
+      "label": "Chapter 50",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2788,
+      "characterCount": 15232,
+      "estimatedListeningMinutes": 91,
+      "textPreview": "Chapter L. CHAT BETWEEN BROTHER AND SISTER During the time which Lord de Winter took to shut the door, close a shutter, and draw a chair near to his sister-in-..."
+    },
+    {
+      "id": "chapter-051",
+      "kind": "chapter",
+      "label": "Chapter 51",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3942,
+      "characterCount": 22487,
+      "estimatedListeningMinutes": 134,
+      "textPreview": "Chapter LI. OFFICER Meanwhile, the cardinal looked anxiously for news from England; but no news arrived that was not annoying and threatening. Although La Roch..."
+    },
+    {
+      "id": "chapter-052",
+      "kind": "chapter",
+      "label": "Chapter 52",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2609,
+      "characterCount": 14316,
+      "estimatedListeningMinutes": 86,
+      "textPreview": "Chapter LII. CAPTIVITY: THE FIRST DAY Let us return to Milady, whom a glance thrown upon the coast of France has made us lose sight of for an instant. We shall..."
+    },
+    {
+      "id": "chapter-053",
+      "kind": "chapter",
+      "label": "Chapter 53",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2522,
+      "characterCount": 14139,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "Chapter LIII. CAPTIVITY: THE SECOND DAY Milady dreamed that she at length had D’Artagnan in her power, that she was present at his execution; and it was the si..."
+    },
+    {
+      "id": "chapter-054",
+      "kind": "chapter",
+      "label": "Chapter 54",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3156,
+      "characterCount": 17387,
+      "estimatedListeningMinutes": 104,
+      "textPreview": "Chapter LIV. CAPTIVITY: THE THIRD DAY Felton had fallen; but there was still another step to be taken. He must be retained, or rather he must be left quite alo..."
+    },
+    {
+      "id": "chapter-055",
+      "kind": "chapter",
+      "label": "Chapter 55",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3011,
+      "characterCount": 16587,
+      "estimatedListeningMinutes": 100,
+      "textPreview": "Chapter LV. CAPTIVITY: THE FOURTH DAY The next day, when Felton entered Milady’s apartment he found her standing, mounted upon a chair, holding in her hands a..."
+    },
+    {
+      "id": "chapter-056",
+      "kind": "chapter",
+      "label": "Chapter 56",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5441,
+      "characterCount": 29819,
+      "estimatedListeningMinutes": 178,
+      "textPreview": "Chapter LVI. CAPTIVITY: THE FIFTH DAY Milady had however achieved a half-triumph, and success doubled her forces. It was not difficult to conquer, as she had h..."
+    },
+    {
+      "id": "chapter-057",
+      "kind": "chapter",
+      "label": "Chapter 57",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2266,
+      "characterCount": 12596,
+      "estimatedListeningMinutes": 76,
+      "textPreview": "Chapter LVII. MEANS FOR CLASSICAL TRAGEDY After a moment of silence employed by Milady in observing the young man who listened to her, Milady continued her rec..."
+    },
+    {
+      "id": "chapter-058",
+      "kind": "chapter",
+      "label": "Chapter 58",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2762,
+      "characterCount": 15115,
+      "estimatedListeningMinutes": 90,
+      "textPreview": "Chapter LVIII. ESCAPE As Lord de Winter had thought, Milady’s wound was not dangerous. So soon as she was left alone with the woman whom the baron had summoned..."
+    },
+    {
+      "id": "chapter-059",
+      "kind": "chapter",
+      "label": "Chapter 59",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3549,
+      "characterCount": 19741,
+      "estimatedListeningMinutes": 118,
+      "textPreview": "Chapter LIX. WHAT TOOK PLACE AT PORTSMOUTH AUGUST 23, 1628 Felton took leave of Milady as a brother about to go for a mere walk takes leave of his sister, kiss..."
+    },
+    {
+      "id": "chapter-060",
+      "kind": "chapter",
+      "label": "Chapter 60",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1980,
+      "characterCount": 10921,
+      "estimatedListeningMinutes": 65,
+      "textPreview": "Chapter LX. IN FRANCE The first fear of the King of England, Charles I., on learning of the death of the duke, was that such terrible news might discourage the..."
+    },
+    {
+      "id": "chapter-061",
+      "kind": "chapter",
+      "label": "Chapter 61",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4355,
+      "characterCount": 24660,
+      "estimatedListeningMinutes": 148,
+      "textPreview": "Chapter LXI. THE CARMELITE CONVENT AT BÉTHUNE Great criminals bear about them a kind of predestination which makes them surmount all obstacles, which makes the..."
+    },
+    {
+      "id": "chapter-062",
+      "kind": "chapter",
+      "label": "Chapter 62",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1508,
+      "characterCount": 8351,
+      "estimatedListeningMinutes": 50,
+      "textPreview": "Chapter LXII. TWO VARIETIES OF DEMONS Ah,” cried Milady and Rochefort together, “it is you!” “Yes, it is I.” “And you come?” asked Milady. “From La Rochelle; a..."
+    },
+    {
+      "id": "chapter-063",
+      "kind": "chapter",
+      "label": "Chapter 63",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4669,
+      "characterCount": 25610,
+      "estimatedListeningMinutes": 154,
+      "textPreview": "Chapter LXIII. THE DROP OF WATER Rochefort had scarcely departed when Mme. Bonacieux re-entered. She found Milady with a smiling countenance. “Well,” said the..."
+    },
+    {
+      "id": "chapter-064",
+      "kind": "chapter",
+      "label": "Chapter 64",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2028,
+      "characterCount": 11369,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "Chapter LXIV. THE MAN IN THE RED CLOAK The despair of Athos had given place to a concentrated grief which only rendered more lucid the brilliant mental faculti..."
+    },
+    {
+      "id": "chapter-065",
+      "kind": "chapter",
+      "label": "Chapter 65",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2591,
+      "characterCount": 14636,
+      "estimatedListeningMinutes": 87,
+      "textPreview": "Chapter LXV. TRIAL It was a stormy and dark night; vast clouds covered the heavens, concealing the stars; the moon would not rise till midnight. Occasionally,..."
+    },
+    {
+      "id": "chapter-066",
+      "kind": "chapter",
+      "label": "Chapter 66",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1548,
+      "characterCount": 8515,
+      "estimatedListeningMinutes": 51,
+      "textPreview": "Chapter LXVI. EXECUTION It was near midnight; the moon, lessened by its decline, and reddened by the last traces of the storm, arose behind the little town of..."
+    },
+    {
+      "id": "chapter-067",
+      "kind": "chapter",
+      "label": "Chapter 67",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3393,
+      "characterCount": 19534,
+      "estimatedListeningMinutes": 117,
+      "textPreview": "Chapter LXVII. CONCLUSION On the sixth of the following month the king, in compliance with the promise he had made the cardinal to return to La Rochelle, left..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 67,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 67,
+      "examples": [
+        "L1: Chapter I.",
+        "L645: Chapter II.",
+        "L1065: Chapter III.",
+        "L1540: Chapter IV.",
+        "L1888: Chapter V.",
+        "L2364: Chapter VI."
+      ],
+      "bodyExamples": [
+        "L1: Chapter I.",
+        "L645: Chapter II.",
+        "L1065: Chapter III.",
+        "L1540: Chapter IV.",
+        "L1888: Chapter V.",
+        "L2364: Chapter VI.",
+        "L3211: Chapter VII.",
+        "L3554: Chapter VIII."
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 67,
+        "minimumWords": 1508,
+        "medianWords": 3108,
+        "maximumWords": 7223,
+        "averageWords": 3471,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 67,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 67,
+        "examples": [
+          "L1: Chapter I.",
+          "L645: Chapter II.",
+          "L1065: Chapter III.",
+          "L1540: Chapter IV.",
+          "L1888: Chapter V.",
+          "L2364: Chapter VI."
+        ],
+        "bodyExamples": [
+          "L1: Chapter I.",
+          "L645: Chapter II.",
+          "L1065: Chapter III.",
+          "L1540: Chapter IV.",
+          "L1888: Chapter V.",
+          "L2364: Chapter VI.",
+          "L3211: Chapter VII.",
+          "L3554: Chapter VIII."
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 67,
+          "minimumWords": 1508,
+          "medianWords": 3108,
+          "maximumWords": 7223,
+          "averageWords": 3471,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 82,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 82,
+        "examples": [
+          "L2: THE THREE PRESENTS OF D’ARTAGNAN THE ELDER",
+          "L646: THE ANTECHAMBER OF M. DE TRÉVILLE",
+          "L1066: THE AUDIENCE",
+          "L1541: THE SHOULDER OF ATHOS, THE BALDRIC OF PORTHOS AND THE HANDKERCHIEF OF",
+          "L1542: ARAMIS",
+          "L1889: THE KING’S MUSKETEERS AND THE CARDINAL’S GUARDS"
+        ],
+        "bodyExamples": [
+          "L2: THE THREE PRESENTS OF D’ARTAGNAN THE ELDER",
+          "L646: THE ANTECHAMBER OF M. DE TRÉVILLE",
+          "L1066: THE AUDIENCE",
+          "L1541: THE SHOULDER OF ATHOS, THE BALDRIC OF PORTHOS AND THE HANDKERCHIEF OF",
+          "L1542: ARAMIS",
+          "L1889: THE KING’S MUSKETEERS AND THE CARDINAL’S GUARDS",
+          "L2365: HIS MAJESTY KING LOUIS XIII.",
+          "L3212: THE INTERIOR OF THE MUSKETEERS"
+        ],
+        "tocExamples": [],
+        "score": 0.851,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 82,
+          "minimumWords": 12,
+          "medianWords": 2810,
+          "maximumWords": 7223,
+          "averageWords": 2836,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 3,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "label": "Roman numbered titled heading",
+        "convention": "roman-numbered titled sections",
+        "kind": "chapter",
+        "candidateCount": 51,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 51,
+        "examples": [
+          "L641: M. de Tréville, the third personage in the kingdom, in the paternal",
+          "L649: M. de Troisville, as his family was still called in Gascony, or M. de",
+          "L739: M. de Tréville employed this powerful weapon for the king, in the first",
+          "L1069: M. de Tréville was at the moment in rather ill-humor, nevertheless he",
+          "L1491: M. de Tréville was surprised to the greatest degree. So much",
+          "L1515: M. de Tréville smiled at this flourish; and leaving his young man"
+        ],
+        "bodyExamples": [
+          "L641: M. de Tréville, the third personage in the kingdom, in the paternal",
+          "L649: M. de Troisville, as his family was still called in Gascony, or M. de",
+          "L739: M. de Tréville employed this powerful weapon for the king, in the first",
+          "L1069: M. de Tréville was at the moment in rather ill-humor, nevertheless he",
+          "L1491: M. de Tréville was surprised to the greatest degree. So much",
+          "L1515: M. de Tréville smiled at this flourish; and leaving his young man",
+          "L1523: M. de Tréville, after having written the letter, sealed it, and rising,",
+          "L2695: M. de la Trémouille’s people retreated into the hôtel, the doors of"
+        ],
+        "tocExamples": [],
+        "score": 0.7000000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 51,
+          "minimumWords": 23,
+          "medianWords": 1074,
+          "maximumWords": 40236,
+          "averageWords": 4445,
+          "hugeSectionCount": 3,
+          "tinySectionCount": 5,
+          "notes": [
+            "3 section(s) exceed 18000 words",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 315,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 315,
+        "examples": [
+          "L337: Musketeers.”",
+          "L339: “Indeed!”",
+          "L434: “I—I return to Paris.”",
+          "L583: “Stolen? By whom?”",
+          "L916: gate St. Honoré.”",
+          "L966: “Indeed?”"
+        ],
+        "bodyExamples": [
+          "L337: Musketeers.”",
+          "L339: “Indeed!”",
+          "L434: “I—I return to Paris.”",
+          "L583: “Stolen? By whom?”",
+          "L916: gate St. Honoré.”",
+          "L966: “Indeed?”",
+          "L992: “Oh, the Red Duke! Bravo! Bravo! The Red Duke!” cried Porthos, clapping",
+          "L1049: “Aramis!”"
+        ],
+        "tocExamples": [],
+        "score": 0.651,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 315,
+          "minimumWords": 1,
+          "medianWords": 224,
+          "maximumWords": 8803,
+          "averageWords": 728,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 99,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "date-entry",
+        "label": "Date or journal entry heading",
+        "convention": "dated journal or diary entries",
+        "kind": "date-entry",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L27082: AUGUST 23, 1628"
+        ],
+        "bodyExamples": [
+          "L27082: AUGUST 23, 1628"
+        ],
+        "tocExamples": [],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 25614,
+          "medianWords": 25614,
+          "maximumWords": 25614,
+          "averageWords": 25614,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "special-front-back",
+        "label": "Preface, introduction, notes, or appendix",
+        "convention": "front/back matter headings",
+        "kind": "front-back-matter",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L30733: EPILOGUE"
+        ],
+        "bodyExamples": [
+          "L30733: EPILOGUE"
+        ],
+        "tocExamples": [],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 450,
+          "medianWords": 450,
+          "maximumWords": 450,
+          "averageWords": 450,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 82,
+        "bodyLikeCount": 82,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "convention": "roman-numbered titled sections",
+        "candidateCount": 51,
+        "bodyLikeCount": 51,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 315,
+        "bodyLikeCount": 315,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "date-entry",
+        "convention": "dated journal or diary entries",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "special-front-back",
+        "convention": "front/back matter headings",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 67,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 67,
+    "bodyHeadingExamples": [
+      "L1: Chapter I.",
+      "L645: Chapter II.",
+      "L1065: Chapter III.",
+      "L1540: Chapter IV.",
+      "L1888: Chapter V.",
+      "L2364: Chapter VI.",
+      "L3211: Chapter VII.",
+      "L3554: Chapter VIII."
+    ],
+    "tocHeadingExamples": [
+      "L39: Chapter I. THE THREE PRESENTS OF D’ARTAGNAN THE ELDER",
+      "L40: Chapter II. THE ANTECHAMBER OF M. DE TRÉVILLE",
+      "L41: Chapter III. THE AUDIENCE",
+      "L42: Chapter IV. THE SHOULDER OF ATHOS, THE BALDRIC OF PORTHOS AND THE HANDKERCHIEF OF ARAMIS",
+      "L43: Chapter V. THE KING’S MUSKETEERS AND THE CARDINAL’S GUARDS",
+      "L44: Chapter VI. HIS MAJESTY KING LOUIS XIII.",
+      "L45: Chapter VII. THE INTERIOR OF THE MUSKETEERS",
+      "L46: Chapter VIII. CONCERNING A COURT INTRIGUE"
+    ],
+    "priorTwoSectionCollapseFixed": true
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 229641,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 18724,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "’",
+          "’",
+          "’",
+          "“"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 843,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 5855,
+    "startsAtRealReadableContent": true,
+    "snippet": "Chapter I. THE THREE PRESENTS OF D’ARTAGNAN THE ELDER On the first Monday of the month of April, 1625, the market town of Meung, in which the author of _Romance of the Rose_ was born, appeared to be in as perfect a state of revolution as if the Huguenots had just made a second La Rochelle of it. Many citizens, seeing the women flying toward the High Street,...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": true,
+    "manifestPath": "app/client/assets/books/generated/the-three-musketeers/manifest.json",
+    "sectionCount": 71,
+    "includedSectionCount": 67,
+    "firstSectionPreview": "The Three Musketeers By Alexandre Dumas, Père First Volume of the D’Artagnan Series",
+    "lastSectionPreview": "EPILOGUE La Rochelle, deprived of the assistance of the English fleet and of the diversion promised by Buckingham, surrendered after a siege of a year. On the...",
+    "suspiciousShortSections": [
+      {
+        "id": "title-page-001",
+        "label": "Opening section",
+        "wordCount": 15
+      }
+    ],
+    "suspiciousLongSections": [],
+    "apparentDamage": [
+      "suspiciously short generated sections"
+    ]
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content.",
+    "Compare candidate output against existing generated output because pass 2 flagged generated-output damage."
+  ]
+}

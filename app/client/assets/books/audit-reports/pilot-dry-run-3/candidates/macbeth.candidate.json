@@ -1,0 +1,414 @@
+{
+  "slug": "macbeth",
+  "selectionReason": "High-confidence play structure, selected as a cautious act/scene case after audit data indicated safe enough boundaries.",
+  "title": "Macbeth",
+  "author": [
+    "William Shakespeare"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Macbeth.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 52,
+    "startIndex": 1167,
+    "startSnippet": "Scene I. Inverness. Court within the Castle. Scene II. The same. Scene III. The same. Scene IV. The same. Without the Castle.",
+    "endLine": 4194,
+    "endIndex": 105335,
+    "endSnippet": "That calls upon us, by the grace of Grace, We will perform in measure, time, and place. So thanks to all at once, and to each one, Whom we invite to see us crown’d at Scone. [_Flourish. Exeunt._]"
+  },
+  "wordCounts": {
+    "raw": 22227,
+    "kept": 19029,
+    "removedFrontMatter": 196,
+    "removedEndMatter": 3002
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 79,
+      "characterCount": 405,
+      "estimatedListeningMinutes": 2,
+      "textPreview": "Scene I. Inverness. Court within the Castle. Scene II. The same. Scene III. The same. Scene IV. The same. Without the Castle. ACT III Scene I. Forres. A Room i..."
+    },
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Act 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 239,
+      "characterCount": 1451,
+      "estimatedListeningMinutes": 9,
+      "textPreview": "ACT IV Scene I. A dark Cave. In the middle, a Cauldron Boiling. Scene II. Fife. A Room in Macduff’s Castle. Scene III. England. Before the King’s Palace. ACT V..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Act 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4159,
+      "characterCount": 22899,
+      "estimatedListeningMinutes": 137,
+      "textPreview": "ACT I SCENE I. An open Place. Thunder and Lightning. Enter three Witches. FIRST WITCH. When shall we three meet again? In thunder, lightning, or in rain? SECON..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Act 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3015,
+      "characterCount": 16546,
+      "estimatedListeningMinutes": 100,
+      "textPreview": "ACT II SCENE I. Inverness. Court within the Castle. Enter Banquo and Fleance with a torch before him. BANQUO. How goes the night, boy? FLEANCE. The moon is dow..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Act 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4104,
+      "characterCount": 22107,
+      "estimatedListeningMinutes": 133,
+      "textPreview": "ACT III SCENE I. Forres. A Room in the Palace. Enter Banquo. BANQUO. Thou hast it now, King, Cawdor, Glamis, all, As the Weird Women promis’d; and, I fear, Tho..."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Act 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4118,
+      "characterCount": 22601,
+      "estimatedListeningMinutes": 137,
+      "textPreview": "ACT IV SCENE I. A dark Cave. In the middle, a Cauldron Boiling. Thunder. Enter the three Witches. FIRST WITCH. Thrice the brinded cat hath mew’d. SECOND WITCH...."
+    },
+    {
+      "id": "part-006",
+      "kind": "part",
+      "label": "Act 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3315,
+      "characterCount": 18129,
+      "estimatedListeningMinutes": 109,
+      "textPreview": "ACT V SCENE I. Dunsinane. A Room in the Castle. Enter a Doctor of Physic and a Waiting-Gentlewoman. DOCTOR. I have two nights watched with you, but can perceiv..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "play acts",
+    "selectedHeadingStrategy": {
+      "patternId": "act-prefixed",
+      "label": "Act heading",
+      "convention": "play acts",
+      "kind": "act",
+      "candidateCount": 8,
+      "tocLikeCount": 2,
+      "bodyLikeCount": 6,
+      "examples": [
+        "L7: ACT III",
+        "L16: ACT IV",
+        "L22: ACT V",
+        "L71: ACT I",
+        "L928: ACT II",
+        "L1612: ACT III"
+      ],
+      "bodyExamples": [
+        "L16: ACT IV",
+        "L71: ACT I",
+        "L928: ACT II",
+        "L1612: ACT III",
+        "L2469: ACT IV",
+        "L3396: ACT V"
+      ],
+      "tocExamples": [
+        "L7: ACT III",
+        "L22: ACT V"
+      ],
+      "score": 0.8552000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 6,
+        "minimumWords": 239,
+        "medianWords": 4104,
+        "maximumWords": 4159,
+        "averageWords": 3158,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "act-prefixed",
+        "label": "Act heading",
+        "convention": "play acts",
+        "kind": "act",
+        "candidateCount": 8,
+        "tocLikeCount": 2,
+        "bodyLikeCount": 6,
+        "examples": [
+          "L7: ACT III",
+          "L16: ACT IV",
+          "L22: ACT V",
+          "L71: ACT I",
+          "L928: ACT II",
+          "L1612: ACT III"
+        ],
+        "bodyExamples": [
+          "L16: ACT IV",
+          "L71: ACT I",
+          "L928: ACT II",
+          "L1612: ACT III",
+          "L2469: ACT IV",
+          "L3396: ACT V"
+        ],
+        "tocExamples": [
+          "L7: ACT III",
+          "L22: ACT V"
+        ],
+        "score": 0.8552000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 6,
+          "minimumWords": 239,
+          "medianWords": 4104,
+          "maximumWords": 4159,
+          "averageWords": 3158,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 651,
+        "tocLikeCount": 105,
+        "bodyLikeCount": 546,
+        "examples": [
+          "L57: LADY MACBETH.",
+          "L58: LADY MACDUFF.",
+          "L78: FIRST WITCH.",
+          "L82: SECOND WITCH.",
+          "L86: THIRD WITCH.",
+          "L89: FIRST WITCH."
+        ],
+        "bodyExamples": [
+          "L327: SECOND WITCH.",
+          "L330: THIRD WITCH.",
+          "L625: LADY MACBETH.",
+          "L761: DUNCAN.",
+          "L785: LADY MACBETH.",
+          "L804: MACBETH.",
+          "L838: LADY MACBETH.",
+          "L841: MACBETH."
+        ],
+        "tocExamples": [
+          "L57: LADY MACBETH.",
+          "L58: LADY MACDUFF.",
+          "L78: FIRST WITCH.",
+          "L82: SECOND WITCH.",
+          "L86: THIRD WITCH.",
+          "L89: FIRST WITCH.",
+          "L92: SECOND WITCH.",
+          "L95: THIRD WITCH."
+        ],
+        "score": 0.8310000000000001,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy act-prefixed",
+        "sectionSizeNotes": {
+          "sectionCount": 546,
+          "minimumWords": 2,
+          "medianWords": 15,
+          "maximumWords": 1439,
+          "averageWords": 32,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 501,
+          "notes": [
+            "many very small sections; headings may include TOC, captions, or fragments",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 104,
+        "tocLikeCount": 25,
+        "bodyLikeCount": 79,
+        "examples": [
+          "L33: Dramatis Personæ",
+          "L62: Lords, Gentlemen, Officers, Soldiers, Murderers, Attendants and",
+          "L99: I come, Graymalkin!",
+          "L111: [_Exeunt._]",
+          "L115: Alarum within. Enter King Duncan, Malcolm, Donalbain, Lennox, with",
+          "L156: Discomfort swells. Mark, King of Scotland, mark:"
+        ],
+        "bodyExamples": [
+          "L62: Lords, Gentlemen, Officers, Soldiers, Murderers, Attendants and",
+          "L925: [_Exeunt._]",
+          "L1005: [_Exeunt Banquo and Fleance._]",
+          "L1011: [_Exit Servant._]",
+          "L1049: [_Exit._]",
+          "L1085: When?",
+          "L1091: As I descended?",
+          "L1175: [_Exit. Knocking within._]"
+        ],
+        "tocExamples": [
+          "L33: Dramatis Personæ",
+          "L99: I come, Graymalkin!",
+          "L111: [_Exeunt._]",
+          "L115: Alarum within. Enter King Duncan, Malcolm, Donalbain, Lennox, with",
+          "L156: Discomfort swells. Mark, King of Scotland, mark:",
+          "L165: Our captains, Macbeth and Banquo?",
+          "L168: Yes;",
+          "L183: [_Exit Captain, attended._]"
+        ],
+        "score": 0.7010000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy act-prefixed",
+        "sectionSizeNotes": {
+          "sectionCount": 79,
+          "minimumWords": 1,
+          "medianWords": 127,
+          "maximumWords": 4198,
+          "averageWords": 237,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 30,
+          "notes": [
+            "many very small sections; headings may include TOC, captions, or fragments",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 651,
+        "bodyLikeCount": 546,
+        "tocLikeCount": 105,
+        "reason": "weaker than selected strategy act-prefixed"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 104,
+        "bodyLikeCount": 79,
+        "tocLikeCount": 25,
+        "reason": "weaker than selected strategy act-prefixed"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 6,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L16: ACT IV",
+      "L71: ACT I",
+      "L928: ACT II",
+      "L1612: ACT III",
+      "L2469: ACT IV",
+      "L3396: ACT V"
+    ],
+    "tocHeadingExamples": [
+      "L7: ACT III",
+      "L22: ACT V"
+    ],
+    "priorTwoSectionCollapseFixed": false
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 18445,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 807,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "’",
+          "’",
+          "’",
+          "’"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 135,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "part-001 Act 4",
+      "part-002 Act 1"
+    ],
+    "approximateWordCount": 4398,
+    "startsAtRealReadableContent": true,
+    "snippet": "ACT IV Scene I. A dark Cave. In the middle, a Cauldron Boiling. Scene II. Fife. A Room in Macduff’s Castle. Scene III. England. Before the King’s Palace. ACT V Scene I. Dunsinane. A Room in the Castle. Scene II. The Country near Dunsinane. Scene III. Dunsinane. A Room in the Castle. Scene IV. Country near Dunsinane: a Wood in view. Scene V. Dunsinane. Withi...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

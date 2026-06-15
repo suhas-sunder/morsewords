@@ -1,0 +1,711 @@
+{
+  "slug": "the-war-of-the-worlds",
+  "selectionReason": "High-confidence Roman-numbered sections with book divisions, selected to exercise nested structural reporting.",
+  "title": "The war of the worlds",
+  "author": [
+    "H. G. Wells"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The War of the Worlds.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 84,
+    "startIndex": 1892,
+    "startSnippet": "BOOK ONE THE COMING OF THE MARTIANS",
+    "endLine": 6396,
+    "endIndex": 338219,
+    "endSnippet": "the tumult of playing children, and to recall the time when I saw it all bright and clear-cut, hard and silent, under the dawn of that last great day. . . . And strangest of all is it to hold my wife’s hand again, and to think that I have counted her, and that she has counted me, among the dead."
+  },
+  "wordCounts": {
+    "raw": 63850,
+    "kept": 60517,
+    "removedFrontMatter": 327,
+    "removedEndMatter": 3006
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": "Book One",
+      "includeByDefault": true,
+      "wordCount": 2243,
+      "characterCount": 12721,
+      "estimatedListeningMinutes": 75,
+      "textPreview": "BOOK ONE THE COMING OF THE MARTIANS I. THE EVE OF THE WAR. No one would have believed in the last years of the nineteenth century that this world was being wat..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1350,
+      "characterCount": 7403,
+      "estimatedListeningMinutes": 44,
+      "textPreview": "II. THE FALLING STAR. Then came the night of the first falling star. It was seen early in the morning, rushing over Winchester eastward, a line of flame high i..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1018,
+      "characterCount": 5641,
+      "estimatedListeningMinutes": 33,
+      "textPreview": "III. ON HORSELL COMMON. I found a little crowd of perhaps twenty people surrounding the huge hole in which the cylinder lay. I have already described the appea..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1127,
+      "characterCount": 6308,
+      "estimatedListeningMinutes": 37,
+      "textPreview": "IV. THE CYLINDER OPENS. When I returned to the common the sun was setting. Scattered groups were hurrying from the direction of Woking, and one or two persons..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1483,
+      "characterCount": 8241,
+      "estimatedListeningMinutes": 49,
+      "textPreview": "V. THE HEAT-RAY. After the glimpse I had had of the Martians emerging from the cylinder in which they had come to the earth from their planet, a kind of fascin..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 836,
+      "characterCount": 4793,
+      "estimatedListeningMinutes": 28,
+      "textPreview": "VI. THE HEAT-RAY IN THE CHOBHAM ROAD. It is still a matter of wonder how the Martians are able to slay men so swiftly and so silently. Many think that in some..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1327,
+      "characterCount": 7271,
+      "estimatedListeningMinutes": 43,
+      "textPreview": "VII. HOW I REACHED HOME. For my own part, I remember nothing of my flight except the stress of blundering against trees and stumbling through the heather. All..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 980,
+      "characterCount": 5579,
+      "estimatedListeningMinutes": 33,
+      "textPreview": "VIII. FRIDAY NIGHT. The most extraordinary thing to my mind, of all the strange and wonderful things that happened upon that Friday, was the dovetailing of the..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2155,
+      "characterCount": 11421,
+      "estimatedListeningMinutes": 68,
+      "textPreview": "IX. THE FIGHTING BEGINS. Saturday lives in my memory as a day of suspense. It was a day of lassitude too, hot and close, with, I am told, a rapidly fluctuating..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2263,
+      "characterCount": 12173,
+      "estimatedListeningMinutes": 72,
+      "textPreview": "X. IN THE STORM. Leatherhead is about twelve miles from Maybury Hill. The scent of hay was in the air through the lush meadows beyond Pyrford, and the hedges o..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2034,
+      "characterCount": 10964,
+      "estimatedListeningMinutes": 65,
+      "textPreview": "XI. AT THE WINDOW. I have already said that my storms of emotion have a trick of exhausting themselves. After a time I discovered that I was cold and wet, and..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3867,
+      "characterCount": 21634,
+      "estimatedListeningMinutes": 128,
+      "textPreview": "XII. WHAT I SAW OF THE DESTRUCTION OF WEYBRIDGE AND SHEPPERTON. As the dawn grew brighter we withdrew from the window from which we had watched the Martians, a..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1783,
+      "characterCount": 10027,
+      "estimatedListeningMinutes": 60,
+      "textPreview": "XIII. HOW I FELL IN WITH THE CURATE. After getting this sudden lesson in the power of terrestrial weapons, the Martians retreated to their original position up..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3751,
+      "characterCount": 21945,
+      "estimatedListeningMinutes": 130,
+      "textPreview": "XIV. IN LONDON. My younger brother was in London when the Martians fell at Woking. He was a medical student working for an imminent examination, and he heard n..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2819,
+      "characterCount": 16089,
+      "estimatedListeningMinutes": 95,
+      "textPreview": "XV. WHAT HAD HAPPENED IN SURREY. It was while the curate had sat and talked so wildly to me under the hedge in the flat meadows near Halliford, and while my br..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4422,
+      "characterCount": 24579,
+      "estimatedListeningMinutes": 146,
+      "textPreview": "XVI. THE EXODUS FROM LONDON. So you understand the roaring wave of fear that swept through the greatest city in the world just as Monday was dawning—the stream..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3291,
+      "characterCount": 18886,
+      "estimatedListeningMinutes": 112,
+      "textPreview": "XVII. THE “THUNDER CHILD”. Had the Martians aimed only at destruction, they might on Monday have annihilated the entire population of London, as it spread itse..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": "Book Two",
+      "includeByDefault": true,
+      "wordCount": 2618,
+      "characterCount": 14352,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "BOOK TWO THE EARTH UNDER THE MARTIANS. I. UNDER FOOT. In the first book I have wandered so much from my own adventures to tell of the experiences of my brother..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3303,
+      "characterCount": 19282,
+      "estimatedListeningMinutes": 114,
+      "textPreview": "II. WHAT WE SAW FROM THE RUINED HOUSE. After eating we crept back to the scullery, and there I must have dozed again, for when presently I looked round I was a..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1944,
+      "characterCount": 10865,
+      "estimatedListeningMinutes": 64,
+      "textPreview": "III. THE DAYS OF IMPRISONMENT. The arrival of a second fighting-machine drove us from our peephole into the scullery, for we feared that from his elevation the..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1616,
+      "characterCount": 8731,
+      "estimatedListeningMinutes": 52,
+      "textPreview": "IV. THE DEATH OF THE CURATE. It was on the sixth day of our imprisonment that I peeped for the last time, and presently found myself alone. Instead of keeping..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 963,
+      "characterCount": 5264,
+      "estimatedListeningMinutes": 31,
+      "textPreview": "V. THE STILLNESS. My first act before I went into the pantry was to fasten the door between the kitchen and the scullery. But the pantry was empty; every scrap..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1253,
+      "characterCount": 6872,
+      "estimatedListeningMinutes": 41,
+      "textPreview": "VI. THE WORK OF FIFTEEN DAYS. For some time I stood tottering on the mound regardless of my safety. Within that noisome den from which I had emerged I had thou..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5735,
+      "characterCount": 30306,
+      "estimatedListeningMinutes": 181,
+      "textPreview": "VII. THE MAN ON PUTNEY HILL. I spent that night in the inn that stands at the top of Putney Hill, sleeping in a made bed for the first time since my flight to..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3110,
+      "characterCount": 17011,
+      "estimatedListeningMinutes": 101,
+      "textPreview": "VIII. DEAD LONDON. After I had parted from the artilleryman, I went down the hill, and by the High Street across the bridge to Fulham. The red weed was tumultu..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1846,
+      "characterCount": 10159,
+      "estimatedListeningMinutes": 60,
+      "textPreview": "IX. WRECKAGE. And now comes the strangest thing in my story. Yet, perhaps, it is not altogether strange. I remember, clearly and coldly and vividly, all that I..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1380,
+      "characterCount": 7676,
+      "estimatedListeningMinutes": 45,
+      "textPreview": "X. THE EPILOGUE. I cannot but regret, now that I am concluding my story, how little I am able to contribute to the discussion of the many debatable questions w..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "standalone roman numeral sections with book divisions",
+    "selectedHeadingStrategy": {
+      "patternId": "roman-only",
+      "label": "Standalone Roman numeral",
+      "convention": "standalone roman numeral sections",
+      "kind": "chapter",
+      "candidateCount": 27,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 27,
+      "examples": [
+        "L5: I.",
+        "L221: II.",
+        "L364: III.",
+        "L474: IV.",
+        "L598: V.",
+        "L755: VI."
+      ],
+      "bodyExamples": [
+        "L5: I.",
+        "L221: II.",
+        "L364: III.",
+        "L474: IV.",
+        "L598: V.",
+        "L755: VI.",
+        "L843: VII.",
+        "L1001: VIII."
+      ],
+      "tocExamples": [],
+      "score": 0.9430769230769231,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 27,
+        "minimumWords": 836,
+        "medianWords": 1944,
+        "maximumWords": 5735,
+        "averageWords": 2241,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "roman-only",
+        "label": "Standalone Roman numeral",
+        "convention": "standalone roman numeral sections",
+        "kind": "chapter",
+        "candidateCount": 27,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 27,
+        "examples": [
+          "L5: I.",
+          "L221: II.",
+          "L364: III.",
+          "L474: IV.",
+          "L598: V.",
+          "L755: VI."
+        ],
+        "bodyExamples": [
+          "L5: I.",
+          "L221: II.",
+          "L364: III.",
+          "L474: IV.",
+          "L598: V.",
+          "L755: VI.",
+          "L843: VII.",
+          "L1001: VIII."
+        ],
+        "tocExamples": [],
+        "score": 0.9430769230769231,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 27,
+          "minimumWords": 836,
+          "medianWords": 1944,
+          "maximumWords": 5735,
+          "averageWords": 2241,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 31,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 30,
+        "examples": [
+          "L2: THE COMING OF THE MARTIANS",
+          "L6: THE EVE OF THE WAR.",
+          "L222: THE FALLING STAR.",
+          "L365: ON HORSELL COMMON.",
+          "L420: “A MESSAGE RECEIVED FROM MARS.”",
+          "L423: “REMARKABLE STORY FROM WOKING,”"
+        ],
+        "bodyExamples": [
+          "L2: THE COMING OF THE MARTIANS",
+          "L222: THE FALLING STAR.",
+          "L365: ON HORSELL COMMON.",
+          "L420: “A MESSAGE RECEIVED FROM MARS.”",
+          "L423: “REMARKABLE STORY FROM WOKING,”",
+          "L475: THE CYLINDER OPENS.",
+          "L599: THE HEAT-RAY.",
+          "L756: THE HEAT-RAY IN THE CHOBHAM ROAD."
+        ],
+        "tocExamples": [
+          "L6: THE EVE OF THE WAR."
+        ],
+        "score": 0.901,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy roman-only",
+        "sectionSizeNotes": {
+          "sectionCount": 30,
+          "minimumWords": 5,
+          "medianWords": 1846,
+          "maximumWords": 5735,
+          "averageWords": 2017,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 2,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 14,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 14,
+        "examples": [
+          "L326: “Good Lord!” said Henderson. “Fallen meteorite! That’s good.”",
+          "L916: Mars?”",
+          "L1141: Ogilvy.”",
+          "L2301: Martians?”",
+          "L2342: “Hope!”",
+          "L2565: down Wellington Street. “Fighting at Weybridge! Full description!"
+        ],
+        "bodyExamples": [
+          "L326: “Good Lord!” said Henderson. “Fallen meteorite! That’s good.”",
+          "L916: Mars?”",
+          "L1141: Ogilvy.”",
+          "L2301: Martians?”",
+          "L2342: “Hope!”",
+          "L2565: down Wellington Street. “Fighting at Weybridge! Full description!",
+          "L2772: Commander-in-Chief:",
+          "L3406: “Way! Way! The Martians are coming!”"
+        ],
+        "tocExamples": [],
+        "score": 0.651,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy roman-only",
+        "sectionSizeNotes": {
+          "sectionCount": 14,
+          "minimumWords": 232,
+          "medianWords": 2019,
+          "maximumWords": 17042,
+          "averageWords": 4090,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "book-division",
+        "label": "Book division",
+        "convention": "book divisions",
+        "kind": "book",
+        "candidateCount": 2,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 2,
+        "examples": [
+          "L1: BOOK ONE",
+          "L3894: BOOK TWO"
+        ],
+        "bodyExamples": [
+          "L1: BOOK ONE",
+          "L3894: BOOK TWO"
+        ],
+        "tocExamples": [],
+        "score": 0.65,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy roman-only",
+        "sectionSizeNotes": {
+          "sectionCount": 2,
+          "minimumWords": 23768,
+          "medianWords": 36749,
+          "maximumWords": 36749,
+          "averageWords": 30259,
+          "hugeSectionCount": 2,
+          "tinySectionCount": 0,
+          "notes": [
+            "2 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "label": "Roman numbered titled heading",
+        "convention": "roman-numbered titled sections",
+        "kind": "chapter",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L522: did. But, looking, I presently saw something stirring within the"
+        ],
+        "bodyExamples": [
+          "L522: did. But, looking, I presently saw something stirring within the"
+        ],
+        "tocExamples": [],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy roman-only",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 55538,
+          "medianWords": 55538,
+          "maximumWords": 55538,
+          "averageWords": 55538,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 31,
+        "bodyLikeCount": 30,
+        "tocLikeCount": 1,
+        "reason": "weaker than selected strategy roman-only"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 14,
+        "bodyLikeCount": 14,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy roman-only"
+      },
+      {
+        "patternId": "book-division",
+        "convention": "book divisions",
+        "candidateCount": 2,
+        "bodyLikeCount": 2,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy roman-only"
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "convention": "roman-numbered titled sections",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy roman-only"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 27,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L5: I.",
+      "L221: II.",
+      "L364: III.",
+      "L474: IV.",
+      "L598: V.",
+      "L755: VI.",
+      "L843: VII.",
+      "L1001: VIII."
+    ],
+    "tocHeadingExamples": [
+      "L45: I. THE EVE OF THE WAR.",
+      "L46: II. THE FALLING STAR.",
+      "L47: III. ON HORSELL COMMON.",
+      "L48: IV. THE CYLINDER OPENS.",
+      "L49: V. THE HEAT-RAY.",
+      "L50: VI. THE HEAT-RAY IN THE CHOBHAM ROAD.",
+      "L51: VII. HOW I REACHED HOME.",
+      "L52: VIII. FRIDAY NIGHT."
+    ],
+    "priorTwoSectionCollapseFixed": false
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 60140,
+    "actions": [
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 1,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L5943: . . ."
+        ]
+      },
+      {
+        "action": "normalize-smart-quotes",
+        "count": 1224,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "’",
+          "“",
+          "”",
+          "’"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 309,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 2243,
+    "startsAtRealReadableContent": true,
+    "snippet": "BOOK ONE THE COMING OF THE MARTIANS I. THE EVE OF THE WAR. No one would have believed in the last years of the nineteenth century that this world was being watched keenly and closely by intelligences greater than man’s and yet as mortal as his own; that as men busied themselves about their various concerns they were scrutinised and studied, perhaps almost a...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

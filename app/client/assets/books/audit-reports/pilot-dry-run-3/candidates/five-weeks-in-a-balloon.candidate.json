@@ -1,0 +1,896 @@
+{
+  "slug": "five-weeks-in-a-balloon",
+  "selectionReason": "High-confidence chapter word-ordinal structure, selected to test a less common but regular heading convention.",
+  "title": "Five Weeks in a Balloon",
+  "author": [
+    "Jules Verne"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Five Weeks in a Balloon.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 39,
+    "startIndex": 945,
+    "startSnippet": "Journeys And Discoveries In Africa By Three Englishmen. Compiled In French By Jules Verne,",
+    "endLine": 12185,
+    "endIndex": 536571,
+    "endSnippet": "recent expeditions of Messrs. Speke and Grant, De Heuglin and Muntzinger, who have been ascending to the sources of the Nile, and penetrating to the centre of Africa, we shall be enabled ere long to verify, in turn, the discoveries of Dr. Ferguson in that vast region comprised between the fourteenth and thirty-third degrees of east longitude."
+  },
+  "wordCounts": {
+    "raw": 96843,
+    "kept": 93679,
+    "removedFrontMatter": 158,
+    "removedEndMatter": 3006
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 1847,
+      "characterCount": 11960,
+      "estimatedListeningMinutes": 74,
+      "textPreview": "Journeys And Discoveries In Africa By Three Englishmen. Compiled In French By Jules Verne, From The Original Notes Of Dr. Ferguson. And Done Into English By “W..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2280,
+      "characterCount": 13962,
+      "estimatedListeningMinutes": 84,
+      "textPreview": "CHAPTER FIRST. The End of a much-applauded Speech.—The Presentation of Dr. Samuel Ferguson.—Excelsior.—Full-length Portrait of the Doctor.—A Fatalist convinced..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1036,
+      "characterCount": 6271,
+      "estimatedListeningMinutes": 38,
+      "textPreview": "CHAPTER SECOND. The Article in the Daily Telegraph.—War between the Scientific Journals.—Mr. Petermann backs his Friend Dr. Ferguson.—Reply of the Savant Koner..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2389,
+      "characterCount": 13449,
+      "estimatedListeningMinutes": 81,
+      "textPreview": "CHAPTER THIRD. The Doctor’s Friend.—The Origin of their Friendship.—Dick Kennedy at London.—An unexpected but not very consoling Proposal.—A Proverb by no mean..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1619,
+      "characterCount": 9553,
+      "estimatedListeningMinutes": 57,
+      "textPreview": "CHAPTER FOURTH. African Explorations.—Barth, Richardson, Overweg, Werne, Brun-Rollet, Penney, Andrea, Debono, Miani, Guillaume Lejean, Bruce, Krapf and Rebmann..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1719,
+      "characterCount": 9901,
+      "estimatedListeningMinutes": 59,
+      "textPreview": "CHAPTER FIFTH. Kennedy’s Dreams.—Articles and Pronouns in the Plural.—Dick’s Insinuations.—A Promenade over the Map of Africa.—What is contained between two Po..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1574,
+      "characterCount": 8529,
+      "estimatedListeningMinutes": 52,
+      "textPreview": "CHAPTER SIXTH. A Servant—match him!—He can see the Satellites of Jupiter.—Dick and Joe hard at it.—Doubt and Faith.—The Weighing Ceremony.—Joe and Wellington.—..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1425,
+      "characterCount": 9145,
+      "estimatedListeningMinutes": 52,
+      "textPreview": "CHAPTER SEVENTH. Geometrical Details.—Calculation of the Capacity of the Balloon.—The Double Receptacle.—The Covering.—The Car.—The Mysterious Apparatus.—The P..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1971,
+      "characterCount": 11510,
+      "estimatedListeningMinutes": 69,
+      "textPreview": "CHAPTER EIGHTH. Joe’s Importance.—The Commander of the Resolute.—Kennedy’s Arsenal.—Mutual Amenities.—The Farewell Dinner.—Departure on the 21st of February.—T..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1525,
+      "characterCount": 8474,
+      "estimatedListeningMinutes": 51,
+      "textPreview": "CHAPTER NINTH. They double the Cape.—The Forecastle.—A Course of Cosmography by Professor Joe.—Concerning the Method of guiding Balloons.—How to seek out Atmos..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1557,
+      "characterCount": 8896,
+      "estimatedListeningMinutes": 53,
+      "textPreview": "CHAPTER TENTH. Former Experiments.—The Doctor’s Five Receptacles.—The Gas Cylinder.—The Calorifere.—The System of Manœuvring.—Success certain. “The attempt has..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1978,
+      "characterCount": 11516,
+      "estimatedListeningMinutes": 69,
+      "textPreview": "CHAPTER ELEVENTH. The Arrival at Zanzibar.—The English Consul.—Ill-will of the Inhabitants.—The Island of Koumbeni.—The Rain-Makers.—Inflation of the Balloon.—..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2570,
+      "characterCount": 14652,
+      "estimatedListeningMinutes": 87,
+      "textPreview": "CHAPTER TWELFTH. Crossing the Strait.—The Mrima.—Dick’s Remark and Joe’s Proposition.—A Recipe for Coffee-making.—The Uzaramo.—The Unfortunate Maizan.—Mount Du..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2051,
+      "characterCount": 11967,
+      "estimatedListeningMinutes": 72,
+      "textPreview": "CHAPTER THIRTEENTH. Change of Weather.—Kennedy has the Fever.—The Doctor’s Medicine.—Travels on Land.—The Basin of Imenge.—Mount Rubeho.—Six Thousand Feet Elev..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2665,
+      "characterCount": 14997,
+      "estimatedListeningMinutes": 90,
+      "textPreview": "CHAPTER FOURTEENTH. The Forest of Gum-Trees.—The Blue Antelope.—The Rallying-Signal.—An Unexpected Attack.—The Kanyemé.—A Night in the Open Air.—The Mabunguru...."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3383,
+      "characterCount": 19423,
+      "estimatedListeningMinutes": 117,
+      "textPreview": "CHAPTER FIFTEENTH. Kazeh.—The Noisy Market-place.—The Appearance of the Balloon.—The Wangaga.—The Sons of the Moon.—The Doctor’s Walk.—The Population of the Pl..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2835,
+      "characterCount": 16304,
+      "estimatedListeningMinutes": 98,
+      "textPreview": "CHAPTER SIXTEENTH. Symptoms of a Storm.—The Country of the Moon.—The Future of the African Continent.—The Last Machine of all.—A View of the Country at Sunset...."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2837,
+      "characterCount": 15868,
+      "estimatedListeningMinutes": 95,
+      "textPreview": "CHAPTER SEVENTEENTH. The Mountains of the Moon.—An Ocean of Verdure.—They cast Anchor.—The Towing Elephant.—A Running Fire.—Death of the Monster.—The Field-Ove..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3018,
+      "characterCount": 17333,
+      "estimatedListeningMinutes": 103,
+      "textPreview": "CHAPTER EIGHTEENTH. The Karagwah.—Lake Ukéréoué.—A Night on an Island.—The Equator.—Crossing the Lake.—The Cascades.—A View of the Country.—The Sources of the..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1662,
+      "characterCount": 9582,
+      "estimatedListeningMinutes": 57,
+      "textPreview": "CHAPTER NINETEENTH. The Nile.—The Trembling Mountain.—A Remembrance of the Country.—The Narratives of the Arabs.—The Nyam-Nyams.—Joe’s Shrewd Cogitations.—The..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1868,
+      "characterCount": 10660,
+      "estimatedListeningMinutes": 64,
+      "textPreview": "CHAPTER TWENTIETH. The Celestial Bottle.—The Fig-Palms.—The Mammoth Trees.—The Tree of War.—The Winged Team.—Two Native Tribes in Battle.—A Massacre.—An Interv..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": "FIRST",
+      "includeByDefault": true,
+      "wordCount": 2482,
+      "characterCount": 13879,
+      "estimatedListeningMinutes": 83,
+      "textPreview": "CHAPTER TWENTY-FIRST. Strange Sounds.—A Night Attack.—Kennedy and Joe in the Tree.—Two Shots.—“Help! help!”—Reply in French.—The Morning.—The Missionary.—The P..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": "SECOND",
+      "includeByDefault": true,
+      "wordCount": 2539,
+      "characterCount": 14655,
+      "estimatedListeningMinutes": 88,
+      "textPreview": "CHAPTER TWENTY-SECOND. The Jet of Light.—The Missionary.—The Rescue in a Ray of Electricity.—A Lazarist Priest.—But little Hope.—The Doctor’s Care.—A Life of S..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": "THIRD",
+      "includeByDefault": true,
+      "wordCount": 2408,
+      "characterCount": 13213,
+      "estimatedListeningMinutes": 79,
+      "textPreview": "CHAPTER TWENTY-THIRD. Joe in a Fit of Rage.—The Death of a Good Man.—The Night of watching by the Body.—Barrenness and Drought.—The Burial.—The Quartz Rocks.—J..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": "FOURTH",
+      "includeByDefault": true,
+      "wordCount": 2507,
+      "characterCount": 14026,
+      "estimatedListeningMinutes": 83,
+      "textPreview": "CHAPTER TWENTY-FOURTH. The Wind dies away.—The Vicinity of the Desert.—The Mistake in the Water-Supply.—The Nights of the Equator.—Dr. Ferguson’s Anxieties.—Th..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": "FIFTH",
+      "includeByDefault": true,
+      "wordCount": 1938,
+      "characterCount": 10873,
+      "estimatedListeningMinutes": 65,
+      "textPreview": "CHAPTER TWENTY-FIFTH. A Little Philosophy.—A Cloud on the Horizon.—In the Midst of a Fog.—The Strange Balloon.—An Exact View of the Victoria.—The Palm-Trees.—T..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": "SIXTH",
+      "includeByDefault": true,
+      "wordCount": 2126,
+      "characterCount": 11708,
+      "estimatedListeningMinutes": 70,
+      "textPreview": "CHAPTER TWENTY-SIXTH. One Hundred and Thirteen Degrees.—The Doctor’s Reflections.—A Desperate Search.—The Cylinder goes out.—One Hundred and Twenty-two Degrees..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": "SEVENTH",
+      "includeByDefault": true,
+      "wordCount": 1918,
+      "characterCount": 10951,
+      "estimatedListeningMinutes": 66,
+      "textPreview": "CHAPTER TWENTY-SEVENTH. Terrific Heat.—Hallucinations.—The Last Drops of Water.—Nights of Despair.—An Attempt at Suicide.—The Simoom.—The Oasis.—The Lion and L..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": "EIGHTH",
+      "includeByDefault": true,
+      "wordCount": 1960,
+      "characterCount": 11230,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "CHAPTER TWENTY-EIGHTH. An Evening of Delight.—Joe’s Culinary Performance.—A Dissertation on Raw Meat.—The Narrative of James Bruce.—Camping out.—Joe’s Dreams.—..."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": "NINTH",
+      "includeByDefault": true,
+      "wordCount": 2056,
+      "characterCount": 11805,
+      "estimatedListeningMinutes": 70,
+      "textPreview": "CHAPTER TWENTY-NINTH. Signs of Vegetation.—The Fantastic Notion of a French Author.—A Magnificent Country.—The Kingdom of Adamova.—The Explorations of Speke an..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2609,
+      "characterCount": 15053,
+      "estimatedListeningMinutes": 90,
+      "textPreview": "CHAPTER THIRTIETH. Mosfeia.—The Sheik.—Denham, Clapperton, and Oudney.—Vogel.—The Capital of Loggoum.—Toole.—Becalmed above Kernak.—The Governor and his Court...."
+    },
+    {
+      "id": "chapter-031",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": "FIRST",
+      "includeByDefault": true,
+      "wordCount": 1556,
+      "characterCount": 8544,
+      "estimatedListeningMinutes": 51,
+      "textPreview": "CHAPTER THIRTY-FIRST. Departure in the Night-time.—All Three.—Kennedy’s Instincts.—Precautions.—The Course of the Shari River.—Lake Tchad.—The Water of the Lak..."
+    },
+    {
+      "id": "chapter-032",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": "SECOND",
+      "includeByDefault": true,
+      "wordCount": 1758,
+      "characterCount": 10148,
+      "estimatedListeningMinutes": 61,
+      "textPreview": "CHAPTER THIRTY-SECOND. The Capital of Bornou.—The Islands of the Biddiomahs.—The Condors.—The Doctor’s Anxieties.—His Precautions.—An Attack in Mid-air.—The Ba..."
+    },
+    {
+      "id": "chapter-033",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": "THIRD",
+      "includeByDefault": true,
+      "wordCount": 2309,
+      "characterCount": 12968,
+      "estimatedListeningMinutes": 77,
+      "textPreview": "CHAPTER THIRTY-THIRD. Conjectures.—Reestablishment of the Victoria’s Equilibrium.—Dr. Ferguson’s New Calculations.—Kennedy’s Hunt.—A Complete Exploration of La..."
+    },
+    {
+      "id": "chapter-034",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": "FOURTH",
+      "includeByDefault": true,
+      "wordCount": 1645,
+      "characterCount": 9493,
+      "estimatedListeningMinutes": 57,
+      "textPreview": "CHAPTER THIRTY-FOURTH. The Hurricane.—A Forced Departure.—Loss of an Anchor.—Melancholy Reflections.—The Resolution adopted.—The Sand-Storm.—The Buried Caravan..."
+    },
+    {
+      "id": "chapter-035",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": "FIFTH",
+      "includeByDefault": true,
+      "wordCount": 3262,
+      "characterCount": 17959,
+      "estimatedListeningMinutes": 107,
+      "textPreview": "CHAPTER THIRTY-FIFTH. What happened to Joe.—The Island of the Biddiomahs.—The Adoration shown him.—The Island that sank.—The Shores of the Lake.—The Tree of th..."
+    },
+    {
+      "id": "chapter-036",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": "SIXTH",
+      "includeByDefault": true,
+      "wordCount": 1745,
+      "characterCount": 9676,
+      "estimatedListeningMinutes": 58,
+      "textPreview": "CHAPTER THIRTY-SIXTH. A Throng of People on the Horizon.—A Troop of Arabs.—The Pursuit.—It is He.—Fall from Horseback.—The Strangled Arab.—A Ball from Kennedy...."
+    },
+    {
+      "id": "chapter-037",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": "SEVENTH",
+      "includeByDefault": true,
+      "wordCount": 1987,
+      "characterCount": 10745,
+      "estimatedListeningMinutes": 64,
+      "textPreview": "CHAPTER THIRTY-SEVENTH. The Western Route.—Joe wakes up.—His Obstinacy.—End of Joe’s Narrative.—Tagelei.—Kennedy’s Anxieties.—The Route to the North.—A Night n..."
+    },
+    {
+      "id": "chapter-038",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": "EIGHTH",
+      "includeByDefault": true,
+      "wordCount": 2634,
+      "characterCount": 15094,
+      "estimatedListeningMinutes": 90,
+      "textPreview": "CHAPTER THIRTY-EIGHTH. A Rapid Passage.—Prudent Resolves.—Caravans in Sight.—Incessant Rains.—Goa.—The Niger.—Golberry, Geoffroy, and Gray.—Mungo Park.—Laing.—..."
+    },
+    {
+      "id": "chapter-039",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": "NINTH",
+      "includeByDefault": true,
+      "wordCount": 10431,
+      "characterCount": 59443,
+      "estimatedListeningMinutes": 356,
+      "textPreview": "CHAPTER THIRTY-NINTH. The Country in the Elbow of the Niger.—A Fantastic View of the Hombori Mountains.—Kabra.—Timbuctoo.—The Chart of Dr. Barth.—A Decaying Ci..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based word ordinals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-word",
+      "label": "Chapter plus word ordinal",
+      "convention": "chapter-based word ordinals",
+      "kind": "chapter",
+      "candidateCount": 78,
+      "tocLikeCount": 39,
+      "bodyLikeCount": 39,
+      "examples": [
+        "L19: CHAPTER FIRST.",
+        "L20: CHAPTER SECOND.",
+        "L21: CHAPTER THIRD.",
+        "L22: CHAPTER FOURTH.",
+        "L23: CHAPTER FIFTH.",
+        "L24: CHAPTER SIXTH."
+      ],
+      "bodyExamples": [
+        "L376: CHAPTER FIRST.",
+        "L649: CHAPTER SECOND.",
+        "L769: CHAPTER THIRD.",
+        "L1095: CHAPTER FOURTH.",
+        "L1280: CHAPTER FIFTH.",
+        "L1523: CHAPTER SIXTH.",
+        "L1738: CHAPTER SEVENTH.",
+        "L1917: CHAPTER EIGHTH."
+      ],
+      "tocExamples": [
+        "L19: CHAPTER FIRST.",
+        "L20: CHAPTER SECOND.",
+        "L21: CHAPTER THIRD.",
+        "L22: CHAPTER FOURTH.",
+        "L23: CHAPTER FIFTH.",
+        "L24: CHAPTER SIXTH.",
+        "L25: CHAPTER SEVENTH.",
+        "L26: CHAPTER EIGHTH."
+      ],
+      "score": 0.9100000000000001,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 39,
+        "minimumWords": 1036,
+        "medianWords": 2051,
+        "maximumWords": 10431,
+        "averageWords": 2355,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-word",
+        "label": "Chapter plus word ordinal",
+        "convention": "chapter-based word ordinals",
+        "kind": "chapter",
+        "candidateCount": 78,
+        "tocLikeCount": 39,
+        "bodyLikeCount": 39,
+        "examples": [
+          "L19: CHAPTER FIRST.",
+          "L20: CHAPTER SECOND.",
+          "L21: CHAPTER THIRD.",
+          "L22: CHAPTER FOURTH.",
+          "L23: CHAPTER FIFTH.",
+          "L24: CHAPTER SIXTH."
+        ],
+        "bodyExamples": [
+          "L376: CHAPTER FIRST.",
+          "L649: CHAPTER SECOND.",
+          "L769: CHAPTER THIRD.",
+          "L1095: CHAPTER FOURTH.",
+          "L1280: CHAPTER FIFTH.",
+          "L1523: CHAPTER SIXTH.",
+          "L1738: CHAPTER SEVENTH.",
+          "L1917: CHAPTER EIGHTH."
+        ],
+        "tocExamples": [
+          "L19: CHAPTER FIRST.",
+          "L20: CHAPTER SECOND.",
+          "L21: CHAPTER THIRD.",
+          "L22: CHAPTER FOURTH.",
+          "L23: CHAPTER FIFTH.",
+          "L24: CHAPTER SIXTH.",
+          "L25: CHAPTER SEVENTH.",
+          "L26: CHAPTER EIGHTH."
+        ],
+        "score": 0.9100000000000001,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 39,
+          "minimumWords": 1036,
+          "medianWords": 2051,
+          "maximumWords": 10431,
+          "averageWords": 2355,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 65,
+        "tocLikeCount": 8,
+        "bodyLikeCount": 57,
+        "examples": [
+          "L15: PUBLISHERS’ NOTE.",
+          "L16: DETAILED CONTENTS.",
+          "L18: FIVE WEEKS IN A BALLOON.",
+          "L58: CHAPTER FORTIETH.",
+          "L59: CHAPTER FORTY-FIRST.",
+          "L60: CHAPTER FORTY-SECOND."
+        ],
+        "bodyExamples": [
+          "L65: PUBLISHERS’ NOTE.",
+          "L84: DETAILED CONTENTS.",
+          "L87: CHAP. FIRST.",
+          "L94: CHAP. SECOND.",
+          "L100: CHAP. THIRD.",
+          "L107: CHAP. FOURTH.",
+          "L113: CHAP. FIFTH.",
+          "L120: CHAP. SIXTH."
+        ],
+        "tocExamples": [
+          "L15: PUBLISHERS’ NOTE.",
+          "L16: DETAILED CONTENTS.",
+          "L18: FIVE WEEKS IN A BALLOON.",
+          "L58: CHAPTER FORTIETH.",
+          "L59: CHAPTER FORTY-FIRST.",
+          "L60: CHAPTER FORTY-SECOND.",
+          "L61: CHAPTER FORTY-THIRD.",
+          "L62: CHAPTER FORTY-FOURTH."
+        ],
+        "score": 0.8310000000000001,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-word",
+        "sectionSizeNotes": {
+          "sectionCount": 57,
+          "minimumWords": 2,
+          "medianWords": 34,
+          "maximumWords": 44692,
+          "averageWords": 1641,
+          "hugeSectionCount": 2,
+          "tinySectionCount": 48,
+          "notes": [
+            "2 section(s) exceed 18000 words",
+            "many very small sections; headings may include TOC, captions, or fragments",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 271,
+        "tocLikeCount": 7,
+        "bodyLikeCount": 264,
+        "examples": [
+          "L3: Compiled In French",
+          "L5: By Jules Verne,",
+          "L9: And Done Into English By",
+          "L10: “William Lackland.”",
+          "L81: journeying “Twenty Thousand Leagues under the Seas.”",
+          "L89: The End of a much-applauded Speech.—The Presentation of Dr. Samuel"
+        ],
+        "bodyExamples": [
+          "L3: Compiled In French",
+          "L5: By Jules Verne,",
+          "L81: journeying “Twenty Thousand Leagues under the Seas.”",
+          "L89: The End of a much-applauded Speech.—The Presentation of Dr. Samuel",
+          "L90: Ferguson.—Excelsior.—Full-length Portrait of the Doctor.—A Fatalist",
+          "L92: Occasion",
+          "L96: The Article in the Daily Telegraph.—War between the Scientific",
+          "L97: Journals.—Mr. Petermann backs his Friend Dr. Ferguson.—Reply of the"
+        ],
+        "tocExamples": [
+          "L9: And Done Into English By",
+          "L10: “William Lackland.”",
+          "L1895: Kennedy 153 ”",
+          "L1896: Joe 120 ”",
+          "L1903: Water 400 ”",
+          "L1904: Apparatus 700 ”",
+          "L1906: Ballast 200 ”"
+        ],
+        "score": 0.631,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-word",
+        "sectionSizeNotes": {
+          "sectionCount": 264,
+          "minimumWords": 3,
+          "medianWords": 13,
+          "maximumWords": 3244,
+          "averageWords": 355,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 183,
+          "notes": [
+            "many very small sections; headings may include TOC, captions, or fragments",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "arabic-numbered-title",
+        "label": "Arabic numbered titled heading",
+        "convention": "arabic-numbered titled sections",
+        "kind": "section",
+        "candidateCount": 3,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 3,
+        "examples": [
+          "L1128: 1824. Richardson, Barth, and Overweg, jealously anxious to push their",
+          "L2097: 1804. The aëronaut, Gernerin, sent up a balloon at Paris, about eleven",
+          "L10607: 1828. He then joined a caravan, and, protected by his Oriental dress,"
+        ],
+        "bodyExamples": [
+          "L1128: 1824. Richardson, Barth, and Overweg, jealously anxious to push their",
+          "L2097: 1804. The aëronaut, Gernerin, sent up a balloon at Paris, about eleven",
+          "L10607: 1828. He then joined a caravan, and, protected by his Oriental dress,"
+        ],
+        "tocExamples": [],
+        "score": 0.47000000000000003,
+        "confidence": "low",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-word",
+        "sectionSizeNotes": {
+          "sectionCount": 3,
+          "minimumWords": 7645,
+          "medianWords": 10961,
+          "maximumWords": 67273,
+          "averageWords": 28626,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "special-front-back",
+        "label": "Preface, introduction, notes, or appendix",
+        "convention": "front/back matter headings",
+        "kind": "front-back-matter",
+        "candidateCount": 1,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 0,
+        "examples": [
+          "L13: CONTENTS"
+        ],
+        "bodyExamples": [],
+        "tocExamples": [
+          "L13: CONTENTS"
+        ],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "rejected as TOC-like or front-matter-only evidence",
+        "sectionSizeNotes": null
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 65,
+        "bodyLikeCount": 57,
+        "tocLikeCount": 8,
+        "reason": "weaker than selected strategy chapter-word"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 271,
+        "bodyLikeCount": 264,
+        "tocLikeCount": 7,
+        "reason": "weaker than selected strategy chapter-word"
+      },
+      {
+        "patternId": "arabic-numbered-title",
+        "convention": "arabic-numbered titled sections",
+        "candidateCount": 3,
+        "bodyLikeCount": 3,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-word"
+      },
+      {
+        "patternId": "special-front-back",
+        "convention": "front/back matter headings",
+        "candidateCount": 1,
+        "bodyLikeCount": 0,
+        "tocLikeCount": 1,
+        "reason": "rejected as TOC-like or front-matter-only evidence"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 39,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 39,
+    "bodyHeadingExamples": [
+      "L376: CHAPTER FIRST.",
+      "L649: CHAPTER SECOND.",
+      "L769: CHAPTER THIRD.",
+      "L1095: CHAPTER FOURTH.",
+      "L1280: CHAPTER FIFTH.",
+      "L1523: CHAPTER SIXTH.",
+      "L1738: CHAPTER SEVENTH.",
+      "L1917: CHAPTER EIGHTH."
+    ],
+    "tocHeadingExamples": [
+      "L19: CHAPTER FIRST.",
+      "L20: CHAPTER SECOND.",
+      "L21: CHAPTER THIRD.",
+      "L22: CHAPTER FOURTH.",
+      "L23: CHAPTER FIFTH.",
+      "L24: CHAPTER SIXTH.",
+      "L25: CHAPTER SEVENTH.",
+      "L26: CHAPTER EIGHTH."
+    ],
+    "priorTwoSectionCollapseFixed": true
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 92796,
+    "actions": [
+      {
+        "action": "remove-numbered-reference-markers",
+        "count": 8,
+        "recommendation": "Remove inline numeric reference markers from playback text; keep footnote prose only after manual review.",
+        "samples": [
+          "[1]",
+          "[1]",
+          "[2]",
+          "[2]",
+          "[3]",
+          "[3]",
+          "[4]",
+          "[4]"
+        ]
+      },
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 1,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L1907: —————"
+        ]
+      },
+      {
+        "action": "normalize-smart-quotes",
+        "count": 5215,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "“",
+          "”",
+          "’",
+          "’",
+          "“"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 998,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 2280,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER FIRST. The End of a much-applauded Speech.—The Presentation of Dr. Samuel Ferguson.—Excelsior.—Full-length Portrait of the Doctor.—A Fatalist convinced.—A Dinner at the Travellers’ Club.—Several Toasts for the Occasion. There was a large audience assembled on the 14th of January, 1862, at the session of the Royal Geographical Society, No. 3 Waterloo...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

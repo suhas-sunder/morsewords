@@ -1,0 +1,475 @@
+{
+  "slug": "the-life-and-adventures-of-robinson-crusoe",
+  "selectionReason": "High-confidence chapter-Roman structure with prefatory material to review conservatively without severe boundary ambiguity.",
+  "title": "The Life and Adventures of Robinson Crusoe",
+  "author": [
+    "Daniel Defoe"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The Life and Adventures of Robinson Crusoe.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 74,
+    "startIndex": 1755,
+    "startSnippet": "CHAPTER I. START IN LIFE I was born in the year 1632, in the city of York, of a good family, though not of that country, my father being a foreigner of Bremen, who settled first at Hull. He got a good estate by merchandise, and leaving",
+    "endLine": 10197,
+    "endIndex": 622406,
+    "endSnippet": "recovered the possession of their plantation, and still lived upon the island. All these things, with some very surprising incidents in some new adventures of my own, for ten years more, I shall give a farther account of in the Second Part of my Story."
+  },
+  "wordCounts": {
+    "raw": 124677,
+    "kept": 121380,
+    "removedFrontMatter": 289,
+    "removedEndMatter": 3008
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": "START IN LIFE",
+      "includeByDefault": true,
+      "wordCount": 5270,
+      "characterCount": 27305,
+      "estimatedListeningMinutes": 162,
+      "textPreview": "CHAPTER I. START IN LIFE I was born in the year 1632, in the city of York, of a good family, though not of that country, my father being a foreigner of Bremen,..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": "SLAVERY AND ESCAPE",
+      "includeByDefault": true,
+      "wordCount": 5210,
+      "characterCount": 26484,
+      "estimatedListeningMinutes": 157,
+      "textPreview": "CHAPTER II. SLAVERY AND ESCAPE That evil influence which carried me first away from my father’s house—which hurried me into the wild and indigested notion of r..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": "WRECKED ON A DESERT ISLAND",
+      "includeByDefault": true,
+      "wordCount": 7636,
+      "characterCount": 39284,
+      "estimatedListeningMinutes": 233,
+      "textPreview": "CHAPTER III. WRECKED ON A DESERT ISLAND After this stop, we made on to the southward continually for ten or twelve days, living very sparingly on our provision..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": "FIRST WEEKS ON THE ISLAND",
+      "includeByDefault": true,
+      "wordCount": 8920,
+      "characterCount": 44868,
+      "estimatedListeningMinutes": 266,
+      "textPreview": "CHAPTER IV. FIRST WEEKS ON THE ISLAND When I waked it was broad day, the weather clear, and the storm abated, so that the sea did not rage and swell as before...."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": "BUILDS A HOUSE—THE JOURNAL",
+      "includeByDefault": true,
+      "wordCount": 5454,
+      "characterCount": 27836,
+      "estimatedListeningMinutes": 166,
+      "textPreview": "CHAPTER V. BUILDS A HOUSE—THE JOURNAL September 30, 1659.—I, poor miserable Robinson Crusoe, being shipwrecked during a dreadful storm in the offing, came on s..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": "ILL AND CONSCIENCE-STRICKEN",
+      "includeByDefault": true,
+      "wordCount": 5678,
+      "characterCount": 29048,
+      "estimatedListeningMinutes": 173,
+      "textPreview": "CHAPTER VI. ILL AND CONSCIENCE-STRICKEN When I came down to the ship I found it strangely removed. The forecastle, which lay before buried in sand, was heaved..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": "AGRICULTURAL EXPERIENCE",
+      "includeByDefault": true,
+      "wordCount": 3918,
+      "characterCount": 20180,
+      "estimatedListeningMinutes": 120,
+      "textPreview": "CHAPTER VII. AGRICULTURAL EXPERIENCE I had now been in this unhappy island above ten months. All possibility of deliverance from this condition seemed to be en..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": "SURVEYS HIS POSITION",
+      "includeByDefault": true,
+      "wordCount": 4369,
+      "characterCount": 22073,
+      "estimatedListeningMinutes": 131,
+      "textPreview": "CHAPTER VIII. SURVEYS HIS POSITION I mentioned before that I had a great mind to see the whole island, and that I had travelled up the brook, and so on to wher..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": "A BOAT",
+      "includeByDefault": true,
+      "wordCount": 7004,
+      "characterCount": 34942,
+      "estimatedListeningMinutes": 206,
+      "textPreview": "CHAPTER IX. A BOAT But first I was to prepare more land, for I had now seed enough to sow above an acre of ground. Before I did this, I had a week’s work at le..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": "TAMES GOATS",
+      "includeByDefault": true,
+      "wordCount": 5005,
+      "characterCount": 24926,
+      "estimatedListeningMinutes": 147,
+      "textPreview": "CHAPTER X. TAMES GOATS I cannot say that after this, for five years, any extraordinary thing happened to me, but I lived on in the same course, in the same pos..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": "FINDS PRINT OF MAN’S FOOT ON THE SAND",
+      "includeByDefault": true,
+      "wordCount": 5577,
+      "characterCount": 28738,
+      "estimatedListeningMinutes": 170,
+      "textPreview": "CHAPTER XI. FINDS PRINT OF MAN’S FOOT ON THE SAND It would have made a Stoic smile to have seen me and my little family sit down to dinner. There was my majest..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": "A CAVE RETREAT",
+      "includeByDefault": true,
+      "wordCount": 7087,
+      "characterCount": 36779,
+      "estimatedListeningMinutes": 217,
+      "textPreview": "CHAPTER XII. A CAVE RETREAT While this was doing, I was not altogether careless of my other affairs; for I had a great concern upon me for my little herd of go..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": "WRECK OF A SPANISH SHIP",
+      "includeByDefault": true,
+      "wordCount": 5574,
+      "characterCount": 28391,
+      "estimatedListeningMinutes": 168,
+      "textPreview": "CHAPTER XIII. WRECK OF A SPANISH SHIP I was now in the twenty-third year of my residence in this island, and was so naturalised to the place and the manner of..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": "A DREAM REALISED",
+      "includeByDefault": true,
+      "wordCount": 6822,
+      "characterCount": 35208,
+      "estimatedListeningMinutes": 208,
+      "textPreview": "CHAPTER XIV. A DREAM REALISED Having now brought all my things on shore and secured them, I went back to my boat, and rowed or paddled her along the shore to h..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": "FRIDAY’S EDUCATION",
+      "includeByDefault": true,
+      "wordCount": 6223,
+      "characterCount": 31723,
+      "estimatedListeningMinutes": 188,
+      "textPreview": "CHAPTER XV. FRIDAY’S EDUCATION After I had been two or three days returned to my castle, I thought that, in order to bring Friday off from his horrid way of fe..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": "RESCUE OF PRISONERS FROM CANNIBALS",
+      "includeByDefault": true,
+      "wordCount": 7112,
+      "characterCount": 35693,
+      "estimatedListeningMinutes": 212,
+      "textPreview": "CHAPTER XVI. RESCUE OF PRISONERS FROM CANNIBALS Upon the whole, I was by this time so fixed upon my design of going over with him to the continent that I told..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": "VISIT OF MUTINEERS",
+      "includeByDefault": true,
+      "wordCount": 6395,
+      "characterCount": 33237,
+      "estimatedListeningMinutes": 197,
+      "textPreview": "CHAPTER XVII. VISIT OF MUTINEERS In a little time, however, no more canoes appearing, the fear of their coming wore off; and I began to take my former thoughts..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": "THE SHIP RECOVERED",
+      "includeByDefault": true,
+      "wordCount": 6928,
+      "characterCount": 35705,
+      "estimatedListeningMinutes": 211,
+      "textPreview": "CHAPTER XVIII. THE SHIP RECOVERED While we were thus preparing our designs, and had first, by main strength, heaved the boat upon the beach, so high that the t..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": "RETURN TO ENGLAND",
+      "includeByDefault": true,
+      "wordCount": 6104,
+      "characterCount": 31859,
+      "estimatedListeningMinutes": 189,
+      "textPreview": "CHAPTER XIX. RETURN TO ENGLAND Having done all this I left them the next day, and went on board the ship. We prepared immediately to sail, but did not weigh th..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": "FIGHT BETWEEN FRIDAY AND A BEAR",
+      "includeByDefault": true,
+      "wordCount": 5094,
+      "characterCount": 26272,
+      "estimatedListeningMinutes": 156,
+      "textPreview": "CHAPTER XX. FIGHT BETWEEN FRIDAY AND A BEAR But never was a fight managed so hardily, and in such a surprising manner as that which followed between Friday and..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 20,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 20,
+      "examples": [
+        "L1: CHAPTER I. START IN LIFE",
+        "L440: CHAPTER II. SLAVERY AND ESCAPE",
+        "L872: CHAPTER III. WRECKED ON A DESERT ISLAND",
+        "L1521: CHAPTER IV. FIRST WEEKS ON THE ISLAND",
+        "L2303: CHAPTER V. BUILDS A HOUSE—THE JOURNAL",
+        "L2795: CHAPTER VI. ILL AND CONSCIENCE-STRICKEN"
+      ],
+      "bodyExamples": [
+        "L1: CHAPTER I. START IN LIFE",
+        "L440: CHAPTER II. SLAVERY AND ESCAPE",
+        "L872: CHAPTER III. WRECKED ON A DESERT ISLAND",
+        "L1521: CHAPTER IV. FIRST WEEKS ON THE ISLAND",
+        "L2303: CHAPTER V. BUILDS A HOUSE—THE JOURNAL",
+        "L2795: CHAPTER VI. ILL AND CONSCIENCE-STRICKEN",
+        "L3279: CHAPTER VII. AGRICULTURAL EXPERIENCE",
+        "L3603: CHAPTER VIII. SURVEYS HIS POSITION"
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 20,
+        "minimumWords": 3918,
+        "medianWords": 6104,
+        "maximumWords": 8920,
+        "averageWords": 6069,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 20,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 20,
+        "examples": [
+          "L1: CHAPTER I. START IN LIFE",
+          "L440: CHAPTER II. SLAVERY AND ESCAPE",
+          "L872: CHAPTER III. WRECKED ON A DESERT ISLAND",
+          "L1521: CHAPTER IV. FIRST WEEKS ON THE ISLAND",
+          "L2303: CHAPTER V. BUILDS A HOUSE—THE JOURNAL",
+          "L2795: CHAPTER VI. ILL AND CONSCIENCE-STRICKEN"
+        ],
+        "bodyExamples": [
+          "L1: CHAPTER I. START IN LIFE",
+          "L440: CHAPTER II. SLAVERY AND ESCAPE",
+          "L872: CHAPTER III. WRECKED ON A DESERT ISLAND",
+          "L1521: CHAPTER IV. FIRST WEEKS ON THE ISLAND",
+          "L2303: CHAPTER V. BUILDS A HOUSE—THE JOURNAL",
+          "L2795: CHAPTER VI. ILL AND CONSCIENCE-STRICKEN",
+          "L3279: CHAPTER VII. AGRICULTURAL EXPERIENCE",
+          "L3603: CHAPTER VIII. SURVEYS HIS POSITION"
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 20,
+          "minimumWords": 3918,
+          "medianWords": 6104,
+          "maximumWords": 8920,
+          "averageWords": 6069,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 4,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 4,
+        "examples": [
+          "L2306: September 30, 1659.—I, poor miserable Robinson Crusoe, being",
+          "L4764: Robin Crusoe: poor Robin Crusoe! Where are you, Robin Crusoe? Where are",
+          "L8819: of them, “Tom Smith! Tom Smith!” Tom Smith answered immediately, “Is",
+          "L8831: Will Atkins.”"
+        ],
+        "bodyExamples": [
+          "L2306: September 30, 1659.—I, poor miserable Robinson Crusoe, being",
+          "L4764: Robin Crusoe: poor Robin Crusoe! Where are you, Robin Crusoe? Where are",
+          "L8819: of them, “Tom Smith! Tom Smith!” Tom Smith answered immediately, “Is",
+          "L8831: Will Atkins.”"
+        ],
+        "tocExamples": [],
+        "score": 0.5009999999999999,
+        "confidence": "low",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 4,
+          "minimumWords": 159,
+          "medianWords": 29106,
+          "maximumWords": 50082,
+          "averageWords": 23584,
+          "hugeSectionCount": 2,
+          "tinySectionCount": 0,
+          "notes": [
+            "2 section(s) exceed 18000 words"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 4,
+        "bodyLikeCount": 4,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 20,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 20,
+    "bodyHeadingExamples": [
+      "L1: CHAPTER I. START IN LIFE",
+      "L440: CHAPTER II. SLAVERY AND ESCAPE",
+      "L872: CHAPTER III. WRECKED ON A DESERT ISLAND",
+      "L1521: CHAPTER IV. FIRST WEEKS ON THE ISLAND",
+      "L2303: CHAPTER V. BUILDS A HOUSE—THE JOURNAL",
+      "L2795: CHAPTER VI. ILL AND CONSCIENCE-STRICKEN",
+      "L3279: CHAPTER VII. AGRICULTURAL EXPERIENCE",
+      "L3603: CHAPTER VIII. SURVEYS HIS POSITION"
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": true
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 121181,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 859,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "’",
+          "’",
+          "’",
+          "“"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 333,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 5270,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER I. START IN LIFE I was born in the year 1632, in the city of York, of a good family, though not of that country, my father being a foreigner of Bremen, who settled first at Hull. He got a good estate by merchandise, and leaving off his trade, lived afterwards at York, from whence he had married my mother, whose relations were named Robinson, a very...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

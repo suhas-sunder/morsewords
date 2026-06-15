@@ -1,0 +1,748 @@
+{
+  "slug": "the-adventures-of-tom-sawyer",
+  "selectionReason": "High-confidence chapter-Roman structure with regular chapters and low severe-artifact risk.",
+  "title": "The Adventures of Tom Sawyer, Complete",
+  "author": [
+    "Mark Twain"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The Adventures of Tom Sawyer.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 491,
+    "startIndex": 7555,
+    "startSnippet": "CHAPTER I “Tom!” No answer.",
+    "endLine": 8915,
+    "endIndex": 393599,
+    "endSnippet": "Most of the characters that perform in this book still live, and are prosperous and happy. Some day it may seem worth while to take up the story of the younger ones again and see what sort of men and women they turned out to be; therefore it will be wisest not to reveal any of that part of their lives at present."
+  },
+  "wordCounts": {
+    "raw": 77052,
+    "kept": 72807,
+    "removedFrontMatter": 1238,
+    "removedEndMatter": 3007
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2525,
+      "characterCount": 12877,
+      "estimatedListeningMinutes": 78,
+      "textPreview": "CHAPTER I “Tom!” No answer. “TOM!” No answer. “What’s gone with that boy, I wonder? You TOM!” No answer. The old lady pulled her spectacles down and looked ove..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1961,
+      "characterCount": 10478,
+      "estimatedListeningMinutes": 63,
+      "textPreview": "CHAPTER II Saturday morning was come, and all the summer world was bright and fresh, and brimming with life. There was a song in every heart; and if the heart..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2290,
+      "characterCount": 12265,
+      "estimatedListeningMinutes": 73,
+      "textPreview": "CHAPTER III Tom presented himself before Aunt Polly, who was sitting by an open window in a pleasant rearward apartment, which was bedroom, breakfast-room, din..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3516,
+      "characterCount": 19030,
+      "estimatedListeningMinutes": 114,
+      "textPreview": "CHAPTER IV The sun rose upon a tranquil world, and beamed down upon the peaceful village like a benediction. Breakfast over, Aunt Polly had family worship: it..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1935,
+      "characterCount": 10669,
+      "estimatedListeningMinutes": 63,
+      "textPreview": "CHAPTER V About half-past ten the cracked bell of the small church began to ring, and presently the people began to gather for the morning sermon. The Sunday-s..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3666,
+      "characterCount": 19176,
+      "estimatedListeningMinutes": 116,
+      "textPreview": "CHAPTER VI Monday morning found Tom Sawyer miserable. Monday morning always found him so—because it began another week’s slow suffering in school. He generally..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2003,
+      "characterCount": 10082,
+      "estimatedListeningMinutes": 60,
+      "textPreview": "CHAPTER VII The harder Tom tried to fasten his mind on his book, the more his ideas wandered. So at last, with a sigh and a yawn, he gave it up. It seemed to h..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1775,
+      "characterCount": 9768,
+      "estimatedListeningMinutes": 59,
+      "textPreview": "CHAPTER VIII Tom dodged hither and thither through lanes until he was well out of the track of returning scholars, and then fell into a moody jog. He crossed a..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2241,
+      "characterCount": 11751,
+      "estimatedListeningMinutes": 71,
+      "textPreview": "CHAPTER IX At half-past nine, that night, Tom and Sid were sent to bed, as usual. They said their prayers, and Sid was soon asleep. Tom lay awake and waited, i..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2135,
+      "characterCount": 11293,
+      "estimatedListeningMinutes": 68,
+      "textPreview": "CHAPTER X The two boys flew on and on, toward the village, speechless with horror. They glanced backward over their shoulders from time to time, apprehensively..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1522,
+      "characterCount": 8293,
+      "estimatedListeningMinutes": 50,
+      "textPreview": "CHAPTER XI Close upon the hour of noon the whole village was suddenly electrified with the ghastly news. No need of the as yet un-dreamed-of telegraph; the tal..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1719,
+      "characterCount": 9250,
+      "estimatedListeningMinutes": 55,
+      "textPreview": "CHAPTER XII One of the reasons why Tom’s mind had drifted away from its secret troubles was, that it had found a new and weighty matter to interest itself abou..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2520,
+      "characterCount": 13599,
+      "estimatedListeningMinutes": 82,
+      "textPreview": "CHAPTER XIII Tom’s mind was made up now. He was gloomy and desperate. He was a forsaken, friendless boy, he said; nobody loved him; when they found out what th..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2105,
+      "characterCount": 11602,
+      "estimatedListeningMinutes": 69,
+      "textPreview": "CHAPTER XIV When Tom awoke in the morning, he wondered where he was. He sat up and rubbed his eyes and looked around. Then he comprehended. It was the cool gra..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1724,
+      "characterCount": 9169,
+      "estimatedListeningMinutes": 55,
+      "textPreview": "CHAPTER XV A few minutes later Tom was in the shoal water of the bar, wading toward the Illinois shore. Before the depth reached his middle he was halfway over..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3272,
+      "characterCount": 17615,
+      "estimatedListeningMinutes": 106,
+      "textPreview": "CHAPTER XVI After dinner all the gang turned out to hunt for turtle eggs on the bar. They went about poking sticks into the sand, and when they found a soft pl..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1149,
+      "characterCount": 6453,
+      "estimatedListeningMinutes": 38,
+      "textPreview": "CHAPTER XVII But there was no hilarity in the little town that same tranquil Saturday afternoon. The Harpers, and Aunt Polly’s family, were being put into mour..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3009,
+      "characterCount": 15528,
+      "estimatedListeningMinutes": 94,
+      "textPreview": "CHAPTER XVIII That was Tom’s great secret—the scheme to return home with his brother pirates and attend their own funerals. They had paddled over to the Missou..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 832,
+      "characterCount": 3971,
+      "estimatedListeningMinutes": 24,
+      "textPreview": "CHAPTER XIX Tom arrived at home in a dreary mood, and the first thing his aunt said to him showed him that he had brought his sorrows to an unpromising market:..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1734,
+      "characterCount": 9199,
+      "estimatedListeningMinutes": 55,
+      "textPreview": "CHAPTER XX There was something about Aunt Polly’s manner, when she kissed Tom, that swept away his low spirits and made him lighthearted and happy again. He st..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2183,
+      "characterCount": 12699,
+      "estimatedListeningMinutes": 75,
+      "textPreview": "CHAPTER XXI Vacation was approaching. The schoolmaster, always severe, grew severer and more exacting than ever, for he wanted the school to make a good showin..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1027,
+      "characterCount": 5616,
+      "estimatedListeningMinutes": 33,
+      "textPreview": "CHAPTER XXII Tom joined the new order of Cadets of Temperance, being attracted by the showy character of their “regalia.” He promised to abstain from smoking,..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2023,
+      "characterCount": 10905,
+      "estimatedListeningMinutes": 65,
+      "textPreview": "CHAPTER XXIII At last the sleepy atmosphere was stirred—and vigorously: the murder trial came on in the court. It became the absorbing topic of village talk im..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 24",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 419,
+      "characterCount": 2263,
+      "estimatedListeningMinutes": 13,
+      "textPreview": "CHAPTER XXIV Tom was a glittering hero once more—the pet of the old, the envy of the young. His name even went into immortal print, for the village paper magni..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 25",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2236,
+      "characterCount": 11252,
+      "estimatedListeningMinutes": 68,
+      "textPreview": "CHAPTER XXV There comes a time in every rightly-constructed boy’s life when he has a raging desire to go somewhere and dig for hidden treasure. This desire sud..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 26",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2723,
+      "characterCount": 14468,
+      "estimatedListeningMinutes": 87,
+      "textPreview": "CHAPTER XXVI About noon the next day the boys arrived at the dead tree; they had come for their tools. Tom was impatient to go to the haunted house; Huck was m..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Chapter 27",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1028,
+      "characterCount": 5090,
+      "estimatedListeningMinutes": 31,
+      "textPreview": "CHAPTER XXVII The adventure of the day mightily tormented Tom’s dreams that night. Four times he had his hands on that rich treasure and four times it wasted t..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "Chapter 28",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1149,
+      "characterCount": 5796,
+      "estimatedListeningMinutes": 35,
+      "textPreview": "CHAPTER XXVIII That night Tom and Huck were ready for their adventure. They hung about the neighborhood of the tavern until after nine, one watching the alley..."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "Chapter 29",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2677,
+      "characterCount": 14145,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "CHAPTER XXIX The first thing Tom heard on Friday morning was a glad piece of news—Judge Thatcher’s family had come back to town the night before. Both Injun Jo..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3154,
+      "characterCount": 16602,
+      "estimatedListeningMinutes": 100,
+      "textPreview": "CHAPTER XXX As the earliest suspicion of dawn appeared on Sunday morning, Huck came groping up the hill and rapped gently at the old Welshman’s door. The inmat..."
+    },
+    {
+      "id": "chapter-031",
+      "kind": "chapter",
+      "label": "Chapter 31",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3076,
+      "characterCount": 16379,
+      "estimatedListeningMinutes": 98,
+      "textPreview": "CHAPTER XXXI Now to return to Tom and Becky’s share in the picnic. They tripped along the murky aisles with the rest of the company, visiting the familiar wond..."
+    },
+    {
+      "id": "chapter-032",
+      "kind": "chapter",
+      "label": "Chapter 32",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1046,
+      "characterCount": 5605,
+      "estimatedListeningMinutes": 33,
+      "textPreview": "CHAPTER XXXII Tuesday afternoon came, and waned to the twilight. The village of St. Petersburg still mourned. The lost children had not been found. Public pray..."
+    },
+    {
+      "id": "chapter-033",
+      "kind": "chapter",
+      "label": "Chapter 33",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3493,
+      "characterCount": 18116,
+      "estimatedListeningMinutes": 109,
+      "textPreview": "CHAPTER XXXIII Within a few minutes the news had spread, and a dozen skiff-loads of men were on their way to McDougal’s cave, and the ferryboat, well filled wi..."
+    },
+    {
+      "id": "chapter-034",
+      "kind": "chapter",
+      "label": "Chapter 34",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 922,
+      "characterCount": 4775,
+      "estimatedListeningMinutes": 29,
+      "textPreview": "CHAPTER XXXIV Huck said: “Tom, we can slope, if we can find a rope. The window ain’t high from the ground.” “Shucks! what do you want to slope for?” “Well, I a..."
+    },
+    {
+      "id": "chapter-035",
+      "kind": "chapter",
+      "label": "Chapter 35",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2018,
+      "characterCount": 10095,
+      "estimatedListeningMinutes": 61,
+      "textPreview": "CHAPTER XXXV The reader may rest satisfied that Tom’s and Huck’s windfall made a mighty stir in the poor little village of St. Petersburg. So vast a sum, all i..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 35,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 35,
+      "examples": [
+        "L1: CHAPTER I",
+        "L355: CHAPTER II",
+        "L576: CHAPTER III",
+        "L794: CHAPTER IV",
+        "L1158: CHAPTER V",
+        "L1332: CHAPTER VI"
+      ],
+      "bodyExamples": [
+        "L1: CHAPTER I",
+        "L355: CHAPTER II",
+        "L576: CHAPTER III",
+        "L794: CHAPTER IV",
+        "L1158: CHAPTER V",
+        "L1332: CHAPTER VI",
+        "L1841: CHAPTER VII",
+        "L2103: CHAPTER VIII"
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 35,
+        "minimumWords": 419,
+        "medianWords": 2023,
+        "maximumWords": 3666,
+        "averageWords": 2080,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 35,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 35,
+        "examples": [
+          "L1: CHAPTER I",
+          "L355: CHAPTER II",
+          "L576: CHAPTER III",
+          "L794: CHAPTER IV",
+          "L1158: CHAPTER V",
+          "L1332: CHAPTER VI"
+        ],
+        "bodyExamples": [
+          "L1: CHAPTER I",
+          "L355: CHAPTER II",
+          "L576: CHAPTER III",
+          "L794: CHAPTER IV",
+          "L1158: CHAPTER V",
+          "L1332: CHAPTER VI",
+          "L1841: CHAPTER VII",
+          "L2103: CHAPTER VIII"
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 35,
+          "minimumWords": 419,
+          "medianWords": 2023,
+          "maximumWords": 3666,
+          "averageWords": 2080,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 85,
+        "tocLikeCount": 2,
+        "bodyLikeCount": 83,
+        "examples": [
+          "L4: “Tom!”",
+          "L36: “Y-o-u-u TOM!”",
+          "L44: “Nothing.”",
+          "L145: But Sidney said:",
+          "L208: “Yes I can.”",
+          "L216: “Can!”"
+        ],
+        "bodyExamples": [
+          "L4: “Tom!”",
+          "L36: “Y-o-u-u TOM!”",
+          "L44: “Nothing.”",
+          "L145: But Sidney said:",
+          "L261: “Well I _will_.”",
+          "L492: Sawyer.”",
+          "L816: “Poor”—",
+          "L824: “_Theirs_—”"
+        ],
+        "tocExamples": [
+          "L208: “Yes I can.”",
+          "L216: “Can!”"
+        ],
+        "score": 0.7010000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 83,
+          "minimumWords": 1,
+          "medianWords": 344,
+          "maximumWords": 7199,
+          "averageWords": 877,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 27,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 6,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 6,
+        "examples": [
+          "L8: “TOM!”",
+          "L833: “S, H, A—”",
+          "L2383: “I—”",
+          "L5107: “A MISSOURI MAIDEN’S FAREWELL TO ALABAMA",
+          "L5134: A VISION",
+          "L8345: CONCLUSION"
+        ],
+        "bodyExamples": [
+          "L8: “TOM!”",
+          "L833: “S, H, A—”",
+          "L2383: “I—”",
+          "L5107: “A MISSOURI MAIDEN’S FAREWELL TO ALABAMA",
+          "L5134: A VISION",
+          "L8345: CONCLUSION"
+        ],
+        "tocExamples": [],
+        "score": 0.701,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 6,
+          "minimumWords": 126,
+          "medianWords": 13401,
+          "maximumWords": 27535,
+          "averageWords": 12134,
+          "hugeSectionCount": 2,
+          "tinySectionCount": 0,
+          "notes": [
+            "2 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "label": "Roman numbered titled heading",
+        "convention": "roman-numbered titled sections",
+        "kind": "chapter",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L2537: did. It was all on account of the whiskey and the excitement, I reckon."
+        ],
+        "bodyExamples": [
+          "L2537: did. It was all on account of the whiskey and the excitement, I reckon."
+        ],
+        "tocExamples": [],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 51173,
+          "medianWords": 51173,
+          "maximumWords": 51173,
+          "averageWords": 51173,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 85,
+        "bodyLikeCount": 83,
+        "tocLikeCount": 2,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 6,
+        "bodyLikeCount": 6,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "convention": "roman-numbered titled sections",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 35,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 35,
+    "bodyHeadingExamples": [
+      "L1: CHAPTER I",
+      "L355: CHAPTER II",
+      "L576: CHAPTER III",
+      "L794: CHAPTER IV",
+      "L1158: CHAPTER V",
+      "L1332: CHAPTER VI",
+      "L1841: CHAPTER VII",
+      "L2103: CHAPTER VIII"
+    ],
+    "tocHeadingExamples": [
+      "L40: CHAPTER I. Y-o-u-u Tom—Aunt Polly Decides Upon her Duty—Tom Practices",
+      "L43: CHAPTER II. Strong Temptations—Strategic Movements—The Innocents",
+      "L46: CHAPTER III. Tom as a General—Triumph and Reward—Dismal",
+      "L49: CHAPTER IV. Mental Acrobatics—Attending Sunday—School—The",
+      "L52: CHAPTER V. A Useful Minister—In Church—The Climax",
+      "L54: CHAPTER VI. Self-Examination—Dentistry—The Midnight Charm—Witches and",
+      "L57: CHAPTER VII. A Treaty Entered Into—Early Lessons—A Mistake Made",
+      "L59: CHAPTER VIII. Tom Decides on his Course—Old Scenes Re-enacted"
+    ],
+    "priorTwoSectionCollapseFixed": true
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 70651,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 5467,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "“",
+          "”",
+          "“",
+          "”",
+          "“"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 846,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 2525,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER I “Tom!” No answer. “TOM!” No answer. “What’s gone with that boy, I wonder? You TOM!” No answer. The old lady pulled her spectacles down and looked over them about the room; then she put them up and looked out under them. She seldom or never looked _through_ them for so small a thing as a boy; they were her state pair, the pride of her heart, and we...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

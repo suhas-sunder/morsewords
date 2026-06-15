@@ -1,0 +1,643 @@
+{
+  "slug": "the-maltese-falcon",
+  "selectionReason": "High-confidence standalone Arabic-numbered sections with clear body divisions and no blocked-source signal.",
+  "title": "The Maltese falcon",
+  "author": [
+    "Dashiell Hammett"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The Maltese falcon.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 33,
+    "startIndex": 942,
+    "startSnippet": "* * * * * [Cover Illustration]",
+    "endLine": 8842,
+    "endIndex": 374000,
+    "endSnippet": "Misspelled words and printer errors have been corrected. Where multiple spellings occur, majority use has been employed. Punctuation has been maintained except where obvious printer errors occur."
+  },
+  "wordCounts": {
+    "raw": 72883,
+    "kept": 69724,
+    "removedFrontMatter": 155,
+    "removedEndMatter": 3004
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 63,
+      "characterCount": 765,
+      "estimatedListeningMinutes": 2,
+      "textPreview": "* * * * * [Cover Illustration] THE MALTESE FALCON DASHIELL HAMMETT ALFRED · A · KNOPF NEW YORK COPYRIGHT 1930 BY DASHIELL HAMMETT COPYRIGHT RENEWED 1957 BY DAS..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Section 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2474,
+      "characterCount": 13190,
+      "estimatedListeningMinutes": 79,
+      "textPreview": "1 SPADE & ARCHER SAMUEL SPADE’S jaw was long and bony, his chin a jutting v under the more flexible v of his mouth. His nostrils curved back to make another, s..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Section 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3998,
+      "characterCount": 21778,
+      "estimatedListeningMinutes": 130,
+      "textPreview": "2 DEATH IN THE FOG A TELEPHONE-BELL rang in darkness. When it had rung three times bed-springs creaked, fingers fumbled on wood, something small and hard thudd..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Section 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2360,
+      "characterCount": 12642,
+      "estimatedListeningMinutes": 75,
+      "textPreview": "3 THREE WOMEN WHEN Spade reached his office at ten o’clock the following morning Effie Perine was at her desk opening the morning’s mail. Her boyish face was p..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Section 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4175,
+      "characterCount": 21983,
+      "estimatedListeningMinutes": 132,
+      "textPreview": "4 THE BLACK BIRD MISS WONDERLY, in a belted green crêpe silk dress, opened the door of apartment 1001 at the Coronet. Her face was flushed. Her dark red hair,..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Section 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2092,
+      "characterCount": 11681,
+      "estimatedListeningMinutes": 70,
+      "textPreview": "5 THE LEVANTINE SPADE did not look at the pistol. He raised his arms and, leaning back in his chair, intertwined the fingers of his two hands behind his head...."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Section 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2793,
+      "characterCount": 14936,
+      "estimatedListeningMinutes": 89,
+      "textPreview": "6 THE UNDERSIZED SHADOW FOR half an hour after Joel Cairo had gone Spade sat alone, still and frowning, at his desk. Then he said aloud in the tone of one dism..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Section 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3926,
+      "characterCount": 21166,
+      "estimatedListeningMinutes": 127,
+      "textPreview": "7 G IN THE AIR IN HIS bedroom that was a living-room now the wall-bed was up, Spade took Brigid O’Shaughnessy’s hat and coat, made her comfortable in a padded..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Section 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2712,
+      "characterCount": 14478,
+      "estimatedListeningMinutes": 87,
+      "textPreview": "8 HORSE FEATHERS BRIGID O’SHAUGHNESSY was huddled in the armchair by the table. Her forearms were up over her cheeks, her knees drawn up until they hid the low..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Section 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2413,
+      "characterCount": 12744,
+      "estimatedListeningMinutes": 76,
+      "textPreview": "9 BRIGID SPADE returned to the living-room and sat on an end of the sofa, elbows on knees, cheeks in hands, looking at the floor and not at Brigid O’Shaughness..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Section 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3414,
+      "characterCount": 18501,
+      "estimatedListeningMinutes": 110,
+      "textPreview": "10 THE BELVEDERE DIVAN BEGINNING day had reduced night to a thin smokiness when Spade sat up. At his side Brigid O’Shaughnessy’s soft breathing had the regular..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Section 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3571,
+      "characterCount": 18562,
+      "estimatedListeningMinutes": 112,
+      "textPreview": "11 THE FAT MAN THE telephone-bell was ringing when Spade returned to his office after sending Brigid O’Shaughnessy off to Effie Perine’s house. He went to the..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Section 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2976,
+      "characterCount": 15879,
+      "estimatedListeningMinutes": 94,
+      "textPreview": "12 MERRY-GO-ROUND SPADE rode down from Gutman’s floor in an elevator. His lips were dry and rough in a face otherwise pale and damp. When he took out his handk..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Section 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3086,
+      "characterCount": 16426,
+      "estimatedListeningMinutes": 99,
+      "textPreview": "13 THE EMPEROR’S GIFT GUTMAN opened the door. A glad smile lighted his fat face. He held out a hand and said: “Ah, come in, sir! Thank you for coming. Come in...."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Section 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2793,
+      "characterCount": 15180,
+      "estimatedListeningMinutes": 90,
+      "textPreview": "14 LA PALOMA SPADE, coming around the corner from the elevator at a few minutes past six in the morning, saw yellow light glowing through the frosted glass of..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Section 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3361,
+      "characterCount": 17920,
+      "estimatedListeningMinutes": 108,
+      "textPreview": "15 EVERY CRACKPOT SPADE and Detective-sergeant Polhaus ate pickled pigs’ feet at one of big John’s tables at the States Hof Brau. Polhaus, balancing pale brigh..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Section 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3473,
+      "characterCount": 18517,
+      "estimatedListeningMinutes": 110,
+      "textPreview": "16 THE THIRD MURDER SPADE went into the Hotel Sutter and telephoned the Alexandria. Gutman was not in. No member of Gutman’s party was in. Spade telephoned the..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Section 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3481,
+      "characterCount": 19440,
+      "estimatedListeningMinutes": 116,
+      "textPreview": "17 SATURDAY NIGHT CARRYING the parcel lightly under his arm, walking briskly, with only the ceaseless shifting of his eyes to denote wariness, Spade went, part..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Section 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5451,
+      "characterCount": 28687,
+      "estimatedListeningMinutes": 173,
+      "textPreview": "18 THE FALL-GUY SPADE, with his arms around Brigid O’Shaughnessy, smiled meagerly over her head and said: “Sure, we’ll talk.” Gutman’s bulbs jounced as he took..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Section 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6550,
+      "characterCount": 34518,
+      "estimatedListeningMinutes": 207,
+      "textPreview": "19 THE RUSSIAN’S HAND THE boy lay on his back on the sofa, a small figure that was—except for its breathing—altogether corpselike to the eye. Joel Cairo sat be..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Section 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4562,
+      "characterCount": 23240,
+      "estimatedListeningMinutes": 139,
+      "textPreview": "20 IF THEY HANG YOU FOR all of five minutes after the outer door had closed behind Casper Gutman and Joel Cairo, Spade, motionless, stood staring at the knob o..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "standalone arabic-numbered sections",
+    "selectedHeadingStrategy": {
+      "patternId": "arabic-only",
+      "label": "Standalone Arabic number",
+      "convention": "standalone arabic-numbered sections",
+      "kind": "section",
+      "candidateCount": 20,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 20,
+      "examples": [
+        "L31: 1",
+        "L341: 2",
+        "L885: 3",
+        "L1218: 4",
+        "L1761: 5",
+        "L2023: 6"
+      ],
+      "bodyExamples": [
+        "L31: 1",
+        "L341: 2",
+        "L885: 3",
+        "L1218: 4",
+        "L1761: 5",
+        "L2023: 6",
+        "L2397: 7",
+        "L2911: 8"
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 20,
+        "minimumWords": 2092,
+        "medianWords": 3414,
+        "maximumWords": 6550,
+        "averageWords": 3483,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "arabic-only",
+        "label": "Standalone Arabic number",
+        "convention": "standalone arabic-numbered sections",
+        "kind": "section",
+        "candidateCount": 20,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 20,
+        "examples": [
+          "L31: 1",
+          "L341: 2",
+          "L885: 3",
+          "L1218: 4",
+          "L1761: 5",
+          "L2023: 6"
+        ],
+        "bodyExamples": [
+          "L31: 1",
+          "L341: 2",
+          "L885: 3",
+          "L1218: 4",
+          "L1761: 5",
+          "L2023: 6",
+          "L2397: 7",
+          "L2911: 8"
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 20,
+          "minimumWords": 2092,
+          "medianWords": 3414,
+          "maximumWords": 6550,
+          "averageWords": 3483,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 29,
+        "tocLikeCount": 3,
+        "bodyLikeCount": 26,
+        "examples": [
+          "L7: MALTESE",
+          "L8: FALCON",
+          "L10: DASHIELL HAMMETT",
+          "L13: ALFRED · A · KNOPF",
+          "L14: NEW YORK",
+          "L17: COPYRIGHT 1930 BY DASHIELL HAMMETT"
+        ],
+        "bodyExamples": [
+          "L10: DASHIELL HAMMETT",
+          "L14: NEW YORK",
+          "L17: COPYRIGHT 1930 BY DASHIELL HAMMETT",
+          "L18: COPYRIGHT RENEWED 1957 BY DASHIELL HAMMETT",
+          "L28: TO _JOSE_",
+          "L34: SPADE & ARCHER",
+          "L344: DEATH IN THE FOG",
+          "L888: THREE WOMEN"
+        ],
+        "tocExamples": [
+          "L7: MALTESE",
+          "L8: FALCON",
+          "L13: ALFRED · A · KNOPF"
+        ],
+        "score": 0.901,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy arabic-only",
+        "sectionSizeNotes": {
+          "sectionCount": 26,
+          "minimumWords": 2,
+          "medianWords": 2793,
+          "maximumWords": 6550,
+          "averageWords": 2682,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 5,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 128,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 127,
+        "examples": [
+          "L3: [Cover Illustration]",
+          "L25: Printed in the United States of America",
+          "L44: He said to Effie Perine: “Yes, sweetheart?”",
+          "L60: in, Miss Wonderly?”",
+          "L103: Miss Wonderly?”",
+          "L115: “That was in New York.”"
+        ],
+        "bodyExamples": [
+          "L25: Printed in the United States of America",
+          "L44: He said to Effie Perine: “Yes, sweetheart?”",
+          "L60: in, Miss Wonderly?”",
+          "L103: Miss Wonderly?”",
+          "L115: “That was in New York.”",
+          "L117: “Yes.”",
+          "L351: “Hello. . . . Yes, speaking. . . . Dead? . . . Yes. . . . Fifteen",
+          "L424: “I’m Sam Spade. Tom Polhaus phoned me.”"
+        ],
+        "tocExamples": [],
+        "score": 0.651,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy arabic-only",
+        "sectionSizeNotes": {
+          "sectionCount": 127,
+          "minimumWords": 1,
+          "medianWords": 259,
+          "maximumWords": 4297,
+          "averageWords": 549,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 35,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "label": "Roman numbered titled heading",
+        "convention": "roman-numbered titled sections",
+        "kind": "chapter",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L8360: did. I didn’t know that then, but I was afraid of it, and I had to wait"
+        ],
+        "bodyExamples": [
+          "L8360: did. I didn’t know that then, but I was afraid of it, and I had to wait"
+        ],
+        "tocExamples": [],
+        "score": 0.031000000000000028,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy arabic-only",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 3748,
+          "medianWords": 3748,
+          "maximumWords": 3748,
+          "averageWords": 3748,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "special-front-back",
+        "label": "Preface, introduction, notes, or appendix",
+        "convention": "front/back matter headings",
+        "kind": "front-back-matter",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L8756: TRANSCRIBER NOTES"
+        ],
+        "bodyExamples": [
+          "L8756: TRANSCRIBER NOTES"
+        ],
+        "tocExamples": [],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy arabic-only",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 29,
+          "medianWords": 29,
+          "maximumWords": 29,
+          "averageWords": 29,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 1,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 29,
+        "bodyLikeCount": 26,
+        "tocLikeCount": 3,
+        "reason": "weaker than selected strategy arabic-only"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 128,
+        "bodyLikeCount": 127,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy arabic-only"
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "convention": "roman-numbered titled sections",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy arabic-only"
+      },
+      {
+        "patternId": "special-front-back",
+        "convention": "front/back matter headings",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy arabic-only"
+      }
+    ],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 20,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L31: 1",
+      "L341: 2",
+      "L885: 3",
+      "L1218: 4",
+      "L1761: 5",
+      "L2023: 6",
+      "L2397: 7",
+      "L2911: 8"
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": false
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 67105,
+    "actions": [
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 38,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L1: * * * * *",
+          "candidate L185: * * * * *",
+          "candidate L321: * * * * *",
+          "candidate L391: * * * * *",
+          "candidate L548: * * * * *",
+          "candidate L561: * * * * *",
+          "candidate L996: * * * * *",
+          "candidate L1121: * * * * *"
+        ]
+      },
+      {
+        "action": "normalize-smart-quotes",
+        "count": 7663,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "“",
+          "”",
+          "“",
+          "’"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 562,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Section 1"
+    ],
+    "approximateWordCount": 2474,
+    "startsAtRealReadableContent": true,
+    "snippet": "1 SPADE & ARCHER SAMUEL SPADE’S jaw was long and bony, his chin a jutting v under the more flexible v of his mouth. His nostrils curved back to make another, smaller, v. His yellow-grey eyes were horizontal. The v _motif_ was picked up again by thickish brows rising outward from twin creases above a hooked nose, and his pale brown hair grew down—from high f...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

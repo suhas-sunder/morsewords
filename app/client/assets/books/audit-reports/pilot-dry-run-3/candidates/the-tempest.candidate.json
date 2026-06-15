@@ -1,0 +1,415 @@
+{
+  "slug": "the-tempest",
+  "selectionReason": "High-confidence play structure, selected as a second controlled act/scene case with clear source formatting.",
+  "title": "The Tempest",
+  "author": [
+    "William Shakespeare"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The Tempest.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 142,
+    "startIndex": 3424,
+    "startSnippet": "ACT I. SCENE I. _On a ship at sea: a tempestuous noise of thunder and lightning heard._",
+    "endLine": 4134,
+    "endIndex": 149337,
+    "endSnippet": "[Endnotes] I: I. 1. 15. [I. 1. 16] V: 377, 378. [376-377] XVI: IV. 1. 146 [IV. 1. 147]"
+  },
+  "wordCounts": {
+    "raw": 27160,
+    "kept": 23639,
+    "removedFrontMatter": 518,
+    "removedEndMatter": 3003
+  },
+  "sections": [
+    {
+      "id": "part-001",
+      "kind": "part",
+      "label": "Act 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6509,
+      "characterCount": 40766,
+      "estimatedListeningMinutes": 223,
+      "textPreview": "ACT I. SCENE I. _On a ship at sea: a tempestuous noise of thunder and lightning heard._ _Enter _a Ship-Master_ and _a Boatswain_._ _Mast._ Boatswain! _Boats._..."
+    },
+    {
+      "id": "part-002",
+      "kind": "part",
+      "label": "Act 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5226,
+      "characterCount": 32042,
+      "estimatedListeningMinutes": 176,
+      "textPreview": "ACT II. SCENE I. _Another part of the island._ _Enter ALONSO, SEBASTIAN, ANTONIO, GONZALO, ADRIAN, FRANCISCO, and others._ _Gon._ Beseech you, sir, be merry; y..."
+    },
+    {
+      "id": "part-003",
+      "kind": "part",
+      "label": "Act 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3913,
+      "characterCount": 23632,
+      "estimatedListeningMinutes": 131,
+      "textPreview": "ACT III. SCENE I. _Before PROSPERO’S cell._ _Enter FERDINAND, bearing a log._ _Fer._ There be some sports are painful, and their labour Delight in them sets of..."
+    },
+    {
+      "id": "part-004",
+      "kind": "part",
+      "label": "Act 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2759,
+      "characterCount": 17626,
+      "estimatedListeningMinutes": 96,
+      "textPreview": "ACT IV. SCENE I. _Before PROSPERO’S cell._ _Enter PROSPERO, FERDINAND, and MIRANDA._ _Pros._ If I have too austerely punish’d you, Your compensation makes amen..."
+    },
+    {
+      "id": "part-005",
+      "kind": "part",
+      "label": "Act 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5232,
+      "characterCount": 31823,
+      "estimatedListeningMinutes": 179,
+      "textPreview": "ACT V. SCENE I. _Before the cell of Prospero._ _Enter PROSPERO in his magic robes, and ARIEL._ _Pros._ Now does my project gather to a head: My charms crack no..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "play acts",
+    "selectedHeadingStrategy": {
+      "patternId": "act-prefixed",
+      "label": "Act heading",
+      "convention": "play acts",
+      "kind": "act",
+      "candidateCount": 5,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 5,
+      "examples": [
+        "L1: ACT I.",
+        "L1082: ACT II.",
+        "L1990: ACT III.",
+        "L2642: ACT IV.",
+        "L3112: ACT V."
+      ],
+      "bodyExamples": [
+        "L1: ACT I.",
+        "L1082: ACT II.",
+        "L1990: ACT III.",
+        "L2642: ACT IV.",
+        "L3112: ACT V."
+      ],
+      "tocExamples": [],
+      "score": 0.8700000000000001,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 5,
+        "minimumWords": 2759,
+        "medianWords": 5226,
+        "maximumWords": 6509,
+        "averageWords": 4728,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "act-prefixed",
+        "label": "Act heading",
+        "convention": "play acts",
+        "kind": "act",
+        "candidateCount": 5,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 5,
+        "examples": [
+          "L1: ACT I.",
+          "L1082: ACT II.",
+          "L1990: ACT III.",
+          "L2642: ACT IV.",
+          "L3112: ACT V."
+        ],
+        "bodyExamples": [
+          "L1: ACT I.",
+          "L1082: ACT II.",
+          "L1990: ACT III.",
+          "L2642: ACT IV.",
+          "L3112: ACT V."
+        ],
+        "tocExamples": [],
+        "score": 0.8700000000000001,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 5,
+          "minimumWords": 2759,
+          "medianWords": 5226,
+          "maximumWords": 6509,
+          "averageWords": 4728,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 29,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 29,
+        "examples": [
+          "L22: _Enter ALONSO, SEBASTIAN, ANTONIO, FERDINAND, GONZALO,",
+          "L1087: _Enter ALONSO, SEBASTIAN, ANTONIO, GONZALO, ADRIAN, FRANCISCO,",
+          "L2431: _Enter ALONSO, SEBASTIAN, ANTONIO, GONZALO, ADRIAN, FRANCISCO,",
+          "L2647: _Enter PROSPERO, FERDINAND, and MIRANDA._",
+          "L3055: 60: SCENE III. A MASQUE. Pope.]",
+          "L3667: EPILOGUE."
+        ],
+        "bodyExamples": [
+          "L22: _Enter ALONSO, SEBASTIAN, ANTONIO, FERDINAND, GONZALO,",
+          "L1087: _Enter ALONSO, SEBASTIAN, ANTONIO, GONZALO, ADRIAN, FRANCISCO,",
+          "L2431: _Enter ALONSO, SEBASTIAN, ANTONIO, GONZALO, ADRIAN, FRANCISCO,",
+          "L2647: _Enter PROSPERO, FERDINAND, and MIRANDA._",
+          "L3055: 60: SCENE III. A MASQUE. Pope.]",
+          "L3667: EPILOGUE.",
+          "L3669: SPOKEN BY PROSPERO.",
+          "L3701: NOTES."
+        ],
+        "tocExamples": [],
+        "score": 0.781,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy act-prefixed",
+        "sectionSizeNotes": {
+          "sectionCount": 29,
+          "minimumWords": 1,
+          "medianWords": 66,
+          "maximumWords": 7822,
+          "averageWords": 812,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 18,
+          "notes": [
+            "many very small sections; headings may include TOC, captions, or fragments",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 144,
+        "tocLikeCount": 15,
+        "bodyLikeCount": 129,
+        "examples": [
+          "L9: _Mast._ Boatswain!",
+          "L16: _Enter _Mariners_._",
+          "L58: _Re-enter Boatswain._",
+          "L65: _Re-enter SEBASTIAN, ANTONIO, and GONZALO._",
+          "L85: _Enter _Mariners_ wet._",
+          "L149: 65: [Exeunt] [Exit F1, om. F2 F3 F4.]"
+        ],
+        "bodyExamples": [
+          "L9: _Mast._ Boatswain!",
+          "L16: _Enter _Mariners_._",
+          "L58: _Re-enter Boatswain._",
+          "L65: _Re-enter SEBASTIAN, ANTONIO, and GONZALO._",
+          "L85: _Enter _Mariners_ wet._",
+          "L149: 65: [Exeunt] [Exit F1, om. F2 F3 F4.]",
+          "L152: SCENE II. _The island. Before PROSPERO’S cell._",
+          "L154: _Enter PROSPERO and MIRANDA._"
+        ],
+        "tocExamples": [
+          "L170: _Pros._ Be collected:",
+          "L176: _Pros._ No harm. 15",
+          "L187: _Pros._ ’Tis time",
+          "L381: A noble Neapolitan, Gonzalo,",
+          "L390: _Mir._ Would I might",
+          "L393: _Pros._ Now I arise: [_Resumes his mantle._",
+          "L504: _Ari._ My liberty. 245",
+          "L508: _Ari._ I prithee,"
+        ],
+        "score": 0.7010000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy act-prefixed",
+        "sectionSizeNotes": {
+          "sectionCount": 129,
+          "minimumWords": 2,
+          "medianWords": 119,
+          "maximumWords": 1663,
+          "averageWords": 183,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 52,
+          "notes": [
+            "many very small sections; headings may include TOC, captions, or fragments",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "label": "Roman numbered titled heading",
+        "convention": "roman-numbered titled sections",
+        "kind": "chapter",
+        "candidateCount": 22,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 22,
+        "examples": [
+          "L3706: I. 1. 15. _What cares these roarers._ This grammatical inaccuracy, which",
+          "L3718: I. 1. 57-59. _Mercy on us!--we split, &c._ It may be doubtful whether",
+          "L3728: I. 2. 173. _princesses._ See Mr Sidney Walker’s _Shakespeare’s",
+          "L3749: I. 2. 298. The metre of this line, as well as of lines 301, 302, is",
+          "L3784: I. 2. 377, 378:",
+          "L3802: I. 2. 443. _I fear you have done yourself some wrong._ See this phrase"
+        ],
+        "bodyExamples": [
+          "L3706: I. 1. 15. _What cares these roarers._ This grammatical inaccuracy, which",
+          "L3718: I. 1. 57-59. _Mercy on us!--we split, &c._ It may be doubtful whether",
+          "L3728: I. 2. 173. _princesses._ See Mr Sidney Walker’s _Shakespeare’s",
+          "L3749: I. 2. 298. The metre of this line, as well as of lines 301, 302, is",
+          "L3784: I. 2. 377, 378:",
+          "L3802: I. 2. 443. _I fear you have done yourself some wrong._ See this phrase",
+          "L3808: II. 1. 27. _Which, of he or Adrian._ ‘Of’ is found in the same",
+          "L3817: II. 1. 157. _Of its own kind._ There is no doubt, as Dr Guest has shewn,"
+        ],
+        "tocExamples": [],
+        "score": 0.5414285714285715,
+        "confidence": "low",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy act-prefixed",
+        "sectionSizeNotes": {
+          "sectionCount": 22,
+          "minimumWords": 15,
+          "medianWords": 55,
+          "maximumWords": 324,
+          "averageWords": 76,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 17,
+          "notes": [
+            "many very small sections; headings may include TOC, captions, or fragments"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 29,
+        "bodyLikeCount": 29,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy act-prefixed"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 144,
+        "bodyLikeCount": 129,
+        "tocLikeCount": 15,
+        "reason": "weaker than selected strategy act-prefixed"
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "convention": "roman-numbered titled sections",
+        "candidateCount": 22,
+        "bodyLikeCount": 22,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy act-prefixed"
+      }
+    ],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 5,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L1: ACT I.",
+      "L1082: ACT II.",
+      "L1990: ACT III.",
+      "L2642: ACT IV.",
+      "L3112: ACT V."
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": false
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 23099,
+    "actions": [
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 3,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L3912: * * * * *",
+          "candidate L3913: * * * *",
+          "candidate L3914: * * * * *"
+        ]
+      },
+      {
+        "action": "normalize-smart-quotes",
+        "count": 870,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "’",
+          "’",
+          "’",
+          "’"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "part-001 Act 1"
+    ],
+    "approximateWordCount": 6509,
+    "startsAtRealReadableContent": true,
+    "snippet": "ACT I. SCENE I. _On a ship at sea: a tempestuous noise of thunder and lightning heard._ _Enter _a Ship-Master_ and _a Boatswain_._ _Mast._ Boatswain! _Boats._ Here, master: what cheer? _Mast._ Good, speak to the mariners: fall to’t, yarely, or we run ourselves aground: bestir, bestir. [_Exit._ _Enter _Mariners_._ _Boats._ Heigh, my hearts! cheerly, cheerly,...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

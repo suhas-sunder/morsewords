@@ -1,0 +1,515 @@
+{
+  "slug": "the-hound-of-the-baskervilles",
+  "selectionReason": "High-confidence chapter-Arabic structure with clear chapter titles and feasible preview source.",
+  "title": "The Hound of the Baskervilles",
+  "author": [
+    "Arthur Conan Doyle"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The Hound of the Baskervilles.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 84,
+    "startIndex": 1765,
+    "startSnippet": "Chapter 1. Mr. Sherlock Holmes Mr. Sherlock Holmes, who was usually very late in the mornings, save upon those not infrequent occasions when he was up all",
+    "endLine": 7379,
+    "endIndex": 354982,
+    "endSnippet": "for _Les Huguenots_. Have you heard the De Reszkes? Might I trouble you then to be ready in half an hour, and we can stop at Marcini’s for a little dinner on the way?” THE END"
+  },
+  "wordCounts": {
+    "raw": 62939,
+    "kept": 59642,
+    "removedFrontMatter": 291,
+    "removedEndMatter": 3006
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2273,
+      "characterCount": 13986,
+      "estimatedListeningMinutes": 76,
+      "textPreview": "Chapter 1. Mr. Sherlock Holmes Mr. Sherlock Holmes, who was usually very late in the mornings, save upon those not infrequent occasions when he was up all nigh..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3875,
+      "characterCount": 24789,
+      "estimatedListeningMinutes": 126,
+      "textPreview": "Chapter 2. The Curse of the Baskervilles “I have in my pocket a manuscript,” said Dr. James Mortimer. “I observed it as you entered the room,” said Holmes. “It..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2920,
+      "characterCount": 17835,
+      "estimatedListeningMinutes": 95,
+      "textPreview": "Chapter 3. The Problem I confess at these words a shudder passed through me. There was a thrill in the doctor’s voice which showed that he was himself deeply m..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4093,
+      "characterCount": 24648,
+      "estimatedListeningMinutes": 132,
+      "textPreview": "Chapter 4. Sir Henry Baskerville Our breakfast table was cleared early, and Holmes waited in his dressing-gown for the promised interview. Our clients were pun..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3465,
+      "characterCount": 20694,
+      "estimatedListeningMinutes": 111,
+      "textPreview": "Chapter 5. Three Broken Threads Sherlock Holmes had, in a very remarkable degree, the power of detaching his mind at will. For two hours the strange business i..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3523,
+      "characterCount": 20994,
+      "estimatedListeningMinutes": 113,
+      "textPreview": "Chapter 6. Baskerville Hall Sir Henry Baskerville and Dr. Mortimer were ready upon the appointed day, and we started as arranged for Devonshire. Mr. Sherlock H..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5002,
+      "characterCount": 29352,
+      "estimatedListeningMinutes": 158,
+      "textPreview": "Chapter 7. The Stapletons of Merripit House The fresh beauty of the following morning did something to efface from our minds the grim and grey impression which..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2771,
+      "characterCount": 16320,
+      "estimatedListeningMinutes": 88,
+      "textPreview": "Chapter 8. First Report of Dr. Watson From this point onward I will follow the course of events by transcribing my own letters to Mr. Sherlock Holmes which lie..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 6713,
+      "characterCount": 38118,
+      "estimatedListeningMinutes": 204,
+      "textPreview": "Chapter 9. The Light upon the Moor [Second Report of Dr. Watson] Baskerville Hall, Oct. 15th. MY DEAR HOLMES, If I was compelled to leave you without much news..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3718,
+      "characterCount": 21075,
+      "estimatedListeningMinutes": 113,
+      "textPreview": "Chapter 10. Extract from the Diary of Dr. Watson So far I have been able to quote from the reports which I have forwarded during these early days to Sherlock H..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4598,
+      "characterCount": 26958,
+      "estimatedListeningMinutes": 144,
+      "textPreview": "Chapter 11. The Man on the Tor The extract from my private diary which forms the last chapter has brought my narrative up to the eighteenth of October, a time..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4902,
+      "characterCount": 28683,
+      "estimatedListeningMinutes": 154,
+      "textPreview": "Chapter 12. Death on the Moor For a moment or two I sat breathless, hardly able to believe my ears. Then my senses and my voice came back to me, while a crushi..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3474,
+      "characterCount": 20523,
+      "estimatedListeningMinutes": 110,
+      "textPreview": "Chapter 13. Fixing the Nets Sir Henry was more pleased than surprised to see Sherlock Holmes, for he had for some days been expecting that recent events would..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4212,
+      "characterCount": 24587,
+      "estimatedListeningMinutes": 132,
+      "textPreview": "Chapter 14. The Hound of the Baskervilles One of Sherlock Holmes’s defects—if, indeed, one may call it a defect—was that he was exceedingly loath to communicat..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4103,
+      "characterCount": 24585,
+      "estimatedListeningMinutes": 133,
+      "textPreview": "Chapter 15. A Retrospection It was the end of November, and Holmes and I sat, upon a raw and foggy night, on either side of a blazing fire in our sitting-room..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based arabic numbers",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-arabic",
+      "label": "Chapter plus Arabic number",
+      "convention": "chapter-based arabic numbers",
+      "kind": "chapter",
+      "candidateCount": 15,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 15,
+      "examples": [
+        "L1: Chapter 1.",
+        "L295: Chapter 2.",
+        "L725: Chapter 3.",
+        "L1187: Chapter 4.",
+        "L1738: Chapter 5.",
+        "L2242: Chapter 6."
+      ],
+      "bodyExamples": [
+        "L1: Chapter 1.",
+        "L295: Chapter 2.",
+        "L725: Chapter 3.",
+        "L1187: Chapter 4.",
+        "L1738: Chapter 5.",
+        "L2242: Chapter 6.",
+        "L2654: Chapter 7.",
+        "L3269: Chapter 8."
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 15,
+        "minimumWords": 2273,
+        "medianWords": 3875,
+        "maximumWords": 6713,
+        "averageWords": 3976,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-arabic",
+        "label": "Chapter plus Arabic number",
+        "convention": "chapter-based arabic numbers",
+        "kind": "chapter",
+        "candidateCount": 15,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 15,
+        "examples": [
+          "L1: Chapter 1.",
+          "L295: Chapter 2.",
+          "L725: Chapter 3.",
+          "L1187: Chapter 4.",
+          "L1738: Chapter 5.",
+          "L2242: Chapter 6."
+        ],
+        "bodyExamples": [
+          "L1: Chapter 1.",
+          "L295: Chapter 2.",
+          "L725: Chapter 3.",
+          "L1187: Chapter 4.",
+          "L1738: Chapter 5.",
+          "L2242: Chapter 6.",
+          "L2654: Chapter 7.",
+          "L3269: Chapter 8."
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 15,
+          "minimumWords": 2273,
+          "medianWords": 3875,
+          "maximumWords": 6713,
+          "averageWords": 3976,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 101,
+        "tocLikeCount": 2,
+        "bodyLikeCount": 99,
+        "examples": [
+          "L2: Mr. Sherlock Holmes",
+          "L37: “Good!” said Holmes. “Excellent!”",
+          "L160: of the Swedish Pathological Society. Author of ‘Some Freaks of",
+          "L161: Atavism’ (_Lancet_ 1882). ‘Do We Progress?’ (_Journal of",
+          "L163: Grimpen, Thorsley, and High Barrow.”",
+          "L217: “From Charing Cross Hospital?”"
+        ],
+        "bodyExamples": [
+          "L2: Mr. Sherlock Holmes",
+          "L37: “Good!” said Holmes. “Excellent!”",
+          "L160: of the Swedish Pathological Society. Author of ‘Some Freaks of",
+          "L161: Atavism’ (_Lancet_ 1882). ‘Do We Progress?’ (_Journal of",
+          "L163: Grimpen, Thorsley, and High Barrow.”",
+          "L217: “From Charing Cross Hospital?”",
+          "L234: “And now, Dr. James Mortimer—”",
+          "L236: “Mister, sir, Mister—a humble M.R.C.S.”"
+        ],
+        "tocExamples": [
+          "L755: “Enormous.”",
+          "L759: “No.”"
+        ],
+        "score": 0.7010000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-arabic",
+        "sectionSizeNotes": {
+          "sectionCount": 99,
+          "minimumWords": 1,
+          "medianWords": 443,
+          "maximumWords": 3449,
+          "averageWords": 602,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 19,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 2,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 2,
+        "examples": [
+          "L3282: MY DEAR HOLMES,",
+          "L3554: MY DEAR HOLMES,"
+        ],
+        "bodyExamples": [
+          "L3282: MY DEAR HOLMES,",
+          "L3554: MY DEAR HOLMES,"
+        ],
+        "tocExamples": [],
+        "score": 0.341,
+        "confidence": "low",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-arabic",
+        "sectionSizeNotes": {
+          "sectionCount": 2,
+          "minimumWords": 2713,
+          "medianWords": 31704,
+          "maximumWords": 31704,
+          "averageWords": 17209,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "label": "Roman numbered titled heading",
+        "convention": "roman-numbered titled sections",
+        "kind": "chapter",
+        "candidateCount": 2,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 2,
+        "examples": [
+          "L3610: I. “He would follow Barrymore and see what he did.”",
+          "L4574: L. L.?”"
+        ],
+        "bodyExamples": [
+          "L3610: I. “He would follow Barrymore and see what he did.”",
+          "L4574: L. L.?”"
+        ],
+        "tocExamples": [],
+        "score": 0.26,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-arabic",
+        "sectionSizeNotes": {
+          "sectionCount": 2,
+          "minimumWords": 8737,
+          "medianWords": 22433,
+          "maximumWords": 22433,
+          "averageWords": 15585,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 101,
+        "bodyLikeCount": 99,
+        "tocLikeCount": 2,
+        "reason": "weaker than selected strategy chapter-arabic"
+      },
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 2,
+        "bodyLikeCount": 2,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-arabic"
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "convention": "roman-numbered titled sections",
+        "candidateCount": 2,
+        "bodyLikeCount": 2,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-arabic"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 15,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 15,
+    "bodyHeadingExamples": [
+      "L1: Chapter 1.",
+      "L295: Chapter 2.",
+      "L725: Chapter 3.",
+      "L1187: Chapter 4.",
+      "L1738: Chapter 5.",
+      "L2242: Chapter 6.",
+      "L2654: Chapter 7.",
+      "L3269: Chapter 8."
+    ],
+    "tocHeadingExamples": [
+      "L74: Chapter 1."
+    ],
+    "priorTwoSectionCollapseFixed": true
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 59276,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 3205,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "“",
+          "”",
+          "“",
+          "”",
+          "“"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 156,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 2273,
+    "startsAtRealReadableContent": true,
+    "snippet": "Chapter 1. Mr. Sherlock Holmes Mr. Sherlock Holmes, who was usually very late in the mornings, save upon those not infrequent occasions when he was up all night, was seated at the breakfast table. I stood upon the hearth-rug and picked up the stick which our visitor had left behind him the night before. It was a fine, thick piece of wood, bulbous-headed, of...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

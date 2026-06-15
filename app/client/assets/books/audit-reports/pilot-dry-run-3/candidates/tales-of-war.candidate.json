@@ -1,0 +1,546 @@
+{
+  "slug": "tales-of-war",
+  "selectionReason": "Medium-confidence isolated titled sections, selected to test story-level sectioning where audit data did not show severe ambiguity.",
+  "title": "Tales of War",
+  "author": [
+    "Lord Dunsany"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Tales of War.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 52,
+    "startIndex": 942,
+    "startSnippet": "He said: “There were only twenty houses in Daleswood. A place you would scarcely have heard of. A village up top of the hills. “When the war came there was no more than thirty men there between sixteen and forty-five. They all went.",
+    "endLine": 2820,
+    "endIndex": 139333,
+    "endSnippet": "had never heard them before. He thought of the accursed tyrant’s cruel might, and of the lads that had faced it. He saw the romantic splendour of England’s cause. He was old but had seen the glamour for which each generation looked. Satisfied in his heart and cheered with a new content he went on with his age-old task in the business of man with the hills."
+  },
+  "wordCounts": {
+    "raw": 29133,
+    "kept": 25971,
+    "removedFrontMatter": 158,
+    "removedEndMatter": 3004
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 2370,
+      "characterCount": 12273,
+      "estimatedListeningMinutes": 73,
+      "textPreview": "He said: “There were only twenty houses in Daleswood. A place you would scarcely have heard of. A village up top of the hills. “When the war came there was no..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "The Road",
+      "title": "The Road",
+      "includeByDefault": true,
+      "wordCount": 771,
+      "characterCount": 4112,
+      "estimatedListeningMinutes": 24,
+      "textPreview": "The Road The battery Sergeant-Major was practically asleep. He was all worn out by the continuous roar of bombardments that had been shaking the dugouts and da..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "An Imperial Monument",
+      "title": "An Imperial Monument",
+      "includeByDefault": true,
+      "wordCount": 763,
+      "characterCount": 4017,
+      "estimatedListeningMinutes": 24,
+      "textPreview": "An Imperial Monument It is an early summer’s morning: the dew is all over France: the train is going eastwards. They are quite slow, those troop trains, and th..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "A Walk To The Trenches",
+      "title": "A Walk to the Trenches",
+      "includeByDefault": true,
+      "wordCount": 842,
+      "characterCount": 4443,
+      "estimatedListeningMinutes": 26,
+      "textPreview": "A Walk to the Trenches To stand at the beginning of a road is always wonderful; for on all roads before they end experience lies, sometimes adventure. And a tr..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "A Walk In Picardy",
+      "title": "A Walk in Picardy",
+      "includeByDefault": true,
+      "wordCount": 1751,
+      "characterCount": 9205,
+      "estimatedListeningMinutes": 55,
+      "textPreview": "A Walk in Picardy Picture any village you know. In such a village as that the trench begins. That is to say, there are duck-boards along a ditch, and the ditch..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Standing To",
+      "title": "Standing To",
+      "includeByDefault": true,
+      "wordCount": 446,
+      "characterCount": 2394,
+      "estimatedListeningMinutes": 14,
+      "textPreview": "Standing To One cannot say that one time in the trenches is any more tense than another. One cannot take any one particular hour and call it, in modern nonsens..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "The Splendid Traveller",
+      "title": "The Splendid Traveller",
+      "includeByDefault": true,
+      "wordCount": 539,
+      "characterCount": 2844,
+      "estimatedListeningMinutes": 17,
+      "textPreview": "The Splendid Traveller A traveller threw his cloak over his shoulder and came down slopes of gold in El Dorado. From incredible heights he came. He came from w..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "England",
+      "title": "England",
+      "includeByDefault": true,
+      "wordCount": 788,
+      "characterCount": 4043,
+      "estimatedListeningMinutes": 24,
+      "textPreview": "England “And then we used to have sausages,” said the Sergeant. “And mashed?” said the Private. “Yes,” said the Sergeant, “and beer. And then we used to go hom..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Shells",
+      "title": "Shells",
+      "includeByDefault": true,
+      "wordCount": 869,
+      "characterCount": 4476,
+      "estimatedListeningMinutes": 26,
+      "textPreview": "Shells When the aëroplanes are home and the sunset has flared away, and it is cold, and night comes down over France, you notice the guns more than you do by d..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Two Degrees Of Envy",
+      "title": "Two Degrees of Envy",
+      "includeByDefault": true,
+      "wordCount": 593,
+      "characterCount": 3153,
+      "estimatedListeningMinutes": 19,
+      "textPreview": "Two Degrees of Envy It was night in the front line and no moon, or the moon was hidden. There was a strafe going on. The Tok Emmas were angry. And the artiller..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "The Master Of No Man’S Land",
+      "title": "The Master of No Man’s Land",
+      "includeByDefault": true,
+      "wordCount": 435,
+      "characterCount": 2310,
+      "estimatedListeningMinutes": 13,
+      "textPreview": "The Master of No Man’s Land When the last dynasty has fallen and the last empire passed away, when man himself has gone, there will probably still remain the s..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Weeds And Wire",
+      "title": "Weeds and Wire",
+      "includeByDefault": true,
+      "wordCount": 557,
+      "characterCount": 2930,
+      "estimatedListeningMinutes": 17,
+      "textPreview": "Weeds and Wire Things had been happening. Divisions were moving. There had been, there was going to be, a stunt. A battalion marched over the hill and sat down..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "“Good Lord!” He Said. “Ville-En-Bois!”",
+      "title": "“Good Lord!” he said. “Ville-en-Bois!”",
+      "includeByDefault": true,
+      "wordCount": 6,
+      "characterCount": 38,
+      "estimatedListeningMinutes": 1,
+      "textPreview": "“Good Lord!” he said. “Ville-en-Bois!”"
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Spring In England And Flanders",
+      "title": "Spring in England and Flanders",
+      "includeByDefault": true,
+      "wordCount": 637,
+      "characterCount": 3409,
+      "estimatedListeningMinutes": 20,
+      "textPreview": "Spring in England and Flanders Very soon the earliest primroses will be coming out in woods wherever they have been sheltered from the north. They will grow bo..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "The Nightmare Countries",
+      "title": "The Nightmare Countries",
+      "includeByDefault": true,
+      "wordCount": 52,
+      "characterCount": 294,
+      "estimatedListeningMinutes": 2,
+      "textPreview": "The Nightmare Countries There are certain lands in the darker dreams of poetry that stand out in the memory of generations. There is for instance Poe’s “Dark t..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Swinburne:",
+      "title": "Swinburne:",
+      "includeByDefault": true,
+      "wordCount": 1126,
+      "characterCount": 6058,
+      "estimatedListeningMinutes": 36,
+      "textPreview": "Swinburne: By the tideless dolorous inland sea In a land of sand and ruin and gold are as haunting as any. There are in literature certain regions of gloom, so..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Two Songs",
+      "title": "Two Songs",
+      "includeByDefault": true,
+      "wordCount": 439,
+      "characterCount": 2472,
+      "estimatedListeningMinutes": 15,
+      "textPreview": "Two Songs Over slopes of English hills looking south in the time of violets, evening was falling. Shadows at edges of woods moved, and then merged in the gloam..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "The Punishment",
+      "title": "The Punishment",
+      "includeByDefault": true,
+      "wordCount": 1267,
+      "characterCount": 6842,
+      "estimatedListeningMinutes": 41,
+      "textPreview": "The Punishment An exhalation arose, drawn up by the moon, from an old battlefield after the passing of years. It came out of very old craters and gathered from..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "The English Spirit",
+      "title": "The English Spirit",
+      "includeByDefault": true,
+      "wordCount": 932,
+      "characterCount": 4888,
+      "estimatedListeningMinutes": 29,
+      "textPreview": "The English Spirit By the end of the South African war Sergeant Cane had got one thing very well fixed in his mind, and that was that war was an overrated amus..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "An Investigation Into The Causes And Origin Of The War",
+      "title": "An Investigation Into the Causes and Origin of the War",
+      "includeByDefault": true,
+      "wordCount": 1282,
+      "characterCount": 7009,
+      "estimatedListeningMinutes": 42,
+      "textPreview": "An Investigation Into the Causes and Origin of the War The German imperial barber has been called up. He must have been called up quite early in the war. I hav..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Lost",
+      "title": "Lost",
+      "includeByDefault": true,
+      "wordCount": 669,
+      "characterCount": 3615,
+      "estimatedListeningMinutes": 21,
+      "textPreview": "Lost Describing a visit, say the papers of March 28th, which the Kaiser paid incognito to Cologne Cathedral on March 18th before the great battle, the Cologne..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "The Last Mirage",
+      "title": "The Last Mirage",
+      "includeByDefault": true,
+      "wordCount": 730,
+      "characterCount": 3946,
+      "estimatedListeningMinutes": 23,
+      "textPreview": "The Last Mirage The desolation that the German offensive has added to the dominions of the Kaiser cannot easily be imagined by any one who has never seen a des..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "A Famous Man",
+      "title": "A Famous Man",
+      "includeByDefault": true,
+      "wordCount": 851,
+      "characterCount": 4471,
+      "estimatedListeningMinutes": 26,
+      "textPreview": "A Famous Man Last winter a famous figure walked in Behagnies. Soldiers came to see him from their billets all down the Arras road, from Ervillers and from Sapi..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "The Oases Of Death",
+      "title": "The Oases of Death",
+      "includeByDefault": true,
+      "wordCount": 353,
+      "characterCount": 1944,
+      "estimatedListeningMinutes": 11,
+      "textPreview": "The Oases of Death While the German guns were pounding Amiens and the battle of dull Prussianism against Liberty raged on, they buried Richthofen in the Britis..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Anglo-Saxon Tyranny",
+      "title": "Anglo-Saxon Tyranny",
+      "includeByDefault": true,
+      "wordCount": 808,
+      "characterCount": 4485,
+      "estimatedListeningMinutes": 27,
+      "textPreview": "Anglo-Saxon Tyranny “We need a sea,” says Big-Admiral von Tirpitz, “freed of Anglo-Saxon tyranny.” Unfortunately neither the British Admiralty nor the American..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Memories",
+      "title": "Memories",
+      "includeByDefault": true,
+      "wordCount": 733,
+      "characterCount": 4004,
+      "estimatedListeningMinutes": 24,
+      "textPreview": "Memories ... far-off things And battles long ago. Those who live in an old house are necessarily more concerned with paying the plumber, should his art be requ..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "The Movement",
+      "title": "The Movement",
+      "includeByDefault": true,
+      "wordCount": 921,
+      "characterCount": 4960,
+      "estimatedListeningMinutes": 30,
+      "textPreview": "The Movement For many years Eliphaz Griggs was comparatively silent. Not that he did not talk on all occasions whenever he could find hearers, he did that at g..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Nature’S Cad",
+      "title": "Nature’s Cad",
+      "includeByDefault": true,
+      "wordCount": 1126,
+      "characterCount": 6188,
+      "estimatedListeningMinutes": 37,
+      "textPreview": "Nature’s Cad The claim of Professor Grotius Jan Beek to have discovered, or learned, the language of the greater apes has been demonstrated clearly enough. He..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "The Home Of Herr Schnitzelhaaser",
+      "title": "The Home of Herr Schnitzelhaaser",
+      "includeByDefault": true,
+      "wordCount": 1173,
+      "characterCount": 6201,
+      "estimatedListeningMinutes": 37,
+      "textPreview": "The Home of Herr Schnitzelhaaser The guns in the town of Greinstein were faintly audible. The family of Schnitzelhaaser lived alone there in mourning, an old m..."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "A Deed Of Mercy",
+      "title": "A Deed of Mercy",
+      "includeByDefault": true,
+      "wordCount": 691,
+      "characterCount": 3616,
+      "estimatedListeningMinutes": 21,
+      "textPreview": "A Deed of Mercy As Hindenburg and the Kaiser came down, as we read, from Mont d’Hiver, during the recent offensive, they saw on the edge of a crater two wounde..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "Last Scene Of All",
+      "title": "Last Scene of All",
+      "includeByDefault": true,
+      "wordCount": 700,
+      "characterCount": 3611,
+      "estimatedListeningMinutes": 21,
+      "textPreview": "Last Scene of All After John Calleron was hit he carried on in a kind of twilight of the mind. Things grew dimmer and calmer; harsh outlines of events became b..."
+    },
+    {
+      "id": "chapter-031",
+      "kind": "chapter",
+      "label": "Old England",
+      "title": "Old England",
+      "includeByDefault": true,
+      "wordCount": 751,
+      "characterCount": 3997,
+      "estimatedListeningMinutes": 24,
+      "textPreview": "Old England Towards winter’s end on a high, big, bare down, in the south of England, John Plowman was plowing. He was plowing the brown field at the top of the..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "isolated titled sections",
+    "selectedHeadingStrategy": {
+      "patternId": "isolated-title-case",
+      "label": "Isolated title-case heading",
+      "convention": "isolated titled sections",
+      "kind": "titled-section",
+      "candidateCount": 31,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 31,
+      "examples": [
+        "L224: The Road",
+        "L299: An Imperial Monument",
+        "L373: A Walk to the Trenches",
+        "L452: A Walk in Picardy",
+        "L613: Standing To",
+        "L658: The Splendid Traveller"
+      ],
+      "bodyExamples": [
+        "L224: The Road",
+        "L299: An Imperial Monument",
+        "L373: A Walk to the Trenches",
+        "L452: A Walk in Picardy",
+        "L613: Standing To",
+        "L658: The Splendid Traveller",
+        "L712: England",
+        "L806: Shells"
+      ],
+      "tocExamples": [],
+      "score": 0.851,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 31,
+        "minimumWords": 6,
+        "medianWords": 751,
+        "maximumWords": 1751,
+        "averageWords": 761,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 2,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 31,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 31,
+        "examples": [
+          "L224: The Road",
+          "L299: An Imperial Monument",
+          "L373: A Walk to the Trenches",
+          "L452: A Walk in Picardy",
+          "L613: Standing To",
+          "L658: The Splendid Traveller"
+        ],
+        "bodyExamples": [
+          "L224: The Road",
+          "L299: An Imperial Monument",
+          "L373: A Walk to the Trenches",
+          "L452: A Walk in Picardy",
+          "L613: Standing To",
+          "L658: The Splendid Traveller",
+          "L712: England",
+          "L806: Shells"
+        ],
+        "tocExamples": [],
+        "score": 0.851,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 31,
+          "minimumWords": 6,
+          "medianWords": 751,
+          "maximumWords": 1751,
+          "averageWords": 761,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 2,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 31,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L224: The Road",
+      "L299: An Imperial Monument",
+      "L373: A Walk to the Trenches",
+      "L452: A Walk in Picardy",
+      "L613: Standing To",
+      "L658: The Splendid Traveller",
+      "L712: England",
+      "L806: Shells"
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": false
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 25797,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 634,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "“",
+          "“",
+          "“",
+          "“",
+          "’"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 The Road",
+      "chapter-002 An Imperial Monument"
+    ],
+    "approximateWordCount": 1534,
+    "startsAtRealReadableContent": true,
+    "snippet": "The Road The battery Sergeant-Major was practically asleep. He was all worn out by the continuous roar of bombardments that had been shaking the dugouts and dazing his brains for weeks. He was pretty well fed up. The officer commanding the battery, a young man in a very neat uniform and of particularly high birth, came up and spat in his face. The Sergeant-...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

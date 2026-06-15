@@ -1,0 +1,293 @@
+{
+  "slug": "the-wendigo",
+  "selectionReason": "High-confidence standalone Roman sections in a shorter work with feasible preview boundaries.",
+  "title": "The Wendigo",
+  "author": [
+    "Algernon Blackwood"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The Wendigo.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 42,
+    "startIndex": 950,
+    "startSnippet": "A considerable number of hunting parties were out that year without finding so much as a fresh trail; for the moose were uncommonly shy, and the various Nimrods returned to the bosoms of their respective families with the best excuses the facts of their imaginations could suggest. Dr. Cathcart, among others, came back without a trophy; but he brought instead the memory of an experience which he declares was worth all the",
+    "endLine": 1959,
+    "endIndex": 107395,
+    "endSnippet": "odour. That same instant old Punk started for home. He covered the entire journey of three days as only Indian blood could have covered it. The terror of a whole race drove him. He knew what it all meant. Défago had \"seen the Wendigo.\""
+  },
+  "wordCounts": {
+    "raw": 21797,
+    "kept": 18644,
+    "removedFrontMatter": 150,
+    "removedEndMatter": 3003
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 2573,
+      "characterCount": 14559,
+      "estimatedListeningMinutes": 87,
+      "textPreview": "A considerable number of hunting parties were out that year without finding so much as a fresh trail; for the moose were uncommonly shy, and the various Nimrod..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4230,
+      "characterCount": 24207,
+      "estimatedListeningMinutes": 145,
+      "textPreview": "II In the morning the camp was astir before the sun. There had been a light fall of snow during the night and the air was sharp. Punk had done his duty betimes..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 566,
+      "characterCount": 3154,
+      "estimatedListeningMinutes": 19,
+      "textPreview": "III Thus, it seemed to him, at least. Yet it was true that the lap of the water, just beyond the tent door, still beat time with his lessening pulses when he r..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2830,
+      "characterCount": 16103,
+      "estimatedListeningMinutes": 95,
+      "textPreview": "IV But sleep, in the long run, proves greater than all emotions. His thoughts soon wandered again; he lay there, warm as toast, exceedingly weary; the night so..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1635,
+      "characterCount": 9447,
+      "estimatedListeningMinutes": 56,
+      "textPreview": "V For a man of his years and inexperience, only a canny Scot, perhaps, grounded in common sense and established in logic, could have preserved even that measur..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2395,
+      "characterCount": 13718,
+      "estimatedListeningMinutes": 81,
+      "textPreview": "VI The sudden entrance of his prosaic uncle into this world of wizardry and horror that had haunted him without interruption now for two days and two nights, h..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1308,
+      "characterCount": 7527,
+      "estimatedListeningMinutes": 45,
+      "textPreview": "VII A wall of silence wrapped them in, for the snow, though not thick, was sufficient to deaden any noise, and the frost held things pretty tight besides. No s..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2142,
+      "characterCount": 12134,
+      "estimatedListeningMinutes": 73,
+      "textPreview": "VIII Then at length the darkness, having thus laboriously conceived, brought forth--a figure. It drew forward into the zone of uncertain light where fire and s..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 965,
+      "characterCount": 5556,
+      "estimatedListeningMinutes": 33,
+      "textPreview": "IX They talked little, and then only of the most wholesome and common things, for their minds were charged with painful thoughts that clamoured for explanation..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "standalone roman numeral sections",
+    "selectedHeadingStrategy": {
+      "patternId": "roman-only",
+      "label": "Standalone Roman numeral",
+      "convention": "standalone roman numeral sections",
+      "kind": "chapter",
+      "candidateCount": 8,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 8,
+      "examples": [
+        "L252: II",
+        "L686: III",
+        "L749: IV",
+        "L1028: V",
+        "L1197: VI",
+        "L1434: VII"
+      ],
+      "bodyExamples": [
+        "L252: II",
+        "L686: III",
+        "L749: IV",
+        "L1028: V",
+        "L1197: VI",
+        "L1434: VII",
+        "L1576: VIII",
+        "L1797: IX"
+      ],
+      "tocExamples": [],
+      "score": 0.9140000000000001,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 8,
+        "minimumWords": 566,
+        "medianWords": 2142,
+        "maximumWords": 4230,
+        "averageWords": 2009,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "roman-only",
+        "label": "Standalone Roman numeral",
+        "convention": "standalone roman numeral sections",
+        "kind": "chapter",
+        "candidateCount": 8,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 8,
+        "examples": [
+          "L252: II",
+          "L686: III",
+          "L749: IV",
+          "L1028: V",
+          "L1197: VI",
+          "L1434: VII"
+        ],
+        "bodyExamples": [
+          "L252: II",
+          "L686: III",
+          "L749: IV",
+          "L1028: V",
+          "L1197: VI",
+          "L1434: VII",
+          "L1576: VIII",
+          "L1797: IX"
+        ],
+        "tocExamples": [],
+        "score": 0.9140000000000001,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 8,
+          "minimumWords": 566,
+          "medianWords": 2142,
+          "maximumWords": 4230,
+          "averageWords": 2009,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 8,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L252: II",
+      "L686: III",
+      "L749: IV",
+      "L1028: V",
+      "L1197: VI",
+      "L1434: VII",
+      "L1576: VIII",
+      "L1797: IX"
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": false
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 18644,
+    "actions": [
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 6,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L557: * * * * *",
+          "candidate L996: * * * * *",
+          "candidate L1126: * * * * *",
+          "candidate L1295: * * * * *",
+          "candidate L1342: * * * * *",
+          "candidate L1842: * * * * *"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 2"
+    ],
+    "approximateWordCount": 4230,
+    "startsAtRealReadableContent": true,
+    "snippet": "II In the morning the camp was astir before the sun. There had been a light fall of snow during the night and the air was sharp. Punk had done his duty betimes, for the odors of coffee and fried bacon reached every tent. All were in good spirits. \"Wind's shifted!\" cried Hank vigorously, watching Simpson and his guide already loading the small canoe. \"It's a...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

@@ -1,0 +1,823 @@
+{
+  "slug": "a-tale-of-two-cities",
+  "selectionReason": "High-confidence chapter-Roman structure with book-level divisions, selected to test nested book/chapter handling in a familiar novel.",
+  "title": "A Tale of Two Cities",
+  "author": [
+    "Charles Dickens"
+  ],
+  "sourcePath": "app/client/assets/temp-books/A Tale of Two Cities.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 52,
+    "startIndex": 1212,
+    "startSnippet": "CHAPTER I Five Years Later CHAPTER II A Sight CHAPTER III A Disappointment CHAPTER IV Congratulatory CHAPTER V The Jackal CHAPTER VI Hundreds of People",
+    "endLine": 15929,
+    "endIndex": 758444,
+    "endSnippet": "with a forehead that I know and golden hair, to this place--then fair to look upon, with not a trace of this day’s disfigurement--and I hear him tell the child my story, with a tender and a faltering voice. “It is a far, far better thing that I do, than I have ever done; it is a far, far better rest that I go to than I have ever known.”"
+  },
+  "wordCounts": {
+    "raw": 140776,
+    "kept": 137574,
+    "removedFrontMatter": 196,
+    "removedEndMatter": 3006
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 198,
+      "characterCount": 1473,
+      "estimatedListeningMinutes": 7,
+      "textPreview": "CHAPTER I Five Years Later CHAPTER II A Sight CHAPTER III A Disappointment CHAPTER IV Congratulatory CHAPTER V The Jackal CHAPTER VI Hundreds of People CHAPTER..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1011,
+      "characterCount": 5795,
+      "estimatedListeningMinutes": 34,
+      "textPreview": "CHAPTER I. The Period It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief,..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2054,
+      "characterCount": 11191,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "CHAPTER II. The Mail It was the Dover road that lay, on a Friday night late in November, before the first of the persons with whom this history has business. T..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1640,
+      "characterCount": 8958,
+      "estimatedListeningMinutes": 53,
+      "textPreview": "CHAPTER III. The Night Shadows A wonderful fact to reflect upon, that every human creature is constituted to be that profound secret and mystery to every other..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4452,
+      "characterCount": 24415,
+      "estimatedListeningMinutes": 146,
+      "textPreview": "CHAPTER IV. The Preparation When the mail got successfully to Dover, in the course of the forenoon, the head drawer at the Royal George Hotel opened the coach-..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4189,
+      "characterCount": 23436,
+      "estimatedListeningMinutes": 140,
+      "textPreview": "CHAPTER V. The Wine-shop A large cask of wine had been dropped and broken, in the street. The accident had happened in getting it out of a cart; the cask had t..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4176,
+      "characterCount": 22171,
+      "estimatedListeningMinutes": 132,
+      "textPreview": "CHAPTER VI. The Shoemaker “Good day!” said Monsieur Defarge, looking down at the white head that bent low over the shoemaking. It was raised for a moment, and..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2467,
+      "characterCount": 13692,
+      "estimatedListeningMinutes": 82,
+      "textPreview": "CHAPTER I. Five Years Later Tellson’s Bank by Temple Bar was an old-fashioned place, even in the year one thousand seven hundred and eighty. It was very small,..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2421,
+      "characterCount": 13268,
+      "estimatedListeningMinutes": 79,
+      "textPreview": "CHAPTER II. A Sight “You know the Old Bailey well, no doubt?” said one of the oldest of clerks to Jerry the messenger. “Ye-es, sir,” returned Jerry, in somethi..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4911,
+      "characterCount": 27449,
+      "estimatedListeningMinutes": 164,
+      "textPreview": "CHAPTER III. A Disappointment Mr. Attorney-General had to inform the jury, that the prisoner before them, though young in years, was old in the treasonable pra..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2280,
+      "characterCount": 12484,
+      "estimatedListeningMinutes": 75,
+      "textPreview": "CHAPTER IV. Congratulatory From the dimly-lighted passages of the court, the last sediment of the human stew that had been boiling there all day, was straining..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2160,
+      "characterCount": 11868,
+      "estimatedListeningMinutes": 71,
+      "textPreview": "CHAPTER V. The Jackal Those were drinking days, and most men drank hard. So very great is the improvement Time has brought about in such habits, that a moderat..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4627,
+      "characterCount": 25691,
+      "estimatedListeningMinutes": 154,
+      "textPreview": "CHAPTER VI. Hundreds of People The quiet lodgings of Doctor Manette were in a quiet street-corner not far from Soho-square. On the afternoon of a certain fine..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3342,
+      "characterCount": 19163,
+      "estimatedListeningMinutes": 114,
+      "textPreview": "CHAPTER VII. Monseigneur in Town Monseigneur, one of the great lords in power at the Court, held his fortnightly reception in his grand hotel in Paris. Monseig..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1856,
+      "characterCount": 10551,
+      "estimatedListeningMinutes": 63,
+      "textPreview": "CHAPTER VIII. Monseigneur in the Country A beautiful landscape, with the corn bright in it, but not abundant. Patches of poor rye where corn should have been,..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4092,
+      "characterCount": 22784,
+      "estimatedListeningMinutes": 136,
+      "textPreview": "CHAPTER IX. The Gorgon’s Head It was a heavy mass of building, that chateau of Monsieur the Marquis, with a large stone courtyard before it, and two stone swee..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2979,
+      "characterCount": 15909,
+      "estimatedListeningMinutes": 95,
+      "textPreview": "CHAPTER X. Two Promises More months, to the number of twelve, had come and gone, and Mr. Charles Darnay was established in England as a higher teacher of the F..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1426,
+      "characterCount": 7542,
+      "estimatedListeningMinutes": 46,
+      "textPreview": "CHAPTER XI. A Companion Picture “Sydney,” said Mr. Stryver, on that self-same night, or morning, to his jackal; “mix another bowl of punch; I have something to..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2610,
+      "characterCount": 14070,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "CHAPTER XII. The Fellow of Delicacy Mr. Stryver having made up his mind to that magnanimous bestowal of good fortune on the Doctor’s daughter, resolved to make..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1854,
+      "characterCount": 9746,
+      "estimatedListeningMinutes": 58,
+      "textPreview": "CHAPTER XIII. The Fellow of No Delicacy If Sydney Carton ever shone anywhere, he certainly never shone in the house of Doctor Manette. He had been there often,..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3955,
+      "characterCount": 21995,
+      "estimatedListeningMinutes": 132,
+      "textPreview": "CHAPTER XIV. The Honest Tradesman To the eyes of Mr. Jeremiah Cruncher, sitting on his stool in Fleet-street with his grisly urchin beside him, a vast number a..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4241,
+      "characterCount": 23305,
+      "estimatedListeningMinutes": 139,
+      "textPreview": "CHAPTER XV. Knitting There had been earlier drinking than usual in the wine-shop of Monsieur Defarge. As early as six o’clock in the morning, sallow faces peep..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3887,
+      "characterCount": 22037,
+      "estimatedListeningMinutes": 132,
+      "textPreview": "CHAPTER XVI. Still Knitting Madame Defarge and monsieur her husband returned amicably to the bosom of Saint Antoine, while a speck in a blue cap toiled through..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1918,
+      "characterCount": 10229,
+      "estimatedListeningMinutes": 61,
+      "textPreview": "CHAPTER XVII. One Night Never did the sun go down with a brighter glory on the quiet corner in Soho, than one memorable evening when the Doctor and his daughte..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2449,
+      "characterCount": 13161,
+      "estimatedListeningMinutes": 79,
+      "textPreview": "CHAPTER XVIII. Nine Days The marriage-day was shining brightly, and they were ready outside the closed door of the Doctor’s room, where he was speaking with Ch..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2809,
+      "characterCount": 15485,
+      "estimatedListeningMinutes": 93,
+      "textPreview": "CHAPTER XIX. An Opinion Worn out by anxious watching, Mr. Lorry fell asleep at his post. On the tenth morning of his suspense, he was startled by the shining o..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1358,
+      "characterCount": 7154,
+      "estimatedListeningMinutes": 43,
+      "textPreview": "CHAPTER XX. A Plea When the newly-married pair came home, the first person who appeared, to offer his congratulations, was Sydney Carton. They had not been at..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4307,
+      "characterCount": 23912,
+      "estimatedListeningMinutes": 143,
+      "textPreview": "CHAPTER XXI. Echoing Footsteps A wonderful corner for echoes, it has been remarked, that corner where the Doctor lived. Ever busily winding the golden thread w..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2053,
+      "characterCount": 11454,
+      "estimatedListeningMinutes": 68,
+      "textPreview": "CHAPTER XXII. The Sea Still Rises Haggard Saint Antoine had had only one exultant week, in which to soften his modicum of hard and bitter bread to such extent..."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2634,
+      "characterCount": 15005,
+      "estimatedListeningMinutes": 90,
+      "textPreview": "CHAPTER XXIII. Fire Rises There was a change on the village where the fountain fell, and where the mender of roads went forth daily to hammer out of the stones..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "Chapter 24",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4478,
+      "characterCount": 24712,
+      "estimatedListeningMinutes": 148,
+      "textPreview": "CHAPTER XXIV. Drawn to the Loadstone Rock In such risings of fire and risings of sea--the firm earth shaken by the rushes of an angry ocean which had now no eb..."
+    },
+    {
+      "id": "chapter-031",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4259,
+      "characterCount": 24134,
+      "estimatedListeningMinutes": 144,
+      "textPreview": "CHAPTER I. In Secret The traveller fared slowly on his way, who fared towards Paris from England in the autumn of the year one thousand seven hundred and ninet..."
+    },
+    {
+      "id": "chapter-032",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2518,
+      "characterCount": 13779,
+      "estimatedListeningMinutes": 82,
+      "textPreview": "CHAPTER II. The Grindstone Tellson’s Bank, established in the Saint Germain Quarter of Paris, was in a wing of a large house, approached by a courtyard and shu..."
+    },
+    {
+      "id": "chapter-033",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1740,
+      "characterCount": 9732,
+      "estimatedListeningMinutes": 58,
+      "textPreview": "CHAPTER III. The Shadow One of the first considerations which arose in the business mind of Mr. Lorry when business hours came round, was this:--that he had no..."
+    },
+    {
+      "id": "chapter-034",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2154,
+      "characterCount": 11905,
+      "estimatedListeningMinutes": 71,
+      "textPreview": "CHAPTER IV. Calm in Storm Doctor Manette did not return until the morning of the fourth day of his absence. So much of what had happened in that dreadful time..."
+    },
+    {
+      "id": "chapter-035",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2296,
+      "characterCount": 12736,
+      "estimatedListeningMinutes": 76,
+      "textPreview": "CHAPTER V. The Wood-Sawyer One year and three months. During all that time Lucie was never sure, from hour to hour, but that the Guillotine would strike off he..."
+    },
+    {
+      "id": "chapter-036",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2523,
+      "characterCount": 14161,
+      "estimatedListeningMinutes": 84,
+      "textPreview": "CHAPTER VI. Triumph The dread tribunal of five Judges, Public Prosecutor, and determined Jury, sat every day. Their lists went forth every evening, and were re..."
+    },
+    {
+      "id": "chapter-037",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1878,
+      "characterCount": 10411,
+      "estimatedListeningMinutes": 63,
+      "textPreview": "CHAPTER VII. A Knock at the Door “I have saved him.” It was not another of the dreams in which he had often come back; he was really here. And yet his wife tre..."
+    },
+    {
+      "id": "chapter-038",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4749,
+      "characterCount": 26035,
+      "estimatedListeningMinutes": 157,
+      "textPreview": "CHAPTER VIII. A Hand at Cards Happily unconscious of the new calamity at home, Miss Pross threaded her way along the narrow streets and crossed the river by th..."
+    },
+    {
+      "id": "chapter-039",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4713,
+      "characterCount": 25589,
+      "estimatedListeningMinutes": 154,
+      "textPreview": "CHAPTER IX. The Game Made While Sydney Carton and the Sheep of the prisons were in the adjoining dark room, speaking so low that not a sound was heard, Mr. Lor..."
+    },
+    {
+      "id": "chapter-040",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5829,
+      "characterCount": 31068,
+      "estimatedListeningMinutes": 184,
+      "textPreview": "CHAPTER X. The Substance of the Shadow “I, Alexandre Manette, unfortunate physician, native of Beauvais, and afterwards resident in Paris, write this melanchol..."
+    },
+    {
+      "id": "chapter-041",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1475,
+      "characterCount": 7728,
+      "estimatedListeningMinutes": 46,
+      "textPreview": "CHAPTER XI. Dusk The wretched wife of the innocent man thus doomed to die, fell under the sentence, as if she had been mortally stricken. But, she uttered no s..."
+    },
+    {
+      "id": "chapter-042",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3236,
+      "characterCount": 17514,
+      "estimatedListeningMinutes": 105,
+      "textPreview": "CHAPTER XII. Darkness Sydney Carton paused in the street, not quite decided where to go. “At Tellson’s banking-house at nine,” he said, with a musing face. “Sh..."
+    },
+    {
+      "id": "chapter-043",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4427,
+      "characterCount": 24268,
+      "estimatedListeningMinutes": 145,
+      "textPreview": "CHAPTER XIII. Fifty-two In the black prison of the Conciergerie, the doomed of the day awaited their fate. They were in number as the weeks of the year. Fifty-..."
+    },
+    {
+      "id": "chapter-044",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4686,
+      "characterCount": 25733,
+      "estimatedListeningMinutes": 154,
+      "textPreview": "CHAPTER XIV. The Knitting Done In that same juncture of time when the Fifty-Two awaited their fate Madame Defarge held darkly ominous council with The Vengeanc..."
+    },
+    {
+      "id": "chapter-045",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2257,
+      "characterCount": 12097,
+      "estimatedListeningMinutes": 72,
+      "textPreview": "CHAPTER XV. The Footsteps Die Out For Ever Along the Paris streets, the death-carts rumble, hollow and harsh. Six tumbrils carry the day’s wine to La Guillotin..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 45,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 45,
+      "examples": [
+        "L49: CHAPTER I.",
+        "L146: CHAPTER II.",
+        "L399: CHAPTER III.",
+        "L583: CHAPTER IV.",
+        "L1076: CHAPTER V.",
+        "L1526: CHAPTER VI."
+      ],
+      "bodyExamples": [
+        "L49: CHAPTER I.",
+        "L146: CHAPTER II.",
+        "L399: CHAPTER III.",
+        "L583: CHAPTER IV.",
+        "L1076: CHAPTER V.",
+        "L1526: CHAPTER VI.",
+        "L2004: CHAPTER I.",
+        "L2257: CHAPTER II."
+      ],
+      "tocExamples": [],
+      "score": 0.9418181818181819,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 45,
+        "minimumWords": 1011,
+        "medianWords": 2610,
+        "maximumWords": 5829,
+        "averageWords": 3053,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 45,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 45,
+        "examples": [
+          "L49: CHAPTER I.",
+          "L146: CHAPTER II.",
+          "L399: CHAPTER III.",
+          "L583: CHAPTER IV.",
+          "L1076: CHAPTER V.",
+          "L1526: CHAPTER VI."
+        ],
+        "bodyExamples": [
+          "L49: CHAPTER I.",
+          "L146: CHAPTER II.",
+          "L399: CHAPTER III.",
+          "L583: CHAPTER IV.",
+          "L1076: CHAPTER V.",
+          "L1526: CHAPTER VI.",
+          "L2004: CHAPTER I.",
+          "L2257: CHAPTER II."
+        ],
+        "tocExamples": [],
+        "score": 0.9418181818181819,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 45,
+          "minimumWords": 1011,
+          "medianWords": 2610,
+          "maximumWords": 5829,
+          "averageWords": 3053,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 266,
+        "tocLikeCount": 41,
+        "bodyLikeCount": 225,
+        "examples": [
+          "L1: CHAPTER I Five Years Later",
+          "L2: CHAPTER II A Sight",
+          "L3: CHAPTER III A Disappointment",
+          "L4: CHAPTER IV Congratulatory",
+          "L5: CHAPTER V The Jackal",
+          "L6: CHAPTER VI Hundreds of People"
+        ],
+        "bodyExamples": [
+          "L50: The Period",
+          "L147: The Mail",
+          "L284: “Mr. Jarvis Lorry.”",
+          "L299: “Yes, Mr. Lorry.”",
+          "L374: “I did, Joe.”",
+          "L396: Jerry!”",
+          "L400: The Night Shadows",
+          "L584: The Preparation"
+        ],
+        "tocExamples": [
+          "L1: CHAPTER I Five Years Later",
+          "L2: CHAPTER II A Sight",
+          "L3: CHAPTER III A Disappointment",
+          "L4: CHAPTER IV Congratulatory",
+          "L5: CHAPTER V The Jackal",
+          "L6: CHAPTER VI Hundreds of People",
+          "L7: CHAPTER VII Monseigneur in Town",
+          "L8: CHAPTER VIII Monseigneur in the Country"
+        ],
+        "score": 0.7010000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 225,
+          "minimumWords": 1,
+          "medianWords": 313,
+          "maximumWords": 5829,
+          "averageWords": 611,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 54,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 4,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 3,
+        "examples": [
+          "L20: CHAPTER XX A Plea",
+          "L342: TO LIFE.”",
+          "L9183: IT!”",
+          "L9994: “June 21, 1792. “MONSIEUR HERETOFORE THE MARQUIS."
+        ],
+        "bodyExamples": [
+          "L342: TO LIFE.”",
+          "L9183: IT!”",
+          "L9994: “June 21, 1792. “MONSIEUR HERETOFORE THE MARQUIS."
+        ],
+        "tocExamples": [
+          "L20: CHAPTER XX A Plea"
+        ],
+        "score": 0.6010000000000001,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 3,
+          "minimumWords": 7456,
+          "medianWords": 50559,
+          "maximumWords": 76714,
+          "averageWords": 44910,
+          "hugeSectionCount": 2,
+          "tinySectionCount": 0,
+          "notes": [
+            "2 section(s) exceed 18000 words"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 266,
+        "bodyLikeCount": 225,
+        "tocLikeCount": 41,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 4,
+        "bodyLikeCount": 3,
+        "tocLikeCount": 1,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 45,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 45,
+    "bodyHeadingExamples": [
+      "L49: CHAPTER I.",
+      "L146: CHAPTER II.",
+      "L399: CHAPTER III.",
+      "L583: CHAPTER IV.",
+      "L1076: CHAPTER V.",
+      "L1526: CHAPTER VI.",
+      "L2004: CHAPTER I.",
+      "L2257: CHAPTER II."
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": true
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 136578,
+    "actions": [
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 10,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L13343: *****",
+          "candidate L13420: *****",
+          "candidate L13459: *****",
+          "candidate L13626: *****",
+          "candidate L13685: *****",
+          "candidate L13742: *****",
+          "candidate L13765: *****",
+          "candidate L13794: *****"
+        ]
+      },
+      {
+        "action": "normalize-smart-quotes",
+        "count": 6921,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "’",
+          "“",
+          "”",
+          "“"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 1011,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER I. The Period It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

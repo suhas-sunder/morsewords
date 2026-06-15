@@ -1,0 +1,545 @@
+{
+  "slug": "the-turn-of-the-screw",
+  "selectionReason": "High-confidence standalone Roman sections with clear narrative divisions and manageable cleanup risk.",
+  "title": "The Turn of the Screw",
+  "author": [
+    "Henry James"
+  ],
+  "sourcePath": "app/client/assets/temp-books/The Turn of the Screw.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 219,
+    "startIndex": 7790,
+    "startSnippet": "“The outbreak,” I returned, “will make a tremendous occasion of Thursday night;” and everyone so agreed with me that, in the light of it, we lost all attention for everything else. The last story, however incomplete and like the mere opening of a serial, had been told; we handshook and “candlestuck,” as somebody said, and went to bed.",
+    "endLine": 4576,
+    "endIndex": 229291,
+    "endSnippet": "he uttered the cry of a creature hurled over an abyss, and the grasp with which I recovered him might have been that of catching him in his fall. I caught him, yes, I held him—it may be imagined with what a passion; but at the end of a minute I began to feel what it truly was that I held. We were alone with the quiet day, and his little heart, dispossessed, had stopped."
+  },
+  "wordCounts": {
+    "raw": 46568,
+    "kept": 42081,
+    "removedFrontMatter": 1481,
+    "removedEndMatter": 3006
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 1545,
+      "characterCount": 8414,
+      "estimatedListeningMinutes": 50,
+      "textPreview": "“The outbreak,” I returned, “will make a tremendous occasion of Thursday night;” and everyone so agreed with me that, in the light of it, we lost all attention..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1737,
+      "characterCount": 9223,
+      "estimatedListeningMinutes": 55,
+      "textPreview": "I I remember the whole beginning as a succession of flights and drops, a little seesaw of the right throbs and the wrong. After rising, in town, to meet his ap..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1465,
+      "characterCount": 7709,
+      "estimatedListeningMinutes": 46,
+      "textPreview": "II This came home to me when, two days later, I drove over with Flora to meet, as Mrs. Grose said, the little gentleman; and all the more for an incident that,..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2195,
+      "characterCount": 11405,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "III Her thus turning her back on me was fortunately not, for my just preoccupations, a snub that could check the growth of our mutual esteem. We met, after I h..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2164,
+      "characterCount": 11342,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "IV It was not that I didn’t wait, on this occasion, for more, for I was rooted as deeply as I was shaken. Was there a “secret” at Bly—a mystery of Udolpho or a..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1276,
+      "characterCount": 6690,
+      "estimatedListeningMinutes": 41,
+      "textPreview": "V Oh, she let me know as soon as, round the corner of the house, she loomed again into view. “What in the name of goodness is the matter—?” She was now flushed..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2740,
+      "characterCount": 14745,
+      "estimatedListeningMinutes": 88,
+      "textPreview": "VI It took of course more than that particular passage to place us together in presence of what we had now to live with as we could—my dreadful liability to im..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1476,
+      "characterCount": 7660,
+      "estimatedListeningMinutes": 47,
+      "textPreview": "VII I got hold of Mrs. Grose as soon after this as I could; and I can give no intelligible account of how I fought out the interval. Yet I still hear myself cr..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2061,
+      "characterCount": 10876,
+      "estimatedListeningMinutes": 65,
+      "textPreview": "VIII What I had said to Mrs. Grose was true enough: there were in the matter I had put before her depths and possibilities that I lacked resolution to sound; s..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2013,
+      "characterCount": 10953,
+      "estimatedListeningMinutes": 65,
+      "textPreview": "IX I waited and waited, and the days, as they elapsed, took something from my consternation. A very few of them, in fact, passing, in constant sight of my pupi..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1775,
+      "characterCount": 9431,
+      "estimatedListeningMinutes": 56,
+      "textPreview": "X I remained awhile at the top of the stair, but with the effect presently of understanding that when my visitor had gone, he had gone: then I returned to my r..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1514,
+      "characterCount": 7950,
+      "estimatedListeningMinutes": 47,
+      "textPreview": "XI It was not till late next day that I spoke to Mrs. Grose; the rigor with which I kept my pupils in sight making it often difficult to meet her privately, an..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1197,
+      "characterCount": 6204,
+      "estimatedListeningMinutes": 37,
+      "textPreview": "XII The particular impression I had received proved in the morning light, I repeat, not quite successfully presentable to Mrs. Grose, though I reinforced it wi..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2074,
+      "characterCount": 11199,
+      "estimatedListeningMinutes": 66,
+      "textPreview": "XIII It was all very well to join them, but speaking to them proved quite as much as ever an effort beyond my strength—offered, in close quarters, difficulties..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1386,
+      "characterCount": 7286,
+      "estimatedListeningMinutes": 44,
+      "textPreview": "XIV Walking to church a certain Sunday morning, I had little Miles at my side and his sister, in advance of us and at Mrs. Grose’s, well in sight. It was a cri..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1220,
+      "characterCount": 6378,
+      "estimatedListeningMinutes": 38,
+      "textPreview": "XV The business was practically settled from the moment I never followed him. It was a pitiful surrender to agitation, but my being aware of this had somehow n..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1006,
+      "characterCount": 5237,
+      "estimatedListeningMinutes": 32,
+      "textPreview": "XVI I had so perfectly expected that the return of my pupils would be marked by a demonstration that I was freshly upset at having to take into account that th..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1708,
+      "characterCount": 8606,
+      "estimatedListeningMinutes": 52,
+      "textPreview": "XVII I went so far, in the evening, as to make a beginning. The weather had changed back, a great wind was abroad, and beneath the lamp, in my room, with Flora..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1211,
+      "characterCount": 6492,
+      "estimatedListeningMinutes": 39,
+      "textPreview": "XVIII The next day, after lessons, Mrs. Grose found a moment to say to me quietly: “Have you written, miss?” “Yes—I’ve written.” But I didn’t add—for the hour—..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1384,
+      "characterCount": 7195,
+      "estimatedListeningMinutes": 43,
+      "textPreview": "XIX We went straight to the lake, as it was called at Bly, and I daresay rightly called, though I reflect that it may in fact have been a sheet of water less r..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1865,
+      "characterCount": 9800,
+      "estimatedListeningMinutes": 59,
+      "textPreview": "XX Just as in the churchyard with Miles, the whole thing was upon us. Much as I had made of the fact that this name had never once, between us, been sounded, t..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2174,
+      "characterCount": 11138,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "XXI Before a new day, in my room, had fully broken, my eyes opened to Mrs. Grose, who had come to my bedside with worse news. Flora was so markedly feverish th..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1482,
+      "characterCount": 7836,
+      "estimatedListeningMinutes": 47,
+      "textPreview": "XXII Yet it was when she had got off—and I missed her on the spot—that the great pinch really came. If I had counted on what it would give me to find myself al..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1453,
+      "characterCount": 7485,
+      "estimatedListeningMinutes": 45,
+      "textPreview": "XXIII “Oh, more or less.” I fancy my smile was pale. “Not absolutely. We shouldn’t like that!” I went on. “No—I suppose we shouldn’t. Of course we have the oth..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 24",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1960,
+      "characterCount": 10175,
+      "estimatedListeningMinutes": 61,
+      "textPreview": "XXIV My sense of how he received this suffered for a minute from something that I can describe only as a fierce split of my attention—a stroke that at first, a..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "standalone roman numeral sections",
+    "selectedHeadingStrategy": {
+      "patternId": "roman-only",
+      "label": "Standalone Roman numeral",
+      "convention": "standalone roman numeral sections",
+      "kind": "chapter",
+      "candidateCount": 24,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 24,
+      "examples": [
+        "L152: I",
+        "L310: II",
+        "L490: III",
+        "L685: IV",
+        "L860: V",
+        "L1079: VI"
+      ],
+      "bodyExamples": [
+        "L152: I",
+        "L310: II",
+        "L490: III",
+        "L685: IV",
+        "L860: V",
+        "L1079: VI",
+        "L1355: VII",
+        "L1563: VIII"
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 24,
+        "minimumWords": 1006,
+        "medianWords": 1708,
+        "maximumWords": 2740,
+        "averageWords": 1689,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "roman-only",
+        "label": "Standalone Roman numeral",
+        "convention": "standalone roman numeral sections",
+        "kind": "chapter",
+        "candidateCount": 24,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 24,
+        "examples": [
+          "L152: I",
+          "L310: II",
+          "L490: III",
+          "L685: IV",
+          "L860: V",
+          "L1079: VI"
+        ],
+        "bodyExamples": [
+          "L152: I",
+          "L310: II",
+          "L490: III",
+          "L685: IV",
+          "L860: V",
+          "L1079: VI",
+          "L1355: VII",
+          "L1563: VIII"
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 24,
+          "minimumWords": 1006,
+          "medianWords": 1708,
+          "maximumWords": 2740,
+          "averageWords": 1689,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 17,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 17,
+        "examples": [
+          "L256: Street?”",
+          "L258: “In Harley Street.”",
+          "L1048: “Quint?”",
+          "L1406: “Miss Jessel?”",
+          "L2670: Flora?”",
+          "L2692: “Know what, Miles?”"
+        ],
+        "bodyExamples": [
+          "L256: Street?”",
+          "L258: “In Harley Street.”",
+          "L1048: “Quint?”",
+          "L1406: “Miss Jessel?”",
+          "L2670: Flora?”",
+          "L2692: “Know what, Miles?”",
+          "L2999: Miles?”",
+          "L3054: “Oh, no, I like Bly.”"
+        ],
+        "tocExamples": [],
+        "score": 0.651,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy roman-only",
+        "sectionSizeNotes": {
+          "sectionCount": 17,
+          "minimumWords": 1,
+          "medianWords": 894,
+          "maximumWords": 12854,
+          "averageWords": 2315,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 3,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 17,
+        "bodyLikeCount": 17,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy roman-only"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 24,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L152: I",
+      "L310: II",
+      "L490: III",
+      "L685: IV",
+      "L860: V",
+      "L1079: VI",
+      "L1355: VII",
+      "L1563: VIII"
+    ],
+    "tocHeadingExamples": [
+      "L38: I",
+      "L39: II",
+      "L40: III",
+      "L41: IV",
+      "L42: V",
+      "L43: VI",
+      "L44: VII",
+      "L45: VIII"
+    ],
+    "priorTwoSectionCollapseFixed": false
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 41529,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 2437,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "“",
+          "”",
+          "“",
+          "”",
+          "“"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 619,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 1737,
+    "startsAtRealReadableContent": true,
+    "snippet": "I I remember the whole beginning as a succession of flights and drops, a little seesaw of the right throbs and the wrong. After rising, in town, to meet his appeal, I had at all events a couple of very bad days—found myself doubtful again, felt indeed sure I had made a mistake. In this state of mind I spent the long hours of bumping, swinging coach that car...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

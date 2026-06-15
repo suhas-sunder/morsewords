@@ -1,0 +1,506 @@
+{
+  "slug": "cranford",
+  "selectionReason": "High-confidence chapter-Roman structure with manageable length and clear start/end markers.",
+  "title": "Cranford",
+  "author": [
+    "Elizabeth Cleghorn Gaskell"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Cranford.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 117,
+    "startIndex": 3043,
+    "startSnippet": "CHAPTER I. OUR SOCIETY IN the first place, Cranford is in possession of the Amazons; all the holders of houses above a certain rent are women. If a married couple",
+    "endLine": 6724,
+    "endIndex": 390249,
+    "endSnippet": "* * * * * PRINTED BY TURNBULL AND SPEARS, EDINBURGH"
+  },
+  "wordCounts": {
+    "raw": 75436,
+    "kept": 71994,
+    "removedFrontMatter": 440,
+    "removedEndMatter": 3002
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3990,
+      "characterCount": 22256,
+      "estimatedListeningMinutes": 132,
+      "textPreview": "CHAPTER I. OUR SOCIETY IN the first place, Cranford is in possession of the Amazons; all the holders of houses above a certain rent are women. If a married cou..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5663,
+      "characterCount": 30877,
+      "estimatedListeningMinutes": 183,
+      "textPreview": "CHAPTER II. THE CAPTAIN IT was impossible to live a month at Cranford and not know the daily habits of each resident; and long before my visit was ended I knew..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3500,
+      "characterCount": 18873,
+      "estimatedListeningMinutes": 112,
+      "textPreview": "CHAPTER III. A LOVE AFFAIR OF LONG AGO I THOUGHT that probably my connection with Cranford would cease after Miss Jenkyns’s death; at least, that it would have..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4290,
+      "characterCount": 22716,
+      "estimatedListeningMinutes": 135,
+      "textPreview": "CHAPTER IV. A VISIT TO AN OLD BACHELOR A FEW days after, a note came from Mr Holbrook, asking us—impartially asking both of us—in a formal, old-fashioned style..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4175,
+      "characterCount": 22888,
+      "estimatedListeningMinutes": 135,
+      "textPreview": "CHAPTER V. OLD LETTERS I HAVE often noticed that almost every one has his own individual small economies—careful habits of saving fractions of pennies in some..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4807,
+      "characterCount": 24614,
+      "estimatedListeningMinutes": 146,
+      "textPreview": "CHAPTER VI. POOR PETER POOR Peter’s career lay before him rather pleasantly mapped out by kind friends, but _Bonus Bernardus non videt omnia_, in this map too...."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3855,
+      "characterCount": 21636,
+      "estimatedListeningMinutes": 129,
+      "textPreview": "CHAPTER VII. VISITING ONE morning, as Miss Matty and I sat at our work—it was before twelve o’clock, and Miss Matty had not changed the cap with yellow ribbons..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5075,
+      "characterCount": 27451,
+      "estimatedListeningMinutes": 163,
+      "textPreview": "CHAPTER VIII. “YOUR LADYSHIP” EARLY the next morning—directly after twelve—Miss Pole made her appearance at Miss Matty’s. Some very trifling piece of business..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3779,
+      "characterCount": 20722,
+      "estimatedListeningMinutes": 123,
+      "textPreview": "CHAPTER IX. SIGNOR BRUNONI SOON after the events of which I gave an account in my last paper, I was summoned home by my father’s illness; and for a time I forg..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5547,
+      "characterCount": 30010,
+      "estimatedListeningMinutes": 178,
+      "textPreview": "CHAPTER X. THE PANIC I THINK a series of circumstances dated from Signor Brunoni’s visit to Cranford, which seemed at the time connected in our minds with him,..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4684,
+      "characterCount": 24243,
+      "estimatedListeningMinutes": 144,
+      "textPreview": "CHAPTER XI. SAMUEL BROWN THE next morning I met Lady Glenmire and Miss Pole setting out on a long walk to find some old woman who was famous in the neighbourho..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3178,
+      "characterCount": 17257,
+      "estimatedListeningMinutes": 102,
+      "textPreview": "CHAPTER XII. ENGAGED TO BE MARRIED WAS the “poor Peter” of Cranford the Aga Jenkyns of Chunderabaddad, or was he not? As somebody says, that was the question...."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4448,
+      "characterCount": 23490,
+      "estimatedListeningMinutes": 139,
+      "textPreview": "CHAPTER XIII. STOPPED PAYMENT THE very Tuesday morning on which Mr Johnson was going to show the fashions, the post-woman brought two letters to the house. I s..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 7023,
+      "characterCount": 37102,
+      "estimatedListeningMinutes": 220,
+      "textPreview": "CHAPTER XIV. FRIENDS IN NEED IT was an example to me, and I fancy it might be to many others, to see how immediately Miss Matty set about the retrenchment whic..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4966,
+      "characterCount": 26719,
+      "estimatedListeningMinutes": 158,
+      "textPreview": "CHAPTER XV. A HAPPY RETURN BEFORE I left Miss Matty at Cranford everything had been comfortably arranged for her. Even Mrs Jamieson’s approval of her selling t..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3014,
+      "characterCount": 16277,
+      "estimatedListeningMinutes": 95,
+      "textPreview": "CHAPTER XVI. PEACE TO CRANFORD IT was not surprising that Mr Peter became such a favourite at Cranford. The ladies vied with each other who should admire him m..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based roman numerals",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-roman",
+      "label": "Chapter plus Roman numeral",
+      "convention": "chapter-based roman numerals",
+      "kind": "chapter",
+      "candidateCount": 16,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 16,
+      "examples": [
+        "L1: CHAPTER I.",
+        "L387: CHAPTER II.",
+        "L916: CHAPTER III.",
+        "L1239: CHAPTER IV.",
+        "L1685: CHAPTER V.",
+        "L2050: CHAPTER VI."
+      ],
+      "bodyExamples": [
+        "L1: CHAPTER I.",
+        "L387: CHAPTER II.",
+        "L916: CHAPTER III.",
+        "L1239: CHAPTER IV.",
+        "L1685: CHAPTER V.",
+        "L2050: CHAPTER VI.",
+        "L2481: CHAPTER VII.",
+        "L2855: CHAPTER VIII."
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 16,
+        "minimumWords": 3014,
+        "medianWords": 4448,
+        "maximumWords": 7023,
+        "averageWords": 4500,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 16,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 16,
+        "examples": [
+          "L1: CHAPTER I.",
+          "L387: CHAPTER II.",
+          "L916: CHAPTER III.",
+          "L1239: CHAPTER IV.",
+          "L1685: CHAPTER V.",
+          "L2050: CHAPTER VI."
+        ],
+        "bodyExamples": [
+          "L1: CHAPTER I.",
+          "L387: CHAPTER II.",
+          "L916: CHAPTER III.",
+          "L1239: CHAPTER IV.",
+          "L1685: CHAPTER V.",
+          "L2050: CHAPTER VI.",
+          "L2481: CHAPTER VII.",
+          "L2855: CHAPTER VIII."
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 16,
+          "minimumWords": 3014,
+          "medianWords": 4448,
+          "maximumWords": 7023,
+          "averageWords": 4500,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 19,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 19,
+        "examples": [
+          "L2: OUR SOCIETY",
+          "L388: THE CAPTAIN",
+          "L917: A LOVE AFFAIR OF LONG AGO",
+          "L1240: A VISIT TO AN OLD BACHELOR",
+          "L1686: OLD LETTERS",
+          "L2051: POOR PETER"
+        ],
+        "bodyExamples": [
+          "L2: OUR SOCIETY",
+          "L388: THE CAPTAIN",
+          "L917: A LOVE AFFAIR OF LONG AGO",
+          "L1240: A VISIT TO AN OLD BACHELOR",
+          "L1686: OLD LETTERS",
+          "L2051: POOR PETER",
+          "L2482: VISITING",
+          "L2856: “YOUR LADYSHIP”"
+        ],
+        "tocExamples": [],
+        "score": 0.851,
+        "confidence": "high",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 19,
+          "minimumWords": 1,
+          "medianWords": 4175,
+          "maximumWords": 7023,
+          "averageWords": 3789,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 3,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 23,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 23,
+        "examples": [
+          "L191: London?",
+          "L328: Captain Brown.”",
+          "L377: Johnson to Mr Boz.”",
+          "L1168: Jenkyns.”",
+          "L1190: meeting Cousin Thomas.”",
+          "L1564: “But what, Martha?”"
+        ],
+        "bodyExamples": [
+          "L191: London?",
+          "L328: Captain Brown.”",
+          "L377: Johnson to Mr Boz.”",
+          "L1168: Jenkyns.”",
+          "L1190: meeting Cousin Thomas.”",
+          "L1564: “But what, Martha?”",
+          "L2017: Peter Marmaduke Arley Jenkyns (“poor Peter!” as Miss Matty began to call",
+          "L2571: “And Mrs Forrester, of course?”"
+        ],
+        "tocExamples": [],
+        "score": 0.651,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-roman",
+        "sectionSizeNotes": {
+          "sectionCount": 23,
+          "minimumWords": 5,
+          "medianWords": 1494,
+          "maximumWords": 11618,
+          "averageWords": 3043,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 5,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 19,
+        "bodyLikeCount": 19,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 23,
+        "bodyLikeCount": 23,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-roman"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 16,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 16,
+    "bodyHeadingExamples": [
+      "L1: CHAPTER I.",
+      "L387: CHAPTER II.",
+      "L916: CHAPTER III.",
+      "L1239: CHAPTER IV.",
+      "L1685: CHAPTER V.",
+      "L2050: CHAPTER VI.",
+      "L2481: CHAPTER VII.",
+      "L2855: CHAPTER VIII."
+    ],
+    "tocHeadingExamples": [
+      "L55: CHAPTER I. OUR SOCIETY",
+      "L56: CHAPTER II. THE CAPTAIN",
+      "L57: CHAPTER III. A LOVE AFFAIR OF LONG AGO",
+      "L58: CHAPTER IV. A VISIT TO AN OLD BACHELOR",
+      "L59: CHAPTER V. OLD LETTERS",
+      "L60: CHAPTER VI. POOR PETER",
+      "L61: CHAPTER VII. VISITING",
+      "L62: CHAPTER VIII. “YOUR LADYSHIP”"
+    ],
+    "priorTwoSectionCollapseFixed": true
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 71225,
+    "actions": [
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 1,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L6574: * * * * *"
+        ]
+      },
+      {
+        "action": "normalize-smart-quotes",
+        "count": 2293,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "“",
+          "”",
+          "“",
+          "”"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 521,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 3990,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER I. OUR SOCIETY IN the first place, Cranford is in possession of the Amazons; all the holders of houses above a certain rent are women. If a married couple come to settle in the town, somehow the gentleman disappears; he is either fairly frightened to death by being the only man in the Cranford evening parties, or he is accounted for by being with hi...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

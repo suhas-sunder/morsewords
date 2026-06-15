@@ -1,0 +1,715 @@
+{
+  "slug": "anne-of-avonlea",
+  "selectionReason": "High-confidence standalone Roman sections with clear readable boundaries and a feasible preview candidate.",
+  "title": "Anne of Avonlea",
+  "author": [
+    "L. M. Montgomery"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Anne of Avonlea.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 49,
+    "startIndex": 1002,
+    "startSnippet": "Flowers spring to blossom where she walks The careful ways of duty, Our hard, stiff lines of life with her Are flowing curves of beauty. —WHITTIER",
+    "endLine": 9780,
+    "endIndex": 488941,
+    "endSnippet": "Behind them in the garden the little stone house brooded among the shadows. It was lonely but not forsaken. It had not yet done with dreams and laughter and the joy of life; there were to be future summers for the little stone house; meanwhile, it could wait. And over the river in purple durance the echoes bided their time."
+  },
+  "wordCounts": {
+    "raw": 95082,
+    "kept": 91915,
+    "removedFrontMatter": 163,
+    "removedEndMatter": 3004
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 218,
+      "characterCount": 1320,
+      "estimatedListeningMinutes": 8,
+      "textPreview": "Flowers spring to blossom where she walks The careful ways of duty, Our hard, stiff lines of life with her Are flowing curves of beauty. —WHITTIER Contents CHA..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3524,
+      "characterCount": 18731,
+      "estimatedListeningMinutes": 112,
+      "textPreview": "I An Irate Neighbor A tall, slim girl, “half-past sixteen,” with serious gray eyes and hair which her friends called auburn, had sat down on the broad red sand..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2085,
+      "characterCount": 11021,
+      "estimatedListeningMinutes": 66,
+      "textPreview": "II Selling in Haste and Repenting at Leisure Anne drove over to Carmody on a shopping expedition the next afternoon and took Diana Barry with her. Diana was, o..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2455,
+      "characterCount": 13180,
+      "estimatedListeningMinutes": 79,
+      "textPreview": "III Mr. Harrison at Home Mr. Harrison’s house was an old-fashioned, low-eaved, whitewashed structure, set against a thick spruce grove. Mr. Harrison himself wa..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1668,
+      "characterCount": 8909,
+      "estimatedListeningMinutes": 54,
+      "textPreview": "IV Different Opinions One evening at sunset, Jane Andrews, Gilbert Blythe, and Anne Shirley were lingering by a fence in the shadow of gently swaying spruce bo..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2385,
+      "characterCount": 13131,
+      "estimatedListeningMinutes": 79,
+      "textPreview": "V A Full-fledged Schoolma’am When Anne reached the school that morning . . . for the first time in her life she had traversed the Birch Path deaf and blind to..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3739,
+      "characterCount": 19963,
+      "estimatedListeningMinutes": 119,
+      "textPreview": "VI All Sorts and Conditions of Men . . . and women A September day on Prince Edward Island hills; a crisp wind blowing up over the sand dunes from the sea; a l..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2022,
+      "characterCount": 10500,
+      "estimatedListeningMinutes": 63,
+      "textPreview": "VII The Pointing of Duty Anne leaned back in her chair one mild October evening and sighed. She was sitting at a table covered with text books and exercises, b..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3228,
+      "characterCount": 16683,
+      "estimatedListeningMinutes": 100,
+      "textPreview": "VIII Marilla Adopts Twins Mrs. Rachel Lynde was sitting at her kitchen window, knitting a quilt, just as she had been sitting one evening several years previou..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2150,
+      "characterCount": 11519,
+      "estimatedListeningMinutes": 69,
+      "textPreview": "IX A Question of Color “That old nuisance of a Rachel Lynde was here again today, pestering me for a subscription towards buying a carpet for the vestry room,”..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3466,
+      "characterCount": 18220,
+      "estimatedListeningMinutes": 110,
+      "textPreview": "X Davy in Search of a Sensation Anne, walking home from school through the Birch Path one November afternoon, felt convinced afresh that life was a very wonder..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3283,
+      "characterCount": 16750,
+      "estimatedListeningMinutes": 99,
+      "textPreview": "XI Facts and Fancies “Teaching is really very interesting work,” wrote Anne to a Queen’s Academy chum. “Jane says she thinks it is monotonous but I don’t find..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2408,
+      "characterCount": 13379,
+      "estimatedListeningMinutes": 80,
+      "textPreview": "XII A Jonah Day It really began the night before with a restless, wakeful vigil of grumbling toothache. When Anne arose in the dull, bitter winter morning she..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3457,
+      "characterCount": 18610,
+      "estimatedListeningMinutes": 112,
+      "textPreview": "XIII A Golden Picnic Anne, on her way to Orchard Slope, met Diana, bound for Green Gables, just where the mossy old log bridge spanned the brook below the Haun..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3967,
+      "characterCount": 21623,
+      "estimatedListeningMinutes": 130,
+      "textPreview": "XIV A Danger Averted Anne, walking home from the post office one Friday evening, was joined by Mrs. Lynde, who was as usual cumbered with all the cares of chur..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2753,
+      "characterCount": 14438,
+      "estimatedListeningMinutes": 86,
+      "textPreview": "XV The Beginning of Vacation Anne locked the schoolhouse door on a still, yellow evening, when the winds were purring in the spruces around the playground, and..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2358,
+      "characterCount": 12295,
+      "estimatedListeningMinutes": 74,
+      "textPreview": "XVI The Substance of Things Hoped For “Anne,” said Davy appealingly, scrambling up on the shiny, leather-covered sofa in the Green Gables kitchen, where Anne s..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3708,
+      "characterCount": 19726,
+      "estimatedListeningMinutes": 118,
+      "textPreview": "XVII A Chapter of Accidents Anne woke three times in the night and made pilgrimages to her window to make sure that Uncle Abe’s prediction was not coming true...."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3315,
+      "characterCount": 17566,
+      "estimatedListeningMinutes": 105,
+      "textPreview": "XVIII An Adventure on the Tory Road “Anne,” said Davy, sitting up in bed and propping his chin on his hands, “Anne, where is sleep? People go to sleep every ni..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4043,
+      "characterCount": 20915,
+      "estimatedListeningMinutes": 125,
+      "textPreview": "XIX Just a Happy Day “After all,” Anne had said to Marilla once, “I believe the nicest and sweetest days are not those on which anything very splendid or wonde..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2592,
+      "characterCount": 14183,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "XX The Way It Often Happens Anne rose betimes the next morning and blithely greeted the fresh day, when the banners of the sunrise were shaken triumphantly acr..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4405,
+      "characterCount": 23437,
+      "estimatedListeningMinutes": 140,
+      "textPreview": "XXI Sweet Miss Lavendar School opened and Anne returned to her work, with fewer theories but considerably more experience. She had several new pupils, six- and..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1677,
+      "characterCount": 8692,
+      "estimatedListeningMinutes": 52,
+      "textPreview": "XXII Odds and Ends “So you had tea at the stone house with Lavendar Lewis?” said Marilla at the breakfast table next morning. “What is she like now? It’s over..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2497,
+      "characterCount": 13260,
+      "estimatedListeningMinutes": 79,
+      "textPreview": "XXIII Miss Lavendar’s Romance “I think I’ll take a walk through to Echo Lodge this evening,” said Anne, one Friday afternoon in December. “It looks like snow,”..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 24",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2967,
+      "characterCount": 15896,
+      "estimatedListeningMinutes": 95,
+      "textPreview": "XXIV A Prophet in His Own Country One May day Avonlea folks were mildly excited over some “Avonlea Notes,” signed “Observer,” which appeared in the Charlotteto..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 25",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4440,
+      "characterCount": 22751,
+      "estimatedListeningMinutes": 136,
+      "textPreview": "XXV An Avonlea Scandal One blithe June morning, a fortnight after Uncle Abe’s storm, Anne came slowly through the Green Gables yard from the garden, carrying i..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 26",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4057,
+      "characterCount": 21164,
+      "estimatedListeningMinutes": 127,
+      "textPreview": "XXVI Around the Bend Thomas Lynde faded out of life as quietly and unobtrusively as he had lived it. His wife was a tender, patient, unwearied nurse. Sometimes..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Chapter 27",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4298,
+      "characterCount": 22527,
+      "estimatedListeningMinutes": 136,
+      "textPreview": "XXVII An Afternoon at the Stone House “Where are you going, all dressed up, Anne?” Davy wanted to know. “You look bully in that dress.” Anne had come down to d..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "Chapter 28",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3658,
+      "characterCount": 19704,
+      "estimatedListeningMinutes": 118,
+      "textPreview": "XXVIII The Prince Comes Back to the Enchanted Palace The last day of school came and went. A triumphant “semi-annual examination” was held and Anne’s pupils ac..."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "Chapter 29",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2371,
+      "characterCount": 12773,
+      "estimatedListeningMinutes": 76,
+      "textPreview": "XXIX Poetry and Prose For the next month Anne lived in what, for Avonlea, might be called a whirl of excitement. The preparation of her own modest outfit for R..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2721,
+      "characterCount": 14893,
+      "estimatedListeningMinutes": 89,
+      "textPreview": "XXX A Wedding at the Stone House The last week in August came. Miss Lavendar was to be married in it. Two weeks later Anne and Gilbert would leave for Redmond..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "standalone roman numeral sections",
+    "selectedHeadingStrategy": {
+      "patternId": "roman-only",
+      "label": "Standalone Roman numeral",
+      "convention": "standalone roman numeral sections",
+      "kind": "chapter",
+      "candidateCount": 30,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 30,
+      "examples": [
+        "L42: I",
+        "L401: II",
+        "L626: III",
+        "L898: IV",
+        "L1096: V",
+        "L1331: VI"
+      ],
+      "bodyExamples": [
+        "L42: I",
+        "L401: II",
+        "L626: III",
+        "L898: IV",
+        "L1096: V",
+        "L1331: VI",
+        "L1712: VII",
+        "L1917: VIII"
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 30,
+        "minimumWords": 1668,
+        "medianWords": 3228,
+        "maximumWords": 4440,
+        "averageWords": 3057,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "roman-only",
+        "label": "Standalone Roman numeral",
+        "convention": "standalone roman numeral sections",
+        "kind": "chapter",
+        "candidateCount": 30,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 30,
+        "examples": [
+          "L42: I",
+          "L401: II",
+          "L626: III",
+          "L898: IV",
+          "L1096: V",
+          "L1331: VI"
+        ],
+        "bodyExamples": [
+          "L42: I",
+          "L401: II",
+          "L626: III",
+          "L898: IV",
+          "L1096: V",
+          "L1331: VI",
+          "L1712: VII",
+          "L1917: VIII"
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 30,
+          "minimumWords": 1668,
+          "medianWords": 3228,
+          "maximumWords": 4440,
+          "averageWords": 3057,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 70,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 70,
+        "examples": [
+          "L43: An Irate Neighbor",
+          "L351: Village Improvement Society, Anne?”",
+          "L402: Selling in Haste and Repenting at Leisure",
+          "L627: Mr. Harrison at Home",
+          "L899: Different Opinions",
+          "L902: One evening at sunset, Jane Andrews, Gilbert Blythe, and Anne Shirley"
+        ],
+        "bodyExamples": [
+          "L43: An Irate Neighbor",
+          "L351: Village Improvement Society, Anne?”",
+          "L402: Selling in Haste and Repenting at Leisure",
+          "L627: Mr. Harrison at Home",
+          "L899: Different Opinions",
+          "L902: One evening at sunset, Jane Andrews, Gilbert Blythe, and Anne Shirley",
+          "L925: “How?”",
+          "L1097: A Full-fledged Schoolma’am"
+        ],
+        "tocExamples": [],
+        "score": 0.651,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy roman-only",
+        "sectionSizeNotes": {
+          "sectionCount": 70,
+          "minimumWords": 2,
+          "medianWords": 982,
+          "maximumWords": 4366,
+          "averageWords": 1310,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 9,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 2,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L5: —WHITTIER",
+          "L3218: P.I.’”"
+        ],
+        "bodyExamples": [
+          "L3218: P.I.’”"
+        ],
+        "tocExamples": [
+          "L5: —WHITTIER"
+        ],
+        "score": 0.01100000000000001,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy roman-only",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 61694,
+          "medianWords": 61694,
+          "maximumWords": 61694,
+          "averageWords": 61694,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 0,
+          "notes": [
+            "1 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "chapter-roman",
+        "label": "Chapter plus Roman numeral",
+        "convention": "chapter-based roman numerals",
+        "kind": "chapter",
+        "candidateCount": 30,
+        "tocLikeCount": 30,
+        "bodyLikeCount": 0,
+        "examples": [
+          "L10: CHAPTER I. An Irate Neighbor",
+          "L11: CHAPTER II. Selling in Haste and Repenting at Leisure",
+          "L12: CHAPTER III. Mr. Harrison at Home",
+          "L13: CHAPTER IV. Different Opinions",
+          "L14: CHAPTER V. A Full-fledged Schoolma’am",
+          "L15: CHAPTER VI. All Sorts and Conditions of Men . . . and women"
+        ],
+        "bodyExamples": [],
+        "tocExamples": [
+          "L10: CHAPTER I. An Irate Neighbor",
+          "L11: CHAPTER II. Selling in Haste and Repenting at Leisure",
+          "L12: CHAPTER III. Mr. Harrison at Home",
+          "L13: CHAPTER IV. Different Opinions",
+          "L14: CHAPTER V. A Full-fledged Schoolma’am",
+          "L15: CHAPTER VI. All Sorts and Conditions of Men . . . and women",
+          "L16: CHAPTER VII. The Pointing of Duty",
+          "L17: CHAPTER VIII. Marilla Adopts Twins"
+        ],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "rejected as TOC-like or front-matter-only evidence",
+        "sectionSizeNotes": null
+      },
+      {
+        "patternId": "special-front-back",
+        "label": "Preface, introduction, notes, or appendix",
+        "convention": "front/back matter headings",
+        "kind": "front-back-matter",
+        "candidateCount": 1,
+        "tocLikeCount": 1,
+        "bodyLikeCount": 0,
+        "examples": [
+          "L8: Contents"
+        ],
+        "bodyExamples": [],
+        "tocExamples": [
+          "L8: Contents"
+        ],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "rejected as TOC-like or front-matter-only evidence",
+        "sectionSizeNotes": null
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 70,
+        "bodyLikeCount": 70,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy roman-only"
+      },
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 2,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 1,
+        "reason": "weaker than selected strategy roman-only"
+      },
+      {
+        "patternId": "chapter-roman",
+        "convention": "chapter-based roman numerals",
+        "candidateCount": 30,
+        "bodyLikeCount": 0,
+        "tocLikeCount": 30,
+        "reason": "rejected as TOC-like or front-matter-only evidence"
+      },
+      {
+        "patternId": "special-front-back",
+        "convention": "front/back matter headings",
+        "candidateCount": 1,
+        "bodyLikeCount": 0,
+        "tocLikeCount": 1,
+        "reason": "rejected as TOC-like or front-matter-only evidence"
+      }
+    ],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 30,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L42: I",
+      "L401: II",
+      "L626: III",
+      "L898: IV",
+      "L1096: V",
+      "L1331: VI",
+      "L1712: VII",
+      "L1917: VIII"
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": false
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 88867,
+    "actions": [
+      {
+        "action": "normalize-smart-quotes",
+        "count": 7184,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "’",
+          "“",
+          "”",
+          "’"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 20,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 3524,
+    "startsAtRealReadableContent": true,
+    "snippet": "I An Irate Neighbor A tall, slim girl, “half-past sixteen,” with serious gray eyes and hair which her friends called auburn, had sat down on the broad red sandstone doorstep of a Prince Edward Island farmhouse one ripe afternoon in August, firmly resolved to construe so many lines of Virgil. But an August afternoon, with blue hazes scarfing the harvest slop...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

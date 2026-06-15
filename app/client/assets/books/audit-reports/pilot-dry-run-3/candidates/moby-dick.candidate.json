@@ -1,0 +1,1956 @@
+{
+  "slug": "moby-dick",
+  "selectionReason": "Medium-confidence chapter-Arabic structure with major divisions, selected for dry-run-only review of a large but structured book.",
+  "title": "Moby Dick; Or, The Whale",
+  "author": [
+    "Herman Melville"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Moby Dick.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 844,
+    "startIndex": 28020,
+    "startSnippet": "CHAPTER 1. Loomings. Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and",
+    "endLine": 21959,
+    "endIndex": 1219806,
+    "endSnippet": "one whole day and night, I floated on a soft and dirgelike main. The unharming sharks, they glided by as if with padlocks on their mouths; the savage sea-hawks sailed with sheathed beaks. On the second day, a sail drew near, nearer, and picked me up at last. It was the devious-cruising Rachel, that in her retracing search after her missing children, only found another orphan."
+  },
+  "wordCounts": {
+    "raw": 220105,
+    "kept": 212512,
+    "removedFrontMatter": 4587,
+    "removedEndMatter": 3006
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": "Loomings",
+      "includeByDefault": true,
+      "wordCount": 2227,
+      "characterCount": 12209,
+      "estimatedListeningMinutes": 73,
+      "textPreview": "CHAPTER 1. Loomings. Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": "The Carpet-Bag",
+      "includeByDefault": true,
+      "wordCount": 1444,
+      "characterCount": 7939,
+      "estimatedListeningMinutes": 47,
+      "textPreview": "CHAPTER 2. The Carpet-Bag. I stuffed a shirt or two into my old carpet-bag, tucked it under my arm, and started for Cape Horn and the Pacific. Quitting the goo..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": "The Spouter-Inn",
+      "includeByDefault": true,
+      "wordCount": 5950,
+      "characterCount": 32010,
+      "estimatedListeningMinutes": 191,
+      "textPreview": "CHAPTER 3. The Spouter-Inn. Entering that gable-ended Spouter-Inn, you found yourself in a wide, low, straggling entry with old-fashioned wainscots, reminding..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": "The Counterpane",
+      "includeByDefault": true,
+      "wordCount": 1671,
+      "characterCount": 9126,
+      "estimatedListeningMinutes": 54,
+      "textPreview": "CHAPTER 4. The Counterpane. Upon waking next morning about daylight, I found Queequeg’s arm thrown over me in the most loving and affectionate manner. You had..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": "Breakfast",
+      "includeByDefault": true,
+      "wordCount": 749,
+      "characterCount": 4197,
+      "estimatedListeningMinutes": 25,
+      "textPreview": "CHAPTER 5. Breakfast. I quickly followed suit, and descending into the bar-room accosted the grinning landlord very pleasantly. I cherished no malice towards h..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": "The Street",
+      "includeByDefault": true,
+      "wordCount": 816,
+      "characterCount": 4817,
+      "estimatedListeningMinutes": 29,
+      "textPreview": "CHAPTER 6. The Street. If I had been astonished at first catching a glimpse of so outlandish an individual as Queequeg circulating among the polite society of..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": "The Chapel",
+      "includeByDefault": true,
+      "wordCount": 951,
+      "characterCount": 5385,
+      "estimatedListeningMinutes": 32,
+      "textPreview": "CHAPTER 7. The Chapel. In this same New Bedford there stands a Whaleman’s Chapel, and few are the moody fishermen, shortly bound for the Indian Ocean or Pacifi..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": "The Pulpit",
+      "includeByDefault": true,
+      "wordCount": 961,
+      "characterCount": 5411,
+      "estimatedListeningMinutes": 32,
+      "textPreview": "CHAPTER 8. The Pulpit. I had not been seated very long ere a man of a certain venerable robustness entered; immediately as the storm-pelted door flew back upon..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": "The Sermon",
+      "includeByDefault": true,
+      "wordCount": 3622,
+      "characterCount": 19734,
+      "estimatedListeningMinutes": 118,
+      "textPreview": "CHAPTER 9. The Sermon. Father Mapple rose, and in a mild voice of unassuming authority ordered the scattered people to condense. “Starboard gangway, there! sid..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": "A Bosom Friend",
+      "includeByDefault": true,
+      "wordCount": 1567,
+      "characterCount": 8709,
+      "estimatedListeningMinutes": 52,
+      "textPreview": "CHAPTER 10. A Bosom Friend. Returning to the Spouter-Inn from the Chapel, I found Queequeg there quite alone; he having left the Chapel before the benediction..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": "Nightgown",
+      "includeByDefault": true,
+      "wordCount": 727,
+      "characterCount": 3949,
+      "estimatedListeningMinutes": 23,
+      "textPreview": "CHAPTER 11. Nightgown. We had lain thus in bed, chatting and napping at short intervals, and Queequeg now and then affectionately throwing his brown tattooed l..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": "Biographical",
+      "includeByDefault": true,
+      "wordCount": 891,
+      "characterCount": 4889,
+      "estimatedListeningMinutes": 29,
+      "textPreview": "CHAPTER 12. Biographical. Queequeg was a native of Rokovoko, an island far away to the West and South. It is not down in any map; true places never are. When a..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": "Wheelbarrow",
+      "includeByDefault": true,
+      "wordCount": 1714,
+      "characterCount": 9699,
+      "estimatedListeningMinutes": 58,
+      "textPreview": "CHAPTER 13. Wheelbarrow. Next morning, Monday, after disposing of the embalmed head to a barber, for a block, I settled my own and comrade’s bill; using, howev..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": "Nantucket",
+      "includeByDefault": true,
+      "wordCount": 763,
+      "characterCount": 4344,
+      "estimatedListeningMinutes": 26,
+      "textPreview": "CHAPTER 14. Nantucket. Nothing more happened on the passage worthy the mentioning; so, after a fine run, we safely arrived in Nantucket. Nantucket! Take out yo..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": "Chowder",
+      "includeByDefault": true,
+      "wordCount": 1205,
+      "characterCount": 6604,
+      "estimatedListeningMinutes": 40,
+      "textPreview": "CHAPTER 15. Chowder. It was quite late in the evening when the little Moss came snugly to anchor, and Queequeg and I went ashore; so we could attend to no busi..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": "The Ship",
+      "includeByDefault": true,
+      "wordCount": 5547,
+      "characterCount": 30536,
+      "estimatedListeningMinutes": 183,
+      "textPreview": "CHAPTER 16. The Ship. In bed we concocted our plans for the morrow. But to my surprise and no small concern, Queequeg now gave me to understand, that he had be..."
+    },
+    {
+      "id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": "The Ramadan",
+      "includeByDefault": true,
+      "wordCount": 2325,
+      "characterCount": 12648,
+      "estimatedListeningMinutes": 76,
+      "textPreview": "CHAPTER 17. The Ramadan. As Queequeg’s Ramadan, or Fasting and Humiliation, was to continue all day, I did not choose to disturb him till towards night-fall; f..."
+    },
+    {
+      "id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter 18",
+      "title": "His Mark",
+      "includeByDefault": true,
+      "wordCount": 1384,
+      "characterCount": 7708,
+      "estimatedListeningMinutes": 47,
+      "textPreview": "CHAPTER 18. His Mark. As we were walking down the end of the wharf towards the ship, Queequeg carrying his harpoon, Captain Peleg in his gruff voice loudly hai..."
+    },
+    {
+      "id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter 19",
+      "title": "The Prophet",
+      "includeByDefault": true,
+      "wordCount": 1256,
+      "characterCount": 6577,
+      "estimatedListeningMinutes": 40,
+      "textPreview": "CHAPTER 19. The Prophet. “Shipmates, have ye shipped in that ship?” Queequeg and I had just left the Pequod, and were sauntering away from the water, for the m..."
+    },
+    {
+      "id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter 20",
+      "title": "All Astir",
+      "includeByDefault": true,
+      "wordCount": 930,
+      "characterCount": 5163,
+      "estimatedListeningMinutes": 31,
+      "textPreview": "CHAPTER 20. All Astir. A day or two passed, and there was great activity aboard the Pequod. Not only were the old sails being mended, but new sails were coming..."
+    },
+    {
+      "id": "chapter-021",
+      "kind": "chapter",
+      "label": "Chapter 21",
+      "title": "Going Aboard",
+      "includeByDefault": true,
+      "wordCount": 1096,
+      "characterCount": 6158,
+      "estimatedListeningMinutes": 37,
+      "textPreview": "CHAPTER 21. Going Aboard. It was nearly six o’clock, but only grey imperfect misty dawn, when we drew nigh the wharf. “There are some sailors running ahead the..."
+    },
+    {
+      "id": "chapter-022",
+      "kind": "chapter",
+      "label": "Chapter 22",
+      "title": "Merry Christmas",
+      "includeByDefault": true,
+      "wordCount": 1659,
+      "characterCount": 9168,
+      "estimatedListeningMinutes": 55,
+      "textPreview": "CHAPTER 22. Merry Christmas. At length, towards noon, upon the final dismissal of the ship’s riggers, and after the Pequod had been hauled out from the wharf,..."
+    },
+    {
+      "id": "chapter-023",
+      "kind": "chapter",
+      "label": "Chapter 23",
+      "title": "The Lee Shore",
+      "includeByDefault": true,
+      "wordCount": 371,
+      "characterCount": 2175,
+      "estimatedListeningMinutes": 13,
+      "textPreview": "CHAPTER 23. The Lee Shore. Some chapters back, one Bulkington was spoken of, a tall, newlanded mariner, encountered in New Bedford at the inn. When on that shi..."
+    },
+    {
+      "id": "chapter-024",
+      "kind": "chapter",
+      "label": "Chapter 24",
+      "title": "The Advocate",
+      "includeByDefault": true,
+      "wordCount": 1667,
+      "characterCount": 9714,
+      "estimatedListeningMinutes": 58,
+      "textPreview": "CHAPTER 24. The Advocate. As Queequeg and I are now fairly embarked in this business of whaling; and as this business of whaling has somehow come to be regarde..."
+    },
+    {
+      "id": "chapter-025",
+      "kind": "chapter",
+      "label": "Chapter 25",
+      "title": "Postscript",
+      "includeByDefault": true,
+      "wordCount": 286,
+      "characterCount": 1617,
+      "estimatedListeningMinutes": 10,
+      "textPreview": "CHAPTER 25. Postscript. In behalf of the dignity of whaling, I would fain advance naught but substantiated facts. But after embattling his facts, an advocate w..."
+    },
+    {
+      "id": "chapter-026",
+      "kind": "chapter",
+      "label": "Chapter 26",
+      "title": "Knights and Squires",
+      "includeByDefault": true,
+      "wordCount": 1225,
+      "characterCount": 7031,
+      "estimatedListeningMinutes": 42,
+      "textPreview": "CHAPTER 26. Knights and Squires. The chief mate of the Pequod was Starbuck, a native of Nantucket, and a Quaker by descent. He was a long, earnest man, and tho..."
+    },
+    {
+      "id": "chapter-027",
+      "kind": "chapter",
+      "label": "Chapter 27",
+      "title": "Knights and Squires",
+      "includeByDefault": true,
+      "wordCount": 1684,
+      "characterCount": 9522,
+      "estimatedListeningMinutes": 57,
+      "textPreview": "CHAPTER 27. Knights and Squires. Stubb was the second mate. He was a native of Cape Cod; and hence, according to local usage, was called a Cape-Cod-man. A happ..."
+    },
+    {
+      "id": "chapter-028",
+      "kind": "chapter",
+      "label": "Chapter 28",
+      "title": "Ahab",
+      "includeByDefault": true,
+      "wordCount": 1408,
+      "characterCount": 8081,
+      "estimatedListeningMinutes": 48,
+      "textPreview": "CHAPTER 28. Ahab. For several days after leaving Nantucket, nothing above hatches was seen of Captain Ahab. The mates regularly relieved each other at the watc..."
+    },
+    {
+      "id": "chapter-029",
+      "kind": "chapter",
+      "label": "Chapter 29",
+      "title": "Enter Ahab; to Him, Stubb",
+      "includeByDefault": true,
+      "wordCount": 1234,
+      "characterCount": 6568,
+      "estimatedListeningMinutes": 40,
+      "textPreview": "CHAPTER 29. Enter Ahab; to Him, Stubb. Some days elapsed, and ice and icebergs all astern, the Pequod now went rolling through the bright Quito spring, which,..."
+    },
+    {
+      "id": "chapter-030",
+      "kind": "chapter",
+      "label": "Chapter 30",
+      "title": "The Pipe",
+      "includeByDefault": true,
+      "wordCount": 293,
+      "characterCount": 1600,
+      "estimatedListeningMinutes": 10,
+      "textPreview": "CHAPTER 30. The Pipe. When Stubb had departed, Ahab stood for a while leaning over the bulwarks; and then, as had been usual with him of late, calling a sailor..."
+    },
+    {
+      "id": "chapter-031",
+      "kind": "chapter",
+      "label": "Chapter 31",
+      "title": "Queen Mab",
+      "includeByDefault": true,
+      "wordCount": 886,
+      "characterCount": 4454,
+      "estimatedListeningMinutes": 27,
+      "textPreview": "CHAPTER 31. Queen Mab. Next morning Stubb accosted Flask. “Such a queer dream, King-Post, I never had. You know the old man’s ivory leg, well I dreamed he kick..."
+    },
+    {
+      "id": "chapter-032",
+      "kind": "chapter",
+      "label": "Chapter 32",
+      "title": "Cetology",
+      "includeByDefault": true,
+      "wordCount": 5159,
+      "characterCount": 29975,
+      "estimatedListeningMinutes": 180,
+      "textPreview": "CHAPTER 32. Cetology. Already we are boldly launched upon the deep; but soon we shall be lost in its unshored, harbourless immensities. Ere that come to pass;..."
+    },
+    {
+      "id": "chapter-033",
+      "kind": "chapter",
+      "label": "Chapter 33",
+      "title": "The Specksnyder",
+      "includeByDefault": true,
+      "wordCount": 975,
+      "characterCount": 5822,
+      "estimatedListeningMinutes": 35,
+      "textPreview": "CHAPTER 33. The Specksnyder. Concerning the officers of the whale-craft, this seems as good a place as any to set down a little domestic peculiarity on ship-bo..."
+    },
+    {
+      "id": "chapter-034",
+      "kind": "chapter",
+      "label": "Chapter 34",
+      "title": "The Cabin-Table",
+      "includeByDefault": true,
+      "wordCount": 2219,
+      "characterCount": 12695,
+      "estimatedListeningMinutes": 76,
+      "textPreview": "CHAPTER 34. The Cabin-Table. It is noon; and Dough-Boy, the steward, thrusting his pale loaf-of-bread face from the cabin-scuttle, announces dinner to his lord..."
+    },
+    {
+      "id": "chapter-035",
+      "kind": "chapter",
+      "label": "Chapter 35",
+      "title": "The Mast-Head",
+      "includeByDefault": true,
+      "wordCount": 2564,
+      "characterCount": 14751,
+      "estimatedListeningMinutes": 88,
+      "textPreview": "CHAPTER 35. The Mast-Head. It was during the more pleasant weather, that in due rotation with the other seamen my first mast-head came round. In most American..."
+    },
+    {
+      "id": "chapter-036",
+      "kind": "chapter",
+      "label": "Chapter 36",
+      "title": "The Quarter-Deck",
+      "includeByDefault": true,
+      "wordCount": 2819,
+      "characterCount": 15879,
+      "estimatedListeningMinutes": 96,
+      "textPreview": "CHAPTER 36. The Quarter-Deck. (_Enter Ahab: Then, all._) It was not a great while after the affair of the pipe, that one morning shortly after breakfast, Ahab,..."
+    },
+    {
+      "id": "chapter-037",
+      "kind": "chapter",
+      "label": "Chapter 37",
+      "title": "Sunset",
+      "includeByDefault": true,
+      "wordCount": 525,
+      "characterCount": 2778,
+      "estimatedListeningMinutes": 17,
+      "textPreview": "CHAPTER 37. Sunset. _The cabin; by the stern windows; Ahab sitting alone, and gazing out_. I leave a white and turbid wake; pale waters, paler cheeks, where’er..."
+    },
+    {
+      "id": "chapter-038",
+      "kind": "chapter",
+      "label": "Chapter 38",
+      "title": "Dusk",
+      "includeByDefault": true,
+      "wordCount": 399,
+      "characterCount": 2094,
+      "estimatedListeningMinutes": 13,
+      "textPreview": "CHAPTER 38. Dusk. _By the Mainmast; Starbuck leaning against it_. My soul is more than matched; she’s overmanned; and by a madman! Insufferable sting, that san..."
+    },
+    {
+      "id": "chapter-039",
+      "kind": "chapter",
+      "label": "Chapter 39",
+      "title": "First Night-Watch",
+      "includeByDefault": true,
+      "wordCount": 284,
+      "characterCount": 1448,
+      "estimatedListeningMinutes": 9,
+      "textPreview": "CHAPTER 39. First Night-Watch. Fore-Top. (_Stubb solus, and mending a brace_.) Ha! ha! ha! ha! hem! clear my throat!—I’ve been thinking over it ever since, and..."
+    },
+    {
+      "id": "chapter-040",
+      "kind": "chapter",
+      "label": "Chapter 40",
+      "title": "Midnight, Forecastle",
+      "includeByDefault": true,
+      "wordCount": 1608,
+      "characterCount": 8911,
+      "estimatedListeningMinutes": 55,
+      "textPreview": "CHAPTER 40. Midnight, Forecastle. HARPOONEERS AND SAILORS. (_Foresail rises and discovers the watch standing, lounging, leaning, and lying in various attitudes..."
+    },
+    {
+      "id": "chapter-041",
+      "kind": "chapter",
+      "label": "Chapter 41",
+      "title": "Moby Dick",
+      "includeByDefault": true,
+      "wordCount": 3791,
+      "characterCount": 21971,
+      "estimatedListeningMinutes": 131,
+      "textPreview": "CHAPTER 41. Moby Dick. I, Ishmael, was one of that crew; my shouts had gone up with the rest; my oath had been welded with theirs; and stronger I shouted, and..."
+    },
+    {
+      "id": "chapter-042",
+      "kind": "chapter",
+      "label": "Chapter 42",
+      "title": "The Whiteness of the Whale",
+      "includeByDefault": true,
+      "wordCount": 3636,
+      "characterCount": 21152,
+      "estimatedListeningMinutes": 126,
+      "textPreview": "CHAPTER 42. The Whiteness of the Whale. What the white whale was to Ahab, has been hinted; what, at times, he was to me, as yet remains unsaid. Aside from thos..."
+    },
+    {
+      "id": "chapter-043",
+      "kind": "chapter",
+      "label": "Chapter 43",
+      "title": "Hark!",
+      "includeByDefault": true,
+      "wordCount": 313,
+      "characterCount": 1729,
+      "estimatedListeningMinutes": 10,
+      "textPreview": "CHAPTER 43. Hark! “HIST! Did you hear that noise, Cabaco?” It was the middle-watch: a fair moonlight; the seamen were standing in a cordon, extending from one..."
+    },
+    {
+      "id": "chapter-044",
+      "kind": "chapter",
+      "label": "Chapter 44",
+      "title": "The Chart",
+      "includeByDefault": true,
+      "wordCount": 2042,
+      "characterCount": 12000,
+      "estimatedListeningMinutes": 72,
+      "textPreview": "CHAPTER 44. The Chart. Had you followed Captain Ahab down into his cabin after the squall that took place on the night succeeding that wild ratification of his..."
+    },
+    {
+      "id": "chapter-045",
+      "kind": "chapter",
+      "label": "Chapter 45",
+      "title": "The Affidavit",
+      "includeByDefault": true,
+      "wordCount": 3566,
+      "characterCount": 20141,
+      "estimatedListeningMinutes": 120,
+      "textPreview": "CHAPTER 45. The Affidavit. So far as what there may be of a narrative in this book; and, indeed, as indirectly touching one or two very interesting and curious..."
+    },
+    {
+      "id": "chapter-046",
+      "kind": "chapter",
+      "label": "Chapter 46",
+      "title": "Surmises",
+      "includeByDefault": true,
+      "wordCount": 1006,
+      "characterCount": 5990,
+      "estimatedListeningMinutes": 36,
+      "textPreview": "CHAPTER 46. Surmises. Though, consumed with the hot fire of his purpose, Ahab in all his thoughts and actions ever had in view the ultimate capture of Moby Dic..."
+    },
+    {
+      "id": "chapter-047",
+      "kind": "chapter",
+      "label": "Chapter 47",
+      "title": "The Mat-Maker",
+      "includeByDefault": true,
+      "wordCount": 931,
+      "characterCount": 5363,
+      "estimatedListeningMinutes": 32,
+      "textPreview": "CHAPTER 47. The Mat-Maker. It was a cloudy, sultry afternoon; the seamen were lazily lounging about the decks, or vacantly gazing over into the lead-coloured w..."
+    },
+    {
+      "id": "chapter-048",
+      "kind": "chapter",
+      "label": "Chapter 48",
+      "title": "The First Lowering",
+      "includeByDefault": true,
+      "wordCount": 4002,
+      "characterCount": 22472,
+      "estimatedListeningMinutes": 135,
+      "textPreview": "CHAPTER 48. The First Lowering. The phantoms, for so they then seemed, were flitting on the other side of the deck, and, with a noiseless celerity, were castin..."
+    },
+    {
+      "id": "chapter-049",
+      "kind": "chapter",
+      "label": "Chapter 49",
+      "title": "The Hyena",
+      "includeByDefault": true,
+      "wordCount": 845,
+      "characterCount": 4685,
+      "estimatedListeningMinutes": 28,
+      "textPreview": "CHAPTER 49. The Hyena. There are certain queer times and occasions in this strange mixed affair we call life when a man takes this whole universe for a vast pr..."
+    },
+    {
+      "id": "chapter-050",
+      "kind": "chapter",
+      "label": "Chapter 50",
+      "title": "Ahab’s Boat and Crew. Fedallah",
+      "includeByDefault": true,
+      "wordCount": 1022,
+      "characterCount": 5743,
+      "estimatedListeningMinutes": 34,
+      "textPreview": "CHAPTER 50. Ahab’s Boat and Crew. Fedallah. “Who would have thought it, Flask!” cried Stubb; “if I had but one leg you would not catch me in a boat, unless may..."
+    },
+    {
+      "id": "chapter-051",
+      "kind": "chapter",
+      "label": "Chapter 51",
+      "title": "The Spirit-Spout",
+      "includeByDefault": true,
+      "wordCount": 1508,
+      "characterCount": 8688,
+      "estimatedListeningMinutes": 52,
+      "textPreview": "CHAPTER 51. The Spirit-Spout. Days, weeks passed, and under easy sail, the ivory Pequod had slowly swept across four several cruising-grounds; that off the Azo..."
+    },
+    {
+      "id": "chapter-052",
+      "kind": "chapter",
+      "label": "Chapter 52",
+      "title": "The Albatross",
+      "includeByDefault": true,
+      "wordCount": 720,
+      "characterCount": 4052,
+      "estimatedListeningMinutes": 24,
+      "textPreview": "CHAPTER 52. The Albatross. South-eastward from the Cape, off the distant Crozetts, a good cruising ground for Right Whalemen, a sail loomed ahead, the Goney (A..."
+    },
+    {
+      "id": "chapter-053",
+      "kind": "chapter",
+      "label": "Chapter 53",
+      "title": "The Gam",
+      "includeByDefault": true,
+      "wordCount": 1632,
+      "characterCount": 9376,
+      "estimatedListeningMinutes": 56,
+      "textPreview": "CHAPTER 53. The Gam. The ostensible reason why Ahab did not go on board of the whaler we had spoken was this: the wind and sea betokened storms. But even had t..."
+    },
+    {
+      "id": "chapter-054",
+      "kind": "chapter",
+      "label": "Chapter 54",
+      "title": "The Town-Ho’s Story",
+      "includeByDefault": true,
+      "wordCount": 8031,
+      "characterCount": 44991,
+      "estimatedListeningMinutes": 269,
+      "textPreview": "CHAPTER 54. The Town-Ho’s Story. (_As told at the Golden Inn._) The Cape of Good Hope, and all the watery region round about there, is much like some noted fou..."
+    },
+    {
+      "id": "chapter-055",
+      "kind": "chapter",
+      "label": "Chapter 55",
+      "title": "Of the Monstrous Pictures of Whales",
+      "includeByDefault": true,
+      "wordCount": 1907,
+      "characterCount": 10936,
+      "estimatedListeningMinutes": 65,
+      "textPreview": "CHAPTER 55. Of the Monstrous Pictures of Whales. I shall ere long paint to you as well as one can without canvas, something like the true form of the whale as..."
+    },
+    {
+      "id": "chapter-056",
+      "kind": "chapter",
+      "label": "Chapter 56",
+      "title": "Of the Less Erroneous Pictures of Whales, and the True",
+      "includeByDefault": true,
+      "wordCount": 1315,
+      "characterCount": 7581,
+      "estimatedListeningMinutes": 45,
+      "textPreview": "CHAPTER 56. Of the Less Erroneous Pictures of Whales, and the True Pictures of Whaling Scenes. In connexion with the monstrous pictures of whales, I am strongl..."
+    },
+    {
+      "id": "chapter-057",
+      "kind": "chapter",
+      "label": "Chapter 57",
+      "title": "Of Whales in Paint; in Teeth; in Wood; in Sheet-Iron; in",
+      "includeByDefault": true,
+      "wordCount": 950,
+      "characterCount": 5578,
+      "estimatedListeningMinutes": 33,
+      "textPreview": "CHAPTER 57. Of Whales in Paint; in Teeth; in Wood; in Sheet-Iron; in Stone; in Mountains; in Stars. On Tower-hill, as you go down to the London docks, you may..."
+    },
+    {
+      "id": "chapter-058",
+      "kind": "chapter",
+      "label": "Chapter 58",
+      "title": "Brit",
+      "includeByDefault": true,
+      "wordCount": 1011,
+      "characterCount": 5766,
+      "estimatedListeningMinutes": 34,
+      "textPreview": "CHAPTER 58. Brit. Steering north-eastward from the Crozetts, we fell in with vast meadows of brit, the minute, yellow substance, upon which the Right Whale lar..."
+    },
+    {
+      "id": "chapter-059",
+      "kind": "chapter",
+      "label": "Chapter 59",
+      "title": "Squid",
+      "includeByDefault": true,
+      "wordCount": 924,
+      "characterCount": 5350,
+      "estimatedListeningMinutes": 32,
+      "textPreview": "CHAPTER 59. Squid. Slowly wading through the meadows of brit, the Pequod still held on her way north-eastward towards the island of Java; a gentle air impellin..."
+    },
+    {
+      "id": "chapter-060",
+      "kind": "chapter",
+      "label": "Chapter 60",
+      "title": "The Line",
+      "includeByDefault": true,
+      "wordCount": 1467,
+      "characterCount": 8216,
+      "estimatedListeningMinutes": 49,
+      "textPreview": "CHAPTER 60. The Line. With reference to the whaling scene shortly to be described, as well as for the better understanding of all similar scenes elsewhere pres..."
+    },
+    {
+      "id": "chapter-061",
+      "kind": "chapter",
+      "label": "Chapter 61",
+      "title": "Stubb Kills a Whale",
+      "includeByDefault": true,
+      "wordCount": 1981,
+      "characterCount": 11110,
+      "estimatedListeningMinutes": 67,
+      "textPreview": "CHAPTER 61. Stubb Kills a Whale. If to Starbuck the apparition of the Squid was a thing of portents, to Queequeg it was quite a different object. “When you see..."
+    },
+    {
+      "id": "chapter-062",
+      "kind": "chapter",
+      "label": "Chapter 62",
+      "title": "The Dart",
+      "includeByDefault": true,
+      "wordCount": 571,
+      "characterCount": 3148,
+      "estimatedListeningMinutes": 19,
+      "textPreview": "CHAPTER 62. The Dart. A word concerning an incident in the last chapter. According to the invariable usage of the fishery, the whale-boat pushes off from the s..."
+    },
+    {
+      "id": "chapter-063",
+      "kind": "chapter",
+      "label": "Chapter 63",
+      "title": "The Crotch",
+      "includeByDefault": true,
+      "wordCount": 476,
+      "characterCount": 2832,
+      "estimatedListeningMinutes": 17,
+      "textPreview": "CHAPTER 63. The Crotch. Out of the trunk, the branches grow; out of them, the twigs. So, in productive subjects, grow the chapters. The crotch alluded to on a..."
+    },
+    {
+      "id": "chapter-064",
+      "kind": "chapter",
+      "label": "Chapter 64",
+      "title": "Stubb’s Supper",
+      "includeByDefault": true,
+      "wordCount": 3046,
+      "characterCount": 16531,
+      "estimatedListeningMinutes": 100,
+      "textPreview": "CHAPTER 64. Stubb’s Supper. Stubb’s whale had been killed some distance from the ship. It was a calm; so, forming a tandem of three boats, we commenced the slo..."
+    },
+    {
+      "id": "chapter-065",
+      "kind": "chapter",
+      "label": "Chapter 65",
+      "title": "The Whale as a Dish",
+      "includeByDefault": true,
+      "wordCount": 997,
+      "characterCount": 5488,
+      "estimatedListeningMinutes": 33,
+      "textPreview": "CHAPTER 65. The Whale as a Dish. That mortal man should feed upon the creature that feeds his lamp, and, like Stubb, eat him by his own light, as you may say;..."
+    },
+    {
+      "id": "chapter-066",
+      "kind": "chapter",
+      "label": "Chapter 66",
+      "title": "The Shark Massacre",
+      "includeByDefault": true,
+      "wordCount": 635,
+      "characterCount": 3623,
+      "estimatedListeningMinutes": 22,
+      "textPreview": "CHAPTER 66. The Shark Massacre. When in the Southern Fishery, a captured Sperm Whale, after long and weary toil, is brought alongside late at night, it is not,..."
+    },
+    {
+      "id": "chapter-067",
+      "kind": "chapter",
+      "label": "Chapter 67",
+      "title": "Cutting In",
+      "includeByDefault": true,
+      "wordCount": 733,
+      "characterCount": 4200,
+      "estimatedListeningMinutes": 25,
+      "textPreview": "CHAPTER 67. Cutting In. It was a Saturday night, and such a Sabbath as followed! Ex officio professors of Sabbath breaking are all whalemen. The ivory Pequod w..."
+    },
+    {
+      "id": "chapter-068",
+      "kind": "chapter",
+      "label": "Chapter 68",
+      "title": "The Blanket",
+      "includeByDefault": true,
+      "wordCount": 1203,
+      "characterCount": 6778,
+      "estimatedListeningMinutes": 40,
+      "textPreview": "CHAPTER 68. The Blanket. I have given no small attention to that not unvexed subject, the skin of the whale. I have had controversies about it with experienced..."
+    },
+    {
+      "id": "chapter-069",
+      "kind": "chapter",
+      "label": "Chapter 69",
+      "title": "The Funeral",
+      "includeByDefault": true,
+      "wordCount": 442,
+      "characterCount": 2516,
+      "estimatedListeningMinutes": 15,
+      "textPreview": "CHAPTER 69. The Funeral. “Haul in the chains! Let the carcase go astern!” The vast tackles have now done their duty. The peeled white body of the beheaded whal..."
+    },
+    {
+      "id": "chapter-070",
+      "kind": "chapter",
+      "label": "Chapter 70",
+      "title": "The Sphynx",
+      "includeByDefault": true,
+      "wordCount": 887,
+      "characterCount": 5046,
+      "estimatedListeningMinutes": 30,
+      "textPreview": "CHAPTER 70. The Sphynx. It should not have been omitted that previous to completely stripping the body of the leviathan, he was beheaded. Now, the beheading of..."
+    },
+    {
+      "id": "chapter-071",
+      "kind": "chapter",
+      "label": "Chapter 71",
+      "title": "The Jeroboam’s Story",
+      "includeByDefault": true,
+      "wordCount": 2288,
+      "characterCount": 13186,
+      "estimatedListeningMinutes": 79,
+      "textPreview": "CHAPTER 71. The Jeroboam’s Story. Hand in hand, ship and breeze blew on; but the breeze came faster than the ship, and soon the Pequod began to rock. By and by..."
+    },
+    {
+      "id": "chapter-072",
+      "kind": "chapter",
+      "label": "Chapter 72",
+      "title": "The Monkey-Rope",
+      "includeByDefault": true,
+      "wordCount": 1654,
+      "characterCount": 9309,
+      "estimatedListeningMinutes": 56,
+      "textPreview": "CHAPTER 72. The Monkey-Rope. In the tumultuous business of cutting-in and attending to a whale, there is much running backwards and forwards among the crew. No..."
+    },
+    {
+      "id": "chapter-073",
+      "kind": "chapter",
+      "label": "Chapter 73",
+      "title": "Stubb and Flask kill a Right Whale; and Then Have a Talk",
+      "includeByDefault": true,
+      "wordCount": 2233,
+      "characterCount": 11631,
+      "estimatedListeningMinutes": 70,
+      "textPreview": "CHAPTER 73. Stubb and Flask kill a Right Whale; and Then Have a Talk over Him. It must be borne in mind that all this time we have a Sperm Whale’s prodigious h..."
+    },
+    {
+      "id": "chapter-074",
+      "kind": "chapter",
+      "label": "Chapter 74",
+      "title": "The Sperm Whale’s Head—Contrasted View",
+      "includeByDefault": true,
+      "wordCount": 1656,
+      "characterCount": 9094,
+      "estimatedListeningMinutes": 54,
+      "textPreview": "CHAPTER 74. The Sperm Whale’s Head—Contrasted View. Here, now, are two great whales, laying their heads together; let us join them, and lay together our own. O..."
+    },
+    {
+      "id": "chapter-075",
+      "kind": "chapter",
+      "label": "Chapter 75",
+      "title": "The Right Whale’s Head—Contrasted View",
+      "includeByDefault": true,
+      "wordCount": 1243,
+      "characterCount": 6821,
+      "estimatedListeningMinutes": 41,
+      "textPreview": "CHAPTER 75. The Right Whale’s Head—Contrasted View. Crossing the deck, let us now have a good long look at the Right Whale’s head. As in general shape the nobl..."
+    },
+    {
+      "id": "chapter-076",
+      "kind": "chapter",
+      "label": "Chapter 76",
+      "title": "The Battering-Ram",
+      "includeByDefault": true,
+      "wordCount": 874,
+      "characterCount": 5060,
+      "estimatedListeningMinutes": 30,
+      "textPreview": "CHAPTER 76. The Battering-Ram. Ere quitting, for the nonce, the Sperm Whale’s head, I would have you, as a sensible physiologist, simply—particularly remark it..."
+    },
+    {
+      "id": "chapter-077",
+      "kind": "chapter",
+      "label": "Chapter 77",
+      "title": "The Great Heidelburgh Tun",
+      "includeByDefault": true,
+      "wordCount": 647,
+      "characterCount": 3804,
+      "estimatedListeningMinutes": 23,
+      "textPreview": "CHAPTER 77. The Great Heidelburgh Tun. Now comes the Baling of the Case. But to comprehend it aright, you must know something of the curious internal structure..."
+    },
+    {
+      "id": "chapter-078",
+      "kind": "chapter",
+      "label": "Chapter 78",
+      "title": "Cistern and Buckets",
+      "includeByDefault": true,
+      "wordCount": 1657,
+      "characterCount": 9296,
+      "estimatedListeningMinutes": 56,
+      "textPreview": "CHAPTER 78. Cistern and Buckets. Nimble as a cat, Tashtego mounts aloft; and without altering his erect posture, runs straight out upon the overhanging mainyar..."
+    },
+    {
+      "id": "chapter-079",
+      "kind": "chapter",
+      "label": "Chapter 79",
+      "title": "The Prairie",
+      "includeByDefault": true,
+      "wordCount": 944,
+      "characterCount": 5383,
+      "estimatedListeningMinutes": 32,
+      "textPreview": "CHAPTER 79. The Prairie. To scan the lines of his face, or feel the bumps on the head of this Leviathan; this is a thing which no Physiognomist or Phrenologist..."
+    },
+    {
+      "id": "chapter-080",
+      "kind": "chapter",
+      "label": "Chapter 80",
+      "title": "The Nut",
+      "includeByDefault": true,
+      "wordCount": 912,
+      "characterCount": 5151,
+      "estimatedListeningMinutes": 31,
+      "textPreview": "CHAPTER 80. The Nut. If the Sperm Whale be physiognomically a Sphinx, to the phrenologist his brain seems that geometrical circle which it is impossible to squ..."
+    },
+    {
+      "id": "chapter-081",
+      "kind": "chapter",
+      "label": "Chapter 81",
+      "title": "The Pequod Meets The Virgin",
+      "includeByDefault": true,
+      "wordCount": 4396,
+      "characterCount": 24451,
+      "estimatedListeningMinutes": 147,
+      "textPreview": "CHAPTER 81. The Pequod Meets The Virgin. The predestinated day arrived, and we duly met the ship Jungfrau, Derick De Deer, master, of Bremen. At one time the g..."
+    },
+    {
+      "id": "chapter-082",
+      "kind": "chapter",
+      "label": "Chapter 82",
+      "title": "The Honor and Glory of Whaling",
+      "includeByDefault": true,
+      "wordCount": 1161,
+      "characterCount": 6507,
+      "estimatedListeningMinutes": 39,
+      "textPreview": "CHAPTER 82. The Honor and Glory of Whaling. There are some enterprises in which a careful disorderliness is the true method. The more I dive into this matter o..."
+    },
+    {
+      "id": "chapter-083",
+      "kind": "chapter",
+      "label": "Chapter 83",
+      "title": "Jonah Historically Regarded",
+      "includeByDefault": true,
+      "wordCount": 786,
+      "characterCount": 4536,
+      "estimatedListeningMinutes": 27,
+      "textPreview": "CHAPTER 83. Jonah Historically Regarded. Reference was made to the historical story of Jonah and the whale in the preceding chapter. Now some Nantucketers rath..."
+    },
+    {
+      "id": "chapter-084",
+      "kind": "chapter",
+      "label": "Chapter 84",
+      "title": "Pitchpoling",
+      "includeByDefault": true,
+      "wordCount": 815,
+      "characterCount": 4688,
+      "estimatedListeningMinutes": 28,
+      "textPreview": "CHAPTER 84. Pitchpoling. To make them run easily and swiftly, the axles of carriages are anointed; and for much the same purpose, some whalers perform an analo..."
+    },
+    {
+      "id": "chapter-085",
+      "kind": "chapter",
+      "label": "Chapter 85",
+      "title": "The Fountain",
+      "includeByDefault": true,
+      "wordCount": 2077,
+      "characterCount": 11471,
+      "estimatedListeningMinutes": 68,
+      "textPreview": "CHAPTER 85. The Fountain. That for six thousand years—and no one knows how many millions of ages before—the great whales should have been spouting all over the..."
+    },
+    {
+      "id": "chapter-086",
+      "kind": "chapter",
+      "label": "Chapter 86",
+      "title": "The Tail",
+      "includeByDefault": true,
+      "wordCount": 1857,
+      "characterCount": 10437,
+      "estimatedListeningMinutes": 62,
+      "textPreview": "CHAPTER 86. The Tail. Other poets have warbled the praises of the soft eye of the antelope, and the lovely plumage of the bird that never alights; less celesti..."
+    },
+    {
+      "id": "chapter-087",
+      "kind": "chapter",
+      "label": "Chapter 87",
+      "title": "The Grand Armada",
+      "includeByDefault": true,
+      "wordCount": 4764,
+      "characterCount": 27706,
+      "estimatedListeningMinutes": 165,
+      "textPreview": "CHAPTER 87. The Grand Armada. The long and narrow peninsula of Malacca, extending south-eastward from the territories of Birmah, forms the most southerly point..."
+    },
+    {
+      "id": "chapter-088",
+      "kind": "chapter",
+      "label": "Chapter 88",
+      "title": "Schools and Schoolmasters",
+      "includeByDefault": true,
+      "wordCount": 1193,
+      "characterCount": 7117,
+      "estimatedListeningMinutes": 43,
+      "textPreview": "CHAPTER 88. Schools and Schoolmasters. The previous chapter gave account of an immense body or herd of Sperm Whales, and there was also then given the probable..."
+    },
+    {
+      "id": "chapter-089",
+      "kind": "chapter",
+      "label": "Chapter 89",
+      "title": "Fast-Fish and Loose-Fish",
+      "includeByDefault": true,
+      "wordCount": 1416,
+      "characterCount": 8184,
+      "estimatedListeningMinutes": 49,
+      "textPreview": "CHAPTER 89. Fast-Fish and Loose-Fish. The allusion to the waif and waif-poles in the last chapter but one, necessitates some account of the laws and regulation..."
+    },
+    {
+      "id": "chapter-090",
+      "kind": "chapter",
+      "label": "Chapter 90",
+      "title": "Heads or Tails",
+      "includeByDefault": true,
+      "wordCount": 1059,
+      "characterCount": 5905,
+      "estimatedListeningMinutes": 35,
+      "textPreview": "CHAPTER 90. Heads or Tails. “De balena vero sufficit, si rex habeat caput, et regina caudam.” _Bracton, l. 3, c. 3._ Latin from the books of the Laws of Englan..."
+    },
+    {
+      "id": "chapter-091",
+      "kind": "chapter",
+      "label": "Chapter 91",
+      "title": "The Pequod Meets The Rose-Bud",
+      "includeByDefault": true,
+      "wordCount": 2551,
+      "characterCount": 14114,
+      "estimatedListeningMinutes": 85,
+      "textPreview": "CHAPTER 91. The Pequod Meets The Rose-Bud. “In vain it was to rake for Ambergriese in the paunch of this Leviathan, insufferable fetor denying not inquiry.” _S..."
+    },
+    {
+      "id": "chapter-092",
+      "kind": "chapter",
+      "label": "Chapter 92",
+      "title": "Ambergris",
+      "includeByDefault": true,
+      "wordCount": 974,
+      "characterCount": 5522,
+      "estimatedListeningMinutes": 33,
+      "textPreview": "CHAPTER 92. Ambergris. Now this ambergris is a very curious substance, and so important as an article of commerce, that in 1791 a certain Nantucket-born Captai..."
+    },
+    {
+      "id": "chapter-093",
+      "kind": "chapter",
+      "label": "Chapter 93",
+      "title": "The Castaway",
+      "includeByDefault": true,
+      "wordCount": 1624,
+      "characterCount": 9264,
+      "estimatedListeningMinutes": 56,
+      "textPreview": "CHAPTER 93. The Castaway. It was but some few days after encountering the Frenchman, that a most significant event befell the most insignificant of the Pequod’..."
+    },
+    {
+      "id": "chapter-094",
+      "kind": "chapter",
+      "label": "Chapter 94",
+      "title": "A Squeeze of the Hand",
+      "includeByDefault": true,
+      "wordCount": 1277,
+      "characterCount": 7312,
+      "estimatedListeningMinutes": 44,
+      "textPreview": "CHAPTER 94. A Squeeze of the Hand. That whale of Stubb’s, so dearly purchased, was duly brought to the Pequod’s side, where all those cutting and hoisting oper..."
+    },
+    {
+      "id": "chapter-095",
+      "kind": "chapter",
+      "label": "Chapter 95",
+      "title": "The Cassock",
+      "includeByDefault": true,
+      "wordCount": 501,
+      "characterCount": 2823,
+      "estimatedListeningMinutes": 17,
+      "textPreview": "CHAPTER 95. The Cassock. Had you stepped on board the Pequod at a certain juncture of this post-mortemizing of the whale; and had you strolled forward nigh the..."
+    },
+    {
+      "id": "chapter-096",
+      "kind": "chapter",
+      "label": "Chapter 96",
+      "title": "The Try-Works",
+      "includeByDefault": true,
+      "wordCount": 1826,
+      "characterCount": 10262,
+      "estimatedListeningMinutes": 61,
+      "textPreview": "CHAPTER 96. The Try-Works. Besides her hoisted boats, an American whaler is outwardly distinguished by her try-works. She presents the curious anomaly of the m..."
+    },
+    {
+      "id": "chapter-097",
+      "kind": "chapter",
+      "label": "Chapter 97",
+      "title": "The Lamp",
+      "includeByDefault": true,
+      "wordCount": 248,
+      "characterCount": 1352,
+      "estimatedListeningMinutes": 8,
+      "textPreview": "CHAPTER 97. The Lamp. Had you descended from the Pequod’s try-works to the Pequod’s forecastle, where the off duty watch were sleeping, for one single moment y..."
+    },
+    {
+      "id": "chapter-098",
+      "kind": "chapter",
+      "label": "Chapter 98",
+      "title": "Stowing Down and Clearing Up",
+      "includeByDefault": true,
+      "wordCount": 1026,
+      "characterCount": 5825,
+      "estimatedListeningMinutes": 35,
+      "textPreview": "CHAPTER 98. Stowing Down and Clearing Up. Already has it been related how the great leviathan is afar off descried from the mast-head; how he is chased over th..."
+    },
+    {
+      "id": "chapter-099",
+      "kind": "chapter",
+      "label": "Chapter 99",
+      "title": "The Doubloon",
+      "includeByDefault": true,
+      "wordCount": 2506,
+      "characterCount": 13361,
+      "estimatedListeningMinutes": 81,
+      "textPreview": "CHAPTER 99. The Doubloon. Ere now it has been related how Ahab was wont to pace his quarter-deck, taking regular turns at either limit, the binnacle and mainma..."
+    },
+    {
+      "id": "chapter-100",
+      "kind": "chapter",
+      "label": "Chapter 100",
+      "title": "Leg and Arm",
+      "includeByDefault": true,
+      "wordCount": 2765,
+      "characterCount": 14906,
+      "estimatedListeningMinutes": 90,
+      "textPreview": "CHAPTER 100. Leg and Arm. The Pequod, of Nantucket, Meets the Samuel Enderby, of London. “Ship, ahoy! Hast seen the White Whale?” So cried Ahab, once more hail..."
+    },
+    {
+      "id": "chapter-101",
+      "kind": "chapter",
+      "label": "Chapter 101",
+      "title": "The Decanter",
+      "includeByDefault": true,
+      "wordCount": 1782,
+      "characterCount": 9926,
+      "estimatedListeningMinutes": 60,
+      "textPreview": "CHAPTER 101. The Decanter. Ere the English ship fades from sight, be it set down here, that she hailed from London, and was named after the late Samuel Enderby..."
+    },
+    {
+      "id": "chapter-102",
+      "kind": "chapter",
+      "label": "Chapter 102",
+      "title": "A Bower in the Arsacides",
+      "includeByDefault": true,
+      "wordCount": 1556,
+      "characterCount": 9083,
+      "estimatedListeningMinutes": 55,
+      "textPreview": "CHAPTER 102. A Bower in the Arsacides. Hitherto, in descriptively treating of the Sperm Whale, I have chiefly dwelt upon the marvels of his outer aspect; or se..."
+    },
+    {
+      "id": "chapter-103",
+      "kind": "chapter",
+      "label": "Chapter 103",
+      "title": "Measurement of The Whale’s Skeleton",
+      "includeByDefault": true,
+      "wordCount": 930,
+      "characterCount": 5207,
+      "estimatedListeningMinutes": 31,
+      "textPreview": "CHAPTER 103. Measurement of The Whale’s Skeleton. In the first place, I wish to lay before you a particular, plain statement, touching the living bulk of this..."
+    },
+    {
+      "id": "chapter-104",
+      "kind": "chapter",
+      "label": "Chapter 104",
+      "title": "The Fossil Whale",
+      "includeByDefault": true,
+      "wordCount": 1433,
+      "characterCount": 8379,
+      "estimatedListeningMinutes": 50,
+      "textPreview": "CHAPTER 104. The Fossil Whale. From his mighty bulk the whale affords a most congenial theme whereon to enlarge, amplify, and generally expatiate. Would you, y..."
+    },
+    {
+      "id": "chapter-105",
+      "kind": "chapter",
+      "label": "Chapter 105",
+      "title": "Does the Whale’s Magnitude Diminish?—Will He Perish?",
+      "includeByDefault": true,
+      "wordCount": 1568,
+      "characterCount": 9078,
+      "estimatedListeningMinutes": 54,
+      "textPreview": "CHAPTER 105. Does the Whale’s Magnitude Diminish?—Will He Perish? Inasmuch, then, as this Leviathan comes floundering down upon us from the head-waters of the..."
+    },
+    {
+      "id": "chapter-106",
+      "kind": "chapter",
+      "label": "Chapter 106",
+      "title": "Ahab’s Leg",
+      "includeByDefault": true,
+      "wordCount": 933,
+      "characterCount": 5458,
+      "estimatedListeningMinutes": 33,
+      "textPreview": "CHAPTER 106. Ahab’s Leg. The precipitating manner in which Captain Ahab had quitted the Samuel Enderby of London, had not been unattended with some small viole..."
+    },
+    {
+      "id": "chapter-107",
+      "kind": "chapter",
+      "label": "Chapter 107",
+      "title": "The Carpenter",
+      "includeByDefault": true,
+      "wordCount": 1043,
+      "characterCount": 6233,
+      "estimatedListeningMinutes": 38,
+      "textPreview": "CHAPTER 107. The Carpenter. Seat thyself sultanically among the moons of Saturn, and take high abstracted man alone; and he seems a wonder, a grandeur, and a w..."
+    },
+    {
+      "id": "chapter-108",
+      "kind": "chapter",
+      "label": "Chapter 108",
+      "title": "Ahab and the Carpenter",
+      "includeByDefault": true,
+      "wordCount": 1630,
+      "characterCount": 8592,
+      "estimatedListeningMinutes": 52,
+      "textPreview": "CHAPTER 108. Ahab and the Carpenter. The Deck—First Night Watch. (_Carpenter standing before his vice-bench, and by the light of two lanterns busily filing the..."
+    },
+    {
+      "id": "chapter-109",
+      "kind": "chapter",
+      "label": "Chapter 109",
+      "title": "Ahab and Starbuck in the Cabin",
+      "includeByDefault": true,
+      "wordCount": 925,
+      "characterCount": 5114,
+      "estimatedListeningMinutes": 31,
+      "textPreview": "CHAPTER 109. Ahab and Starbuck in the Cabin. According to usage they were pumping the ship next morning; and lo! no inconsiderable oil came up with the water;..."
+    },
+    {
+      "id": "chapter-110",
+      "kind": "chapter",
+      "label": "Chapter 110",
+      "title": "Queequeg in His Coffin",
+      "includeByDefault": true,
+      "wordCount": 2263,
+      "characterCount": 12571,
+      "estimatedListeningMinutes": 75,
+      "textPreview": "CHAPTER 110. Queequeg in His Coffin. Upon searching, it was found that the casks last struck into the hold were perfectly sound, and that the leak must be furt..."
+    },
+    {
+      "id": "chapter-111",
+      "kind": "chapter",
+      "label": "Chapter 111",
+      "title": "The Pacific",
+      "includeByDefault": true,
+      "wordCount": 423,
+      "characterCount": 2508,
+      "estimatedListeningMinutes": 15,
+      "textPreview": "CHAPTER 111. The Pacific. When gliding by the Bashee isles we emerged at last upon the great South Sea; were it not for other things, I could have greeted my d..."
+    },
+    {
+      "id": "chapter-112",
+      "kind": "chapter",
+      "label": "Chapter 112",
+      "title": "The Blacksmith",
+      "includeByDefault": true,
+      "wordCount": 939,
+      "characterCount": 5558,
+      "estimatedListeningMinutes": 33,
+      "textPreview": "CHAPTER 112. The Blacksmith. Availing himself of the mild, summer-cool weather that now reigned in these latitudes, and in preparation for the peculiarly activ..."
+    },
+    {
+      "id": "chapter-113",
+      "kind": "chapter",
+      "label": "Chapter 113",
+      "title": "The Forge",
+      "includeByDefault": true,
+      "wordCount": 1245,
+      "characterCount": 6874,
+      "estimatedListeningMinutes": 42,
+      "textPreview": "CHAPTER 113. The Forge. With matted beard, and swathed in a bristling shark-skin apron, about mid-day, Perth was standing between his forge and anvil, the latt..."
+    },
+    {
+      "id": "chapter-114",
+      "kind": "chapter",
+      "label": "Chapter 114",
+      "title": "The Gilder",
+      "includeByDefault": true,
+      "wordCount": 647,
+      "characterCount": 3772,
+      "estimatedListeningMinutes": 23,
+      "textPreview": "CHAPTER 114. The Gilder. Penetrating further and further into the heart of the Japanese cruising ground, the Pequod was soon all astir in the fishery. Often, i..."
+    },
+    {
+      "id": "chapter-115",
+      "kind": "chapter",
+      "label": "Chapter 115",
+      "title": "The Pequod Meets The Bachelor",
+      "includeByDefault": true,
+      "wordCount": 889,
+      "characterCount": 5167,
+      "estimatedListeningMinutes": 31,
+      "textPreview": "CHAPTER 115. The Pequod Meets The Bachelor. And jolly enough were the sights and the sounds that came bearing down before the wind, some few weeks after Ahab’s..."
+    },
+    {
+      "id": "chapter-116",
+      "kind": "chapter",
+      "label": "Chapter 116",
+      "title": "The Dying Whale",
+      "includeByDefault": true,
+      "wordCount": 519,
+      "characterCount": 2997,
+      "estimatedListeningMinutes": 18,
+      "textPreview": "CHAPTER 116. The Dying Whale. Not seldom in this life, when, on the right side, fortune’s favourites sail close by us, we, though all adroop before, catch some..."
+    },
+    {
+      "id": "chapter-117",
+      "kind": "chapter",
+      "label": "Chapter 117",
+      "title": "The Whale Watch",
+      "includeByDefault": true,
+      "wordCount": 479,
+      "characterCount": 2545,
+      "estimatedListeningMinutes": 15,
+      "textPreview": "CHAPTER 117. The Whale Watch. The four whales slain that evening had died wide apart; one, far to windward; one, less distant, to leeward; one ahead; one aster..."
+    },
+    {
+      "id": "chapter-118",
+      "kind": "chapter",
+      "label": "Chapter 118",
+      "title": "The Quadrant",
+      "includeByDefault": true,
+      "wordCount": 905,
+      "characterCount": 5058,
+      "estimatedListeningMinutes": 30,
+      "textPreview": "CHAPTER 118. The Quadrant. The season for the Line at length drew near; and every day when Ahab, coming from his cabin, cast his eyes aloft, the vigilant helms..."
+    },
+    {
+      "id": "chapter-119",
+      "kind": "chapter",
+      "label": "Chapter 119",
+      "title": "The Candles",
+      "includeByDefault": true,
+      "wordCount": 2563,
+      "characterCount": 14043,
+      "estimatedListeningMinutes": 84,
+      "textPreview": "CHAPTER 119. The Candles. Warmest climes but nurse the cruellest fangs: the tiger of Bengal crouches in spiced groves of ceaseless verdure. Skies the most effu..."
+    },
+    {
+      "id": "chapter-120",
+      "kind": "chapter",
+      "label": "Chapter 120",
+      "title": "The Deck Towards the End of the First Night Watch",
+      "includeByDefault": true,
+      "wordCount": 187,
+      "characterCount": 1037,
+      "estimatedListeningMinutes": 6,
+      "textPreview": "CHAPTER 120. The Deck Towards the End of the First Night Watch. _Ahab standing by the helm. Starbuck approaching him._ “We must send down the main-top-sail yar..."
+    },
+    {
+      "id": "chapter-121",
+      "kind": "chapter",
+      "label": "Chapter 121",
+      "title": "Midnight.—The Forecastle Bulwarks",
+      "includeByDefault": true,
+      "wordCount": 644,
+      "characterCount": 3445,
+      "estimatedListeningMinutes": 21,
+      "textPreview": "CHAPTER 121. Midnight.—The Forecastle Bulwarks. _Stubb and Flask mounted on them, and passing additional lashings over the anchors there hanging._ “No, Stubb;..."
+    },
+    {
+      "id": "chapter-122",
+      "kind": "chapter",
+      "label": "Chapter 122",
+      "title": "Midnight Aloft.—Thunder and Lightning",
+      "includeByDefault": true,
+      "wordCount": 55,
+      "characterCount": 299,
+      "estimatedListeningMinutes": 2,
+      "textPreview": "CHAPTER 122. Midnight Aloft.—Thunder and Lightning. _The main-top-sail yard_.—_Tashtego passing new lashings around it_. “Um, um, um. Stop that thunder! Plenty..."
+    },
+    {
+      "id": "chapter-123",
+      "kind": "chapter",
+      "label": "Chapter 123",
+      "title": "The Musket",
+      "includeByDefault": true,
+      "wordCount": 1262,
+      "characterCount": 6813,
+      "estimatedListeningMinutes": 41,
+      "textPreview": "CHAPTER 123. The Musket. During the most violent shocks of the Typhoon, the man at the Pequod’s jaw-bone tiller had several times been reelingly hurled to the..."
+    },
+    {
+      "id": "chapter-124",
+      "kind": "chapter",
+      "label": "Chapter 124",
+      "title": "The Needle",
+      "includeByDefault": true,
+      "wordCount": 1216,
+      "characterCount": 6970,
+      "estimatedListeningMinutes": 42,
+      "textPreview": "CHAPTER 124. The Needle. Next morning the not-yet-subsided sea rolled in long slow billows of mighty bulk, and striving in the Pequod’s gurgling track, pushed..."
+    },
+    {
+      "id": "chapter-125",
+      "kind": "chapter",
+      "label": "Chapter 125",
+      "title": "The Log and Line",
+      "includeByDefault": true,
+      "wordCount": 1135,
+      "characterCount": 6171,
+      "estimatedListeningMinutes": 37,
+      "textPreview": "CHAPTER 125. The Log and Line. While now the fated Pequod had been so long afloat this voyage, the log and line had but very seldom been in use. Owing to a con..."
+    },
+    {
+      "id": "chapter-126",
+      "kind": "chapter",
+      "label": "Chapter 126",
+      "title": "The Life-Buoy",
+      "includeByDefault": true,
+      "wordCount": 1400,
+      "characterCount": 7522,
+      "estimatedListeningMinutes": 45,
+      "textPreview": "CHAPTER 126. The Life-Buoy. Steering now south-eastward by Ahab’s levelled steel, and her progress solely determined by Ahab’s level log and line; the Pequod h..."
+    },
+    {
+      "id": "chapter-127",
+      "kind": "chapter",
+      "label": "Chapter 127",
+      "title": "The Deck",
+      "includeByDefault": true,
+      "wordCount": 725,
+      "characterCount": 3940,
+      "estimatedListeningMinutes": 24,
+      "textPreview": "CHAPTER 127. The Deck. _The coffin laid upon two line-tubs, between the vice-bench and the open hatchway; the Carpenter caulking its seams; the string of twist..."
+    },
+    {
+      "id": "chapter-128",
+      "kind": "chapter",
+      "label": "Chapter 128",
+      "title": "The Pequod Meets The Rachel",
+      "includeByDefault": true,
+      "wordCount": 1426,
+      "characterCount": 7863,
+      "estimatedListeningMinutes": 47,
+      "textPreview": "CHAPTER 128. The Pequod Meets The Rachel. Next day, a large ship, the Rachel, was descried, bearing directly down upon the Pequod, all her spars thickly cluste..."
+    },
+    {
+      "id": "chapter-129",
+      "kind": "chapter",
+      "label": "Chapter 129",
+      "title": "The Cabin",
+      "includeByDefault": true,
+      "wordCount": 597,
+      "characterCount": 3045,
+      "estimatedListeningMinutes": 18,
+      "textPreview": "CHAPTER 129. The Cabin. (_Ahab moving to go on deck; Pip catches him by the hand to follow._) “Lad, lad, I tell thee thou must not follow Ahab now. The hour is..."
+    },
+    {
+      "id": "chapter-130",
+      "kind": "chapter",
+      "label": "Chapter 130",
+      "title": "The Hat",
+      "includeByDefault": true,
+      "wordCount": 1713,
+      "characterCount": 9618,
+      "estimatedListeningMinutes": 57,
+      "textPreview": "CHAPTER 130. The Hat. And now that at the proper time and place, after so long and wide a preliminary cruise, Ahab,—all other whaling waters swept—seemed to ha..."
+    },
+    {
+      "id": "chapter-131",
+      "kind": "chapter",
+      "label": "Chapter 131",
+      "title": "The Pequod Meets The Delight",
+      "includeByDefault": true,
+      "wordCount": 434,
+      "characterCount": 2485,
+      "estimatedListeningMinutes": 15,
+      "textPreview": "CHAPTER 131. The Pequod Meets The Delight. The intense Pequod sailed on; the rolling waves and days went by; the life-buoy-coffin still lightly swung; and anot..."
+    },
+    {
+      "id": "chapter-132",
+      "kind": "chapter",
+      "label": "Chapter 132",
+      "title": "The Symphony",
+      "includeByDefault": true,
+      "wordCount": 1627,
+      "characterCount": 8790,
+      "estimatedListeningMinutes": 53,
+      "textPreview": "CHAPTER 132. The Symphony. It was a clear steel-blue day. The firmaments of air and sea were hardly separable in that all-pervading azure; only, the pensive ai..."
+    },
+    {
+      "id": "chapter-133",
+      "kind": "chapter",
+      "label": "Chapter 133",
+      "title": "The Chase—First Day",
+      "includeByDefault": true,
+      "wordCount": 3593,
+      "characterCount": 20377,
+      "estimatedListeningMinutes": 123,
+      "textPreview": "CHAPTER 133. The Chase—First Day. That night, in the mid-watch, when the old man—as his wont at intervals—stepped forth from the scuttle in which he leaned, an..."
+    },
+    {
+      "id": "chapter-134",
+      "kind": "chapter",
+      "label": "Chapter 134",
+      "title": "The Chase—Second Day",
+      "includeByDefault": true,
+      "wordCount": 3379,
+      "characterCount": 18611,
+      "estimatedListeningMinutes": 112,
+      "textPreview": "CHAPTER 134. The Chase—Second Day. At day-break, the three mast-heads were punctually manned afresh. “D’ye see him?” cried Ahab after allowing a little space f..."
+    },
+    {
+      "id": "chapter-135",
+      "kind": "chapter",
+      "label": "Chapter 135",
+      "title": "The Chase.—Third Day",
+      "includeByDefault": true,
+      "wordCount": 4866,
+      "characterCount": 26600,
+      "estimatedListeningMinutes": 160,
+      "textPreview": "CHAPTER 135. The Chase.—Third Day. The morning of the third day dawned fair and fresh, and once more the solitary night-man at the fore-mast-head was relieved..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "chapter-based arabic numbers with book divisions",
+    "selectedHeadingStrategy": {
+      "patternId": "chapter-arabic",
+      "label": "Chapter plus Arabic number",
+      "convention": "chapter-based arabic numbers",
+      "kind": "chapter",
+      "candidateCount": 135,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 135,
+      "examples": [
+        "L1: CHAPTER 1. Loomings.",
+        "L202: CHAPTER 2. The Carpet-Bag.",
+        "L336: CHAPTER 3. The Spouter-Inn.",
+        "L906: CHAPTER 4. The Counterpane.",
+        "L1050: CHAPTER 5. Breakfast.",
+        "L1128: CHAPTER 6. The Street."
+      ],
+      "bodyExamples": [
+        "L1: CHAPTER 1. Loomings.",
+        "L202: CHAPTER 2. The Carpet-Bag.",
+        "L336: CHAPTER 3. The Spouter-Inn.",
+        "L906: CHAPTER 4. The Counterpane.",
+        "L1050: CHAPTER 5. Breakfast.",
+        "L1128: CHAPTER 6. The Street.",
+        "L1213: CHAPTER 7. The Chapel.",
+        "L1307: CHAPTER 8. The Pulpit."
+      ],
+      "tocExamples": [],
+      "score": 0.9500000000000002,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 135,
+        "minimumWords": 55,
+        "medianWords": 1225,
+        "maximumWords": 8031,
+        "averageWords": 1574,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 1,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "chapter-arabic",
+        "label": "Chapter plus Arabic number",
+        "convention": "chapter-based arabic numbers",
+        "kind": "chapter",
+        "candidateCount": 135,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 135,
+        "examples": [
+          "L1: CHAPTER 1. Loomings.",
+          "L202: CHAPTER 2. The Carpet-Bag.",
+          "L336: CHAPTER 3. The Spouter-Inn.",
+          "L906: CHAPTER 4. The Counterpane.",
+          "L1050: CHAPTER 5. Breakfast.",
+          "L1128: CHAPTER 6. The Street."
+        ],
+        "bodyExamples": [
+          "L1: CHAPTER 1. Loomings.",
+          "L202: CHAPTER 2. The Carpet-Bag.",
+          "L336: CHAPTER 3. The Spouter-Inn.",
+          "L906: CHAPTER 4. The Counterpane.",
+          "L1050: CHAPTER 5. Breakfast.",
+          "L1128: CHAPTER 6. The Street.",
+          "L1213: CHAPTER 7. The Chapel.",
+          "L1307: CHAPTER 8. The Pulpit."
+        ],
+        "tocExamples": [],
+        "score": 0.9500000000000002,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 135,
+          "minimumWords": 55,
+          "medianWords": 1225,
+          "maximumWords": 8031,
+          "averageWords": 1574,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 1,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "all-caps-title",
+        "label": "All-caps story or titled-section heading",
+        "convention": "story or titled-section headings",
+        "kind": "story-title",
+        "candidateCount": 5,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 5,
+        "examples": [
+          "L169: “WHALING VOYAGE BY ONE ISHMAEL. “BLOODY BATTLE IN AFFGHANISTAN.”",
+          "L1237: SACRED TO THE MEMORY OF ROBERT LONG, WILLIS ELLERY, NATHAN COLEMAN,",
+          "L6203: HARPOONEERS AND SAILORS.",
+          "L14806: V.E._",
+          "L21082: “AND I ONLY AM ESCAPED ALONE TO TELL THEE” Job."
+        ],
+        "bodyExamples": [
+          "L169: “WHALING VOYAGE BY ONE ISHMAEL. “BLOODY BATTLE IN AFFGHANISTAN.”",
+          "L1237: SACRED TO THE MEMORY OF ROBERT LONG, WILLIS ELLERY, NATHAN COLEMAN,",
+          "L6203: HARPOONEERS AND SAILORS.",
+          "L14806: V.E._",
+          "L21082: “AND I ONLY AM ESCAPED ALONE TO TELL THEE” Job."
+        ],
+        "tocExamples": [],
+        "score": 0.701,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-arabic",
+        "sectionSizeNotes": {
+          "sectionCount": 5,
+          "minimumWords": 270,
+          "medianWords": 50376,
+          "maximumWords": 86855,
+          "averageWords": 42122,
+          "hugeSectionCount": 3,
+          "tinySectionCount": 0,
+          "notes": [
+            "3 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "label": "Roman numbered titled heading",
+        "convention": "roman-numbered titled sections",
+        "kind": "chapter",
+        "candidateCount": 6,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 6,
+        "examples": [
+          "L284: I. But it is a common name in Nantucket, they say, and I suppose this",
+          "L2287: I. A Coffin my Innkeeper upon landing in my first whaling port;",
+          "L4887: I. THE FOLIO WHALE; II. the OCTAVO WHALE; III. the DUODECIMO WHALE.",
+          "L5152: II. The Algerine Porpoise. III. The Mealy-mouthed Porpoise.",
+          "L14564: I. A Fast-Fish belongs to the party fast to it.",
+          "L14566: II. A Loose-Fish is fair game for anybody who can soonest catch it."
+        ],
+        "bodyExamples": [
+          "L284: I. But it is a common name in Nantucket, they say, and I suppose this",
+          "L2287: I. A Coffin my Innkeeper upon landing in my first whaling port;",
+          "L4887: I. THE FOLIO WHALE; II. the OCTAVO WHALE; III. the DUODECIMO WHALE.",
+          "L5152: II. The Algerine Porpoise. III. The Mealy-mouthed Porpoise.",
+          "L14564: I. A Fast-Fish belongs to the party fast to it.",
+          "L14566: II. A Loose-Fish is fair game for anybody who can soonest catch it."
+        ],
+        "tocExamples": [],
+        "score": 0.692,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-arabic",
+        "sectionSizeNotes": {
+          "sectionCount": 6,
+          "minimumWords": 10,
+          "medianWords": 25589,
+          "maximumWords": 95283,
+          "averageWords": 34902,
+          "hugeSectionCount": 4,
+          "tinySectionCount": 1,
+          "notes": [
+            "4 section(s) exceed 18000 words"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 63,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 63,
+        "examples": [
+          "L168: “_Grand Contested Election for the Presidency of the United States._",
+          "L265: Gomorrah? But “The Crossed Harpoons,” and “The Sword-Fish?”—this, then",
+          "L281: underneath—“The Spouter Inn:—Peter Coffin.”",
+          "L861: “Landlord, for God’s sake, Peter Coffin!” shouted I. “Landlord! Watch!",
+          "L1146: But, besides the Feegeeans, Tongatobooarrs, Erromanggoans, Pannangians,",
+          "L1238: WALTER CANNY, SETH MACY, AND SAMUEL GLEIG, Forming one of the boats’"
+        ],
+        "bodyExamples": [
+          "L168: “_Grand Contested Election for the Presidency of the United States._",
+          "L265: Gomorrah? But “The Crossed Harpoons,” and “The Sword-Fish?”—this, then",
+          "L281: underneath—“The Spouter Inn:—Peter Coffin.”",
+          "L861: “Landlord, for God’s sake, Peter Coffin!” shouted I. “Landlord! Watch!",
+          "L1146: But, besides the Feegeeans, Tongatobooarrs, Erromanggoans, Pannangians,",
+          "L1238: WALTER CANNY, SETH MACY, AND SAMUEL GLEIG, Forming one of the boats’",
+          "L1240: Off-shore Ground in the PACIFIC, _December_ 31_st_, 1839. THIS MARBLE",
+          "L1444: Jonah.’”"
+        ],
+        "tocExamples": [],
+        "score": 0.581,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-arabic",
+        "sectionSizeNotes": {
+          "sectionCount": 63,
+          "minimumWords": 1,
+          "medianWords": 2068,
+          "maximumWords": 32769,
+          "averageWords": 3343,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 11,
+          "notes": [
+            "1 section(s) exceed 18000 words",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "book-division",
+        "label": "Book division",
+        "convention": "book divisions",
+        "kind": "book",
+        "candidateCount": 14,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 14,
+        "examples": [
+          "L4897: BOOK I. (_Folio_), CHAPTER I. (_Sperm Whale_).—This whale, among the",
+          "L4924: BOOK I. (_Folio_), CHAPTER II. (_Right Whale_).—In one respect this is",
+          "L4951: BOOK I. (_Folio_), CHAPTER III. (_Fin-Back_).—Under this head I reckon",
+          "L5019: BOOK I. (_Folio_) CHAPTER IV. (_Hump Back_).—This whale is often seen",
+          "L5029: BOOK I. (_Folio_), CHAPTER V. (_Razor Back_).—Of this whale little is",
+          "L5036: BOOK I. (_Folio_), CHAPTER VI. (_Sulphur Bottom_).—Another retiring"
+        ],
+        "bodyExamples": [
+          "L4897: BOOK I. (_Folio_), CHAPTER I. (_Sperm Whale_).—This whale, among the",
+          "L4924: BOOK I. (_Folio_), CHAPTER II. (_Right Whale_).—In one respect this is",
+          "L4951: BOOK I. (_Folio_), CHAPTER III. (_Fin-Back_).—Under this head I reckon",
+          "L5019: BOOK I. (_Folio_) CHAPTER IV. (_Hump Back_).—This whale is often seen",
+          "L5029: BOOK I. (_Folio_), CHAPTER V. (_Razor Back_).—Of this whale little is",
+          "L5036: BOOK I. (_Folio_), CHAPTER VI. (_Sulphur Bottom_).—Another retiring",
+          "L5058: BOOK II. (_Octavo_), CHAPTER I. (_Grampus_).—Though this fish, whose",
+          "L5070: BOOK II. (_Octavo_), CHAPTER II. (_Black Fish_).—I give the popular"
+        ],
+        "tocExamples": [],
+        "score": 0.5176923076923078,
+        "confidence": "low",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-arabic",
+        "sectionSizeNotes": {
+          "sectionCount": 14,
+          "minimumWords": 57,
+          "medianWords": 197,
+          "maximumWords": 159346,
+          "averageWords": 11603,
+          "hugeSectionCount": 1,
+          "tinySectionCount": 2,
+          "notes": [
+            "1 section(s) exceed 18000 words",
+            "largest section is much bigger than the median section"
+          ]
+        }
+      },
+      {
+        "patternId": "special-front-back",
+        "label": "Preface, introduction, notes, or appendix",
+        "convention": "front/back matter headings",
+        "kind": "front-back-matter",
+        "candidateCount": 1,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 1,
+        "examples": [
+          "L21080: Epilogue"
+        ],
+        "bodyExamples": [
+          "L21080: Epilogue"
+        ],
+        "tocExamples": [],
+        "score": 0,
+        "confidence": "blocked",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy chapter-arabic",
+        "sectionSizeNotes": {
+          "sectionCount": 1,
+          "minimumWords": 271,
+          "medianWords": 271,
+          "maximumWords": 271,
+          "averageWords": 271,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "all-caps-title",
+        "convention": "story or titled-section headings",
+        "candidateCount": 5,
+        "bodyLikeCount": 5,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-arabic"
+      },
+      {
+        "patternId": "roman-numbered-title",
+        "convention": "roman-numbered titled sections",
+        "candidateCount": 6,
+        "bodyLikeCount": 6,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-arabic"
+      },
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 63,
+        "bodyLikeCount": 63,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-arabic"
+      },
+      {
+        "patternId": "book-division",
+        "convention": "book divisions",
+        "candidateCount": 14,
+        "bodyLikeCount": 14,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-arabic"
+      },
+      {
+        "patternId": "special-front-back",
+        "convention": "front/back matter headings",
+        "candidateCount": 1,
+        "bodyLikeCount": 1,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy chapter-arabic"
+      }
+    ],
+    "tocEntriesDetected": true,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 135,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 135,
+    "bodyHeadingExamples": [
+      "L1: CHAPTER 1. Loomings.",
+      "L202: CHAPTER 2. The Carpet-Bag.",
+      "L336: CHAPTER 3. The Spouter-Inn.",
+      "L906: CHAPTER 4. The Counterpane.",
+      "L1050: CHAPTER 5. Breakfast.",
+      "L1128: CHAPTER 6. The Street.",
+      "L1213: CHAPTER 7. The Chapel.",
+      "L1307: CHAPTER 8. The Pulpit."
+    ],
+    "tocHeadingExamples": [
+      "L42: CHAPTER 1. Loomings.",
+      "L44: CHAPTER 2. The Carpet-Bag.",
+      "L46: CHAPTER 3. The Spouter-Inn.",
+      "L48: CHAPTER 4. The Counterpane.",
+      "L50: CHAPTER 5. Breakfast.",
+      "L52: CHAPTER 6. The Street.",
+      "L54: CHAPTER 7. The Chapel.",
+      "L56: CHAPTER 8. The Pulpit."
+    ],
+    "priorTwoSectionCollapseFixed": true
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 210197,
+    "actions": [
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 2,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L5206: * * * * * *",
+          "candidate L9648: * * * * * *"
+        ]
+      },
+      {
+        "action": "normalize-smart-quotes",
+        "count": 5729,
+        "recommendation": "Normalize smart quotes to ASCII quotes only in candidate playback text.",
+        "samples": [
+          "’",
+          "’",
+          "’",
+          "’",
+          "’"
+        ]
+      },
+      {
+        "action": "normalize-em-en-dashes",
+        "count": 1623,
+        "recommendation": "Normalize em/en dashes to spaced hyphen for Morse/audio playback, preserving sentence flow.",
+        "samples": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 1"
+    ],
+    "approximateWordCount": 2227,
+    "startsAtRealReadableContent": true,
+    "snippet": "CHAPTER 1. Loomings. Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}

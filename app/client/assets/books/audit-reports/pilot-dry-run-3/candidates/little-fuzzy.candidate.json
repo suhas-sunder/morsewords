@@ -1,0 +1,436 @@
+{
+  "slug": "little-fuzzy",
+  "selectionReason": "High-confidence standalone Roman-numbered sections, selected to test section numbering that is not explicitly chapter-labeled.",
+  "title": "Little Fuzzy",
+  "author": [
+    "H. Beam Piper"
+  ],
+  "sourcePath": "app/client/assets/temp-books/Little Fuzzy.txt",
+  "pass2RiskLevel": "medium",
+  "dryRunRecommendation": "process later with warnings",
+  "boundaries": {
+    "startLine": 50,
+    "startIndex": 1097,
+    "startSnippet": "Jack Holloway found himself squinting, the orange sun full in his eyes. He raised a hand to push his hat forward, then lowered it to the controls to alter the pulse rate of the contragravity-field generators and lift the manipulator another hundred feet. For a moment he sat, puffing on the short pipe that had yellowed the corners of his white mustache, and looked down at the red rag tied to a bush against the rock face of the gorge five",
+    "endLine": 6932,
+    "endIndex": 339211,
+    "endSnippet": "* * * * *"
+  },
+  "wordCounts": {
+    "raw": 62323,
+    "kept": 59136,
+    "removedFrontMatter": 176,
+    "removedEndMatter": 3011
+  },
+  "sections": [
+    {
+      "id": "title-page-001",
+      "kind": "title-page",
+      "label": "Opening section",
+      "title": null,
+      "includeByDefault": false,
+      "wordCount": 3815,
+      "characterCount": 22225,
+      "estimatedListeningMinutes": 133,
+      "textPreview": "Jack Holloway found himself squinting, the orange sun full in his eyes. He raised a hand to push his hat forward, then lowered it to the controls to alter the..."
+    },
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4754,
+      "characterCount": 25990,
+      "estimatedListeningMinutes": 154,
+      "textPreview": "II Jack Holloway landed the manipulator in front of the cluster of prefab huts. For a moment he sat still, realizing that he was tired, and then he climbed dow..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3055,
+      "characterCount": 16980,
+      "estimatedListeningMinutes": 101,
+      "textPreview": "III He started awake, rubbed his eyes and looked at the clock. Past twenty-two hundred; now it really was time for a drink, and then to bed. He rose stiffly an..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2109,
+      "characterCount": 11915,
+      "estimatedListeningMinutes": 72,
+      "textPreview": "IV The Fuzzies took the manipulator quite calmly the next morning. That wasn't any horrible monster, that was just something Pappy Jack took rides in. He found..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5224,
+      "characterCount": 31061,
+      "estimatedListeningMinutes": 187,
+      "textPreview": "V Victor Grego crushed out his cigarette slowly and deliberately. \"Yes, Leonard,\" he said patiently. \"It's very interesting, and doubtless an important discove..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5025,
+      "characterCount": 28879,
+      "estimatedListeningMinutes": 172,
+      "textPreview": "VI The recorded voice ceased; for a moment the record player hummed voicelessly. Loud in the silence, a photocell acted with a double click, opening one segmen..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 7",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4625,
+      "characterCount": 25804,
+      "estimatedListeningMinutes": 155,
+      "textPreview": "VII Tuesday dawned hot and windless, a scarlet sun coming up in a hard, brassy sky. The Fuzzies, who were in to wake Pappy Jack with their whistles, didn't lik..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter 8",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4048,
+      "characterCount": 23278,
+      "estimatedListeningMinutes": 140,
+      "textPreview": "VIII Jack Holloway had been out on bail before, but never for quite so much. It was almost worth it, though, to see Leslie Coombes's eyes widen and Mohammed Al..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter 9",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3019,
+      "characterCount": 17284,
+      "estimatedListeningMinutes": 103,
+      "textPreview": "IX Jack Holloway saw Little Fuzzy eying the pipe he had laid in the ashtray, and picked it up, putting it in his mouth. Little Fuzzy looked reproachfully at hi..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter 10",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 3860,
+      "characterCount": 21821,
+      "estimatedListeningMinutes": 130,
+      "textPreview": "X Colonial Marshal Max Fane was as heavy as Gus Brannhard and considerably shorter. Wedged between them on the back seat of the marshal's car, Jack Holloway co..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter 11",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2565,
+      "characterCount": 14753,
+      "estimatedListeningMinutes": 89,
+      "textPreview": "XI The two lawyers had risen hastily when Chief Justice Pendarvis entered; he responded to their greetings and seated himself at his desk, reaching for the sil..."
+    },
+    {
+      "id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter 12",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 4500,
+      "characterCount": 25369,
+      "estimatedListeningMinutes": 152,
+      "textPreview": "XII Ben Rainsford went back to Beta Continent, and Gerd van Riebeek remained in Mallorysport. The constabulary at Post Fifteen had made steel chopper-diggers f..."
+    },
+    {
+      "id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter 13",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1439,
+      "characterCount": 8365,
+      "estimatedListeningMinutes": 49,
+      "textPreview": "XIII The management of the Hotel Mallory appeared to have undergone a change of heart, or of policy, toward Fuzzies. It might have been Gus Brannhard's threats..."
+    },
+    {
+      "id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter 14",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 5387,
+      "characterCount": 31199,
+      "estimatedListeningMinutes": 187,
+      "textPreview": "XIV They walked together, Frederic and Claudette Pendarvis, down through the roof garden toward the landing stage, and, as she always did, Claudette stopped an..."
+    },
+    {
+      "id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter 15",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1636,
+      "characterCount": 9457,
+      "estimatedListeningMinutes": 56,
+      "textPreview": "XV Ernst Mallin shrank, as though trying to pull himself into himself, when he heard his name. He didn't want to testify. He had been dreading this moment for..."
+    },
+    {
+      "id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter 16",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 2725,
+      "characterCount": 15913,
+      "estimatedListeningMinutes": 94,
+      "textPreview": "XVI They stopped whispering at the door, turned right, and ascended to the bench, bearing themselves like images in a procession, Ruiz first, then himself and..."
+    },
+    {
+      "id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter 17",
+      "title": null,
+      "includeByDefault": true,
+      "wordCount": 1350,
+      "characterCount": 7737,
+      "estimatedListeningMinutes": 46,
+      "textPreview": "XVII Ruth Ortheris sipped at the tart, cold cocktail. It was good; oh, it was good, all good! The music was soft, the lights were dim, the tables were far apar..."
+    }
+  ],
+  "structureDetection": {
+    "detectedStructuralConvention": "standalone roman numeral sections",
+    "selectedHeadingStrategy": {
+      "patternId": "roman-only",
+      "label": "Standalone Roman numeral",
+      "convention": "standalone roman numeral sections",
+      "kind": "chapter",
+      "candidateCount": 16,
+      "tocLikeCount": 0,
+      "bodyLikeCount": 16,
+      "examples": [
+        "L423: II",
+        "L918: III",
+        "L1255: IV",
+        "L1506: V",
+        "L2166: VI",
+        "L2731: VII"
+      ],
+      "bodyExamples": [
+        "L423: II",
+        "L918: III",
+        "L1255: IV",
+        "L1506: V",
+        "L2166: VI",
+        "L2731: VII",
+        "L3290: VIII",
+        "L3747: IX"
+      ],
+      "tocExamples": [],
+      "score": 0.9140000000000001,
+      "confidence": "high",
+      "selected": true,
+      "rejectionReason": null,
+      "sectionSizeNotes": {
+        "sectionCount": 16,
+        "minimumWords": 1350,
+        "medianWords": 3860,
+        "maximumWords": 5387,
+        "averageWords": 3458,
+        "hugeSectionCount": 0,
+        "tinySectionCount": 0,
+        "notes": [
+          "section sizes look plausible for the selected strategy"
+        ]
+      }
+    },
+    "candidateHeadingPatternsFound": [
+      {
+        "patternId": "roman-only",
+        "label": "Standalone Roman numeral",
+        "convention": "standalone roman numeral sections",
+        "kind": "chapter",
+        "candidateCount": 16,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 16,
+        "examples": [
+          "L423: II",
+          "L918: III",
+          "L1255: IV",
+          "L1506: V",
+          "L2166: VI",
+          "L2731: VII"
+        ],
+        "bodyExamples": [
+          "L423: II",
+          "L918: III",
+          "L1255: IV",
+          "L1506: V",
+          "L2166: VI",
+          "L2731: VII",
+          "L3290: VIII",
+          "L3747: IX"
+        ],
+        "tocExamples": [],
+        "score": 0.9140000000000001,
+        "confidence": "high",
+        "selected": true,
+        "rejectionReason": null,
+        "sectionSizeNotes": {
+          "sectionCount": 16,
+          "minimumWords": 1350,
+          "medianWords": 3860,
+          "maximumWords": 5387,
+          "averageWords": 3458,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 0,
+          "notes": [
+            "section sizes look plausible for the selected strategy"
+          ]
+        }
+      },
+      {
+        "patternId": "isolated-title-case",
+        "label": "Isolated title-case heading",
+        "convention": "isolated titled sections",
+        "kind": "titled-section",
+        "candidateCount": 72,
+        "tocLikeCount": 0,
+        "bodyLikeCount": 72,
+        "examples": [
+          "L234: \"Rainsford?\"",
+          "L236: \"Dr. Bennett Rainsford, the naturalist. Institute of Zeno-Sciences. I",
+          "L239: Office.\"",
+          "L255: Interstellar Explorations and the Banking Cartel and Terra Baldur-Marduk",
+          "L278: \"Mr. Henry Stenson's on, Mr. Grego.\"",
+          "L374: \"Well?\""
+        ],
+        "bodyExamples": [
+          "L234: \"Rainsford?\"",
+          "L236: \"Dr. Bennett Rainsford, the naturalist. Institute of Zeno-Sciences. I",
+          "L239: Office.\"",
+          "L255: Interstellar Explorations and the Banking Cartel and Terra Baldur-Marduk",
+          "L278: \"Mr. Henry Stenson's on, Mr. Grego.\"",
+          "L374: \"Well?\"",
+          "L511: Federation Space Forces Emergency Ration, Extraterrestrial, Type Three?\"",
+          "L669: \"Yeek?\""
+        ],
+        "tocExamples": [],
+        "score": 0.651,
+        "confidence": "medium",
+        "selected": false,
+        "rejectionReason": "weaker than selected strategy roman-only",
+        "sectionSizeNotes": {
+          "sectionCount": 72,
+          "minimumWords": 1,
+          "medianWords": 534,
+          "maximumWords": 4407,
+          "averageWords": 791,
+          "hugeSectionCount": 0,
+          "tinySectionCount": 16,
+          "notes": [
+            "largest section is much bigger than the median section"
+          ]
+        }
+      }
+    ],
+    "rejectedHeadingStrategies": [
+      {
+        "patternId": "isolated-title-case",
+        "convention": "isolated titled sections",
+        "candidateCount": 72,
+        "bodyLikeCount": 72,
+        "tocLikeCount": 0,
+        "reason": "weaker than selected strategy roman-only"
+      }
+    ],
+    "tocEntriesDetected": false,
+    "bodyHeadingsDetected": true,
+    "sectionCountFromSelectedStrategy": 16,
+    "fallbackUsed": false,
+    "fallbackLegitimacy": "not required",
+    "fallbackReason": null,
+    "status": "pass",
+    "warnings": [],
+    "bodyChapterHeadingCount": 0,
+    "bodyHeadingExamples": [
+      "L423: II",
+      "L918: III",
+      "L1255: IV",
+      "L1506: V",
+      "L2166: VI",
+      "L2731: VII",
+      "L3290: VIII",
+      "L3747: IX"
+    ],
+    "tocHeadingExamples": [],
+    "priorTwoSectionCollapseFixed": false
+  },
+  "cleanupSimulation": {
+    "cleanedWordCountEstimate": 59136,
+    "actions": [
+      {
+        "action": "remove-page-and-decorative-lines",
+        "count": 43,
+        "recommendation": "Remove standalone page markers and decorative separators; do not remove prose punctuation.",
+        "samples": [
+          "candidate L123: * * * * *",
+          "candidate L325: * * * * *",
+          "candidate L697: * * * * *",
+          "candidate L844: * * * * *",
+          "candidate L987: * * * * *",
+          "candidate L1054: * * * * *",
+          "candidate L1391: * * * * *",
+          "candidate L1659: * * * * *"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "firstHourPreviewCandidate": {
+    "feasible": true,
+    "confidence": "medium",
+    "sectionsUsed": [
+      "chapter-001 Chapter 2"
+    ],
+    "approximateWordCount": 4754,
+    "startsAtRealReadableContent": true,
+    "snippet": "II Jack Holloway landed the manipulator in front of the cluster of prefab huts. For a moment he sat still, realizing that he was tired, and then he climbed down from the control cabin and crossed the open grass to the door of the main living hut, opening it and reaching in to turn on the lights. Then he hesitated, looking up at Darius. There was a wide ring...",
+    "notes": [
+      "Targets about 900 words as a first-hour source approximation for later generation.",
+      "Pass 2 marked first-hour preview derivation as feasible."
+    ]
+  },
+  "comparisonAgainstExistingGeneratedOutput": {
+    "exists": false,
+    "manifestPath": null,
+    "sectionCount": 0,
+    "includedSectionCount": 0,
+    "firstSectionPreview": null,
+    "lastSectionPreview": null,
+    "suspiciousShortSections": [],
+    "suspiciousLongSections": [],
+    "apparentDamage": []
+  },
+  "manualReviewChecklist": [
+    "Confirm the first kept line is real readable content, not source metadata or a TOC entry.",
+    "Confirm the final kept line is real book content and the Gutenberg/license footer is excluded.",
+    "Confirm default-readable sections exclude TOC, transcriber notes, source/license text, and publisher catalog material.",
+    "Check suspiciously short or long proposed sections before a real write pass.",
+    "Verify cleanup removes playback-hostile artifacts without deleting dialogue, punctuation, paragraph structure, or headings.",
+    "Confirm the first-hour preview candidate starts with real readable content."
+  ]
+}
