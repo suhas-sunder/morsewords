@@ -15,12 +15,15 @@ const STALE_CACHE_BOOK_SLUG = "the-call-of-the-wild";
 const ERROR_BOOK_SLUG = "the-jungle-book";
 const TEST_BOOK_SLUG = "test-published-morse-book";
 const ART_OF_WAR_SLUG = "the-art-of-war";
+const VIOLET_FAIRY_BOOK_SLUG = "violet-fairy-book";
 const ALICE_PUBLIC_PATH = `/morse-code-books/${ALICE_SLUG}`;
 const APPROVED_BOOK_PUBLIC_PATH = `/morse-code-books/${APPROVED_BOOK_SLUG}`;
 const NETWORK_BOOK_PUBLIC_PATH = `/morse-code-books/${NETWORK_BOOK_SLUG}`;
 const STALE_CACHE_BOOK_PUBLIC_PATH = `/morse-code-books/${STALE_CACHE_BOOK_SLUG}`;
 const ERROR_BOOK_PUBLIC_PATH = `/morse-code-books/${ERROR_BOOK_SLUG}`;
 const ART_OF_WAR_PUBLIC_PATH = `/morse-code-books/${ART_OF_WAR_SLUG}`;
+const VIOLET_FAIRY_BOOK_PREVIEW_PATH =
+  `/morse-code-books/${VIOLET_FAIRY_BOOK_SLUG}?preview=unpublished`;
 const ALICE_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${ALICE_SLUG}`;
 const APPROVED_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${APPROVED_BOOK_SLUG}`;
 const NETWORK_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${NETWORK_BOOK_SLUG}`;
@@ -30,6 +33,8 @@ const TEST_BOOK_PREVIEW_PATH = `${TEST_BOOK_PUBLIC_PATH}?preview=test-published`
 const THEME_STORAGE_KEY = "morsewords-theme";
 const TEST_BOOK_RUNTIME_SETTINGS_KEY =
   "morsewords:book-runtime:settings:v1:test-published-morse-book:test-published-v1:test-published-morse-book-content-hash-development-fixture-v1";
+const BOOK_RUNTIME_SETTINGS_KEY_PREFIX =
+  "morsewords:book-runtime:settings:v1:";
 const TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY =
   "morsewords:book-live-preview-progress:v1:test-published-morse-book";
 const LIVE_PREVIEW_AUDIO_CONTROL_LABELS = [
@@ -51,6 +56,64 @@ function readJson<T>(relativePath: string): T {
   return JSON.parse(
     fs.readFileSync(path.join(ROOT, relativePath), "utf8"),
   ) as T;
+}
+
+type TestBookManifestSection = {
+  id: string;
+  includeByDefault: boolean;
+};
+
+type TestBookContentFixture = {
+  slug: string;
+  contentVersion: string;
+  contentHash: string;
+  manifest: {
+    contentVersion: string;
+    contentHash: string;
+    sections: TestBookManifestSection[];
+  };
+};
+
+type TestGeneratedBookManifestFixture = {
+  sections: TestBookManifestSection[];
+};
+
+function defaultSectionIdsFromSections(sections: TestBookManifestSection[]) {
+  return sections
+    .filter((section) => section.includeByDefault)
+    .map((section) => section.id);
+}
+
+function readPublicDefaultSectionIds(slug: string) {
+  const content = readJson<TestBookContentFixture>(
+    `app/client/assets/books/cloudflare-export/books/${slug}.json`,
+  );
+  return defaultSectionIdsFromSections(content.manifest.sections);
+}
+
+function readPublicBookRuntimeSettingsKey(slug: string) {
+  const content = readJson<TestBookContentFixture>(
+    `app/client/assets/books/cloudflare-export/books/${slug}.json`,
+  );
+  return `${BOOK_RUNTIME_SETTINGS_KEY_PREFIX}${slug}:${content.manifest.contentVersion}:${content.manifest.contentHash}`;
+}
+
+function readGeneratedDefaultSectionIds(slug: string) {
+  const manifest = readJson<TestGeneratedBookManifestFixture>(
+    `app/client/assets/books/generated/${slug}/manifest.json`,
+  );
+  return defaultSectionIdsFromSections(manifest.sections);
+}
+
+async function removeBookRuntimeSettings(page: Page, slug: string) {
+  await page.addInitScript(
+    ({ prefix, bookSlug }) => {
+      Object.keys(localStorage)
+        .filter((key) => key.startsWith(`${prefix}${bookSlug}:`))
+        .forEach((key) => localStorage.removeItem(key));
+    },
+    { prefix: BOOK_RUNTIME_SETTINGS_KEY_PREFIX, bookSlug: slug },
+  );
 }
 
 async function openPreview(page: Page) {
@@ -461,6 +524,16 @@ async function waitForApprovedBookWorkspace(page: Page) {
 async function openAnneBook(page: Page) {
   await blockExternalNetwork(page);
   const response = await page.goto("/morse-code-books/anne-of-green-gables", {
+    waitUntil: "domcontentloaded",
+  });
+  await waitForRouteReady(page);
+  expect(response?.ok()).toBe(true);
+  await waitForApprovedBookWorkspace(page);
+}
+
+async function openVioletFairyBookPreview(page: Page) {
+  await blockExternalNetwork(page);
+  const response = await page.goto(VIOLET_FAIRY_BOOK_PREVIEW_PATH, {
     waitUntil: "domcontentloaded",
   });
   await waitForRouteReady(page);
@@ -1071,6 +1144,9 @@ test.describe("Morse book page foundation", () => {
   test("renders a public book shell from the per-book preview while full data is pending", async ({
     page,
   }) => {
+    const aliceDefaultSectionIds = readPublicDefaultSectionIds(ALICE_SLUG);
+    expect(aliceDefaultSectionIds.length).toBeGreaterThan(2);
+
     await page.addInitScript(
       ({ cachePrefix, slug }) => {
         Object.keys(localStorage)
@@ -1132,6 +1208,14 @@ test.describe("Morse book page foundation", () => {
       await expect(page.locator("[data-mw-morse-book-section-skeleton]")).toHaveCount(4);
       await expect(page.getByTestId("morse-book-download-audiobook-link")).toBeVisible();
       await expect(page.locator("#book-mp3-download")).toBeVisible();
+      const previewSavedRuntimeSettings = await page.evaluate(
+        ({ prefix, slug }) =>
+          Object.entries(localStorage)
+            .filter(([key]) => key.startsWith(`${prefix}${slug}:`))
+            .map(([, value]) => value),
+        { prefix: BOOK_RUNTIME_SETTINGS_KEY_PREFIX, slug: ALICE_SLUG },
+      );
+      expect(previewSavedRuntimeSettings).toEqual([]);
 
       expect(fullBookRequests).toHaveLength(1);
       const slugPreviewRequests = previewRequests.filter((url) =>
@@ -1160,10 +1244,21 @@ test.describe("Morse book page foundation", () => {
       await expect(page.locator("[data-mw-morse-book-section-skeleton]")).toHaveCount(0);
 
       const selectedIds = await selectedBookSectionIds(page);
+      expect(selectedIds).toEqual(aliceDefaultSectionIds);
       expect(selectedIds[0]).toBe("chapter-001");
+      expect(selectedIds).toContain("chapter-002");
+      expect(selectedIds).toContain(
+        aliceDefaultSectionIds[aliceDefaultSectionIds.length - 1],
+      );
       expect(selectedIds.every((id) => id.startsWith("chapter-"))).toBe(true);
       expect(selectedIds).not.toContain("title-page-001");
       expect(selectedIds).not.toContain("title-page-002");
+      await expect(
+        page.locator("[data-mw-morse-book-translator-source-sections]"),
+      ).toHaveAttribute(
+        "data-mw-morse-book-translator-source-sections",
+        aliceDefaultSectionIds.join(","),
+      );
       await expect(
         page.locator("[data-mw-morse-book-section-row][data-mw-morse-book-section-id='title-page-001']"),
       ).toBeVisible();
@@ -1634,6 +1729,9 @@ test.describe("Morse book page foundation", () => {
   test("defaults public Gutenberg books to readable chapters while front matter remains selectable", async ({
     page,
   }) => {
+    const aliceDefaultSectionIds = readPublicDefaultSectionIds(ALICE_SLUG);
+    expect(aliceDefaultSectionIds.length).toBeGreaterThan(2);
+
     await page.addInitScript((slug) => {
       Object.keys(localStorage)
         .filter((key) =>
@@ -1644,11 +1742,22 @@ test.describe("Morse book page foundation", () => {
     await openPublicBook(page, ALICE_PUBLIC_PATH);
 
     const selectedIds = await selectedBookSectionIds(page);
+    expect(selectedIds).toEqual(aliceDefaultSectionIds);
     expect(selectedIds[0]).toBe("chapter-001");
+    expect(selectedIds).toContain("chapter-002");
+    expect(selectedIds).toContain(
+      aliceDefaultSectionIds[aliceDefaultSectionIds.length - 1],
+    );
     expect(selectedIds.every((id) => id.startsWith("chapter-"))).toBe(true);
     expect(selectedIds).not.toContain("title-page-001");
     expect(selectedIds).not.toContain("title-page-002");
 
+    await expect(
+      page.locator("[data-mw-morse-book-translator-source-sections]"),
+    ).toHaveAttribute(
+      "data-mw-morse-book-translator-source-sections",
+      aliceDefaultSectionIds.join(","),
+    );
     const sourceSectionIds = (
       (await page
         .locator("[data-mw-morse-book-translator-source-sections]")
@@ -1656,6 +1765,7 @@ test.describe("Morse book page foundation", () => {
     )
       .split(",")
       .filter(Boolean);
+    expect(sourceSectionIds).toEqual(aliceDefaultSectionIds);
     expect(sourceSectionIds[0]).toBe("chapter-001");
     expect(sourceSectionIds).not.toContain("title-page-001");
     expect(sourceSectionIds).not.toContain("title-page-002");
@@ -1683,6 +1793,125 @@ test.describe("Morse book page foundation", () => {
     await expect(page.locator("[data-mw-morse-book-source-preview]")).not.toContainText(
       "THE MILLENNIUM FULCRUM EDITION",
     );
+  });
+
+  test("defaults Violet Fairy Book preview to story sections without preface material", async ({
+    page,
+  }) => {
+    const violetDefaultSectionIds = readGeneratedDefaultSectionIds(
+      VIOLET_FAIRY_BOOK_SLUG,
+    );
+    expect(violetDefaultSectionIds).toHaveLength(35);
+    expect(violetDefaultSectionIds[0]).toBe("chapter-001");
+    expect(violetDefaultSectionIds).toContain("chapter-002");
+    expect(violetDefaultSectionIds).toContain("chapter-035");
+
+    await removeBookRuntimeSettings(page, VIOLET_FAIRY_BOOK_SLUG);
+    await openVioletFairyBookPreview(page);
+
+    const selectedIds = await selectedBookSectionIds(page);
+    expect(selectedIds).toEqual(violetDefaultSectionIds);
+    expect(selectedIds).not.toContain("preface-001");
+    await expect(
+      page.locator("[data-mw-morse-book-section-select='preface-001']"),
+    ).not.toBeChecked();
+    await expect(
+      page.locator("[data-mw-morse-book-translator-source-sections]"),
+    ).toHaveAttribute(
+      "data-mw-morse-book-translator-source-sections",
+      violetDefaultSectionIds.join(","),
+    );
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).toContainText(
+      "A TALE OF THE TONTLAWALD",
+    );
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).not.toContainText(
+      "PREFACE",
+    );
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).not.toContainText(
+      "CONTENTS",
+    );
+  });
+
+  test("ignores legacy one-section preview defaults while preserving saved user subsets", async ({
+    page,
+  }) => {
+    const aliceDefaultSectionIds = readPublicDefaultSectionIds(ALICE_SLUG);
+    const aliceRuntimeSettingsKey = readPublicBookRuntimeSettingsKey(ALICE_SLUG);
+    expect(aliceDefaultSectionIds.length).toBeGreaterThan(2);
+
+    await page.addInitScript(
+      ({ defaultSectionId, key, prefix, slug }) => {
+        const seedKey = `${key}:legacy-preview-default-seeded`;
+        if (sessionStorage.getItem(seedKey)) return;
+        Object.keys(localStorage)
+          .filter((storageKey) => storageKey.startsWith(`${prefix}${slug}:`))
+          .forEach((storageKey) => localStorage.removeItem(storageKey));
+        const keyParts = key.split(":");
+        const contentHash = keyParts[keyParts.length - 1];
+        const contentVersion = keyParts[keyParts.length - 2];
+        localStorage.setItem(
+          key,
+          JSON.stringify({
+            schemaVersion: 1,
+            slug,
+            contentVersion,
+            contentHash,
+            selectedSectionIds: [defaultSectionId],
+            exportSettings: {},
+            videoSettings: {},
+          }),
+        );
+        sessionStorage.setItem(seedKey, "true");
+      },
+      {
+        defaultSectionId: aliceDefaultSectionIds[0],
+        key: aliceRuntimeSettingsKey,
+        prefix: BOOK_RUNTIME_SETTINGS_KEY_PREFIX,
+        slug: ALICE_SLUG,
+      },
+    );
+    await openPublicBook(page, ALICE_PUBLIC_PATH);
+
+    await expectSelectedBookSectionIds(page, aliceDefaultSectionIds);
+
+    const savedSubset = [
+      aliceDefaultSectionIds[0],
+      aliceDefaultSectionIds[1],
+      aliceDefaultSectionIds[aliceDefaultSectionIds.length - 1],
+    ];
+    await page.locator("[data-mw-morse-book-select-all-default]").uncheck();
+    for (const sectionId of savedSubset) {
+      await page.locator(`[data-mw-morse-book-section-select='${sectionId}']`).check();
+    }
+    await expectSelectedBookSectionIds(page, savedSubset);
+    await expect
+      .poll(() =>
+        page.evaluate((key) => {
+          const raw = localStorage.getItem(key);
+          if (!raw) return null;
+          return JSON.parse(raw) as {
+            selectionMode?: string;
+            selectedSectionIds?: string[];
+          };
+        }, aliceRuntimeSettingsKey),
+      )
+      .toMatchObject({
+        selectionMode: "custom",
+        selectedSectionIds: savedSubset,
+      });
+
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await waitForApprovedBookWorkspace(page);
+    await expectSelectedBookSectionIds(page, savedSubset);
+
+    await page
+      .locator("#book-mp3-download [data-mw-morse-book-reset-settings='true']")
+      .click({ force: true });
+    await expectSelectedBookSectionIds(page, aliceDefaultSectionIds);
+    await expect(
+      page.locator("[data-mw-morse-book-section-select='title-page-001']"),
+    ).not.toBeChecked();
   });
 
   test("persists book selections and settings per content hash without restoring stale section IDs", async ({

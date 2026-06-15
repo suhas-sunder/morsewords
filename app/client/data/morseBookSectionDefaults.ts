@@ -126,15 +126,15 @@ export function getDefaultMorseBookSectionIds(
   book: MorseBookManifest,
   fallbackSectionId: string,
 ) {
-  const readable = book.sections
-    .filter((section) => isDefaultReadableMorseBookSection(section))
-    .map((section) => section.id);
-  if (readable.length > 0) return readable;
-
   const included = book.sections
     .filter((section) => section.includeByDefault)
     .map((section) => section.id);
-  return included.length > 0 ? included : [fallbackSectionId];
+  if (included.length > 0) return included;
+
+  const readable = book.sections
+    .filter((section) => isDefaultReadableMorseBookSection(section))
+    .map((section) => section.id);
+  return readable.length > 0 ? readable : [fallbackSectionId];
 }
 
 export function getDefaultMorseBookLiveSectionId(

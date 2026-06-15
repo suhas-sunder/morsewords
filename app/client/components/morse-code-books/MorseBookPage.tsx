@@ -203,6 +203,7 @@ type SavedMorseBookRuntimeSettings = {
   slug: string;
   contentVersion: string;
   contentHash: string;
+  selectionMode?: "custom" | "default";
   selectedSectionIds: string[];
   exportSettings: BookExportSettings;
   videoSettings: MorseVideoSettings;
@@ -307,6 +308,24 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
+function sameSectionIds(left: string[], right: string[]) {
+  return (
+    left.length === right.length &&
+    left.every((sectionId, index) => sectionId === right[index])
+  );
+}
+
+function isLegacyPreviewDefaultSelection(
+  savedSectionIds: string[],
+  defaultSectionIds: string[],
+) {
+  return (
+    defaultSectionIds.length > 1 &&
+    savedSectionIds.length === 1 &&
+    savedSectionIds[0] === defaultSectionIds[0]
+  );
+}
+
 function loadSavedMorseBookRuntimeSettings(
   book: MorseBookManifest,
   defaultSectionIds: string[],
@@ -332,19 +351,29 @@ function loadSavedMorseBookRuntimeSettings(
             typeof sectionId === "string" && validSectionIds.has(sectionId),
         )
       : defaultSectionIds;
-    const hadSavedSections =
-      Array.isArray(parsed.selectedSectionIds) &&
-      parsed.selectedSectionIds.length > 0;
-    const selectedSectionIds =
-      hadSavedSections && savedSectionIds.length === 0
-        ? defaultSectionIds
-        : savedSectionIds;
+    const selectionMode =
+      parsed.selectionMode === "custom" || parsed.selectionMode === "default"
+        ? parsed.selectionMode
+        : undefined;
+    let selectedSectionIds = defaultSectionIds;
+    if (Array.isArray(parsed.selectedSectionIds) && savedSectionIds.length > 0) {
+      if (selectionMode === "custom") {
+        selectedSectionIds = savedSectionIds;
+      } else if (
+        !selectionMode &&
+        !sameSectionIds(savedSectionIds, defaultSectionIds) &&
+        !isLegacyPreviewDefaultSelection(savedSectionIds, defaultSectionIds)
+      ) {
+        selectedSectionIds = savedSectionIds;
+      }
+    }
 
     return {
       schemaVersion: 1,
       slug: book.slug,
       contentVersion: book.contentVersion,
       contentHash: book.contentHash,
+      selectionMode,
       selectedSectionIds,
       exportSettings: sanitizeBookExportSettings(
         isPlainObject(parsed.exportSettings) ? parsed.exportSettings : {},
@@ -930,6 +959,8 @@ function MorseBookWorkspace({
   const [videoPreviewElapsedMs, setVideoPreviewElapsedMs] = React.useState(0);
   const [videoPreviewPlaying, setVideoPreviewPlaying] = React.useState(false);
   const [settingsRestored, setSettingsRestored] = React.useState(false);
+  const [settingsRestoredSignature, setSettingsRestoredSignature] =
+    React.useState<string | null>(null);
   const [savedSettingsStatus, setSavedSettingsStatus] = React.useState("");
   const [runtimeSettingsResetVersion, setRuntimeSettingsResetVersion] =
     React.useState(0);
@@ -946,7 +977,6 @@ function MorseBookWorkspace({
   const videoPreviewSessionRef = React.useRef(0);
   const exportAbortRef = React.useRef<AbortController | null>(null);
   const restoredRuntimeSignatureRef = React.useRef<string | null>(null);
-  const skipNextRuntimeSettingsSaveRef = React.useRef(false);
   const restoredBookLivePreviewProgressHashRef = React.useRef<string | null>(
     null,
   );
@@ -975,6 +1005,7 @@ function MorseBookWorkspace({
     if (restoredRuntimeSignatureRef.current === bookRuntimeSignature) return;
     restoredRuntimeSignatureRef.current = bookRuntimeSignature;
     setSettingsRestored(false);
+    setSettingsRestoredSignature(null);
     setLoadedSections(new Map([[initialSection.sectionId, initialSection]]));
     const saved = fullBookLoading
       ? null
@@ -1024,6 +1055,7 @@ function MorseBookWorkspace({
     }
     setDownloadStatus({ kind: "idle", message: "" });
     setExportProgress(IDLE_EXPORT_PROGRESS);
+    setSettingsRestoredSignature(bookRuntimeSignature);
     setSettingsRestored(true);
   }, [
     bookRuntimeSignature,
@@ -1060,11 +1092,8 @@ function MorseBookWorkspace({
 
   React.useEffect(() => {
     if (!settingsRestored) return;
+    if (settingsRestoredSignature !== bookRuntimeSignature) return;
     if (fullBookLoading) return;
-    if (skipNextRuntimeSettingsSaveRef.current) {
-      skipNextRuntimeSettingsSaveRef.current = false;
-      return;
-    }
     const savedForMerge =
       isAudiobook && persistedLiveElapsedMs === 0
         ? loadSavedMorseBookRuntimeSettings(book, defaultSectionIds)?.livePlayer
@@ -1079,6 +1108,9 @@ function MorseBookWorkspace({
       slug: book.slug,
       contentVersion: book.contentVersion,
       contentHash: book.contentHash,
+      selectionMode: sameSectionIds(scopeSectionIds, defaultSectionIds)
+        ? "default"
+        : "custom",
       selectedSectionIds: scopeSectionIds,
       exportSettings,
       videoSettings,
@@ -1093,6 +1125,7 @@ function MorseBookWorkspace({
     activeLiveSectionId,
     activeLiveSegmentIndex,
     book,
+    bookRuntimeSignature,
     completedLiveSectionIds,
     defaultSectionIds,
     exportSettings,
@@ -1102,6 +1135,7 @@ function MorseBookWorkspace({
     runtimeSettingsResetVersion,
     scopeSectionIds,
     settingsRestored,
+    settingsRestoredSignature,
     videoSettings,
     videoPreviewElapsedMs,
   ]);
@@ -1818,7 +1852,6 @@ function MorseBookWorkspace({
     pendingRestoredLiveElapsedRef.current = null;
     restoredBookLivePreviewProgressHashRef.current = null;
     restoredRuntimeSignatureRef.current = bookRuntimeSignature;
-    skipNextRuntimeSettingsSaveRef.current = true;
     skipNextBookLivePreviewProgressSaveRef.current = true;
     setRuntimeSettingsResetVersion((version) => version + 1);
     const resetLiveSectionId = isAudiobook
