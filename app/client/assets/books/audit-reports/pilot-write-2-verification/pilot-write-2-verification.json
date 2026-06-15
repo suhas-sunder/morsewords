@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reportName": "pilot-write-2-verification",
-  "generatedAt": "2026-06-15T05:04:00.786Z",
+  "generatedAt": "2026-06-15T05:30:14.094Z",
   "pilotSlugs": [
     "anne-of-green-gables",
     "pointed-roofs",
@@ -27,9 +27,9 @@
     "writeReport": "app/client/assets/books/audit-reports/pilot-write-2/pilot-write-2.json"
   },
   "summary": {
-    "pass": 11,
+    "pass": 12,
     "warn": 2,
-    "fail": 1
+    "fail": 0
   },
   "books": [
     {
@@ -501,14 +501,14 @@
     },
     {
       "slug": "violet-fairy-book",
-      "status": "fail",
+      "status": "pass",
       "generatedOutputInspected": [
         "app/client/assets/books/generated/violet-fairy-book/manifest.json",
         "app/client/assets/books/generated/violet-fairy-book/cleaned_book.json",
         "app/client/assets/books/generated/violet-fairy-book/processed_book.json",
         "app/client/assets/books/generated/violet-fairy-book/rights_report.json",
         "app/client/assets/books/generated/violet-fairy-book/processing_notes.md",
-        "app/client/assets/books/generated/violet-fairy-book/sections/title-page-001.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/preface-001.json",
         "app/client/assets/books/generated/violet-fairy-book/sections/chapter-001.json",
         "app/client/assets/books/generated/violet-fairy-book/sections/chapter-002.json",
         "app/client/assets/books/generated/violet-fairy-book/sections/chapter-003.json",
@@ -543,21 +543,12 @@
         "app/client/assets/books/generated/violet-fairy-book/sections/chapter-032.json",
         "app/client/assets/books/generated/violet-fairy-book/sections/chapter-033.json",
         "app/client/assets/books/generated/violet-fairy-book/sections/chapter-034.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-035.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-036.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-037.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-038.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-039.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-040.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-041.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-042.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-043.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-044.json"
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-035.json"
       ],
       "previewAssetInspected": "public/book-previews/violet-fairy-book.preview.json",
       "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-2/pilot-dry-run-2.json",
       "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-2/pilot-write-2.json",
-      "selectedStructuralConvention": "isolated titled sections",
+      "selectedStructuralConvention": "contents-backed story sections",
       "startBoundaryVerdict": {
         "status": "pass",
         "summary": "Generated output starts at the selected readable raw boundary.",
@@ -569,73 +560,58 @@
         "details": []
       },
       "sectioningVerdict": {
-        "status": "fail",
-        "summary": "Violet Fairy Book is not acceptable: story-level sections are not reliably preserved.",
+        "status": "pass",
+        "summary": "Violet Fairy Book story sections are acceptable.",
         "details": [
-          "Generated default sections: 44; detected all-caps story-title lines: 36.",
-          "The first default section includes contributor notes and the CONTENTS list before the first story.",
-          "Several generated sections are internal story fragments, not story titles: chapter-014, chapter-015, chapter-016, chapter-017, chapter-018, chapter-027, chapter-028, chapter-038."
+          "Generated sections: 36; default story sections: 35.",
+          "Contributor, contents, and standalone source-attribution lines are excluded from default playback.",
+          "Story labels follow the contents-backed body headings from the raw source."
         ]
       },
       "cleanupVerdict": {
-        "status": "fail",
-        "summary": "Cleanup left default-readable junk or obvious artifacts.",
-        "details": [
-          "Default-readable junk: /^contents$/im"
-        ]
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
       },
       "previewVerdict": {
-        "status": "fail",
-        "summary": "Preview asset failed verification.",
-        "details": [
-          "Preview default/junk text: /^contents$/im"
-        ]
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
       },
       "remainingWarnings": [
-        "Violet Fairy Book is not acceptable: story-level sections are not reliably preserved.",
-        "Generated default sections: 44; detected all-caps story-title lines: 36.",
-        "The first default section includes contributor notes and the CONTENTS list before the first story.",
-        "Several generated sections are internal story fragments, not story titles: chapter-014, chapter-015, chapter-016, chapter-017, chapter-018, chapter-027, chapter-028, chapter-038.",
-        "Cleanup left default-readable junk or obvious artifacts.",
-        "Default-readable junk: /^contents$/im",
-        "Preview asset failed verification.",
-        "Preview default/junk text: /^contents$/im"
+        "Post-write correction: rebuilt story collection into 35 contents-backed story sections and one non-default preface/contents section.",
+        "Post-write correction: removed 32 standalone story source attribution lines from default playback.",
+        "Post-write verification corrected Violet Fairy Book into 35 complete story sections plus one non-default preface/contents section.",
+        "Removed 32 standalone story source attribution lines from default playback sections."
       ],
-      "acceptedForMain": false,
-      "needsCorrectionBeforeMain": true,
-      "shouldBeRevertedOrSkipped": true,
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
       "startSnippet": {
         "raw": "PREFACE The Editor takes this opportunity to repeat what he has often said before, that he is not the author of the stories in the Fairy Books; that he did not invent them ‘out of his own head.’ He is accustomed to being asked, by ladies, ‘Have you written anything else except the Fairy Books?’ He is then obliged to explain that he has NOT written the Fairy...",
         "generated": "PREFACE The Editor takes this opportunity to repeat what he has often said before, that he is not the author of the stories in the Fairy Books; that he did not invent them 'out of his own head.' He is accustomed to being asked, by ladies, 'Have you written anything else except the Fairy Books?' He is then obliged to explain that he has NOT written the Fairy...",
-        "preview": "'The Wonderful Beggars,' 'The Lute Player,' 'Two in a Sack,' and 'The Fish that swam in the Air.' Mr. W. A. Craigie translated from the Scandinavian, 'Jasper who herded the Hares.' Mrs. Lang did the rest. Some of the most interesting are from the Roumanion, and three were previously published in the late Dr. Steere's 'Swahili Tales.' By the permission of hi..."
+        "preview": "A TALE OF THE TONTLAWALD Long, long ago there stood in the midst of a country covered with lakes a vast stretch of moorland called the Tontlawald, on which no man ever dared set foot. From time to time a few bold spirits had been drawn by curiosity to its borders, and on their return had reported that they had caught a glimpse of a ruined house in a grove o..."
       },
       "endSnippet": {
         "raw": "all her prayers. At last she saw that her entreaties were vain, and agreed to marry him, as he wished. And they went together to the palace, where Mogarzea was still waiting for him, and the marriage was celebrated by the emperor himself. But every May they returned to the Milk Lake, they and their children, and bathed in its waters. (Olumanische Marchen.)",
-        "generated": "ul fairy standing before him, with hair and robes that shone like gold. He gazed at her in wonder, when suddenly she began to dance. Her movements were so graceful that he forgot to play, and as soon as the notes of his flute ceased she vanished from his sight. The next day the same thing happened, but on the third he took courage, and drew a little nearer,..."
+        "generated": "ed when he saw a beautiful fairy standing before him, with hair and robes that shone like gold. He gazed at her in wonder, when suddenly she began to dance. Her movements were so graceful that he forgot to play, and as soon as the notes of his flute ceased she vanished from his sight. The next day the same thing happened, but on the third he took courage, a..."
       },
       "sectionSummary": {
-        "totalSections": 45,
-        "defaultSections": 44,
+        "totalSections": 36,
+        "defaultSections": 35,
         "firstDefaultSection": {
           "id": "chapter-001",
-          "label": "'The Wonderful Beggars,' 'The Lute Player,' 'Two In A Sack,' And 'The",
-          "title": "'The Wonderful Beggars,' 'The Lute Player,' 'Two in a Sack,' and 'The",
-          "wordCount": 4576
+          "label": "A Tale of the Tontlawald",
+          "title": "A Tale of the Tontlawald",
+          "wordCount": 4324
         },
         "lastDefaultSection": {
-          "id": "chapter-044",
-          "label": "(Adapted From 'Virgilius The Sorcerer.')",
-          "title": "(Adapted from 'Virgilius the Sorcerer.')",
-          "wordCount": 1881
+          "id": "chapter-035",
+          "label": "Mogarzea and His Son",
+          "title": "Mogarzea and His Son",
+          "wordCount": 1874
         },
-        "suspiciouslyShortSections": [
-          {
-            "id": "chapter-027",
-            "label": "And I'Ll Bite,",
-            "title": "And I'll bite,",
-            "wordCount": 38
-          }
-        ],
+        "suspiciouslyShortSections": [],
         "suspiciouslyLongSections": []
       }
     },
@@ -1535,8 +1511,8 @@
       "verdict": "Room 13 has 33 default body chapters from Chapter I through Chapter XXXIII."
     },
     "violetFairyBook": {
-      "acceptable": false,
-      "verdict": "Violet Fairy Book is not acceptable: story-level sections are not reliably preserved."
+      "acceptable": true,
+      "verdict": "Violet Fairy Book story sections are acceptable."
     }
   },
   "conclusions": {
@@ -1545,6 +1521,7 @@
       "pointed-roofs",
       "the-lost-world",
       "the-red-thumb-mark",
+      "violet-fairy-book",
       "jack-and-jill",
       "the-wonderful-wizard-of-oz",
       "the-legend-of-sleepy-hollow",
@@ -1555,14 +1532,11 @@
       "triplanetary",
       "the-call-of-the-wild"
     ],
-    "needsCorrectionBeforeMain": [
-      "violet-fairy-book"
-    ],
-    "shouldBeRevertedOrSkipped": [
-      "violet-fairy-book"
-    ],
+    "needsCorrectionBeforeMain": [],
+    "shouldBeRevertedOrSkipped": [],
     "correctionsMade": [
-      "triplanetary: removed four bracketed illustration placeholders from generated playable text and rebuilt the generated/preview hashes."
+      "triplanetary: removed four bracketed illustration placeholders from generated playable text and rebuilt the generated/preview hashes.",
+      "violet-fairy-book: rebuilt the collection from contents-backed story headings into 35 complete default story sections plus one non-default preface/contents section."
     ]
   },
   "confirmations": {

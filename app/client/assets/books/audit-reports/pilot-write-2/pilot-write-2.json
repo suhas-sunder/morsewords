@@ -874,7 +874,7 @@
         "app/client/assets/books/generated/violet-fairy-book/processed_book.json",
         "app/client/assets/books/generated/violet-fairy-book/rights_report.json",
         "app/client/assets/books/generated/violet-fairy-book/processing_notes.md",
-        "app/client/assets/books/generated/violet-fairy-book/sections/title-page-001.json",
+        "app/client/assets/books/generated/violet-fairy-book/sections/preface-001.json",
         "app/client/assets/books/generated/violet-fairy-book/sections/chapter-001.json",
         "app/client/assets/books/generated/violet-fairy-book/sections/chapter-002.json",
         "app/client/assets/books/generated/violet-fairy-book/sections/chapter-003.json",
@@ -909,16 +909,7 @@
         "app/client/assets/books/generated/violet-fairy-book/sections/chapter-032.json",
         "app/client/assets/books/generated/violet-fairy-book/sections/chapter-033.json",
         "app/client/assets/books/generated/violet-fairy-book/sections/chapter-034.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-035.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-036.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-037.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-038.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-039.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-040.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-041.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-042.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-043.json",
-        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-044.json"
+        "app/client/assets/books/generated/violet-fairy-book/sections/chapter-035.json"
       ],
       "previewAssetFileChanged": "public/book-previews/violet-fairy-book.preview.json",
       "candidateTitle": "The Violet Fairy Book",
@@ -974,69 +965,69 @@
         "wordCountEstimate": 3005,
         "lineRange": "11141-11499"
       },
-      "sectionCount": 45,
+      "sectionCount": 36,
       "firstFiveSections": [
         {
-          "id": "title-page-001",
-          "label": "Opening section",
+          "id": "preface-001",
+          "label": "Preface and contents",
           "title": null,
-          "wordCount": 486
+          "wordCount": 738
         },
         {
           "id": "chapter-001",
-          "label": "'The Wonderful Beggars,' 'The Lute Player,' 'Two In A Sack,' And 'The",
-          "title": "'The Wonderful Beggars,' 'The Lute Player,' 'Two in a Sack,' and 'The",
-          "wordCount": 4576
+          "label": "A Tale of the Tontlawald",
+          "title": "A Tale of the Tontlawald",
+          "wordCount": 4324
         },
         {
           "id": "chapter-002",
-          "label": "(From Ehstnische Marchen.)",
-          "title": "(From Ehstnische Marchen.)",
-          "wordCount": 1553
+          "label": "The Finest Liar in the World",
+          "title": "The Finest Liar in the World",
+          "wordCount": 1550
         },
         {
           "id": "chapter-003",
-          "label": "(Volksmarchen Der Serben.)",
-          "title": "(Volksmarchen der Serben.)",
-          "wordCount": 2762
+          "label": "The Story of Three Wonderful Beggars",
+          "title": "The Story of Three Wonderful Beggars",
+          "wordCount": 2759
         },
         {
           "id": "chapter-004",
-          "label": "(From The Serbian.)",
-          "title": "(From the Serbian.)",
-          "wordCount": 1135
+          "label": "Schippeitaro",
+          "title": "Schippeitaro",
+          "wordCount": 1132
         }
       ],
       "lastFiveSections": [
         {
-          "id": "chapter-040",
-          "label": "(Marchen Und Gedichte Aus Der Stadt Tripolis. Hans Von Stumme.)",
-          "title": "(Marchen und Gedichte aus der Stadt Tripolis. Hans von Stumme.)",
-          "wordCount": 2350
+          "id": "chapter-031",
+          "label": "The Girl who Pretended to Be a Boy",
+          "title": "The Girl who Pretended to Be a Boy",
+          "wordCount": 7370
         },
         {
-          "id": "chapter-041",
-          "label": "(From The Portuguese.)",
-          "title": "(From the Portuguese.)",
-          "wordCount": 215
+          "id": "chapter-032",
+          "label": "The Story of Halfman",
+          "title": "The Story of Halfman",
+          "wordCount": 3625
         },
         {
-          "id": "chapter-042",
-          "label": "Virgilius!'",
-          "title": "Virgilius!'",
-          "wordCount": 1520
+          "id": "chapter-033",
+          "label": "The Prince who Wanted to See the World",
+          "title": "The Prince who Wanted to See the World",
+          "wordCount": 2340
         },
         {
-          "id": "chapter-043",
-          "label": "'Preservation Of Rome.'",
-          "title": "'Preservation of Rome.'",
-          "wordCount": 1459
+          "id": "chapter-034",
+          "label": "Virgilius the Sorcerer",
+          "title": "Virgilius the Sorcerer",
+          "wordCount": 3191
         },
         {
-          "id": "chapter-044",
-          "label": "(Adapted From 'Virgilius The Sorcerer.')",
-          "title": "(Adapted from 'Virgilius the Sorcerer.')",
-          "wordCount": 1881
+          "id": "chapter-035",
+          "label": "Mogarzea and His Son",
+          "title": "Mogarzea and His Son",
+          "wordCount": 1874
         }
       ],
       "suspiciouslyShortSections": [],
@@ -1049,7 +1040,10 @@
         "unicodeNormalized": true,
         "dashesNormalized": false
       },
-      "remainingWarnings": [],
+      "remainingWarnings": [
+        "Post-write correction: rebuilt story collection into 35 contents-backed story sections and one non-default preface/contents section.",
+        "Post-write correction: removed 32 standalone story source attribution lines from default playback."
+      ],
       "firstHourPreviewSourceSections": [
         "chapter-001"
       ],
@@ -1064,8 +1058,8 @@
         "suspiciousLongSections": [],
         "apparentDamage": []
       },
-      "selectedStructuralConvention": "isolated titled sections",
-      "structureDetectionStatus": "high",
+      "selectedStructuralConvention": "contents-backed story sections",
+      "structureDetectionStatus": "manual-review-corrected",
       "finalRecommendation": "needs manual review before scaling"
     },
     {

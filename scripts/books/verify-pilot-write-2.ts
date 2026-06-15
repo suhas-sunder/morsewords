@@ -219,6 +219,7 @@ const pilotSlugs = [
 
 const correctionsMade = [
   "triplanetary: removed four bracketed illustration placeholders from generated playable text and rebuilt the generated/preview hashes.",
+  "violet-fairy-book: rebuilt the collection from contents-backed story headings into 35 complete default story sections plus one non-default preface/contents section.",
 ];
 
 const boilerplatePatterns = [
@@ -319,6 +320,10 @@ function normalizeForCompare(input: string) {
     .replace(/[\u2018\u2019]/g, "'")
     .replace(/[\u2010-\u2015]/g, "-")
     .replace(/\u2026/g, "...")
+    .replace(
+      /(?:^|\n)\s*\((?:from|adapted from|volksmarchen|ehstnische|japanische|rumanische|roumanische|russiche|swahili|scandinavian|marchen|olumanische|sept contes|the italian|the german|the portuguese)[^)]*\)\.?\s*(?=\n|$)/gi,
+      "\n",
+    )
     .replace(/\[(?:Illustration|Illustrations|Plate|Image|Map|Music|Facsimile|Portrait)[^\]]*\]/gi, "")
     .replace(/(?:^|\n)\s*(?:\*\s*){3,}(?=\n|$)/g, "\n")
     .replace(/(?:^|\n)\s*(?:[-_=~]\s*){4,}(?=\n|$)/g, "\n")
@@ -456,15 +461,6 @@ function hasContentJunk(input: string) {
   return hasMatches(input, defaultReadableJunkPatterns);
 }
 
-function storyTitleLines(section: GeneratedBookSectionJson[]) {
-  return section.flatMap((item) =>
-    item.displayText
-      .split("\n")
-      .map((line) => line.trim())
-      .filter((line) => /^[A-Z][A-Z0-9'.,;:() -]{3,}$/.test(line)),
-  );
-}
-
 function verifyPointedRoofs(
   manifest: GeneratedBookManifest,
   sections: GeneratedBookSectionJson[],
@@ -565,37 +561,82 @@ function verifyVioletFairyBook(
   manifest: GeneratedBookManifest,
   sections: GeneratedBookSectionJson[],
 ): Verdict {
+  const expectedTitles = [
+    "A Tale of the Tontlawald",
+    "The Finest Liar in the World",
+    "The Story of Three Wonderful Beggars",
+    "Schippeitaro",
+    "The Three Princes and Their Beasts",
+    "The Goat's Ears of the Emperor Trojan",
+    "The Nine Pea-Hens and the Golden Apples",
+    "The Lute Player",
+    "The Grateful Prince",
+    "The Child who Came from an Egg",
+    "Stan Bolovan",
+    "The Two Frogs",
+    "The Story of a Gazelle",
+    "How a Fish Swam in the Air and a Hare in the Water",
+    "Two in a Sack",
+    "The Envious Neighbour",
+    "The Fairy of the Dawn",
+    "The Enchanted Knife",
+    "Jesper who Herded the Hares",
+    "The Underground Workers",
+    "The History of Dwarf Long Nose",
+    "The Nunda, Eater of People",
+    "The Story of Hassebu",
+    "The Maiden with the Wooden Helmet",
+    "The Monkey and the Jelly-Fish",
+    "The Headless Dwarfs",
+    "The Young Man who Would Have His Eyes Opened",
+    "The Boys with the Golden Stars",
+    "The Frog",
+    "The Princess who Was Hidden Underground",
+    "The Girl who Pretended to Be a Boy",
+    "The Story of Halfman",
+    "The Prince who Wanted to See the World",
+    "Virgilius the Sorcerer",
+    "Mogarzea and His Son",
+  ];
   const bodySections = defaultSections(sections);
   const first = bodySections[0];
-  const falseSplitLabels = bodySections.filter((section) =>
-    /^(?:One--Two--'?|Oh! Oh!'|And I'll bite,|'Good gracious!|'Golden Hair|Virgilius!'|'Preservation of Rome\.)/i.test(
-      section.title ?? section.label,
-    ),
+  const last = bodySections[bodySections.length - 1];
+  const labels = bodySections.map((section) => section.title ?? section.label);
+  const unexpectedLabels = labels.filter(
+    (label, index) => label !== expectedTitles[index],
   );
-  const titleLines = storyTitleLines(bodySections);
   const details = [
-    `Generated default sections: ${bodySections.length}; detected all-caps story-title lines: ${titleLines.length}.`,
+    `Generated sections: ${manifest.stats.sectionCount}; default story sections: ${bodySections.length}.`,
   ];
-  if (first?.displayText.includes("\nCONTENTS\n")) {
-    details.push("The first default section includes contributor notes and the CONTENTS list before the first story.");
-  }
-  if (falseSplitLabels.length > 0) {
-    details.push(
-      `Several generated sections are internal story fragments, not story titles: ${falseSplitLabels
-        .slice(0, 8)
-        .map((section) => section.sectionId)
-        .join(", ")}.`,
-    );
+  if (sections[0]?.kind !== "preface" || sections[0]?.includeByDefault) {
+    return verdict("fail", "Violet Fairy Book preface/contents material is not safely non-default.", details);
   }
   if (
-    manifest.stats.sectionCount !== 45 ||
-    !first?.displayText.includes("A TALE OF THE TONTLAWALD") ||
-    first.displayText.includes("\nCONTENTS\n") ||
-    falseSplitLabels.length > 0
+    manifest.stats.sectionCount !== 36 ||
+    bodySections.length !== expectedTitles.length ||
+    !first?.displayText.startsWith("A TALE OF THE TONTLAWALD") ||
+    !last?.displayText.startsWith("MOGARZEA AND HIS SON") ||
+    defaultText(sections).includes("\nCONTENTS\n") ||
+    unexpectedLabels.length > 0
   ) {
-    return verdict("fail", "Violet Fairy Book is not acceptable: story-level sections are not reliably preserved.", details);
+    if (unexpectedLabels.length > 0) {
+      details.push(
+        `Unexpected story labels: ${unexpectedLabels.slice(0, 8).join(", ")}.`,
+      );
+    }
+    return verdict(
+      "fail",
+      "Violet Fairy Book is not acceptable: story-level sections are not reliably preserved.",
+      details,
+    );
   }
-  return verdict("pass", "Violet Fairy Book story sections are acceptable.");
+  details.push(
+    "Contributor, contents, and standalone source-attribution lines are excluded from default playback.",
+  );
+  details.push(
+    "Story labels follow the contents-backed body headings from the raw source.",
+  );
+  return verdict("pass", "Violet Fairy Book story sections are acceptable.", details);
 }
 
 function verifyGeneralSectioning(
@@ -1014,7 +1055,6 @@ ${rows}
 ## Corrections
 
 - ${correctionsMade.join("\n- ")}
-- violet-fairy-book needs a targeted story-sectioning correction before main; this is not a safe one-line cleanup.
 
 ${details}
 

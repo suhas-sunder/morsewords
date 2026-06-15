@@ -10,7 +10,7 @@ Post-write QA pass for the 14 batch-2 books. This report compares the raw source
 | pointed-roofs | pass | standalone arabic-numbered sections | pass | pass | pass | pass | pass | yes | no |
 | the-lost-world | pass | chapter-based roman numerals | pass | pass | pass | pass | pass | yes | no |
 | the-red-thumb-mark | pass | chapter-based roman numerals | pass | pass | pass | pass | pass | yes | no |
-| violet-fairy-book | fail | isolated titled sections | pass | pass | fail | fail | fail | no | yes |
+| violet-fairy-book | pass | contents-backed story sections | pass | pass | pass | pass | pass | yes | no |
 | jack-and-jill | pass | chapter-based roman numerals | pass | pass | pass | pass | pass | yes | no |
 | the-wonderful-wizard-of-oz | pass | chapter-based roman numerals | pass | pass | pass | pass | pass | yes | no |
 | the-legend-of-sleepy-hollow | warn | story or titled-section headings | warn | pass | warn | pass | pass | yes | no |
@@ -27,12 +27,12 @@ Post-write QA pass for the 14 batch-2 books. This report compares the raw source
 - the-legend-of-sleepy-hollow: acceptable with warning - The 2-section structure is a real story/postscript split, not arbitrary fallback chunking.
 - the-octopus-a-story-of-california: acceptable with warning - The Octopus preserves Book I/Book II and all 15 Roman chapters, with large but real chapter sections.
 - room-13: fully corrected - Room 13 has 33 default body chapters from Chapter I through Chapter XXXIII.
-- violet-fairy-book: not acceptable - Violet Fairy Book is not acceptable: story-level sections are not reliably preserved.
+- violet-fairy-book: acceptable - Violet Fairy Book story sections are acceptable.
 
 ## Corrections
 
 - triplanetary: removed four bracketed illustration placeholders from generated playable text and rebuilt the generated/preview hashes.
-- violet-fairy-book needs a targeted story-sectioning correction before main; this is not a safe one-line cleanup.
+- violet-fairy-book: rebuilt the collection from contents-backed story headings into 35 complete default story sections plus one non-default preface/contents section.
 
 ## anne-of-green-gables
 
@@ -128,26 +128,26 @@ Post-write QA pass for the 14 batch-2 books. This report compares the raw source
 
 ## violet-fairy-book
 
-- Status: fail
-- Generated output inspected: 50 files
+- Status: pass
+- Generated output inspected: 41 files
 - Preview asset inspected: public/book-previews/violet-fairy-book.preview.json
-- Selected structural convention: isolated titled sections
+- Selected structural convention: contents-backed story sections
 - Start boundary verdict: Generated output starts at the selected readable raw boundary.
 - End boundary verdict: Generated output preserves the selected readable ending.
-- Sectioning verdict: Violet Fairy Book is not acceptable: story-level sections are not reliably preserved. Generated default sections: 44; detected all-caps story-title lines: 36. The first default section includes contributor notes and the CONTENTS list before the first story. Several generated sections are internal story fragments, not story titles: chapter-014, chapter-015, chapter-016, chapter-017, chapter-018, chapter-027, chapter-028, chapter-038.
-- Cleanup verdict: Cleanup left default-readable junk or obvious artifacts. Default-readable junk: /^contents$/im
-- Preview verdict: Preview asset failed verification. Preview default/junk text: /^contents$/im
-- Accepted for main: no
-- Needs correction before main: yes
-- Should be reverted/skipped: yes
-- Remaining warnings: Violet Fairy Book is not acceptable: story-level sections are not reliably preserved.; Generated default sections: 44; detected all-caps story-title lines: 36.; The first default section includes contributor notes and the CONTENTS list before the first story.; Several generated sections are internal story fragments, not story titles: chapter-014, chapter-015, chapter-016, chapter-017, chapter-018, chapter-027, chapter-028, chapter-038.; Cleanup left default-readable junk or obvious artifacts.; Default-readable junk: /^contents$/im; Preview asset failed verification.; Preview default/junk text: /^contents$/im
-- First default section: chapter-001 ('The Wonderful Beggars,' 'The Lute Player,' 'Two In A Sack,' And 'The: 'The Wonderful Beggars,' 'The Lute Player,' 'Two in a Sack,' and 'The, 4576 words)
-- Last default section: chapter-044 ((Adapted From 'Virgilius The Sorcerer.'): (Adapted from 'Virgilius the Sorcerer.'), 1881 words)
+- Sectioning verdict: Violet Fairy Book story sections are acceptable. Generated sections: 36; default story sections: 35. Contributor, contents, and standalone source-attribution lines are excluded from default playback. Story labels follow the contents-backed body headings from the raw source.
+- Cleanup verdict: Cleanup excludes source/license/footer junk and obvious playback artifacts.
+- Preview verdict: Preview starts from generated default-readable content and matches manifest hashes.
+- Accepted for main: yes
+- Needs correction before main: no
+- Should be reverted/skipped: no
+- Remaining warnings: Post-write correction: rebuilt story collection into 35 contents-backed story sections and one non-default preface/contents section.; Post-write correction: removed 32 standalone story source attribution lines from default playback.; Post-write verification corrected Violet Fairy Book into 35 complete story sections plus one non-default preface/contents section.; Removed 32 standalone story source attribution lines from default playback sections.
+- First default section: chapter-001 (A Tale of the Tontlawald: A Tale of the Tontlawald, 4324 words)
+- Last default section: chapter-035 (Mogarzea and His Son: Mogarzea and His Son, 1874 words)
 - Raw start snippet: PREFACE The Editor takes this opportunity to repeat what he has often said before, that he is not the author of the stories in the Fairy Books; that he did not invent them ‘out of his own head.’ He is accustomed to being asked, by ladies, ‘Have you written anything else except the Fairy Books?’ He is then obliged to explain that he has NOT written the Fairy...
 - Generated start snippet: PREFACE The Editor takes this opportunity to repeat what he has often said before, that he is not the author of the stories in the Fairy Books; that he did not invent them 'out of his own head.' He is accustomed to being asked, by ladies, 'Have you written anything else except the Fairy Books?' He is then obliged to explain that he has NOT written the Fairy...
-- Preview start snippet: 'The Wonderful Beggars,' 'The Lute Player,' 'Two in a Sack,' and 'The Fish that swam in the Air.' Mr. W. A. Craigie translated from the Scandinavian, 'Jasper who herded the Hares.' Mrs. Lang did the rest. Some of the most interesting are from the Roumanion, and three were previously published in the late Dr. Steere's 'Swahili Tales.' By the permission of hi...
+- Preview start snippet: A TALE OF THE TONTLAWALD Long, long ago there stood in the midst of a country covered with lakes a vast stretch of moorland called the Tontlawald, on which no man ever dared set foot. From time to time a few bold spirits had been drawn by curiosity to its borders, and on their return had reported that they had caught a glimpse of a ruined house in a grove o...
 - Raw end snippet: all her prayers. At last she saw that her entreaties were vain, and agreed to marry him, as he wished. And they went together to the palace, where Mogarzea was still waiting for him, and the marriage was celebrated by the emperor himself. But every May they returned to the Milk Lake, they and their children, and bathed in its waters. (Olumanische Marchen.)
-- Generated end snippet: ul fairy standing before him, with hair and robes that shone like gold. He gazed at her in wonder, when suddenly she began to dance. Her movements were so graceful that he forgot to play, and as soon as the notes of his flute ceased she vanished from his sight. The next day the same thing happened, but on the third he took courage, and drew a little nearer,...
+- Generated end snippet: ed when he saw a beautiful fairy standing before him, with hair and robes that shone like gold. He gazed at her in wonder, when suddenly she began to dance. Her movements were so graceful that he forgot to play, and as soon as the notes of his flute ceased she vanished from his sight. The next day the same thing happened, but on the third he took courage, a...
 
 ## jack-and-jill
 

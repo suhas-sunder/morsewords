@@ -4071,8 +4071,8 @@
       "author": [
         "Andrew Lang"
       ],
-      "contentVersion": "3b3ad3fd59f05393",
-      "contentHash": "3b3ad3fd59f05393dca70ffa0e65a19955083d38ffa4b73751ed3301d3aa81af",
+      "contentVersion": "3ddd13e2f494ab05",
+      "contentHash": "3ddd13e2f494ab05b3af61e27305160277a809ac9bf5610022dbac73453e95ee",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -4101,10 +4101,10 @@
       },
       "stats": {
         "originalCharacterCount": 564233,
-        "cleanedCharacterCount": 532205,
-        "wordCount": 102746,
-        "sectionCount": 45,
-        "includedSectionCount": 44
+        "cleanedCharacterCount": 531296,
+        "wordCount": 102647,
+        "sectionCount": 36,
+        "includedSectionCount": 35
       },
       "defaults": {
         "includeKinds": [

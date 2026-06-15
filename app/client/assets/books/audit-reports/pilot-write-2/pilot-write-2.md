@@ -10,7 +10,7 @@ Controlled real pilot write pass for the approved batch-2 books from pilot dry-r
 | pointed-roofs | written | standalone arabic-numbered sections | high | 104 | needs manual review before scaling |
 | the-lost-world | written | chapter-based roman numerals | high | 17 | needs manual review before scaling |
 | the-red-thumb-mark | written | chapter-based roman numerals | high | 18 | needs manual review before scaling |
-| violet-fairy-book | written | isolated titled sections | high | 45 | needs manual review before scaling |
+| violet-fairy-book | written | contents-backed story sections | manual-review-corrected | 36 | needs manual review before scaling |
 | jack-and-jill | written | chapter-based roman numerals | high | 24 | needs manual review before scaling |
 | the-wonderful-wizard-of-oz | written | chapter-based roman numerals | high | 24 | needs manual review before scaling |
 | the-legend-of-sleepy-hollow | written | story or titled-section headings | medium | 2 | needs manual review before scaling |
@@ -65,7 +65,7 @@ Controlled real pilot write pass for the approved batch-2 books from pilot dry-r
 - pointed-roofs: body headings were found but rejected by the selected strategy
 - the-lost-world: review before scaling
 - the-red-thumb-mark: review before scaling
-- violet-fairy-book: review before scaling
+- violet-fairy-book: Post-write correction: rebuilt story collection into 35 contents-backed story sections and one non-default preface/contents section.; Post-write correction: removed 32 standalone story source attribution lines from default playback.
 - jack-and-jill: review before scaling
 - the-wonderful-wizard-of-oz: review before scaling
 - the-legend-of-sleepy-hollow: review before scaling
@@ -109,6 +109,10 @@ Controlled real pilot write pass for the approved batch-2 books from pilot dry-r
 - the-prince-and-the-pauper: removed 0 image placeholder lines, 0 numbered references, 0 decorative lines, 0 standalone FINIS markers; Unicode normalized: true; dashes normalized: false.
 - triplanetary: removed 0 image placeholder lines, 0 numbered references, 4 decorative lines, 0 standalone FINIS markers; Unicode normalized: false; dashes normalized: false.
 - the-call-of-the-wild: removed 0 image placeholder lines, 0 numbered references, 0 decorative lines, 0 standalone FINIS markers; Unicode normalized: true; dashes normalized: true.
+
+## Post-Write Corrections
+
+- violet-fairy-book: rebuilt from the contents list and body headings into 36 sections (35 default story sections); contributor, contents, and standalone story source-attribution lines are excluded from default playback.
 
 ## Existing Generated Output Damage
 
@@ -321,7 +325,7 @@ Controlled real pilot write pass for the approved batch-2 books from pilot dry-r
 - app/client/assets/books/generated/violet-fairy-book/processed_book.json
 - app/client/assets/books/generated/violet-fairy-book/rights_report.json
 - app/client/assets/books/generated/violet-fairy-book/processing_notes.md
-- app/client/assets/books/generated/violet-fairy-book/sections/title-page-001.json
+- app/client/assets/books/generated/violet-fairy-book/sections/preface-001.json
 - app/client/assets/books/generated/violet-fairy-book/sections/chapter-001.json
 - app/client/assets/books/generated/violet-fairy-book/sections/chapter-002.json
 - app/client/assets/books/generated/violet-fairy-book/sections/chapter-003.json
@@ -357,15 +361,6 @@ Controlled real pilot write pass for the approved batch-2 books from pilot dry-r
 - app/client/assets/books/generated/violet-fairy-book/sections/chapter-033.json
 - app/client/assets/books/generated/violet-fairy-book/sections/chapter-034.json
 - app/client/assets/books/generated/violet-fairy-book/sections/chapter-035.json
-- app/client/assets/books/generated/violet-fairy-book/sections/chapter-036.json
-- app/client/assets/books/generated/violet-fairy-book/sections/chapter-037.json
-- app/client/assets/books/generated/violet-fairy-book/sections/chapter-038.json
-- app/client/assets/books/generated/violet-fairy-book/sections/chapter-039.json
-- app/client/assets/books/generated/violet-fairy-book/sections/chapter-040.json
-- app/client/assets/books/generated/violet-fairy-book/sections/chapter-041.json
-- app/client/assets/books/generated/violet-fairy-book/sections/chapter-042.json
-- app/client/assets/books/generated/violet-fairy-book/sections/chapter-043.json
-- app/client/assets/books/generated/violet-fairy-book/sections/chapter-044.json
 - app/client/assets/books/generated/jack-and-jill/manifest.json
 - app/client/assets/books/generated/jack-and-jill/cleaned_book.json
 - app/client/assets/books/generated/jack-and-jill/processed_book.json
