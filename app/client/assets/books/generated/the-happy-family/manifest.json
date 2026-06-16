@@ -3,8 +3,8 @@
   "slug": "the-happy-family",
   "title": "The Happy Family",
   "author": [],
-  "contentVersion": "c459a0209f5d7490",
-  "contentHash": "c459a0209f5d7490ae3a70395a95fd9fc1ad7dd68ae4666f9a67eb721d727393",
+  "contentVersion": "9f46408610312e1f",
+  "contentHash": "9f46408610312e1f4eb15807697f7e6666e899fe91c5d00657ecac3cbfa13592",
   "language": "und",
   "description": "",
   "subjects": [],
@@ -32,11 +32,11 @@
     "alt": "Placeholder cover for The Happy Family"
   },
   "stats": {
-    "originalCharacterCount": 0,
-    "cleanedCharacterCount": 186,
-    "wordCount": 29,
+    "originalCharacterCount": 26413,
+    "cleanedCharacterCount": 6920,
+    "wordCount": 1307,
     "sectionCount": 1,
-    "includedSectionCount": 0
+    "includedSectionCount": 1
   },
   "defaults": {
     "includeKinds": [
@@ -46,35 +46,30 @@
   },
   "sections": [
     {
-      "id": "part-001",
-      "kind": "part",
-      "label": "Part 1",
-      "title": null,
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": "The Happy Family",
       "order": 1,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 186,
-      "wordCount": 29,
-      "estimatedTypingMinutes": 1,
-      "estimatedListeningMinutes": 2,
-      "morseCharacterEstimate": 995,
-      "textPreview": "The Happy Family This MorseWords reference file does not include body text yet. The book route is available, and the generated reports identify the missing sou..."
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 6920,
+      "wordCount": 1307,
+      "estimatedTypingMinutes": 33,
+      "estimatedListeningMinutes": 40,
+      "morseCharacterEstimate": 24742,
+      "textPreview": "THE HAPPY FAMILY Really, the largest green leaf in this country is a dock-leaf; if one holds it before one, it is like a whole apron, and if one holds it over one's head in rainy..."
     }
   ],
   "cleaning": {
-    "originalCharacterCount": 0,
-    "cleanedCharacterCount": 186,
-    "headerStripped": false,
-    "footerStripped": false,
-    "confidence": "low",
-    "warnings": [
-      "Missing Project Gutenberg start marker; body text was not destructively stripped.",
-      "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
-      "Project Gutenberg markers were out of order; using the full normalized text."
-    ]
+    "originalCharacterCount": 26413,
+    "cleanedCharacterCount": 6920,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": []
   },
   "warnings": [
-    "Reference source file produced no body text; generated a minimal source-note section so the public route remains available.",
     "Missing Project Gutenberg start marker; body text was not destructively stripped.",
     "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
     "Project Gutenberg markers were out of order; using the full normalized text.",
@@ -85,6 +80,7 @@
     "Rights gate status is reject; generated book is not publish-ready.",
     "Rights gate did not allow processed public story output.",
     "Owner-reviewed website approval is missing.",
-    "Website publication is not allowed by the active approval path."
+    "Website publication is not allowed by the active approval path.",
+    "Targeted startup generated-content correction pass rewrote generated sections from the inspected source boundary; raw source and Cloudflare export were not modified."
   ]
 }

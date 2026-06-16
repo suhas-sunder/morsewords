@@ -1,0 +1,574 @@
+{
+  "generatedAt": "2026-06-16T22:21:37.483Z",
+  "task": "Targeted generated-content correction for startup-preview audit failures",
+  "protectedPaths": {
+    "rawSourceInput": "app/client/assets/temp-books (read only)",
+    "generatedBooks": "app/client/assets/books/generated (only the six approved generated folders plus library manifest were written)",
+    "cloudflareExport": "app/client/assets/books/cloudflare-export (not modified)",
+    "previewAssets": "public/book-previews (only the six approved preview assets plus preview manifest were written)"
+  },
+  "summary": {
+    "booksReviewed": 6,
+    "booksWritten": 6,
+    "booksSkipped": 0,
+    "previewAssetsUpdated": 6
+  },
+  "books": [
+    {
+      "slug": "don-quixote",
+      "written": true,
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/Don Quixote.txt",
+      "priorStartupAuditIssue": "recommendation: generated book needs processing correction later | first default: chapter-001 Chapter 3 (80 words) | warnings: Preview asset content hash/version is stale.; chapter-001 is labeled Chapter 3, which suggests chapter order damage.",
+      "realStartBoundaryUsed": "line 2666: CHAPTER I.",
+      "realEndBoundaryUsed": "line 42939: *** END OF THE PROJECT GUTENBERG EBOOK DON QUIXOTE ***",
+      "selectedStructuralConvention": "two-volume chapter sequence with roman-numeral chapter headings",
+      "firstDefaultSectionBeforeCorrection": {
+        "id": "chapter-001",
+        "label": "Chapter 3",
+        "title": null,
+        "kind": "chapter",
+        "wordCount": 80,
+        "includeByDefault": true,
+        "snippet": null
+      },
+      "firstDefaultSectionAfterCorrection": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "Which Treats Of The Character And Pursuits Of The Famous Gentleman Don Quixote Of La Mancha",
+        "wordCount": 2030
+      },
+      "sectionCount": 127,
+      "firstFiveSections": [
+        {
+          "id": "introduction-001",
+          "label": "Introduction",
+          "title": "Introduction Prefatory",
+          "wordCount": 20413
+        },
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Which Treats Of The Character And Pursuits Of The Famous Gentleman Don Quixote Of La Mancha",
+          "wordCount": 2030
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "Which Treats Of The First Sally The Ingenious Don Quixote Made From Home",
+          "wordCount": 2368
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "Wherein Is Related The Droll Way In Which Don Quixote Had Himself Dubbed A Knight",
+          "wordCount": 2523
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "Of What Happened To Our Knight When He Left The Inn",
+          "wordCount": 2604
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-122",
+          "label": "Chapter 122",
+          "title": "Which Follows Sixty-Nine And Deals With Matters Indispensable For The Clear Comprehension Of This History",
+          "wordCount": 2873
+        },
+        {
+          "id": "chapter-123",
+          "label": "Chapter 123",
+          "title": "Of What Passed Between Don Quixote And His Squire Sancho On The Way To Their Village",
+          "wordCount": 2355
+        },
+        {
+          "id": "chapter-124",
+          "label": "Chapter 124",
+          "title": "Of How Don Quixote And Sancho Reached Their Village",
+          "wordCount": 1876
+        },
+        {
+          "id": "chapter-125",
+          "label": "Chapter 125",
+          "title": "Of The Omens Don Quixote Had As He Entered His Own Village, And Other Incidents That Embellish And Give A Colour To This Great History",
+          "wordCount": 1889
+        },
+        {
+          "id": "chapter-126",
+          "label": "Chapter 126",
+          "title": "Of How Don Quixote Fell Sick, And Of The Will He Made, And How He Died",
+          "wordCount": 2694
+        }
+      ],
+      "cleanupActionsApplied": [
+        "excluded editor notes, title material, and table of contents from playable defaults",
+        "restarted generated defaults at the first real Chapter I body heading",
+        "preserved sequential chapter defaults without the stale Chapter 3 startup",
+        "removed illustration/image marker lines from generated playable text",
+        "normalized Morse source punctuation and diacritics for playback while preserving display prose"
+      ],
+      "previewAssetUpdated": true,
+      "startupPreviewNowValid": true,
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "les-miserables",
+      "written": true,
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/Les Misérables.txt",
+      "priorStartupAuditIssue": "recommendation: generated book needs processing correction later | first default: chapter-001 Chapter 4 (20954 words) | warnings: Preview asset content hash/version is stale.; chapter-001 is labeled Chapter 4, which suggests chapter order damage.",
+      "realStartBoundaryUsed": "line 1117: CHAPTER I—M. MYRIEL",
+      "realEndBoundaryUsed": "line 73240: *** END OF THE PROJECT GUTENBERG EBOOK LES MISÉRABLES ***",
+      "selectedStructuralConvention": "volume/book/chapter hierarchy with roman-numeral chapter headings",
+      "firstDefaultSectionBeforeCorrection": {
+        "id": "chapter-001",
+        "label": "Chapter 4",
+        "title": null,
+        "kind": "chapter",
+        "wordCount": 20954,
+        "includeByDefault": true,
+        "snippet": null
+      },
+      "firstDefaultSectionAfterCorrection": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "Book First-A Just Man - M Myriel",
+        "wordCount": 1057
+      },
+      "sectionCount": 364,
+      "firstFiveSections": [
+        {
+          "id": "preface-001",
+          "label": "Preface",
+          "title": "Preface",
+          "wordCount": 114
+        },
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Book First-A Just Man - M Myriel",
+          "wordCount": 1057
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "M Myriel Becomes M Welcome",
+          "wordCount": 1748
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "A Hard Bishopric For A Good Bishop",
+          "wordCount": 774
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "Works Corresponding To Words",
+          "wordCount": 2922
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-359",
+          "label": "Chapter 359",
+          "title": "Last Flickerings Of A Lamp Without Oil",
+          "wordCount": 623
+        },
+        {
+          "id": "chapter-360",
+          "label": "Chapter 360",
+          "title": "A Pen Is Heavy To The Man Who Lifted The Fauchelevent’S",
+          "wordCount": 1126
+        },
+        {
+          "id": "chapter-361",
+          "label": "Chapter 361",
+          "title": "A Bottle Of Ink Which Only Succeeded In Whitening",
+          "wordCount": 6983
+        },
+        {
+          "id": "chapter-362",
+          "label": "Chapter 362",
+          "title": "A Night Behind Which There Is Day",
+          "wordCount": 3857
+        },
+        {
+          "id": "chapter-363",
+          "label": "Chapter 363",
+          "title": "The Grass Covers And The Rain Effaces",
+          "wordCount": 3523
+        }
+      ],
+      "cleanupActionsApplied": [
+        "excluded title pages, illustration list, and table of contents from playable defaults",
+        "restarted generated defaults at Volume I, Book First, Chapter I body content",
+        "kept volume and book context in section titles instead of selecting front matter",
+        "removed image marker lines from generated playable text",
+        "normalized Morse source punctuation and diacritics for playback while preserving display prose"
+      ],
+      "previewAssetUpdated": true,
+      "startupPreviewNowValid": true,
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "sun-tzu-on-the-art-of-war",
+      "written": true,
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/Sun Tzŭ on the Art of War.txt",
+      "priorStartupAuditIssue": "recommendation: generated book needs processing correction later | first default: chapter-001 Chapter 28 (4623 words) | warnings: Preview asset content hash/version is stale.; chapter-001 is labeled Chapter 28, which suggests chapter order damage.",
+      "realStartBoundaryUsed": "line 1443: I. 計篇",
+      "realEndBoundaryUsed": "line 9093: CHINESE CONCORDANCE",
+      "selectedStructuralConvention": "thirteen numbered treatise chapters followed by concordance/index end matter",
+      "firstDefaultSectionBeforeCorrection": {
+        "id": "chapter-001",
+        "label": "Chapter 28",
+        "title": null,
+        "kind": "chapter",
+        "wordCount": 4623,
+        "includeByDefault": true,
+        "snippet": null
+      },
+      "firstDefaultSectionAfterCorrection": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "Laying Plans",
+        "wordCount": 2109
+      },
+      "sectionCount": 15,
+      "firstFiveSections": [
+        {
+          "id": "preface-001",
+          "label": "Preface",
+          "title": "Preface",
+          "wordCount": 1097
+        },
+        {
+          "id": "introduction-001",
+          "label": "Introduction",
+          "title": "Sun Wu And His Book",
+          "wordCount": 11768
+        },
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Laying Plans",
+          "wordCount": 2109
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "Waging War",
+          "wordCount": 2404
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "Attack By Stratagem",
+          "wordCount": 2675
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-009",
+          "label": "Chapter 9",
+          "title": "The Army On The March",
+          "wordCount": 6232
+        },
+        {
+          "id": "chapter-010",
+          "label": "Chapter 10",
+          "title": "Terrain",
+          "wordCount": 3888
+        },
+        {
+          "id": "chapter-011",
+          "label": "Chapter 11",
+          "title": "The Nine Situations",
+          "wordCount": 12007
+        },
+        {
+          "id": "chapter-012",
+          "label": "Chapter 12",
+          "title": "The Attack By Fire",
+          "wordCount": 3311
+        },
+        {
+          "id": "chapter-013",
+          "label": "Chapter 13",
+          "title": "The Use Of Spies",
+          "wordCount": 4932
+        }
+      ],
+      "cleanupActionsApplied": [
+        "excluded transcriber note, title material, contents, preface, and introduction from playable defaults",
+        "restarted generated defaults at treatise chapter I, Laying Plans",
+        "stopped generated playable content before Chinese concordance and index end matter",
+        "normalized Morse source punctuation, diacritics, and unsupported heading glyphs for playback"
+      ],
+      "previewAssetUpdated": true,
+      "startupPreviewNowValid": true,
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-count-of-monte-cristo",
+      "written": true,
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/The Count of Monte Cristo.txt",
+      "priorStartupAuditIssue": "recommendation: generated book needs processing correction later | first default: chapter-001 Chapter 116 - The Pardon (4 words) | warnings: Preview asset content hash/version is stale.; First default section does not look like readable book content.; chapter-001 is labeled Chapter 116, which suggests chapter order damage.",
+      "realStartBoundaryUsed": "line 176: Chapter 1. Marseilles—The Arrival",
+      "realEndBoundaryUsed": "line 61330: *** END OF THE PROJECT GUTENBERG EBOOK THE COUNT OF MONTE CRISTO ***",
+      "selectedStructuralConvention": "117 Arabic-numbered chapters after title/contents front matter",
+      "firstDefaultSectionBeforeCorrection": {
+        "id": "chapter-001",
+        "label": "Chapter 116",
+        "title": "The Pardon",
+        "kind": "chapter",
+        "wordCount": 4,
+        "includeByDefault": true,
+        "snippet": "Chapter 116. The Pardon"
+      },
+      "firstDefaultSectionAfterCorrection": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "Marseilles-The Arrival",
+        "wordCount": 3137
+      },
+      "sectionCount": 117,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Marseilles-The Arrival",
+          "wordCount": 3137
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "Father And Son",
+          "wordCount": 2496
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "The Catalans",
+          "wordCount": 3886
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "Conspiracy",
+          "wordCount": 2212
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": "The Marriage Feast",
+          "wordCount": 5521
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-113",
+          "label": "Chapter 113",
+          "title": "The Past",
+          "wordCount": 4226
+        },
+        {
+          "id": "chapter-114",
+          "label": "Chapter 114",
+          "title": "Peppino",
+          "wordCount": 3721
+        },
+        {
+          "id": "chapter-115",
+          "label": "Chapter 115",
+          "title": "Luigi Vampa’S Bill Of Fare",
+          "wordCount": 2163
+        },
+        {
+          "id": "chapter-116",
+          "label": "Chapter 116",
+          "title": "The Pardon",
+          "wordCount": 1721
+        },
+        {
+          "id": "chapter-117",
+          "label": "Chapter 117",
+          "title": "The Fifth Of October",
+          "wordCount": 5443
+        }
+      ],
+      "cleanupActionsApplied": [
+        "excluded title page and contents from playable defaults",
+        "restarted generated defaults at Chapter 1, Marseilles-The Arrival",
+        "repaired stale Chapter 116/117 boundary damage that swallowed earlier chapters",
+        "normalized Morse source punctuation and diacritics for playback while preserving display prose"
+      ],
+      "previewAssetUpdated": true,
+      "startupPreviewNowValid": true,
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-count-of-monte-cristo-gutenberg-1184",
+      "written": true,
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/The Count of Monte Cristo.txt (declared app/client/assets/temp-books/the-count-of-monte-cristo.txt was missing)",
+      "priorStartupAuditIssue": "recommendation: generated book needs processing correction later | first default: chapter-001 Chapter 116 - The Pardon (4 words) | warnings: Preview asset content hash/version is stale.; First default section does not look like readable book content.; chapter-001 is labeled Chapter 116, which suggests chapter order damage.",
+      "realStartBoundaryUsed": "line 176: Chapter 1. Marseilles—The Arrival",
+      "realEndBoundaryUsed": "line 61330: *** END OF THE PROJECT GUTENBERG EBOOK THE COUNT OF MONTE CRISTO ***",
+      "selectedStructuralConvention": "duplicate Gutenberg 1184 generated route using the 117-chapter Count of Monte Cristo source",
+      "firstDefaultSectionBeforeCorrection": {
+        "id": "chapter-001",
+        "label": "Chapter 116",
+        "title": "The Pardon",
+        "kind": "chapter",
+        "wordCount": 4,
+        "includeByDefault": true,
+        "snippet": "Chapter 116. The Pardon"
+      },
+      "firstDefaultSectionAfterCorrection": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "Marseilles-The Arrival",
+        "wordCount": 3137
+      },
+      "sectionCount": 117,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Marseilles-The Arrival",
+          "wordCount": 3137
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "Father And Son",
+          "wordCount": 2496
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "The Catalans",
+          "wordCount": 3886
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "Conspiracy",
+          "wordCount": 2212
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": "The Marriage Feast",
+          "wordCount": 5521
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-113",
+          "label": "Chapter 113",
+          "title": "The Past",
+          "wordCount": 4226
+        },
+        {
+          "id": "chapter-114",
+          "label": "Chapter 114",
+          "title": "Peppino",
+          "wordCount": 3721
+        },
+        {
+          "id": "chapter-115",
+          "label": "Chapter 115",
+          "title": "Luigi Vampa’S Bill Of Fare",
+          "wordCount": 2163
+        },
+        {
+          "id": "chapter-116",
+          "label": "Chapter 116",
+          "title": "The Pardon",
+          "wordCount": 1721
+        },
+        {
+          "id": "chapter-117",
+          "label": "Chapter 117",
+          "title": "The Fifth Of October",
+          "wordCount": 5443
+        }
+      ],
+      "cleanupActionsApplied": [
+        "used the canonical temp-books Count of Monte Cristo raw source because the duplicate metadata raw filename is absent",
+        "excluded title page and contents from playable defaults",
+        "restarted generated defaults at Chapter 1, Marseilles-The Arrival",
+        "repaired stale Chapter 116/117 boundary damage that swallowed earlier chapters",
+        "normalized Morse source punctuation and diacritics for playback while preserving display prose"
+      ],
+      "previewAssetUpdated": true,
+      "startupPreviewNowValid": true,
+      "remainingWarnings": [
+        "Declared source candidate app/client/assets/temp-books/the-count-of-monte-cristo.txt was missing; used app/client/assets/temp-books/The Count of Monte Cristo.txt."
+      ],
+      "finalRecommendation": "needs manual review"
+    },
+    {
+      "slug": "the-happy-family",
+      "written": true,
+      "reasonIfSkipped": null,
+      "sourceFileUsed": "app/client/assets/temp-books/The Happy Family.txt",
+      "priorStartupAuditIssue": "recommendation: generated book needs processing correction later | first generated section: part-001 Part 1 (29 words) | warnings: Preview asset content hash/version is stale.; No main readable sections are included by default.; Generated content is a placeholder rather than source body text.",
+      "realStartBoundaryUsed": "line 44: Really, the largest green leaf in this country is a dock-leaf; if one",
+      "realEndBoundaryUsed": "line 175: End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen",
+      "selectedStructuralConvention": "single short story bounded before Project Gutenberg footer",
+      "firstDefaultSectionBeforeCorrection": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "wordCount": 29,
+        "includeByDefault": false,
+        "snippet": "This MorseWords reference file does not include body text yet. The book route is available..."
+      },
+      "firstDefaultSectionAfterCorrection": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "The Happy Family",
+        "wordCount": 1307
+      },
+      "sectionCount": 1,
+      "firstFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "The Happy Family",
+          "wordCount": 1307
+        }
+      ],
+      "lastFiveSections": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "The Happy Family",
+          "wordCount": 1307
+        }
+      ],
+      "cleanupActionsApplied": [
+        "replaced placeholder generated content with the real short-story body from the source file",
+        "excluded Project Gutenberg footer/license material from playable defaults",
+        "normalized Morse source punctuation and diacritics for playback while preserving display prose"
+      ],
+      "previewAssetUpdated": true,
+      "startupPreviewNowValid": true,
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review"
+    }
+  ]
+}

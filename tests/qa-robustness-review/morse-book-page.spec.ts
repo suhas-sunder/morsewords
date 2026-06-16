@@ -19,6 +19,9 @@ const ANNE_OF_GREEN_GABLES_SLUG = "anne-of-green-gables";
 const VIOLET_FAIRY_BOOK_SLUG = "violet-fairy-book";
 const THE_WAR_OF_THE_WORLDS_SLUG = "the-war-of-the-worlds";
 const ROOM_13_SLUG = "room-13";
+const SUN_TZU_ON_THE_ART_OF_WAR_SLUG = "sun-tzu-on-the-art-of-war";
+const THE_COUNT_OF_MONTE_CRISTO_SLUG = "the-count-of-monte-cristo";
+const THE_HAPPY_FAMILY_SLUG = "the-happy-family";
 const ALICE_PUBLIC_PATH = `/morse-code-books/${ALICE_SLUG}`;
 const APPROVED_BOOK_PUBLIC_PATH = `/morse-code-books/${APPROVED_BOOK_SLUG}`;
 const NETWORK_BOOK_PUBLIC_PATH = `/morse-code-books/${NETWORK_BOOK_SLUG}`;
@@ -32,6 +35,12 @@ const VIOLET_FAIRY_BOOK_PREVIEW_PATH =
 const THE_WAR_OF_THE_WORLDS_PREVIEW_PATH =
   `/morse-code-books/${THE_WAR_OF_THE_WORLDS_SLUG}?preview=unpublished`;
 const ROOM_13_PREVIEW_PATH = `/morse-code-books/${ROOM_13_SLUG}?preview=unpublished`;
+const SUN_TZU_ON_THE_ART_OF_WAR_PREVIEW_PATH =
+  `/morse-code-books/${SUN_TZU_ON_THE_ART_OF_WAR_SLUG}?preview=unpublished`;
+const THE_COUNT_OF_MONTE_CRISTO_PREVIEW_PATH =
+  `/morse-code-books/${THE_COUNT_OF_MONTE_CRISTO_SLUG}?preview=unpublished`;
+const THE_HAPPY_FAMILY_PREVIEW_PATH =
+  `/morse-code-books/${THE_HAPPY_FAMILY_SLUG}?preview=unpublished`;
 const ALICE_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${ALICE_SLUG}`;
 const APPROVED_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${APPROVED_BOOK_SLUG}`;
 const NETWORK_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${NETWORK_BOOK_SLUG}`;
@@ -1985,6 +1994,70 @@ test.describe("Morse book page foundation", () => {
     ).toHaveAttribute(
       "data-mw-morse-book-translator-source-sections",
       roomDefaultSectionIds.join(","),
+    );
+  });
+
+  test("uses repaired startup content for targeted generated books", async ({
+    page,
+  }) => {
+    const sunTzuDefaultSectionIds = readGeneratedDefaultSectionIds(
+      SUN_TZU_ON_THE_ART_OF_WAR_SLUG,
+    );
+    expect(sunTzuDefaultSectionIds).toHaveLength(13);
+    expect(sunTzuDefaultSectionIds[0]).toBe("chapter-001");
+    expect(sunTzuDefaultSectionIds).toContain("chapter-013");
+
+    await removeBookRuntimeSettings(page, SUN_TZU_ON_THE_ART_OF_WAR_SLUG);
+    await openGeneratedBookPreview(page, SUN_TZU_ON_THE_ART_OF_WAR_PREVIEW_PATH);
+    await expectSelectedBookSectionIds(page, sunTzuDefaultSectionIds);
+    await expect(page.locator("body")).not.toContainText(/SOS Help!/i);
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).toContainText(
+      "The art of war is of vital importance",
+    );
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).not.toContainText(
+      "PREFACE",
+    );
+    await expect(
+      page.locator("[data-mw-morse-book-section-select='preface-001']"),
+    ).not.toBeChecked();
+    await expect(
+      page.locator("[data-mw-morse-book-section-select='introduction-001']"),
+    ).not.toBeChecked();
+
+    const monteCristoDefaultSectionIds = readGeneratedDefaultSectionIds(
+      THE_COUNT_OF_MONTE_CRISTO_SLUG,
+    );
+    expect(monteCristoDefaultSectionIds).toHaveLength(117);
+    expect(monteCristoDefaultSectionIds[0]).toBe("chapter-001");
+    expect(monteCristoDefaultSectionIds).toContain("chapter-117");
+
+    await page.goto("about:blank");
+    await removeBookRuntimeSettings(page, THE_COUNT_OF_MONTE_CRISTO_SLUG);
+    await openGeneratedBookPreview(page, THE_COUNT_OF_MONTE_CRISTO_PREVIEW_PATH);
+    await expectSelectedBookSectionIds(page, monteCristoDefaultSectionIds);
+    await expect(page.locator("body")).not.toContainText(/SOS Help!/i);
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).toContainText(
+      "Marseilles",
+    );
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).not.toContainText(
+      "The Pardon",
+    );
+
+    const happyFamilyDefaultSectionIds = readGeneratedDefaultSectionIds(
+      THE_HAPPY_FAMILY_SLUG,
+    );
+    expect(happyFamilyDefaultSectionIds).toEqual(["chapter-001"]);
+
+    await page.goto("about:blank");
+    await removeBookRuntimeSettings(page, THE_HAPPY_FAMILY_SLUG);
+    await openGeneratedBookPreview(page, THE_HAPPY_FAMILY_PREVIEW_PATH);
+    await expectSelectedBookSectionIds(page, happyFamilyDefaultSectionIds);
+    await expect(page.locator("body")).not.toContainText(/SOS Help!/i);
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).toContainText(
+      "largest green leaf",
+    );
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).not.toContainText(
+      "reference file does not include body text",
     );
   });
 

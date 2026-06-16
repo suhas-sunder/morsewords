@@ -1,23 +1,23 @@
 # Book Startup Preview Audit 1
 
-Generated at: 2026-06-16T20:13:28.670Z
+Generated at: 2026-06-16T22:21:56.831Z
 
 ## Summary
 
 - Generated books checked: 110
 - Preview assets found: 110
-- Valid startup previews: 104
+- Valid startup previews: 110
 - Preview assets updated by this audit run: none
-- Invalid or missing previews: don-quixote, les-miserables, sun-tzu-on-the-art-of-war, the-count-of-monte-cristo, the-count-of-monte-cristo-gutenberg-1184, the-happy-family
-- Suspicious first default sections: the-happy-family
+- Invalid or missing previews: none
+- Suspicious first default sections: none
 
 ## Recommendations
 
 | Recommendation | Books |
 | --- | ---: |
-| valid | 102 |
+| valid | 108 |
 | preview asset needs regeneration from generated readable sections | 0 |
-| generated book needs processing correction later | 6 |
+| generated book needs processing correction later | 0 |
 | blocked/manual review | 2 |
 
 ## Book Results
@@ -37,7 +37,7 @@ Generated at: 2026-06-16T20:13:28.670Z
 | candide | valid | part-002 (part) | 6/6 | valid | none |
 | crime-and-punishment | valid | chapter-001 (chapter) | 39/44 | blocked/manual review | Not all detected main-readable sections are selected by default. |
 | doctor-dolittle | valid | part-002 (part) | 5/5 | valid | none |
-| don-quixote | invalid | chapter-001 (chapter) | 146/146 | generated book needs processing correction later | Preview asset content hash/version is stale.; chapter-001 is labeled Chapter 3, which suggests chapter order damage. |
+| don-quixote | valid | chapter-001 (chapter) | 126/126 | valid | none |
 | dr-jekyll-and-mr-hyde | valid | part-002 (part) | 5/5 | valid | none |
 | dracula | valid | chapter-001 (chapter) | 27/26 | valid | none |
 | five-little-peppers-and-how-they-grew | valid | part-002 (part) | 13/13 | valid | none |
@@ -48,7 +48,7 @@ Generated at: 2026-06-16T20:13:28.670Z
 | jabberwocky | valid | part-001 (part) | 1/1 | valid | none |
 | jack-and-jill | valid | chapter-001 (chapter) | 24/24 | valid | none |
 | jane-eyre | valid | chapter-001 (chapter) | 37/36 | valid | none |
-| les-miserables | invalid | chapter-001 (chapter) | 2/2 | generated book needs processing correction later | Preview asset content hash/version is stale.; chapter-001 is labeled Chapter 4, which suggests chapter order damage. |
+| les-miserables | valid | chapter-001 (chapter) | 363/361 | valid | none |
 | little-women | valid | part-002 (part) | 36/36 | valid | none |
 | new-treasure-seekers | valid | part-002 (part) | 11/11 | valid | none |
 | nights-with-uncle-remus | valid | part-002 (part) | 19/19 | valid | none |
@@ -57,7 +57,7 @@ Generated at: 2026-06-16T20:13:28.670Z
 | rainbow-valley | valid | chapter-001 (chapter) | 35/35 | valid | none |
 | rinkitink-in-oz | valid | chapter-001 (chapter) | 24/24 | valid | none |
 | sense-and-sensibility | valid | chapter-001 (chapter) | 50/50 | valid | none |
-| sun-tzu-on-the-art-of-war | invalid | chapter-001 (chapter) | 1/1 | generated book needs processing correction later | Preview asset content hash/version is stale.; chapter-001 is labeled Chapter 28, which suggests chapter order damage. |
+| sun-tzu-on-the-art-of-war | valid | chapter-001 (chapter) | 13/13 | valid | none |
 | tarzan-of-the-apes | valid | chapter-001 (chapter) | 28/28 | valid | none |
 | the-arabian-nights | valid | part-002 (part) | 22/22 | valid | none |
 | the-art-of-war | valid | chapter-001 (chapter) | 13/11 | valid | none |
@@ -65,8 +65,8 @@ Generated at: 2026-06-16T20:13:28.670Z
 | the-book-of-dragons | valid | part-002 (part) | 7/7 | valid | none |
 | the-call-of-cthulhu | valid | part-002 (part) | 3/3 | valid | none |
 | the-call-of-the-wild | valid | chapter-001 (chapter) | 7/7 | valid | none |
-| the-count-of-monte-cristo | invalid | chapter-001 (chapter) | 2/1 | generated book needs processing correction later | Preview asset content hash/version is stale.; First default generated section does not look like real main content.; chapter-001 is labeled Chapter 116, which suggests chapter order damage.; chapter-001 is suspiciously tiny for the first default section. |
-| the-count-of-monte-cristo-gutenberg-1184 | invalid | chapter-001 (chapter) | 2/1 | generated book needs processing correction later | Preview asset content hash/version is stale.; First default generated section does not look like real main content.; chapter-001 is labeled Chapter 116, which suggests chapter order damage.; chapter-001 is suspiciously tiny for the first default section. |
+| the-count-of-monte-cristo | valid | chapter-001 (chapter) | 117/117 | valid | none |
+| the-count-of-monte-cristo-gutenberg-1184 | valid | chapter-001 (chapter) | 117/117 | valid | none |
 | the-divine-comedy | valid | part-001 (part) | 22/22 | valid | none |
 | the-elderbush | valid | part-001 (part) | 1/1 | valid | none |
 | the-elements-of-style | valid | part-002 (part) | 2/2 | valid | none |
@@ -75,7 +75,7 @@ Generated at: 2026-06-16T20:13:28.670Z
 | the-federalist-papers | valid | part-002 (part) | 41/41 | valid | none |
 | the-fir-tree | valid | part-001 (part) | 2/2 | valid | none |
 | the-great-gatsby | valid | part-002 (part) | 10/10 | valid | none |
-| the-happy-family | invalid | part-001 (part) | 1/0 | generated book needs processing correction later | Preview asset content hash/version is stale.; Preview asset starts with generic or non-main material.; First default generated section does not look like real main content.; Not all detected main-readable sections are selected by default. |
+| the-happy-family | valid | chapter-001 (chapter) | 1/1 | valid | none |
 | the-jungle-book | valid | part-002 (part) | 10/10 | valid | none |
 | the-leap-frog | valid | part-001 (part) | 2/2 | valid | none |
 | the-legend-of-sleepy-hollow | valid | chapter-001 (chapter) | 2/2 | valid | none |

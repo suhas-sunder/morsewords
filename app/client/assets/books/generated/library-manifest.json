@@ -647,8 +647,8 @@
       "author": [
         "Miguel de Cervantes Saavedra"
       ],
-      "contentVersion": "1522f8693ddd4f6e",
-      "contentHash": "1522f8693ddd4f6ef13a2416073a8889b11736224023b2464e34573aad1665f6",
+      "contentVersion": "a7a4d22f464c8cbd",
+      "contentHash": "a7a4d22f464c8cbd34ded946ae8c019042695e39820820f5e23d81e43b6abd68",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -676,11 +676,11 @@
         "alt": "Placeholder cover for Don Quixote"
       },
       "stats": {
-        "originalCharacterCount": 2317419,
-        "cleanedCharacterCount": 2298167,
-        "wordCount": 431303,
-        "sectionCount": 149,
-        "includedSectionCount": 146
+        "originalCharacterCount": 2318584,
+        "cleanedCharacterCount": 2272349,
+        "wordCount": 423484,
+        "sectionCount": 127,
+        "includedSectionCount": 126
       },
       "defaults": {
         "includeKinds": [
@@ -1187,8 +1187,8 @@
       "author": [
         "Victor Hugo"
       ],
-      "contentVersion": "5ac36723ec803bb1",
-      "contentHash": "5ac36723ec803bb1c9cbe937d5e4ea45063843a261343713320d0d0eb74d5deb",
+      "contentVersion": "88372ba662b27561",
+      "contentHash": "88372ba662b27561708403e6e10331ef01b17a84fe0e72dd3feeff57eefa5806",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1216,11 +1216,11 @@
         "alt": "Placeholder cover for Les Misérables"
       },
       "stats": {
-        "originalCharacterCount": 3249711,
-        "cleanedCharacterCount": 3230435,
-        "wordCount": 572069,
-        "sectionCount": 6,
-        "includedSectionCount": 2
+        "originalCharacterCount": 3250691,
+        "cleanedCharacterCount": 3208253,
+        "wordCount": 563206,
+        "sectionCount": 364,
+        "includedSectionCount": 363
       },
       "defaults": {
         "includeKinds": [
@@ -1628,8 +1628,8 @@
       "author": [
         "active 6th century B.C. Sunzi"
       ],
-      "contentVersion": "ddee4d7d68f62ef8",
-      "contentHash": "ddee4d7d68f62ef8c757b49f5ef8ccb97f4b610ae6f638361590cfa1fade4b4b",
+      "contentVersion": "3915fa6a56ad3f88",
+      "contentHash": "3915fa6a56ad3f88bf2df52568a48061932e509434d6cb39f1d6db60ae8a1470",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1657,11 +1657,11 @@
         "alt": "Placeholder cover for Sun Tzŭ on the Art of War: The Oldest Military Treatise in the World"
       },
       "stats": {
-        "originalCharacterCount": 507131,
-        "cleanedCharacterCount": 487438,
-        "wordCount": 83135,
-        "sectionCount": 7,
-        "includedSectionCount": 1
+        "originalCharacterCount": 507214,
+        "cleanedCharacterCount": 402542,
+        "wordCount": 66776,
+        "sectionCount": 15,
+        "includedSectionCount": 13
       },
       "defaults": {
         "includeKinds": [
@@ -2018,8 +2018,8 @@
       "author": [
         "Alexandre Dumas Auguste Maquet"
       ],
-      "contentVersion": "c371050e1b388f8e",
-      "contentHash": "c371050e1b388f8e6bf1e44f1da1d329fed4c955ec0bbfa8762d57054927bd50",
+      "contentVersion": "4d1525fee69ba7fa",
+      "contentHash": "4d1525fee69ba7fa08cdb4a83ba0859114bc663fd70ec75726a30fb2dc4ab0dc",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2047,11 +2047,11 @@
         "alt": "Placeholder cover for The Count of Monte Cristo"
       },
       "stats": {
-        "originalCharacterCount": 2646037,
-        "cleanedCharacterCount": 2626685,
-        "wordCount": 468238,
-        "sectionCount": 4,
-        "includedSectionCount": 2
+        "originalCharacterCount": 2646649,
+        "cleanedCharacterCount": 2622620,
+        "wordCount": 461680,
+        "sectionCount": 117,
+        "includedSectionCount": 117
       },
       "defaults": {
         "includeKinds": [
@@ -2065,8 +2065,8 @@
       "slug": "the-count-of-monte-cristo-gutenberg-1184",
       "title": "The Count of Monte Cristo",
       "author": [],
-      "contentVersion": "5f3b79c137aefd6a",
-      "contentHash": "5f3b79c137aefd6a500e6e7e452dabead94ed002cc4aef6601cee2c99a741662",
+      "contentVersion": "9b2e30400e39fe36",
+      "contentHash": "9b2e30400e39fe36b0f64c5eba158585482028249526bc6b9821c6f285d82276",
       "language": "und",
       "description": "",
       "subjects": [],
@@ -2094,11 +2094,11 @@
         "alt": "Placeholder cover for The Count of Monte Cristo"
       },
       "stats": {
-        "originalCharacterCount": 2641090,
-        "cleanedCharacterCount": 2621774,
-        "wordCount": 468237,
-        "sectionCount": 4,
-        "includedSectionCount": 2
+        "originalCharacterCount": 2646649,
+        "cleanedCharacterCount": 2622620,
+        "wordCount": 461680,
+        "sectionCount": 117,
+        "includedSectionCount": 117
       },
       "defaults": {
         "includeKinds": [
@@ -2504,8 +2504,8 @@
       "slug": "the-happy-family",
       "title": "The Happy Family",
       "author": [],
-      "contentVersion": "c459a0209f5d7490",
-      "contentHash": "c459a0209f5d7490ae3a70395a95fd9fc1ad7dd68ae4666f9a67eb721d727393",
+      "contentVersion": "9f46408610312e1f",
+      "contentHash": "9f46408610312e1f4eb15807697f7e6666e899fe91c5d00657ecac3cbfa13592",
       "language": "und",
       "description": "",
       "subjects": [],
@@ -2533,11 +2533,11 @@
         "alt": "Placeholder cover for The Happy Family"
       },
       "stats": {
-        "originalCharacterCount": 0,
-        "cleanedCharacterCount": 186,
-        "wordCount": 29,
+        "originalCharacterCount": 26413,
+        "cleanedCharacterCount": 6920,
+        "wordCount": 1307,
         "sectionCount": 1,
-        "includedSectionCount": 0
+        "includedSectionCount": 1
       },
       "defaults": {
         "includeKinds": [

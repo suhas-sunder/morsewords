@@ -1,27 +1,12 @@
 {
-  "generatedAt": "2026-06-16T20:13:28.670Z",
+  "generatedAt": "2026-06-16T22:21:56.831Z",
   "generatedBookCount": 110,
   "previewAssetCount": 110,
-  "validStartupPreviewCount": 104,
+  "validStartupPreviewCount": 110,
   "previewAssetsUpdated": [],
-  "booksWithInvalidOrMissingPreviews": [
-    "don-quixote",
-    "les-miserables",
-    "sun-tzu-on-the-art-of-war",
-    "the-count-of-monte-cristo",
-    "the-count-of-monte-cristo-gutenberg-1184",
-    "the-happy-family"
-  ],
-  "booksWithSuspiciousFirstDefaultSections": [
-    "the-happy-family"
-  ],
-  "booksWithMissingOrMisclassifiedFirstContent": [
-    "don-quixote",
-    "les-miserables",
-    "sun-tzu-on-the-art-of-war",
-    "the-count-of-monte-cristo",
-    "the-count-of-monte-cristo-gutenberg-1184"
-  ],
+  "booksWithInvalidOrMissingPreviews": [],
+  "booksWithSuspiciousFirstDefaultSections": [],
+  "booksWithMissingOrMisclassifiedFirstContent": [],
   "recommendations": {
     "valid": [
       "a-childs-garden-of-verses",
@@ -36,6 +21,7 @@
       "botchan",
       "candide",
       "doctor-dolittle",
+      "don-quixote",
       "dr-jekyll-and-mr-hyde",
       "dracula",
       "five-little-peppers-and-how-they-grew",
@@ -45,6 +31,7 @@
       "jabberwocky",
       "jack-and-jill",
       "jane-eyre",
+      "les-miserables",
       "little-women",
       "new-treasure-seekers",
       "nights-with-uncle-remus",
@@ -53,6 +40,7 @@
       "rainbow-valley",
       "rinkitink-in-oz",
       "sense-and-sensibility",
+      "sun-tzu-on-the-art-of-war",
       "tarzan-of-the-apes",
       "the-arabian-nights",
       "the-art-of-war",
@@ -60,6 +48,8 @@
       "the-book-of-dragons",
       "the-call-of-cthulhu",
       "the-call-of-the-wild",
+      "the-count-of-monte-cristo",
+      "the-count-of-monte-cristo-gutenberg-1184",
       "the-divine-comedy",
       "the-elderbush",
       "the-elements-of-style",
@@ -68,6 +58,7 @@
       "the-federalist-papers",
       "the-fir-tree",
       "the-great-gatsby",
+      "the-happy-family",
       "the-jungle-book",
       "the-leap-frog",
       "the-legend-of-sleepy-hollow",
@@ -128,14 +119,7 @@
       "tales-of-war"
     ],
     "preview asset needs regeneration from generated readable sections": [],
-    "generated book needs processing correction later": [
-      "don-quixote",
-      "les-miserables",
-      "sun-tzu-on-the-art-of-war",
-      "the-count-of-monte-cristo",
-      "the-count-of-monte-cristo-gutenberg-1184",
-      "the-happy-family"
-    ],
+    "generated book needs processing correction later": [],
     "blocked/manual review": [
       "crime-and-punishment",
       "gulliver-s-travels"
@@ -585,36 +569,31 @@
       "generatedOutputExists": true,
       "previewAssetExists": true,
       "previewContainsSosHelp": false,
-      "previewStartsFromRealReadableBookContent": false,
-      "previewMatchesGeneratedContentHash": false,
+      "previewStartsFromRealReadableBookContent": true,
+      "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
         "id": "chapter-001",
-        "title": null,
-        "label": "Chapter 3",
+        "title": "Which Treats Of The Character And Pursuits Of The Famous Gentleman Don Quixote Of La Mancha",
+        "label": "Chapter 1",
         "type": "chapter",
-        "wordCount": 80,
+        "wordCount": 2030,
         "includeByDefault": true,
-        "snippet": "CHAPTER III WHEREIN IS RELATED THE DROLL WAY IN WHICH DON QUIXOTE HAD HIMSELF DUBBED A KNIGHT CHAPTER IV OF WHAT HAPPENED TO OUR KNIGHT WHEN HE LEFT THE INN CHAPTER V IN WHICH THE NARRATIVE OF OUR KNIGHT’S MISHAP IS C..."
+        "snippet": "CHAPTER I. WHICH TREATS OF THE CHARACTER AND PURSUITS OF THE FAMOUS GENTLEMAN DON QUIXOTE OF LA MANCHA In a village of La Mancha, the name of which I have no desire to call to mind, there lived not long since one of t..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
-      "chapterPartOrFirstStoryMissingOrMisclassified": true,
-      "chapterPartOrFirstStoryNotes": [
-        "chapter-001 is labeled Chapter 3, which suggests chapter order damage."
-      ],
+      "chapterPartOrFirstStoryMissingOrMisclassified": false,
+      "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 146,
-      "mainReadableSectionCount": 146,
-      "startupPreviewValid": false,
-      "recommendation": "generated book needs processing correction later",
+      "defaultSectionCount": 126,
+      "mainReadableSectionCount": 126,
+      "startupPreviewValid": true,
+      "recommendation": "valid",
       "previewRepairApplied": false,
-      "warnings": [
-        "Preview asset content hash/version is stale.",
-        "chapter-001 is labeled Chapter 3, which suggests chapter order damage."
-      ],
+      "warnings": [],
       "snippets": {
-        "generatedStart": "CHAPTER III WHEREIN IS RELATED THE DROLL WAY IN WHICH DON QUIXOTE HAD HIMSELF DUBBED A KNIGHT CHAPTER IV OF WHAT HAPPENED TO OUR KNIGHT WHEN HE LEFT THE INN CHAPTER V IN WHICH THE NARRATIVE OF OUR KNIGHT’S MISHAP IS C...",
-        "previewStart": "CHAPTER III WHEREIN IS RELATED THE DROLL WAY IN WHICH DON QUIXOTE HAD HIMSELF DUBBED A KNIGHT CHAPTER IV OF WHAT HAPPENED TO OUR KNIGHT WHEN HE LEFT THE INN CHAPTER V IN WHICH THE NARRATIVE OF OUR KNIGHT’S MISHAP IS C..."
+        "generatedStart": "CHAPTER I. WHICH TREATS OF THE CHARACTER AND PURSUITS OF THE FAMOUS GENTLEMAN DON QUIXOTE OF LA MANCHA In a village of La Mancha, the name of which I have no desire to call to mind, there lived not long since one of t...",
+        "previewStart": "CHAPTER I. WHICH TREATS OF THE CHARACTER AND PURSUITS OF THE FAMOUS GENTLEMAN DON QUIXOTE OF LA MANCHA In a village of La Mancha, the name of which I have no desire to call to mind, there lived not long since one of t..."
       }
     },
     {
@@ -955,36 +934,31 @@
       "generatedOutputExists": true,
       "previewAssetExists": true,
       "previewContainsSosHelp": false,
-      "previewStartsFromRealReadableBookContent": false,
-      "previewMatchesGeneratedContentHash": false,
+      "previewStartsFromRealReadableBookContent": true,
+      "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
         "id": "chapter-001",
-        "title": null,
-        "label": "Chapter 4",
+        "title": "Book First-A Just Man - M Myriel",
+        "label": "Chapter 1",
         "type": "chapter",
-        "wordCount": 20954,
+        "wordCount": 1057,
         "includeByDefault": true,
-        "snippet": "CHAPTER IV The visit took place. It was a formidable campaign; a nocturnal battle against pestilence and suffocation. It was, at the same time, a voyage of discovery. One of the survivors of this expedition, an intell..."
+        "snippet": "CHAPTER I-M. MYRIEL In 1815, M. Charles-Francois-Bienvenu Myriel was Bishop of D-- He was an old man of about seventy-five years of age; he had occupied the see of D-- since 1806. Although this detail has no connectio..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
-      "chapterPartOrFirstStoryMissingOrMisclassified": true,
-      "chapterPartOrFirstStoryNotes": [
-        "chapter-001 is labeled Chapter 4, which suggests chapter order damage."
-      ],
+      "chapterPartOrFirstStoryMissingOrMisclassified": false,
+      "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 2,
-      "mainReadableSectionCount": 2,
-      "startupPreviewValid": false,
-      "recommendation": "generated book needs processing correction later",
+      "defaultSectionCount": 363,
+      "mainReadableSectionCount": 361,
+      "startupPreviewValid": true,
+      "recommendation": "valid",
       "previewRepairApplied": false,
-      "warnings": [
-        "Preview asset content hash/version is stale.",
-        "chapter-001 is labeled Chapter 4, which suggests chapter order damage."
-      ],
+      "warnings": [],
       "snippets": {
-        "generatedStart": "CHAPTER IV The visit took place. It was a formidable campaign; a nocturnal battle against pestilence and suffocation. It was, at the same time, a voyage of discovery. One of the survivors of this expedition, an intell...",
-        "previewStart": "CHAPTER IV The visit took place. It was a formidable campaign; a nocturnal battle against pestilence and suffocation. It was, at the same time, a voyage of discovery. One of the survivors of this expedition, an intell..."
+        "generatedStart": "CHAPTER I-M. MYRIEL In 1815, M. Charles-Francois-Bienvenu Myriel was Bishop of D-- He was an old man of about seventy-five years of age; he had occupied the see of D-- since 1806. Although this detail has no connectio...",
+        "previewStart": "CHAPTER I-M. MYRIEL In 1815, M. Charles-Francois-Bienvenu Myriel was Bishop of D-- He was an old man of about seventy-five years of age; he had occupied the see of D-- since 1806. Although this detail has no connectio..."
       }
     },
     {
@@ -1257,36 +1231,31 @@
       "generatedOutputExists": true,
       "previewAssetExists": true,
       "previewContainsSosHelp": false,
-      "previewStartsFromRealReadableBookContent": false,
-      "previewMatchesGeneratedContentHash": false,
+      "previewStartsFromRealReadableBookContent": true,
+      "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
         "id": "chapter-001",
-        "title": null,
-        "label": "Chapter 28",
+        "title": "Laying Plans",
+        "label": "Chapter 1",
         "type": "chapter",
-        "wordCount": 4623,
+        "wordCount": 2109,
         "includeByDefault": true,
-        "snippet": "xxviii. —Modern text, 25, 26, 27, 33. —Original text, xxxii, xxxiii, 2, 16, 27, 29, 43, 47, 53, 58, 62, 64, 67, 84, 86, 87, 88, 91, 92, 95, 98, 113, 119, 121, 153, 154, 168. —Standard text, xxxiv, 10, 58, 91, 95, 117,..."
+        "snippet": "1. Sun Tzu said: The art of war is of vital importance to the State. 2. It is a matter of life and death, a road either to safety or to ruin. Hence it is a subject of inquiry which can on no account be neglected. 3. T..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
-      "chapterPartOrFirstStoryMissingOrMisclassified": true,
-      "chapterPartOrFirstStoryNotes": [
-        "chapter-001 is labeled Chapter 28, which suggests chapter order damage."
-      ],
+      "chapterPartOrFirstStoryMissingOrMisclassified": false,
+      "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 1,
-      "mainReadableSectionCount": 1,
-      "startupPreviewValid": false,
-      "recommendation": "generated book needs processing correction later",
+      "defaultSectionCount": 13,
+      "mainReadableSectionCount": 13,
+      "startupPreviewValid": true,
+      "recommendation": "valid",
       "previewRepairApplied": false,
-      "warnings": [
-        "Preview asset content hash/version is stale.",
-        "chapter-001 is labeled Chapter 28, which suggests chapter order damage."
-      ],
+      "warnings": [],
       "snippets": {
-        "generatedStart": "xxviii. —Modern text, 25, 26, 27, 33. —Original text, xxxii, xxxiii, 2, 16, 27, 29, 43, 47, 53, 58, 62, 64, 67, 84, 86, 87, 88, 91, 92, 95, 98, 113, 119, 121, 153, 154, 168. —Standard text, xxxiv, 10, 58, 91, 95, 117,...",
-        "previewStart": "xxviii. —Modern text, 25, 26, 27, 33. —Original text, xxxii, xxxiii, 2, 16, 27, 29, 43, 47, 53, 58, 62, 64, 67, 84, 86, 87, 88, 91, 92, 95, 98, 113, 119, 121, 153, 154, 168. —Standard text, xxxiv, 10, 58, 91, 95, 117,..."
+        "generatedStart": "1. Sun Tzu said: The art of war is of vital importance to the State. 2. It is a matter of life and death, a road either to safety or to ruin. Hence it is a subject of inquiry which can on no account be neglected. 3. T...",
+        "previewStart": "1. Sun Tzu said: The art of war is of vital importance to the State. 2. It is a matter of life and death, a road either to safety or to ruin. Hence it is a subject of inquiry which can on no account be neglected. 3. T..."
       }
     },
     {
@@ -1526,39 +1495,31 @@
       "generatedOutputExists": true,
       "previewAssetExists": true,
       "previewContainsSosHelp": false,
-      "previewStartsFromRealReadableBookContent": false,
-      "previewMatchesGeneratedContentHash": false,
+      "previewStartsFromRealReadableBookContent": true,
+      "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
         "id": "chapter-001",
-        "title": "The Pardon",
-        "label": "Chapter 116",
+        "title": "Marseilles-The Arrival",
+        "label": "Chapter 1",
         "type": "chapter",
-        "wordCount": 4,
+        "wordCount": 3137,
         "includeByDefault": true,
-        "snippet": "Chapter 116. The Pardon"
+        "snippet": "Chapter 1. Marseilles-The Arrival On the 24th of February, 1815, the look-out at Notre-Dame de la Garde signalled the three-master, the _Pharaon_ from Smyrna, Trieste, and Naples. As usual, a pilot put off immediately..."
       },
-      "firstDefaultSectionLooksLikeRealContent": false,
+      "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
-      "chapterPartOrFirstStoryMissingOrMisclassified": true,
-      "chapterPartOrFirstStoryNotes": [
-        "chapter-001 is labeled Chapter 116, which suggests chapter order damage.",
-        "chapter-001 is suspiciously tiny for the first default section."
-      ],
+      "chapterPartOrFirstStoryMissingOrMisclassified": false,
+      "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 2,
-      "mainReadableSectionCount": 1,
-      "startupPreviewValid": false,
-      "recommendation": "generated book needs processing correction later",
+      "defaultSectionCount": 117,
+      "mainReadableSectionCount": 117,
+      "startupPreviewValid": true,
+      "recommendation": "valid",
       "previewRepairApplied": false,
-      "warnings": [
-        "Preview asset content hash/version is stale.",
-        "First default generated section does not look like real main content.",
-        "chapter-001 is labeled Chapter 116, which suggests chapter order damage.",
-        "chapter-001 is suspiciously tiny for the first default section."
-      ],
+      "warnings": [],
       "snippets": {
-        "generatedStart": "Chapter 116. The Pardon",
-        "previewStart": "Chapter 117. The Fifth of October VOLUME ONE Chapter 1. Marseilles—The Arrival On the 24th of February, 1815, the look-out at Notre-Dame de la Garde signalled the three-master, the _Pharaon_ from Smyrna, Trieste, and ..."
+        "generatedStart": "Chapter 1. Marseilles-The Arrival On the 24th of February, 1815, the look-out at Notre-Dame de la Garde signalled the three-master, the _Pharaon_ from Smyrna, Trieste, and Naples. As usual, a pilot put off immediately...",
+        "previewStart": "Chapter 1. Marseilles-The Arrival On the 24th of February, 1815, the look-out at Notre-Dame de la Garde signalled the three-master, the _Pharaon_ from Smyrna, Trieste, and Naples. As usual, a pilot put off immediately..."
       }
     },
     {
@@ -1567,39 +1528,31 @@
       "generatedOutputExists": true,
       "previewAssetExists": true,
       "previewContainsSosHelp": false,
-      "previewStartsFromRealReadableBookContent": false,
-      "previewMatchesGeneratedContentHash": false,
+      "previewStartsFromRealReadableBookContent": true,
+      "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
         "id": "chapter-001",
-        "title": "The Pardon",
-        "label": "Chapter 116",
+        "title": "Marseilles-The Arrival",
+        "label": "Chapter 1",
         "type": "chapter",
-        "wordCount": 4,
+        "wordCount": 3137,
         "includeByDefault": true,
-        "snippet": "Chapter 116. The Pardon"
+        "snippet": "Chapter 1. Marseilles-The Arrival On the 24th of February, 1815, the look-out at Notre-Dame de la Garde signalled the three-master, the _Pharaon_ from Smyrna, Trieste, and Naples. As usual, a pilot put off immediately..."
       },
-      "firstDefaultSectionLooksLikeRealContent": false,
+      "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
-      "chapterPartOrFirstStoryMissingOrMisclassified": true,
-      "chapterPartOrFirstStoryNotes": [
-        "chapter-001 is labeled Chapter 116, which suggests chapter order damage.",
-        "chapter-001 is suspiciously tiny for the first default section."
-      ],
+      "chapterPartOrFirstStoryMissingOrMisclassified": false,
+      "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 2,
-      "mainReadableSectionCount": 1,
-      "startupPreviewValid": false,
-      "recommendation": "generated book needs processing correction later",
+      "defaultSectionCount": 117,
+      "mainReadableSectionCount": 117,
+      "startupPreviewValid": true,
+      "recommendation": "valid",
       "previewRepairApplied": false,
-      "warnings": [
-        "Preview asset content hash/version is stale.",
-        "First default generated section does not look like real main content.",
-        "chapter-001 is labeled Chapter 116, which suggests chapter order damage.",
-        "chapter-001 is suspiciously tiny for the first default section."
-      ],
+      "warnings": [],
       "snippets": {
-        "generatedStart": "Chapter 116. The Pardon",
-        "previewStart": "Chapter 117. The Fifth of October VOLUME ONE Chapter 1. Marseilles—The Arrival On the 24th of February, 1815, the look-out at Notre-Dame de la Garde signalled the three-master, the _Pharaon_ from Smyrna, Trieste, and ..."
+        "generatedStart": "Chapter 1. Marseilles-The Arrival On the 24th of February, 1815, the look-out at Notre-Dame de la Garde signalled the three-master, the _Pharaon_ from Smyrna, Trieste, and Naples. As usual, a pilot put off immediately...",
+        "previewStart": "Chapter 1. Marseilles-The Arrival On the 24th of February, 1815, the look-out at Notre-Dame de la Garde signalled the three-master, the _Pharaon_ from Smyrna, Trieste, and Naples. As usual, a pilot put off immediately..."
       }
     },
     {
@@ -1872,36 +1825,31 @@
       "generatedOutputExists": true,
       "previewAssetExists": true,
       "previewContainsSosHelp": false,
-      "previewStartsFromRealReadableBookContent": false,
-      "previewMatchesGeneratedContentHash": false,
+      "previewStartsFromRealReadableBookContent": true,
+      "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-001",
-        "title": null,
-        "label": "Part 1",
-        "type": "part",
-        "wordCount": 29,
-        "includeByDefault": false,
-        "snippet": "The Happy Family This MorseWords reference file does not include body text yet. The book route is available, and the generated reports identify the missing source content for follow-up."
+        "id": "chapter-001",
+        "title": "The Happy Family",
+        "label": "Chapter 1",
+        "type": "chapter",
+        "wordCount": 1307,
+        "includeByDefault": true,
+        "snippet": "THE HAPPY FAMILY Really, the largest green leaf in this country is a dock-leaf; if one holds it before one, it is like a whole apron, and if one holds it over one's head in rainy weather, it is almost as good as an um..."
       },
-      "firstDefaultSectionLooksLikeRealContent": false,
-      "firstDefaultSectionLooksLikeNonMainMaterial": true,
+      "firstDefaultSectionLooksLikeRealContent": true,
+      "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
-      "allMainReadableSectionsIncludedByDefault": false,
+      "allMainReadableSectionsIncludedByDefault": true,
       "defaultSectionCount": 1,
-      "mainReadableSectionCount": 0,
-      "startupPreviewValid": false,
-      "recommendation": "generated book needs processing correction later",
+      "mainReadableSectionCount": 1,
+      "startupPreviewValid": true,
+      "recommendation": "valid",
       "previewRepairApplied": false,
-      "warnings": [
-        "Preview asset content hash/version is stale.",
-        "Preview asset starts with generic or non-main material.",
-        "First default generated section does not look like real main content.",
-        "Not all detected main-readable sections are selected by default."
-      ],
+      "warnings": [],
       "snippets": {
-        "generatedStart": "The Happy Family This MorseWords reference file does not include body text yet. The book route is available, and the generated reports identify the missing source content for follow-up.",
-        "previewStart": "The Happy Family This MorseWords reference file does not include body text yet. The book route is available, and the generated reports identify the missing source content for follow-up."
+        "generatedStart": "THE HAPPY FAMILY Really, the largest green leaf in this country is a dock-leaf; if one holds it before one, it is like a whole apron, and if one holds it over one's head in rainy weather, it is almost as good as an um...",
+        "previewStart": "THE HAPPY FAMILY Really, the largest green leaf in this country is a dock-leaf; if one holds it before one, it is like a whole apron, and if one holds it over one's head in rainy weather, it is almost as good as an um..."
       }
     },
     {
