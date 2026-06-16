@@ -15,15 +15,23 @@ const STALE_CACHE_BOOK_SLUG = "the-call-of-the-wild";
 const ERROR_BOOK_SLUG = "the-jungle-book";
 const TEST_BOOK_SLUG = "test-published-morse-book";
 const ART_OF_WAR_SLUG = "the-art-of-war";
+const ANNE_OF_GREEN_GABLES_SLUG = "anne-of-green-gables";
 const VIOLET_FAIRY_BOOK_SLUG = "violet-fairy-book";
+const THE_WAR_OF_THE_WORLDS_SLUG = "the-war-of-the-worlds";
+const ROOM_13_SLUG = "room-13";
 const ALICE_PUBLIC_PATH = `/morse-code-books/${ALICE_SLUG}`;
 const APPROVED_BOOK_PUBLIC_PATH = `/morse-code-books/${APPROVED_BOOK_SLUG}`;
 const NETWORK_BOOK_PUBLIC_PATH = `/morse-code-books/${NETWORK_BOOK_SLUG}`;
 const STALE_CACHE_BOOK_PUBLIC_PATH = `/morse-code-books/${STALE_CACHE_BOOK_SLUG}`;
 const ERROR_BOOK_PUBLIC_PATH = `/morse-code-books/${ERROR_BOOK_SLUG}`;
 const ART_OF_WAR_PUBLIC_PATH = `/morse-code-books/${ART_OF_WAR_SLUG}`;
+const ANNE_OF_GREEN_GABLES_PUBLIC_PATH =
+  `/morse-code-books/${ANNE_OF_GREEN_GABLES_SLUG}`;
 const VIOLET_FAIRY_BOOK_PREVIEW_PATH =
   `/morse-code-books/${VIOLET_FAIRY_BOOK_SLUG}?preview=unpublished`;
+const THE_WAR_OF_THE_WORLDS_PREVIEW_PATH =
+  `/morse-code-books/${THE_WAR_OF_THE_WORLDS_SLUG}?preview=unpublished`;
+const ROOM_13_PREVIEW_PATH = `/morse-code-books/${ROOM_13_SLUG}?preview=unpublished`;
 const ALICE_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${ALICE_SLUG}`;
 const APPROVED_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${APPROVED_BOOK_SLUG}`;
 const NETWORK_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${NETWORK_BOOK_SLUG}`;
@@ -534,6 +542,16 @@ async function openAnneBook(page: Page) {
 async function openVioletFairyBookPreview(page: Page) {
   await blockExternalNetwork(page);
   const response = await page.goto(VIOLET_FAIRY_BOOK_PREVIEW_PATH, {
+    waitUntil: "domcontentloaded",
+  });
+  await waitForRouteReady(page);
+  expect(response?.ok()).toBe(true);
+  await waitForApprovedBookWorkspace(page);
+}
+
+async function openGeneratedBookPreview(page: Page, pathName: string) {
+  await blockExternalNetwork(page);
+  const response = await page.goto(pathName, {
     waitUntil: "domcontentloaded",
   });
   await waitForRouteReady(page);
@@ -1198,6 +1216,7 @@ test.describe("Morse book page foundation", () => {
       );
       await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
       await expect(page.locator("#book-live-morse-player")).toBeVisible();
+      await expect(page.locator("body")).not.toContainText(/SOS Help!/i);
       await expect(page.locator("[data-mw-morse-book-source-preview]")).toContainText(
         "CHAPTER I",
       );
@@ -1268,6 +1287,95 @@ test.describe("Morse book page foundation", () => {
       await expect(
         page.getByRole("link", { name: /Project Gutenberg ebook #11/ }),
       ).toBeVisible();
+    } finally {
+      releaseFullBook();
+    }
+  });
+
+  test("starts Anne from a book-specific preview and hydrates all default chapters", async ({
+    page,
+  }) => {
+    const anneDefaultSectionIds = readPublicDefaultSectionIds(
+      ANNE_OF_GREEN_GABLES_SLUG,
+    );
+    expect(anneDefaultSectionIds.length).toBeGreaterThan(30);
+
+    await page.addInitScript(
+      ({ cachePrefix, slug }) => {
+        Object.keys(localStorage)
+          .filter(
+            (key) =>
+              key.startsWith(cachePrefix) ||
+              key.startsWith(`morsewords:book-runtime:settings:v1:${slug}:`),
+          )
+          .forEach((key) => localStorage.removeItem(key));
+      },
+      { cachePrefix: BOOK_CACHE_KEY_PREFIX, slug: ANNE_OF_GREEN_GABLES_SLUG },
+    );
+
+    const previewRequests: string[] = [];
+    const fullBookRequests: string[] = [];
+    let releaseFullBook = () => {};
+    const fullBookPending = new Promise<void>((resolve) => {
+      releaseFullBook = resolve;
+    });
+
+    page.on("request", (request) => {
+      const url = request.url();
+      if (url.includes("/book-previews/")) previewRequests.push(url);
+    });
+
+    await blockExternalNetwork(page);
+    await page.route(bookJsonPattern(ANNE_OF_GREEN_GABLES_SLUG), async (route) => {
+      fullBookRequests.push(route.request().url());
+      await fullBookPending;
+      await route.continue();
+    });
+
+    try {
+      await gotoPublicBookPage(page, ANNE_OF_GREEN_GABLES_PUBLIC_PATH);
+
+      const pageRoot = page.locator("[data-mw-morse-book-page]");
+      await expect(pageRoot).toHaveAttribute(
+        "data-mw-morse-book-full-loading",
+        "true",
+      );
+      await expect(pageRoot).toHaveAttribute(
+        "data-mw-morse-book-preview-state",
+        "preview",
+      );
+      await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
+      await expect(page.locator("body")).not.toContainText(/SOS Help!/i);
+      await expect(page.locator("[data-mw-morse-book-source-preview]")).toContainText(
+        "Mrs. Rachel Lynde",
+      );
+      await expect(page.locator("[data-mw-morse-book-source-preview]")).not.toContainText(
+        "Project Gutenberg",
+      );
+      expect(
+        previewRequests.some((url) =>
+          url.includes(
+            `/book-previews/${ANNE_OF_GREEN_GABLES_SLUG}.preview.json`,
+          ),
+        ),
+      ).toBe(true);
+      expect(fullBookRequests).toHaveLength(1);
+
+      releaseFullBook();
+      await waitForApprovedBookWorkspace(page);
+      await expectSelectedBookSectionIds(page, anneDefaultSectionIds);
+      expect(anneDefaultSectionIds[0]).toBe("chapter-001");
+      expect(anneDefaultSectionIds).toContain("chapter-002");
+      expect(anneDefaultSectionIds).toContain("chapter-038");
+      await expect(
+        page.locator("[data-mw-morse-book-section-select='title-page-001']"),
+      ).not.toBeChecked();
+      await expect(
+        page.locator("[data-mw-morse-book-translator-source-sections]"),
+      ).toHaveAttribute(
+        "data-mw-morse-book-translator-source-sections",
+        anneDefaultSectionIds.join(","),
+      );
     } finally {
       releaseFullBook();
     }
@@ -1829,6 +1937,54 @@ test.describe("Morse book page foundation", () => {
     );
     await expect(page.locator("[data-mw-morse-book-source-preview]")).not.toContainText(
       "CONTENTS",
+    );
+    await expect(page.locator("body")).not.toContainText(/SOS Help!/i);
+  });
+
+  test("defaults batch-3 generated previews to full readable structures", async ({
+    page,
+  }) => {
+    const warDefaultSectionIds = readGeneratedDefaultSectionIds(
+      THE_WAR_OF_THE_WORLDS_SLUG,
+    );
+    expect(warDefaultSectionIds).toHaveLength(27);
+    expect(warDefaultSectionIds[0]).toBe("chapter-001");
+    expect(warDefaultSectionIds).toContain("chapter-002");
+    expect(warDefaultSectionIds).toContain("chapter-027");
+
+    await removeBookRuntimeSettings(page, THE_WAR_OF_THE_WORLDS_SLUG);
+    await openGeneratedBookPreview(page, THE_WAR_OF_THE_WORLDS_PREVIEW_PATH);
+    await expectSelectedBookSectionIds(page, warDefaultSectionIds);
+    await expect(page.locator("body")).not.toContainText(/SOS Help!/i);
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).toContainText(
+      "BOOK ONE",
+    );
+    await expect(
+      page.locator("[data-mw-morse-book-translator-source-sections]"),
+    ).toHaveAttribute(
+      "data-mw-morse-book-translator-source-sections",
+      warDefaultSectionIds.join(","),
+    );
+
+    const roomDefaultSectionIds = readGeneratedDefaultSectionIds(ROOM_13_SLUG);
+    expect(roomDefaultSectionIds).toHaveLength(33);
+    expect(roomDefaultSectionIds[0]).toBe("chapter-001");
+    expect(roomDefaultSectionIds).toContain("chapter-002");
+    expect(roomDefaultSectionIds).toContain("chapter-033");
+
+    await page.goto("about:blank");
+    await removeBookRuntimeSettings(page, ROOM_13_SLUG);
+    await openGeneratedBookPreview(page, ROOM_13_PREVIEW_PATH);
+    await expectSelectedBookSectionIds(page, roomDefaultSectionIds);
+    await expect(page.locator("body")).not.toContainText(/SOS Help!/i);
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).toContainText(
+      "CHAPTER I",
+    );
+    await expect(
+      page.locator("[data-mw-morse-book-translator-source-sections]"),
+    ).toHaveAttribute(
+      "data-mw-morse-book-translator-source-sections",
+      roomDefaultSectionIds.join(","),
     );
   });
 

@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-federalist-papers",
-  "contentVersion": "1cf75cb346a1d230",
-  "contentHash": "1cf75cb346a1d230a040c29db69117fd3a2affa635ae3e89873326fc5aaf5b0c",
+  "contentVersion": "ff3de53fd6e88fdf",
+  "contentHash": "ff3de53fd6e88fdf94678df84358642755931ee7d4a717b79f944624331256b0",
   "defaultSectionId": "part-002",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 2",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 44,
   "estimatedListeningMinutes": 62,
   "morseCharacterEstimate": 54978,
-  "textPreview": "The JUST causes of war, for the most part, arise either from violation of treaties or from direct violence. America has already formed treaties with no less than six foreign nation",
+  "textPreview": "The JUST causes of war, for the most part, arise either from violation of treaties or from direct violence. America has already formed treaties with no less than six foreign nat...",
   "truncated": true
 }

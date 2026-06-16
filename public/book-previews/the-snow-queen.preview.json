@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-snow-queen",
-  "contentVersion": "123e05a4cb103ca1",
-  "contentHash": "123e05a4cb103ca12994d5aed1f23bb533a8be57354a5f109e45941c55dea633",
+  "contentVersion": "4d3de7b45653d97f",
+  "contentHash": "4d3de7b45653d97ff7cc79d4bb274a989d223447ef95ce7316facd94cb57688f",
   "defaultSectionId": "part-001",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 48,
   "estimatedListeningMinutes": 61,
   "morseCharacterEstimate": 54474,
-  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SNOW QUEEN FIRST STORY. Which Treats of a Mirror and of the Splinters Now then, let us begin. When we are at the end of the st",
+  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SNOW QUEEN FIRST STORY. Which Treats of a Mirror and of the Splinters Now then, let us begin. When we are at the end of the...",
   "truncated": true
 }

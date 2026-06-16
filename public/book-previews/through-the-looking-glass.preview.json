@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "through-the-looking-glass",
-  "contentVersion": "c0732664dbd884a3",
-  "contentHash": "c0732664dbd884a3ed6d362e919b9db69e767a9841b3b054a3e498eb26096e67",
+  "contentVersion": "d8a013c20c2b2c27",
+  "contentHash": "d8a013c20c2b2c27a60b774883390ea8037953d1d06b0f2d2878e36678319d95",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 51,
   "estimatedListeningMinutes": 65,
   "morseCharacterEstimate": 57787,
-  "textPreview": "CHAPTER I. Looking-Glass house One thing was certain, that the _white_ kitten had had nothing to do with it:—it was the black kitten’s fault entirely. For the white kitten had been",
+  "textPreview": "CHAPTER I. Looking-Glass house One thing was certain, that the _white_ kitten had had nothing to do with it:—it was the black kitten’s fault entirely. For the white kitten had b...",
   "truncated": true
 }

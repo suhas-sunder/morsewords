@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-divine-comedy",
-  "contentVersion": "584c7e8229a1da5c",
-  "contentHash": "584c7e8229a1da5c958423b0c27246a4fb5c662d62b47f4b6cb2b080f69cb7de",
+  "contentVersion": "0c9eb264fb463cce",
+  "contentHash": "0c9eb264fb463cce4bcb6300ee590ccd7d03ac2ebb22faa8965475f3fc1025c5",
   "defaultSectionId": "part-001",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 50,
   "estimatedListeningMinutes": 65,
   "morseCharacterEstimate": 57641,
-  "textPreview": "THE DIVINE COMEDY THE VISION of HELL, PURGATORY, AND PARADISE BY DANTE ALIGHIERI TRANSLATED BY THE REV. H. F. CARY, M.A. Illustrated by M. Gustave Doré LIST OF CANTOS HELL Canto 1 ",
+  "textPreview": "THE DIVINE COMEDY THE VISION of HELL, PURGATORY, AND PARADISE BY DANTE ALIGHIERI TRANSLATED BY THE REV. H. F. CARY, M.A. Illustrated by M. Gustave Doré LIST OF CANTOS HELL Canto...",
   "truncated": true
 }

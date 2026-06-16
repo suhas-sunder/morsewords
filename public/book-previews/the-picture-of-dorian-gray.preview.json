@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-picture-of-dorian-gray",
-  "contentVersion": "99ace8b590a6a3d6",
-  "contentHash": "99ace8b590a6a3d6c94564e6b869083c6d732e2943727ce172277e4c1906a558",
+  "contentVersion": "af2ab9deaa2db2a0",
+  "contentHash": "af2ab9deaa2db2a0bace9a43916984a7cf4881616bc080478b6769cf94bdef39",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 46,
   "estimatedListeningMinutes": 61,
   "morseCharacterEstimate": 54023,
-  "textPreview": "CHAPTER I. The studio was filled with the rich odour of roses, and when the light summer wind stirred amidst the trees of the garden, there came through the open door the heavy sce",
+  "textPreview": "CHAPTER I. The studio was filled with the rich odour of roses, and when the light summer wind stirred amidst the trees of the garden, there came through the open door the heavy ...",
   "truncated": true
 }

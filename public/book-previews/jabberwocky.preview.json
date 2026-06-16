@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "jabberwocky",
-  "contentVersion": "f68375dd6513cb04",
-  "contentHash": "f68375dd6513cb0453b20dcc099a68dd149fda985363ea85e84a58c5bb689e54",
+  "contentVersion": "007d258656e8e2c7",
+  "contentHash": "007d258656e8e2c7c9682c28a522611bf0302a5245ecc5cb9f42db4223e24715",
   "defaultSectionId": "part-001",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 16,
   "estimatedListeningMinutes": 24,
   "morseCharacterEstimate": 20876,
-  "textPreview": "This audio reading of Jabberwocky is read by sir_darwen, Alan Davis-Drake, Annie Coleman, Arctura, Brad Bush, Claire Cornelia, Catharine Eastman, Claire Goget, Cori Samuel, David B",
+  "textPreview": "This audio reading of Jabberwocky is read by sir_darwen, Alan Davis-Drake, Annie Coleman, Arctura, Brad Bush, Claire Cornelia, Catharine Eastman, Claire Goget, Cori Samuel, Davi...",
   "truncated": false
 }

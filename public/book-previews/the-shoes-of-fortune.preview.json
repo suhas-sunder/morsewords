@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-shoes-of-fortune",
-  "contentVersion": "4bc8dec5a6ebc06b",
-  "contentHash": "4bc8dec5a6ebc06bf9533d6ee8764a487ab2e4cbfd3f77a59a5eb7996d0d7fb3",
+  "contentVersion": "e6807307fe30d680",
+  "contentHash": "e6807307fe30d6806c09bffcf90ee1152576e9115656171f9d5798f291943e7c",
   "defaultSectionId": "part-001",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 49,
   "estimatedListeningMinutes": 65,
   "morseCharacterEstimate": 57845,
-  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SHOES OF FORTUNE I. A Beginning Every author has some peculiarity in his descriptions or in his style of writing. Those who do",
+  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SHOES OF FORTUNE I. A Beginning Every author has some peculiarity in his descriptions or in his style of writing. Those who...",
   "truncated": true
 }

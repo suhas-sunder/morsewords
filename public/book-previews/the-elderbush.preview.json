@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-elderbush",
-  "contentVersion": "94a80e93a9a72cae",
-  "contentHash": "94a80e93a9a72cae612392a793021e9effe09aea7a4d395f5ed7fe44b733c566",
+  "contentVersion": "6bdac4121a3dc227",
+  "contentHash": "6bdac4121a3dc227f1649db8ef471d662733041ee0d3c9522164964a5d7e3c34",
   "defaultSectionId": "part-001",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 51,
   "estimatedListeningMinutes": 64,
   "morseCharacterEstimate": 57378,
-  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody coul",
+  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody c...",
   "truncated": true
 }

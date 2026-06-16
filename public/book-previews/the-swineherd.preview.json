@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-swineherd",
-  "contentVersion": "2e24a6ed8799acba",
-  "contentHash": "2e24a6ed8799acbaf8c8328329da43cbaf59d08b75f00ff04de06f66d7f358df",
+  "contentVersion": "bba920ce5e7f63db",
+  "contentHash": "bba920ce5e7f63dbfd0467efc7aa51a3366e8072aa10c4171e7a58029047f932",
   "defaultSectionId": "part-001",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 37,
   "estimatedListeningMinutes": 49,
   "morseCharacterEstimate": 43949,
-  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry u",
+  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marr...",
   "truncated": false
 }

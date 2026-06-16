@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-emperor-s-new-clothes",
-  "contentVersion": "26290561c2f467be",
-  "contentHash": "26290561c2f467be12652fab9e5d911dd09344901bfda9241aad6bda54ee12f9",
+  "contentVersion": "746dfe7ca9ddc8d9",
+  "contentHash": "746dfe7ca9ddc8d9ea4d6e432a0010c06734490bf0e6d2d0b318887bb67c2fdf",
   "defaultSectionId": "part-001",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 45,
   "estimatedListeningMinutes": 61,
   "morseCharacterEstimate": 54107,
-  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, that he spent all his ",
+  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, that he spent all h...",
   "truncated": true
 }

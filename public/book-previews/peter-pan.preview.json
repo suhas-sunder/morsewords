@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "peter-pan",
-  "contentVersion": "a14744414244f10d",
-  "contentHash": "a14744414244f10d8f29f3cb87faaefda2dca748740426efa80927f378f77b2a",
+  "contentVersion": "73d23529dcdeea00",
+  "contentHash": "73d23529dcdeea008c40e601540e52d11e1aaa8b57a17fbaad651145388ec86d",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 49,
   "estimatedListeningMinutes": 64,
   "morseCharacterEstimate": 56711,
-  "textPreview": "Chapter I. PETER BREAKS THROUGH All children, except one, grow up. They soon know that they will grow up, and the way Wendy knew was this. One day when she was two years old she wa",
+  "textPreview": "Chapter I. PETER BREAKS THROUGH All children, except one, grow up. They soon know that they will grow up, and the way Wendy knew was this. One day when she was two years old she...",
   "truncated": true
 }

@@ -5,6 +5,7 @@ import type {
   MorseBookSectionJson,
   MorseBookSectionSummary,
 } from "./morseBookTypes";
+import { isDefaultReadableMorseBookSection } from "./morseBookSectionDefaults";
 
 export const MORSE_BOOK_PREVIEW_BASE_PATH = "/book-previews";
 
@@ -56,6 +57,23 @@ function previewParagraphs(previewText: string) {
     .split(/\n{2,}/)
     .map((paragraph) => paragraph.trim())
     .filter(Boolean);
+}
+
+const genericBookPreviewPlaceholderPattern = /\bSOS\s+Help!?\b/i;
+
+const nonBookStartupPreviewPattern =
+  /\b(table of contents|contents|list of illustrations|title page|copyright|license|source note|project gutenberg|gutenberg|transcriber|produced by|production note|distributed proofreading|pgdp\.net|release date|ebook|reference file does not include body text|book route is available|missing source content|generic placeholder|placeholder)\b/i;
+
+function isValidBookStartupPreview(
+  preview: MorseBookPreviewAsset,
+  sectionSummary: MorseBookSectionSummary,
+) {
+  const previewText = preview.previewText.trim();
+  if (!previewText) return false;
+  if (genericBookPreviewPlaceholderPattern.test(previewText)) return false;
+  const previewStart = previewText.replace(/\s+/g, " ").trim().slice(0, 360);
+  if (nonBookStartupPreviewPattern.test(previewStart)) return false;
+  return isDefaultReadableMorseBookSection(sectionSummary);
 }
 
 function createPreviewSectionSummary(
@@ -110,17 +128,14 @@ export function createMorseBookPreviewRuntimeContent(
   summary: MorseBookLibrarySummary,
   preview: MorseBookPreviewAsset,
 ): MorseBookPreviewRuntimeContent | null {
-  if (
-    preview.slug !== summary.slug ||
-    preview.contentVersion !== summary.contentVersion ||
-    preview.contentHash !== summary.contentHash ||
-    !preview.previewText.trim()
-  ) {
+  if (preview.slug !== summary.slug || !preview.previewText.trim()) {
     return null;
   }
 
-  const section = createPreviewSection(preview);
   const sectionSummary = createPreviewSectionSummary(preview);
+  if (!isValidBookStartupPreview(preview, sectionSummary)) return null;
+
+  const section = createPreviewSection(preview);
   const manifest: MorseBookManifest = {
     schemaVersion: 1,
     slug: summary.slug,

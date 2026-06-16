@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "crime-and-punishment",
-  "contentVersion": "b74888c667438eba",
-  "contentHash": "b74888c667438eba8f835f248ee6acb23ff6365c0fb0d95abd0d91833349deea",
+  "contentVersion": "d6d0c93538f5f280",
+  "contentHash": "d6d0c93538f5f28038f5d91d82ed44334e32afd0077287378396c137e342f33d",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 47,
   "estimatedListeningMinutes": 61,
   "morseCharacterEstimate": 54761,
-  "textPreview": "CHAPTER I On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S. Place and walked slowly, as though in hesitation, towards K. bri",
+  "textPreview": "CHAPTER I On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S. Place and walked slowly, as though in hesitation, towards K. ...",
   "truncated": true
 }

@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "tarzan-of-the-apes",
-  "contentVersion": "a236afa437368e90",
-  "contentHash": "a236afa437368e907cefcc61b100e8ba06e08d6686169ec9b5abdbeff2a5c955",
+  "contentVersion": "742f0b77b1fb5f62",
+  "contentHash": "742f0b77b1fb5f625a57999bc4c496e1b82950a1f47bf72631c7f16983602271",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 47,
   "estimatedListeningMinutes": 64,
   "morseCharacterEstimate": 57477,
-  "textPreview": "CHAPTER I. Out to Sea I had this story from one who had no business to tell it to me, or to any other. I may credit the seductive influence of an old vintage upon the narrator for ",
+  "textPreview": "CHAPTER I. Out to Sea I had this story from one who had no business to tell it to me, or to any other. I may credit the seductive influence of an old vintage upon the narrator f...",
   "truncated": true
 }

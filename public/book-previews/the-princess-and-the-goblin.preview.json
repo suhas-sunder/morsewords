@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-princess-and-the-goblin",
-  "contentVersion": "66242e42e4019730",
-  "contentHash": "66242e42e4019730a268ae22ec5339505b4c374882b39a42b78b63ecde616ede",
+  "contentVersion": "1b735f6d9414372d",
+  "contentHash": "1b735f6d9414372db3a176dd8accd5ddb172ded859d73f1f7c96d492ea7dd224",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 22,
   "estimatedListeningMinutes": 28,
   "morseCharacterEstimate": 24912,
-  "textPreview": "CHAPTER 1 Why the Princess Has a Story About Her There was once a little princess whose father was king over a great country full of mountains and valleys. His palace was built upo",
+  "textPreview": "CHAPTER 1 Why the Princess Has a Story About Her There was once a little princess whose father was king over a great country full of mountains and valleys. His palace was built ...",
   "truncated": false
 }

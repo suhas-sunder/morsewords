@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-bell",
-  "contentVersion": "2dd0d49ad2df5c7e",
-  "contentHash": "2dd0d49ad2df5c7e571fe04d96f50664a069d1d48f8b4e513240a6324c8d5124",
+  "contentVersion": "26e487e055059310",
+  "contentHash": "26e487e0550593107eddc9a0554a052e58b7d28246c62a12505574f21ac8fe50",
   "defaultSectionId": "part-001",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 51,
   "estimatedListeningMinutes": 64,
   "morseCharacterEstimate": 57264,
-  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody coul",
+  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody c...",
   "truncated": true
 }

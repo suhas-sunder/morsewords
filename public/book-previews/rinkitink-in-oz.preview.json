@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "rinkitink-in-oz",
-  "contentVersion": "6330872a0762ddf0",
-  "contentHash": "6330872a0762ddf065d95382871afa930c94974c2078e6e620bca2753f9b2c1f",
+  "contentVersion": "ca883df3a4910700",
+  "contentHash": "ca883df3a491070049bb334e45cb9581bed40bdf6cd2130a2aad1f1be5786958",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 47,
   "estimatedListeningMinutes": 62,
   "morseCharacterEstimate": 54626,
-  "textPreview": "CHAPTER 1 If you have a map of the Land of Oz handy, you will find that the great Nonestic Ocean washes the shores of the Kingdom of Rinkitink, between which and the Land of Oz lie",
+  "textPreview": "CHAPTER 1 If you have a map of the Land of Oz handy, you will find that the great Nonestic Ocean washes the shores of the Kingdom of Rinkitink, between which and the Land of Oz ...",
   "truncated": true
 }

@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "candide",
-  "contentVersion": "0383fb6794a00bba",
-  "contentHash": "0383fb6794a00bbabf847a8e5b0c066f4f35f6c00ceecfd158e0d9eaa358c394",
+  "contentVersion": "7e16293d9d2e0e2f",
+  "contentHash": "7e16293d9d2e0e2fdecf888f873fc3eda92bd4675d761767065a4ef1921c6f81",
   "defaultSectionId": "part-002",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 2",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 47,
   "estimatedListeningMinutes": 65,
   "morseCharacterEstimate": 57910,
-  "textPreview": "\"It is more likely,\" said he, \"mankind have a little corrupted nature, for they were not born wolves, and they have become wolves; God has given them neither cannon of four-and-twe",
+  "textPreview": "\"It is more likely,\" said he, \"mankind have a little corrupted nature, for they were not born wolves, and they have become wolves; God has given them neither cannon of four-and-...",
   "truncated": true
 }

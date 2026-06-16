@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "treasure-island",
-  "contentVersion": "ca51c58ec8abfee1",
-  "contentHash": "ca51c58ec8abfee1b6cd7dbcada05f00fec856cf32400f8229f52cdc9bb54e56",
+  "contentVersion": "dad40837ea6d36fc",
+  "contentHash": "dad40837ea6d36fcf6f1559d0aab3a349cb58e83472d2dc33783e35c3f6b650b",
   "defaultSectionId": "part-001",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 54,
   "estimatedListeningMinutes": 64,
   "morseCharacterEstimate": 56608,
-  "textPreview": "TREASURE ISLAND by Robert Louis Stevenson TREASURE ISLAND To S.L.O., an American gentleman in accordance with whose classic taste the following narrative has been designed, it is n",
+  "textPreview": "TREASURE ISLAND by Robert Louis Stevenson TREASURE ISLAND To S.L.O., an American gentleman in accordance with whose classic taste the following narrative has been designed, it i...",
   "truncated": true
 }

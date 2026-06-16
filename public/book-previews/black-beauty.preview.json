@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "black-beauty",
-  "contentVersion": "4b4cb41dc1e8443c",
-  "contentHash": "4b4cb41dc1e8443c29b577c2a8f7c87840b3163a50058c043ba7260aa3132688",
+  "contentVersion": "0969f5659df97ffd",
+  "contentHash": "0969f5659df97ffd53c108d098c1f639d1b60e6f1f0fd09016b876e5d8450800",
   "defaultSectionId": "part-002",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 2",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 55,
   "estimatedListeningMinutes": 63,
   "morseCharacterEstimate": 56462,
-  "textPreview": "I was quite happy in my new place, and if there was one thing that I missed it must not be thought I was discontented; all who had to do with me were good and I had a light airy st",
+  "textPreview": "I was quite happy in my new place, and if there was one thing that I missed it must not be thought I was discontented; all who had to do with me were good and I had a light airy...",
   "truncated": true
 }

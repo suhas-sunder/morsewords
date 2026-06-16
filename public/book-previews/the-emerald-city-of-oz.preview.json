@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-emerald-city-of-oz",
-  "contentVersion": "f1041c68dc7cc6a6",
-  "contentHash": "f1041c68dc7cc6a6a2f6967b3c71f24f1120a95bcb868946aa82e2b89cb2cbba",
+  "contentVersion": "8d21d1d1f204a77d",
+  "contentHash": "8d21d1d1f204a77d0b6b0f7512fa8a35eba49b09d4b7da1307bbfac4db67aec3",
   "defaultSectionId": "part-002",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 2",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 50,
   "estimatedListeningMinutes": 65,
   "morseCharacterEstimate": 57715,
-  "textPreview": "\"But you must not call me 'Princess',\" she said; \"for after this I shall live on the little farm with Uncle Henry and Aunt Em, and princesses ought not to live on farms.\" \"Princess",
+  "textPreview": "\"But you must not call me 'Princess',\" she said; \"for after this I shall live on the little farm with Uncle Henry and Aunt Em, and princesses ought not to live on farms.\" \"Princ...",
   "truncated": true
 }

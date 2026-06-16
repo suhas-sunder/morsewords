@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-art-of-war",
-  "contentVersion": "554059fe92208962",
-  "contentHash": "554059fe9220896210f263fd720affffd849e41f47956820b573dd68c69352dc",
+  "contentVersion": "9c312e02cb67e374",
+  "contentHash": "9c312e02cb67e3745ffb99cb568348986d82fbea818cf60799e653c6d724597d",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 38,
   "estimatedListeningMinutes": 52,
   "morseCharacterEstimate": 46222,
-  "textPreview": "Chapter I. LAYING PLANS [Ts’ao Kung, in defining the meaning of the Chinese for the title of this chapter, says it refers to the deliberations in the temple selected by the general",
+  "textPreview": "Chapter I. LAYING PLANS [Ts’ao Kung, in defining the meaning of the Chinese for the title of this chapter, says it refers to the deliberations in the temple selected by the gene...",
   "truncated": false
 }

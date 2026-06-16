@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "jane-eyre",
-  "contentVersion": "0aa33da4364fa283",
-  "contentHash": "0aa33da4364fa2830a1a45417516954f3fa06f3c68ac64c822f74c7166b7d28e",
+  "contentVersion": "d75e8788ee033b98",
+  "contentHash": "d75e8788ee033b98d011a5667f88ffceee065b7af3acaa18b52268dc5b03abb0",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 48,
   "estimatedListeningMinutes": 65,
   "morseCharacterEstimate": 57692,
-  "textPreview": "CHAPTER I There was no possibility of taking a walk that day. We had been wandering, indeed, in the leafless shrubbery an hour in the morning; but since dinner (Mrs. Reed, when the",
+  "textPreview": "CHAPTER I There was no possibility of taking a walk that day. We had been wandering, indeed, in the leafless shrubbery an hour in the morning; but since dinner (Mrs. Reed, when ...",
   "truncated": true
 }

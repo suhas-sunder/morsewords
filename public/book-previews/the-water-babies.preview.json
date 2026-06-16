@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-water-babies",
-  "contentVersion": "d224877b737d31d1",
-  "contentHash": "d224877b737d31d18d3c175e3eaf3ba22b879fea55e58b70048fac37fb698892",
+  "contentVersion": "ab71066d5d14fff5",
+  "contentHash": "ab71066d5d14fff502c8c2b1195e28ebd679c4e2c6e2a527529076c1ba1f7150",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 52,
   "estimatedListeningMinutes": 63,
   "morseCharacterEstimate": 56646,
-  "textPreview": "CHAPTER I ONCE upon a time there was a little chimney-sweep, and his name was Tom. That is a short name, and you have heard it before, so you will not have much trouble in remember",
+  "textPreview": "CHAPTER I ONCE upon a time there was a little chimney-sweep, and his name was Tom. That is a short name, and you have heard it before, so you will not have much trouble in remem...",
   "truncated": true
 }

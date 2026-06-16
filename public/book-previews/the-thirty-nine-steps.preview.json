@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-thirty-nine-steps",
-  "contentVersion": "77c8a895bc68a388",
-  "contentHash": "77c8a895bc68a388d98c2354f1d5d130efcdf7a76d232d111859a170d5f843a0",
+  "contentVersion": "60e530443a945b25",
+  "contentHash": "60e530443a945b2581abf391d373629a5be64a4b3bae5028666d933bd37eb7a2",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 52,
   "estimatedListeningMinutes": 64,
   "morseCharacterEstimate": 56467,
-  "textPreview": "Chapter I. The Man Who Died I returned from the City about three o’clock on that May afternoon pretty well disgusted with life. I had been three months in the Old Country, and was ",
+  "textPreview": "Chapter I. The Man Who Died I returned from the City about three o’clock on that May afternoon pretty well disgusted with life. I had been three months in the Old Country, and w...",
   "truncated": true
 }

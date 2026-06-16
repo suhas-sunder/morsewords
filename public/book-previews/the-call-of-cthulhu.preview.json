@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-call-of-cthulhu",
-  "contentVersion": "8012524bade135bc",
-  "contentHash": "8012524bade135bcff21083fc9fee2b13a7a8bf56aad8a0ac51561814979dfdd",
+  "contentVersion": "92ed56343936c95c",
+  "contentHash": "92ed56343936c95cf8c37fadf4f90c36eff1257be05c15f0d93fd7b56a99bbb5",
   "defaultSectionId": "part-002",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 2",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 46,
   "estimatedListeningMinutes": 63,
   "morseCharacterEstimate": 55914,
-  "textPreview": "Only poetry or madness could do justice to the noises heard by Legrasse's men as they plowed on through the black morass toward the red glare and the muffled tom-toms. There are vo",
+  "textPreview": "Only poetry or madness could do justice to the noises heard by Legrasse's men as they plowed on through the black morass toward the red glare and the muffled tom-toms. There are...",
   "truncated": true
 }

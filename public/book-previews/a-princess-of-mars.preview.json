@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "a-princess-of-mars",
-  "contentVersion": "0052422aab126b0b",
-  "contentHash": "0052422aab126b0b8e28c5fc012e042a3917032b6a6a7d97cce225692342df6d",
+  "contentVersion": "964d8b5d525d0873",
+  "contentHash": "964d8b5d525d0873bd8de3498ade7ca6508238a3dac5168f3672045154fc3ec1",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 49,
   "estimatedListeningMinutes": 63,
   "morseCharacterEstimate": 55890,
-  "textPreview": "CHAPTER I ON THE ARIZONA HILLS I am a very old man; how old I do not know. Possibly I am a hundred, possibly more; but I cannot tell because I have never aged as other men, nor do ",
+  "textPreview": "CHAPTER I ON THE ARIZONA HILLS I am a very old man; how old I do not know. Possibly I am a hundred, possibly more; but I cannot tell because I have never aged as other men, nor ...",
   "truncated": true
 }

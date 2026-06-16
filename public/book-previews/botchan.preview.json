@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "botchan",
-  "contentVersion": "4854dd5def4973a3",
-  "contentHash": "4854dd5def4973a3afe9dce4cfc1a5d1b0beed8b0e0f53034c94567d20873786",
+  "contentVersion": "ae263983bcc94d6c",
+  "contentHash": "ae263983bcc94d6c1e63cf538e8e15e6f9a85a0f18e913466db7d49d13a01ce7",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 47,
   "estimatedListeningMinutes": 60,
   "morseCharacterEstimate": 53098,
-  "textPreview": "CHAPTER I Because of an hereditary recklessness, I have been playing always a losing game since my childhood. During my grammar school days, I was once laid up for about a week by ",
+  "textPreview": "CHAPTER I Because of an hereditary recklessness, I have been playing always a losing game since my childhood. During my grammar school days, I was once laid up for about a week ...",
   "truncated": true
 }

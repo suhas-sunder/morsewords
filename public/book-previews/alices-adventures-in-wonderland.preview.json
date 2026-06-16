@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "alices-adventures-in-wonderland",
-  "contentVersion": "be03ec72f91b6191",
-  "contentHash": "be03ec72f91b619190da1a2e71da97d543d6eee2d78537d96ccee3990c58087f",
+  "contentVersion": "71defc6cd599c22c",
+  "contentHash": "71defc6cd599c22c6a6afa2bc0a5e7d9a64cf912905f64800031eddbcf7ddb6f",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 52,
   "estimatedListeningMinutes": 65,
   "morseCharacterEstimate": 57413,
-  "textPreview": "CHAPTER I. Down the Rabbit-Hole Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book ",
+  "textPreview": "CHAPTER I. Down the Rabbit-Hole Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the bo...",
   "truncated": true
 }

@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "rainbow-valley",
-  "contentVersion": "81102d58988c2029",
-  "contentHash": "81102d58988c2029f426328f27f9e5d390cf85143221625462bfa2a446e9d65b",
+  "contentVersion": "e7fafa229524c955",
+  "contentHash": "e7fafa229524c95540da4188c4a94b01151545e7445a2b25b9c1f352fc22a92f",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 35,
   "estimatedListeningMinutes": 46,
   "morseCharacterEstimate": 40902,
-  "textPreview": "CHAPTER I. HOME AGAIN It was a clear, apple-green evening in May, and Four Winds Harbour was mirroring back the clouds of the golden west between its softly dark shores. The sea mo",
+  "textPreview": "CHAPTER I. HOME AGAIN It was a clear, apple-green evening in May, and Four Winds Harbour was mirroring back the clouds of the golden west between its softly dark shores. The sea...",
   "truncated": false
 }

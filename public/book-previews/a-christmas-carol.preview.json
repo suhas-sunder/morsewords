@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "a-christmas-carol",
-  "contentVersion": "027569a73e9db823",
-  "contentHash": "027569a73e9db823952df34ee60352f786948f36ea6aae350e252768d3bbc91f",
+  "contentVersion": "7aa2c3f3504d04dd",
+  "contentHash": "7aa2c3f3504d04dd1ff2a221be80ef81c40929ce8c7e4faaa8f768047f36fd33",
   "defaultSectionId": "part-002",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 2",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 47,
   "estimatedListeningMinutes": 63,
   "morseCharacterEstimate": 56597,
-  "textPreview": "Scrooge glanced about him on the floor, in the expectation of finding himself surrounded by some fifty or sixty fathoms of iron cable: but he could see nothing. \"Jacob,\" he said, i",
+  "textPreview": "Scrooge glanced about him on the floor, in the expectation of finding himself surrounded by some fifty or sixty fathoms of iron cable: but he could see nothing. \"Jacob,\" he said...",
   "truncated": true
 }

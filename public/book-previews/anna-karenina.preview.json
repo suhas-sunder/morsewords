@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "anna-karenina",
-  "contentVersion": "6230857ff4722307",
-  "contentHash": "6230857ff47223076365ec7440883eefeb1be5b8349415f8423e76e8e437f1d5",
+  "contentVersion": "984e381c5bbe3bfc",
+  "contentHash": "984e381c5bbe3bfcd6f3afd7cc628706c16b8f97845dcc66b0c5bec12e6e8b3b",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 24,
   "estimatedListeningMinutes": 33,
   "morseCharacterEstimate": 29361,
-  "textPreview": "Chapter 1 Happy families are all alike; every unhappy family is unhappy in its own way. Everything was in confusion in the Oblonskys’ house. The wife had discovered that the husban",
+  "textPreview": "Chapter 1 Happy families are all alike; every unhappy family is unhappy in its own way. Everything was in confusion in the Oblonskys’ house. The wife had discovered that the hus...",
   "truncated": false
 }

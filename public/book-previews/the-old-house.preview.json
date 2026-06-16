@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-old-house",
-  "contentVersion": "1a6992017bfb2a93",
-  "contentHash": "1a6992017bfb2a9346169b1f77e8b14eae35429f1a2b0d7885803e3be32ab29a",
+  "contentVersion": "cb84871b55f9b084",
+  "contentHash": "cb84871b55f9b0847226aa42f80f3819e1baef3818e1e7ea46794830045d289a",
   "defaultSectionId": "part-001",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 51,
   "estimatedListeningMinutes": 65,
   "morseCharacterEstimate": 57585,
-  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be know",
+  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be k...",
   "truncated": true
 }

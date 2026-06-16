@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-railway-children",
-  "contentVersion": "ffe3041f859c8a3d",
-  "contentHash": "ffe3041f859c8a3d697f7fdadb219e6886d94481ae03cf5bc97c2c3daecc3394",
+  "contentVersion": "2e8fd14f73610186",
+  "contentHash": "2e8fd14f73610186ff5937435d349246561d374111bd004cac2cc03eae76bd57",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 49,
   "estimatedListeningMinutes": 65,
   "morseCharacterEstimate": 57701,
-  "textPreview": "Chapter I. The beginning of things. They were not railway children to begin with. I don't suppose they had ever thought about railways except as a means of getting to Maskelyne and",
+  "textPreview": "Chapter I. The beginning of things. They were not railway children to begin with. I don't suppose they had ever thought about railways except as a means of getting to Maskelyne ...",
   "truncated": true
 }

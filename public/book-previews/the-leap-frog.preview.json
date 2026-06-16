@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "the-leap-frog",
-  "contentVersion": "4f5036aca59aa253",
-  "contentHash": "4f5036aca59aa25395496a4ad67515f9416b862f1e9fd1029fd7b7e5112b4924",
+  "contentVersion": "40ef802bc05a7172",
+  "contentHash": "40ef802bc05a717287357202e4eebc9100c3b285460772252ece7e18c49e07b6",
   "defaultSectionId": "part-001",
   "defaultSectionKind": "part",
   "defaultSectionLabel": "Part 1",
@@ -14,6 +14,6 @@
   "estimatedTypingMinutes": 16,
   "estimatedListeningMinutes": 20,
   "morseCharacterEstimate": 17792,
-  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they invited the whole world",
+  "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they invited the whole wo...",
   "truncated": false
 }
