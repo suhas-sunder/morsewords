@@ -1,0 +1,2810 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-write-3-verification",
+  "generatedAt": "2026-06-16T19:29:53.565Z",
+  "pilotSlugs": [
+    "frankenstein",
+    "the-three-musketeers",
+    "a-tale-of-two-cities",
+    "around-the-world-in-eighty-days",
+    "cranford",
+    "little-fuzzy",
+    "macbeth",
+    "persuasion",
+    "pygmalion",
+    "sense-and-sensibility",
+    "the-adventures-of-tom-sawyer",
+    "the-door-in-the-wall",
+    "the-hound-of-the-baskervilles",
+    "the-king-in-yellow",
+    "the-life-and-adventures-of-robinson-crusoe",
+    "the-maltese-falcon",
+    "the-tempest",
+    "the-turn-of-the-screw",
+    "the-war-of-the-worlds",
+    "the-wendigo",
+    "wuthering-heights",
+    "anne-of-avonlea",
+    "five-weeks-in-a-balloon",
+    "moby-dick",
+    "tales-of-war"
+  ],
+  "inspectedPaths": {
+    "tempBooksRoot": "app/client/assets/temp-books",
+    "generatedRoot": "app/client/assets/books/generated",
+    "previewRoot": "public/book-previews",
+    "cloudflareRoot": "app/client/assets/books/cloudflare-export",
+    "dryRunReport": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+    "writeReport": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json"
+  },
+  "summary": {
+    "pass": 20,
+    "warn": 5,
+    "fail": 0
+  },
+  "books": [
+    {
+      "slug": "frankenstein",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/frankenstein/manifest.json",
+        "app/client/assets/books/generated/frankenstein/cleaned_book.json",
+        "app/client/assets/books/generated/frankenstein/processed_book.json",
+        "app/client/assets/books/generated/frankenstein/rights_report.json",
+        "app/client/assets/books/generated/frankenstein/processing_notes.md",
+        "app/client/assets/books/generated/frankenstein/sections/letter-001.json",
+        "app/client/assets/books/generated/frankenstein/sections/letter-002.json",
+        "app/client/assets/books/generated/frankenstein/sections/letter-003.json",
+        "app/client/assets/books/generated/frankenstein/sections/letter-004.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-001.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-002.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-003.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-004.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-005.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-006.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-007.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-008.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-009.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-010.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-011.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-012.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-013.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-014.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-015.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-016.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-017.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-018.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-019.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-020.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-021.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-022.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-023.json",
+        "app/client/assets/books/generated/frankenstein/sections/chapter-024.json"
+      ],
+      "previewAssetInspected": "public/book-previews/frankenstein.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "chapter-based arabic numbers; custom source-backed sectioning",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Frankenstein prior generated-output issue is corrected.",
+        "details": [
+          "Letters 1-4 are default readable sections before Chapter 1.",
+          "Chapters 1-24 are preserved as generated chapter sections."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [
+        "Batch-3 custom source-backed sectioning applied to preserve real openings or story boundaries."
+      ],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "Letter 1 _To Mrs. Saville, England._ St. Petersburgh, Dec. 11th, 17—. You will rejoice to hear that no disaster has accompanied the",
+        "generated": "Letter 1 _To Mrs. Saville, England._ St. Petersburgh, Dec. 11th, 17-. You will rejoice to hear that no disaster has accompanied the commencement of an enterprise which you have regarded with such evil forebodings. I arrived here yesterday, and my first task is to assure my dear sister of my welfare and increasing confidence in the success of my undertaking....",
+        "preview": "Letter 1 _To Mrs. Saville, England._ St. Petersburgh, Dec. 11th, 17-. You will rejoice to hear that no disaster has accompanied the commencement of an enterprise which you have regarded with such evil forebodings. I arrived here yesterday, and my first task is to assure my dear sister of my welfare and increasing confidence in the success of my undertaking...."
+      },
+      "endSnippet": {
+        "raw": "miseries will be extinct. I shall ascend my funeral pile triumphantly and exult in the agony of the torturing flames. The light of that conflagration will fade away; my ashes will be swept into the sea by the winds. My spirit will sleep in peace, or if it thinks, it will not surely think thus. Farewell.” He sprang from the cabin-window as he said this, upon...",
+        "generated": "idst seek my extinction, that I might not cause greater wretchedness; and if yet, in some mode unknown to me, thou hadst not ceased to think and feel, thou wouldst not desire against me a vengeance greater than that which I feel. Blasted as thou wert, my agony was still superior to thine, for the bitter sting of remorse will not cease to rankle in my wounds..."
+      },
+      "sectionSummary": {
+        "totalSections": 28,
+        "defaultSections": 28,
+        "firstDefaultSection": {
+          "id": "letter-001",
+          "label": "Letter 1",
+          "title": "_To Mrs. Saville, England._",
+          "wordCount": 1200
+        },
+        "lastDefaultSection": {
+          "id": "chapter-024",
+          "label": "Chapter 24",
+          "title": null,
+          "wordCount": 8247
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "the-three-musketeers",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-three-musketeers/manifest.json",
+        "app/client/assets/books/generated/the-three-musketeers/cleaned_book.json",
+        "app/client/assets/books/generated/the-three-musketeers/processed_book.json",
+        "app/client/assets/books/generated/the-three-musketeers/rights_report.json",
+        "app/client/assets/books/generated/the-three-musketeers/processing_notes.md",
+        "app/client/assets/books/generated/the-three-musketeers/sections/title-page-001.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-024.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-025.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-026.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-027.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-028.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-029.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-030.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-031.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-032.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-033.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-034.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-035.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-036.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-037.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-038.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-039.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-040.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-041.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-042.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-043.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-044.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-045.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-046.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-047.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-048.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-049.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-050.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-051.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-052.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-053.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-054.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-055.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-056.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-057.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-058.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-059.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-060.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-061.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-062.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-063.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-064.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-065.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-066.json",
+        "app/client/assets/books/generated/the-three-musketeers/sections/chapter-067.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-three-musketeers.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "The Three Musketeers prior generated-output issue is corrected.",
+        "details": [
+          "Author's Preface is retained as non-default opening material.",
+          "Chapters I-LXVII are preserved as 67 default readable chapter sections.",
+          "Chapter headings exist and no giant fallback blob is used."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "AUTHOR’S PREFACE In which it is proved that, notwithstanding their names’ ending in _os_ and _is_, the heroes of the story which we are about to have the honor to relate to our readers have nothing mythological about them. A short time ago, while making researches in the Royal Library for my History of Louis XIV., I stumbled by chance upon the Memoirs of M....",
+        "generated": "AUTHOR'S PREFACE In which it is proved that, notwithstanding their names' ending in _os_ and _is_, the heroes of the story which we are about to have the honor to relate to our readers have nothing mythological about them. A short time ago, while making researches in the Royal Library for my History of Louis XIV., I stumbled by chance upon the Memoirs of M....",
+        "preview": "Chapter I. THE THREE PRESENTS OF D'ARTAGNAN THE ELDER On the first Monday of the month of April, 1625, the market town of Meung, in which the author of _Romance of the Rose_ was born, appeared to be in as perfect a state of revolution as if the Huguenots had just made a second La Rochelle of it. Many citizens, seeing the women flying toward the High Street,..."
+      },
+      "endSnippet": {
+        "raw": "M. Bonacieux lived on very quietly, wholly ignorant of what had become of his wife, and caring very little about it. One day he had the imprudence to recall himself to the memory of the cardinal. The cardinal had him informed that he would provide for him so that he should never want for anything in future. In fact, M. Bonacieux, having left his house at se...",
+        "generated": "e. \"It is much better both for you and for me to stop where we are,\" answered the wounded man. \"_Corbleu!_ I am more your friend than you think-for after our very first encounter, I could by saying a word to the cardinal have had your throat cut!\" They this time embraced heartily, and without retaining any malice. Planchet obtained from Rochefort the rank o..."
+      },
+      "sectionSummary": {
+        "totalSections": 68,
+        "defaultSections": 67,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "THE THREE PRESENTS OF D'ARTAGNAN THE ELDER",
+          "wordCount": 5756
+        },
+        "lastDefaultSection": {
+          "id": "chapter-067",
+          "label": "Chapter 67",
+          "title": "CONCLUSION",
+          "wordCount": 3330
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "a-tale-of-two-cities",
+      "status": "warn",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/a-tale-of-two-cities/manifest.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/cleaned_book.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/processed_book.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/rights_report.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/processing_notes.md",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-001.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-002.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-003.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-004.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-005.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-006.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-007.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-008.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-009.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-010.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-011.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-012.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-013.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-014.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-015.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-016.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-017.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-018.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-019.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-020.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-021.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-022.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-023.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-024.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-025.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-026.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-027.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-028.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-029.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-030.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-031.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-032.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-033.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-034.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-035.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-036.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-037.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-038.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-039.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-040.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-041.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-042.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-043.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-044.json",
+        "app/client/assets/books/generated/a-tale-of-two-cities/sections/chapter-045.json"
+      ],
+      "previewAssetInspected": "public/book-previews/a-tale-of-two-cities.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "startBoundaryVerdict": {
+        "status": "warn",
+        "summary": "Generated start needs manual review.",
+        "details": [
+          "Generated text does not begin with the normalized raw boundary."
+        ]
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows the selected structural convention.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [
+        "Generated start needs manual review.",
+        "Generated text does not begin with the normalized raw boundary."
+      ],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "Book the First--Recalled to Life CHAPTER I. The Period",
+        "generated": "CHAPTER I. The Period It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before...",
+        "preview": "CHAPTER I. The Period It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before..."
+      },
+      "endSnippet": {
+        "raw": "winning it so well, that my name is made illustrious there by the light of his. I see the blots I threw upon it, faded away. I see him, fore-most of just judges and honoured men, bringing a boy of my name, with a forehead that I know and golden hair, to this place--then fair to look upon, with not a trace of this day’s disfigurement--and I hear him tell the...",
+        "generated": "heir descendants, generations hence. I see her, an old woman, weeping for me on the anniversary of this day. I see her and her husband, their course done, lying side by side in their last earthly bed, and I know that each was not more honoured and held sacred in the other's soul, than I was in the souls of both. \"I see that child who lay upon her bosom and..."
+      },
+      "sectionSummary": {
+        "totalSections": 45,
+        "defaultSections": 45,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "The Period",
+          "wordCount": 1009
+        },
+        "lastDefaultSection": {
+          "id": "chapter-045",
+          "label": "Chapter 15",
+          "title": "The Footsteps Die Out For Ever",
+          "wordCount": 2250
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "around-the-world-in-eighty-days",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/manifest.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/cleaned_book.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/processed_book.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/rights_report.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/processing_notes.md",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-001.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-002.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-003.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-004.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-005.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-006.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-007.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-008.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-009.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-010.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-011.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-012.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-013.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-014.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-015.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-016.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-017.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-018.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-019.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-020.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-021.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-022.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-023.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-024.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-025.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-026.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-027.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-028.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-029.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-030.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-031.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-032.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-033.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-034.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-035.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-036.json",
+        "app/client/assets/books/generated/around-the-world-in-eighty-days/sections/chapter-037.json"
+      ],
+      "previewAssetInspected": "public/book-previews/around-the-world-in-eighty-days.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Around the World in Eighty Days prior generated-output issue is corrected.",
+        "details": [
+          "All 37 real chapters are default readable sections.",
+          "Prior title-page and short-section damage is absent from the generated section list."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "CHAPTER I. IN WHICH PHILEAS FOGG AND PASSEPARTOUT ACCEPT EACH OTHER, THE ONE AS MASTER, THE OTHER AS MAN Mr. Phileas Fogg lived, in 1872, at No. 7, Saville Row, Burlington Gardens, the house in which Sheridan died in 1814. He was one of the most noticeable members of the Reform Club, though he seemed always to avoid attracting attention; an enigmatical pers...",
+        "generated": "CHAPTER I. IN WHICH PHILEAS FOGG AND PASSEPARTOUT ACCEPT EACH OTHER, THE ONE AS MASTER, THE OTHER AS MAN Mr. Phileas Fogg lived, in 1872, at No. 7, Saville Row, Burlington Gardens, the house in which Sheridan died in 1814. He was one of the most noticeable members of the Reform Club, though he seemed always to avoid attracting attention; an enigmatical pers...",
+        "preview": "CHAPTER I. IN WHICH PHILEAS FOGG AND PASSEPARTOUT ACCEPT EACH OTHER, THE ONE AS MASTER, THE OTHER AS MAN Mr. Phileas Fogg lived, in 1872, at No. 7, Saville Row, Burlington Gardens, the house in which Sheridan died in 1814. He was one of the most noticeable members of the Reform Club, though he seemed always to avoid attracting attention; an enigmatical pers..."
+      },
+      "endSnippet": {
+        "raw": "sledges, elephants. The eccentric gentleman had throughout displayed all his marvellous qualities of coolness and exactitude. But what then? What had he really gained by all this trouble? What had he brought back from this long and weary journey? Nothing, say you? Perhaps so; nothing but a charming woman, who, strange as it may appear, made him the happiest...",
+        "generated": "matter, Passepartout?\" \"What is it, sir? Why, I've just this instant found out-\" \"What?\" \"That we might have made the tour of the world in only seventy-eight days.\" \"No doubt,\" returned Mr. Fogg, \"by not crossing India. But if I had not crossed India, I should not have saved Aouda; she would not have been my wife, and-\" Mr. Fogg quietly shut the door. Phile..."
+      },
+      "sectionSummary": {
+        "totalSections": 37,
+        "defaultSections": 37,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "wordCount": 1473
+        },
+        "lastDefaultSection": {
+          "id": "chapter-037",
+          "label": "Chapter 37",
+          "title": null,
+          "wordCount": 963
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "cranford",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/cranford/manifest.json",
+        "app/client/assets/books/generated/cranford/cleaned_book.json",
+        "app/client/assets/books/generated/cranford/processed_book.json",
+        "app/client/assets/books/generated/cranford/rights_report.json",
+        "app/client/assets/books/generated/cranford/processing_notes.md",
+        "app/client/assets/books/generated/cranford/sections/chapter-001.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-002.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-003.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-004.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-005.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-006.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-007.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-008.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-009.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-010.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-011.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-012.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-013.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-014.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-015.json",
+        "app/client/assets/books/generated/cranford/sections/chapter-016.json"
+      ],
+      "previewAssetInspected": "public/book-previews/cranford.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows the selected structural convention.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "CHAPTER I. OUR SOCIETY IN the first place, Cranford is in possession of the Amazons; all the holders of houses above a certain rent are women. If a married couple come to settle in the town, somehow the gentleman disappears; he is either fairly frightened to death by being the only man in the Cranford evening parties, or he is accounted for by being with hi...",
+        "generated": "CHAPTER I. OUR SOCIETY IN the first place, Cranford is in possession of the Amazons; all the holders of houses above a certain rent are women. If a married couple come to settle in the town, somehow the gentleman disappears; he is either fairly frightened to death by being the only man in the Cranford evening parties, or he is accounted for by being with hi...",
+        "preview": "CHAPTER I. OUR SOCIETY IN the first place, Cranford is in possession of the Amazons; all the holders of houses above a certain rent are women. If a married couple come to settle in the town, somehow the gentleman disappears; he is either fairly frightened to death by being the only man in the Cranford evening parties, or he is accounted for by being with hi..."
+      },
+      "endSnippet": {
+        "raw": "Somehow or another he did; and fairly got them into conversation together. Major and Mrs Gordon helped at the good work with their perfect ignorance of any existing coolness between any of the inhabitants of Cranford. Ever since that day there has been the old friendly sociability in Cranford society; which I am thankful for, because of my dear Miss Matty’s...",
+        "generated": "her well awake. I bribed her here by asking her to let me have her name as patroness for my poor conjuror this evening; and I don't want to give her time enough to get up her rancour against the Hogginses, who are just coming in. I want everybody to be friends, for it harasses Matty so much to hear of these quarrels. I shall go at it again by-and-by, so you..."
+      },
+      "sectionSummary": {
+        "totalSections": 16,
+        "defaultSections": 16,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "OUR SOCIETY",
+          "wordCount": 3950
+        },
+        "lastDefaultSection": {
+          "id": "chapter-016",
+          "label": "Chapter 16",
+          "title": "PEACE TO CRANFORD",
+          "wordCount": 2958
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "little-fuzzy",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/little-fuzzy/manifest.json",
+        "app/client/assets/books/generated/little-fuzzy/cleaned_book.json",
+        "app/client/assets/books/generated/little-fuzzy/processed_book.json",
+        "app/client/assets/books/generated/little-fuzzy/rights_report.json",
+        "app/client/assets/books/generated/little-fuzzy/processing_notes.md",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-001.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-002.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-003.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-004.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-005.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-006.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-007.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-008.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-009.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-010.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-011.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-012.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-013.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-014.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-015.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-016.json",
+        "app/client/assets/books/generated/little-fuzzy/sections/chapter-017.json"
+      ],
+      "previewAssetInspected": "public/book-previews/little-fuzzy.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "standalone roman numeral sections",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows the selected structural convention.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "I Jack Holloway found himself squinting, the orange sun full in his eyes. He raised a hand to push his hat forward, then lowered it to the controls to alter the pulse rate of the contragravity-field generators and lift the manipulator another hundred feet. For a moment he sat, puffing on the short pipe that had yellowed the corners of his white mustache, an...",
+        "generated": "I Jack Holloway found himself squinting, the orange sun full in his eyes. He raised a hand to push his hat forward, then lowered it to the controls to alter the pulse rate of the contragravity-field generators and lift the manipulator another hundred feet. For a moment he sat, puffing on the short pipe that had yellowed the corners of his white mustache, an...",
+        "preview": "I Jack Holloway found himself squinting, the orange sun full in his eyes. He raised a hand to push his hat forward, then lowered it to the controls to alter the pulse rate of the contragravity-field generators and lift the manipulator another hundred feet. For a moment he sat, puffing on the short pipe that had yellowed the corners of his white mustache, an..."
+      },
+      "endSnippet": {
+        "raw": "their ears and hear what they were saying, and Pappy Jack was learning some of their words, and teaching them some of his. And soon all the people would find Big Ones to live with, who would take care of them and have fun with them and love them, and give them the Wonderful Food. And with the Big Ones taking care of them, maybe more of their babies would li...",
+        "generated": "all sure of that. And the other Big Ones had taken him away, and they had never seen him again. He had talked about that with the others--with Flora and Fauna, and Dr. Crippen, and Complex, and Superego, and Dillinger and Lizzie Borden. Now that they were all going to live with the Big Ones, they would have to use those funny names. Someday they would find..."
+      },
+      "sectionSummary": {
+        "totalSections": 17,
+        "defaultSections": 17,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "wordCount": 3816
+        },
+        "lastDefaultSection": {
+          "id": "chapter-017",
+          "label": "Chapter 17",
+          "title": null,
+          "wordCount": 1350
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "macbeth",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/macbeth/manifest.json",
+        "app/client/assets/books/generated/macbeth/cleaned_book.json",
+        "app/client/assets/books/generated/macbeth/processed_book.json",
+        "app/client/assets/books/generated/macbeth/rights_report.json",
+        "app/client/assets/books/generated/macbeth/processing_notes.md",
+        "app/client/assets/books/generated/macbeth/sections/title-page-001.json",
+        "app/client/assets/books/generated/macbeth/sections/part-001.json",
+        "app/client/assets/books/generated/macbeth/sections/part-002.json",
+        "app/client/assets/books/generated/macbeth/sections/part-003.json",
+        "app/client/assets/books/generated/macbeth/sections/part-004.json",
+        "app/client/assets/books/generated/macbeth/sections/part-005.json"
+      ],
+      "previewAssetInspected": "public/book-previews/macbeth.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "play acts",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "macbeth play structure is acceptable.",
+        "details": [
+          "Cast/front matter is retained as a non-default opening section.",
+          "Five default act sections preserve act/scene dialogue structure."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "Dramatis Personæ DUNCAN, King of Scotland. MALCOLM, his Son. DONALBAIN, his Son. MACBETH, General in the King’s Army. BANQUO, General in the King’s Army. MACDUFF, Nobleman of Scotland. LENNOX, Nobleman of Scotland.",
+        "generated": "Dramatis Personæ DUNCAN, King of Scotland. MALCOLM, his Son. DONALBAIN, his Son. MACBETH, General in the King's Army. BANQUO, General in the King's Army. MACDUFF, Nobleman of Scotland. LENNOX, Nobleman of Scotland. ROSS, Nobleman of Scotland. MENTEITH, Nobleman of Scotland. ANGUS, Nobleman of Scotland. CAITHNESS, Nobleman of Scotland. FLEANCE, Son to Banquo...",
+        "preview": "ACT I SCENE I. An open Place. Thunder and Lightning. Enter three Witches. FIRST WITCH. When shall we three meet again? In thunder, lightning, or in rain? SECOND WITCH. When the hurlyburly's done, When the battle's lost and won. THIRD WITCH. That will be ere the set of sun. FIRST WITCH. Where the place? SECOND WITCH. Upon the heath. THIRD WITCH. There to mee..."
+      },
+      "endSnippet": {
+        "raw": "Of this dead butcher, and his fiend-like queen, Who, as ’tis thought, by self and violent hands Took off her life;—this, and what needful else That calls upon us, by the grace of Grace, We will perform in measure, time, and place. So thanks to all at once, and to each one, Whom we invite to see us crown’d at Scone. [_Flourish. Exeunt._]",
+        "generated": "here stands Th' usurper's cursed head: the time is free. I see thee compass'd with thy kingdom's pearl, That speak my salutation in their minds; Whose voices I desire aloud with mine,- Hail, King of Scotland! ALL. Hail, King of Scotland! [_Flourish._] MALCOLM. We shall not spend a large expense of time Before we reckon with your several loves, And make us e..."
+      },
+      "sectionSummary": {
+        "totalSections": 6,
+        "defaultSections": 5,
+        "firstDefaultSection": {
+          "id": "part-001",
+          "label": "Act 1",
+          "title": null,
+          "wordCount": 4038
+        },
+        "lastDefaultSection": {
+          "id": "part-005",
+          "label": "Act 5",
+          "title": null,
+          "wordCount": 3218
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "persuasion",
+      "status": "warn",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/persuasion/manifest.json",
+        "app/client/assets/books/generated/persuasion/cleaned_book.json",
+        "app/client/assets/books/generated/persuasion/processed_book.json",
+        "app/client/assets/books/generated/persuasion/rights_report.json",
+        "app/client/assets/books/generated/persuasion/processing_notes.md",
+        "app/client/assets/books/generated/persuasion/sections/chapter-001.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-002.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-003.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-004.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-005.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-006.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-007.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-008.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-009.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-010.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-011.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-012.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-013.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-014.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-015.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-016.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-017.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-018.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-019.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-020.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-021.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-022.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-023.json",
+        "app/client/assets/books/generated/persuasion/sections/chapter-024.json"
+      ],
+      "previewAssetInspected": "public/book-previews/persuasion.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "warn",
+        "summary": "Generated ending differs from the normalized raw boundary.",
+        "details": [
+          "This can be expected only when decorative markers or placeholders were removed."
+        ]
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows the selected structural convention.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [
+        "Standalone FINIS marker removed from playable text.",
+        "Generated ending differs from the normalized raw boundary.",
+        "This can be expected only when decorative markers or placeholders were removed."
+      ],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "CHAPTER I. Sir Walter Elliot, of Kellynch Hall, in Somersetshire, was a man who, for his own amusement, never took up any book but the Baronetage; there he found occupation for an idle hour, and consolation in a distressed one; there his faculties were roused into admiration and respect, by contemplating the limited remnant of the earliest patents; there an...",
+        "generated": "CHAPTER I. Sir Walter Elliot, of Kellynch Hall, in Somersetshire, was a man who, for his own amusement, never took up any book but the Baronetage; there he found occupation for an idle hour, and consolation in a distressed one; there his faculties were roused into admiration and respect, by contemplating the limited remnant of the earliest patents; there an...",
+        "preview": "CHAPTER I. Sir Walter Elliot, of Kellynch Hall, in Somersetshire, was a man who, for his own amusement, never took up any book but the Baronetage; there he found occupation for an idle hour, and consolation in a distressed one; there his faculties were roused into admiration and respect, by contemplating the limited remnant of the earliest patents; there an..."
+      },
+      "endSnippet": {
+        "raw": "itself, and she had the full worth of it in Captain Wentworth’s affection. His profession was all that could ever make her friends wish that tenderness less, the dread of a future war all that could dim her sunshine. She gloried in being a sailor’s wife, but she must pay the tax of quick alarm for belonging to that profession which is, if possible, more dis...",
+        "generated": "to render, to his wife. Mrs Smith's enjoyments were not spoiled by this improvement of income, with some improvement of health, and the acquisition of such friends to be often with, for her cheerfulness and mental alacrity did not fail her; and while these prime supplies of good remained, she might have bid defiance even to greater accessions of worldly pro..."
+      },
+      "sectionSummary": {
+        "totalSections": 24,
+        "defaultSections": 24,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "wordCount": 2614
+        },
+        "lastDefaultSection": {
+          "id": "chapter-024",
+          "label": "Chapter 24",
+          "title": null,
+          "wordCount": 1581
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "pygmalion",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/pygmalion/manifest.json",
+        "app/client/assets/books/generated/pygmalion/cleaned_book.json",
+        "app/client/assets/books/generated/pygmalion/processed_book.json",
+        "app/client/assets/books/generated/pygmalion/rights_report.json",
+        "app/client/assets/books/generated/pygmalion/processing_notes.md",
+        "app/client/assets/books/generated/pygmalion/sections/title-page-001.json",
+        "app/client/assets/books/generated/pygmalion/sections/part-001.json",
+        "app/client/assets/books/generated/pygmalion/sections/part-002.json",
+        "app/client/assets/books/generated/pygmalion/sections/part-003.json",
+        "app/client/assets/books/generated/pygmalion/sections/part-004.json",
+        "app/client/assets/books/generated/pygmalion/sections/part-005.json"
+      ],
+      "previewAssetInspected": "public/book-previews/pygmalion.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "play acts",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pygmalion play structure is acceptable.",
+        "details": [
+          "Cast/front matter is retained as a non-default opening section.",
+          "Five default act sections preserve act/scene dialogue structure."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "PREFACE TO PYGMALION. A Professor of Phonetics. As will be seen later on, Pygmalion needs, not a preface, but a sequel, which I have supplied in its due place. The English have no respect for their language, and will not teach their children to speak it. They spell it so abominably that no man can teach himself what it sounds like. It is impossible for an E...",
+        "generated": "PREFACE TO PYGMALION. A Professor of Phonetics. As will be seen later on, Pygmalion needs, not a preface, but a sequel, which I have supplied in its due place. The English have no respect for their language, and will not teach their children to speak it. They spell it so abominably that no man can teach himself what it sounds like. It is impossible for an E...",
+        "preview": "ACT I Covent Garden at 11.15 p.m. Torrents of heavy summer rain. Cab whistles blowing frantically in all directions. Pedestrians running for shelter into the market and under the portico of St. Paul's Church, where there are already several people, among them a lady and her daughter in evening dress. They are all peering out gloomily at the rain, except one..."
+      },
+      "endSnippet": {
+        "raw": "could get him alone, on a desert island, away from all ties and with nobody else in the world to consider, and just drag him off his pedestal and see him making love like any common man. We all have private imaginations of that sort. But when it comes to business, to the life that she really leads as distinguished from the life of dreams and fancies, she li...",
+        "generated": "ndent on her for all sorts of little services, and that he should miss her if she went away (it would never have occurred to Freddy or the Colonel to say anything of the sort) deepens her inner certainty that she is \"no more to him than them slippers\", yet she has a sense, too, that his indifference is deeper than the infatuation of commoner souls. She is i..."
+      },
+      "sectionSummary": {
+        "totalSections": 6,
+        "defaultSections": 5,
+        "firstDefaultSection": {
+          "id": "part-001",
+          "label": "Act 1",
+          "title": null,
+          "wordCount": 3537
+        },
+        "lastDefaultSection": {
+          "id": "part-005",
+          "label": "Act 5",
+          "title": null,
+          "wordCount": 12306
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": [
+          {
+            "id": "part-005",
+            "label": "Act 5",
+            "title": null,
+            "wordCount": 12306
+          }
+        ]
+      }
+    },
+    {
+      "slug": "sense-and-sensibility",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/sense-and-sensibility/manifest.json",
+        "app/client/assets/books/generated/sense-and-sensibility/cleaned_book.json",
+        "app/client/assets/books/generated/sense-and-sensibility/processed_book.json",
+        "app/client/assets/books/generated/sense-and-sensibility/rights_report.json",
+        "app/client/assets/books/generated/sense-and-sensibility/processing_notes.md",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-001.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-002.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-003.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-004.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-005.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-006.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-007.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-008.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-009.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-010.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-011.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-012.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-013.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-014.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-015.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-016.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-017.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-018.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-019.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-020.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-021.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-022.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-023.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-024.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-025.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-026.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-027.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-028.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-029.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-030.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-031.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-032.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-033.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-034.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-035.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-036.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-037.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-038.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-039.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-040.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-041.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-042.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-043.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-044.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-045.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-046.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-047.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-048.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-049.json",
+        "app/client/assets/books/generated/sense-and-sensibility/sections/chapter-050.json"
+      ],
+      "previewAssetInspected": "public/book-previews/sense-and-sensibility.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sense and Sensibility prior generated-output issue is corrected.",
+        "details": [
+          "All 50 real chapters are default readable sections.",
+          "Prior short-section damage is absent from the generated section list."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "CHAPTER I. The family of Dashwood had long been settled in Sussex. Their estate was large, and their residence was at Norland Park, in the centre of their property, where, for many generations, they had lived in so respectable a manner as to engage the general good opinion of their surrounding acquaintance. The late owner of this estate was a single man, wh...",
+        "generated": "CHAPTER I. The family of Dashwood had long been settled in Sussex. Their estate was large, and their residence was at Norland Park, in the centre of their property, where, for many generations, they had lived in so respectable a manner as to engage the general good opinion of their surrounding acquaintance. The late owner of this estate was a single man, wh...",
+        "preview": "CHAPTER I. The family of Dashwood had long been settled in Sussex. Their estate was large, and their residence was at Norland Park, in the centre of their property, where, for many generations, they had lived in so respectable a manner as to engage the general good opinion of their surrounding acquaintance. The late owner of this estate was a single man, wh..."
+      },
+      "endSnippet": {
+        "raw": "Between Barton and Delaford, there was that constant communication which strong family affection would naturally dictate; and among the merits and the happiness of Elinor and Marianne, let it not be ranked as the least considerable, that though sisters, and living almost within sight of each other, they could live without disagreement between themselves, or...",
+        "generated": "ility in surviving her loss, he always retained that decided regard which interested him in every thing that befell her, and made her his secret standard of perfection in woman; and many a rising beauty would be slighted by him in after-days as bearing no comparison with Mrs. Brandon. Mrs. Dashwood was prudent enough to remain at the cottage, without attemp..."
+      },
+      "sectionSummary": {
+        "totalSections": 50,
+        "defaultSections": 50,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "wordCount": 1558
+        },
+        "lastDefaultSection": {
+          "id": "chapter-050",
+          "label": "Chapter 50",
+          "title": null,
+          "wordCount": 2468
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "the-adventures-of-tom-sawyer",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/manifest.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/cleaned_book.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/processed_book.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/rights_report.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/processing_notes.md",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/title-page-001.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-024.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-025.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-026.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-027.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-028.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-029.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-030.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-031.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-032.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-033.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-034.json",
+        "app/client/assets/books/generated/the-adventures-of-tom-sawyer/sections/chapter-035.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-adventures-of-tom-sawyer.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows the selected structural convention.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "PREFACE Most of the adventures recorded in this book really occurred; one or two were experiences of my own, the rest those of boys who were schoolmates of mine. Huck Finn is drawn from life; Tom Sawyer also, but not from an individual—he is a combination of the characteristics of three boys whom I knew, and therefore belongs to the composite order of archi...",
+        "generated": "PREFACE Most of the adventures recorded in this book really occurred; one or two were experiences of my own, the rest those of boys who were schoolmates of mine. Huck Finn is drawn from life; Tom Sawyer also, but not from an individual-he is a combination of the characteristics of three boys whom I knew, and therefore belongs to the composite order of archi...",
+        "preview": "CHAPTER I \"Tom!\" No answer. \"TOM!\" No answer. \"What's gone with that boy, I wonder? You TOM!\" No answer. The old lady pulled her spectacles down and looked over them about the room; then she put them up and looked out under them. She seldom or never looked _through_ them for so small a thing as a boy; they were her state pair, the pride of her heart, and we..."
+      },
+      "endSnippet": {
+        "raw": "history of a _man_. When one writes a novel about grown people, he knows exactly where to stop—that is, with a marriage; but when he writes of juveniles, he must stop where he best can. Most of the characters that perform in this book still live, and are prosperous and happy. Some day it may seem worth while to take up the story of the younger ones again an...",
+        "generated": "\" \"Yes, so it is. And you've got to swear on a coffin, and sign it with blood.\" \"Now, that's something _like_! Why, it's a million times bullier than pirating. I'll stick to the widder till I rot, Tom; and if I git to be a reg'lar ripper of a robber, and everybody talking 'bout it, I reckon she'll be proud she snaked me in out of the wet.\" CONCLUSION So end..."
+      },
+      "sectionSummary": {
+        "totalSections": 36,
+        "defaultSections": 35,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "wordCount": 2394
+        },
+        "lastDefaultSection": {
+          "id": "chapter-035",
+          "label": "Chapter 35",
+          "title": null,
+          "wordCount": 1886
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "the-door-in-the-wall",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-door-in-the-wall/manifest.json",
+        "app/client/assets/books/generated/the-door-in-the-wall/cleaned_book.json",
+        "app/client/assets/books/generated/the-door-in-the-wall/processed_book.json",
+        "app/client/assets/books/generated/the-door-in-the-wall/rights_report.json",
+        "app/client/assets/books/generated/the-door-in-the-wall/processing_notes.md",
+        "app/client/assets/books/generated/the-door-in-the-wall/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-door-in-the-wall/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-door-in-the-wall/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-door-in-the-wall/sections/chapter-004.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-door-in-the-wall.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "standalone roman numeral sections",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "The Door in the Wall sectioning is acceptable for the source.",
+        "details": [
+          "The source file is the standalone story split into four Roman-numbered body subdivisions, not a multi-story collection."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "I One confidential evening, not three months ago, Lionel Wallace told me this story of the Door in the Wall. And at the time I thought that so far as he was concerned it was a true story. He told it me with such a direct simplicity of conviction that I could not do otherwise than believe in him. But in the morning, in my own flat, I woke to a different atmo...",
+        "generated": "I One confidential evening, not three months ago, Lionel Wallace told me this story of the Door in the Wall. And at the time I thought that so far as he was concerned it was a true story. He told it me with such a direct simplicity of conviction that I could not do otherwise than believe in him. But in the morning, in my own flat, I woke to a different atmo...",
+        "preview": "I One confidential evening, not three months ago, Lionel Wallace told me this story of the Door in the Wall. And at the time I thought that so far as he was concerned it was a true story. He told it me with such a direct simplicity of conviction that I could not do otherwise than believe in him. But in the morning, in my own flat, I woke to a different atmo..."
+      },
+      "endSnippet": {
+        "raw": "They found his body very early yesterday morning in a deep excavation near East Kensington Station. It is one of two shafts that have been made in connection with an extension of the railway southward. It is protected from the intrusion of the public by a hoarding upon the high road, in which a small doorway has been cut for the convenience of some of the w...",
+        "generated": "re, after all, ever any green door in the wall at all? I do not know. I have told his story as he told it to me. There are times when I believe that Wallace was no more than the victim of the coincidence between a rare but not unprecedented type of hallucination and a careless trap, but that indeed is not my profoundest belief. You may think me superstitiou..."
+      },
+      "sectionSummary": {
+        "totalSections": 4,
+        "defaultSections": 4,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "wordCount": 3336
+        },
+        "lastDefaultSection": {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "wordCount": 418
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "the-hound-of-the-baskervilles",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/manifest.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/cleaned_book.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/processed_book.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/rights_report.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/processing_notes.md",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/title-page-001.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-hound-of-the-baskervilles/sections/chapter-015.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-hound-of-the-baskervilles.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "chapter-based arabic numbers",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows the selected structural convention.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "My dear Robinson, It was to your account of a West-Country legend that this tale owes its inception. For this and for your help in the details all thanks. Yours most truly,",
+        "generated": "My dear Robinson, It was to your account of a West-Country legend that this tale owes its inception. For this and for your help in the details all thanks. Yours most truly, A. Conan Doyle. Hindhead, Haslemere. Chapter 1. Mr. Sherlock Holmes Mr. Sherlock Holmes, who was usually very late in the mornings, save upon those not infrequent occasions when he was u...",
+        "preview": "Chapter 1. Mr. Sherlock Holmes Mr. Sherlock Holmes, who was usually very late in the mornings, save upon those not infrequent occasions when he was up all night, was seated at the breakfast table. I stood upon the hearth-rug and picked up the stick which our visitor had left behind him the night before. It was a fine, thick piece of wood, bulbous-headed, of..."
+      },
+      "endSnippet": {
+        "raw": "some way out of the difficulty. And now, my dear Watson, we have had some weeks of severe work, and for one evening, I think, we may turn our thoughts into more pleasant channels. I have a box for _Les Huguenots_. Have you heard the De Reszkes? Might I trouble you then to be ready in half an hour, and we can stop at Marcini’s for a little dinner on the way?...",
+        "generated": "question to answer. Mrs. Stapleton has heard her husband discuss the problem on several occasions. There were three possible courses. He might claim the property from South America, establish his identity before the British authorities there and so obtain the fortune without ever coming to England at all, or he might adopt an elaborate disguise during the s..."
+      },
+      "sectionSummary": {
+        "totalSections": 16,
+        "defaultSections": 15,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Mr. Sherlock Holmes",
+          "wordCount": 2262
+        },
+        "lastDefaultSection": {
+          "id": "chapter-015",
+          "label": "Chapter 15",
+          "title": null,
+          "wordCount": 4089
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "the-king-in-yellow",
+      "status": "warn",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-king-in-yellow/manifest.json",
+        "app/client/assets/books/generated/the-king-in-yellow/cleaned_book.json",
+        "app/client/assets/books/generated/the-king-in-yellow/processed_book.json",
+        "app/client/assets/books/generated/the-king-in-yellow/rights_report.json",
+        "app/client/assets/books/generated/the-king-in-yellow/processing_notes.md",
+        "app/client/assets/books/generated/the-king-in-yellow/sections/title-page-001.json",
+        "app/client/assets/books/generated/the-king-in-yellow/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-king-in-yellow/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-king-in-yellow/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-king-in-yellow/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-king-in-yellow/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-king-in-yellow/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-king-in-yellow/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-king-in-yellow/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-king-in-yellow/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-king-in-yellow/sections/chapter-010.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-king-in-yellow.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "standalone roman numeral sections; custom source-backed sectioning",
+      "startBoundaryVerdict": {
+        "status": "warn",
+        "summary": "Generated start needs manual review.",
+        "details": [
+          "Generated text does not begin with the normalized raw boundary."
+        ]
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "The King in Yellow story sections are acceptable.",
+        "details": [
+          "Opening epigraph is retained as non-default; 10 story sections are default readable."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [
+        "Batch-3 custom source-backed sectioning applied to preserve real openings or story boundaries.",
+        "Generated start needs manual review.",
+        "Generated text does not begin with the normalized raw boundary."
+      ],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "THE KING IN YELLOW IS DEDICATED TO MY BROTHER CONTENTS",
+        "generated": "THE KING IN YELLOW IS DEDICATED TO MY BROTHER \"Along the shore the cloud waves break, The twin suns sink behind the lake, The shadows lengthen In Carcosa. Strange is the night where black stars rise, And strange moons circle through the skies But stranger still is Lost Carcosa. Songs that the Hyades shall sing, Where flap the tatters of the King, Must die u...",
+        "preview": "THE REPAIRER OF REPUTATIONS I \"Ne raillons pas les fous; leur folie dure plus longtemps que la nôtre.... Voila toute la différence.\" Toward the end of the year 1920 the Government of the United States had practically completed the programme, adopted during the last months of President Winthrop's administration. The country was apparently tranquil. Everybody..."
+      },
+      "endSnippet": {
+        "raw": "with his face. One was standing in a glass of water on the table and mechanically the girl drew it out, pressed it with her lips and laid it on the table beside him. He took it without a word and crossing the room, opened the door. The landing was dark and silent, but the girl lifted the lamp and gliding past him slipped down the polished stairs to the hall...",
+        "generated": "d every nerve to the breaking. And now it was over, for the voice within had spoken. He listened, dully interested but already knowing the end,-indeed it little mattered;-the end would always be the same for him;-he understood now-always the same for him, and he listened, dully interested, to a voice which grew within him. After a while he stood up, and she..."
+      },
+      "sectionSummary": {
+        "totalSections": 11,
+        "defaultSections": 10,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "The Repairer Of Reputations",
+          "title": null,
+          "wordCount": 12213
+        },
+        "lastDefaultSection": {
+          "id": "chapter-010",
+          "label": "Rue Barree",
+          "title": null,
+          "wordCount": 8002
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": [
+          {
+            "id": "chapter-001",
+            "label": "The Repairer Of Reputations",
+            "title": null,
+            "wordCount": 12213
+          },
+          {
+            "id": "chapter-009",
+            "label": "The Street Of Our Lady Of The Fields",
+            "title": null,
+            "wordCount": 13023
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-life-and-adventures-of-robinson-crusoe",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/manifest.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/cleaned_book.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/processed_book.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/rights_report.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/processing_notes.md",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-life-and-adventures-of-robinson-crusoe/sections/chapter-020.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-life-and-adventures-of-robinson-crusoe.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "the-life-and-adventures-of-robinson-crusoe long-book sectioning is acceptable.",
+        "details": [
+          "Chapter headings exist and no giant fallback blob is used."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "CHAPTER I. START IN LIFE I was born in the year 1632, in the city of York, of a good family, though not of that country, my father being a foreigner of Bremen, who settled first at Hull. He got a good estate by merchandise, and leaving off his trade, lived afterwards at York, from whence he had married my mother, whose relations were named Robinson, a very...",
+        "generated": "CHAPTER I. START IN LIFE I was born in the year 1632, in the city of York, of a good family, though not of that country, my father being a foreigner of Bremen, who settled first at Hull. He got a good estate by merchandise, and leaving off his trade, lived afterwards at York, from whence he had married my mother, whose relations were named Robinson, a very...",
+        "preview": "CHAPTER I. START IN LIFE I was born in the year 1632, in the city of York, of a good family, though not of that country, my father being a foreigner of Bremen, who settled first at Hull. He got a good estate by merchandise, and leaving off his trade, lived afterwards at York, from whence he had married my mother, whose relations were named Robinson, a very..."
+      },
+      "endSnippet": {
+        "raw": "with that whole number twice, and were at first defeated, and one of them killed; but at last, a storm destroying their enemies’ canoes, they famished or destroyed almost all the rest, and renewed and recovered the possession of their plantation, and still lived upon the island. All these things, with some very surprising incidents in some new adventures of...",
+        "generated": "from England, with a good cargo of necessaries, if they would apply themselves to planting-which I afterwards could not perform. The fellows proved very honest and diligent after they were mastered and had their properties set apart for them. I sent them, also, from the Brazils, five cows, three of them being big with calf, some sheep, and some hogs, which..."
+      },
+      "sectionSummary": {
+        "totalSections": 20,
+        "defaultSections": 20,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "START IN LIFE",
+          "wordCount": 5240
+        },
+        "lastDefaultSection": {
+          "id": "chapter-020",
+          "label": "Chapter 20",
+          "title": "FIGHT BETWEEN FRIDAY AND A BEAR",
+          "wordCount": 5079
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "the-maltese-falcon",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-maltese-falcon/manifest.json",
+        "app/client/assets/books/generated/the-maltese-falcon/cleaned_book.json",
+        "app/client/assets/books/generated/the-maltese-falcon/processed_book.json",
+        "app/client/assets/books/generated/the-maltese-falcon/rights_report.json",
+        "app/client/assets/books/generated/the-maltese-falcon/processing_notes.md",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/dedication-001.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-maltese-falcon/sections/chapter-020.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-maltese-falcon.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "standalone arabic-numbered sections; custom source-backed sectioning",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "The Maltese Falcon sectioning follows the actual source structure.",
+        "details": [
+          "Dedication is retained as non-default.",
+          "The 20 numbered source sections are default readable and keep source titles."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [
+        "Batch-3 custom source-backed sectioning applied to preserve real openings or story boundaries."
+      ],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "TO _JOSE_ 1 SPADE & ARCHER",
+        "generated": "TO _JOSE_ 1 SPADE & ARCHER SAMUEL SPADE'S jaw was long and bony, his chin a jutting v under the more flexible v of his mouth. His nostrils curved back to make another, smaller, v. His yellow-grey eyes were horizontal. The v _motif_ was picked up again by thickish brows rising outward from twin creases above a hooked nose, and his pale brown hair grew down-f...",
+        "preview": "1 SPADE & ARCHER SAMUEL SPADE'S jaw was long and bony, his chin a jutting v under the more flexible v of his mouth. His nostrils curved back to make another, smaller, v. His yellow-grey eyes were horizontal. The v _motif_ was picked up again by thickish brows rising outward from twin creases above a hooked nose, and his pale brown hair grew down-from high f..."
+      },
+      "endSnippet": {
+        "raw": "into the outer office, shutting the door behind her. When she came in again she shut it behind her. She said in a small flat voice: “Iva is here.” Spade, looking down at his desk, nodded almost imperceptibly. “Yes,” he said, and shivered. “Well, send her in.” THE END",
+        "generated": "She stood beside him, staring down at him. He raised his head, grinned, and said mockingly: \"So much for your woman's intuition.\" Her voice was queer as the expression on her face. \"You did that, Sam, to her?\" He nodded. \"Your Sam's a detective.\" He looked sharply at her. He put his arm around her waist, his hand on her hip. \"She did kill Miles, angel,\" he..."
+      },
+      "sectionSummary": {
+        "totalSections": 21,
+        "defaultSections": 20,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Section 1",
+          "title": "Spade & Archer",
+          "wordCount": 2357
+        },
+        "lastDefaultSection": {
+          "id": "chapter-020",
+          "label": "Section 20",
+          "title": "If They Hang You",
+          "wordCount": 4265
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "the-tempest",
+      "status": "warn",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-tempest/manifest.json",
+        "app/client/assets/books/generated/the-tempest/cleaned_book.json",
+        "app/client/assets/books/generated/the-tempest/processed_book.json",
+        "app/client/assets/books/generated/the-tempest/rights_report.json",
+        "app/client/assets/books/generated/the-tempest/processing_notes.md",
+        "app/client/assets/books/generated/the-tempest/sections/title-page-001.json",
+        "app/client/assets/books/generated/the-tempest/sections/part-001.json",
+        "app/client/assets/books/generated/the-tempest/sections/part-002.json",
+        "app/client/assets/books/generated/the-tempest/sections/part-003.json",
+        "app/client/assets/books/generated/the-tempest/sections/part-004.json",
+        "app/client/assets/books/generated/the-tempest/sections/part-005.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-tempest.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "story or titled-section headings; custom source-backed sectioning",
+      "startBoundaryVerdict": {
+        "status": "warn",
+        "summary": "Generated start needs manual review.",
+        "details": [
+          "Generated text does not begin with the normalized raw boundary."
+        ]
+      },
+      "endBoundaryVerdict": {
+        "status": "warn",
+        "summary": "Generated ending differs from the normalized raw boundary.",
+        "details": [
+          "This can be expected only when decorative markers or placeholders were removed."
+        ]
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "the-tempest play structure is acceptable.",
+        "details": [
+          "Cast/front matter is retained as a non-default opening section.",
+          "Five default act sections preserve act/scene dialogue structure."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [
+        "Batch-3 custom source-backed sectioning applied to preserve real openings or story boundaries.",
+        "body headings were found but rejected by the selected strategy",
+        "Structure strategy changed after detector repair from act-prefixed to all-caps-title.",
+        "Generated start needs manual review.",
+        "Generated text does not begin with the normalized raw boundary.",
+        "Generated ending differs from the normalized raw boundary.",
+        "This can be expected only when decorative markers or placeholders were removed."
+      ],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "THE TEMPEST. DRAMATIS PERSONÆ[1]. ALONSO, King of Naples.",
+        "generated": "THE TEMPEST. DRAMATIS PERSONÆ. ALONSO, King of Naples. SEBASTIAN, his brother. PROSPERO, the right Duke of Milan. ANTONIO, his brother, the usurping Duke of Milan. FERDINAND, son to the King of Naples. GONZALO, an honest old Counsellor. ADRIAN, Lord FRANCISCO, „ CALIBAN, a savage and deformed Slave. TRINCULO, a Jester. STEPHANO, a drunken Butler. Master of...",
+        "preview": "ACT I. SCENE I. _On a ship at sea: a tempestuous noise of thunder and lightning heard._ _Enter _a Ship-Master_ and _a Boatswain_._ _Mast._ Boatswain! _Boats._ Here, master: what cheer? _Mast._ Good, speak to the mariners: fall to't, yarely, or we run ourselves aground: bestir, bestir. [_Exit._ _Enter _Mariners_._ _Boats._ Heigh, my hearts! cheerly, cheerly,..."
+      },
+      "endSnippet": {
+        "raw": "Must fill, or else my project fails, Which was to please. Now I want Spirits to enforce, art to enchant; And my ending is despair, 15 Unless I be relieved by prayer, Which pierces so, that it assaults Mercy itself, and frees all faults. As you from crimes would pardon’d be, Let your indulgence set me free. 20",
+        "generated": "the ear strangely. _Pros._ I'll deliver all; And promise you calm seas, auspicious gales, And sail so expeditious, that shall catch Your royal fleet far off. [_Aside to Ari._] My Ariel, chick, That is thy charge: then to the elements Be free, and fare thou well! Please you, draw near. [_Exeunt._ EPILOGUE. SPOKEN BY PROSPERO. Now my charms are all o'erthrown..."
+      },
+      "sectionSummary": {
+        "totalSections": 6,
+        "defaultSections": 5,
+        "firstDefaultSection": {
+          "id": "part-001",
+          "label": "Act 1",
+          "title": null,
+          "wordCount": 4872
+        },
+        "lastDefaultSection": {
+          "id": "part-005",
+          "label": "Act 5",
+          "title": null,
+          "wordCount": 2920
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "the-turn-of-the-screw",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-turn-of-the-screw/manifest.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/cleaned_book.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/processed_book.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/rights_report.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/processing_notes.md",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-024.json",
+        "app/client/assets/books/generated/the-turn-of-the-screw/sections/chapter-025.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-turn-of-the-screw.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "standalone roman numeral sections; custom source-backed sectioning",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows the selected structural convention.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [
+        "Batch-3 custom source-backed sectioning applied to preserve real openings or story boundaries."
+      ],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "THE TURN OF THE SCREW The story had held us, round the fire, sufficiently breathless, but except the obvious remark that it was gruesome, as, on Christmas Eve in an old house, a strange tale should essentially be, I remember no comment uttered till somebody happened to say that it was the only case he had met in which such a visitation had fallen on a child...",
+        "generated": "THE TURN OF THE SCREW The story had held us, round the fire, sufficiently breathless, but except the obvious remark that it was gruesome, as, on Christmas Eve in an old house, a strange tale should essentially be, I remember no comment uttered till somebody happened to say that it was the only case he had met in which such a visitation had fallen on a child...",
+        "preview": "THE TURN OF THE SCREW The story had held us, round the fire, sufficiently breathless, but except the obvious remark that it was gruesome, as, on Christmas Eve in an old house, a strange tale should essentially be, I remember no comment uttered till somebody happened to say that it was the only case he had met in which such a visitation had fallen on a child..."
+      },
+      "endSnippet": {
+        "raw": "But he had already jerked straight round, stared, glared again, and seen but the quiet day. With the stroke of the loss I was so proud of he uttered the cry of a creature hurled over an abyss, and the grasp with which I recovered him might have been that of catching him in his fall. I caught him, yes, I held him—it may be imagined with what a passion; but a...",
+        "generated": "e all my proof that I flashed into ice to challenge him. \"Whom do you mean by 'he'?\" \"Peter Quint-you devil!\" His face gave again, round the room, its convulsed supplication. \"_Where?_\" They are in my ears still, his supreme surrender of the name and his tribute to my devotion. \"What does he matter now, my own?-what will he _ever_ matter? _I_ have you,\" I l..."
+      },
+      "sectionSummary": {
+        "totalSections": 25,
+        "defaultSections": 25,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Prologue",
+          "title": null,
+          "wordCount": 2778
+        },
+        "lastDefaultSection": {
+          "id": "chapter-025",
+          "label": "Chapter 24",
+          "title": null,
+          "wordCount": 1919
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "the-war-of-the-worlds",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-war-of-the-worlds/manifest.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/cleaned_book.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/processed_book.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/rights_report.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/processing_notes.md",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-024.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-025.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-026.json",
+        "app/client/assets/books/generated/the-war-of-the-worlds/sections/chapter-027.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-war-of-the-worlds.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "standalone roman numeral sections with book divisions",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows the selected structural convention.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "BOOK ONE THE COMING OF THE MARTIANS I. THE EVE OF THE WAR.",
+        "generated": "BOOK ONE THE COMING OF THE MARTIANS I. THE EVE OF THE WAR. No one would have believed in the last years of the nineteenth century that this world was being watched keenly and closely by intelligences greater than man's and yet as mortal as his own; that as men busied themselves about their various concerns they were scrutinised and studied, perhaps almost a...",
+        "preview": "BOOK ONE THE COMING OF THE MARTIANS I. THE EVE OF THE WAR. No one would have believed in the last years of the nineteenth century that this world was being watched keenly and closely by intelligences greater than man's and yet as mortal as his own; that as men busied themselves about their various concerns they were scrutinised and studied, perhaps almost a..."
+      },
+      "endSnippet": {
+        "raw": "mist, vanishing at last into the vague lower sky, to see the people walking to and fro among the flower beds on the hill, to see the sight-seers about the Martian machine that stands there still, to hear the tumult of playing children, and to recall the time when I saw it all bright and clear-cut, hard and silent, under the dawn of that last great day. . ....",
+        "generated": "kness of the night. I go to London and see the busy multitudes in Fleet Street and the Strand, and it comes across my mind that they are but the ghosts of the past, haunting the streets that I have seen silent and wretched, going to and fro, phantasms in a dead city, the mockery of life in a galvanised body. And strange, too, it is to stand on Primrose Hill..."
+      },
+      "sectionSummary": {
+        "totalSections": 27,
+        "defaultSections": 27,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Book One",
+          "wordCount": 2232
+        },
+        "lastDefaultSection": {
+          "id": "chapter-027",
+          "label": "Chapter 10",
+          "title": "THE EPILOGUE.",
+          "wordCount": 1377
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "the-wendigo",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-wendigo/manifest.json",
+        "app/client/assets/books/generated/the-wendigo/cleaned_book.json",
+        "app/client/assets/books/generated/the-wendigo/processed_book.json",
+        "app/client/assets/books/generated/the-wendigo/rights_report.json",
+        "app/client/assets/books/generated/the-wendigo/processing_notes.md",
+        "app/client/assets/books/generated/the-wendigo/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-wendigo/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-wendigo/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-wendigo/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-wendigo/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-wendigo/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-wendigo/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-wendigo/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-wendigo/sections/chapter-009.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-wendigo.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "standalone roman numeral sections",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows the selected structural convention.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "I A considerable number of hunting parties were out that year without finding so much as a fresh trail; for the moose were uncommonly shy, and the various Nimrods returned to the bosoms of their respective families with the best excuses the facts of their imaginations could suggest. Dr. Cathcart, among others, came back without a trophy; but he brought inst...",
+        "generated": "I A considerable number of hunting parties were out that year without finding so much as a fresh trail; for the moose were uncommonly shy, and the various Nimrods returned to the bosoms of their respective families with the best excuses the facts of their imaginations could suggest. Dr. Cathcart, among others, came back without a trophy; but he brought inst...",
+        "preview": "I A considerable number of hunting parties were out that year without finding so much as a fresh trail; for the moose were uncommonly shy, and the various Nimrods returned to the bosoms of their respective families with the best excuses the facts of their imaginations could suggest. Dr. Cathcart, among others, came back without a trophy; but he brought inst..."
+      },
+      "endSnippet": {
+        "raw": "in the evening--an hour, that is, before the search party returned--when he saw this shadow of the guide picking its way weakly into camp. In advance of him, he declares, came the faint whiff of a certain singular odour. That same instant old Punk started for home. He covered the entire journey of three days as only Indian blood could have covered it. The t...",
+        "generated": "d exposure, of where he had been, or of how he covered the great distance from one camp to the other, including an immense detour of the lake on foot since he had no canoe--all this remains unknown. His memory had vanished completely. And before the end of the winter whose beginning witnessed this strange occurrence, Défago, bereft of mind, memory and soul,..."
+      },
+      "sectionSummary": {
+        "totalSections": 9,
+        "defaultSections": 9,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "wordCount": 2574
+        },
+        "lastDefaultSection": {
+          "id": "chapter-009",
+          "label": "Chapter 9",
+          "title": null,
+          "wordCount": 965
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "wuthering-heights",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/wuthering-heights/manifest.json",
+        "app/client/assets/books/generated/wuthering-heights/cleaned_book.json",
+        "app/client/assets/books/generated/wuthering-heights/processed_book.json",
+        "app/client/assets/books/generated/wuthering-heights/rights_report.json",
+        "app/client/assets/books/generated/wuthering-heights/processing_notes.md",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-001.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-002.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-003.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-004.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-005.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-006.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-007.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-008.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-009.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-010.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-011.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-012.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-013.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-014.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-015.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-016.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-017.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-018.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-019.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-020.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-021.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-022.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-023.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-024.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-025.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-026.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-027.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-028.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-029.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-030.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-031.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-032.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-033.json",
+        "app/client/assets/books/generated/wuthering-heights/sections/chapter-034.json"
+      ],
+      "previewAssetInspected": "public/book-previews/wuthering-heights.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "wuthering-heights long-book sectioning is acceptable.",
+        "details": [
+          "Chapter headings exist and no giant fallback blob is used."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "CHAPTER I 1801—I have just returned from a visit to my landlord—the solitary neighbour that I shall be troubled with. This is certainly a beautiful country! In all England, I do not believe that I could have fixed on a situation so completely removed from the stir of society. A perfect misanthropist’s Heaven—and Mr. Heathcliff and I are such a suitable pair...",
+        "generated": "CHAPTER I 1801-I have just returned from a visit to my landlord-the solitary neighbour that I shall be troubled with. This is certainly a beautiful country! In all England, I do not believe that I could have fixed on a situation so completely removed from the stir of society. A perfect misanthropist's Heaven-and Mr. Heathcliff and I are such a suitable pair...",
+        "preview": "CHAPTER I 1801-I have just returned from a visit to my landlord-the solitary neighbour that I shall be troubled with. This is certainly a beautiful country! In all England, I do not believe that I could have fixed on a situation so completely removed from the stir of society. A perfect misanthropist's Heaven-and Mr. Heathcliff and I are such a suitable pair..."
+      },
+      "endSnippet": {
+        "raw": "I sought, and soon discovered, the three headstones on the slope next the moor: the middle one grey, and half buried in heath; Edgar Linton’s only harmonized by the turf and moss creeping up its foot; Heathcliff’s still bare. I lingered round them, under that benign sky: watched the moths fluttering among the heath and harebells, listened to the soft wind b...",
+        "generated": "ed Joseph in his opinion of his fellow-servant's gay indiscretions, had he not fortunately recognised me for a respectable character by the sweet ring of a sovereign at his feet. My walk home was lengthened by a diversion in the direction of the kirk. When beneath its walls, I perceived decay had made progress, even in seven months: many a window showed bla..."
+      },
+      "sectionSummary": {
+        "totalSections": 34,
+        "defaultSections": 34,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "wordCount": 1919
+        },
+        "lastDefaultSection": {
+          "id": "chapter-034",
+          "label": "Chapter 34",
+          "title": null,
+          "wordCount": 4383
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "anne-of-avonlea",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/anne-of-avonlea/manifest.json",
+        "app/client/assets/books/generated/anne-of-avonlea/cleaned_book.json",
+        "app/client/assets/books/generated/anne-of-avonlea/processed_book.json",
+        "app/client/assets/books/generated/anne-of-avonlea/rights_report.json",
+        "app/client/assets/books/generated/anne-of-avonlea/processing_notes.md",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/dedication-001.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-001.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-002.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-003.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-004.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-005.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-006.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-007.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-008.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-009.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-010.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-011.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-012.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-013.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-014.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-015.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-016.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-017.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-018.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-019.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-020.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-021.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-022.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-023.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-024.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-025.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-026.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-027.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-028.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-029.json",
+        "app/client/assets/books/generated/anne-of-avonlea/sections/chapter-030.json"
+      ],
+      "previewAssetInspected": "public/book-previews/anne-of-avonlea.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "standalone roman numeral sections; custom source-backed sectioning",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows the selected structural convention.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [
+        "Batch-3 custom source-backed sectioning applied to preserve real openings or story boundaries."
+      ],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "To my former teacher HATTIE GORDON SMITH in grateful remembrance of her sympathy and encouragement.",
+        "generated": "To my former teacher HATTIE GORDON SMITH in grateful remembrance of her sympathy and encouragement. Flowers spring to blossom where she walks The careful ways of duty, Our hard, stiff lines of life with her Are flowing curves of beauty. -WHITTIER I An Irate Neighbor A tall, slim girl, \"half-past sixteen,\" with serious gray eyes and hair which her friends ca...",
+        "preview": "I An Irate Neighbor A tall, slim girl, \"half-past sixteen,\" with serious gray eyes and hair which her friends called auburn, had sat down on the broad red sandstone doorstep of a Prince Edward Island farmhouse one ripe afternoon in August, firmly resolved to construe so many lines of Virgil. But an August afternoon, with blue hazes scarfing the harvest slop..."
+      },
+      "endSnippet": {
+        "raw": "history of the next four years in the light of Anne’s remembered blush. Four years of earnest, happy work . . . and then the guerdon of a useful knowledge gained and a sweet heart won. Behind them in the garden the little stone house brooded among the shadows. It was lonely but not forsaken. It had not yet done with dreams and laughter and the joy of life;...",
+        "generated": ". . love unfolded naturally out of a beautiful friendship, as a golden-hearted rose slipping from its green sheath. Then the veil dropped again; but the Anne who walked up the dark lane was not quite the same Anne who had driven gaily down it the evening before. The page of girlhood had been turned, as by an unseen finger, and the page of womanhood was befo..."
+      },
+      "sectionSummary": {
+        "totalSections": 31,
+        "defaultSections": 30,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "An Irate Neighbor",
+          "wordCount": 3428
+        },
+        "lastDefaultSection": {
+          "id": "chapter-030",
+          "label": "Chapter 30",
+          "title": "A Wedding at the Stone House",
+          "wordCount": 2626
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "five-weeks-in-a-balloon",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/manifest.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/cleaned_book.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/processed_book.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/rights_report.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/processing_notes.md",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/preface-001.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-001.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-002.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-003.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-004.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-005.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-006.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-007.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-008.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-009.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-010.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-011.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-012.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-013.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-014.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-015.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-016.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-017.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-018.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-019.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-020.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-021.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-022.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-023.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-024.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-025.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-026.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-027.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-028.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-029.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-030.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-031.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-032.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-033.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-034.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-035.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-036.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-037.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-038.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-039.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-040.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-041.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-042.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-043.json",
+        "app/client/assets/books/generated/five-weeks-in-a-balloon/sections/chapter-044.json"
+      ],
+      "previewAssetInspected": "public/book-previews/five-weeks-in-a-balloon.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "chapter-based word ordinals; custom source-backed sectioning",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning follows the selected structural convention.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [
+        "Batch-3 custom source-backed sectioning applied to preserve real openings or story boundaries."
+      ],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "PUBLISHERS’ NOTE. “Five Weeks in a Balloon” is, in a measure, a satire on modern books of African travel. So far as the geography, the inhabitants, the animals, and the features of the countries the travellers pass over are described, it is entirely accurate. It gives, in some particulars, a survey of nearly the whole field of African discovery, and in this...",
+        "generated": "PUBLISHERS' NOTE. \"Five Weeks in a Balloon\" is, in a measure, a satire on modern books of African travel. So far as the geography, the inhabitants, the animals, and the features of the countries the travellers pass over are described, it is entirely accurate. It gives, in some particulars, a survey of nearly the whole field of African discovery, and in this...",
+        "preview": "CHAPTER FIRST. The End of a much-applauded Speech.-The Presentation of Dr. Samuel Ferguson.-Excelsior.-Full-length Portrait of the Doctor.-A Fatalist convinced.-A Dinner at the Travellers' Club.-Several Toasts for the Occasion. There was a large audience assembled on the 14th of January, 1862, at the session of the Royal Geographical Society, No. 3 Waterloo..."
+      },
+      "endSnippet": {
+        "raw": "The first result of Dr. Ferguson’s expedition was to establish, in the most precise manner, the facts and geographical surveys reported by Messrs. Barth, Burton, Speke, and others. Thanks to the still more recent expeditions of Messrs. Speke and Grant, De Heuglin and Muntzinger, who have been ascending to the sources of the Nile, and penetrating to the cent...",
+        "generated": "their praises of the bold explorers, and the _Daily Telegraph_ struck off an edition of three hundred and seventy-seven thousand copies on the day when it published a sketch of the trip. Doctor Ferguson, at a public meeting of the Royal Geographical Society, gave a recital of his journey through the air, and obtained for himself and his companions the golde..."
+      },
+      "sectionSummary": {
+        "totalSections": 45,
+        "defaultSections": 44,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "The End of a much-applauded Speech.-The Presentation of Dr. Samuel",
+          "wordCount": 2258
+        },
+        "lastDefaultSection": {
+          "id": "chapter-044",
+          "label": "Chapter 44",
+          "title": "Conclusion.-The Certificate.-The French Settlements.-The Post of",
+          "wordCount": 872
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "moby-dick",
+      "status": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/moby-dick/manifest.json",
+        "app/client/assets/books/generated/moby-dick/cleaned_book.json",
+        "app/client/assets/books/generated/moby-dick/processed_book.json",
+        "app/client/assets/books/generated/moby-dick/rights_report.json",
+        "app/client/assets/books/generated/moby-dick/processing_notes.md",
+        "app/client/assets/books/generated/moby-dick/sections/title-page-001.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-001.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-002.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-003.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-004.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-005.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-006.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-007.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-008.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-009.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-010.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-011.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-012.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-013.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-014.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-015.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-016.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-017.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-018.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-019.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-020.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-021.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-022.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-023.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-024.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-025.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-026.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-027.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-028.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-029.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-030.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-031.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-032.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-033.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-034.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-035.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-036.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-037.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-038.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-039.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-040.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-041.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-042.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-043.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-044.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-045.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-046.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-047.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-048.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-049.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-050.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-051.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-052.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-053.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-054.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-055.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-056.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-057.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-058.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-059.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-060.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-061.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-062.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-063.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-064.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-065.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-066.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-067.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-068.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-069.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-070.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-071.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-072.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-073.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-074.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-075.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-076.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-077.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-078.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-079.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-080.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-081.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-082.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-083.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-084.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-085.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-086.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-087.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-088.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-089.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-090.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-091.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-092.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-093.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-094.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-095.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-096.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-097.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-098.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-099.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-100.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-101.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-102.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-103.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-104.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-105.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-106.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-107.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-108.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-109.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-110.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-111.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-112.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-113.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-114.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-115.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-116.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-117.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-118.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-119.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-120.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-121.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-122.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-123.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-124.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-125.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-126.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-127.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-128.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-129.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-130.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-131.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-132.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-133.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-134.json",
+        "app/client/assets/books/generated/moby-dick/sections/chapter-135.json"
+      ],
+      "previewAssetInspected": "public/book-previews/moby-dick.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "chapter-based arabic numbers with book divisions",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "moby-dick long-book sectioning is acceptable.",
+        "details": [
+          "Chapter headings exist and no giant fallback blob is used."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "ETYMOLOGY. (Supplied by a Late Consumptive Usher to a Grammar School.) The pale Usher—threadbare in coat, heart, body, and brain; I see him now. He was ever dusting his old lexicons and grammars, with a queer handkerchief, mockingly embellished with all the gay flags of all the known nations of the world. He loved to dust his old grammars; it",
+        "generated": "ETYMOLOGY. (Supplied by a Late Consumptive Usher to a Grammar School.) The pale Usher-threadbare in coat, heart, body, and brain; I see him now. He was ever dusting his old lexicons and grammars, with a queer handkerchief, mockingly embellished with all the gay flags of all the known nations of the world. He loved to dust his old grammars; it somehow mildly...",
+        "preview": "CHAPTER 1. Loomings. Call me Ishmael. Some years ago-never mind how long precisely-having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim..."
+      },
+      "endSnippet": {
+        "raw": "reason of its cunning spring, and, owing to its great buoyancy, rising with great force, the coffin life-buoy shot lengthwise from the sea, fell over, and floated by my side. Buoyed up by that coffin, for almost one whole day and night, I floated on a soft and dirgelike main. The unharming sharks, they glided by as if with padlocks on their mouths; the sava...",
+        "generated": "en the halfspent suction of the sunk ship reached me, I was then, but slowly, drawn towards the closing vortex. When I reached it, it had subsided to a creamy pool. Round and round, then, and ever contracting towards the button-like black bubble at the axis of that slowly wheeling circle, like another Ixion I did revolve. Till, gaining that vital centre, th..."
+      },
+      "sectionSummary": {
+        "totalSections": 136,
+        "defaultSections": 135,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Loomings",
+          "wordCount": 2203
+        },
+        "lastDefaultSection": {
+          "id": "chapter-135",
+          "label": "Chapter 135",
+          "title": "The Chase.-Third Day",
+          "wordCount": 4771
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    },
+    {
+      "slug": "tales-of-war",
+      "status": "warn",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/tales-of-war/manifest.json",
+        "app/client/assets/books/generated/tales-of-war/cleaned_book.json",
+        "app/client/assets/books/generated/tales-of-war/processed_book.json",
+        "app/client/assets/books/generated/tales-of-war/rights_report.json",
+        "app/client/assets/books/generated/tales-of-war/processing_notes.md",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-001.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-002.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-003.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-004.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-005.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-006.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-007.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-008.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-009.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-010.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-011.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-012.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-013.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-014.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-015.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-016.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-017.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-018.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-019.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-020.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-021.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-022.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-023.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-024.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-025.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-026.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-027.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-028.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-029.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-030.json",
+        "app/client/assets/books/generated/tales-of-war/sections/chapter-031.json"
+      ],
+      "previewAssetInspected": "public/book-previews/tales-of-war.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-3/pilot-dry-run-3.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "selectedStructuralConvention": "isolated titled sections",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output starts at the selected readable raw boundary.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated output preserves the selected readable ending.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "warn",
+        "summary": "Tales of War story sections are acceptable, with many naturally short war sketches.",
+        "details": [
+          "All 31 isolated story/essay titles are preserved as default readable sections."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Cleanup excludes source/license/footer junk and obvious playback artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview starts from generated default-readable content and matches manifest hashes.",
+        "details": []
+      },
+      "remainingWarnings": [
+        "Tales of War story sections are acceptable, with many naturally short war sketches.",
+        "All 31 isolated story/essay titles are preserved as default readable sections."
+      ],
+      "acceptedForMain": true,
+      "needsCorrectionBeforeMain": false,
+      "shouldBeRevertedOrSkipped": false,
+      "startSnippet": {
+        "raw": "The Prayer of the Men of Daleswood He said: “There were only twenty houses in Daleswood. A place you would scarcely have heard of. A village up top of the hills. “When the war came there was no more than thirty men there between sixteen and forty-five. They all went.",
+        "generated": "The Prayer of the Men of Daleswood He said: \"There were only twenty houses in Daleswood. A place you would scarcely have heard of. A village up top of the hills. \"When the war came there was no more than thirty men there between sixteen and forty-five. They all went. \"They all kept together; same battalion, same platoon. They was like that in Daleswood. Use...",
+        "preview": "The Prayer of the Men of Daleswood He said: \"There were only twenty houses in Daleswood. A place you would scarcely have heard of. A village up top of the hills. \"When the war came there was no more than thirty men there between sixteen and forty-five. They all went. \"They all kept together; same battalion, same platoon. They was like that in Daleswood. Use..."
+      },
+      "endSnippet": {
+        "raw": "of England’s cause and of how those men had upheld it, at sea and in crumbling cities. He thought of the battle whose echoes reached sometimes to that field, whispering to furrows and thorn trees that had never heard them before. He thought of the accursed tyrant’s cruel might, and of the lads that had faced it. He saw the romantic splendour of England’s ca...",
+        "generated": "They had a railway now down in the valley. The sunlight glittering near the end of winter shone on a train that was marked with great white squares and red crosses on them. John Plowman stopped his horses and looked at the train. \"An ambulance train,\" he said, \"coming up from the coast.\" He thought of the lads he knew and wondered if any were there. He piti..."
+      },
+      "sectionSummary": {
+        "totalSections": 31,
+        "defaultSections": 31,
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "The Prayer Of The Men Of Daleswood",
+          "title": "The Prayer of the Men of Daleswood",
+          "wordCount": 2346
+        },
+        "lastDefaultSection": {
+          "id": "chapter-031",
+          "label": "Old England",
+          "title": "Old England",
+          "wordCount": 746
+        },
+        "suspiciouslyShortSections": [],
+        "suspiciouslyLongSections": []
+      }
+    }
+  ],
+  "specialFocus": {
+    "priorGeneratedOutputWarnings": {
+      "frankenstein": {
+        "corrected": true,
+        "verdict": "Frankenstein prior generated-output issue is corrected."
+      },
+      "theThreeMusketeers": {
+        "corrected": true,
+        "verdict": "The Three Musketeers prior generated-output issue is corrected."
+      },
+      "aroundTheWorldInEightyDays": {
+        "corrected": true,
+        "verdict": "Around the World in Eighty Days prior generated-output issue is corrected."
+      },
+      "senseAndSensibility": {
+        "corrected": true,
+        "verdict": "Sense and Sensibility prior generated-output issue is corrected."
+      }
+    },
+    "plays": {
+      "macbeth": {
+        "acceptable": true,
+        "verdict": "macbeth play structure is acceptable."
+      },
+      "pygmalion": {
+        "acceptable": true,
+        "verdict": "pygmalion play structure is acceptable."
+      },
+      "theTempest": {
+        "acceptable": true,
+        "verdict": "the-tempest play structure is acceptable."
+      }
+    },
+    "collectionsAndStoryGroups": {
+      "theDoorInTheWall": {
+        "acceptable": true,
+        "verdict": "The Door in the Wall sectioning is acceptable for the source."
+      },
+      "theKingInYellow": {
+        "acceptable": true,
+        "verdict": "The King in Yellow story sections are acceptable."
+      },
+      "talesOfWar": {
+        "acceptable": true,
+        "verdict": "Tales of War story sections are acceptable, with many naturally short war sketches."
+      }
+    },
+    "longBooks": {
+      "mobyDick": {
+        "acceptable": true,
+        "verdict": "moby-dick long-book sectioning is acceptable."
+      },
+      "theThreeMusketeers": {
+        "acceptable": true,
+        "verdict": "The Three Musketeers prior generated-output issue is corrected."
+      },
+      "wutheringHeights": {
+        "acceptable": true,
+        "verdict": "wuthering-heights long-book sectioning is acceptable."
+      },
+      "robinsonCrusoe": {
+        "acceptable": true,
+        "verdict": "the-life-and-adventures-of-robinson-crusoe long-book sectioning is acceptable."
+      }
+    },
+    "modernFormatSensitive": {
+      "theMalteseFalcon": {
+        "acceptable": true,
+        "verdict": "The Maltese Falcon sectioning follows the actual source structure."
+      }
+    }
+  },
+  "bookPageStateFix": {
+    "status": "pass",
+    "inspectedFile": "app/client/components/morse-code-books/MorseBookPage.tsx",
+    "checks": [
+      {
+        "name": "translator source uses selectedScopeSections directly",
+        "passed": true
+      },
+      {
+        "name": "scopeReady waits for all selected full sections to load",
+        "passed": true
+      },
+      {
+        "name": "full-book section loader requests selected scope sections",
+        "passed": true
+      },
+      {
+        "name": "reset still uses computed defaultSectionIds",
+        "passed": true
+      }
+    ],
+    "verdict": "MorseBookPage selected-source state fix is present; Playwright book-page QA covers full-load/default/saved/reset behavior."
+  },
+  "conclusions": {
+    "acceptedForMain": [
+      "frankenstein",
+      "the-three-musketeers",
+      "a-tale-of-two-cities",
+      "around-the-world-in-eighty-days",
+      "cranford",
+      "little-fuzzy",
+      "macbeth",
+      "persuasion",
+      "pygmalion",
+      "sense-and-sensibility",
+      "the-adventures-of-tom-sawyer",
+      "the-door-in-the-wall",
+      "the-hound-of-the-baskervilles",
+      "the-king-in-yellow",
+      "the-life-and-adventures-of-robinson-crusoe",
+      "the-maltese-falcon",
+      "the-tempest",
+      "the-turn-of-the-screw",
+      "the-war-of-the-worlds",
+      "the-wendigo",
+      "wuthering-heights",
+      "anne-of-avonlea",
+      "five-weeks-in-a-balloon",
+      "moby-dick",
+      "tales-of-war"
+    ],
+    "needsCorrectionBeforeMain": [],
+    "shouldBeRevertedOrSkipped": [],
+    "correctionsMade": [
+      "the-tempest: removed 399 trailing Shakespeare line-number reference artifacts and 9 editorial Notes blocks from default act sections, removed the non-default editorial footnote block from cast/front matter, and rebuilt generated hashes plus the preview asset.",
+      "the-war-of-the-worlds: corrected generated metadata so all 27 real chapter sections are default readable, then rebuilt generated hashes and the preview asset."
+    ]
+  },
+  "confirmations": {
+    "inspectedOnlyBatch3Books": true,
+    "processedMoreBooks": false,
+    "allBookProcessingRun": false,
+    "tempBooksModified": false,
+    "cloudflareExportModified": false,
+    "unrelatedGeneratedBooksTouched": false,
+    "generatedBookCorrectionsMade": true,
+    "previewCorrectionsMade": true
+  }
+}

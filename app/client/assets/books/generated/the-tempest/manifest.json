@@ -5,8 +5,8 @@
   "author": [
     "William Shakespeare"
   ],
-  "contentVersion": "987228905a017586",
-  "contentHash": "987228905a017586d0bc9890b374d858afd21be51593fbd4bd7cf750e181234e",
+  "contentVersion": "5e3c47b0e2a559bd",
+  "contentHash": "5e3c47b0e2a559bdc0dc45b837615032fdc18b67596f9274a6634b4c1bf12bf4",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 172282,
-    "cleanedCharacterCount": 121659,
-    "wordCount": 21553,
+    "cleanedCharacterCount": 96784,
+    "wordCount": 17446,
     "sectionCount": 6,
     "includedSectionCount": 5
   },
@@ -56,11 +56,11 @@
       "order": 1,
       "includeByDefault": false,
       "sectionJsonPath": "sections/title-page-001.json",
-      "characterCount": 826,
-      "wordCount": 121,
-      "estimatedTypingMinutes": 4,
-      "estimatedListeningMinutes": 5,
-      "morseCharacterEstimate": 4252,
+      "characterCount": 629,
+      "wordCount": 88,
+      "estimatedTypingMinutes": 3,
+      "estimatedListeningMinutes": 4,
+      "morseCharacterEstimate": 3233,
       "textPreview": "THE TEMPEST. DRAMATIS PERSONÆ. ALONSO, King of Naples. SEBASTIAN, his brother. PROSPERO, the right Duke of Milan. ANTONIO, his brother, the usurping Duke of Mi..."
     },
     {
@@ -71,11 +71,11 @@
       "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 36011,
-      "wordCount": 6338,
-      "estimatedTypingMinutes": 159,
-      "estimatedListeningMinutes": 223,
-      "morseCharacterEstimate": 200513,
+      "characterCount": 27011,
+      "wordCount": 4872,
+      "estimatedTypingMinutes": 122,
+      "estimatedListeningMinutes": 165,
+      "morseCharacterEstimate": 147625,
       "textPreview": "ACT I. SCENE I. _On a ship at sea: a tempestuous noise of thunder and lightning heard._ _Enter _a Ship-Master_ and _a Boatswain_._ _Mast._ Boatswain! _Boats._..."
     },
     {
@@ -86,11 +86,11 @@
       "order": 3,
       "includeByDefault": true,
       "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 28452,
-      "wordCount": 5099,
-      "estimatedTypingMinutes": 128,
-      "estimatedListeningMinutes": 176,
-      "morseCharacterEstimate": 158128,
+      "characterCount": 23083,
+      "wordCount": 4217,
+      "estimatedTypingMinutes": 106,
+      "estimatedListeningMinutes": 141,
+      "morseCharacterEstimate": 126437,
       "textPreview": "ACT II. SCENE I. _Another part of the island._ _Enter ALONSO, SEBASTIAN, ANTONIO, GONZALO, ADRIAN, FRANCISCO, and others._ _Gon._ Beseech you, sir, be merry; y..."
     },
     {
@@ -101,11 +101,11 @@
       "order": 4,
       "includeByDefault": true,
       "sectionJsonPath": "sections/part-003.json",
-      "characterCount": 21281,
-      "wordCount": 3839,
-      "estimatedTypingMinutes": 96,
-      "estimatedListeningMinutes": 131,
-      "morseCharacterEstimate": 117702,
+      "characterCount": 17272,
+      "wordCount": 3145,
+      "estimatedTypingMinutes": 79,
+      "estimatedListeningMinutes": 105,
+      "morseCharacterEstimate": 94400,
       "textPreview": "ACT III. SCENE I. _Before PROSPERO'S cell._ _Enter FERDINAND, bearing a log._ _Fer._ There be some sports are painful, and their labour Delight in them sets of..."
     },
     {
@@ -116,11 +116,11 @@
       "order": 5,
       "includeByDefault": true,
       "sectionJsonPath": "sections/part-004.json",
-      "characterCount": 15612,
-      "wordCount": 2695,
-      "estimatedTypingMinutes": 68,
-      "estimatedListeningMinutes": 97,
-      "morseCharacterEstimate": 86679,
+      "characterCount": 12635,
+      "wordCount": 2204,
+      "estimatedTypingMinutes": 56,
+      "estimatedListeningMinutes": 77,
+      "morseCharacterEstimate": 68934,
       "textPreview": "ACT IV. SCENE I. _Before PROSPERO'S cell._ _Enter PROSPERO, FERDINAND, and MIRANDA._ _Pros._ If I have too austerely punish'd you, Your compensation makes amen..."
     },
     {
@@ -131,11 +131,11 @@
       "order": 6,
       "includeByDefault": true,
       "sectionJsonPath": "sections/part-005.json",
-      "characterCount": 19462,
-      "wordCount": 3461,
-      "estimatedTypingMinutes": 87,
-      "estimatedListeningMinutes": 121,
-      "morseCharacterEstimate": 108042,
+      "characterCount": 16144,
+      "wordCount": 2920,
+      "estimatedTypingMinutes": 73,
+      "estimatedListeningMinutes": 99,
+      "morseCharacterEstimate": 88283,
       "textPreview": "ACT V. SCENE I. _Before the cell of Prospero._ _Enter PROSPERO in his magic robes, and ARIEL._ _Pros._ Now does my project gather to a head: My charms crack no..."
     }
   ],

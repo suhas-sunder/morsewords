@@ -4956,8 +4956,8 @@
       "author": [
         "William Shakespeare"
       ],
-      "contentVersion": "987228905a017586",
-      "contentHash": "987228905a017586d0bc9890b374d858afd21be51593fbd4bd7cf750e181234e",
+      "contentVersion": "5e3c47b0e2a559bd",
+      "contentHash": "5e3c47b0e2a559bdc0dc45b837615032fdc18b67596f9274a6634b4c1bf12bf4",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -4986,8 +4986,8 @@
       },
       "stats": {
         "originalCharacterCount": 172282,
-        "cleanedCharacterCount": 121659,
-        "wordCount": 21553,
+        "cleanedCharacterCount": 96784,
+        "wordCount": 17446,
         "sectionCount": 6,
         "includedSectionCount": 5
       },
@@ -5055,8 +5055,8 @@
       "author": [
         "H. G. Wells"
       ],
-      "contentVersion": "add803927f4073d9",
-      "contentHash": "add803927f4073d9cdd258366314e14eb22f528bbe0a33d3e6866a015d796e6d",
+      "contentVersion": "cde8ff1db425ed82",
+      "contentHash": "cde8ff1db425ed82b3da108513f98af31db9bba5b725c8b3f3d7fda722ce837b",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -5085,15 +5085,16 @@
       },
       "stats": {
         "originalCharacterCount": 363438,
-        "cleanedCharacterCount": 336271,
+        "cleanedCharacterCount": 336245,
         "wordCount": 59890,
         "sectionCount": 27,
-        "includedSectionCount": 0
+        "includedSectionCount": 27
       },
       "defaults": {
         "includeKinds": [
           "book",
-          "part"
+          "part",
+          "chapter"
         ],
         "preferredPreset": "main-narrative"
       },

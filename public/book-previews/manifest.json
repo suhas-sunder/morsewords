@@ -1117,12 +1117,12 @@
     {
       "slug": "the-tempest",
       "path": "/book-previews/the-tempest.preview.json",
-      "contentVersion": "987228905a017586",
-      "contentHash": "987228905a017586d0bc9890b374d858afd21be51593fbd4bd7cf750e181234e",
+      "contentVersion": "5e3c47b0e2a559bd",
+      "contentHash": "5e3c47b0e2a559bdc0dc45b837615032fdc18b67596f9274a6634b4c1bf12bf4",
       "defaultSectionId": "part-001",
-      "previewBytes": 9882,
-      "previewCharacterCount": 8952,
-      "estimatedRuntimeSeconds": 3297,
+      "previewBytes": 10862,
+      "previewCharacterCount": 9830,
+      "estimatedRuntimeSeconds": 3586,
       "truncated": true
     },
     {
@@ -1139,10 +1139,10 @@
     {
       "slug": "the-war-of-the-worlds",
       "path": "/book-previews/the-war-of-the-worlds.preview.json",
-      "contentVersion": "add803927f4073d9",
-      "contentHash": "add803927f4073d9cdd258366314e14eb22f528bbe0a33d3e6866a015d796e6d",
+      "contentVersion": "cde8ff1db425ed82",
+      "contentHash": "cde8ff1db425ed82b3da108513f98af31db9bba5b725c8b3f3d7fda722ce837b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10746,
+      "previewBytes": 10816,
       "previewCharacterCount": 9910,
       "estimatedRuntimeSeconds": 3502,
       "truncated": true
