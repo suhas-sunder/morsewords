@@ -225,6 +225,17 @@ type PreviewLayerMetrics = {
   windowLimit: number;
 };
 
+type PreviewFrameVisualState = {
+  backgroundColor: string;
+  boxShadow: string;
+  color: string;
+  cursor: string;
+  lightbulbColor: string;
+  lightbulbSvgColor: string;
+  outlineStyle: string;
+  outlineWidth: string;
+};
+
 async function readPreviewLayerMetrics(
   root: Locator,
   testIdPrefix = "book-video-preview",
@@ -272,6 +283,36 @@ async function readPreviewLayerMetrics(
       morse: metricFor(`${prefix}-morse-overlay`),
       text: metricFor(`${prefix}-text-overlay`),
       windowLimit: Number(frame.dataset.previewWindowLimit ?? 0),
+    };
+  }, testIdPrefix);
+}
+
+async function readPreviewFrameVisualState(
+  frame: Locator,
+  testIdPrefix = "book-video-preview",
+): Promise<PreviewFrameVisualState> {
+  return frame.evaluate((frameElement, prefix) => {
+    const frameStyle = window.getComputedStyle(frameElement);
+    const lightbulb = frameElement.querySelector<HTMLElement>(
+      `[data-testid="${prefix}-lightbulb"]`,
+    );
+    const lightbulbSvg = lightbulb?.querySelector<SVGElement>("svg") ?? null;
+    const lightbulbStyle = lightbulb
+      ? window.getComputedStyle(lightbulb)
+      : null;
+    const lightbulbSvgStyle = lightbulbSvg
+      ? window.getComputedStyle(lightbulbSvg)
+      : null;
+
+    return {
+      backgroundColor: frameStyle.backgroundColor,
+      boxShadow: frameStyle.boxShadow,
+      color: frameStyle.color,
+      cursor: frameStyle.cursor,
+      lightbulbColor: lightbulbStyle?.color ?? "",
+      lightbulbSvgColor: lightbulbSvgStyle?.color ?? "",
+      outlineStyle: frameStyle.outlineStyle,
+      outlineWidth: frameStyle.outlineWidth,
     };
   }, testIdPrefix);
 }
@@ -2438,6 +2479,32 @@ test.describe("Morse book page foundation", () => {
     );
     await expect(previewFrame).toBeVisible();
     await expect(livePlayer.locator("[data-testid='book-video-preview-lightbulb']")).toBeVisible();
+    const restingFrameVisualState = await readPreviewFrameVisualState(previewFrame);
+    expect(restingFrameVisualState.cursor).toBe("pointer");
+    await previewFrame.hover();
+    const hoveredFrameVisualState = await readPreviewFrameVisualState(previewFrame);
+    expect(hoveredFrameVisualState.cursor).toBe("pointer");
+    expect(hoveredFrameVisualState.backgroundColor).toBe(
+      restingFrameVisualState.backgroundColor,
+    );
+    expect(hoveredFrameVisualState.boxShadow).toBe(
+      restingFrameVisualState.boxShadow,
+    );
+    expect(hoveredFrameVisualState.color).toBe(restingFrameVisualState.color);
+    expect(hoveredFrameVisualState.lightbulbColor).toBe(
+      restingFrameVisualState.lightbulbColor,
+    );
+    expect(hoveredFrameVisualState.lightbulbSvgColor).toBe(
+      restingFrameVisualState.lightbulbSvgColor,
+    );
+    await page.mouse.move(0, 0);
+    await previewFrame.focus();
+    const focusedFrameVisualState = await readPreviewFrameVisualState(previewFrame);
+    expect(focusedFrameVisualState.boxShadow).toBe(
+      restingFrameVisualState.boxShadow,
+    );
+    expect(focusedFrameVisualState.outlineStyle).toBe("none");
+    expect(focusedFrameVisualState.outlineWidth).toBe("0px");
     const morseOverlay = livePlayer.locator("[data-testid='book-video-preview-morse-overlay']");
     await expect(morseOverlay).toBeVisible();
     await expect(morseOverlay).toContainText("/");

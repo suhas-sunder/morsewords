@@ -955,7 +955,12 @@ body
 }
 
 .mw-page-content
-  :where(button, [role="button"], summary, a.mw-button-outline):hover
+  :where(
+    button,
+    [role="button"]:not(.mw-live-preview-toggle-frame),
+    summary,
+    a.mw-button-outline
+  ):hover
   :where(*) {
   color: currentColor !important;
 }
@@ -1394,7 +1399,12 @@ body
 }
 
 :root[data-theme="dark"] .mw-page-content
-  :where(button, [role="button"], summary, a.mw-button-outline):hover
+  :where(
+    button,
+    [role="button"]:not(.mw-live-preview-toggle-frame),
+    summary,
+    a.mw-button-outline
+  ):hover
   :where(*) {
   color: currentColor !important;
 }
@@ -1454,8 +1464,14 @@ body
 .mw-page-content .mw-live-preview-toggle-frame[role="button"]:focus-visible,
 :root[data-theme="dark"] .mw-page-content .mw-live-preview-toggle-frame[role="button"]:focus-visible {
   background-color: var(--mw-live-preview-frame-bg) !important;
-  box-shadow: inset 0 0 0 3px var(--mw-focus-ring) !important;
+  box-shadow: none !important;
   color: var(--mw-live-preview-frame-color) !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  outline-width: 0 !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
 }
 
 @media (min-width: 640px) {
