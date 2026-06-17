@@ -9,7 +9,7 @@
       "contentVersion": "767ae75b860d2a7e",
       "contentHash": "767ae75b860d2a7e2080bb19a01b45ac99da27d50f82cf5f826116ab4da164a5",
       "defaultSectionId": "poem-001",
-      "previewBytes": 11554,
+      "previewBytes": 11643,
       "previewCharacterCount": 10483,
       "estimatedRuntimeSeconds": 3610,
       "truncated": true
@@ -20,42 +20,9 @@
       "contentVersion": "7aa2c3f3504d04dd",
       "contentHash": "7aa2c3f3504d04dd1ff2a221be80ef81c40929ce8c7e4faaa8f768047f36fd33",
       "defaultSectionId": "part-002",
-      "previewBytes": 11585,
+      "previewBytes": 11604,
       "previewCharacterCount": 10465,
       "estimatedRuntimeSeconds": 3774,
-      "truncated": true
-    },
-    {
-      "slug": "a-dream-of-armageddon",
-      "path": "/book-previews/a-dream-of-armageddon.preview.json",
-      "contentVersion": "7385067d298d1424",
-      "contentHash": "7385067d298d1424a80bbc7c039e339b4614b4bc13855cdc6a1fb6c85c74df08",
-      "defaultSectionId": "part-001",
-      "previewBytes": 9784,
-      "previewCharacterCount": 8791,
-      "estimatedRuntimeSeconds": 3148,
-      "truncated": true
-    },
-    {
-      "slug": "a-journal-of-the-plague-year",
-      "path": "/book-previews/a-journal-of-the-plague-year.preview.json",
-      "contentVersion": "931a9cc803a5cb02",
-      "contentHash": "931a9cc803a5cb02130b125fccc31252a58718a64fb8eac85f77abc017865b35",
-      "defaultSectionId": "part-001",
-      "previewBytes": 10892,
-      "previewCharacterCount": 9876,
-      "estimatedRuntimeSeconds": 3459,
-      "truncated": true
-    },
-    {
-      "slug": "a-journey-to-the-centre-of-the-earth",
-      "path": "/book-previews/a-journey-to-the-centre-of-the-earth.preview.json",
-      "contentVersion": "3e200b38cc02277c",
-      "contentHash": "3e200b38cc02277c5c03dc6af12a524c3b25504bf437759b8ffce9db4c70287a",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11110,
-      "previewCharacterCount": 10080,
-      "estimatedRuntimeSeconds": 3597,
       "truncated": true
     },
     {
@@ -64,20 +31,9 @@
       "contentVersion": "964d8b5d525d0873",
       "contentHash": "964d8b5d525d0873bd8de3498ade7ca6508238a3dac5168f3672045154fc3ec1",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11474,
+      "previewBytes": 11493,
       "previewCharacterCount": 10533,
       "estimatedRuntimeSeconds": 3739,
-      "truncated": true
-    },
-    {
-      "slug": "a-tale-of-two-cities",
-      "path": "/book-previews/a-tale-of-two-cities.preview.json",
-      "contentVersion": "87f975b1a0c50cf3",
-      "contentHash": "87f975b1a0c50cf3deb7b6fc277e26012b393ed560bf44d7b795eded1b0cc886",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10656,
-      "previewCharacterCount": 9710,
-      "estimatedRuntimeSeconds": 3469,
       "truncated": true
     },
     {
@@ -86,20 +42,9 @@
       "contentVersion": "71defc6cd599c22c",
       "contentHash": "71defc6cd599c22c6a6afa2bc0a5e7d9a64cf912905f64800031eddbcf7ddb6f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 12091,
+      "previewBytes": 12110,
       "previewCharacterCount": 10913,
       "estimatedRuntimeSeconds": 3855,
-      "truncated": true
-    },
-    {
-      "slug": "almayer-s-folly-a-story-of-an-eastern-river",
-      "path": "/book-previews/almayer-s-folly-a-story-of-an-eastern-river.preview.json",
-      "contentVersion": "a3c587c4d7f560fa",
-      "contentHash": "a3c587c4d7f560fa04ba11a9491b1ada4f3639061ceb2b06ddc54521d01cab72",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 9245,
-      "previewCharacterCount": 8324,
-      "estimatedRuntimeSeconds": 2987,
       "truncated": true
     },
     {
@@ -108,21 +53,10 @@
       "contentVersion": "984e381c5bbe3bfc",
       "contentHash": "984e381c5bbe3bfcd6f3afd7cc628706c16b8f97845dcc66b0c5bec12e6e8b3b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6363,
+      "previewBytes": 6382,
       "previewCharacterCount": 5435,
       "estimatedRuntimeSeconds": 1980,
       "truncated": false
-    },
-    {
-      "slug": "anne-of-avonlea",
-      "path": "/book-previews/anne-of-avonlea.preview.json",
-      "contentVersion": "7f02dd8b94db5b5a",
-      "contentHash": "7f02dd8b94db5b5aaa01b0ad584bdcb8e009cece2fd7bac89923f76721afb0f6",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10704,
-      "previewCharacterCount": 9724,
-      "estimatedRuntimeSeconds": 3487,
-      "truncated": true
     },
     {
       "slug": "anne-of-green-gables",
@@ -141,7 +75,7 @@
       "contentVersion": "4621719fbbaa2ff8",
       "contentHash": "4621719fbbaa2ff8357fe37f52ebb537f579424c64a0bf9f8223834dff5cedb3",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10962,
+      "previewBytes": 10981,
       "previewCharacterCount": 9856,
       "estimatedRuntimeSeconds": 3557,
       "truncated": true
@@ -163,7 +97,7 @@
       "contentVersion": "7083202f65ef57a8",
       "contentHash": "7083202f65ef57a80ea5b5db4eda3b656bfe2bbd0e5a857f9ef72336980bd90f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10655,
+      "previewBytes": 10744,
       "previewCharacterCount": 9769,
       "estimatedRuntimeSeconds": 3475,
       "truncated": true
@@ -174,7 +108,7 @@
       "contentVersion": "ae263983bcc94d6c",
       "contentHash": "ae263983bcc94d6c1e63cf538e8e15e6f9a85a0f18e913466db7d49d13a01ce7",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10945,
+      "previewBytes": 10964,
       "previewCharacterCount": 9926,
       "estimatedRuntimeSeconds": 3549,
       "truncated": true
@@ -182,34 +116,23 @@
     {
       "slug": "candide",
       "path": "/book-previews/candide.preview.json",
-      "contentVersion": "7e16293d9d2e0e2f",
-      "contentHash": "7e16293d9d2e0e2fdecf888f873fc3eda92bd4675d761767065a4ef1921c6f81",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11790,
-      "previewCharacterCount": 10758,
-      "estimatedRuntimeSeconds": 3862,
-      "truncated": true
-    },
-    {
-      "slug": "cranford",
-      "path": "/book-previews/cranford.preview.json",
-      "contentVersion": "651591fa72504245",
-      "contentHash": "651591fa72504245b6838e446ba698f06b7d3a2bbf1971dac0e05955890cc2f9",
+      "contentVersion": "26597bcb1e44241a",
+      "contentHash": "26597bcb1e44241acd52568e623ca5836e3e33f89e770d15a9bb6ab9fdf806ed",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10866,
-      "previewCharacterCount": 9926,
-      "estimatedRuntimeSeconds": 3543,
+      "previewBytes": 10549,
+      "previewCharacterCount": 9586,
+      "estimatedRuntimeSeconds": 3447,
       "truncated": true
     },
     {
       "slug": "crime-and-punishment",
       "path": "/book-previews/crime-and-punishment.preview.json",
-      "contentVersion": "d6d0c93538f5f280",
-      "contentHash": "d6d0c93538f5f28038f5d91d82ed44334e32afd0077287378396c137e342f33d",
+      "contentVersion": "1bf45d9f3bb2d82c",
+      "contentHash": "1bf45d9f3bb2d82c5af8ef4f0d19cb8bc6668f7a79cc97bc5ee98f60c1844dfa",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11206,
-      "previewCharacterCount": 10203,
-      "estimatedRuntimeSeconds": 3652,
+      "previewBytes": 10869,
+      "previewCharacterCount": 10016,
+      "estimatedRuntimeSeconds": 3581,
       "truncated": true
     },
     {
@@ -218,7 +141,7 @@
       "contentVersion": "ebcbd1bd1fe0b138",
       "contentHash": "ebcbd1bd1fe0b138e47e2e60315069cc260594499c1003f75e80a2cbc37898bd",
       "defaultSectionId": "part-002",
-      "previewBytes": 12146,
+      "previewBytes": 12165,
       "previewCharacterCount": 10832,
       "estimatedRuntimeSeconds": 3881,
       "truncated": true
@@ -229,7 +152,7 @@
       "contentVersion": "a7a4d22f464c8cbd",
       "contentHash": "a7a4d22f464c8cbd34ded946ae8c019042695e39820820f5e23d81e43b6abd68",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10151,
+      "previewBytes": 10170,
       "previewCharacterCount": 9170,
       "estimatedRuntimeSeconds": 3600,
       "truncated": true
@@ -239,10 +162,10 @@
       "path": "/book-previews/dr-jekyll-and-mr-hyde.preview.json",
       "contentVersion": "15c792a791222168",
       "contentHash": "15c792a791222168d9e832e1e804af7dc2daebcdf6e0f31eee27a0b625944b09",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11700,
-      "previewCharacterCount": 10574,
-      "estimatedRuntimeSeconds": 3807,
+      "defaultSectionId": "part-001",
+      "previewBytes": 11637,
+      "previewCharacterCount": 10552,
+      "estimatedRuntimeSeconds": 3800,
       "truncated": true
     },
     {
@@ -262,31 +185,9 @@
       "contentVersion": "914ce326b7e28a90",
       "contentHash": "914ce326b7e28a901068adbbe19c9ddfb2b0d444ca9fba65ab088d25aabf6b31",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10578,
+      "previewBytes": 10667,
       "previewCharacterCount": 9529,
       "estimatedRuntimeSeconds": 3504,
-      "truncated": true
-    },
-    {
-      "slug": "five-weeks-in-a-balloon",
-      "path": "/book-previews/five-weeks-in-a-balloon.preview.json",
-      "contentVersion": "66e462aab228e009",
-      "contentHash": "66e462aab228e00912a782862b4d7a133f101f2dda7b7ed4639c89c6c0ad8056",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10672,
-      "previewCharacterCount": 9623,
-      "estimatedRuntimeSeconds": 3468,
-      "truncated": true
-    },
-    {
-      "slug": "four-day-planet",
-      "path": "/book-previews/four-day-planet.preview.json",
-      "contentVersion": "ff6f9c3ebddf8923",
-      "contentHash": "ff6f9c3ebddf892303598a68430a3769cf1cf41d8bc1a2f4ee4470dd53d44db4",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10661,
-      "previewCharacterCount": 9670,
-      "estimatedRuntimeSeconds": 3466,
       "truncated": true
     },
     {
@@ -306,7 +207,7 @@
       "contentVersion": "60416d45b3f04a3a",
       "contentHash": "60416d45b3f04a3af6fb7987a14b1bfa1d8ce1b5849d3aee61f64bea3f72b822",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10834,
+      "previewBytes": 10923,
       "previewCharacterCount": 10005,
       "estimatedRuntimeSeconds": 3548,
       "truncated": true
@@ -314,12 +215,12 @@
     {
       "slug": "gulliver-s-travels",
       "path": "/book-previews/gulliver-s-travels.preview.json",
-      "contentVersion": "2682733fed99e00c",
-      "contentHash": "2682733fed99e00cddef9bba75fa4d2dee795759d796bb6707e3f5c6febee1db",
+      "contentVersion": "25b439f2df9cad73",
+      "contentHash": "25b439f2df9cad7362a149fc104a5b6f63a5d6c45fc8efcb61a5b5d5ccda65f8",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11778,
-      "previewCharacterCount": 10859,
-      "estimatedRuntimeSeconds": 3884,
+      "previewBytes": 3879,
+      "previewCharacterCount": 3171,
+      "estimatedRuntimeSeconds": 1128,
       "truncated": true
     },
     {
@@ -328,7 +229,7 @@
       "contentVersion": "e9e6b4950c7ea02d",
       "contentHash": "e9e6b4950c7ea02d97233c120ee08245132bc1f9dded5807407c9fc4f816f36f",
       "defaultSectionId": "part-002",
-      "previewBytes": 11498,
+      "previewBytes": 11517,
       "previewCharacterCount": 10468,
       "estimatedRuntimeSeconds": 3746,
       "truncated": true
@@ -339,7 +240,7 @@
       "contentVersion": "007d258656e8e2c7",
       "contentHash": "007d258656e8e2c7c9682c28a522611bf0302a5245ecc5cb9f42db4223e24715",
       "defaultSectionId": "part-001",
-      "previewBytes": 4677,
+      "previewBytes": 4696,
       "previewCharacterCount": 3768,
       "estimatedRuntimeSeconds": 1440,
       "truncated": false
@@ -361,7 +262,7 @@
       "contentVersion": "d75e8788ee033b98",
       "contentHash": "d75e8788ee033b98d011a5667f88ffceee065b7af3acaa18b52268dc5b03abb0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11851,
+      "previewBytes": 11870,
       "previewCharacterCount": 10726,
       "estimatedRuntimeSeconds": 3855,
       "truncated": true
@@ -372,21 +273,10 @@
       "contentVersion": "88372ba662b27561",
       "contentHash": "88372ba662b27561708403e6e10331ef01b17a84fe0e72dd3feeff57eefa5806",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6878,
+      "previewBytes": 6897,
       "previewCharacterCount": 5984,
       "estimatedRuntimeSeconds": 2100,
       "truncated": false
-    },
-    {
-      "slug": "little-fuzzy",
-      "path": "/book-previews/little-fuzzy.preview.json",
-      "contentVersion": "bb4875298784f91e",
-      "contentHash": "bb4875298784f91ec0fe3b949f92252b76c526a9ee80a1f35413043ca67f51c5",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10880,
-      "previewCharacterCount": 9948,
-      "estimatedRuntimeSeconds": 3572,
-      "truncated": true
     },
     {
       "slug": "little-women",
@@ -394,31 +284,9 @@
       "contentVersion": "532cea1f7a9d2d98",
       "contentHash": "532cea1f7a9d2d9801c6eee016fbb3936a777c04b15816a08ae5ee7f54bab31c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10600,
+      "previewBytes": 10689,
       "previewCharacterCount": 9610,
       "estimatedRuntimeSeconds": 3490,
-      "truncated": true
-    },
-    {
-      "slug": "macbeth",
-      "path": "/book-previews/macbeth.preview.json",
-      "contentVersion": "0226abdea44f95d6",
-      "contentHash": "0226abdea44f95d61a33d6a9d5df284aa5c0ef070faf1aa39f962554a8aaed3c",
-      "defaultSectionId": "part-001",
-      "previewBytes": 11112,
-      "previewCharacterCount": 9970,
-      "estimatedRuntimeSeconds": 3605,
-      "truncated": true
-    },
-    {
-      "slug": "moby-dick",
-      "path": "/book-previews/moby-dick.preview.json",
-      "contentVersion": "3d6b1370e7185921",
-      "contentHash": "3d6b1370e71859215a3aa1646cfd3ffba9962bf0343c726628341df467b9b7e1",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 9998,
-      "previewCharacterCount": 9110,
-      "estimatedRuntimeSeconds": 3258,
       "truncated": true
     },
     {
@@ -427,7 +295,7 @@
       "contentVersion": "d971de0e9b28f38a",
       "contentHash": "d971de0e9b28f38ab37d02809fd74586259794c9bcf77c8de2584a881b3f974e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10906,
+      "previewBytes": 10995,
       "previewCharacterCount": 9978,
       "estimatedRuntimeSeconds": 3585,
       "truncated": true
@@ -438,20 +306,9 @@
       "contentVersion": "54954c1ec72e61ef",
       "contentHash": "54954c1ec72e61ef8fdd46e6a430fd5dafe31ef522cb14cd0572cb549aa94d44",
       "defaultSectionId": "part-002",
-      "previewBytes": 11421,
+      "previewBytes": 11440,
       "previewCharacterCount": 10441,
       "estimatedRuntimeSeconds": 3803,
-      "truncated": true
-    },
-    {
-      "slug": "persuasion",
-      "path": "/book-previews/persuasion.preview.json",
-      "contentVersion": "962d4fa30c3053e1",
-      "contentHash": "962d4fa30c3053e1c057b302b111845d92b3787be8c1297a88597edf1dbe31c9",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10598,
-      "previewCharacterCount": 9685,
-      "estimatedRuntimeSeconds": 3486,
       "truncated": true
     },
     {
@@ -460,20 +317,9 @@
       "contentVersion": "73d23529dcdeea00",
       "contentHash": "73d23529dcdeea008c40e601540e52d11e1aaa8b57a17fbaad651145388ec86d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11604,
+      "previewBytes": 11623,
       "previewCharacterCount": 10584,
       "estimatedRuntimeSeconds": 3809,
-      "truncated": true
-    },
-    {
-      "slug": "pointed-roofs",
-      "path": "/book-previews/pointed-roofs.preview.json",
-      "contentVersion": "eb8d34dd5665edb3",
-      "contentHash": "eb8d34dd5665edb30d9bf17af892ee9b9fed4a020cbaa5485a2c4689ca52c19d",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11031,
-      "previewCharacterCount": 9850,
-      "estimatedRuntimeSeconds": 3585,
       "truncated": true
     },
     {
@@ -482,20 +328,9 @@
       "contentVersion": "0438f940ef0f913c",
       "contentHash": "0438f940ef0f913c31ed64a9a14f512cc2bfbf873f8f58766d6e4ce8d9bdea7a",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10867,
+      "previewBytes": 10956,
       "previewCharacterCount": 9838,
       "estimatedRuntimeSeconds": 3549,
-      "truncated": true
-    },
-    {
-      "slug": "pygmalion",
-      "path": "/book-previews/pygmalion.preview.json",
-      "contentVersion": "09d24e1d78a97f18",
-      "contentHash": "09d24e1d78a97f1822cd1746a97397ca53976e5f6ba79ac5f99757dd21314cf8",
-      "defaultSectionId": "part-001",
-      "previewBytes": 10662,
-      "previewCharacterCount": 9699,
-      "estimatedRuntimeSeconds": 3455,
       "truncated": true
     },
     {
@@ -504,7 +339,7 @@
       "contentVersion": "e7fafa229524c955",
       "contentHash": "e7fafa229524c95540da4188c4a94b01151545e7445a2b25b9c1f352fc22a92f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8535,
+      "previewBytes": 8554,
       "previewCharacterCount": 7542,
       "estimatedRuntimeSeconds": 2760,
       "truncated": false
@@ -515,20 +350,9 @@
       "contentVersion": "4cf267dfa9d1b012",
       "contentHash": "4cf267dfa9d1b01288349cc486e9d35081cdb4e532b3c16629620b45ede4394c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10909,
+      "previewBytes": 10998,
       "previewCharacterCount": 10043,
       "estimatedRuntimeSeconds": 3571,
-      "truncated": true
-    },
-    {
-      "slug": "room-13",
-      "path": "/book-previews/room-13.preview.json",
-      "contentVersion": "c326ca1aac2da025",
-      "contentHash": "c326ca1aac2da0251f5691f7ac62485736301f093d2a914b6b0a05715b309af4",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10848,
-      "previewCharacterCount": 9802,
-      "estimatedRuntimeSeconds": 3546,
       "truncated": true
     },
     {
@@ -548,20 +372,9 @@
       "contentVersion": "3915fa6a56ad3f88",
       "contentHash": "3915fa6a56ad3f88bf2df52568a48061932e509434d6cb39f1d6db60ae8a1470",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 12227,
+      "previewBytes": 12246,
       "previewCharacterCount": 11106,
       "estimatedRuntimeSeconds": 3600,
-      "truncated": true
-    },
-    {
-      "slug": "tales-of-war",
-      "path": "/book-previews/tales-of-war.preview.json",
-      "contentVersion": "a34b8eee8963cc66",
-      "contentHash": "a34b8eee8963cc6698293c9a2040c3b52ae726656097993b6781c5c8c8b0bd92",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11070,
-      "previewCharacterCount": 10063,
-      "estimatedRuntimeSeconds": 3578,
       "truncated": true
     },
     {
@@ -570,20 +383,9 @@
       "contentVersion": "742f0b77b1fb5f62",
       "contentHash": "742f0b77b1fb5f625a57999bc4c496e1b82950a1f47bf72631c7f16983602271",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11737,
+      "previewBytes": 11756,
       "previewCharacterCount": 10745,
       "estimatedRuntimeSeconds": 3837,
-      "truncated": true
-    },
-    {
-      "slug": "the-adventures-of-tom-sawyer",
-      "path": "/book-previews/the-adventures-of-tom-sawyer.preview.json",
-      "contentVersion": "b9d2b4d867fe9f45",
-      "contentHash": "b9d2b4d867fe9f45aca72102f7a0e535298cee93a6ddfba5844fab06cb8d595c",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11049,
-      "previewCharacterCount": 9870,
-      "estimatedRuntimeSeconds": 3577,
       "truncated": true
     },
     {
@@ -592,7 +394,7 @@
       "contentVersion": "7fb4ff78ea8e99bc",
       "contentHash": "7fb4ff78ea8e99bc1dee2f036223c2472b4695b7dd458911db39fe37f3b027a5",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10494,
+      "previewBytes": 10583,
       "previewCharacterCount": 9598,
       "estimatedRuntimeSeconds": 3419,
       "truncated": true
@@ -603,7 +405,7 @@
       "contentVersion": "9c312e02cb67e374",
       "contentHash": "9c312e02cb67e3745ffb99cb568348986d82fbea818cf60799e653c6d724597d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9718,
+      "previewBytes": 9737,
       "previewCharacterCount": 8633,
       "estimatedRuntimeSeconds": 3120,
       "truncated": false
@@ -614,7 +416,7 @@
       "contentVersion": "26e487e055059310",
       "contentHash": "26e487e0550593107eddc9a0554a052e58b7d28246c62a12505574f21ac8fe50",
       "defaultSectionId": "part-001",
-      "previewBytes": 11784,
+      "previewBytes": 11803,
       "previewCharacterCount": 10702,
       "estimatedRuntimeSeconds": 3838,
       "truncated": true
@@ -625,7 +427,7 @@
       "contentVersion": "173716579df8f6b0",
       "contentHash": "173716579df8f6b003f1150c87924eae91cbc2ea9cddd0f660dba4f04687ef85",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10686,
+      "previewBytes": 10775,
       "previewCharacterCount": 9676,
       "estimatedRuntimeSeconds": 3485,
       "truncated": true
@@ -633,12 +435,12 @@
     {
       "slug": "the-call-of-cthulhu",
       "path": "/book-previews/the-call-of-cthulhu.preview.json",
-      "contentVersion": "92ed56343936c95c",
-      "contentHash": "92ed56343936c95cf8c37fadf4f90c36eff1257be05c15f0d93fd7b56a99bbb5",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11588,
-      "previewCharacterCount": 10665,
-      "estimatedRuntimeSeconds": 3742,
+      "contentVersion": "94448859a946f4b3",
+      "contentHash": "94448859a946f4b3cb5d97cb451a244cfc4a76de565641337a8adb137a124844",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 9821,
+      "previewCharacterCount": 8994,
+      "estimatedRuntimeSeconds": 3242,
       "truncated": true
     },
     {
@@ -658,7 +460,7 @@
       "contentVersion": "4d1525fee69ba7fa",
       "contentHash": "4d1525fee69ba7fa08cdb4a83ba0859114bc663fd70ec75726a30fb2dc4ab0dc",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 12179,
+      "previewBytes": 12198,
       "previewCharacterCount": 10973,
       "estimatedRuntimeSeconds": 3600,
       "truncated": true
@@ -669,7 +471,7 @@
       "contentVersion": "9b2e30400e39fe36",
       "contentHash": "9b2e30400e39fe36b0f64c5eba158585482028249526bc6b9821c6f285d82276",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 12194,
+      "previewBytes": 12213,
       "previewCharacterCount": 10973,
       "estimatedRuntimeSeconds": 3600,
       "truncated": true
@@ -680,20 +482,9 @@
       "contentVersion": "9b6073b0eccbe686",
       "contentHash": "9b6073b0eccbe68665322931239833ad595dffa4a0eb7fd54347512564598866",
       "defaultSectionId": "poem-001",
-      "previewBytes": 10383,
+      "previewBytes": 10472,
       "previewCharacterCount": 9467,
       "estimatedRuntimeSeconds": 3420,
-      "truncated": true
-    },
-    {
-      "slug": "the-door-in-the-wall",
-      "path": "/book-previews/the-door-in-the-wall.preview.json",
-      "contentVersion": "ecd2c160a30c71ce",
-      "contentHash": "ecd2c160a30c71cef30c0545c9b979408738aec6d45bd3a1279cf19feb278218",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 9748,
-      "previewCharacterCount": 8930,
-      "estimatedRuntimeSeconds": 3173,
       "truncated": true
     },
     {
@@ -702,7 +493,7 @@
       "contentVersion": "6bdac4121a3dc227",
       "contentHash": "6bdac4121a3dc227f1649db8ef471d662733041ee0d3c9522164964a5d7e3c34",
       "defaultSectionId": "part-001",
-      "previewBytes": 11789,
+      "previewBytes": 11808,
       "previewCharacterCount": 10702,
       "estimatedRuntimeSeconds": 3837,
       "truncated": true
@@ -713,7 +504,7 @@
       "contentVersion": "e67ae63c06ff71be",
       "contentHash": "e67ae63c06ff71be8535ddd8b7b06724e6b64792ec4a8d7a1b47f58321e9c9f4",
       "defaultSectionId": "part-001",
-      "previewBytes": 11021,
+      "previewBytes": 11110,
       "previewCharacterCount": 10108,
       "estimatedRuntimeSeconds": 3603,
       "truncated": true
@@ -721,12 +512,12 @@
     {
       "slug": "the-emerald-city-of-oz",
       "path": "/book-previews/the-emerald-city-of-oz.preview.json",
-      "contentVersion": "8d21d1d1f204a77d",
-      "contentHash": "8d21d1d1f204a77d0b6b0f7512fa8a35eba49b09d4b7da1307bbfac4db67aec3",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11932,
-      "previewCharacterCount": 10779,
-      "estimatedRuntimeSeconds": 3850,
+      "contentVersion": "dfd5abc8c92d18c0",
+      "contentHash": "dfd5abc8c92d18c08aa9d16ab363158e787be0015ee80651e393a8f0349d2f4a",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10964,
+      "previewCharacterCount": 9914,
+      "estimatedRuntimeSeconds": 3552,
       "truncated": true
     },
     {
@@ -735,7 +526,7 @@
       "contentVersion": "746dfe7ca9ddc8d9",
       "contentHash": "746dfe7ca9ddc8d9ea4d6e432a0010c06734490bf0e6d2d0b318887bb67c2fdf",
       "defaultSectionId": "part-001",
-      "previewBytes": 11185,
+      "previewBytes": 11204,
       "previewCharacterCount": 10090,
       "estimatedRuntimeSeconds": 3616,
       "truncated": true
@@ -746,7 +537,7 @@
       "contentVersion": "e592d3d51185c492",
       "contentHash": "e592d3d51185c492b737390c3546befd06ca1d8aecc75d620ebdb0b7223eeb0d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10777,
+      "previewBytes": 10866,
       "previewCharacterCount": 9936,
       "estimatedRuntimeSeconds": 3515,
       "truncated": true
@@ -757,7 +548,7 @@
       "contentVersion": "d05fb6270fdc899f",
       "contentHash": "d05fb6270fdc899f868027b2f3b41ced2ae9fd9e9a7c2577a0d305c9798d5ec9",
       "defaultSectionId": "part-001",
-      "previewBytes": 11853,
+      "previewBytes": 11872,
       "previewCharacterCount": 10753,
       "estimatedRuntimeSeconds": 3867,
       "truncated": true
@@ -768,7 +559,7 @@
       "contentVersion": "65d394f3a00e6ef7",
       "contentHash": "65d394f3a00e6ef763116868ba201c60f4b5ea6d8c9641541fe2fb6e0c6aee94",
       "defaultSectionId": "part-002",
-      "previewBytes": 12087,
+      "previewBytes": 12106,
       "previewCharacterCount": 10839,
       "estimatedRuntimeSeconds": 3878,
       "truncated": true
@@ -779,32 +570,10 @@
       "contentVersion": "9f46408610312e1f",
       "contentHash": "9f46408610312e1f4eb15807697f7e6666e899fe91c5d00657ecac3cbfa13592",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 7858,
+      "previewBytes": 7877,
       "previewCharacterCount": 6920,
       "estimatedRuntimeSeconds": 2400,
       "truncated": false
-    },
-    {
-      "slug": "the-hound-of-the-baskervilles",
-      "path": "/book-previews/the-hound-of-the-baskervilles.preview.json",
-      "contentVersion": "c6bf7cc132c192f5",
-      "contentHash": "c6bf7cc132c192f513d502231ac1280da0cbe3235656c142c50b99f841c70066",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11196,
-      "previewCharacterCount": 10090,
-      "estimatedRuntimeSeconds": 3587,
-      "truncated": true
-    },
-    {
-      "slug": "the-house-without-a-key",
-      "path": "/book-previews/the-house-without-a-key.preview.json",
-      "contentVersion": "47f9002a7d45edf7",
-      "contentHash": "47f9002a7d45edf7eb2b89b9ca60824a200fbf5231e99d74598294dd4bf3b140",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10846,
-      "previewCharacterCount": 9738,
-      "estimatedRuntimeSeconds": 3532,
-      "truncated": true
     },
     {
       "slug": "the-jungle-book",
@@ -812,20 +581,9 @@
       "contentVersion": "59517ca126132887",
       "contentHash": "59517ca1261328878c5780a2d1134dfd7df3a0520cb0bd296a9e35abb5038a44",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10979,
+      "previewBytes": 11068,
       "previewCharacterCount": 10001,
       "estimatedRuntimeSeconds": 3603,
-      "truncated": true
-    },
-    {
-      "slug": "the-king-in-yellow",
-      "path": "/book-previews/the-king-in-yellow.preview.json",
-      "contentVersion": "09335206c61557c5",
-      "contentHash": "09335206c61557c5ddbe497e6339897dc6b132442c690c010489f183c9cf343a",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10916,
-      "previewCharacterCount": 9979,
-      "estimatedRuntimeSeconds": 3560,
       "truncated": true
     },
     {
@@ -834,7 +592,7 @@
       "contentVersion": "40ef802bc05a7172",
       "contentHash": "40ef802bc05a717287357202e4eebc9100c3b285460772252ece7e18c49e07b6",
       "defaultSectionId": "part-001",
-      "previewBytes": 4154,
+      "previewBytes": 4173,
       "previewCharacterCount": 3310,
       "estimatedRuntimeSeconds": 1200,
       "truncated": false
@@ -851,6 +609,248 @@
       "truncated": true
     },
     {
+      "slug": "the-old-house",
+      "path": "/book-previews/the-old-house.preview.json",
+      "contentVersion": "78c7af153197340c",
+      "contentHash": "78c7af153197340cd19cf1bca060ec12339e66e04fad81722138b902a0674038",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10162,
+      "previewCharacterCount": 9266,
+      "estimatedRuntimeSeconds": 3311,
+      "truncated": true
+    },
+    {
+      "slug": "the-picture-of-dorian-gray",
+      "path": "/book-previews/the-picture-of-dorian-gray.preview.json",
+      "contentVersion": "af2ab9deaa2db2a0",
+      "contentHash": "af2ab9deaa2db2a0bace9a43916984a7cf4881616bc080478b6769cf94bdef39",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11194,
+      "previewCharacterCount": 10033,
+      "estimatedRuntimeSeconds": 3606,
+      "truncated": true
+    },
+    {
+      "slug": "the-princess-and-the-goblin",
+      "path": "/book-previews/the-princess-and-the-goblin.preview.json",
+      "contentVersion": "1b735f6d9414372d",
+      "contentHash": "1b735f6d9414372db3a176dd8accd5ddb172ded859d73f1f7c96d492ea7dd224",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 5548,
+      "previewCharacterCount": 4700,
+      "estimatedRuntimeSeconds": 1680,
+      "truncated": false
+    },
+    {
+      "slug": "the-railway-children",
+      "path": "/book-previews/the-railway-children.preview.json",
+      "contentVersion": "2e8fd14f73610186",
+      "contentHash": "2e8fd14f73610186ff5937435d349246561d374111bd004cac2cc03eae76bd57",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11989,
+      "previewCharacterCount": 10774,
+      "estimatedRuntimeSeconds": 3863,
+      "truncated": true
+    },
+    {
+      "slug": "the-real-princess",
+      "path": "/book-previews/the-real-princess.preview.json",
+      "contentVersion": "74623d7ca6769121",
+      "contentHash": "74623d7ca6769121902ef1cbb13d5746a9e7cb452c62ac83e326d1aa9df58ac1",
+      "defaultSectionId": "part-001",
+      "previewBytes": 3021,
+      "previewCharacterCount": 2211,
+      "estimatedRuntimeSeconds": 840,
+      "truncated": false
+    },
+    {
+      "slug": "the-sea-wolf",
+      "path": "/book-previews/the-sea-wolf.preview.json",
+      "contentVersion": "1407da1c4cda2335",
+      "contentHash": "1407da1c4cda2335816e02e8d2221b3f8af7b5aef9a9ad17d79ba484a9735276",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11801,
+      "previewCharacterCount": 10659,
+      "estimatedRuntimeSeconds": 3801,
+      "truncated": true
+    },
+    {
+      "slug": "the-secret-garden",
+      "path": "/book-previews/the-secret-garden.preview.json",
+      "contentVersion": "dcceb9038f24da61",
+      "contentHash": "dcceb9038f24da61a2a0e2f854074d3a1adda73a5d6d79796382baee9f492c42",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10623,
+      "previewCharacterCount": 9642,
+      "estimatedRuntimeSeconds": 3429,
+      "truncated": true
+    },
+    {
+      "slug": "the-secret-garden-gutenberg-113",
+      "path": "/book-previews/the-secret-garden-gutenberg-113.preview.json",
+      "contentVersion": "a7badd9309f75169",
+      "contentHash": "a7badd9309f7516926ca73a11c6bb15200e13aaf9e33808e0e234ef6e22dcea2",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11192,
+      "previewCharacterCount": 10096,
+      "estimatedRuntimeSeconds": 3600,
+      "truncated": false
+    },
+    {
+      "slug": "the-shoes-of-fortune",
+      "path": "/book-previews/the-shoes-of-fortune.preview.json",
+      "contentVersion": "e6807307fe30d680",
+      "contentHash": "e6807307fe30d6806c09bffcf90ee1152576e9115656171f9d5798f291943e7c",
+      "defaultSectionId": "part-001",
+      "previewBytes": 11969,
+      "previewCharacterCount": 10853,
+      "estimatedRuntimeSeconds": 3860,
+      "truncated": true
+    },
+    {
+      "slug": "the-snow-queen",
+      "path": "/book-previews/the-snow-queen.preview.json",
+      "contentVersion": "9864b79c6bbb2c04",
+      "contentHash": "9864b79c6bbb2c04cef4ac4daedb43628583ea986d02dbb09fd8d868d3dbde21",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10934,
+      "previewCharacterCount": 9996,
+      "estimatedRuntimeSeconds": 3554,
+      "truncated": true
+    },
+    {
+      "slug": "the-swineherd",
+      "path": "/book-previews/the-swineherd.preview.json",
+      "contentVersion": "c36c34ceaa99ed5f",
+      "contentHash": "c36c34ceaa99ed5ff1e1a91f4160e41d5649d02f00f35c4ac7755748b4e8438c",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 9135,
+      "previewCharacterCount": 8151,
+      "estimatedRuntimeSeconds": 2932,
+      "truncated": false
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "path": "/book-previews/the-thirty-nine-steps.preview.json",
+      "contentVersion": "60e530443a945b25",
+      "contentHash": "60e530443a945b2581abf391d373629a5be64a4b3bae5028666d933bd37eb7a2",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11700,
+      "previewCharacterCount": 10572,
+      "estimatedRuntimeSeconds": 3789,
+      "truncated": true
+    },
+    {
+      "slug": "the-three-musketeers",
+      "path": "/book-previews/the-three-musketeers.preview.json",
+      "contentVersion": "117fe21e8265df4f",
+      "contentHash": "117fe21e8265df4fb95daed97a30b78ec13d64f5121758097be52b4808e8e8b6",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10163,
+      "previewCharacterCount": 9214,
+      "estimatedRuntimeSeconds": 3302,
+      "truncated": true
+    },
+    {
+      "slug": "the-water-babies",
+      "path": "/book-previews/the-water-babies.preview.json",
+      "contentVersion": "04dfedc6a8729a59",
+      "contentHash": "04dfedc6a8729a59359d442c1c3c35cb495bb7ef4b0745141394f3bbb5aab98f",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10965,
+      "previewCharacterCount": 10046,
+      "estimatedRuntimeSeconds": 3597,
+      "truncated": true
+    },
+    {
+      "slug": "the-wonderful-wizard-of-oz",
+      "path": "/book-previews/the-wonderful-wizard-of-oz.preview.json",
+      "contentVersion": "831ed73fb9ba380f",
+      "contentHash": "831ed73fb9ba380fb2726467f72d9e705418fcc996add083a5eae8d7114dd94d",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10934,
+      "previewCharacterCount": 9951,
+      "estimatedRuntimeSeconds": 3552,
+      "truncated": true
+    },
+    {
+      "slug": "through-the-looking-glass",
+      "path": "/book-previews/through-the-looking-glass.preview.json",
+      "contentVersion": "d8a013c20c2b2c27",
+      "contentHash": "d8a013c20c2b2c27a60b774883390ea8037953d1d06b0f2d2878e36678319d95",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 12000,
+      "previewCharacterCount": 10726,
+      "estimatedRuntimeSeconds": 3881,
+      "truncated": true
+    },
+    {
+      "slug": "treasure-island",
+      "path": "/book-previews/treasure-island.preview.json",
+      "contentVersion": "fbc88f57ab49a7cc",
+      "contentHash": "fbc88f57ab49a7cc8fe983985990a77cb3af05242deb1d04adb447fd8027e4b4",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10952,
+      "previewCharacterCount": 10062,
+      "estimatedRuntimeSeconds": 3583,
+      "truncated": true
+    },
+    {
+      "slug": "wind-in-the-willows",
+      "path": "/book-previews/wind-in-the-willows.preview.json",
+      "contentVersion": "58b7901269e06036",
+      "contentHash": "58b7901269e0603618ff4d686217ad3c71450b45560b0f5849fb0cfad03f941b",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 12009,
+      "previewCharacterCount": 10694,
+      "estimatedRuntimeSeconds": 3880,
+      "truncated": true
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "path": "/book-previews/wood-folk-at-school.preview.json",
+      "contentVersion": "53459056320606b5",
+      "contentHash": "53459056320606b53faa47715e9dc78f224f944a3377a2919f8697b257fdf123",
+      "defaultSectionId": "part-002",
+      "previewBytes": 11509,
+      "previewCharacterCount": 10569,
+      "estimatedRuntimeSeconds": 3779,
+      "truncated": true
+    },
+    {
+      "slug": "a-dream-of-armageddon",
+      "path": "/book-previews/a-dream-of-armageddon.preview.json",
+      "contentVersion": "7385067d298d1424",
+      "contentHash": "7385067d298d1424a80bbc7c039e339b4614b4bc13855cdc6a1fb6c85c74df08",
+      "defaultSectionId": "part-001",
+      "previewBytes": 9784,
+      "previewCharacterCount": 8791,
+      "estimatedRuntimeSeconds": 3148,
+      "truncated": true
+    },
+    {
+      "slug": "almayer-s-folly-a-story-of-an-eastern-river",
+      "path": "/book-previews/almayer-s-folly-a-story-of-an-eastern-river.preview.json",
+      "contentVersion": "a3c587c4d7f560fa",
+      "contentHash": "a3c587c4d7f560fa04ba11a9491b1ada4f3639061ceb2b06ddc54521d01cab72",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 9245,
+      "previewCharacterCount": 8324,
+      "estimatedRuntimeSeconds": 2987,
+      "truncated": true
+    },
+    {
+      "slug": "the-house-without-a-key",
+      "path": "/book-previews/the-house-without-a-key.preview.json",
+      "contentVersion": "47f9002a7d45edf7",
+      "contentHash": "47f9002a7d45edf7eb2b89b9ca60824a200fbf5231e99d74598294dd4bf3b140",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10846,
+      "previewCharacterCount": 9738,
+      "estimatedRuntimeSeconds": 3532,
+      "truncated": true
+    },
+    {
       "slug": "the-lerouge-case",
       "path": "/book-previews/the-lerouge-case.preview.json",
       "contentVersion": "2034c185a686accd",
@@ -862,14 +862,36 @@
       "truncated": true
     },
     {
-      "slug": "the-life-and-adventures-of-robinson-crusoe",
-      "path": "/book-previews/the-life-and-adventures-of-robinson-crusoe.preview.json",
-      "contentVersion": "fff923cbcf97efb2",
-      "contentHash": "fff923cbcf97efb242ea752c06d23f9da39fc23888d7ad62957e421cf4a658e4",
+      "slug": "a-journey-to-the-centre-of-the-earth",
+      "path": "/book-previews/a-journey-to-the-centre-of-the-earth.preview.json",
+      "contentVersion": "3e200b38cc02277c",
+      "contentHash": "3e200b38cc02277c5c03dc6af12a524c3b25504bf437759b8ffce9db4c70287a",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9873,
-      "previewCharacterCount": 8946,
-      "estimatedRuntimeSeconds": 3173,
+      "previewBytes": 11110,
+      "previewCharacterCount": 10080,
+      "estimatedRuntimeSeconds": 3597,
+      "truncated": true
+    },
+    {
+      "slug": "a-journal-of-the-plague-year",
+      "path": "/book-previews/a-journal-of-the-plague-year.preview.json",
+      "contentVersion": "931a9cc803a5cb02",
+      "contentHash": "931a9cc803a5cb02130b125fccc31252a58718a64fb8eac85f77abc017865b35",
+      "defaultSectionId": "part-001",
+      "previewBytes": 10892,
+      "previewCharacterCount": 9876,
+      "estimatedRuntimeSeconds": 3459,
+      "truncated": true
+    },
+    {
+      "slug": "pointed-roofs",
+      "path": "/book-previews/pointed-roofs.preview.json",
+      "contentVersion": "eb8d34dd5665edb3",
+      "contentHash": "eb8d34dd5665edb30d9bf17af892ee9b9fed4a020cbaa5485a2c4689ca52c19d",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11031,
+      "previewCharacterCount": 9850,
+      "estimatedRuntimeSeconds": 3585,
       "truncated": true
     },
     {
@@ -884,14 +906,47 @@
       "truncated": true
     },
     {
-      "slug": "the-maltese-falcon",
-      "path": "/book-previews/the-maltese-falcon.preview.json",
-      "contentVersion": "57f017ffb4ec2d8d",
-      "contentHash": "57f017ffb4ec2d8d52d9531d9327e7ef6d2e6b0ca8f2d01695ce04d43d1dab67",
+      "slug": "the-red-thumb-mark",
+      "path": "/book-previews/the-red-thumb-mark.preview.json",
+      "contentVersion": "319379f71945a100",
+      "contentHash": "319379f71945a100771eb84313040d37c71228c0ca7c550dcdb46fabdc4aa39c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10770,
-      "previewCharacterCount": 9688,
-      "estimatedRuntimeSeconds": 3488,
+      "previewBytes": 11000,
+      "previewCharacterCount": 9915,
+      "estimatedRuntimeSeconds": 3575,
+      "truncated": true
+    },
+    {
+      "slug": "violet-fairy-book",
+      "path": "/book-previews/violet-fairy-book.preview.json",
+      "contentVersion": "3ddd13e2f494ab05",
+      "contentHash": "3ddd13e2f494ab05b3af61e27305160277a809ac9bf5610022dbac73453e95ee",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10735,
+      "previewCharacterCount": 9778,
+      "estimatedRuntimeSeconds": 3481,
+      "truncated": true
+    },
+    {
+      "slug": "four-day-planet",
+      "path": "/book-previews/four-day-planet.preview.json",
+      "contentVersion": "ff6f9c3ebddf8923",
+      "contentHash": "ff6f9c3ebddf892303598a68430a3769cf1cf41d8bc1a2f4ee4470dd53d44db4",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10661,
+      "previewCharacterCount": 9670,
+      "estimatedRuntimeSeconds": 3466,
+      "truncated": true
+    },
+    {
+      "slug": "room-13",
+      "path": "/book-previews/room-13.preview.json",
+      "contentVersion": "c326ca1aac2da025",
+      "contentHash": "c326ca1aac2da0251f5691f7ac62485736301f093d2a914b6b0a05715b309af4",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10848,
+      "previewCharacterCount": 9802,
+      "estimatedRuntimeSeconds": 3546,
       "truncated": true
     },
     {
@@ -906,28 +961,6 @@
       "truncated": true
     },
     {
-      "slug": "the-old-house",
-      "path": "/book-previews/the-old-house.preview.json",
-      "contentVersion": "cb84871b55f9b084",
-      "contentHash": "cb84871b55f9b0847226aa42f80f3819e1baef3818e1e7ea46794830045d289a",
-      "defaultSectionId": "part-001",
-      "previewBytes": 11809,
-      "previewCharacterCount": 10733,
-      "estimatedRuntimeSeconds": 3844,
-      "truncated": true
-    },
-    {
-      "slug": "the-picture-of-dorian-gray",
-      "path": "/book-previews/the-picture-of-dorian-gray.preview.json",
-      "contentVersion": "af2ab9deaa2db2a0",
-      "contentHash": "af2ab9deaa2db2a0bace9a43916984a7cf4881616bc080478b6769cf94bdef39",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11175,
-      "previewCharacterCount": 10033,
-      "estimatedRuntimeSeconds": 3606,
-      "truncated": true
-    },
-    {
       "slug": "the-prince-and-the-pauper",
       "path": "/book-previews/the-prince-and-the-pauper.preview.json",
       "contentVersion": "d784fa09c26b0596",
@@ -939,114 +972,147 @@
       "truncated": true
     },
     {
-      "slug": "the-princess-and-the-goblin",
-      "path": "/book-previews/the-princess-and-the-goblin.preview.json",
-      "contentVersion": "1b735f6d9414372d",
-      "contentHash": "1b735f6d9414372db3a176dd8accd5ddb172ded859d73f1f7c96d492ea7dd224",
+      "slug": "triplanetary",
+      "path": "/book-previews/triplanetary.preview.json",
+      "contentVersion": "aea8c0f7e5f0e274",
+      "contentHash": "aea8c0f7e5f0e2744d8027225c562cc0954c6f2b39ff82a69de9c139fedc6430",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5529,
-      "previewCharacterCount": 4700,
-      "estimatedRuntimeSeconds": 1680,
-      "truncated": false
-    },
-    {
-      "slug": "the-railway-children",
-      "path": "/book-previews/the-railway-children.preview.json",
-      "contentVersion": "2e8fd14f73610186",
-      "contentHash": "2e8fd14f73610186ff5937435d349246561d374111bd004cac2cc03eae76bd57",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11970,
-      "previewCharacterCount": 10774,
-      "estimatedRuntimeSeconds": 3863,
+      "previewBytes": 10939,
+      "previewCharacterCount": 9960,
+      "estimatedRuntimeSeconds": 3609,
       "truncated": true
     },
     {
-      "slug": "the-real-princess",
-      "path": "/book-previews/the-real-princess.preview.json",
-      "contentVersion": "74623d7ca6769121",
-      "contentHash": "74623d7ca6769121902ef1cbb13d5746a9e7cb452c62ac83e326d1aa9df58ac1",
+      "slug": "a-tale-of-two-cities",
+      "path": "/book-previews/a-tale-of-two-cities.preview.json",
+      "contentVersion": "87f975b1a0c50cf3",
+      "contentHash": "87f975b1a0c50cf3deb7b6fc277e26012b393ed560bf44d7b795eded1b0cc886",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10656,
+      "previewCharacterCount": 9710,
+      "estimatedRuntimeSeconds": 3469,
+      "truncated": true
+    },
+    {
+      "slug": "cranford",
+      "path": "/book-previews/cranford.preview.json",
+      "contentVersion": "651591fa72504245",
+      "contentHash": "651591fa72504245b6838e446ba698f06b7d3a2bbf1971dac0e05955890cc2f9",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10866,
+      "previewCharacterCount": 9926,
+      "estimatedRuntimeSeconds": 3543,
+      "truncated": true
+    },
+    {
+      "slug": "little-fuzzy",
+      "path": "/book-previews/little-fuzzy.preview.json",
+      "contentVersion": "bb4875298784f91e",
+      "contentHash": "bb4875298784f91ec0fe3b949f92252b76c526a9ee80a1f35413043ca67f51c5",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10880,
+      "previewCharacterCount": 9948,
+      "estimatedRuntimeSeconds": 3572,
+      "truncated": true
+    },
+    {
+      "slug": "macbeth",
+      "path": "/book-previews/macbeth.preview.json",
+      "contentVersion": "0226abdea44f95d6",
+      "contentHash": "0226abdea44f95d61a33d6a9d5df284aa5c0ef070faf1aa39f962554a8aaed3c",
       "defaultSectionId": "part-001",
-      "previewBytes": 3002,
-      "previewCharacterCount": 2211,
-      "estimatedRuntimeSeconds": 840,
-      "truncated": false
-    },
-    {
-      "slug": "the-red-thumb-mark",
-      "path": "/book-previews/the-red-thumb-mark.preview.json",
-      "contentVersion": "319379f71945a100",
-      "contentHash": "319379f71945a100771eb84313040d37c71228c0ca7c550dcdb46fabdc4aa39c",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11000,
-      "previewCharacterCount": 9915,
-      "estimatedRuntimeSeconds": 3575,
+      "previewBytes": 11112,
+      "previewCharacterCount": 9970,
+      "estimatedRuntimeSeconds": 3605,
       "truncated": true
     },
     {
-      "slug": "the-sea-wolf",
-      "path": "/book-previews/the-sea-wolf.preview.json",
-      "contentVersion": "1407da1c4cda2335",
-      "contentHash": "1407da1c4cda2335816e02e8d2221b3f8af7b5aef9a9ad17d79ba484a9735276",
+      "slug": "persuasion",
+      "path": "/book-previews/persuasion.preview.json",
+      "contentVersion": "962d4fa30c3053e1",
+      "contentHash": "962d4fa30c3053e1c057b302b111845d92b3787be8c1297a88597edf1dbe31c9",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11782,
-      "previewCharacterCount": 10659,
-      "estimatedRuntimeSeconds": 3801,
+      "previewBytes": 10598,
+      "previewCharacterCount": 9685,
+      "estimatedRuntimeSeconds": 3486,
       "truncated": true
     },
     {
-      "slug": "the-secret-garden",
-      "path": "/book-previews/the-secret-garden.preview.json",
-      "contentVersion": "dcceb9038f24da61",
-      "contentHash": "dcceb9038f24da61a2a0e2f854074d3a1adda73a5d6d79796382baee9f492c42",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10534,
-      "previewCharacterCount": 9642,
-      "estimatedRuntimeSeconds": 3429,
-      "truncated": true
-    },
-    {
-      "slug": "the-secret-garden-gutenberg-113",
-      "path": "/book-previews/the-secret-garden-gutenberg-113.preview.json",
-      "contentVersion": "a7badd9309f75169",
-      "contentHash": "a7badd9309f7516926ca73a11c6bb15200e13aaf9e33808e0e234ef6e22dcea2",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11173,
-      "previewCharacterCount": 10096,
-      "estimatedRuntimeSeconds": 3600,
-      "truncated": false
-    },
-    {
-      "slug": "the-shoes-of-fortune",
-      "path": "/book-previews/the-shoes-of-fortune.preview.json",
-      "contentVersion": "e6807307fe30d680",
-      "contentHash": "e6807307fe30d6806c09bffcf90ee1152576e9115656171f9d5798f291943e7c",
+      "slug": "pygmalion",
+      "path": "/book-previews/pygmalion.preview.json",
+      "contentVersion": "09d24e1d78a97f18",
+      "contentHash": "09d24e1d78a97f1822cd1746a97397ca53976e5f6ba79ac5f99757dd21314cf8",
       "defaultSectionId": "part-001",
-      "previewBytes": 11950,
-      "previewCharacterCount": 10853,
-      "estimatedRuntimeSeconds": 3860,
+      "previewBytes": 10662,
+      "previewCharacterCount": 9699,
+      "estimatedRuntimeSeconds": 3455,
       "truncated": true
     },
     {
-      "slug": "the-snow-queen",
-      "path": "/book-previews/the-snow-queen.preview.json",
-      "contentVersion": "4d3de7b45653d97f",
-      "contentHash": "4d3de7b45653d97ff7cc79d4bb274a989d223447ef95ce7316facd94cb57688f",
-      "defaultSectionId": "part-001",
-      "previewBytes": 11187,
-      "previewCharacterCount": 10174,
-      "estimatedRuntimeSeconds": 3633,
+      "slug": "the-adventures-of-tom-sawyer",
+      "path": "/book-previews/the-adventures-of-tom-sawyer.preview.json",
+      "contentVersion": "b9d2b4d867fe9f45",
+      "contentHash": "b9d2b4d867fe9f45aca72102f7a0e535298cee93a6ddfba5844fab06cb8d595c",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11049,
+      "previewCharacterCount": 9870,
+      "estimatedRuntimeSeconds": 3577,
       "truncated": true
     },
     {
-      "slug": "the-swineherd",
-      "path": "/book-previews/the-swineherd.preview.json",
-      "contentVersion": "bba920ce5e7f63db",
-      "contentHash": "bba920ce5e7f63dbfd0467efc7aa51a3366e8072aa10c4171e7a58029047f932",
-      "defaultSectionId": "part-001",
-      "previewBytes": 9351,
-      "previewCharacterCount": 8167,
-      "estimatedRuntimeSeconds": 2940,
-      "truncated": false
+      "slug": "the-door-in-the-wall",
+      "path": "/book-previews/the-door-in-the-wall.preview.json",
+      "contentVersion": "ecd2c160a30c71ce",
+      "contentHash": "ecd2c160a30c71cef30c0545c9b979408738aec6d45bd3a1279cf19feb278218",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 9748,
+      "previewCharacterCount": 8930,
+      "estimatedRuntimeSeconds": 3173,
+      "truncated": true
+    },
+    {
+      "slug": "the-hound-of-the-baskervilles",
+      "path": "/book-previews/the-hound-of-the-baskervilles.preview.json",
+      "contentVersion": "c6bf7cc132c192f5",
+      "contentHash": "c6bf7cc132c192f513d502231ac1280da0cbe3235656c142c50b99f841c70066",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11196,
+      "previewCharacterCount": 10090,
+      "estimatedRuntimeSeconds": 3587,
+      "truncated": true
+    },
+    {
+      "slug": "the-king-in-yellow",
+      "path": "/book-previews/the-king-in-yellow.preview.json",
+      "contentVersion": "09335206c61557c5",
+      "contentHash": "09335206c61557c5ddbe497e6339897dc6b132442c690c010489f183c9cf343a",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10916,
+      "previewCharacterCount": 9979,
+      "estimatedRuntimeSeconds": 3560,
+      "truncated": true
+    },
+    {
+      "slug": "the-life-and-adventures-of-robinson-crusoe",
+      "path": "/book-previews/the-life-and-adventures-of-robinson-crusoe.preview.json",
+      "contentVersion": "fff923cbcf97efb2",
+      "contentHash": "fff923cbcf97efb242ea752c06d23f9da39fc23888d7ad62957e421cf4a658e4",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 9873,
+      "previewCharacterCount": 8946,
+      "estimatedRuntimeSeconds": 3173,
+      "truncated": true
+    },
+    {
+      "slug": "the-maltese-falcon",
+      "path": "/book-previews/the-maltese-falcon.preview.json",
+      "contentVersion": "57f017ffb4ec2d8d",
+      "contentHash": "57f017ffb4ec2d8d52d9531d9327e7ef6d2e6b0ca8f2d01695ce04d43d1dab67",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10770,
+      "previewCharacterCount": 9688,
+      "estimatedRuntimeSeconds": 3488,
+      "truncated": true
     },
     {
       "slug": "the-tempest",
@@ -1057,28 +1123,6 @@
       "previewBytes": 10881,
       "previewCharacterCount": 9830,
       "estimatedRuntimeSeconds": 3586,
-      "truncated": true
-    },
-    {
-      "slug": "the-thirty-nine-steps",
-      "path": "/book-previews/the-thirty-nine-steps.preview.json",
-      "contentVersion": "60e530443a945b25",
-      "contentHash": "60e530443a945b2581abf391d373629a5be64a4b3bae5028666d933bd37eb7a2",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11681,
-      "previewCharacterCount": 10572,
-      "estimatedRuntimeSeconds": 3789,
-      "truncated": true
-    },
-    {
-      "slug": "the-three-musketeers",
-      "path": "/book-previews/the-three-musketeers.preview.json",
-      "contentVersion": "117fe21e8265df4f",
-      "contentHash": "117fe21e8265df4fb95daed97a30b78ec13d64f5121758097be52b4808e8e8b6",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10163,
-      "previewCharacterCount": 9214,
-      "estimatedRuntimeSeconds": 3302,
       "truncated": true
     },
     {
@@ -1104,17 +1148,6 @@
       "truncated": true
     },
     {
-      "slug": "the-water-babies",
-      "path": "/book-previews/the-water-babies.preview.json",
-      "contentVersion": "04dfedc6a8729a59",
-      "contentHash": "04dfedc6a8729a59359d442c1c3c35cb495bb7ef4b0745141394f3bbb5aab98f",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10876,
-      "previewCharacterCount": 10046,
-      "estimatedRuntimeSeconds": 3597,
-      "truncated": true
-    },
-    {
       "slug": "the-wendigo",
       "path": "/book-previews/the-wendigo.preview.json",
       "contentVersion": "55590681e7395da8",
@@ -1126,83 +1159,6 @@
       "truncated": true
     },
     {
-      "slug": "the-wonderful-wizard-of-oz",
-      "path": "/book-previews/the-wonderful-wizard-of-oz.preview.json",
-      "contentVersion": "831ed73fb9ba380f",
-      "contentHash": "831ed73fb9ba380fb2726467f72d9e705418fcc996add083a5eae8d7114dd94d",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10934,
-      "previewCharacterCount": 9951,
-      "estimatedRuntimeSeconds": 3552,
-      "truncated": true
-    },
-    {
-      "slug": "through-the-looking-glass",
-      "path": "/book-previews/through-the-looking-glass.preview.json",
-      "contentVersion": "d8a013c20c2b2c27",
-      "contentHash": "d8a013c20c2b2c27a60b774883390ea8037953d1d06b0f2d2878e36678319d95",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11981,
-      "previewCharacterCount": 10726,
-      "estimatedRuntimeSeconds": 3881,
-      "truncated": true
-    },
-    {
-      "slug": "treasure-island",
-      "path": "/book-previews/treasure-island.preview.json",
-      "contentVersion": "dad40837ea6d36fc",
-      "contentHash": "dad40837ea6d36fcf6f1559d0aab3a349cb58e83472d2dc33783e35c3f6b650b",
-      "defaultSectionId": "part-001",
-      "previewBytes": 11743,
-      "previewCharacterCount": 10707,
-      "estimatedRuntimeSeconds": 3791,
-      "truncated": true
-    },
-    {
-      "slug": "triplanetary",
-      "path": "/book-previews/triplanetary.preview.json",
-      "contentVersion": "aea8c0f7e5f0e274",
-      "contentHash": "aea8c0f7e5f0e2744d8027225c562cc0954c6f2b39ff82a69de9c139fedc6430",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10939,
-      "previewCharacterCount": 9960,
-      "estimatedRuntimeSeconds": 3609,
-      "truncated": true
-    },
-    {
-      "slug": "violet-fairy-book",
-      "path": "/book-previews/violet-fairy-book.preview.json",
-      "contentVersion": "3ddd13e2f494ab05",
-      "contentHash": "3ddd13e2f494ab05b3af61e27305160277a809ac9bf5610022dbac73453e95ee",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10735,
-      "previewCharacterCount": 9778,
-      "estimatedRuntimeSeconds": 3481,
-      "truncated": true
-    },
-    {
-      "slug": "wind-in-the-willows",
-      "path": "/book-previews/wind-in-the-willows.preview.json",
-      "contentVersion": "58b7901269e06036",
-      "contentHash": "58b7901269e0603618ff4d686217ad3c71450b45560b0f5849fb0cfad03f941b",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11990,
-      "previewCharacterCount": 10694,
-      "estimatedRuntimeSeconds": 3880,
-      "truncated": true
-    },
-    {
-      "slug": "wood-folk-at-school",
-      "path": "/book-previews/wood-folk-at-school.preview.json",
-      "contentVersion": "53459056320606b5",
-      "contentHash": "53459056320606b53faa47715e9dc78f224f944a3377a2919f8697b257fdf123",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11490,
-      "previewCharacterCount": 10569,
-      "estimatedRuntimeSeconds": 3779,
-      "truncated": true
-    },
-    {
       "slug": "wuthering-heights",
       "path": "/book-previews/wuthering-heights.preview.json",
       "contentVersion": "2950978335c7d835",
@@ -1211,6 +1167,50 @@
       "previewBytes": 10799,
       "previewCharacterCount": 9840,
       "estimatedRuntimeSeconds": 3535,
+      "truncated": true
+    },
+    {
+      "slug": "anne-of-avonlea",
+      "path": "/book-previews/anne-of-avonlea.preview.json",
+      "contentVersion": "7f02dd8b94db5b5a",
+      "contentHash": "7f02dd8b94db5b5aaa01b0ad584bdcb8e009cece2fd7bac89923f76721afb0f6",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10704,
+      "previewCharacterCount": 9724,
+      "estimatedRuntimeSeconds": 3487,
+      "truncated": true
+    },
+    {
+      "slug": "five-weeks-in-a-balloon",
+      "path": "/book-previews/five-weeks-in-a-balloon.preview.json",
+      "contentVersion": "66e462aab228e009",
+      "contentHash": "66e462aab228e00912a782862b4d7a133f101f2dda7b7ed4639c89c6c0ad8056",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10672,
+      "previewCharacterCount": 9623,
+      "estimatedRuntimeSeconds": 3468,
+      "truncated": true
+    },
+    {
+      "slug": "moby-dick",
+      "path": "/book-previews/moby-dick.preview.json",
+      "contentVersion": "3d6b1370e7185921",
+      "contentHash": "3d6b1370e71859215a3aa1646cfd3ffba9962bf0343c726628341df467b9b7e1",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 9998,
+      "previewCharacterCount": 9110,
+      "estimatedRuntimeSeconds": 3258,
+      "truncated": true
+    },
+    {
+      "slug": "tales-of-war",
+      "path": "/book-previews/tales-of-war.preview.json",
+      "contentVersion": "a34b8eee8963cc66",
+      "contentHash": "a34b8eee8963cc6698293c9a2040c3b52ae726656097993b6781c5c8c8b0bd92",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11070,
+      "previewCharacterCount": 10063,
+      "estimatedRuntimeSeconds": 3578,
       "truncated": true
     }
   ],

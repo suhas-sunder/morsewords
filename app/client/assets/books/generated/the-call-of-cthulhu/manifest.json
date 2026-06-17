@@ -5,8 +5,8 @@
   "author": [
     "H. P. Lovecraft"
   ],
-  "contentVersion": "92ed56343936c95c",
-  "contentHash": "92ed56343936c95cf8c37fadf4f90c36eff1257be05c15f0d93fd7b56a99bbb5",
+  "contentVersion": "94448859a946f4b3",
+  "contentHash": "94448859a946f4b3cb5d97cb451a244cfc4a76de565641337a8adb137a124844",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -34,11 +34,11 @@
     "alt": "Placeholder cover for The call of Cthulhu"
   },
   "stats": {
-    "originalCharacterCount": 90607,
-    "cleanedCharacterCount": 71199,
-    "wordCount": 11959,
-    "sectionCount": 4,
-    "includedSectionCount": 0
+    "originalCharacterCount": 92255,
+    "cleanedCharacterCount": 69450,
+    "wordCount": 11809,
+    "sectionCount": 3,
+    "includedSectionCount": 3
   },
   "defaults": {
     "includeKinds": [
@@ -48,81 +48,64 @@
   },
   "sections": [
     {
-      "id": "part-001",
-      "kind": "part",
+      "id": "chapter-001",
+      "kind": "chapter",
       "label": "Part 1",
-      "title": null,
+      "title": "The Horror In Clay",
       "order": 1,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 29394,
-      "wordCount": 4812,
-      "estimatedTypingMinutes": 121,
-      "estimatedListeningMinutes": 175,
-      "morseCharacterEstimate": 156881,
-      "textPreview": "The CALL of CTHULHU By H.P. LOVECRAFT [Transcriber's Note: This etext was produced from Weird Tales, February 1928. Extensive research did not uncover any evid..."
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 17159,
+      "wordCount": 2846,
+      "estimatedTypingMinutes": 72,
+      "estimatedListeningMinutes": 103,
+      "morseCharacterEstimate": 92574,
+      "textPreview": "The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents. We live on a placid island of ignorance in the..."
     },
     {
-      "id": "part-002",
-      "kind": "part",
+      "id": "chapter-002",
+      "kind": "chapter",
       "label": "Part 2",
-      "title": null,
+      "title": "The Tale Of Inspector Legrasse",
       "order": 2,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 29753,
-      "wordCount": 5075,
-      "estimatedTypingMinutes": 127,
-      "estimatedListeningMinutes": 174,
-      "morseCharacterEstimate": 155987,
-      "textPreview": "Only poetry or madness could do justice to the noises heard by Legrasse's men as they plowed on through the black morass toward the red glare and the muffled t..."
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 28298,
+      "wordCount": 4802,
+      "estimatedTypingMinutes": 121,
+      "estimatedListeningMinutes": 169,
+      "morseCharacterEstimate": 151347,
+      "textPreview": "The older matters which had made the sculptor's dream and bas-relief so significant to my uncle formed the subject of the second half of his long manuscript. O..."
     },
     {
-      "id": "part-003",
-      "kind": "part",
+      "id": "chapter-003",
+      "kind": "chapter",
       "label": "Part 3",
-      "title": null,
+      "title": "The Madness From the Sea",
       "order": 3,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-003.json",
-      "characterCount": 11228,
-      "wordCount": 1921,
-      "estimatedTypingMinutes": 49,
-      "estimatedListeningMinutes": 67,
-      "morseCharacterEstimate": 60081,
-      "textPreview": "Johansen's voyage had begun just as he told it to the vice-admiralty. The _Emma_, in ballast, had cleared Auckland on February 20th, and had felt the full forc..."
-    },
-    {
-      "id": "part-004",
-      "kind": "part",
-      "label": "Part 4",
-      "title": null,
-      "order": 4,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-004.json",
-      "characterCount": 818,
-      "wordCount": 151,
-      "estimatedTypingMinutes": 4,
-      "estimatedListeningMinutes": 5,
-      "morseCharacterEstimate": 4391,
-      "textPreview": "Cthulhu still lives, too, I suppose, again in that chasm of stone which has shielded him since the sun was young. His accursed city is sunken once more, for th..."
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 23993,
+      "wordCount": 4161,
+      "estimatedTypingMinutes": 105,
+      "estimatedListeningMinutes": 143,
+      "morseCharacterEstimate": 128286,
+      "textPreview": "If heaven ever wishes to grant me a boon, it will be a total effacing of the results of a mere chance which fixed my eye on a certain stray piece of shelf-pape..."
     }
   ],
   "cleaning": {
-    "originalCharacterCount": 90607,
-    "cleanedCharacterCount": 71199,
+    "originalCharacterCount": 92255,
+    "cleanedCharacterCount": 69450,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",
-    "warnings": []
+    "warnings": [
+      "Structure detector observed isolated titled sections; source-backed write-5 plan used three numbered story sections."
+    ]
   },
   "warnings": [
-    "No chapter headings were detected; generated fallback parts instead.",
-    "Rights have not been reviewed; generated book is not publish-ready.",
-    "Rights basis \"unknown\" is not publish-ready.",
-    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
-    "Rights gate did not allow processed public story output.",
-    "Owner-reviewed website approval is missing.",
-    "Website publication is not allowed by the active approval path."
+    "Generated by controlled pilot write pass 5; review before scaling to larger batches or Cloudflare export.",
+    "Source heading lines retained as section metadata and removed from playable text.",
+    "Structure detector observed isolated titled sections; source-backed write-5 plan used three numbered story sections."
   ]
 }

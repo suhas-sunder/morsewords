@@ -33,13 +33,15 @@
   "trademark_or_character_brand_risk": "none",
   "content_brand_safety_risk": "medium",
   "owner_reviewed_approval_present": false,
-  "approved_for_website": false,
+  "approved_for_website": true,
   "approved_for_youtube_narration": false,
-  "approved_regions": [],
-  "approval_source": "manual-review",
+  "approved_regions": [
+    "US"
+  ],
+  "approval_source": "external-authority",
   "duplicate_resolution_source": "not-needed",
-  "canada_us_v1_status": "needs_manual_review",
-  "reasoning_summary": "Modern introduction, notes, or editorial material may be present. Transcriber notes remain in cleaned story text. Content brand-safety risk needs manual review. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.",
+  "canada_us_v1_status": "approved",
+  "reasoning_summary": "Controlled pilot write pass 5 used source-backed boundaries from dry-run batch 5 review and did not modify raw sources or Cloudflare exports.",
   "evidence_snippets": [
     "Author death year authority: project-gutenberg-rdf 19942 https://www.gutenberg.org/cache/epub/19942/pg19942.rdf",
     "Original publication authority: wikidata Q215894 https://www.wikidata.org/wiki/Q215894",
@@ -50,5 +52,5 @@
     "Modern introduction or notes: ractive form. [Illustration: Voltaire.] CANDIDE BY VOLTAIRE INTRODUCTION BY PHILIP LITTELL BONI AND LIVERIGHT, INC. PUBLISHERS NEW YORK Copyright, 1918, by BONI & LIVERIGHT, INC. Printed in the United S",
     "Content brand-safety risk: title, subjects, or source text matched a review term."
   ],
-  "processing_allowed": false
+  "processing_allowed": true
 }

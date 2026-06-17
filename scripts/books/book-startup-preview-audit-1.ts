@@ -155,7 +155,7 @@ const defaultReadableExcludedSectionKinds = new Set<BookSectionKind>([
 ]);
 
 const nonMainMaterialPattern =
-  /\b(table of contents|contents|list of illustrations|illustrations?|title page|copyright|license|source note|publisher|preface|introduction|footnotes?|notes?|appendix|bibliography|index|end matter|project gutenberg|gutenberg|transcriber|produced by|production note|distributed proofreading|pgdp\.net|release date|ebook|reference file does not include body text|book route is available|missing source content|generic placeholder|placeholder)\b/i;
+  /\b(table of contents|list of illustrations|illustrations?|title page|copyright|license|source note|publisher|preface|introduction|footnotes?|notes?|appendix|bibliography|index|end matter|project gutenberg|gutenberg|transcriber|produced by|production note|distributed proofreading|pgdp\.net|release date|ebook|reference file does not include body text|book route is available|missing source content|generic placeholder|placeholder)\b/i;
 
 const earlyShortMatterPattern =
   /\b(cover|frontispiece|by\s+[a-z]|published|copyright|all rights reserved|contents|table of contents)\b/i;
@@ -163,6 +163,20 @@ const earlyShortMatterPattern =
 const dedicationStartPattern = /\b(to the memory of|i dedicate)\b/i;
 
 const sosHelpPattern = /\bSOS\s+Help!?\b/i;
+
+function looksLikeContentsListing(text: string) {
+  const normalized = normalizedSectionText(text);
+  const match = /\bcontents\b/i.exec(normalized);
+  if (!match) return false;
+  const wordsBeforeContents = countWords(normalized.slice(0, match.index));
+  const listingSample = normalized.slice(match.index + match[0].length, match.index + match[0].length + 180);
+  return (
+    wordsBeforeContents <= 24 &&
+    /\b(?:chapter|story|search|incident|case|letter|narrative|statement|book|part|volume|preface|contents)\b/i.test(
+      listingSample,
+    )
+  );
+}
 
 function readJson<T>(filePath: string) {
   return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
@@ -249,6 +263,7 @@ function looksLikeNonMainMaterial(section: BookSectionSummary) {
   const evidenceText = sectionEvidenceText(section);
   if (defaultReadableExcludedSectionKinds.has(section.kind)) return true;
   if (nonMainMaterialPattern.test(evidenceText)) return true;
+  if (looksLikeContentsListing(evidenceText)) return true;
   if (section.order <= 4 && dedicationStartPattern.test(evidenceText)) return true;
   if (section.order <= 4 && section.wordCount < 90) {
     return earlyShortMatterPattern.test(evidenceText);
@@ -414,7 +429,7 @@ function previewStartsWithSection(
 
 function hasGenericOrBoilerplateStart(text: string) {
   const start = compactText(text, 280);
-  return sosHelpPattern.test(start) || nonMainMaterialPattern.test(start);
+  return sosHelpPattern.test(start) || nonMainMaterialPattern.test(start) || looksLikeContentsListing(start);
 }
 
 function detectFirstContentIssue(

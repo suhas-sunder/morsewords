@@ -500,8 +500,8 @@
       "author": [
         "Voltaire"
       ],
-      "contentVersion": "7e16293d9d2e0e2f",
-      "contentHash": "7e16293d9d2e0e2fdecf888f873fc3eda92bd4675d761767065a4ef1921c6f81",
+      "contentVersion": "26597bcb1e44241a",
+      "contentHash": "26597bcb1e44241acd52568e623ca5836e3e33f89e770d15a9bb6ab9fdf806ed",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -529,11 +529,11 @@
         "alt": "Placeholder cover for Candide"
       },
       "stats": {
-        "originalCharacterCount": 224766,
-        "cleanedCharacterCount": 205459,
-        "wordCount": 35900,
-        "sectionCount": 8,
-        "includedSectionCount": 0
+        "originalCharacterCount": 229606,
+        "cleanedCharacterCount": 183046,
+        "wordCount": 32628,
+        "sectionCount": 30,
+        "includedSectionCount": 30
       },
       "defaults": {
         "includeKinds": [
@@ -549,8 +549,8 @@
       "author": [
         "Fyodor Dostoyevsky"
       ],
-      "contentVersion": "d6d0c93538f5f280",
-      "contentHash": "d6d0c93538f5f28038f5d91d82ed44334e32afd0077287378396c137e342f33d",
+      "contentVersion": "1bf45d9f3bb2d82c",
+      "contentHash": "1bf45d9f3bb2d82c5af8ef4f0d19cb8bc6668f7a79cc97bc5ee98f60c1844dfa",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -578,15 +578,16 @@
         "alt": "Placeholder cover for Crime and Punishment"
       },
       "stats": {
-        "originalCharacterCount": 1154362,
-        "cleanedCharacterCount": 1135049,
-        "wordCount": 208174,
-        "sectionCount": 47,
-        "includedSectionCount": 39
+        "originalCharacterCount": 1176909,
+        "cleanedCharacterCount": 1130273,
+        "wordCount": 203648,
+        "sectionCount": 40,
+        "includedSectionCount": 40
       },
       "defaults": {
         "includeKinds": [
-          "chapter"
+          "chapter",
+          "epilogue"
         ],
         "preferredPreset": "main-narrative"
       },
@@ -942,8 +943,8 @@
       "author": [
         "Jonathan Swift"
       ],
-      "contentVersion": "2682733fed99e00c",
-      "contentHash": "2682733fed99e00cddef9bba75fa4d2dee795759d796bb6707e3f5c6febee1db",
+      "contentVersion": "25b439f2df9cad73",
+      "contentHash": "25b439f2df9cad7362a149fc104a5b6f63a5d6c45fc8efcb61a5b5d5ccda65f8",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -971,10 +972,10 @@
         "alt": "Placeholder cover for Gulliver's Travels into Several Remote Nations of the World"
       },
       "stats": {
-        "originalCharacterCount": 601815,
-        "cleanedCharacterCount": 582409,
-        "wordCount": 105392,
-        "sectionCount": 49,
+        "originalCharacterCount": 611779,
+        "cleanedCharacterCount": 569889,
+        "wordCount": 102931,
+        "sectionCount": 39,
         "includedSectionCount": 39
       },
       "defaults": {
@@ -1920,8 +1921,8 @@
       "author": [
         "H. P. Lovecraft"
       ],
-      "contentVersion": "92ed56343936c95c",
-      "contentHash": "92ed56343936c95cf8c37fadf4f90c36eff1257be05c15f0d93fd7b56a99bbb5",
+      "contentVersion": "94448859a946f4b3",
+      "contentHash": "94448859a946f4b3cb5d97cb451a244cfc4a76de565641337a8adb137a124844",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1949,11 +1950,11 @@
         "alt": "Placeholder cover for The call of Cthulhu"
       },
       "stats": {
-        "originalCharacterCount": 90607,
-        "cleanedCharacterCount": 71199,
-        "wordCount": 11959,
-        "sectionCount": 4,
-        "includedSectionCount": 0
+        "originalCharacterCount": 92255,
+        "cleanedCharacterCount": 69450,
+        "wordCount": 11809,
+        "sectionCount": 3,
+        "includedSectionCount": 3
       },
       "defaults": {
         "includeKinds": [
@@ -2262,8 +2263,8 @@
       "author": [
         "L. Frank Baum"
       ],
-      "contentVersion": "8d21d1d1f204a77d",
-      "contentHash": "8d21d1d1f204a77d0b6b0f7512fa8a35eba49b09d4b7da1307bbfac4db67aec3",
+      "contentVersion": "dfd5abc8c92d18c0",
+      "contentHash": "dfd5abc8c92d18c08aa9d16ab363158e787be0015ee80651e393a8f0349d2f4a",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2291,11 +2292,11 @@
         "alt": "Placeholder cover for The Emerald City of Oz"
       },
       "stats": {
-        "originalCharacterCount": 317474,
-        "cleanedCharacterCount": 298188,
-        "wordCount": 53852,
-        "sectionCount": 11,
-        "includedSectionCount": 0
+        "originalCharacterCount": 324873,
+        "cleanedCharacterCount": 292605,
+        "wordCount": 53144,
+        "sectionCount": 30,
+        "includedSectionCount": 30
       },
       "defaults": {
         "includeKinds": [
@@ -2701,8 +2702,8 @@
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "cb84871b55f9b084",
-      "contentHash": "cb84871b55f9b0847226aa42f80f3819e1baef3818e1e7ea46794830045d289a",
+      "contentVersion": "78c7af153197340c",
+      "contentHash": "78c7af153197340cd19cf1bca060ec12339e66e04fad81722138b902a0674038",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2730,11 +2731,11 @@
         "alt": "Placeholder cover for Andersen's Fairy Tales"
       },
       "stats": {
-        "originalCharacterCount": 115289,
-        "cleanedCharacterCount": 95893,
-        "wordCount": 18250,
-        "sectionCount": 5,
-        "includedSectionCount": 0
+        "originalCharacterCount": 117643,
+        "cleanedCharacterCount": 95779,
+        "wordCount": 18243,
+        "sectionCount": 9,
+        "includedSectionCount": 9
       },
       "defaults": {
         "includeKinds": [
@@ -3142,8 +3143,8 @@
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "4d3de7b45653d97f",
-      "contentHash": "4d3de7b45653d97ff7cc79d4bb274a989d223447ef95ce7316facd94cb57688f",
+      "contentVersion": "9864b79c6bbb2c04",
+      "contentHash": "9864b79c6bbb2c04cef4ac4daedb43628583ea986d02dbb09fd8d868d3dbde21",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3171,11 +3172,11 @@
         "alt": "Placeholder cover for Andersen's Fairy Tales"
       },
       "stats": {
-        "originalCharacterCount": 83165,
-        "cleanedCharacterCount": 63769,
-        "wordCount": 11981,
-        "sectionCount": 4,
-        "includedSectionCount": 0
+        "originalCharacterCount": 65996,
+        "cleanedCharacterCount": 59604,
+        "wordCount": 11333,
+        "sectionCount": 7,
+        "includedSectionCount": 7
       },
       "defaults": {
         "includeKinds": [
@@ -3191,8 +3192,8 @@
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "bba920ce5e7f63db",
-      "contentHash": "bba920ce5e7f63dbfd0467efc7aa51a3366e8072aa10c4171e7a58029047f932",
+      "contentVersion": "c36c34ceaa99ed5f",
+      "contentHash": "c36c34ceaa99ed5ff1e1a91f4160e41d5649d02f00f35c4ac7755748b4e8438c",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3220,11 +3221,11 @@
         "alt": "Placeholder cover for Andersen's Fairy Tales"
       },
       "stats": {
-        "originalCharacterCount": 27624,
-        "cleanedCharacterCount": 8228,
-        "wordCount": 1495,
-        "sectionCount": 2,
-        "includedSectionCount": 0
+        "originalCharacterCount": 28271,
+        "cleanedCharacterCount": 8151,
+        "wordCount": 1488,
+        "sectionCount": 1,
+        "includedSectionCount": 1
       },
       "defaults": {
         "includeKinds": [
@@ -3486,8 +3487,8 @@
       "author": [
         "Robert Louis Stevenson"
       ],
-      "contentVersion": "dad40837ea6d36fc",
-      "contentHash": "dad40837ea6d36fcf6f1559d0aab3a349cb58e83472d2dc33783e35c3f6b650b",
+      "contentVersion": "fbc88f57ab49a7cc",
+      "contentHash": "fbc88f57ab49a7cc8fe983985990a77cb3af05242deb1d04adb447fd8027e4b4",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3515,11 +3516,11 @@
         "alt": "Placeholder cover for Treasure Island"
       },
       "stats": {
-        "originalCharacterCount": 383675,
-        "cleanedCharacterCount": 364434,
-        "wordCount": 70110,
-        "sectionCount": 14,
-        "includedSectionCount": 0
+        "originalCharacterCount": 391655,
+        "cleanedCharacterCount": 360028,
+        "wordCount": 68294,
+        "sectionCount": 34,
+        "includedSectionCount": 34
       },
       "defaults": {
         "includeKinds": [

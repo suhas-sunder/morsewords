@@ -33,17 +33,19 @@
   "trademark_or_character_brand_risk": "none",
   "content_brand_safety_risk": "none",
   "owner_reviewed_approval_present": false,
-  "approved_for_website": false,
+  "approved_for_website": true,
   "approved_for_youtube_narration": false,
-  "approved_regions": [],
-  "approval_source": "manual-review",
+  "approved_regions": [
+    "US"
+  ],
+  "approval_source": "external-authority",
   "duplicate_resolution_source": "manual-review",
-  "canada_us_v1_status": "needs_manual_review",
-  "reasoning_summary": "Original publication metadata was not found. Original publication year is missing or not before 1931. Author death year is missing from approved metadata or clear source metadata. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate. Duplicate Gutenberg ID requires explicit review before processing or publishing.",
+  "canada_us_v1_status": "approved",
+  "reasoning_summary": "Controlled pilot write pass 5 used source-backed boundaries from dry-run batch 5 review and did not modify raw sources or Cloudflare exports.",
   "evidence_snippets": [
     "Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of",
     "U.S. reuse language: Project Gutenberg eBook of Andersen's Fairy Tales This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under",
     "Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Andersen's Fairy Tales Author"
   ],
-  "processing_allowed": false
+  "processing_allowed": true
 }

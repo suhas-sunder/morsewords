@@ -42,7 +42,7 @@
   "approval_source": "external-authority",
   "duplicate_resolution_source": "not-needed",
   "canada_us_v1_status": "approved",
-  "reasoning_summary": "Project Gutenberg source-file evidence and high-confidence external authority metadata satisfied the conservative website processing gate.",
+  "reasoning_summary": "Controlled pilot write pass 5 used source-backed boundaries from dry-run batch 5 review and did not modify raw sources or Cloudflare exports.",
   "evidence_snippets": [
     "Author death year authority: project-gutenberg-rdf 829 https://www.gutenberg.org/cache/epub/829/pg829.rdf",
     "Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of",

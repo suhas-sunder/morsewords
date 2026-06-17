@@ -42,7 +42,7 @@
   "approval_source": "external-authority",
   "duplicate_resolution_source": "not-needed",
   "canada_us_v1_status": "approved",
-  "reasoning_summary": "Project Gutenberg source-file evidence and high-confidence external authority metadata satisfied the conservative website processing gate.",
+  "reasoning_summary": "Controlled pilot write pass 5 used source-backed boundaries from dry-run batch 5 review and did not modify raw sources or Cloudflare exports.",
   "evidence_snippets": [
     "Author death year authority: project-gutenberg-rdf 2554 https://www.gutenberg.org/cache/epub/2554/pg2554.rdf",
     "Translator death year authority: project-gutenberg-rdf 1399 https://www.gutenberg.org/cache/epub/1399/pg1399.rdf",

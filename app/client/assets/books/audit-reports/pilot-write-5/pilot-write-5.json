@@ -1,0 +1,2748 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-write-5",
+  "generatedAt": "2026-06-17T06:28:52.748Z",
+  "mode": "controlled write/correction batch 5",
+  "inputReports": {
+    "pilotDryRun5Json": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+    "pilotDryRun5Markdown": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.md",
+    "pilotDryRun5Books": "app/client/assets/books/audit-reports/pilot-dry-run-5/books"
+  },
+  "protectedPaths": {
+    "rawSourceInput": "app/client/assets/temp-books",
+    "cloudflareExport": "app/client/assets/books/cloudflare-export"
+  },
+  "selectedBooks": [
+    "anna-karenina",
+    "anne-of-green-gables-gutenberg-45",
+    "candide",
+    "crime-and-punishment",
+    "gulliver-s-travels",
+    "the-bell",
+    "the-call-of-cthulhu",
+    "the-elderbush",
+    "the-emerald-city-of-oz",
+    "the-emperor-s-new-clothes",
+    "the-fir-tree",
+    "the-leap-frog",
+    "the-old-house",
+    "the-real-princess",
+    "the-secret-garden-gutenberg-113",
+    "the-shoes-of-fortune",
+    "the-snow-queen",
+    "the-swineherd",
+    "treasure-island",
+    "wind-in-the-willows"
+  ],
+  "dryRunAcceptedNoRewrite": [
+    "anna-karenina",
+    "anne-of-green-gables-gutenberg-45",
+    "the-bell",
+    "the-elderbush",
+    "the-emperor-s-new-clothes",
+    "the-fir-tree",
+    "the-leap-frog",
+    "the-real-princess",
+    "the-secret-garden-gutenberg-113",
+    "the-shoes-of-fortune",
+    "wind-in-the-willows"
+  ],
+  "correctedBooks": [
+    "candide",
+    "crime-and-punishment",
+    "gulliver-s-travels",
+    "the-call-of-cthulhu",
+    "the-emerald-city-of-oz",
+    "the-old-house",
+    "the-snow-queen",
+    "the-swineherd",
+    "treasure-island"
+  ],
+  "skippedBooks": [],
+  "totals": {
+    "selected": 20,
+    "acceptedWithoutRewrite": 11,
+    "corrected": 9,
+    "skipped": 0
+  },
+  "futureBatchRule": [
+    "valid generated readable content",
+    "first default section from real readable content",
+    "all main readable sections included by default",
+    "valid book-specific startup preview",
+    "no SOS Help!",
+    "no generic preview fallback",
+    "no title/TOC/source/license/contributor/transcriber material as default playback"
+  ],
+  "confirmations": {
+    "dryRunBatch5MergedToMainFirst": true,
+    "processedOnlySelectedBatch5Books": true,
+    "acceptedDryRunBooksNotRewritten": true,
+    "rawSourceBooksModified": false,
+    "cloudflareExportsModified": false,
+    "allBookProcessingRun": false,
+    "generatedOutputChangedOnlyForCorrectionBooks": true,
+    "previewAssetsChangedOnlyForCorrectionBooks": true
+  },
+  "books": [
+    {
+      "slug": "anna-karenina",
+      "dryRunStatus": "already acceptable",
+      "finalAction": "accepted without rewrite",
+      "sourceFileUsed": "app/client/assets/temp-books/Anna Karenina.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [],
+      "previewAssetChanged": null,
+      "priorIssueFromDryRun": [
+        "last readable section does not tightly align with pass-2 candidate end",
+        "Possible malformed or out-of-order chapter numbering."
+      ],
+      "startBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "Chapter 1 Happy families are all alike; every unhappy family is unhappy in its own way. Everything was in confusion in the Oblonskys? house. The wife had discovered that the husband was carrying on an intrigue with a French girl, who had been a governess in..."
+      },
+      "endBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "Chapter 19 Going out of the nursery and being again alone, Levin went back at once to the thought, in which there was something not clear. Instead of going int..."
+      },
+      "structuralConvention": "chapter-based arabic numbers with part divisions",
+      "firstDefaultSectionBefore": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 979,
+        "snippet": "Chapter 1 Happy families are all alike; every unhappy family is unhappy in its own way. Everything was in confusion in the Oblonskys? house. The wife had discovered that the husband was carrying on an intrigue with a French girl, who had been a governess in..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 979,
+        "snippet": "Chapter 1 Happy families are all alike; every unhappy family is unhappy in its own way. Everything was in confusion in the Oblonskys’ house. The wife had disco..."
+      },
+      "sectionCountBefore": 241,
+      "sectionCountAfter": 241,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "title-page-001",
+          "label": "Opening section",
+          "title": null,
+          "kind": "title-page",
+          "wordCount": 10
+        },
+        {
+          "id": "title-page-002",
+          "label": "Contents",
+          "title": null,
+          "kind": "title-page",
+          "wordCount": 19
+        },
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 979
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1241
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1683
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-235",
+          "label": "Chapter 15",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1469
+        },
+        {
+          "id": "chapter-236",
+          "label": "Chapter 16",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1281
+        },
+        {
+          "id": "chapter-237",
+          "label": "Chapter 17",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 846
+        },
+        {
+          "id": "chapter-238",
+          "label": "Chapter 18",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1100
+        },
+        {
+          "id": "chapter-239",
+          "label": "Chapter 19",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1035
+        }
+      ],
+      "cleanupActionsApplied": null,
+      "previewVerdict": "valid book-specific startup preview",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "acceptable: all detected main readable sections are included in current default playback",
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review",
+      "acceptedFromDryRunReason": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+      "noFilesChanged": true
+    },
+    {
+      "slug": "anne-of-green-gables-gutenberg-45",
+      "dryRunStatus": "already acceptable",
+      "finalAction": "accepted without rewrite",
+      "sourceFileUsed": "app/client/assets/temp-books/Anne of Green Gables.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [],
+      "previewAssetChanged": null,
+      "priorIssueFromDryRun": [
+        "Book is not present in the older pass-2 audit report; batch-5 dry run used local raw source, generated output, preview asset, startup audit, and structure detector directly."
+      ],
+      "startBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "CHAPTER I. Mrs. Rachel Lynde Is Surprised MRS. Rachel Lynde lived just where the Avonlea main road dipped down into a little hollow, fringed with alders and ladies? eardrops and traversed by a brook that had its source away back in the woods of the old Cuth..."
+      },
+      "endBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "CHAPTER XXXVIII. The Bend in the Road MARILLA went to town the next day and returned in the evening. Anne had gone over to Orchard Slope with Diana and came ba..."
+      },
+      "structuralConvention": "chapter-based roman numerals",
+      "firstDefaultSectionBefore": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "Mrs. Rachel Lynde Is Surprised",
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2954,
+        "snippet": "CHAPTER I. Mrs. Rachel Lynde Is Surprised MRS. Rachel Lynde lived just where the Avonlea main road dipped down into a little hollow, fringed with alders and ladies? eardrops and traversed by a brook that had its source away back in the woods of the old Cuth..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "Mrs. Rachel Lynde Is Surprised",
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2954,
+        "snippet": "CHAPTER I. Mrs. Rachel Lynde Is Surprised MRS. Rachel Lynde lived just where the Avonlea main road dipped down into a little hollow, fringed with alders and la..."
+      },
+      "sectionCountBefore": 39,
+      "sectionCountAfter": 39,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "title-page-001",
+          "label": "Opening section",
+          "title": null,
+          "kind": "title-page",
+          "wordCount": 285
+        },
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Mrs. Rachel Lynde Is Surprised",
+          "kind": "chapter",
+          "wordCount": 2954
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "Matthew Cuthbert Is Surprised",
+          "kind": "chapter",
+          "wordCount": 5135
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "Marilla Cuthbert Is Surprised",
+          "kind": "chapter",
+          "wordCount": 2251
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "Morning at Green Gables",
+          "kind": "chapter",
+          "wordCount": 2392
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-034",
+          "label": "Chapter 34",
+          "title": "A Queen’s Girl",
+          "kind": "chapter",
+          "wordCount": 2617
+        },
+        {
+          "id": "chapter-035",
+          "label": "Chapter 35",
+          "title": "The Winter at Queen’s",
+          "kind": "chapter",
+          "wordCount": 1661
+        },
+        {
+          "id": "chapter-036",
+          "label": "Chapter 36",
+          "title": "The Glory and the Dream",
+          "kind": "chapter",
+          "wordCount": 2008
+        },
+        {
+          "id": "chapter-037",
+          "label": "Chapter 37",
+          "title": "The Reaper Whose Name Is Death",
+          "kind": "chapter",
+          "wordCount": 2425
+        },
+        {
+          "id": "chapter-038",
+          "label": "Chapter 38",
+          "title": "The Bend in the Road",
+          "kind": "chapter",
+          "wordCount": 3066
+        }
+      ],
+      "cleanupActionsApplied": null,
+      "previewVerdict": "valid book-specific startup preview",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "acceptable: all detected main readable sections are included in current default playback",
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review",
+      "acceptedFromDryRunReason": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+      "noFilesChanged": true
+    },
+    {
+      "slug": "candide",
+      "dryRunStatus": "needs correction before acceptance",
+      "finalAction": "corrected",
+      "sourceFileUsed": "app/client/assets/temp-books/Candide.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/candide/manifest.json",
+        "app/client/assets/books/generated/candide/cleaned_book.json",
+        "app/client/assets/books/generated/candide/processed_book.json",
+        "app/client/assets/books/generated/candide/rights_report.json",
+        "app/client/assets/books/generated/candide/processing_notes.md",
+        "app/client/assets/books/generated/candide/sections/chapter-001.json",
+        "app/client/assets/books/generated/candide/sections/chapter-002.json",
+        "app/client/assets/books/generated/candide/sections/chapter-003.json",
+        "app/client/assets/books/generated/candide/sections/chapter-004.json",
+        "app/client/assets/books/generated/candide/sections/chapter-005.json",
+        "app/client/assets/books/generated/candide/sections/chapter-006.json",
+        "app/client/assets/books/generated/candide/sections/chapter-007.json",
+        "app/client/assets/books/generated/candide/sections/chapter-008.json",
+        "app/client/assets/books/generated/candide/sections/chapter-009.json",
+        "app/client/assets/books/generated/candide/sections/chapter-010.json",
+        "app/client/assets/books/generated/candide/sections/chapter-011.json",
+        "app/client/assets/books/generated/candide/sections/chapter-012.json",
+        "app/client/assets/books/generated/candide/sections/chapter-013.json",
+        "app/client/assets/books/generated/candide/sections/chapter-014.json",
+        "app/client/assets/books/generated/candide/sections/chapter-015.json",
+        "app/client/assets/books/generated/candide/sections/chapter-016.json",
+        "app/client/assets/books/generated/candide/sections/chapter-017.json",
+        "app/client/assets/books/generated/candide/sections/chapter-018.json",
+        "app/client/assets/books/generated/candide/sections/chapter-019.json",
+        "app/client/assets/books/generated/candide/sections/chapter-020.json",
+        "app/client/assets/books/generated/candide/sections/chapter-021.json",
+        "app/client/assets/books/generated/candide/sections/chapter-022.json",
+        "app/client/assets/books/generated/candide/sections/chapter-023.json",
+        "app/client/assets/books/generated/candide/sections/chapter-024.json",
+        "app/client/assets/books/generated/candide/sections/chapter-025.json",
+        "app/client/assets/books/generated/candide/sections/chapter-026.json",
+        "app/client/assets/books/generated/candide/sections/chapter-027.json",
+        "app/client/assets/books/generated/candide/sections/chapter-028.json",
+        "app/client/assets/books/generated/candide/sections/chapter-029.json",
+        "app/client/assets/books/generated/candide/sections/chapter-030.json"
+      ],
+      "previewAssetChanged": "public/book-previews/candide.preview.json",
+      "priorIssueFromDryRun": [
+        "part-001 appears to mix opening readable content with front/source material and is skipped by default",
+        "clear structure exists in the source but current output is coarse fallback-style sections",
+        "first default section does not tightly align with pass-2 candidate start",
+        "last readable section does not tightly align with pass-2 candidate end",
+        "suspicious non-default sections remain: part-001",
+        "generated output likely collapsed real structure",
+        "Real opening or ending content may be at risk around the audited boundary.",
+        "Existing generated output needs boundary/default-section correction later.",
+        "Dense numbered bracket references indicate footnote-heavy or parser-junk risk."
+      ],
+      "startBoundaryUsed": {
+        "line": 316,
+        "reason": "Chapter I is the first main readable chapter after title pages, publisher material, introduction, contents, and illustration caption.",
+        "snippet": "I HOW CANDIDE WAS BROUGHT UP IN A MAGNIFICENT CASTLE, AND HOW HE WAS"
+      },
+      "endBoundaryUsed": {
+        "line": 4147,
+        "reason": "Chapter XXX closes before the footnotes and Project Gutenberg footer.",
+        "snippet": "\"All that is very well,\" answered Candide, \"but let us cultivate our garden.\""
+      },
+      "structuralConvention": "standalone roman-numbered chapters",
+      "firstDefaultSectionBefore": {
+        "id": "part-002",
+        "label": "Part 2",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 5090,
+        "snippet": "\"It is more likely,\" said he, \"mankind have a little corrupted nature, for they were not born wolves, and they have become wolves; God has given them neither cannon of four-and-twenty pounders, nor bayonets; and yet they have made cannon and bayonets to des..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "How Candide Was Brought Up In A Magnificent Castle, and How He Was Expelled Thence",
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 776,
+        "snippet": "I HOW CANDIDE WAS BROUGHT UP IN A MAGNIFICENT CASTLE, AND HOW HE WAS EXPELLED THENCE. In a castle of Westphalia, belonging to the Baron of Thunder-ten-Tronckh,..."
+      },
+      "sectionCountBefore": 8,
+      "sectionCountAfter": 30,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "How Candide Was Brought Up In A Magnificent Castle, and How He Was Expelled Thence",
+          "kind": "chapter",
+          "wordCount": 776
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "What Became Of Candide Among the Bulgarians",
+          "kind": "chapter",
+          "wordCount": 791
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "How Candide Made His Escape From the Bulgarians, and What Afterwards Became Of Him",
+          "kind": "chapter",
+          "wordCount": 737
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "How Candide Found His Old Master Pangloss, and What Happened To Them",
+          "kind": "chapter",
+          "wordCount": 1061
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": "Tempest, Shipwreck, Earthquake, and What Became Of Doctor Pangloss, Candide, and James the Anabaptist",
+          "kind": "chapter",
+          "wordCount": 849
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-026",
+          "label": "Chapter 26",
+          "title": "Of A Supper Which Candide and Martin Took With Six Strangers, and Who They Were.[34]",
+          "kind": "chapter",
+          "wordCount": 1122
+        },
+        {
+          "id": "chapter-027",
+          "label": "Chapter 27",
+          "title": "Candide's Voyage To Constantinople",
+          "kind": "chapter",
+          "wordCount": 1258
+        },
+        {
+          "id": "chapter-028",
+          "label": "Chapter 28",
+          "title": "What Happened To Candide, Cunegonde, Pangloss, Martin, Etc",
+          "kind": "chapter",
+          "wordCount": 946
+        },
+        {
+          "id": "chapter-029",
+          "label": "Chapter 29",
+          "title": "How Candide Found Cunegonde and the Old Woman Again",
+          "kind": "chapter",
+          "wordCount": 373
+        },
+        {
+          "id": "chapter-030",
+          "label": "Chapter 30",
+          "title": "The Conclusion",
+          "kind": "chapter",
+          "wordCount": 1560
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "imagePlaceholderBlocksRemoved": 0,
+        "numberedReferencesRemoved": 35,
+        "sourceHeadingLinesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": false,
+        "dashesNormalized": false
+      },
+      "previewVerdict": "valid book-specific startup preview from corrected first default section",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all corrected main readable sections are included by default",
+      "remainingWarnings": [
+        "Structure detector observed standalone roman numeral sections; source-backed write-5 plan used standalone roman-numbered chapters.",
+        "Previous preview default was chapter-001; corrected preview default is chapter-001."
+      ],
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "crime-and-punishment",
+      "dryRunStatus": "needs correction before acceptance",
+      "finalAction": "corrected",
+      "sourceFileUsed": "app/client/assets/temp-books/Crime and Punishment.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/crime-and-punishment/manifest.json",
+        "app/client/assets/books/generated/crime-and-punishment/cleaned_book.json",
+        "app/client/assets/books/generated/crime-and-punishment/processed_book.json",
+        "app/client/assets/books/generated/crime-and-punishment/rights_report.json",
+        "app/client/assets/books/generated/crime-and-punishment/processing_notes.md",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-001.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-002.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-003.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-004.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-005.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-006.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-007.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-008.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-009.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-010.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-011.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-012.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-013.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-014.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-015.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-016.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-017.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-018.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-019.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-020.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-021.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-022.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-023.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-024.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-025.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-026.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-027.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-028.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-029.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-030.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-031.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-032.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-033.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-034.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-035.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-036.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-037.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-038.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-039.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/epilogue-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/crime-and-punishment.preview.json",
+      "priorIssueFromDryRun": [
+        "not all main readable sections are selected by default",
+        "first default section does not tightly align with pass-2 candidate start",
+        "last readable section does not tightly align with pass-2 candidate end",
+        "body headings were found but rejected by the selected strategy",
+        "Real opening or ending content may be at risk around the audited boundary.",
+        "Existing generated output needs boundary/default-section correction later."
+      ],
+      "startBoundaryUsed": {
+        "line": 140,
+        "reason": "Part I Chapter I is the first main readable chapter after title, translator/front matter, and part heading.",
+        "snippet": "CHAPTER I On an exceptionally hot evening early in July a young man came out of"
+      },
+      "endBoundaryUsed": {
+        "line": 22097,
+        "reason": "The epilogue closes before the Project Gutenberg footer.",
+        "snippet": "*** END OF THE PROJECT GUTENBERG EBOOK CRIME AND PUNISHMENT ***"
+      },
+      "structuralConvention": "chapter-based roman numerals with epilogue",
+      "firstDefaultSectionBefore": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3374,
+        "snippet": "CHAPTER I On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S. Place and walked slowly, as though in hesitation, towards K. bridge. He had successfully avoided meeting his landlady on the staircase. His g..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3342,
+        "snippet": "CHAPTER I On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S. Place and walked slowly, as though in hesit..."
+      },
+      "sectionCountBefore": 47,
+      "sectionCountAfter": 40,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3342
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 7323
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5564
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5101
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4205
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-036",
+          "label": "Chapter 5",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5569
+        },
+        {
+          "id": "chapter-037",
+          "label": "Chapter 6",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5458
+        },
+        {
+          "id": "chapter-038",
+          "label": "Chapter 7",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3583
+        },
+        {
+          "id": "chapter-039",
+          "label": "Chapter 8",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3941
+        },
+        {
+          "id": "epilogue-001",
+          "label": "Epilogue",
+          "title": "I",
+          "kind": "epilogue",
+          "wordCount": 6341
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "imagePlaceholderBlocksRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "sourceHeadingLinesRemoved": 0,
+        "decorativeLinesRemoved": 5,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": false
+      },
+      "previewVerdict": "valid book-specific startup preview from corrected first default section",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all corrected main readable sections are included by default",
+      "remainingWarnings": [
+        "Structure detector observed chapter-based roman numerals with part divisions; source-backed write-5 plan used chapter-based roman numerals with epilogue.",
+        "Previous preview default was chapter-001; corrected preview default is chapter-001."
+      ],
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "gulliver-s-travels",
+      "dryRunStatus": "needs correction before acceptance",
+      "finalAction": "corrected",
+      "sourceFileUsed": "app/client/assets/temp-books/Gulliver's Travels.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/gulliver-s-travels/manifest.json",
+        "app/client/assets/books/generated/gulliver-s-travels/cleaned_book.json",
+        "app/client/assets/books/generated/gulliver-s-travels/processed_book.json",
+        "app/client/assets/books/generated/gulliver-s-travels/rights_report.json",
+        "app/client/assets/books/generated/gulliver-s-travels/processing_notes.md",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-001.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-002.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-003.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-004.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-005.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-006.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-007.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-008.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-009.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-010.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-011.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-012.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-013.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-014.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-015.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-016.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-017.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-018.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-019.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-020.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-021.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-022.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-023.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-024.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-025.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-026.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-027.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-028.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-029.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-030.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-031.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-032.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-033.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-034.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-035.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-036.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-037.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-038.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-039.json"
+      ],
+      "previewAssetChanged": "public/book-previews/gulliver-s-travels.preview.json",
+      "priorIssueFromDryRun": [
+        "not all main readable sections are selected by default",
+        "first default section does not tightly align with pass-2 candidate start",
+        "last readable section does not tightly align with pass-2 candidate end",
+        "body headings were found but rejected by the selected strategy",
+        "Existing generated output needs boundary/default-section correction later."
+      ],
+      "startBoundaryUsed": {
+        "line": 256,
+        "reason": "Part I Chapter I is the first main travel narrative chapter after title, contents, publisher note, and prefatory letter.",
+        "snippet": "CHAPTER I. The author gives some account of himself and family. His first"
+      },
+      "endBoundaryUsed": {
+        "line": 9546,
+        "reason": "Part IV Chapter XII closes before footnotes and the Project Gutenberg footer.",
+        "snippet": "FOOTNOTES:"
+      },
+      "structuralConvention": "chapter-based roman numerals with voyage parts",
+      "firstDefaultSectionBefore": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 4028,
+        "snippet": "CHAPTER I. The author gives some account of himself and family. His first inducements to travel. He is shipwrecked, and swims for his life, gets safe on shore in the country of Lilliput; is made a prisoner, and carried up the country. My father had a small ..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 4017,
+        "snippet": "CHAPTER I. The author gives some account of himself and family. His first inducements to travel. He is shipwrecked, and swims for his life, gets safe on shore..."
+      },
+      "sectionCountBefore": 49,
+      "sectionCountAfter": 39,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4017
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3699
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2813
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1869
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2452
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-035",
+          "label": "Chapter 8",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2165
+        },
+        {
+          "id": "chapter-036",
+          "label": "Chapter 9",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1923
+        },
+        {
+          "id": "chapter-037",
+          "label": "Chapter 10",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2743
+        },
+        {
+          "id": "chapter-038",
+          "label": "Chapter 11",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3059
+        },
+        {
+          "id": "chapter-039",
+          "label": "Chapter 12",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2329
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "imagePlaceholderBlocksRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "sourceHeadingLinesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": true
+      },
+      "previewVerdict": "valid book-specific startup preview from corrected first default section",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all corrected main readable sections are included by default",
+      "remainingWarnings": [
+        "Structure detector observed chapter-based roman numerals with part divisions; source-backed write-5 plan used chapter-based roman numerals with voyage parts.",
+        "Previous preview default was chapter-001; corrected preview default is chapter-001."
+      ],
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-bell",
+      "dryRunStatus": "already acceptable",
+      "finalAction": "accepted without rewrite",
+      "sourceFileUsed": "app/client/assets/temp-books/The Bell.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [],
+      "previewAssetChanged": null,
+      "priorIssueFromDryRun": [
+        "Real opening or ending content may be at risk around the audited boundary."
+      ],
+      "startBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother un..."
+      },
+      "endBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "And he seized hold of the creeping-plants, and the roots of trees--climbed up the moist stones where the water-snakes were writhing and the toads were croaking..."
+      },
+      "structuralConvention": "story or titled-section headings",
+      "firstDefaultSectionBefore": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 4775,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother un..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 4775,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet we..."
+      },
+      "sectionCountBefore": 2,
+      "sectionCountAfter": 2,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "wordCount": 4775
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "wordCount": 264
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "wordCount": 4775
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "wordCount": 264
+        }
+      ],
+      "cleanupActionsApplied": null,
+      "previewVerdict": "valid book-specific startup preview",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "acceptable: all detected main readable sections are included in current default playback",
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review",
+      "acceptedFromDryRunReason": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+      "noFilesChanged": true
+    },
+    {
+      "slug": "the-call-of-cthulhu",
+      "dryRunStatus": "needs correction before acceptance",
+      "finalAction": "corrected",
+      "sourceFileUsed": "app/client/assets/temp-books/The call of Cthulhu.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-call-of-cthulhu/manifest.json",
+        "app/client/assets/books/generated/the-call-of-cthulhu/cleaned_book.json",
+        "app/client/assets/books/generated/the-call-of-cthulhu/processed_book.json",
+        "app/client/assets/books/generated/the-call-of-cthulhu/rights_report.json",
+        "app/client/assets/books/generated/the-call-of-cthulhu/processing_notes.md",
+        "app/client/assets/books/generated/the-call-of-cthulhu/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-call-of-cthulhu/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-call-of-cthulhu/sections/chapter-003.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-call-of-cthulhu.preview.json",
+      "priorIssueFromDryRun": [
+        "part-001 appears to mix opening readable content with front/source material and is skipped by default",
+        "clear structure exists in the source but current output is coarse fallback-style sections",
+        "first default section does not tightly align with pass-2 candidate start",
+        "last readable section does not tightly align with pass-2 candidate end",
+        "suspicious non-default sections remain: part-001",
+        "generated output likely collapsed real structure",
+        "Real opening or ending content may be at risk around the audited boundary.",
+        "Existing generated output needs boundary/default-section correction later."
+      ],
+      "startBoundaryUsed": {
+        "line": 60,
+        "reason": "The first numbered story section follows the Gutenberg header, title/author lines, transcriber's note, epigraph, illustration caption, and footnote.",
+        "snippet": "_1. The Horror in Clay._ The most merciful thing in the world, I think, is the inability of the"
+      },
+      "endBoundaryUsed": {
+        "line": 1253,
+        "reason": "The third story section ends immediately before the Project Gutenberg footer.",
+        "snippet": "*** END OF THE PROJECT GUTENBERG EBOOK THE CALL OF CTHULHU ***"
+      },
+      "structuralConvention": "three numbered story sections",
+      "firstDefaultSectionBefore": {
+        "id": "part-002",
+        "label": "Part 2",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 5075,
+        "snippet": "Only poetry or madness could do justice to the noises heard by Legrasse's men as they plowed on through the black morass toward the red glare and the muffled tom-toms. There are vocal qualities peculiar to men, and vocal qualities peculiar to beasts; and it..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "chapter-001",
+        "label": "Part 1",
+        "title": "The Horror In Clay",
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2846,
+        "snippet": "The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents. We live on a placid island of ignorance in the..."
+      },
+      "sectionCountBefore": 4,
+      "sectionCountAfter": 3,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Part 1",
+          "title": "The Horror In Clay",
+          "kind": "chapter",
+          "wordCount": 2846
+        },
+        {
+          "id": "chapter-002",
+          "label": "Part 2",
+          "title": "The Tale Of Inspector Legrasse",
+          "kind": "chapter",
+          "wordCount": 4802
+        },
+        {
+          "id": "chapter-003",
+          "label": "Part 3",
+          "title": "The Madness From the Sea",
+          "kind": "chapter",
+          "wordCount": 4161
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Part 1",
+          "title": "The Horror In Clay",
+          "kind": "chapter",
+          "wordCount": 2846
+        },
+        {
+          "id": "chapter-002",
+          "label": "Part 2",
+          "title": "The Tale Of Inspector Legrasse",
+          "kind": "chapter",
+          "wordCount": 4802
+        },
+        {
+          "id": "chapter-003",
+          "label": "Part 3",
+          "title": "The Madness From the Sea",
+          "kind": "chapter",
+          "wordCount": 4161
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "imagePlaceholderBlocksRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "sourceHeadingLinesRemoved": 3,
+        "decorativeLinesRemoved": 10,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": false,
+        "dashesNormalized": false
+      },
+      "previewVerdict": "valid book-specific startup preview from corrected first default section",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all corrected main readable sections are included by default",
+      "remainingWarnings": [
+        "Structure detector observed isolated titled sections; source-backed write-5 plan used three numbered story sections.",
+        "Previous preview default was chapter-001; corrected preview default is chapter-001."
+      ],
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-elderbush",
+      "dryRunStatus": "already acceptable",
+      "finalAction": "accepted without rewrite",
+      "sourceFileUsed": "app/client/assets/temp-books/The Elderbush.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [],
+      "previewAssetChanged": null,
+      "priorIssueFromDryRun": [
+        "last readable section does not tightly align with pass-2 candidate end",
+        "Real opening or ending content may be at risk around the audited boundary."
+      ],
+      "startBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother un..."
+      },
+      "endBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "“In the tea-pot,” said his mother; “and there she may remain.”"
+      },
+      "structuralConvention": "isolated titled sections",
+      "firstDefaultSectionBefore": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 3003,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother un..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 3003,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet we..."
+      },
+      "sectionCountBefore": 2,
+      "sectionCountAfter": 2,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "wordCount": 3003
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "wordCount": 11
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "wordCount": 3003
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "wordCount": 11
+        }
+      ],
+      "cleanupActionsApplied": null,
+      "previewVerdict": "valid book-specific startup preview",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "acceptable: all detected main readable sections are included in current default playback",
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review",
+      "acceptedFromDryRunReason": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+      "noFilesChanged": true
+    },
+    {
+      "slug": "the-emerald-city-of-oz",
+      "dryRunStatus": "needs correction before acceptance",
+      "finalAction": "corrected",
+      "sourceFileUsed": "app/client/assets/temp-books/the-emerald-city-of-oz.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-emerald-city-of-oz/manifest.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/cleaned_book.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/processed_book.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/rights_report.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/processing_notes.md",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-024.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-025.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-026.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-027.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-028.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-029.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-030.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-emerald-city-of-oz.preview.json",
+      "priorIssueFromDryRun": [
+        "part-001 appears to mix opening readable content with front/source material and is skipped by default",
+        "clear structure exists in the source but current output is coarse fallback-style sections",
+        "first default section does not tightly align with pass-2 candidate start",
+        "last readable section does not tightly align with pass-2 candidate end",
+        "generated output likely collapsed real structure",
+        "generated output may include source/license/TOC/footer junk",
+        "Real opening or ending content may be at risk around the audited boundary.",
+        "Existing generated output needs boundary/default-section correction later."
+      ],
+      "startBoundaryUsed": {
+        "line": 119,
+        "reason": "Chapter 1 is the first main readable chapter after title, contents, and Baum's prefatory note.",
+        "snippet": "1. How the Nome King Became Angry The Nome King was in an angry mood, and at such times he was very"
+      },
+      "endBoundaryUsed": {
+        "line": 6969,
+        "reason": "Chapter 30 closes before the Project Gutenberg footer.",
+        "snippet": "So good luck to little Dorothy and her companions. May they live long in their invisible country and be very happy!"
+      },
+      "structuralConvention": "arabic-numbered titled chapters",
+      "firstDefaultSectionBefore": {
+        "id": "part-002",
+        "label": "Part 2",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 5441,
+        "snippet": "\"But you must not call me 'Princess',\" she said; \"for after this I shall live on the little farm with Uncle Henry and Aunt Em, and princesses ought not to live on farms.\" \"Princess Dorothy will not,\" replied Ozma with her sweet smile. \"You are going to live..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "How the Nome King Became Angry",
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1672,
+        "snippet": "The Nome King was in an angry mood, and at such times he was very disagreeable. Every one kept away from him, even his Chief Steward Kaliko. Therefore the King..."
+      },
+      "sectionCountBefore": 11,
+      "sectionCountAfter": 30,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "How the Nome King Became Angry",
+          "kind": "chapter",
+          "wordCount": 1672
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "How Uncle Henry Got Into Trouble",
+          "kind": "chapter",
+          "wordCount": 1698
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "How Ozma Granted Dorothy's Request",
+          "kind": "chapter",
+          "wordCount": 1982
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "How The Nome King Planned Revenge",
+          "kind": "chapter",
+          "wordCount": 1608
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": "How Dorothy Became a Princess",
+          "kind": "chapter",
+          "wordCount": 2264
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-026",
+          "label": "Chapter 26",
+          "title": "How Ozma Refused to Fight for Her Kingdom",
+          "kind": "chapter",
+          "wordCount": 2132
+        },
+        {
+          "id": "chapter-027",
+          "label": "Chapter 27",
+          "title": "How the Fierce Warriors Invaded Oz",
+          "kind": "chapter",
+          "wordCount": 827
+        },
+        {
+          "id": "chapter-028",
+          "label": "Chapter 28",
+          "title": "How They Drank at the Forbidden Fountain",
+          "kind": "chapter",
+          "wordCount": 1637
+        },
+        {
+          "id": "chapter-029",
+          "label": "Chapter 29",
+          "title": "How Glinda Worked a Magic Spell",
+          "kind": "chapter",
+          "wordCount": 1170
+        },
+        {
+          "id": "chapter-030",
+          "label": "Chapter 30",
+          "title": "How the Story of Oz Came to an End",
+          "kind": "chapter",
+          "wordCount": 164
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "imagePlaceholderBlocksRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "sourceHeadingLinesRemoved": 30,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": false,
+        "dashesNormalized": false
+      },
+      "previewVerdict": "valid book-specific startup preview from corrected first default section",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all corrected main readable sections are included by default",
+      "remainingWarnings": [
+        "Structure detector observed isolated titled sections; source-backed write-5 plan used arabic-numbered titled chapters.",
+        "Previous preview default was chapter-001; corrected preview default is chapter-001."
+      ],
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-emperor-s-new-clothes",
+      "dryRunStatus": "already acceptable",
+      "finalAction": "accepted without rewrite",
+      "sourceFileUsed": "app/client/assets/temp-books/THE EMPEROR'S NEW CLOTHES.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [],
+      "previewAssetChanged": null,
+      "priorIssueFromDryRun": [
+        "Real opening or ending content may be at risk around the audited boundary."
+      ],
+      "startBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, that he spent all his money in dress. He did not trouble himself in the least about his soldiers; n..."
+      },
+      "endBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "“But he has nothing at all on!” at last cried out all the people. The Emperor was vexed, for he knew that the people were right; but he thought the procession..."
+      },
+      "structuralConvention": "story or titled-section headings",
+      "firstDefaultSectionBefore": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 1820,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, that he spent all his money in dress. He did not trouble himself in the least about his soldiers; n..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 1820,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, t..."
+      },
+      "sectionCountBefore": 2,
+      "sectionCountAfter": 2,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "wordCount": 1820
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "wordCount": 61
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "wordCount": 1820
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "wordCount": 61
+        }
+      ],
+      "cleanupActionsApplied": null,
+      "previewVerdict": "valid book-specific startup preview",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "acceptable: all detected main readable sections are included in current default playback",
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review",
+      "acceptedFromDryRunReason": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+      "noFilesChanged": true
+    },
+    {
+      "slug": "the-fir-tree",
+      "dryRunStatus": "already acceptable",
+      "finalAction": "accepted without rewrite",
+      "sourceFileUsed": "app/client/assets/temp-books/The Fir Tree.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [],
+      "previewAssetChanged": null,
+      "priorIssueFromDryRun": [
+        "last readable section does not tightly align with pass-2 candidate end",
+        "Real opening or ending content may be at risk around the audited boundary."
+      ],
+      "startBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun shone on him: as to fresh air, there was enough of that, and round him grew many large-sized comrades..."
+      },
+      "endBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "The boys played about in the court, and the youngest wore the gold star on his breast which the Tree had had on the happiest evening of his life. However, that..."
+      },
+      "structuralConvention": "story or titled-section headings",
+      "firstDefaultSectionBefore": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 3180,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun shone on him: as to fresh air, there was enough of that, and round him grew many large-sized comrades..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 3180,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun sho..."
+      },
+      "sectionCountBefore": 2,
+      "sectionCountAfter": 2,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "wordCount": 3180
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "wordCount": 52
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "wordCount": 3180
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "wordCount": 52
+        }
+      ],
+      "cleanupActionsApplied": null,
+      "previewVerdict": "valid book-specific startup preview",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "acceptable: all detected main readable sections are included in current default playback",
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review",
+      "acceptedFromDryRunReason": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+      "noFilesChanged": true
+    },
+    {
+      "slug": "the-leap-frog",
+      "dryRunStatus": "already acceptable",
+      "finalAction": "accepted without rewrite",
+      "sourceFileUsed": "app/client/assets/temp-books/The Leap-Frog.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [],
+      "previewAssetChanged": null,
+      "priorIssueFromDryRun": [
+        "last readable section does not tightly align with pass-2 candidate end",
+        "Real opening or ending content may be at risk around the audited boundary."
+      ],
+      "startBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they invited the whole world, and everybody else besides who chose to come to see the festival. Three fam..."
+      },
+      "endBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "The Grasshopper sat without on a green bank, and reflected on worldly things; and he said too, “Yes, a fine exterior is everything--a fine exterior is what peo..."
+      },
+      "structuralConvention": "story or titled-section headings",
+      "firstDefaultSectionBefore": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 613,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they invited the whole world, and everybody else besides who chose to come to see the festival. Three fam..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 613,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they in..."
+      },
+      "sectionCountBefore": 2,
+      "sectionCountAfter": 2,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "wordCount": 613
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "wordCount": 65
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "wordCount": 613
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "wordCount": 65
+        }
+      ],
+      "cleanupActionsApplied": null,
+      "previewVerdict": "valid book-specific startup preview",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "acceptable: all detected main readable sections are included in current default playback",
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review",
+      "acceptedFromDryRunReason": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+      "noFilesChanged": true
+    },
+    {
+      "slug": "the-old-house",
+      "dryRunStatus": "needs correction before acceptance",
+      "finalAction": "corrected",
+      "sourceFileUsed": "app/client/assets/temp-books/The Old House.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-old-house/manifest.json",
+        "app/client/assets/books/generated/the-old-house/cleaned_book.json",
+        "app/client/assets/books/generated/the-old-house/processed_book.json",
+        "app/client/assets/books/generated/the-old-house/rights_report.json",
+        "app/client/assets/books/generated/the-old-house/processing_notes.md",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-009.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-old-house.preview.json",
+      "priorIssueFromDryRun": [
+        "clear structure exists in the source but current output is coarse fallback-style sections",
+        "last readable section does not tightly align with pass-2 candidate end",
+        "Real opening or ending content may be at risk around the audited boundary."
+      ],
+      "startBoundaryUsed": {
+        "line": 44,
+        "reason": "The Old House is the first story heading after the Gutenberg header and collection title.",
+        "snippet": "THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost"
+      },
+      "endBoundaryUsed": {
+        "line": 1932,
+        "reason": "The final story in this source file ends before the Project Gutenberg footer.",
+        "snippet": "and joy, that it broke. Her soul flew on the sunshine to God, and there no one asked after the RED SHOES."
+      },
+      "structuralConvention": "Andersen story collection headings",
+      "firstDefaultSectionBefore": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 5695,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which the date of the year was carved: togethe..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "chapter-001",
+        "label": "The Old House",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3053,
+        "snippet": "THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam o..."
+      },
+      "sectionCountBefore": 5,
+      "sectionCountAfter": 9,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Old House",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3053
+        },
+        {
+          "id": "chapter-002",
+          "label": "The Happy Family",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1307
+        },
+        {
+          "id": "chapter-003",
+          "label": "The Story Of A Mother",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1953
+        },
+        {
+          "id": "chapter-004",
+          "label": "The False Collar",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 897
+        },
+        {
+          "id": "chapter-005",
+          "label": "The Shadow",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5035
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-005",
+          "label": "The Shadow",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5035
+        },
+        {
+          "id": "chapter-006",
+          "label": "The Little Match Girl",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1025
+        },
+        {
+          "id": "chapter-007",
+          "label": "The Dream Of Little Tuk",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1897
+        },
+        {
+          "id": "chapter-008",
+          "label": "The Naughty Boy",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 838
+        },
+        {
+          "id": "chapter-009",
+          "label": "The Red Shoes",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2238
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "imagePlaceholderBlocksRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "sourceHeadingLinesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": false
+      },
+      "previewVerdict": "valid book-specific startup preview from corrected first default section",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all corrected main readable sections are included by default",
+      "remainingWarnings": [
+        "Structure detector observed story or titled-section headings; source-backed write-5 plan used Andersen story collection headings.",
+        "Previous preview default was chapter-001; corrected preview default is chapter-001."
+      ],
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-real-princess",
+      "dryRunStatus": "already acceptable",
+      "finalAction": "accepted without rewrite",
+      "sourceFileUsed": "app/client/assets/temp-books/The Real Princess.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [],
+      "previewAssetChanged": null,
+      "priorIssueFromDryRun": [
+        "last readable section does not tightly align with pass-2 candidate end",
+        "Real opening or ending content may be at risk around the audited boundary."
+      ],
+      "startBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princess. He travelled all over the world in hopes of finding such a lady; but there was always something..."
+      },
+      "endBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "Wasn't this a lady of real delicacy?"
+      },
+      "structuralConvention": "story or titled-section headings",
+      "firstDefaultSectionBefore": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 414,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princess. He travelled all over the world in hopes of finding such a lady; but there was always something..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 414,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princes..."
+      },
+      "sectionCountBefore": 2,
+      "sectionCountAfter": 2,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "wordCount": 414
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "wordCount": 7
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "wordCount": 414
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "wordCount": 7
+        }
+      ],
+      "cleanupActionsApplied": null,
+      "previewVerdict": "valid book-specific startup preview",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "acceptable: all detected main readable sections are included in current default playback",
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review",
+      "acceptedFromDryRunReason": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+      "noFilesChanged": true
+    },
+    {
+      "slug": "the-secret-garden-gutenberg-113",
+      "dryRunStatus": "already acceptable",
+      "finalAction": "accepted without rewrite",
+      "sourceFileUsed": "app/client/assets/temp-books/The Secret Garden.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [],
+      "previewAssetChanged": null,
+      "priorIssueFromDryRun": [
+        "Book is not present in the older pass-2 audit report; batch-5 dry run used local raw source, generated output, preview asset, startup audit, and structure detector directly."
+      ],
+      "startBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "CHAPTER I. THERE IS NO ONE LEFT When Mary Lennox was sent to Misselthwaite Manor to live with her uncle everybody said she was the most disagreeable-looking child ever seen. It was true, too. She had a little thin face and a little thin body, thin light hai..."
+      },
+      "endBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "CHAPTER XXVII. IN THE GARDEN In each century since the beginning of the world wonderful things have been discovered. In the last century more amazing things we..."
+      },
+      "structuralConvention": "chapter-based roman numerals",
+      "firstDefaultSectionBefore": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1915,
+        "snippet": "CHAPTER I. THERE IS NO ONE LEFT When Mary Lennox was sent to Misselthwaite Manor to live with her uncle everybody said she was the most disagreeable-looking child ever seen. It was true, too. She had a little thin face and a little thin body, thin light hai..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1915,
+        "snippet": "CHAPTER I. THERE IS NO ONE LEFT When Mary Lennox was sent to Misselthwaite Manor to live with her uncle everybody said she was the most disagreeable-looking ch..."
+      },
+      "sectionCountBefore": 30,
+      "sectionCountAfter": 30,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "title-page-001",
+          "label": "Opening section",
+          "title": null,
+          "kind": "title-page",
+          "wordCount": 36
+        },
+        {
+          "id": "title-page-002",
+          "label": "Contents",
+          "title": null,
+          "kind": "title-page",
+          "wordCount": 134
+        },
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1915
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2774
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1499
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-024",
+          "label": "did.",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3815
+        },
+        {
+          "id": "chapter-025",
+          "label": "Chapter 24",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4046
+        },
+        {
+          "id": "chapter-026",
+          "label": "Chapter 25",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2424
+        },
+        {
+          "id": "chapter-027",
+          "label": "Chapter 26",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3141
+        },
+        {
+          "id": "chapter-028",
+          "label": "Chapter 27",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5219
+        }
+      ],
+      "cleanupActionsApplied": null,
+      "previewVerdict": "valid book-specific startup preview",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "acceptable: all detected main readable sections are included in current default playback",
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review",
+      "acceptedFromDryRunReason": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+      "noFilesChanged": true
+    },
+    {
+      "slug": "the-shoes-of-fortune",
+      "dryRunStatus": "already acceptable",
+      "finalAction": "accepted without rewrite",
+      "sourceFileUsed": "app/client/assets/temp-books/The Shoes of Fortune.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [],
+      "previewAssetChanged": null,
+      "priorIssueFromDryRun": [
+        "last readable section does not tightly align with pass-2 candidate end",
+        "Real opening or ending content may be at risk around the audited boundary."
+      ],
+      "startBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SHOES OF FORTUNE I. A Beginning Every author has some peculiarity in his descriptions or in his style of writing. Those who do not like him, magnify it, shrug up their shoulders, and exclaim--there he is..."
+      },
+      "endBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "And she took the Galoshes from his feet; his sleep of death was ended; and he who had been thus called back again to life arose from his dread couch in all the..."
+      },
+      "structuralConvention": "roman-numbered titled sections",
+      "firstDefaultSectionBefore": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 5286,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SHOES OF FORTUNE I. A Beginning Every author has some peculiarity in his descriptions or in his style of writing. Those who do not like him, magnify it, shrug up their shoulders, and exclaim--there he is..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 5286,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SHOES OF FORTUNE I. A Beginning Every author has some peculiarity in his descriptions or in his style of..."
+      },
+      "sectionCountBefore": 4,
+      "sectionCountAfter": 4,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "wordCount": 5286
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "wordCount": 5437
+        },
+        {
+          "id": "part-003",
+          "label": "Part 3",
+          "title": null,
+          "kind": "part",
+          "wordCount": 1929
+        },
+        {
+          "id": "part-004",
+          "label": "Part 4",
+          "title": null,
+          "kind": "part",
+          "wordCount": 57
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "wordCount": 5286
+        },
+        {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "wordCount": 5437
+        },
+        {
+          "id": "part-003",
+          "label": "Part 3",
+          "title": null,
+          "kind": "part",
+          "wordCount": 1929
+        },
+        {
+          "id": "part-004",
+          "label": "Part 4",
+          "title": null,
+          "kind": "part",
+          "wordCount": 57
+        }
+      ],
+      "cleanupActionsApplied": null,
+      "previewVerdict": "valid book-specific startup preview",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "acceptable: all detected main readable sections are included in current default playback",
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review",
+      "acceptedFromDryRunReason": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+      "noFilesChanged": true
+    },
+    {
+      "slug": "the-snow-queen",
+      "dryRunStatus": "needs correction before acceptance",
+      "finalAction": "corrected",
+      "sourceFileUsed": "app/client/assets/temp-books/THE SNOW QUEEN.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-snow-queen/manifest.json",
+        "app/client/assets/books/generated/the-snow-queen/cleaned_book.json",
+        "app/client/assets/books/generated/the-snow-queen/processed_book.json",
+        "app/client/assets/books/generated/the-snow-queen/rights_report.json",
+        "app/client/assets/books/generated/the-snow-queen/processing_notes.md",
+        "app/client/assets/books/generated/the-snow-queen/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-snow-queen/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-snow-queen/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-snow-queen/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-snow-queen/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-snow-queen/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-snow-queen/sections/chapter-007.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-snow-queen.preview.json",
+      "priorIssueFromDryRun": [
+        "clear structure exists in the source but current output is coarse fallback-style sections",
+        "first default section does not tightly align with pass-2 candidate start",
+        "last readable section does not tightly align with pass-2 candidate end",
+        "generated output likely collapsed real structure",
+        "Start or end boundary still has low confidence after context inspection."
+      ],
+      "startBoundaryUsed": {
+        "line": 140,
+        "reason": "Story the First is the first main Snow Queen section after title, copyright, preface, and wrapper title.",
+        "snippet": "STORY THE FIRST WHICH DESCRIBES A LOOKING-GLASS AND ITS BROKEN FRAGMENTS"
+      },
+      "endBoundaryUsed": {
+        "line": 1317,
+        "reason": "The seventh story ends at the final summer paragraph before trailing blanks.",
+        "snippet": "And they both sat there, grown up, yet children at heart, and it was summer--warm, beautiful summer."
+      },
+      "structuralConvention": "seven titled story parts",
+      "firstDefaultSectionBefore": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 5513,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SNOW QUEEN FIRST STORY. Which Treats of a Mirror and of the Splinters Now then, let us begin. When we are at the end of the story, we shall know more than we know now: but to begin. Once upon a time ther..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "chapter-001",
+        "label": "Story 1",
+        "title": "Which Describes A Looking-Glass and Its Broken Fragments",
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 531,
+        "snippet": "STORY THE FIRST WHICH DESCRIBES A LOOKING-GLASS AND ITS BROKEN FRAGMENTS YOU must attend to the beginning of this story, for when we get to the end we shall kn..."
+      },
+      "sectionCountBefore": 4,
+      "sectionCountAfter": 7,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Story 1",
+          "title": "Which Describes A Looking-Glass and Its Broken Fragments",
+          "kind": "chapter",
+          "wordCount": 531
+        },
+        {
+          "id": "chapter-002",
+          "label": "Story 2",
+          "title": "A Little Boy and A Little Girl",
+          "kind": "chapter",
+          "wordCount": 2102
+        },
+        {
+          "id": "chapter-003",
+          "label": "Story 3",
+          "title": "The Enchanted Flower Garden",
+          "kind": "chapter",
+          "wordCount": 1718
+        },
+        {
+          "id": "chapter-004",
+          "label": "Story 4",
+          "title": "The Prince and Princess",
+          "kind": "chapter",
+          "wordCount": 2544
+        },
+        {
+          "id": "chapter-005",
+          "label": "Story 5",
+          "title": "The Little Robber Girl",
+          "kind": "chapter",
+          "wordCount": 1610
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-003",
+          "label": "Story 3",
+          "title": "The Enchanted Flower Garden",
+          "kind": "chapter",
+          "wordCount": 1718
+        },
+        {
+          "id": "chapter-004",
+          "label": "Story 4",
+          "title": "The Prince and Princess",
+          "kind": "chapter",
+          "wordCount": 2544
+        },
+        {
+          "id": "chapter-005",
+          "label": "Story 5",
+          "title": "The Little Robber Girl",
+          "kind": "chapter",
+          "wordCount": 1610
+        },
+        {
+          "id": "chapter-006",
+          "label": "Story 6",
+          "title": "The Lapland Woman and the Finland Woman",
+          "kind": "chapter",
+          "wordCount": 1220
+        },
+        {
+          "id": "chapter-007",
+          "label": "Story 7",
+          "title": "Of the Palace Of the Snow Queen and What Happened There At Last",
+          "kind": "chapter",
+          "wordCount": 1608
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 5,
+        "imagePlaceholderBlocksRemoved": 4,
+        "numberedReferencesRemoved": 0,
+        "sourceHeadingLinesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": false,
+        "dashesNormalized": false
+      },
+      "previewVerdict": "valid book-specific startup preview from corrected first default section",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all corrected main readable sections are included by default",
+      "remainingWarnings": [
+        "Structure detector observed story or titled-section headings; source-backed write-5 plan used seven titled story parts.",
+        "Previous preview default was chapter-001; corrected preview default is chapter-001."
+      ],
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-swineherd",
+      "dryRunStatus": "needs correction before acceptance",
+      "finalAction": "corrected",
+      "sourceFileUsed": "app/client/assets/temp-books/The Swineherd.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-swineherd/manifest.json",
+        "app/client/assets/books/generated/the-swineherd/cleaned_book.json",
+        "app/client/assets/books/generated/the-swineherd/processed_book.json",
+        "app/client/assets/books/generated/the-swineherd/rights_report.json",
+        "app/client/assets/books/generated/the-swineherd/processing_notes.md",
+        "app/client/assets/books/generated/the-swineherd/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-swineherd.preview.json",
+      "priorIssueFromDryRun": [
+        "clear structure exists in the source but current output is coarse fallback-style sections",
+        "last readable section does not tightly align with pass-2 candidate end",
+        "Real opening or ending content may be at risk around the audited boundary."
+      ],
+      "startBoundaryUsed": {
+        "line": 43,
+        "reason": "The Swineherd is the first and only story heading after the Gutenberg header and collection title.",
+        "snippet": "THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very"
+      },
+      "endBoundaryUsed": {
+        "line": 249,
+        "reason": "The story closes before the Project Gutenberg footer/license block.",
+        "snippet": "End of Project Gutenberg's Andersen's Fairy Tales, by Hans Christian Andersen"
+      },
+      "structuralConvention": "single Andersen story",
+      "firstDefaultSectionBefore": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 1486,
+        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was certainly rather cool of him to say to th..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "chapter-001",
+        "label": "The Swineherd",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1488,
+        "snippet": "THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry...."
+      },
+      "sectionCountBefore": 2,
+      "sectionCountAfter": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Swineherd",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1488
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Swineherd",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1488
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "imagePlaceholderBlocksRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "sourceHeadingLinesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": false
+      },
+      "previewVerdict": "valid book-specific startup preview from corrected first default section",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all corrected main readable sections are included by default",
+      "remainingWarnings": [
+        "Structure detector observed isolated titled sections; source-backed write-5 plan used single Andersen story.",
+        "Previous preview default was chapter-001; corrected preview default is chapter-001."
+      ],
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "treasure-island",
+      "dryRunStatus": "needs correction before acceptance",
+      "finalAction": "corrected",
+      "sourceFileUsed": "app/client/assets/temp-books/treasure-island.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/treasure-island/manifest.json",
+        "app/client/assets/books/generated/treasure-island/cleaned_book.json",
+        "app/client/assets/books/generated/treasure-island/processed_book.json",
+        "app/client/assets/books/generated/treasure-island/rights_report.json",
+        "app/client/assets/books/generated/treasure-island/processing_notes.md",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-001.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-002.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-003.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-004.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-005.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-006.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-007.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-008.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-009.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-010.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-011.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-012.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-013.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-014.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-015.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-016.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-017.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-018.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-019.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-020.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-021.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-022.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-023.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-024.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-025.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-026.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-027.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-028.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-029.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-030.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-031.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-032.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-033.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-034.json"
+      ],
+      "previewAssetChanged": "public/book-previews/treasure-island.preview.json",
+      "priorIssueFromDryRun": [
+        "clear structure exists in the source but current output is coarse fallback-style sections",
+        "first default section does not tightly align with pass-2 candidate start",
+        "last readable section does not tightly align with pass-2 candidate end",
+        "body headings were found but rejected by the selected strategy",
+        "generated output likely collapsed real structure",
+        "Real opening or ending content may be at risk around the audited boundary.",
+        "Existing generated output needs boundary/default-section correction later."
+      ],
+      "startBoundaryUsed": {
+        "line": 143,
+        "reason": "Chapter I is the first main readable chapter after title, dedication, poem, contents, and part heading.",
+        "snippet": "I The Old Sea-dog at the Admiral Benbow"
+      },
+      "endBoundaryUsed": {
+        "line": 7508,
+        "reason": "Chapter XXXIV closes before the Project Gutenberg footer.",
+        "snippet": "*** END OF THE PROJECT GUTENBERG EBOOK TREASURE ISLAND ***"
+      },
+      "structuralConvention": "roman-numbered chapters within part divisions",
+      "firstDefaultSectionBefore": {
+        "id": "part-001",
+        "label": "Part 1",
+        "title": null,
+        "kind": "part",
+        "includeByDefault": false,
+        "wordCount": 5594,
+        "snippet": "TREASURE ISLAND by Robert Louis Stevenson TREASURE ISLAND To S.L.O., an American gentleman in accordance with whose classic taste the following narrative has been designed, it is now, in return for numerous delightful hours, and with the kindest wishes, ded..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "The Old Sea-Dog At the Admiral Benbow",
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2220,
+        "snippet": "I The Old Sea-dog at the Admiral Benbow Squire Trelawney, Dr. Livesey, and the rest of these gentlemen having asked me to write down the whole particulars abou..."
+      },
+      "sectionCountBefore": 14,
+      "sectionCountAfter": 34,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "The Old Sea-Dog At the Admiral Benbow",
+          "kind": "chapter",
+          "wordCount": 2220
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "Black Dog Appears and Disappears",
+          "kind": "chapter",
+          "wordCount": 2263
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "The Black Spot",
+          "kind": "chapter",
+          "wordCount": 2167
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "The Sea-Chest",
+          "kind": "chapter",
+          "wordCount": 2148
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": "The Last Of the Blind Man",
+          "kind": "chapter",
+          "wordCount": 1863
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-030",
+          "label": "Chapter 30",
+          "title": "On Parole",
+          "kind": "chapter",
+          "wordCount": 2338
+        },
+        {
+          "id": "chapter-031",
+          "label": "Chapter 31",
+          "title": "The Treasure-Hunt--Flint’S Pointer",
+          "kind": "chapter",
+          "wordCount": 2279
+        },
+        {
+          "id": "chapter-032",
+          "label": "Chapter 32",
+          "title": "The Treasure-Hunt--the Voice Among the Trees",
+          "kind": "chapter",
+          "wordCount": 1967
+        },
+        {
+          "id": "chapter-033",
+          "label": "Chapter 33",
+          "title": "The Fall Of A Chieftain",
+          "kind": "chapter",
+          "wordCount": 2000
+        },
+        {
+          "id": "chapter-034",
+          "label": "Chapter 34",
+          "title": "and Last",
+          "kind": "chapter",
+          "wordCount": 1905
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "imagePlaceholderBlocksRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "sourceHeadingLinesRemoved": 0,
+        "decorativeLinesRemoved": 0,
+        "standaloneFinisLinesRemoved": 0,
+        "unicodeNormalized": true,
+        "dashesNormalized": true
+      },
+      "previewVerdict": "valid book-specific startup preview from corrected first default section",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all corrected main readable sections are included by default",
+      "remainingWarnings": [
+        "Structure detector observed standalone roman numeral sections with part divisions; source-backed write-5 plan used roman-numbered chapters within part divisions.",
+        "body headings were found but rejected by the selected strategy",
+        "Previous preview default was chapter-001; corrected preview default is chapter-001."
+      ],
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "wind-in-the-willows",
+      "dryRunStatus": "already acceptable",
+      "finalAction": "accepted without rewrite",
+      "sourceFileUsed": "app/client/assets/temp-books/The Wind in the Willows.txt",
+      "inspections": {
+        "dryRunJsonInspected": true,
+        "dryRunMarkdownInspected": true,
+        "rawSourceInspected": true,
+        "currentGeneratedOutputInspected": true,
+        "currentPreviewAssetInspected": true
+      },
+      "generatedFilesChanged": [],
+      "previewAssetChanged": null,
+      "priorIssueFromDryRun": [
+        "Book is not present in the older pass-2 audit report; batch-5 dry run used local raw source, generated output, preview asset, startup audit, and structure detector directly."
+      ],
+      "startBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "I. THE RIVER BANK The Mole had been working very hard all the morning, spring-cleaning his little home. First with brooms, then with dusters; then on ladders and steps and chairs, with a brush and a pail of whitewash; till he had dust in his throat and eyes..."
+      },
+      "endBoundaryUsed": {
+        "line": null,
+        "reason": "Accepted from dry-run; no write needed.",
+        "snippet": "XII. THE RETURN OF ULYSSES When it began to grow dark, the Rat, with an air of excitement and mystery, summoned them back into the parlour, stood each of them..."
+      },
+      "structuralConvention": "standalone roman numeral sections",
+      "firstDefaultSectionBefore": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 4440,
+        "snippet": "I. THE RIVER BANK The Mole had been working very hard all the morning, spring-cleaning his little home. First with brooms, then with dusters; then on ladders and steps and chairs, with a brush and a pail of whitewash; till he had dust in his throat and eyes..."
+      },
+      "firstDefaultSectionAfter": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 4440,
+        "snippet": "I. THE RIVER BANK The Mole had been working very hard all the morning, spring-cleaning his little home. First with brooms, then with dusters; then on ladders a..."
+      },
+      "sectionCountBefore": 14,
+      "sectionCountAfter": 14,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "title-page-001",
+          "label": "Opening section",
+          "title": null,
+          "kind": "title-page",
+          "wordCount": 17
+        },
+        {
+          "id": "title-page-002",
+          "label": "Contents",
+          "title": null,
+          "kind": "title-page",
+          "wordCount": 67
+        },
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4440
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4381
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4522
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-008",
+          "label": "Chapter 8",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4898
+        },
+        {
+          "id": "chapter-009",
+          "label": "Chapter 9",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5959
+        },
+        {
+          "id": "chapter-010",
+          "label": "Chapter 10",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6046
+        },
+        {
+          "id": "chapter-011",
+          "label": "Chapter 11",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6262
+        },
+        {
+          "id": "chapter-012",
+          "label": "Chapter 12",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4849
+        }
+      ],
+      "cleanupActionsApplied": null,
+      "previewVerdict": "valid book-specific startup preview",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "acceptable: all detected main readable sections are included in current default playback",
+      "remainingWarnings": [],
+      "finalRecommendation": "accepted for review",
+      "acceptedFromDryRunReason": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+      "noFilesChanged": true
+    }
+  ]
+}
