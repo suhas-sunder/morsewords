@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-055",
+  "kind": "poem",
+  "label": "The Flowers",
+  "title": null,
+  "order": 55,
+  "includeByDefault": true,
+  "displayText": "THE FLOWERS\n\n\n All the names I know from nurse:\n Gardener's garters, Shepherd's purse,\n Bachelor's buttons, Lady's smock,\n And the Lady Hollyhock.\n\n Fairy places, fairy things,\n Fairy woods where the wild bee wings,\n Tiny trees for tiny dames--\n These must all be fairy names!\n\n Tiny woods below whose boughs\n Shady fairies weave a house;\n Tiny tree-tops, rose or thyme,\n Where the braver fairies climb!\n\n\n Fair are grown-up people's trees,\n But the fairest woods are these;\n Where, if I were not so tall,\n I should live for good and all.",
+  "morseSourceText": "THE FLOWERS\n\n\n All the names I know from nurse:\n Gardener's garters, Shepherd's purse,\n Bachelor's buttons, Lady's smock,\n And the Lady Hollyhock.\n\n Fairy places, fairy things,\n Fairy woods where the wild bee wings,\n Tiny trees for tiny dames--\n These must all be fairy names!\n\n Tiny woods below whose boughs\n Shady fairies weave a house;\n Tiny tree-tops, rose or thyme,\n Where the braver fairies climb!\n\n\n Fair are grown-up people's trees,\n But the fairest woods are these;\n Where, if I were not so tall,\n I should live for good and all.",
+  "paragraphs": [
+    "THE FLOWERS",
+    "All the names I know from nurse: Gardener's garters, Shepherd's purse, Bachelor's buttons, Lady's smock, And the Lady Hollyhock.",
+    "Fairy places, fairy things, Fairy woods where the wild bee wings, Tiny trees for tiny dames-- These must all be fairy names!",
+    "Tiny woods below whose boughs Shady fairies weave a house; Tiny tree-tops, rose or thyme, Where the braver fairies climb!",
+    "Fair are grown-up people's trees, But the fairest woods are these; Where, if I were not so tall, I should live for good and all."
+  ],
+  "wordCount": 88,
+  "characterCount": 538,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2857,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE FLOWERS All the names I know from nurse: Gardener's garters, Shepherd's purse, Bachelor's buttons, Lady's smock, And the Lady Hollyhock. Fairy places, fair...",
+  "sourceOffsets": {
+    "start": 49270,
+    "end": 49915
+  }
+}

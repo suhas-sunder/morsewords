@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-013",
+  "kind": "poem",
+  "label": "A Good Play",
+  "title": null,
+  "order": 13,
+  "includeByDefault": true,
+  "displayText": "A GOOD PLAY\n\n\n We built a ship upon the stairs\n All made of the back-bedroom chairs,\n And filled it full of sofa pillows\n To go a-sailing on the billows.\n\n We took a saw and several nails,\n And water in the nursery pails;\n And Tom said, \"Let us also take\n An apple and a slice of cake;\"--\n Which was enough for Tom and me\n To go a-sailing on, till tea.\n\n We sailed along for days and days\n And had the very best of plays;\n But Tom fell out and hurt his knee,\n So there was no one left but me.",
+  "morseSourceText": "A GOOD PLAY\n\n\n We built a ship upon the stairs\n All made of the back-bedroom chairs,\n And filled it full of sofa pillows\n To go a-sailing on the billows.\n\n We took a saw and several nails,\n And water in the nursery pails;\n And Tom said, \"Let us also take\n An apple and a slice of cake;\"--\n Which was enough for Tom and me\n To go a-sailing on, till tea.\n\n We sailed along for days and days\n And had the very best of plays;\n But Tom fell out and hurt his knee,\n So there was no one left but me.",
+  "paragraphs": [
+    "A GOOD PLAY",
+    "We built a ship upon the stairs All made of the back-bedroom chairs, And filled it full of sofa pillows To go a-sailing on the billows.",
+    "We took a saw and several nails, And water in the nursery pails; And Tom said, \"Let us also take An apple and a slice of cake;\"-- Which was enough for Tom and me To go a-sailing on, till tea.",
+    "We sailed along for days and days And had the very best of plays; But Tom fell out and hurt his knee, So there was no one left but me."
+  ],
+  "wordCount": 99,
+  "characterCount": 492,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2566,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "A GOOD PLAY We built a ship upon the stairs All made of the back-bedroom chairs, And filled it full of sofa pillows To go a-sailing on the billows. We took a s...",
+  "sourceOffsets": {
+    "start": 16904,
+    "end": 17500
+  }
+}

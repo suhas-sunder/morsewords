@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-046",
+  "kind": "poem",
+  "label": "My Kingdom",
+  "title": null,
+  "order": 46,
+  "includeByDefault": true,
+  "displayText": "MY KINGDOM\n\n\n Down by a shining water well\n I found a very little dell,\n No higher than my head.\n The heather and the gorse about\n In summer bloom were coming out,\n Some yellow and some red.\n\n I called the little pool a sea;\n The little hills were big to me;\n For I am very small.\n I made a boat, I made a town,\n I searched the caverns up and down,\n And named them one and all.\n\n And all about was mine, I said,\n The little sparrows overhead,\n The little minnows too.\n This was the world and I was king;\n For me the bees came by to sing,\n For me the swallows flew.\n\n I played there were no deeper seas,\n Nor any wider plains than these,\n Nor other kings than me.\n At last I heard my mother call\n Out from the house at evenfall,\n To call me home to tea.\n\n And I must rise and leave my dell,\n And leave my dimpled water well,\n And leave my heather blooms.\n Alas! and as my home I neared,\n How very big my nurse appeared.\n How great and cool the rooms!",
+  "morseSourceText": "MY KINGDOM\n\n\n Down by a shining water well\n I found a very little dell,\n No higher than my head.\n The heather and the gorse about\n In summer bloom were coming out,\n Some yellow and some red.\n\n I called the little pool a sea;\n The little hills were big to me;\n For I am very small.\n I made a boat, I made a town,\n I searched the caverns up and down,\n And named them one and all.\n\n And all about was mine, I said,\n The little sparrows overhead,\n The little minnows too.\n This was the world and I was king;\n For me the bees came by to sing,\n For me the swallows flew.\n\n I played there were no deeper seas,\n Nor any wider plains than these,\n Nor other kings than me.\n At last I heard my mother call\n Out from the house at evenfall,\n To call me home to tea.\n\n And I must rise and leave my dell,\n And leave my dimpled water well,\n And leave my heather blooms.\n Alas! and as my home I neared,\n How very big my nurse appeared.\n How great and cool the rooms!",
+  "paragraphs": [
+    "MY KINGDOM",
+    "Down by a shining water well I found a very little dell, No higher than my head. The heather and the gorse about In summer bloom were coming out, Some yellow and some red.",
+    "I called the little pool a sea; The little hills were big to me; For I am very small. I made a boat, I made a town, I searched the caverns up and down, And named them one and all.",
+    "And all about was mine, I said, The little sparrows overhead, The little minnows too. This was the world and I was king; For me the bees came by to sing, For me the swallows flew.",
+    "I played there were no deeper seas, Nor any wider plains than these, Nor other kings than me. At last I heard my mother call Out from the house at evenfall, To call me home to tea.",
+    "And I must rise and leave my dell, And leave my dimpled water well, And leave my heather blooms. Alas! and as my home I neared, How very big my nurse appeared. How great and cool the rooms!"
+  ],
+  "wordCount": 187,
+  "characterCount": 949,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4853,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "MY KINGDOM Down by a shining water well I found a very little dell, No higher than my head. The heather and the gorse about In summer bloom were coming out, So...",
+  "sourceOffsets": {
+    "start": 38647,
+    "end": 39768
+  }
+}

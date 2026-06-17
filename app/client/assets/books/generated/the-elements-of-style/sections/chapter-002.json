@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-elements-of-style",
+  "sectionId": "chapter-002",
+  "kind": "chapter",
+  "label": "Rule 2",
+  "title": "In a series of three or more terms with a single conjunction, use a",
+  "order": 4,
+  "includeByDefault": true,
+  "displayText": "2. In a series of three or more terms with a single conjunction, use a\ncomma after each term except the last.\n\nThus write,\n\n red, white, and blue\n\n gold, silver, or copper\n\n He opened the letter, read it, and made a note of its contents.\n\nThis is also the usage of the Government Printing Office and of the\nOxford University Press.\n\nIn the names of business firms the last comma is omitted, as,\n\n Brown, Shipley & Co.",
+  "morseSourceText": "2. In a series of three or more terms with a single conjunction, use a\ncomma after each term except the last.\n\nThus write,\n\n red, white, and blue\n\n gold, silver, or copper\n\n He opened the letter, read it, and made a note of its contents.\n\nThis is also the usage of the Government Printing Office and of the\nOxford University Press.\n\nIn the names of business firms the last comma is omitted, as,\n\n Brown, Shipley & Co.",
+  "paragraphs": [
+    "2. In a series of three or more terms with a single conjunction, use a comma after each term except the last.",
+    "Thus write,",
+    "red, white, and blue",
+    "gold, silver, or copper",
+    "He opened the letter, read it, and made a note of its contents.",
+    "This is also the usage of the Government Printing Office and of the Oxford University Press.",
+    "In the names of business firms the last comma is omitted, as,",
+    "Brown, Shipley & Co."
+  ],
+  "wordCount": 76,
+  "characterCount": 417,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2166,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "2. In a series of three or more terms with a single conjunction, use a comma after each term except the last. Thus write, red, white, and blue gold, silver, or...",
+  "sourceOffsets": {
+    "start": 8167,
+    "end": 8608
+  }
+}

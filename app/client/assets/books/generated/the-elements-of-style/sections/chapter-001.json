@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-elements-of-style",
+  "sectionId": "chapter-001",
+  "kind": "chapter",
+  "label": "Rule 1",
+  "title": "Form the possessive singular of nouns by adding 's",
+  "order": 3,
+  "includeByDefault": true,
+  "displayText": "1. Form the possessive singular of nouns by adding 's.\n\nFollow this rule whatever the final consonant. Thus write,\n\n Charles's friend\n\n Burns's poems\n\n the witch's malice\n\nThis is the usage of the United States Government Printing Office and of\nthe Oxford University Press.\n\nExceptions are the possessive of ancient proper names in _-es_ and\n_-is_, the possessive _Jesus'_, and such forms as _for conscience'\nsake_, _for righteousness' sake_. But such forms as _Achilles' heel_,\n_Moses' laws_, _Isis' temple_ are commonly replaced by\n\n the heel of Achilles\n\n the laws of Moses\n\n the temple of Isis\n\nThe pronominal possessives _hers_, _its_, _theirs_, _yours_, and\n_oneself_ have no apostrophe.",
+  "morseSourceText": "1. Form the possessive singular of nouns by adding 's.\n\nFollow this rule whatever the final consonant. Thus write,\n\n Charles's friend\n\n Burns's poems\n\n the witch's malice\n\nThis is the usage of the United States Government Printing Office and of\nthe Oxford University Press.\n\nExceptions are the possessive of ancient proper names in _-es_ and\n_-is_, the possessive _Jesus'_, and such forms as _for conscience'\nsake_, _for righteousness' sake_. But such forms as _Achilles' heel_,\n_Moses' laws_, _Isis' temple_ are commonly replaced by\n\n the heel of Achilles\n\n the laws of Moses\n\n the temple of Isis\n\nThe pronominal possessives _hers_, _its_, _theirs_, _yours_, and\n_oneself_ have no apostrophe.",
+  "paragraphs": [
+    "1. Form the possessive singular of nouns by adding 's.",
+    "Follow this rule whatever the final consonant. Thus write,",
+    "Charles's friend",
+    "Burns's poems",
+    "the witch's malice",
+    "This is the usage of the United States Government Printing Office and of the Oxford University Press.",
+    "Exceptions are the possessive of ancient proper names in _-es_ and _-is_, the possessive _Jesus'_, and such forms as _for conscience' sake_, _for righteousness' sake_. But such forms as _Achilles' heel_, _Moses' laws_, _Isis' temple_ are commonly replaced by",
+    "the heel of Achilles",
+    "the laws of Moses",
+    "the temple of Isis",
+    "The pronominal possessives _hers_, _its_, _theirs_, _yours_, and _oneself_ have no apostrophe."
+  ],
+  "wordCount": 106,
+  "characterCount": 693,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3813,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "1. Form the possessive singular of nouns by adding 's. Follow this rule whatever the final consonant. Thus write, Charles's friend Burns's poems the witch's ma...",
+  "sourceOffsets": {
+    "start": 7437,
+    "end": 8165
+  }
+}

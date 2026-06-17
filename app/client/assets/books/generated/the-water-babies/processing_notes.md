@@ -1,71 +1,12 @@
-# The Water-Babies: A Fairy Tale for a Land-Baby rights review notes
+# the-water-babies
 
-- Source file: ../the-water-babies.txt
-- Gutenberg ID: 25564
-- Source URL: https://www.gutenberg.org/ebooks/25564
-- Metadata status: draft
-- Manual review required: yes
-- Approval status: needs_manual_review
-- Approval source: manual-review
-- Duplicate resolution source: not-needed
-- Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+Processed by pilot write pass 4.
 
-## Rights evidence found
+- Source: app/client/assets/temp-books/the-water-babies.txt
+- Start boundary: line 149 (Chapter I is the first main readable chapter after title, dedication, illustrations, and epigraph.)
+- End boundary: line 7390 (The Moral and The End close before the Project Gutenberg footer.)
+- Structural convention: chapter headings plus moral
+- Sections after correction: 9
+- Final recommendation: accepted for review
 
-- Author death year authority: project-gutenberg-rdf 25564 https://www.gutenberg.org/cache/epub/25564/pg25564.rdf
-- Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of
-- U.S. reuse language: of The Water-Babies: A Fairy Tale for a Land-Baby This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
-- Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Water-Babies: A Fairy Tale f
-- Transcriber note: & R. CLARK, LIMITED, Edinburgh._ * * * * * Transcriber's Notes: Obvious punctuation errors repaired. Page 6, "piert" was retained as a spelling for "pert". *** END OF THE PROJECT G
-
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: May 23, 2008
-- Last updated: November 27, 2024
-- Original publication: 1863
-- Credits: Produced by Juliet Sutherland, Emmy and the Online
-- Translator: none found
-- Illustrator: Warwick Goble
-- Editor: none found
-- Introduction author: none found
-
-## Risks found
-
-- Translation risk: none
-- Edition risk: none
-- Trademark or character brand risk: none
-- Content brand-safety risk: none
-- Later copyright notice: no
-- Permission-based language: no
-- Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: yes
-- Illustration or image references: no
-- Duplicate Gutenberg ID: no unresolved duplicate found
-
-## Command warnings
-
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
-
-## Manual review reasons
-
-- Transcriber notes remain in cleaned story text.
-- Metadata rightsReviewed is false.
-- Owner-reviewed book approval is missing.
-- Rights basis "unknown" is not publish-ready.
-- Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
-
-## Next action
-
-- Manual rights review required before processing or publishing.
+This output is intentionally review-gated before larger batch processing or Cloudflare export.

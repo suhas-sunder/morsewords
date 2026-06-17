@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-004",
+  "kind": "poem",
+  "label": "Young Night-Thought",
+  "title": null,
+  "order": 4,
+  "includeByDefault": true,
+  "displayText": "YOUNG NIGHT-THOUGHT\n\n\n All night long and every night,\n When my mama puts out the light,\n I see the people marching by,\n As plain as day, before my eye.\n\n Armies and emperors and kings,\n All carrying different kinds of things,\n And marching in so grand a way,\n You never saw the like by day.\n\n So fine a show was never seen\n At the great circus on the green;\n For every kind of beast and man\n Is marching in that caravan.\n\n At first they move a little slow,\n But still the faster on they go,\n And still beside them close I keep\n Until we reach the town of Sleep.",
+  "morseSourceText": "YOUNG NIGHT-THOUGHT\n\n\n All night long and every night,\n When my mama puts out the light,\n I see the people marching by,\n As plain as day, before my eye.\n\n Armies and emperors and kings,\n All carrying different kinds of things,\n And marching in so grand a way,\n You never saw the like by day.\n\n So fine a show was never seen\n At the great circus on the green;\n For every kind of beast and man\n Is marching in that caravan.\n\n At first they move a little slow,\n But still the faster on they go,\n And still beside them close I keep\n Until we reach the town of Sleep.",
+  "paragraphs": [
+    "YOUNG NIGHT-THOUGHT",
+    "All night long and every night, When my mama puts out the light, I see the people marching by, As plain as day, before my eye.",
+    "Armies and emperors and kings, All carrying different kinds of things, And marching in so grand a way, You never saw the like by day.",
+    "So fine a show was never seen At the great circus on the green; For every kind of beast and man Is marching in that caravan.",
+    "At first they move a little slow, But still the faster on they go, And still beside them close I keep Until we reach the town of Sleep."
+  ],
+  "wordCount": 107,
+  "characterCount": 562,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2883,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "YOUNG NIGHT-THOUGHT All night long and every night, When my mama puts out the light, I see the people marching by, As plain as day, before my eye. Armies and e...",
+  "sourceOffsets": {
+    "start": 11621,
+    "end": 12278
+  }
+}

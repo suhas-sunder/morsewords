@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-048",
+  "kind": "poem",
+  "label": "My Treasures",
+  "title": null,
+  "order": 48,
+  "includeByDefault": true,
+  "displayText": "MY TREASURES\n\n\n These nuts, that I keep in the back of the nest\n Where all my lead soldiers are lying at rest,\n Were gathered in autumn by nursie and me\n In a wood with a well by the side of the sea.\n\n This whistle we made (and how clearly it sounds!)\n By the side of a field at the end of the grounds.\n Of a branch of a plane, with a knife of my own,\n It was nursie who made it, and nursie alone!\n\n The stone, with the white and the yellow and grey,\n We discovered I cannot tell _how_ far away;\n And I carried it back although weary and cold,\n For though father denies it, I'm sure it is gold.\n\n But of all my treasures the last is the king,\n For there's very few children possess such a thing;\n And that is a chisel, both handle and blade,\n Which a man who was really a carpenter made.",
+  "morseSourceText": "MY TREASURES\n\n\n These nuts, that I keep in the back of the nest\n Where all my lead soldiers are lying at rest,\n Were gathered in autumn by nursie and me\n In a wood with a well by the side of the sea.\n\n This whistle we made (and how clearly it sounds!)\n By the side of a field at the end of the grounds.\n Of a branch of a plane, with a knife of my own,\n It was nursie who made it, and nursie alone!\n\n The stone, with the white and the yellow and grey,\n We discovered I cannot tell _how_ far away;\n And I carried it back although weary and cold,\n For though father denies it, I'm sure it is gold.\n\n But of all my treasures the last is the king,\n For there's very few children possess such a thing;\n And that is a chisel, both handle and blade,\n Which a man who was really a carpenter made.",
+  "paragraphs": [
+    "MY TREASURES",
+    "These nuts, that I keep in the back of the nest Where all my lead soldiers are lying at rest, Were gathered in autumn by nursie and me In a wood with a well by the side of the sea.",
+    "This whistle we made (and how clearly it sounds!) By the side of a field at the end of the grounds. Of a branch of a plane, with a knife of my own, It was nursie who made it, and nursie alone!",
+    "The stone, with the white and the yellow and grey, We discovered I cannot tell _how_ far away; And I carried it back although weary and cold, For though father denies it, I'm sure it is gold.",
+    "But of all my treasures the last is the king, For there's very few children possess such a thing; And that is a chisel, both handle and blade, Which a man who was really a carpenter made."
+  ],
+  "wordCount": 158,
+  "characterCount": 787,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4089,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "MY TREASURES These nuts, that I keep in the back of the nest Where all my lead soldiers are lying at rest, Were gathered in autumn by nursie and me In a wood w...",
+  "sourceOffsets": {
+    "start": 40580,
+    "end": 41462
+  }
+}

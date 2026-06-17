@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-012",
+  "kind": "poem",
+  "label": "Looking Forward",
+  "title": null,
+  "order": 12,
+  "includeByDefault": true,
+  "displayText": "LOOKING FORWARD\n\n\n When I am grown to man's estate\n I shall be very proud and great,\n And tell the other girls and boys\n Not to meddle with my toys.",
+  "morseSourceText": "LOOKING FORWARD\n\n\n When I am grown to man's estate\n I shall be very proud and great,\n And tell the other girls and boys\n Not to meddle with my toys.",
+  "paragraphs": [
+    "LOOKING FORWARD",
+    "When I am grown to man's estate I shall be very proud and great, And tell the other girls and boys Not to meddle with my toys."
+  ],
+  "wordCount": 29,
+  "characterCount": 148,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 753,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "LOOKING FORWARD When I am grown to man's estate I shall be very proud and great, And tell the other girls and boys Not to meddle with my toys.",
+  "sourceOffsets": {
+    "start": 16728,
+    "end": 16902
+  }
+}

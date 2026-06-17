@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-039",
+  "kind": "poem",
+  "label": "The Hayloft",
+  "title": null,
+  "order": 39,
+  "includeByDefault": true,
+  "displayText": "THE HAYLOFT\n\n\n Through all the pleasant meadow-side\n The grass grew shoulder-high,\n Till the shining scythes went far and wide\n And cut it down to dry.\n\n Those green and sweetly smelling crops\n They led in waggons home;\n And they piled them here in mountain tops\n For mountaineers to roam.\n\n Here is Mount Clear, Mount Rusty-Nail,\n Mount Eagle and Mount High;--\n The mice that in these mountains dwell,\n No happier are than I!\n\n Oh, what a joy to clamber there,\n Oh, what a place for play,\n With the sweet, the dim, the dusty air,\n The happy hills of hay!",
+  "morseSourceText": "THE HAYLOFT\n\n\n Through all the pleasant meadow-side\n The grass grew shoulder-high,\n Till the shining scythes went far and wide\n And cut it down to dry.\n\n Those green and sweetly smelling crops\n They led in waggons home;\n And they piled them here in mountain tops\n For mountaineers to roam.\n\n Here is Mount Clear, Mount Rusty-Nail,\n Mount Eagle and Mount High;--\n The mice that in these mountains dwell,\n No happier are than I!\n\n Oh, what a joy to clamber there,\n Oh, what a place for play,\n With the sweet, the dim, the dusty air,\n The happy hills of hay!",
+  "paragraphs": [
+    "THE HAYLOFT",
+    "Through all the pleasant meadow-side The grass grew shoulder-high, Till the shining scythes went far and wide And cut it down to dry.",
+    "Those green and sweetly smelling crops They led in waggons home; And they piled them here in mountain tops For mountaineers to roam.",
+    "Here is Mount Clear, Mount Rusty-Nail, Mount Eagle and Mount High;-- The mice that in these mountains dwell, No happier are than I!",
+    "Oh, what a joy to clamber there, Oh, what a place for play, With the sweet, the dim, the dusty air, The happy hills of hay!"
+  ],
+  "wordCount": 97,
+  "characterCount": 555,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2881,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE HAYLOFT Through all the pleasant meadow-side The grass grew shoulder-high, Till the shining scythes went far and wide And cut it down to dry. Those green a...",
+  "sourceOffsets": {
+    "start": 33377,
+    "end": 34074
+  }
+}

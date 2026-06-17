@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-027",
+  "kind": "poem",
+  "label": "Good and Bad Children",
+  "title": null,
+  "order": 27,
+  "includeByDefault": true,
+  "displayText": "GOOD AND BAD CHILDREN\n\n\n Children, you are very little,\n And your bones are very brittle;\n If you would grow great and stately,\n You must try to walk sedately.\n\n You must still be bright and quiet,\n And content with simple diet;\n And remain, through all bewild'ring,\n Innocent and honest children.\n\n Happy hearts and happy faces,\n Happy play in grassy places--\n That was how, in ancient ages,\n Children grew to kings and sages.\n\n But the unkind and the unruly,\n And the sort who eat unduly,\n They must never hope for glory--\n Theirs is quite a different story!\n\n Cruel children, crying babies,\n All grew up as geese and gabies,\n Hated, as their age increases,\n By their nephews and their nieces.",
+  "morseSourceText": "GOOD AND BAD CHILDREN\n\n\n Children, you are very little,\n And your bones are very brittle;\n If you would grow great and stately,\n You must try to walk sedately.\n\n You must still be bright and quiet,\n And content with simple diet;\n And remain, through all bewild'ring,\n Innocent and honest children.\n\n Happy hearts and happy faces,\n Happy play in grassy places--\n That was how, in ancient ages,\n Children grew to kings and sages.\n\n But the unkind and the unruly,\n And the sort who eat unduly,\n They must never hope for glory--\n Theirs is quite a different story!\n\n Cruel children, crying babies,\n All grew up as geese and gabies,\n Hated, as their age increases,\n By their nephews and their nieces.",
+  "paragraphs": [
+    "GOOD AND BAD CHILDREN",
+    "Children, you are very little, And your bones are very brittle; If you would grow great and stately, You must try to walk sedately.",
+    "You must still be bright and quiet, And content with simple diet; And remain, through all bewild'ring, Innocent and honest children.",
+    "Happy hearts and happy faces, Happy play in grassy places-- That was how, in ancient ages, Children grew to kings and sages.",
+    "But the unkind and the unruly, And the sort who eat unduly, They must never hope for glory-- Theirs is quite a different story!",
+    "Cruel children, crying babies, All grew up as geese and gabies, Hated, as their age increases, By their nephews and their nieces."
+  ],
+  "wordCount": 117,
+  "characterCount": 695,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3649,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "GOOD AND BAD CHILDREN Children, you are very little, And your bones are very brittle; If you would grow great and stately, You must try to walk sedately. You m...",
+  "sourceOffsets": {
+    "start": 25793,
+    "end": 26600
+  }
+}

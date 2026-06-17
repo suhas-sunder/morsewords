@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-063",
+  "kind": "poem",
+  "label": "To Auntie",
+  "title": null,
+  "order": 63,
+  "includeByDefault": true,
+  "displayText": "TO AUNTIE\n\n\n _Chief of our aunts_--not only I,\n But all your dozen of nurselings cry--\n _What did the other children do?_\n _And what were childhood, wanting you?_",
+  "morseSourceText": "TO AUNTIE\n\n\n _Chief of our aunts_--not only I,\n But all your dozen of nurselings cry--\n _What did the other children do?_\n _And what were childhood, wanting you?_",
+  "paragraphs": [
+    "TO AUNTIE",
+    "_Chief of our aunts_--not only I, But all your dozen of nurselings cry-- _What did the other children do?_ _And what were childhood, wanting you?_"
+  ],
+  "wordCount": 28,
+  "characterCount": 162,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 886,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "TO AUNTIE _Chief of our aunts_--not only I, But all your dozen of nurselings cry-- _What did the other children do?_ _And what were childhood, wanting you?_",
+  "sourceOffsets": {
+    "start": 54888,
+    "end": 55141
+  }
+}

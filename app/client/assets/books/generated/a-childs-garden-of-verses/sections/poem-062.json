@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-062",
+  "kind": "poem",
+  "label": "To My Mother",
+  "title": null,
+  "order": 62,
+  "includeByDefault": true,
+  "displayText": "TO MY MOTHER\n\n\n You too, my mother, read my rhymes\n For love of unforgotten times,\n And you may chance to hear once more\n The little feet along the floor.",
+  "morseSourceText": "TO MY MOTHER\n\n\n You too, my mother, read my rhymes\n For love of unforgotten times,\n And you may chance to hear once more\n The little feet along the floor.",
+  "paragraphs": [
+    "TO MY MOTHER",
+    "You too, my mother, read my rhymes For love of unforgotten times, And you may chance to hear once more The little feet along the floor."
+  ],
+  "wordCount": 29,
+  "characterCount": 154,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 788,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "TO MY MOTHER You too, my mother, read my rhymes For love of unforgotten times, And you may chance to hear once more The little feet along the floor.",
+  "sourceOffsets": {
+    "start": 54688,
+    "end": 54886
+  }
+}

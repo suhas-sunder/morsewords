@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-008",
+  "kind": "poem",
+  "label": "Foreign Lands",
+  "title": null,
+  "order": 8,
+  "includeByDefault": true,
+  "displayText": "FOREIGN LANDS\n\n\n Up into the cherry tree\n Who should climb but little me?\n I held the trunk with both my hands\n And looked abroad on foreign lands.\n\n I saw the next door garden lie,\n Adorned with flowers, before my eye,\n And many pleasant places more\n That I had never seen before.\n\n I saw the dimpling river pass\n And be the sky's blue looking-glass;\n The dusty roads go up and down\n With people tramping in to town.\n\n If I could find a higher tree\n Farther and farther I should see,\n To where the grown-up river slips\n Into the sea among the ships,\n\n To where the roads on either hand\n Lead onward into fairy land,\n Where all the children dine at five,\n And all the playthings come alive.",
+  "morseSourceText": "FOREIGN LANDS\n\n\n Up into the cherry tree\n Who should climb but little me?\n I held the trunk with both my hands\n And looked abroad on foreign lands.\n\n I saw the next door garden lie,\n Adorned with flowers, before my eye,\n And many pleasant places more\n That I had never seen before.\n\n I saw the dimpling river pass\n And be the sky's blue looking-glass;\n The dusty roads go up and down\n With people tramping in to town.\n\n If I could find a higher tree\n Farther and farther I should see,\n To where the grown-up river slips\n Into the sea among the ships,\n\n To where the roads on either hand\n Lead onward into fairy land,\n Where all the children dine at five,\n And all the playthings come alive.",
+  "paragraphs": [
+    "FOREIGN LANDS",
+    "Up into the cherry tree Who should climb but little me? I held the trunk with both my hands And looked abroad on foreign lands.",
+    "I saw the next door garden lie, Adorned with flowers, before my eye, And many pleasant places more That I had never seen before.",
+    "I saw the dimpling river pass And be the sky's blue looking-glass; The dusty roads go up and down With people tramping in to town.",
+    "If I could find a higher tree Farther and farther I should see, To where the grown-up river slips Into the sea among the ships,",
+    "To where the roads on either hand Lead onward into fairy land, Where all the children dine at five, And all the playthings come alive."
+  ],
+  "wordCount": 126,
+  "characterCount": 690,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3557,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "FOREIGN LANDS Up into the cherry tree Who should climb but little me? I held the trunk with both my hands And looked abroad on foreign lands. I saw the next do...",
+  "sourceOffsets": {
+    "start": 13369,
+    "end": 14189
+  }
+}

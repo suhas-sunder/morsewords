@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-050",
+  "kind": "poem",
+  "label": "The Land Of Story-Books",
+  "title": null,
+  "order": 50,
+  "includeByDefault": true,
+  "displayText": "THE LAND OF STORY-BOOKS\n\n\n At evening when the lamp is lit,\n Around the fire my parents sit;\n They sit at home and talk and sing,\n And do not play at anything.\n\n Now, with my little gun, I crawl\n All in the dark along the wall,\n And follow round the forest track\n Away behind the sofa back.\n\n There, in the night, where none can spy,\n All in my hunter's camp I lie,\n And play at books that I have read\n Till it is time to go to bed.\n\n These are the hills, these are the woods,\n These are my starry solitudes;\n And there the river by whose brink\n The roaring lions come to drink.\n\n I see the others far away\n As if in firelit camp they lay,\n And I, like to an Indian scout,\n Around their party prowled about.\n\n So, when my nurse comes in for me,\n Home I return across the sea,\n And go to bed with backward looks\n At my dear land of Story-books.",
+  "morseSourceText": "THE LAND OF STORY-BOOKS\n\n\n At evening when the lamp is lit,\n Around the fire my parents sit;\n They sit at home and talk and sing,\n And do not play at anything.\n\n Now, with my little gun, I crawl\n All in the dark along the wall,\n And follow round the forest track\n Away behind the sofa back.\n\n There, in the night, where none can spy,\n All in my hunter's camp I lie,\n And play at books that I have read\n Till it is time to go to bed.\n\n These are the hills, these are the woods,\n These are my starry solitudes;\n And there the river by whose brink\n The roaring lions come to drink.\n\n I see the others far away\n As if in firelit camp they lay,\n And I, like to an Indian scout,\n Around their party prowled about.\n\n So, when my nurse comes in for me,\n Home I return across the sea,\n And go to bed with backward looks\n At my dear land of Story-books.",
+  "paragraphs": [
+    "THE LAND OF STORY-BOOKS",
+    "At evening when the lamp is lit, Around the fire my parents sit; They sit at home and talk and sing, And do not play at anything.",
+    "Now, with my little gun, I crawl All in the dark along the wall, And follow round the forest track Away behind the sofa back.",
+    "There, in the night, where none can spy, All in my hunter's camp I lie, And play at books that I have read Till it is time to go to bed.",
+    "These are the hills, these are the woods, These are my starry solitudes; And there the river by whose brink The roaring lions come to drink.",
+    "I see the others far away As if in firelit camp they lay, And I, like to an Indian scout, Around their party prowled about.",
+    "So, when my nurse comes in for me, Home I return across the sea, And go to bed with backward looks At my dear land of Story-books."
+  ],
+  "wordCount": 165,
+  "characterCount": 843,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4338,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE LAND OF STORY-BOOKS At evening when the lamp is lit, Around the fire my parents sit; They sit at home and talk and sing, And do not play at anything. Now,...",
+  "sourceOffsets": {
+    "start": 42648,
+    "end": 43620
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-038",
+  "kind": "poem",
+  "label": "Winter-Time",
+  "title": null,
+  "order": 38,
+  "includeByDefault": true,
+  "displayText": "WINTER-TIME\n\n\n Late lies the wintry sun a-bed,\n A frosty, fiery sleepy-head;\n Blinks but an hour or two; and then,\n A blood-red orange, sets again.\n\n Before the stars have left the skies,\n At morning in the dark I rise;\n And shivering in my nakedness,\n By the cold candle, bathe and dress.\n\n Close by the jolly fire I sit\n To warm my frozen bones a bit;\n Or with a reindeer-sled, explore\n The colder countries round the door.\n\n When to go out, my nurse doth wrap\n Me in my comforter and cap;\n The cold wind burns my face, and blows\n Its frosty pepper up my nose.\n\n Black are my steps on silver sod;\n Thick blows my frosty breath abroad;\n And tree and house, and hill and lake,\n Are frosted like a wedding-cake.",
+  "morseSourceText": "WINTER-TIME\n\n\n Late lies the wintry sun a-bed,\n A frosty, fiery sleepy-head;\n Blinks but an hour or two; and then,\n A blood-red orange, sets again.\n\n Before the stars have left the skies,\n At morning in the dark I rise;\n And shivering in my nakedness,\n By the cold candle, bathe and dress.\n\n Close by the jolly fire I sit\n To warm my frozen bones a bit;\n Or with a reindeer-sled, explore\n The colder countries round the door.\n\n When to go out, my nurse doth wrap\n Me in my comforter and cap;\n The cold wind burns my face, and blows\n Its frosty pepper up my nose.\n\n Black are my steps on silver sod;\n Thick blows my frosty breath abroad;\n And tree and house, and hill and lake,\n Are frosted like a wedding-cake.",
+  "paragraphs": [
+    "WINTER-TIME",
+    "Late lies the wintry sun a-bed, A frosty, fiery sleepy-head; Blinks but an hour or two; and then, A blood-red orange, sets again.",
+    "Before the stars have left the skies, At morning in the dark I rise; And shivering in my nakedness, By the cold candle, bathe and dress.",
+    "Close by the jolly fire I sit To warm my frozen bones a bit; Or with a reindeer-sled, explore The colder countries round the door.",
+    "When to go out, my nurse doth wrap Me in my comforter and cap; The cold wind burns my face, and blows Its frosty pepper up my nose.",
+    "Black are my steps on silver sod; Thick blows my frosty breath abroad; And tree and house, and hill and lake, Are frosted like a wedding-cake."
+  ],
+  "wordCount": 129,
+  "characterCount": 710,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3718,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "WINTER-TIME Late lies the wintry sun a-bed, A frosty, fiery sleepy-head; Blinks but an hour or two; and then, A blood-red orange, sets again. Before the stars...",
+  "sourceOffsets": {
+    "start": 32535,
+    "end": 33375
+  }
+}

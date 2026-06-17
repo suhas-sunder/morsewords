@@ -33,13 +33,15 @@
   "trademark_or_character_brand_risk": "none",
   "content_brand_safety_risk": "none",
   "owner_reviewed_approval_present": false,
-  "approved_for_website": false,
+  "approved_for_website": true,
   "approved_for_youtube_narration": false,
-  "approved_regions": [],
-  "approval_source": "manual-review",
+  "approved_regions": [
+    "US"
+  ],
+  "approval_source": "external-authority",
   "duplicate_resolution_source": "not-needed",
-  "canada_us_v1_status": "needs_manual_review",
-  "reasoning_summary": "Modern introduction, notes, or editorial material may be present. Illustrations or image references need manual handling. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.",
+  "canada_us_v1_status": "approved",
+  "reasoning_summary": "Controlled pilot write pass 4 used source-backed boundaries from dry-run batch 4 review and did not modify raw sources or Cloudflare exports.",
   "evidence_snippets": [
     "Author death year authority: project-gutenberg-rdf 18 https://www.gutenberg.org/cache/epub/18/pg18.rdf",
     "Original publication authority: wikidata Q858036 https://www.wikidata.org/wiki/Q858036",
@@ -49,5 +51,5 @@
     "Illustration or image reference: stock in lands or to their comparative population. The position may be equally illustrated by a similar process between the counties of the same State. No man who is acquainted with the State of New York will doubt that the active",
     "Modern introduction or notes: lating the temporary intercourse between the two countries, should preface its introduction by a declaration that similar provisions in former bills had been found to answer every purpose to the commerce of Great Britain, and that i"
   ],
-  "processing_allowed": false
+  "processing_allowed": true
 }

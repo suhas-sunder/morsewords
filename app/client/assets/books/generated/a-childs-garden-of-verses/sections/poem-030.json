@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-030",
+  "kind": "poem",
+  "label": "The Lamplighter",
+  "title": null,
+  "order": 30,
+  "includeByDefault": true,
+  "displayText": "THE LAMPLIGHTER\n\n\n My tea is nearly ready and the sun has left the sky.\n It's time to take the window to see Leerie going by;\n For every night at teatime and before you take your seat,\n With lantern and with ladder he comes posting up the street.\n\n Now Tom would be a driver and Maria go to sea,\n And my papa's a banker and as rich as he can be;\n But I, when I am stronger and can choose what I'm to do,\n O Leerie, I'll go round at night and light the lamps with you!\n\n For we are very lucky, with a lamp before the door,\n And Leerie stops to light it as he lights so many more;\n And oh! before you hurry by with ladder and with light;\n O Leerie, see a little child and nod to him tonight!",
+  "morseSourceText": "THE LAMPLIGHTER\n\n\n My tea is nearly ready and the sun has left the sky.\n It's time to take the window to see Leerie going by;\n For every night at teatime and before you take your seat,\n With lantern and with ladder he comes posting up the street.\n\n Now Tom would be a driver and Maria go to sea,\n And my papa's a banker and as rich as he can be;\n But I, when I am stronger and can choose what I'm to do,\n O Leerie, I'll go round at night and light the lamps with you!\n\n For we are very lucky, with a lamp before the door,\n And Leerie stops to light it as he lights so many more;\n And oh! before you hurry by with ladder and with light;\n O Leerie, see a little child and nod to him tonight!",
+  "paragraphs": [
+    "THE LAMPLIGHTER",
+    "My tea is nearly ready and the sun has left the sky. It's time to take the window to see Leerie going by; For every night at teatime and before you take your seat, With lantern and with ladder he comes posting up the street.",
+    "Now Tom would be a driver and Maria go to sea, And my papa's a banker and as rich as he can be; But I, when I am stronger and can choose what I'm to do, O Leerie, I'll go round at night and light the lamps with you!",
+    "For we are very lucky, with a lamp before the door, And Leerie stops to light it as he lights so many more; And oh! before you hurry by with ladder and with light; O Leerie, see a little child and nod to him tonight!"
+  ],
+  "wordCount": 141,
+  "characterCount": 689,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3565,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE LAMPLIGHTER My tea is nearly ready and the sun has left the sky. It's time to take the window to see Leerie going by; For every night at teatime and before...",
+  "sourceOffsets": {
+    "start": 27878,
+    "end": 28663
+  }
+}

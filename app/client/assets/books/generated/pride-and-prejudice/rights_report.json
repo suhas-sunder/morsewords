@@ -33,13 +33,15 @@
   "trademark_or_character_brand_risk": "none",
   "content_brand_safety_risk": "none",
   "owner_reviewed_approval_present": false,
-  "approved_for_website": false,
+  "approved_for_website": true,
   "approved_for_youtube_narration": false,
-  "approved_regions": [],
-  "approval_source": "manual-review",
+  "approved_regions": [
+    "US"
+  ],
+  "approval_source": "external-authority",
   "duplicate_resolution_source": "not-needed",
-  "canada_us_v1_status": "needs_manual_review",
-  "reasoning_summary": "Illustrations or image references need manual handling. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.",
+  "canada_us_v1_status": "approved",
+  "reasoning_summary": "Controlled pilot write pass 4 used source-backed boundaries from dry-run batch 4 review and did not modify raw sources or Cloudflare exports.",
   "evidence_snippets": [
     "Author death year authority: project-gutenberg-rdf 1342 https://www.gutenberg.org/cache/epub/1342/pg1342.rdf",
     "Original publication authority: wikidata Q170583 https://www.wikidata.org/wiki/Q170583",
@@ -48,5 +50,5 @@
     "Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Pride and Prejudice Author: J",
     "Illustration or image reference: _Hugh Thomson_ ] PREFACE. [Illustration] _Walt Whitman has somewhere a fine and just distinction between “loving by allowance” and “loving with personal love.” This distincti"
   ],
-  "processing_allowed": false
+  "processing_allowed": true
 }

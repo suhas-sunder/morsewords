@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-016",
+  "kind": "poem",
+  "label": "The Land Of Counterpane",
+  "title": null,
+  "order": 16,
+  "includeByDefault": true,
+  "displayText": "THE LAND OF COUNTERPANE\n\n\n When I was sick and lay a-bed,\n I had two pillows at my head,\n And all my toys beside me lay\n To keep me happy all the day.\n\n And sometimes for an hour or so\n I watched my leaden soldiers go,\n With different uniforms and drills,\n Among the bed-clothes, through the hills;\n\n And sometimes sent my ships in fleets\n All up and down among the sheets;\n Or brought my trees and houses out,\n And planted cities all about.\n\n I was the giant great and still\n That sits upon the pillow-hill,\n And sees before him, dale and plain,\n The pleasant land of counterpane.",
+  "morseSourceText": "THE LAND OF COUNTERPANE\n\n\n When I was sick and lay a-bed,\n I had two pillows at my head,\n And all my toys beside me lay\n To keep me happy all the day.\n\n And sometimes for an hour or so\n I watched my leaden soldiers go,\n With different uniforms and drills,\n Among the bed-clothes, through the hills;\n\n And sometimes sent my ships in fleets\n All up and down among the sheets;\n Or brought my trees and houses out,\n And planted cities all about.\n\n I was the giant great and still\n That sits upon the pillow-hill,\n And sees before him, dale and plain,\n The pleasant land of counterpane.",
+  "paragraphs": [
+    "THE LAND OF COUNTERPANE",
+    "When I was sick and lay a-bed, I had two pillows at my head, And all my toys beside me lay To keep me happy all the day.",
+    "And sometimes for an hour or so I watched my leaden soldiers go, With different uniforms and drills, Among the bed-clothes, through the hills;",
+    "And sometimes sent my ships in fleets All up and down among the sheets; Or brought my trees and houses out, And planted cities all about.",
+    "I was the giant great and still That sits upon the pillow-hill, And sees before him, dale and plain, The pleasant land of counterpane."
+  ],
+  "wordCount": 106,
+  "characterCount": 581,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3009,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE LAND OF COUNTERPANE When I was sick and lay a-bed, I had two pillows at my head, And all my toys beside me lay To keep me happy all the day. And sometimes...",
+  "sourceOffsets": {
+    "start": 18233,
+    "end": 18934
+  }
+}

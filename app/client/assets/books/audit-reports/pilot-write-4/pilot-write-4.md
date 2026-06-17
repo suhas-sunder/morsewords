@@ -1,0 +1,794 @@
+# Pilot Write 4 Report
+
+Controlled write/correction pass for pilot dry-run batch 4. The dry-run branch was merged to main first, and this write pass only corrected books classified as `needs correction before acceptance` in `pilot-dry-run-4.json`.
+
+## Summary
+
+| Book | Dry-run status | Final action | Sections before | Sections after | Startup preview | Recommendation |
+| --- | --- | --- | ---: | ---: | --- | --- |
+| a-childs-garden-of-verses | needs correction before acceptance | corrected | 3 | 66 | valid | accepted for review |
+| alices-adventures-in-wonderland | already acceptable | accepted without rewrite | 14 | 14 | valid | accepted for review |
+| black-beauty | needs correction before acceptance | corrected | 12 | 49 | valid | accepted for review |
+| botchan | already acceptable | accepted without rewrite | 13 | 13 | valid | accepted for review |
+| five-little-peppers-and-how-they-grew | needs correction before acceptance | corrected | 14 | 25 | valid | accepted for review |
+| grimm-s-fairy-tales | needs correction before acceptance | corrected | 18 | 66 | valid | accepted for review |
+| jane-eyre | already acceptable | accepted without rewrite | 39 | 39 | valid | accepted for review |
+| little-women | needs correction before acceptance | corrected | 37 | 47 | valid | accepted for review |
+| new-treasure-seekers | needs correction before acceptance | corrected | 14 | 13 | valid | accepted for review |
+| pride-and-prejudice | needs correction before acceptance | corrected | 62 | 61 | valid | accepted for review |
+| rainbow-valley | already acceptable | accepted without rewrite | 37 | 37 | valid | accepted for review |
+| rinkitink-in-oz | already acceptable | accepted without rewrite | 25 | 25 | valid | accepted for review |
+| the-arabian-nights | needs correction before acceptance | corrected | 23 | 17 | valid | accepted for review |
+| the-art-of-war | already acceptable | accepted without rewrite | 17 | 17 | valid | accepted for review |
+| the-book-of-dragons | needs correction before acceptance | corrected | 9 | 8 | valid | accepted for review |
+| the-divine-comedy | needs correction before acceptance | corrected | 22 | 100 | valid | accepted for review |
+| the-elements-of-style | needs correction before acceptance | corrected | 4 | 25 | valid | accepted for review |
+| the-federalist-papers | needs correction before acceptance | corrected | 42 | 86 | valid | accepted for review |
+| the-jungle-book | needs correction before acceptance | corrected | 11 | 14 | valid | accepted for review |
+| the-princess-and-the-goblin | already acceptable | accepted without rewrite | 34 | 34 | valid | accepted for review |
+| the-railway-children | already acceptable | accepted without rewrite | 15 | 15 | valid | accepted for review |
+| the-sea-wolf | already acceptable | accepted without rewrite | 40 | 40 | valid | accepted for review |
+| the-secret-garden | already acceptable | accepted without rewrite | 29 | 29 | valid | accepted for review |
+| the-water-babies | needs correction before acceptance | corrected | 10 | 9 | valid | accepted for review |
+| through-the-looking-glass | already acceptable | accepted without rewrite | 14 | 14 | valid | accepted for review |
+
+## Accepted Without Rewrite
+
+- alices-adventures-in-wonderland: accepted from dry-run; no write needed; no files changed.
+- botchan: accepted from dry-run; no write needed; no files changed.
+- jane-eyre: accepted from dry-run; no write needed; no files changed.
+- rainbow-valley: accepted from dry-run; no write needed; no files changed.
+- rinkitink-in-oz: accepted from dry-run; no write needed; no files changed.
+- the-art-of-war: accepted from dry-run; no write needed; no files changed.
+- the-princess-and-the-goblin: accepted from dry-run; no write needed; no files changed.
+- the-railway-children: accepted from dry-run; no write needed; no files changed.
+- the-sea-wolf: accepted from dry-run; no write needed; no files changed.
+- the-secret-garden: accepted from dry-run; no write needed; no files changed.
+- through-the-looking-glass: accepted from dry-run; no write needed; no files changed.
+
+## Corrected Books
+
+- a-childs-garden-of-verses: 3 -> 66 sections; preview public/book-previews/a-childs-garden-of-verses.preview.json
+- black-beauty: 12 -> 49 sections; preview public/book-previews/black-beauty.preview.json
+- five-little-peppers-and-how-they-grew: 14 -> 25 sections; preview public/book-previews/five-little-peppers-and-how-they-grew.preview.json
+- grimm-s-fairy-tales: 18 -> 66 sections; preview public/book-previews/grimm-s-fairy-tales.preview.json
+- little-women: 37 -> 47 sections; preview public/book-previews/little-women.preview.json
+- new-treasure-seekers: 14 -> 13 sections; preview public/book-previews/new-treasure-seekers.preview.json
+- pride-and-prejudice: 62 -> 61 sections; preview public/book-previews/pride-and-prejudice.preview.json
+- the-arabian-nights: 23 -> 17 sections; preview public/book-previews/the-arabian-nights.preview.json
+- the-book-of-dragons: 9 -> 8 sections; preview public/book-previews/the-book-of-dragons.preview.json
+- the-divine-comedy: 22 -> 100 sections; preview public/book-previews/the-divine-comedy.preview.json
+- the-elements-of-style: 4 -> 25 sections; preview public/book-previews/the-elements-of-style.preview.json
+- the-federalist-papers: 42 -> 86 sections; preview public/book-previews/the-federalist-papers.preview.json
+- the-jungle-book: 11 -> 14 sections; preview public/book-previews/the-jungle-book.preview.json
+- the-water-babies: 10 -> 9 sections; preview public/book-previews/the-water-babies.preview.json
+
+## Skipped Books
+
+- None
+
+## Boundary And Cleanup Notes
+
+- a-childs-garden-of-verses: start 370 (First main readable poem heading after title pages, contents, illustration list, and source/publisher material.); end 2328 (Last poem ends before the Scribner catalog and transcriber's note.); cleanup removed 86 image lines, 0 decorative lines, and 0 numbered references.
+- alices-adventures-in-wonderland: start unchanged (Accepted from dry-run; no write needed.); end unchanged (Accepted from dry-run; no write needed.); cleanup not rewritten.
+- black-beauty: start 138 (Chapter 1, 'My Early Home', is the first main readable section after title, dedication, and table of contents.); end 6029 (The final chapter ends before the Project Gutenberg footer.); cleanup removed 0 image lines, 0 decorative lines, and 0 numbered references.
+- botchan: start unchanged (Accepted from dry-run; no write needed.); end unchanged (Accepted from dry-run; no write needed.); cleanup not rewritten.
+- five-little-peppers-and-how-they-grew: start 108 (First story heading after title, dedication, and contents.); end 9270 (Final story body ends before the Project Gutenberg footer.); cleanup removed 0 image lines, 0 decorative lines, and 0 numbered references.
+- grimm-s-fairy-tales: start 126 (First tale heading after the preparer's note and contents.); end 9240 (Last tale ends before the post-text Grimm biographical note and Project Gutenberg footer.); cleanup removed 0 image lines, 0 decorative lines, and 0 numbered references.
+- jane-eyre: start unchanged (Accepted from dry-run; no write needed.); end unchanged (Accepted from dry-run; no write needed.); cleanup not rewritten.
+- little-women: start 605 (Chapter I is the first main readable section after title pages, preface, contents, and illustration lists.); end 21844 (The novel closes before tail-piece illustrations, publisher catalog, and transcriber's notes.); cleanup removed 205 image lines, 11 decorative lines, and 0 numbered references.
+- new-treasure-seekers: start 214 (First story heading after title pages, dedication, contents, and illustration list.); end 8106 (Final story closes before decorative break and transcriber's notes.); cleanup removed 46 image lines, 5 decorative lines, and 0 numbered references.
+- pride-and-prejudice: start 701 (Chapter I is the first main novel section after title pages, illustrations, and editor preface.); end 14560 (Chapter LXI closes before printer/footer material.); cleanup removed 380 image lines, 0 decorative lines, and 0 numbered references.
+- rainbow-valley: start unchanged (Accepted from dry-run; no write needed.); end unchanged (Accepted from dry-run; no write needed.); cleanup not rewritten.
+- rinkitink-in-oz: start unchanged (Accepted from dry-run; no write needed.); end unchanged (Accepted from dry-run; no write needed.); cleanup not rewritten.
+- the-arabian-nights: start 327 (First selected tale heading after title, editorial preface, contents, and illustration list.); end 10413 (The final Sinbad passage ends before the Project Gutenberg footer.); cleanup removed 12 image lines, 0 decorative lines, and 0 numbered references.
+- the-art-of-war: start unchanged (Accepted from dry-run; no write needed.); end unchanged (Accepted from dry-run; no write needed.); cleanup not rewritten.
+- the-book-of-dragons: start 170 (First story heading after title, contents, illustration list, and dedication.); end 4844 (Final story ends before transcriber's notes and Project Gutenberg footer.); cleanup removed 37 image lines, 5 decorative lines, and 0 numbered references.
+- the-divine-comedy: start 170 (Inferno Canto I is the first main readable canto after title and canto list.); end 15645 (Paradise Canto XXXIII ends before the Project Gutenberg footer.); cleanup removed 0 image lines, 0 decorative lines, and 0 numbered references.
+- the-elements-of-style: start 149 (Section I, Introductory, is the first readable content after title/transcriber note and contents.); end 2369 (The exercises end before the closing transcriber's note and Project Gutenberg footer.); cleanup removed 0 image lines, 0 decorative lines, and 0 numbered references.
+- the-federalist-papers: start 136 (Federalist No. I's address line is the first readable body content after title, contents, masthead, essay title, journal note, and author line.); end 19978 (Federalist No. LXXXV notes end before the Project Gutenberg footer.); cleanup removed 0 image lines, 0 decorative lines, and 138 numbered references.
+- the-jungle-book: start 56 (First story heading after title and contents.); end 5406 (Final camp-animals song ends before the Project Gutenberg footer.); cleanup removed 1 image lines, 0 decorative lines, and 0 numbered references.
+- the-princess-and-the-goblin: start unchanged (Accepted from dry-run; no write needed.); end unchanged (Accepted from dry-run; no write needed.); cleanup not rewritten.
+- the-railway-children: start unchanged (Accepted from dry-run; no write needed.); end unchanged (Accepted from dry-run; no write needed.); cleanup not rewritten.
+- the-sea-wolf: start unchanged (Accepted from dry-run; no write needed.); end unchanged (Accepted from dry-run; no write needed.); cleanup not rewritten.
+- the-secret-garden: start unchanged (Accepted from dry-run; no write needed.); end unchanged (Accepted from dry-run; no write needed.); cleanup not rewritten.
+- the-water-babies: start 149 (Chapter I is the first main readable chapter after title, dedication, illustrations, and epigraph.); end 7390 (The Moral and The End close before the Project Gutenberg footer.); cleanup removed 22 image lines, 1 decorative lines, and 0 numbered references.
+- through-the-looking-glass: start unchanged (Accepted from dry-run; no write needed.); end unchanged (Accepted from dry-run; no write needed.); cleanup not rewritten.
+
+## Generated Output Files Changed
+
+- app/client/assets/books/generated/a-childs-garden-of-verses/manifest.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/cleaned_book.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/processed_book.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/rights_report.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/processing_notes.md
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-001.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-002.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-003.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-004.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-005.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-006.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-007.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-008.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-009.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-010.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-011.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-012.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-013.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-014.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-015.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-016.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-017.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-018.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-019.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-020.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-021.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-022.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-023.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-024.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-025.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-026.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-027.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-028.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-029.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-030.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-031.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-032.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-033.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-034.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-035.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-036.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-037.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-038.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-039.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-040.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-041.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-042.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-043.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-044.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-045.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-046.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-047.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-048.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-049.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-050.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-051.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-052.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-053.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-054.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-055.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-056.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-057.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-058.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-059.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-060.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-061.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-062.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-063.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-064.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-065.json
+- app/client/assets/books/generated/a-childs-garden-of-verses/sections/poem-066.json
+- app/client/assets/books/generated/black-beauty/manifest.json
+- app/client/assets/books/generated/black-beauty/cleaned_book.json
+- app/client/assets/books/generated/black-beauty/processed_book.json
+- app/client/assets/books/generated/black-beauty/rights_report.json
+- app/client/assets/books/generated/black-beauty/processing_notes.md
+- app/client/assets/books/generated/black-beauty/sections/chapter-001.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-002.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-003.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-004.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-005.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-006.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-007.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-008.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-009.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-010.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-011.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-012.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-013.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-014.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-015.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-016.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-017.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-018.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-019.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-020.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-021.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-022.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-023.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-024.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-025.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-026.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-027.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-028.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-029.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-030.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-031.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-032.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-033.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-034.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-035.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-036.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-037.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-038.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-039.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-040.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-041.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-042.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-043.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-044.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-045.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-046.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-047.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-048.json
+- app/client/assets/books/generated/black-beauty/sections/chapter-049.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/manifest.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/cleaned_book.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/processed_book.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/rights_report.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/processing_notes.md
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-001.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-002.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-003.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-004.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-005.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-006.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-007.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-008.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-009.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-010.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-011.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-012.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-013.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-014.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-015.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-016.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-017.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-018.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-019.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-020.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-021.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-022.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-023.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-024.json
+- app/client/assets/books/generated/five-little-peppers-and-how-they-grew/sections/chapter-025.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/manifest.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/cleaned_book.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/processed_book.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/rights_report.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/processing_notes.md
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-001.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-002.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-003.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-004.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-005.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-006.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-007.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-008.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-009.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-010.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-011.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-012.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-013.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-014.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-015.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-016.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-017.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-018.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-019.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-020.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-021.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-022.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-023.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-024.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-025.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-026.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-027.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-028.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-029.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-030.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-031.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-032.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-033.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-034.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-035.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-036.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-037.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-038.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-039.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-040.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-041.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-042.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-043.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-044.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-045.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-046.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-047.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-048.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-049.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-050.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-051.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-052.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-053.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-054.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-055.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-056.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-057.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-058.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-059.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-060.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-061.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-062.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-063.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-064.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-065.json
+- app/client/assets/books/generated/grimm-s-fairy-tales/sections/chapter-066.json
+- app/client/assets/books/generated/little-women/manifest.json
+- app/client/assets/books/generated/little-women/cleaned_book.json
+- app/client/assets/books/generated/little-women/processed_book.json
+- app/client/assets/books/generated/little-women/rights_report.json
+- app/client/assets/books/generated/little-women/processing_notes.md
+- app/client/assets/books/generated/little-women/sections/chapter-001.json
+- app/client/assets/books/generated/little-women/sections/chapter-002.json
+- app/client/assets/books/generated/little-women/sections/chapter-003.json
+- app/client/assets/books/generated/little-women/sections/chapter-004.json
+- app/client/assets/books/generated/little-women/sections/chapter-005.json
+- app/client/assets/books/generated/little-women/sections/chapter-006.json
+- app/client/assets/books/generated/little-women/sections/chapter-007.json
+- app/client/assets/books/generated/little-women/sections/chapter-008.json
+- app/client/assets/books/generated/little-women/sections/chapter-009.json
+- app/client/assets/books/generated/little-women/sections/chapter-010.json
+- app/client/assets/books/generated/little-women/sections/chapter-011.json
+- app/client/assets/books/generated/little-women/sections/chapter-012.json
+- app/client/assets/books/generated/little-women/sections/chapter-013.json
+- app/client/assets/books/generated/little-women/sections/chapter-014.json
+- app/client/assets/books/generated/little-women/sections/chapter-015.json
+- app/client/assets/books/generated/little-women/sections/chapter-016.json
+- app/client/assets/books/generated/little-women/sections/chapter-017.json
+- app/client/assets/books/generated/little-women/sections/chapter-018.json
+- app/client/assets/books/generated/little-women/sections/chapter-019.json
+- app/client/assets/books/generated/little-women/sections/chapter-020.json
+- app/client/assets/books/generated/little-women/sections/chapter-021.json
+- app/client/assets/books/generated/little-women/sections/chapter-022.json
+- app/client/assets/books/generated/little-women/sections/chapter-023.json
+- app/client/assets/books/generated/little-women/sections/chapter-024.json
+- app/client/assets/books/generated/little-women/sections/chapter-025.json
+- app/client/assets/books/generated/little-women/sections/chapter-026.json
+- app/client/assets/books/generated/little-women/sections/chapter-027.json
+- app/client/assets/books/generated/little-women/sections/chapter-028.json
+- app/client/assets/books/generated/little-women/sections/chapter-029.json
+- app/client/assets/books/generated/little-women/sections/chapter-030.json
+- app/client/assets/books/generated/little-women/sections/chapter-031.json
+- app/client/assets/books/generated/little-women/sections/chapter-032.json
+- app/client/assets/books/generated/little-women/sections/chapter-033.json
+- app/client/assets/books/generated/little-women/sections/chapter-034.json
+- app/client/assets/books/generated/little-women/sections/chapter-035.json
+- app/client/assets/books/generated/little-women/sections/chapter-036.json
+- app/client/assets/books/generated/little-women/sections/chapter-037.json
+- app/client/assets/books/generated/little-women/sections/chapter-038.json
+- app/client/assets/books/generated/little-women/sections/chapter-039.json
+- app/client/assets/books/generated/little-women/sections/chapter-040.json
+- app/client/assets/books/generated/little-women/sections/chapter-041.json
+- app/client/assets/books/generated/little-women/sections/chapter-042.json
+- app/client/assets/books/generated/little-women/sections/chapter-043.json
+- app/client/assets/books/generated/little-women/sections/chapter-044.json
+- app/client/assets/books/generated/little-women/sections/chapter-045.json
+- app/client/assets/books/generated/little-women/sections/chapter-046.json
+- app/client/assets/books/generated/little-women/sections/chapter-047.json
+- app/client/assets/books/generated/new-treasure-seekers/manifest.json
+- app/client/assets/books/generated/new-treasure-seekers/cleaned_book.json
+- app/client/assets/books/generated/new-treasure-seekers/processed_book.json
+- app/client/assets/books/generated/new-treasure-seekers/rights_report.json
+- app/client/assets/books/generated/new-treasure-seekers/processing_notes.md
+- app/client/assets/books/generated/new-treasure-seekers/sections/chapter-001.json
+- app/client/assets/books/generated/new-treasure-seekers/sections/chapter-002.json
+- app/client/assets/books/generated/new-treasure-seekers/sections/chapter-003.json
+- app/client/assets/books/generated/new-treasure-seekers/sections/chapter-004.json
+- app/client/assets/books/generated/new-treasure-seekers/sections/chapter-005.json
+- app/client/assets/books/generated/new-treasure-seekers/sections/chapter-006.json
+- app/client/assets/books/generated/new-treasure-seekers/sections/chapter-007.json
+- app/client/assets/books/generated/new-treasure-seekers/sections/chapter-008.json
+- app/client/assets/books/generated/new-treasure-seekers/sections/chapter-009.json
+- app/client/assets/books/generated/new-treasure-seekers/sections/chapter-010.json
+- app/client/assets/books/generated/new-treasure-seekers/sections/chapter-011.json
+- app/client/assets/books/generated/new-treasure-seekers/sections/chapter-012.json
+- app/client/assets/books/generated/new-treasure-seekers/sections/chapter-013.json
+- app/client/assets/books/generated/pride-and-prejudice/manifest.json
+- app/client/assets/books/generated/pride-and-prejudice/cleaned_book.json
+- app/client/assets/books/generated/pride-and-prejudice/processed_book.json
+- app/client/assets/books/generated/pride-and-prejudice/rights_report.json
+- app/client/assets/books/generated/pride-and-prejudice/processing_notes.md
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-001.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-002.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-003.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-004.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-005.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-006.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-007.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-008.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-009.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-010.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-011.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-012.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-013.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-014.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-015.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-016.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-017.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-018.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-019.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-020.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-021.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-022.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-023.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-024.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-025.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-026.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-027.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-028.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-029.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-030.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-031.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-032.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-033.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-034.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-035.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-036.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-037.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-038.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-039.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-040.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-041.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-042.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-043.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-044.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-045.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-046.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-047.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-048.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-049.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-050.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-051.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-052.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-053.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-054.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-055.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-056.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-057.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-058.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-059.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-060.json
+- app/client/assets/books/generated/pride-and-prejudice/sections/chapter-061.json
+- app/client/assets/books/generated/the-arabian-nights/manifest.json
+- app/client/assets/books/generated/the-arabian-nights/cleaned_book.json
+- app/client/assets/books/generated/the-arabian-nights/processed_book.json
+- app/client/assets/books/generated/the-arabian-nights/rights_report.json
+- app/client/assets/books/generated/the-arabian-nights/processing_notes.md
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-001.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-002.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-003.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-004.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-005.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-006.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-007.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-008.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-009.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-010.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-011.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-012.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-013.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-014.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-015.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-016.json
+- app/client/assets/books/generated/the-arabian-nights/sections/chapter-017.json
+- app/client/assets/books/generated/the-book-of-dragons/manifest.json
+- app/client/assets/books/generated/the-book-of-dragons/cleaned_book.json
+- app/client/assets/books/generated/the-book-of-dragons/processed_book.json
+- app/client/assets/books/generated/the-book-of-dragons/rights_report.json
+- app/client/assets/books/generated/the-book-of-dragons/processing_notes.md
+- app/client/assets/books/generated/the-book-of-dragons/sections/chapter-001.json
+- app/client/assets/books/generated/the-book-of-dragons/sections/chapter-002.json
+- app/client/assets/books/generated/the-book-of-dragons/sections/chapter-003.json
+- app/client/assets/books/generated/the-book-of-dragons/sections/chapter-004.json
+- app/client/assets/books/generated/the-book-of-dragons/sections/chapter-005.json
+- app/client/assets/books/generated/the-book-of-dragons/sections/chapter-006.json
+- app/client/assets/books/generated/the-book-of-dragons/sections/chapter-007.json
+- app/client/assets/books/generated/the-book-of-dragons/sections/chapter-008.json
+- app/client/assets/books/generated/the-divine-comedy/manifest.json
+- app/client/assets/books/generated/the-divine-comedy/cleaned_book.json
+- app/client/assets/books/generated/the-divine-comedy/processed_book.json
+- app/client/assets/books/generated/the-divine-comedy/rights_report.json
+- app/client/assets/books/generated/the-divine-comedy/processing_notes.md
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-001.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-002.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-003.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-004.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-005.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-006.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-007.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-008.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-009.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-010.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-011.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-012.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-013.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-014.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-015.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-016.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-017.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-018.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-019.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-020.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-021.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-022.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-023.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-024.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-025.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-026.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-027.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-028.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-029.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-030.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-031.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-032.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-033.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-034.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-035.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-036.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-037.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-038.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-039.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-040.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-041.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-042.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-043.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-044.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-045.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-046.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-047.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-048.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-049.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-050.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-051.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-052.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-053.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-054.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-055.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-056.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-057.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-058.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-059.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-060.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-061.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-062.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-063.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-064.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-065.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-066.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-067.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-068.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-069.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-070.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-071.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-072.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-073.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-074.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-075.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-076.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-077.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-078.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-079.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-080.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-081.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-082.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-083.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-084.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-085.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-086.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-087.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-088.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-089.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-090.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-091.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-092.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-093.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-094.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-095.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-096.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-097.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-098.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-099.json
+- app/client/assets/books/generated/the-divine-comedy/sections/poem-100.json
+- app/client/assets/books/generated/the-elements-of-style/manifest.json
+- app/client/assets/books/generated/the-elements-of-style/cleaned_book.json
+- app/client/assets/books/generated/the-elements-of-style/processed_book.json
+- app/client/assets/books/generated/the-elements-of-style/rights_report.json
+- app/client/assets/books/generated/the-elements-of-style/processing_notes.md
+- app/client/assets/books/generated/the-elements-of-style/sections/part-001.json
+- app/client/assets/books/generated/the-elements-of-style/sections/part-002.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-001.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-002.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-003.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-004.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-005.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-006.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-007.json
+- app/client/assets/books/generated/the-elements-of-style/sections/part-003.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-008.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-009.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-010.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-011.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-012.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-013.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-014.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-015.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-016.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-017.json
+- app/client/assets/books/generated/the-elements-of-style/sections/chapter-018.json
+- app/client/assets/books/generated/the-elements-of-style/sections/part-004.json
+- app/client/assets/books/generated/the-elements-of-style/sections/part-005.json
+- app/client/assets/books/generated/the-elements-of-style/sections/part-006.json
+- app/client/assets/books/generated/the-elements-of-style/sections/part-007.json
+- app/client/assets/books/generated/the-federalist-papers/manifest.json
+- app/client/assets/books/generated/the-federalist-papers/cleaned_book.json
+- app/client/assets/books/generated/the-federalist-papers/processed_book.json
+- app/client/assets/books/generated/the-federalist-papers/rights_report.json
+- app/client/assets/books/generated/the-federalist-papers/processing_notes.md
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-001.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-002.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-003.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-004.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-005.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-006.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-007.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-008.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-009.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-010.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-011.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-012.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-013.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-014.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-015.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-016.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-017.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-018.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-019.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-020.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-021.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-022.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-023.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-024.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-025.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-026.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-027.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-028.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-029.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-030.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-031.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-032.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-033.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-034.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-035.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-036.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-037.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-038.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-039.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-040.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-041.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-042.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-043.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-044.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-045.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-046.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-047.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-048.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-049.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-050.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-051.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-052.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-053.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-054.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-055.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-056.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-057.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-058.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-059.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-060.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-061.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-062.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-063.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-064.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-065.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-066.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-067.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-068.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-069.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-070.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-071.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-072.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-073.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-074.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-075.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-076.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-077.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-078.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-079.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-080.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-081.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-082.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-083.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-084.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-085.json
+- app/client/assets/books/generated/the-federalist-papers/sections/chapter-086.json
+- app/client/assets/books/generated/the-jungle-book/manifest.json
+- app/client/assets/books/generated/the-jungle-book/cleaned_book.json
+- app/client/assets/books/generated/the-jungle-book/processed_book.json
+- app/client/assets/books/generated/the-jungle-book/rights_report.json
+- app/client/assets/books/generated/the-jungle-book/processing_notes.md
+- app/client/assets/books/generated/the-jungle-book/sections/chapter-001.json
+- app/client/assets/books/generated/the-jungle-book/sections/chapter-002.json
+- app/client/assets/books/generated/the-jungle-book/sections/chapter-003.json
+- app/client/assets/books/generated/the-jungle-book/sections/chapter-004.json
+- app/client/assets/books/generated/the-jungle-book/sections/chapter-005.json
+- app/client/assets/books/generated/the-jungle-book/sections/chapter-006.json
+- app/client/assets/books/generated/the-jungle-book/sections/chapter-007.json
+- app/client/assets/books/generated/the-jungle-book/sections/chapter-008.json
+- app/client/assets/books/generated/the-jungle-book/sections/chapter-009.json
+- app/client/assets/books/generated/the-jungle-book/sections/chapter-010.json
+- app/client/assets/books/generated/the-jungle-book/sections/chapter-011.json
+- app/client/assets/books/generated/the-jungle-book/sections/chapter-012.json
+- app/client/assets/books/generated/the-jungle-book/sections/chapter-013.json
+- app/client/assets/books/generated/the-jungle-book/sections/chapter-014.json
+- app/client/assets/books/generated/the-water-babies/manifest.json
+- app/client/assets/books/generated/the-water-babies/cleaned_book.json
+- app/client/assets/books/generated/the-water-babies/processed_book.json
+- app/client/assets/books/generated/the-water-babies/rights_report.json
+- app/client/assets/books/generated/the-water-babies/processing_notes.md
+- app/client/assets/books/generated/the-water-babies/sections/chapter-001.json
+- app/client/assets/books/generated/the-water-babies/sections/chapter-002.json
+- app/client/assets/books/generated/the-water-babies/sections/chapter-003.json
+- app/client/assets/books/generated/the-water-babies/sections/chapter-004.json
+- app/client/assets/books/generated/the-water-babies/sections/chapter-005.json
+- app/client/assets/books/generated/the-water-babies/sections/chapter-006.json
+- app/client/assets/books/generated/the-water-babies/sections/chapter-007.json
+- app/client/assets/books/generated/the-water-babies/sections/chapter-008.json
+- app/client/assets/books/generated/the-water-babies/sections/epilogue-001.json
+- app/client/assets/books/generated/library-manifest.json
+
+## Preview Assets Changed
+
+- public/book-previews/a-childs-garden-of-verses.preview.json
+- public/book-previews/black-beauty.preview.json
+- public/book-previews/five-little-peppers-and-how-they-grew.preview.json
+- public/book-previews/grimm-s-fairy-tales.preview.json
+- public/book-previews/little-women.preview.json
+- public/book-previews/new-treasure-seekers.preview.json
+- public/book-previews/pride-and-prejudice.preview.json
+- public/book-previews/the-arabian-nights.preview.json
+- public/book-previews/the-book-of-dragons.preview.json
+- public/book-previews/the-divine-comedy.preview.json
+- public/book-previews/the-elements-of-style.preview.json
+- public/book-previews/the-federalist-papers.preview.json
+- public/book-previews/the-jungle-book.preview.json
+- public/book-previews/the-water-babies.preview.json
+- public/book-previews/manifest.json
+
+## Future Batch Rule
+
+Future book batches fail unless each processed book has:
+
+- valid generated readable content
+- first default section from real readable content
+- all main readable sections included by default
+- valid book-specific startup preview
+- no SOS Help!
+- no generic preview fallback
+- no title/TOC/source/license/contributor/transcriber material as default playback
+
+## Confirmations
+
+- app/client/assets/temp-books was read only and not modified.
+- app/client/assets/books/cloudflare-export was not modified.
+- No all-book processing or `npm run books:build` was run by this script.
+- The 11 already-acceptable dry-run books were inspected and not rewritten.
+- Generated output and preview assets were changed only for corrected batch-4 books plus required manifests and write reports.

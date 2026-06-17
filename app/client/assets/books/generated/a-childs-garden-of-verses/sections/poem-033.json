@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-033",
+  "kind": "poem",
+  "label": "The Swing",
+  "title": null,
+  "order": 33,
+  "includeByDefault": true,
+  "displayText": "THE SWING\n\n\n How do you like to go up in a swing,\n Up in the air so blue?\n Oh, I do think it the pleasantest thing\n Ever a child can do!\n\n Up in the air and over the wall,\n Till I can see so wide,\n Rivers and trees and cattle and all\n Over the countryside--\n\n Till I look down on the garden green,\n Down on the roof so brown--\n Up in the air I go flying again,\n Up in the air and down!",
+  "morseSourceText": "THE SWING\n\n\n How do you like to go up in a swing,\n Up in the air so blue?\n Oh, I do think it the pleasantest thing\n Ever a child can do!\n\n Up in the air and over the wall,\n Till I can see so wide,\n Rivers and trees and cattle and all\n Over the countryside--\n\n Till I look down on the garden green,\n Down on the roof so brown--\n Up in the air I go flying again,\n Up in the air and down!",
+  "paragraphs": [
+    "THE SWING",
+    "How do you like to go up in a swing, Up in the air so blue? Oh, I do think it the pleasantest thing Ever a child can do!",
+    "Up in the air and over the wall, Till I can see so wide, Rivers and trees and cattle and all Over the countryside--",
+    "Till I look down on the garden green, Down on the roof so brown-- Up in the air I go flying again, Up in the air and down!"
+  ],
+  "wordCount": 83,
+  "characterCount": 385,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 1960,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE SWING How do you like to go up in a swing, Up in the air so blue? Oh, I do think it the pleasantest thing Ever a child can do! Up in the air and over the w...",
+  "sourceOffsets": {
+    "start": 29944,
+    "end": 30419
+  }
+}

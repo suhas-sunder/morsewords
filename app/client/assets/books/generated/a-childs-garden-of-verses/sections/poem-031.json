@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-031",
+  "kind": "poem",
+  "label": "My Bed Is A Boat",
+  "title": null,
+  "order": 31,
+  "includeByDefault": true,
+  "displayText": "MY BED IS A BOAT\n\n\n My bed is like a little boat;\n Nurse helps me in when I embark;\n She girds me in my sailor's coat\n And starts me in the dark.\n\n At night, I go on board and say\n Good-night to all my friends on shore;\n I shut my eyes and sail away\n And see and hear no more.\n\n And sometimes things to bed I take,\n As prudent sailors have to do;\n Perhaps a slice of wedding-cake,\n Perhaps a toy or two.\n\n All night across the dark we steer;\n But when the day returns at last,\n Safe in my room, beside the pier,\n I find my vessel fast.",
+  "morseSourceText": "MY BED IS A BOAT\n\n\n My bed is like a little boat;\n Nurse helps me in when I embark;\n She girds me in my sailor's coat\n And starts me in the dark.\n\n At night, I go on board and say\n Good-night to all my friends on shore;\n I shut my eyes and sail away\n And see and hear no more.\n\n And sometimes things to bed I take,\n As prudent sailors have to do;\n Perhaps a slice of wedding-cake,\n Perhaps a toy or two.\n\n All night across the dark we steer;\n But when the day returns at last,\n Safe in my room, beside the pier,\n I find my vessel fast.",
+  "paragraphs": [
+    "MY BED IS A BOAT",
+    "My bed is like a little boat; Nurse helps me in when I embark; She girds me in my sailor's coat And starts me in the dark.",
+    "At night, I go on board and say Good-night to all my friends on shore; I shut my eyes and sail away And see and hear no more.",
+    "And sometimes things to bed I take, As prudent sailors have to do; Perhaps a slice of wedding-cake, Perhaps a toy or two.",
+    "All night across the dark we steer; But when the day returns at last, Safe in my room, beside the pier, I find my vessel fast."
+  ],
+  "wordCount": 109,
+  "characterCount": 535,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2728,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "MY BED IS A BOAT My bed is like a little boat; Nurse helps me in when I embark; She girds me in my sailor's coat And starts me in the dark. At night, I go on b...",
+  "sourceOffsets": {
+    "start": 28665,
+    "end": 29311
+  }
+}

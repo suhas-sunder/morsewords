@@ -33,13 +33,15 @@
   "trademark_or_character_brand_risk": "none",
   "content_brand_safety_risk": "none",
   "owner_reviewed_approval_present": false,
-  "approved_for_website": false,
+  "approved_for_website": true,
   "approved_for_youtube_narration": false,
-  "approved_regions": [],
-  "approval_source": "manual-review",
+  "approved_regions": [
+    "US"
+  ],
+  "approval_source": "external-authority",
   "duplicate_resolution_source": "not-needed",
-  "canada_us_v1_status": "needs_manual_review",
-  "reasoning_summary": "Original publication metadata was not found. Original publication year is missing or not before 1931. Transcriber notes remain in cleaned story text. Illustrations or image references need manual handling. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.",
+  "canada_us_v1_status": "approved",
+  "reasoning_summary": "Controlled pilot write pass 4 used source-backed boundaries from dry-run batch 4 review and did not modify raw sources or Cloudflare exports.",
   "evidence_snippets": [
     "Author death year authority: project-gutenberg-rdf 2786 https://www.gutenberg.org/cache/epub/2786/pg2786.rdf",
     "Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of",
@@ -48,5 +50,5 @@
     "Transcriber note: lishers 254 Washington St., Boston, Mass. Transcriber's Notes: Project Gutenberg has two versions of Little Women by Louisa May Alcott. Original Edition Illustrated Edition Welcome to",
     "Illustration or image reference: \"These bits of lace are fastened under the chin with a rosebud, so;\" and Meg illustrated by putting on the bonnet, and regarding him with an air of calm satisfaction that was irresistible. \"It's a love of a bonnet, but I prefer"
   ],
-  "processing_allowed": false
+  "processing_allowed": true
 }

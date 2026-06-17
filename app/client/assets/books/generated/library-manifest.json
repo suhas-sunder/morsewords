@@ -7,8 +7,8 @@
       "author": [
         "Robert Louis Stevenson"
       ],
-      "contentVersion": "c260b6b569b067c6",
-      "contentHash": "c260b6b569b067c618f7aaddeefc0e7e5398c1a90438d072885d7183ac392182",
+      "contentVersion": "767ae75b860d2a7e",
+      "contentHash": "767ae75b860d2a7e2080bb19a01b45ac99da27d50f82cf5f826116ab4da164a5",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -36,15 +36,15 @@
         "alt": "Placeholder cover for A Child's Garden of Verses"
       },
       "stats": {
-        "originalCharacterCount": 79187,
-        "cleanedCharacterCount": 58736,
-        "wordCount": 8890,
-        "sectionCount": 3,
-        "includedSectionCount": 0
+        "originalCharacterCount": 82233,
+        "cleanedCharacterCount": 41283,
+        "wordCount": 7670,
+        "sectionCount": 66,
+        "includedSectionCount": 66
       },
       "defaults": {
         "includeKinds": [
-          "chapter"
+          "poem"
         ],
         "preferredPreset": "main-narrative"
       },
@@ -402,8 +402,8 @@
       "author": [
         "Anna Sewell"
       ],
-      "contentVersion": "0969f5659df97ffd",
-      "contentHash": "0969f5659df97ffd53c108d098c1f639d1b60e6f1f0fd09016b876e5d8450800",
+      "contentVersion": "7083202f65ef57a8",
+      "contentHash": "7083202f65ef57a80ea5b5db4eda3b656bfe2bbd0e5a857f9ef72336980bd90f",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -431,11 +431,11 @@
         "alt": "Placeholder cover for Black Beauty The autobiography of a horse"
       },
       "stats": {
-        "originalCharacterCount": 323156,
-        "cleanedCharacterCount": 303863,
-        "wordCount": 60050,
-        "sectionCount": 12,
-        "includedSectionCount": 0
+        "originalCharacterCount": 329694,
+        "cleanedCharacterCount": 301648,
+        "wordCount": 59774,
+        "sectionCount": 49,
+        "includedSectionCount": 49
       },
       "defaults": {
         "includeKinds": [
@@ -794,8 +794,8 @@
       "author": [
         "Margaret Sidney"
       ],
-      "contentVersion": "fa7cc7f9298dec60",
-      "contentHash": "fa7cc7f9298dec609bf854491b137d15588dc77fa615a26c7ebdaf7ef666ab83",
+      "contentVersion": "914ce326b7e28a90",
+      "contentHash": "914ce326b7e28a901068adbbe19c9ddfb2b0d444ca9fba65ab088d25aabf6b31",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -823,11 +823,11 @@
         "alt": "Placeholder cover for Five Little Peppers and How They Grew"
       },
       "stats": {
-        "originalCharacterCount": 408112,
-        "cleanedCharacterCount": 388760,
-        "wordCount": 69654,
-        "sectionCount": 14,
-        "includedSectionCount": 0
+        "originalCharacterCount": 417829,
+        "cleanedCharacterCount": 387712,
+        "wordCount": 69521,
+        "sectionCount": 25,
+        "includedSectionCount": 25
       },
       "defaults": {
         "includeKinds": [
@@ -893,8 +893,8 @@
       "author": [
         "Jacob Grimm Wilhelm Grimm"
       ],
-      "contentVersion": "b5dfddb48cd0ec6d",
-      "contentHash": "b5dfddb48cd0ec6ded7a01c75be83ca851b45c02a714c89531788b47c499574d",
+      "contentVersion": "60416d45b3f04a3a",
+      "contentHash": "60416d45b3f04a3af6fb7987a14b1bfa1d8ce1b5849d3aee61f64bea3f72b822",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -922,11 +922,11 @@
         "alt": "Placeholder cover for Grimm's Fairy Tales"
       },
       "stats": {
-        "originalCharacterCount": 501798,
-        "cleanedCharacterCount": 482363,
-        "wordCount": 91224,
-        "sectionCount": 18,
-        "includedSectionCount": 0
+        "originalCharacterCount": 549774,
+        "cleanedCharacterCount": 517107,
+        "wordCount": 100742,
+        "sectionCount": 66,
+        "includedSectionCount": 66
       },
       "defaults": {
         "includeKinds": [
@@ -1236,8 +1236,8 @@
       "author": [
         "Louisa May Alcott"
       ],
-      "contentVersion": "e0a87f69cf9223dc",
-      "contentHash": "e0a87f69cf9223dc351528cb111f9814aaf6509317c7c00900737e5486000768",
+      "contentVersion": "532cea1f7a9d2d98",
+      "contentHash": "532cea1f7a9d2d9801c6eee016fbb3936a777c04b15816a08ae5ee7f54bab31c",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1265,11 +1265,11 @@
         "alt": "Placeholder cover for Little Women; Or, Meg, Jo, Beth, and Amy"
       },
       "stats": {
-        "originalCharacterCount": 1090255,
-        "cleanedCharacterCount": 1058709,
-        "wordCount": 190813,
-        "sectionCount": 37,
-        "includedSectionCount": 0
+        "originalCharacterCount": 1113273,
+        "cleanedCharacterCount": 1014160,
+        "wordCount": 186597,
+        "sectionCount": 47,
+        "includedSectionCount": 47
       },
       "defaults": {
         "includeKinds": [
@@ -1285,8 +1285,8 @@
       "author": [
         "E. Nesbit"
       ],
-      "contentVersion": "943d40f17c69635b",
-      "contentHash": "943d40f17c69635b6425918eedbbbbd7dd060416fe7a2f62266637e83aec84a4",
+      "contentVersion": "d971de0e9b28f38a",
+      "contentHash": "d971de0e9b28f38ab37d02809fd74586259794c9bcf77c8de2584a881b3f974e",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1314,11 +1314,11 @@
         "alt": "Placeholder cover for New Treasure Seekers; Or, The Bastable Children in Search of a Fortune"
       },
       "stats": {
-        "originalCharacterCount": 386912,
-        "cleanedCharacterCount": 366425,
-        "wordCount": 68779,
-        "sectionCount": 14,
-        "includedSectionCount": 0
+        "originalCharacterCount": 395495,
+        "cleanedCharacterCount": 357270,
+        "wordCount": 67824,
+        "sectionCount": 13,
+        "includedSectionCount": 13
       },
       "defaults": {
         "includeKinds": [
@@ -1432,8 +1432,8 @@
       "author": [
         "Jane Austen"
       ],
-      "contentVersion": "3e405b4190ca10d6",
-      "contentHash": "3e405b4190ca10d6628633dd9d2ca6f7f123f16a8f884f2789989f2c279c9a9d",
+      "contentVersion": "0438f940ef0f913c",
+      "contentHash": "0438f940ef0f913c31ed64a9a14f512cc2bfbf873f8f58766d6e4ce8d9bdea7a",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1461,10 +1461,10 @@
         "alt": "Placeholder cover for Pride and Prejudice"
       },
       "stats": {
-        "originalCharacterCount": 747869,
-        "cleanedCharacterCount": 728457,
-        "wordCount": 128378,
-        "sectionCount": 62,
+        "originalCharacterCount": 763080,
+        "cleanedCharacterCount": 686346,
+        "wordCount": 122021,
+        "sectionCount": 61,
         "includedSectionCount": 61
       },
       "defaults": {
@@ -1724,8 +1724,8 @@
       "slug": "the-arabian-nights",
       "title": "The Arabian Nights: Their Best-known Tales",
       "author": [],
-      "contentVersion": "2931316c3abb6bcd",
-      "contentHash": "2931316c3abb6bcdae53a50a79111240037d1acaa366a27429f5bc5ea0702529",
+      "contentVersion": "7fb4ff78ea8e99bc",
+      "contentHash": "7fb4ff78ea8e99bc1dee2f036223c2472b4695b7dd458911db39fe37f3b027a5",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1753,11 +1753,11 @@
         "alt": "Placeholder cover for The Arabian Nights: Their Best-known Tales"
       },
       "stats": {
-        "originalCharacterCount": 645574,
-        "cleanedCharacterCount": 626053,
-        "wordCount": 114908,
-        "sectionCount": 23,
-        "includedSectionCount": 0
+        "originalCharacterCount": 656421,
+        "cleanedCharacterCount": 614955,
+        "wordCount": 113214,
+        "sectionCount": 17,
+        "includedSectionCount": 17
       },
       "defaults": {
         "includeKinds": [
@@ -1871,8 +1871,8 @@
       "author": [
         "E. Nesbit"
       ],
-      "contentVersion": "837f1e2e43abb5df",
-      "contentHash": "837f1e2e43abb5dfc68f36aa4b3bf9f44f0581fe645c65dc7cd5706f2d2892f3",
+      "contentVersion": "173716579df8f6b0",
+      "contentHash": "173716579df8f6b003f1150c87924eae91cbc2ea9cddd0f660dba4f04687ef85",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1900,11 +1900,11 @@
         "alt": "Placeholder cover for The Book of Dragons"
       },
       "stats": {
-        "originalCharacterCount": 247086,
-        "cleanedCharacterCount": 227459,
-        "wordCount": 42593,
-        "sectionCount": 9,
-        "includedSectionCount": 0
+        "originalCharacterCount": 252378,
+        "cleanedCharacterCount": 222233,
+        "wordCount": 41976,
+        "sectionCount": 8,
+        "includedSectionCount": 8
       },
       "defaults": {
         "includeKinds": [
@@ -2114,8 +2114,8 @@
       "author": [
         "Dante Alighieri"
       ],
-      "contentVersion": "0c9eb264fb463cce",
-      "contentHash": "0c9eb264fb463cce4bcb6300ee590ccd7d03ac2ebb22faa8965475f3fc1025c5",
+      "contentVersion": "9b6073b0eccbe686",
+      "contentHash": "9b6073b0eccbe68665322931239833ad595dffa4a0eb7fd54347512564598866",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2143,15 +2143,15 @@
         "alt": "Placeholder cover for The divine comedy"
       },
       "stats": {
-        "originalCharacterCount": 623762,
-        "cleanedCharacterCount": 604460,
-        "wordCount": 113949,
-        "sectionCount": 22,
-        "includedSectionCount": 0
+        "originalCharacterCount": 640010,
+        "cleanedCharacterCount": 602961,
+        "wordCount": 108535,
+        "sectionCount": 100,
+        "includedSectionCount": 100
       },
       "defaults": {
         "includeKinds": [
-          "chapter"
+          "poem"
         ],
         "preferredPreset": "main-narrative"
       },
@@ -2212,8 +2212,8 @@
       "author": [
         "William Strunk"
       ],
-      "contentVersion": "5f836c9f3a90c6dc",
-      "contentHash": "5f836c9f3a90c6dc9188396824e1ad9e3e8f6aaf25241051b5709d779d8c9364",
+      "contentVersion": "e67ae63c06ff71be",
+      "contentHash": "e67ae63c06ff71be8535ddd8b7b06724e6b64792ec4a8d7a1b47f58321e9c9f4",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2241,14 +2241,15 @@
         "alt": "Placeholder cover for The Elements of Style"
       },
       "stats": {
-        "originalCharacterCount": 105502,
-        "cleanedCharacterCount": 86040,
-        "wordCount": 13910,
-        "sectionCount": 4,
-        "includedSectionCount": 0
+        "originalCharacterCount": 108331,
+        "cleanedCharacterCount": 80617,
+        "wordCount": 13370,
+        "sectionCount": 25,
+        "includedSectionCount": 25
       },
       "defaults": {
         "includeKinds": [
+          "part",
           "chapter"
         ],
         "preferredPreset": "main-narrative"
@@ -2359,8 +2360,8 @@
       "author": [
         "Alexander Hamilton John Jay James Madison"
       ],
-      "contentVersion": "ff3de53fd6e88fdf",
-      "contentHash": "ff3de53fd6e88fdf94678df84358642755931ee7d4a717b79f944624331256b0",
+      "contentVersion": "e592d3d51185c492",
+      "contentHash": "e592d3d51185c492b737390c3546befd06ca1d8aecc75d620ebdb0b7223eeb0d",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2388,11 +2389,11 @@
         "alt": "Placeholder cover for The Federalist Papers"
       },
       "stats": {
-        "originalCharacterCount": 1191859,
-        "cleanedCharacterCount": 1172586,
-        "wordCount": 196582,
-        "sectionCount": 42,
-        "includedSectionCount": 0
+        "originalCharacterCount": 1212398,
+        "cleanedCharacterCount": 1164036,
+        "wordCount": 195246,
+        "sectionCount": 86,
+        "includedSectionCount": 86
       },
       "defaults": {
         "includeKinds": [
@@ -2553,8 +2554,8 @@
       "author": [
         "Rudyard Kipling"
       ],
-      "contentVersion": "acd72a9766510567",
-      "contentHash": "acd72a97665105677829b7f686b529b3bf7b1fb12e8f2005277714a6700b8237",
+      "contentVersion": "59517ca126132887",
+      "contentHash": "59517ca1261328878c5780a2d1134dfd7df3a0520cb0bd296a9e35abb5038a44",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2582,11 +2583,11 @@
         "alt": "Placeholder cover for The Jungle Book"
       },
       "stats": {
-        "originalCharacterCount": 292207,
-        "cleanedCharacterCount": 273000,
-        "wordCount": 51776,
-        "sectionCount": 11,
-        "includedSectionCount": 0
+        "originalCharacterCount": 298041,
+        "cleanedCharacterCount": 271250,
+        "wordCount": 51118,
+        "sectionCount": 14,
+        "includedSectionCount": 14
       },
       "defaults": {
         "includeKinds": [
@@ -3337,8 +3338,8 @@
       "author": [
         "Charles Kingsley"
       ],
-      "contentVersion": "ab71066d5d14fff5",
-      "contentHash": "ab71066d5d14fff502c8c2b1195e28ebd679c4e2c6e2a527529076c1ba1f7150",
+      "contentVersion": "04dfedc6a8729a59",
+      "contentHash": "04dfedc6a8729a59359d442c1c3c35cb495bb7ef4b0745141394f3bbb5aab98f",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3366,15 +3367,16 @@
         "alt": "Placeholder cover for The Water-Babies: A Fairy Tale for a Land-Baby"
       },
       "stats": {
-        "originalCharacterCount": 388846,
-        "cleanedCharacterCount": 369242,
-        "wordCount": 68928,
-        "sectionCount": 10,
+        "originalCharacterCount": 396682,
+        "cleanedCharacterCount": 361430,
+        "wordCount": 68359,
+        "sectionCount": 9,
         "includedSectionCount": 9
       },
       "defaults": {
         "includeKinds": [
-          "chapter"
+          "chapter",
+          "epilogue"
         ],
         "preferredPreset": "main-narrative"
       },

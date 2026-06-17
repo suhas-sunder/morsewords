@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-058",
+  "kind": "poem",
+  "label": "Autumn Fires",
+  "title": null,
+  "order": 58,
+  "includeByDefault": true,
+  "displayText": "AUTUMN FIRES\n\n\n In the other gardens\n And all up the vale,\n From the autumn bonfires\n See the smoke trail!\n\n Pleasant summer over\n And all the summer flowers,\n The red fire blazes,\n The grey smoke towers.\n\n Sing a song of seasons!\n Something bright in all!\n Flowers in the summer,\n Fires in the fall!",
+  "morseSourceText": "AUTUMN FIRES\n\n\n In the other gardens\n And all up the vale,\n From the autumn bonfires\n See the smoke trail!\n\n Pleasant summer over\n And all the summer flowers,\n The red fire blazes,\n The grey smoke towers.\n\n Sing a song of seasons!\n Something bright in all!\n Flowers in the summer,\n Fires in the fall!",
+  "paragraphs": [
+    "AUTUMN FIRES",
+    "In the other gardens And all up the vale, From the autumn bonfires See the smoke trail!",
+    "Pleasant summer over And all the summer flowers, The red fire blazes, The grey smoke towers.",
+    "Sing a song of seasons! Something bright in all! Flowers in the summer, Fires in the fall!"
+  ],
+  "wordCount": 52,
+  "characterCount": 300,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1515,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "AUTUMN FIRES In the other gardens And all up the vale, From the autumn bonfires See the smoke trail! Pleasant summer over And all the summer flowers, The red f...",
+  "sourceOffsets": {
+    "start": 52105,
+    "end": 52495
+  }
+}

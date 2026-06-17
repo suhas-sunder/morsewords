@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-011",
+  "kind": "poem",
+  "label": "Singing",
+  "title": null,
+  "order": 11,
+  "includeByDefault": true,
+  "displayText": "SINGING\n\n\n Of speckled eggs the birdie sings\n And nests among the trees;\n The sailor sings of ropes and things\n In ships upon the seas.\n\n The children sing in far Japan,\n The children sing in Spain;\n The organ with the organ man\n Is singing in the rain.",
+  "morseSourceText": "SINGING\n\n\n Of speckled eggs the birdie sings\n And nests among the trees;\n The sailor sings of ropes and things\n In ships upon the seas.\n\n The children sing in far Japan,\n The children sing in Spain;\n The organ with the organ man\n Is singing in the rain.",
+  "paragraphs": [
+    "SINGING",
+    "Of speckled eggs the birdie sings And nests among the trees; The sailor sings of ropes and things In ships upon the seas.",
+    "The children sing in far Japan, The children sing in Spain; The organ with the organ man Is singing in the rain."
+  ],
+  "wordCount": 46,
+  "characterCount": 253,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1276,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "SINGING Of speckled eggs the birdie sings And nests among the trees; The sailor sings of ropes and things In ships upon the seas. The children sing in far Japa...",
+  "sourceOffsets": {
+    "start": 16404,
+    "end": 16726
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-049",
+  "kind": "poem",
+  "label": "Block City",
+  "title": null,
+  "order": 49,
+  "includeByDefault": true,
+  "displayText": "BLOCK CITY\n\n\n What are you able to build with your blocks?\n Castles and palaces, temples and docks.\n Rain may keep raining, and others go roam,\n But I can be happy and building at home.\n\n Let the sofa be mountains, the carpet be sea,\n There I'll establish a city for me:\n A kirk and a mill and a palace beside,\n And a harbour as well where my vessels may ride.\n\n Great is the palace with pillar and wall,\n A sort of a tower on the top of it all,\n And steps coming down in an orderly way\n To where my toy vessels lie safe in the bay.\n\n This one is sailing and that one is moored:\n Hark to the song of the sailors on board!\n And see, on the steps of my palace, the kings\n Coming and going with presents and things!\n\n Now I have done with it, down let it go!\n All in a moment the town is laid low.\n Block upon block lying scattered and free,\n What is there left of my town by the sea?\n\n Yet as I saw it, I see it again,\n The kirk and the palace, the ships and the men,\n And as long as I live and where'er I may be,\n I'll always remember my town by the sea.",
+  "morseSourceText": "BLOCK CITY\n\n\n What are you able to build with your blocks?\n Castles and palaces, temples and docks.\n Rain may keep raining, and others go roam,\n But I can be happy and building at home.\n\n Let the sofa be mountains, the carpet be sea,\n There I'll establish a city for me:\n A kirk and a mill and a palace beside,\n And a harbour as well where my vessels may ride.\n\n Great is the palace with pillar and wall,\n A sort of a tower on the top of it all,\n And steps coming down in an orderly way\n To where my toy vessels lie safe in the bay.\n\n This one is sailing and that one is moored:\n Hark to the song of the sailors on board!\n And see, on the steps of my palace, the kings\n Coming and going with presents and things!\n\n Now I have done with it, down let it go!\n All in a moment the town is laid low.\n Block upon block lying scattered and free,\n What is there left of my town by the sea?\n\n Yet as I saw it, I see it again,\n The kirk and the palace, the ships and the men,\n And as long as I live and where'er I may be,\n I'll always remember my town by the sea.",
+  "paragraphs": [
+    "BLOCK CITY",
+    "What are you able to build with your blocks? Castles and palaces, temples and docks. Rain may keep raining, and others go roam, But I can be happy and building at home.",
+    "Let the sofa be mountains, the carpet be sea, There I'll establish a city for me: A kirk and a mill and a palace beside, And a harbour as well where my vessels may ride.",
+    "Great is the palace with pillar and wall, A sort of a tower on the top of it all, And steps coming down in an orderly way To where my toy vessels lie safe in the bay.",
+    "This one is sailing and that one is moored: Hark to the song of the sailors on board! And see, on the steps of my palace, the kings Coming and going with presents and things!",
+    "Now I have done with it, down let it go! All in a moment the town is laid low. Block upon block lying scattered and free, What is there left of my town by the sea?",
+    "Yet as I saw it, I see it again, The kirk and the palace, the ships and the men, And as long as I live and where'er I may be, I'll always remember my town by the sea."
+  ],
+  "wordCount": 215,
+  "characterCount": 1053,
+  "estimatedTypingMinutes": 6,
+  "estimatedListeningMinutes": 7,
+  "morseCharacterEstimate": 5448,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "BLOCK CITY What are you able to build with your blocks? Castles and palaces, temples and docks. Rain may keep raining, and others go roam, But I can be happy a...",
+  "sourceOffsets": {
+    "start": 41464,
+    "end": 42646
+  }
+}

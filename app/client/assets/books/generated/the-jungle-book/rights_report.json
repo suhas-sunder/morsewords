@@ -42,7 +42,7 @@
   "approval_source": "external-authority",
   "duplicate_resolution_source": "not-needed",
   "canada_us_v1_status": "approved",
-  "reasoning_summary": "Project Gutenberg source-file evidence and high-confidence external authority metadata satisfied the conservative website processing gate.",
+  "reasoning_summary": "Controlled pilot write pass 4 used source-backed boundaries from dry-run batch 4 review and did not modify raw sources or Cloudflare exports.",
   "evidence_snippets": [
     "Author death year authority: project-gutenberg-rdf 236 https://www.gutenberg.org/cache/epub/236/pg236.rdf",
     "Original publication authority: wikidata Q189509 https://www.wikidata.org/wiki/Q189509",

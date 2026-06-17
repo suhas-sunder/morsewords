@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-060",
+  "kind": "poem",
+  "label": "Historical Associations",
+  "title": null,
+  "order": 60,
+  "includeByDefault": true,
+  "displayText": "HISTORICAL ASSOCIATIONS\n\n\n Dear Uncle Jim, this garden ground\n That now you smoke your pipe around.\n Has seen immortal actions done\n And valiant battles lost and won.\n\n Here we had best on tip-toe tread,\n While I for safety march ahead,\n For this is that enchanted ground\n Where all who loiter slumber sound.\n\n Here is the sea, here is the sand,\n Here is simple Shepherd's Land,\n Here are the fairy hollyhocks,\n And there are Ali Baba's rocks.\n\n But yonder, see! apart and high,\n Frozen Siberia lies; where I,\n With Robert Bruce and William Tell,\n Was bound by an enchanter's spell.\n\n\nENVOYS",
+  "morseSourceText": "HISTORICAL ASSOCIATIONS\n\n\n Dear Uncle Jim, this garden ground\n That now you smoke your pipe around.\n Has seen immortal actions done\n And valiant battles lost and won.\n\n Here we had best on tip-toe tread,\n While I for safety march ahead,\n For this is that enchanted ground\n Where all who loiter slumber sound.\n\n Here is the sea, here is the sand,\n Here is simple Shepherd's Land,\n Here are the fairy hollyhocks,\n And there are Ali Baba's rocks.\n\n But yonder, see! apart and high,\n Frozen Siberia lies; where I,\n With Robert Bruce and William Tell,\n Was bound by an enchanter's spell.\n\n\nENVOYS",
+  "paragraphs": [
+    "HISTORICAL ASSOCIATIONS",
+    "Dear Uncle Jim, this garden ground That now you smoke your pipe around. Has seen immortal actions done And valiant battles lost and won.",
+    "Here we had best on tip-toe tread, While I for safety march ahead, For this is that enchanted ground Where all who loiter slumber sound.",
+    "Here is the sea, here is the sand, Here is simple Shepherd's Land, Here are the fairy hollyhocks, And there are Ali Baba's rocks.",
+    "But yonder, see! apart and high, Frozen Siberia lies; where I, With Robert Bruce and William Tell, Was bound by an enchanter's spell.",
+    "ENVOYS"
+  ],
+  "wordCount": 99,
+  "characterCount": 591,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3085,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "HISTORICAL ASSOCIATIONS Dear Uncle Jim, this garden ground That now you smoke your pipe around. Has seen immortal actions done And valiant battles lost and won...",
+  "sourceOffsets": {
+    "start": 53322,
+    "end": 54015
+  }
+}

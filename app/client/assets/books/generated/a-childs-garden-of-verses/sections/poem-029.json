@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-029",
+  "kind": "poem",
+  "label": "The Sun Travels",
+  "title": null,
+  "order": 29,
+  "includeByDefault": true,
+  "displayText": "THE SUN TRAVELS\n\n\n The sun is not a-bed, when I\n At night upon my pillow lie;\n Still round the earth his way he takes,\n And morning after morning makes.\n\n While here at home, in shining day,\n We round the sunny garden play,\n Each little Indian sleepy-head\n Is being kissed and put to bed.\n\n And when at eve I rise from tea,\n Day dawns beyond the Atlantic Sea;\n And all the children in the West\n Are getting up and being dressed.",
+  "morseSourceText": "THE SUN TRAVELS\n\n\n The sun is not a-bed, when I\n At night upon my pillow lie;\n Still round the earth his way he takes,\n And morning after morning makes.\n\n While here at home, in shining day,\n We round the sunny garden play,\n Each little Indian sleepy-head\n Is being kissed and put to bed.\n\n And when at eve I rise from tea,\n Day dawns beyond the Atlantic Sea;\n And all the children in the West\n Are getting up and being dressed.",
+  "paragraphs": [
+    "THE SUN TRAVELS",
+    "The sun is not a-bed, when I At night upon my pillow lie; Still round the earth his way he takes, And morning after morning makes.",
+    "While here at home, in shining day, We round the sunny garden play, Each little Indian sleepy-head Is being kissed and put to bed.",
+    "And when at eve I rise from tea, Day dawns beyond the Atlantic Sea; And all the children in the West Are getting up and being dressed."
+  ],
+  "wordCount": 80,
+  "characterCount": 428,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2174,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE SUN TRAVELS The sun is not a-bed, when I At night upon my pillow lie; Still round the earth his way he takes, And morning after morning makes. While here a...",
+  "sourceOffsets": {
+    "start": 27388,
+    "end": 27876
+  }
+}

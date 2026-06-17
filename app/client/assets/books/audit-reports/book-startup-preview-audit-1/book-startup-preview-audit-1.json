@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-16T22:21:56.831Z",
+  "generatedAt": "2026-06-17T01:08:07.496Z",
   "generatedBookCount": 110,
   "previewAssetCount": 110,
   "validStartupPreviewCount": 110,
@@ -141,28 +141,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-002",
+        "id": "poem-001",
         "title": null,
-        "label": "Part 2",
-        "type": "part",
-        "wordCount": 4712,
-        "includeByDefault": false,
-        "snippet": "Faster than fairies, faster than witches, Bridges and houses, hedges and ditches; And charging along like troops in a battle All through the meadows the horses and cattle: All of the sights of the hill and the plain F..."
+        "label": "Bed In Summer",
+        "type": "poem",
+        "wordCount": 89,
+        "includeByDefault": true,
+        "snippet": "BED IN SUMMER In winter I get up at night And dress by yellow candle-light. In summer, quite the other way, I have to go to bed by day. I have to go to bed and see The birds still hopping on the tree, Or hear the grow..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 1,
-      "mainReadableSectionCount": 1,
+      "defaultSectionCount": 66,
+      "mainReadableSectionCount": 65,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "Faster than fairies, faster than witches, Bridges and houses, hedges and ditches; And charging along like troops in a battle All through the meadows the horses and cattle: All of the sights of the hill and the plain F...",
-        "previewStart": "Faster than fairies, faster than witches, Bridges and houses, hedges and ditches; And charging along like troops in a battle All through the meadows the horses and cattle: All of the sights of the hill and the plain F..."
+        "generatedStart": "BED IN SUMMER In winter I get up at night And dress by yellow candle-light. In summer, quite the other way, I have to go to bed by day. I have to go to bed and see The birds still hopping on the tree, Or hear the grow...",
+        "previewStart": "BED IN SUMMER In winter I get up at night And dress by yellow candle-light. In summer, quite the other way, I have to go to bed by day. I have to go to bed and see The birds still hopping on the tree, Or hear the grow..."
       }
     },
     {
@@ -405,28 +405,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-002",
-        "title": null,
-        "label": "Part 2",
-        "type": "part",
-        "wordCount": 5940,
-        "includeByDefault": false,
-        "snippet": "I was quite happy in my new place, and if there was one thing that I missed it must not be thought I was discontented; all who had to do with me were good and I had a light airy stable and the best of food. What more ..."
+        "id": "chapter-001",
+        "title": "My Early Home",
+        "label": "Chapter 1",
+        "type": "chapter",
+        "wordCount": 782,
+        "includeByDefault": true,
+        "snippet": "01 My Early Home The first place that I can well remember was a large pleasant meadow with a pond of clear water in it. Some shady trees leaned over it, and rushes and water-lilies grew at the deep end. Over the hedge..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 11,
-      "mainReadableSectionCount": 11,
+      "defaultSectionCount": 49,
+      "mainReadableSectionCount": 49,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "I was quite happy in my new place, and if there was one thing that I missed it must not be thought I was discontented; all who had to do with me were good and I had a light airy stable and the best of food. What more ...",
-        "previewStart": "I was quite happy in my new place, and if there was one thing that I missed it must not be thought I was discontented; all who had to do with me were good and I had a light airy stable and the best of food. What more ..."
+        "generatedStart": "01 My Early Home The first place that I can well remember was a large pleasant meadow with a pond of clear water in it. Some shady trees leaned over it, and rushes and water-lilies grew at the deep end. Over the hedge...",
+        "previewStart": "01 My Early Home The first place that I can well remember was a large pleasant meadow with a pond of clear water in it. Some shady trees leaned over it, and rushes and water-lilies grew at the deep end. Over the hedge..."
       }
     },
     {
@@ -671,28 +671,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-002",
+        "id": "chapter-001",
         "title": null,
-        "label": "Part 2",
-        "type": "part",
-        "wordCount": 5322,
-        "includeByDefault": false,
-        "snippet": "“Now I'll fix it,” said Mrs. Bascom, getting up and taking off her shawl; “there's a few raisins for you, Polly; I don't want 'em, and they'll make your cake go better,” and she placed a little parcel on the table as ..."
+        "label": "A Home View",
+        "type": "chapter",
+        "wordCount": 2176,
+        "includeByDefault": true,
+        "snippet": "A HOME VIEW The little old kitchen had quieted down from the bustle and confusion of mid-day; and now, with its afternoon manners on, presented a holiday aspect, that as the principal room in the brown house, it was e..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 13,
-      "mainReadableSectionCount": 13,
+      "defaultSectionCount": 25,
+      "mainReadableSectionCount": 25,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "“Now I'll fix it,” said Mrs. Bascom, getting up and taking off her shawl; “there's a few raisins for you, Polly; I don't want 'em, and they'll make your cake go better,” and she placed a little parcel on the table as ...",
-        "previewStart": "“Now I'll fix it,” said Mrs. Bascom, getting up and taking off her shawl; “there's a few raisins for you, Polly; I don't want 'em, and they'll make your cake go better,” and she placed a little parcel on the table as ..."
+        "generatedStart": "A HOME VIEW The little old kitchen had quieted down from the bustle and confusion of mid-day; and now, with its afternoon manners on, presented a holiday aspect, that as the principal room in the brown house, it was e...",
+        "previewStart": "A HOME VIEW The little old kitchen had quieted down from the bustle and confusion of mid-day; and now, with its afternoon manners on, presented a holiday aspect, that as the principal room in the brown house, it was e..."
       }
     },
     {
@@ -737,28 +737,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-002",
+        "id": "chapter-001",
         "title": null,
-        "label": "Part 2",
-        "type": "part",
-        "wordCount": 5824,
-        "includeByDefault": false,
-        "snippet": "The King’s Son was beside himself with grief and in his despair he leapt down from the tower. He escaped with his life, but the thorns into which he fell, pierced his eyes. Then he wandered quite blind about the fores..."
+        "label": "The Golden Bird",
+        "type": "chapter",
+        "wordCount": 2530,
+        "includeByDefault": true,
+        "snippet": "THE GOLDEN BIRD A certain king had a beautiful garden, and in the garden stood a tree which bore golden apples. These apples were always counted, and about the time when they began to grow ripe it was found that every..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 17,
-      "mainReadableSectionCount": 17,
+      "defaultSectionCount": 66,
+      "mainReadableSectionCount": 66,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "The King’s Son was beside himself with grief and in his despair he leapt down from the tower. He escaped with his life, but the thorns into which he fell, pierced his eyes. Then he wandered quite blind about the fores...",
-        "previewStart": "The King’s Son was beside himself with grief and in his despair he leapt down from the tower. He escaped with his life, but the thorns into which he fell, pierced his eyes. Then he wandered quite blind about the fores..."
+        "generatedStart": "THE GOLDEN BIRD A certain king had a beautiful garden, and in the garden stood a tree which bore golden apples. These apples were always counted, and about the time when they began to grow ripe it was found that every...",
+        "previewStart": "THE GOLDEN BIRD A certain king had a beautiful garden, and in the garden stood a tree which bore golden apples. These apples were always counted, and about the time when they began to grow ripe it was found that every..."
       }
     },
     {
@@ -970,28 +970,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-002",
-        "title": null,
-        "label": "Part 2",
-        "type": "part",
-        "wordCount": 5355,
-        "includeByDefault": false,
-        "snippet": "Mrs. March broke the silence that followed Jo's words, by saying in her cheery voice, \"Do you remember how you used to play Pilgrim's Progress when you were little things? Nothing delighted you more than to have me ti..."
+        "id": "chapter-001",
+        "title": "PLAYING PILGRIMS.",
+        "label": "Chapter 1",
+        "type": "chapter",
+        "wordCount": 4152,
+        "includeByDefault": true,
+        "snippet": "I. PLAYING PILGRIMS. \"Christmas won't be Christmas without any presents,\" grumbled Jo, lying on the rug. \"It's so dreadful to be poor!\" sighed Meg, looking down at her old dress. \"I don't think it's fair for some girl..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 36,
-      "mainReadableSectionCount": 36,
+      "defaultSectionCount": 47,
+      "mainReadableSectionCount": 47,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "Mrs. March broke the silence that followed Jo's words, by saying in her cheery voice, \"Do you remember how you used to play Pilgrim's Progress when you were little things? Nothing delighted you more than to have me ti...",
-        "previewStart": "Mrs. March broke the silence that followed Jo's words, by saying in her cheery voice, \"Do you remember how you used to play Pilgrim's Progress when you were little things? Nothing delighted you more than to have me ti..."
+        "generatedStart": "I. PLAYING PILGRIMS. \"Christmas won't be Christmas without any presents,\" grumbled Jo, lying on the rug. \"It's so dreadful to be poor!\" sighed Meg, looking down at her old dress. \"I don't think it's fair for some girl...",
+        "previewStart": "I. PLAYING PILGRIMS. \"Christmas won't be Christmas without any presents,\" grumbled Jo, lying on the rug. \"It's so dreadful to be poor!\" sighed Meg, looking down at her old dress. \"I don't think it's fair for some girl..."
       }
     },
     {
@@ -1003,28 +1003,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-002",
+        "id": "chapter-001",
         "title": null,
-        "label": "Part 2",
-        "type": "part",
-        "wordCount": 5638,
-        "includeByDefault": false,
-        "snippet": "He was ill a week. When he was better, not much was said. My Father, who is the justest man in England, said the boy had been punished enough--and so he had, for he missed going to the pantomime, and to \"Shock-Headed ..."
+        "label": "The Road To Rome; or, the Silly Stowaway",
+        "type": "chapter",
+        "wordCount": 5032,
+        "includeByDefault": true,
+        "snippet": "_THE ROAD TO ROME; OR, THE SILLY STOWAWAY_ WE Bastables have only two uncles, and neither of them, are our own natural-born relatives. One is a great-uncle, and the other is the uncle from his birth of Albert, who use..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 11,
-      "mainReadableSectionCount": 11,
+      "defaultSectionCount": 13,
+      "mainReadableSectionCount": 12,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "He was ill a week. When he was better, not much was said. My Father, who is the justest man in England, said the boy had been punished enough--and so he had, for he missed going to the pantomime, and to \"Shock-Headed ...",
-        "previewStart": "He was ill a week. When he was better, not much was said. My Father, who is the justest man in England, said the boy had been punished enough--and so he had, for he missed going to the pantomime, and to \"Shock-Headed ..."
+        "generatedStart": "_THE ROAD TO ROME; OR, THE SILLY STOWAWAY_ WE Bastables have only two uncles, and neither of them, are our own natural-born relatives. One is a great-uncle, and the other is the uncle from his birth of Albert, who use...",
+        "previewStart": "_THE ROAD TO ROME; OR, THE SILLY STOWAWAY_ WE Bastables have only two uncles, and neither of them, are our own natural-born relatives. One is a great-uncle, and the other is the uncle from his birth of Albert, who use..."
       }
     },
     {
@@ -1103,12 +1103,12 @@
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
         "id": "chapter-001",
-        "title": "]",
+        "title": null,
         "label": "Chapter 1",
         "type": "chapter",
-        "wordCount": 889,
+        "wordCount": 852,
         "includeByDefault": true,
-        "snippet": "Chapter I.] It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a ..."
+        "snippet": "Chapter I. It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a n..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
@@ -1116,14 +1116,14 @@
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
       "defaultSectionCount": 61,
-      "mainReadableSectionCount": 1,
+      "mainReadableSectionCount": 61,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "Chapter I.] It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a ...",
-        "previewStart": "Chapter I.] It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a ..."
+        "generatedStart": "Chapter I. It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a n...",
+        "previewStart": "Chapter I. It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a n..."
       }
     },
     {
@@ -1300,28 +1300,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-002",
+        "id": "chapter-001",
         "title": null,
-        "label": "Part 2",
-        "type": "part",
-        "wordCount": 5419,
-        "includeByDefault": false,
-        "snippet": "One day when the two princes were hunting, and the princess had remained at home, a religious old woman came to the gate, and desired leave to go in to say her prayers, it being then the hour. The servants asked the p..."
+        "label": "The Talking Bird, the Singing Tree, and the Golden Water",
+        "type": "chapter",
+        "wordCount": 16222,
+        "includeByDefault": true,
+        "snippet": "THE TALKING BIRD, THE SINGING TREE, AND THE GOLDEN WATER There was an emperor of Persia named Kosrouschah, who, when he first came to his crown, in order to obtain a knowledge of affairs, took great pleasure in night ..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 22,
-      "mainReadableSectionCount": 22,
+      "defaultSectionCount": 17,
+      "mainReadableSectionCount": 17,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "One day when the two princes were hunting, and the princess had remained at home, a religious old woman came to the gate, and desired leave to go in to say her prayers, it being then the hour. The servants asked the p...",
-        "previewStart": "One day when the two princes were hunting, and the princess had remained at home, a religious old woman came to the gate, and desired leave to go in to say her prayers, it being then the hour. The servants asked the p..."
+        "generatedStart": "THE TALKING BIRD, THE SINGING TREE, AND THE GOLDEN WATER There was an emperor of Persia named Kosrouschah, who, when he first came to his crown, in order to obtain a knowledge of affairs, took great pleasure in night ...",
+        "previewStart": "THE TALKING BIRD, THE SINGING TREE, AND THE GOLDEN WATER There was an emperor of Persia named Kosrouschah, who, when he first came to his crown, in order to obtain a knowledge of affairs, took great pleasure in night ..."
       }
     },
     {
@@ -1399,28 +1399,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-002",
-        "title": null,
-        "label": "Part 2",
-        "type": "part",
-        "wordCount": 5657,
-        "includeByDefault": false,
-        "snippet": "As for the Princess Mary Ann, she was a very good little girl, and everyone loved her. She was always kind and polite, even to her Uncle James and to other people whom she did not like very much; and though she was no..."
+        "id": "chapter-001",
+        "title": "The Book of Beasts",
+        "label": "Story 1",
+        "type": "chapter",
+        "wordCount": 4727,
+        "includeByDefault": true,
+        "snippet": "I. The Book of Beasts He happened to be building a Palace when the news came, and he left all the bricks kicking about the floor for Nurse to clear up--but then the news was rather remarkable news. You see, there was ..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 7,
-      "mainReadableSectionCount": 7,
+      "defaultSectionCount": 8,
+      "mainReadableSectionCount": 8,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "As for the Princess Mary Ann, she was a very good little girl, and everyone loved her. She was always kind and polite, even to her Uncle James and to other people whom she did not like very much; and though she was no...",
-        "previewStart": "As for the Princess Mary Ann, she was a very good little girl, and everyone loved her. She was always kind and polite, even to her Uncle James and to other people whom she did not like very much; and though she was no..."
+        "generatedStart": "I. The Book of Beasts He happened to be building a Palace when the news came, and he left all the bricks kicking about the floor for Nurse to clear up--but then the news was rather remarkable news. You see, there was ...",
+        "previewStart": "I. The Book of Beasts He happened to be building a Palace when the news came, and he left all the bricks kicking about the floor for Nurse to clear up--but then the news was rather remarkable news. You see, there was ..."
       }
     },
     {
@@ -1564,28 +1564,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-001",
+        "id": "poem-001",
         "title": null,
-        "label": "Part 1",
-        "type": "part",
-        "wordCount": 5667,
-        "includeByDefault": false,
-        "snippet": "THE DIVINE COMEDY THE VISION of HELL, PURGATORY, AND PARADISE BY DANTE ALIGHIERI TRANSLATED BY THE REV. H. F. CARY, M.A. Illustrated by M. Gustave Doré LIST OF CANTOS HELL Canto 1 Canto 2 Canto 3 Canto 4 Canto 5 Canto..."
+        "label": "Inferno Canto 1",
+        "type": "poem",
+        "wordCount": 1051,
+        "includeByDefault": true,
+        "snippet": "CANTO I In the midway of this our mortal life, I found me in a gloomy wood, astray Gone from the path direct: and e'en to tell It were no easy task, how savage wild That forest, how robust and rough its growth, Which ..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 22,
-      "mainReadableSectionCount": 22,
+      "defaultSectionCount": 100,
+      "mainReadableSectionCount": 100,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "THE DIVINE COMEDY THE VISION of HELL, PURGATORY, AND PARADISE BY DANTE ALIGHIERI TRANSLATED BY THE REV. H. F. CARY, M.A. Illustrated by M. Gustave Doré LIST OF CANTOS HELL Canto 1 Canto 2 Canto 3 Canto 4 Canto 5 Canto...",
-        "previewStart": "THE DIVINE COMEDY THE VISION of HELL, PURGATORY, AND PARADISE BY DANTE ALIGHIERI TRANSLATED BY THE REV. H. F. CARY, M.A. Illustrated by M. Gustave Doré LIST OF CANTOS HELL Canto 1 Canto 2 Canto 3 Canto 4 Canto 5 Canto..."
+        "generatedStart": "CANTO I In the midway of this our mortal life, I found me in a gloomy wood, astray Gone from the path direct: and e'en to tell It were no easy task, how savage wild That forest, how robust and rough its growth, Which ...",
+        "previewStart": "CANTO I In the midway of this our mortal life, I found me in a gloomy wood, astray Gone from the path direct: and e'en to tell It were no easy task, how savage wild That forest, how robust and rough its growth, Which ..."
       }
     },
     {
@@ -1630,28 +1630,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-002",
-        "title": null,
-        "label": "Part 2",
+        "id": "part-001",
+        "title": "Introductory",
+        "label": "Section 1",
         "type": "part",
-        "wordCount": 4889,
-        "includeByDefault": false,
-        "snippet": "Dead leaves covered the ground. The sound of a guitar somewhere in the house could be heard. Somewhere in the house a guitar hummed sleepily. The reason that he left college was that his health became impaired. Failin..."
+        "wordCount": 472,
+        "includeByDefault": true,
+        "snippet": "I. INTRODUCTORY This book aims to give in brief space the principal requirements of plain English style. It aims to lighten the task of instructor and student by concentrating attention (in Chapters II and III) on a f..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 2,
-      "mainReadableSectionCount": 2,
+      "defaultSectionCount": 25,
+      "mainReadableSectionCount": 24,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "Dead leaves covered the ground. The sound of a guitar somewhere in the house could be heard. Somewhere in the house a guitar hummed sleepily. The reason that he left college was that his health became impaired. Failin...",
-        "previewStart": "Dead leaves covered the ground. The sound of a guitar somewhere in the house could be heard. Somewhere in the house a guitar hummed sleepily. The reason that he left college was that his health became impaired. Failin..."
+        "generatedStart": "I. INTRODUCTORY This book aims to give in brief space the principal requirements of plain English style. It aims to lighten the task of instructor and student by concentrating attention (in Chapters II and III) on a f...",
+        "previewStart": "I. INTRODUCTORY This book aims to give in brief space the principal requirements of plain English style. It aims to lighten the task of instructor and student by concentrating attention (in Chapters II and III) on a f..."
       }
     },
     {
@@ -1729,28 +1729,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-002",
+        "id": "chapter-001",
         "title": null,
-        "label": "Part 2",
-        "type": "part",
-        "wordCount": 4941,
-        "includeByDefault": false,
-        "snippet": "The JUST causes of war, for the most part, arise either from violation of treaties or from direct violence. America has already formed treaties with no less than six foreign nations, and all of them, except Prussia, a..."
+        "label": "Federalist No. 1",
+        "type": "chapter",
+        "wordCount": 1615,
+        "includeByDefault": true,
+        "snippet": "To the People of the State of New York: After an unequivocal experience of the inefficacy of the subsisting federal government, you are called upon to deliberate on a new Constitution for the United States of America...."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 41,
-      "mainReadableSectionCount": 41,
+      "defaultSectionCount": 86,
+      "mainReadableSectionCount": 86,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "The JUST causes of war, for the most part, arise either from violation of treaties or from direct violence. America has already formed treaties with no less than six foreign nations, and all of them, except Prussia, a...",
-        "previewStart": "The JUST causes of war, for the most part, arise either from violation of treaties or from direct violence. America has already formed treaties with no less than six foreign nations, and all of them, except Prussia, a..."
+        "generatedStart": "To the People of the State of New York: After an unequivocal experience of the inefficacy of the subsisting federal government, you are called upon to deliberate on a new Constitution for the United States of America....",
+        "previewStart": "To the People of the State of New York: After an unequivocal experience of the inefficacy of the subsisting federal government, you are called upon to deliberate on a new Constitution for the United States of America...."
       }
     },
     {
@@ -1861,28 +1861,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-002",
+        "id": "chapter-001",
         "title": null,
-        "label": "Part 2",
-        "type": "part",
-        "wordCount": 5691,
-        "includeByDefault": false,
-        "snippet": "Akela the Lone Wolf lay by the side of his rock as a sign that the leadership of the Pack was open, and Shere Khan with his following of scrap-fed wolves walked to and fro openly being flattered. Bagheera lay close to..."
+        "label": "Mowgli's Brothers",
+        "type": "chapter",
+        "wordCount": 7468,
+        "includeByDefault": true,
+        "snippet": "Mowgli's Brothers Now Rann the Kite brings home the night That Mang the Bat sets free-- The herds are shut in byre and hut For loosed till dawn are we. This is the hour of pride and power, Talon and tush and claw. Oh,..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 10,
-      "mainReadableSectionCount": 10,
+      "defaultSectionCount": 14,
+      "mainReadableSectionCount": 14,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "Akela the Lone Wolf lay by the side of his rock as a sign that the leadership of the Pack was open, and Shere Khan with his following of scrap-fed wolves walked to and fro openly being flattered. Bagheera lay close to...",
-        "previewStart": "Akela the Lone Wolf lay by the side of his rock as a sign that the leadership of the Pack was open, and Shere Khan with his following of scrap-fed wolves walked to and fro openly being flattered. Bagheera lay close to..."
+        "generatedStart": "Mowgli's Brothers Now Rann the Kite brings home the night That Mang the Bat sets free-- The herds are shut in byre and hut For loosed till dawn are we. This is the hour of pride and power, Talon and tush and claw. Oh,...",
+        "previewStart": "Mowgli's Brothers Now Rann the Kite brings home the night That Mang the Bat sets free-- The herds are shut in byre and hut For loosed till dawn are we. This is the hour of pride and power, Talon and tush and claw. Oh,..."
       }
     },
     {
@@ -2393,7 +2393,7 @@
         "title": null,
         "label": "Chapter 1",
         "type": "chapter",
-        "wordCount": 8645,
+        "wordCount": 8620,
         "includeByDefault": true,
         "snippet": "CHAPTER I ONCE upon a time there was a little chimney-sweep, and his name was Tom. That is a short name, and you have heard it before, so you will not have much trouble in remembering it. He lived in a great town in t..."
       },
@@ -2403,7 +2403,7 @@
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
       "defaultSectionCount": 9,
-      "mainReadableSectionCount": 7,
+      "mainReadableSectionCount": 8,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,

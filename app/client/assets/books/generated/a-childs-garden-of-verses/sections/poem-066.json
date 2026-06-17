@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-066",
+  "kind": "poem",
+  "label": "To Any Reader",
+  "title": null,
+  "order": 66,
+  "includeByDefault": true,
+  "displayText": "TO ANY READER\n\n\n As from the house your mother sees\n You playing round the garden trees,\n So you may see, if you will look\n Through the windows of this book,\n Another child, far, far away,\n And in another garden, play.\n But do not think you can at all,\n By knocking on the window, call\n That child to hear you. He intent\n Is all on his play-business bent.\n He does not hear; he will not look,\n Nor yet be lured out of this book.\n For, long ago, the truth to say,\n He has grown up and gone away,\n And it is but a child of air\n That lingers in the garden there.",
+  "morseSourceText": "TO ANY READER\n\n\n As from the house your mother sees\n You playing round the garden trees,\n So you may see, if you will look\n Through the windows of this book,\n Another child, far, far away,\n And in another garden, play.\n But do not think you can at all,\n By knocking on the window, call\n That child to hear you. He intent\n Is all on his play-business bent.\n He does not hear; he will not look,\n Nor yet be lured out of this book.\n For, long ago, the truth to say,\n He has grown up and gone away,\n And it is but a child of air\n That lingers in the garden there.",
+  "paragraphs": [
+    "TO ANY READER",
+    "As from the house your mother sees You playing round the garden trees, So you may see, if you will look Through the windows of this book, Another child, far, far away, And in another garden, play. But do not think you can at all, By knocking on the window, call That child to hear you. He intent Is all on his play-business bent. He does not hear; he will not look, Nor yet be lured out of this book. For, long ago, the truth to say, He has grown up and gone away, And it is but a child of air That lingers in the garden there."
+  ],
+  "wordCount": 111,
+  "characterCount": 559,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2937,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "TO ANY READER As from the house your mother sees You playing round the garden trees, So you may see, if you will look Through the windows of this book, Another...",
+  "sourceOffsets": {
+    "start": 59043,
+    "end": 59668
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-019",
+  "kind": "poem",
+  "label": "System",
+  "title": null,
+  "order": 19,
+  "includeByDefault": true,
+  "displayText": "SYSTEM\n\n\n Every night my prayers I say,\n And get my dinner every day;\n And every day that I've been good,\n I get an orange after food.\n\n The child that is not clean and neat,\n With lots of toys and things to eat,\n He is a naughty child, I'm sure--\n Or else his dear papa is poor.",
+  "morseSourceText": "SYSTEM\n\n\n Every night my prayers I say,\n And get my dinner every day;\n And every day that I've been good,\n I get an orange after food.\n\n The child that is not clean and neat,\n With lots of toys and things to eat,\n He is a naughty child, I'm sure--\n Or else his dear papa is poor.",
+  "paragraphs": [
+    "SYSTEM",
+    "Every night my prayers I say, And get my dinner every day; And every day that I've been good, I get an orange after food.",
+    "The child that is not clean and neat, With lots of toys and things to eat, He is a naughty child, I'm sure-- Or else his dear papa is poor."
+  ],
+  "wordCount": 56,
+  "characterCount": 279,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1432,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "SYSTEM Every night my prayers I say, And get my dinner every day; And every day that I've been good, I get an orange after food. The child that is not clean an...",
+  "sourceOffsets": {
+    "start": 20670,
+    "end": 21010
+  }
+}

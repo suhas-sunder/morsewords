@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-061",
+  "kind": "poem",
+  "label": "To Willie and Henrietta",
+  "title": null,
+  "order": 61,
+  "includeByDefault": true,
+  "displayText": "TO WILLIE AND HENRIETTA\n\n\n If two may read aright\n These rhymes of old delight\n And house and garden play,\n You too, my cousins, and you only, may.\n\n You in a garden green\n With me were king and queen,\n Were hunter, soldier, tar,\n And all the thousand things that children are.\n\n Now in the elders' seat\n We rest with quiet feet,\n And from the window-bay\n We watch the children, our successors, play.\n\n \"Time was,\" the golden head\n Irrevocably said;\n But time which none can bind,\n While flowing fast away, leaves love behind.",
+  "morseSourceText": "TO WILLIE AND HENRIETTA\n\n\n If two may read aright\n These rhymes of old delight\n And house and garden play,\n You too, my cousins, and you only, may.\n\n You in a garden green\n With me were king and queen,\n Were hunter, soldier, tar,\n And all the thousand things that children are.\n\n Now in the elders' seat\n We rest with quiet feet,\n And from the window-bay\n We watch the children, our successors, play.\n\n \"Time was,\" the golden head\n Irrevocably said;\n But time which none can bind,\n While flowing fast away, leaves love behind.",
+  "paragraphs": [
+    "TO WILLIE AND HENRIETTA",
+    "If two may read aright These rhymes of old delight And house and garden play, You too, my cousins, and you only, may.",
+    "You in a garden green With me were king and queen, Were hunter, soldier, tar, And all the thousand things that children are.",
+    "Now in the elders' seat We rest with quiet feet, And from the window-bay We watch the children, our successors, play.",
+    "\"Time was,\" the golden head Irrevocably said; But time which none can bind, While flowing fast away, leaves love behind."
+  ],
+  "wordCount": 91,
+  "characterCount": 526,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2738,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "TO WILLIE AND HENRIETTA If two may read aright These rhymes of old delight And house and garden play, You too, my cousins, and you only, may. You in a garden g...",
+  "sourceOffsets": {
+    "start": 54017,
+    "end": 54686
+  }
+}

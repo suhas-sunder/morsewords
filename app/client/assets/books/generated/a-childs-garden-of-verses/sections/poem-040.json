@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-040",
+  "kind": "poem",
+  "label": "Farewell To the Farm",
+  "title": null,
+  "order": 40,
+  "includeByDefault": true,
+  "displayText": "FAREWELL TO THE FARM\n\n\n The coach is at the door at last;\n The eager children, mounting fast\n And kissing hands, in chorus sing:\n Good-bye, good-bye, to everything!\n\n To house and garden, field and lawn,\n The meadow-gates we swang upon,\n To pump and stable, tree and swing,\n Good-bye, good-bye, to everything!\n\n And fare you well for evermore,\n O ladder at the hayloft door,\n O hayloft where the cobwebs cling,\n Good-bye, good-bye, to everything!\n\n Crack goes the whip, and off we go;\n The trees and houses smaller grow;\n Last, round the woody turn we swing:\n Good-bye, good-bye, to everything!",
+  "morseSourceText": "FAREWELL TO THE FARM\n\n\n The coach is at the door at last;\n The eager children, mounting fast\n And kissing hands, in chorus sing:\n Good-bye, good-bye, to everything!\n\n To house and garden, field and lawn,\n The meadow-gates we swang upon,\n To pump and stable, tree and swing,\n Good-bye, good-bye, to everything!\n\n And fare you well for evermore,\n O ladder at the hayloft door,\n O hayloft where the cobwebs cling,\n Good-bye, good-bye, to everything!\n\n Crack goes the whip, and off we go;\n The trees and houses smaller grow;\n Last, round the woody turn we swing:\n Good-bye, good-bye, to everything!",
+  "paragraphs": [
+    "FAREWELL TO THE FARM",
+    "The coach is at the door at last; The eager children, mounting fast And kissing hands, in chorus sing: Good-bye, good-bye, to everything!",
+    "To house and garden, field and lawn, The meadow-gates we swang upon, To pump and stable, tree and swing, Good-bye, good-bye, to everything!",
+    "And fare you well for evermore, O ladder at the hayloft door, O hayloft where the cobwebs cling, Good-bye, good-bye, to everything!",
+    "Crack goes the whip, and off we go; The trees and houses smaller grow; Last, round the woody turn we swing: Good-bye, good-bye, to everything!"
+  ],
+  "wordCount": 97,
+  "characterCount": 594,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3188,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "FAREWELL TO THE FARM The coach is at the door at last; The eager children, mounting fast And kissing hands, in chorus sing: Good-bye, good-bye, to everything!...",
+  "sourceOffsets": {
+    "start": 34076,
+    "end": 34765
+  }
+}

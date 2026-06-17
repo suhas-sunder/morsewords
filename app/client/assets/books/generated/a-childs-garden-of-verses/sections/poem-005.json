@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-005",
+  "kind": "poem",
+  "label": "Whole Duty Of Children",
+  "title": null,
+  "order": 5,
+  "includeByDefault": true,
+  "displayText": "WHOLE DUTY OF CHILDREN\n\n\n A child should always say what's true\n And speak when he is spoken to,\n And behave mannerly at table;\n At least as far as he is able.",
+  "morseSourceText": "WHOLE DUTY OF CHILDREN\n\n\n A child should always say what's true\n And speak when he is spoken to,\n And behave mannerly at table;\n At least as far as he is able.",
+  "paragraphs": [
+    "WHOLE DUTY OF CHILDREN",
+    "A child should always say what's true And speak when he is spoken to, And behave mannerly at table; At least as far as he is able."
+  ],
+  "wordCount": 31,
+  "characterCount": 159,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 825,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "WHOLE DUTY OF CHILDREN A child should always say what's true And speak when he is spoken to, And behave mannerly at table; At least as far as he is able.",
+  "sourceOffsets": {
+    "start": 12280,
+    "end": 12465
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-041",
+  "kind": "poem",
+  "label": "1. Good-Night",
+  "title": null,
+  "order": 41,
+  "includeByDefault": true,
+  "displayText": "_1. Good-night_\n\n When the bright lamp is carried in,\n The sunless hours again begin;\n O'er all without, in field and lane,\n The haunted night returns again.\n\n Now we behold the embers flee\n About the firelit hearth; and see\n Our faces painted as we pass,\n Like pictures, on the window-glass.\n\n Must we to bed indeed? Well then,\n Let us arise and go like men,\n And face with an undaunted tread\n The long black passage up to bed.\n\n\n Farewell, O brother, sister, sire!\n O pleasant party round the fire!\n The songs you sing, the tales you tell,\n Till far to-morrow, fare ye well!",
+  "morseSourceText": "_1. Good-night_\n\n When the bright lamp is carried in,\n The sunless hours again begin;\n O'er all without, in field and lane,\n The haunted night returns again.\n\n Now we behold the embers flee\n About the firelit hearth; and see\n Our faces painted as we pass,\n Like pictures, on the window-glass.\n\n Must we to bed indeed? Well then,\n Let us arise and go like men,\n And face with an undaunted tread\n The long black passage up to bed.\n\n\n Farewell, O brother, sister, sire!\n O pleasant party round the fire!\n The songs you sing, the tales you tell,\n Till far to-morrow, fare ye well!",
+  "paragraphs": [
+    "_1. Good-night_",
+    "When the bright lamp is carried in, The sunless hours again begin; O'er all without, in field and lane, The haunted night returns again.",
+    "Now we behold the embers flee About the firelit hearth; and see Our faces painted as we pass, Like pictures, on the window-glass.",
+    "Must we to bed indeed? Well then, Let us arise and go like men, And face with an undaunted tread The long black passage up to bed.",
+    "Farewell, O brother, sister, sire! O pleasant party round the fire! The songs you sing, the tales you tell, Till far to-morrow, fare ye well!"
+  ],
+  "wordCount": 101,
+  "characterCount": 576,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3005,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "_1. Good-night_ When the bright lamp is carried in, The sunless hours again begin; O'er all without, in field and lane, The haunted night returns again. Now we...",
+  "sourceOffsets": {
+    "start": 34791,
+    "end": 35494
+  }
+}

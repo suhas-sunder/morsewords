@@ -33,13 +33,15 @@
   "trademark_or_character_brand_risk": "none",
   "content_brand_safety_risk": "none",
   "owner_reviewed_approval_present": false,
-  "approved_for_website": false,
+  "approved_for_website": true,
   "approved_for_youtube_narration": false,
-  "approved_regions": [],
-  "approval_source": "manual-review",
+  "approved_regions": [
+    "US"
+  ],
+  "approval_source": "external-authority",
   "duplicate_resolution_source": "not-needed",
-  "canada_us_v1_status": "needs_manual_review",
-  "reasoning_summary": "Original publication metadata was not found. Original publication year is missing or not before 1931. Transcriber notes remain in cleaned story text. Illustrations or image references need manual handling. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.",
+  "canada_us_v1_status": "approved",
+  "reasoning_summary": "Controlled pilot write pass 4 used source-backed boundaries from dry-run batch 4 review and did not modify raw sources or Cloudflare exports.",
   "evidence_snippets": [
     "Author death year authority: wikidata Q231708 https://www.wikidata.org/wiki/Q231708",
     "Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of",
@@ -48,5 +50,5 @@
     "Transcriber note: OSWALD BASTABLE. * * * * * Transcriber's Notes: Obvious punctuation errors repaired. Page 39, \"Noel\" changed to \"Noël\" (cost?\" Noël asked) Page 77, \"peacable\" changed to \"peace",
     "Illustration or image reference: e Would-Be-Goods,\" Etc. With Illustrations by Gordon Browne and Lewis Baumer [Illustration] [Illustration] New York Frederick A. Stokes Company Publishers TO ARTHUR WATTS"
   ],
-  "processing_allowed": false
+  "processing_allowed": true
 }

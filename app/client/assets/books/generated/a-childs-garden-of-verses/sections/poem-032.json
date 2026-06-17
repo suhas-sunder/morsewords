@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-032",
+  "kind": "poem",
+  "label": "The Moon",
+  "title": null,
+  "order": 32,
+  "includeByDefault": true,
+  "displayText": "THE MOON\n\n\n The moon has a face like the clock in the hall;\n She shines on thieves on the garden wall,\n On streets and field and harbour quays,\n And birdies asleep in the forks of the trees.\n\n The squalling cat and the squeaking mouse,\n The howling dog by the door of the house,\n The bat that lies in bed at noon,\n All love to be out by the light of the moon.\n\n But all of the things that belong to the day\n Cuddle to sleep to be out of her way;\n And flowers and children close their eyes\n Till up in the morning the sun shall arise.",
+  "morseSourceText": "THE MOON\n\n\n The moon has a face like the clock in the hall;\n She shines on thieves on the garden wall,\n On streets and field and harbour quays,\n And birdies asleep in the forks of the trees.\n\n The squalling cat and the squeaking mouse,\n The howling dog by the door of the house,\n The bat that lies in bed at noon,\n All love to be out by the light of the moon.\n\n But all of the things that belong to the day\n Cuddle to sleep to be out of her way;\n And flowers and children close their eyes\n Till up in the morning the sun shall arise.",
+  "paragraphs": [
+    "THE MOON",
+    "The moon has a face like the clock in the hall; She shines on thieves on the garden wall, On streets and field and harbour quays, And birdies asleep in the forks of the trees.",
+    "The squalling cat and the squeaking mouse, The howling dog by the door of the house, The bat that lies in bed at noon, All love to be out by the light of the moon.",
+    "But all of the things that belong to the day Cuddle to sleep to be out of her way; And flowers and children close their eyes Till up in the morning the sun shall arise."
+  ],
+  "wordCount": 107,
+  "characterCount": 533,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2747,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE MOON The moon has a face like the clock in the hall; She shines on thieves on the garden wall, On streets and field and harbour quays, And birdies asleep i...",
+  "sourceOffsets": {
+    "start": 29313,
+    "end": 29942
+  }
+}

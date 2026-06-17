@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-017",
+  "kind": "poem",
+  "label": "The Land Of Nod",
+  "title": null,
+  "order": 17,
+  "includeByDefault": true,
+  "displayText": "THE LAND OF NOD\n\n\n From breakfast on through all the day\n At home among my friends I stay,\n But every night I go abroad\n Afar into the land of Nod.\n\n All by myself I have to go,\n With none to tell me what to do--\n All alone beside the streams\n And up the mountain-sides of dreams.\n\n The strangest things are there for me,\n Both things to eat and things to see,\n And many frightening sights abroad\n Till morning in the land of Nod.\n\n Try as I like to find the way,\n I never can get back by day,\n Nor can remember plain and clear\n The curious music that I hear.",
+  "morseSourceText": "THE LAND OF NOD\n\n\n From breakfast on through all the day\n At home among my friends I stay,\n But every night I go abroad\n Afar into the land of Nod.\n\n All by myself I have to go,\n With none to tell me what to do--\n All alone beside the streams\n And up the mountain-sides of dreams.\n\n The strangest things are there for me,\n Both things to eat and things to see,\n And many frightening sights abroad\n Till morning in the land of Nod.\n\n Try as I like to find the way,\n I never can get back by day,\n Nor can remember plain and clear\n The curious music that I hear.",
+  "paragraphs": [
+    "THE LAND OF NOD",
+    "From breakfast on through all the day At home among my friends I stay, But every night I go abroad Afar into the land of Nod.",
+    "All by myself I have to go, With none to tell me what to do-- All alone beside the streams And up the mountain-sides of dreams.",
+    "The strangest things are there for me, Both things to eat and things to see, And many frightening sights abroad Till morning in the land of Nod.",
+    "Try as I like to find the way, I never can get back by day, Nor can remember plain and clear The curious music that I hear."
+  ],
+  "wordCount": 110,
+  "characterCount": 559,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2843,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE LAND OF NOD From breakfast on through all the day At home among my friends I stay, But every night I go abroad Afar into the land of Nod. All by myself I h...",
+  "sourceOffsets": {
+    "start": 18936,
+    "end": 19608
+  }
+}

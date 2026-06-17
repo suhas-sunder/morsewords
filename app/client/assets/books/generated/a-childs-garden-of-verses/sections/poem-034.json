@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-034",
+  "kind": "poem",
+  "label": "Time To Rise",
+  "title": null,
+  "order": 34,
+  "includeByDefault": true,
+  "displayText": "TIME TO RISE\n\n\n A birdie with a yellow bill\n Hopped upon the window sill,\n Cocked his shining eye and said:\n \"Ain't you 'shamed, you sleepy-head!\"",
+  "morseSourceText": "TIME TO RISE\n\n\n A birdie with a yellow bill\n Hopped upon the window sill,\n Cocked his shining eye and said:\n \"Ain't you 'shamed, you sleepy-head!\"",
+  "paragraphs": [
+    "TIME TO RISE",
+    "A birdie with a yellow bill Hopped upon the window sill, Cocked his shining eye and said: \"Ain't you 'shamed, you sleepy-head!\""
+  ],
+  "wordCount": 25,
+  "characterCount": 146,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 779,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "TIME TO RISE A birdie with a yellow bill Hopped upon the window sill, Cocked his shining eye and said: \"Ain't you 'shamed, you sleepy-head!\"",
+  "sourceOffsets": {
+    "start": 30421,
+    "end": 30611
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-036",
+  "kind": "poem",
+  "label": "Fairy Bread",
+  "title": null,
+  "order": 36,
+  "includeByDefault": true,
+  "displayText": "FAIRY BREAD\n\n\n Come up here, O dusty feet!\n Here is fairy bread to eat.\n Here in my retiring room,\n Children, you may dine\n On the golden smell of broom\n And the shade of pine;\n And when you have eaten well,\n Fairy stories hear and tell.",
+  "morseSourceText": "FAIRY BREAD\n\n\n Come up here, O dusty feet!\n Here is fairy bread to eat.\n Here in my retiring room,\n Children, you may dine\n On the golden smell of broom\n And the shade of pine;\n And when you have eaten well,\n Fairy stories hear and tell.",
+  "paragraphs": [
+    "FAIRY BREAD",
+    "Come up here, O dusty feet! Here is fairy bread to eat. Here in my retiring room, Children, you may dine On the golden smell of broom And the shade of pine; And when you have eaten well, Fairy stories hear and tell."
+  ],
+  "wordCount": 45,
+  "characterCount": 237,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1214,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "FAIRY BREAD Come up here, O dusty feet! Here is fairy bread to eat. Here in my retiring room, Children, you may dine On the golden smell of broom And the shade...",
+  "sourceOffsets": {
+    "start": 31466,
+    "end": 31787
+  }
+}

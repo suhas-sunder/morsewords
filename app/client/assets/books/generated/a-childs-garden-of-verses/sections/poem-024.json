@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-024",
+  "kind": "poem",
+  "label": "Happy Thought",
+  "title": null,
+  "order": 24,
+  "includeByDefault": true,
+  "displayText": "HAPPY THOUGHT\n\n\n The world is so full of a number of things,\n I'm sure we should all be as happy as kings.",
+  "morseSourceText": "HAPPY THOUGHT\n\n\n The world is so full of a number of things,\n I'm sure we should all be as happy as kings.",
+  "paragraphs": [
+    "HAPPY THOUGHT",
+    "The world is so full of a number of things, I'm sure we should all be as happy as kings."
+  ],
+  "wordCount": 22,
+  "characterCount": 106,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 567,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "HAPPY THOUGHT The world is so full of a number of things, I'm sure we should all be as happy as kings.",
+  "sourceOffsets": {
+    "start": 23640,
+    "end": 23764
+  }
+}

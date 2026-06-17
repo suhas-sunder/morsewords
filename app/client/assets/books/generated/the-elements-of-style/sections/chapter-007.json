@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-elements-of-style",
+  "sectionId": "chapter-007",
+  "kind": "chapter",
+  "label": "Rule 7",
+  "title": "A participial phrase at the beginning of a sentence must refer to the",
+  "order": 9,
+  "includeByDefault": true,
+  "displayText": "7. A participial phrase at the beginning of a sentence must refer to the\ngrammatical subject.\n\n Walking slowly down the road, he saw a woman accompanied by two\n children.\n\nThe word _walking_ refers to the subject of the sentence, not to the\nwoman. If the writer wishes to make it refer to the woman, he must\nrecast the sentence:\n\n He saw a woman accompanied by two children, walking slowly down the\n road.\n\nParticipial phrases preceded by a conjunction or by a preposition, nouns\nin apposition, adjectives, and adjective phrases come under the same\nrule if they begin the sentence.\n\n On arriving in Chicago, his friends met him at the station.\n\n When he arrived (or, On his arrival) in Chicago, his friends met him\n at the station.\n\n A soldier of proved valor, they entrusted him with the defence of the\n city.\n\n A soldier of proved valor, he was entrusted with the defence of the\n city.\n\n Young and inexperienced, the task seemed easy to me.\n\n Young and inexperienced, I thought the task easy.\n\n Without a friend to counsel him, the temptation proved irresistible.\n\n Without a friend to counsel him, he found the temptation\n irresistible.\n\nSentences violating this rule are often ludicrous.\n\n Being in a dilapidated condition, I was able to buy the house very\n cheap.\n\n Wondering irresolutely what to do next, the clock struck twelve.",
+  "morseSourceText": "7. A participial phrase at the beginning of a sentence must refer to the\ngrammatical subject.\n\n Walking slowly down the road, he saw a woman accompanied by two\n children.\n\nThe word _walking_ refers to the subject of the sentence, not to the\nwoman. If the writer wishes to make it refer to the woman, he must\nrecast the sentence:\n\n He saw a woman accompanied by two children, walking slowly down the\n road.\n\nParticipial phrases preceded by a conjunction or by a preposition, nouns\nin apposition, adjectives, and adjective phrases come under the same\nrule if they begin the sentence.\n\n On arriving in Chicago, his friends met him at the station.\n\n When he arrived (or, On his arrival) in Chicago, his friends met him\n at the station.\n\n A soldier of proved valor, they entrusted him with the defence of the\n city.\n\n A soldier of proved valor, he was entrusted with the defence of the\n city.\n\n Young and inexperienced, the task seemed easy to me.\n\n Young and inexperienced, I thought the task easy.\n\n Without a friend to counsel him, the temptation proved irresistible.\n\n Without a friend to counsel him, he found the temptation\n irresistible.\n\nSentences violating this rule are often ludicrous.\n\n Being in a dilapidated condition, I was able to buy the house very\n cheap.\n\n Wondering irresolutely what to do next, the clock struck twelve.",
+  "paragraphs": [
+    "7. A participial phrase at the beginning of a sentence must refer to the grammatical subject.",
+    "Walking slowly down the road, he saw a woman accompanied by two children.",
+    "The word _walking_ refers to the subject of the sentence, not to the woman. If the writer wishes to make it refer to the woman, he must recast the sentence:",
+    "He saw a woman accompanied by two children, walking slowly down the road.",
+    "Participial phrases preceded by a conjunction or by a preposition, nouns in apposition, adjectives, and adjective phrases come under the same rule if they begin the sentence.",
+    "On arriving in Chicago, his friends met him at the station.",
+    "When he arrived (or, On his arrival) in Chicago, his friends met him at the station.",
+    "A soldier of proved valor, they entrusted him with the defence of the city.",
+    "A soldier of proved valor, he was entrusted with the defence of the city.",
+    "Young and inexperienced, the task seemed easy to me.",
+    "Young and inexperienced, I thought the task easy.",
+    "Without a friend to counsel him, the temptation proved irresistible.",
+    "Without a friend to counsel him, he found the temptation irresistible.",
+    "Sentences violating this rule are often ludicrous.",
+    "Being in a dilapidated condition, I was able to buy the house very cheap.",
+    "Wondering irresolutely what to do next, the clock struck twelve."
+  ],
+  "wordCount": 223,
+  "characterCount": 1335,
+  "estimatedTypingMinutes": 6,
+  "estimatedListeningMinutes": 8,
+  "morseCharacterEstimate": 6958,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "7. A participial phrase at the beginning of a sentence must refer to the grammatical subject. Walking slowly down the road, he saw a woman accompanied by two c...",
+  "sourceOffsets": {
+    "start": 18520,
+    "end": 19938
+  }
+}

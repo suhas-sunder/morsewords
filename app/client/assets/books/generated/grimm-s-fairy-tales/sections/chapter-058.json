@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "grimm-s-fairy-tales",
+  "sectionId": "chapter-058",
+  "kind": "chapter",
+  "label": "The Wedding Of Mrs Fox",
+  "title": null,
+  "order": 58,
+  "includeByDefault": true,
+  "displayText": "THE WEDDING OF MRS FOX",
+  "morseSourceText": "THE WEDDING OF MRS FOX",
+  "paragraphs": [
+    "THE WEDDING OF MRS FOX"
+  ],
+  "wordCount": 5,
+  "characterCount": 22,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 116,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE WEDDING OF MRS FOX",
+  "sourceOffsets": {
+    "start": 446423,
+    "end": 446449
+  }
+}

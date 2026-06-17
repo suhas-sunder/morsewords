@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-020",
+  "kind": "poem",
+  "label": "A Good Boy",
+  "title": null,
+  "order": 20,
+  "includeByDefault": true,
+  "displayText": "A GOOD BOY\n\n\n I woke before the morning, I was happy all the day,\n I never said an ugly word, but smiled and stuck to play.\n\n And now at last the sun is going down behind the wood,\n And I am very happy, for I know that I've been good.\n\n My bed is waiting cool and fresh, with linen smooth and fair\n And I must be off to sleepsin-by, and not forget my prayer.\n\n I know that, till to-morrow I shall see the sun arise,\n No ugly dream shall fright my mind, no ugly sight my eyes.\n\n But slumber hold me tightly till I waken in the dawn,\n And hear the thrushes singing in the lilacs round the lawn.",
+  "morseSourceText": "A GOOD BOY\n\n\n I woke before the morning, I was happy all the day,\n I never said an ugly word, but smiled and stuck to play.\n\n And now at last the sun is going down behind the wood,\n And I am very happy, for I know that I've been good.\n\n My bed is waiting cool and fresh, with linen smooth and fair\n And I must be off to sleepsin-by, and not forget my prayer.\n\n I know that, till to-morrow I shall see the sun arise,\n No ugly dream shall fright my mind, no ugly sight my eyes.\n\n But slumber hold me tightly till I waken in the dawn,\n And hear the thrushes singing in the lilacs round the lawn.",
+  "paragraphs": [
+    "A GOOD BOY",
+    "I woke before the morning, I was happy all the day, I never said an ugly word, but smiled and stuck to play.",
+    "And now at last the sun is going down behind the wood, And I am very happy, for I know that I've been good.",
+    "My bed is waiting cool and fresh, with linen smooth and fair And I must be off to sleepsin-by, and not forget my prayer.",
+    "I know that, till to-morrow I shall see the sun arise, No ugly dream shall fright my mind, no ugly sight my eyes.",
+    "But slumber hold me tightly till I waken in the dawn, And hear the thrushes singing in the lilacs round the lawn."
+  ],
+  "wordCount": 119,
+  "characterCount": 592,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3107,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "A GOOD BOY I woke before the morning, I was happy all the day, I never said an ugly word, but smiled and stuck to play. And now at last the sun is going down b...",
+  "sourceOffsets": {
+    "start": 21012,
+    "end": 21658
+  }
+}

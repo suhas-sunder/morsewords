@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-009",
+  "kind": "poem",
+  "label": "Windy Nights",
+  "title": null,
+  "order": 9,
+  "includeByDefault": true,
+  "displayText": "WINDY NIGHTS\n\n\n Whenever the moon and stars are set,\n Whenever the wind is high,\n All night long in the dark and wet,\n A man goes riding by.\n Late in the night when the fires are out,\n Why does he gallop and gallop about?\n\n Whenever the trees are crying aloud,\n And ships are tossed at sea,\n By, on the highway, low and loud,\n By at the gallop goes he.\n By at the gallop he goes, and then\n By he comes back at the gallop again.",
+  "morseSourceText": "WINDY NIGHTS\n\n\n Whenever the moon and stars are set,\n Whenever the wind is high,\n All night long in the dark and wet,\n A man goes riding by.\n Late in the night when the fires are out,\n Why does he gallop and gallop about?\n\n Whenever the trees are crying aloud,\n And ships are tossed at sea,\n By, on the highway, low and loud,\n By at the gallop goes he.\n By at the gallop he goes, and then\n By he comes back at the gallop again.",
+  "paragraphs": [
+    "WINDY NIGHTS",
+    "Whenever the moon and stars are set, Whenever the wind is high, All night long in the dark and wet, A man goes riding by. Late in the night when the fires are out, Why does he gallop and gallop about?",
+    "Whenever the trees are crying aloud, And ships are tossed at sea, By, on the highway, low and loud, By at the gallop goes he. By at the gallop he goes, and then By he comes back at the gallop again."
+  ],
+  "wordCount": 84,
+  "characterCount": 427,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2207,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "WINDY NIGHTS Whenever the moon and stars are set, Whenever the wind is high, All night long in the dark and wet, A man goes riding by. Late in the night when t...",
+  "sourceOffsets": {
+    "start": 14191,
+    "end": 14736
+  }
+}

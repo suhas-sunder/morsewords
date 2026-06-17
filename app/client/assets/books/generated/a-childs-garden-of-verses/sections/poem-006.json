@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-006",
+  "kind": "poem",
+  "label": "Rain",
+  "title": null,
+  "order": 6,
+  "includeByDefault": true,
+  "displayText": "RAIN\n\n\n The rain is raining all around,\n It falls on field and tree,\n It rains on the umbrellas here,\n And on the ships at sea.",
+  "morseSourceText": "RAIN\n\n\n The rain is raining all around,\n It falls on field and tree,\n It rains on the umbrellas here,\n And on the ships at sea.",
+  "paragraphs": [
+    "RAIN",
+    "The rain is raining all around, It falls on field and tree, It rains on the umbrellas here, And on the ships at sea."
+  ],
+  "wordCount": 25,
+  "characterCount": 127,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 635,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "RAIN The rain is raining all around, It falls on field and tree, It rains on the umbrellas here, And on the ships at sea.",
+  "sourceOffsets": {
+    "start": 12467,
+    "end": 12660
+  }
+}

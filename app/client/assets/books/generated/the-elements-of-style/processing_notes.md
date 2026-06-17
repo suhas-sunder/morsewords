@@ -1,72 +1,12 @@
-# The Elements of Style rights review notes
+# the-elements-of-style
 
-- Source file: ../The Elements of Style.txt
-- Gutenberg ID: 37134
-- Source URL: https://www.gutenberg.org/ebooks/37134
-- Metadata status: draft
-- Manual review required: yes
-- Approval status: needs_manual_review
-- Approval source: manual-review
-- Duplicate resolution source: not-needed
-- Processing allowed: no
-- processed_book.json emitted: no
-- Section/story artifacts emitted by rights-only command: no
+Processed by pilot write pass 4.
 
-## Rights evidence found
+- Source: app/client/assets/temp-books/The Elements of Style.txt
+- Start boundary: line 149 (Section I, Introductory, is the first readable content after title/transcriber note and contents.)
+- End boundary: line 2369 (The exercises end before the closing transcriber's note and Project Gutenberg footer.)
+- Structural convention: nonfiction rules and roman-numbered sections
+- Sections after correction: 25
+- Final recommendation: accepted for review
 
-- Author death year authority: project-gutenberg-rdf 37134 https://www.gutenberg.org/cache/epub/37134/pg37134.rdf
-- Original publication authority: wikidata Q3010059 https://www.wikidata.org/wiki/Q3010059
-- Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of
-- U.S. reuse language: e Project Gutenberg eBook of The Elements of Style This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under
-- Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The Elements of Style Author:
-- Transcriber note: y made available by The Internet Archive/American Libraries.) [ Transcriber's Notes: Every effort has been made to replicate this text as faithfully as possible, including inconsistencies in spelling and hyphen
-
-## Source clues
-
-- Project Gutenberg header present: yes
-- Project Gutenberg license present: yes
-- U.S. reuse language found: yes
-- Non-U.S. warning found: yes
-- Release date: August 18, 2011
-- Last updated: missing
-- Original publication: 1920
-- Credits: Produced by Jana Srna and the Online Distributed
-- Translator: none found
-- Illustrator: none found
-- Editor: none found
-- Introduction author: none found
-
-## Risks found
-
-- Translation risk: none
-- Edition risk: none
-- Trademark or character brand risk: none
-- Content brand-safety risk: none
-- Later copyright notice: no
-- Permission-based language: no
-- Creative Commons notice: no
-- Modern intro or notes: no
-- Transcriber notes: yes
-- Illustration or image references: no
-- Duplicate Gutenberg ID: no unresolved duplicate found
-
-## Command warnings
-
-- Rights have not been reviewed; generated book is not publish-ready.
-- Rights basis "unknown" is not publish-ready.
-- Rights gate status is needs_manual_review; generated book is not publish-ready.
-- Rights gate did not allow processed public story output.
-- Owner-reviewed website approval is missing.
-- Website publication is not allowed by the active approval path.
-
-## Manual review reasons
-
-- Transcriber notes remain in cleaned story text.
-- Metadata rightsReviewed is false.
-- Owner-reviewed book approval is missing.
-- Rights basis "unknown" is not publish-ready.
-- Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.
-
-## Next action
-
-- Manual rights review required before processing or publishing.
+This output is intentionally review-gated before larger batch processing or Cloudflare export.

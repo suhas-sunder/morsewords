@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-035",
+  "kind": "poem",
+  "label": "Looking-Glass River",
+  "title": null,
+  "order": 35,
+  "includeByDefault": true,
+  "displayText": "LOOKING-GLASS RIVER\n\n\n Smooth it glides upon its travel,\n Here a wimple, there a gleam--\n O the clean gravel!\n O the smooth stream!\n\n Sailing blossoms, silver fishes,\n Paven pools as clear as air--\n How a child wishes\n To live down there!\n\n We can see our coloured faces\n Floating on the shaken pool\n Down in cool places,\n Dim and very cool;\n\n Till a wind or water wrinkle,\n Dipping marten, plumping trout,\n Spreads in a twinkle\n And blots all out.\n\n See the rings pursue each other;\n All below grows black as night,\n Just as if mother\n Had blown out the light!\n\n Patience, children, just a minute--\n See the spreading circles die;\n The stream and all in it\n Will clear by-and-by.",
+  "morseSourceText": "LOOKING-GLASS RIVER\n\n\n Smooth it glides upon its travel,\n Here a wimple, there a gleam--\n O the clean gravel!\n O the smooth stream!\n\n Sailing blossoms, silver fishes,\n Paven pools as clear as air--\n How a child wishes\n To live down there!\n\n We can see our coloured faces\n Floating on the shaken pool\n Down in cool places,\n Dim and very cool;\n\n Till a wind or water wrinkle,\n Dipping marten, plumping trout,\n Spreads in a twinkle\n And blots all out.\n\n See the rings pursue each other;\n All below grows black as night,\n Just as if mother\n Had blown out the light!\n\n Patience, children, just a minute--\n See the spreading circles die;\n The stream and all in it\n Will clear by-and-by.",
+  "paragraphs": [
+    "LOOKING-GLASS RIVER",
+    "Smooth it glides upon its travel, Here a wimple, there a gleam-- O the clean gravel! O the smooth stream!",
+    "Sailing blossoms, silver fishes, Paven pools as clear as air-- How a child wishes To live down there!",
+    "We can see our coloured faces Floating on the shaken pool Down in cool places, Dim and very cool;",
+    "Till a wind or water wrinkle, Dipping marten, plumping trout, Spreads in a twinkle And blots all out.",
+    "See the rings pursue each other; All below grows black as night, Just as if mother Had blown out the light!",
+    "Patience, children, just a minute-- See the spreading circles die; The stream and all in it Will clear by-and-by."
+  ],
+  "wordCount": 118,
+  "characterCount": 680,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3554,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "LOOKING-GLASS RIVER Smooth it glides upon its travel, Here a wimple, there a gleam-- O the clean gravel! O the smooth stream! Sailing blossoms, silver fishes,...",
+  "sourceOffsets": {
+    "start": 30613,
+    "end": 31464
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-056",
+  "kind": "poem",
+  "label": "Summer Sun",
+  "title": null,
+  "order": 56,
+  "includeByDefault": true,
+  "displayText": "SUMMER SUN\n\n\n Great is the sun, and wide he goes\n Through empty heaven without repose;\n And in the blue and glowing days\n More thick than rain he showers his rays.\n\n Though closer still the blinds we pull\n To keep the shady parlour cool,\n Yet he will find a chink or two\n To slip his golden fingers through.\n\n The dusty attic spider-clad\n He, through the keyhole, maketh glad;\n And through the broken edge of tiles\n Into the laddered hay-loft smiles.\n\n Meantime his golden face around\n He bares to all the garden ground,\n And sheds a warm and glittering look\n Among the ivy's inmost nook.\n\n Above the hills, along the blue,\n Round the bright air with footing true,\n To please the child, to paint the rose,\n The gardener of the World, he goes.",
+  "morseSourceText": "SUMMER SUN\n\n\n Great is the sun, and wide he goes\n Through empty heaven without repose;\n And in the blue and glowing days\n More thick than rain he showers his rays.\n\n Though closer still the blinds we pull\n To keep the shady parlour cool,\n Yet he will find a chink or two\n To slip his golden fingers through.\n\n The dusty attic spider-clad\n He, through the keyhole, maketh glad;\n And through the broken edge of tiles\n Into the laddered hay-loft smiles.\n\n Meantime his golden face around\n He bares to all the garden ground,\n And sheds a warm and glittering look\n Among the ivy's inmost nook.\n\n Above the hills, along the blue,\n Round the bright air with footing true,\n To please the child, to paint the rose,\n The gardener of the World, he goes.",
+  "paragraphs": [
+    "SUMMER SUN",
+    "Great is the sun, and wide he goes Through empty heaven without repose; And in the blue and glowing days More thick than rain he showers his rays.",
+    "Though closer still the blinds we pull To keep the shady parlour cool, Yet he will find a chink or two To slip his golden fingers through.",
+    "The dusty attic spider-clad He, through the keyhole, maketh glad; And through the broken edge of tiles Into the laddered hay-loft smiles.",
+    "Meantime his golden face around He bares to all the garden ground, And sheds a warm and glittering look Among the ivy's inmost nook.",
+    "Above the hills, along the blue, Round the bright air with footing true, To please the child, to paint the rose, The gardener of the World, he goes."
+  ],
+  "wordCount": 131,
+  "characterCount": 742,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3864,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "SUMMER SUN Great is the sun, and wide he goes Through empty heaven without repose; And in the blue and glowing days More thick than rain he showers his rays. T...",
+  "sourceOffsets": {
+    "start": 49917,
+    "end": 50771
+  }
+}

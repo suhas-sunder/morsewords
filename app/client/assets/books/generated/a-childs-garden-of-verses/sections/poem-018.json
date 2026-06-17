@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-018",
+  "kind": "poem",
+  "label": "My Shadow",
+  "title": null,
+  "order": 18,
+  "includeByDefault": true,
+  "displayText": "MY SHADOW\n\n\n I have a little shadow that goes in and out with me,\n And what can be the use of him is more than I can see.\n He is very, very like me from the heels up to the head;\n And I see him jump before me, when I jump into my bed.\n\n The funniest thing about him is the way he likes to grow--\n Not at all like proper children, which is always very slow;\n For he sometimes shoots up taller like an india-rubber ball,\n And he sometimes gets so little that there's none of him at all.\n\n He hasn't got a notion of how children ought to play,\n And can only make a fool of me in every sort of way.\n He stays so close beside me, he's a coward you can see;\n I'd think shame to stick to nursie as that shadow sticks to me!\n\n\n One morning, very early, before the sun was up,\n I rose and found the shining dew on every buttercup;\n But my lazy little shadow, like an arrant sleepy-head,\n Had stayed at home behind me and was fast asleep in bed.",
+  "morseSourceText": "MY SHADOW\n\n\n I have a little shadow that goes in and out with me,\n And what can be the use of him is more than I can see.\n He is very, very like me from the heels up to the head;\n And I see him jump before me, when I jump into my bed.\n\n The funniest thing about him is the way he likes to grow--\n Not at all like proper children, which is always very slow;\n For he sometimes shoots up taller like an india-rubber ball,\n And he sometimes gets so little that there's none of him at all.\n\n He hasn't got a notion of how children ought to play,\n And can only make a fool of me in every sort of way.\n He stays so close beside me, he's a coward you can see;\n I'd think shame to stick to nursie as that shadow sticks to me!\n\n\n One morning, very early, before the sun was up,\n I rose and found the shining dew on every buttercup;\n But my lazy little shadow, like an arrant sleepy-head,\n Had stayed at home behind me and was fast asleep in bed.",
+  "paragraphs": [
+    "MY SHADOW",
+    "I have a little shadow that goes in and out with me, And what can be the use of him is more than I can see. He is very, very like me from the heels up to the head; And I see him jump before me, when I jump into my bed.",
+    "The funniest thing about him is the way he likes to grow-- Not at all like proper children, which is always very slow; For he sometimes shoots up taller like an india-rubber ball, And he sometimes gets so little that there's none of him at all.",
+    "He hasn't got a notion of how children ought to play, And can only make a fool of me in every sort of way. He stays so close beside me, he's a coward you can see; I'd think shame to stick to nursie as that shadow sticks to me!",
+    "One morning, very early, before the sun was up, I rose and found the shining dew on every buttercup; But my lazy little shadow, like an arrant sleepy-head, Had stayed at home behind me and was fast asleep in bed."
+  ],
+  "wordCount": 189,
+  "characterCount": 935,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4876,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "MY SHADOW I have a little shadow that goes in and out with me, And what can be the use of him is more than I can see. He is very, very like me from the heels u...",
+  "sourceOffsets": {
+    "start": 19610,
+    "end": 20668
+  }
+}

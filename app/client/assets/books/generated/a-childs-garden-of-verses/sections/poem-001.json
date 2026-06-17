@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-001",
+  "kind": "poem",
+  "label": "Bed In Summer",
+  "title": null,
+  "order": 1,
+  "includeByDefault": true,
+  "displayText": "BED IN SUMMER\n\n\n In winter I get up at night\n And dress by yellow candle-light.\n In summer, quite the other way,\n I have to go to bed by day.\n\n I have to go to bed and see\n The birds still hopping on the tree,\n Or hear the grown-up people's feet\n Still going past me in the street.\n\n And does it not seem hard to you,\n When all the sky is clear and blue,\n And I should like so much to play,\n To have to go to bed by day?",
+  "morseSourceText": "BED IN SUMMER\n\n\n In winter I get up at night\n And dress by yellow candle-light.\n In summer, quite the other way,\n I have to go to bed by day.\n\n I have to go to bed and see\n The birds still hopping on the tree,\n Or hear the grown-up people's feet\n Still going past me in the street.\n\n And does it not seem hard to you,\n When all the sky is clear and blue,\n And I should like so much to play,\n To have to go to bed by day?",
+  "paragraphs": [
+    "BED IN SUMMER",
+    "In winter I get up at night And dress by yellow candle-light. In summer, quite the other way, I have to go to bed by day.",
+    "I have to go to bed and see The birds still hopping on the tree, Or hear the grown-up people's feet Still going past me in the street.",
+    "And does it not seem hard to you, When all the sky is clear and blue, And I should like so much to play, To have to go to bed by day?"
+  ],
+  "wordCount": 89,
+  "characterCount": 420,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2145,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "BED IN SUMMER In winter I get up at night And dress by yellow candle-light. In summer, quite the other way, I have to go to bed by day. I have to go to bed and...",
+  "sourceOffsets": {
+    "start": 10576,
+    "end": 11085
+  }
+}

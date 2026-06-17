@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-037",
+  "kind": "poem",
+  "label": "From A Railway Carriage",
+  "title": null,
+  "order": 37,
+  "includeByDefault": true,
+  "displayText": "FROM A RAILWAY CARRIAGE\n\n\n Faster than fairies, faster than witches,\n Bridges and houses, hedges and ditches;\n And charging along like troops in a battle\n All through the meadows the horses and cattle:\n All of the sights of the hill and the plain\n Fly as thick as driving rain;\n And ever again, in the wink of an eye,\n Painted stations whistle by.\n Here is a child who clambers and scrambles,\n All by himself and gathering brambles;\n Here is a tramp who stands and gazes;\n And there is the green for stringing the daisies\n Here is a cart run away in the road\n Lumping along with man and load;\n And here is a mill, and there is a river:\n Each a glimpse and gone for ever!",
+  "morseSourceText": "FROM A RAILWAY CARRIAGE\n\n\n Faster than fairies, faster than witches,\n Bridges and houses, hedges and ditches;\n And charging along like troops in a battle\n All through the meadows the horses and cattle:\n All of the sights of the hill and the plain\n Fly as thick as driving rain;\n And ever again, in the wink of an eye,\n Painted stations whistle by.\n Here is a child who clambers and scrambles,\n All by himself and gathering brambles;\n Here is a tramp who stands and gazes;\n And there is the green for stringing the daisies\n Here is a cart run away in the road\n Lumping along with man and load;\n And here is a mill, and there is a river:\n Each a glimpse and gone for ever!",
+  "paragraphs": [
+    "FROM A RAILWAY CARRIAGE",
+    "Faster than fairies, faster than witches, Bridges and houses, hedges and ditches; And charging along like troops in a battle All through the meadows the horses and cattle: All of the sights of the hill and the plain Fly as thick as driving rain; And ever again, in the wink of an eye, Painted stations whistle by. Here is a child who clambers and scrambles, All by himself and gathering brambles; Here is a tramp who stands and gazes; And there is the green for stringing the daisies Here is a cart run away in the road Lumping along with man and load; And here is a mill, and there is a river: Each a glimpse and gone for ever!"
+  ],
+  "wordCount": 124,
+  "characterCount": 670,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3481,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "FROM A RAILWAY CARRIAGE Faster than fairies, faster than witches, Bridges and houses, hedges and ditches; And charging along like troops in a battle All throug...",
+  "sourceOffsets": {
+    "start": 31789,
+    "end": 32533
+  }
+}

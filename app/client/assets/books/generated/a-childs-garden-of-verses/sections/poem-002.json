@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-002",
+  "kind": "poem",
+  "label": "A Thought",
+  "title": null,
+  "order": 2,
+  "includeByDefault": true,
+  "displayText": "A THOUGHT\n\n\n It is very nice to think\n The world is full of meat and drink,\n With little children saying grace\n In every Christian kind of place.",
+  "morseSourceText": "A THOUGHT\n\n\n It is very nice to think\n The world is full of meat and drink,\n With little children saying grace\n In every Christian kind of place.",
+  "paragraphs": [
+    "A THOUGHT",
+    "It is very nice to think The world is full of meat and drink, With little children saying grace In every Christian kind of place."
+  ],
+  "wordCount": 27,
+  "characterCount": 145,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 740,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "A THOUGHT It is very nice to think The world is full of meat and drink, With little children saying grace In every Christian kind of place.",
+  "sourceOffsets": {
+    "start": 11087,
+    "end": 11341
+  }
+}

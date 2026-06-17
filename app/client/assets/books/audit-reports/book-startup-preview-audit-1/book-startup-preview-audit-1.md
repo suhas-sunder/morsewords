@@ -1,6 +1,6 @@
 # Book Startup Preview Audit 1
 
-Generated at: 2026-06-16T22:21:56.831Z
+Generated at: 2026-06-17T01:08:07.496Z
 
 ## Summary
 
@@ -24,7 +24,7 @@ Generated at: 2026-06-16T22:21:56.831Z
 
 | Slug | Startup preview | First default section | Defaults | Recommendation | Warnings |
 | --- | --- | --- | --- | --- | --- |
-| a-childs-garden-of-verses | valid | part-002 (part) | 1/1 | valid | none |
+| a-childs-garden-of-verses | valid | poem-001 (poem) | 66/65 | valid | none |
 | a-christmas-carol | valid | part-002 (part) | 6/6 | valid | none |
 | a-princess-of-mars | valid | chapter-001 (chapter) | 28/26 | valid | none |
 | alices-adventures-in-wonderland | valid | chapter-001 (chapter) | 12/12 | valid | none |
@@ -32,7 +32,7 @@ Generated at: 2026-06-16T22:21:56.831Z
 | anne-of-green-gables | valid | chapter-001 (chapter) | 38/38 | valid | none |
 | anne-of-green-gables-gutenberg-45 | valid | chapter-001 (chapter) | 38/38 | valid | none |
 | around-the-world-in-eighty-days | valid | chapter-001 (chapter) | 37/37 | valid | none |
-| black-beauty | valid | part-002 (part) | 11/11 | valid | none |
+| black-beauty | valid | chapter-001 (chapter) | 49/49 | valid | none |
 | botchan | valid | chapter-001 (chapter) | 11/11 | valid | none |
 | candide | valid | part-002 (part) | 6/6 | valid | none |
 | crime-and-punishment | valid | chapter-001 (chapter) | 39/44 | blocked/manual review | Not all detected main-readable sections are selected by default. |
@@ -40,43 +40,43 @@ Generated at: 2026-06-16T22:21:56.831Z
 | don-quixote | valid | chapter-001 (chapter) | 126/126 | valid | none |
 | dr-jekyll-and-mr-hyde | valid | part-002 (part) | 5/5 | valid | none |
 | dracula | valid | chapter-001 (chapter) | 27/26 | valid | none |
-| five-little-peppers-and-how-they-grew | valid | part-002 (part) | 13/13 | valid | none |
+| five-little-peppers-and-how-they-grew | valid | chapter-001 (chapter) | 25/25 | valid | none |
 | frankenstein | valid | letter-001 (letter) | 28/28 | valid | none |
-| grimm-s-fairy-tales | valid | part-002 (part) | 17/17 | valid | none |
+| grimm-s-fairy-tales | valid | chapter-001 (chapter) | 66/66 | valid | none |
 | gulliver-s-travels | valid | chapter-001 (chapter) | 39/44 | blocked/manual review | Not all detected main-readable sections are selected by default. |
 | heidi | valid | part-002 (part) | 9/9 | valid | none |
 | jabberwocky | valid | part-001 (part) | 1/1 | valid | none |
 | jack-and-jill | valid | chapter-001 (chapter) | 24/24 | valid | none |
 | jane-eyre | valid | chapter-001 (chapter) | 37/36 | valid | none |
 | les-miserables | valid | chapter-001 (chapter) | 363/361 | valid | none |
-| little-women | valid | part-002 (part) | 36/36 | valid | none |
-| new-treasure-seekers | valid | part-002 (part) | 11/11 | valid | none |
+| little-women | valid | chapter-001 (chapter) | 47/47 | valid | none |
+| new-treasure-seekers | valid | chapter-001 (chapter) | 13/12 | valid | none |
 | nights-with-uncle-remus | valid | part-002 (part) | 19/19 | valid | none |
 | peter-pan | valid | chapter-001 (chapter) | 18/18 | valid | none |
-| pride-and-prejudice | valid | chapter-001 (chapter) | 61/1 | valid | none |
+| pride-and-prejudice | valid | chapter-001 (chapter) | 61/61 | valid | none |
 | rainbow-valley | valid | chapter-001 (chapter) | 35/35 | valid | none |
 | rinkitink-in-oz | valid | chapter-001 (chapter) | 24/24 | valid | none |
 | sense-and-sensibility | valid | chapter-001 (chapter) | 50/50 | valid | none |
 | sun-tzu-on-the-art-of-war | valid | chapter-001 (chapter) | 13/13 | valid | none |
 | tarzan-of-the-apes | valid | chapter-001 (chapter) | 28/28 | valid | none |
-| the-arabian-nights | valid | part-002 (part) | 22/22 | valid | none |
+| the-arabian-nights | valid | chapter-001 (chapter) | 17/17 | valid | none |
 | the-art-of-war | valid | chapter-001 (chapter) | 13/11 | valid | none |
 | the-bell | valid | part-001 (part) | 2/2 | valid | none |
-| the-book-of-dragons | valid | part-002 (part) | 7/7 | valid | none |
+| the-book-of-dragons | valid | chapter-001 (chapter) | 8/8 | valid | none |
 | the-call-of-cthulhu | valid | part-002 (part) | 3/3 | valid | none |
 | the-call-of-the-wild | valid | chapter-001 (chapter) | 7/7 | valid | none |
 | the-count-of-monte-cristo | valid | chapter-001 (chapter) | 117/117 | valid | none |
 | the-count-of-monte-cristo-gutenberg-1184 | valid | chapter-001 (chapter) | 117/117 | valid | none |
-| the-divine-comedy | valid | part-001 (part) | 22/22 | valid | none |
+| the-divine-comedy | valid | poem-001 (poem) | 100/100 | valid | none |
 | the-elderbush | valid | part-001 (part) | 1/1 | valid | none |
-| the-elements-of-style | valid | part-002 (part) | 2/2 | valid | none |
+| the-elements-of-style | valid | part-001 (part) | 25/24 | valid | none |
 | the-emerald-city-of-oz | valid | part-002 (part) | 10/10 | valid | none |
 | the-emperor-s-new-clothes | valid | part-001 (part) | 2/2 | valid | none |
-| the-federalist-papers | valid | part-002 (part) | 41/41 | valid | none |
+| the-federalist-papers | valid | chapter-001 (chapter) | 86/86 | valid | none |
 | the-fir-tree | valid | part-001 (part) | 2/2 | valid | none |
 | the-great-gatsby | valid | part-002 (part) | 10/10 | valid | none |
 | the-happy-family | valid | chapter-001 (chapter) | 1/1 | valid | none |
-| the-jungle-book | valid | part-002 (part) | 10/10 | valid | none |
+| the-jungle-book | valid | chapter-001 (chapter) | 14/14 | valid | none |
 | the-leap-frog | valid | part-001 (part) | 2/2 | valid | none |
 | the-legend-of-sleepy-hollow | valid | chapter-001 (chapter) | 2/2 | valid | none |
 | the-old-house | valid | part-001 (part) | 5/5 | valid | none |
@@ -92,7 +92,7 @@ Generated at: 2026-06-16T22:21:56.831Z
 | the-swineherd | valid | part-001 (part) | 1/1 | valid | none |
 | the-thirty-nine-steps | valid | chapter-001 (chapter) | 10/10 | valid | none |
 | the-three-musketeers | valid | chapter-001 (chapter) | 67/67 | valid | none |
-| the-water-babies | valid | chapter-001 (chapter) | 9/7 | valid | none |
+| the-water-babies | valid | chapter-001 (chapter) | 9/8 | valid | none |
 | the-wonderful-wizard-of-oz | valid | chapter-001 (chapter) | 24/24 | valid | none |
 | through-the-looking-glass | valid | chapter-001 (chapter) | 12/12 | valid | none |
 | treasure-island | valid | part-001 (part) | 14/14 | valid | none |

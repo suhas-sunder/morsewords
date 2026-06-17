@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-047",
+  "kind": "poem",
+  "label": "Picture-Books In Winter",
+  "title": null,
+  "order": 47,
+  "includeByDefault": true,
+  "displayText": "PICTURE-BOOKS IN WINTER\n\n\n Summer fading, winter comes--\n Frosty mornings, tingling thumbs,\n Window robins, winter rooks,\n And the picture story-books.\n\n Water now is turned to stone\n Nurse and I can walk upon;\n Still we find the flowing brooks\n In the picture story-books.\n\n All the pretty things put by,\n Wait upon the children's eye,\n Sheep and shepherds, trees and crooks,\n In the picture story-books.\n\n We may see how all things are,\n Seas and cities, near and far,\n And the flying fairies' looks,\n In the picture story-books.\n\n How am I to sing your praise,\n Happy chimney-corner days,\n Sitting safe in nursery nooks,\n Reading picture story-books?",
+  "morseSourceText": "PICTURE-BOOKS IN WINTER\n\n\n Summer fading, winter comes--\n Frosty mornings, tingling thumbs,\n Window robins, winter rooks,\n And the picture story-books.\n\n Water now is turned to stone\n Nurse and I can walk upon;\n Still we find the flowing brooks\n In the picture story-books.\n\n All the pretty things put by,\n Wait upon the children's eye,\n Sheep and shepherds, trees and crooks,\n In the picture story-books.\n\n We may see how all things are,\n Seas and cities, near and far,\n And the flying fairies' looks,\n In the picture story-books.\n\n How am I to sing your praise,\n Happy chimney-corner days,\n Sitting safe in nursery nooks,\n Reading picture story-books?",
+  "paragraphs": [
+    "PICTURE-BOOKS IN WINTER",
+    "Summer fading, winter comes-- Frosty mornings, tingling thumbs, Window robins, winter rooks, And the picture story-books.",
+    "Water now is turned to stone Nurse and I can walk upon; Still we find the flowing brooks In the picture story-books.",
+    "All the pretty things put by, Wait upon the children's eye, Sheep and shepherds, trees and crooks, In the picture story-books.",
+    "We may see how all things are, Seas and cities, near and far, And the flying fairies' looks, In the picture story-books.",
+    "How am I to sing your praise, Happy chimney-corner days, Sitting safe in nursery nooks, Reading picture story-books?"
+  ],
+  "wordCount": 102,
+  "characterCount": 653,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3453,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "PICTURE-BOOKS IN WINTER Summer fading, winter comes-- Frosty mornings, tingling thumbs, Window robins, winter rooks, And the picture story-books. Water now is...",
+  "sourceOffsets": {
+    "start": 39770,
+    "end": 40578
+  }
+}

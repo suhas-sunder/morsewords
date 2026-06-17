@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-022",
+  "kind": "poem",
+  "label": "Marching Song",
+  "title": null,
+  "order": 22,
+  "includeByDefault": true,
+  "displayText": "MARCHING SONG\n\n\n Bring the comb and play upon it!\n Marching, here we come!\n Willie cocks his highland bonnet,\n Johnnie beats the drum.\n\n Mary Jane commands the party,\n Peter leads the rear;\n Feet in time, alert and hearty,\n Each a Grenadier!\n\n All in the most martial manner\n Marching double-quick;\n While the napkin, like a banner,\n Waves upon the stick!\n\n Here's enough of fame and pillage,\n Great commander Jane!\n Now that we've been round the village,\n Let's go home again.",
+  "morseSourceText": "MARCHING SONG\n\n\n Bring the comb and play upon it!\n Marching, here we come!\n Willie cocks his highland bonnet,\n Johnnie beats the drum.\n\n Mary Jane commands the party,\n Peter leads the rear;\n Feet in time, alert and hearty,\n Each a Grenadier!\n\n All in the most martial manner\n Marching double-quick;\n While the napkin, like a banner,\n Waves upon the stick!\n\n Here's enough of fame and pillage,\n Great commander Jane!\n Now that we've been round the village,\n Let's go home again.",
+  "paragraphs": [
+    "MARCHING SONG",
+    "Bring the comb and play upon it! Marching, here we come! Willie cocks his highland bonnet, Johnnie beats the drum.",
+    "Mary Jane commands the party, Peter leads the rear; Feet in time, alert and hearty, Each a Grenadier!",
+    "All in the most martial manner Marching double-quick; While the napkin, like a banner, Waves upon the stick!",
+    "Here's enough of fame and pillage, Great commander Jane! Now that we've been round the village, Let's go home again."
+  ],
+  "wordCount": 78,
+  "characterCount": 477,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2467,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "MARCHING SONG Bring the comb and play upon it! Marching, here we come! Willie cocks his highland bonnet, Johnnie beats the drum. Mary Jane commands the party,...",
+  "sourceOffsets": {
+    "start": 22545,
+    "end": 23133
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-028",
+  "kind": "poem",
+  "label": "Foreign Children",
+  "title": null,
+  "order": 28,
+  "includeByDefault": true,
+  "displayText": "FOREIGN CHILDREN\n\n\n Little Indian, Sioux or Crow,\n Little frosty Eskimo,\n Little Turk or Japanee,\n Oh! don't you wish that you were me?\n\n You have seen the scarlet trees\n And the lions over seas;\n You have eaten ostrich eggs,\n And turned the turtles off their legs.\n\n Such a life is very fine,\n But it's not so nice as mine:\n You must often, as you trod,\n Have wearied _not_ to be abroad.\n\n You have curious things to eat,\n I am fed on proper meat;\n You must dwell beyond the foam,\n But I am safe and live at home.\n Little Indian, Sioux or Crow,\n Little frosty Eskimo,\n Little Turk or Japanee,\n Oh! don't you wish that you were me?",
+  "morseSourceText": "FOREIGN CHILDREN\n\n\n Little Indian, Sioux or Crow,\n Little frosty Eskimo,\n Little Turk or Japanee,\n Oh! don't you wish that you were me?\n\n You have seen the scarlet trees\n And the lions over seas;\n You have eaten ostrich eggs,\n And turned the turtles off their legs.\n\n Such a life is very fine,\n But it's not so nice as mine:\n You must often, as you trod,\n Have wearied _not_ to be abroad.\n\n You have curious things to eat,\n I am fed on proper meat;\n You must dwell beyond the foam,\n But I am safe and live at home.\n Little Indian, Sioux or Crow,\n Little frosty Eskimo,\n Little Turk or Japanee,\n Oh! don't you wish that you were me?",
+  "paragraphs": [
+    "FOREIGN CHILDREN",
+    "Little Indian, Sioux or Crow, Little frosty Eskimo, Little Turk or Japanee, Oh! don't you wish that you were me?",
+    "You have seen the scarlet trees And the lions over seas; You have eaten ostrich eggs, And turned the turtles off their legs.",
+    "Such a life is very fine, But it's not so nice as mine: You must often, as you trod, Have wearied _not_ to be abroad.",
+    "You have curious things to eat, I am fed on proper meat; You must dwell beyond the foam, But I am safe and live at home. Little Indian, Sioux or Crow, Little frosty Eskimo, Little Turk or Japanee, Oh! don't you wish that you were me?"
+  ],
+  "wordCount": 116,
+  "characterCount": 631,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3264,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "FOREIGN CHILDREN Little Indian, Sioux or Crow, Little frosty Eskimo, Little Turk or Japanee, Oh! don't you wish that you were me? You have seen the scarlet tre...",
+  "sourceOffsets": {
+    "start": 26602,
+    "end": 27386
+  }
+}

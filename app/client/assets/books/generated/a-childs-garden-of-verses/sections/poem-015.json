@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-015",
+  "kind": "poem",
+  "label": "Auntie's Skirts",
+  "title": null,
+  "order": 15,
+  "includeByDefault": true,
+  "displayText": "AUNTIE'S SKIRTS\n\n\n Whenever Auntie moves around,\n Her dresses make a curious sound,\n They trail behind her up the floor,\n And trundle after through the door.",
+  "morseSourceText": "AUNTIE'S SKIRTS\n\n\n Whenever Auntie moves around,\n Her dresses make a curious sound,\n They trail behind her up the floor,\n And trundle after through the door.",
+  "paragraphs": [
+    "AUNTIE'S SKIRTS",
+    "Whenever Auntie moves around, Her dresses make a curious sound, They trail behind her up the floor, And trundle after through the door."
+  ],
+  "wordCount": 25,
+  "characterCount": 157,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 812,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "AUNTIE'S SKIRTS Whenever Auntie moves around, Her dresses make a curious sound, They trail behind her up the floor, And trundle after through the door.",
+  "sourceOffsets": {
+    "start": 18030,
+    "end": 18231
+  }
+}

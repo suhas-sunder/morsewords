@@ -6,12 +6,12 @@
     {
       "slug": "a-childs-garden-of-verses",
       "path": "/book-previews/a-childs-garden-of-verses.preview.json",
-      "contentVersion": "c260b6b569b067c6",
-      "contentHash": "c260b6b569b067c618f7aaddeefc0e7e5398c1a90438d072885d7183ac392182",
-      "defaultSectionId": "part-002",
-      "previewBytes": 13323,
-      "previewCharacterCount": 12142,
-      "estimatedRuntimeSeconds": 3844,
+      "contentVersion": "767ae75b860d2a7e",
+      "contentHash": "767ae75b860d2a7e2080bb19a01b45ac99da27d50f82cf5f826116ab4da164a5",
+      "defaultSectionId": "poem-001",
+      "previewBytes": 11554,
+      "previewCharacterCount": 10483,
+      "estimatedRuntimeSeconds": 3610,
       "truncated": true
     },
     {
@@ -160,12 +160,12 @@
     {
       "slug": "black-beauty",
       "path": "/book-previews/black-beauty.preview.json",
-      "contentVersion": "0969f5659df97ffd",
-      "contentHash": "0969f5659df97ffd53c108d098c1f639d1b60e6f1f0fd09016b876e5d8450800",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11517,
-      "previewCharacterCount": 10575,
-      "estimatedRuntimeSeconds": 3776,
+      "contentVersion": "7083202f65ef57a8",
+      "contentHash": "7083202f65ef57a80ea5b5db4eda3b656bfe2bbd0e5a857f9ef72336980bd90f",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10655,
+      "previewCharacterCount": 9769,
+      "estimatedRuntimeSeconds": 3475,
       "truncated": true
     },
     {
@@ -259,12 +259,12 @@
     {
       "slug": "five-little-peppers-and-how-they-grew",
       "path": "/book-previews/five-little-peppers-and-how-they-grew.preview.json",
-      "contentVersion": "fa7cc7f9298dec60",
-      "contentHash": "fa7cc7f9298dec609bf854491b137d15588dc77fa615a26c7ebdaf7ef666ab83",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11061,
-      "previewCharacterCount": 9677,
-      "estimatedRuntimeSeconds": 3584,
+      "contentVersion": "914ce326b7e28a90",
+      "contentHash": "914ce326b7e28a901068adbbe19c9ddfb2b0d444ca9fba65ab088d25aabf6b31",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10578,
+      "previewCharacterCount": 9529,
+      "estimatedRuntimeSeconds": 3504,
       "truncated": true
     },
     {
@@ -303,12 +303,12 @@
     {
       "slug": "grimm-s-fairy-tales",
       "path": "/book-previews/grimm-s-fairy-tales.preview.json",
-      "contentVersion": "b5dfddb48cd0ec6d",
-      "contentHash": "b5dfddb48cd0ec6ded7a01c75be83ca851b45c02a714c89531788b47c499574d",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11995,
-      "previewCharacterCount": 10845,
-      "estimatedRuntimeSeconds": 3863,
+      "contentVersion": "60416d45b3f04a3a",
+      "contentHash": "60416d45b3f04a3af6fb7987a14b1bfa1d8ce1b5849d3aee61f64bea3f72b822",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10834,
+      "previewCharacterCount": 10005,
+      "estimatedRuntimeSeconds": 3548,
       "truncated": true
     },
     {
@@ -391,12 +391,12 @@
     {
       "slug": "little-women",
       "path": "/book-previews/little-women.preview.json",
-      "contentVersion": "e0a87f69cf9223dc",
-      "contentHash": "e0a87f69cf9223dc351528cb111f9814aaf6509317c7c00900737e5486000768",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11886,
-      "previewCharacterCount": 10846,
-      "estimatedRuntimeSeconds": 3854,
+      "contentVersion": "532cea1f7a9d2d98",
+      "contentHash": "532cea1f7a9d2d9801c6eee016fbb3936a777c04b15816a08ae5ee7f54bab31c",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10600,
+      "previewCharacterCount": 9610,
+      "estimatedRuntimeSeconds": 3490,
       "truncated": true
     },
     {
@@ -424,12 +424,12 @@
     {
       "slug": "new-treasure-seekers",
       "path": "/book-previews/new-treasure-seekers.preview.json",
-      "contentVersion": "943d40f17c69635b",
-      "contentHash": "943d40f17c69635b6425918eedbbbbd7dd060416fe7a2f62266637e83aec84a4",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11613,
-      "previewCharacterCount": 10524,
-      "estimatedRuntimeSeconds": 3793,
+      "contentVersion": "d971de0e9b28f38a",
+      "contentHash": "d971de0e9b28f38ab37d02809fd74586259794c9bcf77c8de2584a881b3f974e",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10906,
+      "previewCharacterCount": 9978,
+      "estimatedRuntimeSeconds": 3585,
       "truncated": true
     },
     {
@@ -479,13 +479,13 @@
     {
       "slug": "pride-and-prejudice",
       "path": "/book-previews/pride-and-prejudice.preview.json",
-      "contentVersion": "3e405b4190ca10d6",
-      "contentHash": "3e405b4190ca10d6628633dd9d2ca6f7f123f16a8f884f2789989f2c279c9a9d",
+      "contentVersion": "0438f940ef0f913c",
+      "contentHash": "0438f940ef0f913c31ed64a9a14f512cc2bfbf873f8f58766d6e4ce8d9bdea7a",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5766,
-      "previewCharacterCount": 4756,
-      "estimatedRuntimeSeconds": 1740,
-      "truncated": false
+      "previewBytes": 10867,
+      "previewCharacterCount": 9838,
+      "estimatedRuntimeSeconds": 3549,
+      "truncated": true
     },
     {
       "slug": "pygmalion",
@@ -589,12 +589,12 @@
     {
       "slug": "the-arabian-nights",
       "path": "/book-previews/the-arabian-nights.preview.json",
-      "contentVersion": "2931316c3abb6bcd",
-      "contentHash": "2931316c3abb6bcdae53a50a79111240037d1acaa366a27429f5bc5ea0702529",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11684,
-      "previewCharacterCount": 10702,
-      "estimatedRuntimeSeconds": 3839,
+      "contentVersion": "7fb4ff78ea8e99bc",
+      "contentHash": "7fb4ff78ea8e99bc1dee2f036223c2472b4695b7dd458911db39fe37f3b027a5",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10494,
+      "previewCharacterCount": 9598,
+      "estimatedRuntimeSeconds": 3419,
       "truncated": true
     },
     {
@@ -622,12 +622,12 @@
     {
       "slug": "the-book-of-dragons",
       "path": "/book-previews/the-book-of-dragons.preview.json",
-      "contentVersion": "837f1e2e43abb5df",
-      "contentHash": "837f1e2e43abb5dfc68f36aa4b3bf9f44f0581fe645c65dc7cd5706f2d2892f3",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11532,
-      "previewCharacterCount": 10598,
-      "estimatedRuntimeSeconds": 3816,
+      "contentVersion": "173716579df8f6b0",
+      "contentHash": "173716579df8f6b003f1150c87924eae91cbc2ea9cddd0f660dba4f04687ef85",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10686,
+      "previewCharacterCount": 9676,
+      "estimatedRuntimeSeconds": 3485,
       "truncated": true
     },
     {
@@ -677,12 +677,12 @@
     {
       "slug": "the-divine-comedy",
       "path": "/book-previews/the-divine-comedy.preview.json",
-      "contentVersion": "0c9eb264fb463cce",
-      "contentHash": "0c9eb264fb463cce4bcb6300ee590ccd7d03ac2ebb22faa8965475f3fc1025c5",
-      "defaultSectionId": "part-001",
-      "previewBytes": 12009,
-      "previewCharacterCount": 10670,
-      "estimatedRuntimeSeconds": 3847,
+      "contentVersion": "9b6073b0eccbe686",
+      "contentHash": "9b6073b0eccbe68665322931239833ad595dffa4a0eb7fd54347512564598866",
+      "defaultSectionId": "poem-001",
+      "previewBytes": 10383,
+      "previewCharacterCount": 9467,
+      "estimatedRuntimeSeconds": 3420,
       "truncated": true
     },
     {
@@ -710,12 +710,12 @@
     {
       "slug": "the-elements-of-style",
       "path": "/book-previews/the-elements-of-style.preview.json",
-      "contentVersion": "5f836c9f3a90c6dc",
-      "contentHash": "5f836c9f3a90c6dc9188396824e1ad9e3e8f6aaf25241051b5709d779d8c9364",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11903,
-      "previewCharacterCount": 10850,
-      "estimatedRuntimeSeconds": 3807,
+      "contentVersion": "e67ae63c06ff71be",
+      "contentHash": "e67ae63c06ff71be8535ddd8b7b06724e6b64792ec4a8d7a1b47f58321e9c9f4",
+      "defaultSectionId": "part-001",
+      "previewBytes": 11021,
+      "previewCharacterCount": 10108,
+      "estimatedRuntimeSeconds": 3603,
       "truncated": true
     },
     {
@@ -743,12 +743,12 @@
     {
       "slug": "the-federalist-papers",
       "path": "/book-previews/the-federalist-papers.preview.json",
-      "contentVersion": "ff3de53fd6e88fdf",
-      "contentHash": "ff3de53fd6e88fdf94678df84358642755931ee7d4a717b79f944624331256b0",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11305,
-      "previewCharacterCount": 10368,
-      "estimatedRuntimeSeconds": 3668,
+      "contentVersion": "e592d3d51185c492",
+      "contentHash": "e592d3d51185c492b737390c3546befd06ca1d8aecc75d620ebdb0b7223eeb0d",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10777,
+      "previewCharacterCount": 9936,
+      "estimatedRuntimeSeconds": 3515,
       "truncated": true
     },
     {
@@ -809,12 +809,12 @@
     {
       "slug": "the-jungle-book",
       "path": "/book-previews/the-jungle-book.preview.json",
-      "contentVersion": "acd72a9766510567",
-      "contentHash": "acd72a97665105677829b7f686b529b3bf7b1fb12e8f2005277714a6700b8237",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11837,
-      "previewCharacterCount": 10628,
-      "estimatedRuntimeSeconds": 3811,
+      "contentVersion": "59517ca126132887",
+      "contentHash": "59517ca1261328878c5780a2d1134dfd7df3a0520cb0bd296a9e35abb5038a44",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10979,
+      "previewCharacterCount": 10001,
+      "estimatedRuntimeSeconds": 3603,
       "truncated": true
     },
     {
@@ -1106,12 +1106,12 @@
     {
       "slug": "the-water-babies",
       "path": "/book-previews/the-water-babies.preview.json",
-      "contentVersion": "ab71066d5d14fff5",
-      "contentHash": "ab71066d5d14fff502c8c2b1195e28ebd679c4e2c6e2a527529076c1ba1f7150",
+      "contentVersion": "04dfedc6a8729a59",
+      "contentHash": "04dfedc6a8729a59359d442c1c3c35cb495bb7ef4b0745141394f3bbb5aab98f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11627,
-      "previewCharacterCount": 10697,
-      "estimatedRuntimeSeconds": 3780,
+      "previewBytes": 10876,
+      "previewCharacterCount": 10046,
+      "estimatedRuntimeSeconds": 3597,
       "truncated": true
     },
     {

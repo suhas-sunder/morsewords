@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "the-elements-of-style",
+  "sectionId": "chapter-006",
+  "kind": "chapter",
+  "label": "Rule 6",
+  "title": "Do not break sentences in two",
+  "order": 8,
+  "includeByDefault": true,
+  "displayText": "6. Do not break sentences in two.\n\nIn other words, do not use periods for commas.\n\n I met them on a Cunard liner several years ago. Coming home from\n Liverpool to New York.\n\n He was an interesting talker. A man who had traveled all over the\n world and lived in half a dozen countries.\n\nIn both these examples, the first period should be replaced by a comma,\nand the following word begun with a small letter.\n\nIt is permissible to make an emphatic word or expression serve the\npurpose of a sentence and to punctuate it accordingly:\n\n Again and again he called out. No reply.\n\nThe writer must, however, be certain that the emphasis is warranted, and\nthat he will not be suspected of a mere blunder in syntax or in\npunctuation.\n\nRules 3, 4, 5, and 6 cover the most important principles in the\npunctuation of ordinary sentences; they should be so thoroughly mastered\nthat their application becomes second nature.",
+  "morseSourceText": "6. Do not break sentences in two.\n\nIn other words, do not use periods for commas.\n\n I met them on a Cunard liner several years ago. Coming home from\n Liverpool to New York.\n\n He was an interesting talker. A man who had traveled all over the\n world and lived in half a dozen countries.\n\nIn both these examples, the first period should be replaced by a comma,\nand the following word begun with a small letter.\n\nIt is permissible to make an emphatic word or expression serve the\npurpose of a sentence and to punctuate it accordingly:\n\n Again and again he called out. No reply.\n\nThe writer must, however, be certain that the emphasis is warranted, and\nthat he will not be suspected of a mere blunder in syntax or in\npunctuation.\n\nRules 3, 4, 5, and 6 cover the most important principles in the\npunctuation of ordinary sentences; they should be so thoroughly mastered\nthat their application becomes second nature.",
+  "paragraphs": [
+    "6. Do not break sentences in two.",
+    "In other words, do not use periods for commas.",
+    "I met them on a Cunard liner several years ago. Coming home from Liverpool to New York.",
+    "He was an interesting talker. A man who had traveled all over the world and lived in half a dozen countries.",
+    "In both these examples, the first period should be replaced by a comma, and the following word begun with a small letter.",
+    "It is permissible to make an emphatic word or expression serve the purpose of a sentence and to punctuate it accordingly:",
+    "Again and again he called out. No reply.",
+    "The writer must, however, be certain that the emphasis is warranted, and that he will not be suspected of a mere blunder in syntax or in punctuation.",
+    "Rules 3, 4, 5, and 6 cover the most important principles in the punctuation of ordinary sentences; they should be so thoroughly mastered that their application becomes second nature."
+  ],
+  "wordCount": 161,
+  "characterCount": 908,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4789,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "6. Do not break sentences in two. In other words, do not use periods for commas. I met them on a Cunard liner several years ago. Coming home from Liverpool to...",
+  "sourceOffsets": {
+    "start": 17577,
+    "end": 18518
+  }
+}

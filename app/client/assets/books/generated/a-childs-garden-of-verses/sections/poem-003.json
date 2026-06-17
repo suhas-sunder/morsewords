@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-003",
+  "kind": "poem",
+  "label": "At the Sea-Side",
+  "title": null,
+  "order": 3,
+  "includeByDefault": true,
+  "displayText": "AT THE SEA-SIDE\n\n\n When I was down beside the sea\n A wooden spade they gave to me\n To dig the sandy shore.\n\n My holes were empty like a cup.\n In every hole the sea came up,\n Till it could come no more.",
+  "morseSourceText": "AT THE SEA-SIDE\n\n\n When I was down beside the sea\n A wooden spade they gave to me\n To dig the sandy shore.\n\n My holes were empty like a cup.\n In every hole the sea came up,\n Till it could come no more.",
+  "paragraphs": [
+    "AT THE SEA-SIDE",
+    "When I was down beside the sea A wooden spade they gave to me To dig the sandy shore.",
+    "My holes were empty like a cup. In every hole the sea came up, Till it could come no more."
+  ],
+  "wordCount": 42,
+  "characterCount": 201,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1004,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "AT THE SEA-SIDE When I was down beside the sea A wooden spade they gave to me To dig the sandy shore. My holes were empty like a cup. In every hole the sea cam...",
+  "sourceOffsets": {
+    "start": 11343,
+    "end": 11619
+  }
+}

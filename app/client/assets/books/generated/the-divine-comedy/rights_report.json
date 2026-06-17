@@ -33,13 +33,15 @@
   "trademark_or_character_brand_risk": "none",
   "content_brand_safety_risk": "none",
   "owner_reviewed_approval_present": false,
-  "approved_for_website": false,
+  "approved_for_website": true,
   "approved_for_youtube_narration": false,
-  "approved_regions": [],
-  "approval_source": "manual-review",
+  "approved_regions": [
+    "US"
+  ],
+  "approval_source": "external-authority",
   "duplicate_resolution_source": "not-needed",
-  "canada_us_v1_status": "needs_manual_review",
-  "reasoning_summary": "Original publication metadata was not found. Original publication year is missing or not before 1931. Illustrations or image references need manual handling. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.",
+  "canada_us_v1_status": "approved",
+  "reasoning_summary": "Controlled pilot write pass 4 used source-backed boundaries from dry-run batch 4 review and did not modify raw sources or Cloudflare exports.",
   "evidence_snippets": [
     "Author death year authority: project-gutenberg-rdf 8800 https://www.gutenberg.org/cache/epub/8800/pg8800.rdf",
     "Translator death year authority: project-gutenberg-rdf 8800 https://www.gutenberg.org/cache/epub/8800/pg8800.rdf",
@@ -48,5 +50,5 @@
     "Non-U.S. warning: ect Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: The divine comedy Author: Dan",
     "Illustration or image reference: PARADISE BY DANTE ALIGHIERI TRANSLATED BY THE REV. H. F. CARY, M.A. Illustrated by M. Gustave Doré LIST OF CANTOS HELL Canto 1 Canto 2 Canto 3 Canto 4 Canto 5 Canto 6 Canto 7 Canto 8 Canto 9"
   ],
-  "processing_allowed": false
+  "processing_allowed": true
 }

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-059",
+  "kind": "poem",
+  "label": "The Gardener",
+  "title": null,
+  "order": 59,
+  "includeByDefault": true,
+  "displayText": "THE GARDENER\n\n\n The gardener does not love to talk,\n He makes me keep the gravel walk;\n And when he puts his tools away,\n He locks the door and takes the key.\n\n Away behind the currant row,\n Where no one else but cook may go,\n Far in the plots, I see him dig,\n Old and serious, brown and big.\n\n He digs the flowers, green, red, and blue,\n Nor wishes to be spoken to.\n He digs the flowers and cuts the hay,\n And never seems to want to play.\n\n Silly gardener! summer goes,\n And winter comes with pinching toes,\n When in the garden bare and brown\n You must lay your barrow down.\n\n Well now, and while the summer stays,\n To profit by these garden days\n O how much wiser you would be\n To play at Indian wars with me!",
+  "morseSourceText": "THE GARDENER\n\n\n The gardener does not love to talk,\n He makes me keep the gravel walk;\n And when he puts his tools away,\n He locks the door and takes the key.\n\n Away behind the currant row,\n Where no one else but cook may go,\n Far in the plots, I see him dig,\n Old and serious, brown and big.\n\n He digs the flowers, green, red, and blue,\n Nor wishes to be spoken to.\n He digs the flowers and cuts the hay,\n And never seems to want to play.\n\n Silly gardener! summer goes,\n And winter comes with pinching toes,\n When in the garden bare and brown\n You must lay your barrow down.\n\n Well now, and while the summer stays,\n To profit by these garden days\n O how much wiser you would be\n To play at Indian wars with me!",
+  "paragraphs": [
+    "THE GARDENER",
+    "The gardener does not love to talk, He makes me keep the gravel walk; And when he puts his tools away, He locks the door and takes the key.",
+    "Away behind the currant row, Where no one else but cook may go, Far in the plots, I see him dig, Old and serious, brown and big.",
+    "He digs the flowers, green, red, and blue, Nor wishes to be spoken to. He digs the flowers and cuts the hay, And never seems to want to play.",
+    "Silly gardener! summer goes, And winter comes with pinching toes, When in the garden bare and brown You must lay your barrow down.",
+    "Well now, and while the summer stays, To profit by these garden days O how much wiser you would be To play at Indian wars with me!"
+  ],
+  "wordCount": 137,
+  "characterCount": 711,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3675,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE GARDENER The gardener does not love to talk, He makes me keep the gravel walk; And when he puts his tools away, He locks the door and takes the key. Away b...",
+  "sourceOffsets": {
+    "start": 52497,
+    "end": 53320
+  }
+}

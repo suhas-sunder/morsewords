@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-014",
+  "kind": "poem",
+  "label": "Where Go the Boats?",
+  "title": null,
+  "order": 14,
+  "includeByDefault": true,
+  "displayText": "WHERE GO THE BOATS?\n\n\n Dark brown is the river,\n Golden is the sand.\n It flows along for ever,\n With trees on either hand.\n\n Green leaves a-floating,\n Castles of the foam,\n Boats of mine a-boating--\n Where will all come home?\n\n On goes the river\n And out past the mill,\n Away down the valley,\n Away down the hill.\n\n Away down the river,\n A hundred miles or more,\n Other little children\n Shall bring my boats ashore.",
+  "morseSourceText": "WHERE GO THE BOATS?\n\n\n Dark brown is the river,\n Golden is the sand.\n It flows along for ever,\n With trees on either hand.\n\n Green leaves a-floating,\n Castles of the foam,\n Boats of mine a-boating--\n Where will all come home?\n\n On goes the river\n And out past the mill,\n Away down the valley,\n Away down the hill.\n\n Away down the river,\n A hundred miles or more,\n Other little children\n Shall bring my boats ashore.",
+  "paragraphs": [
+    "WHERE GO THE BOATS?",
+    "Dark brown is the river, Golden is the sand. It flows along for ever, With trees on either hand.",
+    "Green leaves a-floating, Castles of the foam, Boats of mine a-boating-- Where will all come home?",
+    "On goes the river And out past the mill, Away down the valley, Away down the hill.",
+    "Away down the river, A hundred miles or more, Other little children Shall bring my boats ashore."
+  ],
+  "wordCount": 73,
+  "characterCount": 415,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2142,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "WHERE GO THE BOATS? Dark brown is the river, Golden is the sand. It flows along for ever, With trees on either hand. Green leaves a-floating, Castles of the fo...",
+  "sourceOffsets": {
+    "start": 17502,
+    "end": 18028
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-007",
+  "kind": "poem",
+  "label": "Pirate Story",
+  "title": null,
+  "order": 7,
+  "includeByDefault": true,
+  "displayText": "PIRATE STORY\n\n\n Three of us afloat in the meadow by the swing,\n Three of us aboard in the basket on the lea.\n Winds are in the air, they are blowing in the spring,\n And waves are on the meadow like the waves there are at sea.\n\n Where shall we adventure, to-day that we're afloat,\n Wary of the weather and steering by a star?\n Shall it be to Africa, a-steering of the boat,\n To Providence, or Babylon, or off to Malabar?\n\n Hi! but here's a squadron a-rowing on the sea--\n Cattle on the meadow a-charging with a roar!\n Quick, and we'll escape them, they're as mad as they can be,\n The wicket is the harbour and the garden is the shore.",
+  "morseSourceText": "PIRATE STORY\n\n\n Three of us afloat in the meadow by the swing,\n Three of us aboard in the basket on the lea.\n Winds are in the air, they are blowing in the spring,\n And waves are on the meadow like the waves there are at sea.\n\n Where shall we adventure, to-day that we're afloat,\n Wary of the weather and steering by a star?\n Shall it be to Africa, a-steering of the boat,\n To Providence, or Babylon, or off to Malabar?\n\n Hi! but here's a squadron a-rowing on the sea--\n Cattle on the meadow a-charging with a roar!\n Quick, and we'll escape them, they're as mad as they can be,\n The wicket is the harbour and the garden is the shore.",
+  "paragraphs": [
+    "PIRATE STORY",
+    "Three of us afloat in the meadow by the swing, Three of us aboard in the basket on the lea. Winds are in the air, they are blowing in the spring, And waves are on the meadow like the waves there are at sea.",
+    "Where shall we adventure, to-day that we're afloat, Wary of the weather and steering by a star? Shall it be to Africa, a-steering of the boat, To Providence, or Babylon, or off to Malabar?",
+    "Hi! but here's a squadron a-rowing on the sea-- Cattle on the meadow a-charging with a roar! Quick, and we'll escape them, they're as mad as they can be, The wicket is the harbour and the garden is the shore."
+  ],
+  "wordCount": 120,
+  "characterCount": 633,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3301,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "PIRATE STORY Three of us afloat in the meadow by the swing, Three of us aboard in the basket on the lea. Winds are in the air, they are blowing in the spring,...",
+  "sourceOffsets": {
+    "start": 12662,
+    "end": 13367
+  }
+}

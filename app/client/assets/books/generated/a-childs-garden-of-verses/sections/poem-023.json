@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-023",
+  "kind": "poem",
+  "label": "The Cow",
+  "title": null,
+  "order": 23,
+  "includeByDefault": true,
+  "displayText": "THE COW\n\n\n The friendly cow all red and white,\n I love with all my heart:\n She gives me cream with all her might,\n To eat with apple-tart.\n\n She wanders lowing here and there,\n And yet she cannot stray,\n All in the pleasant open air,\n The pleasant light of day;\n\n And blown by all the winds that pass\n And wet with all the showers,\n She walks among the meadow grass\n And eats the meadow flowers.",
+  "morseSourceText": "THE COW\n\n\n The friendly cow all red and white,\n I love with all my heart:\n She gives me cream with all her might,\n To eat with apple-tart.\n\n She wanders lowing here and there,\n And yet she cannot stray,\n All in the pleasant open air,\n The pleasant light of day;\n\n And blown by all the winds that pass\n And wet with all the showers,\n She walks among the meadow grass\n And eats the meadow flowers.",
+  "paragraphs": [
+    "THE COW",
+    "The friendly cow all red and white, I love with all my heart: She gives me cream with all her might, To eat with apple-tart.",
+    "She wanders lowing here and there, And yet she cannot stray, All in the pleasant open air, The pleasant light of day;",
+    "And blown by all the winds that pass And wet with all the showers, She walks among the meadow grass And eats the meadow flowers."
+  ],
+  "wordCount": 74,
+  "characterCount": 395,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2019,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE COW The friendly cow all red and white, I love with all my heart: She gives me cream with all her might, To eat with apple-tart. She wanders lowing here an...",
+  "sourceOffsets": {
+    "start": 23135,
+    "end": 23638
+  }
+}

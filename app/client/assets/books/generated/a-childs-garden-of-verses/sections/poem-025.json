@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-025",
+  "kind": "poem",
+  "label": "The Wind",
+  "title": null,
+  "order": 25,
+  "includeByDefault": true,
+  "displayText": "THE WIND\n\n\n I saw you toss the kites on high\n And blow the birds about the sky;\n And all around I heard you pass,\n Like ladies' skirts across the grass--\n O wind, a-blowing all day long,\n O wind, that sings so loud a song!\n\n I saw the different things you did,\n But always you yourself you hid.\n I felt you push, I heard you call,\n I could not see yourself at all--\n O wind, a-blowing all day long,\n O wind, that sings so loud a song!\n\n O you that are so strong and cold,\n O blower, are you young or old?\n Are you a beast of field and tree,\n Or just a stronger child than me?\n O wind, a-blowing all day long,\n O wind, that sings so loud a song!",
+  "morseSourceText": "THE WIND\n\n\n I saw you toss the kites on high\n And blow the birds about the sky;\n And all around I heard you pass,\n Like ladies' skirts across the grass--\n O wind, a-blowing all day long,\n O wind, that sings so loud a song!\n\n I saw the different things you did,\n But always you yourself you hid.\n I felt you push, I heard you call,\n I could not see yourself at all--\n O wind, a-blowing all day long,\n O wind, that sings so loud a song!\n\n O you that are so strong and cold,\n O blower, are you young or old?\n Are you a beast of field and tree,\n Or just a stronger child than me?\n O wind, a-blowing all day long,\n O wind, that sings so loud a song!",
+  "paragraphs": [
+    "THE WIND",
+    "I saw you toss the kites on high And blow the birds about the sky; And all around I heard you pass, Like ladies' skirts across the grass-- O wind, a-blowing all day long, O wind, that sings so loud a song!",
+    "I saw the different things you did, But always you yourself you hid. I felt you push, I heard you call, I could not see yourself at all-- O wind, a-blowing all day long, O wind, that sings so loud a song!",
+    "O you that are so strong and cold, O blower, are you young or old? Are you a beast of field and tree, Or just a stronger child than me? O wind, a-blowing all day long, O wind, that sings so loud a song!"
+  ],
+  "wordCount": 130,
+  "characterCount": 644,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3436,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE WIND I saw you toss the kites on high And blow the birds about the sky; And all around I heard you pass, Like ladies' skirts across the grass-- O wind, a-b...",
+  "sourceOffsets": {
+    "start": 23766,
+    "end": 24524
+  }
+}

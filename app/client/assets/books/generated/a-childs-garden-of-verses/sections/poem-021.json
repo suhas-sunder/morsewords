@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-021",
+  "kind": "poem",
+  "label": "Escape At Bedtime",
+  "title": null,
+  "order": 21,
+  "includeByDefault": true,
+  "displayText": "ESCAPE AT BEDTIME\n\n\n The lights from the parlour and kitchen shone out\n Through the blinds and the windows and bars;\n And high overhead and all moving about,\n There were thousands of millions of stars.\n There ne'er were such thousands of leaves on a tree,\n Nor of people in church or the Park,\n As the crowds of the stars that looked down upon me,\n And that glittered and winked in the dark.\n\n The Dog, and the Plough, and the Hunter, and all,\n And the star of the sailor, and Mars,\n These shone in the sky, and the pail by the wall\n Would be half full of water and stars.\n\n They saw me at last, and they chased me with cries,\n And they soon had me packed into bed;\n But the glory kept shining and bright in my eyes,\n And the stars going round in my head.",
+  "morseSourceText": "ESCAPE AT BEDTIME\n\n\n The lights from the parlour and kitchen shone out\n Through the blinds and the windows and bars;\n And high overhead and all moving about,\n There were thousands of millions of stars.\n There ne'er were such thousands of leaves on a tree,\n Nor of people in church or the Park,\n As the crowds of the stars that looked down upon me,\n And that glittered and winked in the dark.\n\n The Dog, and the Plough, and the Hunter, and all,\n And the star of the sailor, and Mars,\n These shone in the sky, and the pail by the wall\n Would be half full of water and stars.\n\n They saw me at last, and they chased me with cries,\n And they soon had me packed into bed;\n But the glory kept shining and bright in my eyes,\n And the stars going round in my head.",
+  "paragraphs": [
+    "ESCAPE AT BEDTIME",
+    "The lights from the parlour and kitchen shone out Through the blinds and the windows and bars; And high overhead and all moving about, There were thousands of millions of stars. There ne'er were such thousands of leaves on a tree, Nor of people in church or the Park, As the crowds of the stars that looked down upon me, And that glittered and winked in the dark.",
+    "The Dog, and the Plough, and the Hunter, and all, And the star of the sailor, and Mars, These shone in the sky, and the pail by the wall Would be half full of water and stars.",
+    "They saw me at last, and they chased me with cries, And they soon had me packed into bed; But the glory kept shining and bright in my eyes, And the stars going round in my head."
+  ],
+  "wordCount": 145,
+  "characterCount": 755,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3929,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "ESCAPE AT BEDTIME The lights from the parlour and kitchen shone out Through the blinds and the windows and bars; And high overhead and all moving about, There...",
+  "sourceOffsets": {
+    "start": 21660,
+    "end": 22543
+  }
+}

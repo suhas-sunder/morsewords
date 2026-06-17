@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "grimm-s-fairy-tales",
+  "sectionId": "chapter-015",
+  "kind": "chapter",
+  "label": "The Adventures Of Chanticleer and Partlet",
+  "title": null,
+  "order": 15,
+  "includeByDefault": true,
+  "displayText": "THE ADVENTURES OF CHANTICLEER AND PARTLET",
+  "morseSourceText": "THE ADVENTURES OF CHANTICLEER AND PARTLET",
+  "paragraphs": [
+    "THE ADVENTURES OF CHANTICLEER AND PARTLET"
+  ],
+  "wordCount": 6,
+  "characterCount": 41,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 1,
+  "morseCharacterEstimate": 212,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "THE ADVENTURES OF CHANTICLEER AND PARTLET",
+  "sourceOffsets": {
+    "start": 110276,
+    "end": 110321
+  }
+}

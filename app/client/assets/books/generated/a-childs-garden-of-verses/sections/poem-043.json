@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "a-childs-garden-of-verses",
+  "sectionId": "poem-043",
+  "kind": "poem",
+  "label": "3. In Port",
+  "title": null,
+  "order": 43,
+  "includeByDefault": true,
+  "displayText": "_3. In Port_\n\n Last, to the chamber where I lie\n My fearful footsteps patter nigh,\n And come from out the cold and gloom\n Into my warm and cheerful room.\n\n There, safe arrived, we turn about\n To keep the coming shadows out,\n And close the happy door at last\n On all the perils that we past.\n\n Then, when mamma goes by to bed,\n She shall come in with tip-toe tread,\n And see me lying warm and fast\n And in the Land of Nod at last.\n\n\nTHE CHILD ALONE",
+  "morseSourceText": "_3. In Port_\n\n Last, to the chamber where I lie\n My fearful footsteps patter nigh,\n And come from out the cold and gloom\n Into my warm and cheerful room.\n\n There, safe arrived, we turn about\n To keep the coming shadows out,\n And close the happy door at last\n On all the perils that we past.\n\n Then, when mamma goes by to bed,\n She shall come in with tip-toe tread,\n And see me lying warm and fast\n And in the Land of Nod at last.\n\n\nTHE CHILD ALONE",
+  "paragraphs": [
+    "_3. In Port_",
+    "Last, to the chamber where I lie My fearful footsteps patter nigh, And come from out the cold and gloom Into my warm and cheerful room.",
+    "There, safe arrived, we turn about To keep the coming shadows out, And close the happy door at last On all the perils that we past.",
+    "Then, when mamma goes by to bed, She shall come in with tip-toe tread, And see me lying warm and fast And in the Land of Nod at last.",
+    "THE CHILD ALONE"
+  ],
+  "wordCount": 87,
+  "characterCount": 447,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2296,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "_3. In Port_ Last, to the chamber where I lie My fearful footsteps patter nigh, And come from out the cold and gloom Into my warm and cheerful room. There, saf...",
+  "sourceOffsets": {
+    "start": 36126,
+    "end": 36675
+  }
+}
