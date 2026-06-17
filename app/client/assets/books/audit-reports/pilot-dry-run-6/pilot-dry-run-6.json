@@ -1,0 +1,2028 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-dry-run-6",
+  "generatedAt": "2026-06-17T18:04:58.868Z",
+  "branch": "morsewords-book-processing-pilot-dry-run-6-jun-2026",
+  "baseMainCommit": "2b14d62798b68cbe6f8f538a04761baa589cb2e3",
+  "mode": "dry-run/report-only",
+  "selectedBooks": [
+    "a-midsummer-night-s-dream",
+    "a-room-with-a-view",
+    "agamemnon-of-aeschylus",
+    "an-ideal-husband",
+    "catriona",
+    "for-the-duration-of-the-war",
+    "romeo-and-juliet",
+    "spoon-river-anthology",
+    "the-adventures-of-ferdinand-count-fathom",
+    "the-adventures-of-roderick-random",
+    "the-expedition-of-humphry-clinker",
+    "the-importance-of-being-earnest-a-trivial-comedy-for-serious-people",
+    "the-man-who-was-thursday-a-nightmare",
+    "the-money-box",
+    "the-mystery-of-edwin-drood",
+    "the-shunned-house",
+    "the-story-of-the-inexperienced-ghost",
+    "the-winning-of-olwen",
+    "twenty-thousand-leagues-under-the-sea",
+    "with-fire-and-sword"
+  ],
+  "generatedButUnacceptedCandidatesFound": [
+    "a-princess-of-mars",
+    "doctor-dolittle",
+    "heidi",
+    "jabberwocky",
+    "nights-with-uncle-remus",
+    "peter-pan",
+    "tarzan-of-the-apes",
+    "the-great-gatsby",
+    "the-picture-of-dorian-gray",
+    "the-thirty-nine-steps",
+    "wood-folk-at-school"
+  ],
+  "unresolvedSourceGeneratedBooks": [
+    {
+      "slug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "startupPreviewValid": true,
+      "startupRecommendation": "valid",
+      "generatedSectionCount": 30,
+      "reason": "No matching source file was resolved from pass reports, structure audit, processing notes, slug filename, or title filename."
+    },
+    {
+      "slug": "doctor-dolittle",
+      "title": "The Story of Doctor Dolittle",
+      "startupPreviewValid": true,
+      "startupRecommendation": "valid",
+      "generatedSectionCount": 6,
+      "reason": "No matching source file was resolved from pass reports, structure audit, processing notes, slug filename, or title filename."
+    },
+    {
+      "slug": "heidi",
+      "title": "Heidi",
+      "startupPreviewValid": true,
+      "startupRecommendation": "valid",
+      "generatedSectionCount": 11,
+      "reason": "No matching source file was resolved from pass reports, structure audit, processing notes, slug filename, or title filename."
+    },
+    {
+      "slug": "jabberwocky",
+      "title": "Jabberwocky",
+      "startupPreviewValid": true,
+      "startupRecommendation": "valid",
+      "generatedSectionCount": 2,
+      "reason": "No matching source file was resolved from pass reports, structure audit, processing notes, slug filename, or title filename."
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "title": "Nights With Uncle Remus",
+      "startupPreviewValid": true,
+      "startupRecommendation": "valid",
+      "generatedSectionCount": 21,
+      "reason": "No matching source file was resolved from pass reports, structure audit, processing notes, slug filename, or title filename."
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan [Peter and Wendy]",
+      "startupPreviewValid": true,
+      "startupRecommendation": "valid",
+      "generatedSectionCount": 20,
+      "reason": "No matching source file was resolved from pass reports, structure audit, processing notes, slug filename, or title filename."
+    },
+    {
+      "slug": "tarzan-of-the-apes",
+      "title": "Tarzan of the Apes",
+      "startupPreviewValid": true,
+      "startupRecommendation": "valid",
+      "generatedSectionCount": 30,
+      "reason": "No matching source file was resolved from pass reports, structure audit, processing notes, slug filename, or title filename."
+    },
+    {
+      "slug": "the-great-gatsby",
+      "title": "The Great Gatsby",
+      "startupPreviewValid": true,
+      "startupRecommendation": "valid",
+      "generatedSectionCount": 11,
+      "reason": "No matching source file was resolved from pass reports, structure audit, processing notes, slug filename, or title filename."
+    },
+    {
+      "slug": "the-picture-of-dorian-gray",
+      "title": "The Picture of Dorian Gray",
+      "startupPreviewValid": true,
+      "startupRecommendation": "valid",
+      "generatedSectionCount": 23,
+      "reason": "No matching source file was resolved from pass reports, structure audit, processing notes, slug filename, or title filename."
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "startupPreviewValid": true,
+      "startupRecommendation": "valid",
+      "generatedSectionCount": 12,
+      "reason": "No matching source file was resolved from pass reports, structure audit, processing notes, slug filename, or title filename."
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "title": "Wood folk at school",
+      "startupPreviewValid": true,
+      "startupRecommendation": "valid",
+      "generatedSectionCount": 10,
+      "reason": "No matching source file was resolved from pass reports, structure audit, processing notes, slug filename, or title filename."
+    }
+  ],
+  "selectionRules": {
+    "acceptedCorrectedExcludedCount": 97,
+    "knownManualBlockedSuspiciousExcludedCount": 9,
+    "selectedCount": 20,
+    "generatedButUnacceptedWithResolvedRawSourceCount": 0,
+    "rawOnlySelectedCount": 20,
+    "unselectedGeneratedCandidatesWithoutResolvedRawSource": [
+      "a-princess-of-mars",
+      "doctor-dolittle",
+      "heidi",
+      "jabberwocky",
+      "nights-with-uncle-remus",
+      "peter-pan",
+      "tarzan-of-the-apes",
+      "the-great-gatsby",
+      "the-picture-of-dorian-gray",
+      "the-thirty-nine-steps",
+      "wood-folk-at-school"
+    ],
+    "note": "Batch 6 first inventoried remaining generated-but-unaccepted books after excluding the 97 accepted/corrected slugs and known manual/blocked/suspicious slugs. All remaining generated candidates had valid startup previews but no clear raw source match, so they are reported as unresolved-source generated books and are not selected for write planning. The selected batch therefore uses 20 raw-only sources with resolvable temp-books inputs and high/medium structure-audit confidence."
+  },
+  "inputReports": [
+    "app/client/assets/books/audit-reports/book-processing-audit-pass-1.json",
+    "app/client/assets/books/audit-reports/book-processing-audit-pass-2.json",
+    "app/client/assets/books/audit-reports/book-structure-audit-1/book-structure-audit-1.json",
+    "app/client/assets/books/audit-reports/book-startup-preview-audit-1/book-startup-preview-audit-1.json",
+    "app/client/assets/books/audit-reports/pilot-write-5-verification/pilot-write-5-verification.json"
+  ],
+  "protectedPaths": {
+    "rawSourceInput": "app/client/assets/temp-books",
+    "generatedBooks": "app/client/assets/books/generated",
+    "cloudflareExport": "app/client/assets/books/cloudflare-export",
+    "previewAssets": "public/book-previews"
+  },
+  "totals": {
+    "selectedBooks": 20,
+    "alreadyAcceptable": 0,
+    "needsCorrectionBeforeAcceptance": 0,
+    "needsFirstTimeControlledProcessing": 20,
+    "manualReview": 0,
+    "blocked": 0
+  },
+  "futureBatchRule": [
+    "Every future processed book must include valid generated readable content.",
+    "The first default section must come from real readable content.",
+    "All main readable sections must be included by default.",
+    "Each book must have a valid book-specific startup preview.",
+    "Startup previews must not contain `SOS Help!`.",
+    "Startup previews must not use a generic preview fallback.",
+    "Default playback must not begin with title, TOC, source, license, contributor, or transcriber material."
+  ],
+  "laterPhaseRequirements": [
+    "After all books are processed, run an independent second-pass audit using a different strategy.",
+    "After books and the second-pass audit, add original non-spoiler 300-500+ word SEO summaries for each accepted book page.",
+    "After summaries, perform full site SEO/meta review using GSC data and route-level intent.",
+    "Final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable."
+  ],
+  "books": [
+    {
+      "slug": "a-midsummer-night-s-dream",
+      "title": "A Midsummer Night's Dream",
+      "author": [
+        "William Shakespeare"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/A Midsummer Night's Dream.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "play acts",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "play acts",
+        "confidenceLevel": "high",
+        "confidenceScore": 0.92,
+        "estimatedSectionCount": 5,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L101: ACT I",
+          "L654: ACT II",
+          "L1275: ACT III",
+          "L2388: ACT IV",
+          "L2814: ACT V"
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Table of contents appears isolated before readable content.",
+          "Non-prose structure signals need section parsing review."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 5,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 48,
+        "snippet": "Scene I. A wood near Athens Scene II. Another part of the wood ACT III"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 5 likely sections (play acts)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Table of contents appears isolated before readable content.",
+        "Non-prose structure signals need section parsing review.",
+        "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "II. The Same. A Room in a Cottage ACT II Scene I. A wood near Athens Scene II. Another part of the wood ACT III Scene I. The Wood. Scene II. Another part of the wood ACT IV Scene I. The Wood Scene II. Athens. A Room in Quince?s House ACT V Scene I. Athens. ...",
+        "rawEnd": "s Three, Come, come to me, With hands as pale as milk; Lay them in gore, Since you have shore With shears his thread of silk. Tongue, not a word: Come, trusty sword, Come, blade, my breast imbrue; And farewell, friends. Thus Thisbe ends. Adieu, adieu, adieu...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": false,
+        "notes": [
+          "Raw detector reports play acts."
+        ]
+      }
+    },
+    {
+      "slug": "a-room-with-a-view",
+      "title": "A Room with a View",
+      "author": [
+        "E. M. Forster"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/A Room with a View.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "chapter-based roman numerals with part divisions",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "chapter-based roman numerals with part divisions",
+        "confidenceLevel": "high",
+        "confidenceScore": 0.957,
+        "estimatedSectionCount": 21,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L58: Chapter XIX. Lying to Mr. Emerson",
+          "L65: Chapter I",
+          "L554: Chapter II",
+          "L1152: Chapter III",
+          "L1537: Chapter IV",
+          "L1818: Chapter V",
+          "L2319: Chapter VI",
+          "L2749: Chapter VII"
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Table of contents appears isolated before readable content.",
+          "Illustration/image placeholders should be cleaned or suppressed later."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 21,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 71,
+        "snippet": "PART ONE Chapter I"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 21 likely sections (chapter-based roman numerals with part divisions)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Table of contents appears isolated before readable content.",
+        "Illustration/image placeholders should be cleaned or suppressed later."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "ying to Mr. Emerson Chapter XX. The End of the Middle Ages PART ONE Chapter I The Bertolini ?The Signora had no business to do it,? said Miss Bartlett, ?no business at all. She promised us south rooms with a view close together, instead of which here are no...",
+        "rawEnd": "try.? He gave her a sense of deities reconciled, a feeling that, in gaining the man she loved, she would gain something for the whole world. Throughout the squalor of her homeward drive?she spoke at once?his salutation remained. He had robbed the body of it...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": true,
+        "notes": [
+          "Raw detector reports chapter-based roman numerals with part divisions."
+        ]
+      }
+    },
+    {
+      "slug": "agamemnon-of-aeschylus",
+      "title": "The Agamemnon of Aeschylus",
+      "author": [
+        "Aeschylus"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/Agamemnon of Aeschylus.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "story or titled-section headings",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "story or titled-section headings",
+        "confidenceLevel": "high",
+        "confidenceScore": 0.831,
+        "estimatedSectionCount": 229,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L47: RUSKIN HOUSE, 40 MUSEUM STREET, W.C.",
+          "L264: AGAMEMNON",
+          "L267: CHARACTERS IN THE PLAY",
+          "L281: A WATCHMAN.",
+          "L282: A HERALD.",
+          "L285: CHARACTERS MENTIONED IN THE PLAY",
+          "L306: THE AGAMEMNON",
+          "L451: CHORUS."
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Illustration/image placeholders should be cleaned or suppressed later.",
+          "Decorative/page markers are cleanup candidates but not boundary blockers.",
+          "Unicode/OCR/copy-paste artifacts are present."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 229,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 55,
+        "snippet": "PREFACE The sense of difficulty, and indeed of awe, with which a scholar approaches the task of translating the _Agamemnon_ depends directly on its greatness as poetry. It is in part a matter of diction. The"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 229 likely sections (story or titled-section headings)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Illustration/image placeholders should be cleaned or suppressed later.",
+        "Decorative/page markers are cleanup candidates but not boundary blockers.",
+        "Unicode/OCR/copy-paste artifacts are present.",
+        "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "LTD. RUSKIN HOUSE, 40 MUSEUM STREET, W.C. PREFACE The sense of difficulty, and indeed of awe, with which a scholar approaches the task of translating the _Agamemnon_ depends directly on its greatness as poetry. It is in part a matter of diction. The languag...",
+        "rawEnd": "art indeed fallen far astray]?Because they had said ?what _man_? [P. 56, l. 1265, These wreathed bands, this staff of prophesy.]?Cf. _Trojan Women_, ll. 451 ff., p. 34. [P. 60, ll. 1343 ff., The death cry; the hesitation of the Elders.]?This scene is often ...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": true,
+        "notes": [
+          "Raw detector reports story or titled-section headings."
+        ]
+      }
+    },
+    {
+      "slug": "an-ideal-husband",
+      "title": "An Ideal Husband",
+      "author": [
+        "Oscar Wilde"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/An Ideal Husband.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "isolated titled sections",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "isolated titled sections",
+        "confidenceLevel": "high",
+        "confidenceScore": 0.901,
+        "estimatedSectionCount": 198,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L62: VISCOUNT GORING, his Son",
+          "L64: SIR ROBERT CHILTERN, Bart., Under-Secretary for Foreign Affairs",
+          "L66: VICOMTE DE NANJAC, Attach? at the French Embassy in London",
+          "L70: MASON, Butler to Sir Robert Chiltern",
+          "L72: PHIPPS, Lord Goring?s Servant",
+          "L86: MISS MABEL CHILTERN, Sir Robert Chiltern?s Sister",
+          "L103: TIME: _The Present_",
+          "L113: _Sole Lessee_: _Mr. Herbert Beerbohm Tree_"
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "low",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Non-prose structure signals need section parsing review."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 198,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 99,
+        "snippet": "ACT I. _The Octagon Room in Sir Robert Chiltern?s House in Grosvenor Square_. ACT II. _Morning-room in Sir Robert Chiltern?s House_. ACT III. _The Library of Lord Goring?s House in Curzon Street_."
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 198 likely sections (isolated titled sections)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Non-prose structure signals need section parsing review.",
+        "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "ABEL CHILTERN, Sir Robert Chiltern?s Sister MRS. CHEVELEY THE SCENES OF THE PLAY ACT I. _The Octagon Room in Sir Robert Chiltern?s House in Grosvenor Square_. ACT II. _Morning-room in Sir Robert Chiltern?s House_. ACT III. _The Library of Lord Goring?s Hous...",
+        "rawEnd": "TERN. [_After a pause_.] Do you really require me to tell you? LORD GORING. Certainly I do. SIR ROBERT CHILTERN. As you choose. When I called on you yesterday evening I found Mrs. Cheveley concealed in your rooms. It was between ten and eleven o?clock at ni...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": false,
+        "notes": [
+          "Raw detector reports isolated titled sections."
+        ]
+      }
+    },
+    {
+      "slug": "catriona",
+      "title": "Catriona",
+      "author": [
+        "Robert Louis Stevenson"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/Catriona.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "chapter-based roman numerals with part divisions",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "chapter-based roman numerals with part divisions",
+        "confidenceLevel": "high",
+        "confidenceScore": 1,
+        "estimatedSectionCount": 30,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L117: CHAPTER I.",
+          "L453: CHAPTER II.",
+          "L809: CHAPTER III.",
+          "L1082: CHAPTER IV.",
+          "L1511: CHAPTER V.",
+          "L1779: CHAPTER VI.",
+          "L2024: CHAPTER VII.",
+          "L2441: CHAPTER VIII."
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Table of contents appears isolated before readable content.",
+          "Footnote/reference section detected.",
+          "Moderate numbered bracket references need cleanup review."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 30,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 122,
+        "snippet": "PART I. THE LORD ADVOCATE"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 30 likely sections (chapter-based roman numerals with part divisions)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Table of contents appears isolated before readable content.",
+        "Footnote/reference section detected.",
+        "Moderate numbered bracket references need cleanup review."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "ow my head before the romance of destiny. R. L. S. _Vailima_, _Upolu_, _Samoa_, 1892. CATRIONA PART I. THE LORD ADVOCATE CHAPTER I. A BEGGAR ON HORSEBACK The 25th day of August, 1751, about two in the afternoon, I, David Balfour, came forth of the British L...",
+        "rawEnd": "here are leemits to my temper.? ?Be damned, sir, but my money?s there!? said James. ?I?m vexed about that, too,? says Alan, with his funny face, ?but now, ye see, it?s mines.? And then with more gravity, ?Be you advised, James More, you leave this house.? J...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": true,
+        "notes": [
+          "Raw detector reports chapter-based roman numerals with part divisions."
+        ]
+      }
+    },
+    {
+      "slug": "for-the-duration-of-the-war",
+      "title": "The Toys of Peace, and Other Papers",
+      "author": [
+        "Saki"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/FOR THE DURATION OF THE WAR.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "isolated titled sections",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "isolated titled sections",
+        "confidenceLevel": "high",
+        "confidenceScore": 0.901,
+        "estimatedSectionCount": 8,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L92: Forbidden Horsepond_, a translation of Baptiste Leopoy?s _L?Abreuvoir",
+          "L186: A Poet praised the Evening Star,",
+          "L209: ?O Moon-faced Charmer, and Star-drown?d Eyes,",
+          "L407: Gutenberg Literary Archive Foundation. Royalty payments must be paid",
+          "L413: Literary Archive Foundation.?",
+          "L452: 1.F.2. LIMITED WARRANTY, DISCLAIMER OF DAMAGES - Except for the ?Right",
+          "L454: Gutenberg Literary Archive Foundation, the owner of the Project",
+          "L539: Literary Archive Foundation"
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Medium-confidence start boundary remains manageable but needs review.",
+          "Footnote/reference section detected."
+        ],
+        "structureConfidence": "medium",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 8,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 30,
+        "snippet": "Transcribed from the 1919 John Lane edition by Jane Duff and David Price, email ccx074@pglaf.org"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 8 likely sections (isolated titled sections)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Medium-confidence start boundary remains manageable but needs review.",
+        "Footnote/reference section detected.",
+        "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "E, AND OTHER PAPERS *** Transcribed from the 1919 John Lane edition by Jane Duff and David Price, email ccx074@pglaf.org THE TOYS OF PEACE AND OTHER PAPERS * * * * * TO THE 22ND ROYAL FUSILIERS * * * * * Note Thanks are due to the Editors of the _Morning Po...",
+        "rawEnd": "the papers to say that they had been familiar with the works of Ghurab in Afghanistan, and Aden, and other suitable localities a quarter of a century ago. A Ghurab-of-Karmanshah Club sprang into existence, the members of which alluded to each other as Broth...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": false,
+        "notes": [
+          "Raw detector reports isolated titled sections."
+        ]
+      }
+    },
+    {
+      "slug": "romeo-and-juliet",
+      "title": "Romeo and Juliet",
+      "author": [
+        "William Shakespeare"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/Romeo and Juliet.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "play acts",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "play acts",
+        "confidenceLevel": "high",
+        "confidenceScore": 0.92,
+        "estimatedSectionCount": 5,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L136: ACT I",
+          "L1412: ACT II",
+          "L2550: ACT III",
+          "L3850: ACT IV",
+          "L4568: ACT V"
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Table of contents appears isolated before readable content.",
+          "Non-prose structure signals need section parsing review."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 5,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 52,
+        "snippet": "Scene I. An open place adjoining Capulet?s Garden. Scene II. Capulet?s Garden. Scene III. Friar Lawrence?s Cell. Scene IV. A Street. Scene V. Capulet?s Garden. Scene VI. Friar Lawrence?s Cell."
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 5 likely sections (play acts)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Table of contents appears isolated before readable content.",
+        "Non-prose structure signals need section parsing review.",
+        "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "V. A Hall in Capulet?s House. ACT II CHORUS. Scene I. An open place adjoining Capulet?s Garden. Scene II. Capulet?s Garden. Scene III. Friar Lawrence?s Cell. Scene IV. A Street. Scene V. Capulet?s Garden. Scene VI. Friar Lawrence?s Cell. ACT III Scene I. A ...",
+        "rawEnd": "was coming from this churchyard side. FIRST WATCH. A great suspicion. Stay the Friar too. Enter the Prince and Attendants. PRINCE. What misadventure is so early up, That calls our person from our morning?s rest? Enter Capulet, Lady Capulet and others. CAPUL...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": false,
+        "notes": [
+          "Raw detector reports play acts."
+        ]
+      }
+    },
+    {
+      "slug": "spoon-river-anthology",
+      "title": "Spoon River Anthology",
+      "author": [
+        "Edgar Lee Masters"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/Spoon River Anthology.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "isolated titled sections",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "isolated titled sections",
+        "confidenceLevel": "high",
+        "confidenceScore": 0.901,
+        "estimatedSectionCount": 329,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L351: Zoll, Perry",
+          "L354: The Hill",
+          "L357: _Where are Elmer, Herman, Bert, Tom and Charley,",
+          "L437: Fletcher McGee",
+          "L645: Benjamin Pantier",
+          "L662: Mrs. Benjamin Pantier",
+          "L783: Benjamin Fraser",
+          "L1007: Doc Hill"
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Medium-confidence start boundary remains manageable but needs review.",
+          "Table of contents appears isolated before readable content.",
+          "Illustration/image placeholders should be cleaned or suppressed later."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 329,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 362,
+        "snippet": "_Where are Elmer, Herman, Bert, Tom and Charley, The weak of will, the strong of arm, the clown, the boozer, the fighter? All, all are sleeping on the hill. One passed in a fever,"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 329 likely sections (isolated titled sections)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Medium-confidence start boundary remains manageable but needs review.",
+        "Table of contents appears isolated before readable content.",
+        "Illustration/image placeholders should be cleaned or suppressed later.",
+        "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "rup Turner, Francis Tutt, Oaks U Unknown, The W Wasson, John Wasson, Rebecca Webster, Charles Weirauch, Adam Weldy, ?Butch? Wertman, Elsa Whedon, Editor Whitney, Harmon Wiley, Rev. Lemuel Will, Arlo William and Emily Williams, Dora Williams, Mrs. Wilmans, H...",
+        "rawEnd": "h the veined leaves and blossoms blow? Why does a goodly tree, while fast maturing, Turn crooked branches covered o?er with scale? Why does the tree whose youth was not assuring Prosper and bear while all its fellows fail? I under earth see much. I know the...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": false,
+        "notes": [
+          "Raw detector reports isolated titled sections."
+        ]
+      }
+    },
+    {
+      "slug": "the-adventures-of-ferdinand-count-fathom",
+      "title": "The Adventures of Ferdinand Count Fathom — Complete",
+      "author": [
+        "T. Smollett"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/The Adventures of Ferdinand Count Fathom.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "story or titled-section headings",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "story or titled-section headings",
+        "confidenceLevel": "high",
+        "confidenceScore": 0.901,
+        "estimatedSectionCount": 163,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L38: COMPLETE IN TWO PARTS",
+          "L333: G. H. MAYNADIER",
+          "L336: THE ADVENTURES OF FERDINAND COUNT FATHOM",
+          "L339: TO DOCTOR ???",
+          "L483: THE AUTHOR.",
+          "L488: SOME SAGE OBSERVATIONS THAT NATURALLY INTRODUCE OUR IMPORTANT HISTORY.",
+          "L638: A SUPERFICIAL VIEW OF OUR HERO?S INFANCY.",
+          "L740: HE IS INITIATED IN A MILITARY LIFE, AND HAS THE GOOD FORTUNE TO ACQUIRE"
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Table of contents appears isolated before readable content."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 163,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 502,
+        "snippet": "CHAPTER ONE SOME SAGE OBSERVATIONS THAT NATURALLY INTRODUCE OUR IMPORTANT HISTORY. Cardinal de Retz very judiciously observes, that all historians must of"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 163 likely sections (story or titled-section headings)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Table of contents appears isolated before readable content.",
+        "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "to rouse the spirit of mirth, wake the soul of compassion, and touch the secret springs that move the heart; I have, at least, adorned virtue with honour and applause, branded iniquity with reproach and shame, and carefully avoided every hint or expression ...",
+        "rawEnd": "her cool and undisturbed. It was upon this occasion that his wife explained the circumstances of that visit which had redeemed him from extremity of wretchedness and the jaws of death; upon which he started up, and throwing himself upon his knees, exclaimed...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": true,
+        "notes": [
+          "Raw detector reports story or titled-section headings."
+        ]
+      }
+    },
+    {
+      "slug": "the-adventures-of-roderick-random",
+      "title": "The Adventures of Roderick Random",
+      "author": [
+        "T. Smollett"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/The Adventures of Roderick Random.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "chapter-based roman numerals",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "chapter-based roman numerals",
+        "confidenceLevel": "high",
+        "confidenceScore": 1,
+        "estimatedSectionCount": 69,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L286: CHAPTER I",
+          "L430: CHAPTER II",
+          "L572: CHAPTER III",
+          "L726: CHAPTER IV",
+          "L838: CHAPTER V",
+          "L1011: CHAPTER VI",
+          "L1257: CHAPTER VII",
+          "L1491: CHAPTER VIII"
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Table of contents appears isolated before readable content."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 69,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 297,
+        "snippet": "CHAPTER I Of my Birth and Parentage"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 69 likely sections (chapter-based roman numerals)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Table of contents appears isolated before readable content."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "that reflects thee in some ungracious particular, keep thy own counsel; consider that one feature makes not a face, and that though thou art, perhaps, distinguished by a bottle nose, twenty of thy neighbours may be in the same predicament.? THE ADVENTURES O...",
+        "rawEnd": "r marriage was fixed two days. During this interval, in which my soul was wound up to the last stretch of rapturous expectation, Narcissa endeavoured to reconcile some of her relations in town to her marriage with me; but, finding them all deaf to her remon...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": false,
+        "notes": [
+          "Raw detector reports chapter-based roman numerals."
+        ]
+      }
+    },
+    {
+      "slug": "the-expedition-of-humphry-clinker",
+      "title": "The Expedition of Humphry Clinker",
+      "author": [
+        "T. Smollett"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/The Expedition of Humphry Clinker.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "story or titled-section headings",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "isolated titled sections",
+        "confidenceLevel": "high",
+        "confidenceScore": 0.901,
+        "estimatedSectionCount": 33,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L102: To the Revd. Mr JONATHAN DUSTWICH, at--",
+          "L149: Yours,",
+          "L257: Dear Molly, Your humble servant to command, W. JENKINS GLOSTAR, April",
+          "L739: Yours always, J. MELFORD",
+          "L838: Dear Phillips, Yours always, J. MELFORD",
+          "L916: Dear Lewis, Yours ever, MAT. BRAMBLE",
+          "L922: To Miss LETTY WILLIS, at Gloucester",
+          "L1225: Dear Phillips, Yours always, J. MELFORD"
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Medium-confidence start boundary remains manageable but needs review."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 77,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 39,
+        "snippet": "To Mr HENRY DAVIS, Bookseller, in London. ABERGAVENNY, Aug. 4. RESPECTED SIR,"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 33 likely sections (isolated titled sections)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Medium-confidence start boundary remains manageable but needs review.",
+        "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "LINKER by TOBIAS SMOLLETT To Mr HENRY DAVIS, Bookseller, in London. ABERGAVENNY, Aug. 4. RESPECTED SIR, I have received your esteemed favour of the 13th ultimo, whereby it appeareth, that you have perused those same Letters, the which were delivered unto yo...",
+        "rawEnd": "been soured and shrivelled by disappointment and chagrin, is now swelled out, and smoothed like a raisin in plumb-porridge. From being reserved and punctilious, he is become easy and obliging. He cracks jokes, laughs and banters, with the most facetious fam...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": true,
+        "notes": [
+          "Raw detector reports story or titled-section headings."
+        ]
+      }
+    },
+    {
+      "slug": "the-importance-of-being-earnest-a-trivial-comedy-for-serious-people",
+      "title": "The Importance of Being Earnest: A Trivial Comedy for Serious People",
+      "author": [
+        "Oscar Wilde"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/The Importance of Being Earnest - A Trivial Comedy for Serious People.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "story or titled-section headings",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "story or titled-section headings",
+        "confidenceLevel": "high",
+        "confidenceScore": 0.831,
+        "estimatedSectionCount": 854,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L45: THE SCENES OF THE PLAY",
+          "L55: LONDON: ST. JAMES?S THEATRE",
+          "L74: FIRST ACT",
+          "L77: SCENE",
+          "L89: LANE.",
+          "L97: LANE.",
+          "L100: ALGERNON.",
+          "L104: LANE."
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "low",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Non-prose structure signals need section parsing review."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 854,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 49,
+        "snippet": "ACT I. Algernon Moncrieff?s Flat in Half-Moon Street, W. ACT II. The Garden at the Manor House, Woolton. ACT III. Drawing-Room at the Manor House, Woolton."
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 854 likely sections (story or titled-section headings)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Non-prose structure signals need section parsing review.",
+        "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "s Prism, Governess THE SCENES OF THE PLAY ACT I. Algernon Moncrieff?s Flat in Half-Moon Street, W. ACT II. The Garden at the Manor House, Woolton. ACT III. Drawing-Room at the Manor House, Woolton. TIME: The Present. LONDON: ST. JAMES?S THEATRE Lessee and M...",
+        "rawEnd": "blow. But after all, who has the right to cast a stone against one who has suffered? Cannot repentance wipe out an act of folly? Why should there be one law for men, and another for women? Mother, I forgive you. [Tries to embrace her again.] MISS PRISM. [St...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": true,
+        "notes": [
+          "Raw detector reports story or titled-section headings."
+        ]
+      }
+    },
+    {
+      "slug": "the-man-who-was-thursday-a-nightmare",
+      "title": "The Man Who Was Thursday: A Nightmare",
+      "author": [
+        "G. K. Chesterton"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/The Man Who Was Thursday - A Nightmare.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "chapter-based roman numerals",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "chapter-based roman numerals",
+        "confidenceLevel": "high",
+        "confidenceScore": 1,
+        "estimatedSectionCount": 15,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L135: CHAPTER I.",
+          "L537: CHAPTER II.",
+          "L871: CHAPTER III.",
+          "L1303: CHAPTER IV.",
+          "L1676: CHAPTER V.",
+          "L1987: CHAPTER VI.",
+          "L2289: CHAPTER VII.",
+          "L2607: CHAPTER VIII."
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Table of contents appears isolated before readable content."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 15,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 144,
+        "snippet": "CHAPTER I. THE TWO POETS OF SAFFRON PARK The suburb of Saffron Park lay on the sunset side of London, as red and ragged as a cloud of sunset. It was built of a bright brick throughout;"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 15 likely sections (chapter-based roman numerals)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Table of contents appears isolated before readable content."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": ". We have found common things at last and marriage and a creed, And I may safely write it now, and you may safely read. G. K. C. CHAPTER I. THE TWO POETS OF SAFFRON PARK The suburb of Saffron Park lay on the sunset side of London, as red and ragged as a clo...",
+        "rawEnd": "both sides and fought yourself.? Bull said? ?I understand nothing, but I am happy. In fact, I am going to sleep.? ?I am not happy,? said the Professor with his head in his hands, ?because I do not understand. You let me stray a little too near to hell.? And...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": false,
+        "notes": [
+          "Raw detector reports chapter-based roman numerals."
+        ]
+      }
+    },
+    {
+      "slug": "the-money-box",
+      "title": "Hans Andersen's Fairy Tales. First Series",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE MONEY BOX.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "story or titled-section headings",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "story or titled-section headings",
+        "confidenceLevel": "medium",
+        "confidenceScore": 0.741,
+        "estimatedSectionCount": 4,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L61: GINN AND COMPANY ? PROPRIETORS",
+          "L62: ? BOSTON ? U.S.A.",
+          "L115: J. H. STICKNEY",
+          "L118: THE MONEY BOX"
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Medium-confidence end boundary remains manageable but needs review."
+        ],
+        "structureConfidence": "medium",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 4,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 81,
+        "snippet": "PREFACE The Hans Andersen Fairy Tales will be read in schools and homes as long as there are children who love to read. As a story-teller for children the author has no rival in power to enlist the imagination and carry it"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: medium-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: medium-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 4 likely sections (story or titled-section headings)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Medium-confidence end boundary remains manageable but needs review.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "GINN AND COMPANY ? PROPRIETORS ? BOSTON ? U.S.A. PREFACE The Hans Andersen Fairy Tales will be read in schools and homes as long as there are children who love to read. As a story-teller for children the author has no rival in power to enlist the imaginatio...",
+        "rawEnd": "Certainly sooner than he expected; for all at once down he came from the top of the press, fell on the floor, and was broken to pieces. Then all the pennies hopped and danced about in the most amusing manner. The little ones twirled round like tops, and the...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": true,
+        "notes": [
+          "Raw detector reports story or titled-section headings."
+        ]
+      }
+    },
+    {
+      "slug": "the-mystery-of-edwin-drood",
+      "title": "The Mystery of Edwin Drood",
+      "author": [
+        "Charles Dickens"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/The Mystery of Edwin Drood.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "chapter-based roman numerals",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "chapter-based roman numerals",
+        "confidenceLevel": "high",
+        "confidenceScore": 1,
+        "estimatedSectionCount": 23,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L64: CHAPTER I.",
+          "L203: CHAPTER II.",
+          "L740: CHAPTER III.",
+          "L1301: CHAPTER IV.",
+          "L1716: CHAPTER V.",
+          "L2018: CHAPTER VI.",
+          "L2442: CHAPTER VII.",
+          "L2870: CHAPTER VIII."
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Table of contents appears isolated before readable content.",
+          "Illustration/image placeholders should be cleaned or suppressed later."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 23,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 71,
+        "snippet": "CHAPTER I. THE DAWN An ancient English Cathedral Tower? How can the ancient English Cathedral tower be here! The well-known massive gray square tower of"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 23 likely sections (chapter-based roman numerals)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Table of contents appears isolated before readable content.",
+        "Illustration/image placeholders should be cleaned or suppressed later."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "E MYSTERY OF EDWIN DROOD [Illustration: Rochester castle] CHAPTER I. THE DAWN An ancient English Cathedral Tower? How can the ancient English Cathedral tower be here! The well-known massive gray square tower of its old Cathedral? How can that be here! There...",
+        "rawEnd": "at his service, and glancing about him for Her Royal Highness the Princess Puffer. The service is pretty well advanced before Mr. Datchery can discern Her Royal Highness. But by that time he has made her out, in the shade. She is behind a pillar, carefully ...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": false,
+        "notes": [
+          "Raw detector reports chapter-based roman numerals."
+        ]
+      }
+    },
+    {
+      "slug": "the-shunned-house",
+      "title": "The Shunned House",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/The Shunned House.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "standalone arabic-numbered sections",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "isolated titled sections",
+        "confidenceLevel": "high",
+        "confidenceScore": 0.901,
+        "estimatedSectionCount": 9,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L31: Shunned House",
+          "L1084: [Illustration]",
+          "L1087: Transcriber's Note:",
+          "L1089: This etext was produced from _Weird Tales_ October 1937. Extensive",
+          "L1256: Gutenberg Literary Archive Foundation. Royalty payments must be paid",
+          "L1262: Literary Archive Foundation.?",
+          "L1301: 1.F.2. LIMITED WARRANTY, DISCLAIMER OF DAMAGES - Except for the ?Right",
+          "L1303: Gutenberg Literary Archive Foundation, the owner of the Project"
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Medium-confidence start boundary remains manageable but needs review.",
+          "Transcriber/editor notes are present and should stay out of readable defaults.",
+          "Illustration/image placeholders should be cleaned or suppressed later."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "safe for normal processing",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 9,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 38,
+        "snippet": "_A posthumous story of immense power, written by a master of weird fiction--a tale of a revolting horror in the cellar of an old house in New England_ Howard Phillips Lovecraft died last March, at the height of his"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 9 likely sections (isolated titled sections)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Medium-confidence start boundary remains manageable but needs review.",
+        "Transcriber/editor notes are present and should stay out of readable defaults.",
+        "Illustration/image placeholders should be cleaned or suppressed later.",
+        "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "By H. P. LOVECRAFT _A posthumous story of immense power, written by a master of weird fiction--a tale of a revolting horror in the cellar of an old house in New England_ Howard Phillips Lovecraft died last March, at the height of his career. Though only for...",
+        "rawEnd": "ce. They tell, too, of the hideous roar which at the same time came from some disordered water-pipe or gas main underground--but again I could correct them if I dared. It was unspeakably shocking, and I do not see how I lived through it. I did faint after e...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": false,
+        "notes": [
+          "Raw detector reports standalone arabic-numbered sections."
+        ]
+      }
+    },
+    {
+      "slug": "the-story-of-the-inexperienced-ghost",
+      "title": "Twelve Stories and a Dream",
+      "author": [
+        "H. G. Wells"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE STORY OF THE INEXPERIENCED GHOST.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "isolated titled sections",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "isolated titled sections",
+        "confidenceLevel": "medium",
+        "confidenceScore": 0.741,
+        "estimatedSectionCount": 5,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L122: ?'You CAN'T?'",
+          "L158: ?Try!? said Sanderson. ?HOW??",
+          "L162: ?Passes??",
+          "L242: ?Well??",
+          "L246: ?Yes.?"
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Medium-confidence start boundary remains manageable but needs review.",
+          "Medium-confidence end boundary remains manageable but needs review."
+        ],
+        "structureConfidence": "medium",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 5,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 29,
+        "snippet": "https://www.gutenberg.org/files/1743/1743-h/1743-h.htm THE STORY OF THE INEXPERIENCED GHOST"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: medium-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: medium-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 5 likely sections (isolated titled sections)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Medium-confidence start boundary remains manageable but needs review.",
+        "Medium-confidence end boundary remains manageable but needs review.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "nson, and David Widger https://www.gutenberg.org/files/1743/1743-h/1743-h.htm THE STORY OF THE INEXPERIENCED GHOST The scene amidst which Clayton told his last story comes back very vividly to my mind. There he sat, for the greater part of the time, in the ...",
+        "rawEnd": "lmost to conviction, that was all!... And then in that moment the face of Clayton, changed. It changed. It changed as a lit house changes when its lights are suddenly extinguished. His eyes were suddenly eyes that were fixed, his smile was frozen on his lip...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": false,
+        "notes": [
+          "Raw detector reports isolated titled sections."
+        ]
+      }
+    },
+    {
+      "slug": "the-winning-of-olwen",
+      "title": "The Lilac Fairy Book",
+      "author": [
+        "Andrew Lang"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/The Winning of Olwen.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "isolated titled sections",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "isolated titled sections",
+        "confidenceLevel": "medium",
+        "confidenceScore": 0.671,
+        "estimatedSectionCount": 3,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L32: Edited by Andrew Lang",
+          "L35: The Winning of Olwen",
+          "L466: Then said Kai:"
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Medium-confidence start boundary remains manageable but needs review.",
+          "Medium-confidence end boundary remains manageable but needs review."
+        ],
+        "structureConfidence": "medium",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 3,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 49,
+        "snippet": "There was once a king and queen who had a little boy, and they called his name Kilweh. The queen, his mother, fell ill soon after his birth, and as she could not take care of him herself she sent him to a woman she knew up in the mountains, so that he might..."
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: medium-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: medium-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 3 likely sections (isolated titled sections)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Medium-confidence start boundary remains manageable but needs review.",
+        "Medium-confidence end boundary remains manageable but needs review.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "The Winning of Olwen There was once a king and queen who had a little boy, and they called his name Kilweh. The queen, his mother, fell ill soon after his birth, and as she could not take care of him herself she sent him to a woman she knew up in the mounta...",
+        "rawEnd": "snatched the razor from him, and another seized the scissors. But before they laid hold of the comb he had shaken them all off, and neither man nor horse nor dog could reach him till he came to Cornwall, whither Arthur had sworn he should not go. Thither Ar...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": false,
+        "notes": [
+          "Raw detector reports isolated titled sections."
+        ]
+      }
+    },
+    {
+      "slug": "twenty-thousand-leagues-under-the-sea",
+      "title": "Twenty Thousand Leagues under the Sea",
+      "author": [
+        "Jules Verne"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/Twenty Thousand Leagues under the Sea.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "chapter-based roman numerals with part divisions",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "chapter-based roman numerals with part divisions",
+        "confidenceLevel": "high",
+        "confidenceScore": 0.946,
+        "estimatedSectionCount": 46,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L106: CHAPTER I",
+          "L315: CHAPTER II",
+          "L499: CHAPTER III",
+          "L683: CHAPTER IV",
+          "L905: CHAPTER V",
+          "L1100: CHAPTER VI",
+          "L1418: CHAPTER VII",
+          "L1685: CHAPTER VIII"
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Table of contents appears isolated before readable content.",
+          "Illustration/image placeholders should be cleaned or suppressed later."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "process with warnings",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 46,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 67,
+        "snippet": "CHAPTER I THE INDIAN OCEAN CHAPTER II A NOVEL PROPOSAL OF CAPTAIN NEMO?S CHAPTER III A PEARL OF TEN MILLIONS CHAPTER IV THE RED SEA CHAPTER V THE ARABIAN TUNNEL CHAPTER VI THE GRECIAN ARCHIPELAGO"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 46 likely sections (chapter-based roman numerals with part divisions)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Table of contents appears isolated before readable content.",
+        "Illustration/image placeholders should be cleaned or suppressed later."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "XXII ??GRI SOMNIA? CHAPTER XXIII THE CORAL KINGDOM PART II CHAPTER I THE INDIAN OCEAN CHAPTER II A NOVEL PROPOSAL OF CAPTAIN NEMO?S CHAPTER III A PEARL OF TEN MILLIONS CHAPTER IV THE RED SEA CHAPTER V THE ARABIAN TUNNEL CHAPTER VI THE GRECIAN ARCHIPELAGO CH...",
+        "rawEnd": "r the catastrophe which ended this voyage. Of Captain Nemo I saw nothing whatever now, nor of his second. Not a man of the crew was visible for an instant. The _Nautilus_ was almost incessantly under water. When we came to the surface to renew the air, the ...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": true,
+        "notes": [
+          "Raw detector reports chapter-based roman numerals with part divisions."
+        ]
+      }
+    },
+    {
+      "slug": "with-fire-and-sword",
+      "title": "With Fire and Sword: An Historical Novel of Poland and Russia",
+      "author": [
+        "Henryk Sienkiewicz"
+      ],
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/With Fire and Sword.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "not generated yet",
+      "generatedOutputExists": false,
+      "previewAssetExists": false,
+      "cloudflareJsonPath": null,
+      "detectedStructuralConvention": "chapter-based roman numerals",
+      "rawStructureDetector": {
+        "detectedStructuralConvention": "chapter-based roman numerals",
+        "confidenceLevel": "high",
+        "confidenceScore": 0.95,
+        "estimatedSectionCount": 63,
+        "fallbackRequired": false,
+        "fallbackLegitimacy": "not required",
+        "redFlags": [],
+        "examplesOfDetectedBodyHeadings": [
+          "L684: CHAPTER I.",
+          "L1220: CHAPTER II.",
+          "L1911: CHAPTER III.",
+          "L2673: CHAPTER IV.",
+          "L3539: CHAPTER V.",
+          "L4274: CHAPTER VI.",
+          "L4560: CHAPTER VII.",
+          "L4809: CHAPTER VIII."
+        ]
+      },
+      "priorAudit": {
+        "pass1Risk": "medium",
+        "pass2Risk": "medium",
+        "pass2Reasons": [
+          "Transcriber/editor notes are present and should stay out of readable defaults.",
+          "Footnote/reference section detected.",
+          "Illustration/image placeholders should be cleaned or suppressed later.",
+          "Moderate numbered bracket references need cleanup review."
+        ],
+        "structureConfidence": "high",
+        "structureRecommendedHandling": "safe for normal processing",
+        "startupRecommendation": null,
+        "startupWarnings": []
+      },
+      "currentGeneratedSectionCount": 0,
+      "proposedSectionCountIfCorrectionNeeded": 63,
+      "firstDefaultSectionCurrently": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "expectedFirstReadableSection": {
+        "sourceLine": 224,
+        "snippet": "INTRODUCTION. The history of the origin and career of the two Slav States, Poland and Russia, is interesting not merely because it contains a vast number of surprising scenes and marvellous pictures of life, not merely because"
+      },
+      "boundaries": {
+        "startBoundaryVerdict": "ready for first-time processing: high-confidence readable start",
+        "endBoundaryVerdict": "ready for first-time processing: high-confidence readable end",
+        "sectioningVerdict": "first-time processing needed: detector found 63 likely sections (chapter-based roman numerals)",
+        "cleanupVerdict": "first-time processing must exclude TOC/source/license/transcriber, image placeholder, footnote, and decorative cleanup artifacts",
+        "previewVerdict": "not applicable yet: preview asset must be generated from first real readable content in the write pass",
+        "allMainReadableDefaultVerdict": "not applicable yet: first-time output must include all main readable sections by default"
+      },
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "canSafelyBeCorrectedLater": false,
+      "warnings": [
+        "Raw-only candidate: generated output and preview assets do not exist yet.",
+        "Transcriber/editor notes are present and should stay out of readable defaults.",
+        "Footnote/reference section detected.",
+        "Illustration/image placeholders should be cleaned or suppressed later.",
+        "Moderate numbered bracket references need cleanup review."
+      ],
+      "hardFailReasons": [],
+      "snippets": {
+        "rawStart": "From an engraving by Moncornet. \"Before them stood a kind of frightful-looking man, or rather an apparition\". Drawn by Evert Van Muyden. [Illustration: Map of the Polish Commonwealth.] INTRODUCTION. The history of the origin and career of the two Slav State...",
+        "rawEnd": "ing, after a murderous, indecisive battle, had concluded a treaty with the Khan, not over favorable, but securing peace to the Commonwealth, for some time at least. Hmelnitski in virtue of the treaty remained hetman, and had the right to select for himself ...",
+        "generatedFirstDefault": null,
+        "generatedLastReadable": null,
+        "previewStart": null
+      },
+      "generatedSections": [],
+      "nestedStructure": {
+        "containsBooksVolumesPartsOrSections": false,
+        "notes": [
+          "Raw detector reports chapter-based roman numerals."
+        ]
+      }
+    }
+  ]
+}
