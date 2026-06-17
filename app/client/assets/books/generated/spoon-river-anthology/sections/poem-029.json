@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-029",
+  "kind": "poem",
+  "label": "Hare Drummer",
+  "title": null,
+  "order": 29,
+  "includeByDefault": true,
+  "displayText": "Hare Drummer\n\n\nDo the boys and girls still go to Siever's\nFor cider, after school, in late September?\nOr gather hazel nuts among the thickets\nOn Aaron Hatfield's farm when the frosts begin?\nFor many times with the laughing girls and boys\nPlayed I along the road and over the hills\nWhen the sun was low and the air was cool,\nStopping to club the walnut tree\nStanding leafless against a flaming west.\nNow, the smell of the autumn smoke,\nAnd the dropping acorns,\nAnd the echoes about the vales\nBring dreams of life.\nThey hover over me.\nThey question me:\nWhere are those laughing comrades?\nHow many are with me, how many\nIn the old orchards along the way to Siever's,\nAnd in the woods that overlook\nThe quiet water?",
+  "morseSourceText": "Hare Drummer\n\n\nDo the boys and girls still go to Siever's\nFor cider, after school, in late September?\nOr gather hazel nuts among the thickets\nOn Aaron Hatfield's farm when the frosts begin?\nFor many times with the laughing girls and boys\nPlayed I along the road and over the hills\nWhen the sun was low and the air was cool,\nStopping to club the walnut tree\nStanding leafless against a flaming west.\nNow, the smell of the autumn smoke,\nAnd the dropping acorns,\nAnd the echoes about the vales\nBring dreams of life.\nThey hover over me.\nThey question me:\nWhere are those laughing comrades?\nHow many are with me, how many\nIn the old orchards along the way to Siever's,\nAnd in the woods that overlook\nThe quiet water?",
+  "paragraphs": [
+    "Hare Drummer",
+    "Do the boys and girls still go to Siever's For cider, after school, in late September? Or gather hazel nuts among the thickets On Aaron Hatfield's farm when the frosts begin? For many times with the laughing girls and boys Played I along the road and over the hills When the sun was low and the air was cool, Stopping to club the walnut tree Standing leafless against a flaming west. Now, the smell of the autumn smoke, And the dropping acorns, And the echoes about the vales Bring dreams of life. They hover over me. They question me: Where are those laughing comrades? How many are with me, how many In the old orchards along the way to Siever's, And in the woods that overlook The quiet water?"
+  ],
+  "wordCount": 131,
+  "characterCount": 711,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3799,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Hare Drummer Do the boys and girls still go to Siever's For cider, after school, in late September? Or gather hazel nuts among the thickets On Aaron Hatfield's...",
+  "sourceOffsets": {
+    "start": 24251,
+    "end": 24992
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-120",
+  "kind": "poem",
+  "label": "The Unknown",
+  "title": null,
+  "order": 120,
+  "includeByDefault": true,
+  "displayText": "The Unknown\n\n\nYe aspiring ones, listen to the story of the unknown\nWho lies here with no stone to mark the place.\nAs a boy reckless and wanton,\nWandering with gun in hand through the forest\nNear the mansion of Aaron Hatfield,\nI shot a hawk perched on the top\nOf a dead tree. He fell with guttural cry\nAt my feet, his wing broken.\nThen I put him in a cage\nWhere he lived many days cawing angrily at me\nWhen I offered him food.\nDaily I search the realms of Hades\nFor the soul of the hawk,\nThat I may offer him the friendship\nOf one whom life wounded and caged.",
+  "morseSourceText": "The Unknown\n\n\nYe aspiring ones, listen to the story of the unknown\nWho lies here with no stone to mark the place.\nAs a boy reckless and wanton,\nWandering with gun in hand through the forest\nNear the mansion of Aaron Hatfield,\nI shot a hawk perched on the top\nOf a dead tree. He fell with guttural cry\nAt my feet, his wing broken.\nThen I put him in a cage\nWhere he lived many days cawing angrily at me\nWhen I offered him food.\nDaily I search the realms of Hades\nFor the soul of the hawk,\nThat I may offer him the friendship\nOf one whom life wounded and caged.",
+  "paragraphs": [
+    "The Unknown",
+    "Ye aspiring ones, listen to the story of the unknown Who lies here with no stone to mark the place. As a boy reckless and wanton, Wandering with gun in hand through the forest Near the mansion of Aaron Hatfield, I shot a hawk perched on the top Of a dead tree. He fell with guttural cry At my feet, his wing broken. Then I put him in a cage Where he lived many days cawing angrily at me When I offered him food. Daily I search the realms of Hades For the soul of the hawk, That I may offer him the friendship Of one whom life wounded and caged."
+  ],
+  "wordCount": 113,
+  "characterCount": 558,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2946,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "The Unknown Ye aspiring ones, listen to the story of the unknown Who lies here with no stone to mark the place. As a boy reckless and wanton, Wandering with gu...",
+  "sourceOffsets": {
+    "start": 85860,
+    "end": 86443
+  }
+}

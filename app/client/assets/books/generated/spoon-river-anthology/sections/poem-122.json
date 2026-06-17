@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-122",
+  "kind": "poem",
+  "label": "Jonathan Swift Somers (Author of the Spooniad)",
+  "title": null,
+  "order": 122,
+  "includeByDefault": true,
+  "displayText": "Jonathan Swift Somers (Author of the Spooniad)\n\n\nAfter you have enriched your soul\nTo the highest point,\nWith books, thought, suffering,\nThe understanding of many personalities,\nThe power to interpret glances, silences,\nThe pauses in momentous transformations,\nThe genius of divination and prophecy;\nSo that you feel able at times to hold the world\nIn the hollow of your hand;\nThen, if, by the crowding of so many powers\nInto the compass of your soul,\nYour soul takes fire,\nAnd in the conflagration of your soul\nThe evil of the world is lighted up and made clear-\nBe thankful if in that hour of supreme vision\nLife does not fiddle.",
+  "morseSourceText": "Jonathan Swift Somers (Author of the Spooniad)\n\n\nAfter you have enriched your soul\nTo the highest point,\nWith books, thought, suffering,\nThe understanding of many personalities,\nThe power to interpret glances, silences,\nThe pauses in momentous transformations,\nThe genius of divination and prophecy;\nSo that you feel able at times to hold the world\nIn the hollow of your hand;\nThen, if, by the crowding of so many powers\nInto the compass of your soul,\nYour soul takes fire,\nAnd in the conflagration of your soul\nThe evil of the world is lighted up and made clear-\nBe thankful if in that hour of supreme vision\nLife does not fiddle.",
+  "paragraphs": [
+    "Jonathan Swift Somers (Author of the Spooniad)",
+    "After you have enriched your soul To the highest point, With books, thought, suffering, The understanding of many personalities, The power to interpret glances, silences, The pauses in momentous transformations, The genius of divination and prophecy; So that you feel able at times to hold the world In the hollow of your hand; Then, if, by the crowding of so many powers Into the compass of your soul, Your soul takes fire, And in the conflagration of your soul The evil of the world is lighted up and made clear- Be thankful if in that hour of supreme vision Life does not fiddle."
+  ],
+  "wordCount": 110,
+  "characterCount": 631,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3415,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Jonathan Swift Somers (Author of the Spooniad) After you have enriched your soul To the highest point, With books, thought, suffering, The understanding of man...",
+  "sourceOffsets": {
+    "start": 86667,
+    "end": 87324
+  }
+}

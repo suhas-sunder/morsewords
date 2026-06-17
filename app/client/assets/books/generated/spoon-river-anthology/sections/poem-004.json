@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-004",
+  "kind": "poem",
+  "label": "Fletcher McGee",
+  "title": null,
+  "order": 4,
+  "includeByDefault": true,
+  "displayText": "Fletcher McGee\n\n\nShe took my strength by minutes,\nShe took my life by hours,\nShe drained me like a fevered moon\nThat saps the spinning world.\nThe days went by like shadows,\nThe minutes wheeled like stars.\nShe took the pity from my heart,\nAnd made it into smiles.\nShe was a hunk of sculptor's clay,\nMy secret thoughts were fingers:\nThey flew behind her pensive brow\nAnd lined it deep with pain.\nThey set the lips, and sagged the cheeks,\nAnd drooped the eye with sorrow.\nMy soul had entered in the clay,\nFighting like seven devils.\nIt was not mine, it was not hers;\nShe held it, but its struggles\nModeled a face she hated,\nAnd a face I feared to see.\nI beat the windows, shook the bolts.\nI hid me in a corner\nAnd then she died and haunted me,\nAnd hunted me for life.",
+  "morseSourceText": "Fletcher McGee\n\n\nShe took my strength by minutes,\nShe took my life by hours,\nShe drained me like a fevered moon\nThat saps the spinning world.\nThe days went by like shadows,\nThe minutes wheeled like stars.\nShe took the pity from my heart,\nAnd made it into smiles.\nShe was a hunk of sculptor's clay,\nMy secret thoughts were fingers:\nThey flew behind her pensive brow\nAnd lined it deep with pain.\nThey set the lips, and sagged the cheeks,\nAnd drooped the eye with sorrow.\nMy soul had entered in the clay,\nFighting like seven devils.\nIt was not mine, it was not hers;\nShe held it, but its struggles\nModeled a face she hated,\nAnd a face I feared to see.\nI beat the windows, shook the bolts.\nI hid me in a corner\nAnd then she died and haunted me,\nAnd hunted me for life.",
+  "paragraphs": [
+    "Fletcher McGee",
+    "She took my strength by minutes, She took my life by hours, She drained me like a fevered moon That saps the spinning world. The days went by like shadows, The minutes wheeled like stars. She took the pity from my heart, And made it into smiles. She was a hunk of sculptor's clay, My secret thoughts were fingers: They flew behind her pensive brow And lined it deep with pain. They set the lips, and sagged the cheeks, And drooped the eye with sorrow. My soul had entered in the clay, Fighting like seven devils. It was not mine, it was not hers; She held it, but its struggles Modeled a face she hated, And a face I feared to see. I beat the windows, shook the bolts. I hid me in a corner And then she died and haunted me, And hunted me for life."
+  ],
+  "wordCount": 149,
+  "characterCount": 764,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4052,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Fletcher McGee She took my strength by minutes, She took my life by hours, She drained me like a fevered moon That saps the spinning world. The days went by li...",
+  "sourceOffsets": {
+    "start": 8014,
+    "end": 8812
+  }
+}

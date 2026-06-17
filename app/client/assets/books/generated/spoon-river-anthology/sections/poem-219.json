@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-219",
+  "kind": "poem",
+  "label": "William Goode",
+  "title": null,
+  "order": 219,
+  "includeByDefault": true,
+  "displayText": "William Goode\n\n\nTo all in the village I seemed, no doubt,\nTo go this way and that way, aimlessly.\nBut here by the river you can see at twilight\nThe soft-winged bats fly zig-zag here and there-\nThey must fly so to catch their food.\nAnd if you have ever lost your way at night,\nIn the deep wood near Miller's Ford,\nAnd dodged this way and now that,\nWherever the light of the Milky Way shone through,\nTrying to find the path,\nYou should understand I sought the way\nWith earnest zeal, and all my wanderings\nWere wanderings in the quest.",
+  "morseSourceText": "William Goode\n\n\nTo all in the village I seemed, no doubt,\nTo go this way and that way, aimlessly.\nBut here by the river you can see at twilight\nThe soft-winged bats fly zig-zag here and there-\nThey must fly so to catch their food.\nAnd if you have ever lost your way at night,\nIn the deep wood near Miller's Ford,\nAnd dodged this way and now that,\nWherever the light of the Milky Way shone through,\nTrying to find the path,\nYou should understand I sought the way\nWith earnest zeal, and all my wanderings\nWere wanderings in the quest.",
+  "paragraphs": [
+    "William Goode",
+    "To all in the village I seemed, no doubt, To go this way and that way, aimlessly. But here by the river you can see at twilight The soft-winged bats fly zig-zag here and there- They must fly so to catch their food. And if you have ever lost your way at night, In the deep wood near Miller's Ford, And dodged this way and now that, Wherever the light of the Milky Way shone through, Trying to find the path, You should understand I sought the way With earnest zeal, and all my wanderings Were wanderings in the quest."
+  ],
+  "wordCount": 102,
+  "characterCount": 532,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2844,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "William Goode To all in the village I seemed, no doubt, To go this way and that way, aimlessly. But here by the river you can see at twilight The soft-winged b...",
+  "sourceOffsets": {
+    "start": 168119,
+    "end": 168674
+  }
+}

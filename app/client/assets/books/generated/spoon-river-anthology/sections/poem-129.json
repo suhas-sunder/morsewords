@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-129",
+  "kind": "poem",
+  "label": "Professor Newcomer",
+  "title": null,
+  "order": 129,
+  "includeByDefault": true,
+  "displayText": "Professor Newcomer\n\n\nEveryone laughed at Col. Prichard\nFor buying an engine so powerful\nThat it wrecked itself, and wrecked the grinder\nHe ran it with.\nBut here is a joke of cosmic size:\nThe urge of nature that made a man\nEvolve from his brain a spiritual life-\nOh miracle of the world!-\nThe very same brain with which the ape and wolf\nGet food and shelter and procreate themselves.\nNature has made man do this,\nIn a world where she gives him nothing to do\nAfter all-(though the strength of his soul goes round\nIn a futile waste of power.\nTo gear itself to the mills of the gods)-\nBut get food and shelter and procreate himself!",
+  "morseSourceText": "Professor Newcomer\n\n\nEveryone laughed at Col. Prichard\nFor buying an engine so powerful\nThat it wrecked itself, and wrecked the grinder\nHe ran it with.\nBut here is a joke of cosmic size:\nThe urge of nature that made a man\nEvolve from his brain a spiritual life-\nOh miracle of the world!-\nThe very same brain with which the ape and wolf\nGet food and shelter and procreate themselves.\nNature has made man do this,\nIn a world where she gives him nothing to do\nAfter all-(though the strength of his soul goes round\nIn a futile waste of power.\nTo gear itself to the mills of the gods)-\nBut get food and shelter and procreate himself!",
+  "paragraphs": [
+    "Professor Newcomer",
+    "Everyone laughed at Col. Prichard For buying an engine so powerful That it wrecked itself, and wrecked the grinder He ran it with. But here is a joke of cosmic size: The urge of nature that made a man Evolve from his brain a spiritual life- Oh miracle of the world!- The very same brain with which the ape and wolf Get food and shelter and procreate themselves. Nature has made man do this, In a world where she gives him nothing to do After all-(though the strength of his soul goes round In a futile waste of power. To gear itself to the mills of the gods)- But get food and shelter and procreate himself!"
+  ],
+  "wordCount": 119,
+  "characterCount": 628,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3348,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Professor Newcomer Everyone laughed at Col. Prichard For buying an engine so powerful That it wrecked itself, and wrecked the grinder He ran it with. But here...",
+  "sourceOffsets": {
+    "start": 93024,
+    "end": 93678
+  }
+}

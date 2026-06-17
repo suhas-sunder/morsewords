@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-044",
+  "kind": "poem",
+  "label": "Dorcas Gustine",
+  "title": null,
+  "order": 44,
+  "includeByDefault": true,
+  "displayText": "Dorcas Gustine\n\n\nI was not beloved of the villagers,\nBut all because I spoke my mind,\nAnd met those who transgressed against me\nWith plain remonstrance, hiding nor nurturing\nNor secret griefs nor grudges.\nThat act of the Spartan boy is greatly praised,\nWho hid the wolf under his cloak,\nLetting it devour him, uncomplainingly.\nIt is braver, I think, to snatch the wolf forth\nAnd fight him openly, even in the street,\nAmid dust and howls of pain.\nThe tongue may be an unruly member-\nBut silence poisons the soul.\nBerate me who will-I am content.",
+  "morseSourceText": "Dorcas Gustine\n\n\nI was not beloved of the villagers,\nBut all because I spoke my mind,\nAnd met those who transgressed against me\nWith plain remonstrance, hiding nor nurturing\nNor secret griefs nor grudges.\nThat act of the Spartan boy is greatly praised,\nWho hid the wolf under his cloak,\nLetting it devour him, uncomplainingly.\nIt is braver, I think, to snatch the wolf forth\nAnd fight him openly, even in the street,\nAmid dust and howls of pain.\nThe tongue may be an unruly member-\nBut silence poisons the soul.\nBerate me who will-I am content.",
+  "paragraphs": [
+    "Dorcas Gustine",
+    "I was not beloved of the villagers, But all because I spoke my mind, And met those who transgressed against me With plain remonstrance, hiding nor nurturing Nor secret griefs nor grudges. That act of the Spartan boy is greatly praised, Who hid the wolf under his cloak, Letting it devour him, uncomplainingly. It is braver, I think, to snatch the wolf forth And fight him openly, even in the street, Amid dust and howls of pain. The tongue may be an unruly member- But silence poisons the soul. Berate me who will-I am content."
+  ],
+  "wordCount": 97,
+  "characterCount": 544,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2913,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Dorcas Gustine I was not beloved of the villagers, But all because I spoke my mind, And met those who transgressed against me With plain remonstrance, hiding n...",
+  "sourceOffsets": {
+    "start": 33941,
+    "end": 34509
+  }
+}

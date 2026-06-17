@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-239",
+  "kind": "poem",
+  "label": "Russell Kincaid",
+  "title": null,
+  "order": 239,
+  "includeByDefault": true,
+  "displayText": "Russell Kincaid\n\n\nIn the last spring I ever knew,\nIn those last days, I sat in the forsaken orchard\nWhere beyond fields of greenery shimmered\nThe hills at Miller's Ford;\nJust to muse on the apple tree\nWith its ruined trunk and blasted branches,\nAnd shoots of green whose delicate blossoms\nWere sprinkled over the skeleton tangle,\nNever to grow in fruit.\nAnd there was I with my spirit girded\nBy the flesh half dead, the senses numb\nYet thinking of youth and the earth in youth,-\nSuch phantom blossoms palely shining\nOver the lifeless boughs of Time.\nO earth that leaves us ere heaven takes us!\nHad I been only a tree to shiver\nWith dreams of spring and a leafy youth,\nThen I had fallen in the cyclone\nWhich swept me out of the soul's suspense\nWhere it's neither earth nor heaven.",
+  "morseSourceText": "Russell Kincaid\n\n\nIn the last spring I ever knew,\nIn those last days, I sat in the forsaken orchard\nWhere beyond fields of greenery shimmered\nThe hills at Miller's Ford;\nJust to muse on the apple tree\nWith its ruined trunk and blasted branches,\nAnd shoots of green whose delicate blossoms\nWere sprinkled over the skeleton tangle,\nNever to grow in fruit.\nAnd there was I with my spirit girded\nBy the flesh half dead, the senses numb\nYet thinking of youth and the earth in youth,-\nSuch phantom blossoms palely shining\nOver the lifeless boughs of Time.\nO earth that leaves us ere heaven takes us!\nHad I been only a tree to shiver\nWith dreams of spring and a leafy youth,\nThen I had fallen in the cyclone\nWhich swept me out of the soul's suspense\nWhere it's neither earth nor heaven.",
+  "paragraphs": [
+    "Russell Kincaid",
+    "In the last spring I ever knew, In those last days, I sat in the forsaken orchard Where beyond fields of greenery shimmered The hills at Miller's Ford; Just to muse on the apple tree With its ruined trunk and blasted branches, And shoots of green whose delicate blossoms Were sprinkled over the skeleton tangle, Never to grow in fruit. And there was I with my spirit girded By the flesh half dead, the senses numb Yet thinking of youth and the earth in youth,- Such phantom blossoms palely shining Over the lifeless boughs of Time. O earth that leaves us ere heaven takes us! Had I been only a tree to shiver With dreams of spring and a leafy youth, Then I had fallen in the cyclone Which swept me out of the soul's suspense Where it's neither earth nor heaven."
+  ],
+  "wordCount": 144,
+  "characterCount": 779,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4140,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Russell Kincaid In the last spring I ever knew, In those last days, I sat in the forsaken orchard Where beyond fields of greenery shimmered The hills at Miller...",
+  "sourceOffsets": {
+    "start": 183182,
+    "end": 183991
+  }
+}

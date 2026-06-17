@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-037",
+  "kind": "poem",
+  "label": "Johnnie Sayre",
+  "title": null,
+  "order": 37,
+  "includeByDefault": true,
+  "displayText": "Johnnie Sayre\n\n\nFather, thou canst never know\nThe anguish that smote my heart\nFor my disobedience, the moment I felt\nThe remorseless wheel of the engine\nSink into the crying flesh of my leg.\nAs they carried me to the home of widow Morris\nI could see the school-house in the valley\nTo which I played truant to steal rides upon the trains.\nI prayed to live until I could ask your forgiveness-\nAnd then your tears, your broken words of comfort!\nFrom the solace of that hour I have gained infinite happiness.\nThou wert wise to chisel for me:\n\"Taken from the evil to come.\"",
+  "morseSourceText": "Johnnie Sayre\n\n\nFather, thou canst never know\nThe anguish that smote my heart\nFor my disobedience, the moment I felt\nThe remorseless wheel of the engine\nSink into the crying flesh of my leg.\nAs they carried me to the home of widow Morris\nI could see the school-house in the valley\nTo which I played truant to steal rides upon the trains.\nI prayed to live until I could ask your forgiveness-\nAnd then your tears, your broken words of comfort!\nFrom the solace of that hour I have gained infinite happiness.\nThou wert wise to chisel for me:\n\"Taken from the evil to come.\"",
+  "paragraphs": [
+    "Johnnie Sayre",
+    "Father, thou canst never know The anguish that smote my heart For my disobedience, the moment I felt The remorseless wheel of the engine Sink into the crying flesh of my leg. As they carried me to the home of widow Morris I could see the school-house in the valley To which I played truant to steal rides upon the trains. I prayed to live until I could ask your forgiveness- And then your tears, your broken words of comfort! From the solace of that hour I have gained infinite happiness. Thou wert wise to chisel for me: \"Taken from the evil to come.\""
+  ],
+  "wordCount": 106,
+  "characterCount": 568,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3019,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Johnnie Sayre Father, thou canst never know The anguish that smote my heart For my disobedience, the moment I felt The remorseless wheel of the engine Sink int...",
+  "sourceOffsets": {
+    "start": 29048,
+    "end": 29639
+  }
+}

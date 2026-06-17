@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-081",
+  "kind": "poem",
+  "label": "Franklin Jones",
+  "title": null,
+  "order": 81,
+  "includeByDefault": true,
+  "displayText": "Franklin Jones\n\n\nIf I could have lived another year\nI could have finished my flying machine,\nAnd become rich and famous.\nHence it is fitting the workman\nWho tried to chisel a dove for me\nMade it look more like a chicken.\nFor what is it all but being hatched,\nAnd running about the yard,\nTo the day of the block?\nSave that a man has an angel's brain,\nAnd sees the ax from the first!",
+  "morseSourceText": "Franklin Jones\n\n\nIf I could have lived another year\nI could have finished my flying machine,\nAnd become rich and famous.\nHence it is fitting the workman\nWho tried to chisel a dove for me\nMade it look more like a chicken.\nFor what is it all but being hatched,\nAnd running about the yard,\nTo the day of the block?\nSave that a man has an angel's brain,\nAnd sees the ax from the first!",
+  "paragraphs": [
+    "Franklin Jones",
+    "If I could have lived another year I could have finished my flying machine, And become rich and famous. Hence it is fitting the workman Who tried to chisel a dove for me Made it look more like a chicken. For what is it all but being hatched, And running about the yard, To the day of the block? Save that a man has an angel's brain, And sees the ax from the first!"
+  ],
+  "wordCount": 76,
+  "characterCount": 381,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2025,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Franklin Jones If I could have lived another year I could have finished my flying machine, And become rich and famous. Hence it is fitting the workman Who trie...",
+  "sourceOffsets": {
+    "start": 58772,
+    "end": 59174
+  }
+}

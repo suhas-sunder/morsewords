@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-109",
+  "kind": "poem",
+  "label": "Hamilton Greene",
+  "title": null,
+  "order": 109,
+  "includeByDefault": true,
+  "displayText": "Hamilton Greene\n\n\nI was the only child of Frances Harris of Virginia\nAnd Thomas Greene of Kentucky,\nOf valiant and honorable blood both.\nTo them I owe all that I became,\nJudge, member of Congress, leader in the State.\nFrom my mother I inherited\nVivacity, fancy, language;\nFrom my father will, judgment, logic.\nAll honor to them\nFor what service I was to the people!",
+  "morseSourceText": "Hamilton Greene\n\n\nI was the only child of Frances Harris of Virginia\nAnd Thomas Greene of Kentucky,\nOf valiant and honorable blood both.\nTo them I owe all that I became,\nJudge, member of Congress, leader in the State.\nFrom my mother I inherited\nVivacity, fancy, language;\nFrom my father will, judgment, logic.\nAll honor to them\nFor what service I was to the people!",
+  "paragraphs": [
+    "Hamilton Greene",
+    "I was the only child of Frances Harris of Virginia And Thomas Greene of Kentucky, Of valiant and honorable blood both. To them I owe all that I became, Judge, member of Congress, leader in the State. From my mother I inherited Vivacity, fancy, language; From my father will, judgment, logic. All honor to them For what service I was to the people!"
+  ],
+  "wordCount": 65,
+  "characterCount": 365,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 1970,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Hamilton Greene I was the only child of Frances Harris of Virginia And Thomas Greene of Kentucky, Of valiant and honorable blood both. To them I owe all that I...",
+  "sourceOffsets": {
+    "start": 79168,
+    "end": 79553
+  }
+}

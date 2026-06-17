@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-077",
+  "kind": "poem",
+  "label": "Barry Holden",
+  "title": null,
+  "order": 77,
+  "includeByDefault": true,
+  "displayText": "Barry Holden\n\n\nThe very fall my sister Nancy Knapp\nSet fire to the house\nThey were trying Dr. Duval\nFor the murder of Zora Clemens,\nAnd I sat in the court two weeks\nListening to every witness.\nIt was clear he had got her in a family way;\nAnd to let the child be born\nWould not do.\nWell, how about me with eight children,\nAnd one coming, and the farm\nMortgaged to Thomas Rhodes?\nAnd when I got home that night,\n(After listening to the story of the buggy ride,\nAnd the finding of Zora in the ditch,)\nThe first thing I saw, right there by the steps,\nWhere the boys had hacked for angle worms,\nWas the hatchet!\nAnd just as I entered there was my wife,\nStanding before me, big with child.\nShe started the talk of the mortgaged farm,\nAnd I killed her.",
+  "morseSourceText": "Barry Holden\n\n\nThe very fall my sister Nancy Knapp\nSet fire to the house\nThey were trying Dr. Duval\nFor the murder of Zora Clemens,\nAnd I sat in the court two weeks\nListening to every witness.\nIt was clear he had got her in a family way;\nAnd to let the child be born\nWould not do.\nWell, how about me with eight children,\nAnd one coming, and the farm\nMortgaged to Thomas Rhodes?\nAnd when I got home that night,\n(After listening to the story of the buggy ride,\nAnd the finding of Zora in the ditch,)\nThe first thing I saw, right there by the steps,\nWhere the boys had hacked for angle worms,\nWas the hatchet!\nAnd just as I entered there was my wife,\nStanding before me, big with child.\nShe started the talk of the mortgaged farm,\nAnd I killed her.",
+  "paragraphs": [
+    "Barry Holden",
+    "The very fall my sister Nancy Knapp Set fire to the house They were trying Dr. Duval For the murder of Zora Clemens, And I sat in the court two weeks Listening to every witness. It was clear he had got her in a family way; And to let the child be born Would not do. Well, how about me with eight children, And one coming, and the farm Mortgaged to Thomas Rhodes? And when I got home that night, (After listening to the story of the buggy ride, And the finding of Zora in the ditch,) The first thing I saw, right there by the steps, Where the boys had hacked for angle worms, Was the hatchet! And just as I entered there was my wife, Standing before me, big with child. She started the talk of the mortgaged farm, And I killed her."
+  ],
+  "wordCount": 147,
+  "characterCount": 745,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3956,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Barry Holden The very fall my sister Nancy Knapp Set fire to the house They were trying Dr. Duval For the murder of Zora Clemens, And I sat in the court two we...",
+  "sourceOffsets": {
+    "start": 55851,
+    "end": 56628
+  }
+}

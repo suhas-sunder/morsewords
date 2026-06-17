@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-231",
+  "kind": "poem",
+  "label": "Lydia Humphrey",
+  "title": null,
+  "order": 231,
+  "includeByDefault": true,
+  "displayText": "Lydia Humphrey\n\n\nBack and forth, back and forth, to and from the church,\nWith my Bible under my arm\n'Till I was gray and old;\nUnwedded, alone in the world,\nFinding brothers and sisters in the congregation,\nAnd children in the church.\nI know they laughed and thought me queer.\nI knew of the eagle souls that flew high in the sunlight,\nAbove the spire of the church, and laughed at the church,\nDisdaining me, not seeing me.\nBut if the high air was sweet to them, sweet was the church to me.\nIt was the vision, vision, vision of the poets\nDemocratized!",
+  "morseSourceText": "Lydia Humphrey\n\n\nBack and forth, back and forth, to and from the church,\nWith my Bible under my arm\n'Till I was gray and old;\nUnwedded, alone in the world,\nFinding brothers and sisters in the congregation,\nAnd children in the church.\nI know they laughed and thought me queer.\nI knew of the eagle souls that flew high in the sunlight,\nAbove the spire of the church, and laughed at the church,\nDisdaining me, not seeing me.\nBut if the high air was sweet to them, sweet was the church to me.\nIt was the vision, vision, vision of the poets\nDemocratized!",
+  "paragraphs": [
+    "Lydia Humphrey",
+    "Back and forth, back and forth, to and from the church, With my Bible under my arm 'Till I was gray and old; Unwedded, alone in the world, Finding brothers and sisters in the congregation, And children in the church. I know they laughed and thought me queer. I knew of the eagle souls that flew high in the sunlight, Above the spire of the church, and laughed at the church, Disdaining me, not seeing me. But if the high air was sweet to them, sweet was the church to me. It was the vision, vision, vision of the poets Democratized!"
+  ],
+  "wordCount": 103,
+  "characterCount": 549,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2962,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Lydia Humphrey Back and forth, back and forth, to and from the church, With my Bible under my arm 'Till I was gray and old; Unwedded, alone in the world, Findi...",
+  "sourceOffsets": {
+    "start": 177207,
+    "end": 177779
+  }
+}

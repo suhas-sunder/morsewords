@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-002",
+  "kind": "poem",
+  "label": "Hod Putt",
+  "title": null,
+  "order": 2,
+  "includeByDefault": true,
+  "displayText": "Hod Putt\n\n\nHere I lie close to the grave\nOf Old Bill Piersol,\nWho grew rich trading with the Indians, and who\nAfterwards took the Bankrupt Law\nAnd emerged from it richer than ever\nMyself grown tired of toil and poverty\nAnd beholding how Old Bill and others grew in wealth\nRobbed a traveler one Night near Proctor's Grove,\nKilling him unwittingly while doing so,\nFor which I was tried and hanged.\nThat was my way of going into bankruptcy.\nNow we who took the bankrupt law in our respective ways\nSleep peacefully side by side.",
+  "morseSourceText": "Hod Putt\n\n\nHere I lie close to the grave\nOf Old Bill Piersol,\nWho grew rich trading with the Indians, and who\nAfterwards took the Bankrupt Law\nAnd emerged from it richer than ever\nMyself grown tired of toil and poverty\nAnd beholding how Old Bill and others grew in wealth\nRobbed a traveler one Night near Proctor's Grove,\nKilling him unwittingly while doing so,\nFor which I was tried and hanged.\nThat was my way of going into bankruptcy.\nNow we who took the bankrupt law in our respective ways\nSleep peacefully side by side.",
+  "paragraphs": [
+    "Hod Putt",
+    "Here I lie close to the grave Of Old Bill Piersol, Who grew rich trading with the Indians, and who Afterwards took the Bankrupt Law And emerged from it richer than ever Myself grown tired of toil and poverty And beholding how Old Bill and others grew in wealth Robbed a traveler one Night near Proctor's Grove, Killing him unwittingly while doing so, For which I was tried and hanged. That was my way of going into bankruptcy. Now we who took the bankrupt law in our respective ways Sleep peacefully side by side."
+  ],
+  "wordCount": 96,
+  "characterCount": 524,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2814,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Hod Putt Here I lie close to the grave Of Old Bill Piersol, Who grew rich trading with the Indians, and who Afterwards took the Bankrupt Law And emerged from i...",
+  "sourceOffsets": {
+    "start": 6949,
+    "end": 7496
+  }
+}

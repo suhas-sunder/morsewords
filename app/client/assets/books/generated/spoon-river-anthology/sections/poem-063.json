@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-063",
+  "kind": "poem",
+  "label": "Herbert Marshall",
+  "title": null,
+  "order": 63,
+  "includeByDefault": true,
+  "displayText": "Herbert Marshall\n\n\nAll your sorrow, Louise, and hatred of me\nSprang from your delusion that it was wantonness\nOf spirit and contempt of your soul's rights\nWhich made me turn to Annabelle and forsake you.\nYou really grew to hate me for love of me,\nBecause I was your soul's happiness,\nFormed and tempered\nTo solve your life for you, and would not.\nBut you were my misery.\nIf you had been\nMy happiness would I not have clung to you?\nThis is life's sorrow:\nThat one can be happy only where two are;\nAnd that our hearts are drawn to stars\nWhich want us not.",
+  "morseSourceText": "Herbert Marshall\n\n\nAll your sorrow, Louise, and hatred of me\nSprang from your delusion that it was wantonness\nOf spirit and contempt of your soul's rights\nWhich made me turn to Annabelle and forsake you.\nYou really grew to hate me for love of me,\nBecause I was your soul's happiness,\nFormed and tempered\nTo solve your life for you, and would not.\nBut you were my misery.\nIf you had been\nMy happiness would I not have clung to you?\nThis is life's sorrow:\nThat one can be happy only where two are;\nAnd that our hearts are drawn to stars\nWhich want us not.",
+  "paragraphs": [
+    "Herbert Marshall",
+    "All your sorrow, Louise, and hatred of me Sprang from your delusion that it was wantonness Of spirit and contempt of your soul's rights Which made me turn to Annabelle and forsake you. You really grew to hate me for love of me, Because I was your soul's happiness, Formed and tempered To solve your life for you, and would not. But you were my misery. If you had been My happiness would I not have clung to you? This is life's sorrow: That one can be happy only where two are; And that our hearts are drawn to stars Which want us not."
+  ],
+  "wordCount": 106,
+  "characterCount": 553,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2990,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Herbert Marshall All your sorrow, Louise, and hatred of me Sprang from your delusion that it was wantonness Of spirit and contempt of your soul's rights Which...",
+  "sourceOffsets": {
+    "start": 46069,
+    "end": 46647
+  }
+}

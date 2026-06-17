@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-073",
+  "kind": "poem",
+  "label": "The Circuit Judge",
+  "title": null,
+  "order": 73,
+  "includeByDefault": true,
+  "displayText": "The Circuit Judge\n\n\nTake note, passers-by, of the sharp erosions\nEaten in my head-stone by the wind and rain-\nAlmost as if an intangible Nemesis or hatred\nWere marking scores against me,\nBut to destroy, and not preserve, my memory.\nI in life was the Circuit Judge, a maker of notches,\nDeciding cases on the points the lawyers scored,\nNot on the right of the matter.\nO wind and rain, leave my head-stone alone\nFor worse than the anger of the wronged,\nThe curses of the poor,\nWas to lie speechless, yet with vision clear,\nSeeing that even Hod Putt, the murderer,\nHanged by my sentence,\nWas innocent in soul compared with me.",
+  "morseSourceText": "The Circuit Judge\n\n\nTake note, passers-by, of the sharp erosions\nEaten in my head-stone by the wind and rain-\nAlmost as if an intangible Nemesis or hatred\nWere marking scores against me,\nBut to destroy, and not preserve, my memory.\nI in life was the Circuit Judge, a maker of notches,\nDeciding cases on the points the lawyers scored,\nNot on the right of the matter.\nO wind and rain, leave my head-stone alone\nFor worse than the anger of the wronged,\nThe curses of the poor,\nWas to lie speechless, yet with vision clear,\nSeeing that even Hod Putt, the murderer,\nHanged by my sentence,\nWas innocent in soul compared with me.",
+  "paragraphs": [
+    "The Circuit Judge",
+    "Take note, passers-by, of the sharp erosions Eaten in my head-stone by the wind and rain- Almost as if an intangible Nemesis or hatred Were marking scores against me, But to destroy, and not preserve, my memory. I in life was the Circuit Judge, a maker of notches, Deciding cases on the points the lawyers scored, Not on the right of the matter. O wind and rain, leave my head-stone alone For worse than the anger of the wronged, The curses of the poor, Was to lie speechless, yet with vision clear, Seeing that even Hod Putt, the murderer, Hanged by my sentence, Was innocent in soul compared with me."
+  ],
+  "wordCount": 113,
+  "characterCount": 622,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3295,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "The Circuit Judge Take note, passers-by, of the sharp erosions Eaten in my head-stone by the wind and rain- Almost as if an intangible Nemesis or hatred Were m...",
+  "sourceOffsets": {
+    "start": 52996,
+    "end": 53643
+  }
+}

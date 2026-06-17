@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-224",
+  "kind": "poem",
+  "label": "Willie Pennington",
+  "title": null,
+  "order": 224,
+  "includeByDefault": true,
+  "displayText": "Willie Pennington\n\n\nThey called me the weakling, the simpleton,\nFor my brothers were strong and beautiful,\nWhile I, the last child of parents who had aged,\nInherited only their residue of power.\nBut they, my brothers, were eaten up\nIn the fury of the flesh, which I had not,\nMade pulp in the activity of the senses, which I had not,\nHardened by the growth of the lusts, which I had not,\nThough making names and riches for themselves.\nThen I, the weak one, the simpleton,\nResting in a little corner of life,\nSaw a vision, and through me many saw the vision,\nNot knowing it was through me.\nThus a tree sprang\nFrom me, a mustard seed.",
+  "morseSourceText": "Willie Pennington\n\n\nThey called me the weakling, the simpleton,\nFor my brothers were strong and beautiful,\nWhile I, the last child of parents who had aged,\nInherited only their residue of power.\nBut they, my brothers, were eaten up\nIn the fury of the flesh, which I had not,\nMade pulp in the activity of the senses, which I had not,\nHardened by the growth of the lusts, which I had not,\nThough making names and riches for themselves.\nThen I, the weak one, the simpleton,\nResting in a little corner of life,\nSaw a vision, and through me many saw the vision,\nNot knowing it was through me.\nThus a tree sprang\nFrom me, a mustard seed.",
+  "paragraphs": [
+    "Willie Pennington",
+    "They called me the weakling, the simpleton, For my brothers were strong and beautiful, While I, the last child of parents who had aged, Inherited only their residue of power. But they, my brothers, were eaten up In the fury of the flesh, which I had not, Made pulp in the activity of the senses, which I had not, Hardened by the growth of the lusts, which I had not, Though making names and riches for themselves. Then I, the weak one, the simpleton, Resting in a little corner of life, Saw a vision, and through me many saw the vision, Not knowing it was through me. Thus a tree sprang From me, a mustard seed."
+  ],
+  "wordCount": 118,
+  "characterCount": 631,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3380,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Willie Pennington They called me the weakling, the simpleton, For my brothers were strong and beautiful, While I, the last child of parents who had aged, Inher...",
+  "sourceOffsets": {
+    "start": 171802,
+    "end": 172458
+  }
+}

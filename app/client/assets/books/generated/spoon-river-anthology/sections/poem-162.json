@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-162",
+  "kind": "poem",
+  "label": "Seth Compton",
+  "title": null,
+  "order": 162,
+  "includeByDefault": true,
+  "displayText": "Seth Compton\n\n\nWhen I died, the circulating library\nWhich I built up for Spoon River,\nAnd managed for the good of inquiring minds,\nWas sold at auction on the public square,\nAs if to destroy the last vestige\nOf my memory and influence.\nFor those of you who could not see the virtue\nOf knowing Volney's \"Ruins\" as well as Butler's \"Analogy\"\nAnd \"Faust\" as well as \"Evangeline,\"\nWere really the power in the village,\nAnd often you asked me\n\"What is the use of knowing the evil in the world?\"\nI am out of your way now, Spoon River,\nChoose your own good and call it good.\nFor I could never make you see\nThat no one knows what is good\nWho knows not what is evil;\nAnd no one knows what is true\nWho knows not what is false.",
+  "morseSourceText": "Seth Compton\n\n\nWhen I died, the circulating library\nWhich I built up for Spoon River,\nAnd managed for the good of inquiring minds,\nWas sold at auction on the public square,\nAs if to destroy the last vestige\nOf my memory and influence.\nFor those of you who could not see the virtue\nOf knowing Volney's \"Ruins\" as well as Butler's \"Analogy\"\nAnd \"Faust\" as well as \"Evangeline,\"\nWere really the power in the village,\nAnd often you asked me\n\"What is the use of knowing the evil in the world?\"\nI am out of your way now, Spoon River,\nChoose your own good and call it good.\nFor I could never make you see\nThat no one knows what is good\nWho knows not what is evil;\nAnd no one knows what is true\nWho knows not what is false.",
+  "paragraphs": [
+    "Seth Compton",
+    "When I died, the circulating library Which I built up for Spoon River, And managed for the good of inquiring minds, Was sold at auction on the public square, As if to destroy the last vestige Of my memory and influence. For those of you who could not see the virtue Of knowing Volney's \"Ruins\" as well as Butler's \"Analogy\" And \"Faust\" as well as \"Evangeline,\" Were really the power in the village, And often you asked me \"What is the use of knowing the evil in the world?\" I am out of your way now, Spoon River, Choose your own good and call it good. For I could never make you see That no one knows what is good Who knows not what is evil; And no one knows what is true Who knows not what is false."
+  ],
+  "wordCount": 141,
+  "characterCount": 715,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3868,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Seth Compton When I died, the circulating library Which I built up for Spoon River, And managed for the good of inquiring minds, Was sold at auction on the pub...",
+  "sourceOffsets": {
+    "start": 121128,
+    "end": 121872
+  }
+}

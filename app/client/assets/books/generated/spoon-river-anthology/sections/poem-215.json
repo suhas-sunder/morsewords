@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-215",
+  "kind": "poem",
+  "label": "Imanuel Ehrenhardt",
+  "title": null,
+  "order": 215,
+  "includeByDefault": true,
+  "displayText": "Imanuel Ehrenhardt\n\n\nI began with Sir William Hamilton's lectures.\nThen studied Dugald Stewart;\nAnd then John Locke on the Understanding,\nAnd then Descartes, Fichte and Schelling,\nKant and then Schopenhauer-\nBooks I borrowed from old Judge Somers.\nAll read with rapturous industry\nHoping it was reserved to me\nTo grasp the tail of the ultimate secret,\nAnd drag it out of its hole.\nMy soul flew up ten thousand miles\nAnd only the moon looked a little bigger.\nThen I fell back, how glad of the earth!\nAll through the soul of William Jones\nWho showed me a letter of John Muir.",
+  "morseSourceText": "Imanuel Ehrenhardt\n\n\nI began with Sir William Hamilton's lectures.\nThen studied Dugald Stewart;\nAnd then John Locke on the Understanding,\nAnd then Descartes, Fichte and Schelling,\nKant and then Schopenhauer-\nBooks I borrowed from old Judge Somers.\nAll read with rapturous industry\nHoping it was reserved to me\nTo grasp the tail of the ultimate secret,\nAnd drag it out of its hole.\nMy soul flew up ten thousand miles\nAnd only the moon looked a little bigger.\nThen I fell back, how glad of the earth!\nAll through the soul of William Jones\nWho showed me a letter of John Muir.",
+  "paragraphs": [
+    "Imanuel Ehrenhardt",
+    "I began with Sir William Hamilton's lectures. Then studied Dugald Stewart; And then John Locke on the Understanding, And then Descartes, Fichte and Schelling, Kant and then Schopenhauer- Books I borrowed from old Judge Somers. All read with rapturous industry Hoping it was reserved to me To grasp the tail of the ultimate secret, And drag it out of its hole. My soul flew up ten thousand miles And only the moon looked a little bigger. Then I fell back, how glad of the earth! All through the soul of William Jones Who showed me a letter of John Muir."
+  ],
+  "wordCount": 102,
+  "characterCount": 573,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3066,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Imanuel Ehrenhardt I began with Sir William Hamilton's lectures. Then studied Dugald Stewart; And then John Locke on the Understanding, And then Descartes, Fic...",
+  "sourceOffsets": {
+    "start": 165496,
+    "end": 166094
+  }
+}

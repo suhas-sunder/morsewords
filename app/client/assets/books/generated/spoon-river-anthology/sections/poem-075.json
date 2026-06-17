@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-075",
+  "kind": "poem",
+  "label": "John Horace Burleson",
+  "title": null,
+  "order": 75,
+  "includeByDefault": true,
+  "displayText": "John Horace Burleson\n\n\nI won the prize essay at school\nHere in the village,\nAnd published a novel before I was twenty-five.\nI went to the city for themes and to enrich my art;\nThere married the banker's daughter,\nAnd later became president of the bank-\nAlways looking forward to some leisure\nTo write an epic novel of the war.\nMeanwhile friend of the great, and lover of letters,\nAnd host to Matthew Arnold and to Emerson.\nAn after dinner speaker, writing essays\nFor local clubs. At last brought here-\nMy boyhood home, you know-\nNot even a little tablet in Chicago\nTo keep my name alive.\nHow great it is to write the single line:\n\"Roll on, thou deep and dark blue Ocean, roll!\"",
+  "morseSourceText": "John Horace Burleson\n\n\nI won the prize essay at school\nHere in the village,\nAnd published a novel before I was twenty-five.\nI went to the city for themes and to enrich my art;\nThere married the banker's daughter,\nAnd later became president of the bank-\nAlways looking forward to some leisure\nTo write an epic novel of the war.\nMeanwhile friend of the great, and lover of letters,\nAnd host to Matthew Arnold and to Emerson.\nAn after dinner speaker, writing essays\nFor local clubs. At last brought here-\nMy boyhood home, you know-\nNot even a little tablet in Chicago\nTo keep my name alive.\nHow great it is to write the single line:\n\"Roll on, thou deep and dark blue Ocean, roll!\"",
+  "paragraphs": [
+    "John Horace Burleson",
+    "I won the prize essay at school Here in the village, And published a novel before I was twenty-five. I went to the city for themes and to enrich my art; There married the banker's daughter, And later became president of the bank- Always looking forward to some leisure To write an epic novel of the war. Meanwhile friend of the great, and lover of letters, And host to Matthew Arnold and to Emerson. An after dinner speaker, writing essays For local clubs. At last brought here- My boyhood home, you know- Not even a little tablet in Chicago To keep my name alive. How great it is to write the single line: \"Roll on, thou deep and dark blue Ocean, roll!\""
+  ],
+  "wordCount": 125,
+  "characterCount": 677,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3614,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "John Horace Burleson I won the prize essay at school Here in the village, And published a novel before I was twenty-five. I went to the city for themes and to...",
+  "sourceOffsets": {
+    "start": 54218,
+    "end": 54922
+  }
+}

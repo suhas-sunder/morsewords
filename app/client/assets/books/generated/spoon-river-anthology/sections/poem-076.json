@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-076",
+  "kind": "poem",
+  "label": "Nancy Knapp",
+  "title": null,
+  "order": 76,
+  "includeByDefault": true,
+  "displayText": "Nancy Knapp\n\n\nWell, don't you see this was the way of it:\nWe bought the farm with what he inherited,\nAnd his brothers and sisters accused him of poisoning\nHis father's mind against the rest of them.\nAnd we never had any peace with our treasure.\nThe murrain took the cattle, and the crops failed.\nAnd lightning struck the granary.\nSo we mortgaged the farm to keep going.\nAnd he grew silent and was worried all the time.\nThen some of the neighbors refused to speak to us,\nAnd took sides with his brothers and sisters.\nAnd I had no place to turn, as one may say to himself,\nAt an earlier time in life;\n\"No matter, So and so is my friend, or I can shake this off\nWith a little trip to Decatur.\"\nThen the dreadfulest smells infested the rooms.\nSo I set fire to the beds and the old witch-house\nWent up in a roar of flame,\nAs I danced in the yard with waving arms,\nWhile he wept like a freezing steer.",
+  "morseSourceText": "Nancy Knapp\n\n\nWell, don't you see this was the way of it:\nWe bought the farm with what he inherited,\nAnd his brothers and sisters accused him of poisoning\nHis father's mind against the rest of them.\nAnd we never had any peace with our treasure.\nThe murrain took the cattle, and the crops failed.\nAnd lightning struck the granary.\nSo we mortgaged the farm to keep going.\nAnd he grew silent and was worried all the time.\nThen some of the neighbors refused to speak to us,\nAnd took sides with his brothers and sisters.\nAnd I had no place to turn, as one may say to himself,\nAt an earlier time in life;\n\"No matter, So and so is my friend, or I can shake this off\nWith a little trip to Decatur.\"\nThen the dreadfulest smells infested the rooms.\nSo I set fire to the beds and the old witch-house\nWent up in a roar of flame,\nAs I danced in the yard with waving arms,\nWhile he wept like a freezing steer.",
+  "paragraphs": [
+    "Nancy Knapp",
+    "Well, don't you see this was the way of it: We bought the farm with what he inherited, And his brothers and sisters accused him of poisoning His father's mind against the rest of them. And we never had any peace with our treasure. The murrain took the cattle, and the crops failed. And lightning struck the granary. So we mortgaged the farm to keep going. And he grew silent and was worried all the time. Then some of the neighbors refused to speak to us, And took sides with his brothers and sisters. And I had no place to turn, as one may say to himself, At an earlier time in life; \"No matter, So and so is my friend, or I can shake this off With a little trip to Decatur.\" Then the dreadfulest smells infested the rooms. So I set fire to the beds and the old witch-house Went up in a roar of flame, As I danced in the yard with waving arms, While he wept like a freezing steer."
+  ],
+  "wordCount": 176,
+  "characterCount": 895,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4722,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Nancy Knapp Well, don't you see this was the way of it: We bought the farm with what he inherited, And his brothers and sisters accused him of poisoning His fa...",
+  "sourceOffsets": {
+    "start": 54924,
+    "end": 55849
+  }
+}

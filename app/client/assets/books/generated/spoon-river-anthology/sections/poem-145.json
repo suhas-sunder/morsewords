@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-145",
+  "kind": "poem",
+  "label": "Walter Simmons",
+  "title": null,
+  "order": 145,
+  "includeByDefault": true,
+  "displayText": "Walter Simmons\n\n\nMy parents thought that I would be\nAs great as Edison or greater:\nFor as a boy I made balloons\nAnd wondrous kites and toys with clocks\nAnd little engines with tracks to run on\nAnd telephones of cans and thread.\nI played the cornet and painted pictures,\nModeled in clay and took the part\nOf the villain in the \"Octoroon.\"\nBut then at twenty-one I married\nAnd had to live, and so, to live\nI learned the trade of making watches\nAnd kept the jewelry store on the square,\nThinking, thinking, thinking, thinking,-\nNot of business, but of the engine\nI studied the calculus to build.\nAnd all Spoon River watched and waited\nTo see it work, but it never worked.\nAnd a few kind souls believed my genius\nWas somehow hampered by the store.\nIt wasn't true.\nThe truth was this:\nI did not have the brains.",
+  "morseSourceText": "Walter Simmons\n\n\nMy parents thought that I would be\nAs great as Edison or greater:\nFor as a boy I made balloons\nAnd wondrous kites and toys with clocks\nAnd little engines with tracks to run on\nAnd telephones of cans and thread.\nI played the cornet and painted pictures,\nModeled in clay and took the part\nOf the villain in the \"Octoroon.\"\nBut then at twenty-one I married\nAnd had to live, and so, to live\nI learned the trade of making watches\nAnd kept the jewelry store on the square,\nThinking, thinking, thinking, thinking,-\nNot of business, but of the engine\nI studied the calculus to build.\nAnd all Spoon River watched and waited\nTo see it work, but it never worked.\nAnd a few kind souls believed my genius\nWas somehow hampered by the store.\nIt wasn't true.\nThe truth was this:\nI did not have the brains.",
+  "paragraphs": [
+    "Walter Simmons",
+    "My parents thought that I would be As great as Edison or greater: For as a boy I made balloons And wondrous kites and toys with clocks And little engines with tracks to run on And telephones of cans and thread. I played the cornet and painted pictures, Modeled in clay and took the part Of the villain in the \"Octoroon.\" But then at twenty-one I married And had to live, and so, to live I learned the trade of making watches And kept the jewelry store on the square, Thinking, thinking, thinking, thinking,- Not of business, but of the engine I studied the calculus to build. And all Spoon River watched and waited To see it work, but it never worked. And a few kind souls believed my genius Was somehow hampered by the store. It wasn't true. The truth was this: I did not have the brains."
+  ],
+  "wordCount": 151,
+  "characterCount": 806,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4261,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Walter Simmons My parents thought that I would be As great as Edison or greater: For as a boy I made balloons And wondrous kites and toys with clocks And littl...",
+  "sourceOffsets": {
+    "start": 105756,
+    "end": 106595
+  }
+}

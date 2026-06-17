@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "slug": "romeo-and-juliet",
+  "title": "Romeo and Juliet",
+  "author": [
+    "William Shakespeare"
+  ],
+  "contentVersion": "17989b8edab3d609",
+  "contentHash": "17989b8edab3d609f23144a94b317802b9e4f9ddd26e789a5070d6437ea33de1",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "1513",
+    "releaseDate": "November 1, 1998",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/1513",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Romeo and Juliet"
+  },
+  "stats": {
+    "originalCharacterCount": 167467,
+    "cleanedCharacterCount": 139732,
+    "wordCount": 25576,
+    "sectionCount": 5,
+    "includedSectionCount": 5
+  },
+  "defaults": {
+    "includeKinds": [
+      "scene"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "scene-001",
+      "kind": "scene",
+      "label": "Act 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/scene-001.json",
+      "characterCount": 32836,
+      "wordCount": 5990,
+      "estimatedTypingMinutes": 150,
+      "estimatedListeningMinutes": 198,
+      "morseCharacterEstimate": 177554,
+      "textPreview": "ACT I SCENE I. A public place. Enter Sampson and Gregory armed with swords and bucklers. SAMPSON. Gregory, on my word, we'll not carry coals. GREGORY. No, for..."
+    },
+    {
+      "id": "scene-002",
+      "kind": "scene",
+      "label": "Act 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/scene-002.json",
+      "characterCount": 30702,
+      "wordCount": 5686,
+      "estimatedTypingMinutes": 143,
+      "estimatedListeningMinutes": 184,
+      "morseCharacterEstimate": 165050,
+      "textPreview": "ACT II Enter Chorus. CHORUS. Now old desire doth in his deathbed lie, And young affection gapes to be his heir; That fair for which love groan'd for and would..."
+    },
+    {
+      "id": "scene-003",
+      "kind": "scene",
+      "label": "Act 3",
+      "title": null,
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/scene-003.json",
+      "characterCount": 36904,
+      "wordCount": 6750,
+      "estimatedTypingMinutes": 169,
+      "estimatedListeningMinutes": 223,
+      "morseCharacterEstimate": 200121,
+      "textPreview": "ACT III SCENE I. A public Place. Enter Mercutio, Benvolio, Page and Servants. BENVOLIO. I pray thee, good Mercutio, let's retire: The day is hot, the Capulets..."
+    },
+    {
+      "id": "scene-004",
+      "kind": "scene",
+      "label": "Act 4",
+      "title": null,
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/scene-004.json",
+      "characterCount": 19016,
+      "wordCount": 3460,
+      "estimatedTypingMinutes": 87,
+      "estimatedListeningMinutes": 115,
+      "morseCharacterEstimate": 103097,
+      "textPreview": "ACT IV SCENE I. Friar Lawrence's Cell. Enter Friar Lawrence and Paris. FRIAR LAWRENCE. On Thursday, sir? The time is very short. PARIS. My father Capulet will..."
+    },
+    {
+      "id": "scene-005",
+      "kind": "scene",
+      "label": "Act 5",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/scene-005.json",
+      "characterCount": 20274,
+      "wordCount": 3690,
+      "estimatedTypingMinutes": 93,
+      "estimatedListeningMinutes": 121,
+      "morseCharacterEstimate": 108795,
+      "textPreview": "ACT V SCENE I. Mantua. A Street. Enter Romeo. ROMEO. If I may trust the flattering eye of sleep, My dreams presage some joyful news at hand. My bosom's lord si..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 167467,
+    "cleanedCharacterCount": 139732,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": [
+      "Raw-only candidate: generated output and preview assets do not exist yet.",
+      "Table of contents appears isolated before readable content.",
+      "Non-prose structure signals need section parsing review.",
+      "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+    ]
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 6; review before scaling to larger batches or Cloudflare export.",
+    "Raw-only candidate: generated output and preview assets do not exist yet.",
+    "Table of contents appears isolated before readable content.",
+    "Non-prose structure signals need section parsing review.",
+    "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
+  ]
+}

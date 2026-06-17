@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-099",
+  "kind": "poem",
+  "label": "Paul McNeely",
+  "title": null,
+  "order": 99,
+  "includeByDefault": true,
+  "displayText": "Paul McNeely\n\n\nDear Jane! dear winsome Jane!\nHow you stole in the room (where I lay so ill)\nIn your nurse's cap and linen cuffs,\nAnd took my hand and said with a smile:\n\"You are not so ill-you'll soon be well.\"\nAnd how the liquid thought of your eyes\nSank in my eyes like dew that slips\nInto the heart of a flower.\nDear Jane! the whole McNeely fortune\nCould not have bought your care of me,\nBy day and night, and night and day;\nNor paid for your smile, nor the warmth of your soul,\nIn your little hands laid on my brow.\nJane, till the flame of life went out\nIn the dark above the disk of night\nI longed and hoped to be well again\nTo pillow my head on your little breasts,\nAnd hold you fast in a clasp of love-\nDid my father provide for you when he died,\nJane, dear Jane?",
+  "morseSourceText": "Paul McNeely\n\n\nDear Jane! dear winsome Jane!\nHow you stole in the room (where I lay so ill)\nIn your nurse's cap and linen cuffs,\nAnd took my hand and said with a smile:\n\"You are not so ill-you'll soon be well.\"\nAnd how the liquid thought of your eyes\nSank in my eyes like dew that slips\nInto the heart of a flower.\nDear Jane! the whole McNeely fortune\nCould not have bought your care of me,\nBy day and night, and night and day;\nNor paid for your smile, nor the warmth of your soul,\nIn your little hands laid on my brow.\nJane, till the flame of life went out\nIn the dark above the disk of night\nI longed and hoped to be well again\nTo pillow my head on your little breasts,\nAnd hold you fast in a clasp of love-\nDid my father provide for you when he died,\nJane, dear Jane?",
+  "paragraphs": [
+    "Paul McNeely",
+    "Dear Jane! dear winsome Jane! How you stole in the room (where I lay so ill) In your nurse's cap and linen cuffs, And took my hand and said with a smile: \"You are not so ill-you'll soon be well.\" And how the liquid thought of your eyes Sank in my eyes like dew that slips Into the heart of a flower. Dear Jane! the whole McNeely fortune Could not have bought your care of me, By day and night, and night and day; Nor paid for your smile, nor the warmth of your soul, In your little hands laid on my brow. Jane, till the flame of life went out In the dark above the disk of night I longed and hoped to be well again To pillow my head on your little breasts, And hold you fast in a clasp of love- Did my father provide for you when he died, Jane, dear Jane?"
+  ],
+  "wordCount": 159,
+  "characterCount": 770,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4167,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Paul McNeely Dear Jane! dear winsome Jane! How you stole in the room (where I lay so ill) In your nurse's cap and linen cuffs, And took my hand and said with a...",
+  "sourceOffsets": {
+    "start": 71494,
+    "end": 72294
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-088",
+  "kind": "poem",
+  "label": "Mrs. Charles Bliss",
+  "title": null,
+  "order": 88,
+  "includeByDefault": true,
+  "displayText": "Mrs. Charles Bliss\n\n\nReverend Wiley advised me not to divorce him\nFor the sake of the children,\nAnd Judge Somers advised him the same.\nSo we stuck to the end of the path.\nBut two of the children thought he was right,\nAnd two of the children thought I was right.\nAnd the two who sided with him blamed me,\nAnd the two who sided with me blamed him,\nAnd they grieved for the one they sided with.\nAnd all were torn with the guilt of judging,\nAnd tortured in soul because they could not admire\nEqually him and me.\nNow every gardener knows that plants grown in cellars\nOr under stones are twisted and yellow and weak.\nAnd no mother would let her baby suck\nDiseased milk from her breast.\nYet preachers and judges advise the raising of souls\nWhere there is no sunlight, but only twilight,\nNo warmth, but only dampness and cold-\nPreachers and judges!",
+  "morseSourceText": "Mrs. Charles Bliss\n\n\nReverend Wiley advised me not to divorce him\nFor the sake of the children,\nAnd Judge Somers advised him the same.\nSo we stuck to the end of the path.\nBut two of the children thought he was right,\nAnd two of the children thought I was right.\nAnd the two who sided with him blamed me,\nAnd the two who sided with me blamed him,\nAnd they grieved for the one they sided with.\nAnd all were torn with the guilt of judging,\nAnd tortured in soul because they could not admire\nEqually him and me.\nNow every gardener knows that plants grown in cellars\nOr under stones are twisted and yellow and weak.\nAnd no mother would let her baby suck\nDiseased milk from her breast.\nYet preachers and judges advise the raising of souls\nWhere there is no sunlight, but only twilight,\nNo warmth, but only dampness and cold-\nPreachers and judges!",
+  "paragraphs": [
+    "Mrs. Charles Bliss",
+    "Reverend Wiley advised me not to divorce him For the sake of the children, And Judge Somers advised him the same. So we stuck to the end of the path. But two of the children thought he was right, And two of the children thought I was right. And the two who sided with him blamed me, And the two who sided with me blamed him, And they grieved for the one they sided with. And all were torn with the guilt of judging, And tortured in soul because they could not admire Equally him and me. Now every gardener knows that plants grown in cellars Or under stones are twisted and yellow and weak. And no mother would let her baby suck Diseased milk from her breast. Yet preachers and judges advise the raising of souls Where there is no sunlight, but only twilight, No warmth, but only dampness and cold- Preachers and judges!"
+  ],
+  "wordCount": 158,
+  "characterCount": 840,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4480,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Mrs. Charles Bliss Reverend Wiley advised me not to divorce him For the sake of the children, And Judge Somers advised him the same. So we stuck to the end of...",
+  "sourceOffsets": {
+    "start": 63463,
+    "end": 64333
+  }
+}

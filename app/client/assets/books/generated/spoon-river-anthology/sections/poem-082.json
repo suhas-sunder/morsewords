@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-082",
+  "kind": "poem",
+  "label": "John M. Church",
+  "title": null,
+  "order": 82,
+  "includeByDefault": true,
+  "displayText": "John M. Church\n\n\nI was attorney for the \"Q\"\nAnd the Indemnity Company which insured\nThe owners of the mine.\nI pulled the wires with judge and jury,\nAnd the upper courts, to beat the claims\nOf the crippled, the widow and orphan,\nAnd made a fortune thereat.\nThe bar association sang my praises\nIn a high-flown resolution.\nAnd the floral tributes were many-\nBut the rats devoured my heart\nAnd a snake made a nest in my skull",
+  "morseSourceText": "John M. Church\n\n\nI was attorney for the \"Q\"\nAnd the Indemnity Company which insured\nThe owners of the mine.\nI pulled the wires with judge and jury,\nAnd the upper courts, to beat the claims\nOf the crippled, the widow and orphan,\nAnd made a fortune thereat.\nThe bar association sang my praises\nIn a high-flown resolution.\nAnd the floral tributes were many-\nBut the rats devoured my heart\nAnd a snake made a nest in my skull",
+  "paragraphs": [
+    "John M. Church",
+    "I was attorney for the \"Q\" And the Indemnity Company which insured The owners of the mine. I pulled the wires with judge and jury, And the upper courts, to beat the claims Of the crippled, the widow and orphan, And made a fortune thereat. The bar association sang my praises In a high-flown resolution. And the floral tributes were many- But the rats devoured my heart And a snake made a nest in my skull"
+  ],
+  "wordCount": 79,
+  "characterCount": 421,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2240,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "John M. Church I was attorney for the \"Q\" And the Indemnity Company which insured The owners of the mine. I pulled the wires with judge and jury, And the upper...",
+  "sourceOffsets": {
+    "start": 59176,
+    "end": 59619
+  }
+}

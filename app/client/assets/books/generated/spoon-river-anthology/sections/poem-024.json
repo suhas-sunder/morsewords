@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-024",
+  "kind": "poem",
+  "label": "Doctor Meyers",
+  "title": null,
+  "order": 24,
+  "includeByDefault": true,
+  "displayText": "Doctor Meyers\n\n\nNo other man, unless it was Doc Hill,\nDid more for people in this town than I.\nAnd all the weak, the halt, the improvident\nAnd those who could not pay flocked to me.\nI was good-hearted, easy Doctor Meyers.\nI was healthy, happy, in comfortable fortune,\nBlest with a congenial mate, my children raised,\nAll wedded, doing well in the world.\nAnd then one night, Minerva, the poetess,\nCame to me in her trouble, crying.\nI tried to help her out-she died-\nThey indicted me, the newspapers disgraced me,\nMy wife perished of a broken heart.\nAnd pneumonia finished me.",
+  "morseSourceText": "Doctor Meyers\n\n\nNo other man, unless it was Doc Hill,\nDid more for people in this town than I.\nAnd all the weak, the halt, the improvident\nAnd those who could not pay flocked to me.\nI was good-hearted, easy Doctor Meyers.\nI was healthy, happy, in comfortable fortune,\nBlest with a congenial mate, my children raised,\nAll wedded, doing well in the world.\nAnd then one night, Minerva, the poetess,\nCame to me in her trouble, crying.\nI tried to help her out-she died-\nThey indicted me, the newspapers disgraced me,\nMy wife perished of a broken heart.\nAnd pneumonia finished me.",
+  "paragraphs": [
+    "Doctor Meyers",
+    "No other man, unless it was Doc Hill, Did more for people in this town than I. And all the weak, the halt, the improvident And those who could not pay flocked to me. I was good-hearted, easy Doctor Meyers. I was healthy, happy, in comfortable fortune, Blest with a congenial mate, my children raised, All wedded, doing well in the world. And then one night, Minerva, the poetess, Came to me in her trouble, crying. I tried to help her out-she died- They indicted me, the newspapers disgraced me, My wife perished of a broken heart. And pneumonia finished me."
+  ],
+  "wordCount": 103,
+  "characterCount": 574,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3095,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Doctor Meyers No other man, unless it was Doc Hill, Did more for people in this town than I. And all the weak, the halt, the improvident And those who could no...",
+  "sourceOffsets": {
+    "start": 22028,
+    "end": 22626
+  }
+}

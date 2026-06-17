@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-163",
+  "kind": "poem",
+  "label": "Felix Schmidt",
+  "title": null,
+  "order": 163,
+  "includeByDefault": true,
+  "displayText": "Felix Schmidt\n\n\nIt was only a little house of two rooms-\nAlmost like a child's play-house-\nWith scarce five acres of ground around it;\nAnd I had so many children to feed\nAnd school and clothe, and a wife who was sick\nFrom bearing children.\nOne day lawyer Whitney came along\nAnd proved to me that Christian Dallman,\nWho owned three thousand acres of land,\nHad bought the eighty that adjoined me\nIn eighteen hundred and seventy-one\nFor eleven dollars, at a sale for taxes,\nWhile my father lay in his mortal illness.\nSo the quarrel arose and I went to law.\nBut when we came to the proof,\nA survey of the land showed clear as day\nThat Dallman's tax deed covered my ground\nAnd my little house of two rooms.\nIt served me right for stirring him up.\nI lost my case and lost my place.\nI left the court room and went to work\nAs Christian Dallman's tenant.",
+  "morseSourceText": "Felix Schmidt\n\n\nIt was only a little house of two rooms-\nAlmost like a child's play-house-\nWith scarce five acres of ground around it;\nAnd I had so many children to feed\nAnd school and clothe, and a wife who was sick\nFrom bearing children.\nOne day lawyer Whitney came along\nAnd proved to me that Christian Dallman,\nWho owned three thousand acres of land,\nHad bought the eighty that adjoined me\nIn eighteen hundred and seventy-one\nFor eleven dollars, at a sale for taxes,\nWhile my father lay in his mortal illness.\nSo the quarrel arose and I went to law.\nBut when we came to the proof,\nA survey of the land showed clear as day\nThat Dallman's tax deed covered my ground\nAnd my little house of two rooms.\nIt served me right for stirring him up.\nI lost my case and lost my place.\nI left the court room and went to work\nAs Christian Dallman's tenant.",
+  "paragraphs": [
+    "Felix Schmidt",
+    "It was only a little house of two rooms- Almost like a child's play-house- With scarce five acres of ground around it; And I had so many children to feed And school and clothe, and a wife who was sick From bearing children. One day lawyer Whitney came along And proved to me that Christian Dallman, Who owned three thousand acres of land, Had bought the eighty that adjoined me In eighteen hundred and seventy-one For eleven dollars, at a sale for taxes, While my father lay in his mortal illness. So the quarrel arose and I went to law. But when we came to the proof, A survey of the land showed clear as day That Dallman's tax deed covered my ground And my little house of two rooms. It served me right for stirring him up. I lost my case and lost my place. I left the court room and went to work As Christian Dallman's tenant."
+  ],
+  "wordCount": 161,
+  "characterCount": 845,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4529,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Felix Schmidt It was only a little house of two rooms- Almost like a child's play-house- With scarce five acres of ground around it; And I had so many children...",
+  "sourceOffsets": {
+    "start": 121874,
+    "end": 122751
+  }
+}

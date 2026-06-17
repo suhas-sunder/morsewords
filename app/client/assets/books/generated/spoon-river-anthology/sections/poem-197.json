@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-197",
+  "kind": "poem",
+  "label": "Lyman King",
+  "title": null,
+  "order": 197,
+  "includeByDefault": true,
+  "displayText": "Lyman King\n\n\nYou may think, passer-by, that Fate\nIs a pit-fall outside of yourself,\nAround which you may walk by the use of foresight\nAnd wisdom.\nThus you believe, viewing the lives of other men,\nAs one who in God-like fashion bends over an anthill,\nSeeing how their difficulties could be avoided.\nBut pass on into life:\nIn time you shall see Fate approach you\nIn the shape of your own image in the mirror;\nOr you shall sit alone by your own hearth,\nAnd suddenly the chair by you shall hold a guest,\nAnd you shall know that guest\nAnd read the authentic message of his eyes.",
+  "morseSourceText": "Lyman King\n\n\nYou may think, passer-by, that Fate\nIs a pit-fall outside of yourself,\nAround which you may walk by the use of foresight\nAnd wisdom.\nThus you believe, viewing the lives of other men,\nAs one who in God-like fashion bends over an anthill,\nSeeing how their difficulties could be avoided.\nBut pass on into life:\nIn time you shall see Fate approach you\nIn the shape of your own image in the mirror;\nOr you shall sit alone by your own hearth,\nAnd suddenly the chair by you shall hold a guest,\nAnd you shall know that guest\nAnd read the authentic message of his eyes.",
+  "paragraphs": [
+    "Lyman King",
+    "You may think, passer-by, that Fate Is a pit-fall outside of yourself, Around which you may walk by the use of foresight And wisdom. Thus you believe, viewing the lives of other men, As one who in God-like fashion bends over an anthill, Seeing how their difficulties could be avoided. But pass on into life: In time you shall see Fate approach you In the shape of your own image in the mirror; Or you shall sit alone by your own hearth, And suddenly the chair by you shall hold a guest, And you shall know that guest And read the authentic message of his eyes."
+  ],
+  "wordCount": 108,
+  "characterCount": 573,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3109,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Lyman King You may think, passer-by, that Fate Is a pit-fall outside of yourself, Around which you may walk by the use of foresight And wisdom. Thus you believ...",
+  "sourceOffsets": {
+    "start": 149466,
+    "end": 150063
+  }
+}

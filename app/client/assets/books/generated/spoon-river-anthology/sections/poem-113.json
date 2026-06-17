@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-113",
+  "kind": "poem",
+  "label": "Mrs. Sibley",
+  "title": null,
+  "order": 113,
+  "includeByDefault": true,
+  "displayText": "Mrs. Sibley\n\n\nThe secret of the stars-gravitation.\nThe secret of the earth-layers of rock.\nThe secret of the soil-to receive seed.\nThe secret of the seed-the germ.\nThe secret of man-the sower.\nThe secret of woman-the soil.\nMy secret: Under a mound that you shall never find.",
+  "morseSourceText": "Mrs. Sibley\n\n\nThe secret of the stars-gravitation.\nThe secret of the earth-layers of rock.\nThe secret of the soil-to receive seed.\nThe secret of the seed-the germ.\nThe secret of man-the sower.\nThe secret of woman-the soil.\nMy secret: Under a mound that you shall never find.",
+  "paragraphs": [
+    "Mrs. Sibley",
+    "The secret of the stars-gravitation. The secret of the earth-layers of rock. The secret of the soil-to receive seed. The secret of the seed-the germ. The secret of man-the sower. The secret of woman-the soil. My secret: Under a mound that you shall never find."
+  ],
+  "wordCount": 47,
+  "characterCount": 274,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1461,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Mrs. Sibley The secret of the stars-gravitation. The secret of the earth-layers of rock. The secret of the soil-to receive seed. The secret of the seed-the ger...",
+  "sourceOffsets": {
+    "start": 81227,
+    "end": 81518
+  }
+}

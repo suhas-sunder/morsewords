@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-089",
+  "kind": "poem",
+  "label": "Mrs. George Reece",
+  "title": null,
+  "order": 89,
+  "includeByDefault": true,
+  "displayText": "Mrs. George Reece\n\n\nTo this generation I would say:\nMemorize some bit of verse of truth or beauty.\nIt may serve a turn in your life.\nMy husband had nothing to do\nWith the fall of the bank-he was only cashier.\nThe wreck was due to the president, Thomas Rhodes,\nAnd his vain, unscrupulous son.\nYet my husband was sent to prison,\nAnd I was left with the children,\nTo feed and clothe and school them.\nAnd I did it, and sent them forth\nInto the world all clean and strong,\nAnd all through the wisdom of Pope, the poet:\n\"Act well your part, there all the honor lies.\"",
+  "morseSourceText": "Mrs. George Reece\n\n\nTo this generation I would say:\nMemorize some bit of verse of truth or beauty.\nIt may serve a turn in your life.\nMy husband had nothing to do\nWith the fall of the bank-he was only cashier.\nThe wreck was due to the president, Thomas Rhodes,\nAnd his vain, unscrupulous son.\nYet my husband was sent to prison,\nAnd I was left with the children,\nTo feed and clothe and school them.\nAnd I did it, and sent them forth\nInto the world all clean and strong,\nAnd all through the wisdom of Pope, the poet:\n\"Act well your part, there all the honor lies.\"",
+  "paragraphs": [
+    "Mrs. George Reece",
+    "To this generation I would say: Memorize some bit of verse of truth or beauty. It may serve a turn in your life. My husband had nothing to do With the fall of the bank-he was only cashier. The wreck was due to the president, Thomas Rhodes, And his vain, unscrupulous son. Yet my husband was sent to prison, And I was left with the children, To feed and clothe and school them. And I did it, and sent them forth Into the world all clean and strong, And all through the wisdom of Pope, the poet: \"Act well your part, there all the honor lies.\""
+  ],
+  "wordCount": 109,
+  "characterCount": 561,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3014,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Mrs. George Reece To this generation I would say: Memorize some bit of verse of truth or beauty. It may serve a turn in your life. My husband had nothing to do...",
+  "sourceOffsets": {
+    "start": 64335,
+    "end": 64920
+  }
+}

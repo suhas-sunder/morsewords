@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-061",
+  "kind": "poem",
+  "label": "Nellie Clark",
+  "title": null,
+  "order": 61,
+  "includeByDefault": true,
+  "displayText": "Nellie Clark\n\n\nI was only eight years old;\nAnd before I grew up and knew what it meant\nI had no words for it, except\nThat I was frightened and told my\nMother; And that my Father got a pistol\nAnd would have killed Charlie, who was a big boy,\nFifteen years old, except for his Mother.\nNevertheless the story clung to me.\nBut the man who married me, a widower of thirty-five,\nWas a newcomer and never heard it\n'Till two years after we were married.\nThen he considered himself cheated,\nAnd the village agreed that I was not really a virgin.\nWell, he deserted me, and I died\nThe following winter.",
+  "morseSourceText": "Nellie Clark\n\n\nI was only eight years old;\nAnd before I grew up and knew what it meant\nI had no words for it, except\nThat I was frightened and told my\nMother; And that my Father got a pistol\nAnd would have killed Charlie, who was a big boy,\nFifteen years old, except for his Mother.\nNevertheless the story clung to me.\nBut the man who married me, a widower of thirty-five,\nWas a newcomer and never heard it\n'Till two years after we were married.\nThen he considered himself cheated,\nAnd the village agreed that I was not really a virgin.\nWell, he deserted me, and I died\nThe following winter.",
+  "paragraphs": [
+    "Nellie Clark",
+    "I was only eight years old; And before I grew up and knew what it meant I had no words for it, except That I was frightened and told my Mother; And that my Father got a pistol And would have killed Charlie, who was a big boy, Fifteen years old, except for his Mother. Nevertheless the story clung to me. But the man who married me, a widower of thirty-five, Was a newcomer and never heard it 'Till two years after we were married. Then he considered himself cheated, And the village agreed that I was not really a virgin. Well, he deserted me, and I died The following winter."
+  ],
+  "wordCount": 113,
+  "characterCount": 591,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3134,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Nellie Clark I was only eight years old; And before I grew up and knew what it meant I had no words for it, except That I was frightened and told my Mother; An...",
+  "sourceOffsets": {
+    "start": 44895,
+    "end": 45511
+  }
+}

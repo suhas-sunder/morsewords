@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-201",
+  "kind": "poem",
+  "label": "Mabel Osborne",
+  "title": null,
+  "order": 201,
+  "includeByDefault": true,
+  "displayText": "Mabel Osborne\n\n\nYour red blossoms amid green leaves\nAre drooping, beautiful geranium!\nBut you do not ask for water.\nYou cannot speak!\nYou do not need to speak-\nEveryone knows that you are dying of thirst,\nYet they do not bring water!\nThey pass on, saying:\n\"The geranium wants water.\"\nAnd I, who had happiness to share\nAnd longed to share your happiness;\nI who loved you, Spoon River,\nAnd craved your love,\nWithered before your eyes, Spoon River-\nThirsting, thirsting,\nVoiceless from chasteness of soul to ask you for love,\nYou who knew and saw me perish before you,\nLike this geranium which someone has planted over me,\nAnd left to die.",
+  "morseSourceText": "Mabel Osborne\n\n\nYour red blossoms amid green leaves\nAre drooping, beautiful geranium!\nBut you do not ask for water.\nYou cannot speak!\nYou do not need to speak-\nEveryone knows that you are dying of thirst,\nYet they do not bring water!\nThey pass on, saying:\n\"The geranium wants water.\"\nAnd I, who had happiness to share\nAnd longed to share your happiness;\nI who loved you, Spoon River,\nAnd craved your love,\nWithered before your eyes, Spoon River-\nThirsting, thirsting,\nVoiceless from chasteness of soul to ask you for love,\nYou who knew and saw me perish before you,\nLike this geranium which someone has planted over me,\nAnd left to die.",
+  "paragraphs": [
+    "Mabel Osborne",
+    "Your red blossoms amid green leaves Are drooping, beautiful geranium! But you do not ask for water. You cannot speak! You do not need to speak- Everyone knows that you are dying of thirst, Yet they do not bring water! They pass on, saying: \"The geranium wants water.\" And I, who had happiness to share And longed to share your happiness; I who loved you, Spoon River, And craved your love, Withered before your eyes, Spoon River- Thirsting, thirsting, Voiceless from chasteness of soul to ask you for love, You who knew and saw me perish before you, Like this geranium which someone has planted over me, And left to die."
+  ],
+  "wordCount": 113,
+  "characterCount": 636,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3456,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Mabel Osborne Your red blossoms amid green leaves Are drooping, beautiful geranium! But you do not ask for water. You cannot speak! You do not need to speak- E...",
+  "sourceOffsets": {
+    "start": 153322,
+    "end": 153987
+  }
+}

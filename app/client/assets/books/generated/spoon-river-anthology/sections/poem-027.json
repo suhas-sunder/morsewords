@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-027",
+  "kind": "poem",
+  "label": "Lydia Puckett",
+  "title": null,
+  "order": 27,
+  "includeByDefault": true,
+  "displayText": "Lydia Puckett\n\n\nKnowlt Hoheimer ran away to the war\nThe day before Curl Trenary\nSwore out a warrant through Justice Arnett\nFor stealing hogs.\nBut that's not the reason he turned a soldier.\nHe caught me running with Lucius Atherton.\nWe quarreled and I told him never again\nTo cross my path.\nThen he stole the hogs and went to the war-\nBack of every soldier is a woman.",
+  "morseSourceText": "Lydia Puckett\n\n\nKnowlt Hoheimer ran away to the war\nThe day before Curl Trenary\nSwore out a warrant through Justice Arnett\nFor stealing hogs.\nBut that's not the reason he turned a soldier.\nHe caught me running with Lucius Atherton.\nWe quarreled and I told him never again\nTo cross my path.\nThen he stole the hogs and went to the war-\nBack of every soldier is a woman.",
+  "paragraphs": [
+    "Lydia Puckett",
+    "Knowlt Hoheimer ran away to the war The day before Curl Trenary Swore out a warrant through Justice Arnett For stealing hogs. But that's not the reason he turned a soldier. He caught me running with Lucius Atherton. We quarreled and I told him never again To cross my path. Then he stole the hogs and went to the war- Back of every soldier is a woman."
+  ],
+  "wordCount": 69,
+  "characterCount": 367,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 1929,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Lydia Puckett Knowlt Hoheimer ran away to the war The day before Curl Trenary Swore out a warrant through Justice Arnett For stealing hogs. But that's not the...",
+  "sourceOffsets": {
+    "start": 23532,
+    "end": 23919
+  }
+}

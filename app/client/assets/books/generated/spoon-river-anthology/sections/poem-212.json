@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-212",
+  "kind": "poem",
+  "label": "Marie Bateson",
+  "title": null,
+  "order": 212,
+  "includeByDefault": true,
+  "displayText": "Marie Bateson\n\n\nYou observe the carven hand\nWith the index finger pointing heavenward.\nThat is the direction, no doubt.\nBut how shall one follow it?\nIt is well to abstain from murder and lust,\nTo forgive, do good to others, worship God\nWithout graven images.\nBut these are external means after all\nBy which you chiefly do good to yourself.\nThe inner kernel is freedom,\nIt is light, purity-\nI can no more,\nFind the goal or lose it, according to your vision.",
+  "morseSourceText": "Marie Bateson\n\n\nYou observe the carven hand\nWith the index finger pointing heavenward.\nThat is the direction, no doubt.\nBut how shall one follow it?\nIt is well to abstain from murder and lust,\nTo forgive, do good to others, worship God\nWithout graven images.\nBut these are external means after all\nBy which you chiefly do good to yourself.\nThe inner kernel is freedom,\nIt is light, purity-\nI can no more,\nFind the goal or lose it, according to your vision.",
+  "paragraphs": [
+    "Marie Bateson",
+    "You observe the carven hand With the index finger pointing heavenward. That is the direction, no doubt. But how shall one follow it? It is well to abstain from murder and lust, To forgive, do good to others, worship God Without graven images. But these are external means after all By which you chiefly do good to yourself. The inner kernel is freedom, It is light, purity- I can no more, Find the goal or lose it, according to your vision."
+  ],
+  "wordCount": 83,
+  "characterCount": 456,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2453,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Marie Bateson You observe the carven hand With the index finger pointing heavenward. That is the direction, no doubt. But how shall one follow it? It is well t...",
+  "sourceOffsets": {
+    "start": 162984,
+    "end": 163463
+  }
+}

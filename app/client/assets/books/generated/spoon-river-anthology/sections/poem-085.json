@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-085",
+  "kind": "poem",
+  "label": "Barney Hainsfeather",
+  "title": null,
+  "order": 85,
+  "includeByDefault": true,
+  "displayText": "Barney Hainsfeather\n\n\nIf the excursion train to Peoria\nHad just been wrecked, I might have escaped with my life-\nCertainly I should have escaped this place.\nBut as it was burned as well, they mistook me\nFor John Allen who was sent to the Hebrew Cemetery\nAt Chicago,\nAnd John for me, so I lie here.\nIt was bad enough to run a clothing store in this town,\nBut to be buried here-_ach!_",
+  "morseSourceText": "Barney Hainsfeather\n\n\nIf the excursion train to Peoria\nHad just been wrecked, I might have escaped with my life-\nCertainly I should have escaped this place.\nBut as it was burned as well, they mistook me\nFor John Allen who was sent to the Hebrew Cemetery\nAt Chicago,\nAnd John for me, so I lie here.\nIt was bad enough to run a clothing store in this town,\nBut to be buried here-_ach!_",
+  "paragraphs": [
+    "Barney Hainsfeather",
+    "If the excursion train to Peoria Had just been wrecked, I might have escaped with my life- Certainly I should have escaped this place. But as it was burned as well, they mistook me For John Allen who was sent to the Hebrew Cemetery At Chicago, And John for me, so I lie here. It was bad enough to run a clothing store in this town, But to be buried here-_ach!_"
+  ],
+  "wordCount": 74,
+  "characterCount": 382,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2039,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Barney Hainsfeather If the excursion train to Peoria Had just been wrecked, I might have escaped with my life- Certainly I should have escaped this place. But...",
+  "sourceOffsets": {
+    "start": 61241,
+    "end": 61642
+  }
+}

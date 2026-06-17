@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-182",
+  "kind": "poem",
+  "label": "Elmer Karr",
+  "title": null,
+  "order": 182,
+  "includeByDefault": true,
+  "displayText": "Elmer Karr\n\n\nWhat but the love of God could have softened\nAnd made forgiving the people of Spoon River\nToward me who wronged the bed of Thomas Merritt\nAnd murdered him beside?\nOh, loving hearts that took me in again\nWhen I returned from fourteen years in prison!\nOh, helping hands that in the church received me\nAnd heard with tears my penitent confession,\nWho took the sacrament of bread and wine!\nRepent, ye living ones, and rest with Jesus.",
+  "morseSourceText": "Elmer Karr\n\n\nWhat but the love of God could have softened\nAnd made forgiving the people of Spoon River\nToward me who wronged the bed of Thomas Merritt\nAnd murdered him beside?\nOh, loving hearts that took me in again\nWhen I returned from fourteen years in prison!\nOh, helping hands that in the church received me\nAnd heard with tears my penitent confession,\nWho took the sacrament of bread and wine!\nRepent, ye living ones, and rest with Jesus.",
+  "paragraphs": [
+    "Elmer Karr",
+    "What but the love of God could have softened And made forgiving the people of Spoon River Toward me who wronged the bed of Thomas Merritt And murdered him beside? Oh, loving hearts that took me in again When I returned from fourteen years in prison! Oh, helping hands that in the church received me And heard with tears my penitent confession, Who took the sacrament of bread and wine! Repent, ye living ones, and rest with Jesus."
+  ],
+  "wordCount": 80,
+  "characterCount": 443,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2336,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Elmer Karr What but the love of God could have softened And made forgiving the people of Spoon River Toward me who wronged the bed of Thomas Merritt And murder...",
+  "sourceOffsets": {
+    "start": 136629,
+    "end": 137092
+  }
+}

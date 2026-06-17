@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-168",
+  "kind": "poem",
+  "label": "Jonathan Houghton",
+  "title": null,
+  "order": 168,
+  "includeByDefault": true,
+  "displayText": "Jonathan Houghton\n\n\nThere is the caw of a crow,\nAnd the hesitant song of a thrush.\nThere is the tinkle of a cowbell far away,\nAnd the voice of a plowman on Shipley's hill.\nThe forest beyond the orchard is still\nWith midsummer stillness;\nAnd along the road a wagon chuckles,\nLoaded with corn, going to Atterbury.\nAnd an old man sits under a tree asleep,\nAnd an old woman crosses the road,\nComing from the orchard with a bucket of blackberries.\nAnd a boy lies in the grass\nNear the feet of the old man,\nAnd looks up at the sailing clouds,\nAnd longs, and longs, and longs\nFor what, he knows not:\nFor manhood, for life, for the unknown world!\nThen thirty years passed,\nAnd the boy returned worn out by life\nAnd found the orchard vanished,\nAnd the forest gone,\nAnd the house made over,\nAnd the roadway filled with dust from automobiles-\nAnd himself desiring The Hill!",
+  "morseSourceText": "Jonathan Houghton\n\n\nThere is the caw of a crow,\nAnd the hesitant song of a thrush.\nThere is the tinkle of a cowbell far away,\nAnd the voice of a plowman on Shipley's hill.\nThe forest beyond the orchard is still\nWith midsummer stillness;\nAnd along the road a wagon chuckles,\nLoaded with corn, going to Atterbury.\nAnd an old man sits under a tree asleep,\nAnd an old woman crosses the road,\nComing from the orchard with a bucket of blackberries.\nAnd a boy lies in the grass\nNear the feet of the old man,\nAnd looks up at the sailing clouds,\nAnd longs, and longs, and longs\nFor what, he knows not:\nFor manhood, for life, for the unknown world!\nThen thirty years passed,\nAnd the boy returned worn out by life\nAnd found the orchard vanished,\nAnd the forest gone,\nAnd the house made over,\nAnd the roadway filled with dust from automobiles-\nAnd himself desiring The Hill!",
+  "paragraphs": [
+    "Jonathan Houghton",
+    "There is the caw of a crow, And the hesitant song of a thrush. There is the tinkle of a cowbell far away, And the voice of a plowman on Shipley's hill. The forest beyond the orchard is still With midsummer stillness; And along the road a wagon chuckles, Loaded with corn, going to Atterbury. And an old man sits under a tree asleep, And an old woman crosses the road, Coming from the orchard with a bucket of blackberries. And a boy lies in the grass Near the feet of the old man, And looks up at the sailing clouds, And longs, and longs, and longs For what, he knows not: For manhood, for life, for the unknown world! Then thirty years passed, And the boy returned worn out by life And found the orchard vanished, And the forest gone, And the house made over, And the roadway filled with dust from automobiles- And himself desiring The Hill!"
+  ],
+  "wordCount": 161,
+  "characterCount": 862,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4661,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Jonathan Houghton There is the caw of a crow, And the hesitant song of a thrush. There is the tinkle of a cowbell far away, And the voice of a plowman on Shipl...",
+  "sourceOffsets": {
+    "start": 126007,
+    "end": 126903
+  }
+}

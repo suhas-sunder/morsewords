@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-026",
+  "kind": "poem",
+  "label": "Knowlt Hoheimer",
+  "title": null,
+  "order": 26,
+  "includeByDefault": true,
+  "displayText": "Knowlt Hoheimer\n\n\nI was the first fruits of the battle of Missionary Ridge.\nWhen I felt the bullet enter my heart\nI wished I had staid at home and gone to jail\nFor stealing the hogs of Curl Trenary,\nInstead of running away and joining the army.\nRather a thousand times the county jail\nThan to lie under this marble figure with wings,\nAnd this granite pedestal Bearing the words, \"Pro Patria.\"\nWhat do they mean, anyway?",
+  "morseSourceText": "Knowlt Hoheimer\n\n\nI was the first fruits of the battle of Missionary Ridge.\nWhen I felt the bullet enter my heart\nI wished I had staid at home and gone to jail\nFor stealing the hogs of Curl Trenary,\nInstead of running away and joining the army.\nRather a thousand times the county jail\nThan to lie under this marble figure with wings,\nAnd this granite pedestal Bearing the words, \"Pro Patria.\"\nWhat do they mean, anyway?",
+  "paragraphs": [
+    "Knowlt Hoheimer",
+    "I was the first fruits of the battle of Missionary Ridge. When I felt the bullet enter my heart I wished I had staid at home and gone to jail For stealing the hogs of Curl Trenary, Instead of running away and joining the army. Rather a thousand times the county jail Than to lie under this marble figure with wings, And this granite pedestal Bearing the words, \"Pro Patria.\" What do they mean, anyway?"
+  ],
+  "wordCount": 77,
+  "characterCount": 419,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2206,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Knowlt Hoheimer I was the first fruits of the battle of Missionary Ridge. When I felt the bullet enter my heart I wished I had staid at home and gone to jail F...",
+  "sourceOffsets": {
+    "start": 23092,
+    "end": 23530
+  }
+}

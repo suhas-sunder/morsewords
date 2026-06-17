@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-153",
+  "kind": "poem",
+  "label": "Peleg Poague",
+  "title": null,
+  "order": 153,
+  "includeByDefault": true,
+  "displayText": "Peleg Poague\n\n\nHorses and men are just alike.\nThere was my stallion, Billy Lee,\nBlack as a cat and trim as a deer,\nWith an eye of fire, keen to start,\nAnd he could hit the fastest speed\nOf any racer around Spoon River.\nBut just as you'd think he couldn't lose,\nWith his lead of fifty yards or more,\nHe'd rear himself and throw the rider,\nAnd fall back over, tangled up,\nCompletely gone to pieces.\nYou see he was a perfect fraud:\nHe couldn't win, he couldn't work,\nHe was too light to haul or plow with,\nAnd no one wanted colts from him.\nAnd when I tried to drive him-well,\nHe ran away and killed me.",
+  "morseSourceText": "Peleg Poague\n\n\nHorses and men are just alike.\nThere was my stallion, Billy Lee,\nBlack as a cat and trim as a deer,\nWith an eye of fire, keen to start,\nAnd he could hit the fastest speed\nOf any racer around Spoon River.\nBut just as you'd think he couldn't lose,\nWith his lead of fifty yards or more,\nHe'd rear himself and throw the rider,\nAnd fall back over, tangled up,\nCompletely gone to pieces.\nYou see he was a perfect fraud:\nHe couldn't win, he couldn't work,\nHe was too light to haul or plow with,\nAnd no one wanted colts from him.\nAnd when I tried to drive him-well,\nHe ran away and killed me.",
+  "paragraphs": [
+    "Peleg Poague",
+    "Horses and men are just alike. There was my stallion, Billy Lee, Black as a cat and trim as a deer, With an eye of fire, keen to start, And he could hit the fastest speed Of any racer around Spoon River. But just as you'd think he couldn't lose, With his lead of fifty yards or more, He'd rear himself and throw the rider, And fall back over, tangled up, Completely gone to pieces. You see he was a perfect fraud: He couldn't win, he couldn't work, He was too light to haul or plow with, And no one wanted colts from him. And when I tried to drive him-well, He ran away and killed me."
+  ],
+  "wordCount": 119,
+  "characterCount": 599,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3238,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Peleg Poague Horses and men are just alike. There was my stallion, Billy Lee, Black as a cat and trim as a deer, With an eye of fire, keen to start, And he cou...",
+  "sourceOffsets": {
+    "start": 113440,
+    "end": 114066
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-135",
+  "kind": "poem",
+  "label": "Roscoe Purkapile",
+  "title": null,
+  "order": 135,
+  "includeByDefault": true,
+  "displayText": "Roscoe Purkapile\n\n\nShe loved me.\nOh! how she loved me I never had a chance to escape\nFrom the day she first saw me.\nBut then after we were married I thought\nShe might prove her mortality and let me out,\nOr she might divorce me. But few die, none resign.\nThen I ran away and was gone a year on a lark.\nBut she never complained. She said all would be well\nThat I would return. And I did return.\nI told her that while taking a row in a boat\nI had been captured near Van Buren Street\nBy pirates on Lake Michigan,\nAnd kept in chains, so I could not write her.\nShe cried and kissed me, and said it was cruel,\nOutrageous, inhuman! I then concluded our marriage\nWas a divine dispensation\nAnd could not be dissolved,\nExcept by death.\nI was right.",
+  "morseSourceText": "Roscoe Purkapile\n\n\nShe loved me.\nOh! how she loved me I never had a chance to escape\nFrom the day she first saw me.\nBut then after we were married I thought\nShe might prove her mortality and let me out,\nOr she might divorce me. But few die, none resign.\nThen I ran away and was gone a year on a lark.\nBut she never complained. She said all would be well\nThat I would return. And I did return.\nI told her that while taking a row in a boat\nI had been captured near Van Buren Street\nBy pirates on Lake Michigan,\nAnd kept in chains, so I could not write her.\nShe cried and kissed me, and said it was cruel,\nOutrageous, inhuman! I then concluded our marriage\nWas a divine dispensation\nAnd could not be dissolved,\nExcept by death.\nI was right.",
+  "paragraphs": [
+    "Roscoe Purkapile",
+    "She loved me. Oh! how she loved me I never had a chance to escape From the day she first saw me. But then after we were married I thought She might prove her mortality and let me out, Or she might divorce me. But few die, none resign. Then I ran away and was gone a year on a lark. But she never complained. She said all would be well That I would return. And I did return. I told her that while taking a row in a boat I had been captured near Van Buren Street By pirates on Lake Michigan, And kept in chains, so I could not write her. She cried and kissed me, and said it was cruel, Outrageous, inhuman! I then concluded our marriage Was a divine dispensation And could not be dissolved, Except by death. I was right."
+  ],
+  "wordCount": 147,
+  "characterCount": 737,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3902,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Roscoe Purkapile She loved me. Oh! how she loved me I never had a chance to escape From the day she first saw me. But then after we were married I thought She...",
+  "sourceOffsets": {
+    "start": 97392,
+    "end": 98158
+  }
+}

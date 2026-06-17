@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-021",
+  "kind": "poem",
+  "label": "Minerva Jones",
+  "title": null,
+  "order": 21,
+  "includeByDefault": true,
+  "displayText": "Minerva Jones\n\n\nI am Minerva, the village poetess,\nHooted at, jeered at by the Yahoos of the street\nFor my heavy body, cock-eye, and rolling walk,\nAnd all the more when \"Butch\" Weldy\nCaptured me after a brutal hunt.\nHe left me to my fate with Doctor Meyers;\nAnd I sank into death, growing numb from the feet up,\nLike one stepping deeper and deeper into a stream of ice.\nWill some one go to the village newspaper,\nAnd gather into a book the verses I wrote?-\nI thirsted so for love\nI hungered so for life!",
+  "morseSourceText": "Minerva Jones\n\n\nI am Minerva, the village poetess,\nHooted at, jeered at by the Yahoos of the street\nFor my heavy body, cock-eye, and rolling walk,\nAnd all the more when \"Butch\" Weldy\nCaptured me after a brutal hunt.\nHe left me to my fate with Doctor Meyers;\nAnd I sank into death, growing numb from the feet up,\nLike one stepping deeper and deeper into a stream of ice.\nWill some one go to the village newspaper,\nAnd gather into a book the verses I wrote?-\nI thirsted so for love\nI hungered so for life!",
+  "paragraphs": [
+    "Minerva Jones",
+    "I am Minerva, the village poetess, Hooted at, jeered at by the Yahoos of the street For my heavy body, cock-eye, and rolling walk, And all the more when \"Butch\" Weldy Captured me after a brutal hunt. He left me to my fate with Doctor Meyers; And I sank into death, growing numb from the feet up, Like one stepping deeper and deeper into a stream of ice. Will some one go to the village newspaper, And gather into a book the verses I wrote?- I thirsted so for love I hungered so for life!"
+  ],
+  "wordCount": 97,
+  "characterCount": 503,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2673,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Minerva Jones I am Minerva, the village poetess, Hooted at, jeered at by the Yahoos of the street For my heavy body, cock-eye, and rolling walk, And all the mo...",
+  "sourceOffsets": {
+    "start": 19682,
+    "end": 20207
+  }
+}

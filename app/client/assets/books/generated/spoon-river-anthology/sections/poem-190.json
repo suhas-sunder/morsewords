@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-190",
+  "kind": "poem",
+  "label": "Harlan Sewall",
+  "title": null,
+  "order": 190,
+  "includeByDefault": true,
+  "displayText": "Harlan Sewall\n\n\nYou never understood,\nO unknown one,\nWhy it was I repaid\nYour devoted friendship and delicate ministrations\nFirst with diminished thanks,\nAfterward by gradually withdrawing my presence from you,\nSo that I might not be compelled to thank you,\nAnd then with silence which followed upon\nOur final Separation.\nYou had cured my diseased soul.\nBut to cure it\nYou saw my disease, you knew my secret,\nAnd that is why I fled from you.\nFor though when our bodies rise from pain\nWe kiss forever the watchful hands\nThat gave us wormwood, while we shudder\nFor thinking of the wormwood,\nA soul that's cured is a different matter,\nFor there we'd blot from memory\nThe soft-toned words, the searching eyes,\nAnd stand forever oblivious,\nNot so much of the sorrow itself\nAs of the hand that healed it.",
+  "morseSourceText": "Harlan Sewall\n\n\nYou never understood,\nO unknown one,\nWhy it was I repaid\nYour devoted friendship and delicate ministrations\nFirst with diminished thanks,\nAfterward by gradually withdrawing my presence from you,\nSo that I might not be compelled to thank you,\nAnd then with silence which followed upon\nOur final Separation.\nYou had cured my diseased soul.\nBut to cure it\nYou saw my disease, you knew my secret,\nAnd that is why I fled from you.\nFor though when our bodies rise from pain\nWe kiss forever the watchful hands\nThat gave us wormwood, while we shudder\nFor thinking of the wormwood,\nA soul that's cured is a different matter,\nFor there we'd blot from memory\nThe soft-toned words, the searching eyes,\nAnd stand forever oblivious,\nNot so much of the sorrow itself\nAs of the hand that healed it.",
+  "paragraphs": [
+    "Harlan Sewall",
+    "You never understood, O unknown one, Why it was I repaid Your devoted friendship and delicate ministrations First with diminished thanks, Afterward by gradually withdrawing my presence from you, So that I might not be compelled to thank you, And then with silence which followed upon Our final Separation. You had cured my diseased soul. But to cure it You saw my disease, you knew my secret, And that is why I fled from you. For though when our bodies rise from pain We kiss forever the watchful hands That gave us wormwood, while we shudder For thinking of the wormwood, A soul that's cured is a different matter, For there we'd blot from memory The soft-toned words, the searching eyes, And stand forever oblivious, Not so much of the sorrow itself As of the hand that healed it."
+  ],
+  "wordCount": 141,
+  "characterCount": 798,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4308,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Harlan Sewall You never understood, O unknown one, Why it was I repaid Your devoted friendship and delicate ministrations First with diminished thanks, Afterwa...",
+  "sourceOffsets": {
+    "start": 142605,
+    "end": 143436
+  }
+}

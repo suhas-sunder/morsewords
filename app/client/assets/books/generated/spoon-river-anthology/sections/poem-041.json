@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-041",
+  "kind": "poem",
+  "label": "The Town Marshal",
+  "title": null,
+  "order": 41,
+  "includeByDefault": true,
+  "displayText": "The Town Marshal\n\n\nThe Prohibitionists made me Town Marshal\nWhen the saloons were voted out,\nBecause when I was a drinking man,\nBefore I joined the church, I killed a Swede\nAt the saw-mill near Maple Grove.\nAnd they wanted a terrible man,\nGrim, righteous, strong, courageous,\nAnd a hater of saloons and drinkers,\nTo keep law and order in the village.\nAnd they presented me with a loaded cane\nWith which I struck Jack McGuire\nBefore he drew the gun with which he killed me.\nThe Prohibitionists spent their money in vain\nTo hang him, for in a dream\nI appeared to one of the twelve jurymen\nAnd told him the whole secret story.\nFourteen years were enough for killing me.",
+  "morseSourceText": "The Town Marshal\n\n\nThe Prohibitionists made me Town Marshal\nWhen the saloons were voted out,\nBecause when I was a drinking man,\nBefore I joined the church, I killed a Swede\nAt the saw-mill near Maple Grove.\nAnd they wanted a terrible man,\nGrim, righteous, strong, courageous,\nAnd a hater of saloons and drinkers,\nTo keep law and order in the village.\nAnd they presented me with a loaded cane\nWith which I struck Jack McGuire\nBefore he drew the gun with which he killed me.\nThe Prohibitionists spent their money in vain\nTo hang him, for in a dream\nI appeared to one of the twelve jurymen\nAnd told him the whole secret story.\nFourteen years were enough for killing me.",
+  "paragraphs": [
+    "The Town Marshal",
+    "The Prohibitionists made me Town Marshal When the saloons were voted out, Because when I was a drinking man, Before I joined the church, I killed a Swede At the saw-mill near Maple Grove. And they wanted a terrible man, Grim, righteous, strong, courageous, And a hater of saloons and drinkers, To keep law and order in the village. And they presented me with a loaded cane With which I struck Jack McGuire Before he drew the gun with which he killed me. The Prohibitionists spent their money in vain To hang him, for in a dream I appeared to one of the twelve jurymen And told him the whole secret story. Fourteen years were enough for killing me."
+  ],
+  "wordCount": 122,
+  "characterCount": 666,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3523,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "The Town Marshal The Prohibitionists made me Town Marshal When the saloons were voted out, Because when I was a drinking man, Before I joined the church, I kil...",
+  "sourceOffsets": {
+    "start": 31673,
+    "end": 32366
+  }
+}

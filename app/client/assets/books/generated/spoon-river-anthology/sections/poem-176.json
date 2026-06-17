@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-176",
+  "kind": "poem",
+  "label": "Perry Zoll",
+  "title": null,
+  "order": 176,
+  "includeByDefault": true,
+  "displayText": "Perry Zoll\n\n\nMy thanks, friends of the\nCounty Scientific Association,\nFor this modest boulder,\nAnd its little tablet of bronze.\nTwice I tried to join your honored body,\nAnd was rejected\nAnd when my little brochure\nOn the intelligence of plants\nBegan to attract attention\nYou almost voted me in.\nAfter that I grew beyond the need of you\nAnd your recognition.\nYet I do not reject your memorial stone\nSeeing that I should, in so doing,\nDeprive you of honor to yourselves.",
+  "morseSourceText": "Perry Zoll\n\n\nMy thanks, friends of the\nCounty Scientific Association,\nFor this modest boulder,\nAnd its little tablet of bronze.\nTwice I tried to join your honored body,\nAnd was rejected\nAnd when my little brochure\nOn the intelligence of plants\nBegan to attract attention\nYou almost voted me in.\nAfter that I grew beyond the need of you\nAnd your recognition.\nYet I do not reject your memorial stone\nSeeing that I should, in so doing,\nDeprive you of honor to yourselves.",
+  "paragraphs": [
+    "Perry Zoll",
+    "My thanks, friends of the County Scientific Association, For this modest boulder, And its little tablet of bronze. Twice I tried to join your honored body, And was rejected And when my little brochure On the intelligence of plants Began to attract attention You almost voted me in. After that I grew beyond the need of you And your recognition. Yet I do not reject your memorial stone Seeing that I should, in so doing, Deprive you of honor to yourselves."
+  ],
+  "wordCount": 83,
+  "characterCount": 468,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2481,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Perry Zoll My thanks, friends of the County Scientific Association, For this modest boulder, And its little tablet of bronze. Twice I tried to join your honore...",
+  "sourceOffsets": {
+    "start": 132584,
+    "end": 133077
+  }
+}

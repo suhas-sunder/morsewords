@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-210",
+  "kind": "poem",
+  "label": "Columbus Cheney",
+  "title": null,
+  "order": 210,
+  "includeByDefault": true,
+  "displayText": "Columbus Cheney\n\n\nThis weeping willow!\nWhy do you not plant a few\nFor the millions of children not yet born,\nAs well as for us?\nAre they not non-existent, or cells asleep\nWithout mind?\nOr do they come to earth, their birth\nRupturing the memory of previous being?\nAnswer!\nThe field of unexplored intuition is yours.\nBut in any case why not plant willows for them,\nAs well as for us?",
+  "morseSourceText": "Columbus Cheney\n\n\nThis weeping willow!\nWhy do you not plant a few\nFor the millions of children not yet born,\nAs well as for us?\nAre they not non-existent, or cells asleep\nWithout mind?\nOr do they come to earth, their birth\nRupturing the memory of previous being?\nAnswer!\nThe field of unexplored intuition is yours.\nBut in any case why not plant willows for them,\nAs well as for us?",
+  "paragraphs": [
+    "Columbus Cheney",
+    "This weeping willow! Why do you not plant a few For the millions of children not yet born, As well as for us? Are they not non-existent, or cells asleep Without mind? Or do they come to earth, their birth Rupturing the memory of previous being? Answer! The field of unexplored intuition is yours. But in any case why not plant willows for them, As well as for us?"
+  ],
+  "wordCount": 71,
+  "characterCount": 381,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2061,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Columbus Cheney This weeping willow! Why do you not plant a few For the millions of children not yet born, As well as for us? Are they not non-existent, or cel...",
+  "sourceOffsets": {
+    "start": 161652,
+    "end": 162055
+  }
+}

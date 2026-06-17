@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-133",
+  "kind": "poem",
+  "label": "Oscar Hummel",
+  "title": null,
+  "order": 133,
+  "includeByDefault": true,
+  "displayText": "Oscar Hummel\n\n\nI staggered on through darkness,\nThere was a hazy sky, a few stars\nWhich I followed as best I could.\nIt was nine o'clock, I was trying to get home.\nBut somehow I was lost,\nThough really keeping the road.\nThen I reeled through a gate and into a yard,\nAnd called at the top of my voice:\n\"Oh, Fiddler! Oh, Mr. Jones!\"\n(I thought it was his house and he would show me the way home. )\nBut who should step out but A. D. Blood,\nIn his night shirt, waving a stick of wood,\nAnd roaring about the cursed saloons,\nAnd the criminals they made?\n\"You drunken Oscar Hummel,\" he said,\nAs I stood there weaving to and fro,\nTaking the blows from the stick in his hand\nTill I dropped down dead at his feet.",
+  "morseSourceText": "Oscar Hummel\n\n\nI staggered on through darkness,\nThere was a hazy sky, a few stars\nWhich I followed as best I could.\nIt was nine o'clock, I was trying to get home.\nBut somehow I was lost,\nThough really keeping the road.\nThen I reeled through a gate and into a yard,\nAnd called at the top of my voice:\n\"Oh, Fiddler! Oh, Mr. Jones!\"\n(I thought it was his house and he would show me the way home. )\nBut who should step out but A. D. Blood,\nIn his night shirt, waving a stick of wood,\nAnd roaring about the cursed saloons,\nAnd the criminals they made?\n\"You drunken Oscar Hummel,\" he said,\nAs I stood there weaving to and fro,\nTaking the blows from the stick in his hand\nTill I dropped down dead at his feet.",
+  "paragraphs": [
+    "Oscar Hummel",
+    "I staggered on through darkness, There was a hazy sky, a few stars Which I followed as best I could. It was nine o'clock, I was trying to get home. But somehow I was lost, Though really keeping the road. Then I reeled through a gate and into a yard, And called at the top of my voice: \"Oh, Fiddler! Oh, Mr. Jones!\" (I thought it was his house and he would show me the way home. ) But who should step out but A. D. Blood, In his night shirt, waving a stick of wood, And roaring about the cursed saloons, And the criminals they made? \"You drunken Oscar Hummel,\" he said, As I stood there weaving to and fro, Taking the blows from the stick in his hand Till I dropped down dead at his feet."
+  ],
+  "wordCount": 139,
+  "characterCount": 702,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3815,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Oscar Hummel I staggered on through darkness, There was a hazy sky, a few stars Which I followed as best I could. It was nine o'clock, I was trying to get home...",
+  "sourceOffsets": {
+    "start": 95921,
+    "end": 96651
+  }
+}

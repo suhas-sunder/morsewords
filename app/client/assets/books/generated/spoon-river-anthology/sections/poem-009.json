@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-009",
+  "kind": "poem",
+  "label": "Constance Hately",
+  "title": null,
+  "order": 9,
+  "includeByDefault": true,
+  "displayText": "Constance Hately\n\n\nYou praise my self-sacrifice, Spoon River,\nIn rearing Irene and Mary,\nOrphans of my older sister!\nAnd you censure Irene and Mary\nFor their contempt for me!\nBut praise not my self-sacrifice.\nAnd censure not their contempt;\nI reared them, I cared for them, true enough!-\nBut I poisoned my benefactions\nWith constant reminders of their dependence.",
+  "morseSourceText": "Constance Hately\n\n\nYou praise my self-sacrifice, Spoon River,\nIn rearing Irene and Mary,\nOrphans of my older sister!\nAnd you censure Irene and Mary\nFor their contempt for me!\nBut praise not my self-sacrifice.\nAnd censure not their contempt;\nI reared them, I cared for them, true enough!-\nBut I poisoned my benefactions\nWith constant reminders of their dependence.",
+  "paragraphs": [
+    "Constance Hately",
+    "You praise my self-sacrifice, Spoon River, In rearing Irene and Mary, Orphans of my older sister! And you censure Irene and Mary For their contempt for me! But praise not my self-sacrifice. And censure not their contempt; I reared them, I cared for them, true enough!- But I poisoned my benefactions With constant reminders of their dependence."
+  ],
+  "wordCount": 59,
+  "characterCount": 363,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 1942,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Constance Hately You praise my self-sacrifice, Spoon River, In rearing Irene and Mary, Orphans of my older sister! And you censure Irene and Mary For their con...",
+  "sourceOffsets": {
+    "start": 10964,
+    "end": 11347
+  }
+}

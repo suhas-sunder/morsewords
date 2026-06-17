@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-188",
+  "kind": "poem",
+  "label": "Calvin Campbell",
+  "title": null,
+  "order": 188,
+  "includeByDefault": true,
+  "displayText": "Calvin Campbell\n\n\nYe who are kicking against Fate,\nTell me how it is that on this hill-side\nRunning down to the river,\nWhich fronts the sun and the south-wind,\nThis plant draws from the air and soil\nPoison and becomes poison ivy?\nAnd this plant draws from the same air and soil\nSweet elixirs and colors and becomes arbutus?\nAnd both flourish?\nYou may blame Spoon River for what it is,\nBut whom do you blame for the will in you\nThat feeds itself and makes you dock-weed,\nJimpson, dandelion or mullen\nAnd which can never use any soil or air\nSo as to make you jessamine or wistaria?",
+  "morseSourceText": "Calvin Campbell\n\n\nYe who are kicking against Fate,\nTell me how it is that on this hill-side\nRunning down to the river,\nWhich fronts the sun and the south-wind,\nThis plant draws from the air and soil\nPoison and becomes poison ivy?\nAnd this plant draws from the same air and soil\nSweet elixirs and colors and becomes arbutus?\nAnd both flourish?\nYou may blame Spoon River for what it is,\nBut whom do you blame for the will in you\nThat feeds itself and makes you dock-weed,\nJimpson, dandelion or mullen\nAnd which can never use any soil or air\nSo as to make you jessamine or wistaria?",
+  "paragraphs": [
+    "Calvin Campbell",
+    "Ye who are kicking against Fate, Tell me how it is that on this hill-side Running down to the river, Which fronts the sun and the south-wind, This plant draws from the air and soil Poison and becomes poison ivy? And this plant draws from the same air and soil Sweet elixirs and colors and becomes arbutus? And both flourish? You may blame Spoon River for what it is, But whom do you blame for the will in you That feeds itself and makes you dock-weed, Jimpson, dandelion or mullen And which can never use any soil or air So as to make you jessamine or wistaria?"
+  ],
+  "wordCount": 109,
+  "characterCount": 579,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3109,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Calvin Campbell Ye who are kicking against Fate, Tell me how it is that on this hill-side Running down to the river, Which fronts the sun and the south-wind, T...",
+  "sourceOffsets": {
+    "start": 141550,
+    "end": 142154
+  }
+}

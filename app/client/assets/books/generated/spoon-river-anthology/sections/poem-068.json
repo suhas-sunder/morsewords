@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-068",
+  "kind": "poem",
+  "label": "A. D. Blood",
+  "title": null,
+  "order": 68,
+  "includeByDefault": true,
+  "displayText": "A. D. Blood\n\n\nIf you in the village think that my work was a good one,\nWho closed the saloons and stopped all playing at cards,\nAnd haled old Daisy Fraser before Justice Arnett,\nIn many a crusade to purge the people of sin;\nWhy do you let the milliner's daughter Dora,\nAnd the worthless son of Benjamin Pantier\nNightly make my grave their unholy pillow?",
+  "morseSourceText": "A. D. Blood\n\n\nIf you in the village think that my work was a good one,\nWho closed the saloons and stopped all playing at cards,\nAnd haled old Daisy Fraser before Justice Arnett,\nIn many a crusade to purge the people of sin;\nWhy do you let the milliner's daughter Dora,\nAnd the worthless son of Benjamin Pantier\nNightly make my grave their unholy pillow?",
+  "paragraphs": [
+    "A. D. Blood",
+    "If you in the village think that my work was a good one, Who closed the saloons and stopped all playing at cards, And haled old Daisy Fraser before Justice Arnett, In many a crusade to purge the people of sin; Why do you let the milliner's daughter Dora, And the worthless son of Benjamin Pantier Nightly make my grave their unholy pillow?"
+  ],
+  "wordCount": 66,
+  "characterCount": 353,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 1905,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "A. D. Blood If you in the village think that my work was a good one, Who closed the saloons and stopped all playing at cards, And haled old Daisy Fraser before...",
+  "sourceOffsets": {
+    "start": 49542,
+    "end": 49912
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-039",
+  "kind": "poem",
+  "label": "Zenas Witt",
+  "title": null,
+  "order": 39,
+  "includeByDefault": true,
+  "displayText": "Zenas Witt\n\n\nI was sixteen, and I had the most terrible dreams,\nAnd specks before my eyes, and nervous weakness.\nAnd I couldn't remember the books I read,\nLike Frank Drummer who memorized page after page.\nAnd my back was weak, and I worried and worried,\nAnd I was embarrassed and stammered my lessons,\nAnd when I stood up to recite I'd forget\nEverything that I had studied.\nWell, I saw Dr. Weese's advertisement,\nAnd there I read everything in print,\nJust as if he had known me;\nAnd about the dreams which I couldn't help.\nSo I knew I was marked for an early grave.\nAnd I worried until I had a cough\nAnd then the dreams stopped.\nAnd then I slept the sleep without dreams\nHere on the hill by the river.",
+  "morseSourceText": "Zenas Witt\n\n\nI was sixteen, and I had the most terrible dreams,\nAnd specks before my eyes, and nervous weakness.\nAnd I couldn't remember the books I read,\nLike Frank Drummer who memorized page after page.\nAnd my back was weak, and I worried and worried,\nAnd I was embarrassed and stammered my lessons,\nAnd when I stood up to recite I'd forget\nEverything that I had studied.\nWell, I saw Dr. Weese's advertisement,\nAnd there I read everything in print,\nJust as if he had known me;\nAnd about the dreams which I couldn't help.\nSo I knew I was marked for an early grave.\nAnd I worried until I had a cough\nAnd then the dreams stopped.\nAnd then I slept the sleep without dreams\nHere on the hill by the river.",
+  "paragraphs": [
+    "Zenas Witt",
+    "I was sixteen, and I had the most terrible dreams, And specks before my eyes, and nervous weakness. And I couldn't remember the books I read, Like Frank Drummer who memorized page after page. And my back was weak, and I worried and worried, And I was embarrassed and stammered my lessons, And when I stood up to recite I'd forget Everything that I had studied. Well, I saw Dr. Weese's advertisement, And there I read everything in print, Just as if he had known me; And about the dreams which I couldn't help. So I knew I was marked for an early grave. And I worried until I had a cough And then the dreams stopped. And then I slept the sleep without dreams Here on the hill by the river."
+  ],
+  "wordCount": 134,
+  "characterCount": 701,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3705,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Zenas Witt I was sixteen, and I had the most terrible dreams, And specks before my eyes, and nervous weakness. And I couldn't remember the books I read, Like F...",
+  "sourceOffsets": {
+    "start": 30218,
+    "end": 30946
+  }
+}

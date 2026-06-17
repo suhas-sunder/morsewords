@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-038",
+  "kind": "poem",
+  "label": "Charlie French",
+  "title": null,
+  "order": 38,
+  "includeByDefault": true,
+  "displayText": "Charlie French\n\n\nDid you ever find out\nWhich one of the O'Brien boys it was\nWho snapped the toy pistol against my hand?\nThere when the flags were red and white\nIn the breeze and \"Bucky\" Estil\nWas firing the cannon brought to Spoon River\nFrom Vicksburg by Captain Harris;\nAnd the lemonade stands were running\nAnd the band was playing,\nTo have it all spoiled\nBy a piece of a cap shot under the skin of my hand,\nAnd the boys all crowding about me saying:\n\"You'll die of lock-jaw, Charlie, sure.\"\nOh, dear! oh, dear!\nWhat chum of mine could have done it?",
+  "morseSourceText": "Charlie French\n\n\nDid you ever find out\nWhich one of the O'Brien boys it was\nWho snapped the toy pistol against my hand?\nThere when the flags were red and white\nIn the breeze and \"Bucky\" Estil\nWas firing the cannon brought to Spoon River\nFrom Vicksburg by Captain Harris;\nAnd the lemonade stands were running\nAnd the band was playing,\nTo have it all spoiled\nBy a piece of a cap shot under the skin of my hand,\nAnd the boys all crowding about me saying:\n\"You'll die of lock-jaw, Charlie, sure.\"\nOh, dear! oh, dear!\nWhat chum of mine could have done it?",
+  "paragraphs": [
+    "Charlie French",
+    "Did you ever find out Which one of the O'Brien boys it was Who snapped the toy pistol against my hand? There when the flags were red and white In the breeze and \"Bucky\" Estil Was firing the cannon brought to Spoon River From Vicksburg by Captain Harris; And the lemonade stands were running And the band was playing, To have it all spoiled By a piece of a cap shot under the skin of my hand, And the boys all crowding about me saying: \"You'll die of lock-jaw, Charlie, sure.\" Oh, dear! oh, dear! What chum of mine could have done it?"
+  ],
+  "wordCount": 105,
+  "characterCount": 550,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2992,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Charlie French Did you ever find out Which one of the O'Brien boys it was Who snapped the toy pistol against my hand? There when the flags were red and white I...",
+  "sourceOffsets": {
+    "start": 29641,
+    "end": 30216
+  }
+}

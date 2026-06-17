@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-137",
+  "kind": "poem",
+  "label": "Mrs. Kessler",
+  "title": null,
+  "order": 137,
+  "includeByDefault": true,
+  "displayText": "Mrs. Kessler\n\n\nMr. Kessler, you know, was in the army,\nAnd he drew six dollars a month as a pension,\nAnd stood on the corner talking politics,\nOr sat at home reading Grant's Memoirs;\nAnd I supported the family by washing,\nLearning the secrets of all the people\nFrom their curtains, counterpanes, shirts and skirts.\nFor things that are new grow old at length,\nThey're replaced with better or none at all:\nPeople are prospering or falling back.\nAnd rents and patches widen with time;\nNo thread or needle can pace decay,\nAnd there are stains that baffle soap,\nAnd there are colors that run in spite of you,\nBlamed though you are for spoiling a dress.\nHandkerchiefs, napery, have their secrets-\nThe laundress, Life, knows all about it.\nAnd I, who went to all the funerals\nHeld in Spoon River, swear I never\nSaw a dead face without thinking it looked\nLike something washed and ironed.",
+  "morseSourceText": "Mrs. Kessler\n\n\nMr. Kessler, you know, was in the army,\nAnd he drew six dollars a month as a pension,\nAnd stood on the corner talking politics,\nOr sat at home reading Grant's Memoirs;\nAnd I supported the family by washing,\nLearning the secrets of all the people\nFrom their curtains, counterpanes, shirts and skirts.\nFor things that are new grow old at length,\nThey're replaced with better or none at all:\nPeople are prospering or falling back.\nAnd rents and patches widen with time;\nNo thread or needle can pace decay,\nAnd there are stains that baffle soap,\nAnd there are colors that run in spite of you,\nBlamed though you are for spoiling a dress.\nHandkerchiefs, napery, have their secrets-\nThe laundress, Life, knows all about it.\nAnd I, who went to all the funerals\nHeld in Spoon River, swear I never\nSaw a dead face without thinking it looked\nLike something washed and ironed.",
+  "paragraphs": [
+    "Mrs. Kessler",
+    "Mr. Kessler, you know, was in the army, And he drew six dollars a month as a pension, And stood on the corner talking politics, Or sat at home reading Grant's Memoirs; And I supported the family by washing, Learning the secrets of all the people From their curtains, counterpanes, shirts and skirts. For things that are new grow old at length, They're replaced with better or none at all: People are prospering or falling back. And rents and patches widen with time; No thread or needle can pace decay, And there are stains that baffle soap, And there are colors that run in spite of you, Blamed though you are for spoiling a dress. Handkerchiefs, napery, have their secrets- The laundress, Life, knows all about it. And I, who went to all the funerals Held in Spoon River, swear I never Saw a dead face without thinking it looked Like something washed and ironed."
+  ],
+  "wordCount": 157,
+  "characterCount": 879,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4720,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Mrs. Kessler Mr. Kessler, you know, was in the army, And he drew six dollars a month as a pension, And stood on the corner talking politics, Or sat at home rea...",
+  "sourceOffsets": {
+    "start": 98770,
+    "end": 99680
+  }
+}

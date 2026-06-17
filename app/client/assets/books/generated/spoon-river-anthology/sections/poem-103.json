@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-103",
+  "kind": "poem",
+  "label": "Thomas Rhodes",
+  "title": null,
+  "order": 103,
+  "includeByDefault": true,
+  "displayText": "Thomas Rhodes\n\n\nVery well, you liberals,\nAnd navigators into realms intellectual,\nYou sailors through heights imaginative,\nBlown about by erratic currents, tumbling into air pockets,\nYou Margaret Fuller Slacks, Petits,\nAnd Tennessee Claflin Shopes-\nYou found with all your boasted wisdom\nHow hard at the last it is\nTo keep the soul from splitting into cellular atoms.\nWhile we, seekers of earth's treasures\nGetters and hoarders of gold,\nAre self-contained, compact, harmonized,\nEven to the end.",
+  "morseSourceText": "Thomas Rhodes\n\n\nVery well, you liberals,\nAnd navigators into realms intellectual,\nYou sailors through heights imaginative,\nBlown about by erratic currents, tumbling into air pockets,\nYou Margaret Fuller Slacks, Petits,\nAnd Tennessee Claflin Shopes-\nYou found with all your boasted wisdom\nHow hard at the last it is\nTo keep the soul from splitting into cellular atoms.\nWhile we, seekers of earth's treasures\nGetters and hoarders of gold,\nAre self-contained, compact, harmonized,\nEven to the end.",
+  "paragraphs": [
+    "Thomas Rhodes",
+    "Very well, you liberals, And navigators into realms intellectual, You sailors through heights imaginative, Blown about by erratic currents, tumbling into air pockets, You Margaret Fuller Slacks, Petits, And Tennessee Claflin Shopes- You found with all your boasted wisdom How hard at the last it is To keep the soul from splitting into cellular atoms. While we, seekers of earth's treasures Getters and hoarders of gold, Are self-contained, compact, harmonized, Even to the end."
+  ],
+  "wordCount": 76,
+  "characterCount": 494,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2682,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Thomas Rhodes Very well, you liberals, And navigators into realms intellectual, You sailors through heights imaginative, Blown about by erratic currents, tumbl...",
+  "sourceOffsets": {
+    "start": 74911,
+    "end": 75428
+  }
+}

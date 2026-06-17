@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-084",
+  "kind": "poem",
+  "label": "Isa Nutter",
+  "title": null,
+  "order": 84,
+  "includeByDefault": true,
+  "displayText": "Isa Nutter\n\n\nDoc Meyers said I had satyriasis,\nAnd Doc Hill called it leucæmia-\nBut I know what brought me here:\nI was sixty-four but strong as a man\nOf thirty-five or forty.\nAnd it wasn't writing a letter a day,\nAnd it wasn't late hours seven nights a week,\nAnd it wasn't the strain of thinking of Minnie,\nAnd it wasn't fear or a jealous dread,\nOr the endless task of trying to fathom\nHer wonderful mind, or sympathy\nFor the wretched life she led\nWith her first and second husband-\nIt was none of these that laid me low-\nBut the clamor of daughters and threats of sons,\nAnd the sneers and curses of all my kin\nRight up to the day I sneaked to Peoria\nAnd married Minnie in spite of them-\nAnd why do you wonder my will was made\nFor the best and purest of women?",
+  "morseSourceText": "Isa Nutter\n\n\nDoc Meyers said I had satyriasis,\nAnd Doc Hill called it leucæmia-\nBut I know what brought me here:\nI was sixty-four but strong as a man\nOf thirty-five or forty.\nAnd it wasn't writing a letter a day,\nAnd it wasn't late hours seven nights a week,\nAnd it wasn't the strain of thinking of Minnie,\nAnd it wasn't fear or a jealous dread,\nOr the endless task of trying to fathom\nHer wonderful mind, or sympathy\nFor the wretched life she led\nWith her first and second husband-\nIt was none of these that laid me low-\nBut the clamor of daughters and threats of sons,\nAnd the sneers and curses of all my kin\nRight up to the day I sneaked to Peoria\nAnd married Minnie in spite of them-\nAnd why do you wonder my will was made\nFor the best and purest of women?",
+  "paragraphs": [
+    "Isa Nutter",
+    "Doc Meyers said I had satyriasis, And Doc Hill called it leucæmia- But I know what brought me here: I was sixty-four but strong as a man Of thirty-five or forty. And it wasn't writing a letter a day, And it wasn't late hours seven nights a week, And it wasn't the strain of thinking of Minnie, And it wasn't fear or a jealous dread, Or the endless task of trying to fathom Her wonderful mind, or sympathy For the wretched life she led With her first and second husband- It was none of these that laid me low- But the clamor of daughters and threats of sons, And the sneers and curses of all my kin Right up to the day I sneaked to Peoria And married Minnie in spite of them- And why do you wonder my will was made For the best and purest of women?"
+  ],
+  "wordCount": 152,
+  "characterCount": 760,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4013,
+  "unsupportedCharacterSummary": {
+    "Æ": 1
+  },
+  "textPreview": "Isa Nutter Doc Meyers said I had satyriasis, And Doc Hill called it leucæmia- But I know what brought me here: I was sixty-four but strong as a man Of thirty-f...",
+  "sourceOffsets": {
+    "start": 60449,
+    "end": 61239
+  }
+}

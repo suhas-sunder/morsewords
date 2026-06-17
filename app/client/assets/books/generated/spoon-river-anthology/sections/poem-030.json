@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-030",
+  "kind": "poem",
+  "label": "Conrad Siever",
+  "title": null,
+  "order": 30,
+  "includeByDefault": true,
+  "displayText": "Conrad Siever\n\n\nNot in that wasted garden\nWhere bodies are drawn into grass\nThat feeds no flocks, and into evergreens\nThat bear no fruit-\nThere where along the shaded walks\nVain sighs are heard,\nAnd vainer dreams are dreamed\nOf close communion with departed souls-\nBut here under the apple tree\nI loved and watched and pruned\nWith gnarled hands\nIn the long, long years;\nHere under the roots of this northern-spy\nTo move in the chemic change and circle of life,\nInto the soil and into the flesh of the tree,\nAnd into the living epitaphs\nOf redder apples!",
+  "morseSourceText": "Conrad Siever\n\n\nNot in that wasted garden\nWhere bodies are drawn into grass\nThat feeds no flocks, and into evergreens\nThat bear no fruit-\nThere where along the shaded walks\nVain sighs are heard,\nAnd vainer dreams are dreamed\nOf close communion with departed souls-\nBut here under the apple tree\nI loved and watched and pruned\nWith gnarled hands\nIn the long, long years;\nHere under the roots of this northern-spy\nTo move in the chemic change and circle of life,\nInto the soil and into the flesh of the tree,\nAnd into the living epitaphs\nOf redder apples!",
+  "paragraphs": [
+    "Conrad Siever",
+    "Not in that wasted garden Where bodies are drawn into grass That feeds no flocks, and into evergreens That bear no fruit- There where along the shaded walks Vain sighs are heard, And vainer dreams are dreamed Of close communion with departed souls- But here under the apple tree I loved and watched and pruned With gnarled hands In the long, long years; Here under the roots of this northern-spy To move in the chemic change and circle of life, Into the soil and into the flesh of the tree, And into the living epitaphs Of redder apples!"
+  ],
+  "wordCount": 100,
+  "characterCount": 553,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2912,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Conrad Siever Not in that wasted garden Where bodies are drawn into grass That feeds no flocks, and into evergreens That bear no fruit- There where along the s...",
+  "sourceOffsets": {
+    "start": 24994,
+    "end": 25574
+  }
+}

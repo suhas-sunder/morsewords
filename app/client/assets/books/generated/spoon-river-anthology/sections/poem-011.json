@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-011",
+  "kind": "poem",
+  "label": "Harry Carey Goodhue",
+  "title": null,
+  "order": 11,
+  "includeByDefault": true,
+  "displayText": "Harry Carey Goodhue\n\n\nYou never marveled, dullards of Spoon River,\nWhen Chase Henry voted against the saloons\nTo revenge himself for being shut off.\nBut none of you was keen enough\nTo follow my steps, or trace me home\nAs Chase's spiritual brother.\nDo you remember when I fought\nThe bank and the courthouse ring,\nFor pocketing the interest on public funds?\nAnd when I fought our leading citizens\nFor making the poor the pack-horses of the taxes?\nAnd when I fought the water works\nFor stealing streets and raising rates?\nAnd when I fought the business men\nWho fought me in these fights?\nThen do you remember:\nThat staggering up from the wreck of defeat,\nAnd the wreck of a ruined career,\nI slipped from my cloak my last ideal,\nHidden from all eyes until then,\nLike the cherished jawbone of an ass,\nAnd smote the bank and the water works,\nAnd the business men with prohibition,\nAnd made Spoon River pay the cost\nOf the fights that I had lost.",
+  "morseSourceText": "Harry Carey Goodhue\n\n\nYou never marveled, dullards of Spoon River,\nWhen Chase Henry voted against the saloons\nTo revenge himself for being shut off.\nBut none of you was keen enough\nTo follow my steps, or trace me home\nAs Chase's spiritual brother.\nDo you remember when I fought\nThe bank and the courthouse ring,\nFor pocketing the interest on public funds?\nAnd when I fought our leading citizens\nFor making the poor the pack-horses of the taxes?\nAnd when I fought the water works\nFor stealing streets and raising rates?\nAnd when I fought the business men\nWho fought me in these fights?\nThen do you remember:\nThat staggering up from the wreck of defeat,\nAnd the wreck of a ruined career,\nI slipped from my cloak my last ideal,\nHidden from all eyes until then,\nLike the cherished jawbone of an ass,\nAnd smote the bank and the water works,\nAnd the business men with prohibition,\nAnd made Spoon River pay the cost\nOf the fights that I had lost.",
+  "paragraphs": [
+    "Harry Carey Goodhue",
+    "You never marveled, dullards of Spoon River, When Chase Henry voted against the saloons To revenge himself for being shut off. But none of you was keen enough To follow my steps, or trace me home As Chase's spiritual brother. Do you remember when I fought The bank and the courthouse ring, For pocketing the interest on public funds? And when I fought our leading citizens For making the poor the pack-horses of the taxes? And when I fought the water works For stealing streets and raising rates? And when I fought the business men Who fought me in these fights? Then do you remember: That staggering up from the wreck of defeat, And the wreck of a ruined career, I slipped from my cloak my last ideal, Hidden from all eyes until then, Like the cherished jawbone of an ass, And smote the bank and the water works, And the business men with prohibition, And made Spoon River pay the cost Of the fights that I had lost."
+  ],
+  "wordCount": 172,
+  "characterCount": 939,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 5021,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Harry Carey Goodhue You never marveled, dullards of Spoon River, When Chase Henry voted against the saloons To revenge himself for being shut off. But none of...",
+  "sourceOffsets": {
+    "start": 11765,
+    "end": 12739
+  }
+}

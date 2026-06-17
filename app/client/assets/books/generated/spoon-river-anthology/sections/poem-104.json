@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-104",
+  "kind": "poem",
+  "label": "Ida Chicken",
+  "title": null,
+  "order": 104,
+  "includeByDefault": true,
+  "displayText": "Ida Chicken\n\n\nAfter I had attended lectures\nAt our Chautauqua, and studied French\nFor twenty years, committing the grammar\nAlmost by heart,\nI thought I'd take a trip to Paris\nTo give my culture a final polish.\nSo I went to Peoria for a passport-\n(Thomas Rhodes was on the train that morning.)\nAnd there the clerk of the district Court\nMade me swear to support and defend\nThe constitution-yes, even me-\nWho couldn't defend or support it at all!\nAnd what do you think? That very morning\nThe Federal Judge, in the very next room\nTo the room where I took the oath,\nDecided the constitution\nExempted Rhodes from paying taxes\nFor the water works of Spoon River!",
+  "morseSourceText": "Ida Chicken\n\n\nAfter I had attended lectures\nAt our Chautauqua, and studied French\nFor twenty years, committing the grammar\nAlmost by heart,\nI thought I'd take a trip to Paris\nTo give my culture a final polish.\nSo I went to Peoria for a passport-\n(Thomas Rhodes was on the train that morning.)\nAnd there the clerk of the district Court\nMade me swear to support and defend\nThe constitution-yes, even me-\nWho couldn't defend or support it at all!\nAnd what do you think? That very morning\nThe Federal Judge, in the very next room\nTo the room where I took the oath,\nDecided the constitution\nExempted Rhodes from paying taxes\nFor the water works of Spoon River!",
+  "paragraphs": [
+    "Ida Chicken",
+    "After I had attended lectures At our Chautauqua, and studied French For twenty years, committing the grammar Almost by heart, I thought I'd take a trip to Paris To give my culture a final polish. So I went to Peoria for a passport- (Thomas Rhodes was on the train that morning.) And there the clerk of the district Court Made me swear to support and defend The constitution-yes, even me- Who couldn't defend or support it at all! And what do you think? That very morning The Federal Judge, in the very next room To the room where I took the oath, Decided the constitution Exempted Rhodes from paying taxes For the water works of Spoon River!"
+  ],
+  "wordCount": 119,
+  "characterCount": 655,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3466,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Ida Chicken After I had attended lectures At our Chautauqua, and studied French For twenty years, committing the grammar Almost by heart, I thought I'd take a...",
+  "sourceOffsets": {
+    "start": 75430,
+    "end": 76113
+  }
+}

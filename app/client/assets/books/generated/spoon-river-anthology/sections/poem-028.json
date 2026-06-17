@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-028",
+  "kind": "poem",
+  "label": "Frank Drummer",
+  "title": null,
+  "order": 28,
+  "includeByDefault": true,
+  "displayText": "Frank Drummer\n\n\nOut of a cell into this darkened space-\nThe end at twenty-five!\nMy tongue could not speak what stirred within me,\nAnd the village thought me a fool.\nYet at the start there was a clear vision,\nA high and urgent purpose in my soul\nWhich drove me on trying to memorize\nThe Encyclopedia Britannica!",
+  "morseSourceText": "Frank Drummer\n\n\nOut of a cell into this darkened space-\nThe end at twenty-five!\nMy tongue could not speak what stirred within me,\nAnd the village thought me a fool.\nYet at the start there was a clear vision,\nA high and urgent purpose in my soul\nWhich drove me on trying to memorize\nThe Encyclopedia Britannica!",
+  "paragraphs": [
+    "Frank Drummer",
+    "Out of a cell into this darkened space- The end at twenty-five! My tongue could not speak what stirred within me, And the village thought me a fool. Yet at the start there was a clear vision, A high and urgent purpose in my soul Which drove me on trying to memorize The Encyclopedia Britannica!"
+  ],
+  "wordCount": 57,
+  "characterCount": 310,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1630,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Frank Drummer Out of a cell into this darkened space- The end at twenty-five! My tongue could not speak what stirred within me, And the village thought me a fo...",
+  "sourceOffsets": {
+    "start": 23921,
+    "end": 24249
+  }
+}

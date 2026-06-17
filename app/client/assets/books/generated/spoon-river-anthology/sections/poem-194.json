@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-194",
+  "kind": "poem",
+  "label": "John Wasson",
+  "title": null,
+  "order": 194,
+  "includeByDefault": true,
+  "displayText": "John Wasson\n\n\nOh! the dew-wet grass of the meadow in North Carolina\nThrough which Rebecca followed me wailing, wailing,\nOne child in her arms, and three that ran along wailing,\nLengthening out the farewell to me off to the war with the British,\nAnd then the long, hard years down to the day of Yorktown.\nAnd then my search for Rebecca,\nFinding her at last in Virginia,\nTwo children dead in the meanwhile.\nWe went by oxen to Tennessee,\nThence after years to Illinois,\nAt last to Spoon River.\nWe cut the buffalo grass,\nWe felled the forests,\nWe built the school houses, built the bridges,\nLeveled the roads and tilled the fields\nAlone with poverty, scourges, death-\nIf Harry Wilmans who fought the Filipinos\nIs to have a flag on his grave\nTake it from mine.",
+  "morseSourceText": "John Wasson\n\n\nOh! the dew-wet grass of the meadow in North Carolina\nThrough which Rebecca followed me wailing, wailing,\nOne child in her arms, and three that ran along wailing,\nLengthening out the farewell to me off to the war with the British,\nAnd then the long, hard years down to the day of Yorktown.\nAnd then my search for Rebecca,\nFinding her at last in Virginia,\nTwo children dead in the meanwhile.\nWe went by oxen to Tennessee,\nThence after years to Illinois,\nAt last to Spoon River.\nWe cut the buffalo grass,\nWe felled the forests,\nWe built the school houses, built the bridges,\nLeveled the roads and tilled the fields\nAlone with poverty, scourges, death-\nIf Harry Wilmans who fought the Filipinos\nIs to have a flag on his grave\nTake it from mine.",
+  "paragraphs": [
+    "John Wasson",
+    "Oh! the dew-wet grass of the meadow in North Carolina Through which Rebecca followed me wailing, wailing, One child in her arms, and three that ran along wailing, Lengthening out the farewell to me off to the war with the British, And then the long, hard years down to the day of Yorktown. And then my search for Rebecca, Finding her at last in Virginia, Two children dead in the meanwhile. We went by oxen to Tennessee, Thence after years to Illinois, At last to Spoon River. We cut the buffalo grass, We felled the forests, We built the school houses, built the bridges, Leveled the roads and tilled the fields Alone with poverty, scourges, death- If Harry Wilmans who fought the Filipinos Is to have a flag on his grave Take it from mine."
+  ],
+  "wordCount": 137,
+  "characterCount": 755,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4050,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "John Wasson Oh! the dew-wet grass of the meadow in North Carolina Through which Rebecca followed me wailing, wailing, One child in her arms, and three that ran...",
+  "sourceOffsets": {
+    "start": 146723,
+    "end": 147507
+  }
+}

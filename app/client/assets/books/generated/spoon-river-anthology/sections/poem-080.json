@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-080",
+  "kind": "poem",
+  "label": "Francis Turner",
+  "title": null,
+  "order": 80,
+  "includeByDefault": true,
+  "displayText": "Francis Turner\n\n\nI could not run or play\nIn boyhood.\nIn manhood I could only sip the cup,\nNot drink-For scarlet-fever left my heart diseased.\nYet I lie here\nSoothed by a secret none but Mary knows:\nThere is a garden of acacia,\nCatalpa trees, and arbors sweet with vines-\nThere on that afternoon in June\nBy Mary's side-\nKissing her with my soul upon my lips\nIt suddenly took flight.",
+  "morseSourceText": "Francis Turner\n\n\nI could not run or play\nIn boyhood.\nIn manhood I could only sip the cup,\nNot drink-For scarlet-fever left my heart diseased.\nYet I lie here\nSoothed by a secret none but Mary knows:\nThere is a garden of acacia,\nCatalpa trees, and arbors sweet with vines-\nThere on that afternoon in June\nBy Mary's side-\nKissing her with my soul upon my lips\nIt suddenly took flight.",
+  "paragraphs": [
+    "Francis Turner",
+    "I could not run or play In boyhood. In manhood I could only sip the cup, Not drink-For scarlet-fever left my heart diseased. Yet I lie here Soothed by a secret none but Mary knows: There is a garden of acacia, Catalpa trees, and arbors sweet with vines- There on that afternoon in June By Mary's side- Kissing her with my soul upon my lips It suddenly took flight."
+  ],
+  "wordCount": 71,
+  "characterCount": 381,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2049,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Francis Turner I could not run or play In boyhood. In manhood I could only sip the cup, Not drink-For scarlet-fever left my heart diseased. Yet I lie here Soot...",
+  "sourceOffsets": {
+    "start": 58367,
+    "end": 58770
+  }
+}

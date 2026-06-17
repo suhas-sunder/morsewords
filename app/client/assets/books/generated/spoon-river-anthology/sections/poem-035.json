@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-035",
+  "kind": "poem",
+  "label": "Flossie Cabanis",
+  "title": null,
+  "order": 35,
+  "includeByDefault": true,
+  "displayText": "Flossie Cabanis\n\n\nFrom Bindle's opera house in the village\nTo Broadway is a great step.\nBut I tried to take it, my ambition fired\nWhen sixteen years of age,\nSeeing \"East Lynne,\" played here in the village\nBy Ralph Barrett, the coming\nRomantic actor, who enthralled my soul.\nTrue, I trailed back home, a broken failure,\nWhen Ralph disappeared in New York,\nLeaving me alone in the city-\nBut life broke him also.\nIn all this place of silence\nThere are no kindred spirits.\nHow I wish Duse could stand amid the pathos\nOf these quiet fields\nAnd read these words.",
+  "morseSourceText": "Flossie Cabanis\n\n\nFrom Bindle's opera house in the village\nTo Broadway is a great step.\nBut I tried to take it, my ambition fired\nWhen sixteen years of age,\nSeeing \"East Lynne,\" played here in the village\nBy Ralph Barrett, the coming\nRomantic actor, who enthralled my soul.\nTrue, I trailed back home, a broken failure,\nWhen Ralph disappeared in New York,\nLeaving me alone in the city-\nBut life broke him also.\nIn all this place of silence\nThere are no kindred spirits.\nHow I wish Duse could stand amid the pathos\nOf these quiet fields\nAnd read these words.",
+  "paragraphs": [
+    "Flossie Cabanis",
+    "From Bindle's opera house in the village To Broadway is a great step. But I tried to take it, my ambition fired When sixteen years of age, Seeing \"East Lynne,\" played here in the village By Ralph Barrett, the coming Romantic actor, who enthralled my soul. True, I trailed back home, a broken failure, When Ralph disappeared in New York, Leaving me alone in the city- But life broke him also. In all this place of silence There are no kindred spirits. How I wish Duse could stand amid the pathos Of these quiet fields And read these words."
+  ],
+  "wordCount": 101,
+  "characterCount": 556,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2976,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Flossie Cabanis From Bindle's opera house in the village To Broadway is a great step. But I tried to take it, my ambition fired When sixteen years of age, Seei...",
+  "sourceOffsets": {
+    "start": 27925,
+    "end": 28507
+  }
+}

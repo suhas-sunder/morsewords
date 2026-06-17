@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-139",
+  "kind": "poem",
+  "label": "Bert Kessler",
+  "title": null,
+  "order": 139,
+  "includeByDefault": true,
+  "displayText": "Bert Kessler\n\n\nI winged my bird,\nThough he flew toward the setting sun;\nBut just as the shot rang out, he soared\nUp and up through the splinters of golden light,\nTill he turned right over, feathers ruffled,\nWith some of the down of him floating near,\nAnd fell like a plummet into the grass.\nI tramped about, parting the tangles,\nTill I saw a splash of blood on a stump,\nAnd the quail lying close to the rotten roots.\nI reached my hand, but saw no brier,\nBut something pricked and stung and numbed it.\nAnd then, in a second, I spied the rattler-\nThe shutters wide in his yellow eyes,\nThe head of him arched, sunk back in the rings of him,\nA circle of filth, the color of ashes,\nOr oak leaves bleached under layers of leaves.\nI stood like a stone as he shrank and uncoiled\nAnd started to crawl beneath the stump,\nWhen I fell limp in the grass.",
+  "morseSourceText": "Bert Kessler\n\n\nI winged my bird,\nThough he flew toward the setting sun;\nBut just as the shot rang out, he soared\nUp and up through the splinters of golden light,\nTill he turned right over, feathers ruffled,\nWith some of the down of him floating near,\nAnd fell like a plummet into the grass.\nI tramped about, parting the tangles,\nTill I saw a splash of blood on a stump,\nAnd the quail lying close to the rotten roots.\nI reached my hand, but saw no brier,\nBut something pricked and stung and numbed it.\nAnd then, in a second, I spied the rattler-\nThe shutters wide in his yellow eyes,\nThe head of him arched, sunk back in the rings of him,\nA circle of filth, the color of ashes,\nOr oak leaves bleached under layers of leaves.\nI stood like a stone as he shrank and uncoiled\nAnd started to crawl beneath the stump,\nWhen I fell limp in the grass.",
+  "paragraphs": [
+    "Bert Kessler",
+    "I winged my bird, Though he flew toward the setting sun; But just as the shot rang out, he soared Up and up through the splinters of golden light, Till he turned right over, feathers ruffled, With some of the down of him floating near, And fell like a plummet into the grass. I tramped about, parting the tangles, Till I saw a splash of blood on a stump, And the quail lying close to the rotten roots. I reached my hand, but saw no brier, But something pricked and stung and numbed it. And then, in a second, I spied the rattler- The shutters wide in his yellow eyes, The head of him arched, sunk back in the rings of him, A circle of filth, the color of ashes, Or oak leaves bleached under layers of leaves. I stood like a stone as he shrank and uncoiled And started to crawl beneath the stump, When I fell limp in the grass."
+  ],
+  "wordCount": 164,
+  "characterCount": 841,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4503,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Bert Kessler I winged my bird, Though he flew toward the setting sun; But just as the shot rang out, he soared Up and up through the splinters of golden light,...",
+  "sourceOffsets": {
+    "start": 100843,
+    "end": 101714
+  }
+}

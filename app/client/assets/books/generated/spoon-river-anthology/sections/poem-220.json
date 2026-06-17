@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-220",
+  "kind": "poem",
+  "label": "J. Milton Miles",
+  "title": null,
+  "order": 220,
+  "includeByDefault": true,
+  "displayText": "J. Milton Miles\n\n\nWhenever the Presbyterian bell\nWas rung by itself, I knew it as the Presbyterian bell.\nBut when its sound was mingled\nWith the sound of the Methodist, the Christian,\nThe Baptist and the Congregational,\nI could no longer distinguish it,\nNor any one from the others, or either of them.\nAnd as many voices called to me in life\nMarvel not that I could not tell\nThe true from the false,\nNor even, at last, the voice that\nI should have known.",
+  "morseSourceText": "J. Milton Miles\n\n\nWhenever the Presbyterian bell\nWas rung by itself, I knew it as the Presbyterian bell.\nBut when its sound was mingled\nWith the sound of the Methodist, the Christian,\nThe Baptist and the Congregational,\nI could no longer distinguish it,\nNor any one from the others, or either of them.\nAnd as many voices called to me in life\nMarvel not that I could not tell\nThe true from the false,\nNor even, at last, the voice that\nI should have known.",
+  "paragraphs": [
+    "J. Milton Miles",
+    "Whenever the Presbyterian bell Was rung by itself, I knew it as the Presbyterian bell. But when its sound was mingled With the sound of the Methodist, the Christian, The Baptist and the Congregational, I could no longer distinguish it, Nor any one from the others, or either of them. And as many voices called to me in life Marvel not that I could not tell The true from the false, Nor even, at last, the voice that I should have known."
+  ],
+  "wordCount": 85,
+  "characterCount": 454,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2401,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "J. Milton Miles Whenever the Presbyterian bell Was rung by itself, I knew it as the Presbyterian bell. But when its sound was mingled With the sound of the Met...",
+  "sourceOffsets": {
+    "start": 168676,
+    "end": 169152
+  }
+}

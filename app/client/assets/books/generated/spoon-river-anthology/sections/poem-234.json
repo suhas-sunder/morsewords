@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-234",
+  "kind": "poem",
+  "label": "Arlo Will",
+  "title": null,
+  "order": 234,
+  "includeByDefault": true,
+  "displayText": "Arlo Will\n\n\nDid you ever see an alligator\nCome up to the air from the mud,\nStaring blindly under the full glare of noon?\nHave you seen the stabled horses at night\nTremble and start back at the sight of a lantern?\nHave you ever walked in darkness\nWhen an unknown door was open before you\nAnd you stood, it seemed, in the light of a thousand candles\nOf delicate wax?\nHave you walked with the wind in your ears\nAnd the sunlight about you\nAnd found it suddenly shine with an inner splendor?\nOut of the mud many times\nBefore many doors of light\nThrough many fields of splendor,\nWhere around your steps a soundless glory scatters\nLike new-fallen snow,\nWill you go through earth, O strong of soul,\nAnd through unnumbered heavens\nTo the final flame!",
+  "morseSourceText": "Arlo Will\n\n\nDid you ever see an alligator\nCome up to the air from the mud,\nStaring blindly under the full glare of noon?\nHave you seen the stabled horses at night\nTremble and start back at the sight of a lantern?\nHave you ever walked in darkness\nWhen an unknown door was open before you\nAnd you stood, it seemed, in the light of a thousand candles\nOf delicate wax?\nHave you walked with the wind in your ears\nAnd the sunlight about you\nAnd found it suddenly shine with an inner splendor?\nOut of the mud many times\nBefore many doors of light\nThrough many fields of splendor,\nWhere around your steps a soundless glory scatters\nLike new-fallen snow,\nWill you go through earth, O strong of soul,\nAnd through unnumbered heavens\nTo the final flame!",
+  "paragraphs": [
+    "Arlo Will",
+    "Did you ever see an alligator Come up to the air from the mud, Staring blindly under the full glare of noon? Have you seen the stabled horses at night Tremble and start back at the sight of a lantern? Have you ever walked in darkness When an unknown door was open before you And you stood, it seemed, in the light of a thousand candles Of delicate wax? Have you walked with the wind in your ears And the sunlight about you And found it suddenly shine with an inner splendor? Out of the mud many times Before many doors of light Through many fields of splendor, Where around your steps a soundless glory scatters Like new-fallen snow, Will you go through earth, O strong of soul, And through unnumbered heavens To the final flame!"
+  ],
+  "wordCount": 138,
+  "characterCount": 741,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3966,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Arlo Will Did you ever see an alligator Come up to the air from the mud, Staring blindly under the full glare of noon? Have you seen the stabled horses at nigh...",
+  "sourceOffsets": {
+    "start": 179470,
+    "end": 180241
+  }
+}

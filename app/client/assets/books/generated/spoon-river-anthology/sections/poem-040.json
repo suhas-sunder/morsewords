@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-040",
+  "kind": "poem",
+  "label": "Theodore the Poet",
+  "title": null,
+  "order": 40,
+  "includeByDefault": true,
+  "displayText": "Theodore the Poet\n\n\nAs a boy, Theodore, you sat for long hours\nOn the shore of the turbid Spoon\nWith deep-set eye staring at the door of the crawfish's burrow,\nWaiting for him to appear, pushing ahead,\nFirst his waving antennæ, like straws of hay,\nAnd soon his body, colored like soap-stone,\nGemmed with eyes of jet.\nAnd you wondered in a trance of thought\nWhat he knew, what he desired, and why he lived at all.\nBut later your vision watched for men and women\nHiding in burrows of fate amid great cities,\nLooking for the souls of them to come out,\nSo that you could see\nHow they lived, and for what,\nAnd why they kept crawling so busily\nAlong the sandy way where water fails\nAs the summer wanes.",
+  "morseSourceText": "Theodore the Poet\n\n\nAs a boy, Theodore, you sat for long hours\nOn the shore of the turbid Spoon\nWith deep-set eye staring at the door of the crawfish's burrow,\nWaiting for him to appear, pushing ahead,\nFirst his waving antennæ, like straws of hay,\nAnd soon his body, colored like soap-stone,\nGemmed with eyes of jet.\nAnd you wondered in a trance of thought\nWhat he knew, what he desired, and why he lived at all.\nBut later your vision watched for men and women\nHiding in burrows of fate amid great cities,\nLooking for the souls of them to come out,\nSo that you could see\nHow they lived, and for what,\nAnd why they kept crawling so busily\nAlong the sandy way where water fails\nAs the summer wanes.",
+  "paragraphs": [
+    "Theodore the Poet",
+    "As a boy, Theodore, you sat for long hours On the shore of the turbid Spoon With deep-set eye staring at the door of the crawfish's burrow, Waiting for him to appear, pushing ahead, First his waving antennæ, like straws of hay, And soon his body, colored like soap-stone, Gemmed with eyes of jet. And you wondered in a trance of thought What he knew, what he desired, and why he lived at all. But later your vision watched for men and women Hiding in burrows of fate amid great cities, Looking for the souls of them to come out, So that you could see How they lived, and for what, And why they kept crawling so busily Along the sandy way where water fails As the summer wanes."
+  ],
+  "wordCount": 132,
+  "characterCount": 696,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3739,
+  "unsupportedCharacterSummary": {
+    "Æ": 1
+  },
+  "textPreview": "Theodore the Poet As a boy, Theodore, you sat for long hours On the shore of the turbid Spoon With deep-set eye staring at the door of the crawfish's burrow, W...",
+  "sourceOffsets": {
+    "start": 30948,
+    "end": 31671
+  }
+}

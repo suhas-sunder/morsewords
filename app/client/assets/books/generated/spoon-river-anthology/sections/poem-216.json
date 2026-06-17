@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-216",
+  "kind": "poem",
+  "label": "Samuel Gardner",
+  "title": null,
+  "order": 216,
+  "includeByDefault": true,
+  "displayText": "Samuel Gardner\n\n\nI who kept the greenhouse,\nLover of trees and flowers,\nOft in life saw this umbrageous elm,\nMeasuring its generous branches with my eye,\nAnd listened to its rejoicing leaves\nLovingly patting each other\nWith sweet aeolian whispers.\nAnd well they might:\nFor the roots had grown so wide and deep\nThat the soil of the hill could not withhold\nAught of its virtue, enriched by rain,\nAnd warmed by the sun;\nBut yielded it all to the thrifty roots,\nThrough which it was drawn and whirled to the trunk,\nAnd thence to the branches, and into the leaves,\nWherefrom the breeze took life and sang.\nNow I, an under-tenant of the earth, can see\nThat the branches of a tree\nSpread no wider than its roots.\nAnd how shall the soul of a man\nBe larger than the life he has lived?",
+  "morseSourceText": "Samuel Gardner\n\n\nI who kept the greenhouse,\nLover of trees and flowers,\nOft in life saw this umbrageous elm,\nMeasuring its generous branches with my eye,\nAnd listened to its rejoicing leaves\nLovingly patting each other\nWith sweet aeolian whispers.\nAnd well they might:\nFor the roots had grown so wide and deep\nThat the soil of the hill could not withhold\nAught of its virtue, enriched by rain,\nAnd warmed by the sun;\nBut yielded it all to the thrifty roots,\nThrough which it was drawn and whirled to the trunk,\nAnd thence to the branches, and into the leaves,\nWherefrom the breeze took life and sang.\nNow I, an under-tenant of the earth, can see\nThat the branches of a tree\nSpread no wider than its roots.\nAnd how shall the soul of a man\nBe larger than the life he has lived?",
+  "paragraphs": [
+    "Samuel Gardner",
+    "I who kept the greenhouse, Lover of trees and flowers, Oft in life saw this umbrageous elm, Measuring its generous branches with my eye, And listened to its rejoicing leaves Lovingly patting each other With sweet aeolian whispers. And well they might: For the roots had grown so wide and deep That the soil of the hill could not withhold Aught of its virtue, enriched by rain, And warmed by the sun; But yielded it all to the thrifty roots, Through which it was drawn and whirled to the trunk, And thence to the branches, and into the leaves, Wherefrom the breeze took life and sang. Now I, an under-tenant of the earth, can see That the branches of a tree Spread no wider than its roots. And how shall the soul of a man Be larger than the life he has lived?"
+  ],
+  "wordCount": 145,
+  "characterCount": 775,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4112,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Samuel Gardner I who kept the greenhouse, Lover of trees and flowers, Oft in life saw this umbrageous elm, Measuring its generous branches with my eye, And lis...",
+  "sourceOffsets": {
+    "start": 166096,
+    "end": 166902
+  }
+}

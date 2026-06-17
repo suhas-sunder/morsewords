@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-205",
+  "kind": "poem",
+  "label": "Hannah Armstrong",
+  "title": null,
+  "order": 205,
+  "includeByDefault": true,
+  "displayText": "Hannah Armstrong\n\n\nI wrote him a letter asking him for old times' sake\nTo discharge my sick boy from the army;\nBut maybe he couldn't read it.\nThen I went to town and had James Garber,\nWho wrote beautifully, write him a letter.\nBut maybe that was lost in the mails.\nSo I traveled all the way to Washington.\nI was more than an hour finding the White House.\nAnd when I found it they turned me away,\nHiding their smiles.\nThen I thought: \"Oh, well, he ain't the same as when I boarded him\nAnd he and my husband worked together\nAnd all of us called him Abe, there in Menard.\"\nAs a last attempt I turned to a guard and said:\n\"Please say it's old Aunt Hannah Armstrong\nFrom Illinois, come to see him about her sick boy\nIn the army.\"\nWell, just in a moment they let me in!\nAnd when he saw me he broke in a laugh,\nAnd dropped his business as president,\nAnd wrote in his own hand Doug's discharge,\nTalking the while of the early days,\nAnd telling stories.",
+  "morseSourceText": "Hannah Armstrong\n\n\nI wrote him a letter asking him for old times' sake\nTo discharge my sick boy from the army;\nBut maybe he couldn't read it.\nThen I went to town and had James Garber,\nWho wrote beautifully, write him a letter.\nBut maybe that was lost in the mails.\nSo I traveled all the way to Washington.\nI was more than an hour finding the White House.\nAnd when I found it they turned me away,\nHiding their smiles.\nThen I thought: \"Oh, well, he ain't the same as when I boarded him\nAnd he and my husband worked together\nAnd all of us called him Abe, there in Menard.\"\nAs a last attempt I turned to a guard and said:\n\"Please say it's old Aunt Hannah Armstrong\nFrom Illinois, come to see him about her sick boy\nIn the army.\"\nWell, just in a moment they let me in!\nAnd when he saw me he broke in a laugh,\nAnd dropped his business as president,\nAnd wrote in his own hand Doug's discharge,\nTalking the while of the early days,\nAnd telling stories.",
+  "paragraphs": [
+    "Hannah Armstrong",
+    "I wrote him a letter asking him for old times' sake To discharge my sick boy from the army; But maybe he couldn't read it. Then I went to town and had James Garber, Who wrote beautifully, write him a letter. But maybe that was lost in the mails. So I traveled all the way to Washington. I was more than an hour finding the White House. And when I found it they turned me away, Hiding their smiles. Then I thought: \"Oh, well, he ain't the same as when I boarded him And he and my husband worked together And all of us called him Abe, there in Menard.\" As a last attempt I turned to a guard and said: \"Please say it's old Aunt Hannah Armstrong From Illinois, come to see him about her sick boy In the army.\" Well, just in a moment they let me in! And when he saw me he broke in a laugh, And dropped his business as president, And wrote in his own hand Doug's discharge, Talking the while of the early days, And telling stories."
+  ],
+  "wordCount": 186,
+  "characterCount": 944,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 5016,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Hannah Armstrong I wrote him a letter asking him for old times' sake To discharge my sick boy from the army; But maybe he couldn't read it. Then I went to town...",
+  "sourceOffsets": {
+    "start": 157475,
+    "end": 158452
+  }
+}

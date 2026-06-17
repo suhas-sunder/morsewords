@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-199",
+  "kind": "poem",
+  "label": "Anne Rutledge",
+  "title": null,
+  "order": 199,
+  "includeByDefault": true,
+  "displayText": "Anne Rutledge\n\n\nOut of me unworthy and unknown\nThe vibrations of deathless music;\n\"With malice toward none, with charity for all.\"\nOut of me the forgiveness of millions toward millions,\nAnd the beneficent face of a nation\nShining with justice and truth.\nI am Anne Rutledge who sleep beneath these weeds,\nBeloved in life of Abraham Lincoln,\nWedded to him, not through union, But through separation.\nBloom forever, O Republic,\nFrom the dust of my bosom!",
+  "morseSourceText": "Anne Rutledge\n\n\nOut of me unworthy and unknown\nThe vibrations of deathless music;\n\"With malice toward none, with charity for all.\"\nOut of me the forgiveness of millions toward millions,\nAnd the beneficent face of a nation\nShining with justice and truth.\nI am Anne Rutledge who sleep beneath these weeds,\nBeloved in life of Abraham Lincoln,\nWedded to him, not through union, But through separation.\nBloom forever, O Republic,\nFrom the dust of my bosom!",
+  "paragraphs": [
+    "Anne Rutledge",
+    "Out of me unworthy and unknown The vibrations of deathless music; \"With malice toward none, with charity for all.\" Out of me the forgiveness of millions toward millions, And the beneficent face of a nation Shining with justice and truth. I am Anne Rutledge who sleep beneath these weeds, Beloved in life of Abraham Lincoln, Wedded to him, not through union, But through separation. Bloom forever, O Republic, From the dust of my bosom!"
+  ],
+  "wordCount": 76,
+  "characterCount": 451,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2432,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Anne Rutledge Out of me unworthy and unknown The vibrations of deathless music; \"With malice toward none, with charity for all.\" Out of me the forgiveness of m...",
+  "sourceOffsets": {
+    "start": 151866,
+    "end": 152338
+  }
+}

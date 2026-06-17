@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-124",
+  "kind": "poem",
+  "label": "Carl Hamblin",
+  "title": null,
+  "order": 124,
+  "includeByDefault": true,
+  "displayText": "Carl Hamblin\n\n\nThe press of the Spoon River _Clarion_ was wrecked,\nAnd I was tarred and feathered,\nFor publishing this on the day the\nAnarchists were hanged in Chicago:\n\"I saw a beautiful woman with bandaged eyes\nStanding on the steps of a marble temple.\nGreat multitudes passed in front of her,\nLifting their faces to her imploringly.\nIn her left hand she held a sword.\nShe was brandishing the sword,\nSometimes striking a child, again a laborer,\nAgain a slinking woman, again a lunatic.\nIn her right hand she held a scale;\nInto the scale pieces of gold were tossed\nBy those who dodged the strokes of the sword.\nA man in a black gown read from a manuscript:\n\"She is no respecter of persons.\"\nThen a youth wearing a red cap\nLeaped to her side and snatched away the bandage.\nAnd lo, the lashes had been eaten away\nFrom the oozy eye-lids;\nThe eye-balls were seared with a milky mucus;\nThe madness of a dying soul\nWas written on her face-\nBut the multitude saw why she wore the bandage.\"",
+  "morseSourceText": "Carl Hamblin\n\n\nThe press of the Spoon River _Clarion_ was wrecked,\nAnd I was tarred and feathered,\nFor publishing this on the day the\nAnarchists were hanged in Chicago:\n\"I saw a beautiful woman with bandaged eyes\nStanding on the steps of a marble temple.\nGreat multitudes passed in front of her,\nLifting their faces to her imploringly.\nIn her left hand she held a sword.\nShe was brandishing the sword,\nSometimes striking a child, again a laborer,\nAgain a slinking woman, again a lunatic.\nIn her right hand she held a scale;\nInto the scale pieces of gold were tossed\nBy those who dodged the strokes of the sword.\nA man in a black gown read from a manuscript:\n\"She is no respecter of persons.\"\nThen a youth wearing a red cap\nLeaped to her side and snatched away the bandage.\nAnd lo, the lashes had been eaten away\nFrom the oozy eye-lids;\nThe eye-balls were seared with a milky mucus;\nThe madness of a dying soul\nWas written on her face-\nBut the multitude saw why she wore the bandage.\"",
+  "paragraphs": [
+    "Carl Hamblin",
+    "The press of the Spoon River _Clarion_ was wrecked, And I was tarred and feathered, For publishing this on the day the Anarchists were hanged in Chicago: \"I saw a beautiful woman with bandaged eyes Standing on the steps of a marble temple. Great multitudes passed in front of her, Lifting their faces to her imploringly. In her left hand she held a sword. She was brandishing the sword, Sometimes striking a child, again a laborer, Again a slinking woman, again a lunatic. In her right hand she held a scale; Into the scale pieces of gold were tossed By those who dodged the strokes of the sword. A man in a black gown read from a manuscript: \"She is no respecter of persons.\" Then a youth wearing a red cap Leaped to her side and snatched away the bandage. And lo, the lashes had been eaten away From the oozy eye-lids; The eye-balls were seared with a milky mucus; The madness of a dying soul Was written on her face- But the multitude saw why she wore the bandage.\""
+  ],
+  "wordCount": 182,
+  "characterCount": 983,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 5266,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Carl Hamblin The press of the Spoon River _Clarion_ was wrecked, And I was tarred and feathered, For publishing this on the day the Anarchists were hanged in C...",
+  "sourceOffsets": {
+    "start": 88126,
+    "end": 89144
+  }
+}

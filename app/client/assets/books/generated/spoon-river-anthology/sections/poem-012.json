@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-012",
+  "kind": "poem",
+  "label": "Judge Somers",
+  "title": null,
+  "order": 12,
+  "includeByDefault": true,
+  "displayText": "Judge Somers\n\n\nHow does it happen, tell me,\nThat I who was most erudite of lawyers,\nWho knew Blackstone and Coke\nAlmost by heart, who made the greatest speech\nThe court-house ever heard, and wrote\nA brief that won the praise of Justice Breese\nHow does it happen, tell me,\nThat I lie here unmarked, forgotten,\nWhile Chase Henry, the town drunkard,\nHas a marble block, topped by an urn\nWherein Nature, in a mood ironical,\nHas sown a flowering weed?",
+  "morseSourceText": "Judge Somers\n\n\nHow does it happen, tell me,\nThat I who was most erudite of lawyers,\nWho knew Blackstone and Coke\nAlmost by heart, who made the greatest speech\nThe court-house ever heard, and wrote\nA brief that won the praise of Justice Breese\nHow does it happen, tell me,\nThat I lie here unmarked, forgotten,\nWhile Chase Henry, the town drunkard,\nHas a marble block, topped by an urn\nWherein Nature, in a mood ironical,\nHas sown a flowering weed?",
+  "paragraphs": [
+    "Judge Somers",
+    "How does it happen, tell me, That I who was most erudite of lawyers, Who knew Blackstone and Coke Almost by heart, who made the greatest speech The court-house ever heard, and wrote A brief that won the praise of Justice Breese How does it happen, tell me, That I lie here unmarked, forgotten, While Chase Henry, the town drunkard, Has a marble block, topped by an urn Wherein Nature, in a mood ironical, Has sown a flowering weed?"
+  ],
+  "wordCount": 81,
+  "characterCount": 446,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2385,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Judge Somers How does it happen, tell me, That I who was most erudite of lawyers, Who knew Blackstone and Coke Almost by heart, who made the greatest speech Th...",
+  "sourceOffsets": {
+    "start": 12741,
+    "end": 13209
+  }
+}

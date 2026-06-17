@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-200",
+  "kind": "poem",
+  "label": "Hamlet Micure",
+  "title": null,
+  "order": 200,
+  "includeByDefault": true,
+  "displayText": "Hamlet Micure\n\n\nIn a lingering fever many visions come to you:\nI was in the little house again\nWith its great yard of clover\nRunning down to the board-fence,\nShadowed by the oak tree,\nWhere we children had our swing.\nYet the little house was a manor hall\nSet in a lawn, and by the lawn was the sea.\nI was in the room where little Paul\nStrangled from diphtheria,\nBut yet it was not this room-\nIt was a sunny verandah enclosed\nWith mullioned windows\nAnd in a chair sat a man in a dark cloak\nWith a face like Euripides.\nHe had come to visit me, or I had gone to visit him-I could not tell.\nWe could hear the beat of the sea, the clover nodded\nUnder a summer wind, and little Paul came\nWith clover blossoms to the window and smiled.\nThen I said: \"What is 'divine despair,' Alfred?\"\n\"Have you read 'Tears, Idle Tears'?\" he asked.\n\"Yes, but you do not there express divine despair.\"\n\"My poor friend,\" he answered, \"that was why the despair\nWas divine.\"",
+  "morseSourceText": "Hamlet Micure\n\n\nIn a lingering fever many visions come to you:\nI was in the little house again\nWith its great yard of clover\nRunning down to the board-fence,\nShadowed by the oak tree,\nWhere we children had our swing.\nYet the little house was a manor hall\nSet in a lawn, and by the lawn was the sea.\nI was in the room where little Paul\nStrangled from diphtheria,\nBut yet it was not this room-\nIt was a sunny verandah enclosed\nWith mullioned windows\nAnd in a chair sat a man in a dark cloak\nWith a face like Euripides.\nHe had come to visit me, or I had gone to visit him-I could not tell.\nWe could hear the beat of the sea, the clover nodded\nUnder a summer wind, and little Paul came\nWith clover blossoms to the window and smiled.\nThen I said: \"What is 'divine despair,' Alfred?\"\n\"Have you read 'Tears, Idle Tears'?\" he asked.\n\"Yes, but you do not there express divine despair.\"\n\"My poor friend,\" he answered, \"that was why the despair\nWas divine.\"",
+  "paragraphs": [
+    "Hamlet Micure",
+    "In a lingering fever many visions come to you: I was in the little house again With its great yard of clover Running down to the board-fence, Shadowed by the oak tree, Where we children had our swing. Yet the little house was a manor hall Set in a lawn, and by the lawn was the sea. I was in the room where little Paul Strangled from diphtheria, But yet it was not this room- It was a sunny verandah enclosed With mullioned windows And in a chair sat a man in a dark cloak With a face like Euripides. He had come to visit me, or I had gone to visit him-I could not tell. We could hear the beat of the sea, the clover nodded Under a summer wind, and little Paul came With clover blossoms to the window and smiled. Then I said: \"What is 'divine despair,' Alfred?\" \"Have you read 'Tears, Idle Tears'?\" he asked. \"Yes, but you do not there express divine despair.\" \"My poor friend,\" he answered, \"that was why the despair Was divine.\""
+  ],
+  "wordCount": 182,
+  "characterCount": 946,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 5072,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Hamlet Micure In a lingering fever many visions come to you: I was in the little house again With its great yard of clover Running down to the board-fence, Sha...",
+  "sourceOffsets": {
+    "start": 152340,
+    "end": 153320
+  }
+}

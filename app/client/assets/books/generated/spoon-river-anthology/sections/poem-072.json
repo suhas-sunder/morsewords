@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-072",
+  "kind": "poem",
+  "label": "William and Emily",
+  "title": null,
+  "order": 72,
+  "includeByDefault": true,
+  "displayText": "William and Emily\n\n\nThere is something about Death\nLike love itself!\nIf with some one with whom you have known passion\nAnd the glow of youthful love,\nYou also, after years of life\nTogether, feel the sinking of the fire\nAnd thus fade away together,\nGradually, faintly, delicately,\nAs it were in each other's arms,\nPassing from the familiar room-\nThat is a power of unison between souls\nLike love itself!",
+  "morseSourceText": "William and Emily\n\n\nThere is something about Death\nLike love itself!\nIf with some one with whom you have known passion\nAnd the glow of youthful love,\nYou also, after years of life\nTogether, feel the sinking of the fire\nAnd thus fade away together,\nGradually, faintly, delicately,\nAs it were in each other's arms,\nPassing from the familiar room-\nThat is a power of unison between souls\nLike love itself!",
+  "paragraphs": [
+    "William and Emily",
+    "There is something about Death Like love itself! If with some one with whom you have known passion And the glow of youthful love, You also, after years of life Together, feel the sinking of the fire And thus fade away together, Gradually, faintly, delicately, As it were in each other's arms, Passing from the familiar room- That is a power of unison between souls Like love itself!"
+  ],
+  "wordCount": 71,
+  "characterCount": 402,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2160,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "William and Emily There is something about Death Like love itself! If with some one with whom you have known passion And the glow of youthful love, You also, a...",
+  "sourceOffsets": {
+    "start": 52570,
+    "end": 52994
+  }
+}

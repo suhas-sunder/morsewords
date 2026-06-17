@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-095",
+  "kind": "poem",
+  "label": "Jonas Keene",
+  "title": null,
+  "order": 95,
+  "includeByDefault": true,
+  "displayText": "Jonas Keene\n\n\nWhy did Albert Schirding kill himself\nTrying to be County Superintendent of Schools,\nBlest as he was with the means of life\nAnd wonderful children, bringing him honor\nEre he was sixty?\nIf even one of my boys could have run a news-stand,\nOr one of my girls could have married a decent man,\nI should not have walked in the rain\nAnd jumped into bed with clothes all wet,\nRefusing medical aid.",
+  "morseSourceText": "Jonas Keene\n\n\nWhy did Albert Schirding kill himself\nTrying to be County Superintendent of Schools,\nBlest as he was with the means of life\nAnd wonderful children, bringing him honor\nEre he was sixty?\nIf even one of my boys could have run a news-stand,\nOr one of my girls could have married a decent man,\nI should not have walked in the rain\nAnd jumped into bed with clothes all wet,\nRefusing medical aid.",
+  "paragraphs": [
+    "Jonas Keene",
+    "Why did Albert Schirding kill himself Trying to be County Superintendent of Schools, Blest as he was with the means of life And wonderful children, bringing him honor Ere he was sixty? If even one of my boys could have run a news-stand, Or one of my girls could have married a decent man, I should not have walked in the rain And jumped into bed with clothes all wet, Refusing medical aid."
+  ],
+  "wordCount": 75,
+  "characterCount": 403,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2159,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Jonas Keene Why did Albert Schirding kill himself Trying to be County Superintendent of Schools, Blest as he was with the means of life And wonderful children,...",
+  "sourceOffsets": {
+    "start": 68812,
+    "end": 69235
+  }
+}

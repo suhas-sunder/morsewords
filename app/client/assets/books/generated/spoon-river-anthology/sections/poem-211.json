@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-211",
+  "kind": "poem",
+  "label": "Wallace Ferguson",
+  "title": null,
+  "order": 211,
+  "includeByDefault": true,
+  "displayText": "Wallace Ferguson\n\n\nThere at Geneva where Mt. Blanc floated above\nThe wine-hued lake like a cloud, when a breeze was blown\nOut of an empty sky of blue, and the roaring Rhone\nHurried under the bridge through chasms of rock;\nAnd the music along the cafés was part of the splendor\nOf dancing water under a torrent of light;\nAnd the purer part of the genius of Jean Rousseau\nWas the silent music of all we saw or heard-\nThere at Geneva, I say, was the rapture less\nBecause I could not link myself with the I of yore,\nWhen twenty years before I wandered about Spoon River?\nNor remember what I was nor what I felt?\nWe live in the hour all free of the hours gone by.\nTherefore, O soul, if you lose yourself in death,\nAnd wake in some Geneva by some Mt. Blanc,\nWhat do you care if you know not yourself as the you\nWho lived and loved in a little corner of earth\nKnown as Spoon River ages and ages vanished?",
+  "morseSourceText": "Wallace Ferguson\n\n\nThere at Geneva where Mt. Blanc floated above\nThe wine-hued lake like a cloud, when a breeze was blown\nOut of an empty sky of blue, and the roaring Rhone\nHurried under the bridge through chasms of rock;\nAnd the music along the cafés was part of the splendor\nOf dancing water under a torrent of light;\nAnd the purer part of the genius of Jean Rousseau\nWas the silent music of all we saw or heard-\nThere at Geneva, I say, was the rapture less\nBecause I could not link myself with the I of yore,\nWhen twenty years before I wandered about Spoon River?\nNor remember what I was nor what I felt?\nWe live in the hour all free of the hours gone by.\nTherefore, O soul, if you lose yourself in death,\nAnd wake in some Geneva by some Mt. Blanc,\nWhat do you care if you know not yourself as the you\nWho lived and loved in a little corner of earth\nKnown as Spoon River ages and ages vanished?",
+  "paragraphs": [
+    "Wallace Ferguson",
+    "There at Geneva where Mt. Blanc floated above The wine-hued lake like a cloud, when a breeze was blown Out of an empty sky of blue, and the roaring Rhone Hurried under the bridge through chasms of rock; And the music along the cafés was part of the splendor Of dancing water under a torrent of light; And the purer part of the genius of Jean Rousseau Was the silent music of all we saw or heard- There at Geneva, I say, was the rapture less Because I could not link myself with the I of yore, When twenty years before I wandered about Spoon River? Nor remember what I was nor what I felt? We live in the hour all free of the hours gone by. Therefore, O soul, if you lose yourself in death, And wake in some Geneva by some Mt. Blanc, What do you care if you know not yourself as the you Who lived and loved in a little corner of earth Known as Spoon River ages and ages vanished?"
+  ],
+  "wordCount": 178,
+  "characterCount": 897,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4782,
+  "unsupportedCharacterSummary": {
+    "É": 1
+  },
+  "textPreview": "Wallace Ferguson There at Geneva where Mt. Blanc floated above The wine-hued lake like a cloud, when a breeze was blown Out of an empty sky of blue, and the ro...",
+  "sourceOffsets": {
+    "start": 162057,
+    "end": 162982
+  }
+}

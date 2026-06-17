@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-115",
+  "kind": "poem",
+  "label": "Ezra Bartlett",
+  "title": null,
+  "order": 115,
+  "includeByDefault": true,
+  "displayText": "Ezra Bartlett\n\n\nA chaplain in the army,\nA chaplain in the prisons,\nAn exhorter in Spoon River,\nDrunk with divinity, Spoon River-\nYet bringing poor Eliza Johnson to shame,\nAnd myself to scorn and wretchedness.\nBut why will you never see that love of women,\nAnd even love of wine,\nAre the stimulants by which the soul, hungering for divinity,\nReaches the ecstatic vision\nAnd sees the celestial outposts?\nOnly after many trials for strength,\nOnly when all stimulants fail,\nDoes the aspiring soul\nBy its own sheer power\nFind the divine\nBy resting upon itself.",
+  "morseSourceText": "Ezra Bartlett\n\n\nA chaplain in the army,\nA chaplain in the prisons,\nAn exhorter in Spoon River,\nDrunk with divinity, Spoon River-\nYet bringing poor Eliza Johnson to shame,\nAnd myself to scorn and wretchedness.\nBut why will you never see that love of women,\nAnd even love of wine,\nAre the stimulants by which the soul, hungering for divinity,\nReaches the ecstatic vision\nAnd sees the celestial outposts?\nOnly after many trials for strength,\nOnly when all stimulants fail,\nDoes the aspiring soul\nBy its own sheer power\nFind the divine\nBy resting upon itself.",
+  "paragraphs": [
+    "Ezra Bartlett",
+    "A chaplain in the army, A chaplain in the prisons, An exhorter in Spoon River, Drunk with divinity, Spoon River- Yet bringing poor Eliza Johnson to shame, And myself to scorn and wretchedness. But why will you never see that love of women, And even love of wine, Are the stimulants by which the soul, hungering for divinity, Reaches the ecstatic vision And sees the celestial outposts? Only after many trials for strength, Only when all stimulants fail, Does the aspiring soul By its own sheer power Find the divine By resting upon itself."
+  ],
+  "wordCount": 96,
+  "characterCount": 555,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2985,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Ezra Bartlett A chaplain in the army, A chaplain in the prisons, An exhorter in Spoon River, Drunk with divinity, Spoon River- Yet bringing poor Eliza Johnson...",
+  "sourceOffsets": {
+    "start": 82383,
+    "end": 82965
+  }
+}

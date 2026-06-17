@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-160",
+  "kind": "poem",
+  "label": "Enoch Dunlap",
+  "title": null,
+  "order": 160,
+  "includeByDefault": true,
+  "displayText": "Enoch Dunlap\n\n\nHow many times, during the twenty years\nI was your leader, friends of Spoon River,\nDid you neglect the convention and caucus,\nAnd leave the burden on my hands\nOf guarding and saving the people's cause?-\nSometimes because you were ill;\nOr your grandmother was ill;\nOr you drank too much and fell asleep;\nOr else you said: \"He is our leader,\nAll will be well; he fights for us;\nWe have nothing to do but follow.\"\nBut oh, how you cursed me when I fell,\nAnd cursed me, saying I had betrayed you,\nIn leaving the caucus room for a moment,\nWhen the people's enemies, there assembled,\nWaited and watched for a chance to destroy\nThe Sacred Rights of the People.\nYou common rabble! I left the caucus\nTo go to the urinal.",
+  "morseSourceText": "Enoch Dunlap\n\n\nHow many times, during the twenty years\nI was your leader, friends of Spoon River,\nDid you neglect the convention and caucus,\nAnd leave the burden on my hands\nOf guarding and saving the people's cause?-\nSometimes because you were ill;\nOr your grandmother was ill;\nOr you drank too much and fell asleep;\nOr else you said: \"He is our leader,\nAll will be well; he fights for us;\nWe have nothing to do but follow.\"\nBut oh, how you cursed me when I fell,\nAnd cursed me, saying I had betrayed you,\nIn leaving the caucus room for a moment,\nWhen the people's enemies, there assembled,\nWaited and watched for a chance to destroy\nThe Sacred Rights of the People.\nYou common rabble! I left the caucus\nTo go to the urinal.",
+  "paragraphs": [
+    "Enoch Dunlap",
+    "How many times, during the twenty years I was your leader, friends of Spoon River, Did you neglect the convention and caucus, And leave the burden on my hands Of guarding and saving the people's cause?- Sometimes because you were ill; Or your grandmother was ill; Or you drank too much and fell asleep; Or else you said: \"He is our leader, All will be well; he fights for us; We have nothing to do but follow.\" But oh, how you cursed me when I fell, And cursed me, saying I had betrayed you, In leaving the caucus room for a moment, When the people's enemies, there assembled, Waited and watched for a chance to destroy The Sacred Rights of the People. You common rabble! I left the caucus To go to the urinal."
+  ],
+  "wordCount": 136,
+  "characterCount": 725,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3940,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Enoch Dunlap How many times, during the twenty years I was your leader, friends of Spoon River, Did you neglect the convention and caucus, And leave the burden...",
+  "sourceOffsets": {
+    "start": 119436,
+    "end": 120190
+  }
+}

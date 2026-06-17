@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-058",
+  "kind": "poem",
+  "label": "Sam Hookey",
+  "title": null,
+  "order": 58,
+  "includeByDefault": true,
+  "displayText": "Sam Hookey\n\n\nI ran away from home with the circus,\nHaving fallen in love with Mademoiselle Estralada,\nThe lion tamer.\nOne time, having starved the lions\nFor more than a day,\nI entered the cage and began to beat Brutus\nAnd Leo and Gypsy.\nWhereupon Brutus sprang upon me,\nAnd killed me.\nOn entering these regions\nI met a shadow who cursed me,\nAnd said it served me right. . . .\nIt was Robespierre!",
+  "morseSourceText": "Sam Hookey\n\n\nI ran away from home with the circus,\nHaving fallen in love with Mademoiselle Estralada,\nThe lion tamer.\nOne time, having starved the lions\nFor more than a day,\nI entered the cage and began to beat Brutus\nAnd Leo and Gypsy.\nWhereupon Brutus sprang upon me,\nAnd killed me.\nOn entering these regions\nI met a shadow who cursed me,\nAnd said it served me right. . . .\nIt was Robespierre!",
+  "paragraphs": [
+    "Sam Hookey",
+    "I ran away from home with the circus, Having fallen in love with Mademoiselle Estralada, The lion tamer. One time, having starved the lions For more than a day, I entered the cage and began to beat Brutus And Leo and Gypsy. Whereupon Brutus sprang upon me, And killed me. On entering these regions I met a shadow who cursed me, And said it served me right. . . . It was Robespierre!"
+  ],
+  "wordCount": 72,
+  "characterCount": 395,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2087,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Sam Hookey I ran away from home with the circus, Having fallen in love with Mademoiselle Estralada, The lion tamer. One time, having starved the lions For more...",
+  "sourceOffsets": {
+    "start": 42895,
+    "end": 43313
+  }
+}

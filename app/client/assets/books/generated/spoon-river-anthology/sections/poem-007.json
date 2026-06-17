@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-007",
+  "kind": "poem",
+  "label": "Serepta Mason",
+  "title": null,
+  "order": 7,
+  "includeByDefault": true,
+  "displayText": "Serepta Mason\n\n\nMy life's blossom might have bloomed on all sides\nSave for a bitter wind which stunted my petals\nOn the side of me which you in the village could see.\nFrom the dust I lift a voice of protest:\nMy flowering side you never saw!\nYe living ones, ye are fools indeed\nWho do not know the ways of the wind\nAnd the unseen forces\nThat govern the processes of life.",
+  "morseSourceText": "Serepta Mason\n\n\nMy life's blossom might have bloomed on all sides\nSave for a bitter wind which stunted my petals\nOn the side of me which you in the village could see.\nFrom the dust I lift a voice of protest:\nMy flowering side you never saw!\nYe living ones, ye are fools indeed\nWho do not know the ways of the wind\nAnd the unseen forces\nThat govern the processes of life.",
+  "paragraphs": [
+    "Serepta Mason",
+    "My life's blossom might have bloomed on all sides Save for a bitter wind which stunted my petals On the side of me which you in the village could see. From the dust I lift a voice of protest: My flowering side you never saw! Ye living ones, ye are fools indeed Who do not know the ways of the wind And the unseen forces That govern the processes of life."
+  ],
+  "wordCount": 73,
+  "characterCount": 370,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 1963,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Serepta Mason My life's blossom might have bloomed on all sides Save for a bitter wind which stunted my petals On the side of me which you in the village could...",
+  "sourceOffsets": {
+    "start": 10231,
+    "end": 10620
+  }
+}

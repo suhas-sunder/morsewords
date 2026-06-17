@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-010",
+  "kind": "poem",
+  "label": "Chase Henry",
+  "title": null,
+  "order": 10,
+  "includeByDefault": true,
+  "displayText": "Chase Henry\n\n\nIn life I was the town drunkard;\nWhen I died the priest denied me burial\nIn holy ground.\nThe which redounded to my good fortune.\nFor the Protestants bought this lot,\nAnd buried my body here,\nClose to the grave of the banker Nicholas,\nAnd of his wife Priscilla.\nTake note, ye prudent and pious souls,\nOf the cross-currents in life\nWhich bring honor to the dead, who lived in shame",
+  "morseSourceText": "Chase Henry\n\n\nIn life I was the town drunkard;\nWhen I died the priest denied me burial\nIn holy ground.\nThe which redounded to my good fortune.\nFor the Protestants bought this lot,\nAnd buried my body here,\nClose to the grave of the banker Nicholas,\nAnd of his wife Priscilla.\nTake note, ye prudent and pious souls,\nOf the cross-currents in life\nWhich bring honor to the dead, who lived in shame",
+  "paragraphs": [
+    "Chase Henry",
+    "In life I was the town drunkard; When I died the priest denied me burial In holy ground. The which redounded to my good fortune. For the Protestants bought this lot, And buried my body here, Close to the grave of the banker Nicholas, And of his wife Priscilla. Take note, ye prudent and pious souls, Of the cross-currents in life Which bring honor to the dead, who lived in shame"
+  ],
+  "wordCount": 73,
+  "characterCount": 393,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2114,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Chase Henry In life I was the town drunkard; When I died the priest denied me burial In holy ground. The which redounded to my good fortune. For the Protestant...",
+  "sourceOffsets": {
+    "start": 11349,
+    "end": 11763
+  }
+}

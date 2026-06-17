@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-101",
+  "kind": "poem",
+  "label": "Daniel M’Cumber",
+  "title": null,
+  "order": 101,
+  "includeByDefault": true,
+  "displayText": "Daniel M'Cumber\n\n\nWhen I went to the city, Mary McNeely,\nI meant to return for you, yes I did.\nBut Laura, my landlady's daughter,\nStole into my life somehow, and won me away.\nThen after some years whom should I meet\nBut Georgine Miner from Niles-a sprout\nOf the free love, Fourierist gardens that flourished\nBefore the war all over Ohio.\nHer dilettante lover had tired of her,\nAnd she turned to me for strength and solace.\nShe was some kind of a crying thing\nOne takes in one's arms, and all at once\nIt slimes your face with its running nose,\nAnd voids its essence all over you;\nThen bites your hand and springs away.\nAnd there you stand bleeding and smelling to heaven\nWhy, Mary McNeely, I was not worthy\nTo kiss the hem of your robe!",
+  "morseSourceText": "Daniel M'Cumber\n\n\nWhen I went to the city, Mary McNeely,\nI meant to return for you, yes I did.\nBut Laura, my landlady's daughter,\nStole into my life somehow, and won me away.\nThen after some years whom should I meet\nBut Georgine Miner from Niles-a sprout\nOf the free love, Fourierist gardens that flourished\nBefore the war all over Ohio.\nHer dilettante lover had tired of her,\nAnd she turned to me for strength and solace.\nShe was some kind of a crying thing\nOne takes in one's arms, and all at once\nIt slimes your face with its running nose,\nAnd voids its essence all over you;\nThen bites your hand and springs away.\nAnd there you stand bleeding and smelling to heaven\nWhy, Mary McNeely, I was not worthy\nTo kiss the hem of your robe!",
+  "paragraphs": [
+    "Daniel M'Cumber",
+    "When I went to the city, Mary McNeely, I meant to return for you, yes I did. But Laura, my landlady's daughter, Stole into my life somehow, and won me away. Then after some years whom should I meet But Georgine Miner from Niles-a sprout Of the free love, Fourierist gardens that flourished Before the war all over Ohio. Her dilettante lover had tired of her, And she turned to me for strength and solace. She was some kind of a crying thing One takes in one's arms, and all at once It slimes your face with its running nose, And voids its essence all over you; Then bites your hand and springs away. And there you stand bleeding and smelling to heaven Why, Mary McNeely, I was not worthy To kiss the hem of your robe!"
+  ],
+  "wordCount": 139,
+  "characterCount": 735,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3916,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Daniel M'Cumber When I went to the city, Mary McNeely, I meant to return for you, yes I did. But Laura, my landlady's daughter, Stole into my life somehow, and...",
+  "sourceOffsets": {
+    "start": 72940,
+    "end": 73703
+  }
+}

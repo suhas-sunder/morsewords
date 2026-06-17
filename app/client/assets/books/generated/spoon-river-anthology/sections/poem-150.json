@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-150",
+  "kind": "poem",
+  "label": "Thomas Trevelyan",
+  "title": null,
+  "order": 150,
+  "includeByDefault": true,
+  "displayText": "Thomas Trevelyan\n\n\nReading in Ovid the sorrowful story of Itys,\nSon of the love of Tereus and Procne, slain\nFor the guilty passion of Tereus for Philomela,\nThe flesh of him served to Tereus by Procne,\nAnd the wrath of Tereus, the murderess pursuing\nTill the gods made Philomela a nightingale,\nLute of the rising moon, and Procne a swallow\nOh livers and artists of Hellas centuries gone,\nSealing in little thuribles dreams and wisdom,\nIncense beyond all price, forever fragrant,\nA breath whereof makes clear the eyes of the soul\nHow I inhaled its sweetness here in Spoon River!\nThe thurible opening when I had lived and learned\nHow all of us kill the children of love, and all of us,\nKnowing not what we do, devour their flesh;\nAnd all of us change to singers, although it be\nBut once in our lives, or change-alas!-to swallows,\nTo twitter amid cold winds and falling leaves!",
+  "morseSourceText": "Thomas Trevelyan\n\n\nReading in Ovid the sorrowful story of Itys,\nSon of the love of Tereus and Procne, slain\nFor the guilty passion of Tereus for Philomela,\nThe flesh of him served to Tereus by Procne,\nAnd the wrath of Tereus, the murderess pursuing\nTill the gods made Philomela a nightingale,\nLute of the rising moon, and Procne a swallow\nOh livers and artists of Hellas centuries gone,\nSealing in little thuribles dreams and wisdom,\nIncense beyond all price, forever fragrant,\nA breath whereof makes clear the eyes of the soul\nHow I inhaled its sweetness here in Spoon River!\nThe thurible opening when I had lived and learned\nHow all of us kill the children of love, and all of us,\nKnowing not what we do, devour their flesh;\nAnd all of us change to singers, although it be\nBut once in our lives, or change-alas!-to swallows,\nTo twitter amid cold winds and falling leaves!",
+  "paragraphs": [
+    "Thomas Trevelyan",
+    "Reading in Ovid the sorrowful story of Itys, Son of the love of Tereus and Procne, slain For the guilty passion of Tereus for Philomela, The flesh of him served to Tereus by Procne, And the wrath of Tereus, the murderess pursuing Till the gods made Philomela a nightingale, Lute of the rising moon, and Procne a swallow Oh livers and artists of Hellas centuries gone, Sealing in little thuribles dreams and wisdom, Incense beyond all price, forever fragrant, A breath whereof makes clear the eyes of the soul How I inhaled its sweetness here in Spoon River! The thurible opening when I had lived and learned How all of us kill the children of love, and all of us, Knowing not what we do, devour their flesh; And all of us change to singers, although it be But once in our lives, or change-alas!-to swallows, To twitter amid cold winds and falling leaves!"
+  ],
+  "wordCount": 157,
+  "characterCount": 873,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4713,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Thomas Trevelyan Reading in Ovid the sorrowful story of Itys, Son of the love of Tereus and Procne, slain For the guilty passion of Tereus for Philomela, The f...",
+  "sourceOffsets": {
+    "start": 110367,
+    "end": 111268
+  }
+}

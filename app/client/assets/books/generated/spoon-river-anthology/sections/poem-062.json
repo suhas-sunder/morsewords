@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-062",
+  "kind": "poem",
+  "label": "Louise Smith",
+  "title": null,
+  "order": 62,
+  "includeByDefault": true,
+  "displayText": "Louise Smith\n\n\nHerbert broke our engagement of eight years\nWhen Annabelle returned to the village From the\nSeminary, ah me!\nIf I had let my love for him alone\nIt might have grown into a beautiful sorrow-\nWho knows?-filling my life with healing fragrance.\nBut I tortured it, I poisoned it\nI blinded its eyes, and it became hatred-\nDeadly ivy instead of clematis.\nAnd my soul fell from its support\nIts tendrils tangled in decay.\nDo not let the will play gardener to your soul\nUnless you are sure\nIt is wiser than your soul's nature.",
+  "morseSourceText": "Louise Smith\n\n\nHerbert broke our engagement of eight years\nWhen Annabelle returned to the village From the\nSeminary, ah me!\nIf I had let my love for him alone\nIt might have grown into a beautiful sorrow-\nWho knows?-filling my life with healing fragrance.\nBut I tortured it, I poisoned it\nI blinded its eyes, and it became hatred-\nDeadly ivy instead of clematis.\nAnd my soul fell from its support\nIts tendrils tangled in decay.\nDo not let the will play gardener to your soul\nUnless you are sure\nIt is wiser than your soul's nature.",
+  "paragraphs": [
+    "Louise Smith",
+    "Herbert broke our engagement of eight years When Annabelle returned to the village From the Seminary, ah me! If I had let my love for him alone It might have grown into a beautiful sorrow- Who knows?-filling my life with healing fragrance. But I tortured it, I poisoned it I blinded its eyes, and it became hatred- Deadly ivy instead of clematis. And my soul fell from its support Its tendrils tangled in decay. Do not let the will play gardener to your soul Unless you are sure It is wiser than your soul's nature."
+  ],
+  "wordCount": 98,
+  "characterCount": 530,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2820,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Louise Smith Herbert broke our engagement of eight years When Annabelle returned to the village From the Seminary, ah me! If I had let my love for him alone It...",
+  "sourceOffsets": {
+    "start": 45513,
+    "end": 46067
+  }
+}

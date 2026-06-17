@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-094",
+  "kind": "poem",
+  "label": "Albert Schirding",
+  "title": null,
+  "order": 94,
+  "includeByDefault": true,
+  "displayText": "Albert Schirding\n\n\nJonas Keene thought his lot a hard one\nBecause his children were all failures.\nBut I know of a fate more trying than that:\nIt is to be a failure while your children are successes.\nFor I raised a brood of eagles\nWho flew away at last, leaving me\nA crow on the abandoned bough.\nThen, with the ambition to prefix\nHonorable to my name,\nAnd thus to win my children's admiration,\nI ran for County Superintendent of Schools,\nSpending my accumulations to win-and lost.\nThat fall my daughter received first prize in Paris\nFor her picture, entitled, \"The Old Mill\"-\n(It was of the water mill before Henry Wilkin put in steam.)\nThe feeling that I was not worthy of her finished me.",
+  "morseSourceText": "Albert Schirding\n\n\nJonas Keene thought his lot a hard one\nBecause his children were all failures.\nBut I know of a fate more trying than that:\nIt is to be a failure while your children are successes.\nFor I raised a brood of eagles\nWho flew away at last, leaving me\nA crow on the abandoned bough.\nThen, with the ambition to prefix\nHonorable to my name,\nAnd thus to win my children's admiration,\nI ran for County Superintendent of Schools,\nSpending my accumulations to win-and lost.\nThat fall my daughter received first prize in Paris\nFor her picture, entitled, \"The Old Mill\"-\n(It was of the water mill before Henry Wilkin put in steam.)\nThe feeling that I was not worthy of her finished me.",
+  "paragraphs": [
+    "Albert Schirding",
+    "Jonas Keene thought his lot a hard one Because his children were all failures. But I know of a fate more trying than that: It is to be a failure while your children are successes. For I raised a brood of eagles Who flew away at last, leaving me A crow on the abandoned bough. Then, with the ambition to prefix Honorable to my name, And thus to win my children's admiration, I ran for County Superintendent of Schools, Spending my accumulations to win-and lost. That fall my daughter received first prize in Paris For her picture, entitled, \"The Old Mill\"- (It was of the water mill before Henry Wilkin put in steam.) The feeling that I was not worthy of her finished me."
+  ],
+  "wordCount": 126,
+  "characterCount": 689,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3696,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Albert Schirding Jonas Keene thought his lot a hard one Because his children were all failures. But I know of a fate more trying than that: It is to be a failu...",
+  "sourceOffsets": {
+    "start": 68095,
+    "end": 68810
+  }
+}

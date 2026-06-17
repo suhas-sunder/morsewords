@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-238",
+  "kind": "poem",
+  "label": "Judson Stoddard",
+  "title": null,
+  "order": 238,
+  "includeByDefault": true,
+  "displayText": "Judson Stoddard\n\n\nOn a mountain top above the clouds\nThat streamed like a sea below me\nI said that peak is the thought of Budda,\nAnd that one is the prayer of Jesus,\nAnd this one is the dream of Plato,\nAnd that one there the song of Dante,\nAnd this is Kant and this is Newton,\nAnd this is Milton and this is Shakespeare,\nAnd this the hope of the Mother Church,\nAnd this-why all these peaks are poems,\nPoems and prayers that pierce the clouds.\nAnd I said \"What does God do with mountains\nThat rise almost to heaven?\"",
+  "morseSourceText": "Judson Stoddard\n\n\nOn a mountain top above the clouds\nThat streamed like a sea below me\nI said that peak is the thought of Budda,\nAnd that one is the prayer of Jesus,\nAnd this one is the dream of Plato,\nAnd that one there the song of Dante,\nAnd this is Kant and this is Newton,\nAnd this is Milton and this is Shakespeare,\nAnd this the hope of the Mother Church,\nAnd this-why all these peaks are poems,\nPoems and prayers that pierce the clouds.\nAnd I said \"What does God do with mountains\nThat rise almost to heaven?\"",
+  "paragraphs": [
+    "Judson Stoddard",
+    "On a mountain top above the clouds That streamed like a sea below me I said that peak is the thought of Budda, And that one is the prayer of Jesus, And this one is the dream of Plato, And that one there the song of Dante, And this is Kant and this is Newton, And this is Milton and this is Shakespeare, And this the hope of the Mother Church, And this-why all these peaks are poems, Poems and prayers that pierce the clouds. And I said \"What does God do with mountains That rise almost to heaven?\""
+  ],
+  "wordCount": 101,
+  "characterCount": 515,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2703,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Judson Stoddard On a mountain top above the clouds That streamed like a sea below me I said that peak is the thought of Budda, And that one is the prayer of Je...",
+  "sourceOffsets": {
+    "start": 182642,
+    "end": 183180
+  }
+}

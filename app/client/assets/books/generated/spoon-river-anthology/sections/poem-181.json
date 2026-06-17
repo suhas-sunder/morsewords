@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-181",
+  "kind": "poem",
+  "label": "Mrs. Merritt",
+  "title": null,
+  "order": 181,
+  "includeByDefault": true,
+  "displayText": "Mrs. Merritt\n\n\nSilent before the jury\nReturning no word to the judge when he asked me\nIf I had aught to say against the sentence,\nOnly shaking my head.\nWhat could I say to people who thought\nThat a woman of thirty-five was at fault\nWhen her lover of nineteen killed her husband?\nEven though she had said to him over and over,\n\"Go away, Elmer, go far away,\nI have maddened your brain with the gift of my body:\nYou will do some terrible thing.\"\nAnd just as I feared, he killed my husband;\nWith which I had nothing to do, before\nGod Silent for thirty years in prison\nAnd the iron gates of Joliet\nSwung as the gray and silent trusties\nCarried me out in a coffin.",
+  "morseSourceText": "Mrs. Merritt\n\n\nSilent before the jury\nReturning no word to the judge when he asked me\nIf I had aught to say against the sentence,\nOnly shaking my head.\nWhat could I say to people who thought\nThat a woman of thirty-five was at fault\nWhen her lover of nineteen killed her husband?\nEven though she had said to him over and over,\n\"Go away, Elmer, go far away,\nI have maddened your brain with the gift of my body:\nYou will do some terrible thing.\"\nAnd just as I feared, he killed my husband;\nWith which I had nothing to do, before\nGod Silent for thirty years in prison\nAnd the iron gates of Joliet\nSwung as the gray and silent trusties\nCarried me out in a coffin.",
+  "paragraphs": [
+    "Mrs. Merritt",
+    "Silent before the jury Returning no word to the judge when he asked me If I had aught to say against the sentence, Only shaking my head. What could I say to people who thought That a woman of thirty-five was at fault When her lover of nineteen killed her husband? Even though she had said to him over and over, \"Go away, Elmer, go far away, I have maddened your brain with the gift of my body: You will do some terrible thing.\" And just as I feared, he killed my husband; With which I had nothing to do, before God Silent for thirty years in prison And the iron gates of Joliet Swung as the gray and silent trusties Carried me out in a coffin."
+  ],
+  "wordCount": 129,
+  "characterCount": 658,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3507,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Mrs. Merritt Silent before the jury Returning no word to the judge when he asked me If I had aught to say against the sentence, Only shaking my head. What coul...",
+  "sourceOffsets": {
+    "start": 135942,
+    "end": 136627
+  }
+}

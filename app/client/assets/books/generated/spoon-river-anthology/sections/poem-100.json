@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-100",
+  "kind": "poem",
+  "label": "Mary McNeely",
+  "title": null,
+  "order": 100,
+  "includeByDefault": true,
+  "displayText": "Mary McNeely\n\n\nPasser-by,\nTo love is to find your own soul\nThrough the soul of the beloved one.\nWhen the beloved one withdraws itself from your soul\nThen you have lost your soul.\nIt is written: \"l have a friend,\nBut my sorrow has no friend.\"\nHence my long years of solitude at the home of my father,\nTrying to get myself back,\nAnd to turn my sorrow into a supremer self.\nBut there was my father with his sorrows,\nSitting under the cedar tree,\nA picture that sank into my heart at last\nBringing infinite repose.\nOh, ye souls who have made life\nFragrant and white as tube roses\nFrom earth's dark soil,\nEternal peace!",
+  "morseSourceText": "Mary McNeely\n\n\nPasser-by,\nTo love is to find your own soul\nThrough the soul of the beloved one.\nWhen the beloved one withdraws itself from your soul\nThen you have lost your soul.\nIt is written: \"l have a friend,\nBut my sorrow has no friend.\"\nHence my long years of solitude at the home of my father,\nTrying to get myself back,\nAnd to turn my sorrow into a supremer self.\nBut there was my father with his sorrows,\nSitting under the cedar tree,\nA picture that sank into my heart at last\nBringing infinite repose.\nOh, ye souls who have made life\nFragrant and white as tube roses\nFrom earth's dark soil,\nEternal peace!",
+  "paragraphs": [
+    "Mary McNeely",
+    "Passer-by, To love is to find your own soul Through the soul of the beloved one. When the beloved one withdraws itself from your soul Then you have lost your soul. It is written: \"l have a friend, But my sorrow has no friend.\" Hence my long years of solitude at the home of my father, Trying to get myself back, And to turn my sorrow into a supremer self. But there was my father with his sorrows, Sitting under the cedar tree, A picture that sank into my heart at last Bringing infinite repose. Oh, ye souls who have made life Fragrant and white as tube roses From earth's dark soil, Eternal peace!"
+  ],
+  "wordCount": 116,
+  "characterCount": 614,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3295,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Mary McNeely Passer-by, To love is to find your own soul Through the soul of the beloved one. When the beloved one withdraws itself from your soul Then you hav...",
+  "sourceOffsets": {
+    "start": 72296,
+    "end": 72938
+  }
+}

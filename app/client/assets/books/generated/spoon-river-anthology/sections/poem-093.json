@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-093",
+  "kind": "poem",
+  "label": "Judge Selah Lively",
+  "title": null,
+  "order": 93,
+  "includeByDefault": true,
+  "displayText": "Judge Selah Lively\n\n\nSuppose you stood just five feet two,\nAnd had worked your way as a grocery clerk,\nStudying law by candle light\nUntil you became an attorney at law?\nAnd then suppose through your diligence,\nAnd regular church attendance,\nYou became attorney for Thomas Rhodes,\nCollecting notes and mortgages,\nAnd representing all the widows\nIn the Probate Court? And through it all\nThey jeered at your size, and laughed at your clothes\nAnd your polished boots? And then suppose\nYou became the County Judge?\nAnd Jefferson Howard and Kinsey Keene,\nAnd Harmon Whitney, and all the giants\nWho had sneered at you, were forced to stand\nBefore the bar and say \"Your Honor\"-\nWell, don't you think it was natural\nThat I made it hard for them?",
+  "morseSourceText": "Judge Selah Lively\n\n\nSuppose you stood just five feet two,\nAnd had worked your way as a grocery clerk,\nStudying law by candle light\nUntil you became an attorney at law?\nAnd then suppose through your diligence,\nAnd regular church attendance,\nYou became attorney for Thomas Rhodes,\nCollecting notes and mortgages,\nAnd representing all the widows\nIn the Probate Court? And through it all\nThey jeered at your size, and laughed at your clothes\nAnd your polished boots? And then suppose\nYou became the County Judge?\nAnd Jefferson Howard and Kinsey Keene,\nAnd Harmon Whitney, and all the giants\nWho had sneered at you, were forced to stand\nBefore the bar and say \"Your Honor\"-\nWell, don't you think it was natural\nThat I made it hard for them?",
+  "paragraphs": [
+    "Judge Selah Lively",
+    "Suppose you stood just five feet two, And had worked your way as a grocery clerk, Studying law by candle light Until you became an attorney at law? And then suppose through your diligence, And regular church attendance, You became attorney for Thomas Rhodes, Collecting notes and mortgages, And representing all the widows In the Probate Court? And through it all They jeered at your size, and laughed at your clothes And your polished boots? And then suppose You became the County Judge? And Jefferson Howard and Kinsey Keene, And Harmon Whitney, and all the giants Who had sneered at you, were forced to stand Before the bar and say \"Your Honor\"- Well, don't you think it was natural That I made it hard for them?"
+  ],
+  "wordCount": 129,
+  "characterCount": 736,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3972,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Judge Selah Lively Suppose you stood just five feet two, And had worked your way as a grocery clerk, Studying law by candle light Until you became an attorney...",
+  "sourceOffsets": {
+    "start": 67328,
+    "end": 68093
+  }
+}

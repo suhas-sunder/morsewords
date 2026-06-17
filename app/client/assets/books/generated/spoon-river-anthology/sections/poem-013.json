@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-013",
+  "kind": "poem",
+  "label": "Kinsey Keene",
+  "title": null,
+  "order": 13,
+  "includeByDefault": true,
+  "displayText": "Kinsey Keene\n\n\nYour attention, Thomas Rhodes, president of the bank;\nCoolbaugh Whedon, editor of the Argus;\nRev. Peet, pastor of the leading church;\nA. D. Blood, several times Mayor of Spoon River;\nAnd finally all of you, members of the Social Purity Club-\nYour attention to Cambronne's dying words,\nStanding with the heroic remnant\nOf Napoleon's guard on Mount Saint Jean\nAt the battle field of Waterloo,\nWhen Maitland, the Englishman, called to them:\n\"Surrender, brave Frenchmen!\"-\nThere at close of day with the battle hopelessly lost,\nAnd hordes of men no longer the army\nOf the great Napoleon\nStreamed from the field like ragged strips\nOf thunder clouds in the storm.\nWell, what Cambronne said to Maitland\nEre the English fire made smooth the brow of the hill\nAgainst the sinking light of day\nSay I to you, and all of you,\nAnd to you, O world.\nAnd I charge you to carve it\nUpon my stone.",
+  "morseSourceText": "Kinsey Keene\n\n\nYour attention, Thomas Rhodes, president of the bank;\nCoolbaugh Whedon, editor of the Argus;\nRev. Peet, pastor of the leading church;\nA. D. Blood, several times Mayor of Spoon River;\nAnd finally all of you, members of the Social Purity Club-\nYour attention to Cambronne's dying words,\nStanding with the heroic remnant\nOf Napoleon's guard on Mount Saint Jean\nAt the battle field of Waterloo,\nWhen Maitland, the Englishman, called to them:\n\"Surrender, brave Frenchmen!\"-\nThere at close of day with the battle hopelessly lost,\nAnd hordes of men no longer the army\nOf the great Napoleon\nStreamed from the field like ragged strips\nOf thunder clouds in the storm.\nWell, what Cambronne said to Maitland\nEre the English fire made smooth the brow of the hill\nAgainst the sinking light of day\nSay I to you, and all of you,\nAnd to you, O world.\nAnd I charge you to carve it\nUpon my stone.",
+  "paragraphs": [
+    "Kinsey Keene",
+    "Your attention, Thomas Rhodes, president of the bank; Coolbaugh Whedon, editor of the Argus; Rev. Peet, pastor of the leading church; A. D. Blood, several times Mayor of Spoon River; And finally all of you, members of the Social Purity Club- Your attention to Cambronne's dying words, Standing with the heroic remnant Of Napoleon's guard on Mount Saint Jean At the battle field of Waterloo, When Maitland, the Englishman, called to them: \"Surrender, brave Frenchmen!\"- There at close of day with the battle hopelessly lost, And hordes of men no longer the army Of the great Napoleon Streamed from the field like ragged strips Of thunder clouds in the storm. Well, what Cambronne said to Maitland Ere the English fire made smooth the brow of the hill Against the sinking light of day Say I to you, and all of you, And to you, O world. And I charge you to carve it Upon my stone."
+  ],
+  "wordCount": 158,
+  "characterCount": 892,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4826,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Kinsey Keene Your attention, Thomas Rhodes, president of the bank; Coolbaugh Whedon, editor of the Argus; Rev. Peet, pastor of the leading church; A. D. Blood,...",
+  "sourceOffsets": {
+    "start": 13211,
+    "end": 14136
+  }
+}

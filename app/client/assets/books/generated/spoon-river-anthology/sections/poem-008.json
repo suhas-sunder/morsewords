@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-008",
+  "kind": "poem",
+  "label": "Amanda Barker",
+  "title": null,
+  "order": 8,
+  "includeByDefault": true,
+  "displayText": "Amanda Barker\n\n\nHenry got me with child,\nKnowing that I could not bring forth life\nWithout losing my own.\nIn my youth therefore I entered the portals of dust.\nTraveler, it is believed in the village where I lived\nThat Henry loved me with a husband's love\nBut I proclaim from the dust\nThat he slew me to gratify his hatred.",
+  "morseSourceText": "Amanda Barker\n\n\nHenry got me with child,\nKnowing that I could not bring forth life\nWithout losing my own.\nIn my youth therefore I entered the portals of dust.\nTraveler, it is believed in the village where I lived\nThat Henry loved me with a husband's love\nBut I proclaim from the dust\nThat he slew me to gratify his hatred.",
+  "paragraphs": [
+    "Amanda Barker",
+    "Henry got me with child, Knowing that I could not bring forth life Without losing my own. In my youth therefore I entered the portals of dust. Traveler, it is believed in the village where I lived That Henry loved me with a husband's love But I proclaim from the dust That he slew me to gratify his hatred."
+  ],
+  "wordCount": 61,
+  "characterCount": 322,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1703,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Amanda Barker Henry got me with child, Knowing that I could not bring forth life Without losing my own. In my youth therefore I entered the portals of dust. Tr...",
+  "sourceOffsets": {
+    "start": 10622,
+    "end": 10962
+  }
+}

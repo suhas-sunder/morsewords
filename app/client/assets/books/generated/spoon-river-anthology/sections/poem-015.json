@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-015",
+  "kind": "poem",
+  "label": "Mrs. Benjamin Pantier",
+  "title": null,
+  "order": 15,
+  "includeByDefault": true,
+  "displayText": "Mrs. Benjamin Pantier\n\n\nI know that he told that I snared his soul\nWith a snare which bled him to death.\nAnd all the men loved him,\nAnd most of the women pitied him.\nBut suppose you are really a lady, and have delicate tastes,\nAnd loathe the smell of whiskey and onions,\nAnd the rhythm of Wordsworth's \"Ode\" runs in your ears,\nWhile he goes about from morning till night\nRepeating bits of that common thing;\n\"Oh, why should the spirit of mortal be proud?\"\nAnd then, suppose;\nYou are a woman well endowed,\nAnd the only man with whom the law and morality\nPermit you to have the marital relation\nIs the very man that fills you with disgust\nEvery time you think of it while you think of it\nEvery time you see him?\nThat's why I drove him away from home\nTo live with his dog in a dingy room\nBack of his office.",
+  "morseSourceText": "Mrs. Benjamin Pantier\n\n\nI know that he told that I snared his soul\nWith a snare which bled him to death.\nAnd all the men loved him,\nAnd most of the women pitied him.\nBut suppose you are really a lady, and have delicate tastes,\nAnd loathe the smell of whiskey and onions,\nAnd the rhythm of Wordsworth's \"Ode\" runs in your ears,\nWhile he goes about from morning till night\nRepeating bits of that common thing;\n\"Oh, why should the spirit of mortal be proud?\"\nAnd then, suppose;\nYou are a woman well endowed,\nAnd the only man with whom the law and morality\nPermit you to have the marital relation\nIs the very man that fills you with disgust\nEvery time you think of it while you think of it\nEvery time you see him?\nThat's why I drove him away from home\nTo live with his dog in a dingy room\nBack of his office.",
+  "paragraphs": [
+    "Mrs. Benjamin Pantier",
+    "I know that he told that I snared his soul With a snare which bled him to death. And all the men loved him, And most of the women pitied him. But suppose you are really a lady, and have delicate tastes, And loathe the smell of whiskey and onions, And the rhythm of Wordsworth's \"Ode\" runs in your ears, While he goes about from morning till night Repeating bits of that common thing; \"Oh, why should the spirit of mortal be proud?\" And then, suppose; You are a woman well endowed, And the only man with whom the law and morality Permit you to have the marital relation Is the very man that fills you with disgust Every time you think of it while you think of it Every time you see him? That's why I drove him away from home To live with his dog in a dingy room Back of his office."
+  ],
+  "wordCount": 158,
+  "characterCount": 804,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4302,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Mrs. Benjamin Pantier I know that he told that I snared his soul With a snare which bled him to death. And all the men loved him, And most of the women pitied...",
+  "sourceOffsets": {
+    "start": 14799,
+    "end": 15633
+  }
+}

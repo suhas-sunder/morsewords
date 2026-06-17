@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-017",
+  "kind": "poem",
+  "label": "Emily Sparks",
+  "title": null,
+  "order": 17,
+  "includeByDefault": true,
+  "displayText": "Emily Sparks\n\n\nWhere is my boy, my boy\nIn what far part of the world?\nThe boy I loved best of all in the school?-\nI, the teacher, the old maid, the virgin heart,\nWho made them all my children.\nDid I know my boy aright,\nThinking of him as a spirit aflame,\nActive, ever aspiring?\nOh, boy, boy, for whom I prayed and prayed\nIn many a watchful hour at night,\nDo you remember the letter I wrote you\nOf the beautiful love of Christ?\nAnd whether you ever took it or not,\nMy, boy, wherever you are,\nWork for your soul's sake,\nThat all the clay of you, all of the dross of you,\nMay yield to the fire of you,\nTill the fire is nothing but light!...\nNothing but light!",
+  "morseSourceText": "Emily Sparks\n\n\nWhere is my boy, my boy\nIn what far part of the world?\nThe boy I loved best of all in the school?-\nI, the teacher, the old maid, the virgin heart,\nWho made them all my children.\nDid I know my boy aright,\nThinking of him as a spirit aflame,\nActive, ever aspiring?\nOh, boy, boy, for whom I prayed and prayed\nIn many a watchful hour at night,\nDo you remember the letter I wrote you\nOf the beautiful love of Christ?\nAnd whether you ever took it or not,\nMy, boy, wherever you are,\nWork for your soul's sake,\nThat all the clay of you, all of the dross of you,\nMay yield to the fire of you,\nTill the fire is nothing but light!...\nNothing but light!",
+  "paragraphs": [
+    "Emily Sparks",
+    "Where is my boy, my boy In what far part of the world? The boy I loved best of all in the school?- I, the teacher, the old maid, the virgin heart, Who made them all my children. Did I know my boy aright, Thinking of him as a spirit aflame, Active, ever aspiring? Oh, boy, boy, for whom I prayed and prayed In many a watchful hour at night, Do you remember the letter I wrote you Of the beautiful love of Christ? And whether you ever took it or not, My, boy, wherever you are, Work for your soul's sake, That all the clay of you, all of the dross of you, May yield to the fire of you, Till the fire is nothing but light!... Nothing but light!"
+  ],
+  "wordCount": 133,
+  "characterCount": 656,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3602,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Emily Sparks Where is my boy, my boy In what far part of the world? The boy I loved best of all in the school?- I, the teacher, the old maid, the virgin heart,...",
+  "sourceOffsets": {
+    "start": 16692,
+    "end": 17375
+  }
+}

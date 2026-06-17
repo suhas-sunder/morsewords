@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-189",
+  "kind": "poem",
+  "label": "Henry Layton",
+  "title": null,
+  "order": 189,
+  "includeByDefault": true,
+  "displayText": "Henry Layton\n\n\nWhoever thou art who passest by\nKnow that my father was gentle,\nAnd my mother was violent,\nWhile I was born the whole of such hostile halves,\nNot intermixed and fused,\nBut each distinct, feebly soldered together.\nSome of you saw me as gentle,\nSome as violent,\nSome as both.\nBut neither half of me wrought my ruin.\nIt was the falling asunder of halves,\nNever a part of each other,\nThat left me a lifeless soul.",
+  "morseSourceText": "Henry Layton\n\n\nWhoever thou art who passest by\nKnow that my father was gentle,\nAnd my mother was violent,\nWhile I was born the whole of such hostile halves,\nNot intermixed and fused,\nBut each distinct, feebly soldered together.\nSome of you saw me as gentle,\nSome as violent,\nSome as both.\nBut neither half of me wrought my ruin.\nIt was the falling asunder of halves,\nNever a part of each other,\nThat left me a lifeless soul.",
+  "paragraphs": [
+    "Henry Layton",
+    "Whoever thou art who passest by Know that my father was gentle, And my mother was violent, While I was born the whole of such hostile halves, Not intermixed and fused, But each distinct, feebly soldered together. Some of you saw me as gentle, Some as violent, Some as both. But neither half of me wrought my ruin. It was the falling asunder of halves, Never a part of each other, That left me a lifeless soul."
+  ],
+  "wordCount": 79,
+  "characterCount": 424,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2271,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Henry Layton Whoever thou art who passest by Know that my father was gentle, And my mother was violent, While I was born the whole of such hostile halves, Not...",
+  "sourceOffsets": {
+    "start": 142156,
+    "end": 142603
+  }
+}

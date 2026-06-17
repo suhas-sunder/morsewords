@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-155",
+  "kind": "poem",
+  "label": "Abel Melveny",
+  "title": null,
+  "order": 155,
+  "includeByDefault": true,
+  "displayText": "Abel Melveny\n\n\nI bought every kind of machine that's known-\nGrinders, shellers, planters, mowers,\nMills and rakes and ploughs and threshers-\nAnd all of them stood in the rain and sun,\nGetting rusted, warped and battered,\nFor I had no sheds to store them in,\nAnd no use for most of them.\nAnd toward the last, when I thought it over,\nThere by my window, growing clearer\nAbout myself, as my pulse slowed down,\nAnd looked at one of the mills I bought-\nWhich I didn't have the slightest need of,\nAs things turned out, and I never ran-\nA fine machine, once brightly varnished,\nAnd eager to do its work,\nNow with its paint washed off-\nI saw myself as a good machine\nThat Life had never used.",
+  "morseSourceText": "Abel Melveny\n\n\nI bought every kind of machine that's known-\nGrinders, shellers, planters, mowers,\nMills and rakes and ploughs and threshers-\nAnd all of them stood in the rain and sun,\nGetting rusted, warped and battered,\nFor I had no sheds to store them in,\nAnd no use for most of them.\nAnd toward the last, when I thought it over,\nThere by my window, growing clearer\nAbout myself, as my pulse slowed down,\nAnd looked at one of the mills I bought-\nWhich I didn't have the slightest need of,\nAs things turned out, and I never ran-\nA fine machine, once brightly varnished,\nAnd eager to do its work,\nNow with its paint washed off-\nI saw myself as a good machine\nThat Life had never used.",
+  "paragraphs": [
+    "Abel Melveny",
+    "I bought every kind of machine that's known- Grinders, shellers, planters, mowers, Mills and rakes and ploughs and threshers- And all of them stood in the rain and sun, Getting rusted, warped and battered, For I had no sheds to store them in, And no use for most of them. And toward the last, when I thought it over, There by my window, growing clearer About myself, as my pulse slowed down, And looked at one of the mills I bought- Which I didn't have the slightest need of, As things turned out, and I never ran- A fine machine, once brightly varnished, And eager to do its work, Now with its paint washed off- I saw myself as a good machine That Life had never used."
+  ],
+  "wordCount": 129,
+  "characterCount": 684,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3674,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Abel Melveny I bought every kind of machine that's known- Grinders, shellers, planters, mowers, Mills and rakes and ploughs and threshers- And all of them stoo...",
+  "sourceOffsets": {
+    "start": 114867,
+    "end": 115579
+  }
+}

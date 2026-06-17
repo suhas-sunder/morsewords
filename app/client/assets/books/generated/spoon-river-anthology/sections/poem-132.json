@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-132",
+  "kind": "poem",
+  "label": "Rosie Roberts",
+  "title": null,
+  "order": 132,
+  "includeByDefault": true,
+  "displayText": "Rosie Roberts\n\n\nI was sick, but more than that, I was mad\nAt the crooked police, and the crooked game of life.\nSo I wrote to the Chief of Police at Peoria:\n\"I am here in my girlhood home in Spoon River,\nGradually wasting away.\nBut come and take me, I killed the son\nOf the merchant prince, in Madam Lou's\nAnd the papers that said he killed himself\nIn his home while cleaning a hunting gun-\nLied like the devil to hush up scandal\nFor the bribe of advertising.\nIn my room I shot him, at Madam Lou's,\nBecause he knocked me down when I said\nThat, in spite of all the money he had,\nI'd see my lover that night.\"",
+  "morseSourceText": "Rosie Roberts\n\n\nI was sick, but more than that, I was mad\nAt the crooked police, and the crooked game of life.\nSo I wrote to the Chief of Police at Peoria:\n\"I am here in my girlhood home in Spoon River,\nGradually wasting away.\nBut come and take me, I killed the son\nOf the merchant prince, in Madam Lou's\nAnd the papers that said he killed himself\nIn his home while cleaning a hunting gun-\nLied like the devil to hush up scandal\nFor the bribe of advertising.\nIn my room I shot him, at Madam Lou's,\nBecause he knocked me down when I said\nThat, in spite of all the money he had,\nI'd see my lover that night.\"",
+  "paragraphs": [
+    "Rosie Roberts",
+    "I was sick, but more than that, I was mad At the crooked police, and the crooked game of life. So I wrote to the Chief of Police at Peoria: \"I am here in my girlhood home in Spoon River, Gradually wasting away. But come and take me, I killed the son Of the merchant prince, in Madam Lou's And the papers that said he killed himself In his home while cleaning a hunting gun- Lied like the devil to hush up scandal For the bribe of advertising. In my room I shot him, at Madam Lou's, Because he knocked me down when I said That, in spite of all the money he had, I'd see my lover that night.\""
+  ],
+  "wordCount": 122,
+  "characterCount": 606,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3235,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Rosie Roberts I was sick, but more than that, I was mad At the crooked police, and the crooked game of life. So I wrote to the Chief of Police at Peoria: \"I am...",
+  "sourceOffsets": {
+    "start": 95288,
+    "end": 95919
+  }
+}

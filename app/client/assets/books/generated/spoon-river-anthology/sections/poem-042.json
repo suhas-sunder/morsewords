@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-042",
+  "kind": "poem",
+  "label": "Jack McGuire",
+  "title": null,
+  "order": 42,
+  "includeByDefault": true,
+  "displayText": "Jack McGuire\n\n\nThey would have lynched me\nHad I not been secretly hurried away\nTo the jail at Peoria.\nAnd yet I was going peacefully home,\nCarrying my jug, a little drunk,\nWhen Logan, the marshal, halted me\nCalled me a drunken hound and shook me\nAnd, when I cursed him for it, struck me\nWith that Prohibition loaded cane-\nAll this before I shot him.\nThey would have hanged me except for this:\nMy lawyer, Kinsey Keene, was helping to land\nOld Thomas Rhodes for wrecking the bank,\nAnd the judge was a friend of\nRhodes And wanted him to escape,\nAnd Kinsey offered to quit on Rhodes\nFor fourteen years for me.\nAnd the bargain was made.\nI served my time\nAnd learned to read and write.",
+  "morseSourceText": "Jack McGuire\n\n\nThey would have lynched me\nHad I not been secretly hurried away\nTo the jail at Peoria.\nAnd yet I was going peacefully home,\nCarrying my jug, a little drunk,\nWhen Logan, the marshal, halted me\nCalled me a drunken hound and shook me\nAnd, when I cursed him for it, struck me\nWith that Prohibition loaded cane-\nAll this before I shot him.\nThey would have hanged me except for this:\nMy lawyer, Kinsey Keene, was helping to land\nOld Thomas Rhodes for wrecking the bank,\nAnd the judge was a friend of\nRhodes And wanted him to escape,\nAnd Kinsey offered to quit on Rhodes\nFor fourteen years for me.\nAnd the bargain was made.\nI served my time\nAnd learned to read and write.",
+  "paragraphs": [
+    "Jack McGuire",
+    "They would have lynched me Had I not been secretly hurried away To the jail at Peoria. And yet I was going peacefully home, Carrying my jug, a little drunk, When Logan, the marshal, halted me Called me a drunken hound and shook me And, when I cursed him for it, struck me With that Prohibition loaded cane- All this before I shot him. They would have hanged me except for this: My lawyer, Kinsey Keene, was helping to land Old Thomas Rhodes for wrecking the bank, And the judge was a friend of Rhodes And wanted him to escape, And Kinsey offered to quit on Rhodes For fourteen years for me. And the bargain was made. I served my time And learned to read and write."
+  ],
+  "wordCount": 129,
+  "characterCount": 679,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3625,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Jack McGuire They would have lynched me Had I not been secretly hurried away To the jail at Peoria. And yet I was going peacefully home, Carrying my jug, a lit...",
+  "sourceOffsets": {
+    "start": 32368,
+    "end": 33077
+  }
+}

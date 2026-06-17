@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-025",
+  "kind": "poem",
+  "label": "Mrs. Meyers",
+  "title": null,
+  "order": 25,
+  "includeByDefault": true,
+  "displayText": "Mrs. Meyers\n\n\nHe protested all his life long\nThe newspapers lied about him villainously;\nThat he was not at fault for Minerva's fall,\nBut only tried to help her.\nPoor soul so sunk in sin he could not see\nThat even trying to help her, as he called it,\nHe had broken the law human and divine.\nPassers by, an ancient admonition to you:\nIf your ways would be ways of pleasantness,\nAnd all your pathways peace,\nLove God and keep his commandments.",
+  "morseSourceText": "Mrs. Meyers\n\n\nHe protested all his life long\nThe newspapers lied about him villainously;\nThat he was not at fault for Minerva's fall,\nBut only tried to help her.\nPoor soul so sunk in sin he could not see\nThat even trying to help her, as he called it,\nHe had broken the law human and divine.\nPassers by, an ancient admonition to you:\nIf your ways would be ways of pleasantness,\nAnd all your pathways peace,\nLove God and keep his commandments.",
+  "paragraphs": [
+    "Mrs. Meyers",
+    "He protested all his life long The newspapers lied about him villainously; That he was not at fault for Minerva's fall, But only tried to help her. Poor soul so sunk in sin he could not see That even trying to help her, as he called it, He had broken the law human and divine. Passers by, an ancient admonition to you: If your ways would be ways of pleasantness, And all your pathways peace, Love God and keep his commandments."
+  ],
+  "wordCount": 83,
+  "characterCount": 441,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2377,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Mrs. Meyers He protested all his life long The newspapers lied about him villainously; That he was not at fault for Minerva's fall, But only tried to help her....",
+  "sourceOffsets": {
+    "start": 22628,
+    "end": 23090
+  }
+}

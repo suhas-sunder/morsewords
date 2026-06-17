@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-110",
+  "kind": "poem",
+  "label": "Ernest Hyde",
+  "title": null,
+  "order": 110,
+  "includeByDefault": true,
+  "displayText": "Ernest Hyde\n\n\nMy mind was a mirror:\nIt saw what it saw, it knew what it knew.\nIn youth my mind was just a mirror\nIn a rapidly flying car,\nWhich catches and loses bits of the landscape.\nThen in time\nGreat scratches were made on the mirror,\nLetting the outside world come in,\nAnd letting my inner self look out.\nFor this is the birth of the soul in sorrow,\nA birth with gains and losses.\nThe mind sees the world as a thing apart,\nAnd the soul makes the world at one with itself.\nA mirror scratched reflects no image-\nAnd this is the silence of wisdom.",
+  "morseSourceText": "Ernest Hyde\n\n\nMy mind was a mirror:\nIt saw what it saw, it knew what it knew.\nIn youth my mind was just a mirror\nIn a rapidly flying car,\nWhich catches and loses bits of the landscape.\nThen in time\nGreat scratches were made on the mirror,\nLetting the outside world come in,\nAnd letting my inner self look out.\nFor this is the birth of the soul in sorrow,\nA birth with gains and losses.\nThe mind sees the world as a thing apart,\nAnd the soul makes the world at one with itself.\nA mirror scratched reflects no image-\nAnd this is the silence of wisdom.",
+  "paragraphs": [
+    "Ernest Hyde",
+    "My mind was a mirror: It saw what it saw, it knew what it knew. In youth my mind was just a mirror In a rapidly flying car, Which catches and loses bits of the landscape. Then in time Great scratches were made on the mirror, Letting the outside world come in, And letting my inner self look out. For this is the birth of the soul in sorrow, A birth with gains and losses. The mind sees the world as a thing apart, And the soul makes the world at one with itself. A mirror scratched reflects no image- And this is the silence of wisdom."
+  ],
+  "wordCount": 109,
+  "characterCount": 549,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2894,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Ernest Hyde My mind was a mirror: It saw what it saw, it knew what it knew. In youth my mind was just a mirror In a rapidly flying car, Which catches and loses...",
+  "sourceOffsets": {
+    "start": 79555,
+    "end": 80129
+  }
+}

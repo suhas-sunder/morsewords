@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-218",
+  "kind": "poem",
+  "label": "William Jones",
+  "title": null,
+  "order": 218,
+  "includeByDefault": true,
+  "displayText": "William Jones\n\n\nOnce in a while a curious weed unknown to me,\nNeeding a name from my books;\nOnce in a while a letter from Yeomans.\nOut of the mussel-shells gathered along the shore\nSometimes a pearl with a glint like meadow rue:\nThen betimes a letter from Tyndall in England,\nStamped with the stamp of Spoon River.\nI, lover of Nature, beloved for my love of her,\nHeld such converse afar with the great\nWho knew her better than I.\nOh, there is neither lesser nor greater,\nSave as we make her greater and win from her keener delight.\nWith shells from the river cover me, cover me.\nI lived in wonder, worshipping earth and heaven.\nI have passed on the march eternal of endless life.",
+  "morseSourceText": "William Jones\n\n\nOnce in a while a curious weed unknown to me,\nNeeding a name from my books;\nOnce in a while a letter from Yeomans.\nOut of the mussel-shells gathered along the shore\nSometimes a pearl with a glint like meadow rue:\nThen betimes a letter from Tyndall in England,\nStamped with the stamp of Spoon River.\nI, lover of Nature, beloved for my love of her,\nHeld such converse afar with the great\nWho knew her better than I.\nOh, there is neither lesser nor greater,\nSave as we make her greater and win from her keener delight.\nWith shells from the river cover me, cover me.\nI lived in wonder, worshipping earth and heaven.\nI have passed on the march eternal of endless life.",
+  "paragraphs": [
+    "William Jones",
+    "Once in a while a curious weed unknown to me, Needing a name from my books; Once in a while a letter from Yeomans. Out of the mussel-shells gathered along the shore Sometimes a pearl with a glint like meadow rue: Then betimes a letter from Tyndall in England, Stamped with the stamp of Spoon River. I, lover of Nature, beloved for my love of her, Held such converse afar with the great Who knew her better than I. Oh, there is neither lesser nor greater, Save as we make her greater and win from her keener delight. With shells from the river cover me, cover me. I lived in wonder, worshipping earth and heaven. I have passed on the march eternal of endless life."
+  ],
+  "wordCount": 127,
+  "characterCount": 679,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3595,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "William Jones Once in a while a curious weed unknown to me, Needing a name from my books; Once in a while a letter from Yeomans. Out of the mussel-shells gathe...",
+  "sourceOffsets": {
+    "start": 167413,
+    "end": 168117
+  }
+}

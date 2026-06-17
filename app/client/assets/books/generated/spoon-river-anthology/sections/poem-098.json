@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-098",
+  "kind": "poem",
+  "label": "Washington McNeely",
+  "title": null,
+  "order": 98,
+  "includeByDefault": true,
+  "displayText": "Washington McNeely\n\n\nRich, honored by my fellow citizens,\nThe father of many children, born of a noble mother,\nAll raised there\nIn the great mansion-house, at the edge of town.\nNote the cedar tree on the lawn!\nI sent all the boys to Ann Arbor, all of the girls to Rockford,\nThe while my life went on, getting more riches and honors-\nResting under my cedar tree at evening.\nThe years went on.\nI sent the girls to Europe;\nI dowered them when married.\nI gave the boys money to start in business.\nThey were strong children, promising as apples\nBefore the bitten places show.\nBut John fled the country in disgrace.\nJenny died in child-birth-\nI sat under my cedar tree.\nHarry killed himself after a debauch,\nSusan was divorced-\nI sat under my cedar tree.\nPaul was invalided from over study,\nMary became a recluse at home for love of a man-\nI sat under my cedar tree.\nAll were gone, or broken-winged or devoured by life-\nI sat under my cedar tree.\nMy mate, the mother of them, was taken-\nI sat under my cedar tree,\nTill ninety years were tolled.\nO maternal Earth, which rocks the fallen leaf to sleep.",
+  "morseSourceText": "Washington McNeely\n\n\nRich, honored by my fellow citizens,\nThe father of many children, born of a noble mother,\nAll raised there\nIn the great mansion-house, at the edge of town.\nNote the cedar tree on the lawn!\nI sent all the boys to Ann Arbor, all of the girls to Rockford,\nThe while my life went on, getting more riches and honors-\nResting under my cedar tree at evening.\nThe years went on.\nI sent the girls to Europe;\nI dowered them when married.\nI gave the boys money to start in business.\nThey were strong children, promising as apples\nBefore the bitten places show.\nBut John fled the country in disgrace.\nJenny died in child-birth-\nI sat under my cedar tree.\nHarry killed himself after a debauch,\nSusan was divorced-\nI sat under my cedar tree.\nPaul was invalided from over study,\nMary became a recluse at home for love of a man-\nI sat under my cedar tree.\nAll were gone, or broken-winged or devoured by life-\nI sat under my cedar tree.\nMy mate, the mother of them, was taken-\nI sat under my cedar tree,\nTill ninety years were tolled.\nO maternal Earth, which rocks the fallen leaf to sleep.",
+  "paragraphs": [
+    "Washington McNeely",
+    "Rich, honored by my fellow citizens, The father of many children, born of a noble mother, All raised there In the great mansion-house, at the edge of town. Note the cedar tree on the lawn! I sent all the boys to Ann Arbor, all of the girls to Rockford, The while my life went on, getting more riches and honors- Resting under my cedar tree at evening. The years went on. I sent the girls to Europe; I dowered them when married. I gave the boys money to start in business. They were strong children, promising as apples Before the bitten places show. But John fled the country in disgrace. Jenny died in child-birth- I sat under my cedar tree. Harry killed himself after a debauch, Susan was divorced- I sat under my cedar tree. Paul was invalided from over study, Mary became a recluse at home for love of a man- I sat under my cedar tree. All were gone, or broken-winged or devoured by life- I sat under my cedar tree. My mate, the mother of them, was taken- I sat under my cedar tree, Till ninety years were tolled. O maternal Earth, which rocks the fallen leaf to sleep."
+  ],
+  "wordCount": 204,
+  "characterCount": 1094,
+  "estimatedTypingMinutes": 6,
+  "estimatedListeningMinutes": 7,
+  "morseCharacterEstimate": 5844,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Washington McNeely Rich, honored by my fellow citizens, The father of many children, born of a noble mother, All raised there In the great mansion-house, at th...",
+  "sourceOffsets": {
+    "start": 70359,
+    "end": 71492
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-225",
+  "kind": "poem",
+  "label": "The Village Atheist",
+  "title": null,
+  "order": 225,
+  "includeByDefault": true,
+  "displayText": "The Village Atheist\n\n\nYe young debaters over the doctrine\nOf the soul's immortality\nI who lie here was the village atheist,\nTalkative, contentious, versed in the arguments\nOf the infidels. But through a long sickness\nCoughing myself to death I read the\nUpanishads and the poetry of Jesus.\nAnd they lighted a torch of hope and intuition\nAnd desire which the Shadow\nLeading me swiftly through the caverns of darkness,\nCould not extinguish.\nListen to me, ye who live in the senses\nAnd think through the senses only:\nImmortality is not a gift,\nImmortality is an achievement;\nAnd only those who strive mightily\nShall possess it.",
+  "morseSourceText": "The Village Atheist\n\n\nYe young debaters over the doctrine\nOf the soul's immortality\nI who lie here was the village atheist,\nTalkative, contentious, versed in the arguments\nOf the infidels. But through a long sickness\nCoughing myself to death I read the\nUpanishads and the poetry of Jesus.\nAnd they lighted a torch of hope and intuition\nAnd desire which the Shadow\nLeading me swiftly through the caverns of darkness,\nCould not extinguish.\nListen to me, ye who live in the senses\nAnd think through the senses only:\nImmortality is not a gift,\nImmortality is an achievement;\nAnd only those who strive mightily\nShall possess it.",
+  "paragraphs": [
+    "The Village Atheist",
+    "Ye young debaters over the doctrine Of the soul's immortality I who lie here was the village atheist, Talkative, contentious, versed in the arguments Of the infidels. But through a long sickness Coughing myself to death I read the Upanishads and the poetry of Jesus. And they lighted a torch of hope and intuition And desire which the Shadow Leading me swiftly through the caverns of darkness, Could not extinguish. Listen to me, ye who live in the senses And think through the senses only: Immortality is not a gift, Immortality is an achievement; And only those who strive mightily Shall possess it."
+  ],
+  "wordCount": 106,
+  "characterCount": 623,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3314,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "The Village Atheist Ye young debaters over the doctrine Of the soul's immortality I who lie here was the village atheist, Talkative, contentious, versed in the...",
+  "sourceOffsets": {
+    "start": 172460,
+    "end": 173110
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-031",
+  "kind": "poem",
+  "label": "Doc Hill",
+  "title": null,
+  "order": 31,
+  "includeByDefault": true,
+  "displayText": "Doc Hill\n\n\nI went up and down the streets\nHere and there by day and night,\nThrough all hours of the night caring for the poor who were sick.\nDo you know why?\nMy wife hated me, my son went to the dogs.\nAnd I turned to the people and poured out my love to them.\nSweet it was to see the crowds about the lawns on the day of my\nfuneral,\nAnd hear them murmur their love and sorrow.\nBut oh, dear God, my soul trembled, scarcely able\nTo hold to the railing of the new life\nWhen I saw Em Stanton behind the oak tree\nAt the grave,\nHiding herself, and her grief!",
+  "morseSourceText": "Doc Hill\n\n\nI went up and down the streets\nHere and there by day and night,\nThrough all hours of the night caring for the poor who were sick.\nDo you know why?\nMy wife hated me, my son went to the dogs.\nAnd I turned to the people and poured out my love to them.\nSweet it was to see the crowds about the lawns on the day of my\nfuneral,\nAnd hear them murmur their love and sorrow.\nBut oh, dear God, my soul trembled, scarcely able\nTo hold to the railing of the new life\nWhen I saw Em Stanton behind the oak tree\nAt the grave,\nHiding herself, and her grief!",
+  "paragraphs": [
+    "Doc Hill",
+    "I went up and down the streets Here and there by day and night, Through all hours of the night caring for the poor who were sick. Do you know why? My wife hated me, my son went to the dogs. And I turned to the people and poured out my love to them. Sweet it was to see the crowds about the lawns on the day of my funeral, And hear them murmur their love and sorrow. But oh, dear God, my soul trembled, scarcely able To hold to the railing of the new life When I saw Em Stanton behind the oak tree At the grave, Hiding herself, and her grief!"
+  ],
+  "wordCount": 115,
+  "characterCount": 552,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2922,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Doc Hill I went up and down the streets Here and there by day and night, Through all hours of the night caring for the poor who were sick. Do you know why? My...",
+  "sourceOffsets": {
+    "start": 25576,
+    "end": 26152
+  }
+}

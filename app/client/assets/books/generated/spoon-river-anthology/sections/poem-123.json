@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-123",
+  "kind": "poem",
+  "label": "Widow McFarlane",
+  "title": null,
+  "order": 123,
+  "includeByDefault": true,
+  "displayText": "Widow McFarlane\n\n\nI was the Widow McFarlane,\nWeaver of carpets for all the village.\nAnd I pity you still at the loom of life,\nYou who are singing to the shuttle\nAnd lovingly watching the work of your hands,\nIf you reach the day of hate, of terrible truth.\nFor the cloth of life is woven, you know,\nTo a pattern hidden under the loom-\nA pattern you never see!\nAnd you weave high-hearted, singing, singing,\nYou guard the threads of love and friendship\nFor noble figures in gold and purple.\nAnd long after other eyes can see\nYou have woven a moon-white strip of cloth,\nYou laugh in your strength, for Hope overlays it\nWith shapes of love and beauty.\nThe loom stops short!\nThe pattern's out\nYou're alone in the room!\nYou have woven a shroud\nAnd hate of it lays you in it.",
+  "morseSourceText": "Widow McFarlane\n\n\nI was the Widow McFarlane,\nWeaver of carpets for all the village.\nAnd I pity you still at the loom of life,\nYou who are singing to the shuttle\nAnd lovingly watching the work of your hands,\nIf you reach the day of hate, of terrible truth.\nFor the cloth of life is woven, you know,\nTo a pattern hidden under the loom-\nA pattern you never see!\nAnd you weave high-hearted, singing, singing,\nYou guard the threads of love and friendship\nFor noble figures in gold and purple.\nAnd long after other eyes can see\nYou have woven a moon-white strip of cloth,\nYou laugh in your strength, for Hope overlays it\nWith shapes of love and beauty.\nThe loom stops short!\nThe pattern's out\nYou're alone in the room!\nYou have woven a shroud\nAnd hate of it lays you in it.",
+  "paragraphs": [
+    "Widow McFarlane",
+    "I was the Widow McFarlane, Weaver of carpets for all the village. And I pity you still at the loom of life, You who are singing to the shuttle And lovingly watching the work of your hands, If you reach the day of hate, of terrible truth. For the cloth of life is woven, you know, To a pattern hidden under the loom- A pattern you never see! And you weave high-hearted, singing, singing, You guard the threads of love and friendship For noble figures in gold and purple. And long after other eyes can see You have woven a moon-white strip of cloth, You laugh in your strength, for Hope overlays it With shapes of love and beauty. The loom stops short! The pattern's out You're alone in the room! You have woven a shroud And hate of it lays you in it."
+  ],
+  "wordCount": 146,
+  "characterCount": 767,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4156,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Widow McFarlane I was the Widow McFarlane, Weaver of carpets for all the village. And I pity you still at the loom of life, You who are singing to the shuttle...",
+  "sourceOffsets": {
+    "start": 87326,
+    "end": 88124
+  }
+}

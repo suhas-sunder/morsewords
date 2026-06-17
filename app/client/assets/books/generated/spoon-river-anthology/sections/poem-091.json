@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-091",
+  "kind": "poem",
+  "label": "Rev. Abner Peet",
+  "title": null,
+  "order": 91,
+  "includeByDefault": true,
+  "displayText": "Rev. Abner Peet\n\n\nI had no objection at all\nTo selling my household effects at auction\nOn the village square.\nIt gave my beloved flock the chance\nTo get something which had belonged to me\nFor a memorial.\nBut that trunk which was struck off\nTo Burchard, the grog-keeper!\nDid you know it contained the manuscripts\nOf a lifetime of sermons?\nAnd he burned them as waste paper.",
+  "morseSourceText": "Rev. Abner Peet\n\n\nI had no objection at all\nTo selling my household effects at auction\nOn the village square.\nIt gave my beloved flock the chance\nTo get something which had belonged to me\nFor a memorial.\nBut that trunk which was struck off\nTo Burchard, the grog-keeper!\nDid you know it contained the manuscripts\nOf a lifetime of sermons?\nAnd he burned them as waste paper.",
+  "paragraphs": [
+    "Rev. Abner Peet",
+    "I had no objection at all To selling my household effects at auction On the village square. It gave my beloved flock the chance To get something which had belonged to me For a memorial. But that trunk which was struck off To Burchard, the grog-keeper! Did you know it contained the manuscripts Of a lifetime of sermons? And he burned them as waste paper."
+  ],
+  "wordCount": 68,
+  "characterCount": 372,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 1983,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Rev. Abner Peet I had no objection at all To selling my household effects at auction On the village square. It gave my beloved flock the chance To get somethin...",
+  "sourceOffsets": {
+    "start": 65976,
+    "end": 66369
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-187",
+  "kind": "poem",
+  "label": "Ami Green",
+  "title": null,
+  "order": 187,
+  "includeByDefault": true,
+  "displayText": "Ami Green\n\n\nNot \"a youth with hoary head and haggard eye\",\nBut an old man with a smooth skin\nAnd black hair! I had the face of a boy as long as I lived,\nAnd for years a soul that was stiff and bent,\nIn a world which saw me just as a jest,\nTo be hailed familiarly when it chose,\nAnd loaded up as a man when it chose,\nBeing neither man nor boy.\nIn truth it was soul as well as body\nWhich never matured, and I say to you\nThat the much-sought prize of eternal youth\nIs just arrested growth.",
+  "morseSourceText": "Ami Green\n\n\nNot \"a youth with hoary head and haggard eye\",\nBut an old man with a smooth skin\nAnd black hair! I had the face of a boy as long as I lived,\nAnd for years a soul that was stiff and bent,\nIn a world which saw me just as a jest,\nTo be hailed familiarly when it chose,\nAnd loaded up as a man when it chose,\nBeing neither man nor boy.\nIn truth it was soul as well as body\nWhich never matured, and I say to you\nThat the much-sought prize of eternal youth\nIs just arrested growth.",
+  "paragraphs": [
+    "Ami Green",
+    "Not \"a youth with hoary head and haggard eye\", But an old man with a smooth skin And black hair! I had the face of a boy as long as I lived, And for years a soul that was stiff and bent, In a world which saw me just as a jest, To be hailed familiarly when it chose, And loaded up as a man when it chose, Being neither man nor boy. In truth it was soul as well as body Which never matured, and I say to you That the much-sought prize of eternal youth Is just arrested growth."
+  ],
+  "wordCount": 103,
+  "characterCount": 486,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2590,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Ami Green Not \"a youth with hoary head and haggard eye\", But an old man with a smooth skin And black hair! I had the face of a boy as long as I lived, And for...",
+  "sourceOffsets": {
+    "start": 141040,
+    "end": 141548
+  }
+}

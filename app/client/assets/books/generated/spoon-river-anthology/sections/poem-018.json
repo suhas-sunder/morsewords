@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-018",
+  "kind": "poem",
+  "label": "Trainor, the Druggist",
+  "title": null,
+  "order": 18,
+  "includeByDefault": true,
+  "displayText": "Trainor, the Druggist\n\n\nOnly the chemist can tell, and not always the chemist,\nWhat will result from compounding\nFluids or solids.\nAnd who can tell\nHow men and women will interact\nOn each other, or what children will result?\nThere were Benjamin Pantier and his wife,\nGood in themselves, but evil toward each other;\nHe oxygen, she hydrogen,\nTheir son, a devastating fire.\nI Trainor, the druggist, a miser of chemicals,\nKilled while making an experiment,\nLived unwedded.",
+  "morseSourceText": "Trainor, the Druggist\n\n\nOnly the chemist can tell, and not always the chemist,\nWhat will result from compounding\nFluids or solids.\nAnd who can tell\nHow men and women will interact\nOn each other, or what children will result?\nThere were Benjamin Pantier and his wife,\nGood in themselves, but evil toward each other;\nHe oxygen, she hydrogen,\nTheir son, a devastating fire.\nI Trainor, the druggist, a miser of chemicals,\nKilled while making an experiment,\nLived unwedded.",
+  "paragraphs": [
+    "Trainor, the Druggist",
+    "Only the chemist can tell, and not always the chemist, What will result from compounding Fluids or solids. And who can tell How men and women will interact On each other, or what children will result? There were Benjamin Pantier and his wife, Good in themselves, but evil toward each other; He oxygen, she hydrogen, Their son, a devastating fire. I Trainor, the druggist, a miser of chemicals, Killed while making an experiment, Lived unwedded."
+  ],
+  "wordCount": 78,
+  "characterCount": 468,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2524,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Trainor, the Druggist Only the chemist can tell, and not always the chemist, What will result from compounding Fluids or solids. And who can tell How men and w...",
+  "sourceOffsets": {
+    "start": 17377,
+    "end": 17868
+  }
+}

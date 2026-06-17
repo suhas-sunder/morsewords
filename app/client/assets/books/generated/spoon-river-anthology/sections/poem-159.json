@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-159",
+  "kind": "poem",
+  "label": "English Thornton",
+  "title": null,
+  "order": 159,
+  "includeByDefault": true,
+  "displayText": "English Thornton\n\n\nHere! You sons of the men\nWho fought with Washington at Valley Forge,\nAnd whipped Black Hawk at Starved Rock,\nArise! Do battle with the descendants of those\nWho bought land in the loop when it was waste sand,\nAnd sold blankets and guns to the army of Grant,\nAnd sat in legislatures in the early days,\nTaking bribes from the railroads!\nArise! Do battle with the fops and bluffs,\nThe pretenders and figurantes of the society column\nAnd the yokel souls whose daughters marry counts;\nAnd the parasites on great ideas,\nAnd the noisy riders of great causes,\nAnd the heirs of ancient thefts.\nArise! And make the city yours,\nAnd the State yours-\nYou who are sons of the hardy yeomanry of the forties!\nBy God! If you do not destroy these vermin\nMy avenging ghost will wipe out\nYour city and your state.",
+  "morseSourceText": "English Thornton\n\n\nHere! You sons of the men\nWho fought with Washington at Valley Forge,\nAnd whipped Black Hawk at Starved Rock,\nArise! Do battle with the descendants of those\nWho bought land in the loop when it was waste sand,\nAnd sold blankets and guns to the army of Grant,\nAnd sat in legislatures in the early days,\nTaking bribes from the railroads!\nArise! Do battle with the fops and bluffs,\nThe pretenders and figurantes of the society column\nAnd the yokel souls whose daughters marry counts;\nAnd the parasites on great ideas,\nAnd the noisy riders of great causes,\nAnd the heirs of ancient thefts.\nArise! And make the city yours,\nAnd the State yours-\nYou who are sons of the hardy yeomanry of the forties!\nBy God! If you do not destroy these vermin\nMy avenging ghost will wipe out\nYour city and your state.",
+  "paragraphs": [
+    "English Thornton",
+    "Here! You sons of the men Who fought with Washington at Valley Forge, And whipped Black Hawk at Starved Rock, Arise! Do battle with the descendants of those Who bought land in the loop when it was waste sand, And sold blankets and guns to the army of Grant, And sat in legislatures in the early days, Taking bribes from the railroads! Arise! Do battle with the fops and bluffs, The pretenders and figurantes of the society column And the yokel souls whose daughters marry counts; And the parasites on great ideas, And the noisy riders of great causes, And the heirs of ancient thefts. Arise! And make the city yours, And the State yours- You who are sons of the hardy yeomanry of the forties! By God! If you do not destroy these vermin My avenging ghost will wipe out Your city and your state."
+  ],
+  "wordCount": 148,
+  "characterCount": 812,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4341,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "English Thornton Here! You sons of the men Who fought with Washington at Valley Forge, And whipped Black Hawk at Starved Rock, Arise! Do battle with the descen...",
+  "sourceOffsets": {
+    "start": 118592,
+    "end": 119434
+  }
+}

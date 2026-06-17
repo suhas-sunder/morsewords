@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-165",
+  "kind": "poem",
+  "label": "Richard Bone",
+  "title": null,
+  "order": 165,
+  "includeByDefault": true,
+  "displayText": "Richard Bone\n\n\nWhen I first came to Spoon River\nI did not know whether what they told me\nWas true or false.\nThey would bring me the epitaph\nAnd stand around the shop while I worked\nAnd say \"He was so kind,\" \"He was so wonderful,\"\n\"She was the sweetest woman,\" \"He was a consistent Christian.\"\nAnd I chiseled for them whatever they wished,\nAll in ignorance of the truth.\nBut later, as I lived among the people here,\nI knew how near to the life\nWere the epitaphs that were ordered for them as they died.\nBut still I chiseled whatever they paid me to chisel\nAnd made myself party to the false chronicles\nOf the stones,\nEven as the historian does who writes\nWithout knowing the truth,\nOr because he is influenced to hide it.",
+  "morseSourceText": "Richard Bone\n\n\nWhen I first came to Spoon River\nI did not know whether what they told me\nWas true or false.\nThey would bring me the epitaph\nAnd stand around the shop while I worked\nAnd say \"He was so kind,\" \"He was so wonderful,\"\n\"She was the sweetest woman,\" \"He was a consistent Christian.\"\nAnd I chiseled for them whatever they wished,\nAll in ignorance of the truth.\nBut later, as I lived among the people here,\nI knew how near to the life\nWere the epitaphs that were ordered for them as they died.\nBut still I chiseled whatever they paid me to chisel\nAnd made myself party to the false chronicles\nOf the stones,\nEven as the historian does who writes\nWithout knowing the truth,\nOr because he is influenced to hide it.",
+  "paragraphs": [
+    "Richard Bone",
+    "When I first came to Spoon River I did not know whether what they told me Was true or false. They would bring me the epitaph And stand around the shop while I worked And say \"He was so kind,\" \"He was so wonderful,\" \"She was the sweetest woman,\" \"He was a consistent Christian.\" And I chiseled for them whatever they wished, All in ignorance of the truth. But later, as I lived among the people here, I knew how near to the life Were the epitaphs that were ordered for them as they died. But still I chiseled whatever they paid me to chisel And made myself party to the false chronicles Of the stones, Even as the historian does who writes Without knowing the truth, Or because he is influenced to hide it."
+  ],
+  "wordCount": 137,
+  "characterCount": 720,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3816,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Richard Bone When I first came to Spoon River I did not know whether what they told me Was true or false. They would bring me the epitaph And stand around the...",
+  "sourceOffsets": {
+    "start": 123480,
+    "end": 124228
+  }
+}

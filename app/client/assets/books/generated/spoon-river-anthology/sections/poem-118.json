@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-118",
+  "kind": "poem",
+  "label": "Anthony Findlay",
+  "title": null,
+  "order": 118,
+  "includeByDefault": true,
+  "displayText": "Anthony Findlay\n\n\nBoth for the country and for the man,\nAnd for a country as well as a man,\n'Tis better to be feared than loved.\nAnd if this country would rather part\nWith the friendship of every nation\nThan surrender its wealth,\nI say of a man 'tis worse to lose\nMoney than friends.\nAnd I rend the curtain that hides the soul\nOf an ancient aspiration:\nWhen the people clamor for freedom\nThey really seek for power o'er the strong.\nI, Anthony Findlay, rising to greatness\nFrom a humble water carrier,\nUntil I could say to thousands \"Come,\"\nAnd say to thousands \"Go,\"\nAffirm that a nation can never be good.\nOr achieve the good,\nWhere the strong and the wise have not the rod\nTo use on the dull and weak.",
+  "morseSourceText": "Anthony Findlay\n\n\nBoth for the country and for the man,\nAnd for a country as well as a man,\n'Tis better to be feared than loved.\nAnd if this country would rather part\nWith the friendship of every nation\nThan surrender its wealth,\nI say of a man 'tis worse to lose\nMoney than friends.\nAnd I rend the curtain that hides the soul\nOf an ancient aspiration:\nWhen the people clamor for freedom\nThey really seek for power o'er the strong.\nI, Anthony Findlay, rising to greatness\nFrom a humble water carrier,\nUntil I could say to thousands \"Come,\"\nAnd say to thousands \"Go,\"\nAffirm that a nation can never be good.\nOr achieve the good,\nWhere the strong and the wise have not the rod\nTo use on the dull and weak.",
+  "paragraphs": [
+    "Anthony Findlay",
+    "Both for the country and for the man, And for a country as well as a man, 'Tis better to be feared than loved. And if this country would rather part With the friendship of every nation Than surrender its wealth, I say of a man 'tis worse to lose Money than friends. And I rend the curtain that hides the soul Of an ancient aspiration: When the people clamor for freedom They really seek for power o'er the strong. I, Anthony Findlay, rising to greatness From a humble water carrier, Until I could say to thousands \"Come,\" And say to thousands \"Go,\" Affirm that a nation can never be good. Or achieve the good, Where the strong and the wise have not the rod To use on the dull and weak."
+  ],
+  "wordCount": 134,
+  "characterCount": 703,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3743,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Anthony Findlay Both for the country and for the man, And for a country as well as a man, 'Tis better to be feared than loved. And if this country would rather...",
+  "sourceOffsets": {
+    "start": 84383,
+    "end": 85116
+  }
+}

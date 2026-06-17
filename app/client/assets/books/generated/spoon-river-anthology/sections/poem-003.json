@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-003",
+  "kind": "poem",
+  "label": "Ollie McGee",
+  "title": null,
+  "order": 3,
+  "includeByDefault": true,
+  "displayText": "Ollie McGee\n\n\nHave you seen walking through the village\nA man with downcast eyes and haggard face?\nThat is my husband who, by secret cruelty\nNever to be told, robbed me of my youth and my beauty;\nTill at last, wrinkled and with yellow teeth,\nAnd with broken pride and shameful humility,\nI sank into the grave.\nBut what think you gnaws at my husband's heart?\nThe face of what I was, the face of what he made me!\nThese are driving him to the place where I lie.\nIn death, therefore, I am avenged.",
+  "morseSourceText": "Ollie McGee\n\n\nHave you seen walking through the village\nA man with downcast eyes and haggard face?\nThat is my husband who, by secret cruelty\nNever to be told, robbed me of my youth and my beauty;\nTill at last, wrinkled and with yellow teeth,\nAnd with broken pride and shameful humility,\nI sank into the grave.\nBut what think you gnaws at my husband's heart?\nThe face of what I was, the face of what he made me!\nThese are driving him to the place where I lie.\nIn death, therefore, I am avenged.",
+  "paragraphs": [
+    "Ollie McGee",
+    "Have you seen walking through the village A man with downcast eyes and haggard face? That is my husband who, by secret cruelty Never to be told, robbed me of my youth and my beauty; Till at last, wrinkled and with yellow teeth, And with broken pride and shameful humility, I sank into the grave. But what think you gnaws at my husband's heart? The face of what I was, the face of what he made me! These are driving him to the place where I lie. In death, therefore, I am avenged."
+  ],
+  "wordCount": 95,
+  "characterCount": 493,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2628,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Ollie McGee Have you seen walking through the village A man with downcast eyes and haggard face? That is my husband who, by secret cruelty Never to be told, ro...",
+  "sourceOffsets": {
+    "start": 7498,
+    "end": 8012
+  }
+}

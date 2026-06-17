@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-112",
+  "kind": "poem",
+  "label": "Amos Sibley",
+  "title": null,
+  "order": 112,
+  "includeByDefault": true,
+  "displayText": "Amos Sibley\n\n\nNot character, not fortitude, not patience\nWere mine, the which the village thought I had\nIn bearing with my wife, while preaching on,\nDoing the work God chose for me.\nI loathed her as a termagant, as a wanton.\nI knew of her adulteries, every one.\nBut even so, if I divorced the woman\nI must forsake the ministry.\nTherefore to do God's work and have it crop,\nI bore with her\nSo lied I to myself\nSo lied I to Spoon River!\nYet I tried lecturing, ran for the legislature,\nCanvassed for books, with just the thought in mind:\nIf I make money thus,\nI will divorce her.",
+  "morseSourceText": "Amos Sibley\n\n\nNot character, not fortitude, not patience\nWere mine, the which the village thought I had\nIn bearing with my wife, while preaching on,\nDoing the work God chose for me.\nI loathed her as a termagant, as a wanton.\nI knew of her adulteries, every one.\nBut even so, if I divorced the woman\nI must forsake the ministry.\nTherefore to do God's work and have it crop,\nI bore with her\nSo lied I to myself\nSo lied I to Spoon River!\nYet I tried lecturing, ran for the legislature,\nCanvassed for books, with just the thought in mind:\nIf I make money thus,\nI will divorce her.",
+  "paragraphs": [
+    "Amos Sibley",
+    "Not character, not fortitude, not patience Were mine, the which the village thought I had In bearing with my wife, while preaching on, Doing the work God chose for me. I loathed her as a termagant, as a wanton. I knew of her adulteries, every one. But even so, if I divorced the woman I must forsake the ministry. Therefore to do God's work and have it crop, I bore with her So lied I to myself So lied I to Spoon River! Yet I tried lecturing, ran for the legislature, Canvassed for books, with just the thought in mind: If I make money thus, I will divorce her."
+  ],
+  "wordCount": 111,
+  "characterCount": 576,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3075,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Amos Sibley Not character, not fortitude, not patience Were mine, the which the village thought I had In bearing with my wife, while preaching on, Doing the wo...",
+  "sourceOffsets": {
+    "start": 80623,
+    "end": 81225
+  }
+}

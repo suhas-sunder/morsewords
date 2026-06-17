@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-097",
+  "kind": "poem",
+  "label": "Yee Bow",
+  "title": null,
+  "order": 97,
+  "includeByDefault": true,
+  "displayText": "Yee Bow\n\n\nThey got me into the Sunday-school\nIn Spoon River\nAnd tried to get me to drop Confucius for Jesus.\nI could have been no worse off\nIf I had tried to get them to drop Jesus for Confucius.\nFor, without any warning, as if it were a prank,\nAnd sneaking up behind me, Harry Wiley,\nThe minister's son, caved my ribs into my lungs,\nWith a blow of his fist.\nNow I shall never sleep with my ancestors in Pekin,\nAnd no children shall worship at my grave.",
+  "morseSourceText": "Yee Bow\n\n\nThey got me into the Sunday-school\nIn Spoon River\nAnd tried to get me to drop Confucius for Jesus.\nI could have been no worse off\nIf I had tried to get them to drop Jesus for Confucius.\nFor, without any warning, as if it were a prank,\nAnd sneaking up behind me, Harry Wiley,\nThe minister's son, caved my ribs into my lungs,\nWith a blow of his fist.\nNow I shall never sleep with my ancestors in Pekin,\nAnd no children shall worship at my grave.",
+  "paragraphs": [
+    "Yee Bow",
+    "They got me into the Sunday-school In Spoon River And tried to get me to drop Confucius for Jesus. I could have been no worse off If I had tried to get them to drop Jesus for Confucius. For, without any warning, as if it were a prank, And sneaking up behind me, Harry Wiley, The minister's son, caved my ribs into my lungs, With a blow of his fist. Now I shall never sleep with my ancestors in Pekin, And no children shall worship at my grave."
+  ],
+  "wordCount": 90,
+  "characterCount": 453,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2439,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Yee Bow They got me into the Sunday-school In Spoon River And tried to get me to drop Confucius for Jesus. I could have been no worse off If I had tried to get...",
+  "sourceOffsets": {
+    "start": 69883,
+    "end": 70357
+  }
+}

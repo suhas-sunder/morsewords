@@ -5396,6 +5396,986 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "tales-of-war/manifest.json"
+    },
+    {
+      "slug": "a-midsummer-night-s-dream",
+      "title": "A Midsummer Night's Dream",
+      "author": [
+        "William Shakespeare"
+      ],
+      "contentVersion": "135bdd9428d023f7",
+      "contentHash": "135bdd9428d023f791fc8a04786c54cf0b42c2dd428979501c4e65a26a90cc2c",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1514",
+        "releaseDate": "November 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1514",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Midsummer Night's Dream"
+      },
+      "stats": {
+        "originalCharacterCount": 120006,
+        "cleanedCharacterCount": 94330,
+        "wordCount": 17128,
+        "sectionCount": 5,
+        "includedSectionCount": 5
+      },
+      "defaults": {
+        "includeKinds": [
+          "scene"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-midsummer-night-s-dream/manifest.json"
+    },
+    {
+      "slug": "a-room-with-a-view",
+      "title": "A Room with a View",
+      "author": [
+        "E. M. Forster"
+      ],
+      "contentVersion": "d64132ea776cd7e2",
+      "contentHash": "d64132ea776cd7e22fa39f505a72bafda913cbf86be9214c735f909c74da2a15",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2641",
+        "releaseDate": "May 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Room with a View"
+      },
+      "stats": {
+        "originalCharacterCount": 403517,
+        "cleanedCharacterCount": 373947,
+        "wordCount": 66548,
+        "sectionCount": 20,
+        "includedSectionCount": 20
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-room-with-a-view/manifest.json"
+    },
+    {
+      "slug": "agamemnon-of-aeschylus",
+      "title": "The Agamemnon of Aeschylus",
+      "author": [
+        "Aeschylus"
+      ],
+      "contentVersion": "497d193ba32ab2b8",
+      "contentHash": "497d193ba32ab2b8eae0ade22d8c6b919eb68f24af1ffcf8e20c1e1156ca71b5",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "14417",
+        "releaseDate": "December 22, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/14417",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Agamemnon of Aeschylus"
+      },
+      "stats": {
+        "originalCharacterCount": 142746,
+        "cleanedCharacterCount": 82506,
+        "wordCount": 15029,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "scene"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "agamemnon-of-aeschylus/manifest.json"
+    },
+    {
+      "slug": "an-ideal-husband",
+      "title": "An Ideal Husband",
+      "author": [
+        "Oscar Wilde"
+      ],
+      "contentVersion": "7ff5baf3c4e85b4d",
+      "contentHash": "7ff5baf3c4e85b4dafcb8df44b3b9302691ee37e811dc46f32c0ec136503ad42",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "885",
+        "releaseDate": "April 1, 1997",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/885",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for An Ideal Husband"
+      },
+      "stats": {
+        "originalCharacterCount": 202772,
+        "cleanedCharacterCount": 172601,
+        "wordCount": 30606,
+        "sectionCount": 4,
+        "includedSectionCount": 4
+      },
+      "defaults": {
+        "includeKinds": [
+          "scene"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "an-ideal-husband/manifest.json"
+    },
+    {
+      "slug": "catriona",
+      "title": "Catriona",
+      "author": [
+        "Robert Louis Stevenson"
+      ],
+      "contentVersion": "d0d2f6651f95db6d",
+      "contentHash": "d0d2f6651f95db6d444a7d612bfc472c4c73b61285c28276f0bc1c93bb400265",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "589",
+        "releaseDate": "July 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/589",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Catriona"
+      },
+      "stats": {
+        "originalCharacterCount": 555543,
+        "cleanedCharacterCount": 521267,
+        "wordCount": 100432,
+        "sectionCount": 30,
+        "includedSectionCount": 30
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "catriona/manifest.json"
+    },
+    {
+      "slug": "for-the-duration-of-the-war",
+      "title": "The Toys of Peace, and Other Papers",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "537c4b8dcf007806",
+      "contentHash": "537c4b8dcf0078064dedaf38a2a54654378f1701ab0a3e9eb367eacea9b9a06b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Toys of Peace, and Other Papers"
+      },
+      "stats": {
+        "originalCharacterCount": 30593,
+        "cleanedCharacterCount": 9684,
+        "wordCount": 1624,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "for-the-duration-of-the-war/manifest.json"
+    },
+    {
+      "slug": "romeo-and-juliet",
+      "title": "Romeo and Juliet",
+      "author": [
+        "William Shakespeare"
+      ],
+      "contentVersion": "17989b8edab3d609",
+      "contentHash": "17989b8edab3d609f23144a94b317802b9e4f9ddd26e789a5070d6437ea33de1",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1513",
+        "releaseDate": "November 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1513",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Romeo and Juliet"
+      },
+      "stats": {
+        "originalCharacterCount": 167467,
+        "cleanedCharacterCount": 139732,
+        "wordCount": 25576,
+        "sectionCount": 5,
+        "includedSectionCount": 5
+      },
+      "defaults": {
+        "includeKinds": [
+          "scene"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "romeo-and-juliet/manifest.json"
+    },
+    {
+      "slug": "the-adventures-of-ferdinand-count-fathom",
+      "title": "The Adventures of Ferdinand Count Fathom — Complete",
+      "author": [
+        "T. Smollett"
+      ],
+      "contentVersion": "cc2598f1c17dfcb3",
+      "contentHash": "cc2598f1c17dfcb3b6b53c56c45ff19ef1e6c664b73bd6d4b322f5bb7105eb1b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "6761",
+        "releaseDate": "September 9, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/6761",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Adventures of Ferdinand Count Fathom — Complete"
+      },
+      "stats": {
+        "originalCharacterCount": 990627,
+        "cleanedCharacterCount": 926989,
+        "wordCount": 157279,
+        "sectionCount": 67,
+        "includedSectionCount": 67
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-adventures-of-ferdinand-count-fathom/manifest.json"
+    },
+    {
+      "slug": "the-adventures-of-roderick-random",
+      "title": "The Adventures of Roderick Random",
+      "author": [
+        "T. Smollett"
+      ],
+      "contentVersion": "85f38aae372a0ab2",
+      "contentHash": "85f38aae372a0ab254244f0d6feabfedf662f7ce514dec2ef966c2ffc54c4eb0",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4085",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4085",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Adventures of Roderick Random"
+      },
+      "stats": {
+        "originalCharacterCount": 1110549,
+        "cleanedCharacterCount": 1061253,
+        "wordCount": 188889,
+        "sectionCount": 69,
+        "includedSectionCount": 69
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-adventures-of-roderick-random/manifest.json"
+    },
+    {
+      "slug": "the-expedition-of-humphry-clinker",
+      "title": "The Expedition of Humphry Clinker",
+      "author": [
+        "T. Smollett"
+      ],
+      "contentVersion": "8bbe6868252931df",
+      "contentHash": "8bbe6868252931dfbc8a062638d0007a80fbf1f587c8b9eb1dc3b597ed209d07",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2160",
+        "releaseDate": "April 1, 2000",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2160",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Expedition of Humphry Clinker"
+      },
+      "stats": {
+        "originalCharacterCount": 883592,
+        "cleanedCharacterCount": 849620,
+        "wordCount": 150515,
+        "sectionCount": 87,
+        "includedSectionCount": 87
+      },
+      "defaults": {
+        "includeKinds": [
+          "letter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-expedition-of-humphry-clinker/manifest.json"
+    },
+    {
+      "slug": "the-importance-of-being-earnest-a-trivial-comedy-for-serious-people",
+      "title": "The Importance of Being Earnest: A Trivial Comedy for Serious People",
+      "author": [
+        "Oscar Wilde"
+      ],
+      "contentVersion": "63877d9da5d98b87",
+      "contentHash": "63877d9da5d98b87034b7c44115e8d7e01460289a40fc6e49df30d91e54e1c2d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "844",
+        "releaseDate": "March 1, 1997",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/844",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Importance of Being Earnest: A Trivial Comedy for Serious People"
+      },
+      "stats": {
+        "originalCharacterCount": 141034,
+        "cleanedCharacterCount": 116361,
+        "wordCount": 20485,
+        "sectionCount": 3,
+        "includedSectionCount": 3
+      },
+      "defaults": {
+        "includeKinds": [
+          "scene"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-importance-of-being-earnest-a-trivial-comedy-for-serious-people/manifest.json"
+    },
+    {
+      "slug": "the-man-who-was-thursday-a-nightmare",
+      "title": "The Man Who Was Thursday: A Nightmare",
+      "author": [
+        "G. K. Chesterton"
+      ],
+      "contentVersion": "67a014193a32fc9f",
+      "contentHash": "67a014193a32fc9f823438d5dddbd0af7a0946bffa5ec38c065907172b5ad587",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1695",
+        "releaseDate": "April 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1695",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Man Who Was Thursday: A Nightmare"
+      },
+      "stats": {
+        "originalCharacterCount": 348405,
+        "cleanedCharacterCount": 317536,
+        "wordCount": 57410,
+        "sectionCount": 15,
+        "includedSectionCount": 15
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-man-who-was-thursday-a-nightmare/manifest.json"
+    },
+    {
+      "slug": "the-money-box",
+      "title": "Hans Andersen's Fairy Tales. First Series",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "82448474f31e0038",
+      "contentHash": "82448474f31e0038320172333c6f440d6fc335b512c7276700363ad57fb1991e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "32571",
+        "releaseDate": "May 28, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/32571",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Hans Andersen's Fairy Tales. First Series"
+      },
+      "stats": {
+        "originalCharacterCount": 10010,
+        "cleanedCharacterCount": 5080,
+        "wordCount": 973,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-money-box/manifest.json"
+    },
+    {
+      "slug": "the-mystery-of-edwin-drood",
+      "title": "The Mystery of Edwin Drood",
+      "author": [
+        "Charles Dickens"
+      ],
+      "contentVersion": "39e9adecbc15e4b0",
+      "contentHash": "39e9adecbc15e4b09029e7ba16de8e59b05182b583d66c85b4a6311dead2ad52",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "564",
+        "releaseDate": "June 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/564",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Mystery of Edwin Drood"
+      },
+      "stats": {
+        "originalCharacterCount": 571264,
+        "cleanedCharacterCount": 538271,
+        "wordCount": 95723,
+        "sectionCount": 23,
+        "includedSectionCount": 23
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-mystery-of-edwin-drood/manifest.json"
+    },
+    {
+      "slug": "the-shunned-house",
+      "title": "The Shunned House",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "5e7c07e6d3f7e4b3",
+      "contentHash": "5e7c07e6d3f7e4b3639e3f2ac61014e1bc32096f351a10d93b91ad13665ae727",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "31469",
+        "releaseDate": "March 2, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/31469",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Shunned House"
+      },
+      "stats": {
+        "originalCharacterCount": 84925,
+        "cleanedCharacterCount": 62536,
+        "wordCount": 10750,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-shunned-house/manifest.json"
+    },
+    {
+      "slug": "the-story-of-the-inexperienced-ghost",
+      "title": "Twelve Stories and a Dream",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "bb51a81a1ab64198",
+      "contentHash": "bb51a81a1ab64198cb5b6562607cb1a6ec1c8efd1c2598bcd30cfa3458ba4b61",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1743",
+        "releaseDate": "September 21, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1743",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Twelve Stories and a Dream"
+      },
+      "stats": {
+        "originalCharacterCount": 27582,
+        "cleanedCharacterCount": 26534,
+        "wordCount": 4884,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-story-of-the-inexperienced-ghost/manifest.json"
+    },
+    {
+      "slug": "the-winning-of-olwen",
+      "title": "The Lilac Fairy Book",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "490e844b89171b64",
+      "contentHash": "490e844b89171b647ad21a89d0ee566ebeaaeb2f718fa800af70b0e01f246748",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Lilac Fairy Book"
+      },
+      "stats": {
+        "originalCharacterCount": 27748,
+        "cleanedCharacterCount": 26129,
+        "wordCount": 5053,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-winning-of-olwen/manifest.json"
+    },
+    {
+      "slug": "twenty-thousand-leagues-under-the-sea",
+      "title": "Twenty Thousand Leagues under the Sea",
+      "author": [
+        "Jules Verne"
+      ],
+      "contentVersion": "edfbe4d99326fd6c",
+      "contentHash": "edfbe4d99326fd6cd846e3470a87f3189e913a5871ebc42da9c6fbe10682f9ed",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "164",
+        "releaseDate": "September 1, 1994",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/164",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Twenty Thousand Leagues under the Sea"
+      },
+      "stats": {
+        "originalCharacterCount": 630044,
+        "cleanedCharacterCount": 594929,
+        "wordCount": 104410,
+        "sectionCount": 46,
+        "includedSectionCount": 46
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "twenty-thousand-leagues-under-the-sea/manifest.json"
+    },
+    {
+      "slug": "with-fire-and-sword",
+      "title": "With Fire and Sword: An Historical Novel of Poland and Russia",
+      "author": [
+        "Henryk Sienkiewicz"
+      ],
+      "contentVersion": "fad65747bab66456",
+      "contentHash": "fad65747bab66456bc743f0cef09cc1e7c02806e06666a133072da8af2616315",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "37027",
+        "releaseDate": "August 10, 2011",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/37027",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for With Fire and Sword: An Historical Novel of Poland and Russia"
+      },
+      "stats": {
+        "originalCharacterCount": 1782718,
+        "cleanedCharacterCount": 1710182,
+        "wordCount": 306493,
+        "sectionCount": 64,
+        "includedSectionCount": 63
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "with-fire-and-sword/manifest.json"
+    },
+    {
+      "slug": "spoon-river-anthology",
+      "title": "Spoon River Anthology",
+      "author": [
+        "Edgar Lee Masters"
+      ],
+      "contentVersion": "ef0e60e0d14caf9b",
+      "contentHash": "ef0e60e0d14caf9bbe4cf80c82261b952ba558b1040400792cd6b22822c693de",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1280",
+        "releaseDate": "April 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1280",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 6 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Spoon River Anthology"
+      },
+      "stats": {
+        "originalCharacterCount": 237809,
+        "cleanedCharacterCount": 205179,
+        "wordCount": 38205,
+        "sectionCount": 245,
+        "includedSectionCount": 245
+      },
+      "defaults": {
+        "includeKinds": [
+          "poem"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "spoon-river-anthology/manifest.json"
     }
   ]
 }

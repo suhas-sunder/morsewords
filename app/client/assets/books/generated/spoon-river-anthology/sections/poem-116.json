@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-116",
+  "kind": "poem",
+  "label": "Amelia Garrick",
+  "title": null,
+  "order": 116,
+  "includeByDefault": true,
+  "displayText": "Amelia Garrick\n\n\nYes, here I lie close to a stunted rose bush\nIn a forgotten place near the fence\nWhere the thickets from Siever's woods\nHave crept over, growing sparsely.\nAnd you, you are a leader in New York,\nThe wife of a noted millionaire,\nA name in the society columns,\nBeautiful, admired, magnified perhaps\nBy the mirage of distance.\nYou have succeeded, I have failed\nIn the eyes of the world.\nYou are alive, I am dead.\nYet I know that I vanquished your spirit;\nAnd I know that lying here far from you,\nUnheard of among your great friends\nIn the brilliant world where you move,\nI am really the unconquerable power over your life\nThat robs it of complete triumph.",
+  "morseSourceText": "Amelia Garrick\n\n\nYes, here I lie close to a stunted rose bush\nIn a forgotten place near the fence\nWhere the thickets from Siever's woods\nHave crept over, growing sparsely.\nAnd you, you are a leader in New York,\nThe wife of a noted millionaire,\nA name in the society columns,\nBeautiful, admired, magnified perhaps\nBy the mirage of distance.\nYou have succeeded, I have failed\nIn the eyes of the world.\nYou are alive, I am dead.\nYet I know that I vanquished your spirit;\nAnd I know that lying here far from you,\nUnheard of among your great friends\nIn the brilliant world where you move,\nI am really the unconquerable power over your life\nThat robs it of complete triumph.",
+  "paragraphs": [
+    "Amelia Garrick",
+    "Yes, here I lie close to a stunted rose bush In a forgotten place near the fence Where the thickets from Siever's woods Have crept over, growing sparsely. And you, you are a leader in New York, The wife of a noted millionaire, A name in the society columns, Beautiful, admired, magnified perhaps By the mirage of distance. You have succeeded, I have failed In the eyes of the world. You are alive, I am dead. Yet I know that I vanquished your spirit; And I know that lying here far from you, Unheard of among your great friends In the brilliant world where you move, I am really the unconquerable power over your life That robs it of complete triumph."
+  ],
+  "wordCount": 123,
+  "characterCount": 668,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3580,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Amelia Garrick Yes, here I lie close to a stunted rose bush In a forgotten place near the fence Where the thickets from Siever's woods Have crept over, growing...",
+  "sourceOffsets": {
+    "start": 82967,
+    "end": 83663
+  }
+}

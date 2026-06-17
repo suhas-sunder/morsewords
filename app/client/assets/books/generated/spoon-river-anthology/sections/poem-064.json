@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-064",
+  "kind": "poem",
+  "label": "George Gray",
+  "title": null,
+  "order": 64,
+  "includeByDefault": true,
+  "displayText": "George Gray\n\n\nI have studied many times\nThe marble which was chiseled for me-\nA boat with a furled sail at rest in a harbor.\nIn truth it pictures not my destination\nBut my life.\nFor love was offered me and I shrank from its disillusionment;\nSorrow knocked at my door, but I was afraid;\nAmbition called to me, but I dreaded the chances.\nYet all the while I hungered for meaning in my life.\nAnd now I know that we must lift the sail\nAnd catch the winds of destiny\nWherever they drive the boat.\nTo put meaning in one's life may end in madness,\nBut life without meaning is the torture\nOf restlessness and vague desire-\nIt is a boat longing for the sea and yet afraid.",
+  "morseSourceText": "George Gray\n\n\nI have studied many times\nThe marble which was chiseled for me-\nA boat with a furled sail at rest in a harbor.\nIn truth it pictures not my destination\nBut my life.\nFor love was offered me and I shrank from its disillusionment;\nSorrow knocked at my door, but I was afraid;\nAmbition called to me, but I dreaded the chances.\nYet all the while I hungered for meaning in my life.\nAnd now I know that we must lift the sail\nAnd catch the winds of destiny\nWherever they drive the boat.\nTo put meaning in one's life may end in madness,\nBut life without meaning is the torture\nOf restlessness and vague desire-\nIt is a boat longing for the sea and yet afraid.",
+  "paragraphs": [
+    "George Gray",
+    "I have studied many times The marble which was chiseled for me- A boat with a furled sail at rest in a harbor. In truth it pictures not my destination But my life. For love was offered me and I shrank from its disillusionment; Sorrow knocked at my door, but I was afraid; Ambition called to me, but I dreaded the chances. Yet all the while I hungered for meaning in my life. And now I know that we must lift the sail And catch the winds of destiny Wherever they drive the boat. To put meaning in one's life may end in madness, But life without meaning is the torture Of restlessness and vague desire- It is a boat longing for the sea and yet afraid."
+  ],
+  "wordCount": 129,
+  "characterCount": 663,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3477,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "George Gray I have studied many times The marble which was chiseled for me- A boat with a furled sail at rest in a harbor. In truth it pictures not my destinat...",
+  "sourceOffsets": {
+    "start": 46649,
+    "end": 47338
+  }
+}

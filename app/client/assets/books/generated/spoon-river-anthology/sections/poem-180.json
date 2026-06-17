@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-180",
+  "kind": "poem",
+  "label": "Tom Merritt",
+  "title": null,
+  "order": 180,
+  "includeByDefault": true,
+  "displayText": "Tom Merritt\n\n\nAt first I suspected something-\nShe acted so calm and absent-minded.\nAnd one day I heard the back door shut\nAs I entered the front, and I saw him slink\nBack of the smokehouse into the lot\nAnd run across the field.\nAnd I meant to kill him on sight.\nBut that day, walking near Fourth Bridge\nWithout a stick or a stone at hand,\nAll of a sudden I saw him standing\nScared to death, holding his rabbits,\nAnd all I could say was, \"Don't, Don't, Don't,\"\nAs he aimed and fired at my heart.",
+  "morseSourceText": "Tom Merritt\n\n\nAt first I suspected something-\nShe acted so calm and absent-minded.\nAnd one day I heard the back door shut\nAs I entered the front, and I saw him slink\nBack of the smokehouse into the lot\nAnd run across the field.\nAnd I meant to kill him on sight.\nBut that day, walking near Fourth Bridge\nWithout a stick or a stone at hand,\nAll of a sudden I saw him standing\nScared to death, holding his rabbits,\nAnd all I could say was, \"Don't, Don't, Don't,\"\nAs he aimed and fired at my heart.",
+  "paragraphs": [
+    "Tom Merritt",
+    "At first I suspected something- She acted so calm and absent-minded. And one day I heard the back door shut As I entered the front, and I saw him slink Back of the smokehouse into the lot And run across the field. And I meant to kill him on sight. But that day, walking near Fourth Bridge Without a stick or a stone at hand, All of a sudden I saw him standing Scared to death, holding his rabbits, And all I could say was, \"Don't, Don't, Don't,\" As he aimed and fired at my heart."
+  ],
+  "wordCount": 98,
+  "characterCount": 494,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2624,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Tom Merritt At first I suspected something- She acted so calm and absent-minded. And one day I heard the back door shut As I entered the front, and I saw him s...",
+  "sourceOffsets": {
+    "start": 135423,
+    "end": 135940
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-005",
+  "kind": "poem",
+  "label": "Robert Fulton Tanner",
+  "title": null,
+  "order": 5,
+  "includeByDefault": true,
+  "displayText": "Robert Fulton Tanner\n\n\nIf a man could bite the giant hand\nThat catches and destroys him,\nAs I was bitten by a rat\nWhile demonstrating my patent trap,\nIn my hardware store that day.\nBut a man can never avenge himself\nOn the monstrous ogre Life.\nYou enter the room-that's being born;\nAnd then you must live-work out your soul,\nAha! the bait that you crave is in view:\nA woman with money you want to marry,\nPrestige, place, or power in the world.\nBut there's work to do and things to conquer-\nOh, yes! the wires that screen the bait.\nAt last you get in-but you hear a step:\nThe ogre, Life, comes into the room,\n(He was waiting and heard the clang of the spring)\nTo watch you nibble the wondrous cheese,\nAnd stare with his burning eyes at you,\nAnd scowl and laugh, and mock and curse you,\nRunning up and down in the trap,\nUntil your misery bores him.",
+  "morseSourceText": "Robert Fulton Tanner\n\n\nIf a man could bite the giant hand\nThat catches and destroys him,\nAs I was bitten by a rat\nWhile demonstrating my patent trap,\nIn my hardware store that day.\nBut a man can never avenge himself\nOn the monstrous ogre Life.\nYou enter the room-that's being born;\nAnd then you must live-work out your soul,\nAha! the bait that you crave is in view:\nA woman with money you want to marry,\nPrestige, place, or power in the world.\nBut there's work to do and things to conquer-\nOh, yes! the wires that screen the bait.\nAt last you get in-but you hear a step:\nThe ogre, Life, comes into the room,\n(He was waiting and heard the clang of the spring)\nTo watch you nibble the wondrous cheese,\nAnd stare with his burning eyes at you,\nAnd scowl and laugh, and mock and curse you,\nRunning up and down in the trap,\nUntil your misery bores him.",
+  "paragraphs": [
+    "Robert Fulton Tanner",
+    "If a man could bite the giant hand That catches and destroys him, As I was bitten by a rat While demonstrating my patent trap, In my hardware store that day. But a man can never avenge himself On the monstrous ogre Life. You enter the room-that's being born; And then you must live-work out your soul, Aha! the bait that you crave is in view: A woman with money you want to marry, Prestige, place, or power in the world. But there's work to do and things to conquer- Oh, yes! the wires that screen the bait. At last you get in-but you hear a step: The ogre, Life, comes into the room, (He was waiting and heard the clang of the spring) To watch you nibble the wondrous cheese, And stare with his burning eyes at you, And scowl and laugh, and mock and curse you, Running up and down in the trap, Until your misery bores him."
+  ],
+  "wordCount": 164,
+  "characterCount": 846,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4518,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Robert Fulton Tanner If a man could bite the giant hand That catches and destroys him, As I was bitten by a rat While demonstrating my patent trap, In my hardw...",
+  "sourceOffsets": {
+    "start": 8814,
+    "end": 9692
+  }
+}

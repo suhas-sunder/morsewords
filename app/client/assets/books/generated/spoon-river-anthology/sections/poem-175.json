@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-175",
+  "kind": "poem",
+  "label": "Alfred Moir",
+  "title": null,
+  "order": 175,
+  "includeByDefault": true,
+  "displayText": "Alfred Moir\n\n\nWhy was I not devoured by self-contempt,\nAnd rotted down by indifference\nAnd impotent revolt like Indignation Jones?\nWhy, with all of my errant steps\nDid I miss the fate of Willard Fluke?\nAnd why, though I stood at Burchard's bar,\nAs a sort of decoy for the house to the boys\nTo buy the drinks, did the curse of drink\nFall on me like rain that runs off,\nLeaving the soul of me dry and clean?\nAnd why did I never kill a man\nLike Jack McGuire?\nBut instead I mounted a little in life,\nAnd I owe it all to a book I read.\nBut why did I go to Mason City,\nWhere I chanced to see the book in a window,\nWith its garish cover luring my eye?\nAnd why did my soul respond to the book,\nAs I read it over and over?",
+  "morseSourceText": "Alfred Moir\n\n\nWhy was I not devoured by self-contempt,\nAnd rotted down by indifference\nAnd impotent revolt like Indignation Jones?\nWhy, with all of my errant steps\nDid I miss the fate of Willard Fluke?\nAnd why, though I stood at Burchard's bar,\nAs a sort of decoy for the house to the boys\nTo buy the drinks, did the curse of drink\nFall on me like rain that runs off,\nLeaving the soul of me dry and clean?\nAnd why did I never kill a man\nLike Jack McGuire?\nBut instead I mounted a little in life,\nAnd I owe it all to a book I read.\nBut why did I go to Mason City,\nWhere I chanced to see the book in a window,\nWith its garish cover luring my eye?\nAnd why did my soul respond to the book,\nAs I read it over and over?",
+  "paragraphs": [
+    "Alfred Moir",
+    "Why was I not devoured by self-contempt, And rotted down by indifference And impotent revolt like Indignation Jones? Why, with all of my errant steps Did I miss the fate of Willard Fluke? And why, though I stood at Burchard's bar, As a sort of decoy for the house to the boys To buy the drinks, did the curse of drink Fall on me like rain that runs off, Leaving the soul of me dry and clean? And why did I never kill a man Like Jack McGuire? But instead I mounted a little in life, And I owe it all to a book I read. But why did I go to Mason City, Where I chanced to see the book in a window, With its garish cover luring my eye? And why did my soul respond to the book, As I read it over and over?"
+  ],
+  "wordCount": 149,
+  "characterCount": 713,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3808,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Alfred Moir Why was I not devoured by self-contempt, And rotted down by indifference And impotent revolt like Indignation Jones? Why, with all of my errant ste...",
+  "sourceOffsets": {
+    "start": 131840,
+    "end": 132582
+  }
+}

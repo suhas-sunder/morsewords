@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-121",
+  "kind": "poem",
+  "label": "Alexander Throckmorton",
+  "title": null,
+  "order": 121,
+  "includeByDefault": true,
+  "displayText": "Alexander Throckmorton\n\n\nIn youth my wings were strong and tireless,\nBut I did not know the mountains.\nIn age I knew the mountains\nBut my weary wings could not follow my vision-\nGenius is wisdom and youth.",
+  "morseSourceText": "Alexander Throckmorton\n\n\nIn youth my wings were strong and tireless,\nBut I did not know the mountains.\nIn age I knew the mountains\nBut my weary wings could not follow my vision-\nGenius is wisdom and youth.",
+  "paragraphs": [
+    "Alexander Throckmorton",
+    "In youth my wings were strong and tireless, But I did not know the mountains. In age I knew the mountains But my weary wings could not follow my vision- Genius is wisdom and youth."
+  ],
+  "wordCount": 37,
+  "characterCount": 205,
+  "estimatedTypingMinutes": 1,
+  "estimatedListeningMinutes": 2,
+  "morseCharacterEstimate": 1077,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Alexander Throckmorton In youth my wings were strong and tireless, But I did not know the mountains. In age I knew the mountains But my weary wings could not f...",
+  "sourceOffsets": {
+    "start": 86445,
+    "end": 86665
+  }
+}

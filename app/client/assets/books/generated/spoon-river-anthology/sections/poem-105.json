@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-105",
+  "kind": "poem",
+  "label": "Penniwit, the Artist",
+  "title": null,
+  "order": 105,
+  "includeByDefault": true,
+  "displayText": "Penniwit, the Artist\n\n\nI lost my patronage in Spoon River\nFrom trying to put my mind in the camera\nTo catch the soul of the person.\nThe very best picture I ever took\nWas of Judge Somers, attorney at law.\nHe sat upright and had me pause\nTill he got his cross-eye straight.\nThen when he was ready he said \"all right.\"\nAnd I yelled \"overruled\" and his eye turned up.\nAnd I caught him just as he used to look\nWhen saying \"I except.\"",
+  "morseSourceText": "Penniwit, the Artist\n\n\nI lost my patronage in Spoon River\nFrom trying to put my mind in the camera\nTo catch the soul of the person.\nThe very best picture I ever took\nWas of Judge Somers, attorney at law.\nHe sat upright and had me pause\nTill he got his cross-eye straight.\nThen when he was ready he said \"all right.\"\nAnd I yelled \"overruled\" and his eye turned up.\nAnd I caught him just as he used to look\nWhen saying \"I except.\"",
+  "paragraphs": [
+    "Penniwit, the Artist",
+    "I lost my patronage in Spoon River From trying to put my mind in the camera To catch the soul of the person. The very best picture I ever took Was of Judge Somers, attorney at law. He sat upright and had me pause Till he got his cross-eye straight. Then when he was ready he said \"all right.\" And I yelled \"overruled\" and his eye turned up. And I caught him just as he used to look When saying \"I except.\""
+  ],
+  "wordCount": 85,
+  "characterCount": 428,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2276,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Penniwit, the Artist I lost my patronage in Spoon River From trying to put my mind in the camera To catch the soul of the person. The very best picture I ever...",
+  "sourceOffsets": {
+    "start": 76115,
+    "end": 76564
+  }
+}

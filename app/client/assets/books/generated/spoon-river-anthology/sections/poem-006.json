@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-006",
+  "kind": "poem",
+  "label": "Cassius Hueffer",
+  "title": null,
+  "order": 6,
+  "includeByDefault": true,
+  "displayText": "Cassius Hueffer\n\n\nThey have chiseled on my stone the words:\n\"His life was gentle, and the elements so mixed in him\nThat nature might stand up and say to all the world,\nThis was a man.\"\nThose who knew me smile\nAs they read this empty rhetoric.\nMy epitaph should have been:\n\"Life was not gentle to him,\nAnd the elements so mixed in him\nThat he made warfare on life\nIn the which he was slain.\"\nWhile I lived I could not cope with slanderous tongues,\nNow that I am dead I must submit to an epitaph\nGraven by a fool!",
+  "morseSourceText": "Cassius Hueffer\n\n\nThey have chiseled on my stone the words:\n\"His life was gentle, and the elements so mixed in him\nThat nature might stand up and say to all the world,\nThis was a man.\"\nThose who knew me smile\nAs they read this empty rhetoric.\nMy epitaph should have been:\n\"Life was not gentle to him,\nAnd the elements so mixed in him\nThat he made warfare on life\nIn the which he was slain.\"\nWhile I lived I could not cope with slanderous tongues,\nNow that I am dead I must submit to an epitaph\nGraven by a fool!",
+  "paragraphs": [
+    "Cassius Hueffer",
+    "They have chiseled on my stone the words: \"His life was gentle, and the elements so mixed in him That nature might stand up and say to all the world, This was a man.\" Those who knew me smile As they read this empty rhetoric. My epitaph should have been: \"Life was not gentle to him, And the elements so mixed in him That he made warfare on life In the which he was slain.\" While I lived I could not cope with slanderous tongues, Now that I am dead I must submit to an epitaph Graven by a fool!"
+  ],
+  "wordCount": 102,
+  "characterCount": 511,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2693,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Cassius Hueffer They have chiseled on my stone the words: \"His life was gentle, and the elements so mixed in him That nature might stand up and say to all the...",
+  "sourceOffsets": {
+    "start": 9694,
+    "end": 10229
+  }
+}

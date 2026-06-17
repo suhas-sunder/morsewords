@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-131",
+  "kind": "poem",
+  "label": "Mickey M’Grew",
+  "title": null,
+  "order": 131,
+  "includeByDefault": true,
+  "displayText": "Mickey M'Grew\n\n\nIt was just like everything else in life:\nSomething outside myself drew me down,\nMy own strength never failed me.\nWhy, there was the time I earned the money\nWith which to go away to school,\nAnd my father suddenly needed help\nAnd I had to give him all of it.\nJust so it went till I ended up\nA man-of-all-work in Spoon River.\nThus when I got the water-tower cleaned,\nAnd they hauled me up the seventy feet,\nI unhooked the rope from my waist,\nAnd laughingly flung my giant arms\nOver the smooth steel lips of the top of the tower-\nBut they slipped from the treacherous slime,\nAnd down, down, down, I plunged\nThrough bellowing darkness!",
+  "morseSourceText": "Mickey M'Grew\n\n\nIt was just like everything else in life:\nSomething outside myself drew me down,\nMy own strength never failed me.\nWhy, there was the time I earned the money\nWith which to go away to school,\nAnd my father suddenly needed help\nAnd I had to give him all of it.\nJust so it went till I ended up\nA man-of-all-work in Spoon River.\nThus when I got the water-tower cleaned,\nAnd they hauled me up the seventy feet,\nI unhooked the rope from my waist,\nAnd laughingly flung my giant arms\nOver the smooth steel lips of the top of the tower-\nBut they slipped from the treacherous slime,\nAnd down, down, down, I plunged\nThrough bellowing darkness!",
+  "paragraphs": [
+    "Mickey M'Grew",
+    "It was just like everything else in life: Something outside myself drew me down, My own strength never failed me. Why, there was the time I earned the money With which to go away to school, And my father suddenly needed help And I had to give him all of it. Just so it went till I ended up A man-of-all-work in Spoon River. Thus when I got the water-tower cleaned, And they hauled me up the seventy feet, I unhooked the rope from my waist, And laughingly flung my giant arms Over the smooth steel lips of the top of the tower- But they slipped from the treacherous slime, And down, down, down, I plunged Through bellowing darkness!"
+  ],
+  "wordCount": 122,
+  "characterCount": 647,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3459,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Mickey M'Grew It was just like everything else in life: Something outside myself drew me down, My own strength never failed me. Why, there was the time I earne...",
+  "sourceOffsets": {
+    "start": 94612,
+    "end": 95286
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-130",
+  "kind": "poem",
+  "label": "Ralph Rhodes",
+  "title": null,
+  "order": 130,
+  "includeByDefault": true,
+  "displayText": "Ralph Rhodes\n\n\nAll they said was true:\nI wrecked my father's bank with my loans\nTo dabble in wheat; but this was true-\nI was buying wheat for him as well,\nWho couldn't margin the deal in his name\nBecause of his church relationship.\nAnd while George Reece was serving his term\nI chased the will-o-the-wisp of women\nAnd the mockery of wine in New York.\nIt's deathly to sicken of wine and women\nWhen nothing else is left in life.\nBut suppose your head is gray, and bowed\nOn a table covered with acrid stubs\nOf cigarettes and empty glasses,\nAnd a knock is heard, and you know it's the knock\nSo long drowned out by popping corks\nAnd the pea-cock screams of demireps-\nAnd you look up, and there's your Theft,\nWho waited until your head was gray,\nAnd your heart skipped beats to say to you:\nThe game is ended. I've called for you,\nGo out on Broadway and be run over,\nThey'll ship you back to Spoon River.",
+  "morseSourceText": "Ralph Rhodes\n\n\nAll they said was true:\nI wrecked my father's bank with my loans\nTo dabble in wheat; but this was true-\nI was buying wheat for him as well,\nWho couldn't margin the deal in his name\nBecause of his church relationship.\nAnd while George Reece was serving his term\nI chased the will-o-the-wisp of women\nAnd the mockery of wine in New York.\nIt's deathly to sicken of wine and women\nWhen nothing else is left in life.\nBut suppose your head is gray, and bowed\nOn a table covered with acrid stubs\nOf cigarettes and empty glasses,\nAnd a knock is heard, and you know it's the knock\nSo long drowned out by popping corks\nAnd the pea-cock screams of demireps-\nAnd you look up, and there's your Theft,\nWho waited until your head was gray,\nAnd your heart skipped beats to say to you:\nThe game is ended. I've called for you,\nGo out on Broadway and be run over,\nThey'll ship you back to Spoon River.",
+  "paragraphs": [
+    "Ralph Rhodes",
+    "All they said was true: I wrecked my father's bank with my loans To dabble in wheat; but this was true- I was buying wheat for him as well, Who couldn't margin the deal in his name Because of his church relationship. And while George Reece was serving his term I chased the will-o-the-wisp of women And the mockery of wine in New York. It's deathly to sicken of wine and women When nothing else is left in life. But suppose your head is gray, and bowed On a table covered with acrid stubs Of cigarettes and empty glasses, And a knock is heard, and you know it's the knock So long drowned out by popping corks And the pea-cock screams of demireps- And you look up, and there's your Theft, Who waited until your head was gray, And your heart skipped beats to say to you: The game is ended. I've called for you, Go out on Broadway and be run over, They'll ship you back to Spoon River."
+  ],
+  "wordCount": 173,
+  "characterCount": 897,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4864,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Ralph Rhodes All they said was true: I wrecked my father's bank with my loans To dabble in wheat; but this was true- I was buying wheat for him as well, Who co...",
+  "sourceOffsets": {
+    "start": 93680,
+    "end": 94610
+  }
+}

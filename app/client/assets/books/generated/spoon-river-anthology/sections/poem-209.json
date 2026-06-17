@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-209",
+  "kind": "poem",
+  "label": "Jennie M’Grew",
+  "title": null,
+  "order": 209,
+  "includeByDefault": true,
+  "displayText": "Jennie M'Grew\n\n\nNot, where the stairway turns in the dark\nA hooded figure, shriveled under a flowing cloak!\nNot yellow eyes in the room at night,\nStaring out from a surface of cobweb gray!\nAnd not the flap of a condor wing\nWhen the roar of life in your ears begins\nAs a sound heard never before!\nBut on a sunny afternoon,\nBy a country road,\nWhere purple rag-weeds bloom along a straggling fence\nAnd the field is gleaned, and the air is still\nTo see against the sun-light something black\nLike a blot with an iris rim-\nThat is the sign to eyes of second sight. . .\nAnd that I saw!",
+  "morseSourceText": "Jennie M'Grew\n\n\nNot, where the stairway turns in the dark\nA hooded figure, shriveled under a flowing cloak!\nNot yellow eyes in the room at night,\nStaring out from a surface of cobweb gray!\nAnd not the flap of a condor wing\nWhen the roar of life in your ears begins\nAs a sound heard never before!\nBut on a sunny afternoon,\nBy a country road,\nWhere purple rag-weeds bloom along a straggling fence\nAnd the field is gleaned, and the air is still\nTo see against the sun-light something black\nLike a blot with an iris rim-\nThat is the sign to eyes of second sight. . .\nAnd that I saw!",
+  "paragraphs": [
+    "Jennie M'Grew",
+    "Not, where the stairway turns in the dark A hooded figure, shriveled under a flowing cloak! Not yellow eyes in the room at night, Staring out from a surface of cobweb gray! And not the flap of a condor wing When the roar of life in your ears begins As a sound heard never before! But on a sunny afternoon, By a country road, Where purple rag-weeds bloom along a straggling fence And the field is gleaned, and the air is still To see against the sun-light something black Like a blot with an iris rim- That is the sign to eyes of second sight. . . And that I saw!"
+  ],
+  "wordCount": 111,
+  "characterCount": 578,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3079,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Jennie M'Grew Not, where the stairway turns in the dark A hooded figure, shriveled under a flowing cloak! Not yellow eyes in the room at night, Staring out fro...",
+  "sourceOffsets": {
+    "start": 161047,
+    "end": 161650
+  }
+}

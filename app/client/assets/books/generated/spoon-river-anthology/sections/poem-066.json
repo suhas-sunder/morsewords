@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-066",
+  "kind": "poem",
+  "label": "Griffy the Cooper",
+  "title": null,
+  "order": 66,
+  "includeByDefault": true,
+  "displayText": "Griffy the Cooper\n\n\nThe cooper should know about tubs.\nBut I learned about life as well,\nAnd you who loiter around these graves\nThink you know life.\nYou think your eye sweeps about a wide horizon, perhaps,\nIn truth you are only looking around the interior of your tub.\nYou cannot lift yourself to its rim\nAnd see the outer world of things,\nAnd at the same time see yourself.\nYou are submerged in the tub of yourself-\nTaboos and rules and appearances,\nAre the staves of your tub.\nBreak them and dispel the witchcraft\nOf thinking your tub is life\nAnd that you know life.",
+  "morseSourceText": "Griffy the Cooper\n\n\nThe cooper should know about tubs.\nBut I learned about life as well,\nAnd you who loiter around these graves\nThink you know life.\nYou think your eye sweeps about a wide horizon, perhaps,\nIn truth you are only looking around the interior of your tub.\nYou cannot lift yourself to its rim\nAnd see the outer world of things,\nAnd at the same time see yourself.\nYou are submerged in the tub of yourself-\nTaboos and rules and appearances,\nAre the staves of your tub.\nBreak them and dispel the witchcraft\nOf thinking your tub is life\nAnd that you know life.",
+  "paragraphs": [
+    "Griffy the Cooper",
+    "The cooper should know about tubs. But I learned about life as well, And you who loiter around these graves Think you know life. You think your eye sweeps about a wide horizon, perhaps, In truth you are only looking around the interior of your tub. You cannot lift yourself to its rim And see the outer world of things, And at the same time see yourself. You are submerged in the tub of yourself- Taboos and rules and appearances, Are the staves of your tub. Break them and dispel the witchcraft Of thinking your tub is life And that you know life."
+  ],
+  "wordCount": 106,
+  "characterCount": 568,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3051,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Griffy the Cooper The cooper should know about tubs. But I learned about life as well, And you who loiter around these graves Think you know life. You think yo...",
+  "sourceOffsets": {
+    "start": 47968,
+    "end": 48561
+  }
+}

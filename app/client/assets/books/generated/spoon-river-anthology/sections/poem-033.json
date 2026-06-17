@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-033",
+  "kind": "poem",
+  "label": "Sarah Brown",
+  "title": null,
+  "order": 33,
+  "includeByDefault": true,
+  "displayText": "Sarah Brown\n\n\nMaurice, weep not, I am not here under this pine tree.\nThe balmy air of spring whispers through the sweet grass,\nThe stars sparkle, the whippoorwill calls,\nBut thou grievest, while my soul lies rapturous\nIn the blest Nirvana of eternal light!\nGo to the good heart that is my husband\nWho broods upon what he calls our guilty love:-\nTell him that my love for you, no less than my love for him\nWrought out my destiny-that through the flesh\nI won spirit, and through spirit, peace.\nThere is no marriage in heaven\nBut there is love.",
+  "morseSourceText": "Sarah Brown\n\n\nMaurice, weep not, I am not here under this pine tree.\nThe balmy air of spring whispers through the sweet grass,\nThe stars sparkle, the whippoorwill calls,\nBut thou grievest, while my soul lies rapturous\nIn the blest Nirvana of eternal light!\nGo to the good heart that is my husband\nWho broods upon what he calls our guilty love:-\nTell him that my love for you, no less than my love for him\nWrought out my destiny-that through the flesh\nI won spirit, and through spirit, peace.\nThere is no marriage in heaven\nBut there is love.",
+  "paragraphs": [
+    "Sarah Brown",
+    "Maurice, weep not, I am not here under this pine tree. The balmy air of spring whispers through the sweet grass, The stars sparkle, the whippoorwill calls, But thou grievest, while my soul lies rapturous In the blest Nirvana of eternal light! Go to the good heart that is my husband Who broods upon what he calls our guilty love:- Tell him that my love for you, no less than my love for him Wrought out my destiny-that through the flesh I won spirit, and through spirit, peace. There is no marriage in heaven But there is love."
+  ],
+  "wordCount": 100,
+  "characterCount": 541,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2920,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Sarah Brown Maurice, weep not, I am not here under this pine tree. The balmy air of spring whispers through the sweet grass, The stars sparkle, the whippoorwil...",
+  "sourceOffsets": {
+    "start": 26772,
+    "end": 27335
+  }
+}

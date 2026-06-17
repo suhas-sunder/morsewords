@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-111",
+  "kind": "poem",
+  "label": "Roger Heston",
+  "title": null,
+  "order": 111,
+  "includeByDefault": true,
+  "displayText": "Roger Heston\n\n\nOh many times did Ernest Hyde and I\nArgue about the freedom of the will.\nMy favorite metaphor was Prickett's cow\nRoped out to grass, and free you know as far\nAs the length of the rope.\nOne day while arguing so, watching the cow\nPull at the rope to get beyond the circle\nWhich she had eaten bare,\nOut came the stake, and tossing up her head,\nShe ran for us.\n\"What's that, free-will or what?\" said Ernest, running.\nI fell just as she gored me to my death.",
+  "morseSourceText": "Roger Heston\n\n\nOh many times did Ernest Hyde and I\nArgue about the freedom of the will.\nMy favorite metaphor was Prickett's cow\nRoped out to grass, and free you know as far\nAs the length of the rope.\nOne day while arguing so, watching the cow\nPull at the rope to get beyond the circle\nWhich she had eaten bare,\nOut came the stake, and tossing up her head,\nShe ran for us.\n\"What's that, free-will or what?\" said Ernest, running.\nI fell just as she gored me to my death.",
+  "paragraphs": [
+    "Roger Heston",
+    "Oh many times did Ernest Hyde and I Argue about the freedom of the will. My favorite metaphor was Prickett's cow Roped out to grass, and free you know as far As the length of the rope. One day while arguing so, watching the cow Pull at the rope to get beyond the circle Which she had eaten bare, Out came the stake, and tossing up her head, She ran for us. \"What's that, free-will or what?\" said Ernest, running. I fell just as she gored me to my death."
+  ],
+  "wordCount": 92,
+  "characterCount": 468,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2498,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Roger Heston Oh many times did Ernest Hyde and I Argue about the freedom of the will. My favorite metaphor was Prickett's cow Roped out to grass, and free you...",
+  "sourceOffsets": {
+    "start": 80131,
+    "end": 80621
+  }
+}

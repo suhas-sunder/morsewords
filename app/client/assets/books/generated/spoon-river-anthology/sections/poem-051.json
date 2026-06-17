@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-051",
+  "kind": "poem",
+  "label": "Lois Spears",
+  "title": null,
+  "order": 51,
+  "includeByDefault": true,
+  "displayText": "Lois Spears\n\n\nHere lies the body of Lois Spears,\nBorn Lois Fluke, daughter of Willard Fluke,\nWife of Cyrus Spears,\nMother of Myrtle and Virgil Spears,\nChildren with clear eyes and sound limbs-\n(I was born blind)\nI was the happiest of women\nAs wife, mother and housekeeper.\nCaring for my loved ones,\nAnd making my home\nA place of order and bounteous hospitality:\nFor I went about the rooms,\nAnd about the garden\nWith an instinct as sure as sight,\nAs though there were eyes in my finger tips-\nGlory to God in the highest.",
+  "morseSourceText": "Lois Spears\n\n\nHere lies the body of Lois Spears,\nBorn Lois Fluke, daughter of Willard Fluke,\nWife of Cyrus Spears,\nMother of Myrtle and Virgil Spears,\nChildren with clear eyes and sound limbs-\n(I was born blind)\nI was the happiest of women\nAs wife, mother and housekeeper.\nCaring for my loved ones,\nAnd making my home\nA place of order and bounteous hospitality:\nFor I went about the rooms,\nAnd about the garden\nWith an instinct as sure as sight,\nAs though there were eyes in my finger tips-\nGlory to God in the highest.",
+  "paragraphs": [
+    "Lois Spears",
+    "Here lies the body of Lois Spears, Born Lois Fluke, daughter of Willard Fluke, Wife of Cyrus Spears, Mother of Myrtle and Virgil Spears, Children with clear eyes and sound limbs- (I was born blind) I was the happiest of women As wife, mother and housekeeper. Caring for my loved ones, And making my home A place of order and bounteous hospitality: For I went about the rooms, And about the garden With an instinct as sure as sight, As though there were eyes in my finger tips- Glory to God in the highest."
+  ],
+  "wordCount": 96,
+  "characterCount": 519,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2805,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Lois Spears Here lies the body of Lois Spears, Born Lois Fluke, daughter of Willard Fluke, Wife of Cyrus Spears, Mother of Myrtle and Virgil Spears, Children w...",
+  "sourceOffsets": {
+    "start": 38044,
+    "end": 38589
+  }
+}

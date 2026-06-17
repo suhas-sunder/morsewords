@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-034",
+  "kind": "poem",
+  "label": "Percy Bysshe Shelley",
+  "title": null,
+  "order": 34,
+  "includeByDefault": true,
+  "displayText": "Percy Bysshe Shelley\n\n\nMy father who owned the wagon-shop\nAnd grew rich shoeing horses\nSent me to the University of Montreal.\nI learned nothing and returned home,\nRoaming the fields with Bert Kessler,\nHunting quail and snipe.\nAt Thompson's Lake the trigger of my gun\nCaught in the side of the boat\nAnd a great hole was shot through my heart.\nOver me a fond father erected this marble shaft,\nOn which stands the figure of a woman\nCarved by an Italian artist.\nThey say the ashes of my namesake\nWere scattered near the pyramid of Caius Cestius\nSomewhere near Rome.",
+  "morseSourceText": "Percy Bysshe Shelley\n\n\nMy father who owned the wagon-shop\nAnd grew rich shoeing horses\nSent me to the University of Montreal.\nI learned nothing and returned home,\nRoaming the fields with Bert Kessler,\nHunting quail and snipe.\nAt Thompson's Lake the trigger of my gun\nCaught in the side of the boat\nAnd a great hole was shot through my heart.\nOver me a fond father erected this marble shaft,\nOn which stands the figure of a woman\nCarved by an Italian artist.\nThey say the ashes of my namesake\nWere scattered near the pyramid of Caius Cestius\nSomewhere near Rome.",
+  "paragraphs": [
+    "Percy Bysshe Shelley",
+    "My father who owned the wagon-shop And grew rich shoeing horses Sent me to the University of Montreal. I learned nothing and returned home, Roaming the fields with Bert Kessler, Hunting quail and snipe. At Thompson's Lake the trigger of my gun Caught in the side of the boat And a great hole was shot through my heart. Over me a fond father erected this marble shaft, On which stands the figure of a woman Carved by an Italian artist. They say the ashes of my namesake Were scattered near the pyramid of Caius Cestius Somewhere near Rome."
+  ],
+  "wordCount": 101,
+  "characterCount": 561,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2962,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Percy Bysshe Shelley My father who owned the wagon-shop And grew rich shoeing horses Sent me to the University of Montreal. I learned nothing and returned home...",
+  "sourceOffsets": {
+    "start": 27337,
+    "end": 27923
+  }
+}

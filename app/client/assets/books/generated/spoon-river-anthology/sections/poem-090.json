@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-090",
+  "kind": "poem",
+  "label": "Rev. Lemuel Wiley",
+  "title": null,
+  "order": 90,
+  "includeByDefault": true,
+  "displayText": "Rev. Lemuel Wiley\n\n\nI preached four thousand sermons,\nI conducted forty revivals,\nAnd baptized many converts.\nYet no deed of mine\nShines brighter in the memory of the world,\nAnd none is treasured more by me:\nLook how I saved the Blisses from divorce,\nAnd kept the children free from that disgrace,\nTo grow up into moral men and women,\nHappy themselves, a credit to the village.\n\n\nThomas Ross, Jr.\n\n\nThis I saw with my own eyes: A cliff-swallow\nMade her nest in a hole of the high clay-bank\nThere near Miller's Ford.\nBut no sooner were the young hatched\nThan a snake crawled up to the nest\nTo devour the brood.\nThen the mother swallow with swift flutterings\nAnd shrill cries\nFought at the snake,\nBlinding him with the beat of her wings,\nUntil he, wriggling and rearing his head,\nFell backward down the bank\nInto Spoon River and was drowned.\nScarcely an hour passed\nUntil a shrike\nImpaled the mother swallow on a thorn.\nAs for myself I overcame my lower nature\nOnly to be destroyed by my brother's ambition.",
+  "morseSourceText": "Rev. Lemuel Wiley\n\n\nI preached four thousand sermons,\nI conducted forty revivals,\nAnd baptized many converts.\nYet no deed of mine\nShines brighter in the memory of the world,\nAnd none is treasured more by me:\nLook how I saved the Blisses from divorce,\nAnd kept the children free from that disgrace,\nTo grow up into moral men and women,\nHappy themselves, a credit to the village.\n\n\nThomas Ross, Jr.\n\n\nThis I saw with my own eyes: A cliff-swallow\nMade her nest in a hole of the high clay-bank\nThere near Miller's Ford.\nBut no sooner were the young hatched\nThan a snake crawled up to the nest\nTo devour the brood.\nThen the mother swallow with swift flutterings\nAnd shrill cries\nFought at the snake,\nBlinding him with the beat of her wings,\nUntil he, wriggling and rearing his head,\nFell backward down the bank\nInto Spoon River and was drowned.\nScarcely an hour passed\nUntil a shrike\nImpaled the mother swallow on a thorn.\nAs for myself I overcame my lower nature\nOnly to be destroyed by my brother's ambition.",
+  "paragraphs": [
+    "Rev. Lemuel Wiley",
+    "I preached four thousand sermons, I conducted forty revivals, And baptized many converts. Yet no deed of mine Shines brighter in the memory of the world, And none is treasured more by me: Look how I saved the Blisses from divorce, And kept the children free from that disgrace, To grow up into moral men and women, Happy themselves, a credit to the village.",
+    "Thomas Ross, Jr.",
+    "This I saw with my own eyes: A cliff-swallow Made her nest in a hole of the high clay-bank There near Miller's Ford. But no sooner were the young hatched Than a snake crawled up to the nest To devour the brood. Then the mother swallow with swift flutterings And shrill cries Fought at the snake, Blinding him with the beat of her wings, Until he, wriggling and rearing his head, Fell backward down the bank Into Spoon River and was drowned. Scarcely an hour passed Until a shrike Impaled the mother swallow on a thorn. As for myself I overcame my lower nature Only to be destroyed by my brother's ambition."
+  ],
+  "wordCount": 182,
+  "characterCount": 1005,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 5389,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Rev. Lemuel Wiley I preached four thousand sermons, I conducted forty revivals, And baptized many converts. Yet no deed of mine Shines brighter in the memory o...",
+  "sourceOffsets": {
+    "start": 64922,
+    "end": 65974
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-074",
+  "kind": "poem",
+  "label": "Blind Jack",
+  "title": null,
+  "order": 74,
+  "includeByDefault": true,
+  "displayText": "Blind Jack\n\n\nI had fiddled all day at the county fair.\nBut driving home \"Butch\" Weldy and Jack McGuire,\nWho were roaring full, made me fiddle and fiddle\nTo the song of _Susie Skinner_, while whipping the horses\nTill they ran away. Blind as I was, I tried to get out\nAs the carriage fell in the ditch,\nAnd was caught in the wheels and killed.\nThere's a blind man here with a brow\nAs big and white as a cloud.\nAnd all we fiddlers, from highest to lowest,\nWriters of music and tellers of stories\nSit at his feet,\nAnd hear him sing of the fall of Troy.",
+  "morseSourceText": "Blind Jack\n\n\nI had fiddled all day at the county fair.\nBut driving home \"Butch\" Weldy and Jack McGuire,\nWho were roaring full, made me fiddle and fiddle\nTo the song of _Susie Skinner_, while whipping the horses\nTill they ran away. Blind as I was, I tried to get out\nAs the carriage fell in the ditch,\nAnd was caught in the wheels and killed.\nThere's a blind man here with a brow\nAs big and white as a cloud.\nAnd all we fiddlers, from highest to lowest,\nWriters of music and tellers of stories\nSit at his feet,\nAnd hear him sing of the fall of Troy.",
+  "paragraphs": [
+    "Blind Jack",
+    "I had fiddled all day at the county fair. But driving home \"Butch\" Weldy and Jack McGuire, Who were roaring full, made me fiddle and fiddle To the song of _Susie Skinner_, while whipping the horses Till they ran away. Blind as I was, I tried to get out As the carriage fell in the ditch, And was caught in the wheels and killed. There's a blind man here with a brow As big and white as a cloud. And all we fiddlers, from highest to lowest, Writers of music and tellers of stories Sit at his feet, And hear him sing of the fall of Troy."
+  ],
+  "wordCount": 109,
+  "characterCount": 548,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 2947,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Blind Jack I had fiddled all day at the county fair. But driving home \"Butch\" Weldy and Jack McGuire, Who were roaring full, made me fiddle and fiddle To the s...",
+  "sourceOffsets": {
+    "start": 53645,
+    "end": 54216
+  }
+}

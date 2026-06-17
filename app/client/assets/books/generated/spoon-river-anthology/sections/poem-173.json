@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-173",
+  "kind": "poem",
+  "label": "Granville Calhoun",
+  "title": null,
+  "order": 173,
+  "includeByDefault": true,
+  "displayText": "Granville Calhoun\n\n\nI wanted to be County Judge\nOne more term, so as to round out a service\nOf thirty years.\nBut my friends left me and joined my enemies,\nAnd they elected a new man.\nThen a spirit of revenge seized me,\nAnd I infected my four sons with it,\nAnd I brooded upon retaliation,\nUntil the great physician, Nature,\nSmote me through with paralysis\nTo give my soul and body a rest.\nDid my sons get power and money?\nDid they serve the people or yoke them,\nTo till and harvest fields of self?\nFor how could they ever forget\nMy face at my bed-room window,\nSitting helpless amid my golden cages\nOf singing canaries,\nLooking at the old court-house?",
+  "morseSourceText": "Granville Calhoun\n\n\nI wanted to be County Judge\nOne more term, so as to round out a service\nOf thirty years.\nBut my friends left me and joined my enemies,\nAnd they elected a new man.\nThen a spirit of revenge seized me,\nAnd I infected my four sons with it,\nAnd I brooded upon retaliation,\nUntil the great physician, Nature,\nSmote me through with paralysis\nTo give my soul and body a rest.\nDid my sons get power and money?\nDid they serve the people or yoke them,\nTo till and harvest fields of self?\nFor how could they ever forget\nMy face at my bed-room window,\nSitting helpless amid my golden cages\nOf singing canaries,\nLooking at the old court-house?",
+  "paragraphs": [
+    "Granville Calhoun",
+    "I wanted to be County Judge One more term, so as to round out a service Of thirty years. But my friends left me and joined my enemies, And they elected a new man. Then a spirit of revenge seized me, And I infected my four sons with it, And I brooded upon retaliation, Until the great physician, Nature, Smote me through with paralysis To give my soul and body a rest. Did my sons get power and money? Did they serve the people or yoke them, To till and harvest fields of self? For how could they ever forget My face at my bed-room window, Sitting helpless amid my golden cages Of singing canaries, Looking at the old court-house?"
+  ],
+  "wordCount": 122,
+  "characterCount": 649,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3453,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Granville Calhoun I wanted to be County Judge One more term, so as to round out a service Of thirty years. But my friends left me and joined my enemies, And th...",
+  "sourceOffsets": {
+    "start": 130268,
+    "end": 130946
+  }
+}

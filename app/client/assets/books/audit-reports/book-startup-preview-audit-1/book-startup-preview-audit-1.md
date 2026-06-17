@@ -1,12 +1,12 @@
 # Book Startup Preview Audit 1
 
-Generated at: 2026-06-17T17:17:38.551Z
+Generated at: 2026-06-17T18:30:14.766Z
 
 ## Summary
 
-- Generated books checked: 110
-- Preview assets found: 110
-- Valid startup previews: 110
+- Generated books checked: 130
+- Preview assets found: 130
+- Valid startup previews: 130
 - Preview assets updated by this audit run: none
 - Invalid or missing previews: none
 - Suspicious first default sections: none
@@ -15,7 +15,7 @@ Generated at: 2026-06-17T17:17:38.551Z
 
 | Recommendation | Books |
 | --- | ---: |
-| valid | 110 |
+| valid | 130 |
 | preview asset needs regeneration from generated readable sections | 0 |
 | generated book needs processing correction later | 0 |
 | blocked/manual review | 0 |
@@ -134,6 +134,26 @@ Generated at: 2026-06-17T17:17:38.551Z
 | five-weeks-in-a-balloon | valid | chapter-001 (chapter) | 44/44 | valid | none |
 | moby-dick | valid | chapter-001 (chapter) | 135/135 | valid | none |
 | tales-of-war | valid | chapter-001 (chapter) | 31/31 | valid | none |
+| a-midsummer-night-s-dream | valid | scene-001 (scene) | 5/5 | valid | none |
+| a-room-with-a-view | valid | chapter-001 (chapter) | 20/20 | valid | none |
+| agamemnon-of-aeschylus | valid | scene-001 (scene) | 1/1 | valid | none |
+| an-ideal-husband | valid | scene-001 (scene) | 4/4 | valid | none |
+| catriona | valid | chapter-001 (chapter) | 30/30 | valid | none |
+| for-the-duration-of-the-war | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| romeo-and-juliet | valid | scene-001 (scene) | 5/5 | valid | none |
+| the-adventures-of-ferdinand-count-fathom | valid | chapter-001 (chapter) | 67/66 | valid | none |
+| the-adventures-of-roderick-random | valid | chapter-001 (chapter) | 69/69 | valid | none |
+| the-expedition-of-humphry-clinker | valid | letter-001 (letter) | 87/87 | valid | none |
+| the-importance-of-being-earnest-a-trivial-comedy-for-serious-people | valid | scene-001 (scene) | 3/3 | valid | none |
+| the-man-who-was-thursday-a-nightmare | valid | chapter-001 (chapter) | 15/15 | valid | none |
+| the-money-box | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-mystery-of-edwin-drood | valid | chapter-001 (chapter) | 23/23 | valid | none |
+| the-shunned-house | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-story-of-the-inexperienced-ghost | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-winning-of-olwen | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| twenty-thousand-leagues-under-the-sea | valid | chapter-001 (chapter) | 46/45 | valid | none |
+| with-fire-and-sword | valid | chapter-001 (chapter) | 63/63 | valid | none |
+| spoon-river-anthology | valid | poem-001 (poem) | 245/243 | valid | none |
 
 ## Protected Paths
 

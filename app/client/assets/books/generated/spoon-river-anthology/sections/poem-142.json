@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-142",
+  "kind": "poem",
+  "label": "Hortense Robbins",
+  "title": null,
+  "order": 142,
+  "includeByDefault": true,
+  "displayText": "Hortense Robbins\n\n\nMy name used to be in the papers daily\nAs having dined somewhere,\nOr traveled somewhere,\nOr rented a house in Paris,\nWhere I entertained the nobility.\nI was forever eating or traveling,\nOr taking the cure at Baden-Baden.\nNow I am here to do honor\nTo Spoon River, here beside the family whence I sprang.\nNo one cares now where I dined,\nOr lived, or whom I entertained,\nOr how often I took the cure at Baden-Baden.",
+  "morseSourceText": "Hortense Robbins\n\n\nMy name used to be in the papers daily\nAs having dined somewhere,\nOr traveled somewhere,\nOr rented a house in Paris,\nWhere I entertained the nobility.\nI was forever eating or traveling,\nOr taking the cure at Baden-Baden.\nNow I am here to do honor\nTo Spoon River, here beside the family whence I sprang.\nNo one cares now where I dined,\nOr lived, or whom I entertained,\nOr how often I took the cure at Baden-Baden.",
+  "paragraphs": [
+    "Hortense Robbins",
+    "My name used to be in the papers daily As having dined somewhere, Or traveled somewhere, Or rented a house in Paris, Where I entertained the nobility. I was forever eating or traveling, Or taking the cure at Baden-Baden. Now I am here to do honor To Spoon River, here beside the family whence I sprang. No one cares now where I dined, Or lived, or whom I entertained, Or how often I took the cure at Baden-Baden."
+  ],
+  "wordCount": 80,
+  "characterCount": 431,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2263,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Hortense Robbins My name used to be in the papers daily As having dined somewhere, Or traveled somewhere, Or rented a house in Paris, Where I entertained the n...",
+  "sourceOffsets": {
+    "start": 103717,
+    "end": 104170
+  }
+}

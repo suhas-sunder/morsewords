@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-032",
+  "kind": "poem",
+  "label": "Andy The Night-Watch",
+  "title": null,
+  "order": 32,
+  "includeByDefault": true,
+  "displayText": "Andy The Night-Watch\n\n\nIn my Spanish cloak,\nAnd old slouch hat,\nAnd overshoes of felt,\nAnd Tyke, my faithful dog,\nAnd my knotted hickory cane,\nI slipped about with a bull's-eye lantern\nFrom door to door on the square,\nAs the midnight stars wheeled round,\nAnd the bell in the steeple murmured\nFrom the blowing of the wind;\nAnd the weary steps of old Doc Hill\nSounded like one who walks in sleep,\nAnd a far-off rooster crew.\nAnd now another is watching Spoon River\nAs others watched before me.\nAnd here we lie, Doc Hill and I\nWhere none breaks through and steals,\nAnd no eye needs to guard.",
+  "morseSourceText": "Andy The Night-Watch\n\n\nIn my Spanish cloak,\nAnd old slouch hat,\nAnd overshoes of felt,\nAnd Tyke, my faithful dog,\nAnd my knotted hickory cane,\nI slipped about with a bull's-eye lantern\nFrom door to door on the square,\nAs the midnight stars wheeled round,\nAnd the bell in the steeple murmured\nFrom the blowing of the wind;\nAnd the weary steps of old Doc Hill\nSounded like one who walks in sleep,\nAnd a far-off rooster crew.\nAnd now another is watching Spoon River\nAs others watched before me.\nAnd here we lie, Doc Hill and I\nWhere none breaks through and steals,\nAnd no eye needs to guard.",
+  "paragraphs": [
+    "Andy The Night-Watch",
+    "In my Spanish cloak, And old slouch hat, And overshoes of felt, And Tyke, my faithful dog, And my knotted hickory cane, I slipped about with a bull's-eye lantern From door to door on the square, As the midnight stars wheeled round, And the bell in the steeple murmured From the blowing of the wind; And the weary steps of old Doc Hill Sounded like one who walks in sleep, And a far-off rooster crew. And now another is watching Spoon River As others watched before me. And here we lie, Doc Hill and I Where none breaks through and steals, And no eye needs to guard."
+  ],
+  "wordCount": 111,
+  "characterCount": 588,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3173,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Andy The Night-Watch In my Spanish cloak, And old slouch hat, And overshoes of felt, And Tyke, my faithful dog, And my knotted hickory cane, I slipped about wi...",
+  "sourceOffsets": {
+    "start": 26154,
+    "end": 26770
+  }
+}

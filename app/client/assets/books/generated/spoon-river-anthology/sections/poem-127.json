@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-127",
+  "kind": "poem",
+  "label": "Clarence Fawcett",
+  "title": null,
+  "order": 127,
+  "includeByDefault": true,
+  "displayText": "Clarence Fawcett\n\n\nThe sudden death of Eugene Carman\nPut me in line to be promoted to fifty dollars a month,\nAnd I told my wife and children that night.\nBut it didn't come, and so I thought\nOld Rhodes suspected me of stealing\nThe blankets I took and sold on the side\nFor money to pay a doctor's bill for my little girl.\nThen like a bolt old Rhodes accused me,\nAnd promised me mercy for my family's sake\nIf I confessed, and so I confessed,\nAnd begged him to keep it out of the papers,\nAnd I asked the editors, too.\nThat night at home the constable took me\nAnd every paper, except the Clarion,\nWrote me up as a thief\nBecause old Rhodes was an advertiser\nAnd wanted to make an example of me.\nOh! well, you know how the children cried,\nAnd how my wife pitied and hated me,\nAnd how I came to lie here.",
+  "morseSourceText": "Clarence Fawcett\n\n\nThe sudden death of Eugene Carman\nPut me in line to be promoted to fifty dollars a month,\nAnd I told my wife and children that night.\nBut it didn't come, and so I thought\nOld Rhodes suspected me of stealing\nThe blankets I took and sold on the side\nFor money to pay a doctor's bill for my little girl.\nThen like a bolt old Rhodes accused me,\nAnd promised me mercy for my family's sake\nIf I confessed, and so I confessed,\nAnd begged him to keep it out of the papers,\nAnd I asked the editors, too.\nThat night at home the constable took me\nAnd every paper, except the Clarion,\nWrote me up as a thief\nBecause old Rhodes was an advertiser\nAnd wanted to make an example of me.\nOh! well, you know how the children cried,\nAnd how my wife pitied and hated me,\nAnd how I came to lie here.",
+  "paragraphs": [
+    "Clarence Fawcett",
+    "The sudden death of Eugene Carman Put me in line to be promoted to fifty dollars a month, And I told my wife and children that night. But it didn't come, and so I thought Old Rhodes suspected me of stealing The blankets I took and sold on the side For money to pay a doctor's bill for my little girl. Then like a bolt old Rhodes accused me, And promised me mercy for my family's sake If I confessed, and so I confessed, And begged him to keep it out of the papers, And I asked the editors, too. That night at home the constable took me And every paper, except the Clarion, Wrote me up as a thief Because old Rhodes was an advertiser And wanted to make an example of me. Oh! well, you know how the children cried, And how my wife pitied and hated me, And how I came to lie here."
+  ],
+  "wordCount": 159,
+  "characterCount": 796,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4212,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Clarence Fawcett The sudden death of Eugene Carman Put me in line to be promoted to fifty dollars a month, And I told my wife and children that night. But it d...",
+  "sourceOffsets": {
+    "start": 91213,
+    "end": 92039
+  }
+}

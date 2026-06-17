@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-067",
+  "kind": "poem",
+  "label": "Sersmith the Dentist",
+  "title": null,
+  "order": 67,
+  "includeByDefault": true,
+  "displayText": "Sersmith the Dentist\n\n\nDo you think that odes and sermons,\nAnd the ringing of church bells,\nAnd the blood of old men and young men,\nMartyred for the truth they saw\nWith eyes made bright by faith in God,\nAccomplished the world's great reformations?\nDo you think that the Battle Hymn of the Republic\nWould have been heard if the chattel slave\nHad crowned the dominant dollar,\nIn spite of Whitney's cotton gin,\nAnd steam and rolling mills and iron\nAnd telegraphs and white free labor?\nDo you think that Daisy Fraser\nHad been put out and driven out\nIf the canning works had never needed\nHer little house and lot?\nOr do you think the poker room\nOf Johnnie Taylor, and Burchard's bar\nHad been closed up if the money lost\nAnd spent for beer had not been turned,\nBy closing them, to Thomas Rhodes\nFor larger sales of shoes and blankets,\nAnd children's cloaks and gold-oak cradles?\nWhy, a moral truth is a hollow tooth\nWhich must be propped with gold.",
+  "morseSourceText": "Sersmith the Dentist\n\n\nDo you think that odes and sermons,\nAnd the ringing of church bells,\nAnd the blood of old men and young men,\nMartyred for the truth they saw\nWith eyes made bright by faith in God,\nAccomplished the world's great reformations?\nDo you think that the Battle Hymn of the Republic\nWould have been heard if the chattel slave\nHad crowned the dominant dollar,\nIn spite of Whitney's cotton gin,\nAnd steam and rolling mills and iron\nAnd telegraphs and white free labor?\nDo you think that Daisy Fraser\nHad been put out and driven out\nIf the canning works had never needed\nHer little house and lot?\nOr do you think the poker room\nOf Johnnie Taylor, and Burchard's bar\nHad been closed up if the money lost\nAnd spent for beer had not been turned,\nBy closing them, to Thomas Rhodes\nFor larger sales of shoes and blankets,\nAnd children's cloaks and gold-oak cradles?\nWhy, a moral truth is a hollow tooth\nWhich must be propped with gold.",
+  "paragraphs": [
+    "Sersmith the Dentist",
+    "Do you think that odes and sermons, And the ringing of church bells, And the blood of old men and young men, Martyred for the truth they saw With eyes made bright by faith in God, Accomplished the world's great reformations? Do you think that the Battle Hymn of the Republic Would have been heard if the chattel slave Had crowned the dominant dollar, In spite of Whitney's cotton gin, And steam and rolling mills and iron And telegraphs and white free labor? Do you think that Daisy Fraser Had been put out and driven out If the canning works had never needed Her little house and lot? Or do you think the poker room Of Johnnie Taylor, and Burchard's bar Had been closed up if the money lost And spent for beer had not been turned, By closing them, to Thomas Rhodes For larger sales of shoes and blankets, And children's cloaks and gold-oak cradles? Why, a moral truth is a hollow tooth Which must be propped with gold."
+  ],
+  "wordCount": 173,
+  "characterCount": 942,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 5070,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Sersmith the Dentist Do you think that odes and sermons, And the ringing of church bells, And the blood of old men and young men, Martyred for the truth they s...",
+  "sourceOffsets": {
+    "start": 48563,
+    "end": 49540
+  }
+}

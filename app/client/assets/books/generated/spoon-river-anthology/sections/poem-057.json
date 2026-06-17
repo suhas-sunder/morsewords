@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-057",
+  "kind": "poem",
+  "label": "Deacon Taylor",
+  "title": null,
+  "order": 57,
+  "includeByDefault": true,
+  "displayText": "Deacon Taylor\n\n\nI belonged to the church,\nAnd to the party of prohibition;\nAnd the villagers thought I died of eating watermelon.\nIn truth I had cirrhosis of the liver,\nFor every noon for thirty years,\nI slipped behind the prescription partition\nIn Trainor's drug store\nAnd poured a generous drink\nFrom the bottle marked \"Spiritus frumenti.\"",
+  "morseSourceText": "Deacon Taylor\n\n\nI belonged to the church,\nAnd to the party of prohibition;\nAnd the villagers thought I died of eating watermelon.\nIn truth I had cirrhosis of the liver,\nFor every noon for thirty years,\nI slipped behind the prescription partition\nIn Trainor's drug store\nAnd poured a generous drink\nFrom the bottle marked \"Spiritus frumenti.\"",
+  "paragraphs": [
+    "Deacon Taylor",
+    "I belonged to the church, And to the party of prohibition; And the villagers thought I died of eating watermelon. In truth I had cirrhosis of the liver, For every noon for thirty years, I slipped behind the prescription partition In Trainor's drug store And poured a generous drink From the bottle marked \"Spiritus frumenti.\""
+  ],
+  "wordCount": 57,
+  "characterCount": 341,
+  "estimatedTypingMinutes": 2,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 1826,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Deacon Taylor I belonged to the church, And to the party of prohibition; And the villagers thought I died of eating watermelon. In truth I had cirrhosis of the...",
+  "sourceOffsets": {
+    "start": 42533,
+    "end": 42893
+  }
+}

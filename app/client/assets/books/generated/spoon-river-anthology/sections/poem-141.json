@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-141",
+  "kind": "poem",
+  "label": "Lillian Stewart",
+  "title": null,
+  "order": 141,
+  "includeByDefault": true,
+  "displayText": "Lillian Stewart\n\n\nI was the daughter of Lambert Hutchins,\nBorn in a cottage near the grist-mill,\nReared in the mansion there on the hill,\nWith its spires, bay-windows, and roof of slate.\nHow proud my mother was of the mansion\nHow proud of father's rise in the world!\nAnd how my father loved and watched us,\nAnd guarded our happiness.\nBut I believe the house was a curse,\nFor father's fortune was little beside it;\nAnd when my husband found he had married\nA girl who was really poor,\nHe taunted me with the spires,\nAnd called the house a fraud on the world,\nA treacherous lure to young men, raising hopes\nOf a dowry not to be had;\nAnd a man while selling his vote\nShould get enough from the people's betrayal\nTo wall the whole of his family in.\nHe vexed my life till I went back home\nAnd lived like an old maid till I died,\nKeeping house for father.",
+  "morseSourceText": "Lillian Stewart\n\n\nI was the daughter of Lambert Hutchins,\nBorn in a cottage near the grist-mill,\nReared in the mansion there on the hill,\nWith its spires, bay-windows, and roof of slate.\nHow proud my mother was of the mansion\nHow proud of father's rise in the world!\nAnd how my father loved and watched us,\nAnd guarded our happiness.\nBut I believe the house was a curse,\nFor father's fortune was little beside it;\nAnd when my husband found he had married\nA girl who was really poor,\nHe taunted me with the spires,\nAnd called the house a fraud on the world,\nA treacherous lure to young men, raising hopes\nOf a dowry not to be had;\nAnd a man while selling his vote\nShould get enough from the people's betrayal\nTo wall the whole of his family in.\nHe vexed my life till I went back home\nAnd lived like an old maid till I died,\nKeeping house for father.",
+  "paragraphs": [
+    "Lillian Stewart",
+    "I was the daughter of Lambert Hutchins, Born in a cottage near the grist-mill, Reared in the mansion there on the hill, With its spires, bay-windows, and roof of slate. How proud my mother was of the mansion How proud of father's rise in the world! And how my father loved and watched us, And guarded our happiness. But I believe the house was a curse, For father's fortune was little beside it; And when my husband found he had married A girl who was really poor, He taunted me with the spires, And called the house a fraud on the world, A treacherous lure to young men, raising hopes Of a dowry not to be had; And a man while selling his vote Should get enough from the people's betrayal To wall the whole of his family in. He vexed my life till I went back home And lived like an old maid till I died, Keeping house for father."
+  ],
+  "wordCount": 163,
+  "characterCount": 848,
+  "estimatedTypingMinutes": 5,
+  "estimatedListeningMinutes": 6,
+  "morseCharacterEstimate": 4559,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Lillian Stewart I was the daughter of Lambert Hutchins, Born in a cottage near the grist-mill, Reared in the mansion there on the hill, With its spires, bay-wi...",
+  "sourceOffsets": {
+    "start": 102835,
+    "end": 103715
+  }
+}

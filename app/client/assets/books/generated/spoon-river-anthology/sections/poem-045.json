@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-045",
+  "kind": "poem",
+  "label": "Nicholas Bindle",
+  "title": null,
+  "order": 45,
+  "includeByDefault": true,
+  "displayText": "Nicholas Bindle\n\n\nWere you not ashamed, fellow citizens,\nWhen my estate was probated and everyone knew\nHow small a fortune I left?-\nYou who hounded me in life,\nTo give, give, give to the churches, to the poor,\nTo the village!-me who had already given much.\nAnd think you not I did not know\nThat the pipe-organ, which I gave to the church,\nPlayed its christening songs when Deacon Rhodes,\nWho broke and all but ruined me,\nWorshipped for the first time after his acquittal?",
+  "morseSourceText": "Nicholas Bindle\n\n\nWere you not ashamed, fellow citizens,\nWhen my estate was probated and everyone knew\nHow small a fortune I left?-\nYou who hounded me in life,\nTo give, give, give to the churches, to the poor,\nTo the village!-me who had already given much.\nAnd think you not I did not know\nThat the pipe-organ, which I gave to the church,\nPlayed its christening songs when Deacon Rhodes,\nWho broke and all but ruined me,\nWorshipped for the first time after his acquittal?",
+  "paragraphs": [
+    "Nicholas Bindle",
+    "Were you not ashamed, fellow citizens, When my estate was probated and everyone knew How small a fortune I left?- You who hounded me in life, To give, give, give to the churches, to the poor, To the village!-me who had already given much. And think you not I did not know That the pipe-organ, which I gave to the church, Played its christening songs when Deacon Rhodes, Who broke and all but ruined me, Worshipped for the first time after his acquittal?"
+  ],
+  "wordCount": 86,
+  "characterCount": 471,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 3,
+  "morseCharacterEstimate": 2548,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Nicholas Bindle Were you not ashamed, fellow citizens, When my estate was probated and everyone knew How small a fortune I left?- You who hounded me in life, T...",
+  "sourceOffsets": {
+    "start": 34511,
+    "end": 35003
+  }
+}

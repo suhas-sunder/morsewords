@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-171",
+  "kind": "poem",
+  "label": "Hildrup Tubbs",
+  "title": null,
+  "order": 171,
+  "includeByDefault": true,
+  "displayText": "Hildrup Tubbs\n\n\nI made two fights for the people.\nFirst I left my party, bearing the gonfalon\nOf independence, for reform, and was defeated.\nNext I used my rebel strength\nTo capture the standard of my old party-\nAnd I captured it, but I was defeated.\nDiscredited and discarded, misanthropical,\nI turned to the solace of gold\nAnd I used my remnant of power\nTo fasten myself like a saprophyte\nUpon the putrescent carcass\nOf Thomas Rhodes, bankrupt bank,\nAs assignee of the fund.\nEveryone now turned from me.\nMy hair grew white,\nMy purple lusts grew gray,\nTobacco and whisky lost their savor\nAnd for years Death ignored me\nAs he does a hog.",
+  "morseSourceText": "Hildrup Tubbs\n\n\nI made two fights for the people.\nFirst I left my party, bearing the gonfalon\nOf independence, for reform, and was defeated.\nNext I used my rebel strength\nTo capture the standard of my old party-\nAnd I captured it, but I was defeated.\nDiscredited and discarded, misanthropical,\nI turned to the solace of gold\nAnd I used my remnant of power\nTo fasten myself like a saprophyte\nUpon the putrescent carcass\nOf Thomas Rhodes, bankrupt bank,\nAs assignee of the fund.\nEveryone now turned from me.\nMy hair grew white,\nMy purple lusts grew gray,\nTobacco and whisky lost their savor\nAnd for years Death ignored me\nAs he does a hog.",
+  "paragraphs": [
+    "Hildrup Tubbs",
+    "I made two fights for the people. First I left my party, bearing the gonfalon Of independence, for reform, and was defeated. Next I used my rebel strength To capture the standard of my old party- And I captured it, but I was defeated. Discredited and discarded, misanthropical, I turned to the solace of gold And I used my remnant of power To fasten myself like a saprophyte Upon the putrescent carcass Of Thomas Rhodes, bankrupt bank, As assignee of the fund. Everyone now turned from me. My hair grew white, My purple lusts grew gray, Tobacco and whisky lost their savor And for years Death ignored me As he does a hog."
+  ],
+  "wordCount": 115,
+  "characterCount": 637,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 4,
+  "morseCharacterEstimate": 3416,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Hildrup Tubbs I made two fights for the people. First I left my party, bearing the gonfalon Of independence, for reform, and was defeated. Next I used my rebel...",
+  "sourceOffsets": {
+    "start": 128578,
+    "end": 129244
+  }
+}

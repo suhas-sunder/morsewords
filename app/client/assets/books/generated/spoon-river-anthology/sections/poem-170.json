@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "spoon-river-anthology",
+  "sectionId": "poem-170",
+  "kind": "poem",
+  "label": "Shack Dye",
+  "title": null,
+  "order": 170,
+  "includeByDefault": true,
+  "displayText": "Shack Dye\n\n\nThe white men played all sorts of jokes on me.\nThey took big fish off my hook\nAnd put little ones on, while I was away\nGetting a stringer, and made me believe\nI hadn't seen aright the fish I had caught.\nWhen Burr Robbins circus came to town\nThey got the ring master to let a tame leopard\nInto the ring, and made me believe\nI was whipping a wild beast like Samson\nWhen I, for an offer of fifty dollars,\nDragged him out to his cage.\nOne time I entered my blacksmith shop\nAnd shook as I saw some horse-shoes crawling\nAcross the floor, as if alive-\nWalter Simmons had put a magnet\nUnder the barrel of water.\nYet everyone of you, you white men,\nWas fooled about fish and about leopards too,\nAnd you didn't know any more than the horse-shoes did\nWhat moved you about Spoon River.",
+  "morseSourceText": "Shack Dye\n\n\nThe white men played all sorts of jokes on me.\nThey took big fish off my hook\nAnd put little ones on, while I was away\nGetting a stringer, and made me believe\nI hadn't seen aright the fish I had caught.\nWhen Burr Robbins circus came to town\nThey got the ring master to let a tame leopard\nInto the ring, and made me believe\nI was whipping a wild beast like Samson\nWhen I, for an offer of fifty dollars,\nDragged him out to his cage.\nOne time I entered my blacksmith shop\nAnd shook as I saw some horse-shoes crawling\nAcross the floor, as if alive-\nWalter Simmons had put a magnet\nUnder the barrel of water.\nYet everyone of you, you white men,\nWas fooled about fish and about leopards too,\nAnd you didn't know any more than the horse-shoes did\nWhat moved you about Spoon River.",
+  "paragraphs": [
+    "Shack Dye",
+    "The white men played all sorts of jokes on me. They took big fish off my hook And put little ones on, while I was away Getting a stringer, and made me believe I hadn't seen aright the fish I had caught. When Burr Robbins circus came to town They got the ring master to let a tame leopard Into the ring, and made me believe I was whipping a wild beast like Samson When I, for an offer of fifty dollars, Dragged him out to his cage. One time I entered my blacksmith shop And shook as I saw some horse-shoes crawling Across the floor, as if alive- Walter Simmons had put a magnet Under the barrel of water. Yet everyone of you, you white men, Was fooled about fish and about leopards too, And you didn't know any more than the horse-shoes did What moved you about Spoon River."
+  ],
+  "wordCount": 153,
+  "characterCount": 785,
+  "estimatedTypingMinutes": 4,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 4182,
+  "unsupportedCharacterSummary": {},
+  "textPreview": "Shack Dye The white men played all sorts of jokes on me. They took big fish off my hook And put little ones on, while I was away Getting a stringer, and made m...",
+  "sourceOffsets": {
+    "start": 127761,
+    "end": 128576
+  }
+}
