@@ -14,7 +14,7 @@ const ROOT = process.cwd();
 const THEME_STORAGE_KEY = "morsewords-theme";
 const ALICE_SLUG = "alices-adventures-in-wonderland";
 
-type LibraryManifestBook = {
+type PublicManifestBook = {
   slug: string;
   source?: {
     processingAllowed?: boolean;
@@ -32,12 +32,12 @@ function approvedBookPathsFromManifest() {
         "client",
         "assets",
         "books",
-        "generated",
-        "library-manifest.json",
+        "cloudflare-export",
+        "public-manifest.json",
       ),
       "utf8",
     ),
-  ) as { books: LibraryManifestBook[] };
+  ) as { books: PublicManifestBook[] };
 
   return manifest.books
     .filter(

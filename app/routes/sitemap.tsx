@@ -430,7 +430,8 @@ const GROUPS: SitemapGroup[] = [
   },
   {
     title: "Site information",
-    description: "About MorseWords, contact details, and source notes.",
+    description:
+      "About MorseWords, contact details, source notes, and current policy pages.",
     links: [
       {
         label: "About",
@@ -442,6 +443,24 @@ const GROUPS: SitemapGroup[] = [
         to: ROUTES.contact,
         description:
           "Send MorseWords feedback, correction requests, bug reports, and classroom notes.",
+      },
+      {
+        label: "Privacy Policy",
+        to: ROUTES.privacy,
+        description:
+          "Read the current MorseWords privacy notes for tool input, browser storage, analytics, ads, and third-party services.",
+      },
+      {
+        label: "Terms of Use",
+        to: ROUTES.terms,
+        description:
+          "Review the basic terms for using MorseWords tools, learning pages, book/audio features, references, and printable pages.",
+      },
+      {
+        label: "Cookie Policy",
+        to: ROUTES.cookies,
+        description:
+          "See how MorseWords may use cookies, localStorage, saved settings, progress state, analytics, and ads.",
       },
       {
         label: "Sources",

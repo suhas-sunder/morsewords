@@ -41,6 +41,13 @@ const KEY_ALIAS_EXPECTATIONS = [
   [ROUTES.textToMorseVideoAlias, ROUTES.videoGenerator],
 ] as const;
 
+const TRUST_LINK_ROUTES = [
+  ROUTES.contact,
+  ROUTES.privacy,
+  ROUTES.terms,
+  ROUTES.cookies,
+] as const;
+
 const INTERNAL_LINK_EXPECTATIONS = [
   {
     source: ROUTES.home,
@@ -552,6 +559,9 @@ test.describe("final SEO schema sitemap and internal link audit", () => {
     for (const routePath of KEY_CANONICAL_ROUTES) {
       expect(locs, `${routePath} XML sitemap loc`).toContain(absoluteUrl(routePath));
     }
+    for (const routePath of TRUST_LINK_ROUTES) {
+      expect(locs, `${routePath} XML sitemap loc`).toContain(absoluteUrl(routePath));
+    }
     for (const aliasPath of REDIRECT_ALIAS_PATHS) {
       expect(locs, `${aliasPath} absent from XML sitemap`).not.toContain(
         absoluteUrl(aliasPath),
@@ -589,6 +599,13 @@ test.describe("final SEO schema sitemap and internal link audit", () => {
         40,
       );
     }
+    for (const routePath of TRUST_LINK_ROUTES) {
+      expect(linkPaths, `${routePath} HTML sitemap link`).toContain(routePath);
+      const link = links.find((item) => item.path === routePath);
+      expect(link?.text.length ?? 0, `${routePath} link has description text`).toBeGreaterThan(
+        40,
+      );
+    }
     for (const aliasPath of REDIRECT_ALIAS_PATHS) {
       expect(linkPaths, `${aliasPath} absent from HTML sitemap`).not.toContain(
         aliasPath,
@@ -599,6 +616,11 @@ test.describe("final SEO schema sitemap and internal link audit", () => {
     const records = jsonLd.flatMap(flattenJsonLd);
     const schemaText = JSON.stringify(records);
     for (const routePath of KEY_CANONICAL_ROUTES) {
+      expect(schemaText, `${routePath} HTML sitemap schema URL`).toContain(
+        absoluteUrl(routePath),
+      );
+    }
+    for (const routePath of TRUST_LINK_ROUTES) {
       expect(schemaText, `${routePath} HTML sitemap schema URL`).toContain(
         absoluteUrl(routePath),
       );
@@ -713,6 +735,12 @@ test.describe("final SEO schema sitemap and internal link audit", () => {
         dialog.locator(`a[href="${ROUTES.videoGenerator}"]`),
         `${testInfo.project.name} More menu video link`,
       );
+      for (const routePath of TRUST_LINK_ROUTES) {
+        await expect(
+          dialog.locator(`a[href="${routePath}"]`),
+          `${testInfo.project.name} More menu ${routePath} link`,
+        ).toBeVisible();
+      }
     } else {
       const mobileButton = page.getByRole("button", { name: "Open navigation" });
       const mobileDialog = page.getByRole("dialog", {
@@ -728,6 +756,12 @@ test.describe("final SEO schema sitemap and internal link audit", () => {
         mobileNav.locator(`a[href="${ROUTES.videoGenerator}"]`),
         `${testInfo.project.name} mobile video link`,
       );
+      for (const routePath of TRUST_LINK_ROUTES) {
+        await expect(
+          mobileNav.locator(`a[href="${routePath}"]`),
+          `${testInfo.project.name} mobile ${routePath} link`,
+        ).toBeVisible();
+      }
     }
 
     await gotoRoute(page, ROUTES.sitemap);

@@ -259,9 +259,29 @@ const MORE_GROUPS: NavGroup[] = [
         description: "Learn what the site is for and who it helps.",
       },
       {
+        label: "Contact",
+        href: ROUTES.contact,
+        description: "Send feedback, corrections, accessibility notes, and source concerns.",
+      },
+      {
         label: "Sources",
         href: ROUTES.sources,
         description: "Review reference approach and site notes.",
+      },
+      {
+        label: "Privacy",
+        href: ROUTES.privacy,
+        description: "Review how MorseWords describes tool input, storage, analytics, and ads.",
+      },
+      {
+        label: "Terms",
+        href: ROUTES.terms,
+        description: "Read the basic terms for using MorseWords tools and content.",
+      },
+      {
+        label: "Cookies",
+        href: ROUTES.cookies,
+        description: "See how cookies and browser storage may support preferences and progress.",
       },
       {
         label: "Sitemap",
