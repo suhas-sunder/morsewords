@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "slug": "the-elderbush",
-  "title": "Andersen's Fairy Tales",
+  "title": "The Elderbush",
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "6bdac4121a3dc227",
-  "contentHash": "6bdac4121a3dc227f1649db8ef471d662733041ee0d3c9522164964a5d7e3c34",
+  "contentVersion": "2e7b51fded5ba5cb",
+  "contentHash": "2e7b51fded5ba5cb0fcf70fcf557e4895d8b671f4f82073c16eee16aaa1aa6c4",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -31,14 +31,14 @@
   "cover": {
     "src": null,
     "placeholder": true,
-    "alt": "Placeholder cover for Andersen's Fairy Tales"
+    "alt": "Placeholder cover for The Elderbush"
   },
   "stats": {
-    "originalCharacterCount": 35525,
-    "cleanedCharacterCount": 16129,
-    "wordCount": 3014,
-    "sectionCount": 2,
-    "includedSectionCount": 0
+    "originalCharacterCount": 36269,
+    "cleanedCharacterCount": 16069,
+    "wordCount": 3007,
+    "sectionCount": 1,
+    "includedSectionCount": 1
   },
   "defaults": {
     "includeKinds": [
@@ -48,51 +48,30 @@
   },
   "sections": [
     {
-      "id": "part-001",
-      "kind": "part",
-      "label": "Part 1",
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "The Elderbush",
       "title": null,
       "order": 1,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 16065,
-      "wordCount": 3003,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 16069,
+      "wordCount": 3007,
       "estimatedTypingMinutes": 76,
       "estimatedListeningMinutes": 96,
-      "morseCharacterEstimate": 86132,
-      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet we..."
-    },
-    {
-      "id": "part-002",
-      "kind": "part",
-      "label": "Part 2",
-      "title": null,
-      "order": 2,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 62,
-      "wordCount": 11,
-      "estimatedTypingMinutes": 1,
-      "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 341,
-      "textPreview": "“In the tea-pot,” said his mother; “and there she may remain.”"
+      "morseCharacterEstimate": 86212,
+      "textPreview": "THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened..."
     }
   ],
   "cleaning": {
-    "originalCharacterCount": 35525,
-    "cleanedCharacterCount": 16129,
+    "originalCharacterCount": 36269,
+    "cleanedCharacterCount": 16069,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",
     "warnings": []
   },
   "warnings": [
-    "No chapter headings were detected; generated fallback parts instead.",
-    "Rights have not been reviewed; generated book is not publish-ready.",
-    "Rights basis \"unknown\" is not publish-ready.",
-    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
-    "Rights gate did not allow processed public story output.",
-    "Owner-reviewed website approval is missing.",
-    "Website publication is not allowed by the active approval path."
+    "Corrected by title/start/default-content audit 1 to use individual story identity and real default start."
   ]
 }

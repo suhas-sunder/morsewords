@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "slug": "the-shoes-of-fortune",
-  "title": "Andersen's Fairy Tales",
+  "title": "The Shoes of Fortune",
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "e6807307fe30d680",
-  "contentHash": "e6807307fe30d6806c09bffcf90ee1152576e9115656171f9d5798f291943e7c",
+  "contentVersion": "750c6ea1f9e37320",
+  "contentHash": "750c6ea1f9e3732068255c1f858de5504d60636d6a33571f181598efaeb2c603",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -31,14 +31,14 @@
   "cover": {
     "src": null,
     "placeholder": true,
-    "alt": "Placeholder cover for Andersen's Fairy Tales"
+    "alt": "Placeholder cover for The Shoes of Fortune"
   },
   "stats": {
-    "originalCharacterCount": 90171,
-    "cleanedCharacterCount": 70775,
-    "wordCount": 12709,
-    "sectionCount": 4,
-    "includedSectionCount": 0
+    "originalCharacterCount": 91927,
+    "cleanedCharacterCount": 70437,
+    "wordCount": 12698,
+    "sectionCount": 6,
+    "includedSectionCount": 6
   },
   "defaults": {
     "includeKinds": [
@@ -48,81 +48,105 @@
   },
   "sections": [
     {
-      "id": "part-001",
-      "kind": "part",
+      "id": "chapter-001",
+      "kind": "chapter",
       "label": "Part 1",
-      "title": null,
+      "title": "A Beginning",
       "order": 1,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 29519,
-      "wordCount": 5286,
-      "estimatedTypingMinutes": 133,
-      "estimatedListeningMinutes": 175,
-      "morseCharacterEstimate": 157332,
-      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SHOES OF FORTUNE I. A Beginning Every author has some peculiarity in his descriptions or in his style of..."
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 3643,
+      "wordCount": 649,
+      "estimatedTypingMinutes": 17,
+      "estimatedListeningMinutes": 22,
+      "morseCharacterEstimate": 19558,
+      "textPreview": "I. A Beginning Every author has some peculiarity in his descriptions or in his style of writing. Those who do not like him, magnify it, shrug up their shoulder..."
     },
     {
-      "id": "part-002",
-      "kind": "part",
+      "id": "chapter-002",
+      "kind": "chapter",
       "label": "Part 2",
-      "title": null,
+      "title": "What Happened to the Councillor",
       "order": 2,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 29978,
-      "wordCount": 5437,
-      "estimatedTypingMinutes": 136,
-      "estimatedListeningMinutes": 179,
-      "morseCharacterEstimate": 161085,
-      "textPreview": "“What's the hour, watchman?” asked a passer-by. But when the watchman gave no reply, the merry roysterer, who was now returning home from a noisy drinking bout..."
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 14301,
+      "wordCount": 2548,
+      "estimatedTypingMinutes": 64,
+      "estimatedListeningMinutes": 86,
+      "morseCharacterEstimate": 77002,
+      "textPreview": "II. What Happened to the Councillor It was late; Councillor Knap, deeply occupied with the times of King Hans, intended to go home, and malicious Fate managed..."
     },
     {
-      "id": "part-003",
-      "kind": "part",
+      "id": "chapter-003",
+      "kind": "chapter",
       "label": "Part 3",
-      "title": null,
+      "title": "The Watchman's Adventure",
       "order": 3,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-003.json",
-      "characterCount": 10983,
-      "wordCount": 1929,
-      "estimatedTypingMinutes": 49,
-      "estimatedListeningMinutes": 66,
-      "morseCharacterEstimate": 58954,
-      "textPreview": "“Spare us your elegiac tones,” said the Parrot giggling. “Rather speak of something at which one may laugh heartily. Laughing is an infallible sign of the high..."
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 13251,
+      "wordCount": 2430,
+      "estimatedTypingMinutes": 61,
+      "estimatedListeningMinutes": 79,
+      "morseCharacterEstimate": 70746,
+      "textPreview": "III. The Watchman's Adventure \"Why, there is a pair of galoshes, as sure as I'm alive!\" said the watchman, awaking from a gentle slumber. \"They belong no doubt..."
     },
     {
-      "id": "part-004",
-      "kind": "part",
+      "id": "chapter-004",
+      "kind": "chapter",
       "label": "Part 4",
-      "title": null,
+      "title": "A Moment of Head Importance--An Evening's \"Dramatic Readings\"--A Most Strange Journey",
       "order": 4,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-004.json",
-      "characterCount": 288,
-      "wordCount": 57,
-      "estimatedTypingMinutes": 2,
-      "estimatedListeningMinutes": 2,
-      "morseCharacterEstimate": 1544,
-      "textPreview": "And she took the Galoshes from his feet; his sleep of death was ended; and he who had been thus called back again to life arose from his dread couch in all the..."
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 11891,
+      "wordCount": 2160,
+      "estimatedTypingMinutes": 54,
+      "estimatedListeningMinutes": 71,
+      "morseCharacterEstimate": 63764,
+      "textPreview": "IV. A Moment of Head Importance--An Evening's \"Dramatic Readings\"--A Most Strange Journey Every inhabitant of Copenhagen knows, from personal inspection, how t..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Part 5",
+      "title": "Metamorphosis of the Copying-Clerk",
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 17866,
+      "wordCount": 3246,
+      "estimatedTypingMinutes": 82,
+      "estimatedListeningMinutes": 108,
+      "morseCharacterEstimate": 96427,
+      "textPreview": "V. Metamorphosis of the Copying-Clerk The watchman, whom we have certainly not forgotten, thought meanwhile of the galoshes he had found and taken with him to..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Part 6",
+      "title": "The Best That the Galoshes Gave",
+      "order": 6,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-006.json",
+      "characterCount": 9485,
+      "wordCount": 1665,
+      "estimatedTypingMinutes": 42,
+      "estimatedListeningMinutes": 57,
+      "morseCharacterEstimate": 51025,
+      "textPreview": "VI. The Best That the Galoshes Gave The following day, early in the morning, while the Clerk was still in bed, someone knocked at his door. It was his neighbor..."
     }
   ],
   "cleaning": {
-    "originalCharacterCount": 90171,
-    "cleanedCharacterCount": 70775,
+    "originalCharacterCount": 91927,
+    "cleanedCharacterCount": 70437,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",
     "warnings": []
   },
   "warnings": [
-    "No chapter headings were detected; generated fallback parts instead.",
-    "Rights have not been reviewed; generated book is not publish-ready.",
-    "Rights basis \"unknown\" is not publish-ready.",
-    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
-    "Rights gate did not allow processed public story output.",
-    "Owner-reviewed website approval is missing.",
-    "Website publication is not allowed by the active approval path."
+    "Corrected by title/start/default-content audit 1 to use individual story identity and real default start."
   ]
 }

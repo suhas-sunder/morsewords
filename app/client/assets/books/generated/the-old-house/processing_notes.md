@@ -1,12 +1,13 @@
-# the-old-house
+# The Old House
 
-Processed by pilot write pass 5.
+Corrected by title/start/default-content audit 1.
 
 - Source: app/client/assets/temp-books/The Old House.txt
-- Start boundary: line 44 (The Old House is the first story heading after the Gutenberg header and collection title.)
-- End boundary: line 1932 (The final story in this source file ends before the Project Gutenberg footer.)
-- Structural convention: Andersen story collection headings
-- Sections after correction: 9
-- Final recommendation: accepted for review
+- Correction: generated title and default-start correction
+- Removed: parent collection title/byline removed from default playback; unrelated later Andersen stories removed from this individual story output
+- Before title: Andersen's Fairy Tales
+- After title: The Old House
+- Before first default: chapter-001 The Old House
+- After first default: chapter-001 The Old House
 
-This output is intentionally review-gated before larger batch processing or Cloudflare export.
+This output remains review-gated before Cloudflare export regeneration.

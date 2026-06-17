@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "slug": "the-fir-tree",
-  "title": "Andersen's Fairy Tales",
+  "title": "The Fir Tree",
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "d05fb6270fdc899f",
-  "contentHash": "d05fb6270fdc899f868027b2f3b41ced2ae9fd9e9a7c2577a0d305c9798d5ec9",
+  "contentVersion": "38ccf7727edeb19b",
+  "contentHash": "38ccf7727edeb19b4a874ef25e7014b7effe6bc48db87f6d000eef4d5cdc21a0",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -31,14 +31,14 @@
   "cover": {
     "src": null,
     "placeholder": true,
-    "alt": "Placeholder cover for Andersen's Fairy Tales"
+    "alt": "Placeholder cover for The Fir Tree"
   },
   "stats": {
-    "originalCharacterCount": 36671,
-    "cleanedCharacterCount": 17275,
-    "wordCount": 3232,
-    "sectionCount": 2,
-    "includedSectionCount": 0
+    "originalCharacterCount": 37448,
+    "cleanedCharacterCount": 17223,
+    "wordCount": 3225,
+    "sectionCount": 1,
+    "includedSectionCount": 1
   },
   "defaults": {
     "includeKinds": [
@@ -48,51 +48,30 @@
   },
   "sections": [
     {
-      "id": "part-001",
-      "kind": "part",
-      "label": "Part 1",
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "The Fir Tree",
       "title": null,
       "order": 1,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 17016,
-      "wordCount": 3180,
-      "estimatedTypingMinutes": 80,
-      "estimatedListeningMinutes": 102,
-      "morseCharacterEstimate": 91186,
-      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun sho..."
-    },
-    {
-      "id": "part-002",
-      "kind": "part",
-      "label": "Part 2",
-      "title": null,
-      "order": 2,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 257,
-      "wordCount": 52,
-      "estimatedTypingMinutes": 2,
-      "estimatedListeningMinutes": 2,
-      "morseCharacterEstimate": 1374,
-      "textPreview": "The boys played about in the court, and the youngest wore the gold star on his breast which the Tree had had on the happiest evening of his life. However, that..."
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 17223,
+      "wordCount": 3225,
+      "estimatedTypingMinutes": 81,
+      "estimatedListeningMinutes": 103,
+      "morseCharacterEstimate": 92299,
+      "textPreview": "THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun shone on him: as to fresh air, there was enough of th..."
     }
   ],
   "cleaning": {
-    "originalCharacterCount": 36671,
-    "cleanedCharacterCount": 17275,
+    "originalCharacterCount": 37448,
+    "cleanedCharacterCount": 17223,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",
     "warnings": []
   },
   "warnings": [
-    "No chapter headings were detected; generated fallback parts instead.",
-    "Rights have not been reviewed; generated book is not publish-ready.",
-    "Rights basis \"unknown\" is not publish-ready.",
-    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
-    "Rights gate did not allow processed public story output.",
-    "Owner-reviewed website approval is missing.",
-    "Website publication is not allowed by the active approval path."
+    "Corrected by title/start/default-content audit 1 to use individual story identity and real default start."
   ]
 }

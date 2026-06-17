@@ -1,12 +1,9 @@
-# the-swineherd
+# The Swineherd
 
-Processed by pilot write pass 5.
+Corrected by title/start/default-content audit 1.
 
 - Source: app/client/assets/temp-books/The Swineherd.txt
-- Start boundary: line 43 (The Swineherd is the first and only story heading after the Gutenberg header and collection title.)
-- End boundary: line 249 (The story closes before the Project Gutenberg footer/license block.)
-- Structural convention: single Andersen story
-- Sections after correction: 1
-- Final recommendation: accepted for review
+- Correction: generated title correction
+- Default section content was retained; it already starts at the individual story/work.
 
-This output is intentionally review-gated before larger batch processing or Cloudflare export.
+This output remains review-gated before Cloudflare export regeneration.

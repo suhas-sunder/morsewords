@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "slug": "the-bell",
-  "title": "Andersen's Fairy Tales",
+  "title": "The Bell",
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "26e487e055059310",
-  "contentHash": "26e487e0550593107eddc9a0554a052e58b7d28246c62a12505574f21ac8fe50",
+  "contentVersion": "41168f6c6a16f1c3",
+  "contentHash": "41168f6c6a16f1c3db29ddb9f09ea9c33d45dc46413d14952934a86eee6d9996",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -31,14 +31,14 @@
   "cover": {
     "src": null,
     "placeholder": true,
-    "alt": "Placeholder cover for Andersen's Fairy Tales"
+    "alt": "Placeholder cover for The Bell"
   },
   "stats": {
-    "originalCharacterCount": 46266,
-    "cleanedCharacterCount": 26870,
-    "wordCount": 5039,
-    "sectionCount": 2,
-    "includedSectionCount": 0
+    "originalCharacterCount": 47202,
+    "cleanedCharacterCount": 10738,
+    "wordCount": 2025,
+    "sectionCount": 1,
+    "includedSectionCount": 1
   },
   "defaults": {
     "includeKinds": [
@@ -48,51 +48,30 @@
   },
   "sections": [
     {
-      "id": "part-001",
-      "kind": "part",
-      "label": "Part 1",
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "The Bell",
       "title": null,
       "order": 1,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 25428,
-      "wordCount": 4775,
-      "estimatedTypingMinutes": 120,
-      "estimatedListeningMinutes": 152,
-      "morseCharacterEstimate": 136059,
-      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet we..."
-    },
-    {
-      "id": "part-002",
-      "kind": "part",
-      "label": "Part 2",
-      "title": null,
-      "order": 2,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 1440,
-      "wordCount": 264,
-      "estimatedTypingMinutes": 7,
-      "estimatedListeningMinutes": 9,
-      "morseCharacterEstimate": 7728,
-      "textPreview": "And he seized hold of the creeping-plants, and the roots of trees--climbed up the moist stones where the water-snakes were writhing and the toads were croaking..."
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 10738,
+      "wordCount": 2025,
+      "estimatedTypingMinutes": 51,
+      "estimatedListeningMinutes": 64,
+      "morseCharacterEstimate": 57307,
+      "textPreview": "THE BELL People said \"The Evening Bell is sounding, the sun is setting.\" For a strange wondrous tone was heard in the narrow streets of a large town. It was li..."
     }
   ],
   "cleaning": {
-    "originalCharacterCount": 46266,
-    "cleanedCharacterCount": 26870,
+    "originalCharacterCount": 47202,
+    "cleanedCharacterCount": 10738,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",
     "warnings": []
   },
   "warnings": [
-    "No chapter headings were detected; generated fallback parts instead.",
-    "Rights have not been reviewed; generated book is not publish-ready.",
-    "Rights basis \"unknown\" is not publish-ready.",
-    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
-    "Rights gate did not allow processed public story output.",
-    "Owner-reviewed website approval is missing.",
-    "Website publication is not allowed by the active approval path."
+    "Corrected by title/start/default-content audit 1 to use individual story identity and real default start."
   ]
 }

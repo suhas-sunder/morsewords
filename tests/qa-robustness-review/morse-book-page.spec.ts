@@ -22,6 +22,7 @@ const ROOM_13_SLUG = "room-13";
 const SUN_TZU_ON_THE_ART_OF_WAR_SLUG = "sun-tzu-on-the-art-of-war";
 const THE_COUNT_OF_MONTE_CRISTO_SLUG = "the-count-of-monte-cristo";
 const THE_HAPPY_FAMILY_SLUG = "the-happy-family";
+const THE_ELDERBUSH_SLUG = "the-elderbush";
 const ALICE_PUBLIC_PATH = `/morse-code-books/${ALICE_SLUG}`;
 const APPROVED_BOOK_PUBLIC_PATH = `/morse-code-books/${APPROVED_BOOK_SLUG}`;
 const NETWORK_BOOK_PUBLIC_PATH = `/morse-code-books/${NETWORK_BOOK_SLUG}`;
@@ -41,6 +42,8 @@ const THE_COUNT_OF_MONTE_CRISTO_PREVIEW_PATH =
   `/morse-code-books/${THE_COUNT_OF_MONTE_CRISTO_SLUG}?preview=unpublished`;
 const THE_HAPPY_FAMILY_PREVIEW_PATH =
   `/morse-code-books/${THE_HAPPY_FAMILY_SLUG}?preview=unpublished`;
+const THE_ELDERBUSH_PREVIEW_PATH =
+  `/morse-code-books/${THE_ELDERBUSH_SLUG}?preview=unpublished`;
 const ALICE_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${ALICE_SLUG}`;
 const APPROVED_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${APPROVED_BOOK_SLUG}`;
 const NETWORK_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${NETWORK_BOOK_SLUG}`;
@@ -1207,6 +1210,125 @@ test.describe("Morse book page foundation", () => {
       page.locator("[data-mw-morse-book-translator-source-sections]"),
     ).not.toHaveAttribute("data-mw-morse-book-translator-source-sections", "");
     expect(bookJsonRequests).toHaveLength(1);
+  });
+
+  test("keeps selected Call of the Wild source preview at Chapter 1 despite saved progress", async ({
+    page,
+  }) => {
+    const defaultSectionIds = readPublicDefaultSectionIds(STALE_CACHE_BOOK_SLUG);
+    const content = readJson<TestBookContentFixture>(
+      `app/client/assets/books/cloudflare-export/books/${STALE_CACHE_BOOK_SLUG}.json`,
+    );
+    expect(defaultSectionIds[0]).toBe("chapter-001");
+    expect(defaultSectionIds).toContain("chapter-002");
+
+    await page.addInitScript(
+      ({ contentHash, contentVersion, defaultIds, prefix, runtimeKey, slug }) => {
+        Object.keys(localStorage)
+          .filter((key) => key.startsWith(`${prefix}${slug}:`))
+          .forEach((key) => localStorage.removeItem(key));
+        localStorage.setItem(
+          runtimeKey,
+          JSON.stringify({
+            schemaVersion: 1,
+            slug,
+            contentVersion,
+            contentHash,
+            selectionMode: "default",
+            selectedSectionIds: defaultIds,
+            exportSettings: {},
+            videoSettings: {},
+            livePlayer: {
+              activeSectionId: "chapter-002",
+              activeSegmentIndex: 5,
+              elapsedMs: 120_000,
+              completedSectionIds: ["chapter-001"],
+            },
+          }),
+        );
+      },
+      {
+        contentHash: content.manifest.contentHash,
+        contentVersion: content.manifest.contentVersion,
+        defaultIds: defaultSectionIds,
+        prefix: BOOK_RUNTIME_SETTINGS_KEY_PREFIX,
+        runtimeKey: readPublicBookRuntimeSettingsKey(STALE_CACHE_BOOK_SLUG),
+        slug: STALE_CACHE_BOOK_SLUG,
+      },
+    );
+
+    await openPublicBook(page, STALE_CACHE_BOOK_PUBLIC_PATH);
+
+    await expectSelectedBookSectionIds(page, defaultSectionIds);
+    await expect(
+      page.locator("[data-mw-morse-book-translator-source-sections]"),
+    ).toHaveAttribute(
+      "data-mw-morse-book-translator-source-sections",
+      defaultSectionIds.join(","),
+    );
+
+    const sourcePreview = page.locator("[data-mw-morse-book-source-preview]");
+    await expect(sourcePreview).toContainText("Chapter I. Into the Primitive");
+    await expect(sourcePreview).not.toContainText(
+      "Chapter II. The Law of Club and Fang",
+    );
+    expect(
+      normalizedPreviewText((await sourcePreview.textContent()) ?? "").startsWith(
+        "Chapter I. Into the Primitive",
+      ),
+    ).toBe(true);
+
+    await sourcePreview.evaluate((element) => {
+      element.scrollTop = element.scrollHeight;
+    });
+    await page.locator("[data-mw-morse-book-section-select='chapter-002']").uncheck();
+    await expect(
+      page.locator("[data-mw-morse-book-translator-source-sections]"),
+    ).toHaveAttribute(
+      "data-mw-morse-book-translator-source-sections",
+      defaultSectionIds.filter((id) => id !== "chapter-002").join(","),
+    );
+    await expect
+      .poll(() => sourcePreview.evaluate((element) => element.scrollTop))
+      .toBe(0);
+    expect(
+      normalizedPreviewText((await sourcePreview.textContent()) ?? "").startsWith(
+        "Chapter I. Into the Primitive",
+      ),
+    ).toBe(true);
+  });
+
+  test("uses individual Elderbush title and default story start", async ({
+    page,
+  }) => {
+    expect(readGeneratedDefaultSectionIds(THE_ELDERBUSH_SLUG)).toEqual([
+      "chapter-001",
+    ]);
+
+    await removeBookRuntimeSettings(page, THE_ELDERBUSH_SLUG);
+    await openGeneratedBookPreview(page, THE_ELDERBUSH_PREVIEW_PATH);
+
+    await expect(page.locator("h1")).toContainText("The Elderbush");
+    await expectSelectedBookSectionIds(page, ["chapter-001"]);
+    await expect(
+      page.locator("[data-mw-morse-book-translator-source-sections]"),
+    ).toHaveAttribute(
+      "data-mw-morse-book-translator-source-sections",
+      "chapter-001",
+    );
+
+    const sourcePreview = page.locator("[data-mw-morse-book-source-preview]");
+    await expect(sourcePreview).toContainText("THE ELDERBUSH");
+    await expect(sourcePreview).toContainText(
+      "Once upon a time there was a little boy",
+    );
+    await expect(sourcePreview).not.toContainText("ANDERSEN'S FAIRY TALES");
+    await expect(sourcePreview).not.toContainText("By Hans Christian Andersen");
+    expect(
+      normalizedPreviewText((await sourcePreview.textContent()) ?? "").startsWith(
+        "THE ELDERBUSH Once upon a time",
+      ),
+    ).toBe(true);
   });
 
   test("renders a public book shell from the per-book preview while full data is pending", async ({

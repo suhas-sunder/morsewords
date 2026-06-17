@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "the-leap-frog",
-  "title": "Andersen's Fairy Tales",
+  "title": "The Leap-Frog",
   "author": "H. C. Andersen",
-  "content_version": "40ef802bc05a7172",
-  "content_hash": "40ef802bc05a717287357202e4eebc9100c3b285460772252ece7e18c49e07b6",
+  "content_version": "6b0e42b8ae5a10e6",
+  "content_hash": "6b0e42b8ae5a10e69eb419ab19cf681d053daa6a0f5c51c28f23946038bbdd5c",
   "source": {
     "name": "Project Gutenberg",
     "ebook_number": "1597",
@@ -12,17 +12,34 @@
     "raw_text_url": null,
     "original_publication": "",
     "release_date": "January 1, 1999",
-    "last_updated": "March 14, 2018"
+    "last_updated": ""
   },
   "rights": {
     "status": "approved",
-    "approved_for_website": false,
+    "approved_for_website": true,
     "approved_for_youtube_narration": false,
-    "approved_regions": [],
+    "approved_regions": [
+      "US"
+    ],
     "needs_manual_review": false,
-    "notes": "Original publication metadata was not found. Original publication year is missing or not before 1931. Author death year is missing from approved metadata or clear source metadata. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate. Duplicate Gutenberg ID requires explicit review before processing or publishing."
+    "notes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
   },
   "content": {
-    "chapters": []
+    "chapters": [
+      {
+        "chapter_number": 1,
+        "title": "The Leap-Frog",
+        "sections": [
+          {
+            "section_number": 1,
+            "text": "THE LEAP-FROG\n\nA Flea, a Grasshopper, and a Leap-frog once wanted to see which could\njump highest; and they invited the whole world, and everybody else\nbesides who chose to come to see the festival. Three famous jumpers were\nthey, as everyone would say, when they all met together in the room.\n\n\"I will give my daughter to him who jumps highest,\" exclaimed the King;\n\"for it is not so amusing where there is no prize to jump for.\"\n\nThe Flea was the first to step forward. He had exquisite manners, and\nbowed to the company on all sides; for he had noble blood, and was,\nmoreover, accustomed to the society of man alone; and that makes a great\ndifference.\n\nThen came the Grasshopper. He was considerably heavier, but he was\nwell-mannered, and wore a green uniform, which he had by right of birth;\nhe said, moreover, that he belonged to a very ancient Egyptian family,\nand that in the house where he then was, he was thought much of. The\nfact was, he had been just brought out of the fields, and put in a\npasteboard house, three stories high, all made of court-cards, with the\ncolored side inwards; and doors and windows cut out of the body of\nthe Queen of Hearts. \"I sing so well,\" said he, \"that sixteen native\ngrasshoppers who have chirped from infancy, and yet got no house built\nof cards to live in, grew thinner than they were before for sheer\nvexation when they heard me.\"\n\nIt was thus that the Flea and the Grasshopper gave an account of\nthemselves, and thought they were quite good enough to marry a Princess.\n\nThe Leap-frog said nothing; but people gave it as their opinion, that\nhe therefore thought the more; and when the housedog snuffed at him\nwith his nose, he confessed the Leap-frog was of good family. The old\ncouncillor, who had had three orders given him to make him hold his\ntongue, asserted that the Leap-frog was a prophet; for that one could\nsee on his back, if there would be a severe or mild winter, and that\nwas what one could not see even on the back of the man who writes the\nalmanac.\n\n\"I say nothing, it is true,\" exclaimed the King; \"but I have my own\nopinion, notwithstanding.\"\n\nNow the trial was to take place. The Flea jumped so high that nobody\ncould see where he went to; so they all asserted he had not jumped at\nall; and that was dishonorable.\n\nThe Grasshopper jumped only half as high; but he leaped into the King's\nface, who said that was ill-mannered.\n\nThe Leap-frog stood still for a long time lost in thought; it was\nbelieved at last he would not jump at all.\n\n\"I only hope he is not unwell,\" said the house-dog; when, pop! he made a\njump all on one side into the lap of the Princess, who was sitting on a\nlittle golden stool close by.\n\nHereupon the King said, \"There is nothing above my daughter; therefore\nto bound up to her is the highest jump that can be made; but for this,\none must possess understanding, and the Leap-frog has shown that he has\nunderstanding. He is brave and intellectual.\"\n\nAnd so he won the Princess.\n\n\"It's all the same to me,\" said the Flea. \"She may have the old\nLeap-frog, for all I care. I jumped the highest; but in this world\nmerit seldom meets its reward. A fine exterior is what people look at\nnow-a-days.\"\n\nThe Flea then went into foreign service, where, it is said, he was\nkilled.\n\nThe Grasshopper sat without on a green bank, and reflected on worldly\nthings; and he said too, \"Yes, a fine exterior is everything--a fine\nexterior is what people care about.\" And then he began chirping his\npeculiar melancholy song, from which we have taken this history; and\nwhich may, very possibly, be all untrue, although it does stand here\nprinted in black and white.",
+            "word_count": 671,
+            "character_count": 3631,
+            "estimated_typing_minutes": 17,
+            "estimated_listening_minutes": 22
+          }
+        ]
+      }
+    ]
   }
 }

@@ -1,12 +1,9 @@
-# the-snow-queen
+# The Snow Queen
 
-Processed by pilot write pass 5.
+Corrected by title/start/default-content audit 1.
 
 - Source: app/client/assets/temp-books/THE SNOW QUEEN.txt
-- Start boundary: line 140 (Story the First is the first main Snow Queen section after title, copyright, preface, and wrapper title.)
-- End boundary: line 1317 (The seventh story ends at the final summer paragraph before trailing blanks.)
-- Structural convention: seven titled story parts
-- Sections after correction: 7
-- Final recommendation: accepted for review
+- Correction: generated title correction
+- Default section content was retained; it already starts at the individual story/work.
 
-This output is intentionally review-gated before larger batch processing or Cloudflare export.
+This output remains review-gated before Cloudflare export regeneration.

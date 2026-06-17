@@ -1,6 +1,6 @@
 # Book Startup Preview Audit 1
 
-Generated at: 2026-06-17T22:09:38.406Z
+Generated at: 2026-06-17T23:46:18.958Z
 
 ## Summary
 
@@ -61,33 +61,33 @@ Generated at: 2026-06-17T22:09:38.406Z
 | tarzan-of-the-apes | valid | chapter-001 (chapter) | 28/28 | valid | none |
 | the-arabian-nights | valid | chapter-001 (chapter) | 17/17 | valid | none |
 | the-art-of-war | valid | chapter-001 (chapter) | 13/11 | valid | none |
-| the-bell | valid | part-001 (part) | 2/2 | valid | none |
+| the-bell | valid | chapter-001 (chapter) | 1/1 | valid | none |
 | the-book-of-dragons | valid | chapter-001 (chapter) | 8/8 | valid | none |
 | the-call-of-cthulhu | valid | chapter-001 (chapter) | 3/3 | valid | none |
 | the-call-of-the-wild | valid | chapter-001 (chapter) | 7/7 | valid | none |
 | the-count-of-monte-cristo | valid | chapter-001 (chapter) | 117/117 | valid | none |
 | the-count-of-monte-cristo-gutenberg-1184 | valid | chapter-001 (chapter) | 117/117 | valid | none |
 | the-divine-comedy | valid | poem-001 (poem) | 100/100 | valid | none |
-| the-elderbush | valid | part-001 (part) | 1/1 | valid | none |
+| the-elderbush | valid | chapter-001 (chapter) | 1/1 | valid | none |
 | the-elements-of-style | valid | part-001 (part) | 25/24 | valid | none |
 | the-emerald-city-of-oz | valid | chapter-001 (chapter) | 30/29 | valid | none |
-| the-emperor-s-new-clothes | valid | part-001 (part) | 2/2 | valid | none |
+| the-emperor-s-new-clothes | valid | chapter-001 (chapter) | 1/1 | valid | none |
 | the-federalist-papers | valid | chapter-001 (chapter) | 86/86 | valid | none |
-| the-fir-tree | valid | part-001 (part) | 2/2 | valid | none |
+| the-fir-tree | valid | chapter-001 (chapter) | 1/1 | valid | none |
 | the-great-gatsby | valid | part-002 (part) | 10/10 | valid | none |
 | the-happy-family | valid | chapter-001 (chapter) | 1/1 | valid | none |
 | the-jungle-book | valid | chapter-001 (chapter) | 14/14 | valid | none |
-| the-leap-frog | valid | part-001 (part) | 2/2 | valid | none |
+| the-leap-frog | valid | chapter-001 (chapter) | 1/1 | valid | none |
 | the-legend-of-sleepy-hollow | valid | chapter-001 (chapter) | 2/2 | valid | none |
-| the-old-house | valid | chapter-001 (chapter) | 9/9 | valid | none |
+| the-old-house | valid | chapter-001 (chapter) | 1/1 | valid | none |
 | the-picture-of-dorian-gray | valid | chapter-001 (chapter) | 21/21 | valid | none |
 | the-princess-and-the-goblin | valid | chapter-001 (chapter) | 32/32 | valid | none |
 | the-railway-children | valid | chapter-001 (chapter) | 14/14 | valid | none |
-| the-real-princess | valid | part-001 (part) | 1/1 | valid | none |
+| the-real-princess | valid | chapter-001 (chapter) | 1/1 | valid | none |
 | the-sea-wolf | valid | chapter-001 (chapter) | 39/39 | valid | none |
 | the-secret-garden | valid | chapter-001 (chapter) | 27/27 | valid | none |
 | the-secret-garden-gutenberg-113 | valid | chapter-001 (chapter) | 28/28 | valid | none |
-| the-shoes-of-fortune | valid | part-001 (part) | 4/4 | valid | none |
+| the-shoes-of-fortune | valid | chapter-001 (chapter) | 6/6 | valid | none |
 | the-snow-queen | valid | chapter-001 (chapter) | 7/7 | valid | none |
 | the-swineherd | valid | chapter-001 (chapter) | 1/1 | valid | none |
 | the-thirty-nine-steps | valid | chapter-001 (chapter) | 10/10 | valid | none |

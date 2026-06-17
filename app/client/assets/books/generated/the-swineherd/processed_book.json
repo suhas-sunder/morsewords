@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "the-swineherd",
-  "title": "Andersen's Fairy Tales",
+  "title": "The Swineherd",
   "author": "H. C. Andersen",
-  "content_version": "c36c34ceaa99ed5f",
-  "content_hash": "c36c34ceaa99ed5ff1e1a91f4160e41d5649d02f00f35c4ac7755748b4e8438c",
+  "content_version": "d4a91ec198bbdf77",
+  "content_hash": "d4a91ec198bbdf77decd2bf231c64c72190bd8b89625b0717e5a78a270fcfa75",
   "source": {
     "name": "Project Gutenberg",
     "ebook_number": "1597",

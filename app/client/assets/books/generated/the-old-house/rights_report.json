@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "title": "Andersen's Fairy Tales",
+  "title": "The Old House",
   "author": "H. C. Andersen",
   "author_death_year": null,
   "language": "English",
@@ -41,7 +41,7 @@
   "approval_source": "external-authority",
   "duplicate_resolution_source": "manual-review",
   "canada_us_v1_status": "approved",
-  "reasoning_summary": "Controlled pilot write pass 5 used source-backed boundaries from dry-run batch 5 review and did not modify raw sources or Cloudflare exports.",
+  "reasoning_summary": "Title/start-default audit corrected generated story identity and excluded parent collection metadata from default playback.",
   "evidence_snippets": [
     "Gutenberg license: whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of",
     "U.S. reuse language: Project Gutenberg eBook of Andersen's Fairy Tales This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under",

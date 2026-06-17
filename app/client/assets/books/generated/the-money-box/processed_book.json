@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "the-money-box",
-  "title": "Hans Andersen's Fairy Tales. First Series",
+  "title": "The Money Box",
   "author": "H. C. Andersen",
-  "content_version": "82448474f31e0038",
-  "content_hash": "82448474f31e0038320172333c6f440d6fc335b512c7276700363ad57fb1991e",
+  "content_version": "40adeecb2e1e44ce",
+  "content_hash": "40adeecb2e1e44ce781fa0f289a35ff71683d3db7d1c61dcc26b055156cbeefb",
   "source": {
     "name": "Project Gutenberg",
     "ebook_number": "32571",

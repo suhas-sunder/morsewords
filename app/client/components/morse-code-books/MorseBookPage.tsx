@@ -550,8 +550,7 @@ function createSourceSectionsForExport(
   settings: BookExportSettings,
 ): BookSourceSection[] {
   let offset = 0;
-  return [...sections]
-    .sort((a, b) => a.order - b.order)
+  return sections
     .map((section) => {
       const rawText = applyExportPunctuationMode(section.morseSourceText, settings);
       const startOffset = offset;
@@ -1192,8 +1191,7 @@ function MorseBookWorkspace({
     () =>
       scopeSectionIds
         .map((id) => loadedSections.get(id))
-        .filter((section): section is MorseBookSectionJson => Boolean(section))
-        .sort((a, b) => a.order - b.order),
+        .filter((section): section is MorseBookSectionJson => Boolean(section)),
     [loadedSections, scopeSectionIds],
   );
   const scopeReady =
@@ -1203,6 +1201,8 @@ function MorseBookWorkspace({
     () => createBookTranslatorSourceFromSections(book, selectedScopeSections),
     [book, selectedScopeSections],
   );
+  const translatorSourceSectionSignature = translatorSource.sectionIds.join(",");
+  const sourcePreviewRef = React.useRef<HTMLPreElement | null>(null);
   const cleanedExportText = React.useMemo(
     () => applyExportPunctuationMode(translatorSource.sourceText, exportSettings),
     [exportSettings, translatorSource.sourceText],
@@ -1277,6 +1277,15 @@ function MorseBookWorkspace({
     morseResult.value,
     MORSE_OUTPUT_PREVIEW_LIMIT,
   );
+  React.useEffect(() => {
+    if (!sourcePreviewRef.current) return;
+    sourcePreviewRef.current.scrollTop = 0;
+  }, [
+    book.contentHash,
+    book.slug,
+    displayPreview.text,
+    translatorSourceSectionSignature,
+  ]);
   const audioPreview = React.useMemo(
     () => buildBookAudioPreview(cleanedExportText, exportSettings),
     [cleanedExportText, exportSettings],
@@ -2753,6 +2762,7 @@ function MorseBookWorkspace({
                 </div>
               ) : null}
               <pre
+                ref={sourcePreviewRef}
                 className="max-h-[24rem] overflow-auto whitespace-pre-wrap rounded-xl bg-white/90 p-4 font-mono text-sm leading-relaxed text-slate-950"
                 data-mw-morse-book-source-preview="true"
                 tabIndex={0}

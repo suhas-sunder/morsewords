@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "title": "The Lilac Fairy Book",
+  "title": "The Winning of Olwen",
   "author": "Andrew Lang",
   "author_death_year": null,
   "language": "English",
@@ -41,7 +41,7 @@
   "approval_source": "external-authority",
   "duplicate_resolution_source": "not-needed",
   "canada_us_v1_status": "approved",
-  "reasoning_summary": "Controlled pilot write pass 6 used audited Project Gutenberg public-domain source text after dry-run review. Generated output remains review-gated before any Cloudflare export.",
+  "reasoning_summary": "Title/start-default audit corrected generated story identity and excluded parent collection metadata from default playback.",
   "evidence_snippets": [
     "Project Gutenberg source URL: https://www.gutenberg.org/ebooks/3454",
     "No unresolved-source generated book was processed in this pass."

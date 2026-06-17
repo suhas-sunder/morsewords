@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "slug": "the-real-princess",
-  "title": "Andersen's Fairy Tales",
+  "title": "The Real Princess",
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "74623d7ca6769121",
-  "contentHash": "74623d7ca6769121902ef1cbb13d5746a9e7cb452c62ac83e326d1aa9df58ac1",
+  "contentVersion": "e8693cc00594094a",
+  "contentHash": "e8693cc00594094a47952bc9e804d0bc2b4905951b794c9e2bca02124c16d77b",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -31,14 +31,14 @@
   "cover": {
     "src": null,
     "placeholder": true,
-    "alt": "Placeholder cover for Andersen's Fairy Tales"
+    "alt": "Placeholder cover for The Real Princess"
   },
   "stats": {
-    "originalCharacterCount": 21645,
-    "cleanedCharacterCount": 2249,
-    "wordCount": 421,
-    "sectionCount": 2,
-    "includedSectionCount": 0
+    "originalCharacterCount": 22132,
+    "cleanedCharacterCount": 2197,
+    "wordCount": 414,
+    "sectionCount": 1,
+    "includedSectionCount": 1
   },
   "defaults": {
     "includeKinds": [
@@ -48,51 +48,30 @@
   },
   "sections": [
     {
-      "id": "part-001",
-      "kind": "part",
-      "label": "Part 1",
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "The Real Princess",
       "title": null,
       "order": 1,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-001.json",
-      "characterCount": 2211,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 2197,
       "wordCount": 414,
       "estimatedTypingMinutes": 11,
-      "estimatedListeningMinutes": 14,
-      "morseCharacterEstimate": 11734,
-      "textPreview": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princes..."
-    },
-    {
-      "id": "part-002",
-      "kind": "part",
-      "label": "Part 2",
-      "title": null,
-      "order": 2,
-      "includeByDefault": false,
-      "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 36,
-      "wordCount": 7,
-      "estimatedTypingMinutes": 1,
-      "estimatedListeningMinutes": 1,
-      "morseCharacterEstimate": 200,
-      "textPreview": "Wasn't this a lady of real delicacy?"
+      "estimatedListeningMinutes": 13,
+      "morseCharacterEstimate": 11673,
+      "textPreview": "THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princess. He travelled all over the world in hopes of fin..."
     }
   ],
   "cleaning": {
-    "originalCharacterCount": 21645,
-    "cleanedCharacterCount": 2249,
+    "originalCharacterCount": 22132,
+    "cleanedCharacterCount": 2197,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",
     "warnings": []
   },
   "warnings": [
-    "No chapter headings were detected; generated fallback parts instead.",
-    "Rights have not been reviewed; generated book is not publish-ready.",
-    "Rights basis \"unknown\" is not publish-ready.",
-    "Rights gate status is needs_manual_review; generated book is not publish-ready.",
-    "Rights gate did not allow processed public story output.",
-    "Owner-reviewed website approval is missing.",
-    "Website publication is not allowed by the active approval path."
+    "Corrected by title/start/default-content audit 1 to use individual story identity and real default start."
   ]
 }

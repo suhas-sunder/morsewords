@@ -413,13 +413,13 @@
     {
       "slug": "the-bell",
       "path": "/book-previews/the-bell.preview.json",
-      "contentVersion": "26e487e055059310",
-      "contentHash": "26e487e0550593107eddc9a0554a052e58b7d28246c62a12505574f21ac8fe50",
-      "defaultSectionId": "part-001",
-      "previewBytes": 11803,
-      "previewCharacterCount": 10702,
-      "estimatedRuntimeSeconds": 3838,
-      "truncated": true
+      "contentVersion": "41168f6c6a16f1c3",
+      "contentHash": "41168f6c6a16f1c3db29ddb9f09ea9c33d45dc46413d14952934a86eee6d9996",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11670,
+      "previewCharacterCount": 10738,
+      "estimatedRuntimeSeconds": 3821,
+      "truncated": false
     },
     {
       "slug": "the-book-of-dragons",
@@ -490,13 +490,13 @@
     {
       "slug": "the-elderbush",
       "path": "/book-previews/the-elderbush.preview.json",
-      "contentVersion": "6bdac4121a3dc227",
-      "contentHash": "6bdac4121a3dc227f1649db8ef471d662733041ee0d3c9522164964a5d7e3c34",
-      "defaultSectionId": "part-001",
-      "previewBytes": 11808,
-      "previewCharacterCount": 10702,
-      "estimatedRuntimeSeconds": 3837,
-      "truncated": true
+      "contentVersion": "2e7b51fded5ba5cb",
+      "contentHash": "2e7b51fded5ba5cb0fcf70fcf557e4895d8b671f4f82073c16eee16aaa1aa6c4",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 17212,
+      "previewCharacterCount": 16069,
+      "estimatedRuntimeSeconds": 5748,
+      "truncated": false
     },
     {
       "slug": "the-elements-of-style",
@@ -523,13 +523,13 @@
     {
       "slug": "the-emperor-s-new-clothes",
       "path": "/book-previews/the-emperor-s-new-clothes.preview.json",
-      "contentVersion": "746dfe7ca9ddc8d9",
-      "contentHash": "746dfe7ca9ddc8d9ea4d6e432a0010c06734490bf0e6d2d0b318887bb67c2fdf",
-      "defaultSectionId": "part-001",
-      "previewBytes": 11204,
-      "previewCharacterCount": 10090,
-      "estimatedRuntimeSeconds": 3616,
-      "truncated": true
+      "contentVersion": "40dfe20a297674ec",
+      "contentHash": "40dfe20a297674ec1dbd18a2b26ba11029be57dc2395e75a9e797b88ddab15ac",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11506,
+      "previewCharacterCount": 10477,
+      "estimatedRuntimeSeconds": 3747,
+      "truncated": false
     },
     {
       "slug": "the-federalist-papers",
@@ -545,13 +545,13 @@
     {
       "slug": "the-fir-tree",
       "path": "/book-previews/the-fir-tree.preview.json",
-      "contentVersion": "d05fb6270fdc899f",
-      "contentHash": "d05fb6270fdc899f868027b2f3b41ced2ae9fd9e9a7c2577a0d305c9798d5ec9",
-      "defaultSectionId": "part-001",
-      "previewBytes": 11872,
-      "previewCharacterCount": 10753,
-      "estimatedRuntimeSeconds": 3867,
-      "truncated": true
+      "contentVersion": "38ccf7727edeb19b",
+      "contentHash": "38ccf7727edeb19b4a874ef25e7014b7effe6bc48db87f6d000eef4d5cdc21a0",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 18441,
+      "previewCharacterCount": 17223,
+      "estimatedRuntimeSeconds": 6154,
+      "truncated": false
     },
     {
       "slug": "the-great-gatsby",
@@ -589,12 +589,12 @@
     {
       "slug": "the-leap-frog",
       "path": "/book-previews/the-leap-frog.preview.json",
-      "contentVersion": "40ef802bc05a7172",
-      "contentHash": "40ef802bc05a717287357202e4eebc9100c3b285460772252ece7e18c49e07b6",
-      "defaultSectionId": "part-001",
-      "previewBytes": 4173,
-      "previewCharacterCount": 3310,
-      "estimatedRuntimeSeconds": 1200,
+      "contentVersion": "6b0e42b8ae5a10e6",
+      "contentHash": "6b0e42b8ae5a10e69eb419ab19cf681d053daa6a0f5c51c28f23946038bbdd5c",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 4453,
+      "previewCharacterCount": 3631,
+      "estimatedRuntimeSeconds": 1305,
       "truncated": false
     },
     {
@@ -611,13 +611,13 @@
     {
       "slug": "the-old-house",
       "path": "/book-previews/the-old-house.preview.json",
-      "contentVersion": "78c7af153197340c",
-      "contentHash": "78c7af153197340cd19cf1bca060ec12339e66e04fad81722138b902a0674038",
+      "contentVersion": "3b38eee6fd4c1ddc",
+      "contentHash": "3b38eee6fd4c1ddcfb4adc0dfa2224f463ee821c5046c9be5dfa309ef89c82b7",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10162,
-      "previewCharacterCount": 9266,
-      "estimatedRuntimeSeconds": 3311,
-      "truncated": true
+      "previewBytes": 17051,
+      "previewCharacterCount": 15915,
+      "estimatedRuntimeSeconds": 5686,
+      "truncated": false
     },
     {
       "slug": "the-picture-of-dorian-gray",
@@ -655,12 +655,12 @@
     {
       "slug": "the-real-princess",
       "path": "/book-previews/the-real-princess.preview.json",
-      "contentVersion": "74623d7ca6769121",
-      "contentHash": "74623d7ca6769121902ef1cbb13d5746a9e7cb452c62ac83e326d1aa9df58ac1",
-      "defaultSectionId": "part-001",
-      "previewBytes": 3021,
-      "previewCharacterCount": 2211,
-      "estimatedRuntimeSeconds": 840,
+      "contentVersion": "e8693cc00594094a",
+      "contentHash": "e8693cc00594094a47952bc9e804d0bc2b4905951b794c9e2bca02124c16d77b",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 2979,
+      "previewCharacterCount": 2197,
+      "estimatedRuntimeSeconds": 779,
       "truncated": false
     },
     {
@@ -699,32 +699,32 @@
     {
       "slug": "the-shoes-of-fortune",
       "path": "/book-previews/the-shoes-of-fortune.preview.json",
-      "contentVersion": "e6807307fe30d680",
-      "contentHash": "e6807307fe30d6806c09bffcf90ee1152576e9115656171f9d5798f291943e7c",
-      "defaultSectionId": "part-001",
-      "previewBytes": 11969,
-      "previewCharacterCount": 10853,
-      "estimatedRuntimeSeconds": 3860,
-      "truncated": true
+      "contentVersion": "750c6ea1f9e37320",
+      "contentHash": "750c6ea1f9e3732068255c1f858de5504d60636d6a33571f181598efaeb2c603",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 4466,
+      "previewCharacterCount": 3643,
+      "estimatedRuntimeSeconds": 1304,
+      "truncated": false
     },
     {
       "slug": "the-snow-queen",
       "path": "/book-previews/the-snow-queen.preview.json",
-      "contentVersion": "9864b79c6bbb2c04",
-      "contentHash": "9864b79c6bbb2c04cef4ac4daedb43628583ea986d02dbb09fd8d868d3dbde21",
+      "contentVersion": "48bd2c945d8b60ce",
+      "contentHash": "48bd2c945d8b60ce4baf25f12c42f74debe3e260467bd3bc51c9fc87a4b0352e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10934,
-      "previewCharacterCount": 9996,
-      "estimatedRuntimeSeconds": 3554,
-      "truncated": true
+      "previewBytes": 3671,
+      "previewCharacterCount": 2846,
+      "estimatedRuntimeSeconds": 1007,
+      "truncated": false
     },
     {
       "slug": "the-swineherd",
       "path": "/book-previews/the-swineherd.preview.json",
-      "contentVersion": "c36c34ceaa99ed5f",
-      "contentHash": "c36c34ceaa99ed5ff1e1a91f4160e41d5649d02f00f35c4ac7755748b4e8438c",
+      "contentVersion": "d4a91ec198bbdf77",
+      "contentHash": "d4a91ec198bbdf77decd2bf231c64c72190bd8b89625b0717e5a78a270fcfa75",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9135,
+      "previewBytes": 9205,
       "previewCharacterCount": 8151,
       "estimatedRuntimeSeconds": 2932,
       "truncated": false
@@ -1348,8 +1348,8 @@
     {
       "slug": "the-money-box",
       "path": "/book-previews/the-money-box.preview.json",
-      "contentVersion": "82448474f31e0038",
-      "contentHash": "82448474f31e0038320172333c6f440d6fc335b512c7276700363ad57fb1991e",
+      "contentVersion": "40adeecb2e1e44ce",
+      "contentHash": "40adeecb2e1e44ce781fa0f289a35ff71683d3db7d1c61dcc26b055156cbeefb",
       "defaultSectionId": "chapter-001",
       "previewBytes": 5911,
       "previewCharacterCount": 5080,
@@ -1392,13 +1392,13 @@
     {
       "slug": "the-winning-of-olwen",
       "path": "/book-previews/the-winning-of-olwen.preview.json",
-      "contentVersion": "490e844b89171b64",
-      "contentHash": "490e844b89171b647ad21a89d0ee566ebeaaeb2f718fa800af70b0e01f246748",
+      "contentVersion": "4e5622e362712ea8",
+      "contentHash": "4e5622e362712ea83ccccffb441ad11422e80d53749f36fd38ee0a828bdd1281",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10959,
-      "previewCharacterCount": 10016,
-      "estimatedRuntimeSeconds": 3570,
-      "truncated": true
+      "previewBytes": 27429,
+      "previewCharacterCount": 26129,
+      "estimatedRuntimeSeconds": 9309,
+      "truncated": false
     },
     {
       "slug": "twenty-thousand-leagues-under-the-sea",

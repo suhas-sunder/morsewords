@@ -1819,12 +1819,12 @@
     },
     {
       "slug": "the-bell",
-      "title": "Andersen's Fairy Tales",
+      "title": "The Bell",
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "26e487e055059310",
-      "contentHash": "26e487e0550593107eddc9a0554a052e58b7d28246c62a12505574f21ac8fe50",
+      "contentVersion": "41168f6c6a16f1c3",
+      "contentHash": "41168f6c6a16f1c3db29ddb9f09ea9c33d45dc46413d14952934a86eee6d9996",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1849,14 +1849,14 @@
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for Andersen's Fairy Tales"
+        "alt": "Placeholder cover for The Bell"
       },
       "stats": {
-        "originalCharacterCount": 46266,
-        "cleanedCharacterCount": 26870,
-        "wordCount": 5039,
-        "sectionCount": 2,
-        "includedSectionCount": 0
+        "originalCharacterCount": 47202,
+        "cleanedCharacterCount": 10738,
+        "wordCount": 2025,
+        "sectionCount": 1,
+        "includedSectionCount": 1
       },
       "defaults": {
         "includeKinds": [
@@ -2160,12 +2160,12 @@
     },
     {
       "slug": "the-elderbush",
-      "title": "Andersen's Fairy Tales",
+      "title": "The Elderbush",
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "6bdac4121a3dc227",
-      "contentHash": "6bdac4121a3dc227f1649db8ef471d662733041ee0d3c9522164964a5d7e3c34",
+      "contentVersion": "2e7b51fded5ba5cb",
+      "contentHash": "2e7b51fded5ba5cb0fcf70fcf557e4895d8b671f4f82073c16eee16aaa1aa6c4",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2190,14 +2190,14 @@
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for Andersen's Fairy Tales"
+        "alt": "Placeholder cover for The Elderbush"
       },
       "stats": {
-        "originalCharacterCount": 35525,
-        "cleanedCharacterCount": 16129,
-        "wordCount": 3014,
-        "sectionCount": 2,
-        "includedSectionCount": 0
+        "originalCharacterCount": 36269,
+        "cleanedCharacterCount": 16069,
+        "wordCount": 3007,
+        "sectionCount": 1,
+        "includedSectionCount": 1
       },
       "defaults": {
         "includeKinds": [
@@ -2308,12 +2308,12 @@
     },
     {
       "slug": "the-emperor-s-new-clothes",
-      "title": "Andersen's Fairy Tales",
+      "title": "The Emperor's New Clothes",
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "746dfe7ca9ddc8d9",
-      "contentHash": "746dfe7ca9ddc8d9ea4d6e432a0010c06734490bf0e6d2d0b318887bb67c2fdf",
+      "contentVersion": "40dfe20a297674ec",
+      "contentHash": "40dfe20a297674ec1dbd18a2b26ba11029be57dc2395e75a9e797b88ddab15ac",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2338,14 +2338,14 @@
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for Andersen's Fairy Tales"
+        "alt": "Placeholder cover for The Emperor's New Clothes"
       },
       "stats": {
-        "originalCharacterCount": 31621,
-        "cleanedCharacterCount": 10530,
-        "wordCount": 1881,
-        "sectionCount": 2,
-        "includedSectionCount": 0
+        "originalCharacterCount": 32294,
+        "cleanedCharacterCount": 10477,
+        "wordCount": 1874,
+        "sectionCount": 1,
+        "includedSectionCount": 1
       },
       "defaults": {
         "includeKinds": [
@@ -2406,12 +2406,12 @@
     },
     {
       "slug": "the-fir-tree",
-      "title": "Andersen's Fairy Tales",
+      "title": "The Fir Tree",
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "d05fb6270fdc899f",
-      "contentHash": "d05fb6270fdc899f868027b2f3b41ced2ae9fd9e9a7c2577a0d305c9798d5ec9",
+      "contentVersion": "38ccf7727edeb19b",
+      "contentHash": "38ccf7727edeb19b4a874ef25e7014b7effe6bc48db87f6d000eef4d5cdc21a0",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2436,14 +2436,14 @@
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for Andersen's Fairy Tales"
+        "alt": "Placeholder cover for The Fir Tree"
       },
       "stats": {
-        "originalCharacterCount": 36671,
-        "cleanedCharacterCount": 17275,
-        "wordCount": 3232,
-        "sectionCount": 2,
-        "includedSectionCount": 0
+        "originalCharacterCount": 37448,
+        "cleanedCharacterCount": 17223,
+        "wordCount": 3225,
+        "sectionCount": 1,
+        "includedSectionCount": 1
       },
       "defaults": {
         "includeKinds": [
@@ -2600,12 +2600,12 @@
     },
     {
       "slug": "the-leap-frog",
-      "title": "Andersen's Fairy Tales",
+      "title": "The Leap-Frog",
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "40ef802bc05a7172",
-      "contentHash": "40ef802bc05a717287357202e4eebc9100c3b285460772252ece7e18c49e07b6",
+      "contentVersion": "6b0e42b8ae5a10e6",
+      "contentHash": "6b0e42b8ae5a10e69eb419ab19cf681d053daa6a0f5c51c28f23946038bbdd5c",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2630,14 +2630,14 @@
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for Andersen's Fairy Tales"
+        "alt": "Placeholder cover for The Leap-Frog"
       },
       "stats": {
-        "originalCharacterCount": 23080,
-        "cleanedCharacterCount": 3684,
-        "wordCount": 678,
-        "sectionCount": 2,
-        "includedSectionCount": 0
+        "originalCharacterCount": 23598,
+        "cleanedCharacterCount": 3631,
+        "wordCount": 671,
+        "sectionCount": 1,
+        "includedSectionCount": 1
       },
       "defaults": {
         "includeKinds": [
@@ -2698,12 +2698,12 @@
     },
     {
       "slug": "the-old-house",
-      "title": "Andersen's Fairy Tales",
+      "title": "The Old House",
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "78c7af153197340c",
-      "contentHash": "78c7af153197340cd19cf1bca060ec12339e66e04fad81722138b902a0674038",
+      "contentVersion": "3b38eee6fd4c1ddc",
+      "contentHash": "3b38eee6fd4c1ddcfb4adc0dfa2224f463ee821c5046c9be5dfa309ef89c82b7",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2728,14 +2728,14 @@
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for Andersen's Fairy Tales"
+        "alt": "Placeholder cover for The Old House"
       },
       "stats": {
         "originalCharacterCount": 117643,
-        "cleanedCharacterCount": 95779,
-        "wordCount": 18243,
-        "sectionCount": 9,
-        "includedSectionCount": 9
+        "cleanedCharacterCount": 15915,
+        "wordCount": 3053,
+        "sectionCount": 1,
+        "includedSectionCount": 1
       },
       "defaults": {
         "includeKinds": [
@@ -2894,12 +2894,12 @@
     },
     {
       "slug": "the-real-princess",
-      "title": "Andersen's Fairy Tales",
+      "title": "The Real Princess",
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "74623d7ca6769121",
-      "contentHash": "74623d7ca6769121902ef1cbb13d5746a9e7cb452c62ac83e326d1aa9df58ac1",
+      "contentVersion": "e8693cc00594094a",
+      "contentHash": "e8693cc00594094a47952bc9e804d0bc2b4905951b794c9e2bca02124c16d77b",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2924,14 +2924,14 @@
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for Andersen's Fairy Tales"
+        "alt": "Placeholder cover for The Real Princess"
       },
       "stats": {
-        "originalCharacterCount": 21645,
-        "cleanedCharacterCount": 2249,
-        "wordCount": 421,
-        "sectionCount": 2,
-        "includedSectionCount": 0
+        "originalCharacterCount": 22132,
+        "cleanedCharacterCount": 2197,
+        "wordCount": 414,
+        "sectionCount": 1,
+        "includedSectionCount": 1
       },
       "defaults": {
         "includeKinds": [
@@ -3090,12 +3090,12 @@
     },
     {
       "slug": "the-shoes-of-fortune",
-      "title": "Andersen's Fairy Tales",
+      "title": "The Shoes of Fortune",
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "e6807307fe30d680",
-      "contentHash": "e6807307fe30d6806c09bffcf90ee1152576e9115656171f9d5798f291943e7c",
+      "contentVersion": "750c6ea1f9e37320",
+      "contentHash": "750c6ea1f9e3732068255c1f858de5504d60636d6a33571f181598efaeb2c603",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3120,14 +3120,14 @@
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for Andersen's Fairy Tales"
+        "alt": "Placeholder cover for The Shoes of Fortune"
       },
       "stats": {
-        "originalCharacterCount": 90171,
-        "cleanedCharacterCount": 70775,
-        "wordCount": 12709,
-        "sectionCount": 4,
-        "includedSectionCount": 0
+        "originalCharacterCount": 91927,
+        "cleanedCharacterCount": 70437,
+        "wordCount": 12698,
+        "sectionCount": 6,
+        "includedSectionCount": 6
       },
       "defaults": {
         "includeKinds": [
@@ -3139,12 +3139,12 @@
     },
     {
       "slug": "the-snow-queen",
-      "title": "Andersen's Fairy Tales",
+      "title": "The Snow Queen",
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "9864b79c6bbb2c04",
-      "contentHash": "9864b79c6bbb2c04cef4ac4daedb43628583ea986d02dbb09fd8d868d3dbde21",
+      "contentVersion": "48bd2c945d8b60ce",
+      "contentHash": "48bd2c945d8b60ce4baf25f12c42f74debe3e260467bd3bc51c9fc87a4b0352e",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3169,7 +3169,7 @@
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for Andersen's Fairy Tales"
+        "alt": "Placeholder cover for The Snow Queen"
       },
       "stats": {
         "originalCharacterCount": 65996,
@@ -3188,12 +3188,12 @@
     },
     {
       "slug": "the-swineherd",
-      "title": "Andersen's Fairy Tales",
+      "title": "The Swineherd",
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "c36c34ceaa99ed5f",
-      "contentHash": "c36c34ceaa99ed5ff1e1a91f4160e41d5649d02f00f35c4ac7755748b4e8438c",
+      "contentVersion": "d4a91ec198bbdf77",
+      "contentHash": "d4a91ec198bbdf77decd2bf231c64c72190bd8b89625b0717e5a78a270fcfa75",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3218,7 +3218,7 @@
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for Andersen's Fairy Tales"
+        "alt": "Placeholder cover for The Swineherd"
       },
       "stats": {
         "originalCharacterCount": 28271,
@@ -5988,12 +5988,12 @@
     },
     {
       "slug": "the-money-box",
-      "title": "Hans Andersen's Fairy Tales. First Series",
+      "title": "The Money Box",
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "82448474f31e0038",
-      "contentHash": "82448474f31e0038320172333c6f440d6fc335b512c7276700363ad57fb1991e",
+      "contentVersion": "40adeecb2e1e44ce",
+      "contentHash": "40adeecb2e1e44ce781fa0f289a35ff71683d3db7d1c61dcc26b055156cbeefb",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6018,7 +6018,7 @@
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for Hans Andersen's Fairy Tales. First Series"
+        "alt": "Placeholder cover for The Money Box"
       },
       "stats": {
         "originalCharacterCount": 10010,
@@ -6184,12 +6184,12 @@
     },
     {
       "slug": "the-winning-of-olwen",
-      "title": "The Lilac Fairy Book",
+      "title": "The Winning of Olwen",
       "author": [
         "Andrew Lang"
       ],
-      "contentVersion": "490e844b89171b64",
-      "contentHash": "490e844b89171b647ad21a89d0ee566ebeaaeb2f718fa800af70b0e01f246748",
+      "contentVersion": "4e5622e362712ea8",
+      "contentHash": "4e5622e362712ea83ccccffb441ad11422e80d53749f36fd38ee0a828bdd1281",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6214,7 +6214,7 @@
       "cover": {
         "src": null,
         "placeholder": true,
-        "alt": "Placeholder cover for The Lilac Fairy Book"
+        "alt": "Placeholder cover for The Winning of Olwen"
       },
       "stats": {
         "originalCharacterCount": 27748,

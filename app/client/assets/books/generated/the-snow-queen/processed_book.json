@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "the-snow-queen",
-  "title": "Andersen's Fairy Tales",
+  "title": "The Snow Queen",
   "author": "H. C. Andersen",
-  "content_version": "9864b79c6bbb2c04",
-  "content_hash": "9864b79c6bbb2c04cef4ac4daedb43628583ea986d02dbb09fd8d868d3dbde21",
+  "content_version": "48bd2c945d8b60ce",
+  "content_hash": "48bd2c945d8b60ce4baf25f12c42f74debe3e260467bd3bc51c9fc87a4b0352e",
   "source": {
     "name": "Project Gutenberg",
     "ebook_number": "1597",

@@ -17,21 +17,19 @@ export function createBookTranslatorSourceFromSections(
   book: MorseBookManifest,
   sections: MorseBookSectionJson[],
 ): MorseBookTranslatorSource {
-  const orderedSections = [...sections].sort((a, b) => a.order - b.order);
-
   return {
     bookSlug: book.slug,
     title: book.title,
     author: book.author,
-    sourceLabel: `${book.title} - ${orderedSections
+    sourceLabel: `${book.title} - ${sections
       .map((section) => section.label)
       .join(", ")}`,
-    sectionIds: orderedSections.map((section) => section.sectionId),
-    sourceText: orderedSections
+    sectionIds: sections.map((section) => section.sectionId),
+    sourceText: sections
       .map((section) => section.morseSourceText.trim())
       .filter(Boolean)
       .join("\n\n"),
-    displayText: orderedSections
+    displayText: sections
       .map((section) => section.displayText.trim())
       .filter(Boolean)
       .join("\n\n"),
