@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-17T18:30:14.766Z",
+  "generatedAt": "2026-06-17T22:09:38.406Z",
   "generatedBookCount": 130,
   "previewAssetCount": 130,
   "validStartupPreviewCount": 130,
@@ -3988,28 +3988,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "scene-001",
+        "id": "prologue-001",
         "title": null,
-        "label": "Act 1",
-        "type": "scene",
-        "wordCount": 5990,
+        "label": "The Prologue",
+        "type": "prologue",
+        "wordCount": 114,
         "includeByDefault": true,
-        "snippet": "ACT I SCENE I. A public place. Enter Sampson and Gregory armed with swords and bucklers. SAMPSON. Gregory, on my word, we'll not carry coals. GREGORY. No, for then we should be colliers. SAMPSON. I mean, if we be in c..."
+        "snippet": "THE PROLOGUE Enter Chorus. CHORUS. Two households, both alike in dignity, In fair Verona, where we lay our scene, From ancient grudge break to new mutiny, Where civil blood makes civil hands unclean. From forth the fa..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 5,
-      "mainReadableSectionCount": 5,
+      "defaultSectionCount": 6,
+      "mainReadableSectionCount": 6,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "ACT I SCENE I. A public place. Enter Sampson and Gregory armed with swords and bucklers. SAMPSON. Gregory, on my word, we'll not carry coals. GREGORY. No, for then we should be colliers. SAMPSON. I mean, if we be in c...",
-        "previewStart": "ACT I SCENE I. A public place. Enter Sampson and Gregory armed with swords and bucklers. SAMPSON. Gregory, on my word, we'll not carry coals. GREGORY. No, for then we should be colliers. SAMPSON. I mean, if we be in c..."
+        "generatedStart": "THE PROLOGUE Enter Chorus. CHORUS. Two households, both alike in dignity, In fair Verona, where we lay our scene, From ancient grudge break to new mutiny, Where civil blood makes civil hands unclean. From forth the fa...",
+        "previewStart": "THE PROLOGUE Enter Chorus. CHORUS. Two households, both alike in dignity, In fair Verona, where we lay our scene, From ancient grudge break to new mutiny, Where civil blood makes civil hands unclean. From forth the fa..."
       }
     },
     {

@@ -233,12 +233,12 @@ Supporting snippets:
 - Dry-run status: needs first-time controlled processing
 - Final action: first-time processed
 - Source: app/client/assets/temp-books/Romeo and Juliet.txt
-- Structure: play acts
-- Start boundary: line 147 - Body ACT I after dramatis personae and prologue.
+- Structure: play prologue plus acts
+- Start boundary: line 121 - The real readable play text begins at THE PROLOGUE after dramatis personae.
 - End boundary: line 5300 - Final couplet and exit end before the Project Gutenberg end marker.
-- First default section after: Act 1 (5990 words)
-- Section count: 5
-- Preview verdict: valid book-specific preview from scene-001
+- First default section after: The Prologue (114 words)
+- Section count: 6
+- Preview verdict: valid book-specific preview from prologue-001, scene-001
 - Startup preview valid: yes
 - All-main-readable-default verdict: all main readable body sections included by default
 - Final recommendation: accepted for review
@@ -246,11 +246,11 @@ Supporting snippets:
 
 First 5 sections:
 
+- prologue-001: The Prologue (114 words)
 - scene-001: Act 1 (5990 words)
 - scene-002: Act 2 (5686 words)
 - scene-003: Act 3 (6750 words)
 - scene-004: Act 4 (3460 words)
-- scene-005: Act 5 (3690 words)
 
 Last 5 sections:
 
@@ -262,7 +262,7 @@ Last 5 sections:
 
 Supporting snippets:
 
-- Start: ACT I SCENE I. A public place.
+- Start: THE PROLOGUE
 - End: *** END OF THE PROJECT GUTENBERG EBOOK ROMEO AND JULIET ***
 
 ### spoon-river-anthology

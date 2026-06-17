@@ -3,8 +3,8 @@
   "id": "romeo-and-juliet",
   "title": "Romeo and Juliet",
   "author": "William Shakespeare",
-  "content_version": "17989b8edab3d609",
-  "content_hash": "17989b8edab3d609f23144a94b317802b9e4f9ddd26e789a5070d6437ea33de1",
+  "content_version": "6a3d7894ed75eb80",
+  "content_hash": "6a3d7894ed75eb80f99997821b8bede6d669e1c4ef657cacf06ad7e6d60ea971",
   "source": {
     "name": "Project Gutenberg",
     "ebook_number": "1513",
@@ -28,6 +28,20 @@
     "chapters": [
       {
         "chapter_number": 1,
+        "title": "The Prologue",
+        "sections": [
+          {
+            "section_number": 1,
+            "text": "THE PROLOGUE\n\n\n Enter Chorus.\n\nCHORUS.\nTwo households, both alike in dignity,\nIn fair Verona, where we lay our scene,\nFrom ancient grudge break to new mutiny,\nWhere civil blood makes civil hands unclean.\nFrom forth the fatal loins of these two foes\nA pair of star-cross'd lovers take their life;\nWhose misadventur'd piteous overthrows\nDoth with their death bury their parents' strife.\nThe fearful passage of their death-mark'd love,\nAnd the continuance of their parents' rage,\nWhich, but their children's end, nought could remove,\nIs now the two hours' traffic of our stage;\nThe which, if you with patient ears attend,\nWhat here shall miss, our toil shall strive to mend.\n\n [_Exit._]",
+            "word_count": 114,
+            "character_count": 683,
+            "estimated_typing_minutes": 3,
+            "estimated_listening_minutes": 5
+          }
+        ]
+      },
+      {
+        "chapter_number": 2,
         "title": "Act 1",
         "sections": [
           {
@@ -41,7 +55,7 @@
         ]
       },
       {
-        "chapter_number": 2,
+        "chapter_number": 3,
         "title": "Act 2",
         "sections": [
           {
@@ -55,7 +69,7 @@
         ]
       },
       {
-        "chapter_number": 3,
+        "chapter_number": 4,
         "title": "Act 3",
         "sections": [
           {
@@ -69,7 +83,7 @@
         ]
       },
       {
-        "chapter_number": 4,
+        "chapter_number": 5,
         "title": "Act 4",
         "sections": [
           {
@@ -83,7 +97,7 @@
         ]
       },
       {
-        "chapter_number": 5,
+        "chapter_number": 6,
         "title": "Act 5",
         "sections": [
           {

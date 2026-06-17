@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "bookSlug": "romeo-and-juliet",
+  "sectionId": "prologue-001",
+  "kind": "prologue",
+  "label": "The Prologue",
+  "title": null,
+  "order": 1,
+  "includeByDefault": true,
+  "displayText": "THE PROLOGUE\n\n\n Enter Chorus.\n\nCHORUS.\nTwo households, both alike in dignity,\nIn fair Verona, where we lay our scene,\nFrom ancient grudge break to new mutiny,\nWhere civil blood makes civil hands unclean.\nFrom forth the fatal loins of these two foes\nA pair of star-cross'd lovers take their life;\nWhose misadventur'd piteous overthrows\nDoth with their death bury their parents' strife.\nThe fearful passage of their death-mark'd love,\nAnd the continuance of their parents' rage,\nWhich, but their children's end, nought could remove,\nIs now the two hours' traffic of our stage;\nThe which, if you with patient ears attend,\nWhat here shall miss, our toil shall strive to mend.\n\n [_Exit._]",
+  "morseSourceText": "THE PROLOGUE\n\n\n Enter Chorus.\n\nCHORUS.\nTwo households, both alike in dignity,\nIn fair Verona, where we lay our scene,\nFrom ancient grudge break to new mutiny,\nWhere civil blood makes civil hands unclean.\nFrom forth the fatal loins of these two foes\nA pair of star-cross'd lovers take their life;\nWhose misadventur'd piteous overthrows\nDoth with their death bury their parents' strife.\nThe fearful passage of their death-mark'd love,\nAnd the continuance of their parents' rage,\nWhich, but their children's end, nought could remove,\nIs now the two hours' traffic of our stage;\nThe which, if you with patient ears attend,\nWhat here shall miss, our toil shall strive to mend.\n\n [_Exit._]",
+  "paragraphs": [
+    "THE PROLOGUE",
+    "Enter Chorus.",
+    "CHORUS. Two households, both alike in dignity, In fair Verona, where we lay our scene, From ancient grudge break to new mutiny, Where civil blood makes civil hands unclean. From forth the fatal loins of these two foes A pair of star-cross'd lovers take their life; Whose misadventur'd piteous overthrows Doth with their death bury their parents' strife. The fearful passage of their death-mark'd love, And the continuance of their parents' rage, Which, but their children's end, nought could remove, Is now the two hours' traffic of our stage; The which, if you with patient ears attend, What here shall miss, our toil shall strive to mend.",
+    "[_Exit._]"
+  ],
+  "wordCount": 114,
+  "characterCount": 683,
+  "estimatedTypingMinutes": 3,
+  "estimatedListeningMinutes": 5,
+  "morseCharacterEstimate": 3702,
+  "unsupportedCharacterSummary": {
+    "[": 1,
+    "]": 1
+  },
+  "textPreview": "THE PROLOGUE Enter Chorus. CHORUS. Two households, both alike in dignity, In fair Verona, where we lay our scene, From ancient grudge break to new mutiny, Wher...",
+  "sourceOffsets": {
+    "start": 3010,
+    "end": 3722
+  }
+}

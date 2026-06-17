@@ -1282,12 +1282,12 @@
     {
       "slug": "romeo-and-juliet",
       "path": "/book-previews/romeo-and-juliet.preview.json",
-      "contentVersion": "17989b8edab3d609",
-      "contentHash": "17989b8edab3d609f23144a94b317802b9e4f9ddd26e789a5070d6437ea33de1",
-      "defaultSectionId": "scene-001",
-      "previewBytes": 11108,
-      "previewCharacterCount": 9974,
-      "estimatedRuntimeSeconds": 3596,
+      "contentVersion": "6a3d7894ed75eb80",
+      "contentHash": "6a3d7894ed75eb80f99997821b8bede6d669e1c4ef657cacf06ad7e6d60ea971",
+      "defaultSectionId": "prologue-001",
+      "previewBytes": 11050,
+      "previewCharacterCount": 9907,
+      "estimatedRuntimeSeconds": 3569,
       "truncated": true
     },
     {

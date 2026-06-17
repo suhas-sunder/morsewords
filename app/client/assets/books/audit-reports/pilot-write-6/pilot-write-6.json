@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reportName": "pilot-write-6",
-  "generatedAt": "2026-06-17T18:30:09.837Z",
+  "generatedAt": "2026-06-17T22:09:34.250Z",
   "branch": "morsewords-book-processing-pilot-write-6-jun-2026",
   "mode": "controlled first-time processing",
   "selectedBooks": [
@@ -928,6 +928,7 @@
         "app/client/assets/books/generated/romeo-and-juliet/processed_book.json",
         "app/client/assets/books/generated/romeo-and-juliet/rights_report.json",
         "app/client/assets/books/generated/romeo-and-juliet/processing_notes.md",
+        "app/client/assets/books/generated/romeo-and-juliet/sections/prologue-001.json",
         "app/client/assets/books/generated/romeo-and-juliet/sections/scene-001.json",
         "app/client/assets/books/generated/romeo-and-juliet/sections/scene-002.json",
         "app/client/assets/books/generated/romeo-and-juliet/sections/scene-003.json",
@@ -942,27 +943,34 @@
         "Write pass must preserve non-prose or titled-section structure instead of collapsing into fallback blobs."
       ],
       "startBoundaryUsed": {
-        "line": 147,
-        "reason": "Body ACT I after dramatis personae and prologue.",
-        "snippet": "ACT I SCENE I. A public place."
+        "line": 121,
+        "reason": "The real readable play text begins at THE PROLOGUE after dramatis personae.",
+        "snippet": "THE PROLOGUE"
       },
       "endBoundaryUsed": {
         "line": 5300,
         "reason": "Final couplet and exit end before the Project Gutenberg end marker.",
         "snippet": "*** END OF THE PROJECT GUTENBERG EBOOK ROMEO AND JULIET ***"
       },
-      "structuralConvention": "play acts",
+      "structuralConvention": "play prologue plus acts",
       "firstDefaultSectionAfterProcessing": {
-        "id": "scene-001",
-        "label": "Act 1",
+        "id": "prologue-001",
+        "label": "The Prologue",
         "title": null,
-        "kind": "scene",
+        "kind": "prologue",
         "includeByDefault": true,
-        "wordCount": 5990,
-        "snippet": "ACT I SCENE I. A public place. Enter Sampson and Gregory armed with swords and bucklers. SAMPSON. Gregory, on my word, we'll not carry coals. GREGORY. No, for..."
+        "wordCount": 114,
+        "snippet": "THE PROLOGUE Enter Chorus. CHORUS. Two households, both alike in dignity, In fair Verona, where we lay our scene, From ancient grudge break to new mutiny, Wher..."
       },
-      "sectionCount": 5,
+      "sectionCount": 6,
       "first5SectionsWithWordCounts": [
+        {
+          "id": "prologue-001",
+          "label": "The Prologue",
+          "title": null,
+          "kind": "prologue",
+          "wordCount": 114
+        },
         {
           "id": "scene-001",
           "label": "Act 1",
@@ -990,13 +998,6 @@
           "title": null,
           "kind": "scene",
           "wordCount": 3460
-        },
-        {
-          "id": "scene-005",
-          "label": "Act 5",
-          "title": null,
-          "kind": "scene",
-          "wordCount": 3690
         }
       ],
       "last5SectionsWithWordCounts": [
@@ -1046,7 +1047,7 @@
         "unicodeNormalized": true,
         "dashesNormalized": true
       },
-      "previewVerdict": "valid book-specific preview from scene-001",
+      "previewVerdict": "valid book-specific preview from prologue-001, scene-001",
       "startupPreviewValid": true,
       "allMainReadableDefaultVerdict": "all main readable body sections included by default",
       "remainingWarnings": [

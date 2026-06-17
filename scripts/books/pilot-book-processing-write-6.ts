@@ -745,13 +745,16 @@ function makeProcessingPlans(): Record<string, ProcessingPlan> {
     },
     "romeo-and-juliet": {
       slug: "romeo-and-juliet",
-      structuralConvention: "play acts",
-      startLine: 147,
+      structuralConvention: "play prologue plus acts",
+      startLine: 121,
       endLine: 5300,
-      startReason: "Body ACT I after dramatis personae and prologue.",
+      startReason: "The real readable play text begins at THE PROLOGUE after dramatis personae.",
       endReason: "Final couplet and exit end before the Project Gutenberg end marker.",
-      expectedMinimumSections: 5,
-      makeBoundaries: (lines) => romanActBoundaries(lines, 147, 5300),
+      expectedMinimumSections: 6,
+      makeBoundaries: (lines) => [
+        ...singleSection(121, "prologue", "The Prologue"),
+        ...romanActBoundaries(lines, 147, 5300),
+      ],
     },
     "spoon-river-anthology": {
       slug: "spoon-river-anthology",

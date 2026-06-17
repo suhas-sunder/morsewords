@@ -5,8 +5,8 @@
   "author": [
     "William Shakespeare"
   ],
-  "contentVersion": "17989b8edab3d609",
-  "contentHash": "17989b8edab3d609f23144a94b317802b9e4f9ddd26e789a5070d6437ea33de1",
+  "contentVersion": "6a3d7894ed75eb80",
+  "contentHash": "6a3d7894ed75eb80f99997821b8bede6d669e1c4ef657cacf06ad7e6d60ea971",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,24 +35,40 @@
   },
   "stats": {
     "originalCharacterCount": 167467,
-    "cleanedCharacterCount": 139732,
-    "wordCount": 25576,
-    "sectionCount": 5,
-    "includedSectionCount": 5
+    "cleanedCharacterCount": 140415,
+    "wordCount": 25690,
+    "sectionCount": 6,
+    "includedSectionCount": 6
   },
   "defaults": {
     "includeKinds": [
+      "prologue",
       "scene"
     ],
     "preferredPreset": "main-narrative"
   },
   "sections": [
     {
+      "id": "prologue-001",
+      "kind": "prologue",
+      "label": "The Prologue",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/prologue-001.json",
+      "characterCount": 683,
+      "wordCount": 114,
+      "estimatedTypingMinutes": 3,
+      "estimatedListeningMinutes": 5,
+      "morseCharacterEstimate": 3702,
+      "textPreview": "THE PROLOGUE Enter Chorus. CHORUS. Two households, both alike in dignity, In fair Verona, where we lay our scene, From ancient grudge break to new mutiny, Wher..."
+    },
+    {
       "id": "scene-001",
       "kind": "scene",
       "label": "Act 1",
       "title": null,
-      "order": 1,
+      "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/scene-001.json",
       "characterCount": 32836,
@@ -67,7 +83,7 @@
       "kind": "scene",
       "label": "Act 2",
       "title": null,
-      "order": 2,
+      "order": 3,
       "includeByDefault": true,
       "sectionJsonPath": "sections/scene-002.json",
       "characterCount": 30702,
@@ -82,7 +98,7 @@
       "kind": "scene",
       "label": "Act 3",
       "title": null,
-      "order": 3,
+      "order": 4,
       "includeByDefault": true,
       "sectionJsonPath": "sections/scene-003.json",
       "characterCount": 36904,
@@ -97,7 +113,7 @@
       "kind": "scene",
       "label": "Act 4",
       "title": null,
-      "order": 4,
+      "order": 5,
       "includeByDefault": true,
       "sectionJsonPath": "sections/scene-004.json",
       "characterCount": 19016,
@@ -112,7 +128,7 @@
       "kind": "scene",
       "label": "Act 5",
       "title": null,
-      "order": 5,
+      "order": 6,
       "includeByDefault": true,
       "sectionJsonPath": "sections/scene-005.json",
       "characterCount": 20274,
@@ -125,7 +141,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 167467,
-    "cleanedCharacterCount": 139732,
+    "cleanedCharacterCount": 140415,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

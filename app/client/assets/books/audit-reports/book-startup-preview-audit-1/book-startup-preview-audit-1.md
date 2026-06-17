@@ -1,6 +1,6 @@
 # Book Startup Preview Audit 1
 
-Generated at: 2026-06-17T18:30:14.766Z
+Generated at: 2026-06-17T22:09:38.406Z
 
 ## Summary
 
@@ -140,7 +140,7 @@ Generated at: 2026-06-17T18:30:14.766Z
 | an-ideal-husband | valid | scene-001 (scene) | 4/4 | valid | none |
 | catriona | valid | chapter-001 (chapter) | 30/30 | valid | none |
 | for-the-duration-of-the-war | valid | chapter-001 (chapter) | 1/1 | valid | none |
-| romeo-and-juliet | valid | scene-001 (scene) | 5/5 | valid | none |
+| romeo-and-juliet | valid | prologue-001 (prologue) | 6/6 | valid | none |
 | the-adventures-of-ferdinand-count-fathom | valid | chapter-001 (chapter) | 67/66 | valid | none |
 | the-adventures-of-roderick-random | valid | chapter-001 (chapter) | 69/69 | valid | none |
 | the-expedition-of-humphry-clinker | valid | letter-001 (letter) | 87/87 | valid | none |

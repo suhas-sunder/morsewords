@@ -5697,8 +5697,8 @@
       "author": [
         "William Shakespeare"
       ],
-      "contentVersion": "17989b8edab3d609",
-      "contentHash": "17989b8edab3d609f23144a94b317802b9e4f9ddd26e789a5070d6437ea33de1",
+      "contentVersion": "6a3d7894ed75eb80",
+      "contentHash": "6a3d7894ed75eb80f99997821b8bede6d669e1c4ef657cacf06ad7e6d60ea971",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -5727,13 +5727,14 @@
       },
       "stats": {
         "originalCharacterCount": 167467,
-        "cleanedCharacterCount": 139732,
-        "wordCount": 25576,
-        "sectionCount": 5,
-        "includedSectionCount": 5
+        "cleanedCharacterCount": 140415,
+        "wordCount": 25690,
+        "sectionCount": 6,
+        "includedSectionCount": 6
       },
       "defaults": {
         "includeKinds": [
+          "prologue",
           "scene"
         ],
         "preferredPreset": "main-narrative"
