@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-17T01:08:07.496Z",
+  "generatedAt": "2026-06-17T17:17:38.551Z",
   "generatedBookCount": 110,
   "previewAssetCount": 110,
   "validStartupPreviewCount": 110,
@@ -20,6 +20,7 @@
       "black-beauty",
       "botchan",
       "candide",
+      "crime-and-punishment",
       "doctor-dolittle",
       "don-quixote",
       "dr-jekyll-and-mr-hyde",
@@ -27,6 +28,7 @@
       "five-little-peppers-and-how-they-grew",
       "frankenstein",
       "grimm-s-fairy-tales",
+      "gulliver-s-travels",
       "heidi",
       "jabberwocky",
       "jack-and-jill",
@@ -120,10 +122,7 @@
     ],
     "preview asset needs regeneration from generated readable sections": [],
     "generated book needs processing correction later": [],
-    "blocked/manual review": [
-      "crime-and-punishment",
-      "gulliver-s-travels"
-    ]
+    "blocked/manual review": []
   },
   "protectedPaths": {
     "rawSourceInput": "app/client/assets/temp-books",
@@ -471,28 +470,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-002",
-        "title": null,
-        "label": "Part 2",
-        "type": "part",
-        "wordCount": 5090,
-        "includeByDefault": false,
-        "snippet": "\"It is more likely,\" said he, \"mankind have a little corrupted nature, for they were not born wolves, and they have become wolves; God has given them neither cannon of four-and-twenty pounders, nor bayonets; and yet t..."
+        "id": "chapter-001",
+        "title": "How Candide Was Brought Up In A Magnificent Castle, and How He Was Expelled Thence",
+        "label": "Chapter 1",
+        "type": "chapter",
+        "wordCount": 776,
+        "includeByDefault": true,
+        "snippet": "I HOW CANDIDE WAS BROUGHT UP IN A MAGNIFICENT CASTLE, AND HOW HE WAS EXPELLED THENCE. In a castle of Westphalia, belonging to the Baron of Thunder-ten-Tronckh, lived a youth, whom nature had endowed with the most gent..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 6,
-      "mainReadableSectionCount": 6,
+      "defaultSectionCount": 30,
+      "mainReadableSectionCount": 30,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "\"It is more likely,\" said he, \"mankind have a little corrupted nature, for they were not born wolves, and they have become wolves; God has given them neither cannon of four-and-twenty pounders, nor bayonets; and yet t...",
-        "previewStart": "\"It is more likely,\" said he, \"mankind have a little corrupted nature, for they were not born wolves, and they have become wolves; God has given them neither cannon of four-and-twenty pounders, nor bayonets; and yet t..."
+        "generatedStart": "I HOW CANDIDE WAS BROUGHT UP IN A MAGNIFICENT CASTLE, AND HOW HE WAS EXPELLED THENCE. In a castle of Westphalia, belonging to the Baron of Thunder-ten-Tronckh, lived a youth, whom nature had endowed with the most gent...",
+        "previewStart": "I HOW CANDIDE WAS BROUGHT UP IN A MAGNIFICENT CASTLE, AND HOW HE WAS EXPELLED THENCE. In a castle of Westphalia, belonging to the Baron of Thunder-ten-Tronckh, lived a youth, whom nature had endowed with the most gent..."
       }
     },
     {
@@ -508,7 +507,7 @@
         "title": null,
         "label": "Chapter 1",
         "type": "chapter",
-        "wordCount": 3374,
+        "wordCount": 3342,
         "includeByDefault": true,
         "snippet": "CHAPTER I On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S. Place and walked slowly, as though in hesitation, towards K. bridge. He had successfully avoided meet..."
       },
@@ -516,15 +515,13 @@
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
-      "allMainReadableSectionsIncludedByDefault": false,
-      "defaultSectionCount": 39,
-      "mainReadableSectionCount": 44,
+      "allMainReadableSectionsIncludedByDefault": true,
+      "defaultSectionCount": 40,
+      "mainReadableSectionCount": 39,
       "startupPreviewValid": true,
-      "recommendation": "blocked/manual review",
+      "recommendation": "valid",
       "previewRepairApplied": false,
-      "warnings": [
-        "Not all detected main-readable sections are selected by default."
-      ],
+      "warnings": [],
       "snippets": {
         "generatedStart": "CHAPTER I On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S. Place and walked slowly, as though in hesitation, towards K. bridge. He had successfully avoided meet...",
         "previewStart": "CHAPTER I On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S. Place and walked slowly, as though in hesitation, towards K. bridge. He had successfully avoided meet..."
@@ -774,7 +771,7 @@
         "title": null,
         "label": "Chapter 1",
         "type": "chapter",
-        "wordCount": 4028,
+        "wordCount": 4017,
         "includeByDefault": true,
         "snippet": "CHAPTER I. The author gives some account of himself and family. His first inducements to travel. He is shipwrecked, and swims for his life, gets safe on shore in the country of Lilliput; is made a prisoner, and carrie..."
       },
@@ -782,15 +779,13 @@
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
-      "allMainReadableSectionsIncludedByDefault": false,
+      "allMainReadableSectionsIncludedByDefault": true,
       "defaultSectionCount": 39,
-      "mainReadableSectionCount": 44,
+      "mainReadableSectionCount": 39,
       "startupPreviewValid": true,
-      "recommendation": "blocked/manual review",
+      "recommendation": "valid",
       "previewRepairApplied": false,
-      "warnings": [
-        "Not all detected main-readable sections are selected by default."
-      ],
+      "warnings": [],
       "snippets": {
         "generatedStart": "CHAPTER I. The author gives some account of himself and family. His first inducements to travel. He is shipwrecked, and swims for his life, gets safe on shore in the country of Lilliput; is made a prisoner, and carrie...",
         "previewStart": "CHAPTER I. The author gives some account of himself and family. His first inducements to travel. He is shipwrecked, and swims for his life, gets safe on shore in the country of Lilliput; is made a prisoner, and carrie..."
@@ -951,7 +946,7 @@
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
       "defaultSectionCount": 363,
-      "mainReadableSectionCount": 361,
+      "mainReadableSectionCount": 362,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
@@ -1172,7 +1167,7 @@
         "title": null,
         "label": "Chapter 1",
         "type": "chapter",
-        "wordCount": 2169,
+        "wordCount": 2161,
         "includeByDefault": true,
         "snippet": "CHAPTER 1 If you have a map of the Land of Oz handy, you will find that the great Nonestic Ocean washes the shores of the Kingdom of Rinkitink, between which and the Land of Oz lies a strip of the country of the Nome ..."
       },
@@ -1432,13 +1427,13 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-002",
-        "title": null,
-        "label": "Part 2",
-        "type": "part",
-        "wordCount": 5075,
-        "includeByDefault": false,
-        "snippet": "Only poetry or madness could do justice to the noises heard by Legrasse's men as they plowed on through the black morass toward the red glare and the muffled tom-toms. There are vocal qualities peculiar to men, and vo..."
+        "id": "chapter-001",
+        "title": "The Horror In Clay",
+        "label": "Part 1",
+        "type": "chapter",
+        "wordCount": 2846,
+        "includeByDefault": true,
+        "snippet": "The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents. We live on a placid island of ignorance in the midst of black seas of infinity, and it was not meant tha..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
@@ -1452,8 +1447,8 @@
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "Only poetry or madness could do justice to the noises heard by Legrasse's men as they plowed on through the black morass toward the red glare and the muffled tom-toms. There are vocal qualities peculiar to men, and vo...",
-        "previewStart": "Only poetry or madness could do justice to the noises heard by Legrasse's men as they plowed on through the black morass toward the red glare and the muffled tom-toms. There are vocal qualities peculiar to men, and vo..."
+        "generatedStart": "The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents. We live on a placid island of ignorance in the midst of black seas of infinity, and it was not meant tha...",
+        "previewStart": "The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents. We live on a placid island of ignorance in the midst of black seas of infinity, and it was not meant tha..."
       }
     },
     {
@@ -1663,28 +1658,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-002",
-        "title": null,
-        "label": "Part 2",
-        "type": "part",
-        "wordCount": 5441,
-        "includeByDefault": false,
-        "snippet": "\"But you must not call me 'Princess',\" she said; \"for after this I shall live on the little farm with Uncle Henry and Aunt Em, and princesses ought not to live on farms.\" \"Princess Dorothy will not,\" replied Ozma with..."
+        "id": "chapter-001",
+        "title": "How the Nome King Became Angry",
+        "label": "Chapter 1",
+        "type": "chapter",
+        "wordCount": 1672,
+        "includeByDefault": true,
+        "snippet": "The Nome King was in an angry mood, and at such times he was very disagreeable. Every one kept away from him, even his Chief Steward Kaliko. Therefore the King stormed and raved all by himself, walking up and down in ..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 10,
-      "mainReadableSectionCount": 10,
+      "defaultSectionCount": 30,
+      "mainReadableSectionCount": 29,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "\"But you must not call me 'Princess',\" she said; \"for after this I shall live on the little farm with Uncle Henry and Aunt Em, and princesses ought not to live on farms.\" \"Princess Dorothy will not,\" replied Ozma with...",
-        "previewStart": "\"But you must not call me 'Princess',\" she said; \"for after this I shall live on the little farm with Uncle Henry and Aunt Em, and princesses ought not to live on farms.\" \"Princess Dorothy will not,\" replied Ozma with..."
+        "generatedStart": "The Nome King was in an angry mood, and at such times he was very disagreeable. Every one kept away from him, even his Chief Steward Kaliko. Therefore the King stormed and raved all by himself, walking up and down in ...",
+        "previewStart": "The Nome King was in an angry mood, and at such times he was very disagreeable. Every one kept away from him, even his Chief Steward Kaliko. Therefore the King stormed and raved all by himself, walking up and down in ..."
       }
     },
     {
@@ -1960,28 +1955,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-001",
+        "id": "chapter-001",
         "title": null,
-        "label": "Part 1",
-        "type": "part",
-        "wordCount": 5695,
-        "includeByDefault": false,
-        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which ..."
+        "label": "The Old House",
+        "type": "chapter",
+        "wordCount": 3053,
+        "includeByDefault": true,
+        "snippet": "THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which the date of the year was carved: together with tul..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 5,
-      "mainReadableSectionCount": 5,
+      "defaultSectionCount": 9,
+      "mainReadableSectionCount": 9,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which ...",
-        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which ..."
+        "generatedStart": "THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which the date of the year was carved: together with tul...",
+        "previewStart": "THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which the date of the year was carved: together with tul..."
       }
     },
     {
@@ -2139,7 +2134,7 @@
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
       "defaultSectionCount": 39,
-      "mainReadableSectionCount": 38,
+      "mainReadableSectionCount": 39,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
@@ -2257,28 +2252,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-001",
-        "title": null,
-        "label": "Part 1",
-        "type": "part",
-        "wordCount": 5513,
-        "includeByDefault": false,
-        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SNOW QUEEN FIRST STORY. Which Treats of a Mirror and of the Splinters Now then, let us begin. When we are at the end of the story, we shall know more than we know ..."
+        "id": "chapter-001",
+        "title": "Which Describes A Looking-Glass and Its Broken Fragments",
+        "label": "Story 1",
+        "type": "chapter",
+        "wordCount": 531,
+        "includeByDefault": true,
+        "snippet": "STORY THE FIRST WHICH DESCRIBES A LOOKING-GLASS AND ITS BROKEN FRAGMENTS YOU must attend to the beginning of this story, for when we get to the end we shall know more than we now do about a very wicked hobgoblin; he w..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 3,
-      "mainReadableSectionCount": 3,
+      "defaultSectionCount": 7,
+      "mainReadableSectionCount": 7,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SNOW QUEEN FIRST STORY. Which Treats of a Mirror and of the Splinters Now then, let us begin. When we are at the end of the story, we shall know more than we know ...",
-        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SNOW QUEEN FIRST STORY. Which Treats of a Mirror and of the Splinters Now then, let us begin. When we are at the end of the story, we shall know more than we know ..."
+        "generatedStart": "STORY THE FIRST WHICH DESCRIBES A LOOKING-GLASS AND ITS BROKEN FRAGMENTS YOU must attend to the beginning of this story, for when we get to the end we shall know more than we now do about a very wicked hobgoblin; he w...",
+        "previewStart": "STORY THE FIRST WHICH DESCRIBES A LOOKING-GLASS AND ITS BROKEN FRAGMENTS YOU must attend to the beginning of this story, for when we get to the end we shall know more than we now do about a very wicked hobgoblin; he w..."
       }
     },
     {
@@ -2290,13 +2285,13 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-001",
+        "id": "chapter-001",
         "title": null,
-        "label": "Part 1",
-        "type": "part",
-        "wordCount": 1486,
-        "includeByDefault": false,
-        "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was c..."
+        "label": "The Swineherd",
+        "type": "chapter",
+        "wordCount": 1488,
+        "includeByDefault": true,
+        "snippet": "THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was certainly rather cool of him to say to the Emperor'..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
@@ -2310,8 +2305,8 @@
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was c...",
-        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was c..."
+        "generatedStart": "THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was certainly rather cool of him to say to the Emperor'...",
+        "previewStart": "THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was certainly rather cool of him to say to the Emperor'..."
       }
     },
     {
@@ -2488,28 +2483,28 @@
       "previewStartsFromRealReadableBookContent": true,
       "previewMatchesGeneratedContentHash": true,
       "firstDefaultGeneratedSection": {
-        "id": "part-001",
-        "title": null,
-        "label": "Part 1",
-        "type": "part",
-        "wordCount": 5594,
-        "includeByDefault": false,
-        "snippet": "TREASURE ISLAND by Robert Louis Stevenson TREASURE ISLAND To S.L.O., an American gentleman in accordance with whose classic taste the following narrative has been designed, it is now, in return for numerous delightful..."
+        "id": "chapter-001",
+        "title": "The Old Sea-Dog At the Admiral Benbow",
+        "label": "Chapter 1",
+        "type": "chapter",
+        "wordCount": 2220,
+        "includeByDefault": true,
+        "snippet": "I The Old Sea-dog at the Admiral Benbow Squire Trelawney, Dr. Livesey, and the rest of these gentlemen having asked me to write down the whole particulars about Treasure Island, from the beginning to the end, keeping ..."
       },
       "firstDefaultSectionLooksLikeRealContent": true,
       "firstDefaultSectionLooksLikeNonMainMaterial": false,
       "chapterPartOrFirstStoryMissingOrMisclassified": false,
       "chapterPartOrFirstStoryNotes": [],
       "allMainReadableSectionsIncludedByDefault": true,
-      "defaultSectionCount": 14,
-      "mainReadableSectionCount": 14,
+      "defaultSectionCount": 34,
+      "mainReadableSectionCount": 33,
       "startupPreviewValid": true,
       "recommendation": "valid",
       "previewRepairApplied": false,
       "warnings": [],
       "snippets": {
-        "generatedStart": "TREASURE ISLAND by Robert Louis Stevenson TREASURE ISLAND To S.L.O., an American gentleman in accordance with whose classic taste the following narrative has been designed, it is now, in return for numerous delightful...",
-        "previewStart": "TREASURE ISLAND by Robert Louis Stevenson TREASURE ISLAND To S.L.O., an American gentleman in accordance with whose classic taste the following narrative has been designed, it is now, in return for numerous delightful..."
+        "generatedStart": "I The Old Sea-dog at the Admiral Benbow Squire Trelawney, Dr. Livesey, and the rest of these gentlemen having asked me to write down the whole particulars about Treasure Island, from the beginning to the end, keeping ...",
+        "previewStart": "I The Old Sea-dog at the Admiral Benbow Squire Trelawney, Dr. Livesey, and the rest of these gentlemen having asked me to write down the whole particulars about Treasure Island, from the beginning to the end, keeping ..."
       }
     },
     {

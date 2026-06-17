@@ -1,0 +1,2332 @@
+{
+  "reportName": "pilot-write-5-verification",
+  "generatedAt": "2026-06-17T17:18:23.293Z",
+  "branch": "morsewords-book-processing-pilot-write-5-jun-2026",
+  "commit": "b97f8dcde72bc34b43e9750a97649055221dc8e2",
+  "selectedBooks": [
+    "anna-karenina",
+    "anne-of-green-gables-gutenberg-45",
+    "candide",
+    "crime-and-punishment",
+    "gulliver-s-travels",
+    "the-bell",
+    "the-call-of-cthulhu",
+    "the-elderbush",
+    "the-emerald-city-of-oz",
+    "the-emperor-s-new-clothes",
+    "the-fir-tree",
+    "the-leap-frog",
+    "the-old-house",
+    "the-real-princess",
+    "the-secret-garden-gutenberg-113",
+    "the-shoes-of-fortune",
+    "the-snow-queen",
+    "the-swineherd",
+    "treasure-island",
+    "wind-in-the-willows"
+  ],
+  "acceptedWithoutRewriteBooks": [
+    "anna-karenina",
+    "anne-of-green-gables-gutenberg-45",
+    "the-bell",
+    "the-elderbush",
+    "the-emperor-s-new-clothes",
+    "the-fir-tree",
+    "the-leap-frog",
+    "the-real-princess",
+    "the-secret-garden-gutenberg-113",
+    "the-shoes-of-fortune",
+    "wind-in-the-willows"
+  ],
+  "correctedBooks": [
+    "candide",
+    "crime-and-punishment",
+    "gulliver-s-travels",
+    "the-call-of-cthulhu",
+    "the-emerald-city-of-oz",
+    "the-old-house",
+    "the-snow-queen",
+    "the-swineherd",
+    "treasure-island"
+  ],
+  "totals": {
+    "selected": 20,
+    "pass": 12,
+    "warnAccepted": 8,
+    "fail": 0,
+    "acceptedForMain": 20,
+    "correctionNeededBeforeMain": 0,
+    "correctionsMadeDuringVerification": 0
+  },
+  "focusedCorrectionNotes": [],
+  "futureBatchRule": [
+    "valid generated readable content",
+    "first default section from real readable content",
+    "all main readable sections included by default",
+    "valid book-specific startup preview",
+    "no SOS Help!",
+    "no generic preview fallback",
+    "no title/TOC/source/license/contributor/transcriber material as default playback"
+  ],
+  "books": [
+    {
+      "slug": "anna-karenina",
+      "dryRunStatus": "already acceptable",
+      "writeAction": "accepted without rewrite",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/anna-karenina/manifest.json",
+        "app/client/assets/books/generated/anna-karenina/cleaned_book.json",
+        "app/client/assets/books/generated/anna-karenina/processed_book.json",
+        "app/client/assets/books/generated/anna-karenina/rights_report.json",
+        "app/client/assets/books/generated/anna-karenina/processing_notes.md",
+        "app/client/assets/books/generated/anna-karenina/sections/title-page-001.json",
+        "app/client/assets/books/generated/anna-karenina/sections/title-page-002.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-001.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-002.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-003.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-004.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-005.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-006.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-007.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-008.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-009.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-010.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-011.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-012.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-013.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-014.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-015.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-016.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-017.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-018.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-019.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-020.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-021.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-022.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-023.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-024.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-025.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-026.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-027.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-028.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-029.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-030.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-031.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-032.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-033.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-034.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-035.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-036.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-037.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-038.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-039.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-040.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-041.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-042.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-043.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-044.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-045.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-046.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-047.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-048.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-049.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-050.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-051.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-052.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-053.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-054.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-055.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-056.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-057.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-058.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-059.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-060.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-061.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-062.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-063.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-064.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-065.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-066.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-067.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-068.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-069.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-070.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-071.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-072.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-073.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-074.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-075.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-076.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-077.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-078.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-079.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-080.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-081.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-082.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-083.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-084.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-085.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-086.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-087.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-088.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-089.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-090.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-091.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-092.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-093.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-094.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-095.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-096.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-097.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-098.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-099.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-100.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-101.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-102.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-103.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-104.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-105.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-106.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-107.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-108.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-109.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-110.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-111.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-112.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-113.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-114.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-115.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-116.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-117.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-118.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-119.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-120.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-121.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-122.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-123.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-124.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-125.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-126.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-127.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-128.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-129.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-130.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-131.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-132.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-133.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-134.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-135.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-136.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-137.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-138.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-139.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-140.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-141.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-142.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-143.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-144.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-145.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-146.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-147.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-148.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-149.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-150.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-151.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-152.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-153.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-154.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-155.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-156.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-157.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-158.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-159.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-160.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-161.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-162.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-163.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-164.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-165.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-166.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-167.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-168.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-169.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-170.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-171.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-172.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-173.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-174.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-175.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-176.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-177.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-178.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-179.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-180.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-181.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-182.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-183.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-184.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-185.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-186.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-187.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-188.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-189.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-190.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-191.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-192.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-193.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-194.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-195.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-196.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-197.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-198.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-199.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-200.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-201.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-202.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-203.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-204.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-205.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-206.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-207.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-208.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-209.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-210.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-211.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-212.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-213.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-214.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-215.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-216.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-217.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-218.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-219.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-220.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-221.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-222.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-223.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-224.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-225.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-226.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-227.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-228.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-229.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-230.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-231.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-232.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-233.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-234.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-235.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-236.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-237.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-238.json",
+        "app/client/assets/books/generated/anna-karenina/sections/chapter-239.json"
+      ],
+      "previewAssetInspected": "public/book-previews/anna-karenina.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/Anna Karenina.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/anna-karenina.md",
+      "selectedStructuralConvention": "chapter-based arabic numbers with part divisions",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning matches the selected source structure without fallback collapse.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "acceptedWithoutRewriteReview": {
+        "whyNoRewriteWasNeeded": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 979,
+          "snippet": "Chapter 1 Happy families are all alike; every unhappy family is unhappy in its own way. Everything was in confusion in the Oblonskys’ house. The wife had discovered that the husband was carrying on an intrigue with a French girl, who had been a governess in t..."
+        },
+        "sectioningVerdict": "Sectioning matches the selected source structure without fallback collapse.",
+        "previewVerdict": "Preview is valid, book-specific, and starts from generated readable content.",
+        "finalAcceptanceVerdict": "dry-run acceptance remains valid"
+      },
+      "snippets": {
+        "rawStart": "whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenberg.org. If you are not located in the United States, you will have to check the laws of the country where you are located before using this eBook. Title: Anna Karenina Author: graf Leo Tolstoy",
+        "generatedFirstDefault": "Chapter 1 Happy families are all alike; every unhappy family is unhappy in its own way. Everything was in confusion in the Oblonskys’ house. The wife had discovered that the husband was carrying on an intrigue with a French girl, who had been a governess in t...",
+        "previewStart": "Chapter 1 Happy families are all alike; every unhappy family is unhappy in its own way. Everything was in confusion in the Oblonskys’ house. The wife had discovered that the husband was carrying on an intrigue with a French girl, who had been a governess in t...",
+        "rawEnd": "as come, and some gentleman with him.” Levin got into the trap and took the reins. As though just roused out of sleep, for a long while Levin could not collect his faculties. He stared at the sleek horse flecked with lather between his haunches and on his neck, where the harness rubbed, stared at Ivan the coachman sitting beside him, and remembered t",
+        "generatedEnd": "ll of a sudden, as I had dreamed, just like the feeling for my child. There was no surprise in this either. Faith—or not faith—I don’t know what it is—but this feeling has come just as imperceptibly through suffering, and has taken firm root in my soul. “I sh..."
+      }
+    },
+    {
+      "slug": "anne-of-green-gables-gutenberg-45",
+      "dryRunStatus": "already acceptable",
+      "writeAction": "accepted without rewrite",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/manifest.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/cleaned_book.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/processed_book.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/rights_report.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/processing_notes.md",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/title-page-001.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-001.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-002.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-003.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-004.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-005.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-006.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-007.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-008.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-009.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-010.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-011.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-012.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-013.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-014.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-015.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-016.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-017.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-018.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-019.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-020.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-021.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-022.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-023.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-024.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-025.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-026.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-027.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-028.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-029.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-030.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-031.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-032.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-033.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-034.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-035.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-036.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-037.json",
+        "app/client/assets/books/generated/anne-of-green-gables-gutenberg-45/sections/chapter-038.json"
+      ],
+      "previewAssetInspected": "public/book-previews/anne-of-green-gables-gutenberg-45.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/Anne of Green Gables.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/anne-of-green-gables-gutenberg-45.md",
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning matches the selected source structure without fallback collapse.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "acceptedWithoutRewriteReview": {
+        "whyNoRewriteWasNeeded": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Mrs. Rachel Lynde Is Surprised",
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 2954,
+          "snippet": "CHAPTER I. Mrs. Rachel Lynde Is Surprised MRS. Rachel Lynde lived just where the Avonlea main road dipped down into a little hollow, fringed with alders and ladies’ eardrops and traversed by a brook that had its source away back in the woods of the old Cuthbe..."
+        },
+        "sectioningVerdict": "Sectioning matches the selected source structure without fallback collapse.",
+        "previewVerdict": "Preview is valid, book-specific, and starts from generated readable content.",
+        "finalAcceptanceVerdict": "dry-run acceptance remains valid"
+      },
+      "snippets": {
+        "rawStart": "n Flavorings CHAPTER XXII Anne Is Invited Out to Tea CHAPTER XXIII Anne Comes to Grief in an Affair of Honor CHAPTER XXIV Miss Stacy and Her Pupils Get Up a Concert CHAPTER XXV Matthew Insists on Puffed Sleeves CHAPTER XXVI The Story Club Is Formed CHAPTER XXVII Vanity and Vexation of Spi",
+        "generatedFirstDefault": "CHAPTER I. Mrs. Rachel Lynde Is Surprised MRS. Rachel Lynde lived just where the Avonlea main road dipped down into a little hollow, fringed with alders and ladies’ eardrops and traversed by a brook that had its source away back in the woods of the old Cuthbe...",
+        "previewStart": "CHAPTER I. Mrs. Rachel Lynde Is Surprised MRS. Rachel Lynde lived just where the Avonlea main road dipped down into a little hollow, fringed with alders and ladies’ eardrops and traversed by a brook that had its source away back in the woods of the old Cuthbe...",
+        "rawEnd": "of our money went in that bank; and there’s some notes Matthew gave last fall to pay. Mrs. Lynde advises me to sell the farm and board somewhere--with her I suppose. It won’t bring much--it’s small and the buildings are old. But it’ll be enough for me to live on I reckon. I’m thankful you’re provided for with that scholarship, Anne. I’m sorry you won’t",
+        "generatedEnd": "Were we really there half an hour? It seemed just a few minutes. But, you see, we have five years’ lost conversations to catch up with, Marilla.” Anne sat long at her window that night companioned by a glad content. The wind purred softly in the cherry boughs..."
+      }
+    },
+    {
+      "slug": "candide",
+      "dryRunStatus": "needs correction before acceptance",
+      "writeAction": "corrected",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/candide/manifest.json",
+        "app/client/assets/books/generated/candide/cleaned_book.json",
+        "app/client/assets/books/generated/candide/processed_book.json",
+        "app/client/assets/books/generated/candide/rights_report.json",
+        "app/client/assets/books/generated/candide/processing_notes.md",
+        "app/client/assets/books/generated/candide/sections/chapter-001.json",
+        "app/client/assets/books/generated/candide/sections/chapter-002.json",
+        "app/client/assets/books/generated/candide/sections/chapter-003.json",
+        "app/client/assets/books/generated/candide/sections/chapter-004.json",
+        "app/client/assets/books/generated/candide/sections/chapter-005.json",
+        "app/client/assets/books/generated/candide/sections/chapter-006.json",
+        "app/client/assets/books/generated/candide/sections/chapter-007.json",
+        "app/client/assets/books/generated/candide/sections/chapter-008.json",
+        "app/client/assets/books/generated/candide/sections/chapter-009.json",
+        "app/client/assets/books/generated/candide/sections/chapter-010.json",
+        "app/client/assets/books/generated/candide/sections/chapter-011.json",
+        "app/client/assets/books/generated/candide/sections/chapter-012.json",
+        "app/client/assets/books/generated/candide/sections/chapter-013.json",
+        "app/client/assets/books/generated/candide/sections/chapter-014.json",
+        "app/client/assets/books/generated/candide/sections/chapter-015.json",
+        "app/client/assets/books/generated/candide/sections/chapter-016.json",
+        "app/client/assets/books/generated/candide/sections/chapter-017.json",
+        "app/client/assets/books/generated/candide/sections/chapter-018.json",
+        "app/client/assets/books/generated/candide/sections/chapter-019.json",
+        "app/client/assets/books/generated/candide/sections/chapter-020.json",
+        "app/client/assets/books/generated/candide/sections/chapter-021.json",
+        "app/client/assets/books/generated/candide/sections/chapter-022.json",
+        "app/client/assets/books/generated/candide/sections/chapter-023.json",
+        "app/client/assets/books/generated/candide/sections/chapter-024.json",
+        "app/client/assets/books/generated/candide/sections/chapter-025.json",
+        "app/client/assets/books/generated/candide/sections/chapter-026.json",
+        "app/client/assets/books/generated/candide/sections/chapter-027.json",
+        "app/client/assets/books/generated/candide/sections/chapter-028.json",
+        "app/client/assets/books/generated/candide/sections/chapter-029.json",
+        "app/client/assets/books/generated/candide/sections/chapter-030.json"
+      ],
+      "previewAssetInspected": "public/book-previews/candide.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/Candide.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/candide.md",
+      "selectedStructuralConvention": "standalone roman-numbered chapters",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning matches the selected source structure without fallback collapse.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctedBookReview": {
+        "previousDryRunDefect": [
+          "part-001 appears to mix opening readable content with front/source material and is skipped by default",
+          "clear structure exists in the source but current output is coarse fallback-style sections",
+          "first default section does not tightly align with pass-2 candidate start",
+          "last readable section does not tightly align with pass-2 candidate end",
+          "suspicious non-default sections remain: part-001",
+          "generated output likely collapsed real structure",
+          "Real opening or ending content may be at risk around the audited boundary.",
+          "Existing generated output needs boundary/default-section correction later.",
+          "Dense numbered bracket references indicate footnote-heavy or parser-junk risk."
+        ],
+        "defectFixed": true,
+        "firstDefaultSectionBeforeCorrection": {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "includeByDefault": false,
+          "wordCount": 5090,
+          "snippet": "\"It is more likely,\" said he, \"mankind have a little corrupted nature, for they were not born wolves, and they have become wolves; God has given them neither cannon of four-and-twenty pounders, nor bayonets; and yet they have made cannon and bayonets to des..."
+        },
+        "firstDefaultSectionAfterCorrection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "How Candide Was Brought Up In A Magnificent Castle, and How He Was Expelled Thence",
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 776,
+          "snippet": "I HOW CANDIDE WAS BROUGHT UP IN A MAGNIFICENT CASTLE, AND HOW HE WAS EXPELLED THENCE. In a castle of Westphalia, belonging to the Baron of Thunder-ten-Tronckh, lived a youth, whom nature had endowed with the most gentle manners. His countenance was a true pic..."
+        },
+        "sectionCountBefore": 8,
+        "sectionCountAfter": 30,
+        "previewBeforeAfter": {
+          "before": "\"It is more likely,\" said he, \"mankind have a little corrupted nature, for they were not born wolves, and they have become wolves; God has given them neither cannon of four-and-twenty pounders, nor bayonets; and yet they have made cannon and bayonets to des...",
+          "after": "I HOW CANDIDE WAS BROUGHT UP IN A MAGNIFICENT CASTLE, AND HOW HE WAS EXPELLED THENCE. In a castle of Westphalia, belonging to the Baron of Thunder-ten-Tronckh, lived a youth, whom nature had endowed with the most gentle manners. His countenance was a true pic..."
+        },
+        "finalVerdict": "accepted for main"
+      },
+      "snippets": {
+        "rawStart": "I HOW CANDIDE WAS BROUGHT UP IN A MAGNIFICENT CASTLE, AND HOW HE WAS EXPELLED THENCE. In a castle of Westphalia, belonging to the Baron of Thunder-ten-Tronckh, lived a youth, whom nature had endowed with the most gentle manners. His countenance was a true picture of his soul. He combined a true judgment with simplicity of spirit, which was the r",
+        "generatedFirstDefault": "I HOW CANDIDE WAS BROUGHT UP IN A MAGNIFICENT CASTLE, AND HOW HE WAS EXPELLED THENCE. In a castle of Westphalia, belonging to the Baron of Thunder-ten-Tronckh, lived a youth, whom nature had endowed with the most gentle manners. His countenance was a true pic...",
+        "previewStart": "I HOW CANDIDE WAS BROUGHT UP IN A MAGNIFICENT CASTLE, AND HOW HE WAS EXPELLED THENCE. In a castle of Westphalia, belonging to the Baron of Thunder-ten-Tronckh, lived a youth, whom nature had endowed with the most gentle manners. His countenance was a true pic...",
+        "rawEnd": "of Miss Cunegonde: if you had not been put into the Inquisition: if you had not walked over America: if you had not stabbed the Baron: if you had not lost all your sheep from the fine country of El Dorado: you would not be here eating preserved citrons and pistachio-nuts.\" \"All that is very well,\" answered Candide, \"but let us cultivate our garden.\"",
+        "generatedEnd": "ign, according to their different abilities. Their little plot of land produced plentiful crops. Cunegonde was, indeed, very ugly, but she became an excellent pastry cook; Paquette worked at embroidery; the old woman looked after the linen. They were all, not..."
+      }
+    },
+    {
+      "slug": "crime-and-punishment",
+      "dryRunStatus": "needs correction before acceptance",
+      "writeAction": "corrected",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/crime-and-punishment/manifest.json",
+        "app/client/assets/books/generated/crime-and-punishment/cleaned_book.json",
+        "app/client/assets/books/generated/crime-and-punishment/processed_book.json",
+        "app/client/assets/books/generated/crime-and-punishment/rights_report.json",
+        "app/client/assets/books/generated/crime-and-punishment/processing_notes.md",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-001.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-002.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-003.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-004.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-005.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-006.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-007.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-008.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-009.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-010.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-011.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-012.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-013.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-014.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-015.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-016.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-017.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-018.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-019.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-020.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-021.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-022.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-023.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-024.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-025.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-026.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-027.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-028.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-029.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-030.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-031.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-032.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-033.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-034.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-035.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-036.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-037.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-038.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/chapter-039.json",
+        "app/client/assets/books/generated/crime-and-punishment/sections/epilogue-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/crime-and-punishment.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/Crime and Punishment.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/crime-and-punishment.md",
+      "selectedStructuralConvention": "chapter-based roman numerals with epilogue",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning matches the selected source structure without fallback collapse.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctedBookReview": {
+        "previousDryRunDefect": [
+          "not all main readable sections are selected by default",
+          "first default section does not tightly align with pass-2 candidate start",
+          "last readable section does not tightly align with pass-2 candidate end",
+          "body headings were found but rejected by the selected strategy",
+          "Real opening or ending content may be at risk around the audited boundary.",
+          "Existing generated output needs boundary/default-section correction later."
+        ],
+        "defectFixed": true,
+        "firstDefaultSectionBeforeCorrection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 3374,
+          "snippet": "CHAPTER I On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S. Place and walked slowly, as though in hesitation, towards K. bridge. He had successfully avoided meeting his landlady on the staircase. His g..."
+        },
+        "firstDefaultSectionAfterCorrection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 3342,
+          "snippet": "CHAPTER I On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S. Place and walked slowly, as though in hesitation, towards K. bridge. He had successfully avoided meeting his landlady on the staircase. His gar..."
+        },
+        "sectionCountBefore": 47,
+        "sectionCountAfter": 40,
+        "previewBeforeAfter": {
+          "before": "CHAPTER I On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S. Place and walked slowly, as though in hesitation, towards K. bridge. He had successfully avoided meeting his landlady on the staircase. His g...",
+          "after": "CHAPTER I On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S. Place and walked slowly, as though in hesitation, towards K. bridge. He had successfully avoided meeting his landlady on the staircase. His gar..."
+        },
+        "finalVerdict": "accepted for main"
+      },
+      "snippets": {
+        "rawStart": "CHAPTER I On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S. Place and walked slowly, as though in hesitation, towards K. bridge. He had successfully avoided meeting his landlady on the staircase. His garret was under the roof of a high, five-storied house and was more like a cupboard than a ro",
+        "generatedFirstDefault": "CHAPTER I On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S. Place and walked slowly, as though in hesitation, towards K. bridge. He had successfully avoided meeting his landlady on the staircase. His gar...",
+        "previewStart": "CHAPTER I On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S. Place and walked slowly, as though in hesitation, towards K. bridge. He had successfully avoided meeting his landlady on the staircase. His gar...",
+        "rawEnd": "it, that it would cost him great striving, great suffering. But that is the beginning of a new story--the story of the gradual renewal of a man, the story of his gradual regeneration, of his passing from one world into another, of his initiation into a new unknown life. That might be the subject of a new story, but our present story is ended.",
+        "generatedEnd": "through his mind: \"Can her convictions not be mine now? Her feelings, her aspirations at least....\" She too had been greatly agitated that day, and at night she was taken ill again. But she was so happy--and so unexpectedly happy--that she was almost frighten..."
+      }
+    },
+    {
+      "slug": "gulliver-s-travels",
+      "dryRunStatus": "needs correction before acceptance",
+      "writeAction": "corrected",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/gulliver-s-travels/manifest.json",
+        "app/client/assets/books/generated/gulliver-s-travels/cleaned_book.json",
+        "app/client/assets/books/generated/gulliver-s-travels/processed_book.json",
+        "app/client/assets/books/generated/gulliver-s-travels/rights_report.json",
+        "app/client/assets/books/generated/gulliver-s-travels/processing_notes.md",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-001.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-002.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-003.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-004.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-005.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-006.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-007.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-008.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-009.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-010.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-011.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-012.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-013.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-014.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-015.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-016.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-017.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-018.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-019.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-020.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-021.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-022.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-023.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-024.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-025.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-026.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-027.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-028.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-029.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-030.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-031.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-032.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-033.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-034.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-035.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-036.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-037.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-038.json",
+        "app/client/assets/books/generated/gulliver-s-travels/sections/chapter-039.json"
+      ],
+      "previewAssetInspected": "public/book-previews/gulliver-s-travels.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/Gulliver's Travels.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/gulliver-s-travels.md",
+      "selectedStructuralConvention": "chapter-based roman numerals with voyage parts",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning matches the selected source structure without fallback collapse.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctedBookReview": {
+        "previousDryRunDefect": [
+          "not all main readable sections are selected by default",
+          "first default section does not tightly align with pass-2 candidate start",
+          "last readable section does not tightly align with pass-2 candidate end",
+          "body headings were found but rejected by the selected strategy",
+          "Existing generated output needs boundary/default-section correction later."
+        ],
+        "defectFixed": true,
+        "firstDefaultSectionBeforeCorrection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 4028,
+          "snippet": "CHAPTER I. The author gives some account of himself and family. His first inducements to travel. He is shipwrecked, and swims for his life, gets safe on shore in the country of Lilliput; is made a prisoner, and carried up the country. My father had a small ..."
+        },
+        "firstDefaultSectionAfterCorrection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 4017,
+          "snippet": "CHAPTER I. The author gives some account of himself and family. His first inducements to travel. He is shipwrecked, and swims for his life, gets safe on shore in the country of Lilliput; is made a prisoner, and carried up the country. My father had a small es..."
+        },
+        "sectionCountBefore": 49,
+        "sectionCountAfter": 39,
+        "previewBeforeAfter": {
+          "before": "CHAPTER I. The author gives some account of himself and family. His first inducements to travel. He is shipwrecked, and swims for his life, gets safe on shore in the country of Lilliput; is made a prisoner, and carried up the country. My father had a small ...",
+          "after": "CHAPTER I. The author gives some account of himself and family. His first inducements to travel. He is shipwrecked, and swims for his life, gets safe on shore in the country of Lilliput; is made a prisoner, and carried up the country. My father had a small es..."
+        },
+        "finalVerdict": "accepted for main"
+      },
+      "snippets": {
+        "rawStart": "CHAPTER I. The author gives some account of himself and family. His first inducements to travel. He is shipwrecked, and swims for his life, gets safe on shore in the country of Lilliput; is made a prisoner, and carried up the country. My father had a small estate in Nottinghamshire; I was the third of five sons. He sent me to Emanuel College in C",
+        "generatedFirstDefault": "CHAPTER I. The author gives some account of himself and family. His first inducements to travel. He is shipwrecked, and swims for his life, gets safe on shore in the country of Lilliput; is made a prisoner, and carried up the country. My father had a small es...",
+        "previewStart": "CHAPTER I. The author gives some account of himself and family. His first inducements to travel. He is shipwrecked, and swims for his life, gets safe on shore in the country of Lilliput; is made a prisoner, and carried up the country. My father had a small es...",
+        "rawEnd": "n arm; which no man in his wits would boast of, although he must be miserable without them. I dwell the longer upon this subject from the desire I have to make the society of an English _Yahoo_ by any means not insupportable; and therefore I here entreat those who have any tincture of this absurd vice, that they will not presume to come in my sight.",
+        "generatedEnd": "press any thing that is evil, except those whereby they describe the detestable qualities of their _Yahoos_, among which they were not able to distinguish this of pride, for want of thoroughly understanding human nature, as it shows itself in other countries..."
+      }
+    },
+    {
+      "slug": "the-bell",
+      "dryRunStatus": "already acceptable",
+      "writeAction": "accepted without rewrite",
+      "verificationStatus": "warn accepted",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-bell/manifest.json",
+        "app/client/assets/books/generated/the-bell/cleaned_book.json",
+        "app/client/assets/books/generated/the-bell/processed_book.json",
+        "app/client/assets/books/generated/the-bell/rights_report.json",
+        "app/client/assets/books/generated/the-bell/processing_notes.md",
+        "app/client/assets/books/generated/the-bell/sections/part-001.json",
+        "app/client/assets/books/generated/the-bell/sections/part-002.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-bell.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/The Bell.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/the-bell.md",
+      "selectedStructuralConvention": "story or titled-section headings",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "warn",
+        "summary": "Sectioning matches the source structure with review notes.",
+        "details": [
+          "No explicit includeByDefault sections; verified runtime/startup fallback selects readable sections."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [
+        "Sectioning matches the source structure with review notes.",
+        "No explicit includeByDefault sections; verified runtime/startup fallback selects readable sections."
+      ],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "acceptedWithoutRewriteReview": {
+        "whyNoRewriteWasNeeded": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+        "firstDefaultSection": {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "includeByDefault": false,
+          "wordCount": 4775,
+          "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother undr..."
+        },
+        "sectioningVerdict": "Sectioning matches the source structure with review notes.",
+        "previewVerdict": "Preview is valid, book-specific, and starts from generated readable content.",
+        "finalAcceptanceVerdict": "dry-run acceptance remains valid"
+      },
+      "snippets": {
+        "rawStart": "The Project Gutenberg eBook of Andersen's Fairy Tales This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenb",
+        "generatedFirstDefault": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother undr...",
+        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother undr...",
+        "rawEnd": "ke fire. It was still in the woods, so very still; and he fell on his knees, sung his evening hymn, and said: “I cannot find what I seek; the sun is going down, and night is coming--the dark, dark night. Yet perhaps I may be able once more to see the round red sun before he entirely disappears. I will climb up yonder rock.” And he seized hold of the",
+        "generatedEnd": "a song of rejoicing, and his heart sang with the rest: all nature was a vast holy church, in which the trees and the buoyant clouds were the pillars, flowers and grass the velvet carpeting, and heaven itself the large cupola. The red colors above faded away a..."
+      }
+    },
+    {
+      "slug": "the-call-of-cthulhu",
+      "dryRunStatus": "needs correction before acceptance",
+      "writeAction": "corrected",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-call-of-cthulhu/manifest.json",
+        "app/client/assets/books/generated/the-call-of-cthulhu/cleaned_book.json",
+        "app/client/assets/books/generated/the-call-of-cthulhu/processed_book.json",
+        "app/client/assets/books/generated/the-call-of-cthulhu/rights_report.json",
+        "app/client/assets/books/generated/the-call-of-cthulhu/processing_notes.md",
+        "app/client/assets/books/generated/the-call-of-cthulhu/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-call-of-cthulhu/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-call-of-cthulhu/sections/chapter-003.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-call-of-cthulhu.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/The call of Cthulhu.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/the-call-of-cthulhu.md",
+      "selectedStructuralConvention": "three numbered story sections",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning matches the selected source structure without fallback collapse.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctedBookReview": {
+        "previousDryRunDefect": [
+          "part-001 appears to mix opening readable content with front/source material and is skipped by default",
+          "clear structure exists in the source but current output is coarse fallback-style sections",
+          "first default section does not tightly align with pass-2 candidate start",
+          "last readable section does not tightly align with pass-2 candidate end",
+          "suspicious non-default sections remain: part-001",
+          "generated output likely collapsed real structure",
+          "Real opening or ending content may be at risk around the audited boundary.",
+          "Existing generated output needs boundary/default-section correction later."
+        ],
+        "defectFixed": true,
+        "firstDefaultSectionBeforeCorrection": {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "includeByDefault": false,
+          "wordCount": 5075,
+          "snippet": "Only poetry or madness could do justice to the noises heard by Legrasse's men as they plowed on through the black morass toward the red glare and the muffled tom-toms. There are vocal qualities peculiar to men, and vocal qualities peculiar to beasts; and it..."
+        },
+        "firstDefaultSectionAfterCorrection": {
+          "id": "chapter-001",
+          "label": "Part 1",
+          "title": "The Horror In Clay",
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 2846,
+          "snippet": "The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents. We live on a placid island of ignorance in the midst of black seas of infinity, and it was not meant that we should voyage far. The sciences, each..."
+        },
+        "sectionCountBefore": 4,
+        "sectionCountAfter": 3,
+        "previewBeforeAfter": {
+          "before": "Only poetry or madness could do justice to the noises heard by Legrasse's men as they plowed on through the black morass toward the red glare and the muffled tom-toms. There are vocal qualities peculiar to men, and vocal qualities peculiar to beasts; and it...",
+          "after": "The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents. We live on a placid island of ignorance in the midst of black seas of infinity, and it was not meant that we should voyage far. The sciences, each..."
+        },
+        "finalVerdict": "accepted for main"
+      },
+      "snippets": {
+        "rawStart": "_1. The Horror in Clay._ The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents. We live on a placid island of ignorance in the midst of black seas of infinity, and it was not meant that we should voyage far. The sciences, each straining in its own direction, have hitherto",
+        "generatedFirstDefault": "The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents. We live on a placid island of ignorance in the midst of black seas of infinity, and it was not meant that we should voyage far. The sciences, each...",
+        "previewStart": "The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents. We live on a placid island of ignorance in the midst of black seas of infinity, and it was not meant that we should voyage far. The sciences, each...",
+        "rawEnd": "s the end? What has risen may sink, and what has sunk may rise. Loathsomeness waits and dreams in the deep, and decay spreads over the tottering cities of men. A time will come--but I must not and can not think! Let me pray that, if I do not survive this manuscript, my executors may put caution before audacity and see that it meets no other eye.",
+        "generatedEnd": "as poor Johansen went, so I shall go. I know too much, and the cult still lives. Cthulhu still lives, too, I suppose, again in that chasm of stone which has shielded him since the sun was young. His accursed city is sunken once more, for the _Vigilant_ sailed..."
+      }
+    },
+    {
+      "slug": "the-elderbush",
+      "dryRunStatus": "already acceptable",
+      "writeAction": "accepted without rewrite",
+      "verificationStatus": "warn accepted",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-elderbush/manifest.json",
+        "app/client/assets/books/generated/the-elderbush/cleaned_book.json",
+        "app/client/assets/books/generated/the-elderbush/processed_book.json",
+        "app/client/assets/books/generated/the-elderbush/rights_report.json",
+        "app/client/assets/books/generated/the-elderbush/processing_notes.md",
+        "app/client/assets/books/generated/the-elderbush/sections/part-001.json",
+        "app/client/assets/books/generated/the-elderbush/sections/part-002.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-elderbush.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/The Elderbush.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/the-elderbush.md",
+      "selectedStructuralConvention": "isolated titled sections",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "warn",
+        "summary": "Sectioning matches the source structure with review notes.",
+        "details": [
+          "No explicit includeByDefault sections; verified runtime/startup fallback selects readable sections."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [
+        "Sectioning matches the source structure with review notes.",
+        "No explicit includeByDefault sections; verified runtime/startup fallback selects readable sections."
+      ],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "acceptedWithoutRewriteReview": {
+        "whyNoRewriteWasNeeded": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+        "firstDefaultSection": {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "includeByDefault": false,
+          "wordCount": 3003,
+          "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother undr..."
+        },
+        "sectioningVerdict": "Sectioning matches the source structure with review notes.",
+        "previewVerdict": "Preview is valid, book-specific, and starts from generated readable content.",
+        "finalAcceptanceVerdict": "dry-run acceptance remains valid"
+      },
+      "snippets": {
+        "rawStart": "The Project Gutenberg eBook of Andersen's Fairy Tales This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenb",
+        "generatedFirstDefault": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother undr...",
+        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother undr...",
+        "rawEnd": "d man told his wife the story of “Old Nanny,” as it had been told him when a boy. And it seemed to both of them it contained much that resembled their own history; and those parts that were like it pleased them best. “Thus it is,” said the little maiden in the tree, “some call me 'Old Nanny,' others a 'Dryad,' but, in reality, my name is 'Remembrance'",
+        "generatedEnd": "rowns of gold, sat in the flush of the evening sun. They closed their eyes, and--and--! Yes, that's the end of the story! The little boy lay in his bed; he did not know if he had dreamed or not, or if he had been listening while someone told him the story. Th..."
+      }
+    },
+    {
+      "slug": "the-emerald-city-of-oz",
+      "dryRunStatus": "needs correction before acceptance",
+      "writeAction": "corrected",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-emerald-city-of-oz/manifest.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/cleaned_book.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/processed_book.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/rights_report.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/processing_notes.md",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-024.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-025.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-026.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-027.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-028.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-029.json",
+        "app/client/assets/books/generated/the-emerald-city-of-oz/sections/chapter-030.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-emerald-city-of-oz.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/the-emerald-city-of-oz.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/the-emerald-city-of-oz.md",
+      "selectedStructuralConvention": "arabic-numbered titled chapters",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning matches the selected source structure without fallback collapse.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctedBookReview": {
+        "previousDryRunDefect": [
+          "part-001 appears to mix opening readable content with front/source material and is skipped by default",
+          "clear structure exists in the source but current output is coarse fallback-style sections",
+          "first default section does not tightly align with pass-2 candidate start",
+          "last readable section does not tightly align with pass-2 candidate end",
+          "generated output likely collapsed real structure",
+          "generated output may include source/license/TOC/footer junk",
+          "Real opening or ending content may be at risk around the audited boundary.",
+          "Existing generated output needs boundary/default-section correction later."
+        ],
+        "defectFixed": true,
+        "firstDefaultSectionBeforeCorrection": {
+          "id": "part-002",
+          "label": "Part 2",
+          "title": null,
+          "kind": "part",
+          "includeByDefault": false,
+          "wordCount": 5441,
+          "snippet": "\"But you must not call me 'Princess',\" she said; \"for after this I shall live on the little farm with Uncle Henry and Aunt Em, and princesses ought not to live on farms.\" \"Princess Dorothy will not,\" replied Ozma with her sweet smile. \"You are going to live..."
+        },
+        "firstDefaultSectionAfterCorrection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "How the Nome King Became Angry",
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 1672,
+          "snippet": "The Nome King was in an angry mood, and at such times he was very disagreeable. Every one kept away from him, even his Chief Steward Kaliko. Therefore the King stormed and raved all by himself, walking up and down in his jewel-studded cavern and getting angri..."
+        },
+        "sectionCountBefore": 11,
+        "sectionCountAfter": 30,
+        "previewBeforeAfter": {
+          "before": "\"But you must not call me 'Princess',\" she said; \"for after this I shall live on the little farm with Uncle Henry and Aunt Em, and princesses ought not to live on farms.\" \"Princess Dorothy will not,\" replied Ozma with her sweet smile. \"You are going to live...",
+          "after": "The Nome King was in an angry mood, and at such times he was very disagreeable. Every one kept away from him, even his Chief Steward Kaliko. Therefore the King stormed and raved all by himself, walking up and down in his jewel-studded cavern and getting angri..."
+        },
+        "finalVerdict": "accepted for main"
+      },
+      "snippets": {
+        "rawStart": "1. How the Nome King Became Angry The Nome King was in an angry mood, and at such times he was very disagreeable. Every one kept away from him, even his Chief Steward Kaliko. Therefore the King stormed and raved all by himself, walking up and down in his jewel-studded cavern and getting angrier all the time. Then he remembered that it was no fun",
+        "generatedFirstDefault": "The Nome King was in an angry mood, and at such times he was very disagreeable. Every one kept away from him, even his Chief Steward Kaliko. Therefore the King stormed and raved all by himself, walking up and down in his jewel-studded cavern and getting angri...",
+        "previewStart": "The Nome King was in an angry mood, and at such times he was very disagreeable. Every one kept away from him, even his Chief Steward Kaliko. Therefore the King stormed and raved all by himself, walking up and down in his jewel-studded cavern and getting angri...",
+        "rawEnd": "Still, we have no right to feel grieved, for we have had enough of the history of the Land of Oz to fill six story books, and from its quaint people and their strange adventures we have been able to learn many useful and amusing things. So good luck to little Dorothy and her companions. May they live long in their invisible country and be very happy!",
+        "generatedEnd": "The writer of these Oz stories has received a little note from Princess Dorothy of Oz which, for a time, has made him feel rather disconcerted. The note was written on a broad, white feather from a stork's wing, and it said: \"YOU WILL NEVER HEAR ANYTHING MORE..."
+      }
+    },
+    {
+      "slug": "the-emperor-s-new-clothes",
+      "dryRunStatus": "already acceptable",
+      "writeAction": "accepted without rewrite",
+      "verificationStatus": "warn accepted",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-emperor-s-new-clothes/manifest.json",
+        "app/client/assets/books/generated/the-emperor-s-new-clothes/cleaned_book.json",
+        "app/client/assets/books/generated/the-emperor-s-new-clothes/processed_book.json",
+        "app/client/assets/books/generated/the-emperor-s-new-clothes/rights_report.json",
+        "app/client/assets/books/generated/the-emperor-s-new-clothes/processing_notes.md",
+        "app/client/assets/books/generated/the-emperor-s-new-clothes/sections/part-001.json",
+        "app/client/assets/books/generated/the-emperor-s-new-clothes/sections/part-002.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-emperor-s-new-clothes.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/THE EMPEROR'S NEW CLOTHES.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/the-emperor-s-new-clothes.md",
+      "selectedStructuralConvention": "story or titled-section headings",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "warn",
+        "summary": "Sectioning matches the source structure with review notes.",
+        "details": [
+          "No explicit includeByDefault sections; verified runtime/startup fallback selects readable sections."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [
+        "Sectioning matches the source structure with review notes.",
+        "No explicit includeByDefault sections; verified runtime/startup fallback selects readable sections."
+      ],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "acceptedWithoutRewriteReview": {
+        "whyNoRewriteWasNeeded": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+        "firstDefaultSection": {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "includeByDefault": false,
+          "wordCount": 1820,
+          "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, that he spent all his money in dress. He did not trouble himself in the least about his soldiers; nor..."
+        },
+        "sectioningVerdict": "Sectioning matches the source structure with review notes.",
+        "previewVerdict": "Preview is valid, book-specific, and starts from generated readable content.",
+        "finalAcceptanceVerdict": "dry-run acceptance remains valid"
+      },
+      "snippets": {
+        "rawStart": "The Project Gutenberg eBook of Andersen's Fairy Tales This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenb",
+        "generatedFirstDefault": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, that he spent all his money in dress. He did not trouble himself in the least about his soldiers; nor...",
+        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, that he spent all his money in dress. He did not trouble himself in the least about his soldiers; nor...",
+        "rawEnd": "e looking glass, in order that he might appear to be examining his handsome suit. The lords of the bedchamber, who were to carry his Majesty's train felt about on the ground, as if they were lifting up the ends of the mantle; and pretended to be carrying something; for they would by no means betray anything like simplicity, or unfitness for their offi",
+        "generatedEnd": "“But he has nothing at all on!” at last cried out all the people. The Emperor was vexed, for he knew that the people were right; but he thought the procession must go on now! And the lords of the bedchamber took greater pains than ever, to appear holding up a..."
+      }
+    },
+    {
+      "slug": "the-fir-tree",
+      "dryRunStatus": "already acceptable",
+      "writeAction": "accepted without rewrite",
+      "verificationStatus": "warn accepted",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-fir-tree/manifest.json",
+        "app/client/assets/books/generated/the-fir-tree/cleaned_book.json",
+        "app/client/assets/books/generated/the-fir-tree/processed_book.json",
+        "app/client/assets/books/generated/the-fir-tree/rights_report.json",
+        "app/client/assets/books/generated/the-fir-tree/processing_notes.md",
+        "app/client/assets/books/generated/the-fir-tree/sections/part-001.json",
+        "app/client/assets/books/generated/the-fir-tree/sections/part-002.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-fir-tree.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/The Fir Tree.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/the-fir-tree.md",
+      "selectedStructuralConvention": "story or titled-section headings",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "warn",
+        "summary": "Sectioning matches the source structure with review notes.",
+        "details": [
+          "No explicit includeByDefault sections; verified runtime/startup fallback selects readable sections."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [
+        "Sectioning matches the source structure with review notes.",
+        "No explicit includeByDefault sections; verified runtime/startup fallback selects readable sections."
+      ],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "acceptedWithoutRewriteReview": {
+        "whyNoRewriteWasNeeded": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+        "firstDefaultSection": {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "includeByDefault": false,
+          "wordCount": 3180,
+          "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun shone on him: as to fresh air, there was enough of that, and round him grew many large-sized comrades,..."
+        },
+        "sectioningVerdict": "Sectioning matches the source structure with review notes.",
+        "previewVerdict": "Preview is valid, book-specific, and starts from generated readable content.",
+        "finalAcceptanceVerdict": "dry-run acceptance remains valid"
+      },
+      "snippets": {
+        "rawStart": "The Project Gutenberg eBook of Andersen's Fairy Tales This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenb",
+        "generatedFirstDefault": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun shone on him: as to fresh air, there was enough of that, and round him grew many large-sized comrades,...",
+        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun shone on him: as to fresh air, there was enough of that, and round him grew many large-sized comrades,...",
+        "rawEnd": "! My husband is come!” but it was not the Fir Tree that they meant. “Now, then, I shall really enjoy life,” said he exultingly, and spread out his branches; but, alas, they were all withered and yellow! It was in a corner that he lay, among weeds and nettles. The golden star of tinsel was still on the top of the Tree, and glittered in the sunshine.",
+        "generatedEnd": "The boys played about in the court, and the youngest wore the gold star on his breast which the Tree had had on the happiest evening of his life. However, that was over now--the Tree gone, the story at an end. All, all was over--every tale must end at last."
+      }
+    },
+    {
+      "slug": "the-leap-frog",
+      "dryRunStatus": "already acceptable",
+      "writeAction": "accepted without rewrite",
+      "verificationStatus": "warn accepted",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-leap-frog/manifest.json",
+        "app/client/assets/books/generated/the-leap-frog/cleaned_book.json",
+        "app/client/assets/books/generated/the-leap-frog/processed_book.json",
+        "app/client/assets/books/generated/the-leap-frog/rights_report.json",
+        "app/client/assets/books/generated/the-leap-frog/processing_notes.md",
+        "app/client/assets/books/generated/the-leap-frog/sections/part-001.json",
+        "app/client/assets/books/generated/the-leap-frog/sections/part-002.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-leap-frog.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/The Leap-Frog.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/the-leap-frog.md",
+      "selectedStructuralConvention": "story or titled-section headings",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "warn",
+        "summary": "Sectioning matches the source structure with review notes.",
+        "details": [
+          "No explicit includeByDefault sections; verified runtime/startup fallback selects readable sections."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [
+        "Sectioning matches the source structure with review notes.",
+        "No explicit includeByDefault sections; verified runtime/startup fallback selects readable sections."
+      ],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "acceptedWithoutRewriteReview": {
+        "whyNoRewriteWasNeeded": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+        "firstDefaultSection": {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "includeByDefault": false,
+          "wordCount": 613,
+          "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they invited the whole world, and everybody else besides who chose to come to see the festival. Three famou..."
+        },
+        "sectioningVerdict": "Sectioning matches the source structure with review notes.",
+        "previewVerdict": "Preview is valid, book-specific, and starts from generated readable content.",
+        "finalAcceptanceVerdict": "dry-run acceptance remains valid"
+      },
+      "snippets": {
+        "rawStart": "The Project Gutenberg eBook of Andersen's Fairy Tales This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenb",
+        "generatedFirstDefault": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they invited the whole world, and everybody else besides who chose to come to see the festival. Three famou...",
+        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they invited the whole world, and everybody else besides who chose to come to see the festival. Three famou...",
+        "rawEnd": "The Grasshopper jumped only half as high; but he leaped into the King's face, who said that was ill-mannered. The Leap-frog stood still for a long time lost in thought; it was believed at last he would not jump at all. “I only hope he is not unwell,” said the house-dog; when, pop! he made a jump all on one side into the lap of the Princess, who was",
+        "generatedEnd": "The Grasshopper sat without on a green bank, and reflected on worldly things; and he said too, “Yes, a fine exterior is everything--a fine exterior is what people care about.” And then he began chirping his peculiar melancholy song, from which we have taken t..."
+      }
+    },
+    {
+      "slug": "the-old-house",
+      "dryRunStatus": "needs correction before acceptance",
+      "writeAction": "corrected",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-old-house/manifest.json",
+        "app/client/assets/books/generated/the-old-house/cleaned_book.json",
+        "app/client/assets/books/generated/the-old-house/processed_book.json",
+        "app/client/assets/books/generated/the-old-house/rights_report.json",
+        "app/client/assets/books/generated/the-old-house/processing_notes.md",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-old-house/sections/chapter-009.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-old-house.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/The Old House.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/the-old-house.md",
+      "selectedStructuralConvention": "Andersen story collection headings",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning matches the selected source structure without fallback collapse.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctedBookReview": {
+        "previousDryRunDefect": [
+          "clear structure exists in the source but current output is coarse fallback-style sections",
+          "last readable section does not tightly align with pass-2 candidate end",
+          "Real opening or ending content may be at risk around the audited boundary."
+        ],
+        "defectFixed": true,
+        "firstDefaultSectionBeforeCorrection": {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "includeByDefault": false,
+          "wordCount": 5695,
+          "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which the date of the year was carved: togethe..."
+        },
+        "firstDefaultSectionAfterCorrection": {
+          "id": "chapter-001",
+          "label": "The Old House",
+          "title": null,
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 3053,
+          "snippet": "THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which the date of the year was carved: together with tulips and hop-binds there were whole verses..."
+        },
+        "sectionCountBefore": 5,
+        "sectionCountAfter": 9,
+        "previewBeforeAfter": {
+          "before": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which the date of the year was carved: togethe...",
+          "after": "THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which the date of the year was carved: together with tulips and hop-binds there were whole verses..."
+        },
+        "finalVerdict": "accepted for main"
+      },
+      "snippets": {
+        "rawStart": "THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which the date of the year was carved: together with tulips and hop-binds there were whole verses spelled as in former times, and over every window was a distorted face cut out in the beam. Th",
+        "generatedFirstDefault": "THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which the date of the year was carved: together with tulips and hop-binds there were whole verses...",
+        "previewStart": "THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which the date of the year was carved: together with tulips and hop-binds there were whole verses...",
+        "rawEnd": "was through mercy!” she said. And the organ pealed, and the children's voices in the choir sounded so sweet and soft! The clear sunshine streamed so warmly through the window into the pew where Karen sat! Her heart was so full of sunshine, peace, and joy, that it broke. Her soul flew on the sunshine to God, and there no one asked after the RED SHOES.",
+        "generatedEnd": "e had touched it there gleamed a golden star. And he touched the walls, and they widened out, and she saw the organ which was playing; she saw the old pictures of the preachers and the preachers' wives. The congregation sat in cushioned seats, and sang out of..."
+      }
+    },
+    {
+      "slug": "the-real-princess",
+      "dryRunStatus": "already acceptable",
+      "writeAction": "accepted without rewrite",
+      "verificationStatus": "warn accepted",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-real-princess/manifest.json",
+        "app/client/assets/books/generated/the-real-princess/cleaned_book.json",
+        "app/client/assets/books/generated/the-real-princess/processed_book.json",
+        "app/client/assets/books/generated/the-real-princess/rights_report.json",
+        "app/client/assets/books/generated/the-real-princess/processing_notes.md",
+        "app/client/assets/books/generated/the-real-princess/sections/part-001.json",
+        "app/client/assets/books/generated/the-real-princess/sections/part-002.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-real-princess.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/The Real Princess.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/the-real-princess.md",
+      "selectedStructuralConvention": "story or titled-section headings",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "warn",
+        "summary": "Sectioning matches the source structure with review notes.",
+        "details": [
+          "No explicit includeByDefault sections; verified runtime/startup fallback selects readable sections."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [
+        "Sectioning matches the source structure with review notes.",
+        "No explicit includeByDefault sections; verified runtime/startup fallback selects readable sections."
+      ],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "acceptedWithoutRewriteReview": {
+        "whyNoRewriteWasNeeded": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+        "firstDefaultSection": {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "includeByDefault": false,
+          "wordCount": 414,
+          "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princess. He travelled all over the world in hopes of finding such a lady; but there was always something w..."
+        },
+        "sectioningVerdict": "Sectioning matches the source structure with review notes.",
+        "previewVerdict": "Preview is valid, book-specific, and starts from generated readable content.",
+        "finalAcceptanceVerdict": "dry-run acceptance remains valid"
+      },
+      "snippets": {
+        "rawStart": "The Project Gutenberg eBook of Andersen's Fairy Tales This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenb",
+        "generatedFirstDefault": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princess. He travelled all over the world in hopes of finding such a lady; but there was always something w...",
+        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princess. He travelled all over the world in hopes of finding such a lady; but there was always something w...",
+        "rawEnd": "the door. What with the rain and the wind, she was in a sad condition; the water trickled down from her hair, and her clothes clung to her body. She said she was a real Princess. “Ah! we shall soon see that!” thought the old Queen-mother; however, she said not a word of what she was going to do; but went quietly into the bedroom, took all the bed-clo",
+        "generatedEnd": "hen laid twenty mattresses one upon another over the three peas, and put twenty feather beds over the mattresses. Upon this bed the Princess was to pass the night. The next morning she was asked how she had slept. “Oh, very badly indeed!” she replied. “I have..."
+      }
+    },
+    {
+      "slug": "the-secret-garden-gutenberg-113",
+      "dryRunStatus": "already acceptable",
+      "writeAction": "accepted without rewrite",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/manifest.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/cleaned_book.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/processed_book.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/rights_report.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/processing_notes.md",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/title-page-001.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/title-page-002.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-024.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-025.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-026.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-027.json",
+        "app/client/assets/books/generated/the-secret-garden-gutenberg-113/sections/chapter-028.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-secret-garden-gutenberg-113.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/The Secret Garden.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/the-secret-garden-gutenberg-113.md",
+      "selectedStructuralConvention": "chapter-based roman numerals",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning matches the selected source structure without fallback collapse.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "acceptedWithoutRewriteReview": {
+        "whyNoRewriteWasNeeded": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 1915,
+          "snippet": "CHAPTER I. THERE IS NO ONE LEFT When Mary Lennox was sent to Misselthwaite Manor to live with her uncle everybody said she was the most disagreeable-looking child ever seen. It was true, too. She had a little thin face and a little thin body, thin light hair..."
+        },
+        "sectioningVerdict": "Sectioning matches the selected source structure without fallback collapse.",
+        "previewVerdict": "Preview is valid, book-specific, and starts from generated readable content.",
+        "finalAcceptanceVerdict": "dry-run acceptance remains valid"
+      },
+      "snippets": {
+        "rawStart": "reading Team at http://www.pgdp.net [Illustration: \"IT SEEMED SCARCELY BEARABLE TO LEAVE SUCH DELIGHTFULNESS\"--_Page 231_] THE SECRET GARDEN BY FRANCES HODGSON BURNETT _Author of_ \"_The Shuttle_,\" \"_The Making of a Marchioness_,\" \"_The Methods of Lady Walderhurst_,\" \"_That Lass o' Lowries_",
+        "generatedFirstDefault": "CHAPTER I. THERE IS NO ONE LEFT When Mary Lennox was sent to Misselthwaite Manor to live with her uncle everybody said she was the most disagreeable-looking child ever seen. It was true, too. She had a little thin face and a little thin body, thin light hair...",
+        "previewStart": "CHAPTER I. THERE IS NO ONE LEFT When Mary Lennox was sent to Misselthwaite Manor to live with her uncle everybody said she was the most disagreeable-looking child ever seen. It was true, too. She had a little thin face and a little thin body, thin light hair...",
+        "rawEnd": "own way in every detail. All this was not an uplifting thing to recall, but as the train whirled him through mountain passes and golden plains the man who was \"coming alive\" began to think in a new way and he thought long and steadily and deeply. \"Perhaps I have been all wrong for ten years,\" he said to himself. \"Ten years is a long time. It may be",
+        "generatedEnd": "all. But I’ll tell thee this. There’s been things goin’ on outside as you house people knows nowt about. An’ what tha’ll find out tha’ll find out soon.” And it was not two minutes before he swallowed the last of his beer and waved his mug solemnly toward the..."
+      }
+    },
+    {
+      "slug": "the-shoes-of-fortune",
+      "dryRunStatus": "already acceptable",
+      "writeAction": "accepted without rewrite",
+      "verificationStatus": "warn accepted",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-shoes-of-fortune/manifest.json",
+        "app/client/assets/books/generated/the-shoes-of-fortune/cleaned_book.json",
+        "app/client/assets/books/generated/the-shoes-of-fortune/processed_book.json",
+        "app/client/assets/books/generated/the-shoes-of-fortune/rights_report.json",
+        "app/client/assets/books/generated/the-shoes-of-fortune/processing_notes.md",
+        "app/client/assets/books/generated/the-shoes-of-fortune/sections/part-001.json",
+        "app/client/assets/books/generated/the-shoes-of-fortune/sections/part-002.json",
+        "app/client/assets/books/generated/the-shoes-of-fortune/sections/part-003.json",
+        "app/client/assets/books/generated/the-shoes-of-fortune/sections/part-004.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-shoes-of-fortune.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/The Shoes of Fortune.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/the-shoes-of-fortune.md",
+      "selectedStructuralConvention": "roman-numbered titled sections",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "warn",
+        "summary": "Sectioning matches the source structure with review notes.",
+        "details": [
+          "No explicit includeByDefault sections; verified runtime/startup fallback selects readable sections."
+        ]
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [
+        "Sectioning matches the source structure with review notes.",
+        "No explicit includeByDefault sections; verified runtime/startup fallback selects readable sections."
+      ],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "acceptedWithoutRewriteReview": {
+        "whyNoRewriteWasNeeded": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+        "firstDefaultSection": {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "includeByDefault": false,
+          "wordCount": 5286,
+          "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SHOES OF FORTUNE I. A Beginning Every author has some peculiarity in his descriptions or in his style of writing. Those who do not like him, magnify it, shrug up their shoulders, and exclaim--there he is a..."
+        },
+        "sectioningVerdict": "Sectioning matches the source structure with review notes.",
+        "previewVerdict": "Preview is valid, book-specific, and starts from generated readable content.",
+        "finalAcceptanceVerdict": "dry-run acceptance remains valid"
+      },
+      "snippets": {
+        "rawStart": "The Project Gutenberg eBook of Andersen's Fairy Tales This eBook is for the use of anyone anywhere in the United States and most other parts of the world at no cost and with almost no restrictions whatsoever. You may copy it, give it away or re-use it under the terms of the Project Gutenberg License included with this eBook or online at www.gutenb",
+        "generatedFirstDefault": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SHOES OF FORTUNE I. A Beginning Every author has some peculiarity in his descriptions or in his style of writing. Those who do not like him, magnify it, shrug up their shoulders, and exclaim--there he is a...",
+        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SHOES OF FORTUNE I. A Beginning Every author has some peculiarity in his descriptions or in his style of writing. Those who do not like him, magnify it, shrug up their shoulders, and exclaim--there he is a...",
+        "rawEnd": "o suffocation--the gnats hummed and stung unceasingly--the “miserabili” without whined and moaned in their sleep. “Travelling would be agreeable enough,” said he groaning, “if one only had no body, or could send it to rest while the spirit went on its pilgrimage unhindered, whither the voice within might call it. Wherever I go, I am pursued by a longi",
+        "generatedEnd": "And she took the Galoshes from his feet; his sleep of death was ended; and he who had been thus called back again to life arose from his dread couch in all the vigor of youth. Care vanished, and with her the Galoshes. She has no doubt taken them for herself,..."
+      }
+    },
+    {
+      "slug": "the-snow-queen",
+      "dryRunStatus": "needs correction before acceptance",
+      "writeAction": "corrected",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-snow-queen/manifest.json",
+        "app/client/assets/books/generated/the-snow-queen/cleaned_book.json",
+        "app/client/assets/books/generated/the-snow-queen/processed_book.json",
+        "app/client/assets/books/generated/the-snow-queen/rights_report.json",
+        "app/client/assets/books/generated/the-snow-queen/processing_notes.md",
+        "app/client/assets/books/generated/the-snow-queen/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-snow-queen/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-snow-queen/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-snow-queen/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-snow-queen/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-snow-queen/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-snow-queen/sections/chapter-007.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-snow-queen.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/THE SNOW QUEEN.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/the-snow-queen.md",
+      "selectedStructuralConvention": "seven titled story parts",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning matches the selected source structure without fallback collapse.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctedBookReview": {
+        "previousDryRunDefect": [
+          "clear structure exists in the source but current output is coarse fallback-style sections",
+          "first default section does not tightly align with pass-2 candidate start",
+          "last readable section does not tightly align with pass-2 candidate end",
+          "generated output likely collapsed real structure",
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "defectFixed": true,
+        "firstDefaultSectionBeforeCorrection": {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "includeByDefault": false,
+          "wordCount": 5513,
+          "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SNOW QUEEN FIRST STORY. Which Treats of a Mirror and of the Splinters Now then, let us begin. When we are at the end of the story, we shall know more than we know now: but to begin. Once upon a time ther..."
+        },
+        "firstDefaultSectionAfterCorrection": {
+          "id": "chapter-001",
+          "label": "Story 1",
+          "title": "Which Describes A Looking-Glass and Its Broken Fragments",
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 531,
+          "snippet": "STORY THE FIRST WHICH DESCRIBES A LOOKING-GLASS AND ITS BROKEN FRAGMENTS YOU must attend to the beginning of this story, for when we get to the end we shall know more than we now do about a very wicked hobgoblin; he was one of the most mischievous of all spri..."
+        },
+        "sectionCountBefore": 4,
+        "sectionCountAfter": 7,
+        "previewBeforeAfter": {
+          "before": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SNOW QUEEN FIRST STORY. Which Treats of a Mirror and of the Splinters Now then, let us begin. When we are at the end of the story, we shall know more than we know now: but to begin. Once upon a time ther...",
+          "after": "STORY THE FIRST WHICH DESCRIBES A LOOKING-GLASS AND ITS BROKEN FRAGMENTS YOU must attend to the beginning of this story, for when we get to the end we shall know more than we now do about a very wicked hobgoblin; he was one of the most mischievous of all spri..."
+        },
+        "finalVerdict": "accepted for main"
+      },
+      "snippets": {
+        "rawStart": "STORY THE FIRST WHICH DESCRIBES A LOOKING-GLASS AND ITS BROKEN FRAGMENTS YOU must attend to the beginning of this story, for when we get to the end we shall know more than we now do about a very wicked hobgoblin; he was one of the most mischievous of all sprites, for he was a real demon. One day when he was in a merry mood he made a looking-glass",
+        "generatedFirstDefault": "STORY THE FIRST WHICH DESCRIBES A LOOKING-GLASS AND ITS BROKEN FRAGMENTS YOU must attend to the beginning of this story, for when we get to the end we shall know more than we now do about a very wicked hobgoblin; he was one of the most mischievous of all spri...",
+        "previewStart": "STORY THE FIRST WHICH DESCRIBES A LOOKING-GLASS AND ITS BROKEN FRAGMENTS YOU must attend to the beginning of this story, for when we get to the end we shall know more than we now do about a very wicked hobgoblin; he was one of the most mischievous of all spri...",
+        "rawEnd": "tle children, ye shall in no wise enter into the kingdom of God.\" And Kay and Gerda looked into each other's eyes and all at once understood the words of the old song: Roses bloom and fade away, But we the Christ-child see alway. And they both sat there, grown up, yet children at heart, and it was summer--warm, beautiful summer.",
+        "generatedEnd": "ey passed through the door into the room they perceived that they were both grown up and become a man and woman. The roses out on the roof were in full bloom and peeped in at the window, and there stood the little chairs on which they had sat when children, a..."
+      }
+    },
+    {
+      "slug": "the-swineherd",
+      "dryRunStatus": "needs correction before acceptance",
+      "writeAction": "corrected",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-swineherd/manifest.json",
+        "app/client/assets/books/generated/the-swineherd/cleaned_book.json",
+        "app/client/assets/books/generated/the-swineherd/processed_book.json",
+        "app/client/assets/books/generated/the-swineherd/rights_report.json",
+        "app/client/assets/books/generated/the-swineherd/processing_notes.md",
+        "app/client/assets/books/generated/the-swineherd/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-swineherd.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/The Swineherd.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/the-swineherd.md",
+      "selectedStructuralConvention": "single Andersen story",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning matches the selected source structure without fallback collapse.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctedBookReview": {
+        "previousDryRunDefect": [
+          "clear structure exists in the source but current output is coarse fallback-style sections",
+          "last readable section does not tightly align with pass-2 candidate end",
+          "Real opening or ending content may be at risk around the audited boundary."
+        ],
+        "defectFixed": true,
+        "firstDefaultSectionBeforeCorrection": {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "includeByDefault": false,
+          "wordCount": 1486,
+          "snippet": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was certainly rather cool of him to say to th..."
+        },
+        "firstDefaultSectionAfterCorrection": {
+          "id": "chapter-001",
+          "label": "The Swineherd",
+          "title": null,
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 1488,
+          "snippet": "THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was certainly rather cool of him to say to the Emperor's daughter, \"Will you have me?\" But so he..."
+        },
+        "sectionCountBefore": 2,
+        "sectionCountAfter": 1,
+        "previewBeforeAfter": {
+          "before": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was certainly rather cool of him to say to th...",
+          "after": "THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was certainly rather cool of him to say to the Emperor's daughter, \"Will you have me?\" But so he..."
+        },
+        "finalVerdict": "accepted for main"
+      },
+      "snippets": {
+        "rawStart": "THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was certainly rather cool of him to say to the Emperor's daughter, “Will you have me?” But so he did; for his name was renowned far and wide; and there were a hundred princesses who would",
+        "generatedFirstDefault": "THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was certainly rather cool of him to say to the Emperor's daughter, \"Will you have me?\" But so he...",
+        "previewStart": "THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was certainly rather cool of him to say to the Emperor's daughter, \"Will you have me?\" But so he...",
+        "rawEnd": "e Prince! Thou could'st not prize the rose and the nightingale, but thou wast ready to kiss the swineherd for the sake of a trumpery plaything. Thou art rightly served.” He then went back to his own little kingdom, and shut the door of his palace in her face. Now she might well sing, “Ach! du lieber Augustin, Alles ist weg, weg, weg!”",
+        "generatedEnd": "and swineherd were thrust out of the city. The Princess now stood and wept, the swineherd scolded, and the rain poured down. \"Alas! Unhappy creature that I am!\" said the Princess. \"If I had but married the handsome young Prince! Ah! how unfortunate I am!\" And..."
+      }
+    },
+    {
+      "slug": "treasure-island",
+      "dryRunStatus": "needs correction before acceptance",
+      "writeAction": "corrected",
+      "verificationStatus": "warn accepted",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/treasure-island/manifest.json",
+        "app/client/assets/books/generated/treasure-island/cleaned_book.json",
+        "app/client/assets/books/generated/treasure-island/processed_book.json",
+        "app/client/assets/books/generated/treasure-island/rights_report.json",
+        "app/client/assets/books/generated/treasure-island/processing_notes.md",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-001.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-002.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-003.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-004.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-005.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-006.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-007.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-008.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-009.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-010.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-011.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-012.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-013.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-014.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-015.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-016.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-017.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-018.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-019.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-020.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-021.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-022.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-023.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-024.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-025.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-026.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-027.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-028.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-029.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-030.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-031.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-032.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-033.json",
+        "app/client/assets/books/generated/treasure-island/sections/chapter-034.json"
+      ],
+      "previewAssetInspected": "public/book-previews/treasure-island.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/treasure-island.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/treasure-island.md",
+      "selectedStructuralConvention": "roman-numbered chapters within part divisions",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning matches the selected source structure without fallback collapse.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [
+        "body headings were found but rejected by the selected strategy"
+      ],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctedBookReview": {
+        "previousDryRunDefect": [
+          "clear structure exists in the source but current output is coarse fallback-style sections",
+          "first default section does not tightly align with pass-2 candidate start",
+          "last readable section does not tightly align with pass-2 candidate end",
+          "body headings were found but rejected by the selected strategy",
+          "generated output likely collapsed real structure",
+          "Real opening or ending content may be at risk around the audited boundary.",
+          "Existing generated output needs boundary/default-section correction later."
+        ],
+        "defectFixed": true,
+        "firstDefaultSectionBeforeCorrection": {
+          "id": "part-001",
+          "label": "Part 1",
+          "title": null,
+          "kind": "part",
+          "includeByDefault": false,
+          "wordCount": 5594,
+          "snippet": "TREASURE ISLAND by Robert Louis Stevenson TREASURE ISLAND To S.L.O., an American gentleman in accordance with whose classic taste the following narrative has been designed, it is now, in return for numerous delightful hours, and with the kindest wishes, ded..."
+        },
+        "firstDefaultSectionAfterCorrection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "The Old Sea-Dog At the Admiral Benbow",
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 2220,
+          "snippet": "I The Old Sea-dog at the Admiral Benbow Squire Trelawney, Dr. Livesey, and the rest of these gentlemen having asked me to write down the whole particulars about Treasure Island, from the beginning to the end, keeping nothing back but the bearings of the islan..."
+        },
+        "sectionCountBefore": 14,
+        "sectionCountAfter": 34,
+        "previewBeforeAfter": {
+          "before": "TREASURE ISLAND by Robert Louis Stevenson TREASURE ISLAND To S.L.O., an American gentleman in accordance with whose classic taste the following narrative has been designed, it is now, in return for numerous delightful hours, and with the kindest wishes, ded...",
+          "after": "I The Old Sea-dog at the Admiral Benbow Squire Trelawney, Dr. Livesey, and the rest of these gentlemen having asked me to write down the whole particulars about Treasure Island, from the beginning to the end, keeping nothing back but the bearings of the islan..."
+        },
+        "finalVerdict": "accepted for main with review notes"
+      },
+      "snippets": {
+        "rawStart": "I The Old Sea-dog at the Admiral Benbow Squire Trelawney, Dr. Livesey, and the rest of these gentlemen having asked me to write down the whole particulars about Treasure Island, from the beginning to the end, keeping nothing back but the bearings of the island, and that only because there is still treasure not yet lifted, I take up my pen in the ye",
+        "generatedFirstDefault": "I The Old Sea-dog at the Admiral Benbow Squire Trelawney, Dr. Livesey, and the rest of these gentlemen having asked me to write down the whole particulars about Treasure Island, from the beginning to the end, keeping nothing back but the bearings of the islan...",
+        "previewStart": "I The Old Sea-dog at the Admiral Benbow Squire Trelawney, Dr. Livesey, and the rest of these gentlemen having asked me to write down the whole particulars about Treasure Island, from the beginning to the end, keeping nothing back but the bearings of the islan...",
+        "rawEnd": "re Flint buried them; and certainly they shall lie there for me. Oxen and wain-ropes would not bring me back again to that accursed island; and the worst dreams that ever I have are when I hear the surf booming about its coasts or start upright in bed with the sharp voice of Captain Flint still ringing in my ears: “Pieces of eight! Pieces of eight!”",
+        "generatedEnd": "feared upon the island; and he still lives, a great favourite, though something of a butt, with the country boys, and a notable singer in church on Sundays and saints' days. Of Silver we have heard no more. That formidable seafaring man with one leg has at la..."
+      }
+    },
+    {
+      "slug": "wind-in-the-willows",
+      "dryRunStatus": "already acceptable",
+      "writeAction": "accepted without rewrite",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/wind-in-the-willows/manifest.json",
+        "app/client/assets/books/generated/wind-in-the-willows/cleaned_book.json",
+        "app/client/assets/books/generated/wind-in-the-willows/processed_book.json",
+        "app/client/assets/books/generated/wind-in-the-willows/rights_report.json",
+        "app/client/assets/books/generated/wind-in-the-willows/processing_notes.md",
+        "app/client/assets/books/generated/wind-in-the-willows/sections/title-page-001.json",
+        "app/client/assets/books/generated/wind-in-the-willows/sections/title-page-002.json",
+        "app/client/assets/books/generated/wind-in-the-willows/sections/chapter-001.json",
+        "app/client/assets/books/generated/wind-in-the-willows/sections/chapter-002.json",
+        "app/client/assets/books/generated/wind-in-the-willows/sections/chapter-003.json",
+        "app/client/assets/books/generated/wind-in-the-willows/sections/chapter-004.json",
+        "app/client/assets/books/generated/wind-in-the-willows/sections/chapter-005.json",
+        "app/client/assets/books/generated/wind-in-the-willows/sections/chapter-006.json",
+        "app/client/assets/books/generated/wind-in-the-willows/sections/chapter-007.json",
+        "app/client/assets/books/generated/wind-in-the-willows/sections/chapter-008.json",
+        "app/client/assets/books/generated/wind-in-the-willows/sections/chapter-009.json",
+        "app/client/assets/books/generated/wind-in-the-willows/sections/chapter-010.json",
+        "app/client/assets/books/generated/wind-in-the-willows/sections/chapter-011.json",
+        "app/client/assets/books/generated/wind-in-the-willows/sections/chapter-012.json"
+      ],
+      "previewAssetInspected": "public/book-previews/wind-in-the-willows.preview.json",
+      "rawSourceInspected": "app/client/assets/temp-books/The Wind in the Willows.txt",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/pilot-dry-run-5.json",
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "dryRunPerBookReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-5/books/wind-in-the-willows.md",
+      "selectedStructuralConvention": "standalone roman numeral sections",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "First default section starts from real readable generated content.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated default playback preserves the readable ending without footer leakage.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning matches the selected source structure without fallback collapse.",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "Default playback excludes boilerplate, source/license material, and obvious artifacts.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, and starts from generated readable content.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "acceptedWithoutRewriteReview": {
+        "whyNoRewriteWasNeeded": "Dry-run batch 5 classified this book as already acceptable; generated output and preview were inspected but not rewritten.",
+        "firstDefaultSection": {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "includeByDefault": true,
+          "wordCount": 4440,
+          "snippet": "I. THE RIVER BANK The Mole had been working very hard all the morning, spring-cleaning his little home. First with brooms, then with dusters; then on ladders and steps and chairs, with a brush and a pail of whitewash; till he had dust in his throat and eyes,..."
+        },
+        "sectioningVerdict": "Sectioning matches the selected source structure without fallback collapse.",
+        "previewVerdict": "Preview is valid, book-specific, and starts from generated readable content.",
+        "finalAcceptanceVerdict": "dry-run acceptance remains valid"
+      },
+      "snippets": {
+        "rawStart": "Title: The Wind in the Willows Author: Kenneth Grahame Illustrator: Paul Bransom Release date: January 14, 2009 [eBook #27805] Language: English Other information and formats: www.gutenberg.org/ebooks/27805 Credits: Produced by David Edwards, Jen Haines and the Online Distributed Proofreading Team at http://www.pgdp",
+        "generatedFirstDefault": "I. THE RIVER BANK The Mole had been working very hard all the morning, spring-cleaning his little home. First with brooms, then with dusters; then on ladders and steps and chairs, with a brush and a pail of whitewash; till he had dust in his throat and eyes,...",
+        "previewStart": "I. THE RIVER BANK The Mole had been working very hard all the morning, spring-cleaning his little home. First with brooms, then with dusters; then on ladders and steps and chairs, with a brush and a pail of whitewash; till he had dust in his throat and eyes,...",
+        "rawEnd": "hen, and as soon as the door had closed behind him, Toad hurried to the writing-table. A fine idea had occurred to him while he was talking. He _would_ write the invitations; and he would take care to mention the leading part he had taken in the fight, and how he had laid the Chief Weasel flat; and he would hint at his adventures, and what a career of t",
+        "generatedEnd": "metimes, in the course of long summer evenings, the friends would take a stroll together in the Wild Wood, now successfully tamed so far as they were concerned; and it was pleasing to see how respectfully they were greeted by the inhabitants, and how the moth..."
+      }
+    }
+  ]
+}

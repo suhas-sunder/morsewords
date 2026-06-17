@@ -1,6 +1,6 @@
 # Book Startup Preview Audit 1
 
-Generated at: 2026-06-17T01:08:07.496Z
+Generated at: 2026-06-17T17:17:38.551Z
 
 ## Summary
 
@@ -15,10 +15,10 @@ Generated at: 2026-06-17T01:08:07.496Z
 
 | Recommendation | Books |
 | --- | ---: |
-| valid | 108 |
+| valid | 110 |
 | preview asset needs regeneration from generated readable sections | 0 |
 | generated book needs processing correction later | 0 |
-| blocked/manual review | 2 |
+| blocked/manual review | 0 |
 
 ## Book Results
 
@@ -34,8 +34,8 @@ Generated at: 2026-06-17T01:08:07.496Z
 | around-the-world-in-eighty-days | valid | chapter-001 (chapter) | 37/37 | valid | none |
 | black-beauty | valid | chapter-001 (chapter) | 49/49 | valid | none |
 | botchan | valid | chapter-001 (chapter) | 11/11 | valid | none |
-| candide | valid | part-002 (part) | 6/6 | valid | none |
-| crime-and-punishment | valid | chapter-001 (chapter) | 39/44 | blocked/manual review | Not all detected main-readable sections are selected by default. |
+| candide | valid | chapter-001 (chapter) | 30/30 | valid | none |
+| crime-and-punishment | valid | chapter-001 (chapter) | 40/39 | valid | none |
 | doctor-dolittle | valid | part-002 (part) | 5/5 | valid | none |
 | don-quixote | valid | chapter-001 (chapter) | 126/126 | valid | none |
 | dr-jekyll-and-mr-hyde | valid | part-002 (part) | 5/5 | valid | none |
@@ -43,12 +43,12 @@ Generated at: 2026-06-17T01:08:07.496Z
 | five-little-peppers-and-how-they-grew | valid | chapter-001 (chapter) | 25/25 | valid | none |
 | frankenstein | valid | letter-001 (letter) | 28/28 | valid | none |
 | grimm-s-fairy-tales | valid | chapter-001 (chapter) | 66/66 | valid | none |
-| gulliver-s-travels | valid | chapter-001 (chapter) | 39/44 | blocked/manual review | Not all detected main-readable sections are selected by default. |
+| gulliver-s-travels | valid | chapter-001 (chapter) | 39/39 | valid | none |
 | heidi | valid | part-002 (part) | 9/9 | valid | none |
 | jabberwocky | valid | part-001 (part) | 1/1 | valid | none |
 | jack-and-jill | valid | chapter-001 (chapter) | 24/24 | valid | none |
 | jane-eyre | valid | chapter-001 (chapter) | 37/36 | valid | none |
-| les-miserables | valid | chapter-001 (chapter) | 363/361 | valid | none |
+| les-miserables | valid | chapter-001 (chapter) | 363/362 | valid | none |
 | little-women | valid | chapter-001 (chapter) | 47/47 | valid | none |
 | new-treasure-seekers | valid | chapter-001 (chapter) | 13/12 | valid | none |
 | nights-with-uncle-remus | valid | part-002 (part) | 19/19 | valid | none |
@@ -63,14 +63,14 @@ Generated at: 2026-06-17T01:08:07.496Z
 | the-art-of-war | valid | chapter-001 (chapter) | 13/11 | valid | none |
 | the-bell | valid | part-001 (part) | 2/2 | valid | none |
 | the-book-of-dragons | valid | chapter-001 (chapter) | 8/8 | valid | none |
-| the-call-of-cthulhu | valid | part-002 (part) | 3/3 | valid | none |
+| the-call-of-cthulhu | valid | chapter-001 (chapter) | 3/3 | valid | none |
 | the-call-of-the-wild | valid | chapter-001 (chapter) | 7/7 | valid | none |
 | the-count-of-monte-cristo | valid | chapter-001 (chapter) | 117/117 | valid | none |
 | the-count-of-monte-cristo-gutenberg-1184 | valid | chapter-001 (chapter) | 117/117 | valid | none |
 | the-divine-comedy | valid | poem-001 (poem) | 100/100 | valid | none |
 | the-elderbush | valid | part-001 (part) | 1/1 | valid | none |
 | the-elements-of-style | valid | part-001 (part) | 25/24 | valid | none |
-| the-emerald-city-of-oz | valid | part-002 (part) | 10/10 | valid | none |
+| the-emerald-city-of-oz | valid | chapter-001 (chapter) | 30/29 | valid | none |
 | the-emperor-s-new-clothes | valid | part-001 (part) | 2/2 | valid | none |
 | the-federalist-papers | valid | chapter-001 (chapter) | 86/86 | valid | none |
 | the-fir-tree | valid | part-001 (part) | 2/2 | valid | none |
@@ -79,23 +79,23 @@ Generated at: 2026-06-17T01:08:07.496Z
 | the-jungle-book | valid | chapter-001 (chapter) | 14/14 | valid | none |
 | the-leap-frog | valid | part-001 (part) | 2/2 | valid | none |
 | the-legend-of-sleepy-hollow | valid | chapter-001 (chapter) | 2/2 | valid | none |
-| the-old-house | valid | part-001 (part) | 5/5 | valid | none |
+| the-old-house | valid | chapter-001 (chapter) | 9/9 | valid | none |
 | the-picture-of-dorian-gray | valid | chapter-001 (chapter) | 21/21 | valid | none |
 | the-princess-and-the-goblin | valid | chapter-001 (chapter) | 32/32 | valid | none |
 | the-railway-children | valid | chapter-001 (chapter) | 14/14 | valid | none |
 | the-real-princess | valid | part-001 (part) | 1/1 | valid | none |
-| the-sea-wolf | valid | chapter-001 (chapter) | 39/38 | valid | none |
+| the-sea-wolf | valid | chapter-001 (chapter) | 39/39 | valid | none |
 | the-secret-garden | valid | chapter-001 (chapter) | 27/27 | valid | none |
 | the-secret-garden-gutenberg-113 | valid | chapter-001 (chapter) | 28/28 | valid | none |
 | the-shoes-of-fortune | valid | part-001 (part) | 4/4 | valid | none |
-| the-snow-queen | valid | part-001 (part) | 3/3 | valid | none |
-| the-swineherd | valid | part-001 (part) | 1/1 | valid | none |
+| the-snow-queen | valid | chapter-001 (chapter) | 7/7 | valid | none |
+| the-swineherd | valid | chapter-001 (chapter) | 1/1 | valid | none |
 | the-thirty-nine-steps | valid | chapter-001 (chapter) | 10/10 | valid | none |
 | the-three-musketeers | valid | chapter-001 (chapter) | 67/67 | valid | none |
 | the-water-babies | valid | chapter-001 (chapter) | 9/8 | valid | none |
 | the-wonderful-wizard-of-oz | valid | chapter-001 (chapter) | 24/24 | valid | none |
 | through-the-looking-glass | valid | chapter-001 (chapter) | 12/12 | valid | none |
-| treasure-island | valid | part-001 (part) | 14/14 | valid | none |
+| treasure-island | valid | chapter-001 (chapter) | 34/33 | valid | none |
 | wind-in-the-willows | valid | chapter-001 (chapter) | 12/12 | valid | none |
 | wood-folk-at-school | valid | part-002 (part) | 8/8 | valid | none |
 | a-dream-of-armageddon | valid | part-001 (part) | 2/2 | valid | none |
