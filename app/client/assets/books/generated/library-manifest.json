@@ -1530,8 +1530,8 @@
       "author": [
         "L. Frank Baum"
       ],
-      "contentVersion": "ca883df3a4910700",
-      "contentHash": "ca883df3a491070049bb334e45cb9581bed40bdf6cd2130a2aad1f1be5786958",
+      "contentVersion": "4cf267dfa9d1b012",
+      "contentHash": "4cf267dfa9d1b01288349cc486e9d35081cdb4e532b3c16629620b45ede4394c",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1559,9 +1559,9 @@
         "alt": "Placeholder cover for Rinkitink in Oz"
       },
       "stats": {
-        "originalCharacterCount": 290436,
-        "cleanedCharacterCount": 271052,
-        "wordCount": 49500,
+        "originalCharacterCount": 296832,
+        "cleanedCharacterCount": 268804,
+        "wordCount": 49303,
         "sectionCount": 25,
         "includedSectionCount": 24
       },
@@ -2995,8 +2995,8 @@
       "author": [
         "Frances Hodgson Burnett"
       ],
-      "contentVersion": "3822285cf35bf6f2",
-      "contentHash": "3822285cf35bf6f2ec0edbaf3e93f9552a9b371d4dc3ab31de55ad203ec56870",
+      "contentVersion": "dcceb9038f24da61",
+      "contentHash": "dcceb9038f24da61a2a0e2f854074d3a1adda73a5d6d79796382baee9f492c42",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3024,9 +3024,9 @@
         "alt": "Placeholder cover for The Secret Garden"
       },
       "stats": {
-        "originalCharacterCount": 451877,
-        "cleanedCharacterCount": 431726,
-        "wordCount": 81348,
+        "originalCharacterCount": 461904,
+        "cleanedCharacterCount": 431428,
+        "wordCount": 81317,
         "sectionCount": 29,
         "includedSectionCount": 27
       },

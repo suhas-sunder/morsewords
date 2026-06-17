@@ -1,17 +1,41 @@
 # Pilot Write 4 Verification
 
-Generated at: 2026-06-17T04:39:23.352Z
+Generated at: 2026-06-17T05:18:53.792Z
 
 ## Summary
 
 - Branch: morsewords-book-processing-pilot-write-4-jun-2026
-- Commit verified: 4e95ecebacafe95946136b59ec16567ccf6a9169
+- Commit verified: d4896d51098c07bf5ef53e2d20fb5a1b98c2bc2f
 - Selected books verified: 25
-- Pass: 18
+- Pass: 20
 - Warn accepted: 5
-- Fail: 2
-- Corrections made during verification: 0
-- Correction needed before main: 2
+- Fail: 0
+- Corrections made during verification: 2
+- Correction needed before main: 0
+
+## Focused Correction Note
+
+### rinkitink-in-oz
+
+- Failed before: fail
+- Corrected now: yes
+- Artifact removed: 99 bracketed illustration/image placeholder blocks and 23 standalone illustrated chapter-title caption lines.
+- Correction: Removed standalone illustration placeholders and illustration-only chapter-title captions from default playback.
+- Startup preview after correction: valid book-specific startup preview
+- Final verification status after rerun: pass
+- Generated files changed: app/client/assets/books/generated/rinkitink-in-oz/manifest.json, app/client/assets/books/generated/rinkitink-in-oz/cleaned_book.json, app/client/assets/books/generated/rinkitink-in-oz/processed_book.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-001.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-002.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-003.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-004.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-005.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-006.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-007.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-008.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-009.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-010.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-011.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-012.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-013.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-014.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-015.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-016.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-017.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-018.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-019.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-020.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-021.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-022.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-023.json, app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-024.json, app/client/assets/books/generated/library-manifest.json
+- Preview files changed: public/book-previews/rinkitink-in-oz.preview.json, public/book-previews/manifest.json
+
+### the-secret-garden
+
+- Failed before: fail
+- Corrected now: yes
+- Artifact removed: 3 bracketed illustration captions from chapters 13, 19, and 26.
+- Correction: Removed bracketed illustration captions from default playback while preserving surrounding prose and dialogue.
+- Startup preview after correction: valid book-specific startup preview
+- Final verification status after rerun: pass
+- Generated files changed: app/client/assets/books/generated/the-secret-garden/manifest.json, app/client/assets/books/generated/the-secret-garden/cleaned_book.json, app/client/assets/books/generated/the-secret-garden/processed_book.json, app/client/assets/books/generated/the-secret-garden/sections/chapter-013.json, app/client/assets/books/generated/the-secret-garden/sections/chapter-019.json, app/client/assets/books/generated/the-secret-garden/sections/chapter-026.json, app/client/assets/books/generated/library-manifest.json
+- Preview files changed: public/book-previews/the-secret-garden.preview.json, public/book-previews/manifest.json
 
 ## Results
 
@@ -28,7 +52,7 @@ Generated at: 2026-06-17T04:39:23.352Z
 | new-treasure-seekers | corrected | pass | yes | none |
 | pride-and-prejudice | corrected | warn accepted | yes | Generated ending needs review against raw source.; The final generated default-section tail was not found verbatim in the raw source after normalization. |
 | rainbow-valley | accepted without rewrite | pass | yes | none |
-| rinkitink-in-oz | accepted without rewrite | fail | no | Cleanup left source/default playback artifacts.; Default artifact: /\[(?:Illustration\|Illustrations\|Image\|Plate\|Map\|Music\|Facsimile\|Portrait)[^\]]*\]/i; Preview asset failed verification.; Preview artifact: /\[(?:Illustration\|Illustrations\|Image\|Plate\|Map\|Music\|Facsimile\|Portrait)[^\]]*\]/i |
+| rinkitink-in-oz | accepted without rewrite | pass | yes | none |
 | the-arabian-nights | corrected | warn accepted | yes | long book has huge sections despite detected headings; At least one corrected story remains large because the source has no clear internal headings; it was not split into fake fragments.; Sectioning matches the source structure with review notes.; Large real source sections retained without fake splitting: chapter-005 (31435 words). |
 | the-art-of-war | accepted without rewrite | pass | yes | none |
 | the-book-of-dragons | corrected | pass | yes | none |
@@ -39,7 +63,7 @@ Generated at: 2026-06-17T04:39:23.352Z
 | the-princess-and-the-goblin | accepted without rewrite | pass | yes | none |
 | the-railway-children | accepted without rewrite | pass | yes | none |
 | the-sea-wolf | accepted without rewrite | pass | yes | none |
-| the-secret-garden | accepted without rewrite | fail | no | Cleanup left source/default playback artifacts.; Default artifact: /\[(?:Illustration\|Illustrations\|Image\|Plate\|Map\|Music\|Facsimile\|Portrait)[^\]]*\]/i |
+| the-secret-garden | accepted without rewrite | pass | yes | none |
 | the-water-babies | corrected | warn accepted | yes | long book has huge sections despite detected headings |
 | through-the-looking-glass | accepted without rewrite | pass | yes | none |
 
@@ -219,12 +243,12 @@ Generated at: 2026-06-17T04:39:23.352Z
 - botchan: dry-run acceptance remains valid; first default chapter-001 Chapter 1; Preview is valid, book-specific, and starts from generated readable content.
 - jane-eyre: dry-run acceptance remains valid; first default chapter-001 Chapter 1; Preview is valid, book-specific, and starts from generated readable content.
 - rainbow-valley: dry-run acceptance remains valid; first default chapter-001 Chapter 1; Preview is valid, book-specific, and starts from generated readable content.
-- rinkitink-in-oz: acceptance revoked; needs correction before main; first default chapter-001 Chapter 1; Preview asset failed verification.
+- rinkitink-in-oz: dry-run acceptance remains valid; first default chapter-001 Chapter 1; Preview is valid, book-specific, and starts from generated readable content.
 - the-art-of-war: dry-run acceptance remains valid; first default chapter-001 Chapter 1; Preview is valid, book-specific, and starts from generated readable content.
 - the-princess-and-the-goblin: dry-run acceptance remains valid; first default chapter-001 Chapter 1; Preview is valid, book-specific, and starts from generated readable content.
 - the-railway-children: dry-run acceptance remains valid; first default chapter-001 Chapter 1; Preview is valid, book-specific, and starts from generated readable content.
 - the-sea-wolf: dry-run acceptance remains valid; first default chapter-001 Chapter 1; Preview is valid, book-specific, and starts from generated readable content.
-- the-secret-garden: acceptance revoked; needs correction before main; first default chapter-001 Chapter 1; Preview is valid, book-specific, and starts from generated readable content.
+- the-secret-garden: dry-run acceptance remains valid; first default chapter-001 Chapter 1; Preview is valid, book-specific, and starts from generated readable content.
 - through-the-looking-glass: dry-run acceptance remains valid; first default chapter-001 Chapter 1; Preview is valid, book-specific, and starts from generated readable content.
 
 ## Future Batch Rule

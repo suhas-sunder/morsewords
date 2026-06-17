@@ -299,6 +299,51 @@ const correctedBooks = new Set([
   "the-water-babies",
 ]);
 
+const focusedVerificationFixes = [
+  {
+    slug: "rinkitink-in-oz",
+    previousVerificationStatus: "fail",
+    correctionSummary:
+      "Removed standalone illustration placeholders and illustration-only chapter-title captions from default playback.",
+    artifactTypeRemoved:
+      "99 bracketed illustration/image placeholder blocks and 23 standalone illustrated chapter-title caption lines.",
+    generatedFilesChanged: [
+      "app/client/assets/books/generated/rinkitink-in-oz/manifest.json",
+      "app/client/assets/books/generated/rinkitink-in-oz/cleaned_book.json",
+      "app/client/assets/books/generated/rinkitink-in-oz/processed_book.json",
+      ...Array.from({ length: 24 }, (_, index) =>
+        `app/client/assets/books/generated/rinkitink-in-oz/sections/chapter-${String(index + 1).padStart(3, "0")}.json`,
+      ),
+      "app/client/assets/books/generated/library-manifest.json",
+    ],
+    previewFilesChanged: [
+      "public/book-previews/rinkitink-in-oz.preview.json",
+      "public/book-previews/manifest.json",
+    ],
+  },
+  {
+    slug: "the-secret-garden",
+    previousVerificationStatus: "fail",
+    correctionSummary:
+      "Removed bracketed illustration captions from default playback while preserving surrounding prose and dialogue.",
+    artifactTypeRemoved:
+      "3 bracketed illustration captions from chapters 13, 19, and 26.",
+    generatedFilesChanged: [
+      "app/client/assets/books/generated/the-secret-garden/manifest.json",
+      "app/client/assets/books/generated/the-secret-garden/cleaned_book.json",
+      "app/client/assets/books/generated/the-secret-garden/processed_book.json",
+      "app/client/assets/books/generated/the-secret-garden/sections/chapter-013.json",
+      "app/client/assets/books/generated/the-secret-garden/sections/chapter-019.json",
+      "app/client/assets/books/generated/the-secret-garden/sections/chapter-026.json",
+      "app/client/assets/books/generated/library-manifest.json",
+    ],
+    previewFilesChanged: [
+      "public/book-previews/the-secret-garden.preview.json",
+      "public/book-previews/manifest.json",
+    ],
+  },
+] as const;
+
 const nonPlayableKinds = new Set<BookSectionKind>([
   "title-page",
   "dedication",
@@ -853,6 +898,10 @@ function assertReportShape(dryRunReport: DryRunReport, writeReport: WriteReport)
 }
 
 function verificationTotals(books: BookVerification[]) {
+  const focusedCorrectionsNowPassing = focusedVerificationFixes.filter((fix) => {
+    const book = books.find((candidate) => candidate.slug === fix.slug);
+    return book && book.verificationStatus !== "fail";
+  }).length;
   return {
     selected: books.length,
     pass: books.filter((book) => book.verificationStatus === "pass").length,
@@ -860,8 +909,25 @@ function verificationTotals(books: BookVerification[]) {
     fail: books.filter((book) => book.verificationStatus === "fail").length,
     acceptedForMain: books.filter((book) => book.acceptedForMain).length,
     correctionNeededBeforeMain: books.filter((book) => book.correctionNeededBeforeMain).length,
-    correctionsMadeDuringVerification: 0,
+    correctionsMadeDuringVerification: focusedCorrectionsNowPassing,
   };
+}
+
+function buildFocusedCorrectionNotes(books: BookVerification[]) {
+  return focusedVerificationFixes.map((fix) => {
+    const book = books.find((candidate) => candidate.slug === fix.slug);
+    if (!book) throw new Error(`Missing focused correction book ${fix.slug}.`);
+    return {
+      ...fix,
+      correctedNow: book.verificationStatus !== "fail",
+      finalVerificationStatus: book.verificationStatus,
+      startupPreviewVerdictAfterCorrection: book.startupPreviewValid
+        ? "valid book-specific startup preview"
+        : "startup preview still invalid",
+      acceptedForMainAfterCorrection: book.acceptedForMain,
+      remainingWarningsAfterCorrection: book.remainingWarnings,
+    };
+  });
 }
 
 function buildMarkdown(report: ReturnType<typeof buildReport>) {
@@ -881,6 +947,21 @@ function buildMarkdown(report: ReturnType<typeof buildReport>) {
   lines.push(`- Corrections made during verification: ${report.totals.correctionsMadeDuringVerification}`);
   lines.push(`- Correction needed before main: ${report.totals.correctionNeededBeforeMain}`);
   lines.push("");
+  lines.push("## Focused Correction Note");
+  lines.push("");
+  for (const note of report.focusedCorrectionNotes) {
+    lines.push(`### ${note.slug}`);
+    lines.push("");
+    lines.push(`- Failed before: ${note.previousVerificationStatus}`);
+    lines.push(`- Corrected now: ${note.correctedNow ? "yes" : "no"}`);
+    lines.push(`- Artifact removed: ${note.artifactTypeRemoved}`);
+    lines.push(`- Correction: ${note.correctionSummary}`);
+    lines.push(`- Startup preview after correction: ${note.startupPreviewVerdictAfterCorrection}`);
+    lines.push(`- Final verification status after rerun: ${note.finalVerificationStatus}`);
+    lines.push(`- Generated files changed: ${note.generatedFilesChanged.join(", ")}`);
+    lines.push(`- Preview files changed: ${note.previewFilesChanged.join(", ")}`);
+    lines.push("");
+  }
   lines.push("## Results");
   lines.push("");
   lines.push("| Book | Write action | Verification | Accepted for main | Notes |");
@@ -920,7 +1001,7 @@ function buildMarkdown(report: ReturnType<typeof buildReport>) {
   lines.push("");
   lines.push("Future book batches fail unless every processed book has:");
   for (const rule of report.futureBatchRule) lines.push(`- ${rule}`);
-  lines.push("");
+  while (lines.at(-1) === "") lines.pop();
   return `${lines.join("\n")}\n`;
 }
 
@@ -934,6 +1015,7 @@ function buildReport(books: BookVerification[]) {
     acceptedWithoutRewriteBooks: [...acceptedWithoutRewrite].sort(),
     correctedBooks: [...correctedBooks].sort(),
     totals: verificationTotals(books),
+    focusedCorrectionNotes: buildFocusedCorrectionNotes(books),
     futureBatchRule,
     books,
   };

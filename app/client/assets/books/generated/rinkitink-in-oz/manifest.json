@@ -5,8 +5,8 @@
   "author": [
     "L. Frank Baum"
   ],
-  "contentVersion": "ca883df3a4910700",
-  "contentHash": "ca883df3a491070049bb334e45cb9581bed40bdf6cd2130a2aad1f1be5786958",
+  "contentVersion": "4cf267dfa9d1b012",
+  "contentHash": "4cf267dfa9d1b01288349cc486e9d35081cdb4e532b3c16629620b45ede4394c",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -34,9 +34,9 @@
     "alt": "Placeholder cover for Rinkitink in Oz"
   },
   "stats": {
-    "originalCharacterCount": 290436,
-    "cleanedCharacterCount": 271052,
-    "wordCount": 49500,
+    "originalCharacterCount": 296832,
+    "cleanedCharacterCount": 268804,
+    "wordCount": 49303,
     "sectionCount": 25,
     "includedSectionCount": 24
   },
@@ -70,11 +70,11 @@
       "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 11875,
-      "wordCount": 2169,
+      "characterCount": 11796,
+      "wordCount": 2161,
       "estimatedTypingMinutes": 55,
-      "estimatedListeningMinutes": 71,
-      "morseCharacterEstimate": 63262,
+      "estimatedListeningMinutes": 70,
+      "morseCharacterEstimate": 62901,
       "textPreview": "CHAPTER 1 If you have a map of the Land of Oz handy, you will find that the great Nonestic Ocean washes the shores of the Kingdom of Rinkitink, between which a..."
     },
     {
@@ -85,11 +85,11 @@
       "order": 3,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-002.json",
-      "characterCount": 14259,
-      "wordCount": 2620,
+      "characterCount": 14181,
+      "wordCount": 2612,
       "estimatedTypingMinutes": 66,
       "estimatedListeningMinutes": 86,
-      "morseCharacterEstimate": 77038,
+      "morseCharacterEstimate": 76680,
       "textPreview": "CHAPTER 2 A few days after this, on a bright and sunny morning when the breeze blew soft and sweet from the ocean and the trees waved their leaf-laden branches..."
     },
     {
@@ -100,11 +100,11 @@
       "order": 4,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-003.json",
-      "characterCount": 10266,
-      "wordCount": 1853,
+      "characterCount": 10164,
+      "wordCount": 1845,
       "estimatedTypingMinutes": 47,
       "estimatedListeningMinutes": 61,
-      "morseCharacterEstimate": 54603,
+      "morseCharacterEstimate": 54152,
       "textPreview": "CHAPTER 3 King Rinkitink was so much pleased with the Island of Pingaree that he continued his stay day after day and week after week, eating good dinners, tal..."
     },
     {
@@ -115,11 +115,11 @@
       "order": 5,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-004.json",
-      "characterCount": 13354,
-      "wordCount": 2486,
-      "estimatedTypingMinutes": 63,
-      "estimatedListeningMinutes": 81,
-      "morseCharacterEstimate": 72022,
+      "characterCount": 13271,
+      "wordCount": 2479,
+      "estimatedTypingMinutes": 62,
+      "estimatedListeningMinutes": 80,
+      "morseCharacterEstimate": 71655,
       "textPreview": "CHAPTER 4 All through that terrible night Prince Inga remained hidden in his tree. In the morning he watched the great fleet of boats depart for their own coun..."
     },
     {
@@ -130,11 +130,11 @@
       "order": 6,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-005.json",
-      "characterCount": 20691,
-      "wordCount": 3767,
-      "estimatedTypingMinutes": 95,
-      "estimatedListeningMinutes": 124,
-      "morseCharacterEstimate": 110909,
+      "characterCount": 20594,
+      "wordCount": 3759,
+      "estimatedTypingMinutes": 94,
+      "estimatedListeningMinutes": 123,
+      "morseCharacterEstimate": 110482,
       "textPreview": "CHAPTER 5 When King Rinkitink and Prince Inga had bathed themselves in the sea and eaten a simple breakfast, they began wondering what they could do to improve..."
     },
     {
@@ -145,11 +145,11 @@
       "order": 7,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-006.json",
-      "characterCount": 16532,
-      "wordCount": 3099,
+      "characterCount": 16433,
+      "wordCount": 3091,
       "estimatedTypingMinutes": 78,
       "estimatedListeningMinutes": 99,
-      "morseCharacterEstimate": 88770,
+      "morseCharacterEstimate": 88333,
       "textPreview": "CHAPTER 6 Prince Inga was up with the sun and, accompanied by Bilbil, began walking along the shore in search of the boat which the White Pearl had promised hi..."
     },
     {
@@ -160,11 +160,11 @@
       "order": 8,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-007.json",
-      "characterCount": 16357,
-      "wordCount": 2995,
+      "characterCount": 16243,
+      "wordCount": 2985,
       "estimatedTypingMinutes": 75,
       "estimatedListeningMinutes": 97,
-      "morseCharacterEstimate": 87020,
+      "morseCharacterEstimate": 86512,
       "textPreview": "CHAPTER 7 The Island of Regos was ten miles wide and forty miles long and it was ruled by a big and powerful King named Gos. Near to the shores were green and..."
     },
     {
@@ -175,11 +175,11 @@
       "order": 9,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-008.json",
-      "characterCount": 14009,
-      "wordCount": 2584,
+      "characterCount": 13907,
+      "wordCount": 2575,
       "estimatedTypingMinutes": 65,
       "estimatedListeningMinutes": 83,
-      "morseCharacterEstimate": 74675,
+      "morseCharacterEstimate": 74219,
       "textPreview": "CHAPTER 8 The fat King rode his goat through the streets of the conquered city and the boy Prince walked proudly beside him, while all the people bent their he..."
     },
     {
@@ -190,11 +190,11 @@
       "order": 10,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-009.json",
-      "characterCount": 9932,
-      "wordCount": 1826,
+      "characterCount": 9857,
+      "wordCount": 1818,
       "estimatedTypingMinutes": 46,
       "estimatedListeningMinutes": 59,
-      "morseCharacterEstimate": 53026,
+      "morseCharacterEstimate": 52684,
       "textPreview": "CHAPTER 9 Now it so happened that on the morning of that same day when the Prince of Pingaree suffered the loss of his priceless shoes, there chanced to pass a..."
     },
     {
@@ -205,11 +205,11 @@
       "order": 11,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-010.json",
-      "characterCount": 11922,
-      "wordCount": 2201,
-      "estimatedTypingMinutes": 56,
+      "characterCount": 11818,
+      "wordCount": 2192,
+      "estimatedTypingMinutes": 55,
       "estimatedListeningMinutes": 71,
-      "morseCharacterEstimate": 63856,
+      "morseCharacterEstimate": 63387,
       "textPreview": "CHAPTER 10 You may be sure the Queen of Coregos was not well pleased to have King Gos and all his warriors living in her city after they had fled from their ow..."
     },
     {
@@ -220,11 +220,11 @@
       "order": 12,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-011.json",
-      "characterCount": 5723,
-      "wordCount": 1020,
+      "characterCount": 5623,
+      "wordCount": 1010,
       "estimatedTypingMinutes": 26,
       "estimatedListeningMinutes": 34,
-      "morseCharacterEstimate": 30367,
+      "morseCharacterEstimate": 29912,
       "textPreview": "CHAPTER 11 The forest in which Nikobob lived with his wife and daughter stood between the mountains and the City of Regos, and a well-beaten path wound among t..."
     },
     {
@@ -235,11 +235,11 @@
       "order": 13,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-012.json",
-      "characterCount": 4179,
-      "wordCount": 765,
-      "estimatedTypingMinutes": 20,
+      "characterCount": 4106,
+      "wordCount": 758,
+      "estimatedTypingMinutes": 19,
       "estimatedListeningMinutes": 25,
-      "morseCharacterEstimate": 22112,
+      "morseCharacterEstimate": 21779,
       "textPreview": "CHAPTER 12 Our story must now return to one of our characters whom we have been forced to neglect. The temper of Bilbil the goat was not sweet under any circum..."
     },
     {
@@ -250,11 +250,11 @@
       "order": 14,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-013.json",
-      "characterCount": 11497,
-      "wordCount": 2112,
+      "characterCount": 11436,
+      "wordCount": 2107,
       "estimatedTypingMinutes": 53,
-      "estimatedListeningMinutes": 69,
-      "morseCharacterEstimate": 61423,
+      "estimatedListeningMinutes": 68,
+      "morseCharacterEstimate": 61157,
       "textPreview": "CHAPTER 13 The wicked Queen of Coregos was in a very bad humor this morning, for one of her slave drivers had come from the fields to say that a number of slav..."
     },
     {
@@ -265,11 +265,11 @@
       "order": 15,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-014.json",
-      "characterCount": 16010,
-      "wordCount": 2958,
+      "characterCount": 15887,
+      "wordCount": 2947,
       "estimatedTypingMinutes": 74,
-      "estimatedListeningMinutes": 95,
-      "morseCharacterEstimate": 84891,
+      "estimatedListeningMinutes": 94,
+      "morseCharacterEstimate": 84337,
       "textPreview": "CHAPTER 14 \"Our fault,\" said Rinkitink, \"is that we conquer only one of these twin islands at a time. When we conquered Regos, our foes all came to Coregos, an..."
     },
     {
@@ -280,11 +280,11 @@
       "order": 16,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-015.json",
-      "characterCount": 4049,
-      "wordCount": 758,
+      "characterCount": 3975,
+      "wordCount": 751,
       "estimatedTypingMinutes": 19,
       "estimatedListeningMinutes": 24,
-      "morseCharacterEstimate": 21529,
+      "morseCharacterEstimate": 21187,
       "textPreview": "CHAPTER 15 Now it seems that when Queen Cor fled from her island to Regos, she had wit enough, although greatly frightened, to make a stop at the royal dairy,..."
     },
     {
@@ -295,11 +295,11 @@
       "order": 17,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-016.json",
-      "characterCount": 8004,
-      "wordCount": 1464,
+      "characterCount": 7924,
+      "wordCount": 1457,
       "estimatedTypingMinutes": 37,
       "estimatedListeningMinutes": 48,
-      "morseCharacterEstimate": 42673,
+      "morseCharacterEstimate": 42324,
       "textPreview": "CHAPTER 16 Almost the first persons that Zella saw when she landed from the silver-lined boat at Regos were her father and mother. Nikobob and his wife had bee..."
     },
     {
@@ -310,11 +310,11 @@
       "order": 18,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-017.json",
-      "characterCount": 10911,
-      "wordCount": 2006,
-      "estimatedTypingMinutes": 51,
+      "characterCount": 10830,
+      "wordCount": 1997,
+      "estimatedTypingMinutes": 50,
       "estimatedListeningMinutes": 65,
-      "morseCharacterEstimate": 58149,
+      "morseCharacterEstimate": 57774,
       "textPreview": "CHAPTER 17 The Kingdom of the Nomes does not border on the Nonestic Ocean, from which it is separated by the Kingdom of Rinkitink and the Country of the Wheele..."
     },
     {
@@ -325,11 +325,11 @@
       "order": 19,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-018.json",
-      "characterCount": 26337,
-      "wordCount": 4833,
+      "characterCount": 26188,
+      "wordCount": 4823,
       "estimatedTypingMinutes": 121,
-      "estimatedListeningMinutes": 157,
-      "morseCharacterEstimate": 140419,
+      "estimatedListeningMinutes": 156,
+      "morseCharacterEstimate": 139754,
       "textPreview": "CHAPTER 18 The White Pearl guided Inga truly in his pursuit of the boat of King Gos, but the boy had been so delayed in sending his people home to Pingaree tha..."
     },
     {
@@ -340,11 +340,11 @@
       "order": 20,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-019.json",
-      "characterCount": 9477,
-      "wordCount": 1699,
+      "characterCount": 9421,
+      "wordCount": 1693,
       "estimatedTypingMinutes": 43,
       "estimatedListeningMinutes": 57,
-      "morseCharacterEstimate": 50892,
+      "morseCharacterEstimate": 50636,
       "textPreview": "CHAPTER 19 We will now relate what happened to Rinkitink and Bilbil that morning, while Inga was undergoing his trying experiences in escaping the fearful dang..."
     },
     {
@@ -355,11 +355,11 @@
       "order": 21,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-020.json",
-      "characterCount": 4878,
-      "wordCount": 901,
+      "characterCount": 4780,
+      "wordCount": 892,
       "estimatedTypingMinutes": 23,
       "estimatedListeningMinutes": 29,
-      "morseCharacterEstimate": 25928,
+      "morseCharacterEstimate": 25484,
       "textPreview": "CHAPTER 20 One day when Princess Dorothy of Oz was visiting Glinda the Good, who is Ozma's Royal Sorceress, she was looking through Glinda's Great Book of Reco..."
     },
     {
@@ -370,11 +370,11 @@
       "order": 22,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-021.json",
-      "characterCount": 8138,
-      "wordCount": 1488,
+      "characterCount": 8057,
+      "wordCount": 1482,
       "estimatedTypingMinutes": 38,
       "estimatedListeningMinutes": 49,
-      "morseCharacterEstimate": 43807,
+      "morseCharacterEstimate": 43443,
       "textPreview": "CHAPTER 21 After Kaliko had failed in his attempts to destroy his guests, as has been related, the Nome King did nothing more to injure them but treated them i..."
     },
     {
@@ -385,11 +385,11 @@
       "order": 23,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-022.json",
-      "characterCount": 7577,
-      "wordCount": 1343,
+      "characterCount": 7385,
+      "wordCount": 1324,
       "estimatedTypingMinutes": 34,
-      "estimatedListeningMinutes": 45,
-      "morseCharacterEstimate": 39957,
+      "estimatedListeningMinutes": 44,
+      "morseCharacterEstimate": 39036,
       "textPreview": "CHAPTER 22 Ozma had seen in her Magic Picture the liberation of Inga's parents and the departure of the entire party for the Emerald City, so with her usual ho..."
     },
     {
@@ -400,11 +400,11 @@
       "order": 24,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-023.json",
-      "characterCount": 5161,
-      "wordCount": 921,
-      "estimatedTypingMinutes": 24,
-      "estimatedListeningMinutes": 31,
-      "morseCharacterEstimate": 27133,
+      "characterCount": 5110,
+      "wordCount": 916,
+      "estimatedTypingMinutes": 23,
+      "estimatedListeningMinutes": 30,
+      "morseCharacterEstimate": 26905,
       "textPreview": "CHAPTER 23 It was unfortunate that the famous Scarecrow--the most popular person in all Oz, next to Ozma--was absent at the time of the banquet, for he happene..."
     },
     {
@@ -415,11 +415,11 @@
       "order": 25,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-024.json",
-      "characterCount": 6732,
-      "wordCount": 1173,
+      "characterCount": 6684,
+      "wordCount": 1170,
       "estimatedTypingMinutes": 30,
-      "estimatedListeningMinutes": 41,
-      "morseCharacterEstimate": 36126,
+      "estimatedListeningMinutes": 40,
+      "morseCharacterEstimate": 35916,
       "textPreview": "CHAPTER 24 One morning, just as the royal party was finishing breakfast, a servant came running to say that a great fleet of boats was approaching the island f..."
     }
   ],

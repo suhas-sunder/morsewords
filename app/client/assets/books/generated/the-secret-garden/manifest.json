@@ -5,8 +5,8 @@
   "author": [
     "Frances Hodgson Burnett"
   ],
-  "contentVersion": "3822285cf35bf6f2",
-  "contentHash": "3822285cf35bf6f2ec0edbaf3e93f9552a9b371d4dc3ab31de55ad203ec56870",
+  "contentVersion": "dcceb9038f24da61",
+  "contentHash": "dcceb9038f24da61a2a0e2f854074d3a1adda73a5d6d79796382baee9f492c42",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -34,9 +34,9 @@
     "alt": "Placeholder cover for The Secret Garden"
   },
   "stats": {
-    "originalCharacterCount": 451877,
-    "cleanedCharacterCount": 431726,
-    "wordCount": 81348,
+    "originalCharacterCount": 461904,
+    "cleanedCharacterCount": 431428,
+    "wordCount": 81317,
     "sectionCount": 29,
     "includedSectionCount": 27
   },
@@ -265,11 +265,11 @@
       "order": 15,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-013.json",
-      "characterCount": 21721,
-      "wordCount": 4231,
+      "characterCount": 21657,
+      "wordCount": 4221,
       "estimatedTypingMinutes": 106,
-      "estimatedListeningMinutes": 130,
-      "morseCharacterEstimate": 116149,
+      "estimatedListeningMinutes": 129,
+      "morseCharacterEstimate": 115767,
       "textPreview": "CHAPTER XIII \"I AM COLIN\" Mary took the picture back to the house when she went to her supper and she showed it to Martha. \"Eh!\" said Martha with great pride...."
     },
     {
@@ -355,11 +355,11 @@
       "order": 21,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-019.json",
-      "characterCount": 18884,
-      "wordCount": 3541,
+      "characterCount": 18807,
+      "wordCount": 3530,
       "estimatedTypingMinutes": 89,
       "estimatedListeningMinutes": 113,
-      "morseCharacterEstimate": 101534,
+      "morseCharacterEstimate": 101108,
       "textPreview": "CHAPTER XIX \"IT HAS COME!\" Of course Dr. Craven had been sent for the morning after Colin had had his tantrum. He was always sent for at once when such a thing..."
     },
     {
@@ -460,11 +460,11 @@
       "order": 28,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-026.json",
-      "characterCount": 16506,
-      "wordCount": 3091,
+      "characterCount": 16433,
+      "wordCount": 3081,
       "estimatedTypingMinutes": 78,
       "estimatedListeningMinutes": 99,
-      "morseCharacterEstimate": 88681,
+      "morseCharacterEstimate": 88256,
       "textPreview": "CHAPTER XXVI \"IT'S MOTHER!\" Their belief in the Magic was an abiding thing. After the morning's incantations Colin sometimes gave them Magic lectures. \"I like..."
     },
     {
