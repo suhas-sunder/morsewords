@@ -1,0 +1,86 @@
+{
+  "slug": "the-magic-shop",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE MAGIC SHOP.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Magic Shop",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Twelve Stories and a Dream",
+    "lineNumber": 10
+  },
+  "expectedAuthor": [
+    "H. G. Wells"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: H. G. Wells",
+    "lineNumber": 12
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "story or titled-section headings",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L4: THE MAGIC SHOP",
+    "L181: THUD!"
+  ],
+  "realReadableStart": "THE MAGIC SHOP: I had seen the Magic Shop from afar several times; I had passed it once or twice, a shop window of alluring little objects, magic balls, magic hens, wonderful cones, ventriloquist dolls, the material of the basket trick, packs of cards that LOOKED all right, and all that sort of thing, but never had I thought of goi...",
+  "realReadableEnd": "ers were about, but so far I have never discovered them performing in anything like a magical manner. It's so difficult to tell. There's also a question of finance. I have an incurable habit of paying bills. I have been up and down Regent Street several times, looking for that shop. I am inclined to think, indeed, t...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "THE MAGIC SHOP",
+  "expectedDefaultReadableSections": "all 2 planned story or titled-section headings sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 2,
+  "likelyPreviewStart": "I had seen the Magic Shop from afar several times; I had passed it once or twice, a shop window of alluring little objects, magic balls, magic hens, wonderful cones, ventriloquist dolls, the material of the basket trick, packs of cards that LOOKED all right, and all that sort of thing, but never had I thought of goi...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at cleaned-body line 4: THE MAGIC SHOP",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use All-caps story or titled-section heading boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback",
+    "first default section is meaningful but should be verified manually in write pass"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "Title: Twelve Stories and a Dream",
+    "author": "Author: H. G. Wells",
+    "start": "THE MAGIC SHOP I had seen the Magic Shop from afar several times; I had passed it once or twice, a shop window of alluring little objects, magic balls, magic hens, wonderful cones, ventriloquist dolls, the material of the basket trick, packs of cards that LOOKED all right, and all that sort of thing, but never had I thought of goi...",
+    "end": "ers were about, but so far I have never discovered them performing in anything like a magical manner. It's so difficult to tell. There's also a question of finance. I have an incurable habit of paying bills. I have been up and down Regent Street several times, looking for that shop. I am inclined to think, indeed, t..."
+  }
+}

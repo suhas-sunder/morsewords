@@ -1,0 +1,89 @@
+{
+  "slug": "the-truth-about-pyecraft",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE TRUTH ABOUT PYECRAFT.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Truth About Pyecraft",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Twelve Stories and a Dream",
+    "lineNumber": 10
+  },
+  "expectedAuthor": [
+    "H. G. Wells"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: H. G. Wells",
+    "lineNumber": 12
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "isolated titled sections",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L49: ?From Pattison??",
+    "L127: ?For Heaven's sake come.?Pyecraft.?",
+    "L211: ?How??",
+    "L237: ?Yes??",
+    "L241: ?My dear Pyecraft!?"
+  ],
+  "realReadableStart": "“From Pattison?”: ?Indirectly,? he said, which I believe was lying, ?yes.? ?Pattison,? I said, ?took that stuff at his own risk.? He pursed his mouth and bowed. ?My great-grandmother's recipes,? I said, ?are queer things to handle. My father was near making me promise?? ?He didn't?? ?No. But he warned me. He himself used one?once.? ?...",
+  "realReadableEnd": "e will waylay me. He will come billowing up to me.... He will tell me over again all about it, how it feels, how it doesn't feel, how he sometimes hopes it is passing off a little. And always somewhere in that fat, abundant discourse he will say, ?The secret's keeping, eh? If any one knew of it?I should be so ashame...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "“From Pattison?”",
+  "expectedDefaultReadableSections": "all 5 planned isolated titled sections sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 5,
+  "likelyPreviewStart": "?Indirectly,? he said, which I believe was lying, ?yes.? ?Pattison,? I said, ?took that stuff at his own risk.? He pursed his mouth and bowed. ?My great-grandmother's recipes,? I said, ?are queer things to handle. My father was near making me promise?? ?He didn't?? ?No. But he warned me. He himself used one?once.? ?...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at cleaned-body line 49: “From Pattison?”",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Isolated title-case heading boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback",
+    "first default section is meaningful but should be verified manually in write pass"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "Title: Twelve Stories and a Dream",
+    "author": "Author: H. G. Wells",
+    "start": "“From Pattison?” ?Indirectly,? he said, which I believe was lying, ?yes.? ?Pattison,? I said, ?took that stuff at his own risk.? He pursed his mouth and bowed. ?My great-grandmother's recipes,? I said, ?are queer things to handle. My father was near making me promise?? ?He didn't?? ?No. But he warned me. He himself used one?once.? ?...",
+    "end": "e will waylay me. He will come billowing up to me.... He will tell me over again all about it, how it feels, how it doesn't feel, how he sometimes hopes it is passing off a little. And always somewhere in that fat, abundant discourse he will say, ?The secret's keeping, eh? If any one knew of it?I should be so ashame..."
+  }
+}

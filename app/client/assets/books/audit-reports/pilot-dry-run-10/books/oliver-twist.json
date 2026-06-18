@@ -1,0 +1,88 @@
+{
+  "slug": "oliver-twist",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Oliver Twist.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Oliver Twist",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Oliver Twist",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Charles Dickens"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Charles Dickens",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals with verified Chapter I override",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "CHAPTER I. TREATS OF THE PLACE WHERE OLIVER TWIST WAS BORN",
+    "CHAPTER II. TREATS OF OLIVER TWIST'S GROWTH",
+    "CHAPTER III. RELATES HOW OLIVER TWIST WAS VERY NEAR GETTING A PLACE"
+  ],
+  "realReadableStart": "CHAPTER I: TREATS OF THE PLACE WHERE OLIVER TWIST WAS BORN: Among other public buildings in a certain town, which for many reasons it will be prudent to refrain from mentioning, and to which I will assign no fictitious name, there is one anciently common to most towns, great or small: to wit, a workhouse; and in this workhouse was born; on a day and date which I need not tro...",
+  "realReadableEnd": "a stone bench opposite the door, which served for seat and bedstead; and casting his blood-shot eyes upon the ground, tried to collect his thoughts. After awhile, he began to remember a few disjointed fragments of what the judge had said: though it had seemed to him, at the time, that he could not hear a word. These...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "CHAPTER I: TREATS OF THE PLACE WHERE OLIVER TWIST WAS BORN",
+  "expectedDefaultReadableSections": "all 53 planned chapter-based roman numerals with verified Chapter I override sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 53,
+  "likelyPreviewStart": "Among other public buildings in a certain town, which for many reasons it will be prudent to refrain from mentioning, and to which I will assign no fictitious name, there is one anciently common to most towns, great or small: to wit, a workhouse; and in this workhouse was born; on a day and date which I need not tro...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at CHAPTER I: TREATS OF THE PLACE WHERE OLIVER TWIST WAS BORN: Among other public buildings in a certain town",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use the 53 numbered chapters beginning with CHAPTER I; exclude title page and Gutenberg wrapper; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "later ordinal headings are present; verify Chapter/Part/Book 1 remains included and selected first",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Oliver Twist",
+    "author": "Author: Charles Dickens",
+    "start": "CHAPTER I: TREATS OF THE PLACE WHERE OLIVER TWIST WAS BORN Among other public buildings in a certain town, which for many reasons it will be prudent to refrain from mentioning, and to which I will assign no fictitious name, there is one anciently common to most towns, great or small: to wit, a workhouse; and in this workhouse was born; on a day and date which I need not tro...",
+    "end": "a stone bench opposite the door, which served for seat and bedstead; and casting his blood-shot eyes upon the ground, tried to collect his thoughts. After awhile, he began to remember a few disjointed fragments of what the judge had said: though it had seemed to him, at the time, that he could not hear a word. These..."
+  }
+}

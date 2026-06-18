@@ -1,0 +1,90 @@
+{
+  "slug": "the-man-who-could-work-miracles",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Man Who Could Work Miracles.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Man Who Could Work Miracles",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Tales of Space and Time",
+    "lineNumber": 10
+  },
+  "expectedAuthor": [
+    "Herbert George Wells"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Herbert George Wells",
+    "lineNumber": 12
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "isolated titled sections",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L70: \"Well?\"",
+    "L146: \"My dear Mr. Fotheringay! Of course! No?I didn't think.\"",
+    "L180: \"Joshua,\" said Mr. Maydig. \"Why not? Stop it.\"",
+    "L188: \"H'm!\" said Mr. Fotheringay. \"Well.\" He sighed. \"I'll try. Here?\"",
+    "L198: \"Where's Maydig?"
+  ],
+  "realReadableStart": "\"Well?\": He could think of no way but the truth. \"I was working a miracle.\" He tried to speak in an off-hand way, but try as he would he couldn't. \"Working a??! 'Ere, don't you talk rot. Working a miracle, indeed! Miracle! Well, that's downright funny! Why, you's the chap[338] that don't believe in miracles.... Fact is, this...",
+  "realReadableEnd": "nothing of all that is told here to this day. And among other things, of course, he still did not believe in miracles. \"I tell you that miracles, properly speaking, can't possibly happen,\" he said, \"whatever you like to hold. And I'm prepared to prove it up to the hilt.\" \"That's what you think,\" said Toddy Beamish,...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "\"Well?\"",
+  "expectedDefaultReadableSections": "all 5 planned isolated titled sections sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 5,
+  "likelyPreviewStart": "He could think of no way but the truth. \"I was working a miracle.\" He tried to speak in an off-hand way, but try as he would he couldn't. \"Working a??! 'Ere, don't you talk rot. Working a miracle, indeed! Miracle! Well, that's downright funny! Why, you's the chap[338] that don't believe in miracles.... Fact is, this...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at cleaned-body line 70: \"Well?\"",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Isolated title-case heading boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback",
+    "first default section is meaningful but should be verified manually in write pass"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary.",
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "Title: Tales of Space and Time",
+    "author": "Author: Herbert George Wells",
+    "start": "\"Well?\" He could think of no way but the truth. \"I was working a miracle.\" He tried to speak in an off-hand way, but try as he would he couldn't. \"Working a??! 'Ere, don't you talk rot. Working a miracle, indeed! Miracle! Well, that's downright funny! Why, you's the chap[338] that don't believe in miracles.... Fact is, this...",
+    "end": "nothing of all that is told here to this day. And among other things, of course, he still did not believe in miracles. \"I tell you that miracles, properly speaking, can't possibly happen,\" he said, \"whatever you like to hold. And I'm prepared to prove it up to the hilt.\" \"That's what you think,\" said Toddy Beamish,..."
+  }
+}

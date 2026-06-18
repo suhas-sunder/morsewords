@@ -1,0 +1,86 @@
+{
+  "slug": "filmer",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/FILMER.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Filmer",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Twelve Stories and a Dream",
+    "lineNumber": 10
+  },
+  "expectedAuthor": [
+    "H. G. Wells"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: H. G. Wells",
+    "lineNumber": 12
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "story or titled-section headings",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L3: FILMER",
+    "L143: ?.22 LONG.?"
+  ],
+  "realReadableStart": "FILMER: In truth the mastery of flying was the work of thousands of men?this man a suggestion and that an experiment, until at last only one vigorous intellectual effort was needed to finish the work. But the inexorable injustice of the popular mind has decided that of all these thousands, one man, and that a man who never...",
+  "realReadableEnd": "ver the Epsom and Wimbledon divisions; and Banghurst, restored once more to hope and energy, and regardless of public security and the Board of Trade, was pursuing his gyrations and trying to attract his attention, on a motor car and in his pyjamas?he had caught sight of the ascent when pulling up the blind of his b...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "FILMER",
+  "expectedDefaultReadableSections": "all 2 planned story or titled-section headings sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 2,
+  "likelyPreviewStart": "In truth the mastery of flying was the work of thousands of men?this man a suggestion and that an experiment, until at last only one vigorous intellectual effort was needed to finish the work. But the inexorable injustice of the popular mind has decided that of all these thousands, one man, and that a man who never...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at cleaned-body line 3: FILMER",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use All-caps story or titled-section heading boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback",
+    "first default section is meaningful but should be verified manually in write pass"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "Title: Twelve Stories and a Dream",
+    "author": "Author: H. G. Wells",
+    "start": "FILMER In truth the mastery of flying was the work of thousands of men?this man a suggestion and that an experiment, until at last only one vigorous intellectual effort was needed to finish the work. But the inexorable injustice of the popular mind has decided that of all these thousands, one man, and that a man who never...",
+    "end": "ver the Epsom and Wimbledon divisions; and Banghurst, restored once more to hope and energy, and regardless of public security and the Board of Trade, was pursuing his gyrations and trying to attract his attention, on a motor car and in his pyjamas?he had caught sight of the ascent when pulling up the blind of his b..."
+  }
+}

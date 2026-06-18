@@ -1,0 +1,90 @@
+{
+  "slug": "the-haunter-of-the-dark",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The haunter of the dark.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The haunter of the dark",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The haunter of the dark",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "H. P. Lovecraft"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: H. P. Lovecraft",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "isolated titled sections",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L1: The Haunter of the Dark",
+    "L22: --_Nemesis._",
+    "L107: the Crypt_, _Shaggai_, _In the Vale of Pnath_, and _The Feaster from",
+    "L445: \"Prof. Enoch Bowen home from Egypt May 1844--buys old Free-Will",
+    "L450: Dec. 29, 1844.\"",
+    "L483: \"Gang--Federal Hill Boys--threaten Dr. ---- and vestrymen in May.\""
+  ],
+  "realReadableStart": "The Haunter of the Dark: _A powerful story about an old church in Providence, Rhode Island, that was shunned and feared by all who knew it._ (Dedicated to Robert Bloch) I have seen the dark universe yawning Where the black planets roll without aim-- Where they roll in their horror unheeded, Without knowledge or luster or name. --_Nemesis._...",
+  "realReadableEnd": "tower--window--can hear--Roderick Usher--am mad or going mad--the thing is stirring and fumbling in the tower--I am it and it is I--I want to get out ... must get out and unify the forces.... It knows where I am.... \"I am Robert Blake, but I see the tower in the dark. There is a monstrous odor ... senses transfigure...",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Haunter of the Dark",
+  "expectedDefaultReadableSections": "all 7 planned isolated titled sections sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 7,
+  "likelyPreviewStart": "_A powerful story about an old church in Providence, Rhode Island, that was shunned and feared by all who knew it._ (Dedicated to Robert Bloch) I have seen the dark universe yawning Where the black planets roll without aim-- Where they roll in their horror unheeded, Without knowledge or luster or name. --_Nemesis._...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at cleaned-body line 1: The Haunter of the Dark",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Isolated title-case heading boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback",
+    "first default section is meaningful but should be verified manually in write pass"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: The haunter of the dark",
+    "author": "Author: H. P. Lovecraft",
+    "start": "The Haunter of the Dark _A powerful story about an old church in Providence, Rhode Island, that was shunned and feared by all who knew it._ (Dedicated to Robert Bloch) I have seen the dark universe yawning Where the black planets roll without aim-- Where they roll in their horror unheeded, Without knowledge or luster or name. --_Nemesis._...",
+    "end": "tower--window--can hear--Roderick Usher--am mad or going mad--the thing is stirring and fumbling in the tower--I am it and it is I--I want to get out ... must get out and unify the forces.... It knows where I am.... \"I am Robert Blake, but I see the tower in the dark. There is a monstrous odor ... senses transfigure..."
+  }
+}

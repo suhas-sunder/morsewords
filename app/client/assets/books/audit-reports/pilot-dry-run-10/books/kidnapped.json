@@ -1,0 +1,89 @@
+{
+  "slug": "kidnapped",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Kidnapped.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Kidnapped",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Kidnapped",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Robert Louis Stevenson"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Robert Louis Stevenson",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals with verified Chapter I override",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "CHAPTER I: I SET OFF UPON MY JOURNEY TO THE HOUSE OF SHAWS",
+    "CHAPTER II: I COME TO MY JOURNEY'S END",
+    "CHAPTER III: I MAKE ACQUAINTANCE OF MY UNCLE"
+  ],
+  "realReadableStart": "CHAPTER I: I SET OFF UPON MY JOURNEY TO THE HOUSE OF SHAWS: I will begin the story of my adventures with a certain morning early in the month of June, the year of grace 1751, when I took the key for the last time out of the door of my father?s house. The sun began to shine upon the summit of the hills as I went down the road; and by the time I had come as far as the manse, t...",
+  "realReadableEnd": "itchen, and sat down and sulked; and it was not till I stepped after him, and gave him my hand, and thanked him by title as the chief spring of my success, that he began to smile a bit, and was at last prevailed upon to join our party. By that time we had the fire lighted, and a bottle of wine uncorked; a good suppe...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "CHAPTER I: I SET OFF UPON MY JOURNEY TO THE HOUSE OF SHAWS",
+  "expectedDefaultReadableSections": "all 30 planned chapter-based roman numerals with verified Chapter I override sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 30,
+  "likelyPreviewStart": "I will begin the story of my adventures with a certain morning early in the month of June, the year of grace 1751, when I took the key for the last time out of the door of my father?s house. The sun began to shine upon the summit of the hills as I went down the road; and by the time I had come as far as the manse, t...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at CHAPTER I: I SET OFF UPON MY JOURNEY TO THE HOUSE OF SHAWS: I will begin the story of my adventures",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use the 30 numbered chapters beginning with CHAPTER I; exclude title page, credits, and contents/source wrapper; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "later ordinal headings are present; verify Chapter/Part/Book 1 remains included and selected first",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Dense numbered bracket references indicate footnote-heavy or parser-junk risk."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Kidnapped",
+    "author": "Author: Robert Louis Stevenson",
+    "start": "CHAPTER I: I SET OFF UPON MY JOURNEY TO THE HOUSE OF SHAWS I will begin the story of my adventures with a certain morning early in the month of June, the year of grace 1751, when I took the key for the last time out of the door of my father?s house. The sun began to shine upon the summit of the hills as I went down the road; and by the time I had come as far as the manse, t...",
+    "end": "itchen, and sat down and sulked; and it was not till I stepped after him, and gave him my hand, and thanked him by title as the chief spring of my success, that he began to smile a bit, and was at last prevailed upon to join our party. By that time we had the fire lighted, and a bottle of wine uncorked; a good suppe..."
+  }
+}
