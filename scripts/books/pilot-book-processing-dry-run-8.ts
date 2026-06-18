@@ -1073,8 +1073,13 @@ function assertInputs() {
 function buildReport() {
   assertInputs();
   const branch = gitOutput(["branch", "--show-current"]);
-  if (branch !== "morsewords-book-processing-pilot-dry-run-8-jun-2026") {
-    throw new Error(`Expected dry-run 8 branch, got ${branch}`);
+  const allowedBranches = new Set([
+    "main",
+    "morsewords-book-processing-pilot-dry-run-8-jun-2026",
+    "morsewords-book-processing-pilot-write-8-jun-2026",
+  ]);
+  if (!allowedBranches.has(branch)) {
+    throw new Error(`Expected dry-run 8 validation branch, got ${branch}`);
   }
 
   const { accepted, ambiguities } = deriveAcceptedSlugs();
