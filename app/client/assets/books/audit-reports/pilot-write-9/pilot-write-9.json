@@ -1,0 +1,3262 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-write-9",
+  "generatedAt": "2026-06-18T22:18:36.340Z",
+  "branch": "morsewords-book-processing-pilot-write-9-jun-2026",
+  "mode": "controlled first-time processing",
+  "sourceDryRunReport": "app/client/assets/books/audit-reports/pilot-dry-run-9/pilot-dry-run-9.json",
+  "selectedBooks": [
+    "a-study-in-scarlet",
+    "dagon",
+    "deep-sea-plunderings",
+    "five-little-peppers-at-school",
+    "pickman-s-model",
+    "quo-vadis",
+    "the-amateur-cracksman",
+    "the-black-star-passes",
+    "the-blue-castle",
+    "the-brothers-karamazov",
+    "the-buccaneer",
+    "the-cats-of-ulthar",
+    "the-festival",
+    "the-history-of-sir-richard-calmady-a-romance",
+    "the-nameless-city",
+    "the-three-taps-a-detective-story-without-a-moral",
+    "the-turmoil",
+    "the-two-magics-the-turn-of-the-screw-covering-end",
+    "the-works-of-edgar-allan-poe",
+    "under-the-red-dragon"
+  ],
+  "totals": {
+    "selected": 20,
+    "firstTimeProcessed": 18,
+    "skipped": 2,
+    "manualReview": 0,
+    "blocked": 0,
+    "unresolvedSourceGeneratedBooksLeftUntouched": 11
+  },
+  "acceptedExclusionClarification": {
+    "dryRunAcceptedExclusionCount": 162,
+    "includesDuplicateSkip": true,
+    "duplicateSkipSlug": "the-wind-in-the-willows",
+    "acceptedCorrectedVerifiedCountExcludingDuplicateSkip": 161,
+    "selectedIntersectAcceptedExclusion": [],
+    "note": "The dry-run count of 162 includes the carried-forward duplicate skip for the-wind-in-the-willows; the expected accepted/corrected/verified processed-book count remains 161 excluding that skip. This write pass uses only the exact selected list from pilot-dry-run-9.json."
+  },
+  "unresolvedSourceGeneratedBooksLeftUntouched": [
+    {
+      "slug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "doctor-dolittle",
+      "title": "The Story of Doctor Dolittle",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 6,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "heidi",
+      "title": "Heidi",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "jabberwocky",
+      "title": "Jabberwocky",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 2,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "title": "Nights With Uncle Remus",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 21,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan [Peter and Wendy]",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 20,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "tarzan-of-the-apes",
+      "title": "Tarzan of the Apes",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-great-gatsby",
+      "title": "The Great Gatsby",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-picture-of-dorian-gray",
+      "title": "The Picture of Dorian Gray",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 23,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 12,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "title": "Wood folk at school",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 10,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    }
+  ],
+  "futureBatchRule": [
+    "valid generated readable content",
+    "correct generated title",
+    "correct author metadata or documented unresolved-author policy",
+    "no duplicate generated work under a slightly different slug unless intentionally documented",
+    "first default section from real readable content",
+    "all main readable sections included by default",
+    "meaningful source-based segmentation",
+    "valid book-specific startup preview",
+    "no SOS Help!",
+    "no generic preview fallback",
+    "no title/TOC/source/license/contributor/transcriber/byline material as default playback",
+    "selected/default source order begins from the first selected/default section"
+  ],
+  "laterPhaseRequirements": [
+    "after all books are processed, run an independent second-pass audit using a different strategy",
+    "after books and second-pass audit, add original non-spoiler 300-500+ word SEO summaries for each accepted book page",
+    "after summaries, perform full site SEO/meta review using GSC data and route-level intent",
+    "final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable"
+  ],
+  "books": [
+    {
+      "slug": "a-study-in-scarlet",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/A Study in Scarlet.txt",
+      "expectedTitle": "A Study in Scarlet",
+      "generatedTitle": "A Study in Scarlet",
+      "expectedAuthor": [
+        "Arthur Conan Doyle"
+      ],
+      "generatedAuthor": [
+        "Arthur Conan Doyle"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Arthur Conan Doyle",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/a-study-in-scarlet/manifest.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/cleaned_book.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/processed_book.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/rights_report.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/processing_notes.md",
+        "app/client/assets/books/generated/a-study-in-scarlet/sections/chapter-001.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/sections/chapter-002.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/sections/chapter-003.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/sections/chapter-004.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/sections/chapter-005.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/sections/chapter-006.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/sections/chapter-007.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/sections/chapter-008.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/sections/chapter-009.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/sections/chapter-010.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/sections/chapter-011.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/sections/chapter-012.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/sections/chapter-013.json",
+        "app/client/assets/books/generated/a-study-in-scarlet/sections/chapter-014.json"
+      ],
+      "previewAssetChanged": "public/book-previews/a-study-in-scarlet.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 32,
+        "reason": "start at cleaned-body line 39: CHAPTER I.; write pass starts at first selected/default section",
+        "snippet": "PART I. (_Being a reprint from the Reminiscences of_ JOHN H. WATSON, M.D., _Late of the Army Medical Department._) CHAPTER I. MR. SHERLOCK HOLMES. In the year 1878 I took my degree of Doctor of Medicine of the University of London, and proceeded to Netle"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 4695,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "“I have all the facts in my journal, and the public shall know them. In the meantime you must make yourself contented by the consciousness of success, like the Roman miser— “‘Populus me sibilat, at mihi plaudo Ipse domi simul ac nummos contemplor in arca.’”"
+      },
+      "structuralConvention": "chapter-based roman numerals with part divisions",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "Part I.",
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2818,
+        "snippet": "PART I. (_Being a reprint from the Reminiscences of_ JOHN H. WATSON, M.D., _Late of the Army Medical Department._) CHAPTER I. MR. SHERLOCK HOLMES. In the year..."
+      },
+      "sectionCount": 14,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Part I.",
+          "kind": "chapter",
+          "wordCount": 2818
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3565
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3858
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2608
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2554
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-010",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1876
+        },
+        {
+          "id": "chapter-011",
+          "label": "Chapter 4",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3397
+        },
+        {
+          "id": "chapter-012",
+          "label": "Chapter 5",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3559
+        },
+        {
+          "id": "chapter-013",
+          "label": "Chapter 6",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4554
+        },
+        {
+          "id": "chapter-014",
+          "label": "Chapter 7",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2128
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 2,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: contents or list material must not enter default playback",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "Title: A Study in Scarlet",
+        "author": "Author: Arthur Conan Doyle",
+        "start": "Chapter 1 MR. SHERLOCK HOLMES. In the year 1878 I took my degree of Doctor of Medicine of the University of London, and proceeded to Netley to go through the course prescribed for surgeons in the army. Having completed my studies there, I was duly attached to the Fifth Northumberland Fusiliers as Assistant Surgeon. The regime...",
+        "end": "out. If he died like a dog among the mountains, what was to become of his revenge then? And yet such a death was sure to overtake him if he persisted. He felt that that was to play his enemy?s game, so he reluctantly returned to the old Nevada mines, there to recruit his health and to amass money enough to allow him..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "dagon",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/Dagon.txt",
+      "expectedTitle": "Dagon",
+      "generatedTitle": "Dagon",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "source wrapper byline and accepted Lovecraft metadata convention",
+        "text": "H. P. Lovecraft",
+        "lineNumber": 35
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/dagon/manifest.json",
+        "app/client/assets/books/generated/dagon/cleaned_book.json",
+        "app/client/assets/books/generated/dagon/processed_book.json",
+        "app/client/assets/books/generated/dagon/rights_report.json",
+        "app/client/assets/books/generated/dagon/processing_notes.md",
+        "app/client/assets/books/generated/dagon/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/dagon.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 36,
+        "reason": "start at first readable prose after source/title/byline wrapper: I am writing this under an appreciable mental strain; write pass starts at first selected/default section",
+        "snippet": "I am writing this under an appreciable mental strain, since by tonight I shall be no more. Penniless, and at the end of my supply of the drug which alone makes life endurable, I can bear the torture no longer; and shall cast myself from this garret window int"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 235,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "l ascend amidst universal pandemonium. The end is near. I hear a noise at the door, as of some immense slippery body lumbering against it. It shall not find me. God, _that hand_! The window! The window! [The end of _Dagon_ by Howard Phillips Lovecraft]"
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Dagon",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2096,
+        "snippet": "I am writing this under an appreciable mental strain, since by tonight I shall be no more. Penniless, and at the end of my supply of the drug which alone makes..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Dagon",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2096
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Dagon",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2096
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from source wrapper byline and accepted Lovecraft metadata convention",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+        "metadata normalization: Faded Page header gives Howard Phillips Lovecraft (1890-1937), while source byline and earlier accepted Lovecraft books use H. P. Lovecraft."
+      ],
+      "supportingSnippets": {
+        "title": "Title: Dagon",
+        "author": "H. P. Lovecraft",
+        "start": "Dagon I am writing this under an appreciable mental strain, since by tonight I shall be no more. Penniless, and at the end of my supply of the drug which alone makes life endurable, I can bear the torture no longer; and shall cast myself from this garret window into the squalid street below. Do not think from my slavery t...",
+        "end": "ne idols and carving their own detestable likenesses on submarine obelisks of water-soaked granite. I dream of a day when they may rise above the billows to drag down in their reeking talons the remnants of puny, war-exhausted mankind--of a day when the land shall sink, and the dark ocean floor shall ascend amidst u..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "deep-sea-plunderings",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/Deep-Sea Plunderings.txt",
+      "expectedTitle": "Deep-Sea Plunderings",
+      "generatedTitle": "Deep-Sea Plunderings",
+      "expectedAuthor": [
+        "Frank Thomas Bullen"
+      ],
+      "generatedAuthor": [
+        "Frank Thomas Bullen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Frank Thomas Bullen",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/deep-sea-plunderings/manifest.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/cleaned_book.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/processed_book.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/rights_report.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/processing_notes.md",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-001.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-002.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-003.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-004.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-005.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-006.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-007.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-008.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-009.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-010.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-011.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-012.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-013.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-014.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-015.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-016.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-017.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-018.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-019.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-020.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-021.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-022.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-023.json",
+        "app/client/assets/books/generated/deep-sea-plunderings/sections/chapter-024.json"
+      ],
+      "previewAssetChanged": "public/book-previews/deep-sea-plunderings.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 168,
+        "reason": "start at THROUGH FIRE AND WATER: What a clumsy, barrel-bellied old hooker she is; write pass starts at first selected/default section",
+        "snippet": "THROUGH FIRE AND WATER What a clumsy, barrel-bellied old hooker she is, Field! Thus, closing his telescope with a bang, the elegant chief officer of the Mirzapore, steel four-masted clipper ship of 5000 tons burden, presently devouring the degrees of long"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 9279,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "d ‘do things’ himself. Any boy between fifteen and nineteen who reads this book and does not want to go to sea must be a sluggish youth.... The book is really an interesting record of an interesting man.”--_New York Press._ D. APPLETON AND COMPANY, NEW YORK."
+      },
+      "structuralConvention": "24 contents-listed story headings after title, prefatory note, contents, and illustration list",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "THROUGH FIRE AND WATER",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3885,
+        "snippet": "THROUGH FIRE AND WATER “What a clumsy, barrel-bellied old hooker she is, Field!” Thus, closing his telescope with a bang, the elegant chief officer of the Mirz..."
+      },
+      "sectionCount": 24,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "THROUGH FIRE AND WATER",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3885
+        },
+        {
+          "id": "chapter-002",
+          "label": "THE OLD HOUSE ON THE HILL",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 9593
+        },
+        {
+          "id": "chapter-003",
+          "label": "YOU SING",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 10894
+        },
+        {
+          "id": "chapter-004",
+          "label": "THE DEBT OF THE WHALE",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6671
+        },
+        {
+          "id": "chapter-005",
+          "label": "THE SKIPPER'S WIFE",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2664
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-020",
+          "label": "THE GREAT CHRISTMAS OF GOZO",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2790
+        },
+        {
+          "id": "chapter-021",
+          "label": "DEEP-SEA FISH",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2615
+        },
+        {
+          "id": "chapter-022",
+          "label": "A MEDITERRANEAN MORNING",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1458
+        },
+        {
+          "id": "chapter-023",
+          "label": "ABNER'S TRAGEDY",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3025
+        },
+        {
+          "id": "chapter-024",
+          "label": "LOST AND FOUND",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4359
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 8,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 1
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Write pass used the 24 contents-listed story headings beginning with THROUGH FIRE AND WATER; title page, prefatory note, contents, illustration list, and publisher ads are excluded from default playback.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: contents or list material must not enter default playback",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: illustration captions/placeholders detected"
+      ],
+      "supportingSnippets": {
+        "title": "Title: Deep-Sea Plunderings",
+        "author": "Author: Frank Thomas Bullen",
+        "start": "THROUGH FIRE AND WATER What a clumsy, barrel-bellied old hooker she is, Field!? Thus, closing his telescope with a bang, the elegant chief officer of the Mirzapore, steel four-masted clipper ship of 5000 tons burden, presently devouring the degrees of longitude that lay between her and Melbourne on the arc of a composite great circle, at...",
+        "end": "esses all these qualities.... Almost bare of synthetical decoration, his paragraphs are stirring because they are real. We read at times--as we have read the great masters of romance--breathlessly.?--_The Critic._ =The Translation of a Savage.= $1.25. ?A book which no one will be satisfied to put down until the end..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "five-little-peppers-at-school",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/Five Little Peppers at School.txt",
+      "expectedTitle": "Five Little Peppers at School",
+      "generatedTitle": "Five Little Peppers at School",
+      "expectedAuthor": [
+        "Margaret Sidney"
+      ],
+      "generatedAuthor": [
+        "Margaret Sidney"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Margaret Sidney",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/five-little-peppers-at-school/manifest.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/cleaned_book.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/processed_book.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/rights_report.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/processing_notes.md",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-001.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-002.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-003.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-004.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-005.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-006.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-007.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-008.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-009.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-010.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-011.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-012.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-013.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-014.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-015.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-016.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-017.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-018.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-019.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-020.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-021.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-022.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-023.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-024.json",
+        "app/client/assets/books/generated/five-little-peppers-at-school/sections/chapter-025.json"
+      ],
+      "previewAssetChanged": "public/book-previews/five-little-peppers-at-school.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 212,
+        "reason": "start at I HARD TIMES FOR JOEL: Come on, Pepper.; write pass starts at first selected/default section",
+        "snippet": "I HARD TIMES FOR JOEL \"Come on, Pepper.\" One of the boys rushed down the dormitory hall, giving a bang on Joel's door as he passed. \"All right,\" said Joel a bit crossly, \"I'm coming.\" \"Last bell,\" came back on the wind. Joel threw his tennis racket on the"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 10949,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "What, she didn't finish; for Mother Fisher just then cried out, and passed the yellow sheet to the little doctor. \"Read it aloud,\" was all she said. But how her black eyes shone! \"David took first prize classics. I'm picking up a bit. JOEL PEPPER.\" THE END."
+      },
+      "structuralConvention": "25 contents-listed roman chapter-title headings after title page, book list, contents, and illustrations",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "Hard Times for Joel",
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2624,
+        "snippet": "I HARD TIMES FOR JOEL \"Come on, Pepper.\" One of the boys rushed down the dormitory hall, giving a bang on Joel's door as he passed. \"All right,\" said Joel a bi..."
+      },
+      "sectionCount": 25,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Hard Times for Joel",
+          "kind": "chapter",
+          "wordCount": 2624
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "The Tennis Match",
+          "kind": "chapter",
+          "wordCount": 1997
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "A Narrow Escape",
+          "kind": "chapter",
+          "wordCount": 2543
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "Of Various Things",
+          "kind": "chapter",
+          "wordCount": 2103
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": "At Silvia Horne's",
+          "kind": "chapter",
+          "wordCount": 2766
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-021",
+          "label": "Chapter 21",
+          "title": "At the Play",
+          "kind": "chapter",
+          "wordCount": 4230
+        },
+        {
+          "id": "chapter-022",
+          "label": "Chapter 22",
+          "title": "Pickering Dodge",
+          "kind": "chapter",
+          "wordCount": 3874
+        },
+        {
+          "id": "chapter-023",
+          "label": "Chapter 23",
+          "title": "The Clemcy Garden Party",
+          "kind": "chapter",
+          "wordCount": 5331
+        },
+        {
+          "id": "chapter-024",
+          "label": "Chapter 24",
+          "title": "The Piece of News",
+          "kind": "chapter",
+          "wordCount": 3431
+        },
+        {
+          "id": "chapter-025",
+          "label": "Chapter 25",
+          "title": "\"The Very Prettiest Affair\"",
+          "kind": "chapter",
+          "wordCount": 3481
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 10,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 1,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Write pass used the 25 contents-listed roman chapter-title headings beginning with I HARD TIMES FOR JOEL; title page, book list, contents, and illustration captions are excluded from default playback.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: contents or list material must not enter default playback",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run collection-title risk: ensure the generated title stays the collection title and individual story titles become sections",
+        "dry-run artifact risk: illustration captions/placeholders detected"
+      ],
+      "supportingSnippets": {
+        "title": "Title: Five Little Peppers at School",
+        "author": "Author: Margaret Sidney",
+        "start": "I HARD TIMES FOR JOEL Come on, Pepper.\" One of the boys rushed down the dormitory hall, giving a bang on Joel's door as he passed. \"All right,\" said Joel a bit crossly, \"I'm coming.\" \"Last bell,\" came back on the wind. Joel threw his tennis racket on the bed, and scowled. Just then a flaxen head peeped in, and two big eyes stared at him....",
+        "end": "lope to Mr. King. \"It's for Mrs. Fisher,\" said the old gentleman. So the yellow envelope went down the table-length, the color going out of Polly's cheek; and she didn't dare to look at Mamsie's eyes. \"Oh--the boys!\" gasped Polly. \"Jasper, do you suppose?\"--What, she didn't finish; for Mother Fisher just then cried..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "pickman-s-model",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/Pickman's Model.txt",
+      "expectedTitle": "Pickman's Model",
+      "generatedTitle": "Pickman's Model",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "Faded Page Author line with date removed",
+        "text": "Author: H. P. Lovecraft (1890-1937)",
+        "lineNumber": 18
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/pickman-s-model/manifest.json",
+        "app/client/assets/books/generated/pickman-s-model/cleaned_book.json",
+        "app/client/assets/books/generated/pickman-s-model/processed_book.json",
+        "app/client/assets/books/generated/pickman-s-model/rights_report.json",
+        "app/client/assets/books/generated/pickman-s-model/processing_notes.md",
+        "app/client/assets/books/generated/pickman-s-model/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/pickman-s-model.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 46,
+        "reason": "start at first readable prose after source/title/byline wrapper: You needn't think I'm crazy; write pass starts at first selected/default section",
+        "snippet": "You needn't think I'm crazy, Eliot--plenty of others have queerer prejudices than this. Why don't you laugh at Oliver's grandfather, who won't ride in a motor? If I don't like that damned subway, it's my own business; and we got here more quickly anyhow in t"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 546,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "s being he was painting on that awful canvas. It was the model he was using--and its background was merely the wall of the cellar studio in minute detail. But by God, Eliot, _it was a photograph from life_. [The end of _Pickman's Model_ by H. P. Lovecraft]"
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Pickman's Model",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 5278,
+        "snippet": "You needn't think I'm crazy, Eliot--plenty of others have queerer prejudices than this. Why don't you laugh at Oliver's grandfather, who won't ride in a motor?..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Pickman's Model",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5278
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Pickman's Model",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5278
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Faded Page Author line with date removed",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: illustration captions/placeholders detected",
+        "metadata normalization: removed lifespan parenthetical to match earlier accepted Lovecraft manifests."
+      ],
+      "supportingSnippets": {
+        "title": "Title: Pickman's Model",
+        "author": "Author: H. P. Lovecraft (1890-1937)",
+        "start": "Pickman's Model You needn't think I'm crazy, Eliot--plenty of others have queerer prejudices than this. Why don't you laugh at Oliver's grandfather, who won't ride in a motor? If I don't like that damned subway, it's my own business; and we got here more quickly anyhow in the taxi. We'd have had to walk up the hill from Park Street...",
+        "end": "r that monster. That last scare had come while I was reaching to uncurl it, and it seems I had vacantly crumpled it into my pocket. But here's the coffee--take it black, Eliot, if you're wise. Well--that paper wasn't a photograph of any background, after all. What it showed was simply the monstrous being he was pain..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "quo-vadis",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/Quo Vadis.txt",
+      "expectedTitle": "Quo Vadis: A Narrative of the Time of Nero",
+      "generatedTitle": "Quo Vadis: A Narrative of the Time of Nero",
+      "expectedAuthor": [
+        "Henryk Sienkiewicz"
+      ],
+      "generatedAuthor": [
+        "Henryk Sienkiewicz"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Henryk Sienkiewicz",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/quo-vadis/manifest.json",
+        "app/client/assets/books/generated/quo-vadis/cleaned_book.json",
+        "app/client/assets/books/generated/quo-vadis/processed_book.json",
+        "app/client/assets/books/generated/quo-vadis/rights_report.json",
+        "app/client/assets/books/generated/quo-vadis/processing_notes.md",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-001.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-002.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-003.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-004.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-005.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-006.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-007.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-008.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-009.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-010.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-011.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-012.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-013.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-014.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-015.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-016.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-017.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-018.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-019.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-020.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-021.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-022.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-023.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-024.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-025.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-026.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-027.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-028.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-029.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-030.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-031.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-032.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-033.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-034.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-035.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-036.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-037.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-038.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-039.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-040.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-041.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-042.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-043.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-044.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-045.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-046.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-047.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-048.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-049.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-050.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-051.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-052.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-053.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-054.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-055.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-056.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-057.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-058.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-059.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-060.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-061.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-062.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-063.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-064.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-065.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-066.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-067.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-068.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-069.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-070.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-071.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-072.json",
+        "app/client/assets/books/generated/quo-vadis/sections/chapter-073.json"
+      ],
+      "previewAssetChanged": "public/book-previews/quo-vadis.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 54,
+        "reason": "start at cleaned-body line 54: Chapter I; write pass starts at first selected/default section",
+        "snippet": "Chapter I PETRONIUS woke only about midday, and as usual greatly wearied. The evening before he had been at one of Nero s feasts, which was prolonged till late at night. For some time his health had been failing. He said himself that he woke up benumbed, as"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 22228,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "s a storm, as a fire, as war or death passes; but the basilica of Peter rules till now, from the Vatican heights, the city, and the world. Near the ancient Porta Capena stands to this day a little chapel with the inscription, somewhat worn: Quo Vadis, Domine?"
+      },
+      "structuralConvention": "chapter-based roman numerals",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 4687,
+        "snippet": "Chapter I PETRONIUS woke only about midday, and as usual greatly wearied. The evening before he had been at one of Nero’s feasts, which was prolonged till late..."
+      },
+      "sectionCount": 73,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4687
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6824
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 891
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2579
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1421
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-069",
+          "label": "Chapter 69",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 850
+        },
+        {
+          "id": "chapter-070",
+          "label": "Chapter 70",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1979
+        },
+        {
+          "id": "chapter-071",
+          "label": "Chapter 71",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 495
+        },
+        {
+          "id": "chapter-072",
+          "label": "Chapter 72",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2516
+        },
+        {
+          "id": "chapter-073",
+          "label": "Chapter 73",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4612
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 4,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "Title: Quo Vadis: A Narrative of the Time of Nero",
+        "author": "Author: Henryk Sienkiewicz",
+        "start": "Chapter 1 PETRONIUS woke only about midday, and as usual greatly wearied. The evening before he had been at one of Nero?s feasts, which was prolonged till late at night. For some time his health had been failing. He said himself that he woke up benumbed, as it were, and without power of collecting his thoughts. But the mornin...",
+        "end": "t that the hour of death was near. Terror and reproaches of conscience seized him. He declared that he saw darkness in front of him in the form of a black cloud. From that cloud came forth faces in which he saw his mother, his wife, and his brother. His teeth were chattering from fright; still his soul of a comedian..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-amateur-cracksman",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Amateur Cracksman.txt",
+      "expectedTitle": "The Amateur Cracksman",
+      "generatedTitle": "The Amateur Cracksman",
+      "expectedAuthor": [
+        "E. W. Hornung"
+      ],
+      "generatedAuthor": [
+        "E. W. Hornung"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: E. W. Hornung",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-amateur-cracksman/manifest.json",
+        "app/client/assets/books/generated/the-amateur-cracksman/cleaned_book.json",
+        "app/client/assets/books/generated/the-amateur-cracksman/processed_book.json",
+        "app/client/assets/books/generated/the-amateur-cracksman/rights_report.json",
+        "app/client/assets/books/generated/the-amateur-cracksman/processing_notes.md",
+        "app/client/assets/books/generated/the-amateur-cracksman/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-amateur-cracksman/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-amateur-cracksman/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-amateur-cracksman/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-amateur-cracksman/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-amateur-cracksman/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-amateur-cracksman/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-amateur-cracksman/sections/chapter-008.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-amateur-cracksman.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 29,
+        "reason": "start at THE IDES OF MARCH: It was half-past twelve; write pass starts at first selected/default section",
+        "snippet": "THE IDES OF MARCH I It was half-past twelve when I returned to the Albany as a last desperate resort. The scene of my disaster was much as I had left it. The baccarat-counters still strewed the table, with the empty glasses and the loaded ash-trays. A wind"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 6110,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "ave it up utterly. Yet anon it would rise again, a mere mote dancing in the dim gray distance, drifting towards a purple island, beneath a fading western sky, streaked with dead gold and cerise. And night fell before I knew whether it was a human head or not."
+      },
+      "structuralConvention": "8 contents-listed Raffles story headings after title, dedication, and contents",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "THE IDES OF MARCH",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 7688,
+        "snippet": "THE IDES OF MARCH I It was half-past twelve when I returned to the Albany as a last desperate resort. The scene of my disaster was much as I had left it. The b..."
+      },
+      "sectionCount": 8,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "THE IDES OF MARCH",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 7688
+        },
+        {
+          "id": "chapter-002",
+          "label": "A COSTUME PIECE",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6266
+        },
+        {
+          "id": "chapter-003",
+          "label": "GENTLEMEN AND PLAYERS",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6726
+        },
+        {
+          "id": "chapter-004",
+          "label": "LE PREMIER PAS",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6063
+        },
+        {
+          "id": "chapter-005",
+          "label": "WILFUL MURDER",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5403
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-004",
+          "label": "LE PREMIER PAS",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6063
+        },
+        {
+          "id": "chapter-005",
+          "label": "WILFUL MURDER",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5403
+        },
+        {
+          "id": "chapter-006",
+          "label": "NINE POINTS OF THE LAW",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6022
+        },
+        {
+          "id": "chapter-007",
+          "label": "THE RETURN MATCH",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5516
+        },
+        {
+          "id": "chapter-008",
+          "label": "THE GIFT OF THE EMPEROR",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 8546
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "body headings were found but rejected by the selected strategy",
+        "Write pass used the 8 contents-listed Raffles story headings beginning with THE IDES OF MARCH; title page, dedication, and contents are excluded from default playback.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: contents or list material must not enter default playback",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run collection-title risk: ensure the generated title stays the collection title and individual story titles become sections",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "Title: The Amateur Cracksman",
+        "author": "Author: E. W. Hornung",
+        "start": "THE IDES OF MARCH It was half-past twelve when I returned to the Albany as a last desperate resort. The scene of my disaster was much as I had left it. The baccarat-counters still strewed the table, with the empty glasses and the loaded ash-trays. A window had been opened to let the smoke out, and was letting in the fog instead. Raff...",
+        "end": "ad brought, and laid it gently over his mouth. Two or three stertorous breaths, and the man was a log. I removed the handkerchief; I extracted the keys from his pocket. In less than five minutes I put them back, after winding the picture about my body beneath my Inverness cape. I took some whiskey and soda-water bef..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-black-star-passes",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Black Star Passes.txt",
+      "expectedTitle": "The Black Star Passes",
+      "generatedTitle": "The Black Star Passes",
+      "expectedAuthor": [
+        "John W. Campbell, Jr."
+      ],
+      "generatedAuthor": [
+        "John W. Campbell, Jr."
+      ],
+      "authorEvidence": {
+        "source": "title page and copyright line",
+        "text": "JOHN W. CAMPBELL; Copyright, 1953, by John W. Campbell, Jr.",
+        "lineNumber": 93
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-black-star-passes/manifest.json",
+        "app/client/assets/books/generated/the-black-star-passes/cleaned_book.json",
+        "app/client/assets/books/generated/the-black-star-passes/processed_book.json",
+        "app/client/assets/books/generated/the-black-star-passes/rights_report.json",
+        "app/client/assets/books/generated/the-black-star-passes/processing_notes.md",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-black-star-passes/sections/chapter-018.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-black-star-passes.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 493,
+        "reason": "start at cleaned-body line 493: I.; write pass starts at first selected/default section",
+        "snippet": "I. On the thirty-ninth floor of a large New York apartment two young men were lounging about after a strenuous game of tennis. The blue tendrils of smoke from their pipes rose slowly, to be drawn away by the efficient ventilating system. The taller of the tw"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 8043,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "343 (40c) THE EXILE OF TIME by Ray Cummings F-344 (40c) THE WELL OF THE WORLDS by Henry Kuttner Available from Ace Books, Inc. (Dept. M M), 1120 Avenue of the Americas, New York, N.Y. 10036. Send price indicated, plus 5c handling fee."
+      },
+      "structuralConvention": "standalone roman numeral sections with book divisions",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2870,
+        "snippet": "I. On the thirty-ninth floor of a large New York apartment two young men were lounging about after a strenuous game of tennis. The blue tendrils of smoke from..."
+      },
+      "sectionCount": 18,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2870
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5291
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4618
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5603
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 1",
+          "title": "Book Two",
+          "kind": "chapter",
+          "wordCount": 1812
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-014",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3925
+        },
+        {
+          "id": "chapter-015",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4722
+        },
+        {
+          "id": "chapter-016",
+          "label": "Chapter 4",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2644
+        },
+        {
+          "id": "chapter-017",
+          "label": "Chapter 5",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2772
+        },
+        {
+          "id": "chapter-018",
+          "label": "Chapter 6",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4703
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 3,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from title page and copyright line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: contents or list material must not enter default playback",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: illustration captions/placeholders detected",
+        "metadata correction: Gutenberg header misorders the author as 'Jr. John W. Campbell'; title page/copyright evidence supports 'John W. Campbell, Jr.'."
+      ],
+      "supportingSnippets": {
+        "title": "Title: The Black Star Passes",
+        "author": "JOHN W. CAMPBELL; Copyright, 1953, by John W. Campbell, Jr.",
+        "start": "Chapter 1 On the thirty-ninth floor of a large New York apartment two young men were lounging about after a strenuous game of tennis. The blue tendrils of smoke from their pipes rose slowly, to be drawn away by the efficient ventilating system. The taller of the two seemed to be doing most of the talking. In the positions the...",
+        "end": "come into sight.\" Swiftly Arcot sprang forward and caught his arm. \"Lord--don't do that, Wade--there's too much stuff here that we don't know anything about. Too much chance of your smashing us with him. I'm going to try to get around to the other side of this machine and see what I can do, while you fellows keep hi..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-blue-castle",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Blue Castle.txt",
+      "expectedTitle": "The Blue Castle: a novel",
+      "generatedTitle": "The Blue Castle: a novel",
+      "expectedAuthor": [
+        "L. M. Montgomery"
+      ],
+      "generatedAuthor": [
+        "L. M. Montgomery"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: L. M. Montgomery",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-blue-castle/manifest.json",
+        "app/client/assets/books/generated/the-blue-castle/cleaned_book.json",
+        "app/client/assets/books/generated/the-blue-castle/processed_book.json",
+        "app/client/assets/books/generated/the-blue-castle/rights_report.json",
+        "app/client/assets/books/generated/the-blue-castle/processing_notes.md",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-024.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-025.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-026.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-027.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-028.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-029.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-030.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-031.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-032.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-033.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-034.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-035.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-036.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-037.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-038.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-039.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-040.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-041.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-042.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-043.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-044.json",
+        "app/client/assets/books/generated/the-blue-castle/sections/chapter-045.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-blue-castle.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 66,
+        "reason": "start at cleaned-body line 66: CHAPTER I; write pass starts at first selected/default section",
+        "snippet": "CHAPTER I If it had not rained on a certain May morning Valancy Stirling s whole life would have been entirely different. She would have gone, with the rest of her clan, to Aunt Wellington s engagement picnic and Dr. Trent would have gone to Montreal. But it"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 8057,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "e her—‘the glory that was Greece and the grandeur that was Rome’—lure of the ageless Nile—glamour of the Riviera—mosque and palace and minaret—she knew perfectly well that no spot or place or home in the world could ever possess the sorcery of her Blue Castle."
+      },
+      "structuralConvention": "chapter-based roman numerals",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3438,
+        "snippet": "CHAPTER I If it had not rained on a certain May morning Valancy Stirling’s whole life would have been entirely different. She would have gone, with the rest of..."
+      },
+      "sectionCount": 45,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3438
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1106
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1616
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 734
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1352
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-041",
+          "label": "Chapter 41",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 648
+        },
+        {
+          "id": "chapter-042",
+          "label": "Chapter 42",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1378
+        },
+        {
+          "id": "chapter-043",
+          "label": "Chapter 43",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 488
+        },
+        {
+          "id": "chapter-044",
+          "label": "Chapter 44",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 333
+        },
+        {
+          "id": "chapter-045",
+          "label": "Chapter 45",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 200
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 1,
+        "standaloneEndMarkersRemoved": 1
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: contents or list material must not enter default playback",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "Title: The Blue Castle: a novel",
+        "author": "Author: L. M. Montgomery",
+        "start": "Chapter 1 If it had not rained on a certain May morning Valancy Stirling?s whole life would have been entirely different. She would have gone, with the rest of her clan, to Aunt Wellington?s engagement picnic and Dr. Trent would have gone to Montreal. But it did rain and you shall hear what happened to her because of it. Vala...",
+        "end": "giana was it given. Valancy was in tears. ?Don?t cry, Moonlight. We?ll be back next summer. And now we?re off for a real honeymoon.? Valancy smiled through her tears. She was so happy that her happiness terrified her. But, despite the delights before her??the glory that was Greece and the grandeur that was Rome??lur..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-brothers-karamazov",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Brothers Karamazov.txt",
+      "expectedTitle": "The Brothers Karamazov",
+      "generatedTitle": "The Brothers Karamazov",
+      "expectedAuthor": [
+        "Fyodor Dostoyevsky"
+      ],
+      "generatedAuthor": [
+        "Fyodor Dostoyevsky"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Fyodor Dostoyevsky",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-brothers-karamazov/manifest.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/cleaned_book.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/processed_book.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/rights_report.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/processing_notes.md",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-024.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-025.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-026.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-027.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-028.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-029.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-030.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-031.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-032.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-033.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-034.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-035.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-036.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-037.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-038.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-039.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-040.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-041.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-042.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-043.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-044.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-045.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-046.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-047.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-048.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-049.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-050.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-051.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-052.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-053.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-054.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-055.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-056.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-057.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-058.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-059.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-060.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-061.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-062.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-063.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-064.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-065.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-066.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-067.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-068.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-069.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-070.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-071.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-072.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-073.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-074.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-075.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-076.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-077.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-078.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-079.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-080.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-081.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-082.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-083.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-084.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-085.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-086.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-087.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-088.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-089.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-090.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-091.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-092.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-093.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-094.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-095.json",
+        "app/client/assets/books/generated/the-brothers-karamazov/sections/chapter-096.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-brothers-karamazov.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 140,
+        "reason": "start at cleaned-body line 143: Chapter I.; write pass starts at first selected/default section",
+        "snippet": "Book I. The History Of A Family Chapter I. Fyodor Pavlovitch Karamazov Alexey Fyodorovitch Karamazov was the third son of Fyodor Pavlovitch Karamazov, a land owner well known in our district in his own day, and still remembered among us owing to his gloomy"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 37014,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": ". If the deceased was a priest as well as a monk the canticle “Our Helper and Defender” is sung instead. i.e. a chime of bells. Literally: “Did you get off with a long nose made at you?”—a proverbial expression in Russia for failure. Gogol is meant."
+      },
+      "structuralConvention": "chapter-based roman numerals with book divisions and part divisions",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "Book I. The History Of A Family",
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1370,
+        "snippet": "Book I. The History Of A Family Chapter I. Fyodor Pavlovitch Karamazov Alexey Fyodorovitch Karamazov was the third son of Fyodor Pavlovitch Karamazov, a land o..."
+      },
+      "sectionCount": 96,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Book I. The History Of A Family",
+          "kind": "chapter",
+          "wordCount": 1370
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1327
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2619
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3589
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3663
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-092",
+          "label": "Chapter 13",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3479
+        },
+        {
+          "id": "chapter-093",
+          "label": "Chapter 14",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2622
+        },
+        {
+          "id": "chapter-094",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2259
+        },
+        {
+          "id": "chapter-095",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3174
+        },
+        {
+          "id": "chapter-096",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4229
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 2,
+        "inlinePageMarkersRemoved": 18,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 1,
+        "standaloneEndMarkersRemoved": 1
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001, chapter-002",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "body headings were found but rejected by the selected strategy",
+        "body headings were found but rejected by the selected strategy",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: contents or list material must not enter default playback",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "Title: The Brothers Karamazov",
+        "author": "Author: Fyodor Dostoyevsky",
+        "start": "Chapter 1 Fyodor Pavlovitch Karamazov Alexey Fyodorovitch Karamazov was the third son of Fyodor Pavlovitch Karamazov, a land owner well known in our district in his own day, and still remembered among us owing to his gloomy and tragic death, which happened thirteen years ago, and which I shall describe in its proper place. Fo...",
+        "end": "ned!? Alyosha answered, half laughing, half enthusiastic. ?Ah, how splendid it will be!? broke from Kolya. ?Well, now we will finish talking and go to his funeral dinner. Don?t be put out at our eating pancakes?it?s a very old custom and there?s something nice in that!? laughed Alyosha. ?Well, let us go! And now we..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-buccaneer",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Buccaneer.txt",
+      "expectedTitle": "The Buccaneer: A Tale",
+      "generatedTitle": "The Buccaneer: A Tale",
+      "expectedAuthor": [
+        "Mrs. S. C. Hall"
+      ],
+      "generatedAuthor": [
+        "Mrs. S. C. Hall"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Mrs. S. C. Hall",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-buccaneer/manifest.json",
+        "app/client/assets/books/generated/the-buccaneer/cleaned_book.json",
+        "app/client/assets/books/generated/the-buccaneer/processed_book.json",
+        "app/client/assets/books/generated/the-buccaneer/rights_report.json",
+        "app/client/assets/books/generated/the-buccaneer/processing_notes.md",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-024.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-025.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-026.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-027.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-028.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-029.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-030.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-031.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-032.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-033.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-034.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-035.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-036.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-037.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-038.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-039.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-040.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-041.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-042.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-043.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-044.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-045.json",
+        "app/client/assets/books/generated/the-buccaneer/sections/chapter-046.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-buccaneer.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 114,
+        "reason": "start at cleaned-body line 114: CHAPTER I.; write pass starts at first selected/default section",
+        "snippet": "CHAPTER I. With roomy decks, her guns of mighty strength, Whose low-laid mouths each mounting billow laves, Deep in her draught, and warlike in her length, She seems a sea wasp flying on the waves. DRYDEN. It was between the hours of"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 18308,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "sleep well whose hearts are innocent as yours, Barbara! and I hope I may add without presumption, purified as mine. You see, Springall, the earth that nourishes the rose may in time partake of its fragrance.\" THE END. LONDON: Printed by A. SPOTTISWOODE."
+      },
+      "structuralConvention": "three-volume chapter-based roman numerals with explicit CHAPTER IV safeguard",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 5584,
+        "snippet": "CHAPTER I. With roomy decks, her guns of mighty strength, Whose low-laid mouths each mounting billow laves, Deep in her draught, and warlike in her length, She..."
+      },
+      "sectionCount": 46,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5584
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3420
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3413
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5916
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4189
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-042",
+          "label": "Chapter 11",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2816
+        },
+        {
+          "id": "chapter-043",
+          "label": "Chapter 12",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4395
+        },
+        {
+          "id": "chapter-044",
+          "label": "Chapter 13",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6150
+        },
+        {
+          "id": "chapter-045",
+          "label": "Chapter 14",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1744
+        },
+        {
+          "id": "chapter-046",
+          "label": "Chapter 15",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 8407
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 4,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Write pass used all 46 explicit CHAPTER I-XVI / I-XV roman headings across the three volumes because the generic detector skipped a real Chapter IV.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: illustration captions/placeholders detected"
+      ],
+      "supportingSnippets": {
+        "title": "Title: The Buccaneer: A Tale",
+        "author": "Author: Mrs. S. C. Hall",
+        "start": "Chapter 1 With roomy decks, her guns of mighty strength, Whose low-laid mouths each mounting billow laves, Deep in her draught, and warlike in her length, She seems a sea wasp flying on the waves. DRYDEN. It was between the hours of ten and twelve on a fine night of February, in the year sixteen hundred and fifty-six, that th...",
+        "end": "urn me into a fable, wife!\" exclaimed Robin, playfully interrupting her:--\"I am, in my own proper person, an AEsop as it is. There has been enough of all this for to-night: we will but pledge another cup to the health of Sir Walter, the Lady Constance, and their children--and then to bed; and may all sleep well whos..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-cats-of-ulthar",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Cats of Ulthar.txt",
+      "expectedTitle": "The Cats of Ulthar",
+      "generatedTitle": "The Cats of Ulthar",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "Faded Page Author line with date removed",
+        "text": "Author: Howard Phillips Lovecraft (1890-1937)",
+        "lineNumber": 18
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-cats-of-ulthar/manifest.json",
+        "app/client/assets/books/generated/the-cats-of-ulthar/cleaned_book.json",
+        "app/client/assets/books/generated/the-cats-of-ulthar/processed_book.json",
+        "app/client/assets/books/generated/the-cats-of-ulthar/rights_report.json",
+        "app/client/assets/books/generated/the-cats-of-ulthar/processing_notes.md",
+        "app/client/assets/books/generated/the-cats-of-ulthar/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-cats-of-ulthar.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 43,
+        "reason": "start at first readable prose after source/title/byline wrapper: It is said that in Ulthar; write pass starts at first selected/default section",
+        "snippet": "It is said that in Ulthar, which lies beyond the river Skai, no man may kill a cat; and this I can verily believe as I gaze upon him who sitteth purring before the fire. For the cat is cryptic, and close to strange things which men cannot see. He is the soul"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 163,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "the repellent yard. And in the end the burgesses passed that remarkable law which is told of by traders in Hatheg and discussed by travelers in Nir; namely, that in Ulthar no man may kill a cat. [The end of _The Cats of Ulthar_ by Howard Phillips Lovecraft]"
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Cats of Ulthar",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1350,
+        "snippet": "It is said that in Ulthar, which lies beyond the river Skai, no man may kill a cat; and this I can verily believe as I gaze upon him who sitteth purring before..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Cats of Ulthar",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1350
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Cats of Ulthar",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1350
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Faded Page Author line with date removed",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+        "metadata normalization: Faded Page header gives Howard Phillips Lovecraft (1890-1937); earlier accepted Lovecraft manifests use H. P. Lovecraft."
+      ],
+      "supportingSnippets": {
+        "title": "Title: The Cats of Ulthar",
+        "author": "Author: Howard Phillips Lovecraft (1890-1937)",
+        "start": "The Cats of Ulthar It is said that in Ulthar, which lies beyond the river Skai, no man may kill a cat; and this I can verily believe as I gaze upon him who sitteth purring before the fire. For the cat is cryptic, and close to strange things which men cannot see. He is the soul of antique Aegyptus, and bearer of tales from forgotten ci...",
+        "end": "meat as reward. They talked of the old cotter and his wife, of the caravan of dark wanderers, of small Menes and his black kitten, of the prayer of Menes and of the sky during that prayer, of the doings of the cats on the night the caravan left, and of what was later found in the cottage under the dark trees in the..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-festival",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The festival.txt",
+      "expectedTitle": "The Festival",
+      "generatedTitle": "The Festival",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "Faded Page Author line",
+        "text": "Author: H. P. Lovecraft",
+        "lineNumber": 18
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-festival/manifest.json",
+        "app/client/assets/books/generated/the-festival/cleaned_book.json",
+        "app/client/assets/books/generated/the-festival/processed_book.json",
+        "app/client/assets/books/generated/the-festival/rights_report.json",
+        "app/client/assets/books/generated/the-festival/processing_notes.md",
+        "app/client/assets/books/generated/the-festival/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-festival.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 12,
+        "reason": "start at first readable prose after source/title/byline wrapper: I was far from home; write pass starts at first selected/default section",
+        "snippet": "I was far from home, and the spell of the eastern sea was upon me. In the twilight I heard it pounding on the rocks, and I knew it lay just over the hill where the twisting willows writhed against the clearing sky and the first stars of evening. And because my"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 349,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "aws_; till out of corruption horrid life springs, and the dull scavengers of earth wax crafty to vex it and swell monstrous to plague it. Great holes secretly are digged where earth’s pores ought to suffice, and things have learnt to walk that ought to crawl.”"
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Festival",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3602,
+        "snippet": "I was far from home, and the spell of the eastern sea was upon me. In the twilight I heard it pounding on the rocks, and I knew it lay just over the hill where..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Festival",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3602
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Festival",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3602
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 1,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Faded Page Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+        "title normalization: source header casing is 'The festival', while story heading/byline supports 'The Festival'."
+      ],
+      "supportingSnippets": {
+        "title": "Title: The festival",
+        "author": "Author: H. P. Lovecraft",
+        "start": "The Festival I was far from home, and the spell of the eastern sea was upon me. In the twilight I heard it pounding on the rocks, and I knew it lay just over the hill where the twisting willows writhed against the clearing sky and the first stars of evening. And because my fathers had called me to the old town beyond, I pushed o...",
+        "end": "ose wizards are all in ashes. For it is of old rumor that the soul of the devil-bought hastes not from his charnel clay, but fats and instructs _the very worm that gnaws_; till out of corruption horrid life springs, and the dull scavengers of earth wax crafty to vex it and swell monstrous to plague it. Great holes s..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-history-of-sir-richard-calmady-a-romance",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The History of Sir Richard Calmady - A Romance.txt",
+      "expectedTitle": "The History of Sir Richard Calmady: A Romance",
+      "generatedTitle": "The History of Sir Richard Calmady: A Romance",
+      "expectedAuthor": [
+        "Lucas Malet"
+      ],
+      "generatedAuthor": [
+        "Lucas Malet"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Lucas Malet",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/manifest.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/cleaned_book.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/processed_book.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/rights_report.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/processing_notes.md",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-024.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-025.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-026.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-027.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-028.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-029.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-030.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-031.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-032.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-033.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-034.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-035.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-036.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-037.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-038.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-039.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-040.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-041.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-042.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-043.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-044.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-045.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-046.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-047.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-048.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-049.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-050.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-051.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-052.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-053.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-054.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-055.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-056.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-057.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-058.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-059.json",
+        "app/client/assets/books/generated/the-history-of-sir-richard-calmady-a-romance/sections/chapter-060.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-history-of-sir-richard-calmady-a-romance.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 225,
+        "reason": "start at cleaned-body line 230: CHAPTER I; write pass starts at first selected/default section",
+        "snippet": "BOOK I THE CLOWN CHAPTER I ACQUAINTING THE READER WITH A FAIR DOMAIN AND THE MAKER THEREOF In that fortunate hour of English history, when the cruel sights and haunting insecurities of the Middle Ages had passed away, and while, as yet, the fanatic zeal"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 28278,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "to bring me through. But now perhaps they're a little out of the picture.\" Richard drew her hand nearer and kissed it, leaning back in his chair, and looking up at her. \"And I have you--\" he said, \"you most perfect of mothers.--And--ah! here comes Honoria!\""
+      },
+      "structuralConvention": "chapter-based roman numerals with book divisions",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "Book I",
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2187,
+        "snippet": "BOOK I THE CLOWN CHAPTER I ACQUAINTING THE READER WITH A FAIR DOMAIN AND THE MAKER THEREOF In that fortunate hour of English history, when the cruel sights and..."
+      },
+      "sectionCount": 60,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "Book I",
+          "kind": "chapter",
+          "wordCount": 2187
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4902
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2057
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3600
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4019
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-056",
+          "label": "Chapter 7",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6522
+        },
+        {
+          "id": "chapter-057",
+          "label": "Chapter 8",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3991
+        },
+        {
+          "id": "chapter-058",
+          "label": "Chapter 9",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6231
+        },
+        {
+          "id": "chapter-059",
+          "label": "Chapter 10",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 9777
+        },
+        {
+          "id": "chapter-060",
+          "label": "Chapter 11",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3152
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 4,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: contents or list material must not enter default playback",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "Title: The History of Sir Richard Calmady: A Romance",
+        "author": "Author: Lucas Malet",
+        "start": "Chapter 1 ACQUAINTING THE READER WITH A FAIR DOMAIN AND THE MAKER THEREOF In that fortunate hour of English history, when the cruel sights and haunting insecurities of the Middle Ages had passed away, and while, as yet, the fanatic zeal of Puritanism had not cast its blighting shadow over all merry and pleasant things, it see...",
+        "end": "-you made long ago before you knew her?\" \"Never,\" he replied. \"Without it I could not have served her as I have been able to serve her. I am wholly thankful for it. It made much possible which must have otherwise been impossible.\" \"And have you never told her that you loved her--even yet?\" \"No,\" he replied, \"because..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-nameless-city",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Nameless City.txt",
+      "expectedTitle": "The Nameless City",
+      "generatedTitle": "The Nameless City",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "Faded Page Author line with date removed",
+        "text": "Author: Howard Phillips Lovecraft (1890-1937)",
+        "lineNumber": 18
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-nameless-city/manifest.json",
+        "app/client/assets/books/generated/the-nameless-city/cleaned_book.json",
+        "app/client/assets/books/generated/the-nameless-city/processed_book.json",
+        "app/client/assets/books/generated/the-nameless-city/rights_report.json",
+        "app/client/assets/books/generated/the-nameless-city/processing_notes.md",
+        "app/client/assets/books/generated/the-nameless-city/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-nameless-city.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 39,
+        "reason": "start at first readable prose after source/title/byline wrapper: When I drew nigh the nameless city; write pass starts at first selected/default section",
+        "snippet": "When I drew nigh the nameless city I knew it was accursed. I was traveling in a parched and terrible valley under the moon, and afar I saw it protruding uncannily above the sands as parts of a corpse might protrude from an ill-made grave. Fear spoke from the a"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 514,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "e great brazen door clanged shut with a deafening peal of metallic music whose reverberations swelled out to the distant world to hail the rising sun as Memnon hails it from the banks of the Nile. [The end of _The Nameless City_ by Howard Phillips Lovecraft]"
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Nameless City",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 5032,
+        "snippet": "When I drew nigh the nameless city I knew it was accursed. I was traveling in a parched and terrible valley under the moon, and afar I saw it protruding uncann..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Nameless City",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5032
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Nameless City",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5032
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Faded Page Author line with date removed",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+        "metadata normalization: Faded Page header gives Howard Phillips Lovecraft (1890-1937); earlier accepted Lovecraft manifests use H. P. Lovecraft."
+      ],
+      "supportingSnippets": {
+        "title": "Title: The Nameless City",
+        "author": "Author: Howard Phillips Lovecraft (1890-1937)",
+        "start": "The Nameless City When I drew nigh the nameless city I knew it was accursed. I was traveling in a parched and terrible valley under the moon, and afar I saw it protruding uncannily above the sands as parts of a corpse might protrude from an ill-made grave. Fear spoke from the age-worn stones of this hoary survivor of the deluge, this...",
+        "end": "idor--a nightmare horde of rushing devils; hate-distorted, grotesquely panoplied, half-transparent devils of a race no man might mistake--the crawling reptiles of the nameless city. And as the wind died away I was plunged into the ghoul-peopled darkness of earth's bowels; for behind the last of the creatures the gre..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-three-taps-a-detective-story-without-a-moral",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The three taps - A detective story without a moral.txt",
+      "expectedTitle": "The Three Taps",
+      "generatedTitle": "The Three Taps",
+      "expectedAuthor": [
+        "Ronald Arbuthnott Knox"
+      ],
+      "generatedAuthor": [
+        "Ronald Arbuthnott Knox"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Ronald Arbuthnott Knox",
+        "lineNumber": 14
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/manifest.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/cleaned_book.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/processed_book.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/rights_report.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/processing_notes.md",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-024.json",
+        "app/client/assets/books/generated/the-three-taps-a-detective-story-without-a-moral/sections/chapter-025.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-three-taps-a-detective-story-without-a-moral.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 42,
+        "reason": "start at cleaned-body line 42: Chapter I; write pass starts at first selected/default section",
+        "snippet": "Chapter I The Euthanasia Policy The principles of insurance, they tell us, were not hidden from our Anglo-Saxon forefathers. How anybody had the enterprise in those rough-and-tumble days to guarantee a client against fire, water, robbery or other calamity"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 7161,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "aid Leyland, “I suppose the bet’s off.” “And Mr. Bredon,” added the Bishop, “will get no thanks from his company. I’m afraid, Mr. Bredon, you will have carried nothing away with you from your visit to these parts.” “Oh, I don’t know about that,” said Bredon."
+      },
+      "structuralConvention": "chapter-based roman numerals",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3088,
+        "snippet": "Chapter I The Euthanasia Policy The principles of insurance, they tell us, were not hidden from our Anglo-Saxon forefathers. How anybody had the enterprise in..."
+      },
+      "sectionCount": 25,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3088
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2654
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2705
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2572
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2789
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-021",
+          "label": "Chapter 21",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2019
+        },
+        {
+          "id": "chapter-022",
+          "label": "Chapter 22",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2148
+        },
+        {
+          "id": "chapter-023",
+          "label": "Chapter 23",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2733
+        },
+        {
+          "id": "chapter-024",
+          "label": "Chapter 24",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2581
+        },
+        {
+          "id": "chapter-025",
+          "label": "Chapter 25",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4415
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 4,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 1,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: contents or list material must not enter default playback",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+        "title normalization: source header includes the subtitle; visible source title supports the shorter public title The Three Taps."
+      ],
+      "supportingSnippets": {
+        "title": "Title: The three taps",
+        "author": "Author: Ronald Arbuthnott Knox",
+        "start": "Chapter 1 The Euthanasia Policy The principles of insurance, they tell us, were not hidden from our Anglo-Saxon forefathers. How anybody had the enterprise in those rough-and-tumble days to guarantee a client against ?fire, water, robbery or other calamity? remains a problem for the historian; the more so as it appears that m...",
+        "end": "his, not a forgery. You will see why I mention that later on. This is how the letter runs: ??My dear Lord Bishop: ??Pursuant to our conversation of Thursday evening last, it will be within your Lordship?s memory that upon that occasion I asserted the right of a man, in given circumstances, to take his own life, part..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-turmoil",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Turmoil.txt",
+      "expectedTitle": "The Turmoil: A Novel",
+      "generatedTitle": "The Turmoil: A Novel",
+      "expectedAuthor": [
+        "Booth Tarkington"
+      ],
+      "generatedAuthor": [
+        "Booth Tarkington"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Booth Tarkington",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-turmoil/manifest.json",
+        "app/client/assets/books/generated/the-turmoil/cleaned_book.json",
+        "app/client/assets/books/generated/the-turmoil/processed_book.json",
+        "app/client/assets/books/generated/the-turmoil/rights_report.json",
+        "app/client/assets/books/generated/the-turmoil/processing_notes.md",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-003.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-004.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-005.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-006.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-007.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-008.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-009.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-010.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-011.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-012.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-013.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-014.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-015.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-016.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-017.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-018.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-019.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-020.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-021.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-022.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-023.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-024.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-025.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-026.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-027.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-028.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-029.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-030.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-031.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-032.json",
+        "app/client/assets/books/generated/the-turmoil/sections/chapter-033.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-turmoil.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 13,
+        "reason": "start at cleaned-body line 13: CHAPTER I; write pass starts at first selected/default section",
+        "snippet": "CHAPTER I There is a midland city in the heart of fair, open country, a dirty and wonderful city nesting dingily in the fog of its own smoke. The stranger must feel the dirt before he feels the wonder, for the dirt will be upon him instantly. It will be upon"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 10093,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "ument--it was so gentle and so light, so almost nothing, it seemed to be made of air--and it came from the air. Slowly and incredulously he turned--and glory fell upon his shining eyes. The door of his father's room had opened. Mary stood upon the threshold."
+      },
+      "structuralConvention": "chapter-based roman numerals",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1224,
+        "snippet": "CHAPTER I There is a midland city in the heart of fair, open country, a dirty and wonderful city nesting dingily in the fog of its own smoke. The stranger must..."
+      },
+      "sectionCount": 33,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1224
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1871
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2826
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3091
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2447
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-029",
+          "label": "Chapter 29",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2366
+        },
+        {
+          "id": "chapter-030",
+          "label": "Chapter 30",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2632
+        },
+        {
+          "id": "chapter-031",
+          "label": "Chapter 21",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2610
+        },
+        {
+          "id": "chapter-032",
+          "label": "Chapter 32",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2450
+        },
+        {
+          "id": "chapter-033",
+          "label": "Chapter 33",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2722
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 3,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 1
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001, chapter-002",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "Title: The Turmoil: A Novel",
+        "author": "Author: Booth Tarkington",
+        "start": "Chapter 1 There is a midland city in the heart of fair, open country, a dirty and wonderful city nesting dingily in the fog of its own smoke. The stranger must feel the dirt before he feels the wonder, for the dirt will be upon him instantly. It will be upon him and within him, since he must breathe it, and he may care for no...",
+        "end": "no answer. ?Mary?? he called, huskily. ?If you mean THAT--you'd let me see you--wouldn't you?? And now the voice was so low he could not be sure it spoke at all, but if it did, the words were, ?Yes, Bibbs--dear.? But the voice was not in the instrument--it was so gentle and so light, so almost nothing, it seemed to..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-two-magics-the-turn-of-the-screw-covering-end",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "skipped",
+      "sourceFileUsed": "app/client/assets/temp-books/The Two Magics - The Turn of the Screw, Covering End.txt",
+      "expectedTitle": "The Two Magics: The Turn of the Screw, Covering End",
+      "generatedTitle": null,
+      "expectedAuthor": [
+        "Henry James"
+      ],
+      "generatedAuthor": null,
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Henry James",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [],
+      "previewAssetChanged": null,
+      "duplicateNearDuplicateSlugCheckResult": "Skipped after write-pass duplicate check: the raw file is the collection The Two Magics and contains a full The Turn of the Screw, while generated the-turn-of-the-screw already exists; no distinct-version policy exists for duplicating that work under a collection slug.",
+      "startBoundaryUsed": {
+        "cleanedLine": null,
+        "reason": "start at cleaned-body line 351: I",
+        "snippet": null
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": null,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+        "snippet": null
+      },
+      "structuralConvention": "standalone roman numeral sections",
+      "firstDefaultSectionAfterProcessing": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "sectionCount": 0,
+      "first5SectionsWithWordCounts": [],
+      "last5SectionsWithWordCounts": [],
+      "cleanupActionsApplied": null,
+      "titleDefaultStartRiskVerdict": "not generated",
+      "authorMetadataVerdict": "not generated",
+      "segmentationVerdict": "not generated",
+      "previewVerdict": "not generated",
+      "startupPreviewValid": false,
+      "allMainReadableDefaultVerdict": "not generated",
+      "remainingWarnings": [
+        "Skipped after write-pass duplicate check: the raw file is the collection The Two Magics and contains a full The Turn of the Screw, while generated the-turn-of-the-screw already exists; no distinct-version policy exists for duplicating that work under a collection slug."
+      ],
+      "supportingSnippets": {
+        "title": "Title: The Two Magics: The Turn of the Screw, Covering End",
+        "author": "Author: Henry James",
+        "start": "Chapter 1 I remember the whole beginning as a succession of flights and drops, a little see-saw of the right throbs and the wrong. After rising, in town, to meet his appeal, I had at all events a couple of very bad days--found myself doubtful again, felt indeed sure I had made a mistake. In this state of mind I spent the long...",
+        "end": "--her kind eyes seemed to drop it upon him,--was all she meant. ?To stay at your post--_that_ was the way I showed you.? He had come round to it now, as mechanically, in intenser thought, he smoothed down the thick hair he had rubbed up; but his face soon enough gave out, in wonder and pain, that his freedom was som..."
+      },
+      "finalRecommendation": "skipped"
+    },
+    {
+      "slug": "the-works-of-edgar-allan-poe",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "skipped",
+      "sourceFileUsed": "app/client/assets/temp-books/The Works of Edgar Allan Poe.txt",
+      "expectedTitle": "The Works of Edgar Allan Poe ? Volume 2",
+      "generatedTitle": null,
+      "expectedAuthor": [
+        "Edgar Allan Poe"
+      ],
+      "generatedAuthor": null,
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Edgar Allan Poe",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [],
+      "previewAssetChanged": null,
+      "duplicateNearDuplicateSlugCheckResult": "Skipped after write-pass boundary check: the raw Volume 2 begins with THE PURLOINED LETTER, but the dry-run proposed starting at the next story, which would drop real opening collection content.",
+      "startBoundaryUsed": {
+        "cleanedLine": null,
+        "reason": "start at cleaned-body line 861: THE THOUSAND-AND-SECOND TALE OF SCHEHERAZADE",
+        "snippet": null
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": null,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+        "snippet": null
+      },
+      "structuralConvention": "story or titled-section headings",
+      "firstDefaultSectionAfterProcessing": {
+        "id": null,
+        "label": null,
+        "title": null,
+        "kind": null,
+        "includeByDefault": null,
+        "wordCount": null,
+        "snippet": null
+      },
+      "sectionCount": 0,
+      "first5SectionsWithWordCounts": [],
+      "last5SectionsWithWordCounts": [],
+      "cleanupActionsApplied": null,
+      "titleDefaultStartRiskVerdict": "not generated",
+      "authorMetadataVerdict": "not generated",
+      "segmentationVerdict": "not generated",
+      "previewVerdict": "not generated",
+      "startupPreviewValid": false,
+      "allMainReadableDefaultVerdict": "not generated",
+      "remainingWarnings": [
+        "Skipped after write-pass boundary check: the raw Volume 2 begins with THE PURLOINED LETTER, but the dry-run proposed starting at the next story, which would drop real opening collection content."
+      ],
+      "supportingSnippets": {
+        "title": "Title: The Works of Edgar Allan Poe ? Volume 2",
+        "author": "Author: Edgar Allan Poe",
+        "start": "THE THOUSAND-AND-SECOND TALE OF SCHEHERAZADE Truth is stranger than fiction.?_Old Saying_ Having had occasion, lately, in the course of some Oriental investigations, to consult the Tellmenow Isits?ornot, a work which (like the Zohar of Simeon Jochaides) is scarcely known at all, even in Europe; and which has never been quoted, to my knowledge, by any American?...",
+        "end": "y repose. There will be frequent hours in which I shall need, too, the sympathy of the poetic in what I have done. Let me seek, then, a spot not far from a populous city?whose vicinity, also, will best enable me to execute my plans.? In search of a suitable place so situated, Ellison travelled for several years, and..."
+      },
+      "finalRecommendation": "skipped"
+    },
+    {
+      "slug": "under-the-red-dragon",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/Under the Red Dragon.txt",
+      "expectedTitle": "Under the Red Dragon: A Novel",
+      "generatedTitle": "Under the Red Dragon: A Novel",
+      "expectedAuthor": [
+        "James Grant"
+      ],
+      "generatedAuthor": [
+        "James Grant"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: James Grant",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/under-the-red-dragon/manifest.json",
+        "app/client/assets/books/generated/under-the-red-dragon/cleaned_book.json",
+        "app/client/assets/books/generated/under-the-red-dragon/processed_book.json",
+        "app/client/assets/books/generated/under-the-red-dragon/rights_report.json",
+        "app/client/assets/books/generated/under-the-red-dragon/processing_notes.md",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-001.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-002.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-003.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-004.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-005.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-006.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-007.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-008.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-009.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-010.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-011.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-012.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-013.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-014.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-015.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-016.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-017.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-018.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-019.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-020.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-021.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-022.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-023.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-024.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-025.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-026.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-027.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-028.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-029.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-030.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-031.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-032.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-033.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-034.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-035.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-036.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-037.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-038.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-039.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-040.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-041.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-042.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-043.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-044.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-045.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-046.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-047.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-048.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-049.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-050.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-051.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-052.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-053.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-054.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-055.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-056.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-057.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-058.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-059.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-060.json",
+        "app/client/assets/books/generated/under-the-red-dragon/sections/chapter-061.json"
+      ],
+      "previewAssetChanged": "public/book-previews/under-the-red-dragon.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 95,
+        "reason": "start at cleaned-body line 95: CHAPTER I.--THE INVITATION.; write pass starts at first selected/default section",
+        "snippet": "CHAPTER I.--THE INVITATION. \"And _she_ is to be there--nay, is there already; so one more chance is given me to meet her. But for what?--to part again silently, and more helplessly bewitched than ever, perhaps. Ah, never will she learn to love me as I love h"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 16802,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "lery of the Guard in the Berlin _Vossische Zeitung_.] [Footnote 3: Fusileer regiments did not then wear epaulettes.] [Footnote 4: May God preserve us!] [Footnote 5: Good Lord deliver us.] THE END. ******************** BILLING, PRINTER. GUILDFORD, SURREY"
+      },
+      "structuralConvention": "chapter-based roman numerals",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Chapter 1",
+        "title": "--THE INVITATION",
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2162,
+        "snippet": "CHAPTER I.--THE INVITATION. \"And _she_ is to be there--nay, is there already; so one more chance is given me to meet her. But for what?--to part again silently..."
+      },
+      "sectionCount": 61,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Chapter 1",
+          "title": "--THE INVITATION",
+          "kind": "chapter",
+          "wordCount": 2162
+        },
+        {
+          "id": "chapter-002",
+          "label": "Chapter 2",
+          "title": "--THE MOTH AND THE CANDLE",
+          "kind": "chapter",
+          "wordCount": 2396
+        },
+        {
+          "id": "chapter-003",
+          "label": "Chapter 3",
+          "title": "By EXPRESS",
+          "kind": "chapter",
+          "wordCount": 2216
+        },
+        {
+          "id": "chapter-004",
+          "label": "Chapter 4",
+          "title": "--WINNY AND DORA LLOYD",
+          "kind": "chapter",
+          "wordCount": 2420
+        },
+        {
+          "id": "chapter-005",
+          "label": "Chapter 5",
+          "title": "--CRAIGADERYN COURT",
+          "kind": "chapter",
+          "wordCount": 2642
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-057",
+          "label": "Chapter 57",
+          "title": "--IN THE MONASTERY OF ST. GEORGE",
+          "kind": "chapter",
+          "wordCount": 2935
+        },
+        {
+          "id": "chapter-058",
+          "label": "Chapter 58",
+          "title": "--HOME",
+          "kind": "chapter",
+          "wordCount": 1488
+        },
+        {
+          "id": "chapter-059",
+          "label": "Chapter 59",
+          "title": "--\"A DREAM WHICH WAS NOT ALL A DREAM.\"",
+          "kind": "chapter",
+          "wordCount": 1984
+        },
+        {
+          "id": "chapter-060",
+          "label": "Chapter 60",
+          "title": "--A HONEYMOON",
+          "kind": "chapter",
+          "wordCount": 1784
+        },
+        {
+          "id": "chapter-061",
+          "label": "Chapter 61",
+          "title": "--\"FOR VALOUR.\"",
+          "kind": "chapter",
+          "wordCount": 2838
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 3,
+        "inlinePageMarkersRemoved": 5,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: contents or list material must not enter default playback",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run cleanup risk: footnotes or page markers may need cleanup before default playback",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: footnotes or page markers detected"
+      ],
+      "supportingSnippets": {
+        "title": "Title: Under the Red Dragon: A Novel",
+        "author": "Author: James Grant",
+        "start": "Chapter 1: --THE INVITATION \"And _she_ is to be there--nay, is there already; so one more chance is given me to meet her. But for what?--to part again silently, and more helplessly bewitched than ever, perhaps. Ah, never will she learn to love me as I love her!\" thought I, as I turned over my old friend's letter, not venturing, however, to giv...",
+        "end": "was left in the rear, tied to a powder caisson; but he broke loose, came to the front at full gallop, and was recaptured under fire; the soldiers afterwards attached to his collar a copper medal, made from a pan found among the captured cooking utensils of General Coronini. His death was formally announced by the ar..."
+      },
+      "finalRecommendation": "accepted for review"
+    }
+  ]
+}

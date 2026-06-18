@@ -8538,6 +8538,888 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "winnie-the-pooh/manifest.json"
+    },
+    {
+      "slug": "a-study-in-scarlet",
+      "title": "A Study in Scarlet",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "d4f4f962b45c2b51",
+      "contentHash": "d4f4f962b45c2b51f972e08aac351f5f443b9791ded87c0a13eaf20d3f5d698b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "244",
+        "releaseDate": "April 1, 1995",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/244",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Study in Scarlet"
+      },
+      "stats": {
+        "originalCharacterCount": 263854,
+        "cleanedCharacterCount": 238622,
+        "wordCount": 43790,
+        "sectionCount": 14,
+        "includedSectionCount": 14
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-study-in-scarlet/manifest.json"
+    },
+    {
+      "slug": "dagon",
+      "title": "Dagon",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "431630c68867d946",
+      "contentHash": "431630c68867d9460860a21821b130aaad8259501e6550457e09c7b65169cb98",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Dagon"
+      },
+      "stats": {
+        "originalCharacterCount": 13133,
+        "cleanedCharacterCount": 11795,
+        "wordCount": 2096,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "dagon/manifest.json"
+    },
+    {
+      "slug": "deep-sea-plunderings",
+      "title": "Deep-Sea Plunderings",
+      "author": [
+        "Frank Thomas Bullen"
+      ],
+      "contentVersion": "61d790da214603b1",
+      "contentHash": "61d790da214603b1b11790c5a8635c2bc78c87f9d02f9bba3b20de8bcbc35de8",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "63270",
+        "releaseDate": "September 23, 2020",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/63270",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Deep-Sea Plunderings"
+      },
+      "stats": {
+        "originalCharacterCount": 576659,
+        "cleanedCharacterCount": 524875,
+        "wordCount": 94896,
+        "sectionCount": 24,
+        "includedSectionCount": 24
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "deep-sea-plunderings/manifest.json"
+    },
+    {
+      "slug": "five-little-peppers-at-school",
+      "title": "Five Little Peppers at School",
+      "author": [
+        "Margaret Sidney"
+      ],
+      "contentVersion": "02be3e4b4b4ef9fb",
+      "contentHash": "02be3e4b4b4ef9fbbf03d300648a81aeb918f2a529917c6b1e22b69d6b28ed33",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "26122",
+        "releaseDate": "July 25, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/26122",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Five Little Peppers at School"
+      },
+      "stats": {
+        "originalCharacterCount": 501758,
+        "cleanedCharacterCount": 464596,
+        "wordCount": 84095,
+        "sectionCount": 25,
+        "includedSectionCount": 25
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "five-little-peppers-at-school/manifest.json"
+    },
+    {
+      "slug": "pickman-s-model",
+      "title": "Pickman's Model",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "0bc9489508265c19",
+      "contentHash": "0bc9489508265c19c5f173a36f26a6802822046ca590da286d69352466499e25",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Pickman's Model"
+      },
+      "stats": {
+        "originalCharacterCount": 31279,
+        "cleanedCharacterCount": 29310,
+        "wordCount": 5278,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "pickman-s-model/manifest.json"
+    },
+    {
+      "slug": "quo-vadis",
+      "title": "Quo Vadis: A Narrative of the Time of Nero",
+      "author": [
+        "Henryk Sienkiewicz"
+      ],
+      "contentVersion": "b19872b1415de6f4",
+      "contentHash": "b19872b1415de6f412bd525f63c7017fd704a077d29f08f151b044deca502e2f",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2853",
+        "releaseDate": "October 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2853",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Quo Vadis: A Narrative of the Time of Nero"
+      },
+      "stats": {
+        "originalCharacterCount": 1204901,
+        "cleanedCharacterCount": 1160560,
+        "wordCount": 210294,
+        "sectionCount": 73,
+        "includedSectionCount": 73
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "quo-vadis/manifest.json"
+    },
+    {
+      "slug": "the-amateur-cracksman",
+      "title": "The Amateur Cracksman",
+      "author": [
+        "E. W. Hornung"
+      ],
+      "contentVersion": "76a5469dd70fdc6a",
+      "contentHash": "76a5469dd70fdc6a59f602b6b01b028c7e211a98b3b9ece031b5c55b56bd77c0",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "706",
+        "releaseDate": "November 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/706",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Amateur Cracksman"
+      },
+      "stats": {
+        "originalCharacterCount": 307382,
+        "cleanedCharacterCount": 281223,
+        "wordCount": 52230,
+        "sectionCount": 8,
+        "includedSectionCount": 8
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-amateur-cracksman/manifest.json"
+    },
+    {
+      "slug": "the-black-star-passes",
+      "title": "The Black Star Passes",
+      "author": [
+        "John W. Campbell, Jr."
+      ],
+      "contentVersion": "8ed6551643f1cb3e",
+      "contentHash": "8ed6551643f1cb3e883a6a36e72feef095144f562c1518c152dca530a070bd2a",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "20707",
+        "releaseDate": "February 27, 2007",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/20707",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Black Star Passes"
+      },
+      "stats": {
+        "originalCharacterCount": 456477,
+        "cleanedCharacterCount": 406964,
+        "wordCount": 72422,
+        "sectionCount": 18,
+        "includedSectionCount": 18
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-black-star-passes/manifest.json"
+    },
+    {
+      "slug": "the-blue-castle",
+      "title": "The Blue Castle: a novel",
+      "author": [
+        "L. M. Montgomery"
+      ],
+      "contentVersion": "8ab0fa25e5277fc0",
+      "contentHash": "8ab0fa25e5277fc05b7a90a5c824a0ed8c32e7c601738c959781254f2ae0fadf",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "67979",
+        "releaseDate": "May 3, 2022",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/67979",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Blue Castle: a novel"
+      },
+      "stats": {
+        "originalCharacterCount": 416477,
+        "cleanedCharacterCount": 378775,
+        "wordCount": 69209,
+        "sectionCount": 45,
+        "includedSectionCount": 45
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-blue-castle/manifest.json"
+    },
+    {
+      "slug": "the-brothers-karamazov",
+      "title": "The Brothers Karamazov",
+      "author": [
+        "Fyodor Dostoyevsky"
+      ],
+      "contentVersion": "f62de9bc4d259f39",
+      "contentHash": "f62de9bc4d259f39497bb4e2ccfde76b85066c02ed7bff3ab2f304f1d52838aa",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "28054",
+        "releaseDate": "February 12, 2009",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/28054",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Brothers Karamazov"
+      },
+      "stats": {
+        "originalCharacterCount": 1992167,
+        "cleanedCharacterCount": 1917770,
+        "wordCount": 356021,
+        "sectionCount": 96,
+        "includedSectionCount": 96
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-brothers-karamazov/manifest.json"
+    },
+    {
+      "slug": "the-buccaneer",
+      "title": "The Buccaneer: A Tale",
+      "author": [
+        "Mrs. S. C. Hall"
+      ],
+      "contentVersion": "2262f36185b331fd",
+      "contentHash": "2262f36185b331fdbc6377efdcc3119600e6278e54e4ec0b7281bec85496db27",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "28074",
+        "releaseDate": "February 14, 2009",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/28074",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Buccaneer: A Tale"
+      },
+      "stats": {
+        "originalCharacterCount": 1022905,
+        "cleanedCharacterCount": 967326,
+        "wordCount": 171633,
+        "sectionCount": 46,
+        "includedSectionCount": 46
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-buccaneer/manifest.json"
+    },
+    {
+      "slug": "the-cats-of-ulthar",
+      "title": "The Cats of Ulthar",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "1634cde8b35c1c00",
+      "contentHash": "1634cde8b35c1c0026db724ab8496e4b85dfce929ecffc4a9b67fe88b78cd30d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Cats of Ulthar"
+      },
+      "stats": {
+        "originalCharacterCount": 8994,
+        "cleanedCharacterCount": 7423,
+        "wordCount": 1350,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-cats-of-ulthar/manifest.json"
+    },
+    {
+      "slug": "the-festival",
+      "title": "The Festival",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "890c693cea62bc92",
+      "contentHash": "890c693cea62bc92452bb74f3a9cfadd476d5e93680fec92f39da2805b38392b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "68553",
+        "releaseDate": "July 18, 2022",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/68553",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Festival"
+      },
+      "stats": {
+        "originalCharacterCount": 40771,
+        "cleanedCharacterCount": 20364,
+        "wordCount": 3602,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-festival/manifest.json"
+    },
+    {
+      "slug": "the-history-of-sir-richard-calmady-a-romance",
+      "title": "The History of Sir Richard Calmady: A Romance",
+      "author": [
+        "Lucas Malet"
+      ],
+      "contentVersion": "a0e5523e832b5166",
+      "contentHash": "a0e5523e832b5166a46e8ee8dd499018c4ad0bf04428e2ce79f22094721033c8",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "23784",
+        "releaseDate": "December 9, 2007",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/23784",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The History of Sir Richard Calmady: A Romance"
+      },
+      "stats": {
+        "originalCharacterCount": 1586308,
+        "cleanedCharacterCount": 1530744,
+        "wordCount": 263761,
+        "sectionCount": 60,
+        "includedSectionCount": 60
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-history-of-sir-richard-calmady-a-romance/manifest.json"
+    },
+    {
+      "slug": "the-nameless-city",
+      "title": "The Nameless City",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "3bd25b4032f7aa65",
+      "contentHash": "3bd25b4032f7aa65ca47bcf4862f7ede86551ba1271406d215aae2e6da6aea80",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Nameless City"
+      },
+      "stats": {
+        "originalCharacterCount": 30497,
+        "cleanedCharacterCount": 28674,
+        "wordCount": 5032,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-nameless-city/manifest.json"
+    },
+    {
+      "slug": "the-three-taps-a-detective-story-without-a-moral",
+      "title": "The Three Taps",
+      "author": [
+        "Ronald Arbuthnott Knox"
+      ],
+      "contentVersion": "302c71d15ebbcd76",
+      "contentHash": "302c71d15ebbcd76355da1f01bcf81c190ef3e67cf9cecf36c71a4fd9442252e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "73198",
+        "releaseDate": "March 18, 2024",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/73198",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Three Taps"
+      },
+      "stats": {
+        "originalCharacterCount": 398178,
+        "cleanedCharacterCount": 368351,
+        "wordCount": 69134,
+        "sectionCount": 25,
+        "includedSectionCount": 25
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-three-taps-a-detective-story-without-a-moral/manifest.json"
+    },
+    {
+      "slug": "the-turmoil",
+      "title": "The Turmoil: A Novel",
+      "author": [
+        "Booth Tarkington"
+      ],
+      "contentVersion": "45da3d99a68fd57f",
+      "contentHash": "45da3d99a68fd57ff3209bee7c3398bb5ee77cfb75d66b382a95b80604ce857b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1098",
+        "releaseDate": "November 1, 1997",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1098",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Turmoil: A Novel"
+      },
+      "stats": {
+        "originalCharacterCount": 527191,
+        "cleanedCharacterCount": 497036,
+        "wordCount": 90526,
+        "sectionCount": 33,
+        "includedSectionCount": 33
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-turmoil/manifest.json"
+    },
+    {
+      "slug": "under-the-red-dragon",
+      "title": "Under the Red Dragon: A Novel",
+      "author": [
+        "James Grant"
+      ],
+      "contentVersion": "945b53d1d7f657ff",
+      "contentHash": "945b53d1d7f657ffc4e2f78db6613fe0b46b38b821bb4cdeac7df74f7421cd50",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "53874",
+        "releaseDate": "January 2, 2017",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/53874",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Under the Red Dragon: A Novel"
+      },
+      "stats": {
+        "originalCharacterCount": 895806,
+        "cleanedCharacterCount": 856411,
+        "wordCount": 152397,
+        "sectionCount": 61,
+        "includedSectionCount": 61
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "under-the-red-dragon/manifest.json"
     }
   ]
 }

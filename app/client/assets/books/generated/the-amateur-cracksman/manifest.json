@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-amateur-cracksman",
+  "title": "The Amateur Cracksman",
+  "author": [
+    "E. W. Hornung"
+  ],
+  "contentVersion": "76a5469dd70fdc6a",
+  "contentHash": "76a5469dd70fdc6a59f602b6b01b028c7e211a98b3b9ece031b5c55b56bd77c0",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "706",
+    "releaseDate": "November 1, 1996",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/706",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 9 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Amateur Cracksman"
+  },
+  "stats": {
+    "originalCharacterCount": 307382,
+    "cleanedCharacterCount": 281223,
+    "wordCount": 52230,
+    "sectionCount": 8,
+    "includedSectionCount": 8
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "THE IDES OF MARCH",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 40997,
+      "wordCount": 7688,
+      "estimatedTypingMinutes": 220,
+      "estimatedListeningMinutes": 244,
+      "morseCharacterEstimate": 219393,
+      "textPreview": "THE IDES OF MARCH I It was half-past twelve when I returned to the Albany as a last desperate resort. The scene of my disaster was much as I had left it. The b..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "A COSTUME PIECE",
+      "title": null,
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 34162,
+      "wordCount": 6266,
+      "estimatedTypingMinutes": 180,
+      "estimatedListeningMinutes": 204,
+      "morseCharacterEstimate": 183189,
+      "textPreview": "A COSTUME PIECE London was just then talking of one whose name is already a name and nothing more. Reuben Rosenthall had made his millions on the diamond field..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "GENTLEMEN AND PLAYERS",
+      "title": null,
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 37326,
+      "wordCount": 6726,
+      "estimatedTypingMinutes": 193,
+      "estimatedListeningMinutes": 222,
+      "morseCharacterEstimate": 199733,
+      "textPreview": "GENTLEMEN AND PLAYERS Old Raffles may or may not have been an exceptional criminal, but as a cricketer I dare swear he was unique. Himself a dangerous bat, a b..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "LE PREMIER PAS",
+      "title": null,
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 31734,
+      "wordCount": 6063,
+      "estimatedTypingMinutes": 174,
+      "estimatedListeningMinutes": 189,
+      "morseCharacterEstimate": 169868,
+      "textPreview": "LE PREMIER PAS That night he told me the story of his earliest crime. Not since the fateful morning of the Ides of March, when he had just mentioned it as an u..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "WILFUL MURDER",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 28726,
+      "wordCount": 5403,
+      "estimatedTypingMinutes": 155,
+      "estimatedListeningMinutes": 171,
+      "morseCharacterEstimate": 153761,
+      "textPreview": "WILFUL MURDER Of the various robberies in which we were both concerned, it is but the few, I find, that will bear telling at any length. Not that the others co..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "NINE POINTS OF THE LAW",
+      "title": null,
+      "order": 6,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-006.json",
+      "characterCount": 32298,
+      "wordCount": 6022,
+      "estimatedTypingMinutes": 173,
+      "estimatedListeningMinutes": 193,
+      "morseCharacterEstimate": 173155,
+      "textPreview": "NINE POINTS OF THE LAW \"Well,\" said Raffles, \"what do you make of it?\" I read the advertisement once more before replying. It was in the last column of the Dai..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "THE RETURN MATCH",
+      "title": null,
+      "order": 7,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-007.json",
+      "characterCount": 29582,
+      "wordCount": 5516,
+      "estimatedTypingMinutes": 158,
+      "estimatedListeningMinutes": 178,
+      "morseCharacterEstimate": 159558,
+      "textPreview": "THE RETURN MATCH I had turned into Piccadilly, one thick evening in the following November, when my guilty heart stood still at the sudden grip of a hand upon..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "THE GIFT OF THE EMPEROR",
+      "title": null,
+      "order": 8,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-008.json",
+      "characterCount": 46398,
+      "wordCount": 8546,
+      "estimatedTypingMinutes": 245,
+      "estimatedListeningMinutes": 276,
+      "morseCharacterEstimate": 247986,
+      "textPreview": "THE GIFT OF THE EMPEROR I When the King of the Cannibal Islands made faces at Queen Victoria, and a European monarch set the cables tingling with his complimen..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 307382,
+    "cleanedCharacterCount": 281223,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": [
+      "body headings were found but rejected by the selected strategy",
+      "Write pass used the 8 contents-listed Raffles story headings beginning with THE IDES OF MARCH; title page, dedication, and contents are excluded from default playback.",
+      "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+      "dry-run cleanup risk: contents or list material must not enter default playback",
+      "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+      "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+      "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+      "dry-run collection-title risk: ensure the generated title stays the collection title and individual story titles become sections",
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+    ]
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 9; review before scaling to larger batches or Cloudflare export.",
+    "body headings were found but rejected by the selected strategy",
+    "Write pass used the 8 contents-listed Raffles story headings beginning with THE IDES OF MARCH; title page, dedication, and contents are excluded from default playback.",
+    "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+    "dry-run cleanup risk: contents or list material must not enter default playback",
+    "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+    "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+    "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+    "dry-run collection-title risk: ensure the generated title stays the collection title and individual story titles become sections",
+    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+  ]
+}
