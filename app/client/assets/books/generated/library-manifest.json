@@ -6382,6 +6382,1231 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "spoon-river-anthology/manifest.json"
+    },
+    {
+      "slug": "a-japanese-blossom",
+      "title": "A Japanese Blossom",
+      "author": [
+        "Onoto Watanna"
+      ],
+      "contentVersion": "49b0c441fac3ef4d",
+      "contentHash": "49b0c441fac3ef4dfa3244b5142dc007ecd4ce966874becc0493f8429d92f617",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "64924",
+        "releaseDate": "March 25, 2021",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/64924",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Japanese Blossom"
+      },
+      "stats": {
+        "originalCharacterCount": 213853,
+        "cleanedCharacterCount": 185409,
+        "wordCount": 32372,
+        "sectionCount": 29,
+        "includedSectionCount": 29
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-japanese-blossom/manifest.json"
+    },
+    {
+      "slug": "at-the-earth-s-core",
+      "title": "At the Earth's Core",
+      "author": [
+        "Edgar Rice Burroughs"
+      ],
+      "contentVersion": "f547850be68b55dd",
+      "contentHash": "f547850be68b55dd760222427df8923913636748d810ae6cd50dc17505293ee8",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "545",
+        "releaseDate": "June 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/545",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for At the Earth's Core"
+      },
+      "stats": {
+        "originalCharacterCount": 294919,
+        "cleanedCharacterCount": 266635,
+        "wordCount": 49205,
+        "sectionCount": 15,
+        "includedSectionCount": 15
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "at-the-earth-s-core/manifest.json"
+    },
+    {
+      "slug": "can-you-forgive-her",
+      "title": "Can You Forgive Her?",
+      "author": [
+        "Anthony Trollope"
+      ],
+      "contentVersion": "077d1100d5d97e31",
+      "contentHash": "077d1100d5d97e31db3208b8db1d03c0ef81a45daf5cb311248ac6679548e148",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "19500",
+        "releaseDate": "November 16, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/19500",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Can You Forgive Her?"
+      },
+      "stats": {
+        "originalCharacterCount": 1735354,
+        "cleanedCharacterCount": 1689142,
+        "wordCount": 316431,
+        "sectionCount": 80,
+        "includedSectionCount": 80
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "can-you-forgive-her/manifest.json"
+    },
+    {
+      "slug": "despair-s-last-journey",
+      "title": "Despair's Last Journey",
+      "author": [
+        "David Christie Murray"
+      ],
+      "contentVersion": "98b30609251e054f",
+      "contentHash": "98b30609251e054f0d37ebe60b9b199fbab8a5e50e146f2fcd4c87718f69382e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "22276",
+        "releaseDate": "August 8, 2007",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/22276",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Despair's Last Journey"
+      },
+      "stats": {
+        "originalCharacterCount": 860804,
+        "cleanedCharacterCount": 773543,
+        "wordCount": 144112,
+        "sectionCount": 29,
+        "includedSectionCount": 29
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "despair-s-last-journey/manifest.json"
+    },
+    {
+      "slug": "five-children-and-it",
+      "title": "Five Children and It",
+      "author": [
+        "E. Nesbit"
+      ],
+      "contentVersion": "4c131fe9a6d756bb",
+      "contentHash": "4c131fe9a6d756bb300dcc606e204fcbac4d5a09a929368b44d428e3de4ba817",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "17314",
+        "releaseDate": "December 15, 2005",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/17314",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Five Children and It"
+      },
+      "stats": {
+        "originalCharacterCount": 323930,
+        "cleanedCharacterCount": 288521,
+        "wordCount": 53086,
+        "sectionCount": 10,
+        "includedSectionCount": 10
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "five-children-and-it/manifest.json"
+    },
+    {
+      "slug": "flatland-a-romance-of-many-dimensions",
+      "title": "Flatland: A Romance of Many Dimensions",
+      "author": [
+        "Edwin Abbott Abbott"
+      ],
+      "contentVersion": "58fa3070bc86d5ae",
+      "contentHash": "58fa3070bc86d5ae06d0436f7a0af74011d06f6931309520c59a5316f29b8f1b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "201",
+        "releaseDate": "January 1, 1995",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/201",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Flatland: A Romance of Many Dimensions"
+      },
+      "stats": {
+        "originalCharacterCount": 227346,
+        "cleanedCharacterCount": 191022,
+        "wordCount": 32576,
+        "sectionCount": 22,
+        "includedSectionCount": 22
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "flatland-a-romance-of-many-dimensions/manifest.json"
+    },
+    {
+      "slug": "herland",
+      "title": "Herland",
+      "author": [
+        "Charlotte Perkins Gilman"
+      ],
+      "contentVersion": "5b26bde6b338c01a",
+      "contentHash": "5b26bde6b338c01a5f6b80a3cae288ea53fe50f174c9c3e898892c483c142d2b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "32",
+        "releaseDate": "June 27, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/32",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Herland"
+      },
+      "stats": {
+        "originalCharacterCount": 301786,
+        "cleanedCharacterCount": 294608,
+        "wordCount": 53303,
+        "sectionCount": 12,
+        "includedSectionCount": 12
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "herland/manifest.json"
+    },
+    {
+      "slug": "hero-myths-and-legends-of-the-british-race",
+      "title": "Hero-Myths & Legends of the British Race",
+      "author": [
+        "M. I. Ebbutt"
+      ],
+      "contentVersion": "c6217a6d52675ed6",
+      "contentHash": "c6217a6d52675ed6c719a923f1a28427169cfd464c2e8fd55c8eb3b14648590e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25502",
+        "releaseDate": "May 17, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25502",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Hero-Myths & Legends of the British Race"
+      },
+      "stats": {
+        "originalCharacterCount": 716275,
+        "cleanedCharacterCount": 645046,
+        "wordCount": 113824,
+        "sectionCount": 16,
+        "includedSectionCount": 16
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "hero-myths-and-legends-of-the-british-race/manifest.json"
+    },
+    {
+      "slug": "howards-end",
+      "title": "Howards End",
+      "author": [
+        "E. M. Forster"
+      ],
+      "contentVersion": "7194dae5d91cd784",
+      "contentHash": "7194dae5d91cd784894679a8e95a752156849ac32c99c78afd4646185dcfc925",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2946",
+        "releaseDate": "December 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2946",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Howards End"
+      },
+      "stats": {
+        "originalCharacterCount": 573910,
+        "cleanedCharacterCount": 560227,
+        "wordCount": 102245,
+        "sectionCount": 40,
+        "includedSectionCount": 40
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "howards-end/manifest.json"
+    },
+    {
+      "slug": "king-arthur-and-the-knights-of-the-round-table",
+      "title": "King Arthur and the Knights of the Round Table",
+      "author": [
+        "Sir Thomas Malory"
+      ],
+      "contentVersion": "ef276e4da6c6aa51",
+      "contentHash": "ef276e4da6c6aa51d7404ebd7112416c42c2a230d23f094cf0f080ae3d4c6351",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "36462",
+        "releaseDate": "June 18, 2011",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/36462",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for King Arthur and the Knights of the Round Table"
+      },
+      "stats": {
+        "originalCharacterCount": 555006,
+        "cleanedCharacterCount": 506868,
+        "wordCount": 95548,
+        "sectionCount": 15,
+        "includedSectionCount": 15
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "king-arthur-and-the-knights-of-the-round-table/manifest.json"
+    },
+    {
+      "slug": "lord-jim",
+      "title": "Lord Jim",
+      "author": [
+        "Joseph Conrad"
+      ],
+      "contentVersion": "9a67af9394c2cb3b",
+      "contentHash": "9a67af9394c2cb3bd08485c6c7139d9a4325c65d420862f861cb24ea6f4e748d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "5658",
+        "releaseDate": "January 9, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/5658",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Lord Jim"
+      },
+      "stats": {
+        "originalCharacterCount": 740850,
+        "cleanedCharacterCount": 705336,
+        "wordCount": 130831,
+        "sectionCount": 45,
+        "includedSectionCount": 45
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "lord-jim/manifest.json"
+    },
+    {
+      "slug": "love-among-the-chickens",
+      "title": "Love Among the Chickens",
+      "author": [
+        "P. G. Wodehouse"
+      ],
+      "contentVersion": "06ee15e23ff4d0ed",
+      "contentHash": "06ee15e23ff4d0edac5623ae79e0ade6e011b2a7c60576817976e78b1a5da8c2",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "20532",
+        "releaseDate": "February 6, 2007",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/20532",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Love Among the Chickens"
+      },
+      "stats": {
+        "originalCharacterCount": 298605,
+        "cleanedCharacterCount": 269252,
+        "wordCount": 49189,
+        "sectionCount": 23,
+        "includedSectionCount": 23
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "love-among-the-chickens/manifest.json"
+    },
+    {
+      "slug": "parnassus-on-wheels",
+      "title": "Parnassus on Wheels",
+      "author": [
+        "Christopher Morley"
+      ],
+      "contentVersion": "ff0ee29f24752978",
+      "contentHash": "ff0ee29f2475297833980e375ee6cfe42cdad3c2bd68cfd08683594b3637112e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "5311",
+        "releaseDate": "March 1, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/5311",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Parnassus on Wheels"
+      },
+      "stats": {
+        "originalCharacterCount": 72580,
+        "cleanedCharacterCount": 68161,
+        "wordCount": 12740,
+        "sectionCount": 6,
+        "includedSectionCount": 6
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "parnassus-on-wheels/manifest.json"
+    },
+    {
+      "slug": "pollyanna",
+      "title": "Pollyanna",
+      "author": [
+        "Eleanor H. Porter"
+      ],
+      "contentVersion": "d9d2549538591eed",
+      "contentHash": "d9d2549538591eed3290551331bb6a076b8ffdfc0df201ab2e06cbe5be36a547",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1450",
+        "releaseDate": "September 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1450",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Pollyanna"
+      },
+      "stats": {
+        "originalCharacterCount": 341629,
+        "cleanedCharacterCount": 313046,
+        "wordCount": 56691,
+        "sectionCount": 32,
+        "includedSectionCount": 32
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "pollyanna/manifest.json"
+    },
+    {
+      "slug": "shen-of-the-sea-a-book-for-children",
+      "title": "Shen of the Sea: A Book for Children",
+      "author": [
+        "Arthur Bowie Chrisman"
+      ],
+      "contentVersion": "f1762d1acd3d6572",
+      "contentHash": "f1762d1acd3d6572644ffcb31a740ddb926858c355044c9eda5516c821e30d04",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "65206",
+        "releaseDate": "April 30, 2021",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/65206",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Shen of the Sea: A Book for Children"
+      },
+      "stats": {
+        "originalCharacterCount": 244947,
+        "cleanedCharacterCount": 198069,
+        "wordCount": 36422,
+        "sectionCount": 16,
+        "includedSectionCount": 16
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "shen-of-the-sea-a-book-for-children/manifest.json"
+    },
+    {
+      "slug": "the-adventures-of-pinocchio",
+      "title": "The Adventures of Pinocchio",
+      "author": [
+        "Carlo Collodi"
+      ],
+      "contentVersion": "a0241abb6887129f",
+      "contentHash": "a0241abb6887129fbd417d23ff3c230e0e705577650330a5e625e0226c1abd47",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "500",
+        "releaseDate": "January 12, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/500",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Adventures of Pinocchio"
+      },
+      "stats": {
+        "originalCharacterCount": 239395,
+        "cleanedCharacterCount": 213323,
+        "wordCount": 40362,
+        "sectionCount": 36,
+        "includedSectionCount": 36
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-adventures-of-pinocchio/manifest.json"
+    },
+    {
+      "slug": "the-invisible-man-a-grotesque-romance",
+      "title": "The Invisible Man: A Grotesque Romance",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "5d9eabf2fe32ec06",
+      "contentHash": "5d9eabf2fe32ec0621479da57664e02e7013c95463bb72d56c259b10b3902711",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "5230",
+        "releaseDate": "March 1, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/5230",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Invisible Man: A Grotesque Romance"
+      },
+      "stats": {
+        "originalCharacterCount": 298316,
+        "cleanedCharacterCount": 271700,
+        "wordCount": 49533,
+        "sectionCount": 28,
+        "includedSectionCount": 28
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-invisible-man-a-grotesque-romance/manifest.json"
+    },
+    {
+      "slug": "the-virginian-a-horseman-of-the-plains",
+      "title": "The Virginian: A Horseman of the Plains",
+      "author": [
+        "Owen Wister"
+      ],
+      "contentVersion": "25daa9480e56fbe0",
+      "contentHash": "25daa9480e56fbe0da609b5982d247c968f0cbdb682593826bd77a3572911b56",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1298",
+        "releaseDate": "May 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1298",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Virginian: A Horseman of the Plains"
+      },
+      "stats": {
+        "originalCharacterCount": 746465,
+        "cleanedCharacterCount": 706274,
+        "wordCount": 131631,
+        "sectionCount": 36,
+        "includedSectionCount": 36
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-virginian-a-horseman-of-the-plains/manifest.json"
+    },
+    {
+      "slug": "the-green-mummy",
+      "title": "The Green Mummy",
+      "author": [
+        "Fergus Hume"
+      ],
+      "contentVersion": "55f3a2cbd6994166",
+      "contentHash": "55f3a2cbd6994166ed8118c3a17da1e7b568e78cbed3494deb861f38ae31953f",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2868",
+        "releaseDate": "October 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2868",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Green Mummy"
+      },
+      "stats": {
+        "originalCharacterCount": 521907,
+        "cleanedCharacterCount": 490572,
+        "wordCount": 88299,
+        "sectionCount": 27,
+        "includedSectionCount": 27
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-green-mummy/manifest.json"
+    },
+    {
+      "slug": "the-mark-of-zorro",
+      "title": "The mark of Zorro",
+      "author": [
+        "Johnston McCulley"
+      ],
+      "contentVersion": "552c8a311b6f1c8a",
+      "contentHash": "552c8a311b6f1c8a5c885251d00f540232c7149e01fc55644b9c828ddfe5eb93",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "61620",
+        "releaseDate": "March 14, 2020",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/61620",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The mark of Zorro"
+      },
+      "stats": {
+        "originalCharacterCount": 403114,
+        "cleanedCharacterCount": 371632,
+        "wordCount": 69082,
+        "sectionCount": 39,
+        "includedSectionCount": 39
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-mark-of-zorro/manifest.json"
+    },
+    {
+      "slug": "typhoon",
+      "title": "Typhoon",
+      "author": [
+        "Joseph Conrad"
+      ],
+      "contentVersion": "f584012ed3bd1132",
+      "contentHash": "f584012ed3bd11320514886adadfbaa89579451123a105c4ee2d4d102646a75a",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1142",
+        "releaseDate": "January 9, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1142",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Typhoon"
+      },
+      "stats": {
+        "originalCharacterCount": 197331,
+        "cleanedCharacterCount": 165869,
+        "wordCount": 29614,
+        "sectionCount": 6,
+        "includedSectionCount": 6
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "typhoon/manifest.json"
+    },
+    {
+      "slug": "robert-orange",
+      "title": "Robert Orange",
+      "author": [
+        "John Oliver Hobbes"
+      ],
+      "contentVersion": "f2302ef94f54a6cb",
+      "contentHash": "f2302ef94f54a6cb3a978d8f4ce91bc1c77f9a1e103833552bb9ab34f569a35b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "27997",
+        "releaseDate": "February 4, 2009",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/27997",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Robert Orange"
+      },
+      "stats": {
+        "originalCharacterCount": 607518,
+        "cleanedCharacterCount": 574071,
+        "wordCount": 99983,
+        "sectionCount": 30,
+        "includedSectionCount": 30
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "robert-orange/manifest.json"
+    },
+    {
+      "slug": "the-warden",
+      "title": "The Warden",
+      "author": [
+        "Anthony Trollope"
+      ],
+      "contentVersion": "33dcda1be128685d",
+      "contentHash": "33dcda1be128685d6d9ec95306ce0481d6f7787102d6c511cb083ca976137077",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "619",
+        "releaseDate": "August 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/619",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Warden"
+      },
+      "stats": {
+        "originalCharacterCount": 427008,
+        "cleanedCharacterCount": 398526,
+        "wordCount": 72108,
+        "sectionCount": 21,
+        "includedSectionCount": 21
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-warden/manifest.json"
+    },
+    {
+      "slug": "the-sea-lady",
+      "title": "The Sea Lady",
+      "author": [
+        "Herbert George Wells"
+      ],
+      "contentVersion": "565858ee9f8e9843",
+      "contentHash": "565858ee9f8e9843b6ffa3572a2ec139abb6b76da7034a6f6201f0b6a6403e2b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "35920",
+        "releaseDate": "April 20, 2011",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/35920",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Sea Lady"
+      },
+      "stats": {
+        "originalCharacterCount": 231514,
+        "cleanedCharacterCount": 225007,
+        "wordCount": 40826,
+        "sectionCount": 31,
+        "includedSectionCount": 31
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-sea-lady/manifest.json"
+    },
+    {
+      "slug": "the-laughing-cavalier-the-story-of-the-ancestor-of-the-scarlet-pimpernel",
+      "title": "The Laughing Cavalier: The Story of the Ancestor of the Scarlet Pimpernel",
+      "author": [
+        "Baroness Emmuska Orczy Orczy"
+      ],
+      "contentVersion": "88164af3f493b2fc",
+      "contentHash": "88164af3f493b2fc78cb61a375c6c2c6a286b1f2310b915aa25b2aaf3f98ba60",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "33208",
+        "releaseDate": "July 20, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/33208",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Laughing Cavalier: The Story of the Ancestor of the Scarlet Pimpernel"
+      },
+      "stats": {
+        "originalCharacterCount": 749840,
+        "cleanedCharacterCount": 678195,
+        "wordCount": 121908,
+        "sectionCount": 45,
+        "includedSectionCount": 45
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-laughing-cavalier-the-story-of-the-ancestor-of-the-scarlet-pimpernel/manifest.json"
     }
   ]
 }

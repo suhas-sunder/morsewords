@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "slug": "typhoon",
+  "title": "Typhoon",
+  "author": [
+    "Joseph Conrad"
+  ],
+  "contentVersion": "f584012ed3bd1132",
+  "contentHash": "f584012ed3bd11320514886adadfbaa89579451123a105c4ee2d4d102646a75a",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "1142",
+    "releaseDate": "January 9, 2006",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/1142",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 7 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Typhoon"
+  },
+  "stats": {
+    "originalCharacterCount": 197331,
+    "cleanedCharacterCount": 165869,
+    "wordCount": 29614,
+    "sectionCount": 6,
+    "includedSectionCount": 6
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 28777,
+      "wordCount": 5051,
+      "estimatedTypingMinutes": 145,
+      "estimatedListeningMinutes": 173,
+      "morseCharacterEstimate": 155491,
+      "textPreview": "I Captain MacWhirr, of the steamer Nan-Shan, had a physiognomy that, in the order of material appearances, was the exact counterpart of his mind: it presented..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 31475,
+      "wordCount": 5618,
+      "estimatedTypingMinutes": 161,
+      "estimatedListeningMinutes": 189,
+      "morseCharacterEstimate": 169950,
+      "textPreview": "II Observing the steady fall of the barometer, Captain MacWhirr thought, “There's some dirty weather knocking about.” This is precisely what he thought. He had..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter 3",
+      "title": null,
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 19090,
+      "wordCount": 3400,
+      "estimatedTypingMinutes": 98,
+      "estimatedListeningMinutes": 115,
+      "morseCharacterEstimate": 102765,
+      "textPreview": "III Jukes was as ready a man as any half-dozen young mates that may be caught by casting a net upon the waters; and though he had been somewhat taken aback by..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter 4",
+      "title": null,
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 37585,
+      "wordCount": 6662,
+      "estimatedTypingMinutes": 191,
+      "estimatedListeningMinutes": 226,
+      "morseCharacterEstimate": 202922,
+      "textPreview": "IV All that the boatswain, out of a superabundance of yells, could make clear to Captain MacWhirr was the bizarre intelligence that “All them Chinamen in the f..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter 5",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 29186,
+      "wordCount": 5225,
+      "estimatedTypingMinutes": 150,
+      "estimatedListeningMinutes": 175,
+      "morseCharacterEstimate": 157208,
+      "textPreview": "V He waited. Before his eyes the engines turned with slow labour, that in the moment of going off into a mad fling would stop dead at Mr. Rout's shout, “Look o..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter 6",
+      "title": null,
+      "order": 6,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-006.json",
+      "characterCount": 19756,
+      "wordCount": 3658,
+      "estimatedTypingMinutes": 105,
+      "estimatedListeningMinutes": 119,
+      "morseCharacterEstimate": 106801,
+      "textPreview": "VI On A bright sunshiny day, with the breeze chasing her smoke far ahead, the Nan-Shan came into Fu-chau. Her arrival was at once noticed on shore, and the sea..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 197331,
+    "cleanedCharacterCount": 165869,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": [
+      "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+      "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+      "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+      "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+    ]
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 7; review before scaling to larger batches or Cloudflare export.",
+    "Trailing source, transcriber, catalog, or volume-note blocks removed from playable text.",
+    "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+    "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+    "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+    "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+  ]
+}

@@ -157,6 +157,15 @@ const defaultReadableExcludedSectionKinds = new Set<BookSectionKind>([
 const nonMainMaterialPattern =
   /\b(table of contents|list of illustrations|illustrations?|title page|copyright|license|source note|publisher|preface|introduction|footnotes?|notes?|appendix|bibliography|index|end matter|project gutenberg|gutenberg|transcriber|produced by|production note|distributed proofreading|pgdp\.net|release date|ebook|reference file does not include body text|book route is available|missing source content|generic placeholder|placeholder)\b/i;
 
+const nonMainMaterialAtStartPattern =
+  /^(?:table of contents|contents|list of illustrations|illustrations?|title page|copyright|license|source note|publisher|preface|introduction|footnotes?|notes?|appendix|bibliography|index|end matter|project gutenberg|gutenberg|transcriber|produced by|production note|distributed proofreading|pgdp\.net|release date|ebook|reference file does not include body text|book route is available|missing source content|generic placeholder|placeholder)\b/i;
+
+const sourceBoilerplateAnywherePattern =
+  /\b(project gutenberg|gutenberg license|distributed proofreading|pgdp\.net|release date|generic placeholder|placeholder)\b/i;
+
+const earlyEmbeddedFrontMatterPattern =
+  /\b(table of contents|list of illustrations|frontispiece|illustrations?|title page|copyright|published|all rights reserved|preface)\b/i;
+
 const earlyShortMatterPattern =
   /\b(cover|frontispiece|by\s+[a-z]|published|copyright|all rights reserved|contents|table of contents)\b/i;
 
@@ -247,6 +256,12 @@ function normalizedSectionText(
     .toLowerCase();
 }
 
+function hasEarlyEmbeddedFrontMatter(text: string) {
+  const match = earlyEmbeddedFrontMatterPattern.exec(text);
+  if (!match) return false;
+  return countWords(text.slice(0, match.index)) <= 80;
+}
+
 function sectionEvidenceText(section: BookSectionSummary) {
   return normalizedSectionText(
     section.label,
@@ -260,13 +275,17 @@ function sectionNameText(section: BookSectionSummary) {
 }
 
 function looksLikeNonMainMaterial(section: BookSectionSummary) {
-  const evidenceText = sectionEvidenceText(section);
+  const nameText = sectionNameText(section);
+  const previewText = normalizedSectionText(section.textPreview);
   if (defaultReadableExcludedSectionKinds.has(section.kind)) return true;
-  if (nonMainMaterialPattern.test(evidenceText)) return true;
-  if (looksLikeContentsListing(evidenceText)) return true;
-  if (section.order <= 4 && dedicationStartPattern.test(evidenceText)) return true;
+  if (nonMainMaterialPattern.test(nameText)) return true;
+  if (sourceBoilerplateAnywherePattern.test(previewText)) return true;
+  if (nonMainMaterialAtStartPattern.test(previewText)) return true;
+  if (section.order <= 4 && hasEarlyEmbeddedFrontMatter(previewText)) return true;
+  if (looksLikeContentsListing(nameText) || looksLikeContentsListing(previewText)) return true;
+  if (section.order <= 4 && dedicationStartPattern.test(previewText)) return true;
   if (section.order <= 4 && section.wordCount < 90) {
-    return earlyShortMatterPattern.test(evidenceText);
+    return earlyShortMatterPattern.test(`${nameText} ${previewText}`);
   }
   return false;
 }
@@ -429,7 +448,12 @@ function previewStartsWithSection(
 
 function hasGenericOrBoilerplateStart(text: string) {
   const start = compactText(text, 280);
-  return sosHelpPattern.test(start) || nonMainMaterialPattern.test(start) || looksLikeContentsListing(start);
+  return (
+    sosHelpPattern.test(start) ||
+    sourceBoilerplateAnywherePattern.test(start) ||
+    nonMainMaterialAtStartPattern.test(start) ||
+    looksLikeContentsListing(start)
+  );
 }
 
 function detectFirstContentIssue(
