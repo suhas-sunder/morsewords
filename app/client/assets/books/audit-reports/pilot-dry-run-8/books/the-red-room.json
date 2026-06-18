@@ -1,0 +1,79 @@
+{
+  "slug": "the-red-room",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Red Room.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Red Room",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The Red Room",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "H. G. Wells"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: H. G. Wells",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "story or titled-section headings",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L1: THE RED ROOM"
+  ],
+  "realReadableStart": "THE RED ROOM: ?I can assure you,? said I, ?that it will take a very tangible ghost to frighten me.? And I stood up before the fire with my glass in my hand. ?It is your own choosing,? said the man with the withered arm, and glanced at me askance. ?Eight-and-twenty years,? said I, ?I have lived, and never a ghost have I seen as ye...",
+  "realReadableEnd": "ed his face sideways to see me and spoke. ?That is it,? said he. ?I knew that was it. A Power of Darkness. To put such a curse upon a home! It lurks there always. You can feel it even in the daytime, even of a bright summer?s day, in the hangings, in the curtains, keeping behind you however you face about. In the du...",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "THE RED ROOM",
+  "expectedDefaultReadableSections": "all 1 planned story or titled-section headings sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "?I can assure you,? said I, ?that it will take a very tangible ghost to frighten me.? And I stood up before the fire with my glass in my hand. ?It is your own choosing,? said the man with the withered arm, and glanced at me askance. ?Eight-and-twenty years,? said I, ?I have lived, and never a ghost have I seen as ye...",
+  "expectedStartBoundary": "start at cleaned-body line 1: THE RED ROOM",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use All-caps story or titled-section heading boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback",
+    "first default section is meaningful but should be verified manually in write pass"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "medium",
+    "pass2Reasons": [
+      "Medium-confidence start boundary remains manageable but needs review."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: The Red Room",
+    "author": "Author: H. G. Wells",
+    "start": "THE RED ROOM ?I can assure you,? said I, ?that it will take a very tangible ghost to frighten me.? And I stood up before the fire with my glass in my hand. ?It is your own choosing,? said the man with the withered arm, and glanced at me askance. ?Eight-and-twenty years,? said I, ?I have lived, and never a ghost have I seen as ye...",
+    "end": "ed his face sideways to see me and spoke. ?That is it,? said he. ?I knew that was it. A Power of Darkness. To put such a curse upon a home! It lurks there always. You can feel it even in the daytime, even of a bright summer?s day, in the hangings, in the curtains, keeping behind you however you face about. In the du..."
+  }
+}

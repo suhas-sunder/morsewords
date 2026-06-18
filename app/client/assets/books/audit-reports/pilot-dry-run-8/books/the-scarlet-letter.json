@@ -1,0 +1,87 @@
+{
+  "slug": "the-scarlet-letter",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Scarlet Letter.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Scarlet Letter",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The Scarlet Letter",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Nathaniel Hawthorne"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Nathaniel Hawthorne",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "standalone roman numeral sections",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L1568: I.",
+    "L1627: II.",
+    "L1967: III.",
+    "L2298: IV.",
+    "L2553: V.",
+    "L2879: VI."
+  ],
+  "realReadableStart": "Chapter 1: THE PRISON-DOOR. [Illustration] A throng of bearded men, in sad-colored garments, and gray, steeple-crowned hats, intermixed with women, some wearing hoods and others bareheaded, was assembled in front of a wooden edifice, the door of which was heavily timbered with oak, and studded with iron spikes. The founders of...",
+  "realReadableEnd": "ge 132?inserted a missing closing quote after ?a child of her age? page 137?spelling normalized: changed ?careworn? to ?care-worn? page 147?typo fixed: changed ?physican? to ?physician? page 171?typo fixed: changed ?vocies? to ?voices? page 262?removed an extra closing quote after ?scarlet letter too!? page 291?spel...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": true
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 24 planned standalone roman numeral sections sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 24,
+  "likelyPreviewStart": "THE PRISON-DOOR. [Illustration] A throng of bearded men, in sad-colored garments, and gray, steeple-crowned hats, intermixed with women, some wearing hoods and others bareheaded, was assembled in front of a wooden edifice, the door of which was heavily timbered with oak, and studded with iron spikes. The founders of...",
+  "expectedStartBoundary": "start at cleaned-body line 1568: I.",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Standalone Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback",
+    "footnotes or page markers may need cleanup before default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected",
+    "footnotes or page markers detected"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Many illustration/image placeholders need cleanup review."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: The Scarlet Letter",
+    "author": "Author: Nathaniel Hawthorne",
+    "start": "I. THE PRISON-DOOR. [Illustration] A throng of bearded men, in sad-colored garments, and gray, steeple-crowned hats, intermixed with women, some wearing hoods and others bareheaded, was assembled in front of a wooden edifice, the door of which was heavily timbered with oak, and studded with iron spikes. The founders of...",
+    "end": "ge 132?inserted a missing closing quote after ?a child of her age? page 137?spelling normalized: changed ?careworn? to ?care-worn? page 147?typo fixed: changed ?physican? to ?physician? page 171?typo fixed: changed ?vocies? to ?voices? page 262?removed an extra closing quote after ?scarlet letter too!? page 291?spel..."
+  }
+}

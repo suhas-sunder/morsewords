@@ -1,0 +1,82 @@
+{
+  "slug": "the-statement-of-randolph-carter",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Statement of Randolph Carter.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Statement of Randolph Carter",
+  "titleEvidence": {
+    "source": "source filename / structure audit",
+    "text": "The Statement of Randolph Carter",
+    "lineNumber": null
+  },
+  "expectedAuthor": [
+    "H. P. Lovecraft"
+  ],
+  "authorEvidence": {
+    "source": "visible byline",
+    "text": "By H. P. Lovecraft",
+    "lineNumber": 5
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "isolated titled sections; dry-run treats non-body wrapper headings as cleanup artifacts",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L3: The Statement of Randolph Carter"
+  ],
+  "realReadableStart": "The Statement of Randolph Carter: I repeat to you, gentlemen, that your inquisition is fruitless. Detain me here forever if you will; confine or execute me if you must have a victim to propitiate the illusion you call justice; but I can say no more than I have said already. Everything that I can remember, I have told with perfect candour. Nothing ha...",
+  "realReadableEnd": "n I called down, ?Warren, are you there??, and in answer heard the thing which has brought this cloud over my mind. I do not try, gentlemen, to account for that thing?that voice?nor can I venture to describe it in detail, since the first words took away my consciousness and created a mental blank which reaches to th...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": false,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Statement of Randolph Carter",
+  "expectedDefaultReadableSections": "all 1 planned isolated titled sections; dry-run treats non-body wrapper headings as cleanup artifacts sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "I repeat to you, gentlemen, that your inquisition is fruitless. Detain me here forever if you will; confine or execute me if you must have a victim to propitiate the illusion you call justice; but I can say no more than I have said already. Everything that I can remember, I have told with perfect candour. Nothing ha...",
+  "expectedStartBoundary": "start at cleaned-body line 3: The Statement of Randolph Carter",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding title/byline/source-site/transcriber/footer wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback",
+    "first default section is meaningful but should be verified manually in write pass"
+  ],
+  "authorMetadataRisks": [
+    "author did not come from a Gutenberg Author line; verify byline directly"
+  ],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary.",
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [
+      "start/end boundary confidence is low"
+    ],
+    "startBoundaryConfidence": "low",
+    "endBoundaryConfidence": "low"
+  },
+  "snippets": {
+    "title": "The Statement of Randolph Carter",
+    "author": "By H. P. Lovecraft",
+    "start": "The Statement of Randolph Carter I repeat to you, gentlemen, that your inquisition is fruitless. Detain me here forever if you will; confine or execute me if you must have a victim to propitiate the illusion you call justice; but I can say no more than I have said already. Everything that I can remember, I have told with perfect candour. Nothing ha...",
+    "end": "n I called down, ?Warren, are you there??, and in answer heard the thing which has brought this cloud over my mind. I do not try, gentlemen, to account for that thing?that voice?nor can I venture to describe it in detail, since the first words took away my consciousness and created a mental blank which reaches to th..."
+  }
+}

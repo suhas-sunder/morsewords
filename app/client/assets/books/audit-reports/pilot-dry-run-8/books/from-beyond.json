@@ -1,0 +1,82 @@
+{
+  "slug": "from-beyond",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/From Beyond.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "From Beyond",
+  "titleEvidence": {
+    "source": "source filename / structure audit",
+    "text": "From Beyond",
+    "lineNumber": null
+  },
+  "expectedAuthor": [
+    "H. P. Lovecraft"
+  ],
+  "authorEvidence": {
+    "source": "visible byline",
+    "text": "By H. P. Lovecraft",
+    "lineNumber": 5
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "isolated titled sections; dry-run treats non-body wrapper headings as cleanup artifacts",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L3: From Beyond"
+  ],
+  "realReadableStart": "From Beyond: Horrible beyond conception was the change which had taken place in my best friend, Crawford Tillinghast. I had not seen him since that day, two months and a half before, when he had told me toward what goal his physical and metaphysical researches were leading; when he had answered my awed and almost frightened remo...",
+  "realReadableEnd": "air and the sky about and above me. I never feel alone or comfortable, and a hideous sense of pursuit sometimes comes chillingly on me when I am weary. What prevents me from believing the doctor is this one simple fact?that the police never found the bodies of those servants whom they say Crawford Tillinghast murder...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": false,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "From Beyond",
+  "expectedDefaultReadableSections": "all 1 planned isolated titled sections; dry-run treats non-body wrapper headings as cleanup artifacts sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "Horrible beyond conception was the change which had taken place in my best friend, Crawford Tillinghast. I had not seen him since that day, two months and a half before, when he had told me toward what goal his physical and metaphysical researches were leading; when he had answered my awed and almost frightened remo...",
+  "expectedStartBoundary": "start at cleaned-body line 3: From Beyond",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding title/byline/source-site/transcriber/footer wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback",
+    "first default section is meaningful but should be verified manually in write pass"
+  ],
+  "authorMetadataRisks": [
+    "author did not come from a Gutenberg Author line; verify byline directly"
+  ],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary.",
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [
+      "start/end boundary confidence is low"
+    ],
+    "startBoundaryConfidence": "low",
+    "endBoundaryConfidence": "low"
+  },
+  "snippets": {
+    "title": "From Beyond",
+    "author": "By H. P. Lovecraft",
+    "start": "From Beyond Horrible beyond conception was the change which had taken place in my best friend, Crawford Tillinghast. I had not seen him since that day, two months and a half before, when he had told me toward what goal his physical and metaphysical researches were leading; when he had answered my awed and almost frightened remo...",
+    "end": "air and the sky about and above me. I never feel alone or comfortable, and a hideous sense of pursuit sometimes comes chillingly on me when I am weary. What prevents me from believing the doctor is this one simple fact?that the police never found the bodies of those servants whom they say Crawford Tillinghast murder..."
+  }
+}

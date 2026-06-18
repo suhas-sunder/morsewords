@@ -17,6 +17,7 @@
     "books:pilot-dry-run-5": "node --experimental-strip-types scripts/books/pilot-book-processing-dry-run-5.ts",
     "books:pilot-dry-run-6": "node --experimental-strip-types scripts/books/pilot-book-processing-dry-run-6.ts",
     "books:pilot-dry-run-7": "node --experimental-strip-types scripts/books/pilot-book-processing-dry-run-7.ts",
+    "books:pilot-dry-run-8": "node --experimental-strip-types scripts/books/pilot-book-processing-dry-run-8.ts",
     "books:pilot-write-1": "node --experimental-strip-types scripts/books/pilot-book-processing-write-1.ts",
     "books:pilot-write-2": "node --experimental-strip-types scripts/books/pilot-book-processing-write-2.ts",
     "books:pilot-write-3": "node --experimental-strip-types scripts/books/pilot-book-processing-write-3.ts",

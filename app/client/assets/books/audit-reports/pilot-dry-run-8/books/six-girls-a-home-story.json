@@ -1,0 +1,85 @@
+{
+  "slug": "six-girls-a-home-story",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Six Girls - A Home Story.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Six Girls: A Home Story",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Six Girls: A Home Story",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Fannie Belle Irving"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Fannie Belle Irving",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L111: CHAPTER I.",
+    "L402: CHAPTER II.",
+    "L934: CHAPTER III.",
+    "L1279: CHAPTER IV.",
+    "L1658: CHAPTER V.",
+    "L2081: CHAPTER VI."
+  ],
+  "realReadableStart": "Chapter 1: UNDER THE TREES. There were ripples of sunshine all tangled in the glowing scarlet of the geranium bed and dancing blithely over the grass. A world of melody in quivering bursts of happy song came from the spreading canopy of leaves overhead, and as an accompaniment, the wind laughed and whispered and kept the air i...",
+  "realReadableEnd": "The feeblest strength could no longer lift the frail form, and all the patient sufferer said when lifted or moved was, \"I'm so tired; that will do; it is quite easy.\" Then the short breath would give out, and she could only thank them with her eyes, that daily grew more eloquently beautiful, as though the spirit, re...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 25 planned chapter-based roman numerals sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 25,
+  "likelyPreviewStart": "UNDER THE TREES. There were ripples of sunshine all tangled in the glowing scarlet of the geranium bed and dancing blithely over the grass. A world of melody in quivering bursts of happy song came from the spreading canopy of leaves overhead, and as an accompaniment, the wind laughed and whispered and kept the air i...",
+  "expectedStartBoundary": "start at cleaned-body line 111: CHAPTER I.",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Six Girls: A Home Story",
+    "author": "Author: Fannie Belle Irving",
+    "start": "CHAPTER I. UNDER THE TREES. There were ripples of sunshine all tangled in the glowing scarlet of the geranium bed and dancing blithely over the grass. A world of melody in quivering bursts of happy song came from the spreading canopy of leaves overhead, and as an accompaniment, the wind laughed and whispered and kept the air i...",
+    "end": "The feeblest strength could no longer lift the frail form, and all the patient sufferer said when lifted or moved was, \"I'm so tired; that will do; it is quite easy.\" Then the short breath would give out, and she could only thank them with her eyes, that daily grew more eloquently beautiful, as though the spirit, re..."
+  }
+}

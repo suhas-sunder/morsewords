@@ -1,0 +1,82 @@
+{
+  "slug": "the-silver-key",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The silver key.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The silver key",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The silver key",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "H. P. Lovecraft"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: H. P. Lovecraft",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "story collection",
+  "detectedStructuralConvention": "story or titled-section headings; dry-run treats non-body wrapper headings as cleanup artifacts",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L1: The SILVER KEY"
+  ],
+  "realReadableStart": "The SILVER KEY: When Randolph Carter was thirty he lost the key to the gate of dreams. Prior to that time he had made up for the prosiness of life by nightly excursions to strange and ancient cities beyond space, and lovely, unbelievable garden lands across ethereal seas; but as middle age hardened upon him he felt these liberties...",
+  "realReadableEnd": "d to haunt. It is rumored in Ulthar, beyond the River Skai, that a new king reigns on the opal throne of Ilek-Vad, that fabulous town of turrets atop the hollow cliffs of glass overlooking the twilight sea wherein the bearded and finny Gnorri build their singular labyrinths, and I believe I know how to interpret thi...",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The SILVER KEY",
+  "expectedDefaultReadableSections": "all 1 planned story or titled-section headings; dry-run treats non-body wrapper headings as cleanup artifacts sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "When Randolph Carter was thirty he lost the key to the gate of dreams. Prior to that time he had made up for the prosiness of life by nightly excursions to strange and ancient cities beyond space, and lovely, unbelievable garden lands across ethereal seas; but as middle age hardened upon him he felt these liberties...",
+  "expectedStartBoundary": "start at cleaned-body line 1: The SILVER KEY",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding title/byline/source-site/transcriber/footer wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback",
+    "first default section is meaningful but should be verified manually in write pass"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the collection title and individual story titles become sections"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: The silver key",
+    "author": "Author: H. P. Lovecraft",
+    "start": "The SILVER KEY When Randolph Carter was thirty he lost the key to the gate of dreams. Prior to that time he had made up for the prosiness of life by nightly excursions to strange and ancient cities beyond space, and lovely, unbelievable garden lands across ethereal seas; but as middle age hardened upon him he felt these liberties...",
+    "end": "d to haunt. It is rumored in Ulthar, beyond the River Skai, that a new king reigns on the opal throne of Ilek-Vad, that fabulous town of turrets atop the hollow cliffs of glass overlooking the twilight sea wherein the bearded and finny Gnorri build their singular labyrinths, and I believe I know how to interpret thi..."
+  }
+}

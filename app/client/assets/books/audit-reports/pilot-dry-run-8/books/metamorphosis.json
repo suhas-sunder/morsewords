@@ -1,0 +1,79 @@
+{
+  "slug": "metamorphosis",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Metamorphosis.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Metamorphosis",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Metamorphosis",
+    "lineNumber": 15
+  },
+  "expectedAuthor": [
+    "Franz Kafka"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Franz Kafka",
+    "lineNumber": 17
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "standalone roman numeral sections",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L1: I",
+    "L595: II",
+    "L1220: III"
+  ],
+  "realReadableStart": "Chapter 1: One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it...",
+  "realReadableEnd": "indeed completely dried up and flat, they had not seen it until then, but now he was not lifted up on his little legs, nor did he do anything to make them look away. ?Grete, come with us in here for a little while?, said Mrs. Samsa with a pained smile, and Grete followed her parents into the bedroom but not without...",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 3 planned standalone roman numeral sections sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 3,
+  "likelyPreviewStart": "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it...",
+  "expectedStartBoundary": "start at cleaned-body line 1: I",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Standalone Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Metamorphosis",
+    "author": "Author: Franz Kafka",
+    "start": "I One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it...",
+    "end": "indeed completely dried up and flat, they had not seen it until then, but now he was not lifted up on his little legs, nor did he do anything to make them look away. ?Grete, come with us in here for a little while?, said Mrs. Samsa with a pained smile, and Grete followed her parents into the bedroom but not without..."
+  }
+}

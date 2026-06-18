@@ -1,0 +1,79 @@
+{
+  "slug": "the-masque-of-the-red-death",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Masque of the Red Death.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Masque of the Red Death",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The Masque of the Red Death",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Edgar Allan Poe"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Edgar Allan Poe",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "isolated titled sections; dry-run treats non-body wrapper headings as cleanup artifacts",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L1: The Masque of the Red Death"
+  ],
+  "realReadableStart": "The Masque of the Red Death: The ?Red Death? had long devastated the country. No pestilence had ever been so fatal, or so hideous. Blood was its Avatar and its seal?the redness and the horror of blood. There were sharp pains, and sudden dizziness, and then profuse bleeding at the pores, with dissolution. The scarlet stains upon the body and esp...",
+  "realReadableEnd": "nd corpse-like mask, which they handled with so violent a rudeness, untenanted by any tangible form. And now was acknowledged the presence of the Red Death. He had come like a thief in the night. And one by one dropped the revellers in the blood-bedewed halls of their revel, and died each in the despairing posture o...",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Masque of the Red Death",
+  "expectedDefaultReadableSections": "all 1 planned isolated titled sections; dry-run treats non-body wrapper headings as cleanup artifacts sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "The ?Red Death? had long devastated the country. No pestilence had ever been so fatal, or so hideous. Blood was its Avatar and its seal?the redness and the horror of blood. There were sharp pains, and sudden dizziness, and then profuse bleeding at the pores, with dissolution. The scarlet stains upon the body and esp...",
+  "expectedStartBoundary": "start at cleaned-body line 1: The Masque of the Red Death",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding title/byline/source-site/transcriber/footer wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback",
+    "first default section is meaningful but should be verified manually in write pass"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "medium",
+    "pass2Reasons": [
+      "Medium-confidence start boundary remains manageable but needs review."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: The Masque of the Red Death",
+    "author": "Author: Edgar Allan Poe",
+    "start": "The Masque of the Red Death The ?Red Death? had long devastated the country. No pestilence had ever been so fatal, or so hideous. Blood was its Avatar and its seal?the redness and the horror of blood. There were sharp pains, and sudden dizziness, and then profuse bleeding at the pores, with dissolution. The scarlet stains upon the body and esp...",
+    "end": "nd corpse-like mask, which they handled with so violent a rudeness, untenanted by any tangible form. And now was acknowledged the presence of the Red Death. He had come like a thief in the night. And one by one dropped the revellers in the blood-bedewed halls of their revel, and died each in the despairing posture o..."
+  }
+}

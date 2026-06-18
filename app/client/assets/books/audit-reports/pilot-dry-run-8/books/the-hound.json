@@ -1,0 +1,82 @@
+{
+  "slug": "the-hound",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Hound.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Hound",
+  "titleEvidence": {
+    "source": "source filename / structure audit",
+    "text": "The Hound",
+    "lineNumber": null
+  },
+  "expectedAuthor": [
+    "H. P. Lovecraft"
+  ],
+  "authorEvidence": {
+    "source": "visible byline",
+    "text": "By H. P. Lovecraft",
+    "lineNumber": 5
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "standalone roman numeral sections",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L7: I.",
+    "L20: II."
+  ],
+  "realReadableStart": "Chapter 1: In my tortured ears there sounds unceasingly a nightmare whirring and flapping, and a faint, distant baying as of some gigantic hound. It is not dream?it is not, I fear, even madness?for too much has already happened to give me these merciful doubts. St. John is a mangled corpse; I alone know why, and such is my kno...",
+  "realReadableEnd": "ht-black ruins of buried temples of Belial. . . . Now, as the baying of that dead, fleshless monstrosity grows louder and louder, and the stealthy whirring and flapping of those accursed web-wings circles closer and closer, I shall seek with my revolver the oblivion which is my only refuge from the unnamed and unnam...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": false,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 2 planned standalone roman numeral sections sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 2,
+  "likelyPreviewStart": "In my tortured ears there sounds unceasingly a nightmare whirring and flapping, and a faint, distant baying as of some gigantic hound. It is not dream?it is not, I fear, even madness?for too much has already happened to give me these merciful doubts. St. John is a mangled corpse; I alone know why, and such is my kno...",
+  "expectedStartBoundary": "start at cleaned-body line 7: I.",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Standalone Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [
+    "author did not come from a Gutenberg Author line; verify byline directly"
+  ],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary.",
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [
+      "start/end boundary confidence is low"
+    ],
+    "startBoundaryConfidence": "low",
+    "endBoundaryConfidence": "low"
+  },
+  "snippets": {
+    "title": "The Hound",
+    "author": "By H. P. Lovecraft",
+    "start": "I. In my tortured ears there sounds unceasingly a nightmare whirring and flapping, and a faint, distant baying as of some gigantic hound. It is not dream?it is not, I fear, even madness?for too much has already happened to give me these merciful doubts. St. John is a mangled corpse; I alone know why, and such is my kno...",
+    "end": "ht-black ruins of buried temples of Belial. . . . Now, as the baying of that dead, fleshless monstrosity grows louder and louder, and the stealthy whirring and flapping of those accursed web-wings circles closer and closer, I shall seek with my revolver the oblivion which is my only refuge from the unnamed and unnam..."
+  }
+}

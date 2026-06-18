@@ -1,0 +1,83 @@
+{
+  "slug": "the-lurking-fear",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The lurking fear.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The lurking fear",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The lurking fear",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "H. P. Lovecraft"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: H. P. Lovecraft",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "isolated titled sections; dry-run filters one false sentence-fragment heading",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L11: _1. The Shadow on the Chimney_",
+    "L218: _2. A Passer in the Storm_",
+    "L420: _3. What the Red Glare Meant_",
+    "L623: _4. The Horror in the Eyes_"
+  ],
+  "realReadableStart": "_1. The Shadow on the Chimney_: There was thunder in the air on the night I went to the deserted mansion atop Tempest Mountain to find the lurking fear. I was not alone, for foolhardiness was not then mixed with that love of the grotesque and the terrible which has made my career a series of quests for strange horrors in literature and in life. Wi...",
+  "realReadableEnd": "ove and below the ground; the embodiment of all the snarling chaos and grinning fear that lurk behind life. It had looked at me as it died, and its eyes had the same odd quality that marked those other eyes which had stared at me underground and excited cloudy recollections. One eye was blue, the other brown. They w...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "_1. The Shadow on the Chimney_",
+  "expectedDefaultReadableSections": "all 4 planned isolated titled sections; dry-run filters one false sentence-fragment heading sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 4,
+  "likelyPreviewStart": "There was thunder in the air on the night I went to the deserted mansion atop Tempest Mountain to find the lurking fear. I was not alone, for foolhardiness was not then mixed with that love of the grotesque and the terrible which has made my career a series of quests for strange horrors in literature and in life. Wi...",
+  "expectedStartBoundary": "start at cleaned-body line 11: _1. The Shadow on the Chimney_",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use the four numbered story sections; ignore the sentence-fragment false positive inside section 2; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback",
+    "first default section is meaningful but should be verified manually in write pass"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: The lurking fear",
+    "author": "Author: H. P. Lovecraft",
+    "start": "_1. The Shadow on the Chimney_ There was thunder in the air on the night I went to the deserted mansion atop Tempest Mountain to find the lurking fear. I was not alone, for foolhardiness was not then mixed with that love of the grotesque and the terrible which has made my career a series of quests for strange horrors in literature and in life. Wi...",
+    "end": "ove and below the ground; the embodiment of all the snarling chaos and grinning fear that lurk behind life. It had looked at me as it died, and its eyes had the same odd quality that marked those other eyes which had stared at me underground and excited cloudy recollections. One eye was blue, the other brown. They w..."
+  }
+}
