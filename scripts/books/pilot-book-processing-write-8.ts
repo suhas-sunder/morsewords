@@ -476,6 +476,34 @@ function sanitizeSectionText(input: string, cleanup: CleanupSummary): string {
 
   text = cutTrailingBlock(
     text,
+    /\s+Return to ["“][^"”]+["”]\s+This page last revised\s+\d{1,2}\s+\w+\s+\d{4}\.?\s*$/i,
+    cleanup,
+  );
+  text = cutTrailingBlock(
+    text,
+    /\s+\*\s+\*\s+\*\s+\*\s+\*\s*MYSTERY STORIES FOR BOYS[\s\S]*$/i,
+    cleanup,
+  );
+  text = cutTrailingBlock(
+    text,
+    /\s+The RICK BRANT SCIENCE-ADVENTURE Stories[\s\S]*$/i,
+    cleanup,
+  );
+  text = cutTrailingBlock(
+    text,
+    /\s+Cambridge:\s+Electrotyped and Printed by[\s\S]*$/i,
+    cleanup,
+  );
+  text = cutTrailingBlock(
+    text,
+    /\s+END OF ["“]THE REGENT['’]S DAUGHTER\.?["”]?\s*$/i,
+    cleanup,
+  );
+  text = cutTrailingBlock(text, /\s+\+-{8,}\+\s*$/i, cleanup);
+  text = cutTrailingBlock(text, /\s+\*\s+\*\s+\*\s+\*\s+\*\s*$/i, cleanup);
+
+  text = cutTrailingBlock(
+    text,
     /\n\s*\[The other stories included in this volume[\s\S]*$/i,
     cleanup,
   );
@@ -524,6 +552,34 @@ function sanitizeSectionText(input: string, cleanup: CleanupSummary): string {
     /\n\s*(?:[•*\-\s]*)?Copyright\s+©?[\s\S]*$/i,
     cleanup,
   );
+
+  text = cutTrailingBlock(
+    text,
+    /\s+Return to ["\u201c][^"\u201d]+["\u201d]\s+This page last revised\s+\d{1,2}\s+\w+\s+\d{4}\.?\s*$/i,
+    cleanup,
+  );
+  text = cutTrailingBlock(
+    text,
+    /\s+\*\s+\*\s+\*\s+\*\s+\*\s*MYSTERY STORIES FOR BOYS[\s\S]*$/i,
+    cleanup,
+  );
+  text = cutTrailingBlock(
+    text,
+    /\s+The RICK BRANT SCIENCE-ADVENTURE Stories[\s\S]*$/i,
+    cleanup,
+  );
+  text = cutTrailingBlock(
+    text,
+    /\s+Cambridge:\s+Electrotyped and Printed by[\s\S]*$/i,
+    cleanup,
+  );
+  text = cutTrailingBlock(
+    text,
+    /\s+END OF ["\u201c]THE REGENT['\u2019]S DAUGHTER\.?["\u201d]?\s*$/i,
+    cleanup,
+  );
+  text = cutTrailingBlock(text, /\s+\+-{8,}\+\s*$/i, cleanup);
+  text = cutTrailingBlock(text, /\s+\*\s+\*\s+\*\s+\*\s+\*\s*$/i, cleanup);
 
   return trimBookText(text.replace(/\n{4,}/g, "\n\n\n"));
 }

@@ -5,8 +5,8 @@
   "author": [
     "Fannie Belle Irving"
   ],
-  "contentVersion": "281c740f262f8dba",
-  "contentHash": "281c740f262f8dba9a3de142f51457539b5797c67c17cdec94caaccf7379fc90",
+  "contentVersion": "7aa10901e500fc38",
+  "contentHash": "7aa10901e500fc3859de7114aa37ca389e7f5861086a1d3d18d3b4ce6b3a0189",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,7 +35,7 @@
   },
   "stats": {
     "originalCharacterCount": 604226,
-    "cleanedCharacterCount": 569189,
+    "cleanedCharacterCount": 569132,
     "wordCount": 104634,
     "sectionCount": 25,
     "includedSectionCount": 25
@@ -415,17 +415,17 @@
       "order": 25,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-025.json",
-      "characterCount": 23048,
+      "characterCount": 22991,
       "wordCount": 4202,
       "estimatedTypingMinutes": 121,
-      "estimatedListeningMinutes": 139,
-      "morseCharacterEstimate": 124336,
+      "estimatedListeningMinutes": 138,
+      "morseCharacterEstimate": 123884,
       "textPreview": "CHAPTER XXV. MERRY CHRISTMAS TO ALL, AND TO ALL A GOOD-NIGHT. FIVE YEARS LATER. The house was lighted from attic to basement, and though it was Christmas Eve,..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 604226,
-    "cleanedCharacterCount": 569189,
+    "cleanedCharacterCount": 569132,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

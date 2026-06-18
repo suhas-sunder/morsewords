@@ -5,8 +5,8 @@
   "author": [
     "H. P. Lovecraft"
   ],
-  "contentVersion": "ff525476aa97de84",
-  "contentHash": "ff525476aa97de84707f04641b90768ec3841a02eb49508032decda8b502bdb7",
+  "contentVersion": "670d806c13bd29f6",
+  "contentHash": "670d806c13bd29f6a2a16df1211643ee328a38a03871a4e214d86eb82518072f",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 17531,
-    "cleanedCharacterCount": 17208,
-    "wordCount": 3043,
+    "cleanedCharacterCount": 17140,
+    "wordCount": 3032,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,17 +55,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 17208,
-      "wordCount": 3043,
+      "characterCount": 17140,
+      "wordCount": 3032,
       "estimatedTypingMinutes": 87,
       "estimatedListeningMinutes": 102,
-      "morseCharacterEstimate": 91694,
+      "morseCharacterEstimate": 91338,
       "textPreview": "Horrible beyond conception was the change which had taken place in my best friend, Crawford Tillinghast. I had not seen him since that day, two months and a ha..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 17531,
-    "cleanedCharacterCount": 17208,
+    "cleanedCharacterCount": 17140,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

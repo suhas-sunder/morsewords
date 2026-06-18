@@ -5,8 +5,8 @@
   "author": [
     "H. P. Lovecraft"
   ],
-  "contentVersion": "cdfd04b1fa3aa39c",
-  "contentHash": "cdfd04b1fa3aa39c4e8e7c3249b7d404bbf17810e4994506bf2504c0512e6271",
+  "contentVersion": "b337099f087a2d13",
+  "contentHash": "b337099f087a2d13d495093360312445fdd79fdc61253eac6bef5c08a45661af",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 17855,
-    "cleanedCharacterCount": 17522,
-    "wordCount": 2993,
+    "cleanedCharacterCount": 17456,
+    "wordCount": 2982,
     "sectionCount": 2,
     "includedSectionCount": 2
   },
@@ -70,17 +70,17 @@
       "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-002.json",
-      "characterCount": 8522,
-      "wordCount": 1491,
+      "characterCount": 8456,
+      "wordCount": 1480,
       "estimatedTypingMinutes": 43,
-      "estimatedListeningMinutes": 51,
-      "morseCharacterEstimate": 45225,
+      "estimatedListeningMinutes": 50,
+      "morseCharacterEstimate": 44883,
       "textPreview": "II. Less than a week after our return to England, strange things began to happen. We lived as recluses; devoid of friends, alone, and without servants in a few..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 17855,
-    "cleanedCharacterCount": 17522,
+    "cleanedCharacterCount": 17456,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

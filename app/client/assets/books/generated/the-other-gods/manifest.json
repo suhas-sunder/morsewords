@@ -5,8 +5,8 @@
   "author": [
     "H. P. Lovecraft"
   ],
-  "contentVersion": "5291537a50f4c1d3",
-  "contentHash": "5291537a50f4c1d399d49ed4583cfe2f4900762464c4de88fc4df7b2fe8c1969",
+  "contentVersion": "858b836c0d8a9b53",
+  "contentHash": "858b836c0d8a9b537b399499ede24107185dcd3ea7dd88c593cdb4b50e9edf06",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 11355,
-    "cleanedCharacterCount": 11025,
-    "wordCount": 2027,
+    "cleanedCharacterCount": 10954,
+    "wordCount": 2015,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,17 +55,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 11025,
-      "wordCount": 2027,
+      "characterCount": 10954,
+      "wordCount": 2015,
       "estimatedTypingMinutes": 58,
-      "estimatedListeningMinutes": 66,
-      "morseCharacterEstimate": 58606,
+      "estimatedListeningMinutes": 65,
+      "morseCharacterEstimate": 58239,
       "textPreview": "Atop the tallest of earth’s peaks dwell the gods of earth, and suffer no man to tell that he hath looked upon them. Lesser peaks they once inhabited; but ever..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 11355,
-    "cleanedCharacterCount": 11025,
+    "cleanedCharacterCount": 10954,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

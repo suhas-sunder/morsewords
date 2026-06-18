@@ -5,8 +5,8 @@
   "author": [
     "James Huneker"
   ],
-  "contentVersion": "e2474d63e1ac16f0",
-  "contentHash": "e2474d63e1ac16f0cfab1b6f902238d229938572da664f91dc09c210df4dfccf",
+  "contentVersion": "baa947d6943eed8f",
+  "contentHash": "baa947d6943eed8f7ac5e04029bbb180ca579060fe29d8f559d70738f45cabde",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,7 +35,7 @@
   },
   "stats": {
     "originalCharacterCount": 519320,
-    "cleanedCharacterCount": 472954,
+    "cleanedCharacterCount": 472911,
     "wordCount": 80298,
     "sectionCount": 30,
     "includedSectionCount": 30
@@ -490,7 +490,7 @@
       "order": 30,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-030.json",
-      "characterCount": 11882,
+      "characterCount": 11839,
       "wordCount": 2070,
       "estimatedTypingMinutes": 60,
       "estimatedListeningMinutes": 71,
@@ -500,7 +500,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 519320,
-    "cleanedCharacterCount": 472954,
+    "cleanedCharacterCount": 472911,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

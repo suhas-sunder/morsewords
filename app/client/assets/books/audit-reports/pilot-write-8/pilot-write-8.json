@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reportName": "pilot-write-8",
-  "generatedAt": "2026-06-18T20:21:16.626Z",
+  "generatedAt": "2026-06-18T20:51:45.454Z",
   "branch": "morsewords-book-processing-pilot-write-8-jun-2026",
   "mode": "controlled first-time processing",
   "sourceDryRunReport": "app/client/assets/books/audit-reports/pilot-dry-run-8/pilot-dry-run-8.json",
@@ -259,7 +259,7 @@
       "endBoundaryUsed": {
         "cleanedLine": 8612,
         "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
-        "snippet": "ve the harshest condemnation. Like certain Oriental discourses, our little Morality which began in the mosque has rambled not far from the tavern. Nevertheless, let us pray for the living as well as the dead. Oremus! * * * * *"
+        "snippet": "rthly paradise and a golden age, they deserve the harshest condemnation. Like certain Oriental discourses, our little Morality which began in the mosque has rambled not far from the tavern. Nevertheless, let us pray for the living as well as the dead. Oremus!"
       },
       "structuralConvention": "chapter-based roman numerals with explicit CHAPTER I-XXX safeguard",
       "firstDefaultSectionAfterProcessing": {
@@ -350,7 +350,7 @@
         "imagePlaceholderLinesRemoved": 27,
         "inlinePageMarkersRemoved": 0,
         "numberedReferencesRemoved": 0,
-        "trailingNonReadableBlocksRemoved": 1,
+        "trailingNonReadableBlocksRemoved": 3,
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
@@ -437,7 +437,7 @@
       "endBoundaryUsed": {
         "cleanedLine": 11468,
         "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
-        "snippet": "ds, hearts, and happiness; and as Mrs. Dering kissed each of her girls good-night, she said, looking into Olive's eyes, with a loving smile: \"I fully believe, dear, that now you have no disappointment.\" +------------------------------------------------+"
+        "snippet": "emed brought into that circle, with this new union of hands, hearts, and happiness; and as Mrs. Dering kissed each of her girls good-night, she said, looking into Olive's eyes, with a loving smile: \"I fully believe, dear, that now you have no disappointment.\""
       },
       "structuralConvention": "chapter-based roman numerals",
       "firstDefaultSectionAfterProcessing": {
@@ -528,7 +528,7 @@
         "imagePlaceholderLinesRemoved": 8,
         "inlinePageMarkersRemoved": 0,
         "numberedReferencesRemoved": 0,
-        "trailingNonReadableBlocksRemoved": 1,
+        "trailingNonReadableBlocksRemoved": 3,
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
@@ -788,7 +788,7 @@
       "endBoundaryUsed": {
         "cleanedLine": 13517,
         "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
-        "snippet": "mplied with. And there she sleeps beneath the sod, pure as the flowers that blossom over her grave: and like them, broken by the cruel gusts that sweep the delicate blossoms so mercilessly down, and wither them with a breath. END OF \"THE REGENT'S DAUGHTER.\""
+        "snippet": "t her; and her last wishes were complied with. And there she sleeps beneath the sod, pure as the flowers that blossom over her grave: and like them, broken by the cruel gusts that sweep the delicate blossoms so mercilessly down, and wither them with a breath."
       },
       "structuralConvention": "chapter-based roman numerals with volume divisions",
       "firstDefaultSectionAfterProcessing": {
@@ -872,14 +872,14 @@
           "label": "Chapter 38",
           "title": null,
           "kind": "chapter",
-          "wordCount": 634
+          "wordCount": 629
         }
       ],
       "cleanupActionsApplied": {
         "imagePlaceholderLinesRemoved": 7,
         "inlinePageMarkersRemoved": 0,
         "numberedReferencesRemoved": 0,
-        "trailingNonReadableBlocksRemoved": 1,
+        "trailingNonReadableBlocksRemoved": 2,
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
@@ -963,7 +963,7 @@
       "endBoundaryUsed": {
         "cleanedLine": 8646,
         "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
-        "snippet": "cription of our now concluded legend; so sombre is it, and relieved only by one ever-glowing point of light gloomier than the shadow:— “ON A FIELD, SABLE, THE LETTER A, GULES.” Cambridge: Electrotyped and Printed by Welch, Bigelow, & Co."
+        "snippet": "e, a herald’s wording of which might serve for a motto and brief description of our now concluded legend; so sombre is it, and relieved only by one ever-glowing point of light gloomier than the shadow:— “ON A FIELD, SABLE, THE LETTER A, GULES.”"
       },
       "structuralConvention": "standalone roman numeral sections",
       "firstDefaultSectionAfterProcessing": {
@@ -1047,7 +1047,7 @@
           "label": "Chapter 24",
           "title": null,
           "kind": "chapter",
-          "wordCount": 2134
+          "wordCount": 2126
         }
       ],
       "cleanupActionsApplied": {
@@ -1141,7 +1141,7 @@
       "endBoundaryUsed": {
         "cleanedLine": 5781,
         "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
-        "snippet": "By FRANKLIN W. DIXON THE HARDY BOYS: THE TOWER TREASURE THE HARDY BOYS: THE HOUSE ON THE CLIFF THE HARDY BOYS: THE SECRET OF THE OLD MILL (Other Volumes in Preparation)"
+        "snippet": "Mansion is always open to the Hardy boys and their chums.\" The Hardy boys looked at one another, as the crowd about the table broke into a yell of delight. \"He's a pretty good old scout after all, isn't he?\" said Frank. \"You bet he is,\" replied his brother."
       },
       "structuralConvention": "chapter-based roman numerals",
       "firstDefaultSectionAfterProcessing": {
@@ -1225,14 +1225,14 @@
           "label": "Chapter 24",
           "title": null,
           "kind": "chapter",
-          "wordCount": 1295
+          "wordCount": 1260
         }
       ],
       "cleanupActionsApplied": {
         "imagePlaceholderLinesRemoved": 0,
         "inlinePageMarkersRemoved": 0,
         "numberedReferencesRemoved": 0,
-        "trailingNonReadableBlocksRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 1,
         "standaloneEndMarkersRemoved": 1
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
@@ -1313,7 +1313,7 @@
       "endBoundaryUsed": {
         "cleanedLine": 5907,
         "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
-        "snippet": "THE PHANTOM SHARK SMUGGLERS' REEF THE CAVES OF FEAR STAIRWAY TO DANGER THE GOLDEN SKULL THE WAILING OCTOPUS THE ELECTRONIC MIND READER THE SCARLET LAKE MYSTERY THE PIRATES OF SHAN THE BLUE GHOST MYSTERY THE EGYPTIAN CAT MYSTERY THE FLAMING MOUNTAIN"
+        "snippet": "needed. I may need you, too, before this case is over. The report wasn't detailed, but it carried a few implications that have me worried.\" \"We'll be ready if you need us,\" Rick assured him. Steve's warm smile flashed. \"I know,\" he said. \"I'll see you soon.\""
       },
       "structuralConvention": "chapter-based roman numerals",
       "firstDefaultSectionAfterProcessing": {
@@ -1397,14 +1397,14 @@
           "label": "Chapter 20",
           "title": null,
           "kind": "chapter",
-          "wordCount": 2114
+          "wordCount": 1992
         }
       ],
       "cleanupActionsApplied": {
         "imagePlaceholderLinesRemoved": 7,
         "inlinePageMarkersRemoved": 0,
         "numberedReferencesRemoved": 0,
-        "trailingNonReadableBlocksRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 1,
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
@@ -2181,7 +2181,7 @@
       "endBoundaryUsed": {
         "cleanedLine": 33,
         "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
-        "snippet": ", and the stealthy whirring and flapping of those accursed web-wings circles closer and closer, I shall seek with my revolver the oblivion which is my only refuge from the unnamed and unnamable. Return to “The Hound” This page last revised 20 August 2009."
+        "snippet": "baying of that dead, fleshless monstrosity grows louder and louder, and the stealthy whirring and flapping of those accursed web-wings circles closer and closer, I shall seek with my revolver the oblivion which is my only refuge from the unnamed and unnamable."
       },
       "structuralConvention": "standalone roman numeral sections",
       "firstDefaultSectionAfterProcessing": {
@@ -2207,7 +2207,7 @@
           "label": "Chapter 2",
           "title": null,
           "kind": "chapter",
-          "wordCount": 1491
+          "wordCount": 1480
         }
       ],
       "last5SectionsWithWordCounts": [
@@ -2223,14 +2223,14 @@
           "label": "Chapter 2",
           "title": null,
           "kind": "chapter",
-          "wordCount": 1491
+          "wordCount": 1480
         }
       ],
       "cleanupActionsApplied": {
         "imagePlaceholderLinesRemoved": 0,
         "inlinePageMarkersRemoved": 0,
         "numberedReferencesRemoved": 0,
-        "trailingNonReadableBlocksRemoved": 1,
+        "trailingNonReadableBlocksRemoved": 2,
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
@@ -2485,7 +2485,7 @@
       "endBoundaryUsed": {
         "cleanedLine": 23,
         "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
-        "snippet": "on me when I am weary. What prevents me from believing the doctor is this one simple fact—that the police never found the bodies of those servants whom they say Crawford Tillinghast murdered. Return to “From Beyond” This page last revised 20 August 2009."
+        "snippet": "mfortable, and a hideous sense of pursuit sometimes comes chillingly on me when I am weary. What prevents me from believing the doctor is this one simple fact—that the police never found the bodies of those servants whom they say Crawford Tillinghast murdered."
       },
       "structuralConvention": "one contiguous story section after excluding title/byline/source-site/transcriber/footer wrapper lines",
       "firstDefaultSectionAfterProcessing": {
@@ -2494,7 +2494,7 @@
         "title": null,
         "kind": "chapter",
         "includeByDefault": true,
-        "wordCount": 3043,
+        "wordCount": 3032,
         "snippet": "Horrible beyond conception was the change which had taken place in my best friend, Crawford Tillinghast. I had not seen him since that day, two months and a ha..."
       },
       "sectionCount": 1,
@@ -2504,7 +2504,7 @@
           "label": "From Beyond",
           "title": null,
           "kind": "chapter",
-          "wordCount": 3043
+          "wordCount": 3032
         }
       ],
       "last5SectionsWithWordCounts": [
@@ -2513,14 +2513,14 @@
           "label": "From Beyond",
           "title": null,
           "kind": "chapter",
-          "wordCount": 3043
+          "wordCount": 3032
         }
       ],
       "cleanupActionsApplied": {
         "imagePlaceholderLinesRemoved": 0,
         "inlinePageMarkersRemoved": 0,
         "numberedReferencesRemoved": 0,
-        "trailingNonReadableBlocksRemoved": 1,
+        "trailingNonReadableBlocksRemoved": 2,
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
@@ -2583,7 +2583,7 @@
       "endBoundaryUsed": {
         "cleanedLine": 27,
         "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
-        "snippet": "now they are safe, and love to come from unknown Kadath in ships of cloud and play in the olden way, as they did when earth was new and men not given to the climbing of inaccessible places. Return to “The Other Gods” This page last revised 20 August 2009."
+        "snippet": "ts on Hatheg-Kla earth’s gods sometimes dance reminiscently; for they know they are safe, and love to come from unknown Kadath in ships of cloud and play in the olden way, as they did when earth was new and men not given to the climbing of inaccessible places."
       },
       "structuralConvention": "one contiguous story section after excluding title/byline/source-site/transcriber/footer wrapper lines",
       "firstDefaultSectionAfterProcessing": {
@@ -2592,7 +2592,7 @@
         "title": null,
         "kind": "chapter",
         "includeByDefault": true,
-        "wordCount": 2027,
+        "wordCount": 2015,
         "snippet": "Atop the tallest of earth’s peaks dwell the gods of earth, and suffer no man to tell that he hath looked upon them. Lesser peaks they once inhabited; but ever..."
       },
       "sectionCount": 1,
@@ -2602,7 +2602,7 @@
           "label": "The Other Gods",
           "title": null,
           "kind": "chapter",
-          "wordCount": 2027
+          "wordCount": 2015
         }
       ],
       "last5SectionsWithWordCounts": [
@@ -2611,14 +2611,14 @@
           "label": "The Other Gods",
           "title": null,
           "kind": "chapter",
-          "wordCount": 2027
+          "wordCount": 2015
         }
       ],
       "cleanupActionsApplied": {
         "imagePlaceholderLinesRemoved": 0,
         "inlinePageMarkersRemoved": 0,
         "numberedReferencesRemoved": 0,
-        "trailingNonReadableBlocksRemoved": 1,
+        "trailingNonReadableBlocksRemoved": 2,
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
@@ -2681,7 +2681,7 @@
       "endBoundaryUsed": {
         "cleanedLine": 32,
         "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
-        "snippet": "that damnable open sepulchre as I watched amorphous, necrophagous shadows dance beneath an accursed waning moon. And this is what it said: “YOU FOOL, WARREN IS DEAD!” Return to “The Statement of Randolph Carter” This page last revised 20 August 2009."
+        "snippet": "e rank vegetation and the miasmal vapours. Heard it well up from the innermost depths of that damnable open sepulchre as I watched amorphous, necrophagous shadows dance beneath an accursed waning moon. And this is what it said: “YOU FOOL, WARREN IS DEAD!”"
       },
       "structuralConvention": "one contiguous story section after excluding title/byline/source-site/transcriber/footer wrapper lines",
       "firstDefaultSectionAfterProcessing": {
@@ -2690,7 +2690,7 @@
         "title": null,
         "kind": "chapter",
         "includeByDefault": true,
-        "wordCount": 2509,
+        "wordCount": 2495,
         "snippet": "I repeat to you, gentlemen, that your inquisition is fruitless. Detain me here forever if you will; confine or execute me if you must have a victim to propitia..."
       },
       "sectionCount": 1,
@@ -2700,7 +2700,7 @@
           "label": "The Statement of Randolph Carter",
           "title": null,
           "kind": "chapter",
-          "wordCount": 2509
+          "wordCount": 2495
         }
       ],
       "last5SectionsWithWordCounts": [
@@ -2709,14 +2709,14 @@
           "label": "The Statement of Randolph Carter",
           "title": null,
           "kind": "chapter",
-          "wordCount": 2509
+          "wordCount": 2495
         }
       ],
       "cleanupActionsApplied": {
         "imagePlaceholderLinesRemoved": 0,
         "inlinePageMarkersRemoved": 0,
         "numberedReferencesRemoved": 0,
-        "trailingNonReadableBlocksRemoved": 1,
+        "trailingNonReadableBlocksRemoved": 2,
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",

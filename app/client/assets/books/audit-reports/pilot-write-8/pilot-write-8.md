@@ -105,7 +105,7 @@ Supporting snippets:
 - Title: Title: Unicorns
 - Author: Author: James Huneker
 - Start: CHAPTER I IN PRAISE OF UNICORNS "The Lion and the Unicorn were fighting for the crown: The Lion beat the Unicorn all round the town." ... In the golden book of wit and wisdom, Through the Looking-Glass, the Unicorn rather disdainfully remarks that
-- End: ve the harshest condemnation. Like certain Oriental discourses, our little Morality which began in the mosque has rambled not far from the tavern. Nevertheless, let us pray for the living as well as the dead. Oremus! * * * * *
+- End: rthly paradise and a golden age, they deserve the harshest condemnation. Like certain Oriental discourses, our little Morality which began in the mosque has rambled not far from the tavern. Nevertheless, let us pray for the living as well as the dead. Oremus!
 
 ### six-girls-a-home-story
 
@@ -151,7 +151,7 @@ Supporting snippets:
 - Title: Title: Six Girls: A Home Story
 - Author: Author: Fannie Belle Irving
 - Start: CHAPTER I. UNDER THE TREES. There were ripples of sunshine all tangled in the glowing scarlet of the geranium bed and dancing blithely over the grass. A world of melody in quivering bursts of happy song came from the spreading canopy of leaves overhead, and
-- End: ds, hearts, and happiness; and as Mrs. Dering kissed each of her girls good-night, she said, looking into Olive's eyes, with a loving smile: "I fully believe, dear, that now you have no disappointment." +------------------------------------------------+
+- End: emed brought into that circle, with this new union of hands, hearts, and happiness; and as Mrs. Dering kissed each of her girls good-night, she said, looking into Olive's eyes, with a loving smile: "I fully believe, dear, that now you have no disappointment."
 
 ### the-dunwich-horror
 
@@ -236,14 +236,14 @@ Last 5 sections:
 - chapter-035: Chapter 35 (1052 words)
 - chapter-036: Chapter 36 (2846 words)
 - chapter-037: Chapter 37 (2679 words)
-- chapter-038: Chapter 38 (634 words)
+- chapter-038: Chapter 38 (629 words)
 
 Supporting snippets:
 
 - Title: Title: The regent's daughter
 - Author: Author: Alexandre Dumas
 - Start: CHAPTER I. AN ABBESS OF THE EIGHTEENTH CENTURY. On the 8th February, 1719, a carriage, bearing the fleur-de-lis of France, with the motto of Orleans, preceded by two outriders and a page, entered the porch of the Abbey of Chelles, precisely as the clock str
-- End: mplied with. And there she sleeps beneath the sod, pure as the flowers that blossom over her grave: and like them, broken by the cruel gusts that sweep the delicate blossoms so mercilessly down, and wither them with a breath. END OF "THE REGENT'S DAUGHTER."
+- End: t her; and her last wishes were complied with. And there she sleeps beneath the sod, pure as the flowers that blossom over her grave: and like them, broken by the cruel gusts that sweep the delicate blossoms so mercilessly down, and wither them with a breath.
 
 ### the-scarlet-letter
 
@@ -282,14 +282,14 @@ Last 5 sections:
 - chapter-021: Chapter 21 (3155 words)
 - chapter-022: Chapter 22 (3731 words)
 - chapter-023: Chapter 23 (3095 words)
-- chapter-024: Chapter 24 (2134 words)
+- chapter-024: Chapter 24 (2126 words)
 
 Supporting snippets:
 
 - Title: Title: The Scarlet Letter
 - Author: Author: Nathaniel Hawthorne
 - Start: I. THE PRISON-DOOR. [Illustration] A throng of bearded men, in sad-colored garments, and gray, steeple-crowned hats, intermixed with women, some wearing hoods and others bareheaded, was assembled
-- End: cription of our now concluded legend; so sombre is it, and relieved only by one ever-glowing point of light gloomier than the shadow:— “ON A FIELD, SABLE, THE LETTER A, GULES.” Cambridge: Electrotyped and Printed by Welch, Bigelow, & Co.
+- End: e, a herald’s wording of which might serve for a motto and brief description of our now concluded legend; so sombre is it, and relieved only by one ever-glowing point of light gloomier than the shadow:— “ON A FIELD, SABLE, THE LETTER A, GULES.”
 
 ### the-tower-treasure
 
@@ -328,14 +328,14 @@ Last 5 sections:
 - chapter-021: Chapter 21 (1626 words)
 - chapter-022: Chapter 22 (1585 words)
 - chapter-023: Chapter 23 (1421 words)
-- chapter-024: Chapter 24 (1295 words)
+- chapter-024: Chapter 24 (1260 words)
 
 Supporting snippets:
 
 - Title: Title: The tower treasure
 - Author: Author: Franklin W. Dixon
 - Start: CHAPTER I THE SPEED DEMON "After the help we gave dad on that forgery case I guess he'll begin to think we _could_ be detectives when we grow up." "Why shouldn't we? Isn't he one of the most famous
-- End: By FRANKLIN W. DIXON THE HARDY BOYS: THE TOWER TREASURE THE HARDY BOYS: THE HOUSE ON THE CLIFF THE HARDY BOYS: THE SECRET OF THE OLD MILL (Other Volumes in Preparation)
+- End: Mansion is always open to the Hardy boys and their chums." The Hardy boys looked at one another, as the crowd about the table broke into a yell of delight. "He's a pretty good old scout after all, isn't he?" said Frank. "You bet he is," replied his brother.
 
 ### the-wailing-octopus-a-rick-brant-science-adventure-story
 
@@ -374,14 +374,14 @@ Last 5 sections:
 - chapter-017: Chapter 17 (892 words)
 - chapter-018: Chapter 18 (1253 words)
 - chapter-019: Chapter 19 (3221 words)
-- chapter-020: Chapter 20 (2114 words)
+- chapter-020: Chapter 20 (1992 words)
 
 Supporting snippets:
 
 - Title: Title: The Wailing Octopus: A Rick Brant Science-Adventure Story
 - Author: Author: Harold L. Goodwin
 - Start: CHAPTER I Destination: Clipper Cay The Sky Wagon droned through Caribbean skies, following a compass course that led to Charlotte Amalie, capital city of the Virgin Islands. With eager interest, the four people in the small plane watched the blue water belo
-- End: THE PHANTOM SHARK SMUGGLERS' REEF THE CAVES OF FEAR STAIRWAY TO DANGER THE GOLDEN SKULL THE WAILING OCTOPUS THE ELECTRONIC MIND READER THE SCARLET LAKE MYSTERY THE PIRATES OF SHAN THE BLUE GHOST MYSTERY THE EGYPTIAN CAT MYSTERY THE FLAMING MOUNTAIN
+- End: needed. I may need you, too, before this case is over. The report wasn't detailed, but it carried a few implications that have me worried." "We'll be ready if you need us," Rick assured him. Steve's warm smile flashed. "I know," he said. "I'll see you soon."
 
 ### winnie-the-pooh
 
@@ -629,19 +629,19 @@ Supporting snippets:
 First 5 sections:
 
 - chapter-001: Chapter 1 (1502 words)
-- chapter-002: Chapter 2 (1491 words)
+- chapter-002: Chapter 2 (1480 words)
 
 Last 5 sections:
 
 - chapter-001: Chapter 1 (1502 words)
-- chapter-002: Chapter 2 (1491 words)
+- chapter-002: Chapter 2 (1480 words)
 
 Supporting snippets:
 
 - Title: The Hound
 - Author: By H. P. Lovecraft
 - Start: I. In my tortured ears there sounds unceasingly a nightmare whirring and flapping, and a faint, distant baying as of some gigantic hound. It is not dream—it is not, I fear, even madness—for too much has already happened to give me these merciful doubts. St. J
-- End: , and the stealthy whirring and flapping of those accursed web-wings circles closer and closer, I shall seek with my revolver the oblivion which is my only refuge from the unnamed and unnamable. Return to “The Hound” This page last revised 20 August 2009.
+- End: baying of that dead, fleshless monstrosity grows louder and louder, and the stealthy whirring and flapping of those accursed web-wings circles closer and closer, I shall seek with my revolver the oblivion which is my only refuge from the unnamed and unnamable.
 
 ### the-masque-of-the-red-death
 
@@ -731,7 +731,7 @@ Supporting snippets:
 - Structure: one contiguous story section after excluding title/byline/source-site/transcriber/footer wrapper lines
 - Start boundary: cleaned line 7 - start at cleaned-body line 3: From Beyond; write pass starts at first selected/default section
 - End boundary: cleaned line 23 - end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise
-- First default section after: From Beyond (3043 words)
+- First default section after: From Beyond (3032 words)
 - Section count: 1
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
 - Author metadata verdict: passed: author metadata comes from visible byline
@@ -744,18 +744,18 @@ Supporting snippets:
 
 First 5 sections:
 
-- chapter-001: From Beyond (3043 words)
+- chapter-001: From Beyond (3032 words)
 
 Last 5 sections:
 
-- chapter-001: From Beyond (3043 words)
+- chapter-001: From Beyond (3032 words)
 
 Supporting snippets:
 
 - Title: From Beyond
 - Author: By H. P. Lovecraft
 - Start: Horrible beyond conception was the change which had taken place in my best friend, Crawford Tillinghast. I had not seen him since that day, two months and a half before, when he had told me toward what goal his physical and metaphysical researches were leading
-- End: on me when I am weary. What prevents me from believing the doctor is this one simple fact—that the police never found the bodies of those servants whom they say Crawford Tillinghast murdered. Return to “From Beyond” This page last revised 20 August 2009.
+- End: mfortable, and a hideous sense of pursuit sometimes comes chillingly on me when I am weary. What prevents me from believing the doctor is this one simple fact—that the police never found the bodies of those servants whom they say Crawford Tillinghast murdered.
 
 ### the-other-gods
 
@@ -769,7 +769,7 @@ Supporting snippets:
 - Structure: one contiguous story section after excluding title/byline/source-site/transcriber/footer wrapper lines
 - Start boundary: cleaned line 7 - start at cleaned-body line 3: The Other Gods; write pass starts at first selected/default section
 - End boundary: cleaned line 27 - end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise
-- First default section after: The Other Gods (2027 words)
+- First default section after: The Other Gods (2015 words)
 - Section count: 1
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
 - Author metadata verdict: passed: author metadata comes from visible byline
@@ -782,18 +782,18 @@ Supporting snippets:
 
 First 5 sections:
 
-- chapter-001: The Other Gods (2027 words)
+- chapter-001: The Other Gods (2015 words)
 
 Last 5 sections:
 
-- chapter-001: The Other Gods (2027 words)
+- chapter-001: The Other Gods (2015 words)
 
 Supporting snippets:
 
 - Title: The Other Gods
 - Author: By H. P. Lovecraft
 - Start: Atop the tallest of earth’s peaks dwell the gods of earth, and suffer no man to tell that he hath looked upon them. Lesser peaks they once inhabited; but ever the men from the plains would scale the slopes of rock and snow, driving the gods to higher and highe
-- End: now they are safe, and love to come from unknown Kadath in ships of cloud and play in the olden way, as they did when earth was new and men not given to the climbing of inaccessible places. Return to “The Other Gods” This page last revised 20 August 2009.
+- End: ts on Hatheg-Kla earth’s gods sometimes dance reminiscently; for they know they are safe, and love to come from unknown Kadath in ships of cloud and play in the olden way, as they did when earth was new and men not given to the climbing of inaccessible places.
 
 ### the-statement-of-randolph-carter
 
@@ -807,7 +807,7 @@ Supporting snippets:
 - Structure: one contiguous story section after excluding title/byline/source-site/transcriber/footer wrapper lines
 - Start boundary: cleaned line 7 - start at cleaned-body line 3: The Statement of Randolph Carter; write pass starts at first selected/default section
 - End boundary: cleaned line 32 - end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise
-- First default section after: The Statement of Randolph Carter (2509 words)
+- First default section after: The Statement of Randolph Carter (2495 words)
 - Section count: 1
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
 - Author metadata verdict: passed: author metadata comes from visible byline
@@ -820,18 +820,18 @@ Supporting snippets:
 
 First 5 sections:
 
-- chapter-001: The Statement of Randolph Carter (2509 words)
+- chapter-001: The Statement of Randolph Carter (2495 words)
 
 Last 5 sections:
 
-- chapter-001: The Statement of Randolph Carter (2509 words)
+- chapter-001: The Statement of Randolph Carter (2495 words)
 
 Supporting snippets:
 
 - Title: The Statement of Randolph Carter
 - Author: By H. P. Lovecraft
 - Start: I repeat to you, gentlemen, that your inquisition is fruitless. Detain me here forever if you will; confine or execute me if you must have a victim to propitiate the illusion you call justice; but I can say no more than I have said already. Everything that I c
-- End: that damnable open sepulchre as I watched amorphous, necrophagous shadows dance beneath an accursed waning moon. And this is what it said: “YOU FOOL, WARREN IS DEAD!” Return to “The Statement of Randolph Carter” This page last revised 20 August 2009.
+- End: e rank vegetation and the miasmal vapours. Heard it well up from the innermost depths of that damnable open sepulchre as I watched amorphous, necrophagous shadows dance beneath an accursed waning moon. And this is what it said: “YOU FOOL, WARREN IS DEAD!”
 
 ### the-silver-key
 

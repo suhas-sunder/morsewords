@@ -5,8 +5,8 @@
   "author": [
     "Alexandre Dumas"
   ],
-  "contentVersion": "175ef13e63d6d044",
-  "contentHash": "175ef13e63d6d0446dabf93ebb1a9a7b209c3ac92715265f8cb58f41b1e7f24a",
+  "contentVersion": "8845bd2b573523e0",
+  "contentHash": "8845bd2b573523e0439fcfe4e1377da089cf45dd016bb8e7865cc4cd4a2b9591",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 519493,
-    "cleanedCharacterCount": 479288,
-    "wordCount": 85051,
+    "cleanedCharacterCount": 479254,
+    "wordCount": 85046,
     "sectionCount": 38,
     "includedSectionCount": 38
   },
@@ -610,17 +610,17 @@
       "order": 38,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-038.json",
-      "characterCount": 3556,
-      "wordCount": 634,
-      "estimatedTypingMinutes": 19,
-      "estimatedListeningMinutes": 22,
-      "morseCharacterEstimate": 19032,
+      "characterCount": 3522,
+      "wordCount": 629,
+      "estimatedTypingMinutes": 18,
+      "estimatedListeningMinutes": 21,
+      "morseCharacterEstimate": 18854,
       "textPreview": "CHAPTER XXXVIII. THE END. A fortnight after the events we have just related, a queer carriage, the same which we saw arrive at Paris at the commencement of thi..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 519493,
-    "cleanedCharacterCount": 479288,
+    "cleanedCharacterCount": 479254,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

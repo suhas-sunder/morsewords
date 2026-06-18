@@ -5,8 +5,8 @@
   "author": [
     "Nathaniel Hawthorne"
   ],
-  "contentVersion": "8c4ceb0060298cd9",
-  "contentHash": "8c4ceb0060298cd9441dab2ca1495b8337ec0e4f68382b0d39696e4bec8aeeab",
+  "contentVersion": "61da868ce312ca98",
+  "contentHash": "61da868ce312ca988ff6f7d6eda50559c44e347d6caf54fc117e52058511a715",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 520597,
-    "cleanedCharacterCount": 395218,
-    "wordCount": 69106,
+    "cleanedCharacterCount": 395150,
+    "wordCount": 69098,
     "sectionCount": 24,
     "includedSectionCount": 24
   },
@@ -400,17 +400,17 @@
       "order": 24,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-024.json",
-      "characterCount": 12543,
-      "wordCount": 2134,
+      "characterCount": 12475,
+      "wordCount": 2126,
       "estimatedTypingMinutes": 61,
       "estimatedListeningMinutes": 75,
-      "morseCharacterEstimate": 67323,
+      "morseCharacterEstimate": 66974,
       "textPreview": "XXIV. CONCLUSION. After many days, when time sufficed for the people to arrange their thoughts in reference to the foregoing scene, there was more than one acc..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 520597,
-    "cleanedCharacterCount": 395218,
+    "cleanedCharacterCount": 395150,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",
