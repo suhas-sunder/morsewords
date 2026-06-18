@@ -6389,8 +6389,8 @@
       "author": [
         "Onoto Watanna"
       ],
-      "contentVersion": "49b0c441fac3ef4d",
-      "contentHash": "49b0c441fac3ef4dfa3244b5142dc007ecd4ce966874becc0493f8429d92f617",
+      "contentVersion": "66161609e307dc21",
+      "contentHash": "66161609e307dc215844404146264bf0c02b73a4203199dde504b72d0fdb18de",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6419,8 +6419,8 @@
       },
       "stats": {
         "originalCharacterCount": 213853,
-        "cleanedCharacterCount": 185409,
-        "wordCount": 32372,
+        "cleanedCharacterCount": 185166,
+        "wordCount": 32330,
         "sectionCount": 29,
         "includedSectionCount": 29
       },
@@ -6487,8 +6487,8 @@
       "author": [
         "Anthony Trollope"
       ],
-      "contentVersion": "077d1100d5d97e31",
-      "contentHash": "077d1100d5d97e31db3208b8db1d03c0ef81a45daf5cb311248ac6679548e148",
+      "contentVersion": "fc084b6954439641",
+      "contentHash": "fc084b6954439641f2bf00d6fbf3784bf7758ac2202bb9ca6d747cc97936f618",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6517,8 +6517,8 @@
       },
       "stats": {
         "originalCharacterCount": 1735354,
-        "cleanedCharacterCount": 1689142,
-        "wordCount": 316431,
+        "cleanedCharacterCount": 1688984,
+        "wordCount": 316402,
         "sectionCount": 80,
         "includedSectionCount": 80
       },
@@ -6585,8 +6585,8 @@
       "author": [
         "E. Nesbit"
       ],
-      "contentVersion": "4c131fe9a6d756bb",
-      "contentHash": "4c131fe9a6d756bb300dcc606e204fcbac4d5a09a929368b44d428e3de4ba817",
+      "contentVersion": "f0719bd1d4819791",
+      "contentHash": "f0719bd1d4819791589869ff2297242029474f118f3c1fc4c0d44379efc991ba",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6615,8 +6615,8 @@
       },
       "stats": {
         "originalCharacterCount": 323930,
-        "cleanedCharacterCount": 288521,
-        "wordCount": 53086,
+        "cleanedCharacterCount": 288455,
+        "wordCount": 53072,
         "sectionCount": 10,
         "includedSectionCount": 10
       },
@@ -6634,8 +6634,8 @@
       "author": [
         "Edwin Abbott Abbott"
       ],
-      "contentVersion": "58fa3070bc86d5ae",
-      "contentHash": "58fa3070bc86d5ae06d0436f7a0af74011d06f6931309520c59a5316f29b8f1b",
+      "contentVersion": "781baf638c429f4d",
+      "contentHash": "781baf638c429f4d8bf61cfaf7eb9bcc1c8c9d751a9491b2c32997ac74a1642b",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6664,7 +6664,7 @@
       },
       "stats": {
         "originalCharacterCount": 227346,
-        "cleanedCharacterCount": 191022,
+        "cleanedCharacterCount": 191032,
         "wordCount": 32576,
         "sectionCount": 22,
         "includedSectionCount": 22
@@ -6732,8 +6732,8 @@
       "author": [
         "M. I. Ebbutt"
       ],
-      "contentVersion": "c6217a6d52675ed6",
-      "contentHash": "c6217a6d52675ed6c719a923f1a28427169cfd464c2e8fd55c8eb3b14648590e",
+      "contentVersion": "d232e80cb0c940c3",
+      "contentHash": "d232e80cb0c940c3378d6416a9b7b1158e4d2f92317681ef32114ca89e3d92d5",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6762,8 +6762,8 @@
       },
       "stats": {
         "originalCharacterCount": 716275,
-        "cleanedCharacterCount": 645046,
-        "wordCount": 113824,
+        "cleanedCharacterCount": 645025,
+        "wordCount": 113816,
         "sectionCount": 16,
         "includedSectionCount": 16
       },
@@ -6928,8 +6928,8 @@
       "author": [
         "P. G. Wodehouse"
       ],
-      "contentVersion": "06ee15e23ff4d0ed",
-      "contentHash": "06ee15e23ff4d0edac5623ae79e0ade6e011b2a7c60576817976e78b1a5da8c2",
+      "contentVersion": "af45109367a8c381",
+      "contentHash": "af45109367a8c381095d8f636806fa1a9883c79d0e6554de4995490eefc6d0ee",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6958,8 +6958,8 @@
       },
       "stats": {
         "originalCharacterCount": 298605,
-        "cleanedCharacterCount": 269252,
-        "wordCount": 49189,
+        "cleanedCharacterCount": 269135,
+        "wordCount": 49169,
         "sectionCount": 23,
         "includedSectionCount": 23
       },
@@ -7075,8 +7075,8 @@
       "author": [
         "Arthur Bowie Chrisman"
       ],
-      "contentVersion": "f1762d1acd3d6572",
-      "contentHash": "f1762d1acd3d6572644ffcb31a740ddb926858c355044c9eda5516c821e30d04",
+      "contentVersion": "7d511f8de17957fc",
+      "contentHash": "7d511f8de17957fc427c4f939b6eb37a26d8df06f180f8f856c7c3b5708a5af5",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -7105,8 +7105,8 @@
       },
       "stats": {
         "originalCharacterCount": 244947,
-        "cleanedCharacterCount": 198069,
-        "wordCount": 36422,
+        "cleanedCharacterCount": 197910,
+        "wordCount": 36393,
         "sectionCount": 16,
         "includedSectionCount": 16
       },
@@ -7563,10 +7563,10 @@
       "slug": "the-laughing-cavalier-the-story-of-the-ancestor-of-the-scarlet-pimpernel",
       "title": "The Laughing Cavalier: The Story of the Ancestor of the Scarlet Pimpernel",
       "author": [
-        "Baroness Emmuska Orczy Orczy"
+        "Baroness Orczy"
       ],
-      "contentVersion": "88164af3f493b2fc",
-      "contentHash": "88164af3f493b2fc78cb61a375c6c2c6a286b1f2310b915aa25b2aaf3f98ba60",
+      "contentVersion": "8f3aba0c4e0f88a9",
+      "contentHash": "8f3aba0c4e0f88a913cdfc9b90f8c9da1e3d0249dfad74753047afa56edcdd67",
       "language": "en",
       "description": "",
       "subjects": [],

@@ -39,7 +39,7 @@ Controlled first-time processing pass for the exact raw-only books selected by p
 - First default section after: Chapter 1 (1633 words)
 - Section count: 29
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001, chapter-002
 - Startup preview valid: yes
@@ -53,11 +53,11 @@ First 5 sections:
 - chapter-002: Chapter 2 (1225 words)
 - chapter-003: Chapter 3 (1915 words)
 - chapter-004: Chapter 4 (1447 words)
-- chapter-005: Chapter 5 (1421 words)
+- chapter-005: Chapter 5 (1406 words)
 
 Last 5 sections:
 
-- chapter-025: Chapter 25 (996 words)
+- chapter-025: Chapter 25 (981 words)
 - chapter-026: Chapter 26 (1094 words)
 - chapter-027: Chapter 27 (1190 words)
 - chapter-028: Chapter 28 (1003 words)
@@ -84,7 +84,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (3300 words)
 - Section count: 15
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -129,7 +129,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (2877 words)
 - Section count: 80
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -151,7 +151,7 @@ Last 5 sections:
 - chapter-077: Chapter 77 (3671 words)
 - chapter-078: Chapter 78 (5179 words)
 - chapter-079: Chapter 79 (4244 words)
-- chapter-080: Chapter 80 (2307 words)
+- chapter-080: Chapter 80 (2303 words)
 
 Supporting snippets:
 
@@ -174,7 +174,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (5910 words)
 - Section count: 29
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -219,7 +219,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (6144 words)
 - Section count: 10
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -230,8 +230,8 @@ Supporting snippets:
 First 5 sections:
 
 - chapter-001: Chapter 1 (6144 words)
-- chapter-002: Chapter 2 (5808 words)
-- chapter-003: Chapter 3 (6634 words)
+- chapter-002: Chapter 2 (5807 words)
+- chapter-003: Chapter 3 (6629 words)
 - chapter-004: Chapter 4 (5868 words)
 - chapter-005: Chapter 5 (2940 words)
 
@@ -239,9 +239,9 @@ Last 5 sections:
 
 - chapter-006: Chapter 6 (4090 words)
 - chapter-007: Chapter 7 (3271 words)
-- chapter-008: Chapter 8 (5778 words)
-- chapter-009: Chapter 9 (4118 words)
-- chapter-010: Chapter 10 (8435 words)
+- chapter-008: Chapter 8 (5773 words)
+- chapter-009: Chapter 9 (4116 words)
+- chapter-010: Chapter 10 (8434 words)
 
 Supporting snippets:
 
@@ -264,7 +264,7 @@ Supporting snippets:
 - First default section after: Section 1 (760 words)
 - Section count: 22
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001, chapter-002, chapter-003
 - Startup preview valid: yes
@@ -309,7 +309,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (4368 words)
 - Section count: 12
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -351,10 +351,10 @@ Supporting snippets:
 - Structure: chapter-based roman numerals
 - Start boundary: cleaned line 715 - start at cleaned-body line 715: CHAPTER I: BEOWULF; write pass starts at first selected/default section
 - End boundary: cleaned line 14297 - end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise
-- First default section after: Chapter 1 (13052 words)
+- First default section after: Chapter 1 (13050 words)
 - Section count: 16
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -364,7 +364,7 @@ Supporting snippets:
 
 First 5 sections:
 
-- chapter-001: Chapter 1 - BEOWULF (13052 words)
+- chapter-001: Chapter 1 - BEOWULF (13050 words)
 - chapter-002: Chapter 2 - THE DREAM OF MAXEN WLEDIG (2336 words)
 - chapter-003: Chapter 3 - THE STORY OF CONSTANTINE AND ELENE (3533 words)
 - chapter-004: Chapter 4 - THE COMPASSION OF CONSTANTINE (2765 words)
@@ -399,7 +399,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (1182 words)
 - Section count: 40
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001, chapter-002
 - Startup preview valid: yes
@@ -444,7 +444,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (3251 words)
 - Section count: 15
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -489,7 +489,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (2076 words)
 - Section count: 45
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -534,7 +534,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (2264 words)
 - Section count: 23
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -547,7 +547,7 @@ First 5 sections:
 - chapter-001: Chapter 1 (2264 words)
 - chapter-002: Chapter 2 (2321 words)
 - chapter-003: Chapter 3 (2067 words)
-- chapter-004: Chapter 4 (2340 words)
+- chapter-004: Chapter 4 (2337 words)
 - chapter-005: Chapter 5 (2256 words)
 
 Last 5 sections:
@@ -556,7 +556,7 @@ Last 5 sections:
 - chapter-020: Chapter 20 (2448 words)
 - chapter-021: Chapter 21 (1754 words)
 - chapter-022: Chapter 22 (2369 words)
-- chapter-023: Chapter 23 (2710 words)
+- chapter-023: Chapter 23 (2701 words)
 
 Supporting snippets:
 
@@ -579,7 +579,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (1691 words)
 - Section count: 6
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001, chapter-002
 - Startup preview valid: yes
@@ -624,7 +624,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (1387 words)
 - Section count: 32
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001, chapter-002
 - Startup preview valid: yes
@@ -669,7 +669,7 @@ Supporting snippets:
 - First default section after: Shen Of The Sea (2491 words)
 - Section count: 16
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -687,18 +687,18 @@ First 5 sections:
 
 Last 5 sections:
 
-- chapter-012: I Wish It Would Rain - I WISH IT WOULD RAIN (2381 words)
+- chapter-012: I Wish It Would Rain - I WISH IT WOULD RAIN (2378 words)
 - chapter-013: High As Han Hsin - HIGH AS HAN HSIN (2709 words)
-- chapter-014: Contrary Chueh Chun - CONTRARY CHUEH CHUN (2026 words)
+- chapter-014: Contrary Chueh Chun - CONTRARY CHUEH CHUN (2023 words)
 - chapter-015: Pies Of The Princess - PIES OF THE PRINCESS (2302 words)
-- chapter-016: As Hai Low Kept House - AS HAI LOW KEPT HOUSE (2792 words)
+- chapter-016: As Hai Low Kept House - AS HAI LOW KEPT HOUSE (2787 words)
 
 Supporting snippets:
 
 - Title: Title: Shen of the Sea: A Book for Children
 - Author: Author: Arthur Bowie Chrisman
 - Start: SHEN OF THE SEA Kua Hai City stands on a plain in northern China. The plain is called Wa Tien, and it is very smooth and fertile, giving many large melons. . . . Life there is good. The plain is likewise extremely low. Any reliabl
-- End: ad. The mace of authority was placed in his hand. And “Hail,” and “Hail,” and “Hail.” their heads in the dust.] Thus did Hai Low, in chase of an unknown traveler, become King upon a throne. His days of housekeeping were ended. And so is the book . . . ended.
+- End: on astonished Hai Low’s head. The mace of authority was placed in his hand. And “Hail,” and “Hail,” and “Hail.” Thus did Hai Low, in chase of an unknown traveler, become King upon a throne. His days of housekeeping were ended. And so is the book . . . ended.
 
 ### the-adventures-of-pinocchio
 
@@ -714,7 +714,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (688 words)
 - Section count: 36
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001, chapter-002, chapter-003
 - Startup preview valid: yes
@@ -759,7 +759,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (2043 words)
 - Section count: 28
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -804,7 +804,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (1921 words)
 - Section count: 36
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -849,7 +849,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (3601 words)
 - Section count: 27
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -894,7 +894,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (1736 words)
 - Section count: 39
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001, chapter-002
 - Startup preview valid: yes
@@ -939,7 +939,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (5051 words)
 - Section count: 6
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -984,7 +984,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (3631 words)
 - Section count: 30
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -1029,7 +1029,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (2294 words)
 - Section count: 21
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -1074,7 +1074,7 @@ Supporting snippets:
 - First default section after: Chapter 1 (3229 words)
 - Section count: 31
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from Gutenberg Author line
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
@@ -1111,21 +1111,21 @@ Supporting snippets:
 - Final action: first-time processed
 - Source: app/client/assets/temp-books/The Laughing Cavalier - The Story of the Ancestor of the Scarlet Pimpernel.txt
 - Expected/generated title: The Laughing Cavalier: The Story of the Ancestor of the Scarlet Pimpernel / The Laughing Cavalier: The Story of the Ancestor of the Scarlet Pimpernel
-- Expected/generated author: Baroness Emmuska Orczy Orczy / Baroness Emmuska Orczy Orczy
-- Author evidence: Gutenberg Author line - Author: Baroness Emmuska Orczy Orczy
+- Expected/generated author: Baroness Orczy / Baroness Orczy
+- Author evidence: title-page byline - BARONESS ORCZY
 - Structure: chapter-based roman numerals
 - Start boundary: cleaned line 861 - start at cleaned-body line 861: CHAPTER I; write pass starts at first selected/default section
 - End boundary: cleaned line 15109 - end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise
 - First default section after: Chapter 1 (2271 words)
 - Section count: 45
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
-- Author metadata verdict: passed: author metadata comes from dry-run source evidence
+- Author metadata verdict: passed: author metadata comes from title-page byline
 - Segmentation verdict: passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used
 - Preview verdict: valid book-specific preview from chapter-001
 - Startup preview valid: yes
 - All-main-readable-default verdict: all generated readable sections included by default
 - Final recommendation: accepted for review
-- Remaining warnings: dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content; dry-run cleanup risk: contents or list material must not enter default playback; dry-run cleanup risk: Project Gutenberg/source/license material must be removed; dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default; dry-run title/default-start risk: write pass must keep title/byline material out of default playback; dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets
+- Remaining warnings: dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content; dry-run cleanup risk: contents or list material must not enter default playback; dry-run cleanup risk: Project Gutenberg/source/license material must be removed; dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default; dry-run title/default-start risk: write pass must keep title/byline material out of default playback; dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets; verification metadata correction: Gutenberg Author line duplicated the author name as 'Baroness Emmuska Orczy Orczy'; title-page byline supports 'Baroness Orczy'.
 
 First 5 sections:
 
@@ -1146,7 +1146,7 @@ Last 5 sections:
 Supporting snippets:
 
 - Title: Title: The Laughing Cavalier: The Story of the Ancestor of the Scarlet Pimpernel
-- Author: Author: Baroness Emmuska Orczy Orczy
+- Author: BARONESS ORCZY
 - Start: CHAPTER I NEW YEAR'S EVE If the snow had come down again or the weather been colder, or wetter, or other than it was.... If one of the three men had been more thirsty, or the other more insistent.... If it had been any other day of the year, or any other
 - End: rs already!" "Go back, good St. Bavon," cried the Laughing Cavalier in an ecstasy of joy, "your heaven--you rogue--is not more perfect than this." By BARONESS ORCZY "UNTO CÆSAR" EL DORADO MEADOWSWEET THE NOBLE ROGUE THE HEART OF A WOMAN PETTICOAT RULE
 

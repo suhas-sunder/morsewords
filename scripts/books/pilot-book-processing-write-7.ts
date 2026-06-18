@@ -293,6 +293,27 @@ const LATER_PHASE_REQUIREMENTS = [
   "final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable",
 ];
 
+const METADATA_OVERRIDES: Record<
+  string,
+  {
+    title?: string;
+    author?: string[];
+    authorEvidence?: Evidence;
+    warning: string;
+  }
+> = {
+  "the-laughing-cavalier-the-story-of-the-ancestor-of-the-scarlet-pimpernel": {
+    author: ["Baroness Orczy"],
+    authorEvidence: {
+      source: "title-page byline",
+      text: "BARONESS ORCZY",
+      lineNumber: 52,
+    },
+    warning:
+      "verification metadata correction: Gutenberg Author line duplicated the author name as 'Baroness Emmuska Orczy Orczy'; title-page byline supports 'Baroness Orczy'.",
+  },
+};
+
 function readJson<T>(filePath: string): T {
   return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
 }
@@ -426,6 +447,10 @@ function cutTrailingBlock(
 
 function sanitizeSectionText(input: string, cleanup: CleanupSummary): string {
   let text = normalizeBookText(input);
+  const bracketedMediaBlockPattern =
+    /\[\s*(?:Illustration|Image|Plate|Decorative image|Music)\b[\s\S]*?\]/gi;
+  cleanup.imagePlaceholderLinesRemoved += countMatches(text, bracketedMediaBlockPattern);
+  text = text.replace(bracketedMediaBlockPattern, "");
   cleanup.imagePlaceholderLinesRemoved += countMatches(
     text,
     /^\s*\[?(?:Illustration|Image|Plate|Decorative image|Music)[^\n]*\]?\s*$/gim,
@@ -501,15 +526,19 @@ function sanitizeSections(
   return sanitized;
 }
 
-function makeMetadata(dryRun: DryRunBook, rawText: string): BookMetadata {
+function makeMetadata(
+  dryRun: DryRunBook,
+  rawText: string,
+  metadata: ReturnType<typeof metadataFor>,
+): BookMetadata {
   const gutenbergId = extractGutenbergId(rawText);
   return {
     schemaVersion: 1,
     slug: dryRun.slug,
     metadataStatus: "reviewed",
     manualReviewRequired: false,
-    title: dryRun.expectedGeneratedTitle,
-    author: dryRun.expectedAuthor,
+    title: metadata.title,
+    author: metadata.author,
     language: "en",
     source: {
       provider: "Project Gutenberg",
@@ -526,7 +555,7 @@ function makeMetadata(dryRun: DryRunBook, rawText: string): BookMetadata {
     cover: {
       src: null,
       placeholder: true,
-      alt: `Placeholder cover for ${dryRun.expectedGeneratedTitle}`,
+      alt: `Placeholder cover for ${metadata.title}`,
     },
     description: "",
     subjects: [],
@@ -679,7 +708,7 @@ function buildSectionsForBook(
     };
   }
 
-  const metadata = makeMetadata(dryRun, rawText);
+  const metadata = makeMetadata(dryRun, rawText, metadataFor(dryRun));
   const built = buildDetectedSectionsFromStructure(cleanedText, analysis, metadata);
   warnings.push(...built.warnings);
   const firstBodyHeading = analysis.selectedBodyHeadings[0];
@@ -720,6 +749,16 @@ function sourceUrlFor(gutenbergId: string | null) {
   return gutenbergId ? `https://www.gutenberg.org/ebooks/${gutenbergId}` : null;
 }
 
+function metadataFor(dryRun: DryRunBook) {
+  const override = METADATA_OVERRIDES[dryRun.slug];
+  return {
+    title: override?.title ?? dryRun.expectedGeneratedTitle,
+    author: override?.author ?? dryRun.expectedAuthor,
+    authorEvidence: override?.authorEvidence ?? dryRun.authorEvidence,
+    warning: override?.warning ?? null,
+  };
+}
+
 function includeKindsFor(sections: DetectedBookSection[]): BookSectionKind[] {
   const kinds = [
     ...new Set(sections.filter((section) => section.includeByDefault).map((section) => section.kind)),
@@ -754,6 +793,7 @@ function buildManifest(
   contentHash: string,
   cleanupSummary: CleanupSummary,
   warnings: string[],
+  metadata: ReturnType<typeof metadataFor>,
 ): GeneratedBookManifest {
   const cleanedCharacterCount = sections.reduce((total, section) => total + section.characterCount, 0);
   const wordCount = sections.reduce((total, section) => total + section.wordCount, 0);
@@ -764,8 +804,8 @@ function buildManifest(
   return {
     schemaVersion: 1,
     slug: dryRun.slug,
-    title: dryRun.expectedGeneratedTitle,
-    author: dryRun.expectedAuthor.length > 0 ? dryRun.expectedAuthor : ["Unknown"],
+    title: metadata.title,
+    author: metadata.author.length > 0 ? metadata.author : ["Unknown"],
     contentVersion: contentHash.slice(0, 16),
     contentHash,
     language: "en",
@@ -793,7 +833,7 @@ function buildManifest(
     cover: {
       src: null,
       placeholder: true,
-      alt: `Placeholder cover for ${dryRun.expectedGeneratedTitle}`,
+      alt: `Placeholder cover for ${metadata.title}`,
     },
     stats: {
       originalCharacterCount: rawText.length,
@@ -1355,6 +1395,7 @@ function processSelectedBook(dryRun: DryRunBook): {
   manifest: GeneratedBookManifest | null;
   previewEntry: PreviewEntry | null;
 } {
+  const metadata = metadataFor(dryRun);
   const sourcePath = path.resolve(repoRoot, dryRun.sourceFileUsed);
   assertInside(tempBooksRoot, sourcePath);
   const perBookMarkdownPath = path.join(dryRunRoot, "books", `${dryRun.slug}.md`);
@@ -1371,8 +1412,8 @@ function processSelectedBook(dryRun: DryRunBook): {
     };
   }
   if (
-    dryRun.expectedAuthor.length === 0 ||
-    dryRun.expectedAuthor.some((author) => /^unknown author$/i.test(author))
+    metadata.author.length === 0 ||
+    metadata.author.some((author) => /^unknown author$/i.test(author))
   ) {
     return {
       report: makeSkippedReport(dryRun, "Expected author was missing or unknown despite dry-run author evidence."),
@@ -1396,6 +1437,7 @@ function processSelectedBook(dryRun: DryRunBook): {
     ...dryRun.collectionTitleLeakageRisks.map((risk) => `dry-run collection-title risk: ${risk}`),
     ...dryRun.illustrationPageMarkerFootnoteRisks.map((risk) => `dry-run artifact risk: ${risk}`),
   ];
+  if (metadata.warning) warnings.push(metadata.warning);
 
   if (sections.length !== expectedFinalCount) {
     return {
@@ -1445,8 +1487,8 @@ function processSelectedBook(dryRun: DryRunBook): {
     warnings.push("Dry-run likely section count was 38; write inspection removed two lowercase prose false positives, for 36 total.");
   }
 
-  const contentHash = buildContentHash(dryRun.slug, dryRun.expectedGeneratedTitle, dryRun.expectedAuthor, sections);
-  const manifest = buildManifest(dryRun, rawText, sections, contentHash, cleanupSummary, warnings);
+  const contentHash = buildContentHash(dryRun.slug, metadata.title, metadata.author, sections);
+  const manifest = buildManifest(dryRun, rawText, sections, contentHash, cleanupSummary, warnings, metadata);
   const sectionJson = sections.map((section) => makeSectionJson(manifest.slug, section));
   const cleanedBook = buildCleanedBook(manifest, sections);
   const processedBook = buildProcessedBook(manifest, sections);
@@ -1465,11 +1507,11 @@ function processSelectedBook(dryRun: DryRunBook): {
     dryRunStatus: dryRun.currentStatus,
     finalAction: "first-time processed",
     sourceFileUsed: dryRun.sourceFileUsed,
-    expectedTitle: dryRun.expectedGeneratedTitle,
+    expectedTitle: metadata.title,
     generatedTitle: manifest.title,
-    expectedAuthor: dryRun.expectedAuthor,
+    expectedAuthor: metadata.author,
     generatedAuthor: manifest.author,
-    authorEvidence: dryRun.authorEvidence,
+    authorEvidence: metadata.authorEvidence,
     generatedFilesChanged: [],
     previewAssetChanged: null,
     startBoundaryUsed: boundaryReport(
@@ -1491,12 +1533,12 @@ function processSelectedBook(dryRun: DryRunBook): {
     last5SectionsWithWordCounts: sectionSummary(sections).slice(-5),
     cleanupActionsApplied: cleanupSummary,
     titleDefaultStartRiskVerdict:
-      manifest.title === dryRun.expectedGeneratedTitle && !sourceLooksUnsafe(firstDefault.text)
+      manifest.title === metadata.title && !sourceLooksUnsafe(firstDefault.text)
         ? "passed: generated title and first default section match audited source identity"
         : "requires review",
     authorMetadataVerdict:
-      JSON.stringify(manifest.author) === JSON.stringify(dryRun.expectedAuthor)
-        ? "passed: author metadata comes from dry-run source evidence"
+      JSON.stringify(manifest.author) === JSON.stringify(metadata.author)
+        ? `passed: author metadata comes from ${metadata.authorEvidence.source}`
         : "requires review",
     segmentationVerdict:
       "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
@@ -1509,7 +1551,7 @@ function processSelectedBook(dryRun: DryRunBook): {
     remainingWarnings: warnings,
     supportingSnippets: {
       title: dryRun.snippets.title,
-      author: dryRun.snippets.author,
+      author: metadata.authorEvidence.text,
       start: dryRun.snippets.start,
       end: dryRun.snippets.end,
     },

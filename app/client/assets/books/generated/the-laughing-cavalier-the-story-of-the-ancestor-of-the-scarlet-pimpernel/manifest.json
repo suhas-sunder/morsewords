@@ -3,10 +3,10 @@
   "slug": "the-laughing-cavalier-the-story-of-the-ancestor-of-the-scarlet-pimpernel",
   "title": "The Laughing Cavalier: The Story of the Ancestor of the Scarlet Pimpernel",
   "author": [
-    "Baroness Emmuska Orczy Orczy"
+    "Baroness Orczy"
   ],
-  "contentVersion": "88164af3f493b2fc",
-  "contentHash": "88164af3f493b2fc78cb61a375c6c2c6a286b1f2310b915aa25b2aaf3f98ba60",
+  "contentVersion": "8f3aba0c4e0f88a9",
+  "contentHash": "8f3aba0c4e0f88a913cdfc9b90f8c9da1e3d0249dfad74753047afa56edcdd67",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -735,7 +735,8 @@
       "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
       "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
       "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
-      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+      "verification metadata correction: Gutenberg Author line duplicated the author name as 'Baroness Emmuska Orczy Orczy'; title-page byline supports 'Baroness Orczy'."
     ]
   },
   "warnings": [
@@ -746,6 +747,7 @@
     "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
     "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
     "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
-    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+    "verification metadata correction: Gutenberg Author line duplicated the author name as 'Baroness Emmuska Orczy Orczy'; title-page byline supports 'Baroness Orczy'."
   ]
 }

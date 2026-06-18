@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reportName": "pilot-write-7",
-  "generatedAt": "2026-06-18T05:26:17.535Z",
+  "generatedAt": "2026-06-18T18:01:55.437Z",
   "branch": "morsewords-book-processing-pilot-write-7-jun-2026",
   "mode": "controlled first-time processing",
   "sourceDryRunReport": "app/client/assets/books/audit-reports/pilot-dry-run-7/pilot-dry-run-7.json",
@@ -248,7 +248,7 @@
           "label": "Chapter 5",
           "title": null,
           "kind": "chapter",
-          "wordCount": 1421
+          "wordCount": 1406
         }
       ],
       "last5SectionsWithWordCounts": [
@@ -257,7 +257,7 @@
           "label": "Chapter 25",
           "title": null,
           "kind": "chapter",
-          "wordCount": 996
+          "wordCount": 981
         },
         {
           "id": "chapter-026",
@@ -296,7 +296,7 @@
         "standaloneEndMarkersRemoved": 1
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001, chapter-002",
       "startupPreviewValid": true,
@@ -461,7 +461,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -680,7 +680,7 @@
           "label": "Chapter 80",
           "title": null,
           "kind": "chapter",
-          "wordCount": 2307
+          "wordCount": 2303
         }
       ],
       "cleanupActionsApplied": {
@@ -691,7 +691,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -870,7 +870,7 @@
         "standaloneEndMarkersRemoved": 1
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -960,14 +960,14 @@
           "label": "Chapter 2",
           "title": null,
           "kind": "chapter",
-          "wordCount": 5808
+          "wordCount": 5807
         },
         {
           "id": "chapter-003",
           "label": "Chapter 3",
           "title": null,
           "kind": "chapter",
-          "wordCount": 6634
+          "wordCount": 6629
         },
         {
           "id": "chapter-004",
@@ -1004,21 +1004,21 @@
           "label": "Chapter 8",
           "title": null,
           "kind": "chapter",
-          "wordCount": 5778
+          "wordCount": 5773
         },
         {
           "id": "chapter-009",
           "label": "Chapter 9",
           "title": null,
           "kind": "chapter",
-          "wordCount": 4118
+          "wordCount": 4116
         },
         {
           "id": "chapter-010",
           "label": "Chapter 10",
           "title": null,
           "kind": "chapter",
-          "wordCount": 8435
+          "wordCount": 8434
         }
       ],
       "cleanupActionsApplied": {
@@ -1029,7 +1029,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -1202,7 +1202,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001, chapter-002, chapter-003",
       "startupPreviewValid": true,
@@ -1363,7 +1363,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -1442,7 +1442,7 @@
         "title": "BEOWULF",
         "kind": "chapter",
         "includeByDefault": true,
-        "wordCount": 13052,
+        "wordCount": 13050,
         "snippet": "CHAPTER I: BEOWULF Introduction The figure which meets us as we enter on the study of Heroes of the British Race is one which appeals to us in a very special w..."
       },
       "sectionCount": 16,
@@ -1452,7 +1452,7 @@
           "label": "Chapter 1",
           "title": "BEOWULF",
           "kind": "chapter",
-          "wordCount": 13052
+          "wordCount": 13050
         },
         {
           "id": "chapter-002",
@@ -1528,7 +1528,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -1719,7 +1719,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001, chapter-002",
       "startupPreviewValid": true,
@@ -1884,7 +1884,7 @@
         "standaloneEndMarkersRemoved": 1
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -2080,7 +2080,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -2197,7 +2197,7 @@
           "label": "Chapter 4",
           "title": null,
           "kind": "chapter",
-          "wordCount": 2340
+          "wordCount": 2337
         },
         {
           "id": "chapter-005",
@@ -2241,7 +2241,7 @@
           "label": "Chapter 23",
           "title": null,
           "kind": "chapter",
-          "wordCount": 2710
+          "wordCount": 2701
         }
       ],
       "cleanupActionsApplied": {
@@ -2252,7 +2252,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -2409,7 +2409,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001, chapter-002",
       "startupPreviewValid": true,
@@ -2592,7 +2592,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001, chapter-002",
       "startupPreviewValid": true,
@@ -2663,7 +2663,7 @@
       "endBoundaryUsed": {
         "cleanedLine": 4116,
         "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
-        "snippet": "ad. The mace of authority was placed in his hand. And “Hail,” and “Hail,” and “Hail.” their heads in the dust.] Thus did Hai Low, in chase of an unknown traveler, become King upon a throne. His days of housekeeping were ended. And so is the book . . . ended."
+        "snippet": "on astonished Hai Low’s head. The mace of authority was placed in his hand. And “Hail,” and “Hail,” and “Hail.” Thus did Hai Low, in chase of an unknown traveler, become King upon a throne. His days of housekeeping were ended. And so is the book . . . ended."
       },
       "structuralConvention": "story or titled-section headings",
       "firstDefaultSectionAfterProcessing": {
@@ -2719,7 +2719,7 @@
           "label": "I Wish It Would Rain",
           "title": "I WISH IT WOULD RAIN",
           "kind": "chapter",
-          "wordCount": 2381
+          "wordCount": 2378
         },
         {
           "id": "chapter-013",
@@ -2733,7 +2733,7 @@
           "label": "Contrary Chueh Chun",
           "title": "CONTRARY CHUEH CHUN",
           "kind": "chapter",
-          "wordCount": 2026
+          "wordCount": 2023
         },
         {
           "id": "chapter-015",
@@ -2747,7 +2747,7 @@
           "label": "As Hai Low Kept House",
           "title": "AS HAI LOW KEPT HOUSE",
           "kind": "chapter",
-          "wordCount": 2792
+          "wordCount": 2787
         }
       ],
       "cleanupActionsApplied": {
@@ -2758,7 +2758,7 @@
         "standaloneEndMarkersRemoved": 1
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -2946,7 +2946,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001, chapter-002, chapter-003",
       "startupPreviewValid": true,
@@ -3123,7 +3123,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -3309,7 +3309,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -3487,7 +3487,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -3676,7 +3676,7 @@
         "standaloneEndMarkersRemoved": 1
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001, chapter-002",
       "startupPreviewValid": true,
@@ -3833,7 +3833,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -4012,7 +4012,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -4182,7 +4182,7 @@
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -4364,7 +4364,7 @@
         "standaloneEndMarkersRemoved": 1
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -4395,15 +4395,15 @@
       "expectedTitle": "The Laughing Cavalier: The Story of the Ancestor of the Scarlet Pimpernel",
       "generatedTitle": "The Laughing Cavalier: The Story of the Ancestor of the Scarlet Pimpernel",
       "expectedAuthor": [
-        "Baroness Emmuska Orczy Orczy"
+        "Baroness Orczy"
       ],
       "generatedAuthor": [
-        "Baroness Emmuska Orczy Orczy"
+        "Baroness Orczy"
       ],
       "authorEvidence": {
-        "source": "Gutenberg Author line",
-        "text": "Author: Baroness Emmuska Orczy Orczy",
-        "lineNumber": 13
+        "source": "title-page byline",
+        "text": "BARONESS ORCZY",
+        "lineNumber": 52
       },
       "generatedFilesChanged": [
         "app/client/assets/books/generated/the-laughing-cavalier-the-story-of-the-ancestor-of-the-scarlet-pimpernel/manifest.json",
@@ -4561,7 +4561,7 @@
         "standaloneEndMarkersRemoved": 1
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
-      "authorMetadataVerdict": "passed: author metadata comes from dry-run source evidence",
+      "authorMetadataVerdict": "passed: author metadata comes from title-page byline",
       "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
       "previewVerdict": "valid book-specific preview from chapter-001",
       "startupPreviewValid": true,
@@ -4572,11 +4572,12 @@
         "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
         "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
         "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
-        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+        "verification metadata correction: Gutenberg Author line duplicated the author name as 'Baroness Emmuska Orczy Orczy'; title-page byline supports 'Baroness Orczy'."
       ],
       "supportingSnippets": {
         "title": "Title: The Laughing Cavalier: The Story of the Ancestor of the Scarlet Pimpernel",
-        "author": "Author: Baroness Emmuska Orczy Orczy",
+        "author": "BARONESS ORCZY",
         "start": "CHAPTER I If the snow had come down again or the weather been colder, or wetter,",
         "end": "gently. \"Then will you go to bed, dear?\" he asked, \"you are overwrought and tired.\" \"I will sit by the window quietly for a quarter of an hour,\" she said, \"after that I promise you that I will go peaceably to bed.\" He kissed her tenderly, for she was very dear to him, but being a man of vast understanding and profou..."
       },

@@ -5,8 +5,8 @@
   "author": [
     "P. G. Wodehouse"
   ],
-  "contentVersion": "06ee15e23ff4d0ed",
-  "contentHash": "06ee15e23ff4d0edac5623ae79e0ade6e011b2a7c60576817976e78b1a5da8c2",
+  "contentVersion": "af45109367a8c381",
+  "contentHash": "af45109367a8c381095d8f636806fa1a9883c79d0e6554de4995490eefc6d0ee",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 298605,
-    "cleanedCharacterCount": 269252,
-    "wordCount": 49189,
+    "cleanedCharacterCount": 269135,
+    "wordCount": 49169,
     "sectionCount": 23,
     "includedSectionCount": 23
   },
@@ -100,11 +100,11 @@
       "order": 4,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-004.json",
-      "characterCount": 12818,
-      "wordCount": 2340,
+      "characterCount": 12801,
+      "wordCount": 2337,
       "estimatedTypingMinutes": 67,
       "estimatedListeningMinutes": 77,
-      "morseCharacterEstimate": 69145,
+      "morseCharacterEstimate": 69057,
       "textPreview": "IV From Axminster to Lyme Regis the line runs through country as pretty as any that can be found in the island, and the train, as if in appreciation of this fa..."
     },
     {
@@ -160,11 +160,11 @@
       "order": 8,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-008.json",
-      "characterCount": 12981,
-      "wordCount": 2318,
+      "characterCount": 12973,
+      "wordCount": 2317,
       "estimatedTypingMinutes": 67,
       "estimatedListeningMinutes": 79,
-      "morseCharacterEstimate": 70304,
+      "morseCharacterEstimate": 70264,
       "textPreview": "VIII \"Edwin comes to-day,\" said Mrs. Ukridge. \"And the Derricks,\" said Ukridge, sawing at the bread in his energetic way. \"Don't forget the Derricks, Millie.\"..."
     },
     {
@@ -190,11 +190,11 @@
       "order": 10,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-010.json",
-      "characterCount": 13580,
-      "wordCount": 2478,
+      "characterCount": 13573,
+      "wordCount": 2477,
       "estimatedTypingMinutes": 71,
       "estimatedListeningMinutes": 81,
-      "morseCharacterEstimate": 72495,
+      "morseCharacterEstimate": 72459,
       "textPreview": "X It would be interesting to know to what extent the work of authors is influenced by their private affairs. If life is flowing smoothly for them, are the nove..."
     },
     {
@@ -205,11 +205,11 @@
       "order": 11,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-011.json",
-      "characterCount": 10455,
-      "wordCount": 1891,
-      "estimatedTypingMinutes": 55,
+      "characterCount": 10418,
+      "wordCount": 1885,
+      "estimatedTypingMinutes": 54,
       "estimatedListeningMinutes": 63,
-      "morseCharacterEstimate": 56329,
+      "morseCharacterEstimate": 56125,
       "textPreview": "XI I could have wished, during the next few days, that Mr. Harry Hawk's attitude toward myself had not been so unctuously confidential and mysterious. It was u..."
     },
     {
@@ -385,17 +385,17 @@
       "order": 23,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-023.json",
-      "characterCount": 15374,
-      "wordCount": 2710,
+      "characterCount": 15326,
+      "wordCount": 2701,
       "estimatedTypingMinutes": 78,
       "estimatedListeningMinutes": 93,
-      "morseCharacterEstimate": 83436,
+      "morseCharacterEstimate": 83173,
       "textPreview": "XXIII A yell of welcome drowned the tumult of the looters. \"Is that you, Garny, old horse? What's up? What's the matter? Has everybody gone mad? Who are those..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 298605,
-    "cleanedCharacterCount": 269252,
+    "cleanedCharacterCount": 269135,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",
