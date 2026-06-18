@@ -1,0 +1,363 @@
+{
+  "reportName": "manual-ui-defect-followup-1",
+  "generatedAt": "2026-06-18T02:37:41.086Z",
+  "scope": "Focused direct inspection of manual UI defect examples only; no new books processed.",
+  "checkedSlugs": [
+    "the-book-of-dragons",
+    "the-emerald-city-of-oz",
+    "the-call-of-the-wild",
+    "the-elderbush",
+    "the-old-house",
+    "the-snow-queen",
+    "the-swineherd",
+    "the-winning-of-olwen"
+  ],
+  "summary": {
+    "checked": 8,
+    "acceptable": 8,
+    "corrected": 0,
+    "acceptanceRevokedPendingCorrection": 0,
+    "needsManualReview": 0
+  },
+  "books": [
+    {
+      "slug": "the-book-of-dragons",
+      "rawSourceFileUsed": "app/client/assets/temp-books/the-book-of-dragons.txt",
+      "generatedTitle": "The Book of Dragons",
+      "generatedAuthor": [
+        "E. Nesbit"
+      ],
+      "currentSectionLabels": [
+        "Story 1: The Book of Beasts",
+        "Story 2: Uncle James, or The Purple Stranger",
+        "Story 3: The Deliverers of Their Country",
+        "Story 4: The Ice Dragon, or Do as You Are Told",
+        "Story 5: The Island of the Nine Whirlpools",
+        "Story 6: The Dragon Tamers",
+        "Story 7: The Fiery Dragon",
+        "Story 8: Kind Little Edmund, or The Caves and the Cockatrice"
+      ],
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "kind": "chapter",
+        "label": "Story 1",
+        "title": "The Book of Beasts"
+      },
+      "firstDefaultSnippet": "I. The Book of Beasts He happened to be building a Palace when the news came, and he left all the bricks kicking about the floor for Nurse to clear up--but then the news was rather remarkable news. You see, there was a knock at the front door and voices tal...",
+      "previewStartSnippet": "I. The Book of Beasts He happened to be building a Palace when the news came, and he left all the bricks kicking about the floor for Nurse to clear up--but then the news was rather remarkable news. You see, there was a knock at the front door and voices tal...",
+      "genericPartLabelsJustified": true,
+      "genericPartLabelExplanation": "No generic Part labels remain in checked generated output.",
+      "meaningfulSourceHeadingsExist": true,
+      "meaningfulSourceHeadingExamples": [
+        "68: I. The Book of Beasts                                   1",
+        "70: II. Uncle James, or The Purple Stranger                 19",
+        "72: III. The Deliverers of Their Country                     39",
+        "74: IV. The Ice Dragon, or Do as You Are Told               57",
+        "76: V. The Island of the Nine Whirlpools                   79",
+        "78: VI. The Dragon Tamers                                   99",
+        "80: VII. The Fiery Dragon, or The Heart of Stone",
+        "83: VIII. Kind Little Edmund, or The Caves and the",
+        "170: I. The Book of Beasts",
+        "700: II. Uncle James, or The Purple Stranger",
+        "1255: III. The Deliverers of Their Country",
+        "1782: IV. The Ice Dragon, or Do as You Are Told"
+      ],
+      "titleSourceBylineIllustrationMetadataLeaksIntoDefaultPlayback": false,
+      "selectedSourceOrderIsCorrect": true,
+      "evidence": [
+        "Raw source contains title page and illustration captions before the first story; generated default starts at Story 1: The Book of Beasts.",
+        "Generated sections use story-level labels/titles and no generic Part labels."
+      ],
+      "warnings": [],
+      "verdict": "acceptable"
+    },
+    {
+      "slug": "the-emerald-city-of-oz",
+      "rawSourceFileUsed": "app/client/assets/temp-books/the-emerald-city-of-oz.txt",
+      "generatedTitle": "The Emerald City of Oz",
+      "generatedAuthor": [
+        "L. Frank Baum"
+      ],
+      "currentSectionLabels": [
+        "Chapter 1: How the Nome King Became Angry",
+        "Chapter 2: How Uncle Henry Got Into Trouble",
+        "Chapter 3: How Ozma Granted Dorothy's Request",
+        "Chapter 4: How The Nome King Planned Revenge",
+        "Chapter 5: How Dorothy Became a Princess",
+        "Chapter 6: How Guph Visited the Whimsies",
+        "Chapter 7: How Aunt Em Conquered the Lion",
+        "Chapter 8: How the Grand Gallipoot Joined The Nomes",
+        "Chapter 9: How the Wogglebug Taught Athletics",
+        "Chapter 10: How the Cuttenclips Lived",
+        "Chapter 11: How the General Met the First and Foremost",
+        "Chapter 12: How they Matched the Fuddles",
+        "Chapter 13: How the General Talked to the King",
+        "Chapter 14: How the Wizard Practiced Sorcery",
+        "Chapter 15: How Dorothy Happened to Get Lost",
+        "Chapter 16: How Dorothy Visited Utensia",
+        "Chapter 17: How They Came to Bunbury",
+        "Chapter 18: How Ozma Looked into the Magic Picture",
+        "Chapter 19: How Bunnybury Welcomed the Strangers",
+        "Chapter 20: How Dorothy Lunched With a King",
+        "Chapter 21: How the King Changed His Mind",
+        "Chapter 22: How the Wizard Found Dorothy",
+        "Chapter 23: How They Encountered the Flutterbudgets",
+        "Chapter 24: How the Tin Woodman Told the Sad News",
+        "Chapter 25: How the Scarecrow Displayed His Wisdom",
+        "Chapter 26: How Ozma Refused to Fight for Her Kingdom",
+        "Chapter 27: How the Fierce Warriors Invaded Oz",
+        "Chapter 28: How They Drank at the Forbidden Fountain",
+        "Chapter 29: How Glinda Worked a Magic Spell",
+        "Chapter 30: How the Story of Oz Came to an End"
+      ],
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "kind": "chapter",
+        "label": "Chapter 1",
+        "title": "How the Nome King Became Angry"
+      },
+      "firstDefaultSnippet": "The Nome King was in an angry mood, and at such times he was very disagreeable. Every one kept away from him, even his Chief Steward Kaliko. Therefore the King stormed and raved all by himself, walking up and down in his jewel-studded cavern and getting ang...",
+      "previewStartSnippet": "The Nome King was in an angry mood, and at such times he was very disagreeable. Every one kept away from him, even his Chief Steward Kaliko. Therefore the King stormed and raved all by himself, walking up and down in his jewel-studded cavern and getting ang...",
+      "genericPartLabelsJustified": true,
+      "genericPartLabelExplanation": "No generic Part labels remain in checked generated output.",
+      "meaningfulSourceHeadingsExist": true,
+      "meaningfulSourceHeadingExamples": [
+        "50: 1.  How the Nome King Became Angry",
+        "51: 2.  How Uncle Henry Got Into Trouble",
+        "52: 3.  How Ozma Granted Dorothy's Request",
+        "53: 4.  How The Nome King Planned Revenge",
+        "54: 5.  How Dorothy Became a Princess",
+        "55: 6.  How Guph Visited the Whimsies",
+        "56: 7.  How Aunt Em Conquered the Lion",
+        "57: 8.  How the Grand Gallipoot Joined The Nomes",
+        "58: 9.  How the Wogglebug Taught Athletics",
+        "59: 10.  How the Cuttenclips Lived",
+        "60: 11.  How the General Met the First and Foremost",
+        "61: 12.  How they Matched the Fuddles"
+      ],
+      "titleSourceBylineIllustrationMetadataLeaksIntoDefaultPlayback": false,
+      "selectedSourceOrderIsCorrect": true,
+      "evidence": [
+        "Generated default starts at chapter-001, Chapter 1: How the Nome King Became Angry."
+      ],
+      "warnings": [],
+      "verdict": "acceptable"
+    },
+    {
+      "slug": "the-call-of-the-wild",
+      "rawSourceFileUsed": "app/client/assets/temp-books/The call of the wild.txt",
+      "generatedTitle": "The Call of the Wild",
+      "generatedAuthor": [
+        "Jack London"
+      ],
+      "currentSectionLabels": [
+        "Chapter 1: Into the Primitive",
+        "Chapter 2: The Law of Club and Fang",
+        "Chapter 3: The Dominant Primordial Beast",
+        "Chapter 4: Who Has Won to Mastership",
+        "Chapter 5: The Toil of Trace and Trail",
+        "Chapter 6: For the Love of a Man",
+        "Chapter 7: The Sounding of the Call"
+      ],
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "kind": "chapter",
+        "label": "Chapter 1",
+        "title": "Into the Primitive"
+      },
+      "firstDefaultSnippet": "Chapter I. Into the Primitive \"Old longings nomadic leap, Chafing at custom's chain; Again from its brumal sleep Wakens the ferine strain.\" Buck did not read the newspapers, or he would have known that trouble was brewing, not alone for himself, but for eve...",
+      "previewStartSnippet": "Chapter I. Into the Primitive \"Old longings nomadic leap, Chafing at custom's chain; Again from its brumal sleep Wakens the ferine strain.\" Buck did not read the newspapers, or he would have known that trouble was brewing, not alone for himself, but for eve...",
+      "genericPartLabelsJustified": true,
+      "genericPartLabelExplanation": "No generic Part labels remain in checked generated output.",
+      "meaningfulSourceHeadingsExist": true,
+      "meaningfulSourceHeadingExamples": [
+        "46: Chapter I. Into the Primitive",
+        "47: Chapter II. The Law of Club and Fang",
+        "48: Chapter III. The Dominant Primordial Beast",
+        "49: Chapter IV. Who Has Won to Mastership",
+        "50: Chapter V. The Toil of Trace and Trail",
+        "51: Chapter VI. For the Love of a Man",
+        "52: Chapter VII. The Sounding of the Call",
+        "57: Chapter I. Into the Primitive",
+        "436: Chapter II. The Law of Club and Fang",
+        "742: Chapter III. The Dominant Primordial Beast",
+        "1219: Chapter IV. Who Has Won to Mastership",
+        "1527: Chapter V. The Toil of Trace and Trail"
+      ],
+      "titleSourceBylineIllustrationMetadataLeaksIntoDefaultPlayback": false,
+      "selectedSourceOrderIsCorrect": true,
+      "evidence": [
+        "Runtime selected-source ordering is covered by the Call of the Wild saved-progress Playwright test."
+      ],
+      "warnings": [],
+      "verdict": "acceptable"
+    },
+    {
+      "slug": "the-elderbush",
+      "rawSourceFileUsed": "app/client/assets/temp-books/The Elderbush.txt",
+      "generatedTitle": "The Elderbush",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "currentSectionLabels": [
+        "The Elderbush"
+      ],
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "kind": "chapter",
+        "label": "The Elderbush",
+        "title": null
+      },
+      "firstDefaultSnippet": "THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother undressed him, put him to bed, and had the tea-pot b...",
+      "previewStartSnippet": "THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother undressed him, put him to bed, and had the tea-pot b...",
+      "genericPartLabelsJustified": true,
+      "genericPartLabelExplanation": "No generic Part labels remain in checked generated output.",
+      "meaningfulSourceHeadingsExist": false,
+      "meaningfulSourceHeadingExamples": [],
+      "titleSourceBylineIllustrationMetadataLeaksIntoDefaultPlayback": false,
+      "selectedSourceOrderIsCorrect": true,
+      "evidence": [
+        "Generated title/default content use the individual story identity rather than parent collection title metadata."
+      ],
+      "warnings": [],
+      "verdict": "acceptable"
+    },
+    {
+      "slug": "the-old-house",
+      "rawSourceFileUsed": "app/client/assets/temp-books/The Old House.txt",
+      "generatedTitle": "The Old House",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "currentSectionLabels": [
+        "The Old House"
+      ],
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "kind": "chapter",
+        "label": "The Old House",
+        "title": null
+      },
+      "firstDefaultSnippet": "THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which the date of the year was carved: together with tulips and hop-binds there were whole verse...",
+      "previewStartSnippet": "THE OLD HOUSE In the street, up there, was an old, a very old house--it was almost three hundred years old, for that might be known by reading the great beam on which the date of the year was carved: together with tulips and hop-binds there were whole verse...",
+      "genericPartLabelsJustified": true,
+      "genericPartLabelExplanation": "No generic Part labels remain in checked generated output.",
+      "meaningfulSourceHeadingsExist": false,
+      "meaningfulSourceHeadingExamples": [],
+      "titleSourceBylineIllustrationMetadataLeaksIntoDefaultPlayback": false,
+      "selectedSourceOrderIsCorrect": true,
+      "evidence": [
+        "Generated title/default content use the individual story identity rather than parent collection title metadata."
+      ],
+      "warnings": [],
+      "verdict": "acceptable"
+    },
+    {
+      "slug": "the-snow-queen",
+      "rawSourceFileUsed": "app/client/assets/temp-books/THE SNOW QUEEN.txt",
+      "generatedTitle": "The Snow Queen",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "currentSectionLabels": [
+        "Story 1: Which Describes A Looking-Glass and Its Broken Fragments",
+        "Story 2: A Little Boy and A Little Girl",
+        "Story 3: The Enchanted Flower Garden",
+        "Story 4: The Prince and Princess",
+        "Story 5: The Little Robber Girl",
+        "Story 6: The Lapland Woman and the Finland Woman",
+        "Story 7: Of the Palace Of the Snow Queen and What Happened There At Last"
+      ],
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "kind": "chapter",
+        "label": "Story 1",
+        "title": "Which Describes A Looking-Glass and Its Broken Fragments"
+      },
+      "firstDefaultSnippet": "STORY THE FIRST WHICH DESCRIBES A LOOKING-GLASS AND ITS BROKEN FRAGMENTS YOU must attend to the beginning of this story, for when we get to the end we shall know more than we now do about a very wicked hobgoblin; he was one of the most mischievous of all sp...",
+      "previewStartSnippet": "STORY THE FIRST WHICH DESCRIBES A LOOKING-GLASS AND ITS BROKEN FRAGMENTS YOU must attend to the beginning of this story, for when we get to the end we shall know more than we now do about a very wicked hobgoblin; he was one of the most mischievous of all sp...",
+      "genericPartLabelsJustified": true,
+      "genericPartLabelExplanation": "No generic Part labels remain in checked generated output.",
+      "meaningfulSourceHeadingsExist": true,
+      "meaningfulSourceHeadingExamples": [
+        "194: SECOND STORY",
+        "414: THIRD STORY",
+        "588: FOURTH STORY",
+        "867: FIFTH STORY",
+        "1035: SIXTH STORY",
+        "1152: SEVENTH STORY"
+      ],
+      "titleSourceBylineIllustrationMetadataLeaksIntoDefaultPlayback": false,
+      "selectedSourceOrderIsCorrect": true,
+      "evidence": [
+        "Generated title/default content use the individual story identity rather than parent collection title metadata."
+      ],
+      "warnings": [],
+      "verdict": "acceptable"
+    },
+    {
+      "slug": "the-swineherd",
+      "rawSourceFileUsed": "app/client/assets/temp-books/The Swineherd.txt",
+      "generatedTitle": "The Swineherd",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "currentSectionLabels": [
+        "The Swineherd"
+      ],
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "kind": "chapter",
+        "label": "The Swineherd",
+        "title": null
+      },
+      "firstDefaultSnippet": "THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was certainly rather cool of him to say to the Emperor's daughter, \"Will you have me?\" But so h...",
+      "previewStartSnippet": "THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was certainly rather cool of him to say to the Emperor's daughter, \"Will you have me?\" But so h...",
+      "genericPartLabelsJustified": true,
+      "genericPartLabelExplanation": "No generic Part labels remain in checked generated output.",
+      "meaningfulSourceHeadingsExist": false,
+      "meaningfulSourceHeadingExamples": [],
+      "titleSourceBylineIllustrationMetadataLeaksIntoDefaultPlayback": false,
+      "selectedSourceOrderIsCorrect": true,
+      "evidence": [
+        "Generated title/default content use the individual story identity rather than parent collection title metadata."
+      ],
+      "warnings": [],
+      "verdict": "acceptable"
+    },
+    {
+      "slug": "the-winning-of-olwen",
+      "rawSourceFileUsed": "app/client/assets/temp-books/The Winning of Olwen.txt",
+      "generatedTitle": "The Winning of Olwen",
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "currentSectionLabels": [
+        "The Winning of Olwen"
+      ],
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "kind": "chapter",
+        "label": "The Winning of Olwen",
+        "title": null
+      },
+      "firstDefaultSnippet": "There was once a king and queen who had a little boy, and they called his name Kilweh. The queen, his mother, fell ill soon after his birth, and as she could not take care of him herself she sent him to a woman she knew up in the mountains, so that he might...",
+      "previewStartSnippet": "There was once a king and queen who had a little boy, and they called his name Kilweh. The queen, his mother, fell ill soon after his birth, and as she could not take care of him herself she sent him to a woman she knew up in the mountains, so that he might...",
+      "genericPartLabelsJustified": true,
+      "genericPartLabelExplanation": "No generic Part labels remain in checked generated output.",
+      "meaningfulSourceHeadingsExist": false,
+      "meaningfulSourceHeadingExamples": [],
+      "titleSourceBylineIllustrationMetadataLeaksIntoDefaultPlayback": false,
+      "selectedSourceOrderIsCorrect": true,
+      "evidence": [
+        "Generated title/default content use the individual story identity rather than parent collection title metadata."
+      ],
+      "warnings": [],
+      "verdict": "acceptable"
+    }
+  ],
+  "protectedPaths": {
+    "rawSources": "app/client/assets/temp-books was read-only for this pass.",
+    "cloudflareExport": "app/client/assets/books/cloudflare-export was not read for corrections or modified."
+  }
+}

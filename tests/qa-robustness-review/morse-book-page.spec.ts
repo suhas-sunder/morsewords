@@ -23,6 +23,8 @@ const SUN_TZU_ON_THE_ART_OF_WAR_SLUG = "sun-tzu-on-the-art-of-war";
 const THE_COUNT_OF_MONTE_CRISTO_SLUG = "the-count-of-monte-cristo";
 const THE_HAPPY_FAMILY_SLUG = "the-happy-family";
 const THE_ELDERBUSH_SLUG = "the-elderbush";
+const THE_BOOK_OF_DRAGONS_SLUG = "the-book-of-dragons";
+const THE_EMERALD_CITY_OF_OZ_SLUG = "the-emerald-city-of-oz";
 const ALICE_PUBLIC_PATH = `/morse-code-books/${ALICE_SLUG}`;
 const APPROVED_BOOK_PUBLIC_PATH = `/morse-code-books/${APPROVED_BOOK_SLUG}`;
 const NETWORK_BOOK_PUBLIC_PATH = `/morse-code-books/${NETWORK_BOOK_SLUG}`;
@@ -44,6 +46,10 @@ const THE_HAPPY_FAMILY_PREVIEW_PATH =
   `/morse-code-books/${THE_HAPPY_FAMILY_SLUG}?preview=unpublished`;
 const THE_ELDERBUSH_PREVIEW_PATH =
   `/morse-code-books/${THE_ELDERBUSH_SLUG}?preview=unpublished`;
+const THE_BOOK_OF_DRAGONS_PREVIEW_PATH =
+  `/morse-code-books/${THE_BOOK_OF_DRAGONS_SLUG}?preview=unpublished`;
+const THE_EMERALD_CITY_OF_OZ_PREVIEW_PATH =
+  `/morse-code-books/${THE_EMERALD_CITY_OF_OZ_SLUG}?preview=unpublished`;
 const ALICE_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${ALICE_SLUG}`;
 const APPROVED_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${APPROVED_BOOK_SLUG}`;
 const NETWORK_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${NETWORK_BOOK_SLUG}`;
@@ -80,6 +86,9 @@ function readJson<T>(relativePath: string): T {
 
 type TestBookManifestSection = {
   id: string;
+  label?: string;
+  sectionJsonPath?: string;
+  title?: string | null;
   includeByDefault: boolean;
 };
 
@@ -98,6 +107,13 @@ type TestGeneratedBookManifestFixture = {
   title: string;
   author: string[];
   sections: TestBookManifestSection[];
+};
+
+type TestGeneratedBookSectionFixture = {
+  label: string;
+  title: string | null;
+  displayText?: string;
+  morseSourceText?: string;
 };
 
 function defaultSectionIdsFromSections(sections: TestBookManifestSection[]) {
@@ -128,6 +144,21 @@ function readGeneratedDefaultSectionIds(slug: string) {
 function readGeneratedBookManifest(slug: string) {
   return readJson<TestGeneratedBookManifestFixture>(
     `app/client/assets/books/generated/${slug}/manifest.json`,
+  );
+}
+
+function readGeneratedBookSection(slug: string, sectionId: string) {
+  const manifest = readGeneratedBookManifest(slug);
+  const section = manifest.sections.find((entry) => entry.id === sectionId);
+  expect(section?.sectionJsonPath).toBeTruthy();
+  return readJson<TestGeneratedBookSectionFixture>(
+    `app/client/assets/books/generated/${slug}/${section!.sectionJsonPath}`,
+  );
+}
+
+function readBookPreviewAsset(slug: string) {
+  return readJson<{ defaultSectionId: string; previewText: string }>(
+    `public/book-previews/${slug}.preview.json`,
   );
 }
 
@@ -1300,6 +1331,117 @@ test.describe("Morse book page foundation", () => {
     expect(
       normalizedPreviewText((await sourcePreview.textContent()) ?? "").startsWith(
         "Chapter I. Into the Primitive",
+      ),
+    ).toBe(true);
+  });
+
+  test("keeps book of dragons defaults at story content without illustration artifacts", async ({
+    page,
+  }) => {
+    const manifest = readGeneratedBookManifest(THE_BOOK_OF_DRAGONS_SLUG);
+    const defaultSectionIds = readGeneratedDefaultSectionIds(
+      THE_BOOK_OF_DRAGONS_SLUG,
+    );
+    expect(defaultSectionIds).toEqual(manifest.sections.map((section) => section.id));
+    expect(manifest.sections.map((section) => section.label)).toEqual([
+      "Story 1",
+      "Story 2",
+      "Story 3",
+      "Story 4",
+      "Story 5",
+      "Story 6",
+      "Story 7",
+      "Story 8",
+    ]);
+    expect(manifest.sections.map((section) => section.title)).toContain(
+      "The Book of Beasts",
+    );
+    expect(
+      manifest.sections.every((section) => !/^Part\s+\d+$/i.test(section.label ?? "")),
+    ).toBe(true);
+
+    const firstSection = readGeneratedBookSection(
+      THE_BOOK_OF_DRAGONS_SLUG,
+      "chapter-001",
+    );
+    const firstText = firstSection.morseSourceText ?? firstSection.displayText ?? "";
+    expect(firstText).toContain("I. The Book of Beasts");
+    expect(firstText).toContain("He happened to be building a Palace");
+    expect(firstText).not.toContain("[Illustration:");
+    expect(firstText).not.toContain("The Book of DRAGONS");
+
+    const preview = readBookPreviewAsset(THE_BOOK_OF_DRAGONS_SLUG);
+    expect(preview.defaultSectionId).toBe("chapter-001");
+    expect(preview.previewText).toContain("I. The Book of Beasts");
+    expect(preview.previewText).not.toContain("[Illustration:");
+    expect(preview.previewText).not.toContain("The Book of DRAGONS");
+
+    await removeBookRuntimeSettings(page, THE_BOOK_OF_DRAGONS_SLUG);
+    await openGeneratedBookPreview(page, THE_BOOK_OF_DRAGONS_PREVIEW_PATH);
+    await expectSelectedBookSectionIds(page, defaultSectionIds);
+
+    const sourcePreview = page.locator("[data-mw-morse-book-source-preview]");
+    await expect(sourcePreview).toContainText("I. The Book of Beasts");
+    await expect(sourcePreview).toContainText(
+      "He happened to be building a Palace",
+    );
+    await expect(sourcePreview).not.toContainText("[Illustration:");
+    await expect(sourcePreview).not.toContainText("The Book of DRAGONS");
+    expect(
+      normalizedPreviewText((await sourcePreview.textContent()) ?? "").startsWith(
+        "I. The Book of Beasts He happened",
+      ),
+    ).toBe(true);
+  });
+
+  test("defaults emerald city of oz to the real opening chapter", async ({
+    page,
+  }) => {
+    const manifest = readGeneratedBookManifest(THE_EMERALD_CITY_OF_OZ_SLUG);
+    const defaultSectionIds = readGeneratedDefaultSectionIds(
+      THE_EMERALD_CITY_OF_OZ_SLUG,
+    );
+    expect(defaultSectionIds[0]).toBe("chapter-001");
+    expect(defaultSectionIds).toEqual(manifest.sections.map((section) => section.id));
+    expect(manifest.sections[0]).toMatchObject({
+      id: "chapter-001",
+      label: "Chapter 1",
+      title: "How the Nome King Became Angry",
+      includeByDefault: true,
+    });
+    expect(
+      manifest.sections.every((section) => !/^Part\s+\d+$/i.test(section.label ?? "")),
+    ).toBe(true);
+
+    const firstSection = readGeneratedBookSection(
+      THE_EMERALD_CITY_OF_OZ_SLUG,
+      "chapter-001",
+    );
+    const firstText = firstSection.morseSourceText ?? firstSection.displayText ?? "";
+    expect(firstText).toContain("The Nome King was in an angry mood");
+    expect(firstText).not.toContain("Part 2");
+
+    const preview = readBookPreviewAsset(THE_EMERALD_CITY_OF_OZ_SLUG);
+    expect(preview.defaultSectionId).toBe("chapter-001");
+    expect(preview.previewText).toContain("The Nome King was in an angry mood");
+
+    await removeBookRuntimeSettings(page, THE_EMERALD_CITY_OF_OZ_SLUG);
+    await openGeneratedBookPreview(page, THE_EMERALD_CITY_OF_OZ_PREVIEW_PATH);
+    await expectSelectedBookSectionIds(page, defaultSectionIds);
+    await expect(
+      page.locator("[data-mw-morse-book-translator-source-sections]"),
+    ).toHaveAttribute(
+      "data-mw-morse-book-translator-source-sections",
+      defaultSectionIds.join(","),
+    );
+
+    const sourcePreview = page.locator("[data-mw-morse-book-source-preview]");
+    await expect(sourcePreview).toContainText(
+      "The Nome King was in an angry mood",
+    );
+    expect(
+      normalizedPreviewText((await sourcePreview.textContent()) ?? "").startsWith(
+        "The Nome King was in an angry mood",
       ),
     ).toBe(true);
   });
