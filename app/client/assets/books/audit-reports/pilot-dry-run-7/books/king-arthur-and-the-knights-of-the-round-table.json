@@ -1,0 +1,85 @@
+{
+  "slug": "king-arthur-and-the-knights-of-the-round-table",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/King Arthur and the Knights of the Round Table.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "King Arthur and the Knights of the Round Table",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: King Arthur and the Knights of the Round Table",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Sir Thomas Malory"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Sir Thomas Malory",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "standalone roman numeral sections",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L363: I",
+    "L693: II",
+    "L1217: III",
+    "L1681: IV",
+    "L2087: V",
+    "L2544: VI"
+  ],
+  "realReadableStart": "Chapter 1: King Vortigern the usurper sat upon his throne in London, when,",
+  "realReadableEnd": "put from the land, and when Sir Bedivere saw it departing, he cried with a bitter cry, \"Alas! my lord King Arthur, what shall become of me now ye have gone from me?\" \"Comfort ye,\" said King Arthur, \"and be strong, for I may no more help ye. I go to the Vale of Avilion to heal me of my grievous wound, and if ye see m...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 15 detected standalone roman numeral sections sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 15,
+  "likelyPreviewStart": "King Vortigern the usurper sat upon his throne in London, when,",
+  "expectedStartBoundary": "start at cleaned-body line 363: I",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Standalone Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: King Arthur and the Knights of the Round Table",
+    "author": "Author: Sir Thomas Malory",
+    "start": "I King Vortigern the usurper sat upon his throne in London, when,",
+    "end": "put from the land, and when Sir Bedivere saw it departing, he cried with a bitter cry, \"Alas! my lord King Arthur, what shall become of me now ye have gone from me?\" \"Comfort ye,\" said King Arthur, \"and be strong, for I may no more help ye. I go to the Vale of Avilion to heal me of my grievous wound, and if ye see m..."
+  }
+}

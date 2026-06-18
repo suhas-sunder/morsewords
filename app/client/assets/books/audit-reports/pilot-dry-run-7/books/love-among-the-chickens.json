@@ -1,0 +1,85 @@
+{
+  "slug": "love-among-the-chickens",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Love Among the Chickens.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Love Among the Chickens",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Love Among the Chickens",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "P. G. Wodehouse"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: P. G. Wodehouse",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "standalone roman numeral sections",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L117: I",
+    "L402: II",
+    "L706: III",
+    "L962: IV",
+    "L1286: V",
+    "L1526: VI"
+  ],
+  "realReadableStart": "Chapter 1: Mr. Jeremy Garnet stood with his back to the empty grate--for the time",
+  "realReadableEnd": "d the money. Millie and I shared the work. She did the asking, while I inquired after the rheumatism. She mentioned the precise figure that would clear us. I patted the toy Pomeranian. Little beast! Got after me quick, when I wasn't looking, and chewed my ankle.\" \"Thank Heaven for that,\" I said. \"In the end Millie g...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 23 detected standalone roman numeral sections sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 23,
+  "likelyPreviewStart": "Mr. Jeremy Garnet stood with his back to the empty grate--for the time",
+  "expectedStartBoundary": "start at cleaned-body line 117: I",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Standalone Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Love Among the Chickens",
+    "author": "Author: P. G. Wodehouse",
+    "start": "I Mr. Jeremy Garnet stood with his back to the empty grate--for the time",
+    "end": "d the money. Millie and I shared the work. She did the asking, while I inquired after the rheumatism. She mentioned the precise figure that would clear us. I patted the toy Pomeranian. Little beast! Got after me quick, when I wasn't looking, and chewed my ankle.\" \"Thank Heaven for that,\" I said. \"In the end Millie g..."
+  }
+}

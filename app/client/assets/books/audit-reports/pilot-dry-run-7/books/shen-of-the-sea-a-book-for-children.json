@@ -1,0 +1,87 @@
+{
+  "slug": "shen-of-the-sea-a-book-for-children",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Shen of the Sea - A Book for Children.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Shen of the Sea: A Book for Children",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Shen of the Sea: A Book for Children",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Arthur Bowie Chrisman"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Arthur Bowie Chrisman",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "story collection",
+  "detectedStructuralConvention": "story or titled-section headings",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L435: SHEN OF THE SEA",
+    "L680: HOW WISE WERE THE OLD MEN",
+    "L993: CHOP-STICKS",
+    "L1213: BUY A FATHER",
+    "L1418: FOUR GENERALS",
+    "L1744: THE RAIN KING?S DAUGHTER"
+  ],
+  "realReadableStart": "SHEN OF THE SEA: Kua Hai City stands on a plain in northern China. The plain is called Wa",
+  "realReadableEnd": "?Hail to our new King.? And the breathless mob shouted, ?Long live our new King.? The crown was placed upon astonished Hai Low?s head. The mace of authority was placed in his hand. And ?Hail,? and ?Hail,? and ?Hail.? [Illustration: The royal generals . . . knelt before Hai Low and bumped their heads in the dust.] Th...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "SHEN OF THE SEA",
+  "expectedDefaultReadableSections": "all 16 detected story or titled-section headings sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 16,
+  "likelyPreviewStart": "Kua Hai City stands on a plain in northern China. The plain is called Wa",
+  "expectedStartBoundary": "start at cleaned-body line 435: SHEN OF THE SEA",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use All-caps story or titled-section heading boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback",
+    "first default section is meaningful but should be verified manually in write pass"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the collection title and individual story titles become sections"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Many illustration/image placeholders need cleanup review."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Shen of the Sea: A Book for Children",
+    "author": "Author: Arthur Bowie Chrisman",
+    "start": "SHEN OF THE SEA Kua Hai City stands on a plain in northern China. The plain is called Wa",
+    "end": "?Hail to our new King.? And the breathless mob shouted, ?Long live our new King.? The crown was placed upon astonished Hai Low?s head. The mace of authority was placed in his hand. And ?Hail,? and ?Hail,? and ?Hail.? [Illustration: The royal generals . . . knelt before Hai Low and bumped their heads in the dust.] Th..."
+  }
+}

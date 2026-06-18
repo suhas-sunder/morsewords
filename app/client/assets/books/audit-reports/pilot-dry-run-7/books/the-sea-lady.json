@@ -1,0 +1,86 @@
+{
+  "slug": "the-sea-lady",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Sea Lady.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Sea Lady",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The Sea Lady",
+    "lineNumber": 10
+  },
+  "expectedAuthor": [
+    "Herbert George Wells"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Herbert George Wells",
+    "lineNumber": 12
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "standalone roman numeral sections",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L98: I",
+    "L195: II",
+    "L242: I",
+    "L281: II",
+    "L290: III",
+    "L355: IV"
+  ],
+  "realReadableStart": "Chapter 1: Such previous landings of mermaids as have left a record, have all a flavour of doubt. Even the very circumstantial account of that Bruges Sea Lady, who was so clever at fancy wor...",
+  "realReadableEnd": "by a momentary gleam of phosphorescence; and far out the lights of ships were shining bright and yellow. Across its shimmer a black fishing smack was gliding out of mystery into mystery. Dungeness shone from the west a pin-point of red light, and in the east the tireless glare of that great beacon on Gris-nez wheele...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 31 detected standalone roman numeral sections sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 31,
+  "likelyPreviewStart": "Such previous landings of mermaids as have left a record, have all a flavour of doubt. Even the very circumstantial account of that Bruges Sea Lady, who was so clever at fancy wor...",
+  "expectedStartBoundary": "start at cleaned-body line 98: I",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Standalone Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary.",
+      "Dense numbered bracket references indicate footnote-heavy or parser-junk risk."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "Title: The Sea Lady",
+    "author": "Author: Herbert George Wells",
+    "start": "I Such previous landings of mermaids as have left a record, have all a flavour of doubt. Even the very circumstantial account of that Bruges Sea Lady, who was so clever at fancy wor...",
+    "end": "by a momentary gleam of phosphorescence; and far out the lights of ships were shining bright and yellow. Across its shimmer a black fishing smack was gliding out of mystery into mystery. Dungeness shone from the west a pin-point of red light, and in the east the tireless glare of that great beacon on Gris-nez wheele..."
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "slug": "despair-s-last-journey",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Despair's Last Journey.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Despair's Last Journey",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Despair's Last Journey",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "David Christie Murray"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: David Christie Murray",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L735: CHAPTER I",
+    "L1296: CHAPTER II",
+    "L1834: CHAPTER III",
+    "L2532: CHAPTER IV",
+    "L2896: CHAPTER V",
+    "L3380: CHAPTER VI"
+  ],
+  "realReadableStart": "Chapter 1: The first hint of memory showed a hearth, a fire, and a woman sitting",
+  "realReadableEnd": "at he should believe, and he bowed his head in prayer with tears of penitence and self-abasement. ?What is left to me?? he asked. His father?s voice spoke inwardly in answer, apart from his will, outside his will, as it had spoken from the first. ?Duty!? said the voice. ?Bid the fire-flowers blossom in the wasted sp...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 29 detected chapter-based roman numerals sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 29,
+  "likelyPreviewStart": "The first hint of memory showed a hearth, a fire, and a woman sitting",
+  "expectedStartBoundary": "start at cleaned-body line 735: CHAPTER I",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Despair's Last Journey",
+    "author": "Author: David Christie Murray",
+    "start": "CHAPTER I The first hint of memory showed a hearth, a fire, and a woman sitting",
+    "end": "at he should believe, and he bowed his head in prayer with tears of penitence and self-abasement. ?What is left to me?? he asked. His father?s voice spoke inwardly in answer, apart from his will, outside his will, as it had spoken from the first. ?Duty!? said the voice. ?Bid the fire-flowers blossom in the wasted sp..."
+  }
+}

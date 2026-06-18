@@ -1,0 +1,83 @@
+{
+  "slug": "robert-orange",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Robert Orange.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Robert Orange",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Robert Orange",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "John Oliver Hobbes"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: John Oliver Hobbes",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L22: CHAPTER I",
+    "L446: CHAPTER II",
+    "L708: CHAPTER III",
+    "L989: CHAPTER IV",
+    "L1244: CHAPTER V",
+    "L1665: CHAPTER VI"
+  ],
+  "realReadableStart": "Chapter 1: One afternoon during the first weeks of October, 1869, while wind, dust,",
+  "realReadableEnd": "casional roughness of style--elliptical, Carlyle mannerisms--the whole is admirably written.\"--_Westminster Gazette._ \"Mr. Swift has the creative touch and a spark of genius.\"--_Manchester Guardian._ \"Mr. Swift has held us interested from the first to the last page of his novel.\"--_World._ \"The writer of 'Nancy Noon...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 30 detected chapter-based roman numerals sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 30,
+  "likelyPreviewStart": "One afternoon during the first weeks of October, 1869, while wind, dust,",
+  "expectedStartBoundary": "start at cleaned-body line 22: CHAPTER I",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Robert Orange",
+    "author": "Author: John Oliver Hobbes",
+    "start": "CHAPTER I One afternoon during the first weeks of October, 1869, while wind, dust,",
+    "end": "casional roughness of style--elliptical, Carlyle mannerisms--the whole is admirably written.\"--_Westminster Gazette._ \"Mr. Swift has the creative touch and a spark of genius.\"--_Manchester Guardian._ \"Mr. Swift has held us interested from the first to the last page of his novel.\"--_World._ \"The writer of 'Nancy Noon..."
+  }
+}

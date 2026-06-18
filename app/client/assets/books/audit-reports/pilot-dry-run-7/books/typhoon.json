@@ -1,0 +1,83 @@
+{
+  "slug": "typhoon",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Typhoon.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Typhoon",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Typhoon",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Joseph Conrad"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Joseph Conrad",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "standalone roman numeral sections",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L151: I",
+    "L648: II",
+    "L1275: III",
+    "L1627: IV",
+    "L2336: V",
+    "L2915: VI"
+  ],
+  "realReadableStart": "Chapter 1: Captain MacWhirr, of the steamer Nan-Shan, had a physiognomy that, in",
+  "realReadableEnd": "erate indeed to go thieving in such weather, but what could these beggars know of us? So, without thinking of it twice, I got the hands away in a jiffy. Our work was done--that the old man had set his heart on. We cleared out without staying to inquire how they felt. I am convinced that if they had not been so unmer...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 6 detected standalone roman numeral sections sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 6,
+  "likelyPreviewStart": "Captain MacWhirr, of the steamer Nan-Shan, had a physiognomy that, in",
+  "expectedStartBoundary": "start at cleaned-body line 151: I",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Standalone Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Typhoon",
+    "author": "Author: Joseph Conrad",
+    "start": "I Captain MacWhirr, of the steamer Nan-Shan, had a physiognomy that, in",
+    "end": "erate indeed to go thieving in such weather, but what could these beggars know of us? So, without thinking of it twice, I got the hands away in a jiffy. Our work was done--that the old man had set his heart on. We cleared out without staying to inquire how they felt. I am convinced that if they had not been so unmer..."
+  }
+}

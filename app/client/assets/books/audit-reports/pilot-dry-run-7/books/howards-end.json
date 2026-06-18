@@ -1,0 +1,83 @@
+{
+  "slug": "howards-end",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Howards End.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Howards End",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Howards End",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "E. M. Forster"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: E. M. Forster",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L6: CHAPTER I",
+    "L132: CHAPTER II",
+    "L391: CHAPTER III",
+    "L797: CHAPTER IV",
+    "L1072: CHAPTER V",
+    "L1612: CHAPTER VI"
+  ],
+  "realReadableStart": "Chapter 1: One may as well begin with Helen?s letters to her sister.",
+  "realReadableEnd": "ation. It seemed the last touch of his callousness. Being very much wrought up by this time--and Mrs. Bast was upstairs. I had not seen her, and had talked for a long time to Leonard--I had snubbed him for no reason, and that should have warned me I was in danger. So when the notes came I wanted us to go to you for...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 40 detected chapter-based roman numerals sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 40,
+  "likelyPreviewStart": "One may as well begin with Helen?s letters to her sister.",
+  "expectedStartBoundary": "start at cleaned-body line 6: CHAPTER I",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "Title: Howards End",
+    "author": "Author: E. M. Forster",
+    "start": "CHAPTER I One may as well begin with Helen?s letters to her sister.",
+    "end": "ation. It seemed the last touch of his callousness. Being very much wrought up by this time--and Mrs. Bast was upstairs. I had not seen her, and had talked for a long time to Leonard--I had snubbed him for no reason, and that should have warned me I was in danger. So when the notes came I wanted us to go to you for..."
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "slug": "at-the-earth-s-core",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/At the Earth's Core.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "At the Earth's Core",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: At the Earth's Core",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Edgar Rice Burroughs"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Edgar Rice Burroughs",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "standalone roman numeral sections",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L89: I",
+    "L452: II",
+    "L816: III",
+    "L1110: IV",
+    "L1474: V",
+    "L1792: VI"
+  ],
+  "realReadableStart": "Chapter 1: I was born in Connecticut about thirty years ago. My name is David",
+  "realReadableEnd": "nes and his strange adventures. Did the Arabs murder him, after all, just on the eve of his departure? Or, did he again turn the nose of his iron monster toward the inner world? Did he reach it, or lies he somewhere buried in the heart of the great crust? And if he did come again to Pellucidar was it to break throug...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 15 detected standalone roman numeral sections sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 15,
+  "likelyPreviewStart": "I was born in Connecticut about thirty years ago. My name is David",
+  "expectedStartBoundary": "start at cleaned-body line 89: I",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Standalone Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: At the Earth's Core",
+    "author": "Author: Edgar Rice Burroughs",
+    "start": "I I was born in Connecticut about thirty years ago. My name is David",
+    "end": "nes and his strange adventures. Did the Arabs murder him, after all, just on the eve of his departure? Or, did he again turn the nose of his iron monster toward the inner world? Did he reach it, or lies he somewhere buried in the heart of the great crust? And if he did come again to Pellucidar was it to break throug..."
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "slug": "herland",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Herland.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Herland",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Herland",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Charlotte Perkins Gilman"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Charlotte Perkins Gilman",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based arabic numbers",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L6: CHAPTER 1.",
+    "L555: CHAPTER 2.",
+    "L1037: CHAPTER 3.",
+    "L1612: CHAPTER 4.",
+    "L2143: CHAPTER 5.",
+    "L2688: CHAPTER 6."
+  ],
+  "realReadableStart": "Chapter 1: This is written from memory, unfortunately. If I could have brought with",
+  "realReadableEnd": "ing to hurt--no stairs, no corners, no small loose objects to swallow, no fire--just a babies? paradise. They were taught, as rapidly as feasible, to use and control their own bodies, and never did I see such sure-footed, steady-handed, clear-headed little things. It was a joy to watch a row of toddlers learning to...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 12 detected chapter-based arabic numbers sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 12,
+  "likelyPreviewStart": "This is written from memory, unfortunately. If I could have brought with",
+  "expectedStartBoundary": "start at cleaned-body line 6: CHAPTER 1.",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Arabic number boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "Title: Herland",
+    "author": "Author: Charlotte Perkins Gilman",
+    "start": "CHAPTER 1. This is written from memory, unfortunately. If I could have brought with",
+    "end": "ing to hurt--no stairs, no corners, no small loose objects to swallow, no fire--just a babies? paradise. They were taught, as rapidly as feasible, to use and control their own bodies, and never did I see such sure-footed, steady-handed, clear-headed little things. It was a joy to watch a row of toddlers learning to..."
+  }
+}

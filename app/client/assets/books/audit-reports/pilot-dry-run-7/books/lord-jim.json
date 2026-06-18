@@ -1,0 +1,83 @@
+{
+  "slug": "lord-jim",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Lord Jim.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Lord Jim",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Lord Jim",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Joseph Conrad"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Joseph Conrad",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based arabic numbers",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L88: CHAPTER 1",
+    "L274: CHAPTER 2",
+    "L468: CHAPTER 3",
+    "L746: CHAPTER 4",
+    "L912: CHAPTER 5",
+    "L1492: CHAPTER 6"
+  ],
+  "realReadableStart": "Chapter 1: He was an inch, perhaps two, under six feet, powerfully built, and he",
+  "realReadableEnd": "ared head in the light of torches, looking him straight in the face, he clung heavily with his left arm round the neck of a bowed youth, and lifting deliberately his right, shot his son?s friend through the chest. ?The crowd, which had fallen apart behind Jim as soon as Doramin had raised his hand, rushed tumultuous...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 45 detected chapter-based arabic numbers sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 45,
+  "likelyPreviewStart": "He was an inch, perhaps two, under six feet, powerfully built, and he",
+  "expectedStartBoundary": "start at cleaned-body line 88: CHAPTER 1",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Arabic number boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Lord Jim",
+    "author": "Author: Joseph Conrad",
+    "start": "CHAPTER 1 He was an inch, perhaps two, under six feet, powerfully built, and he",
+    "end": "ared head in the light of torches, looking him straight in the face, he clung heavily with his left arm round the neck of a bowed youth, and lifting deliberately his right, shot his son?s friend through the chest. ?The crowd, which had fallen apart behind Jim as soon as Doramin had raised his hand, rushed tumultuous..."
+  }
+}

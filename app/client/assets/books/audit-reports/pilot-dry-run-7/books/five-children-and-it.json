@@ -1,0 +1,86 @@
+{
+  "slug": "five-children-and-it",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Five Children and It.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Five Children and It",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Five Children and It",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "E. Nesbit"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: E. Nesbit",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L197: CHAPTER I",
+    "L947: CHAPTER II",
+    "L1644: CHAPTER III",
+    "L2418: CHAPTER IV",
+    "L3069: CHAPTER V",
+    "L3472: CHAPTER VI"
+  ],
+  "realReadableStart": "Chapter 1: The house was three miles from the station, but, before the dusty hired",
+  "realReadableEnd": "you like it, to be shut up in an iron cage with bars and padded walls, and nothing to do but stick straws in your hair all day, and listen to the howlings and ravings of the other maniacs? Make up your minds to it, all of you. It's no use telling mother.\" \"But it's true,\" said Jane. \"Of course it is, but it's not tr...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 10 detected chapter-based roman numerals sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 10,
+  "likelyPreviewStart": "The house was three miles from the station, but, before the dusty hired",
+  "expectedStartBoundary": "start at cleaned-body line 197: CHAPTER I",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary.",
+      "Many illustration/image placeholders need cleanup review."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Five Children and It",
+    "author": "Author: E. Nesbit",
+    "start": "CHAPTER I The house was three miles from the station, but, before the dusty hired",
+    "end": "you like it, to be shut up in an iron cage with bars and padded walls, and nothing to do but stick straws in your hair all day, and listen to the howlings and ravings of the other maniacs? Make up your minds to it, all of you. It's no use telling mother.\" \"But it's true,\" said Jane. \"Of course it is, but it's not tr..."
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "slug": "the-adventures-of-pinocchio",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Adventures of Pinocchio.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Adventures of Pinocchio",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The Adventures of Pinocchio",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Carlo Collodi"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Carlo Collodi",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based arabic numbers",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L14: CHAPTER 1",
+    "L102: CHAPTER 2",
+    "L236: CHAPTER 3",
+    "L380: CHAPTER 4",
+    "L477: CHAPTER 5",
+    "L550: CHAPTER 6"
+  ],
+  "realReadableStart": "Chapter 1: How it happened that Mastro Cherry, carpenter, found a piece of wood",
+  "realReadableEnd": "t! Remember the old proverb which says: ?Stolen money never bears fruit.? Addio, false friends.? ?Have mercy on us!? ?On us.? ?Addio, false friends. Remember the old proverb which says: ?Bad wheat always makes poor bread!?? ?Do not abandon us.? ?Abandon us,? repeated the Cat. ?Addio, false friends. Remember the old...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 36 detected chapter-based arabic numbers sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 36,
+  "likelyPreviewStart": "How it happened that Mastro Cherry, carpenter, found a piece of wood",
+  "expectedStartBoundary": "start at cleaned-body line 14: CHAPTER 1",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Arabic number boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: The Adventures of Pinocchio",
+    "author": "Author: Carlo Collodi",
+    "start": "CHAPTER 1 How it happened that Mastro Cherry, carpenter, found a piece of wood",
+    "end": "t! Remember the old proverb which says: ?Stolen money never bears fruit.? Addio, false friends.? ?Have mercy on us!? ?On us.? ?Addio, false friends. Remember the old proverb which says: ?Bad wheat always makes poor bread!?? ?Do not abandon us.? ?Abandon us,? repeated the Cat. ?Addio, false friends. Remember the old..."
+  }
+}

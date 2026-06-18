@@ -1,0 +1,83 @@
+{
+  "slug": "the-warden",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Warden.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Warden",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The Warden",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Anthony Trollope"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Anthony Trollope",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L36: Chapter I",
+    "L258: Chapter II",
+    "L676: Chapter III",
+    "L1426: Chapter V",
+    "L1879: Chapter VI",
+    "L2337: Chapter VII"
+  ],
+  "realReadableStart": "Chapter 1: The Rev. Septimus Harding was, a few years since, a beneficed",
+  "realReadableEnd": "ified to them that the income abandoned by Mr Harding would not come to them; and these accounts were confirmed by attorney Finney. They were then informed that Mr Harding's place would be at once filled by another. That the new warden could not be a kinder man they all knew; that he would be a less friendly one mos...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 20 detected chapter-based roman numerals sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 20,
+  "likelyPreviewStart": "The Rev. Septimus Harding was, a few years since, a beneficed",
+  "expectedStartBoundary": "start at cleaned-body line 36: Chapter I",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: The Warden",
+    "author": "Author: Anthony Trollope",
+    "start": "Chapter I The Rev. Septimus Harding was, a few years since, a beneficed",
+    "end": "ified to them that the income abandoned by Mr Harding would not come to them; and these accounts were confirmed by attorney Finney. They were then informed that Mr Harding's place would be at once filled by another. That the new warden could not be a kinder man they all knew; that he would be a less friendly one mos..."
+  }
+}

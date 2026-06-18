@@ -1,0 +1,87 @@
+{
+  "slug": "hero-myths-and-legends-of-the-british-race",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Hero-Myths & Legends of the British Race.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Hero-Myths & Legends of the British Race",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Hero-Myths & Legends of the British Race",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "M. I. Ebbutt"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: M. I. Ebbutt",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "essay/nonfiction",
+  "detectedStructuralConvention": "chapter-based roman numerals",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L715: CHAPTER I: BEOWULF",
+    "L2032: CHAPTER II: THE DREAM OF MAXEN WLEDIG",
+    "L2257: CHAPTER III: THE STORY OF CONSTANTINE AND ELENE",
+    "L2711: CHAPTER IV: THE COMPASSION OF CONSTANTINE",
+    "L3004: CHAPTER V: HAVELOK THE DANE",
+    "L3684: CHAPTER VI: HOWARD THE HALT"
+  ],
+  "realReadableStart": "Chapter 1: BEOWULF: British Race is one which appeals to us in a very special way, since",
+  "realReadableEnd": "ask a favour from a Godwin. Father, I thank you. For years I have fretted against the peace of the land, and thus have incurred your displeasure; but in exile I may range abroad and win my fortune at the sword's point.\" \"Win thy fortune, foolish boy!\" said his father. \"And whither wilt thou fare?\" \"Wherever fate and...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1: BEOWULF",
+  "expectedDefaultReadableSections": "all 16 detected chapter-based roman numerals sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 16,
+  "likelyPreviewStart": "British Race is one which appeals to us in a very special way, since",
+  "expectedStartBoundary": "start at cleaned-body line 715: CHAPTER I: BEOWULF",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary.",
+      "Many illustration/image placeholders need cleanup review.",
+      "Multiple footnote/reference sections need manual section handling."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Hero-Myths & Legends of the British Race",
+    "author": "Author: M. I. Ebbutt",
+    "start": "CHAPTER I: BEOWULF British Race is one which appeals to us in a very special way, since",
+    "end": "ask a favour from a Godwin. Father, I thank you. For years I have fretted against the peace of the land, and thus have incurred your displeasure; but in exile I may range abroad and win my fortune at the sword's point.\" \"Win thy fortune, foolish boy!\" said his father. \"And whither wilt thou fare?\" \"Wherever fate and..."
+  }
+}

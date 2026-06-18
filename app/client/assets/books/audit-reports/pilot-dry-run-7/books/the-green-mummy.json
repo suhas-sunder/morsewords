@@ -1,0 +1,84 @@
+{
+  "slug": "the-green-mummy",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Green Mummy.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Green Mummy",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The Green Mummy",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Fergus Hume"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Fergus Hume",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L70: CHAPTER I. THE LOVERS",
+    "L553: CHAPTER II. PROFESSOR BRADDOCK",
+    "L922: CHAPTER III. A MYSTERIOUS TOMB",
+    "L1222: CHAPTER IV. THE UNEXPECTED",
+    "L1586: CHAPTER V. MYSTERY",
+    "L1879: CHAPTER VI. THE INQUEST"
+  ],
+  "realReadableStart": "Chapter 1: THE LOVERS: ?I am very angry,? pouted the maid.",
+  "realReadableEnd": "revolver. Meanwhile Hervey got away from Date, as the constables came pounding down the jetty and on to the beach. ?Chuck the mummy and nigger overboard and make for the ship,? he yelled, swimming with long strokes towards the boat. This order was quite to the sailors' minds, as they had not reckoned on such a fight...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1: THE LOVERS",
+  "expectedDefaultReadableSections": "all 27 detected chapter-based roman numerals sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 27,
+  "likelyPreviewStart": "?I am very angry,? pouted the maid.",
+  "expectedStartBoundary": "start at cleaned-body line 70: CHAPTER I. THE LOVERS",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: The Green Mummy",
+    "author": "Author: Fergus Hume",
+    "start": "CHAPTER I. THE LOVERS ?I am very angry,? pouted the maid.",
+    "end": "revolver. Meanwhile Hervey got away from Date, as the constables came pounding down the jetty and on to the beach. ?Chuck the mummy and nigger overboard and make for the ship,? he yelled, swimming with long strokes towards the boat. This order was quite to the sailors' minds, as they had not reckoned on such a fight..."
+  }
+}

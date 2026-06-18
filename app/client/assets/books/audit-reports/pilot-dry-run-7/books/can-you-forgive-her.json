@@ -1,0 +1,85 @@
+{
+  "slug": "can-you-forgive-her",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Can You Forgive Her.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Can You Forgive Her?",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Can You Forgive Her?",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Anthony Trollope"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Anthony Trollope",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals with volume divisions",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L190: CHAPTER I.",
+    "L443: CHAPTER II.",
+    "L915: CHAPTER III.",
+    "L1459: CHAPTER IV.",
+    "L1817: CHAPTER V.",
+    "L2270: CHAPTER VI."
+  ],
+  "realReadableStart": "Chapter 1: Mr. Vavasor and His Daughter.",
+  "realReadableEnd": "thee religiously, philosophically, or politico-economically, we are wont to declare that thy chances of happiness are no better,--no better, if they be no worse,--than are those of thine infant neighbour just born, in that farmyard cradle. Who shall say that they are better or that they are worse? Or if they be bett...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 80 detected chapter-based roman numerals with volume divisions sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 80,
+  "likelyPreviewStart": "Mr. Vavasor and His Daughter.",
+  "expectedStartBoundary": "start at cleaned-body line 190: CHAPTER I.",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary.",
+      "Many illustration/image placeholders need cleanup review."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Can You Forgive Her?",
+    "author": "Author: Anthony Trollope",
+    "start": "CHAPTER I. Mr. Vavasor and His Daughter.",
+    "end": "thee religiously, philosophically, or politico-economically, we are wont to declare that thy chances of happiness are no better,--no better, if they be no worse,--than are those of thine infant neighbour just born, in that farmyard cradle. Who shall say that they are better or that they are worse? Or if they be bett..."
+  }
+}
