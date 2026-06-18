@@ -1,0 +1,93 @@
+{
+  "slug": "the-amateur-cracksman",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Amateur Cracksman.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Amateur Cracksman",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The Amateur Cracksman",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "E. W. Hornung"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: E. W. Hornung",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "story collection",
+  "detectedStructuralConvention": "story or titled-section headings after contents",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "THE IDES OF MARCH",
+    "A COSTUME PIECE",
+    "GENTLEMEN AND PLAYERS",
+    "LE PREMIER PAS",
+    "WILFUL MURDER",
+    "NINE POINTS OF THE LAW"
+  ],
+  "realReadableStart": "THE IDES OF MARCH: It was half-past twelve when I returned to the Albany as a last desperate resort. The scene of my disaster was much as I had left it. The baccarat-counters still strewed the table, with the empty glasses and the loaded ash-trays. A window had been opened to let the smoke out, and was letting in the fog instead. Raff...",
+  "realReadableEnd": "ad brought, and laid it gently over his mouth. Two or three stertorous breaths, and the man was a log. I removed the handkerchief; I extracted the keys from his pocket. In less than five minutes I put them back, after winding the picture about my body beneath my Inverness cape. I took some whiskey and soda-water bef...",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "THE IDES OF MARCH",
+  "expectedDefaultReadableSections": "all 8 planned story or titled-section headings after contents sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 8,
+  "likelyPreviewStart": "It was half-past twelve when I returned to the Albany as a last desperate resort. The scene of my disaster was much as I had left it. The baccarat-counters still strewed the table, with the empty glasses and the loaded ash-trays. A window had been opened to let the smoke out, and was letting in the fog instead. Raff...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at THE IDES OF MARCH: It was half-past twelve",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use the 8 contents-listed Raffles story headings beginning with THE IDES OF MARCH; exclude title page, dedication, and contents; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the collection title and individual story titles become sections"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: The Amateur Cracksman",
+    "author": "Author: E. W. Hornung",
+    "start": "THE IDES OF MARCH It was half-past twelve when I returned to the Albany as a last desperate resort. The scene of my disaster was much as I had left it. The baccarat-counters still strewed the table, with the empty glasses and the loaded ash-trays. A window had been opened to let the smoke out, and was letting in the fog instead. Raff...",
+    "end": "ad brought, and laid it gently over his mouth. Two or three stertorous breaths, and the man was a log. I removed the handkerchief; I extracted the keys from his pocket. In less than five minutes I put them back, after winding the picture about my body beneath my Inverness cape. I took some whiskey and soda-water bef..."
+  }
+}

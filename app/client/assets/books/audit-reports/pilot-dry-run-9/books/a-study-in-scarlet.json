@@ -1,0 +1,92 @@
+{
+  "slug": "a-study-in-scarlet",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/A Study in Scarlet.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "A Study in Scarlet",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: A Study in Scarlet",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Arthur Conan Doyle"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Arthur Conan Doyle",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals with part divisions",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L39: CHAPTER I.",
+    "L366: CHAPTER II.",
+    "L744: CHAPTER III.",
+    "L1205: CHAPTER IV.",
+    "L1487: CHAPTER V.",
+    "L1766: CHAPTER VI."
+  ],
+  "realReadableStart": "Chapter 1: MR. SHERLOCK HOLMES. In the year 1878 I took my degree of Doctor of Medicine of the University of London, and proceeded to Netley to go through the course prescribed for surgeons in the army. Having completed my studies there, I was duly attached to the Fifth Northumberland Fusiliers as Assistant Surgeon. The regime...",
+  "realReadableEnd": "out. If he died like a dog among the mountains, what was to become of his revenge then? And yet such a death was sure to overtake him if he persisted. He felt that that was to play his enemy?s game, so he reluctantly returned to the old Nevada mines, there to recruit his health and to amass money enough to allow him...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 13 planned chapter-based roman numerals with part divisions sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 13,
+  "likelyPreviewStart": "MR. SHERLOCK HOLMES. In the year 1878 I took my degree of Doctor of Medicine of the University of London, and proceeded to Netley to go through the course prescribed for surgeons in the army. Having completed my studies there, I was duly attached to the Fifth Northumberland Fusiliers as Assistant Surgeon. The regime...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at cleaned-body line 39: CHAPTER I.",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "later ordinal headings are present; verify Chapter/Part/Book 1 remains included and selected first",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "needs manual sectioning review",
+    "structureRedFlags": [
+      "TOC/body confusion is likely"
+    ],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: A Study in Scarlet",
+    "author": "Author: Arthur Conan Doyle",
+    "start": "Chapter 1 MR. SHERLOCK HOLMES. In the year 1878 I took my degree of Doctor of Medicine of the University of London, and proceeded to Netley to go through the course prescribed for surgeons in the army. Having completed my studies there, I was duly attached to the Fifth Northumberland Fusiliers as Assistant Surgeon. The regime...",
+    "end": "out. If he died like a dog among the mountains, what was to become of his revenge then? And yet such a death was sure to overtake him if he persisted. He felt that that was to play his enemy?s game, so he reluctantly returned to the old Nevada mines, there to recruit his health and to amass money enough to allow him..."
+  }
+}

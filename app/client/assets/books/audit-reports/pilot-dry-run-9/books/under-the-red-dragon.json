@@ -1,0 +1,91 @@
+{
+  "slug": "under-the-red-dragon",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Under the Red Dragon.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Under the Red Dragon: A Novel",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Under the Red Dragon: A Novel",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "James Grant"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: James Grant",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L95: CHAPTER I.--THE INVITATION.",
+    "L336: CHAPTER II.--THE MOTH AND THE CANDLE.",
+    "L559: CHAPTER III--By EXPRESS.",
+    "L787: CHAPTER IV.--WINNY AND DORA LLOYD.",
+    "L1065: CHAPTER V.--CRAIGADERYN COURT.",
+    "L1330: CHAPTER VI.--THREE GRACES."
+  ],
+  "realReadableStart": "Chapter 1: --THE INVITATION: \"And _she_ is to be there--nay, is there already; so one more chance is given me to meet her. But for what?--to part again silently, and more helplessly bewitched than ever, perhaps. Ah, never will she learn to love me as I love her!\" thought I, as I turned over my old friend's letter, not venturing, however, to giv...",
+  "realReadableEnd": "was left in the rear, tied to a powder caisson; but he broke loose, came to the front at full gallop, and was recaptured under fire; the soldiers afterwards attached to his collar a copper medal, made from a pan found among the captured cooking utensils of General Coronini. His death was formally announced by the ar...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": true
+  },
+  "expectedFirstDefaultSection": "Chapter 1: --THE INVITATION",
+  "expectedDefaultReadableSections": "all 61 planned chapter-based roman numerals sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 61,
+  "likelyPreviewStart": "\"And _she_ is to be there--nay, is there already; so one more chance is given me to meet her. But for what?--to part again silently, and more helplessly bewitched than ever, perhaps. Ah, never will she learn to love me as I love her!\" thought I, as I turned over my old friend's letter, not venturing, however, to giv...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at cleaned-body line 95: CHAPTER I.--THE INVITATION.",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "later ordinal headings are present; verify Chapter/Part/Book 1 remains included and selected first"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "footnotes or page markers may need cleanup before default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "footnotes or page markers detected"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Under the Red Dragon: A Novel",
+    "author": "Author: James Grant",
+    "start": "Chapter 1: --THE INVITATION \"And _she_ is to be there--nay, is there already; so one more chance is given me to meet her. But for what?--to part again silently, and more helplessly bewitched than ever, perhaps. Ah, never will she learn to love me as I love her!\" thought I, as I turned over my old friend's letter, not venturing, however, to giv...",
+    "end": "was left in the rear, tied to a powder caisson; but he broke loose, came to the front at full gallop, and was recaptured under fire; the soldiers afterwards attached to his collar a copper medal, made from a pan found among the captured cooking utensils of General Coronini. His death was formally announced by the ar..."
+  }
+}

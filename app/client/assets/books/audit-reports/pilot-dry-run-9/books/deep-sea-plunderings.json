@@ -1,0 +1,92 @@
+{
+  "slug": "deep-sea-plunderings",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Deep-Sea Plunderings.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Deep-Sea Plunderings",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Deep-Sea Plunderings",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Frank Thomas Bullen"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Frank Thomas Bullen",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "essay/nonfiction",
+  "detectedStructuralConvention": "story or titled-section headings after contents/illustration lists",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "THROUGH FIRE AND WATER",
+    "THE OLD HOUSE ON THE HILL",
+    "YOU SING",
+    "THE DEBT OF THE WHALE",
+    "THE SKIPPER'S WIFE",
+    "A SCIENTIFIC CRUISE"
+  ],
+  "realReadableStart": "THROUGH FIRE AND WATER: What a clumsy, barrel-bellied old hooker she is, Field!? Thus, closing his telescope with a bang, the elegant chief officer of the Mirzapore, steel four-masted clipper ship of 5000 tons burden, presently devouring the degrees of longitude that lay between her and Melbourne on the arc of a composite great circle, at...",
+  "realReadableEnd": "esses all these qualities.... Almost bare of synthetical decoration, his paragraphs are stirring because they are real. We read at times--as we have read the great masters of romance--breathlessly.?--_The Critic._ =The Translation of a Savage.= $1.25. ?A book which no one will be satisfied to put down until the end...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "THROUGH FIRE AND WATER",
+  "expectedDefaultReadableSections": "all 24 planned story or titled-section headings after contents/illustration lists sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 24,
+  "likelyPreviewStart": "What a clumsy, barrel-bellied old hooker she is, Field!? Thus, closing his telescope with a bang, the elegant chief officer of the Mirzapore, steel four-masted clipper ship of 5000 tons burden, presently devouring the degrees of longitude that lay between her and Melbourne on the arc of a composite great circle, at...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at THROUGH FIRE AND WATER: What a clumsy, barrel-bellied old hooker she is",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use the 24 contents-listed story headings beginning with THROUGH FIRE AND WATER; exclude prefatory note, contents, illustration list, and publisher ads; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Deep-Sea Plunderings",
+    "author": "Author: Frank Thomas Bullen",
+    "start": "THROUGH FIRE AND WATER What a clumsy, barrel-bellied old hooker she is, Field!? Thus, closing his telescope with a bang, the elegant chief officer of the Mirzapore, steel four-masted clipper ship of 5000 tons burden, presently devouring the degrees of longitude that lay between her and Melbourne on the arc of a composite great circle, at...",
+    "end": "esses all these qualities.... Almost bare of synthetical decoration, his paragraphs are stirring because they are real. We read at times--as we have read the great masters of romance--breathlessly.?--_The Critic._ =The Translation of a Savage.= $1.25. ?A book which no one will be satisfied to put down until the end..."
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "slug": "five-little-peppers-at-school",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Five Little Peppers at School.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Five Little Peppers at School",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Five Little Peppers at School",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Margaret Sidney"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Margaret Sidney",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "story collection",
+  "detectedStructuralConvention": "bare roman chapter-title headings",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "I HARD TIMES FOR JOEL",
+    "II THE TENNIS MATCH",
+    "III A NARROW ESCAPE",
+    "IV OF VARIOUS THINGS",
+    "V AT SILVIA HORNE'S",
+    "VI THE ACCIDENT"
+  ],
+  "realReadableStart": "I HARD TIMES FOR JOEL: Come on, Pepper.\" One of the boys rushed down the dormitory hall, giving a bang on Joel's door as he passed. \"All right,\" said Joel a bit crossly, \"I'm coming.\" \"Last bell,\" came back on the wind. Joel threw his tennis racket on the bed, and scowled. Just then a flaxen head peeped in, and two big eyes stared at him....",
+  "realReadableEnd": "lope to Mr. King. \"It's for Mrs. Fisher,\" said the old gentleman. So the yellow envelope went down the table-length, the color going out of Polly's cheek; and she didn't dare to look at Mamsie's eyes. \"Oh--the boys!\" gasped Polly. \"Jasper, do you suppose?\"--What, she didn't finish; for Mother Fisher just then cried...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "I HARD TIMES FOR JOEL",
+  "expectedDefaultReadableSections": "all 25 planned bare roman chapter-title headings sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 25,
+  "likelyPreviewStart": "Come on, Pepper.\" One of the boys rushed down the dormitory hall, giving a bang on Joel's door as he passed. \"All right,\" said Joel a bit crossly, \"I'm coming.\" \"Last bell,\" came back on the wind. Joel threw his tennis racket on the bed, and scowled. Just then a flaxen head peeped in, and two big eyes stared at him....",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at I HARD TIMES FOR JOEL: Come on, Pepper.",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use the 25 contents-listed roman chapter headings beginning with I HARD TIMES FOR JOEL; exclude title page, book list, contents, and illustrations; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the collection title and individual story titles become sections"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: Five Little Peppers at School",
+    "author": "Author: Margaret Sidney",
+    "start": "I HARD TIMES FOR JOEL Come on, Pepper.\" One of the boys rushed down the dormitory hall, giving a bang on Joel's door as he passed. \"All right,\" said Joel a bit crossly, \"I'm coming.\" \"Last bell,\" came back on the wind. Joel threw his tennis racket on the bed, and scowled. Just then a flaxen head peeped in, and two big eyes stared at him....",
+    "end": "lope to Mr. King. \"It's for Mrs. Fisher,\" said the old gentleman. So the yellow envelope went down the table-length, the color going out of Polly's cheek; and she didn't dare to look at Mamsie's eyes. \"Oh--the boys!\" gasped Polly. \"Jasper, do you suppose?\"--What, she didn't finish; for Mother Fisher just then cried..."
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "slug": "the-black-star-passes",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Black Star Passes.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Black Star Passes",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The Black Star Passes",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Jr. John W. Campbell"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Jr. John W. Campbell",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "standalone roman numeral sections with book divisions",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L493: I.",
+    "L786: II",
+    "L1312: III",
+    "L1784: IV",
+    "L2537: II",
+    "L2738: III"
+  ],
+  "realReadableStart": "Chapter 1: On the thirty-ninth floor of a large New York apartment two young men were lounging about after a strenuous game of tennis. The blue tendrils of smoke from their pipes rose slowly, to be drawn away by the efficient ventilating system. The taller of the two seemed to be doing most of the talking. In the positions the...",
+  "realReadableEnd": "come into sight.\" Swiftly Arcot sprang forward and caught his arm. \"Lord--don't do that, Wade--there's too much stuff here that we don't know anything about. Too much chance of your smashing us with him. I'm going to try to get around to the other side of this machine and see what I can do, while you fellows keep hi...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 16 planned standalone roman numeral sections with book divisions sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 16,
+  "likelyPreviewStart": "On the thirty-ninth floor of a large New York apartment two young men were lounging about after a strenuous game of tennis. The blue tendrils of smoke from their pipes rose slowly, to be drawn away by the efficient ventilating system. The taller of the two seemed to be doing most of the talking. In the positions the...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at cleaned-body line 493: I.",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Standalone Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "later ordinal headings are present; verify Chapter/Part/Book 1 remains included and selected first",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: The Black Star Passes",
+    "author": "Author: Jr. John W. Campbell",
+    "start": "Chapter 1 On the thirty-ninth floor of a large New York apartment two young men were lounging about after a strenuous game of tennis. The blue tendrils of smoke from their pipes rose slowly, to be drawn away by the efficient ventilating system. The taller of the two seemed to be doing most of the talking. In the positions the...",
+    "end": "come into sight.\" Swiftly Arcot sprang forward and caught his arm. \"Lord--don't do that, Wade--there's too much stuff here that we don't know anything about. Too much chance of your smashing us with him. I'm going to try to get around to the other side of this machine and see what I can do, while you fellows keep hi..."
+  }
+}

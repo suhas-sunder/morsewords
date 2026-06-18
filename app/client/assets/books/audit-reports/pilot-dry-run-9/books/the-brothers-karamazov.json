@@ -1,0 +1,93 @@
+{
+  "slug": "the-brothers-karamazov",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Brothers Karamazov.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Brothers Karamazov",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The Brothers Karamazov",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Fyodor Dostoyevsky"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Fyodor Dostoyevsky",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals with book divisions and part divisions",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L143: Chapter I.",
+    "L265: Chapter II.",
+    "L380: Chapter III.",
+    "L613: Chapter IV.",
+    "L919: Chapter V.",
+    "L1462: Chapter II."
+  ],
+  "realReadableStart": "Chapter 1: Fyodor Pavlovitch Karamazov Alexey Fyodorovitch Karamazov was the third son of Fyodor Pavlovitch Karamazov, a land owner well known in our district in his own day, and still remembered among us owing to his gloomy and tragic death, which happened thirteen years ago, and which I shall describe in its proper place. Fo...",
+  "realReadableEnd": "ned!? Alyosha answered, half laughing, half enthusiastic. ?Ah, how splendid it will be!? broke from Kolya. ?Well, now we will finish talking and go to his funeral dinner. Don?t be put out at our eating pancakes?it?s a very old custom and there?s something nice in that!? laughed Alyosha. ?Well, let us go! And now we...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 84 planned chapter-based roman numerals with book divisions and part divisions sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 84,
+  "likelyPreviewStart": "Fyodor Pavlovitch Karamazov Alexey Fyodorovitch Karamazov was the third son of Fyodor Pavlovitch Karamazov, a land owner well known in our district in his own day, and still remembered among us owing to his gloomy and tragic death, which happened thirteen years ago, and which I shall describe in its proper place. Fo...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at cleaned-body line 143: Chapter I.",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "later ordinal headings are present; verify Chapter/Part/Book 1 remains included and selected first",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Multiple footnote/reference sections need manual section handling."
+    ],
+    "structureRecommendedHandling": "needs manual sectioning review",
+    "structureRedFlags": [
+      "TOC/body confusion is likely",
+      "body headings were found but rejected by the selected strategy"
+    ],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: The Brothers Karamazov",
+    "author": "Author: Fyodor Dostoyevsky",
+    "start": "Chapter 1 Fyodor Pavlovitch Karamazov Alexey Fyodorovitch Karamazov was the third son of Fyodor Pavlovitch Karamazov, a land owner well known in our district in his own day, and still remembered among us owing to his gloomy and tragic death, which happened thirteen years ago, and which I shall describe in its proper place. Fo...",
+    "end": "ned!? Alyosha answered, half laughing, half enthusiastic. ?Ah, how splendid it will be!? broke from Kolya. ?Well, now we will finish talking and go to his funeral dinner. Don?t be put out at our eating pancakes?it?s a very old custom and there?s something nice in that!? laughed Alyosha. ?Well, let us go! And now we..."
+  }
+}

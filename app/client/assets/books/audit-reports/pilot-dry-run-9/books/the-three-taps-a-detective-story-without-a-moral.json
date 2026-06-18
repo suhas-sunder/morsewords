@@ -1,0 +1,90 @@
+{
+  "slug": "the-three-taps-a-detective-story-without-a-moral",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The three taps - A detective story without a moral.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Three Taps",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The three taps",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "Ronald Arbuthnott Knox"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Ronald Arbuthnott Knox",
+    "lineNumber": 14
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L42: Chapter I",
+    "L340: Chapter II",
+    "L615: Chapter III",
+    "L885: Chapter IV",
+    "L1169: Chapter V",
+    "L1451: Chapter VI"
+  ],
+  "realReadableStart": "Chapter 1: The Euthanasia Policy The principles of insurance, they tell us, were not hidden from our Anglo-Saxon forefathers. How anybody had the enterprise in those rough-and-tumble days to guarantee a client against ?fire, water, robbery or other calamity? remains a problem for the historian; the more so as it appears that m...",
+  "realReadableEnd": "his, not a forgery. You will see why I mention that later on. This is how the letter runs: ??My dear Lord Bishop: ??Pursuant to our conversation of Thursday evening last, it will be within your Lordship?s memory that upon that occasion I asserted the right of a man, in given circumstances, to take his own life, part...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 25 planned chapter-based roman numerals sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 25,
+  "likelyPreviewStart": "The Euthanasia Policy The principles of insurance, they tell us, were not hidden from our Anglo-Saxon forefathers. How anybody had the enterprise in those rough-and-tumble days to guarantee a client against ?fire, water, robbery or other calamity? remains a problem for the historian; the more so as it appears that m...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at cleaned-body line 42: Chapter I",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "later ordinal headings are present; verify Chapter/Part/Book 1 remains included and selected first"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "safe for normal processing",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: The three taps",
+    "author": "Author: Ronald Arbuthnott Knox",
+    "start": "Chapter 1 The Euthanasia Policy The principles of insurance, they tell us, were not hidden from our Anglo-Saxon forefathers. How anybody had the enterprise in those rough-and-tumble days to guarantee a client against ?fire, water, robbery or other calamity? remains a problem for the historian; the more so as it appears that m...",
+    "end": "his, not a forgery. You will see why I mention that later on. This is how the letter runs: ??My dear Lord Bishop: ??Pursuant to our conversation of Thursday evening last, it will be within your Lordship?s memory that upon that occasion I asserted the right of a man, in given circumstances, to take his own life, part..."
+  }
+}

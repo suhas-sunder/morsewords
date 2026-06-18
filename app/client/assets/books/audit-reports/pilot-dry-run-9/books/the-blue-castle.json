@@ -1,0 +1,90 @@
+{
+  "slug": "the-blue-castle",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Blue Castle.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Blue Castle: a novel",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: The Blue Castle: a novel",
+    "lineNumber": 11
+  },
+  "expectedAuthor": [
+    "L. M. Montgomery"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: L. M. Montgomery",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "chapter-based roman numerals",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "L66: CHAPTER I",
+    "L413: CHAPTER II",
+    "L526: CHAPTER III",
+    "L718: CHAPTER IV",
+    "L803: CHAPTER V",
+    "L961: CHAPTER VI"
+  ],
+  "realReadableStart": "Chapter 1: If it had not rained on a certain May morning Valancy Stirling?s whole life would have been entirely different. She would have gone, with the rest of her clan, to Aunt Wellington?s engagement picnic and Dr. Trent would have gone to Montreal. But it did rain and you shall hear what happened to her because of it. Vala...",
+  "realReadableEnd": "giana was it given. Valancy was in tears. ?Don?t cry, Moonlight. We?ll be back next summer. And now we?re off for a real honeymoon.? Valancy smiled through her tears. She was so happy that her happiness terrified her. But, despite the delights before her??the glory that was Greece and the grandeur that was Rome??lur...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Chapter 1",
+  "expectedDefaultReadableSections": "all 45 planned chapter-based roman numerals sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 45,
+  "likelyPreviewStart": "If it had not rained on a certain May morning Valancy Stirling?s whole life would have been entirely different. She would have gone, with the rest of her clan, to Aunt Wellington?s engagement picnic and Dr. Trent would have gone to Montreal. But it did rain and you shall hear what happened to her because of it. Vala...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at cleaned-body line 66: CHAPTER I",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use Chapter plus Roman numeral boundaries; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "later ordinal headings are present; verify Chapter/Part/Book 1 remains included and selected first"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "high",
+    "endBoundaryConfidence": "high"
+  },
+  "snippets": {
+    "title": "Title: The Blue Castle: a novel",
+    "author": "Author: L. M. Montgomery",
+    "start": "Chapter 1 If it had not rained on a certain May morning Valancy Stirling?s whole life would have been entirely different. She would have gone, with the rest of her clan, to Aunt Wellington?s engagement picnic and Dr. Trent would have gone to Montreal. But it did rain and you shall hear what happened to her because of it. Vala...",
+    "end": "giana was it given. Valancy was in tears. ?Don?t cry, Moonlight. We?ll be back next summer. And now we?re off for a real honeymoon.? Valancy smiled through her tears. She was so happy that her happiness terrified her. But, despite the delights before her??the glory that was Greece and the grandeur that was Rome??lur..."
+  }
+}

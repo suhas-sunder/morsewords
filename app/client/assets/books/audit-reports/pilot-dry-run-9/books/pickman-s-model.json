@@ -1,0 +1,87 @@
+{
+  "slug": "pickman-s-model",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/Pickman's Model.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Pickman's Model",
+  "titleEvidence": {
+    "source": "Gutenberg Title line",
+    "text": "Title: Pickman's Model",
+    "lineNumber": 16
+  },
+  "expectedAuthor": [
+    "H. P. Lovecraft (1890-1937)"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: H. P. Lovecraft (1890-1937)",
+    "lineNumber": 18
+  },
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "First readable prose: You needn't think I'm crazy"
+  ],
+  "realReadableStart": "Pickman's Model: You needn't think I'm crazy, Eliot--plenty of others have queerer prejudices than this. Why don't you laugh at Oliver's grandfather, who won't ride in a motor? If I don't like that damned subway, it's my own business; and we got here more quickly anyhow in the taxi. We'd have had to walk up the hill from Park Street...",
+  "realReadableEnd": "r that monster. That last scare had come while I was reaching to uncurl it, and it seems I had vacantly crumpled it into my pocket. But here's the coffee--take it black, Eliot, if you're wise. Well--that paper wasn't a photograph of any background, after all. What it showed was simply the monstrous being he was pain...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Pickman's Model",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "You needn't think I'm crazy, Eliot--plenty of others have queerer prejudices than this. Why don't you laugh at Oliver's grandfather, who won't ride in a motor? If I don't like that damned subway, it's my own business; and we got here more quickly anyhow in the taxi. We'd have had to walk up the hill from Park Street...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: You needn't think I'm crazy",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "needs manual sectioning review",
+    "structureRedFlags": [
+      "start/end boundary confidence is low"
+    ],
+    "startBoundaryConfidence": "low",
+    "endBoundaryConfidence": "low"
+  },
+  "snippets": {
+    "title": "Title: Pickman's Model",
+    "author": "Author: H. P. Lovecraft (1890-1937)",
+    "start": "Pickman's Model You needn't think I'm crazy, Eliot--plenty of others have queerer prejudices than this. Why don't you laugh at Oliver's grandfather, who won't ride in a motor? If I don't like that damned subway, it's my own business; and we got here more quickly anyhow in the taxi. We'd have had to walk up the hill from Park Street...",
+    "end": "r that monster. That last scare had come while I was reaching to uncurl it, and it seems I had vacantly crumpled it into my pocket. But here's the coffee--take it black, Eliot, if you're wise. Well--that paper wasn't a photograph of any background, after all. What it showed was simply the monstrous being he was pain..."
+  }
+}
