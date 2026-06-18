@@ -2065,9 +2065,12 @@
     {
       "slug": "the-count-of-monte-cristo-gutenberg-1184",
       "title": "The Count of Monte Cristo",
-      "author": [],
-      "contentVersion": "9b2e30400e39fe36",
-      "contentHash": "9b2e30400e39fe36b0f64c5eba158585482028249526bc6b9821c6f285d82276",
+      "author": [
+        "Alexandre Dumas",
+        "Auguste Maquet"
+      ],
+      "contentVersion": "cf28db8866481685",
+      "contentHash": "cf28db8866481685085bd7ac3d9c91e28d9670a3e36aa93aeb16ea633d9da720",
       "language": "und",
       "description": "",
       "subjects": [],
@@ -2505,9 +2508,11 @@
     {
       "slug": "the-happy-family",
       "title": "The Happy Family",
-      "author": [],
-      "contentVersion": "9f46408610312e1f",
-      "contentHash": "9f46408610312e1f4eb15807697f7e6666e899fe91c5d00657ecac3cbfa13592",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "b0acef6aa1adb63b",
+      "contentHash": "b0acef6aa1adb63bd61e000e0916f0e0917733aa91add708886b83f955df0f34",
       "language": "und",
       "description": "",
       "subjects": [],

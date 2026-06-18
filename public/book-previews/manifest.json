@@ -468,10 +468,10 @@
     {
       "slug": "the-count-of-monte-cristo-gutenberg-1184",
       "path": "/book-previews/the-count-of-monte-cristo-gutenberg-1184.preview.json",
-      "contentVersion": "9b2e30400e39fe36",
-      "contentHash": "9b2e30400e39fe36b0f64c5eba158585482028249526bc6b9821c6f285d82276",
+      "contentVersion": "cf28db8866481685",
+      "contentHash": "cf28db8866481685085bd7ac3d9c91e28d9670a3e36aa93aeb16ea633d9da720",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 12213,
+      "previewBytes": 12194,
       "previewCharacterCount": 10973,
       "estimatedRuntimeSeconds": 3600,
       "truncated": true
@@ -567,10 +567,10 @@
     {
       "slug": "the-happy-family",
       "path": "/book-previews/the-happy-family.preview.json",
-      "contentVersion": "9f46408610312e1f",
-      "contentHash": "9f46408610312e1f4eb15807697f7e6666e899fe91c5d00657ecac3cbfa13592",
+      "contentVersion": "b0acef6aa1adb63b",
+      "contentHash": "b0acef6aa1adb63bd61e000e0916f0e0917733aa91add708886b83f955df0f34",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 7877,
+      "previewBytes": 7858,
       "previewCharacterCount": 6920,
       "estimatedRuntimeSeconds": 2400,
       "truncated": false

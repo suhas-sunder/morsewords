@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "id": "the-count-of-monte-cristo-gutenberg-1184",
   "title": "The Count of Monte Cristo",
-  "author": "",
-  "contentVersion": "9b2e30400e39fe36",
-  "contentHash": "9b2e30400e39fe36b0f64c5eba158585482028249526bc6b9821c6f285d82276",
+  "author": "Alexandre Dumas, Auguste Maquet",
+  "contentVersion": "cf28db8866481685",
+  "contentHash": "cf28db8866481685085bd7ac3d9c91e28d9670a3e36aa93aeb16ea633d9da720",
   "source": {
     "provider": "Project Gutenberg",
     "gutenbergId": "1184",

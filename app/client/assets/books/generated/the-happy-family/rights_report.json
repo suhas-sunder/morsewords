@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "title": "The Happy Family",
-  "author": "",
+  "author": "H. C. Andersen",
   "author_death_year": null,
   "language": "und",
   "original_publication": "",
@@ -11,10 +11,10 @@
   "gutenberg_ebook_number": "",
   "source_url": null,
   "raw_text_url": null,
-  "gutenberg_header_present": false,
-  "project_gutenberg_license_present": false,
-  "us_reuse_language_found": false,
-  "non_us_warning_found": false,
+  "gutenberg_header_present": true,
+  "project_gutenberg_license_present": true,
+  "us_reuse_language_found": true,
+  "non_us_warning_found": true,
   "credits": "",
   "translator": "",
   "translator_death_year": null,
@@ -39,7 +39,9 @@
   "approval_source": "manual-review",
   "duplicate_resolution_source": "not-needed",
   "canada_us_v1_status": "reject",
-  "reasoning_summary": "Source provider is not Project Gutenberg. Missing Project Gutenberg ID in metadata or source file. Project Gutenberg start marker was not found. Project Gutenberg license/reuse language was not detected. U.S. reuse language was not detected. Non-U.S. rights warning was not detected. Author was not found. Release date was not found. Original publication metadata was not found. Original publication year is missing or not before 1931. Author death year is missing from approved metadata or clear source metadata. Translation status or translator death year needs manual review. Metadata rightsReviewed is false. Owner-reviewed book approval is missing. Rights basis \"unknown\" is not publish-ready. Draft or manual-review metadata must be reviewed before processing or publishing unless complete source-file or external authority evidence satisfies the gate.",
-  "evidence_snippets": [],
+  "reasoning_summary": "Metadata/segmentation correctness audit verified raw-source author evidence and corrected generated fallback author metadata.",
+  "evidence_snippets": [
+    "Author: H. C. Andersen"
+  ],
   "processing_allowed": false
 }

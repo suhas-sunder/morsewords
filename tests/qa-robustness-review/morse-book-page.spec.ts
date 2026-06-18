@@ -95,6 +95,8 @@ type TestBookContentFixture = {
 };
 
 type TestGeneratedBookManifestFixture = {
+  title: string;
+  author: string[];
   sections: TestBookManifestSection[];
 };
 
@@ -119,10 +121,14 @@ function readPublicBookRuntimeSettingsKey(slug: string) {
 }
 
 function readGeneratedDefaultSectionIds(slug: string) {
-  const manifest = readJson<TestGeneratedBookManifestFixture>(
+  const manifest = readGeneratedBookManifest(slug);
+  return defaultSectionIdsFromSections(manifest.sections);
+}
+
+function readGeneratedBookManifest(slug: string) {
+  return readJson<TestGeneratedBookManifestFixture>(
     `app/client/assets/books/generated/${slug}/manifest.json`,
   );
-  return defaultSectionIdsFromSections(manifest.sections);
 }
 
 async function removeBookRuntimeSettings(page: Page, slug: string) {
@@ -1301,6 +1307,9 @@ test.describe("Morse book page foundation", () => {
   test("uses individual Elderbush title and default story start", async ({
     page,
   }) => {
+    expect(readGeneratedBookManifest(THE_ELDERBUSH_SLUG).author).toEqual([
+      "H. C. Andersen",
+    ]);
     expect(readGeneratedDefaultSectionIds(THE_ELDERBUSH_SLUG)).toEqual([
       "chapter-001",
     ]);
@@ -1309,6 +1318,8 @@ test.describe("Morse book page foundation", () => {
     await openGeneratedBookPreview(page, THE_ELDERBUSH_PREVIEW_PATH);
 
     await expect(page.locator("h1")).toContainText("The Elderbush");
+    await expect(page.getByText("H. C. Andersen").first()).toBeVisible();
+    await expect(page.locator("body")).not.toContainText(/Unknown author/i);
     await expectSelectedBookSectionIds(page, ["chapter-001"]);
     await expect(
       page.locator("[data-mw-morse-book-translator-source-sections]"),
@@ -1327,6 +1338,35 @@ test.describe("Morse book page foundation", () => {
     expect(
       normalizedPreviewText((await sourcePreview.textContent()) ?? "").startsWith(
         "THE ELDERBUSH Once upon a time",
+      ),
+    ).toBe(true);
+  });
+
+  test("repairs previous Unknown author metadata for Happy Family", async ({
+    page,
+  }) => {
+    const manifest = readGeneratedBookManifest(THE_HAPPY_FAMILY_SLUG);
+    expect(manifest.title).toBe("The Happy Family");
+    expect(manifest.author).toEqual(["H. C. Andersen"]);
+    expect(readGeneratedDefaultSectionIds(THE_HAPPY_FAMILY_SLUG)).toEqual([
+      "chapter-001",
+    ]);
+
+    await removeBookRuntimeSettings(page, THE_HAPPY_FAMILY_SLUG);
+    await openGeneratedBookPreview(page, THE_HAPPY_FAMILY_PREVIEW_PATH);
+
+    await expect(page.locator("h1")).toContainText("The Happy Family");
+    await expect(page.getByText("H. C. Andersen").first()).toBeVisible();
+    await expect(page.locator("body")).not.toContainText(/Unknown author/i);
+    await expectSelectedBookSectionIds(page, ["chapter-001"]);
+
+    const sourcePreview = page.locator("[data-mw-morse-book-source-preview]");
+    await expect(sourcePreview).toContainText("THE HAPPY FAMILY");
+    await expect(sourcePreview).toContainText("largest green leaf");
+    await expect(sourcePreview).not.toContainText("ANDERSEN'S FAIRY TALES");
+    expect(
+      normalizedPreviewText((await sourcePreview.textContent()) ?? "").startsWith(
+        "THE HAPPY FAMILY Really",
       ),
     ).toBe(true);
   });

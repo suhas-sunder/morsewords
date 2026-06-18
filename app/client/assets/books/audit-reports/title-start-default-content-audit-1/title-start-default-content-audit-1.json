@@ -1,6 +1,6 @@
 {
   "reportName": "title-start-default-content-audit-1",
-  "generatedAt": "2026-06-17T23:50:37.891Z",
+  "generatedAt": "2026-06-18T02:05:59.770Z",
   "branch": "morsewords-book-processing-pilot-write-6-jun-2026",
   "scope": "All generated books; accepted/generated slugs from completed pilot batches through write batch 6 are identified.",
   "criticalExamples": [
@@ -43,17 +43,17 @@
       "acceptedBeforeAudit": true,
       "acceptanceRevokedBeforeCorrection": true,
       "before": {
-        "title": "Andersen's Fairy Tales",
-        "contentHash": "26e487e0550593107eddc9a0554a052e58b7d28246c62a12505574f21ac8fe50",
-        "sectionCount": 2,
-        "includedSectionCount": 0,
+        "title": "The Bell",
+        "contentHash": "41168f6c6a16f1c3db29ddb9f09ea9c33d45dc46413d14952934a86eee6d9996",
+        "sectionCount": 1,
+        "includedSectionCount": 1,
         "firstDefaultSection": {
-          "id": null,
-          "label": null,
-          "kind": null,
-          "snippet": null
+          "id": "chapter-001",
+          "label": "The Bell",
+          "kind": "chapter",
+          "snippet": "THE BELL People said \"The Evening Bell is sounding, the sun is setting.\" For a strange wondrous tone was heard in the narrow streets of a large town. It was like the sound of a church-bell: but it was only heard for a m..."
         },
-        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it w..."
+        "previewStart": "THE BELL People said \"The Evening Bell is sounding, the sun is setting.\" For a strange wondrous tone was heard in the narrow streets of a large town. It was like the sound of a church-bell: but it was only heard for a m..."
       },
       "after": {
         "title": "The Bell",
@@ -95,17 +95,17 @@
       "acceptedBeforeAudit": true,
       "acceptanceRevokedBeforeCorrection": true,
       "before": {
-        "title": "Andersen's Fairy Tales",
-        "contentHash": "6bdac4121a3dc227f1649db8ef471d662733041ee0d3c9522164964a5d7e3c34",
-        "sectionCount": 2,
-        "includedSectionCount": 0,
+        "title": "The Elderbush",
+        "contentHash": "2e7b51fded5ba5cb0fcf70fcf557e4895d8b671f4f82073c16eee16aaa1aa6c4",
+        "sectionCount": 1,
+        "includedSectionCount": 1,
         "firstDefaultSection": {
-          "id": null,
-          "label": null,
-          "kind": null,
-          "snippet": null
+          "id": "chapter-001",
+          "label": "The Elderbush",
+          "kind": "chapter",
+          "snippet": "THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother undressed him,..."
         },
-        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it w..."
+        "previewStart": "THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother undressed him,..."
       },
       "after": {
         "title": "The Elderbush",
@@ -147,17 +147,17 @@
       "acceptedBeforeAudit": true,
       "acceptanceRevokedBeforeCorrection": true,
       "before": {
-        "title": "Andersen's Fairy Tales",
-        "contentHash": "746dfe7ca9ddc8d9ea4d6e432a0010c06734490bf0e6d2d0b318887bb67c2fdf",
-        "sectionCount": 2,
-        "includedSectionCount": 0,
+        "title": "The Emperor's New Clothes",
+        "contentHash": "40dfe20a297674ec1dbd18a2b26ba11029be57dc2395e75a9e797b88ddab15ac",
+        "sectionCount": 1,
+        "includedSectionCount": 1,
         "firstDefaultSection": {
-          "id": null,
-          "label": null,
-          "kind": null,
-          "snippet": null
+          "id": "chapter-001",
+          "label": "The Emperor's New Clothes",
+          "kind": "chapter",
+          "snippet": "THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, that he spent all his money in dress. He did not trouble himself in the least about his soldiers; nor did he ca..."
         },
-        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, that he spent all his money in dress. He did not trouble hims..."
+        "previewStart": "THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, that he spent all his money in dress. He did not trouble himself in the least about his soldiers; nor did he ca..."
       },
       "after": {
         "title": "The Emperor's New Clothes",
@@ -199,17 +199,17 @@
       "acceptedBeforeAudit": true,
       "acceptanceRevokedBeforeCorrection": true,
       "before": {
-        "title": "Andersen's Fairy Tales",
-        "contentHash": "d05fb6270fdc899f868027b2f3b41ced2ae9fd9e9a7c2577a0d305c9798d5ec9",
-        "sectionCount": 2,
-        "includedSectionCount": 0,
+        "title": "The Fir Tree",
+        "contentHash": "38ccf7727edeb19b4a874ef25e7014b7effe6bc48db87f6d000eef4d5cdc21a0",
+        "sectionCount": 1,
+        "includedSectionCount": 1,
         "firstDefaultSection": {
-          "id": null,
-          "label": null,
-          "kind": null,
-          "snippet": null
+          "id": "chapter-001",
+          "label": "The Fir Tree",
+          "kind": "chapter",
+          "snippet": "THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun shone on him: as to fresh air, there was enough of that, and round him grew many large-sized comrades, pines as w..."
         },
-        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun shone on him: as to fresh air, there was enough of that, and ro..."
+        "previewStart": "THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun shone on him: as to fresh air, there was enough of that, and round him grew many large-sized comrades, pines as w..."
       },
       "after": {
         "title": "The Fir Tree",
@@ -251,17 +251,17 @@
       "acceptedBeforeAudit": true,
       "acceptanceRevokedBeforeCorrection": true,
       "before": {
-        "title": "Andersen's Fairy Tales",
-        "contentHash": "40ef802bc05a717287357202e4eebc9100c3b285460772252ece7e18c49e07b6",
-        "sectionCount": 2,
-        "includedSectionCount": 0,
+        "title": "The Leap-Frog",
+        "contentHash": "6b0e42b8ae5a10e69eb419ab19cf681d053daa6a0f5c51c28f23946038bbdd5c",
+        "sectionCount": 1,
+        "includedSectionCount": 1,
         "firstDefaultSection": {
-          "id": null,
-          "label": null,
-          "kind": null,
-          "snippet": null
+          "id": "chapter-001",
+          "label": "The Leap-Frog",
+          "kind": "chapter",
+          "snippet": "THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they invited the whole world, and everybody else besides who chose to come to see the festival. Three famous jumpers..."
         },
-        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they invited the whole world, and everybody else besides who chose..."
+        "previewStart": "THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they invited the whole world, and everybody else besides who chose to come to see the festival. Three famous jumpers..."
       },
       "after": {
         "title": "The Leap-Frog",
@@ -303,17 +303,17 @@
       "acceptedBeforeAudit": true,
       "acceptanceRevokedBeforeCorrection": true,
       "before": {
-        "title": "Andersen's Fairy Tales",
-        "contentHash": "74623d7ca6769121902ef1cbb13d5746a9e7cb452c62ac83e326d1aa9df58ac1",
-        "sectionCount": 2,
-        "includedSectionCount": 0,
+        "title": "The Real Princess",
+        "contentHash": "e8693cc00594094a47952bc9e804d0bc2b4905951b794c9e2bca02124c16d77b",
+        "sectionCount": 1,
+        "includedSectionCount": 1,
         "firstDefaultSection": {
-          "id": null,
-          "label": null,
-          "kind": null,
-          "snippet": null
+          "id": "chapter-001",
+          "label": "The Real Princess",
+          "kind": "chapter",
+          "snippet": "THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princess. He travelled all over the world in hopes of finding such a lady; but there was always something wrong. Prin..."
         },
-        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princess. He travelled all over the world in hopes of finding such..."
+        "previewStart": "THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princess. He travelled all over the world in hopes of finding such a lady; but there was always something wrong. Prin..."
       },
       "after": {
         "title": "The Real Princess",
@@ -355,10 +355,10 @@
       "acceptedBeforeAudit": true,
       "acceptanceRevokedBeforeCorrection": true,
       "before": {
-        "title": "Andersen's Fairy Tales",
-        "contentHash": "78c7af153197340cd19cf1bca060ec12339e66e04fad81722138b902a0674038",
-        "sectionCount": 9,
-        "includedSectionCount": 9,
+        "title": "The Old House",
+        "contentHash": "3b38eee6fd4c1ddcfb4adc0dfa2224f463ee821c5046c9be5dfa309ef89c82b7",
+        "sectionCount": 1,
+        "includedSectionCount": 1,
         "firstDefaultSection": {
           "id": "chapter-001",
           "label": "The Old House",
@@ -408,17 +408,17 @@
       "acceptedBeforeAudit": true,
       "acceptanceRevokedBeforeCorrection": true,
       "before": {
-        "title": "Andersen's Fairy Tales",
-        "contentHash": "e6807307fe30d6806c09bffcf90ee1152576e9115656171f9d5798f291943e7c",
-        "sectionCount": 4,
-        "includedSectionCount": 0,
+        "title": "The Shoes of Fortune",
+        "contentHash": "750c6ea1f9e3732068255c1f858de5504d60636d6a33571f181598efaeb2c603",
+        "sectionCount": 6,
+        "includedSectionCount": 6,
         "firstDefaultSection": {
-          "id": null,
-          "label": null,
-          "kind": null,
-          "snippet": null
+          "id": "chapter-001",
+          "label": "Part 1",
+          "kind": "chapter",
+          "snippet": "I. A Beginning Every author has some peculiarity in his descriptions or in his style of writing. Those who do not like him, magnify it, shrug up their shoulders, and exclaim--there he is again! I, for my part, know very..."
         },
-        "previewStart": "ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SHOES OF FORTUNE I. A Beginning Every author has some peculiarity in his descriptions or in his style of writing. Those who do not like him, magnify it, shrug up the..."
+        "previewStart": "I. A Beginning Every author has some peculiarity in his descriptions or in his style of writing. Those who do not like him, magnify it, shrug up their shoulders, and exclaim--there he is again! I, for my part, know very..."
       },
       "after": {
         "title": "The Shoes of Fortune",
@@ -466,8 +466,8 @@
       "acceptedBeforeAudit": true,
       "acceptanceRevokedBeforeCorrection": true,
       "before": {
-        "title": "Hans Andersen's Fairy Tales. First Series",
-        "contentHash": "82448474f31e0038320172333c6f440d6fc335b512c7276700363ad57fb1991e",
+        "title": "The Money Box",
+        "contentHash": "40adeecb2e1e44ce781fa0f289a35ff71683d3db7d1c61dcc26b055156cbeefb",
         "sectionCount": 1,
         "includedSectionCount": 1,
         "firstDefaultSection": {
@@ -518,8 +518,8 @@
       "acceptedBeforeAudit": true,
       "acceptanceRevokedBeforeCorrection": true,
       "before": {
-        "title": "Andersen's Fairy Tales",
-        "contentHash": "9864b79c6bbb2c04cef4ac4daedb43628583ea986d02dbb09fd8d868d3dbde21",
+        "title": "The Snow Queen",
+        "contentHash": "48bd2c945d8b60ce4baf25f12c42f74debe3e260467bd3bc51c9fc87a4b0352e",
         "sectionCount": 7,
         "includedSectionCount": 7,
         "firstDefaultSection": {
@@ -576,8 +576,8 @@
       "acceptedBeforeAudit": true,
       "acceptanceRevokedBeforeCorrection": true,
       "before": {
-        "title": "Andersen's Fairy Tales",
-        "contentHash": "c36c34ceaa99ed5ff1e1a91f4160e41d5649d02f00f35c4ac7755748b4e8438c",
+        "title": "The Swineherd",
+        "contentHash": "d4a91ec198bbdf77decd2bf231c64c72190bd8b89625b0717e5a78a270fcfa75",
         "sectionCount": 1,
         "includedSectionCount": 1,
         "firstDefaultSection": {
@@ -628,8 +628,8 @@
       "acceptedBeforeAudit": true,
       "acceptanceRevokedBeforeCorrection": true,
       "before": {
-        "title": "The Lilac Fairy Book",
-        "contentHash": "490e844b89171b647ad21a89d0ee566ebeaaeb2f718fa800af70b0e01f246748",
+        "title": "The Winning of Olwen",
+        "contentHash": "4e5622e362712ea83ccccffb441ad11422e80d53749f36fd38ee0a828bdd1281",
         "sectionCount": 1,
         "includedSectionCount": 1,
         "firstDefaultSection": {

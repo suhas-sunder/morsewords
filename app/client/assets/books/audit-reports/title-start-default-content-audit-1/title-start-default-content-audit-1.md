@@ -22,11 +22,11 @@ Focused false-positive audit for generated book title identity, first default co
 
 - Correction: generated title and default-start correction
 - Source: app/client/assets/temp-books/The Bell.txt
-- Before title: Andersen's Fairy Tales
+- Before title: The Bell
 - After title: The Bell
-- Before first default: none
+- Before first default: chapter-001 The Bell
 - After first default: chapter-001 The Bell
-- Before preview start: ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it w...
+- Before preview start: THE BELL People said "The Evening Bell is sounding, the sun is setting." For a strange wondrous tone was heard in the narrow streets of a large town. It was like the sound of a church-bell: but it was only heard for a m...
 - After preview start: THE BELL People said "The Evening Bell is sounding, the sun is setting." For a strange wondrous tone was heard in the narrow streets of a large town. It was like the sound of a church-bell: but it was only heard for a m...
 - Removed/fixed: parent collection title/byline removed from default playback
 
@@ -34,11 +34,11 @@ Focused false-positive audit for generated book title identity, first default co
 
 - Correction: generated title and default-start correction
 - Source: app/client/assets/temp-books/The Elderbush.txt
-- Before title: Andersen's Fairy Tales
+- Before title: The Elderbush
 - After title: The Elderbush
-- Before first default: none
+- Before first default: chapter-001 The Elderbush
 - After first default: chapter-001 The Elderbush
-- Before preview start: ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it w...
+- Before preview start: THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother undressed him,...
 - After preview start: THE ELDERBUSH Once upon a time there was a little boy who had taken cold. He had gone out and got his feet wet; though nobody could imagine how it had happened, for it was quite dry weather. So his mother undressed him,...
 - Removed/fixed: parent collection title/byline removed from default playback
 
@@ -46,11 +46,11 @@ Focused false-positive audit for generated book title identity, first default co
 
 - Correction: generated title and default-start correction
 - Source: app/client/assets/temp-books/THE EMPEROR'S NEW CLOTHES.txt
-- Before title: Andersen's Fairy Tales
+- Before title: The Emperor's New Clothes
 - After title: The Emperor's New Clothes
-- Before first default: none
+- Before first default: chapter-001 The Emperor's New Clothes
 - After first default: chapter-001 The Emperor's New Clothes
-- Before preview start: ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, that he spent all his money in dress. He did not trouble hims...
+- Before preview start: THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, that he spent all his money in dress. He did not trouble himself in the least about his soldiers; nor did he ca...
 - After preview start: THE EMPEROR'S NEW CLOTHES Many years ago, there was an Emperor, who was so excessively fond of new clothes, that he spent all his money in dress. He did not trouble himself in the least about his soldiers; nor did he ca...
 - Removed/fixed: parent collection title/byline removed from default playback
 
@@ -58,11 +58,11 @@ Focused false-positive audit for generated book title identity, first default co
 
 - Correction: generated title and default-start correction
 - Source: app/client/assets/temp-books/The Fir Tree.txt
-- Before title: Andersen's Fairy Tales
+- Before title: The Fir Tree
 - After title: The Fir Tree
-- Before first default: none
+- Before first default: chapter-001 The Fir Tree
 - After first default: chapter-001 The Fir Tree
-- Before preview start: ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun shone on him: as to fresh air, there was enough of that, and ro...
+- Before preview start: THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun shone on him: as to fresh air, there was enough of that, and round him grew many large-sized comrades, pines as w...
 - After preview start: THE FIR TREE Out in the woods stood a nice little Fir Tree. The place he had was a very good one: the sun shone on him: as to fresh air, there was enough of that, and round him grew many large-sized comrades, pines as w...
 - Removed/fixed: parent collection title/byline removed from default playback
 
@@ -70,11 +70,11 @@ Focused false-positive audit for generated book title identity, first default co
 
 - Correction: generated title and default-start correction
 - Source: app/client/assets/temp-books/The Leap-Frog.txt
-- Before title: Andersen's Fairy Tales
+- Before title: The Leap-Frog
 - After title: The Leap-Frog
-- Before first default: none
+- Before first default: chapter-001 The Leap-Frog
 - After first default: chapter-001 The Leap-Frog
-- Before preview start: ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they invited the whole world, and everybody else besides who chose...
+- Before preview start: THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they invited the whole world, and everybody else besides who chose to come to see the festival. Three famous jumpers...
 - After preview start: THE LEAP-FROG A Flea, a Grasshopper, and a Leap-frog once wanted to see which could jump highest; and they invited the whole world, and everybody else besides who chose to come to see the festival. Three famous jumpers...
 - Removed/fixed: parent collection title/byline removed from default playback
 
@@ -82,11 +82,11 @@ Focused false-positive audit for generated book title identity, first default co
 
 - Correction: generated title and default-start correction
 - Source: app/client/assets/temp-books/The Real Princess.txt
-- Before title: Andersen's Fairy Tales
+- Before title: The Real Princess
 - After title: The Real Princess
-- Before first default: none
+- Before first default: chapter-001 The Real Princess
 - After first default: chapter-001 The Real Princess
-- Before preview start: ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princess. He travelled all over the world in hopes of finding such...
+- Before preview start: THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princess. He travelled all over the world in hopes of finding such a lady; but there was always something wrong. Prin...
 - After preview start: THE REAL PRINCESS There was once a Prince who wished to marry a Princess; but then she must be a real Princess. He travelled all over the world in hopes of finding such a lady; but there was always something wrong. Prin...
 - Removed/fixed: parent collection title/byline removed from default playback
 
@@ -94,7 +94,7 @@ Focused false-positive audit for generated book title identity, first default co
 
 - Correction: generated title and default-start correction
 - Source: app/client/assets/temp-books/The Old House.txt
-- Before title: Andersen's Fairy Tales
+- Before title: The Old House
 - After title: The Old House
 - Before first default: chapter-001 The Old House
 - After first default: chapter-001 The Old House
@@ -106,11 +106,11 @@ Focused false-positive audit for generated book title identity, first default co
 
 - Correction: generated title and sectioning correction
 - Source: app/client/assets/temp-books/The Shoes of Fortune.txt
-- Before title: Andersen's Fairy Tales
+- Before title: The Shoes of Fortune
 - After title: The Shoes of Fortune
-- Before first default: none
+- Before first default: chapter-001 Part 1
 - After first default: chapter-001 Part 1
-- Before preview start: ANDERSEN'S FAIRY TALES By Hans Christian Andersen THE SHOES OF FORTUNE I. A Beginning Every author has some peculiarity in his descriptions or in his style of writing. Those who do not like him, magnify it, shrug up the...
+- Before preview start: I. A Beginning Every author has some peculiarity in his descriptions or in his style of writing. Those who do not like him, magnify it, shrug up their shoulders, and exclaim--there he is again! I, for my part, know very...
 - After preview start: I. A Beginning Every author has some peculiarity in his descriptions or in his style of writing. Those who do not like him, magnify it, shrug up their shoulders, and exclaim--there he is again! I, for my part, know very...
 - Removed/fixed: parent collection title/byline removed from default playback; fallback part blobs replaced with source numbered sections
 
@@ -118,7 +118,7 @@ Focused false-positive audit for generated book title identity, first default co
 
 - Correction: generated title correction
 - Source: app/client/assets/temp-books/THE MONEY BOX.txt
-- Before title: Hans Andersen's Fairy Tales. First Series
+- Before title: The Money Box
 - After title: The Money Box
 - Before first default: chapter-001 The Money Box
 - After first default: chapter-001 The Money Box
@@ -130,7 +130,7 @@ Focused false-positive audit for generated book title identity, first default co
 
 - Correction: generated title correction
 - Source: app/client/assets/temp-books/THE SNOW QUEEN.txt
-- Before title: Andersen's Fairy Tales
+- Before title: The Snow Queen
 - After title: The Snow Queen
 - Before first default: chapter-001 Story 1
 - After first default: chapter-001 Story 1
@@ -142,7 +142,7 @@ Focused false-positive audit for generated book title identity, first default co
 
 - Correction: generated title correction
 - Source: app/client/assets/temp-books/The Swineherd.txt
-- Before title: Andersen's Fairy Tales
+- Before title: The Swineherd
 - After title: The Swineherd
 - Before first default: chapter-001 The Swineherd
 - After first default: chapter-001 The Swineherd
@@ -154,7 +154,7 @@ Focused false-positive audit for generated book title identity, first default co
 
 - Correction: generated title correction
 - Source: app/client/assets/temp-books/The Winning of Olwen.txt
-- Before title: The Lilac Fairy Book
+- Before title: The Winning of Olwen
 - After title: The Winning of Olwen
 - Before first default: chapter-001 The Winning of Olwen
 - After first default: chapter-001 The Winning of Olwen

@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "id": "the-happy-family",
   "title": "The Happy Family",
-  "author": "",
-  "contentVersion": "9f46408610312e1f",
-  "contentHash": "9f46408610312e1f4eb15807697f7e6666e899fe91c5d00657ecac3cbfa13592",
+  "author": "H. C. Andersen",
+  "contentVersion": "b0acef6aa1adb63b",
+  "contentHash": "b0acef6aa1adb63bd61e000e0916f0e0917733aa91add708886b83f955df0f34",
   "source": {
     "provider": "Unknown",
     "gutenbergId": null,
