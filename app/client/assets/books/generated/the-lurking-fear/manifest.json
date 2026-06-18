@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-lurking-fear",
+  "title": "The lurking fear",
+  "author": [
+    "H. P. Lovecraft"
+  ],
+  "contentVersion": "bb875cbb9aeb95a5",
+  "contentHash": "bb875cbb9aeb95a5a5ef04ebec1d00e93612e8ab2b39d70b595080d83983e3f5",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "70486",
+    "releaseDate": "April 7, 2023",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/70486",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The lurking fear"
+  },
+  "stats": {
+    "originalCharacterCount": 69249,
+    "cleanedCharacterCount": 48133,
+    "wordCount": 8121,
+    "sectionCount": 4,
+    "includedSectionCount": 4
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Section 1",
+      "title": "The Shadow on the Chimney",
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 12108,
+      "wordCount": 2027,
+      "estimatedTypingMinutes": 58,
+      "estimatedListeningMinutes": 72,
+      "morseCharacterEstimate": 64101,
+      "textPreview": "_1. The Shadow on the Chimney_ There was thunder in the air on the night I went to the deserted mansion atop Tempest Mountain to find the lurking fear. I was n..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Section 2",
+      "title": "A Passer in the Storm",
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 11878,
+      "wordCount": 2020,
+      "estimatedTypingMinutes": 58,
+      "estimatedListeningMinutes": 70,
+      "morseCharacterEstimate": 62927,
+      "textPreview": "_2. A Passer in the Storm_ For days after that hideous experience in the forest-swathed mansion I lay nervously exhausted in my hotel room at Lefferts Corners...."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Section 3",
+      "title": "What the Red Glare Meant",
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 12058,
+      "wordCount": 2031,
+      "estimatedTypingMinutes": 59,
+      "estimatedListeningMinutes": 72,
+      "morseCharacterEstimate": 64010,
+      "textPreview": "_3. What the Red Glare Meant_ On the tempest-racked night of November 8th, 1921, with a lantern which cast charnel shadows, I stood digging alone and idiotical..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Section 4",
+      "title": "The Horror in the Eyes",
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 12089,
+      "wordCount": 2043,
+      "estimatedTypingMinutes": 59,
+      "estimatedListeningMinutes": 72,
+      "morseCharacterEstimate": 64086,
+      "textPreview": "_4. The Horror in the Eyes_ There can be nothing normal in the mind of one who, knowing what I knew of the horrors of Tempest Mountain, would seek alone for th..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 69249,
+    "cleanedCharacterCount": 48133,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": [
+      "Write pass used four explicit numbered story-section headings and ignored a sentence-fragment false positive.",
+      "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+      "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+      "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+      "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+      "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+      "dry-run title/default-start risk: first default section is meaningful but should be verified manually in write pass",
+      "dry-run artifact risk: illustration captions/placeholders detected"
+    ]
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 8; review before scaling to larger batches or Cloudflare export.",
+    "Illustration/image placeholder lines removed from playable text.",
+    "Write pass used four explicit numbered story-section headings and ignored a sentence-fragment false positive.",
+    "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+    "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+    "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+    "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+    "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+    "dry-run title/default-start risk: first default section is meaningful but should be verified manually in write pass",
+    "dry-run artifact risk: illustration captions/placeholders detected"
+  ]
+}

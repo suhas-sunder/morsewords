@@ -7607,6 +7607,937 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-laughing-cavalier-the-story-of-the-ancestor-of-the-scarlet-pimpernel/manifest.json"
+    },
+    {
+      "slug": "unicorns",
+      "title": "Unicorns",
+      "author": [
+        "James Huneker"
+      ],
+      "contentVersion": "e2474d63e1ac16f0",
+      "contentHash": "e2474d63e1ac16f0cfab1b6f902238d229938572da664f91dc09c210df4dfccf",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "39116",
+        "releaseDate": "March 12, 2012",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/39116",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Unicorns"
+      },
+      "stats": {
+        "originalCharacterCount": 519320,
+        "cleanedCharacterCount": 472954,
+        "wordCount": 80298,
+        "sectionCount": 30,
+        "includedSectionCount": 30
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "unicorns/manifest.json"
+    },
+    {
+      "slug": "the-dunwich-horror",
+      "title": "The Dunwich horror",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "b29b2d2b3845d1db",
+      "contentHash": "b29b2d2b3845d1db38cd70b3b49e147af437dd923aaa58a9502944aa44c35d92",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "50133",
+        "releaseDate": "October 4, 2015",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/50133",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Dunwich horror"
+      },
+      "stats": {
+        "originalCharacterCount": 123100,
+        "cleanedCharacterCount": 100172,
+        "wordCount": 17250,
+        "sectionCount": 10,
+        "includedSectionCount": 10
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-dunwich-horror/manifest.json"
+    },
+    {
+      "slug": "the-scarlet-letter",
+      "title": "The Scarlet Letter",
+      "author": [
+        "Nathaniel Hawthorne"
+      ],
+      "contentVersion": "8c4ceb0060298cd9",
+      "contentHash": "8c4ceb0060298cd9441dab2ca1495b8337ec0e4f68382b0d39696e4bec8aeeab",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25344",
+        "releaseDate": "May 5, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25344",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Scarlet Letter"
+      },
+      "stats": {
+        "originalCharacterCount": 520597,
+        "cleanedCharacterCount": 395218,
+        "wordCount": 69106,
+        "sectionCount": 24,
+        "includedSectionCount": 24
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-scarlet-letter/manifest.json"
+    },
+    {
+      "slug": "the-tower-treasure",
+      "title": "The tower treasure",
+      "author": [
+        "Franklin W. Dixon"
+      ],
+      "contentVersion": "f2f902c16d41d925",
+      "contentHash": "f2f902c16d41d9257d9d569c462fb33c6ae33d4ca983f5bce3e072d6998470ed",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "70083",
+        "releaseDate": "February 20, 2023",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/70083",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The tower treasure"
+      },
+      "stats": {
+        "originalCharacterCount": 256668,
+        "cleanedCharacterCount": 228077,
+        "wordCount": 41379,
+        "sectionCount": 24,
+        "includedSectionCount": 24
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-tower-treasure/manifest.json"
+    },
+    {
+      "slug": "the-wailing-octopus-a-rick-brant-science-adventure-story",
+      "title": "The Wailing Octopus: A Rick Brant Science-Adventure Story",
+      "author": [
+        "Harold L. Goodwin"
+      ],
+      "contentVersion": "f24d3d82907ed9c4",
+      "contentHash": "f24d3d82907ed9c4a23a66411c5638c8a754eb2bb5d62905213eba3cc3eda2c2",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "31495",
+        "releaseDate": "March 3, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/31495",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Wailing Octopus: A Rick Brant Science-Adventure Story"
+      },
+      "stats": {
+        "originalCharacterCount": 286080,
+        "cleanedCharacterCount": 257970,
+        "wordCount": 46033,
+        "sectionCount": 20,
+        "includedSectionCount": 20
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-wailing-octopus-a-rick-brant-science-adventure-story/manifest.json"
+    },
+    {
+      "slug": "the-lady-of-the-lake",
+      "title": "The Lady of the Lake",
+      "author": [
+        "Walter Scott"
+      ],
+      "contentVersion": "d75d3a4cf9a54880",
+      "contentHash": "d75d3a4cf9a548800802d411df9a9209c47af32a4cb76bb2ed6f63bbf5712f9b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3011",
+        "releaseDate": "January 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3011",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Lady of the Lake"
+      },
+      "stats": {
+        "originalCharacterCount": 511656,
+        "cleanedCharacterCount": 209601,
+        "wordCount": 32145,
+        "sectionCount": 6,
+        "includedSectionCount": 6
+      },
+      "defaults": {
+        "includeKinds": [
+          "poem"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-lady-of-the-lake/manifest.json"
+    },
+    {
+      "slug": "the-lurking-fear",
+      "title": "The lurking fear",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "bb875cbb9aeb95a5",
+      "contentHash": "bb875cbb9aeb95a5a5ef04ebec1d00e93612e8ab2b39d70b595080d83983e3f5",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "70486",
+        "releaseDate": "April 7, 2023",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/70486",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The lurking fear"
+      },
+      "stats": {
+        "originalCharacterCount": 69249,
+        "cleanedCharacterCount": 48133,
+        "wordCount": 8121,
+        "sectionCount": 4,
+        "includedSectionCount": 4
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-lurking-fear/manifest.json"
+    },
+    {
+      "slug": "metamorphosis",
+      "title": "Metamorphosis",
+      "author": [
+        "Franz Kafka"
+      ],
+      "contentVersion": "e95411b0b5d340e9",
+      "contentHash": "e95411b0b5d340e93d01ea96b0666b1497459e56d2be9265a9cbeb66d09759ac",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "5200",
+        "releaseDate": "August 17, 2005",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/5200",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Metamorphosis"
+      },
+      "stats": {
+        "originalCharacterCount": 140486,
+        "cleanedCharacterCount": 118405,
+        "wordCount": 22340,
+        "sectionCount": 3,
+        "includedSectionCount": 3
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "metamorphosis/manifest.json"
+    },
+    {
+      "slug": "the-monkey-s-paw",
+      "title": "The Monkey's Paw",
+      "author": [
+        "W. W. Jacobs"
+      ],
+      "contentVersion": "a81704aaacc8ebd8",
+      "contentHash": "a81704aaacc8ebd8d27905d0508cb7da25d06bec9aad36281486509c6d3cde92",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12122",
+        "releaseDate": "April 1, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12122",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Monkey's Paw"
+      },
+      "stats": {
+        "originalCharacterCount": 42280,
+        "cleanedCharacterCount": 21856,
+        "wordCount": 4032,
+        "sectionCount": 3,
+        "includedSectionCount": 3
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-monkey-s-paw/manifest.json"
+    },
+    {
+      "slug": "the-hound",
+      "title": "The Hound",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "cdfd04b1fa3aa39c",
+      "contentHash": "cdfd04b1fa3aa39c4e8e7c3249b7d404bbf17810e4994506bf2504c0512e6271",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Hound"
+      },
+      "stats": {
+        "originalCharacterCount": 17855,
+        "cleanedCharacterCount": 17522,
+        "wordCount": 2993,
+        "sectionCount": 2,
+        "includedSectionCount": 2
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-hound/manifest.json"
+    },
+    {
+      "slug": "the-masque-of-the-red-death",
+      "title": "The Masque of the Red Death",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "9bd2d4c6f690bf8d",
+      "contentHash": "9bd2d4c6f690bf8d89a68f79fc8f357f44d4dbe023122c9d16c84d81932d472c",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1064",
+        "releaseDate": "June 6, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1064",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Masque of the Red Death"
+      },
+      "stats": {
+        "originalCharacterCount": 33714,
+        "cleanedCharacterCount": 13710,
+        "wordCount": 2422,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-masque-of-the-red-death/manifest.json"
+    },
+    {
+      "slug": "the-red-room",
+      "title": "The Red Room",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "8b9db88127ce3c37",
+      "contentHash": "8b9db88127ce3c37640b0bc140a1799037e440576319a3e638271d48a15e76f8",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "23218",
+        "releaseDate": "October 27, 2007",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/23218",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Red Room"
+      },
+      "stats": {
+        "originalCharacterCount": 41594,
+        "cleanedCharacterCount": 21456,
+        "wordCount": 3941,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-red-room/manifest.json"
+    },
+    {
+      "slug": "from-beyond",
+      "title": "From Beyond",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "ff525476aa97de84",
+      "contentHash": "ff525476aa97de84707f04641b90768ec3841a02eb49508032decda8b502bdb7",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for From Beyond"
+      },
+      "stats": {
+        "originalCharacterCount": 17531,
+        "cleanedCharacterCount": 17208,
+        "wordCount": 3043,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "from-beyond/manifest.json"
+    },
+    {
+      "slug": "the-other-gods",
+      "title": "The Other Gods",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "5291537a50f4c1d3",
+      "contentHash": "5291537a50f4c1d399d49ed4583cfe2f4900762464c4de88fc4df7b2fe8c1969",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Other Gods"
+      },
+      "stats": {
+        "originalCharacterCount": 11355,
+        "cleanedCharacterCount": 11025,
+        "wordCount": 2027,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-other-gods/manifest.json"
+    },
+    {
+      "slug": "the-statement-of-randolph-carter",
+      "title": "The Statement of Randolph Carter",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "a5e3de95ce290602",
+      "contentHash": "a5e3de95ce290602e35563985fbe8df6a9c4d6e28fb5a7f67ed54c64c308a1a4",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Statement of Randolph Carter"
+      },
+      "stats": {
+        "originalCharacterCount": 14296,
+        "cleanedCharacterCount": 13942,
+        "wordCount": 2509,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-statement-of-randolph-carter/manifest.json"
+    },
+    {
+      "slug": "the-silver-key",
+      "title": "The silver key",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "3b8239c5dba4629a",
+      "contentHash": "3b8239c5dba4629ab75f0a4013fae54b6f78ba2db805f11dad93e70c48879c95",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "70478",
+        "releaseDate": "April 6, 2023",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/70478",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The silver key"
+      },
+      "stats": {
+        "originalCharacterCount": 48947,
+        "cleanedCharacterCount": 28303,
+        "wordCount": 4966,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-silver-key/manifest.json"
+    },
+    {
+      "slug": "six-girls-a-home-story",
+      "title": "Six Girls: A Home Story",
+      "author": [
+        "Fannie Belle Irving"
+      ],
+      "contentVersion": "281c740f262f8dba",
+      "contentHash": "281c740f262f8dba9a3de142f51457539b5797c67c17cdec94caaccf7379fc90",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25551",
+        "releaseDate": "May 21, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25551",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Six Girls: A Home Story"
+      },
+      "stats": {
+        "originalCharacterCount": 604226,
+        "cleanedCharacterCount": 569189,
+        "wordCount": 104634,
+        "sectionCount": 25,
+        "includedSectionCount": 25
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "six-girls-a-home-story/manifest.json"
+    },
+    {
+      "slug": "the-regent-s-daughter",
+      "title": "The regent's daughter",
+      "author": [
+        "Alexandre Dumas"
+      ],
+      "contentVersion": "175ef13e63d6d044",
+      "contentHash": "175ef13e63d6d0446dabf93ebb1a9a7b209c3ac92715265f8cb58f41b1e7f24a",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "27384",
+        "releaseDate": "December 2, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/27384",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The regent's daughter"
+      },
+      "stats": {
+        "originalCharacterCount": 519493,
+        "cleanedCharacterCount": 479288,
+        "wordCount": 85051,
+        "sectionCount": 38,
+        "includedSectionCount": 38
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-regent-s-daughter/manifest.json"
+    },
+    {
+      "slug": "winnie-the-pooh",
+      "title": "Winnie-the-Pooh",
+      "author": [
+        "A. A. Milne"
+      ],
+      "contentVersion": "148c3e3925d05795",
+      "contentHash": "148c3e3925d057952871eab05fd36fe0a00533b161777da0a9b87ba12f979980",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "67098",
+        "releaseDate": "January 3, 2022",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/67098",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 8 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Winnie-the-Pooh"
+      },
+      "stats": {
+        "originalCharacterCount": 153078,
+        "cleanedCharacterCount": 122625,
+        "wordCount": 22211,
+        "sectionCount": 10,
+        "includedSectionCount": 10
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "winnie-the-pooh/manifest.json"
     }
   ]
 }
