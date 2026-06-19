@@ -10400,6 +10400,986 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "two-in-a-sack/manifest.json"
+    },
+    {
+      "slug": "cool-air",
+      "title": "Cool Air",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "c3c37bada2194f9c",
+      "contentHash": "c3c37bada2194f9c3424346bf88d620320890c48b786ebcc6d403a13fb4758e5",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "73177",
+        "releaseDate": "March 16, 2024",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/73177",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Cool Air"
+      },
+      "stats": {
+        "originalCharacterCount": 40564,
+        "cleanedCharacterCount": 19677,
+        "wordCount": 3413,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "cool-air/manifest.json"
+    },
+    {
+      "slug": "the-dream-of-little-tuk",
+      "title": "The Dream of Little Tuk",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "4cfa6b224edb4bd9",
+      "contentHash": "4cfa6b224edb4bd91c5f1b587441229a912a51d98bee96a0a46be37e7c7d8982",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Dream of Little Tuk"
+      },
+      "stats": {
+        "originalCharacterCount": 30258,
+        "cleanedCharacterCount": 10148,
+        "wordCount": 1892,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-dream-of-little-tuk/manifest.json"
+    },
+    {
+      "slug": "the-false-collar",
+      "title": "The False Collar",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "affe1124e6382ffd",
+      "contentHash": "affe1124e6382ffdeafe2c23a64780d837b1a20971fd18dd365f6ef24fd0cbd4",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The False Collar"
+      },
+      "stats": {
+        "originalCharacterCount": 24624,
+        "cleanedCharacterCount": 4607,
+        "wordCount": 894,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-false-collar/manifest.json"
+    },
+    {
+      "slug": "the-naughty-boy",
+      "title": "The Naughty Boy",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "cdc8a65258f1656c",
+      "contentHash": "cdc8a65258f1656ccb83db1e29dbaf59cc4fc914d17841212c6d124356b809cb",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Naughty Boy"
+      },
+      "stats": {
+        "originalCharacterCount": 24309,
+        "cleanedCharacterCount": 4314,
+        "wordCount": 835,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-naughty-boy/manifest.json"
+    },
+    {
+      "slug": "the-red-shoes",
+      "title": "The Red Shoes",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "7eaaa0d02d181bcd",
+      "contentHash": "7eaaa0d02d181bcdebc9fbef20e88c9215283ffcfa8bcf20732ab172558e16c0",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Red Shoes"
+      },
+      "stats": {
+        "originalCharacterCount": 31951,
+        "cleanedCharacterCount": 11810,
+        "wordCount": 2235,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-red-shoes/manifest.json"
+    },
+    {
+      "slug": "the-shadow",
+      "title": "The Shadow",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "30dfbb9dc230bd8e",
+      "contentHash": "30dfbb9dc230bd8e01bfdf231ea46a9faba4b31a10b0f80d4003e3108ebd169b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Shadow"
+      },
+      "stats": {
+        "originalCharacterCount": 46723,
+        "cleanedCharacterCount": 26239,
+        "wordCount": 5019,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-shadow/manifest.json"
+    },
+    {
+      "slug": "the-story-of-a-mother",
+      "title": "The Story of a Mother",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "79e08e5e371f3e63",
+      "contentHash": "79e08e5e371f3e63074c9a01e2453924f608dc71c59cbaf1e38e61571bca50b6",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Story of a Mother"
+      },
+      "stats": {
+        "originalCharacterCount": 30305,
+        "cleanedCharacterCount": 10174,
+        "wordCount": 1948,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-story-of-a-mother/manifest.json"
+    },
+    {
+      "slug": "the-ugly-duckling",
+      "title": "The Ugly Duckling",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "4e489fa894cca7e3",
+      "contentHash": "4e489fa894cca7e37b8dd3c4819e60d52f4cdc5ef7fb706035585e062130aea4",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "32571",
+        "releaseDate": "May 28, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/32571",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Ugly Duckling"
+      },
+      "stats": {
+        "originalCharacterCount": 25995,
+        "cleanedCharacterCount": 20594,
+        "wordCount": 3931,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-ugly-duckling/manifest.json"
+    },
+    {
+      "slug": "the-adventures-of-chanticleer-and-partlet",
+      "title": "The Adventures of Chanticleer and Partlet",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "4000dcdbfe396d14",
+      "contentHash": "4000dcdbfe396d14afae04ef4b1eb364a56ea64ed4e426f15a9c3b42f4797b95",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Adventures of Chanticleer and Partlet"
+      },
+      "stats": {
+        "originalCharacterCount": 10876,
+        "cleanedCharacterCount": 9613,
+        "wordCount": 1869,
+        "sectionCount": 3,
+        "includedSectionCount": 3
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-adventures-of-chanticleer-and-partlet/manifest.json"
+    },
+    {
+      "slug": "jorinda-and-jorindel",
+      "title": "Jorinda and Jorindel",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "d730658e8418c6c4",
+      "contentHash": "d730658e8418c6c4ef6588d0b4fada9358347aa42b8251e8ed5a293fed2c9a28",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Jorinda and Jorindel"
+      },
+      "stats": {
+        "originalCharacterCount": 7012,
+        "cleanedCharacterCount": 5877,
+        "wordCount": 1141,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "jorinda-and-jorindel/manifest.json"
+    },
+    {
+      "slug": "mother-holle",
+      "title": "Mother Holle",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "3076b2db97d43d25",
+      "contentHash": "3076b2db97d43d250264eb33b34604b97046d9d02b952a2c9ba25a0430681082",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Mother Holle"
+      },
+      "stats": {
+        "originalCharacterCount": 7655,
+        "cleanedCharacterCount": 6516,
+        "wordCount": 1276,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "mother-holle/manifest.json"
+    },
+    {
+      "slug": "rapunzel",
+      "title": "Rapunzel",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "18db08911001ce7c",
+      "contentHash": "18db08911001ce7c96d36f46706328126d1a65cba43733360505642e75746c9d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Rapunzel"
+      },
+      "stats": {
+        "originalCharacterCount": 8401,
+        "cleanedCharacterCount": 7266,
+        "wordCount": 1413,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "rapunzel/manifest.json"
+    },
+    {
+      "slug": "the-juniper-tree",
+      "title": "The Juniper-Tree",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "d35f903f87948073",
+      "contentHash": "d35f903f87948073dacaf0d65be3260964a37dbfe870227736aff7c97a99a313",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Juniper-Tree"
+      },
+      "stats": {
+        "originalCharacterCount": 17388,
+        "cleanedCharacterCount": 15990,
+        "wordCount": 3088,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-juniper-tree/manifest.json"
+    },
+    {
+      "slug": "the-seven-ravens",
+      "title": "The Seven Ravens",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "4b32964c264fefaa",
+      "contentHash": "4b32964c264fefaa37e3bf08b26edd4b92d0b3e9eed2ca3a8552faf9105ee831",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Seven Ravens"
+      },
+      "stats": {
+        "originalCharacterCount": 6219,
+        "cleanedCharacterCount": 5114,
+        "wordCount": 1011,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-seven-ravens/manifest.json"
+    },
+    {
+      "slug": "the-wedding-of-mrs-fox",
+      "title": "The Wedding of Mrs Fox",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "9dc5d6953bde5da8",
+      "contentHash": "9dc5d6953bde5da8b098cd86d1acd1fb4e0e7980f618f237fecea096dc4ba451",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Wedding of Mrs Fox"
+      },
+      "stats": {
+        "originalCharacterCount": 5222,
+        "cleanedCharacterCount": 4070,
+        "wordCount": 787,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-wedding-of-mrs-fox/manifest.json"
+    },
+    {
+      "slug": "the-adventures-of-kintaro-the-golden-boy",
+      "title": "The Adventures of Kintaro, the Golden Boy",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "75aeb3682319fc59",
+      "contentHash": "75aeb3682319fc59089512a15771c23eb8630a9a51824611673584d0dd1fe805",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Adventures of Kintaro, the Golden Boy"
+      },
+      "stats": {
+        "originalCharacterCount": 17944,
+        "cleanedCharacterCount": 16379,
+        "wordCount": 3127,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-adventures-of-kintaro-the-golden-boy/manifest.json"
+    },
+    {
+      "slug": "the-bamboo-cutter-and-the-moon-child",
+      "title": "The Bamboo-Cutter and the Moon-Child",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "1e873e367907c846",
+      "contentHash": "1e873e367907c8463b6b9cecb517ef75ef6efb1e9bb51b20809f0b5095313699",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Bamboo-Cutter and the Moon-Child"
+      },
+      "stats": {
+        "originalCharacterCount": 31996,
+        "cleanedCharacterCount": 30237,
+        "wordCount": 5747,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-bamboo-cutter-and-the-moon-child/manifest.json"
+    },
+    {
+      "slug": "the-goblin-of-adachigahara",
+      "title": "The Goblin of Adachigahara",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "ac3bd5cf08272859",
+      "contentHash": "ac3bd5cf0827285999006fe1a940ffcc30e120dc4c3e617d14207885fa860d33",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Goblin of Adachigahara"
+      },
+      "stats": {
+        "originalCharacterCount": 10059,
+        "cleanedCharacterCount": 8764,
+        "wordCount": 1726,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-goblin-of-adachigahara/manifest.json"
+    },
+    {
+      "slug": "the-jelly-fish-and-the-monkey",
+      "title": "The Jelly Fish and the Monkey",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "98c0c65328cc9e97",
+      "contentHash": "98c0c65328cc9e97a0adea5dd116d56171ec1878d1e4d97d349d35de3a90dbfc",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Jelly Fish and the Monkey"
+      },
+      "stats": {
+        "originalCharacterCount": 18159,
+        "cleanedCharacterCount": 16567,
+        "wordCount": 3201,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-jelly-fish-and-the-monkey/manifest.json"
+    },
+    {
+      "slug": "the-tongue-cut-sparrow",
+      "title": "The Tongue-Cut Sparrow",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "60a29d060fda4bd8",
+      "contentHash": "60a29d060fda4bd8ab92d7eac420167414802600b0fb4d246dee156b946465bf",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 11 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Tongue-Cut Sparrow"
+      },
+      "stats": {
+        "originalCharacterCount": 18865,
+        "cleanedCharacterCount": 17408,
+        "wordCount": 3393,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-tongue-cut-sparrow/manifest.json"
     }
   ]
 }

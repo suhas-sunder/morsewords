@@ -1,0 +1,2112 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-write-11",
+  "generatedAt": "2026-06-19T02:39:24.689Z",
+  "branch": "morsewords-book-processing-pilot-write-11-jun-2026",
+  "mode": "controlled first-time processing",
+  "sourceDryRunReport": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+  "selectedBooks": [
+    "cool-air",
+    "the-dream-of-little-tuk",
+    "the-false-collar",
+    "the-naughty-boy",
+    "the-red-shoes",
+    "the-shadow",
+    "the-story-of-a-mother",
+    "the-ugly-duckling",
+    "the-adventures-of-chanticleer-and-partlet",
+    "jorinda-and-jorindel",
+    "mother-holle",
+    "rapunzel",
+    "the-juniper-tree",
+    "the-seven-ravens",
+    "the-wedding-of-mrs-fox",
+    "the-adventures-of-kintaro-the-golden-boy",
+    "the-bamboo-cutter-and-the-moon-child",
+    "the-goblin-of-adachigahara",
+    "the-jelly-fish-and-the-monkey",
+    "the-tongue-cut-sparrow"
+  ],
+  "totals": {
+    "selected": 20,
+    "firstTimeProcessed": 20,
+    "skipped": 0,
+    "manualReview": 0,
+    "blocked": 0,
+    "unresolvedSourceGeneratedBooksLeftUntouched": 11
+  },
+  "acceptedExclusionClarification": {
+    "dryRunAcceptedExclusionCount": 202,
+    "knownDuplicateBoundaryExclusions": [
+      "the-wind-in-the-willows",
+      "the-two-magics-the-turn-of-the-screw-covering-end",
+      "the-works-of-edgar-allan-poe"
+    ],
+    "selectedIntersectAcceptedExclusion": [],
+    "note": "This write pass uses only the exact selected list from pilot-dry-run-11.json. Known duplicate/manual/boundary exclusions and unresolved-source generated books remain untouched."
+  },
+  "unresolvedSourceGeneratedBooksLeftUntouched": [
+    {
+      "slug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "doctor-dolittle",
+      "title": "The Story of Doctor Dolittle",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 6,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "heidi",
+      "title": "Heidi",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "jabberwocky",
+      "title": "Jabberwocky",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 2,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "title": "Nights With Uncle Remus",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 21,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan [Peter and Wendy]",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 20,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "tarzan-of-the-apes",
+      "title": "Tarzan of the Apes",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-great-gatsby",
+      "title": "The Great Gatsby",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-picture-of-dorian-gray",
+      "title": "The Picture of Dorian Gray",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 23,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 12,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "title": "Wood folk at school",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 10,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    }
+  ],
+  "futureBatchRule": [
+    "valid generated readable content",
+    "correct generated title",
+    "correct author metadata or documented unresolved-author policy",
+    "no duplicate generated work under a slightly different slug unless intentionally documented",
+    "first default section from real readable content",
+    "all main readable sections included by default",
+    "meaningful source-based segmentation",
+    "valid book-specific startup preview",
+    "no SOS Help!",
+    "no generic preview fallback",
+    "no title/TOC/source/license/contributor/transcriber/byline material as default playback",
+    "selected/default source order begins from the first selected/default section"
+  ],
+  "laterPhaseRequirements": [
+    "after all books are processed, run an independent second-pass audit using a different strategy",
+    "after books and second-pass audit, add original non-spoiler 300-500+ word SEO summaries for each accepted book page",
+    "after summaries, perform full site SEO/meta review using GSC data and route-level intent",
+    "after books/SEO, run a focused rage-click UX pass for /audio, /practice, homepage, and related utility pages",
+    "final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable"
+  ],
+  "books": [
+    {
+      "slug": "cool-air",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/Cool air.txt",
+      "expectedTitle": "Cool Air",
+      "generatedTitle": "Cool Air",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. P. Lovecraft",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/cool-air/manifest.json",
+        "app/client/assets/books/generated/cool-air/cleaned_book.json",
+        "app/client/assets/books/generated/cool-air/processed_book.json",
+        "app/client/assets/books/generated/cool-air/rights_report.json",
+        "app/client/assets/books/generated/cool-air/processing_notes.md",
+        "app/client/assets/books/generated/cool-air/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/cool-air.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 15,
+        "reason": "start at first readable prose after source/title/byline wrapper: You ask me to explain why I am afraid of a draft of cool air; write pass starts at first selected/default section",
+        "snippet": "You ask me to explain why I am afraid of a draft of cool air; why I shiver more than others upon entering a cold room, and seem nauseated and repelled when the chill of evening creeps through the heat of a mild autumn day. There are those who say I respond to"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 345,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "ldn't stand what he had to do; he had to get me in a strange, dark place, when he minded my letter and nursed me back. And the organs never would work again. It had to be done my way--artificial preservation--_for you see I died that time eighteen years ago_.\""
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Cool Air",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3413,
+        "snippet": "You ask me to explain why I am afraid of a draft of cool air; why I shiver more than others upon entering a cold room, and seem nauseated and repelled when the..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Cool Air",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3413
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Cool Air",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3413
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 1,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 4,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "Cool Air",
+        "author": "Author: H. P. Lovecraft",
+        "start": "Cool Air You ask me to explain why I am afraid of a draft of cool air; why I shiver more than others upon entering a cold room, and seem nauseated and repelled when the chill of evening creeps through the heat of a mild autumn day. There are those who say I respond to cold as others do to a bad odor, and I am the last to den...",
+        "end": "t hellish place to babble their incoherent stories at the nearest police station. The nauseous words seemed well-nigh incredible in that yellow sunlight, with the clatter of cars and motor trucks ascending clamorously from crowded Fourteenth Street, yet I confess that I believed them then. Whether I believe them now..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-dream-of-little-tuk",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Dream of Little Tuk.txt",
+      "expectedTitle": "The Dream of Little Tuk",
+      "generatedTitle": "The Dream of Little Tuk",
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-dream-of-little-tuk/manifest.json",
+        "app/client/assets/books/generated/the-dream-of-little-tuk/cleaned_book.json",
+        "app/client/assets/books/generated/the-dream-of-little-tuk/processed_book.json",
+        "app/client/assets/books/generated/the-dream-of-little-tuk/rights_report.json",
+        "app/client/assets/books/generated/the-dream-of-little-tuk/processing_notes.md",
+        "app/client/assets/books/generated/the-dream-of-little-tuk/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-dream-of-little-tuk.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 8,
+        "reason": "start at first readable prose after source/title/byline wrapper: Ah! yes, that was little Tuk; write pass starts at first selected/default section",
+        "snippet": "Ah! yes, that was little Tuk: in reality his name was not Tuk, but that was what he called himself before he could speak plain: he meant it for Charles, and it is all well enough if one does but know it. He had now to take care of his little sister Augusta, wh"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 188,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "popped her head in at the door, nodded to him friendly, and said, “Thanks, many thanks, my good child, for your help! May the good ever-loving God fulfil your loveliest dream!” Little Tukey did not at all know what he had dreamed, but the loving God knew it."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Dream of Little Tuk",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1892,
+        "snippet": "Ah! yes, that was little Tuk: in reality his name was not Tuk, but that was what he called himself before he could speak plain: he meant it for Charles, and it..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Dream of Little Tuk",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1892
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Dream of Little Tuk",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1892
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE DREAM OF LITTLE TUK",
+        "author": "Author: H. C. Andersen",
+        "start": "The Dream of Little Tuk Ah! yes, that was little Tuk: in reality his name was not Tuk, but that was what he called himself before he could speak plain: he meant it for Charles, and it is all well enough if one does but know it. He had now to take care of his little sister Augusta, who was much younger than himself, and he was, besides, to...",
+        "end": "he was now quite unable to call to mind his dream; that, however, was not at all necessary, for one may not know what the future will bring. And out of bed he jumped, and read in his book, and now all at once he knew his whole lesson. And the old washerwoman popped her head in at the door, nodded to him friendly, an..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-false-collar",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The False Collar.txt",
+      "expectedTitle": "The False Collar",
+      "generatedTitle": "The False Collar",
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-false-collar/manifest.json",
+        "app/client/assets/books/generated/the-false-collar/cleaned_book.json",
+        "app/client/assets/books/generated/the-false-collar/processed_book.json",
+        "app/client/assets/books/generated/the-false-collar/rights_report.json",
+        "app/client/assets/books/generated/the-false-collar/processing_notes.md",
+        "app/client/assets/books/generated/the-false-collar/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-false-collar.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 8,
+        "reason": "start at first readable prose after source/title/byline wrapper: There was once a fine gentleman; write pass starts at first selected/default section",
+        "snippet": "There was once a fine gentleman, all of whose moveables were a boot-jack and a hair-comb: but he had the finest false collars in the world; and it is about one of these collars that we are now to hear a story. It was so old, that it began to think of marriage"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 104,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "n never know if we may not, in the course of time, also come into the rag chest, and be made into white paper, and then have our whole life's history printed on it, even the most secret, and be obliged to run about and tell it ourselves, just like this collar."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The False Collar",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 894,
+        "snippet": "There was once a fine gentleman, all of whose moveables were a boot-jack and a hair-comb: but he had the finest false collars in the world; and it is about one..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The False Collar",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 894
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The False Collar",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 894
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE FALSE COLLAR",
+        "author": "Author: H. C. Andersen",
+        "start": "The False Collar There was once a fine gentleman, all of whose moveables were a boot-jack and a hair-comb: but he had the finest false collars in the world; and it is about one of these collars that we are now to hear a story. It was so old, that it began to think of marriage; and it happened that it came to be washed in company wit...",
+        "end": "e just this very piece of white paper we here see, and on which the story is printed; and that was because it boasted so terribly afterwards of what had never happened to it. It would be well for us to beware, that we may not act in a similar manner, for we can never know if we may not, in the course of time, also c..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-naughty-boy",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Naughty Boy.txt",
+      "expectedTitle": "The Naughty Boy",
+      "generatedTitle": "The Naughty Boy",
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-naughty-boy/manifest.json",
+        "app/client/assets/books/generated/the-naughty-boy/cleaned_book.json",
+        "app/client/assets/books/generated/the-naughty-boy/processed_book.json",
+        "app/client/assets/books/generated/the-naughty-boy/rights_report.json",
+        "app/client/assets/books/generated/the-naughty-boy/processing_notes.md",
+        "app/client/assets/books/generated/the-naughty-boy/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-naughty-boy.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 8,
+        "reason": "start at first readable prose after source/title/byline wrapper: Along time ago, there lived an old poet; write pass starts at first selected/default section",
+        "snippet": "Along time ago, there lived an old poet, a thoroughly kind old poet. As he was sitting one evening in his room, a dreadful storm arose without, and the rain streamed down from heaven; but the old poet sat warm and comfortable in his chimney-corner, where the f"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 83,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "fter everybody. Only think, he shot an arrow once at your old grandmother! But that is a long time ago, and it is all past now; however, a thing of that sort she never forgets. Fie, naughty Cupid! But now you know him, and you know, too, how ill-behaved he is!"
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Naughty Boy",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 835,
+        "snippet": "Along time ago, there lived an old poet, a thoroughly kind old poet. As he was sitting one evening in his room, a dreadful storm arose without, and the rain st..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Naughty Boy",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 835
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Naughty Boy",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 835
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE NAUGHTY BOY",
+        "author": "Author: H. C. Andersen",
+        "start": "The Naughty Boy Along time ago, there lived an old poet, a thoroughly kind old poet. As he was sitting one evening in his room, a dreadful storm arose without, and the rain streamed down from heaven; but the old poet sat warm and comfortable in his chimney-corner, where the fire blazed and the roasting apple hissed. ?Those who have...",
+        "end": "the palace and upon the ramparts: yes, once he even shot your father and mother right in the heart. Ask them only and you will hear what they'll tell you. Oh, he is a naughty boy, that Cupid; you must never have anything to do with him. He is forever running after everybody. Only think, he shot an arrow once at your..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-red-shoes",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Red Shoes.txt",
+      "expectedTitle": "The Red Shoes",
+      "generatedTitle": "The Red Shoes",
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-red-shoes/manifest.json",
+        "app/client/assets/books/generated/the-red-shoes/cleaned_book.json",
+        "app/client/assets/books/generated/the-red-shoes/processed_book.json",
+        "app/client/assets/books/generated/the-red-shoes/rights_report.json",
+        "app/client/assets/books/generated/the-red-shoes/processing_notes.md",
+        "app/client/assets/books/generated/the-red-shoes/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-red-shoes.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 8,
+        "reason": "start at first readable prose after source/title/byline wrapper: There was once a little girl who was very pretty and delicate; write pass starts at first selected/default section",
+        "snippet": "There was once a little girl who was very pretty and delicate, but in summer she was forced to run about with bare feet, she was so poor, and in winter wear very large wooden shoes, which made her little insteps quite red, and that looked so dangerous! In the"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 231,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "ounded so sweet and soft! The clear sunshine streamed so warmly through the window into the pew where Karen sat! Her heart was so full of sunshine, peace, and joy, that it broke. Her soul flew on the sunshine to God, and there no one asked after the RED SHOES."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Red Shoes",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2235,
+        "snippet": "There was once a little girl who was very pretty and delicate, but in summer she was forced to run about with bare feet, she was so poor, and in winter wear ve..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Red Shoes",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2235
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Red Shoes",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2235
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE RED SHOES",
+        "author": "Author: H. C. Andersen",
+        "start": "The Red Shoes There was once a little girl who was very pretty and delicate, but in summer she was forced to run about with bare feet, she was so poor, and in winter wear very large wooden shoes, which made her little insteps quite red, and that looked so dangerous! In the middle of the village lived old Dame Shoemaker; she sat a...",
+        "end": "church. She sat in the pew with the clergyman's family, and when they had ended the psalm and looked up, they nodded and said, ?It is right that thou art come!? ?It was through mercy!? she said. And the organ pealed, and the children's voices in the choir sounded so sweet and soft! The clear sunshine streamed so war..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-shadow",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Shadow.txt",
+      "expectedTitle": "The Shadow",
+      "generatedTitle": "The Shadow",
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-shadow/manifest.json",
+        "app/client/assets/books/generated/the-shadow/cleaned_book.json",
+        "app/client/assets/books/generated/the-shadow/processed_book.json",
+        "app/client/assets/books/generated/the-shadow/rights_report.json",
+        "app/client/assets/books/generated/the-shadow/processing_notes.md",
+        "app/client/assets/books/generated/the-shadow/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-shadow.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 8,
+        "reason": "start at first readable prose after source/title/byline wrapper: It is in the hot lands that the sun burns; write pass starts at first selected/default section",
+        "snippet": "It is in the hot lands that the sun burns, sure enough! there the people become quite a mahogany brown, ay, and in the HOTTEST lands they are burnt to Negroes. But now it was only to the HOT lands that a learned man had come from the cold; there he thought tha"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 504,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "nnons went off with a bum! bum! and the soldiers presented arms. That was a marriage! The princess and the shadow went out on the balcony to show themselves, and get another hurrah! The learned man heard nothing of all this--for they had deprived him of life."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Shadow",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 5019,
+        "snippet": "It is in the hot lands that the sun burns, sure enough! there the people become quite a mahogany brown, ay, and in the HOTTEST lands they are burnt to Negroes...."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Shadow",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5019
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Shadow",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5019
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 1,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE SHADOW",
+        "author": "Author: H. C. Andersen",
+        "start": "The Shadow It is in the hot lands that the sun burns, sure enough! there the people become quite a mahogany brown, ay, and in the HOTTEST lands they are burnt to Negroes. But now it was only to the HOT lands that a learned man had come from the cold; there he thought that he could run about just as when at home, but he soon fo...",
+        "end": "ssary to do away with him in all stillness!? ?It is certainly hard,? said the shadow, ?for he was a faithful servant!? and then he gave a sort of sigh. ?You are a noble character!? said the princess. The whole city was illuminated in the evening, and the cannons went off with a bum! bum! and the soldiers presented a..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-story-of-a-mother",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Story of a Mother.txt",
+      "expectedTitle": "The Story of a Mother",
+      "generatedTitle": "The Story of a Mother",
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-story-of-a-mother/manifest.json",
+        "app/client/assets/books/generated/the-story-of-a-mother/cleaned_book.json",
+        "app/client/assets/books/generated/the-story-of-a-mother/processed_book.json",
+        "app/client/assets/books/generated/the-story-of-a-mother/rights_report.json",
+        "app/client/assets/books/generated/the-story-of-a-mother/processing_notes.md",
+        "app/client/assets/books/generated/the-story-of-a-mother/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-story-of-a-mother.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 8,
+        "reason": "start at first readable prose after source/title/byline wrapper: A mother sat there with her little child; write pass starts at first selected/default section",
+        "snippet": "A mother sat there with her little child. She was so downcast, so afraid that it should die! It was so pale, the small eyes had closed themselves, and it drew its breath so softly, now and then, with a deep respiration, as if it sighed; and the mother looked s"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 214,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "r wrung her hands, fell on her knees, and prayed to our Lord: “Oh, hear me not when I pray against Thy will, which is the best! hear me not! hear me not!” And she bowed her head down in her lap, and Death took her child and went with it into the unknown land."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Story of a Mother",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1948,
+        "snippet": "A mother sat there with her little child. She was so downcast, so afraid that it should die! It was so pale, the small eyes had closed themselves, and it drew..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Story of a Mother",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1948
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Story of a Mother",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1948
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE STORY OF A MOTHER",
+        "author": "Author: H. C. Andersen",
+        "start": "The Story of a Mother A mother sat there with her little child. She was so downcast, so afraid that it should die! It was so pale, the small eyes had closed themselves, and it drew its breath so softly, now and then, with a deep respiration, as if it sighed; and the mother looked still more sorrowfully on the little creature. Then a knoc...",
+        "end": "y! Rather take it away! Take it into God's kingdom! Forget my tears, forget my prayers, and all that I have done!? ?I do not understand thee!? said Death. ?Wilt thou have thy child again, or shall I go with it there, where thou dost not know!? Then the mother wrung her hands, fell on her knees, and prayed to our Lor..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-ugly-duckling",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE UGLY DUCKLING.txt",
+      "expectedTitle": "The Ugly Duckling",
+      "generatedTitle": "The Ugly Duckling",
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-ugly-duckling/manifest.json",
+        "app/client/assets/books/generated/the-ugly-duckling/cleaned_book.json",
+        "app/client/assets/books/generated/the-ugly-duckling/processed_book.json",
+        "app/client/assets/books/generated/the-ugly-duckling/rights_report.json",
+        "app/client/assets/books/generated/the-ugly-duckling/processing_notes.md",
+        "app/client/assets/books/generated/the-ugly-duckling/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-ugly-duckling.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 86,
+        "reason": "start at first readable prose after source/title/byline wrapper: IT was so beautiful in the country; write pass starts at first selected/default section",
+        "snippet": "IT was so beautiful in the country. It was the summer time. The wheat fields were golden, the oats were green, and the hay stood in great stacks in the green meadows. The stork paraded about among them on his long red legs, chattering away in Egyptian, the lan"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 470,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "ts boughs into the water before him, and the sun shone warm and bright. Then he rustled his feathers, curved his slender neck, and cried joyfully, from the depths of his heart, \"I never dreamed of such happiness as this while I was the despised ugly duckling.\""
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Ugly Duckling",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3931,
+        "snippet": "IT was so beautiful in the country. It was the summer time. The wheat fields were golden, the oats were green, and the hay stood in great stacks in the green m..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Ugly Duckling",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3931
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Ugly Duckling",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3931
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 2,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 1,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: illustration captions/placeholders detected"
+      ],
+      "supportingSnippets": {
+        "title": "THE UGLY DUCKLING",
+        "author": "Author: H. C. Andersen",
+        "start": "The Ugly Duckling IT was so beautiful in the country. It was the summer time. The wheat fields were golden, the oats were green, and the hay stood in great stacks in the green meadows. The stork paraded about among them on his long red legs, chattering away in Egyptian, the language he had learned from his lady mother. All around the...",
+        "end": "d his head under his wing, for he did not know what to do, he was so happy--yet he was not at all proud. He had been persecuted and despised for his ugliness, and now he heard them say he was the most beautiful of all the birds. Even the elder tree bent down its boughs into the water before him, and the sun shone wa..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-adventures-of-chanticleer-and-partlet",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE ADVENTURES OF CHANTICLEER AND PARTLET.txt",
+      "expectedTitle": "The Adventures of Chanticleer and Partlet",
+      "generatedTitle": "The Adventures of Chanticleer and Partlet",
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/manifest.json",
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/cleaned_book.json",
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/processed_book.json",
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/rights_report.json",
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/processing_notes.md",
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/sections/chapter-003.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-adventures-of-chanticleer-and-partlet.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at 1. HOW THEY WENT TO THE MOUNTAINS TO EAT NUTS: The nuts are quite ripe now; write pass starts at first selected/default section",
+        "snippet": "The nuts are quite ripe now, said Chanticleer to his wife Partlet, suppose we go together to the mountains, and eat as many as we can, before the squirrel takes them all away. With all my heart, said Partlet, let us go and make a holiday of it together"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 173,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "eam and drowned. Thus Chanticleer was left alone with his dead Partlet; and having dug a grave for her, he laid her in it, and made a little hillock over her. Then he sat down by the grave, and wept and mourned, till at last he died too; and so all were dead."
+      },
+      "structuralConvention": "three source-numbered tale sections after parent Grimm collection title and byline",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "1. How They Went to the Mountains to Eat Nuts",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 854,
+        "snippet": "‘The nuts are quite ripe now,’ said Chanticleer to his wife Partlet, ‘suppose we go together to the mountains, and eat as many as we can, before the squirrel t..."
+      },
+      "sectionCount": 3,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "1. How They Went to the Mountains to Eat Nuts",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 854
+        },
+        {
+          "id": "chapter-002",
+          "label": "2. How Chanticleer and Partlet Went to Visit Mr Korbes",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 368
+        },
+        {
+          "id": "chapter-003",
+          "label": "3. How Partlet Died and Was Buried, and How Chanticleer Died of Grief",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 647
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "1. How They Went to the Mountains to Eat Nuts",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 854
+        },
+        {
+          "id": "chapter-002",
+          "label": "2. How Chanticleer and Partlet Went to Visit Mr Korbes",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 368
+        },
+        {
+          "id": "chapter-003",
+          "label": "3. How Partlet Died and Was Buried, and How Chanticleer Died of Grief",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 647
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001, chapter-002, chapter-003",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass preserved the three numbered Chanticleer and Partlet body headings and excluded the parent Grimm collection wrapper from playable text.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE ADVENTURES OF CHANTICLEER AND PARTLET",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "1. HOW THEY WENT TO THE MOUNTAINS TO EAT NUTS The nuts are quite ripe now,? said Chanticleer to his wife Partlet, ?suppose we go together to the mountains, and eat as many as we can, before the squirrel takes them all away.? ?With all my heart,? said Partlet, ?let us go and make a holiday of it together.? So they went to the mountains; and as it was a lovely da...",
+        "end": "ross the stream; and this time he got safely to the other side with the hearse, and managed to get Partlet out of it; but the fox and the other mourners, who were sitting behind, were too heavy, and fell back into the water and were all carried away by the stream and drowned. Thus Chanticleer was left alone with his..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "jorinda-and-jorindel",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/JORINDA AND JORINDEL.txt",
+      "expectedTitle": "Jorinda and Jorindel",
+      "generatedTitle": "Jorinda and Jorindel",
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/jorinda-and-jorindel/manifest.json",
+        "app/client/assets/books/generated/jorinda-and-jorindel/cleaned_book.json",
+        "app/client/assets/books/generated/jorinda-and-jorindel/processed_book.json",
+        "app/client/assets/books/generated/jorinda-and-jorindel/rights_report.json",
+        "app/client/assets/books/generated/jorinda-and-jorindel/processing_notes.md",
+        "app/client/assets/books/generated/jorinda-and-jorindel/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/jorinda-and-jorindel.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 9,
+        "reason": "start at first readable prose after source/title/byline wrapper: There was once an old castle; write pass starts at first selected/default section",
+        "snippet": "There was once an old castle, that stood in the middle of a deep gloomy wood, and in the castle lived an old fairy. Now this fairy could take any shape she pleased. All the day long she flew about in the form of an owl, or crept about the country like a cat; b"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 116,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "took their old forms again; and he took Jorinda home, where they were married, and lived happily together many years: and so did a good many other lads, whose maidens had been forced to sing in the old fairy’s cages by themselves, much longer than they liked."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Jorinda and Jorindel",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1141,
+        "snippet": "There was once an old castle, that stood in the middle of a deep gloomy wood, and in the castle lived an old fairy. Now this fairy could take any shape she ple..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Jorinda and Jorindel",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1141
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Jorinda and Jorindel",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1141
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "JORINDA AND JORINDEL",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "Jorinda and Jorindel There was once an old castle, that stood in the middle of a deep gloomy wood, and in the castle lived an old fairy. Now this fairy could take any shape she pleased. All the day long she flew about in the form of an owl, or crept about the country like a cat; but at night she always became an old woman again. When an...",
+        "end": "r her, touched the cage with the flower, and Jorinda stood before him, and threw her arms round his neck looking as beautiful as ever, as beautiful as when they walked together in the wood. Then he touched all the other birds with the flower, so that they all took their old forms again; and he took Jorinda home, whe..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "mother-holle",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/MOTHER HOLLE.txt",
+      "expectedTitle": "Mother Holle",
+      "generatedTitle": "Mother Holle",
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/mother-holle/manifest.json",
+        "app/client/assets/books/generated/mother-holle/cleaned_book.json",
+        "app/client/assets/books/generated/mother-holle/processed_book.json",
+        "app/client/assets/books/generated/mother-holle/rights_report.json",
+        "app/client/assets/books/generated/mother-holle/processing_notes.md",
+        "app/client/assets/books/generated/mother-holle/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/mother-holle.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 9,
+        "reason": "start at first readable prose after source/title/byline wrapper: Once upon a time there was a widow; write pass starts at first selected/default section",
+        "snippet": "Once upon a time there was a widow who had two daughters; one of them was beautiful and industrious, the other ugly and lazy. The mother, however, loved the ugly and lazy one best, because she was her own daughter, and so the other, who was only her stepdaught"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 127,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "azy girl had to go home covered with pitch, and the cock on the well called out as she saw her: ‘Cock-a-doodle-doo! Your dirty daughter’s come back to you.’ But, try what she would, she could not get the pitch off and it stuck to her as long as she lived."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Mother Holle",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1276,
+        "snippet": "Once upon a time there was a widow who had two daughters; one of them was beautiful and industrious, the other ugly and lazy. The mother, however, loved the ug..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Mother Holle",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1276
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Mother Holle",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1276
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "MOTHER HOLLE",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "Mother Holle Once upon a time there was a widow who had two daughters; one of them was beautiful and industrious, the other ugly and lazy. The mother, however, loved the ugly and lazy one best, because she was her own daughter, and so the other, who was only her stepdaughter, was made to do all the work of the house, and was qui...",
+        "end": "her, as she had led her sister, to the broad gateway; but as she was passing through, instead of the shower of gold, a great bucketful of pitch came pouring over her. ?That is in return for your services,? said the old woman, and she shut the gate. So the lazy girl had to go home covered with pitch, and the cock on..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "rapunzel",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/RAPUNZEL.txt",
+      "expectedTitle": "Rapunzel",
+      "generatedTitle": "Rapunzel",
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/rapunzel/manifest.json",
+        "app/client/assets/books/generated/rapunzel/cleaned_book.json",
+        "app/client/assets/books/generated/rapunzel/processed_book.json",
+        "app/client/assets/books/generated/rapunzel/rights_report.json",
+        "app/client/assets/books/generated/rapunzel/processing_notes.md",
+        "app/client/assets/books/generated/rapunzel/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/rapunzel.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 9,
+        "reason": "start at first readable prose after source/title/byline wrapper: There were once a man and a woman; write pass starts at first selected/default section",
+        "snippet": "There were once a man and a woman who had long in vain wished for a child. At length the woman hoped that God was about to grant her desire. These people had a little window at the back of their house from which a splendid garden could be seen, which was full"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 128,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "knew him and fell on his neck and wept. Two of her tears wetted his eyes and they grew clear again, and he could see with them as before. He led her to his kingdom where he was joyfully received, and they lived for a long time afterwards, happy and contented."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Rapunzel",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1413,
+        "snippet": "There were once a man and a woman who had long in vain wished for a child. At length the woman hoped that God was about to grant her desire. These people had a..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Rapunzel",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1413
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Rapunzel",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1413
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "RAPUNZEL",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "Rapunzel There were once a man and a woman who had long in vain wished for a child. At length the woman hoped that God was about to grant her desire. These people had a little window at the back of their house from which a splendid garden could be seen, which was full of the most beautiful flowers and herbs. It was, however,...",
+        "end": "for some years, and at length came to the desert where Rapunzel, with the twins to which she had given birth, a boy and a girl, lived in wretchedness. He heard a voice, and it seemed so familiar to him that he went towards it, and when he approached, Rapunzel knew him and fell on his neck and wept. Two of her tears..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-juniper-tree",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE JUNIPER-TREE.txt",
+      "expectedTitle": "The Juniper-Tree",
+      "generatedTitle": "The Juniper-Tree",
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-juniper-tree/manifest.json",
+        "app/client/assets/books/generated/the-juniper-tree/cleaned_book.json",
+        "app/client/assets/books/generated/the-juniper-tree/processed_book.json",
+        "app/client/assets/books/generated/the-juniper-tree/rights_report.json",
+        "app/client/assets/books/generated/the-juniper-tree/processing_notes.md",
+        "app/client/assets/books/generated/the-juniper-tree/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-juniper-tree.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 9,
+        "reason": "start at first readable prose after source/title/byline wrapper: Long, long ago, some two thousand years or so; write pass starts at first selected/default section",
+        "snippet": "Long, long ago, some two thousand years or so, there lived a rich man with a good and beautiful wife. They loved each other dearly, but sorrowed much that they had no children. So greatly did they desire to have one, that the wife prayed for it day and night,"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 383,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "ly saw mist and flame and fire rising from the spot, and when these had passed, there stood the little brother, and he took the father and little Marleen by the hand; then they all three rejoiced, and went inside together and sat down to their dinners and ate."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Juniper-Tree",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3088,
+        "snippet": "Long, long ago, some two thousand years or so, there lived a rich man with a good and beautiful wife. They loved each other dearly, but sorrowed much that they..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Juniper-Tree",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3088
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Juniper-Tree",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3088
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE JUNIPER-TREE",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Juniper-Tree Long, long ago, some two thousand years or so, there lived a rich man with a good and beautiful wife. They loved each other dearly, but sorrowed much that they had no children. So greatly did they desire to have one, that the wife prayed for it day and night, but still they remained childless. In front of the house...",
+        "end": "lighten my misery, for I feel as if the world were coming to an end.? But as she crossed the threshold, crash! the bird threw the millstone down on her head, and she was crushed to death. The father and little Marleen heard the sound and ran out, but they only saw mist and flame and fire rising from the spot, and wh..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-seven-ravens",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE SEVEN RAVENS.txt",
+      "expectedTitle": "The Seven Ravens",
+      "generatedTitle": "The Seven Ravens",
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-seven-ravens/manifest.json",
+        "app/client/assets/books/generated/the-seven-ravens/cleaned_book.json",
+        "app/client/assets/books/generated/the-seven-ravens/processed_book.json",
+        "app/client/assets/books/generated/the-seven-ravens/rights_report.json",
+        "app/client/assets/books/generated/the-seven-ravens/processing_notes.md",
+        "app/client/assets/books/generated/the-seven-ravens/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-seven-ravens.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 9,
+        "reason": "start at first readable prose after source/title/byline wrapper: There was once a man who had seven sons; write pass starts at first selected/default section",
+        "snippet": "There was once a man who had seven sons, and last of all one daughter. Although the little girl was very pretty, she was so weak and small that they thought she could not live; but they said she should at once be christened. So the father sent one of his sons"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 90,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "ome! then we should be free.’ When the little girl heard this (for she stood behind the door all the time and listened), she ran forward, and in an instant all the ravens took their right form again; and all hugged and kissed each other, and went merrily home."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Seven Ravens",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1011,
+        "snippet": "There was once a man who had seven sons, and last of all one daughter. Although the little girl was very pretty, she was so weak and small that they thought sh..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Seven Ravens",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1011
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Seven Ravens",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1011
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE SEVEN RAVENS",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Seven Ravens There was once a man who had seven sons, and last of all one daughter. Although the little girl was very pretty, she was so weak and small that they thought she could not live; but they said she should at once be christened. So the father sent one of his sons in haste to the spring to get some water, but the other s...",
+        "end": "le glass?? ?Caw! Caw! well I ween Mortal lips have this way been.? When the seventh came to the bottom of his glass, and found there the ring, he looked at it, and knew that it was his father?s and mother?s, and said, ?O that our little sister would but come! then we should be free.? When the little girl heard this..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-wedding-of-mrs-fox",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE WEDDING OF MRS FOX.txt",
+      "expectedTitle": "The Wedding of Mrs Fox",
+      "generatedTitle": "The Wedding of Mrs Fox",
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-wedding-of-mrs-fox/manifest.json",
+        "app/client/assets/books/generated/the-wedding-of-mrs-fox/cleaned_book.json",
+        "app/client/assets/books/generated/the-wedding-of-mrs-fox/processed_book.json",
+        "app/client/assets/books/generated/the-wedding-of-mrs-fox/rights_report.json",
+        "app/client/assets/books/generated/the-wedding-of-mrs-fox/processing_notes.md",
+        "app/client/assets/books/generated/the-wedding-of-mrs-fox/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-wedding-of-mrs-fox.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 11,
+        "reason": "start at first readable prose after source/title/byline wrapper: There was once upon a time an old fox; write pass starts at first selected/default section",
+        "snippet": "There was once upon a time an old fox with nine tails, who believed that his wife was not faithful to him, and wished to put her to the test. He stretched himself out under the bench, did not move a limb, and behaved as if he were stone dead. Mrs Fox went up t"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 115,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "For many a fine fat mouse he brought, Yet of his wife he never thought, But ate up every one he caught.’ Then the wedding was solemnized with young Mr Fox, and there was much rejoicing and dancing; and if they have not left off, they are dancing still."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Wedding of Mrs Fox",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 787,
+        "snippet": "There was once upon a time an old fox with nine tails, who believed that his wife was not faithful to him, and wished to put her to the test. He stretched hims..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Wedding of Mrs Fox",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 787
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Wedding of Mrs Fox",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 787
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE WEDDING OF MRS FOX",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Wedding of Mrs Fox There was once upon a time an old fox with nine tails, who believed that his wife was not faithful to him, and wished to put her to the test. He stretched himself out under the bench, did not move a limb, and behaved as if he were stone dead. Mrs Fox went up to her room, shut herself in, and her maid, Miss Cat, sat...",
+        "end": "tockings on, and has a little pointed mouth?? ?Yes,? said the cat, ?he has.? ?Then let him come upstairs,? said Mrs Fox, and ordered the servant to prepare the wedding feast. ?Sweep me the room as clean as you can, Up with the window, fling out my old man! For many a fine fat mouse he brought, Yet of his wife he nev..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-adventures-of-kintaro-the-golden-boy",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE ADVENTURES OF KINTARO, THE GOLDEN BOY.txt",
+      "expectedTitle": "The Adventures of Kintaro, the Golden Boy",
+      "generatedTitle": "The Adventures of Kintaro, the Golden Boy",
+      "expectedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "generatedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Yei Theodora Ozaki",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-adventures-of-kintaro-the-golden-boy/manifest.json",
+        "app/client/assets/books/generated/the-adventures-of-kintaro-the-golden-boy/cleaned_book.json",
+        "app/client/assets/books/generated/the-adventures-of-kintaro-the-golden-boy/processed_book.json",
+        "app/client/assets/books/generated/the-adventures-of-kintaro-the-golden-boy/rights_report.json",
+        "app/client/assets/books/generated/the-adventures-of-kintaro-the-golden-boy/processing_notes.md",
+        "app/client/assets/books/generated/the-adventures-of-kintaro-the-golden-boy/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-adventures-of-kintaro-the-golden-boy.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 13,
+        "reason": "start at first readable prose after source/title/byline wrapper: Long, long ago there lived in Kyoto; write pass starts at first selected/default section",
+        "snippet": "Long, long ago there lived in Kyoto a brave soldier named Kintoki. Now he fell in love with a beautiful lady and married her. Not long after this, through the malice of some of his friends, he fell into disgrace at Court and was dismissed. This misfortune so p"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 367,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "ro of his country, and great was the power and honor and wealth that came to him. He now kept his promise and built a comfortable home for his old mother, who lived happily with him in the Capital to the end of her days. Is not this the story of a great hero?"
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Adventures of Kintaro, the Golden Boy",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3127,
+        "snippet": "Long, long ago there lived in Kyoto a brave soldier named Kintoki. Now he fell in love with a beautiful lady and married her. Not long after this, through the..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Adventures of Kintaro, the Golden Boy",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3127
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Adventures of Kintaro, the Golden Boy",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3127
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 1,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: illustration captions/placeholders detected"
+      ],
+      "supportingSnippets": {
+        "title": "THE ADVENTURES OF KINTARO, THE GOLDEN BOY",
+        "author": "Author: Yei Theodora Ozaki",
+        "start": "The Adventures of Kintaro, the Golden Boy Long, long ago there lived in Kyoto a brave soldier named Kintoki. Now he fell in love with a beautiful lady and married her. Not long after this, through the malice of some of his friends, he fell into disgrace at Court and was dismissed. This misfortune so preyed upon his mind that he did not long survive his dism...",
+        "end": "re stricken with fear. Lord Raiko ordered Kintaro to the rescue. He immediately started off, delighted at the prospect of trying his sword. Surprising the monster in its den, he made short work of cutting off its great head, which he carried back in triumph to his master. Kintaro now rose to be the greatest hero of..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-bamboo-cutter-and-the-moon-child",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE BAMBOO-CUTTER AND THE MOON-CHILD.txt",
+      "expectedTitle": "The Bamboo-Cutter and the Moon-Child",
+      "generatedTitle": "The Bamboo-Cutter and the Moon-Child",
+      "expectedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "generatedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Yei Theodora Ozaki",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-bamboo-cutter-and-the-moon-child/manifest.json",
+        "app/client/assets/books/generated/the-bamboo-cutter-and-the-moon-child/cleaned_book.json",
+        "app/client/assets/books/generated/the-bamboo-cutter-and-the-moon-child/processed_book.json",
+        "app/client/assets/books/generated/the-bamboo-cutter-and-the-moon-child/rights_report.json",
+        "app/client/assets/books/generated/the-bamboo-cutter-and-the-moon-child/processing_notes.md",
+        "app/client/assets/books/generated/the-bamboo-cutter-and-the-moon-child/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-bamboo-cutter-and-the-moon-child.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 13,
+        "reason": "start at first readable prose after source/title/byline wrapper: Long, long ago, there lived an old bamboo wood-cutter; write pass starts at first selected/default section",
+        "snippet": "Long, long ago, there lived an old bamboo wood-cutter. He was very poor and sad also, for no child had Heaven sent to cheer his old age, and in his heart there was no hope of rest from work till he died and was laid in the quiet grave. Every morning he went fo"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 566,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "so he sent it with the letter to the top of the most sacred mountain in the land. Mount Fuji, and there the Royal emissaries burnt it on the summit at sunrise. So to this day people say there is smoke to be seen rising from the top of Mount Fuji to the clouds."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Bamboo-Cutter and the Moon-Child",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 5747,
+        "snippet": "Long, long ago, there lived an old bamboo wood-cutter. He was very poor and sad also, for no child had Heaven sent to cheer his old age, and in his heart there..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Bamboo-Cutter and the Moon-Child",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5747
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Bamboo-Cutter and the Moon-Child",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5747
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 1,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: illustration captions/placeholders detected"
+      ],
+      "supportingSnippets": {
+        "title": "THE BAMBOO-CUTTER AND THE MOON-CHILD",
+        "author": "Author: Yei Theodora Ozaki",
+        "start": "The Bamboo-Cutter and the Moon-Child Long, long ago, there lived an old bamboo wood-cutter. He was very poor and sad also, for no child had Heaven sent to cheer his old age, and in his heart there was no hope of rest from work till he died and was laid in the quiet grave. Every morning he went forth into the woods and hills wherever the bamboo reared i...",
+        "end": "y light of day the moon-chariot and all in it were lost amongst the fleecy clouds that were now wafted across the sky on the wings of the morning wind. Princess Moonlight?s letter was carried to the Palace. His Majesty was afraid to touch the Elixir of Life, so he sent it with the letter to the top of the most sacre..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-goblin-of-adachigahara",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE GOBLIN OF ADACHIGAHARA.txt",
+      "expectedTitle": "The Goblin of Adachigahara",
+      "generatedTitle": "The Goblin of Adachigahara",
+      "expectedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "generatedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Yei Theodora Ozaki",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-goblin-of-adachigahara/manifest.json",
+        "app/client/assets/books/generated/the-goblin-of-adachigahara/cleaned_book.json",
+        "app/client/assets/books/generated/the-goblin-of-adachigahara/processed_book.json",
+        "app/client/assets/books/generated/the-goblin-of-adachigahara/rights_report.json",
+        "app/client/assets/books/generated/the-goblin-of-adachigahara/processing_notes.md",
+        "app/client/assets/books/generated/the-goblin-of-adachigahara/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-goblin-of-adachigahara.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 13,
+        "reason": "start at first readable prose after source/title/byline wrapper: Long, long ago there was a large plain called Adachigahara; write pass starts at first selected/default section",
+        "snippet": "Long, long ago there was a large plain called Adachigahara, in the province of Mutsu in Japan. This place was said to be haunted by a cannibal goblin who took the form of an old woman. From time to time many travelers disappeared and were never heard of more,"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 185,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "dha to whom he had prayed for help, so he took out his rosary and bowing his head as the sun rose he said his prayers and made his thanksgiving earnestly. He then set forward for another part of the country, only too glad to leave the haunted plain behind him."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Goblin of Adachigahara",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1726,
+        "snippet": "Long, long ago there was a large plain called Adachigahara, in the province of Mutsu in Japan. This place was said to be haunted by a cannibal goblin who took..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Goblin of Adachigahara",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1726
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Goblin of Adachigahara",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1726
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: illustration captions/placeholders detected"
+      ],
+      "supportingSnippets": {
+        "title": "THE GOBLIN OF ADACHIGAHARA",
+        "author": "Author: Yei Theodora Ozaki",
+        "start": "The Goblin of Adachigahara Long, long ago there was a large plain called Adachigahara, in the province of Mutsu in Japan. This place was said to be haunted by a cannibal goblin who took the form of an old woman. From time to time many travelers disappeared and were never heard of more, and the old women round the charcoal braziers in the even...",
+        "end": "th the darkness of night the goblin vanished and he was safe. The priest now knew that he had met the Goblin of Adachigahara, the story of whom he had often heard but never believed to be true. He felt that he owed his wonderful escape to the protection of Buddha to whom he had prayed for help, so he took out his ro..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-jelly-fish-and-the-monkey",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE JELLY FISH AND THE MONKEY.txt",
+      "expectedTitle": "The Jelly Fish and the Monkey",
+      "generatedTitle": "The Jelly Fish and the Monkey",
+      "expectedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "generatedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Yei Theodora Ozaki",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-jelly-fish-and-the-monkey/manifest.json",
+        "app/client/assets/books/generated/the-jelly-fish-and-the-monkey/cleaned_book.json",
+        "app/client/assets/books/generated/the-jelly-fish-and-the-monkey/processed_book.json",
+        "app/client/assets/books/generated/the-jelly-fish-and-the-monkey/rights_report.json",
+        "app/client/assets/books/generated/the-jelly-fish-and-the-monkey/processing_notes.md",
+        "app/client/assets/books/generated/the-jelly-fish-and-the-monkey/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-jelly-fish-and-the-monkey.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 13,
+        "reason": "start at first readable prose after source/title/byline wrapper: Long, long ago, in old Japan, the Kingdom of the Sea; write pass starts at first selected/default section",
+        "snippet": "Long, long ago, in old Japan, the Kingdom of the Sea was governed by a wonderful King. He was called Rin Jin, or the Dragon King of the Sea. His power was immense, for he was the ruler of all sea creatures both great and small, and in his keeping were the Jewe"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 367,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "d bones something like a tortoise, but, ever since the Dragon King’s sentence was carried out on the ancestor of the jelly fishes, his descendants have all been soft and boneless just as you see them to-day thrown up by the waves high upon the shores of Japan."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Jelly Fish and the Monkey",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3201,
+        "snippet": "Long, long ago, in old Japan, the Kingdom of the Sea was governed by a wonderful King. He was called Rin Jin, or the Dragon King of the Sea. His power was imme..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Jelly Fish and the Monkey",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3201
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Jelly Fish and the Monkey",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3201
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: illustration captions/placeholders detected"
+      ],
+      "supportingSnippets": {
+        "title": "THE JELLY FISH AND THE MONKEY",
+        "author": "Author: Yei Theodora Ozaki",
+        "start": "The Jelly Fish and the Monkey Long, long ago, in old Japan, the Kingdom of the Sea was governed by a wonderful King. He was called Rin Jin, or the Dragon King of the Sea. His power was immense, for he was the ruler of all sea creatures both great and small, and in his keeping were the Jewels of the Ebb and Flow of the Tide. The Jewel of the Ebbi...",
+        "end": "beyond the Palace gates and threw him into the water. Here he was left to suffer and repent his foolish chattering, and to grow accustomed to his new state of bonelessness. From this story it is evident that in former times the jelly fish once had a shell and bones something like a tortoise, but, ever since the Drag..."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-tongue-cut-sparrow",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE TONGUE-CUT SPARROW.txt",
+      "expectedTitle": "The Tongue-Cut Sparrow",
+      "generatedTitle": "The Tongue-Cut Sparrow",
+      "expectedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "generatedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Yei Theodora Ozaki",
+        "lineNumber": 13
+      },
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-tongue-cut-sparrow/manifest.json",
+        "app/client/assets/books/generated/the-tongue-cut-sparrow/cleaned_book.json",
+        "app/client/assets/books/generated/the-tongue-cut-sparrow/processed_book.json",
+        "app/client/assets/books/generated/the-tongue-cut-sparrow/rights_report.json",
+        "app/client/assets/books/generated/the-tongue-cut-sparrow/processing_notes.md",
+        "app/client/assets/books/generated/the-tongue-cut-sparrow/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-tongue-cut-sparrow.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 13,
+        "reason": "start at first readable prose after source/title/byline wrapper: Long, long ago in Japan there lived an old man; write pass starts at first selected/default section",
+        "snippet": "Long, long ago in Japan there lived an old man and his wife. The old man was a good, kind-hearted, hard-working old fellow, but his wife was a regular cross-patch, who spoiled the happiness of her home by her scolding tongue. She was always grumbling about som"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 343,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "degrees became a good old woman, so that her husband hardly knew her to be the same person, and they spent their last days together happily, free from want or care, spending carefully the treasure the old man had received from his pet, the tongue-cut sparrow."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Tongue-Cut Sparrow",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3393,
+        "snippet": "Long, long ago in Japan there lived an old man and his wife. The old man was a good, kind-hearted, hard-working old fellow, but his wife was a regular cross-pa..."
+      },
+      "sectionCount": 1,
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Tongue-Cut Sparrow",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3393
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Tongue-Cut Sparrow",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3393
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 2,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: author metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: illustration captions/placeholders detected"
+      ],
+      "supportingSnippets": {
+        "title": "THE TONGUE-CUT SPARROW",
+        "author": "Author: Yei Theodora Ozaki",
+        "start": "The Tongue-Cut Sparrow Long, long ago in Japan there lived an old man and his wife. The old man was a good, kind-hearted, hard-working old fellow, but his wife was a regular cross-patch, who spoiled the happiness of her home by her scolding tongue. She was always grumbling about something from morning to night. The old man had for a long...",
+        "end": "at once, saying: ?Don?t blame the sparrow, it is your wickedness which has at last met with its reward. I only hope this may be a lesson to you in the future!? The old woman said nothing more, and from that day she repented of her cross, unkind ways, and by degrees became a good old woman, so that her husband hardly..."
+      },
+      "finalRecommendation": "accepted for review"
+    }
+  ]
+}
