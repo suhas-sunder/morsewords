@@ -5,8 +5,8 @@
   "author": [
     "Jacob Grimm; Wilhelm Grimm"
   ],
-  "contentVersion": "53b60980b1313722",
-  "contentHash": "53b60980b131372220d934bc2bc64094abe2bac36a0e5da3eca9593402478d2a",
+  "contentVersion": "72cc1f4e2879147b",
+  "contentHash": "72cc1f4e2879147baf8504e17fb15596822b0be3e25135c0258f1f877ca25cce",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 11945,
-    "cleanedCharacterCount": 10639,
-    "wordCount": 2106,
+    "cleanedCharacterCount": 10711,
+    "wordCount": 2120,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 10639,
-      "wordCount": 2106,
+      "characterCount": 10711,
+      "wordCount": 2120,
       "estimatedTypingMinutes": 61,
-      "estimatedListeningMinutes": 64,
-      "morseCharacterEstimate": 57355,
-      "textPreview": "There was once a fisherman who lived with his wife in a pigsty, close one day, as he sat on the shore with his rod, looking at the sparkling waves and watching..."
+      "estimatedListeningMinutes": 65,
+      "morseCharacterEstimate": 57751,
+      "textPreview": "There was once a fisherman who lived with his wife in a pigsty, close by the seaside. The fisherman used to go out all day long a-fishing; and one day, as he s..."
     }
   ],
   "cleaning": {
@@ -76,7 +76,8 @@
       "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
       "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
       "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+      "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
     ]
   },
   "warnings": [
@@ -88,6 +89,7 @@
     "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
     "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
     "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+    "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
   ]
 }

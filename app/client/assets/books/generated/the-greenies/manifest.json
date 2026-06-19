@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "d616090c88cd992b",
-  "contentHash": "d616090c88cd992b671a21c0a95f6b24983751f8e7bfc559404be90bb99340d4",
+  "contentVersion": "1f257a5ba5ff3eaf",
+  "contentHash": "1f257a5ba5ff3eaf534970fee09ee5f5383ef1e8502172d8bf6547e5274f2169",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 8640,
-    "cleanedCharacterCount": 3674,
-    "wordCount": 726,
+    "cleanedCharacterCount": 3743,
+    "wordCount": 741,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,11 +55,11 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 3674,
-      "wordCount": 726,
-      "estimatedTypingMinutes": 21,
-      "estimatedListeningMinutes": 22,
-      "morseCharacterEstimate": 19548,
+      "characterCount": 3743,
+      "wordCount": 741,
+      "estimatedTypingMinutes": 22,
+      "estimatedListeningMinutes": 23,
+      "morseCharacterEstimate": 19921,
       "textPreview": "A ROSE TREE stood in the window. But a little while ago it had been green and fresh, and now it looked sickly--it was in poor health, no doubt. A whole regimen..."
     }
   ],
@@ -78,7 +78,8 @@
       "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
       "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
       "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-      "dry-run artifact risk: illustration captions/placeholders detected"
+      "dry-run artifact risk: illustration captions/placeholders detected",
+      "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
     ]
   },
   "warnings": [
@@ -92,6 +93,7 @@
     "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
     "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
     "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-    "dry-run artifact risk: illustration captions/placeholders detected"
+    "dry-run artifact risk: illustration captions/placeholders detected",
+    "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
   ]
 }

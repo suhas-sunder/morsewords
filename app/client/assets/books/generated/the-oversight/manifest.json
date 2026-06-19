@@ -5,8 +5,8 @@
   "author": [
     "Saki"
   ],
-  "contentVersion": "cd5f854e4ec3beb6",
-  "contentHash": "cd5f854e4ec3beb695fae44871a4f337943a492607071963a249b08f1c24d2c1",
+  "contentVersion": "2ad6d7746f2a1469",
+  "contentHash": "2ad6d7746f2a146941c0e6d6a82c78a15cb37d74d7c89a79e43edf21780702d2",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,7 +35,7 @@
   },
   "stats": {
     "originalCharacterCount": 11645,
-    "cleanedCharacterCount": 9756,
+    "cleanedCharacterCount": 9757,
     "wordCount": 1710,
     "sectionCount": 1,
     "includedSectionCount": 1
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 9756,
+      "characterCount": 9757,
       "wordCount": 1710,
       "estimatedTypingMinutes": 49,
       "estimatedListeningMinutes": 59,
-      "morseCharacterEstimate": 52349,
-      "textPreview": "It’s like a Chinese puzzle,” said Lady Prowche resentfully, staring at a scribbled list of names that spread over two or three loose sheets of notepaper on her..."
+      "morseCharacterEstimate": 52358,
+      "textPreview": "“It’s like a Chinese puzzle,” said Lady Prowche resentfully, staring at a scribbled list of names that spread over two or three loose sheets of notepaper on he..."
     }
   ],
   "cleaning": {
@@ -76,7 +76,8 @@
       "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
       "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
       "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+      "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
     ]
   },
   "warnings": [
@@ -87,6 +88,7 @@
     "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
     "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
     "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+    "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
   ]
 }

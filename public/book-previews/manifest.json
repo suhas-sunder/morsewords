@@ -2580,12 +2580,12 @@
     {
       "slug": "the-fisherman-and-his-wife",
       "path": "/book-previews/the-fisherman-and-his-wife.preview.json",
-      "contentVersion": "53b60980b1313722",
-      "contentHash": "53b60980b131372220d934bc2bc64094abe2bac36a0e5da3eca9593402478d2a",
+      "contentVersion": "72cc1f4e2879147b",
+      "contentHash": "72cc1f4e2879147baf8504e17fb15596822b0be3e25135c0258f1f877ca25cce",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11225,
-      "previewCharacterCount": 9870,
-      "estimatedRuntimeSeconds": 3551,
+      "previewBytes": 11297,
+      "previewCharacterCount": 9942,
+      "estimatedRuntimeSeconds": 3578,
       "truncated": true
     },
     {
@@ -2657,12 +2657,12 @@
     {
       "slug": "the-greenies",
       "path": "/book-previews/the-greenies.preview.json",
-      "contentVersion": "d616090c88cd992b",
-      "contentHash": "d616090c88cd992b671a21c0a95f6b24983751f8e7bfc559404be90bb99340d4",
+      "contentVersion": "1f257a5ba5ff3eaf",
+      "contentHash": "1f257a5ba5ff3eaf534970fee09ee5f5383ef1e8502172d8bf6547e5274f2169",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 4469,
-      "previewCharacterCount": 3674,
-      "estimatedRuntimeSeconds": 1304,
+      "previewBytes": 4538,
+      "previewCharacterCount": 3743,
+      "estimatedRuntimeSeconds": 1329,
       "truncated": false
     },
     {
@@ -2712,34 +2712,34 @@
     {
       "slug": "shock-tactics",
       "path": "/book-previews/shock-tactics.preview.json",
-      "contentVersion": "5175b1ef150d4328",
-      "contentHash": "5175b1ef150d43285a3c17fa3ce4875e56d1f3422519e241b7f907d4de7123d9",
+      "contentVersion": "94a1f6ec8d9d1302",
+      "contentHash": "94a1f6ec8d9d13024827e3249171345d631aed87929ad36d350dbac03e505b47",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11661,
-      "previewCharacterCount": 10370,
-      "estimatedRuntimeSeconds": 3561,
+      "previewBytes": 11603,
+      "previewCharacterCount": 10317,
+      "estimatedRuntimeSeconds": 3541,
       "truncated": true
     },
     {
       "slug": "canossa",
       "path": "/book-previews/canossa.preview.json",
-      "contentVersion": "8a99a58c240cc4dd",
-      "contentHash": "8a99a58c240cc4dd4f35b2e609b48727ef55678278c84c3150141ae5ad008e86",
+      "contentVersion": "c406d42ffdb4ca4c",
+      "contentHash": "c406d42ffdb4ca4c38b2bb9427aa155cda5d38efde884bac40b81eb6d75daaf8",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9433,
-      "previewCharacterCount": 8289,
-      "estimatedRuntimeSeconds": 2942,
+      "previewBytes": 9481,
+      "previewCharacterCount": 8332,
+      "estimatedRuntimeSeconds": 2958,
       "truncated": false
     },
     {
       "slug": "the-oversight",
       "path": "/book-previews/the-oversight.preview.json",
-      "contentVersion": "cd5f854e4ec3beb6",
-      "contentHash": "cd5f854e4ec3beb695fae44871a4f337943a492607071963a249b08f1c24d2c1",
+      "contentVersion": "2ad6d7746f2a1469",
+      "contentHash": "2ad6d7746f2a146941c0e6d6a82c78a15cb37d74d7c89a79e43edf21780702d2",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10956,
-      "previewCharacterCount": 9756,
-      "estimatedRuntimeSeconds": 3490,
+      "previewBytes": 10961,
+      "previewCharacterCount": 9757,
+      "estimatedRuntimeSeconds": 3491,
       "truncated": false
     },
     {
@@ -2767,12 +2767,12 @@
     {
       "slug": "quail-seed",
       "path": "/book-previews/quail-seed.preview.json",
-      "contentVersion": "832699cf9df0137b",
-      "contentHash": "832699cf9df0137b40b423bd5f13f6c4959d2937ed25ff8ac9b3827e305fba3d",
+      "contentVersion": "a3615df9901fb111",
+      "contentHash": "a3615df9901fb1112e0a66118ebcff89bcfc358716e6e4d81e9f9d34ff57f519",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10623,
-      "previewCharacterCount": 9501,
-      "estimatedRuntimeSeconds": 3397,
+      "previewBytes": 10628,
+      "previewCharacterCount": 9502,
+      "estimatedRuntimeSeconds": 3398,
       "truncated": true
     },
     {

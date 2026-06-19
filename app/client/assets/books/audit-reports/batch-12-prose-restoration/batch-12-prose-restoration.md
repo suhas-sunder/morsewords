@@ -1,40 +1,57 @@
 # Batch-12 prose restoration
 
-Exactly five authorized accepted books were corrected from their audited raw source. All five corrected readable bodies now match the narrowly sanitized raw tale bodies character-for-character.
+Eleven batch-12 books have now been corrected from their audited raw source: the original five from the first restoration pass and six additional documented defects. All twenty batch-12 readable bodies now match their narrowly sanitized raw tale bodies character-for-character.
 
-## Authorized restoration targets
+- Total corrected batch-12 books: 11
+- Original first-pass corrections: 5
+- Additional corrections in this pass: 6
+- Remaining batch-12 prose omissions: 0
+- Remaining missing opening-quote defects: 0
 
-| Slug | Status | Raw/generated result | Preview impact |
-| --- | --- | --- | --- |
-| `ole-luk-oie-the-dream-god` | corrected pass | pass: exact character-for-character match after intentional artifact cleanup | preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content |
-| `the-story-of-the-old-man-who-made-withered-trees-to-flower` | corrected pass | pass: exact character-for-character match after intentional artifact cleanup | preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content |
-| `the-conceited-apple-branch` | corrected pass | pass: exact character-for-character match after intentional artifact cleanup | preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content |
-| `little-ida-s-flowers` | corrected pass | pass: exact character-for-character match after intentional artifact cleanup | preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content |
-| `the-steadfast-tin-soldier` | corrected pass | pass: exact character-for-character match after intentional artifact cleanup | preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content |
+## Corrected books
 
-Each target's preview was rebuilt because its content hash changed. The assets remain book-specific, begin at the first real readable content, and contain no generic fallback or source boilerplate.
+| Slug | Restoration pass | Defect type | Restored excerpt | Preview impact |
+| --- | --- | --- | --- | --- |
+| `ole-luk-oie-the-dream-god` | original first pass | wrapped-line prose omission | by he caught hold of one side of the sugar heart and held it fast, and | preview already reflected the corrected content hash; opening/default text remains real, book-specific readable content |
+| `the-story-of-the-old-man-who-made-withered-trees-to-flower` | original first pass | wrapped-line prose omission | by erect with pride and looking fondly at his master as if to say, “You | preview already reflected the corrected content hash; opening/default text remains real, book-specific readable content |
+| `the-conceited-apple-branch` | original first pass | two wrapped-line prose omissions | By and by an old woman came into the field and, with a blunt knife<br>by Heaven with another kind of loveliness, and although they differ in | preview already reflected the corrected content hash; opening/default text remains real, book-specific readable content |
+| `little-ida-s-flowers` | original first pass | missing opening quotation mark and wrapped-line prose omission | "MY POOR flowers are quite faded!"<br>music with them. Wild hyacinths and little white snowdrops jingled merry | preview already reflected the corrected content hash; opening/default text remains real, book-specific readable content |
+| `the-steadfast-tin-soldier` | original first pass | wrapped-line prose omission | by grief, no one could say. He looked at the little lady, she looked at | preview already reflected the corrected content hash; opening/default text remains real, book-specific readable content |
+| `the-fisherman-and-his-wife` | additional follow-up | wrapped-line prose omission | by the seaside. The fisherman used to go out all day long a-fishing; and | preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content |
+| `the-greenies` | additional follow-up | wrapped-line prose omission | by this pretty name. It is only human beings who do not. They give us | preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content |
+| `shock-tactics` | additional follow-up | two wrapped-line prose omissions | by this one splendid haul.<br>By the time Bertie arrived his mother had discussed every possible and | preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content |
+| `canossa` | additional follow-up | wrapped-line prose omission | musicians’ strike on, I suppose you know.” | preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content |
+| `the-oversight` | additional follow-up | opening curly quotation mark omitted at the selected start boundary | “It’s like a Chinese puzzle | preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content |
+| `quail-seed` | additional follow-up | opening curly quotation mark omitted at the selected start boundary | “The outlook is not encouraging for us smaller businesses | preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content |
 
-## Other 15 batch-12 books
+The excerpts above are intentionally short and source-backed. They do not include title, table-of-contents, source, license, transcriber, contributor, byline, or parent-collection material.
 
-| Slug | Comparison | Omission found | Corrected here |
-| --- | --- | --- | --- |
-| `clever-hans` | exact character-for-character match after intentional artifact cleanup | no | no |
-| `the-fisherman-and-his-wife` | mismatch: real wrapped prose line omitted: “by the seaside. The fisherman used to go out all day long a-fishing; and” | yes | no |
-| `the-story-of-urashima-taro-the-fisher-lad` | exact character-for-character match after intentional artifact cleanup | no | no |
-| `the-story-of-the-man-who-did-not-wish-to-die` | exact character-for-character match after intentional artifact cleanup | no | no |
-| `the-happy-hunter-and-the-skillful-fisher` | exact character-for-character match after intentional artifact cleanup | no | no |
-| `the-darning-needle` | exact character-for-character match after intentional artifact cleanup | no | no |
-| `the-greenies` | mismatch: real wrapped prose line omitted: “by this pretty name. It is only human beings who do not. They give us” | yes | no |
-| `the-loving-pair` | exact character-for-character match after intentional artifact cleanup | no | no |
-| `the-roses-and-the-sparrows` | exact character-for-character match after intentional artifact cleanup | no | no |
-| `shock-tactics` | mismatch: two real wrapped prose lines omitted, beginning “by this one splendid haul” and “By the time Bertie arrived” | yes | no |
-| `canossa` | mismatch: real wrapped prose line omitted: “musicians’ strike on, I suppose you know.” | yes | no |
-| `the-oversight` | mismatch: opening curly quotation mark omitted at the selected start boundary | yes | no |
-| `the-penance` | exact character-for-character match after intentional artifact cleanup | no | no |
-| `mark` | exact character-for-character match after intentional artifact cleanup | no | no |
-| `quail-seed` | mismatch: opening curly quotation mark omitted at the selected start boundary | yes | no |
+## All 20 batch-12 comparisons
 
-The independent all-20 comparison disproved the earlier assumption that only the five authorized targets were affected. Four out-of-scope books have additional real wrapped-line omissions, and two have an opening quotation-mark boundary loss. They are documented in the JSON report and were not modified because this branch is explicitly limited to the five named targets. Removed illustration placeholders, standalone star dividers, and numeric footnote markers were classified as intentional cleanup rather than omitted prose.
+| Slug | Raw/generated body comparison | Corrected on this branch |
+| --- | --- | --- |
+| `ole-luk-oie-the-dream-god` | pass: exact character-for-character match after intentional artifact cleanup | yes |
+| `clever-hans` | pass: exact character-for-character match after intentional artifact cleanup | no |
+| `the-fisherman-and-his-wife` | pass: exact character-for-character match after intentional artifact cleanup | yes |
+| `the-story-of-the-old-man-who-made-withered-trees-to-flower` | pass: exact character-for-character match after intentional artifact cleanup | yes |
+| `the-story-of-urashima-taro-the-fisher-lad` | pass: exact character-for-character match after intentional artifact cleanup | no |
+| `the-story-of-the-man-who-did-not-wish-to-die` | pass: exact character-for-character match after intentional artifact cleanup | no |
+| `the-happy-hunter-and-the-skillful-fisher` | pass: exact character-for-character match after intentional artifact cleanup | no |
+| `the-conceited-apple-branch` | pass: exact character-for-character match after intentional artifact cleanup | yes |
+| `the-darning-needle` | pass: exact character-for-character match after intentional artifact cleanup | no |
+| `the-greenies` | pass: exact character-for-character match after intentional artifact cleanup | yes |
+| `the-loving-pair` | pass: exact character-for-character match after intentional artifact cleanup | no |
+| `little-ida-s-flowers` | pass: exact character-for-character match after intentional artifact cleanup | yes |
+| `the-roses-and-the-sparrows` | pass: exact character-for-character match after intentional artifact cleanup | no |
+| `the-steadfast-tin-soldier` | pass: exact character-for-character match after intentional artifact cleanup | yes |
+| `shock-tactics` | pass: exact character-for-character match after intentional artifact cleanup | yes |
+| `canossa` | pass: exact character-for-character match after intentional artifact cleanup | yes |
+| `the-oversight` | pass: exact character-for-character match after intentional artifact cleanup | yes |
+| `the-penance` | pass: exact character-for-character match after intentional artifact cleanup | no |
+| `mark` | pass: exact character-for-character match after intentional artifact cleanup | no |
+| `quail-seed` | pass: exact character-for-character match after intentional artifact cleanup | yes |
+
+The all-20 comparison is a hard verifier check. Any remaining wrapped-line omission, missing opening punctuation, or other sanitized raw/generated body mismatch fails `npm run books:batch-12-prose-restore`.
 
 ## Scope and protections
 

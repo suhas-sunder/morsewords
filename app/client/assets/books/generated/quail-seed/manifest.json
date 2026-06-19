@@ -5,8 +5,8 @@
   "author": [
     "Saki"
   ],
-  "contentVersion": "832699cf9df0137b",
-  "contentHash": "832699cf9df0137b40b423bd5f13f6c4959d2937ed25ff8ac9b3827e305fba3d",
+  "contentVersion": "a3615df9901fb111",
+  "contentHash": "a3615df9901fb1112e0a66118ebcff89bcfc358716e6e4d81e9f9d34ff57f519",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,7 +35,7 @@
   },
   "stats": {
     "originalCharacterCount": 14691,
-    "cleanedCharacterCount": 12669,
+    "cleanedCharacterCount": 12670,
     "wordCount": 2210,
     "sectionCount": 1,
     "includedSectionCount": 1
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 12669,
+      "characterCount": 12670,
       "wordCount": 2210,
       "estimatedTypingMinutes": 64,
       "estimatedListeningMinutes": 76,
-      "morseCharacterEstimate": 67923,
-      "textPreview": "The outlook is not encouraging for us smaller businesses,” said Mr. Scarrick to the artist and his sister, who had taken rooms over his suburban grocery store...."
+      "morseCharacterEstimate": 67932,
+      "textPreview": "“The outlook is not encouraging for us smaller businesses,” said Mr. Scarrick to the artist and his sister, who had taken rooms over his suburban grocery store..."
     }
   ],
   "cleaning": {
@@ -77,7 +77,8 @@
       "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
       "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
       "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+      "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
     ]
   },
   "warnings": [
@@ -90,6 +91,7 @@
     "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
     "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
     "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+    "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
   ]
 }

@@ -5,8 +5,8 @@
   "author": [
     "Saki"
   ],
-  "contentVersion": "8a99a58c240cc4dd",
-  "contentHash": "8a99a58c240cc4dd4f35b2e609b48727ef55678278c84c3150141ae5ad008e86",
+  "contentVersion": "c406d42ffdb4ca4c",
+  "contentHash": "c406d42ffdb4ca4c38b2bb9427aa155cda5d38efde884bac40b81eb6d75daaf8",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 10201,
-    "cleanedCharacterCount": 8289,
-    "wordCount": 1423,
+    "cleanedCharacterCount": 8332,
+    "wordCount": 1430,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,11 +55,11 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 8289,
-      "wordCount": 1423,
+      "characterCount": 8332,
+      "wordCount": 1430,
       "estimatedTypingMinutes": 41,
       "estimatedListeningMinutes": 50,
-      "morseCharacterEstimate": 44116,
+      "morseCharacterEstimate": 44361,
       "textPreview": "Demosthenes Platterbaff, the eminent Unrest Inducer, stood on his trial for a serious offence, and the eyes of the political world were focussed on the jury. T..."
     }
   ],
@@ -76,7 +76,8 @@
       "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
       "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
       "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+      "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
     ]
   },
   "warnings": [
@@ -88,6 +89,7 @@
     "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
     "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
     "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+    "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
   ]
 }

@@ -64,12 +64,26 @@ const ALL_BATCH_12 = [
   "quail-seed",
 ] as const;
 
-const TARGETS = new Set([
+const ORIGINAL_CORRECTED_TARGETS = [
   "ole-luk-oie-the-dream-god",
   "the-story-of-the-old-man-who-made-withered-trees-to-flower",
   "the-conceited-apple-branch",
   "little-ida-s-flowers",
   "the-steadfast-tin-soldier",
+] as const;
+
+const ADDITIONAL_CORRECTED_TARGETS = [
+  "the-fisherman-and-his-wife",
+  "the-greenies",
+  "shock-tactics",
+  "canossa",
+  "the-oversight",
+  "quail-seed",
+] as const;
+
+const TARGETS: ReadonlySet<string> = new Set([
+  ...ORIGINAL_CORRECTED_TARGETS,
+  ...ADDITIONAL_CORRECTED_TARGETS,
 ]);
 
 const EXPECTED_RESTORED_SNIPPETS: Record<string, string[]> = {
@@ -90,17 +104,34 @@ const EXPECTED_RESTORED_SNIPPETS: Record<string, string[]> = {
   "the-steadfast-tin-soldier": [
     "by grief, no one could say. He looked at the little lady, she looked at",
   ],
+  "the-fisherman-and-his-wife": [
+    "by the seaside. The fisherman used to go out all day long a-fishing; and",
+  ],
+  "the-greenies": [
+    "by this pretty name. It is only human beings who do not. They give us",
+  ],
+  "shock-tactics": [
+    "by this one splendid haul.",
+    "By the time Bertie arrived his mother had discussed every possible and",
+  ],
+  canossa: ["musicians’ strike on, I suppose you know.”"],
+  "the-oversight": ["“It’s like a Chinese puzzle"],
+  "quail-seed": ["“The outlook is not encouraging for us smaller businesses"],
 };
 
-const OUT_OF_SCOPE_FINDINGS: Record<string, string> = {
+const EXPECTED_DEFECTS: Record<string, string> = {
+  "ole-luk-oie-the-dream-god": "wrapped-line prose omission",
+  "the-story-of-the-old-man-who-made-withered-trees-to-flower":
+    "wrapped-line prose omission",
+  "the-conceited-apple-branch": "two wrapped-line prose omissions",
+  "little-ida-s-flowers": "missing opening quotation mark and wrapped-line prose omission",
+  "the-steadfast-tin-soldier": "wrapped-line prose omission",
   "the-fisherman-and-his-wife":
-    "real wrapped prose line omitted: “by the seaside. The fisherman used to go out all day long a-fishing; and”",
+    "wrapped-line prose omission",
   "the-greenies":
-    "real wrapped prose line omitted: “by this pretty name. It is only human beings who do not. They give us”",
-  "shock-tactics":
-    "two real wrapped prose lines omitted, beginning “by this one splendid haul” and “By the time Bertie arrived”",
-  canossa:
-    "real wrapped prose line omitted: “musicians’ strike on, I suppose you know.”",
+    "wrapped-line prose omission",
+  "shock-tactics": "two wrapped-line prose omissions",
+  canossa: "wrapped-line prose omission",
   "the-oversight": "opening curly quotation mark omitted at the selected start boundary",
   "quail-seed": "opening curly quotation mark omitted at the selected start boundary",
 };
@@ -407,23 +438,28 @@ function makeMarkdown(report: JsonRecord): string {
   const targetRows = report.targets
     .map(
       (book: JsonRecord) =>
-        `| \`${book.slug}\` | ${book.finalStatus} | ${book.rawVsGeneratedBodyComparisonAfterCorrection} | ${book.previewImpact} |`,
+        `| \`${book.slug}\` | ${book.restorationPass} | ${book.defectType} | ${book.exactRestoredProseSnippets.join("<br>")} | ${book.previewImpact} |`,
     )
     .join("\n");
-  const otherRows = report.otherBatch12Books
+  const comparisonRows = report.allBatch12Comparisons
     .map(
       (book: JsonRecord) =>
-        `| \`${book.slug}\` | ${book.rawVsGeneratedBodyComparisonResult} | ${book.omissionFound ? "yes" : "no"} | no |`,
+        `| \`${book.slug}\` | ${book.rawVsGeneratedBodyComparisonResult} | ${book.correctedHere ? "yes" : "no"} |`,
     )
     .join("\n");
   return `# Batch-12 prose restoration\n\n` +
-    `Exactly five authorized accepted books were corrected from their audited raw source. All five corrected readable bodies now match the narrowly sanitized raw tale bodies character-for-character.\n\n` +
-    `## Authorized restoration targets\n\n` +
-    `| Slug | Status | Raw/generated result | Preview impact |\n| --- | --- | --- | --- |\n${targetRows}\n\n` +
-    `Each target's preview was rebuilt because its content hash changed. The assets remain book-specific, begin at the first real readable content, and contain no generic fallback or source boilerplate.\n\n` +
-    `## Other 15 batch-12 books\n\n` +
-    `| Slug | Comparison | Omission found | Corrected here |\n| --- | --- | --- | --- |\n${otherRows}\n\n` +
-    `The independent all-20 comparison disproved the earlier assumption that only the five authorized targets were affected. Four out-of-scope books have additional real wrapped-line omissions, and two have an opening quotation-mark boundary loss. They are documented in the JSON report and were not modified because this branch is explicitly limited to the five named targets. Removed illustration placeholders, standalone star dividers, and numeric footnote markers were classified as intentional cleanup rather than omitted prose.\n\n` +
+    `Eleven batch-12 books have now been corrected from their audited raw source: the original five from the first restoration pass and six additional documented defects. All twenty batch-12 readable bodies now match their narrowly sanitized raw tale bodies character-for-character.\n\n` +
+    `- Total corrected batch-12 books: ${report.scope.correctedBatch12BooksTotal}\n` +
+    `- Original first-pass corrections: ${report.scope.originalCorrectedTargets.length}\n` +
+    `- Additional corrections in this pass: ${report.scope.additionalCorrectedTargets.length}\n` +
+    `- Remaining batch-12 prose omissions: ${report.scope.remainingBatch12ProseOmissions}\n` +
+    `- Remaining missing opening-quote defects: ${report.scope.remainingMissingOpeningQuoteDefects}\n\n` +
+    `## Corrected books\n\n` +
+    `| Slug | Restoration pass | Defect type | Restored excerpt | Preview impact |\n| --- | --- | --- | --- | --- |\n${targetRows}\n\n` +
+    `The excerpts above are intentionally short and source-backed. They do not include title, table-of-contents, source, license, transcriber, contributor, byline, or parent-collection material.\n\n` +
+    `## All 20 batch-12 comparisons\n\n` +
+    `| Slug | Raw/generated body comparison | Corrected on this branch |\n| --- | --- | --- |\n${comparisonRows}\n\n` +
+    `The all-20 comparison is a hard verifier check. Any remaining wrapped-line omission, missing opening punctuation, or other sanitized raw/generated body mismatch fails \`npm run books:batch-12-prose-restore\`.\n\n` +
     `## Scope and protections\n\n` +
     `- Raw sources were read only and were not modified.\n` +
     `- Cloudflare exports were not modified.\n` +
@@ -455,7 +491,7 @@ function main() {
       mismatchClassification:
         generated === expected.body
           ? "exact character-for-character match after intentional artifact cleanup"
-          : OUT_OF_SCOPE_FINDINGS[slug] ?? "authorized source-backed prose restoration required",
+          : EXPECTED_DEFECTS[slug] ?? "unexpected sanitized raw/generated body mismatch",
       omissionFound: generated !== expected.body,
       correctionMade: false,
     });
@@ -471,10 +507,13 @@ function main() {
     const result = bodyForSlug(slug);
     return { slug, exact: result.text === expectedBodies.get(slug) };
   });
-  for (const slug of TARGETS) {
-    if (!after.find((entry) => entry.slug === slug)?.exact) {
-      throw new Error(`${slug}: corrected generated body does not match sanitized raw tale body.`);
-    }
+  const remainingMismatches = after.filter((entry) => !entry.exact);
+  if (remainingMismatches.length > 0) {
+    throw new Error(
+      `Remaining batch-12 raw-vs-generated body mismatches: ${remainingMismatches
+        .map((entry) => entry.slug)
+        .join(", ")}`,
+    );
   }
 
   const targets = [...TARGETS].map((slug) => {
@@ -486,20 +525,26 @@ function main() {
     return {
       slug,
       sourceFile: dryRun.sourceFileUsed,
+      restorationPass: ADDITIONAL_CORRECTED_TARGETS.includes(slug as any)
+        ? "additional follow-up"
+        : "original first pass",
+      defectType: EXPECTED_DEFECTS[slug],
       generatedFilesInspected: result.generatedFiles,
       previewInspected: result.previewFile,
       omittedProseFound: EXPECTED_RESTORED_SNIPPETS[slug].map((snippet) => excerpt(snippet)),
       exactRestoredProseSnippets: EXPECTED_RESTORED_SNIPPETS[slug].map((snippet) =>
         excerpt(snippet),
       ),
-      correctionMade:
-        "restored only source-backed readable prose and synchronized derived generated artifacts",
+      correctionMade: result.correctionMade,
+      correctionSummary:
+        "restored only source-backed readable prose/punctuation and synchronized derived generated artifacts",
       rawVsGeneratedBodyComparisonAfterCorrection:
         bodyForSlug(slug).text === expected
           ? "pass: exact character-for-character match after intentional artifact cleanup"
           : "fail",
-      previewImpact:
-        "preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content",
+      previewImpact: result.correctionMade
+        ? "preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content"
+        : "preview already reflected the corrected content hash; opening/default text remains real, book-specific readable content",
       startupPreviewValid:
         preview.previewText.length >= 400 &&
         !/SOS Help!|Type text here|Project Gutenberg|Table of Contents/i.test(preview.previewText),
@@ -507,19 +552,19 @@ function main() {
     };
   });
 
-  const otherBatch12Books = ALL_BATCH_12.filter((slug) => !TARGETS.has(slug)).map((slug) => {
+  const allBatch12Comparisons = ALL_BATCH_12.map((slug) => {
     const comparison = before.get(slug)!;
     const exactAfter = after.find((entry) => entry.slug === slug)!.exact;
     return {
       slug,
-      rawVsGeneratedBodyComparisonResult: exactAfter
+      sourceFile: comparison.sourceFile,
+      rawVsGeneratedBodyComparisonBeforeCorrection: comparison.exactMatch
         ? comparison.mismatchClassification
         : `mismatch: ${comparison.mismatchClassification}`,
-      omissionFound: !exactAfter,
-      correctionMade: false,
-      scopeDisposition: exactAfter
-        ? "pass; no correction needed"
-        : "documented follow-up required; deliberately not modified on this five-target branch",
+      rawVsGeneratedBodyComparisonResult: exactAfter
+        ? "pass: exact character-for-character match after intentional artifact cleanup"
+        : `fail: ${comparison.mismatchClassification}`,
+      correctedHere: TARGETS.has(slug),
     };
   });
 
@@ -527,16 +572,17 @@ function main() {
     reportName: "Batch-12 prose restoration",
     scope: {
       batch12BooksCompared: ALL_BATCH_12.length,
+      correctedBatch12BooksTotal: targets.length,
+      originalCorrectedTargets: [...ORIGINAL_CORRECTED_TARGETS],
+      additionalCorrectedTargets: [...ADDITIONAL_CORRECTED_TARGETS],
       authorizedTargets: [...TARGETS],
       targetsCorrected: targets.filter((book) => book.finalStatus === "corrected pass").length,
-      outOfScopeFindings: Object.entries(OUT_OF_SCOPE_FINDINGS).map(([slug, finding]) => ({
-        slug,
-        finding,
-        correctedHere: false,
-      })),
+      remainingBatch12ProseOmissions: 0,
+      remainingMissingOpeningQuoteDefects: 0,
+      remainingBatch12RawVsGeneratedMismatches: remainingMismatches.length,
     },
     targets,
-    otherBatch12Books,
+    allBatch12Comparisons,
     intentionalCleanupClassifications: [
       "bracketed illustration/image placeholders removed",
       "standalone decorative star dividers removed",
@@ -554,7 +600,7 @@ function main() {
       dryRunBatch15Started: false,
     },
     implementationNote:
-      "The current shared writer already contains the narrowed standalone-media and byline cleanup rules adopted during write 14. This command restores only the five authorized batch-12 bodies and does not broadly rewrite cleanup.",
+      "The current shared writer already contains the narrowed standalone-media and byline cleanup rules adopted during write 14. This command restores the eleven known batch-12 prose/punctuation defects and does not broadly rewrite cleanup.",
   };
 
   fs.mkdirSync(reportRoot, { recursive: true });
@@ -568,8 +614,8 @@ function main() {
   console.log("Batch-12 prose restoration complete.");
   console.log(`Batch-12 books compared: ${ALL_BATCH_12.length}`);
   console.log(`Authorized targets corrected/pass: ${targets.length}`);
-  console.log(`Out-of-scope follow-ups documented: ${Object.keys(OUT_OF_SCOPE_FINDINGS).length}`);
-  console.log(`Target raw/generated exact matches: ${targets.filter((book) => book.rawVsGeneratedBodyComparisonAfterCorrection.startsWith("pass")).length}/${targets.length}`);
+  console.log(`Additional targets corrected/pass: ${ADDITIONAL_CORRECTED_TARGETS.length}`);
+  console.log(`All batch-12 raw/generated exact matches: ${after.filter((entry) => entry.exact).length}/${after.length}`);
 }
 
 main();
