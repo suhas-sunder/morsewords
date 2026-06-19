@@ -149,7 +149,7 @@ type BookDryRunResult = {
 
 type DryRunReport = {
   schemaVersion: 1;
-  reportName: "pilot-dry-run-13";
+  reportName: "pilot-dry-run-13" | "pilot-dry-run-14";
   generatedAt: string;
   branch: string;
   baseMainCommit: string;
@@ -207,6 +207,8 @@ type DryRunReport = {
 
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
+const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "14" ? 14 : 13;
+const dryRunReportName = `pilot-dry-run-${dryRunBatch}` as const;
 const tempBooksRoot = path.join(repoRoot, "app/client/assets/temp-books");
 const generatedRoot = path.join(repoRoot, "app/client/assets/books/generated");
 const cloudflareRoot = path.join(
@@ -215,10 +217,10 @@ const cloudflareRoot = path.join(
 );
 const previewRoot = path.join(repoRoot, "public/book-previews");
 const auditRoot = path.join(repoRoot, "app/client/assets/books/audit-reports");
-const reportRoot = path.join(auditRoot, "pilot-dry-run-13");
+const reportRoot = path.join(auditRoot, dryRunReportName);
 const reportBooksRoot = path.join(reportRoot, "books");
-const mainJsonPath = path.join(reportRoot, "pilot-dry-run-13.json");
-const mainMarkdownPath = path.join(reportRoot, "pilot-dry-run-13.md");
+const mainJsonPath = path.join(reportRoot, `${dryRunReportName}.json`);
+const mainMarkdownPath = path.join(reportRoot, `${dryRunReportName}.md`);
 
 const acceptedReportPaths = [
   "app/client/assets/books/audit-reports/pilot-write-1/pilot-write-1.json",
@@ -240,6 +242,12 @@ const acceptedReportPaths = [
   "app/client/assets/books/audit-reports/pilot-write-11-verification/pilot-write-11-verification.json",
   "app/client/assets/books/audit-reports/pilot-write-12/pilot-write-12.json",
   "app/client/assets/books/audit-reports/pilot-write-12-verification/pilot-write-12-verification.json",
+  ...(dryRunBatch >= 14
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-13/pilot-write-13.json",
+        "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
+      ]
+    : []),
   "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
   "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
   "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
@@ -254,6 +262,11 @@ const inputReportPaths = [
   "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
   "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
   "app/client/assets/books/audit-reports/pilot-write-12-verification/pilot-write-12-verification.json",
+  ...(dryRunBatch >= 14
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
+      ]
+    : []),
 ] as const;
 
 const structureJsonPath = path.join(
@@ -263,28 +276,54 @@ const structureJsonPath = path.join(
 const pass2JsonPath = path.join(auditRoot, "book-processing-audit-pass-2.json");
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 
-const selectedBatch = [
-  "ashputtel",
-  "cat-and-mouse-in-partnership",
-  "cat-skin",
-  "clever-elsie",
-  "clever-gretel",
-  "doctor-knowall",
-  "frederick-and-catherine",
-  "fundevogel",
-  "hans-in-luck",
-  "hansel-and-gretel",
-  "iron-hans",
-  "king-grisly-beard",
-  "lily-and-the-lion",
-  "little-red-riding-hood",
-  "old-sultan",
-  "rumpelstiltskin",
-  "snowdrop",
-  "sweetheart-roland",
-  "the-dog-and-the-sparrow",
-  "the-valiant-little-tailor",
-] as const;
+const selectedBatch: readonly string[] = dryRunBatch === 14
+  ? [
+      "briar-rose",
+      "the-blue-light",
+      "the-elves-and-the-shoemaker",
+      "the-four-clever-brothers",
+      "the-fox-and-the-cat",
+      "the-fox-and-the-horse",
+      "the-frog-prince",
+      "the-golden-bird",
+      "the-goose-girl",
+      "the-king-of-the-golden-mountain",
+      "the-little-peasant",
+      "the-miser-in-the-bush",
+      "the-mouse-the-bird-and-the-sausage",
+      "the-old-man-and-his-grandson",
+      "the-pink",
+      "the-queen-bee",
+      "the-raven",
+      "the-robber-bridegroom",
+      "the-salad",
+      "the-story-of-the-youth-who-went-forth-to-learn-what-fear-was",
+      "the-straw-the-coal-and-the-bean",
+      "the-three-languages",
+      "the-travelling-musicians",
+    ]
+  : [
+      "ashputtel",
+      "cat-and-mouse-in-partnership",
+      "cat-skin",
+      "clever-elsie",
+      "clever-gretel",
+      "doctor-knowall",
+      "frederick-and-catherine",
+      "fundevogel",
+      "hans-in-luck",
+      "hansel-and-gretel",
+      "iron-hans",
+      "king-grisly-beard",
+      "lily-and-the-lion",
+      "little-red-riding-hood",
+      "old-sultan",
+      "rumpelstiltskin",
+      "snowdrop",
+      "sweetheart-roland",
+      "the-dog-and-the-sparrow",
+      "the-valiant-little-tailor",
+    ];
 
 const knownManualBlockedSuspicious = new Set([
   "a-christmas-carol",
@@ -367,6 +406,30 @@ const titleOverrides: Record<string, string> = {
   "sweetheart-roland": "Sweetheart Roland",
   "the-dog-and-the-sparrow": "The Dog and the Sparrow",
   "the-valiant-little-tailor": "The Valiant Little Tailor",
+  "briar-rose": "Briar Rose",
+  "the-blue-light": "The Blue Light",
+  "the-elves-and-the-shoemaker": "The Elves and the Shoemaker",
+  "the-four-clever-brothers": "The Four Clever Brothers",
+  "the-fox-and-the-cat": "The Fox and the Cat",
+  "the-fox-and-the-horse": "The Fox and the Horse",
+  "the-frog-prince": "The Frog-Prince",
+  "the-golden-bird": "The Golden Bird",
+  "the-goose-girl": "The Goose-Girl",
+  "the-king-of-the-golden-mountain": "The King of the Golden Mountain",
+  "the-little-peasant": "The Little Peasant",
+  "the-miser-in-the-bush": "The Miser in the Bush",
+  "the-mouse-the-bird-and-the-sausage": "The Mouse, the Bird, and the Sausage",
+  "the-old-man-and-his-grandson": "The Old Man and His Grandson",
+  "the-pink": "The Pink",
+  "the-queen-bee": "The Queen Bee",
+  "the-raven": "The Raven",
+  "the-robber-bridegroom": "The Robber Bridegroom",
+  "the-salad": "The Salad",
+  "the-story-of-the-youth-who-went-forth-to-learn-what-fear-was":
+    "The Story of the Youth Who Went Forth to Learn What Fear Was",
+  "the-straw-the-coal-and-the-bean": "The Straw, the Coal, and the Bean",
+  "the-three-languages": "The Three Languages",
+  "the-travelling-musicians": "The Travelling Musicians",
 };
 
 const singleStoryStartPhrases: Record<string, string> = {
@@ -422,6 +485,52 @@ const singleStoryStartPhrases: Record<string, string> = {
     "A shepherd’s dog had a master who took no care of him, but often let him",
   "the-valiant-little-tailor":
     "One summer’s morning a little tailor was sitting on his table by the",
+  "briar-rose":
+    "A king and queen once upon a time reigned in a country a great way off,",
+  "the-blue-light":
+    "There was once upon a time a soldier who for many years had served the",
+  "the-elves-and-the-shoemaker":
+    "There was once a shoemaker, who worked very hard and was very honest:",
+  "the-four-clever-brothers":
+    "\u2018Dear children,\u2019 said a poor man to his four sons, \u2018I have nothing to",
+  "the-fox-and-the-cat":
+    "It happened that the cat met the fox in a forest, and as she thought to",
+  "the-fox-and-the-horse":
+    "A farmer had a horse that had been an excellent faithful servant to",
+  "the-frog-prince":
+    "One fine evening a young princess put on her bonnet and clogs, and went",
+  "the-golden-bird":
+    "A certain king had a beautiful garden, and in the garden stood a tree",
+  "the-goose-girl":
+    "The king of a great land died, and left his queen to take care of their",
+  "the-king-of-the-golden-mountain":
+    "There was once a merchant who had only one child, a son, that was very",
+  "the-little-peasant":
+    "There was a certain village wherein no one lived but really rich",
+  "the-miser-in-the-bush":
+    "A farmer had a faithful and diligent servant, who had worked hard for",
+  "the-mouse-the-bird-and-the-sausage":
+    "Once upon a time, a mouse, a bird, and a sausage, entered into",
+  "the-old-man-and-his-grandson":
+    "There was once a very old man, whose eyes had become dim, his ears dull",
+  "the-pink":
+    "There was once upon a time a queen to whom God had given no children.",
+  "the-queen-bee":
+    "Two kings\u2019 sons once upon a time went into the world to seek their",
+  "the-raven":
+    "There was once a queen who had a little daughter, still too young to run",
+  "the-robber-bridegroom":
+    "There was once a miller who had one beautiful daughter, and as she was",
+  "the-salad":
+    "As a merry young huntsman was once going briskly along through a wood,",
+  "the-story-of-the-youth-who-went-forth-to-learn-what-fear-was":
+    "A certain father had two sons, the elder of who was smart and sensible,",
+  "the-straw-the-coal-and-the-bean":
+    "In a village dwelt a poor old woman, who had gathered together a dish",
+  "the-three-languages":
+    "An aged count once lived in Switzerland, who had an only son, but he",
+  "the-travelling-musicians":
+    "An honest farmer had once an ass that had been a faithful servant to him",
   mark: "Augustus Mellowkent was a novelist",
   "quail-seed": "“The outlook is not encouraging for us smaller businesses",
 };
@@ -676,7 +785,8 @@ function deriveAcceptedSlugs() {
       relativePath.includes("pilot-write-9-verification") ||
       relativePath.includes("pilot-write-10-verification") ||
       relativePath.includes("pilot-write-11-verification") ||
-      relativePath.includes("pilot-write-12-verification")
+      relativePath.includes("pilot-write-12-verification") ||
+      relativePath.includes("pilot-write-13-verification")
     ) {
       for (const book of books) {
         if (book.acceptedForMain === true && typeof book.slug === "string") {
@@ -993,7 +1103,11 @@ function readableEndSnippet(cleanedText: string) {
   if (lastTheEnd && lastTheEnd.index && lastTheEnd.index > body.length * 0.65) {
     body = body.slice(0, lastTheEnd.index + lastTheEnd[0].length);
   }
-  return compactText(body.slice(Math.max(0, body.length - 520)), 320);
+  const tail = body
+    .slice(Math.max(0, body.length - 520))
+    .replace(/\s+/g, " ")
+    .trim();
+  return tail.length <= 320 ? tail : `...${tail.slice(-317)}`;
 }
 
 function titleLooksLikeParentCollection(book: StructureAuditBook, title: string) {
@@ -1164,7 +1278,10 @@ function inspectBook(
   const sectionExamples = sectioningOverride
     ? sectioningOverride.examples
     : singleStory
-    ? [`First readable prose: ${compactText(singleStoryStartPhrase, 180)}`]
+    ? [
+        `Source tale heading: ${titleEvidence.text}`,
+        `First readable prose: ${compactText(singleStoryStartPhrase, 180)}`,
+      ]
     : headingPlan.meaningfulHeadings
         .slice(0, 6)
         .map((heading) => compactText(`L${heading.lineNumber}: ${heading.normalized}`, 180));
@@ -1293,7 +1410,7 @@ function statusCounts(books: BookDryRunResult[]) {
 
 function bookMarkdown(book: BookDryRunResult) {
   return [
-    `# Pilot Dry Run 13: ${book.slug}`,
+    `# Pilot Dry Run ${dryRunBatch}: ${book.slug}`,
     "",
     `- Candidate type: ${book.candidateType}`,
     `- Source file used: \`${book.sourceFileUsed}\``,
@@ -1385,7 +1502,7 @@ function mainMarkdown(report: DryRunReport) {
     .join("\n");
 
   return [
-    "# Pilot Book Processing Dry Run 13",
+    `# Pilot Book Processing Dry Run ${dryRunBatch}`,
     "",
     `Generated: ${report.generatedAt}`,
     "",
@@ -1477,10 +1594,10 @@ function buildReport() {
   const branch = gitOutput(["branch", "--show-current"]);
   const allowedBranches = new Set([
     "main",
-    "morsewords-book-processing-pilot-dry-run-13-jun-2026",
+    `morsewords-book-processing-pilot-dry-run-${dryRunBatch}-jun-2026`,
   ]);
   if (!allowedBranches.has(branch)) {
-    throw new Error(`Expected dry-run 13 validation branch, got ${branch}`);
+    throw new Error(`Expected dry-run ${dryRunBatch} validation branch, got ${branch}`);
   }
 
   const { accepted, ambiguities } = deriveAcceptedSlugs();
@@ -1528,12 +1645,12 @@ function buildReport() {
   });
   const counts = statusCounts(books);
   const rejectedBySafetyGates = rawOnlyCandidatePool.filter(
-    (book) => !selectedSet.has(book.slug as (typeof selectedBatch)[number]),
+    (book) => !selectedSet.has(book.slug),
   ).length;
 
   const report: DryRunReport = {
     schemaVersion: 1,
-    reportName: "pilot-dry-run-13",
+    reportName: dryRunReportName,
     generatedAt: new Date().toISOString(),
     branch,
     baseMainCommit: gitOutput(["rev-parse", "main"]),
@@ -1573,14 +1690,14 @@ function buildReport() {
     futureBatchRules: [
       "Future book batches fail unless each processed book has valid generated readable content.",
       "Future book batches fail unless each processed book has the correct generated title.",
-      "Future book batches fail unless each processed book has correct author metadata or a documented unresolved-author policy.",
+      "Future book batches fail unless each processed book has correct author/compiler/collector/translator metadata or a documented unresolved-author policy.",
       "Future book batches fail if duplicate generated work appears under a slightly different slug without intentional documentation.",
       "Future book batches fail unless the first default section begins with real readable content.",
       "Future book batches fail unless all main readable sections are included by default.",
       "Future book batches fail unless segmentation is meaningful and source-based.",
       "Future book batches fail unless startup preview is valid, book-specific, and starts from real readable generated content.",
       "Future book batches fail if preview contains SOS Help! or generic preview fallback text.",
-      "Future book batches fail if title/TOC/source/license/contributor/transcriber/byline material enters default playback.",
+      "Future book batches fail if title/TOC/source/license/contributor/transcriber/byline/parent-collection material enters default playback.",
       "Future book batches fail unless selected/default source order begins from the first selected/default section.",
       "Do not mark a book safe when meaningful headings exist but proposed output would become vague Part 1 / Part 2 chunks.",
       "Do not mark a book safe when the expected generated title would be inherited from a parent collection instead of the actual book or story identity.",
@@ -1592,8 +1709,8 @@ function buildReport() {
       "Do not allow selected/default source order to begin anywhere other than the first selected/default section.",
       "Do not ignore meaningful story, play, poem, letter, chapter, part, or section structure.",
       "Do not rely only on literal words like chapter, volume, or part; use repeated heading patterns, body/TOC matches, paragraph shape, spacing, and section length distribution.",
-      "Do not accept a future write unless generated readable content is valid, the title is correct, the author metadata is correct or has a documented unresolved-author policy, all main readable sections are selected by default, and the startup preview is book-specific.",
-      "Do not accept SOS Help!, generic preview fallback, or title/TOC/source/license/contributor/transcriber/byline material as default playback.",
+      "Do not accept a future write unless generated readable content is valid, the title is correct, the author/compiler/collector/translator metadata is correct or has a documented unresolved-author policy, all main readable sections are selected by default, and the startup preview is book-specific.",
+      "Do not accept SOS Help!, generic preview fallback, or title/TOC/source/license/contributor/transcriber/byline/parent-collection material as default playback.",
     ],
     laterPhaseRequirements: [
       "After all books are processed, run an independent second-pass audit using a different strategy.",
@@ -1609,7 +1726,7 @@ function buildReport() {
   writeJson(mainJsonPath, report);
   writeText(mainMarkdownPath, mainMarkdown(report));
 
-  console.log(`Pilot dry-run 13 selected: ${report.selectedCount}`);
+  console.log(`Pilot dry-run ${dryRunBatch} selected: ${report.selectedCount}`);
   console.log(
     `First-time processing: ${report.counts.controlledFirstTimeProcessing}; manual review: ${report.counts.manualReview}; blocked: ${report.counts.blocked}; skipped/unsafe: ${report.counts.skippedUnsafe}`,
   );

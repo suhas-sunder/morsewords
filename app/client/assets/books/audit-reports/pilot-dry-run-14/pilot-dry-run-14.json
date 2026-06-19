@@ -1,0 +1,2229 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-dry-run-14",
+  "generatedAt": "2026-06-19T21:53:37.361Z",
+  "branch": "morsewords-book-processing-pilot-dry-run-14-jun-2026",
+  "baseMainCommit": "bd0ea59afca8ab931f1420c1f85b01e17e9e3bf7",
+  "mode": "dry-run/report-only",
+  "selectedBooks": [
+    "briar-rose",
+    "the-blue-light",
+    "the-elves-and-the-shoemaker",
+    "the-four-clever-brothers",
+    "the-fox-and-the-cat",
+    "the-fox-and-the-horse",
+    "the-frog-prince",
+    "the-golden-bird",
+    "the-goose-girl",
+    "the-king-of-the-golden-mountain",
+    "the-little-peasant",
+    "the-miser-in-the-bush",
+    "the-mouse-the-bird-and-the-sausage",
+    "the-old-man-and-his-grandson",
+    "the-pink",
+    "the-queen-bee",
+    "the-raven",
+    "the-robber-bridegroom",
+    "the-salad",
+    "the-story-of-the-youth-who-went-forth-to-learn-what-fear-was",
+    "the-straw-the-coal-and-the-bean",
+    "the-three-languages",
+    "the-travelling-musicians"
+  ],
+  "selectedCount": 23,
+  "candidateTypeCounts": {
+    "rawOnly": 23,
+    "unresolvedSourceGeneratedReportOnly": 11
+  },
+  "counts": {
+    "controlledFirstTimeProcessing": 23,
+    "manualReview": 0,
+    "blocked": 0,
+    "skippedUnsafe": 218
+  },
+  "acceptedExclusion": {
+    "count": 262,
+    "reportInputs": [
+      "app/client/assets/books/audit-reports/pilot-write-1/pilot-write-1.json",
+      "app/client/assets/books/audit-reports/pilot-write-2/pilot-write-2.json",
+      "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "app/client/assets/books/audit-reports/pilot-write-4/pilot-write-4.json",
+      "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "app/client/assets/books/audit-reports/pilot-write-6/pilot-write-6.json",
+      "app/client/assets/books/audit-reports/pilot-write-6-verification/pilot-write-6-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-7/pilot-write-7.json",
+      "app/client/assets/books/audit-reports/pilot-write-7-verification/pilot-write-7-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-8/pilot-write-8.json",
+      "app/client/assets/books/audit-reports/pilot-write-8-verification/pilot-write-8-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-9/pilot-write-9.json",
+      "app/client/assets/books/audit-reports/pilot-write-9-verification/pilot-write-9-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-10/pilot-write-10.json",
+      "app/client/assets/books/audit-reports/pilot-write-10-verification/pilot-write-10-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "app/client/assets/books/audit-reports/pilot-write-11-verification/pilot-write-11-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-12/pilot-write-12.json",
+      "app/client/assets/books/audit-reports/pilot-write-12-verification/pilot-write-12-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-13/pilot-write-13.json",
+      "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
+      "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
+      "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
+      "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json"
+    ],
+    "ambiguities": []
+  },
+  "candidatePool": {
+    "rawOnlyCandidatesConsidered": 241,
+    "knownManualBlockedSuspiciousExcludedCount": 12,
+    "selectedRawOnlyCount": 23,
+    "rejectedBySafetyGatesCount": 218
+  },
+  "unresolvedSourceGeneratedBooksLeftUntouched": [
+    {
+      "slug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "doctor-dolittle",
+      "title": "The Story of Doctor Dolittle",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 6,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "heidi",
+      "title": "Heidi",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "jabberwocky",
+      "title": "Jabberwocky",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 2,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "title": "Nights With Uncle Remus",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 21,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan [Peter and Wendy]",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 20,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "tarzan-of-the-apes",
+      "title": "Tarzan of the Apes",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-great-gatsby",
+      "title": "The Great Gatsby",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-picture-of-dorian-gray",
+      "title": "The Picture of Dorian Gray",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 23,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 12,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "title": "Wood folk at school",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 10,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    }
+  ],
+  "duplicateNearDuplicateCandidatesSkipped": [
+    {
+      "slug": "the-wind-in-the-willows",
+      "reason": "Skipped as a known duplicate of existing generated wind-in-the-willows; write batch 8 accepted the skip and no distinct-version policy exists."
+    },
+    {
+      "slug": "the-two-magics-the-turn-of-the-screw-covering-end",
+      "reason": "Skipped as a known duplicate/boundary-risk case; write batch 9 found this raw file contains a full The Turn of the Screw while generated the-turn-of-the-screw already exists and no distinct-version policy exists."
+    }
+  ],
+  "boundaryDefectCandidatesSkipped": [
+    {
+      "slug": "the-works-of-edgar-allan-poe",
+      "reason": "Skipped as a known boundary-defect case; write batch 9 found raw Volume 2 begins with THE PURLOINED LETTER while the dry-run boundary would have dropped that opening collection content."
+    }
+  ],
+  "inputReports": [
+    "app/client/assets/books/audit-reports/book-processing-audit-pass-1.json",
+    "app/client/assets/books/audit-reports/book-processing-audit-pass-2.json",
+    "app/client/assets/books/audit-reports/book-structure-audit-1/book-structure-audit-1.json",
+    "app/client/assets/books/audit-reports/book-startup-preview-audit-1/book-startup-preview-audit-1.json",
+    "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
+    "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
+    "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
+    "app/client/assets/books/audit-reports/pilot-write-12-verification/pilot-write-12-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json"
+  ],
+  "sourceDetectorUsed": "scripts/books/lib/book-structure-detection.ts",
+  "protectedPaths": {
+    "rawSourceInput": "app/client/assets/temp-books",
+    "generatedBooks": "app/client/assets/books/generated",
+    "cloudflareExport": "app/client/assets/books/cloudflare-export",
+    "previewAssets": "public/book-previews"
+  },
+  "futureBatchRules": [
+    "Future book batches fail unless each processed book has valid generated readable content.",
+    "Future book batches fail unless each processed book has the correct generated title.",
+    "Future book batches fail unless each processed book has correct author/compiler/collector/translator metadata or a documented unresolved-author policy.",
+    "Future book batches fail if duplicate generated work appears under a slightly different slug without intentional documentation.",
+    "Future book batches fail unless the first default section begins with real readable content.",
+    "Future book batches fail unless all main readable sections are included by default.",
+    "Future book batches fail unless segmentation is meaningful and source-based.",
+    "Future book batches fail unless startup preview is valid, book-specific, and starts from real readable generated content.",
+    "Future book batches fail if preview contains SOS Help! or generic preview fallback text.",
+    "Future book batches fail if title/TOC/source/license/contributor/transcriber/byline/parent-collection material enters default playback.",
+    "Future book batches fail unless selected/default source order begins from the first selected/default section.",
+    "Do not mark a book safe when meaningful headings exist but proposed output would become vague Part 1 / Part 2 chunks.",
+    "Do not mark a book safe when the expected generated title would be inherited from a parent collection instead of the actual book or story identity.",
+    "Do not mark a book safe when the author would be Unknown Author even though the source clearly identifies an author.",
+    "Do not mark a book safe when the first default content would not be the real readable opening.",
+    "Do not mark a book safe when Chapter 1, Part 1, first story, or prologue would be missing or excluded incorrectly.",
+    "Do not allow title page, parent collection title, byline, contents, source notes, illustration captions, contributor notes, transcriber notes, or license material into default playback.",
+    "Do not allow previews to start after the true beginning.",
+    "Do not allow selected/default source order to begin anywhere other than the first selected/default section.",
+    "Do not ignore meaningful story, play, poem, letter, chapter, part, or section structure.",
+    "Do not rely only on literal words like chapter, volume, or part; use repeated heading patterns, body/TOC matches, paragraph shape, spacing, and section length distribution.",
+    "Do not accept a future write unless generated readable content is valid, the title is correct, the author/compiler/collector/translator metadata is correct or has a documented unresolved-author policy, all main readable sections are selected by default, and the startup preview is book-specific.",
+    "Do not accept SOS Help!, generic preview fallback, or title/TOC/source/license/contributor/transcriber/byline/parent-collection material as default playback."
+  ],
+  "laterPhaseRequirements": [
+    "After all books are processed, run an independent second-pass audit using a different strategy.",
+    "After books and the second-pass audit, add original non-spoiler 300-500+ word SEO summaries for each accepted book page.",
+    "After summaries, perform full site SEO/meta review using GSC data and route-level intent.",
+    "After books/SEO, run a focused rage-click UX pass for /audio, /practice, homepage, and related utility pages.",
+    "Investigate the SSR heap OOM separately if it keeps appearing during plain npm run build.",
+    "Final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable."
+  ],
+  "books": [
+    {
+      "slug": "briar-rose",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/BRIAR ROSE.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "Briar Rose",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "BRIAR ROSE",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: BRIAR ROSE",
+        "First readable prose: A king and queen once upon a time reigned in a country a great way off,"
+      ],
+      "realReadableStart": "Briar Rose: A king and queen once upon a time reigned in a country a great way off, where there were in those days fairies. Now this king and queen had plenty of money, and plenty of fine clothes to wear, and plenty of good things to eat and drink, and a coach to ride out in every day: but though they had been married many year...",
+      "realReadableEnd": "...ent the spit, with the goose for the king’s dinner upon it; the butler finished his draught of ale; the maid went on plucking the fowl; and the cook gave the boy the box on his ear. And then the prince and Briar Rose were married, and the wedding feast was given; and they lived happily together all their lives long.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "Briar Rose",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "A king and queen once upon a time reigned in a country a great way off, where there were in those days fairies. Now this king and queen had plenty of money, and plenty of fine clothes to wear, and plenty of good things to eat and drink, and a coach to ride out in every day: but though they had been married many year...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: A king and queen once upon a time reigned in a country a great way off,",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "BRIAR ROSE",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "Briar Rose A king and queen once upon a time reigned in a country a great way off, where there were in those days fairies. Now this king and queen had plenty of money, and plenty of fine clothes to wear, and plenty of good things to eat and drink, and a coach to ride out in every day: but though they had been married many year...",
+        "end": "...ent the spit, with the goose for the king’s dinner upon it; the butler finished his draught of ale; the maid went on plucking the fowl; and the cook gave the boy the box on his ear. And then the prince and Briar Rose were married, and the wedding feast was given; and they lived happily together all their lives long."
+      }
+    },
+    {
+      "slug": "the-blue-light",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE BLUE LIGHT.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Blue Light",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE BLUE LIGHT",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE BLUE LIGHT",
+        "First readable prose: There was once upon a time a soldier who for many years had served the"
+      ],
+      "realReadableStart": "The Blue Light: There was once upon a time a soldier who for many years had served the king faithfully, but when the war came to an end could serve no longer because of the many wounds which he had received. The king said to him: ?You may return to your home, I need you no longer, and you will not receive any more money, for he onl...",
+      "realReadableEnd": "...hem like lightning, darting this way and that way, and whosoever was so much as touched by his cudgel fell to earth, and did not venture to stir again. The king was terrified; he threw himself on the soldier’s mercy, and merely to be allowed to live at all, gave him his kingdom for his own, and his daughter to wife.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Blue Light",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "There was once upon a time a soldier who for many years had served the king faithfully, but when the war came to an end could serve no longer because of the many wounds which he had received. The king said to him: ?You may return to your home, I need you no longer, and you will not receive any more money, for he onl...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: There was once upon a time a soldier who for many years had served the",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE BLUE LIGHT",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Blue Light There was once upon a time a soldier who for many years had served the king faithfully, but when the war came to an end could serve no longer because of the many wounds which he had received. The king said to him: ?You may return to your home, I need you no longer, and you will not receive any more money, for he onl...",
+        "end": "...hem like lightning, darting this way and that way, and whosoever was so much as touched by his cudgel fell to earth, and did not venture to stir again. The king was terrified; he threw himself on the soldier’s mercy, and merely to be allowed to live at all, gave him his kingdom for his own, and his daughter to wife."
+      }
+    },
+    {
+      "slug": "the-elves-and-the-shoemaker",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE ELVES AND THE SHOEMAKER.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Elves and the Shoemaker",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE ELVES AND THE SHOEMAKER",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE ELVES AND THE SHOEMAKER",
+        "First readable prose: There was once a shoemaker, who worked very hard and was very honest:"
+      ],
+      "realReadableStart": "The Elves and the Shoemaker: There was once a shoemaker, who worked very hard and was very honest: but still he could not earn enough to live upon; and at last all he had in the world was gone, save just leather enough to make one pair of shoes. Then he cut his leather out, all ready to make up the next day, meaning to rise early in the morning...",
+      "realReadableEnd": "...ily delighted. Then they dressed themselves in the twinkling of an eye, and danced and capered and sprang about, as merry as could be; till at last they danced out at the door, and away over the green. The good couple saw them no more; but everything went well with them from that time forward, as long as they lived.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Elves and the Shoemaker",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "There was once a shoemaker, who worked very hard and was very honest: but still he could not earn enough to live upon; and at last all he had in the world was gone, save just leather enough to make one pair of shoes. Then he cut his leather out, all ready to make up the next day, meaning to rise early in the morning...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: There was once a shoemaker, who worked very hard and was very honest:",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE ELVES AND THE SHOEMAKER",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Elves and the Shoemaker There was once a shoemaker, who worked very hard and was very honest: but still he could not earn enough to live upon; and at last all he had in the world was gone, save just leather enough to make one pair of shoes. Then he cut his leather out, all ready to make up the next day, meaning to rise early in the morning...",
+        "end": "...ily delighted. Then they dressed themselves in the twinkling of an eye, and danced and capered and sprang about, as merry as could be; till at last they danced out at the door, and away over the green. The good couple saw them no more; but everything went well with them from that time forward, as long as they lived."
+      }
+    },
+    {
+      "slug": "the-four-clever-brothers",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE FOUR CLEVER BROTHERS.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Four Clever Brothers",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE FOUR CLEVER BROTHERS",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE FOUR CLEVER BROTHERS",
+        "First readable prose: ?Dear children,? said a poor man to his four sons, ?I have nothing to"
+      ],
+      "realReadableStart": "The Four Clever Brothers: ?Dear children,? said a poor man to his four sons, ?I have nothing to give you; you must go out into the wide world and try your luck. Begin by learning some craft or another, and see how you can get on.? So the four brothers took their walking-sticks in their hands, and their little bundles on their shoulders, and...",
+      "realReadableEnd": "...r marrying a lady who had no mind to have them. And the king then gave to each half a kingdom, as he had said; and they lived very happily the rest of their days, and took good care of their father; and somebody took better care of the young lady, than to let either the dragon or one of the craftsmen have her again.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Four Clever Brothers",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "?Dear children,? said a poor man to his four sons, ?I have nothing to give you; you must go out into the wide world and try your luck. Begin by learning some craft or another, and see how you can get on.? So the four brothers took their walking-sticks in their hands, and their little bundles on their shoulders, and...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: ‘Dear children,’ said a poor man to his four sons, ‘I have nothing to",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE FOUR CLEVER BROTHERS",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Four Clever Brothers ?Dear children,? said a poor man to his four sons, ?I have nothing to give you; you must go out into the wide world and try your luck. Begin by learning some craft or another, and see how you can get on.? So the four brothers took their walking-sticks in their hands, and their little bundles on their shoulders, and...",
+        "end": "...r marrying a lady who had no mind to have them. And the king then gave to each half a kingdom, as he had said; and they lived very happily the rest of their days, and took good care of their father; and somebody took better care of the young lady, than to let either the dragon or one of the craftsmen have her again."
+      }
+    },
+    {
+      "slug": "the-fox-and-the-cat",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE FOX AND THE CAT.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Fox and the Cat",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE FOX AND THE CAT",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE FOX AND THE CAT",
+        "First readable prose: It happened that the cat met the fox in a forest, and as she thought to"
+      ],
+      "realReadableStart": "The Fox and the Cat: It happened that the cat met the fox in a forest, and as she thought to herself: ?He is clever and full of experience, and much esteemed in the world,? she spoke to him in a friendly way. ?Good day, dear Mr Fox, how are you? How is all with you? How are you getting on in these hard times?? The fox, full of all kinds...",
+      "realReadableEnd": "...ches and foliage quite concealed her. ‘Open your sack, Mr Fox, open your sack,’ cried the cat to him, but the dogs had already seized him, and were holding him fast. ‘Ah, Mr Fox,’ cried the cat. ‘You with your hundred arts are left in the lurch! Had you been able to climb like me, you would not have lost your life.’",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Fox and the Cat",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "It happened that the cat met the fox in a forest, and as she thought to herself: ?He is clever and full of experience, and much esteemed in the world,? she spoke to him in a friendly way. ?Good day, dear Mr Fox, how are you? How is all with you? How are you getting on in these hard times?? The fox, full of all kinds...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: It happened that the cat met the fox in a forest, and as she thought to",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE FOX AND THE CAT",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Fox and the Cat It happened that the cat met the fox in a forest, and as she thought to herself: ?He is clever and full of experience, and much esteemed in the world,? she spoke to him in a friendly way. ?Good day, dear Mr Fox, how are you? How is all with you? How are you getting on in these hard times?? The fox, full of all kinds...",
+        "end": "...ches and foliage quite concealed her. ‘Open your sack, Mr Fox, open your sack,’ cried the cat to him, but the dogs had already seized him, and were holding him fast. ‘Ah, Mr Fox,’ cried the cat. ‘You with your hundred arts are left in the lurch! Had you been able to climb like me, you would not have lost your life.’"
+      }
+    },
+    {
+      "slug": "the-fox-and-the-horse",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE FOX AND THE HORSE.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Fox and the Horse",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE FOX AND THE HORSE",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE FOX AND THE HORSE",
+        "First readable prose: A farmer had a horse that had been an excellent faithful servant to"
+      ],
+      "realReadableStart": "The Fox and the Horse: A farmer had a horse that had been an excellent faithful servant to him: but he was now grown too old to work; so the farmer would give him nothing more to eat, and said, ?I want you no longer, so take yourself off out of my stable; I shall not take you back again until you are stronger than a lion.? Then he opened...",
+      "realReadableEnd": "... way quietly over the fields to his master’s house. ‘Here he is, master,’ said he, ‘I have got the better of him’: and when the farmer saw his old servant, his heart relented, and he said. ‘Thou shalt stay in thy stable and be well taken care of.’ And so the poor old horse had plenty to eat, and lived--till he died.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Fox and the Horse",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "A farmer had a horse that had been an excellent faithful servant to him: but he was now grown too old to work; so the farmer would give him nothing more to eat, and said, ?I want you no longer, so take yourself off out of my stable; I shall not take you back again until you are stronger than a lion.? Then he opened...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: A farmer had a horse that had been an excellent faithful servant to",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE FOX AND THE HORSE",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Fox and the Horse A farmer had a horse that had been an excellent faithful servant to him: but he was now grown too old to work; so the farmer would give him nothing more to eat, and said, ?I want you no longer, so take yourself off out of my stable; I shall not take you back again until you are stronger than a lion.? Then he opened...",
+        "end": "... way quietly over the fields to his master’s house. ‘Here he is, master,’ said he, ‘I have got the better of him’: and when the farmer saw his old servant, his heart relented, and he said. ‘Thou shalt stay in thy stable and be well taken care of.’ And so the poor old horse had plenty to eat, and lived--till he died."
+      }
+    },
+    {
+      "slug": "the-frog-prince",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE FROG-PRINCE.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Frog-Prince",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE FROG-PRINCE",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE FROG-PRINCE",
+        "First readable prose: One fine evening a young princess put on her bonnet and clogs, and went"
+      ],
+      "realReadableStart": "The Frog-Prince: One fine evening a young princess put on her bonnet and clogs, and went out to take a walk by herself in a wood; and when she came to a cool spring of water, that rose in the midst of it, she sat herself down to rest a while. Now she had a golden ball in her hand, which was her favourite plaything; and she was alway...",
+      "realReadableEnd": "...dear master during his enchantment so long and so bitterly, that his heart had well-nigh burst. They then took leave of the king, and got into the coach with eight horses, and all set out, full of joy and merriment, for the prince’s kingdom, which they reached safely; and there they lived happily a great many years.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Frog-Prince",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "One fine evening a young princess put on her bonnet and clogs, and went out to take a walk by herself in a wood; and when she came to a cool spring of water, that rose in the midst of it, she sat herself down to rest a while. Now she had a golden ball in her hand, which was her favourite plaything; and she was alway...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: One fine evening a young princess put on her bonnet and clogs, and went",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE FROG-PRINCE",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Frog-Prince One fine evening a young princess put on her bonnet and clogs, and went out to take a walk by herself in a wood; and when she came to a cool spring of water, that rose in the midst of it, she sat herself down to rest a while. Now she had a golden ball in her hand, which was her favourite plaything; and she was alway...",
+        "end": "...dear master during his enchantment so long and so bitterly, that his heart had well-nigh burst. They then took leave of the king, and got into the coach with eight horses, and all set out, full of joy and merriment, for the prince’s kingdom, which they reached safely; and there they lived happily a great many years."
+      }
+    },
+    {
+      "slug": "the-golden-bird",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE GOLDEN BIRD.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Golden Bird",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE GOLDEN BIRD",
+        "lineNumber": 44
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE GOLDEN BIRD",
+        "First readable prose: A certain king had a beautiful garden, and in the garden stood a tree"
+      ],
+      "realReadableStart": "The Golden Bird: A certain king had a beautiful garden, and in the garden stood a tree which bore golden apples. These apples were always counted, and about the time when they began to grow ripe it was found that every night one of them was gone. The king became very angry at this, and ordered the gardener to keep watch all night un...",
+      "realReadableEnd": "... after, he went to walk one day in the wood, and the old fox met him, and besought him with tears in his eyes to kill him, and cut off his head and feet. And at last he did so, and in a moment the fox was changed into a man, and turned out to be the brother of the princess, who had been lost a great many many years.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Golden Bird",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "A certain king had a beautiful garden, and in the garden stood a tree which bore golden apples. These apples were always counted, and about the time when they began to grow ripe it was found that every night one of them was gone. The king became very angry at this, and ordered the gardener to keep watch all night un...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: A certain king had a beautiful garden, and in the garden stood a tree",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE GOLDEN BIRD",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Golden Bird A certain king had a beautiful garden, and in the garden stood a tree which bore golden apples. These apples were always counted, and about the time when they began to grow ripe it was found that every night one of them was gone. The king became very angry at this, and ordered the gardener to keep watch all night un...",
+        "end": "... after, he went to walk one day in the wood, and the old fox met him, and besought him with tears in his eyes to kill him, and cut off his head and feet. And at last he did so, and in a moment the fox was changed into a man, and turned out to be the brother of the princess, who had been lost a great many many years."
+      }
+    },
+    {
+      "slug": "the-goose-girl",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE GOOSE-GIRL.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Goose-Girl",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE GOOSE-GIRL",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE GOOSE-GIRL",
+        "First readable prose: The king of a great land died, and left his queen to take care of their"
+      ],
+      "realReadableStart": "The Goose-Girl: The king of a great land died, and left his queen to take care of their only child. This child was a daughter, who was very beautiful; and her mother loved her dearly, and was very kind to her. And there was a good fairy too, who was fond of the princess, and helped her mother to watch over her. When she grew up, sh...",
+      "realReadableEnd": "...dead.’ ‘Thou art she!’ said the old king; ‘and as thou has judged thyself, so shall it be done to thee.’ And the young king was then married to his true wife, and they reigned over the kingdom in peace and happiness all their lives; and the good fairy came to see them, and restored the faithful Falada to life again.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Goose-Girl",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "The king of a great land died, and left his queen to take care of their only child. This child was a daughter, who was very beautiful; and her mother loved her dearly, and was very kind to her. And there was a good fairy too, who was fond of the princess, and helped her mother to watch over her. When she grew up, sh...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: The king of a great land died, and left his queen to take care of their",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE GOOSE-GIRL",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Goose-Girl The king of a great land died, and left his queen to take care of their only child. This child was a daughter, who was very beautiful; and her mother loved her dearly, and was very kind to her. And there was a good fairy too, who was fond of the princess, and helped her mother to watch over her. When she grew up, sh...",
+        "end": "...dead.’ ‘Thou art she!’ said the old king; ‘and as thou has judged thyself, so shall it be done to thee.’ And the young king was then married to his true wife, and they reigned over the kingdom in peace and happiness all their lives; and the good fairy came to see them, and restored the faithful Falada to life again."
+      }
+    },
+    {
+      "slug": "the-king-of-the-golden-mountain",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE KING OF THE GOLDEN MOUNTAIN.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The King of the Golden Mountain",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE KING OF THE GOLDEN MOUNTAIN",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE KING OF THE GOLDEN MOUNTAIN",
+        "First readable prose: There was once a merchant who had only one child, a son, that was very"
+      ],
+      "realReadableStart": "The King of the Golden Mountain: There was once a merchant who had only one child, a son, that was very young, and barely able to run alone. He had two richly laden ships then making a voyage upon the seas, in which he had embarked all his wealth, in the hope of making great gains, when the news came that both were lost. Thus from being a rich man...",
+      "realReadableEnd": "... at him. However, he would enter into no parley with them, but only asked them if they would go in peace or not. Then they turned upon him and tried to seize him; but he drew his sword. ‘Heads Off!’ cried he; and with the word the traitors’ heads fell before him, and Heinel was once more king of the Golden Mountain.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The King of the Golden Mountain",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "There was once a merchant who had only one child, a son, that was very young, and barely able to run alone. He had two richly laden ships then making a voyage upon the seas, in which he had embarked all his wealth, in the hope of making great gains, when the news came that both were lost. Thus from being a rich man...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: There was once a merchant who had only one child, a son, that was very",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE KING OF THE GOLDEN MOUNTAIN",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The King of the Golden Mountain There was once a merchant who had only one child, a son, that was very young, and barely able to run alone. He had two richly laden ships then making a voyage upon the seas, in which he had embarked all his wealth, in the hope of making great gains, when the news came that both were lost. Thus from being a rich man...",
+        "end": "... at him. However, he would enter into no parley with them, but only asked them if they would go in peace or not. Then they turned upon him and tried to seize him; but he drew his sword. ‘Heads Off!’ cried he; and with the word the traitors’ heads fell before him, and Heinel was once more king of the Golden Mountain."
+      }
+    },
+    {
+      "slug": "the-little-peasant",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE LITTLE PEASANT.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Little Peasant",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE LITTLE PEASANT",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE LITTLE PEASANT",
+        "First readable prose: There was a certain village wherein no one lived but really rich"
+      ],
+      "realReadableStart": "The Little Peasant: There was a certain village wherein no one lived but really rich peasants, and just one poor one, whom they called the little peasant. He had not even so much as a cow, and still less money to buy one, and yet he and his wife did so wish to have one. One day he said to her: ?Listen, I have a good idea, there is our...",
+      "realReadableEnd": "...and said: ‘I will go down first, and look about me, and if things promise well I’ll call you.’ So he jumped in; splash! went the water; it sounded as if he were calling them, and the whole crowd plunged in after him as one man. Then the entire village was dead, and the small peasant, as sole heir, became a rich man.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Little Peasant",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "There was a certain village wherein no one lived but really rich peasants, and just one poor one, whom they called the little peasant. He had not even so much as a cow, and still less money to buy one, and yet he and his wife did so wish to have one. One day he said to her: ?Listen, I have a good idea, there is our...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: There was a certain village wherein no one lived but really rich",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE LITTLE PEASANT",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Little Peasant There was a certain village wherein no one lived but really rich peasants, and just one poor one, whom they called the little peasant. He had not even so much as a cow, and still less money to buy one, and yet he and his wife did so wish to have one. One day he said to her: ?Listen, I have a good idea, there is our...",
+        "end": "...and said: ‘I will go down first, and look about me, and if things promise well I’ll call you.’ So he jumped in; splash! went the water; it sounded as if he were calling them, and the whole crowd plunged in after him as one man. Then the entire village was dead, and the small peasant, as sole heir, became a rich man."
+      }
+    },
+    {
+      "slug": "the-miser-in-the-bush",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE MISER IN THE BUSH.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Miser in the Bush",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE MISER IN THE BUSH",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE MISER IN THE BUSH",
+        "First readable prose: A farmer had a faithful and diligent servant, who had worked hard for"
+      ],
+      "realReadableStart": "The Miser in the Bush: A farmer had a faithful and diligent servant, who had worked hard for him three years, without having been paid any wages. At last it came into the man?s head that he would not go on thus without pay any longer; so he went to his master, and said, ?I have worked hard for you a long time, I will trust to you to give...",
+      "realReadableEnd": "...Tell us now, you vagabond, where you got that gold, or I shall play on for your amusement only,’ ‘I stole it,’ said the miser in the presence of all the people; ‘I acknowledge that I stole it, and that you earned it fairly.’ Then the countryman stopped his fiddle, and left the miser to take his place at the gallows.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Miser in the Bush",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "A farmer had a faithful and diligent servant, who had worked hard for him three years, without having been paid any wages. At last it came into the man?s head that he would not go on thus without pay any longer; so he went to his master, and said, ?I have worked hard for you a long time, I will trust to you to give...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: A farmer had a faithful and diligent servant, who had worked hard for",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE MISER IN THE BUSH",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Miser in the Bush A farmer had a faithful and diligent servant, who had worked hard for him three years, without having been paid any wages. At last it came into the man?s head that he would not go on thus without pay any longer; so he went to his master, and said, ?I have worked hard for you a long time, I will trust to you to give...",
+        "end": "...Tell us now, you vagabond, where you got that gold, or I shall play on for your amusement only,’ ‘I stole it,’ said the miser in the presence of all the people; ‘I acknowledge that I stole it, and that you earned it fairly.’ Then the countryman stopped his fiddle, and left the miser to take his place at the gallows."
+      }
+    },
+    {
+      "slug": "the-mouse-the-bird-and-the-sausage",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE MOUSE, THE BIRD, AND THE SAUSAGE.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Mouse, the Bird, and the Sausage",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE MOUSE, THE BIRD, AND THE SAUSAGE",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE MOUSE, THE BIRD, AND THE SAUSAGE",
+        "First readable prose: Once upon a time, a mouse, a bird, and a sausage, entered into"
+      ],
+      "realReadableStart": "The Mouse, the Bird, and the Sausage: Once upon a time, a mouse, a bird, and a sausage, entered into partnership and set up house together. For a long time all went well; they lived in great comfort, and prospered so far as to be able to add considerably to their stores. The bird?s duty was to fly daily into the wood and bring in fuel; the mouse fetched...",
+      "realReadableEnd": "...re and there about the floor, called and searched, but no cook was to be found. Then some of the wood that had been carelessly thrown down, caught fire and began to blaze. The bird hastened to fetch some water, but his pail fell into the well, and he after it, and as he was unable to recover himself, he was drowned.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Mouse, the Bird, and the Sausage",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "Once upon a time, a mouse, a bird, and a sausage, entered into partnership and set up house together. For a long time all went well; they lived in great comfort, and prospered so far as to be able to add considerably to their stores. The bird?s duty was to fly daily into the wood and bring in fuel; the mouse fetched...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Once upon a time, a mouse, a bird, and a sausage, entered into",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE MOUSE, THE BIRD, AND THE SAUSAGE",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Mouse, the Bird, and the Sausage Once upon a time, a mouse, a bird, and a sausage, entered into partnership and set up house together. For a long time all went well; they lived in great comfort, and prospered so far as to be able to add considerably to their stores. The bird?s duty was to fly daily into the wood and bring in fuel; the mouse fetched...",
+        "end": "...re and there about the floor, called and searched, but no cook was to be found. Then some of the wood that had been carelessly thrown down, caught fire and began to blaze. The bird hastened to fetch some water, but his pail fell into the well, and he after it, and as he was unable to recover himself, he was drowned."
+      }
+    },
+    {
+      "slug": "the-old-man-and-his-grandson",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE OLD MAN AND HIS GRANDSON.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Old Man and His Grandson",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE OLD MAN AND HIS GRANDSON",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE OLD MAN AND HIS GRANDSON",
+        "First readable prose: There was once a very old man, whose eyes had become dim, his ears dull"
+      ],
+      "realReadableStart": "The Old Man and His Grandson: There was once a very old man, whose eyes had become dim, his ears dull of hearing, his knees trembled, and when he sat at table he could hardly hold the spoon, and spilt the broth upon the table-cloth or let it run out of his mouth. His son and his son?s wife were disgusted at this, so the old grandfather at last h...",
+      "realReadableEnd": "...h,’ answered the child, ‘for father and mother to eat out of when I am big.’ The man and his wife looked at each other for a while, and presently began to cry. Then they took the old grandfather to the table, and henceforth always let him eat with them, and likewise said nothing if he did spill a little of anything.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Old Man and His Grandson",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "There was once a very old man, whose eyes had become dim, his ears dull of hearing, his knees trembled, and when he sat at table he could hardly hold the spoon, and spilt the broth upon the table-cloth or let it run out of his mouth. His son and his son?s wife were disgusted at this, so the old grandfather at last h...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: There was once a very old man, whose eyes had become dim, his ears dull",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE OLD MAN AND HIS GRANDSON",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Old Man and His Grandson There was once a very old man, whose eyes had become dim, his ears dull of hearing, his knees trembled, and when he sat at table he could hardly hold the spoon, and spilt the broth upon the table-cloth or let it run out of his mouth. His son and his son?s wife were disgusted at this, so the old grandfather at last h...",
+        "end": "...h,’ answered the child, ‘for father and mother to eat out of when I am big.’ The man and his wife looked at each other for a while, and presently began to cry. Then they took the old grandfather to the table, and henceforth always let him eat with them, and likewise said nothing if he did spill a little of anything."
+      }
+    },
+    {
+      "slug": "the-pink",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE PINK.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Pink",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE PINK",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE PINK",
+        "First readable prose: There was once upon a time a queen to whom God had given no children."
+      ],
+      "realReadableStart": "The Pink: There was once upon a time a queen to whom God had given no children. Every morning she went into the garden and prayed to God in heaven to bestow on her a son or a daughter. Then an angel from heaven came to her and said: ?Be at rest, you shall have a son with the power of wishing, so that whatsoever in the world h...",
+      "realReadableEnd": "...owed her body and seated themselves on her grave. The aged king ordered the cook to be torn in four pieces, but grief consumed the king’s own heart, and he soon died. His son married the beautiful maiden whom he had brought with him as a flower in his pocket, and whether they are still alive or not, is known to God.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Pink",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "There was once upon a time a queen to whom God had given no children. Every morning she went into the garden and prayed to God in heaven to bestow on her a son or a daughter. Then an angel from heaven came to her and said: ?Be at rest, you shall have a son with the power of wishing, so that whatsoever in the world h...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: There was once upon a time a queen to whom God had given no children.",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE PINK",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Pink There was once upon a time a queen to whom God had given no children. Every morning she went into the garden and prayed to God in heaven to bestow on her a son or a daughter. Then an angel from heaven came to her and said: ?Be at rest, you shall have a son with the power of wishing, so that whatsoever in the world h...",
+        "end": "...owed her body and seated themselves on her grave. The aged king ordered the cook to be torn in four pieces, but grief consumed the king’s own heart, and he soon died. His son married the beautiful maiden whom he had brought with him as a flower in his pocket, and whether they are still alive or not, is known to God."
+      }
+    },
+    {
+      "slug": "the-queen-bee",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE QUEEN BEE.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Queen Bee",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE QUEEN BEE",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE QUEEN BEE",
+        "First readable prose: Two kings? sons once upon a time went into the world to seek their"
+      ],
+      "realReadableStart": "The Queen Bee: Two kings? sons once upon a time went into the world to seek their fortunes; but they soon fell into a wasteful foolish way of living, so that they could not return home again. Then their brother, who was a little insignificant dwarf, went out to seek for his brothers: but when he had found them they only laughed at...",
+      "realReadableEnd": "...the honey: and so the dwarf knew which was the youngest. Thus the spell was broken, and all who had been turned into stones awoke, and took their proper forms. And the dwarf married the youngest and the best of the princesses, and was king after her father’s death; but his two brothers married the other two sisters.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Queen Bee",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "Two kings? sons once upon a time went into the world to seek their fortunes; but they soon fell into a wasteful foolish way of living, so that they could not return home again. Then their brother, who was a little insignificant dwarf, went out to seek for his brothers: but when he had found them they only laughed at...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Two kings’ sons once upon a time went into the world to seek their",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE QUEEN BEE",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Queen Bee Two kings? sons once upon a time went into the world to seek their fortunes; but they soon fell into a wasteful foolish way of living, so that they could not return home again. Then their brother, who was a little insignificant dwarf, went out to seek for his brothers: but when he had found them they only laughed at...",
+        "end": "...the honey: and so the dwarf knew which was the youngest. Thus the spell was broken, and all who had been turned into stones awoke, and took their proper forms. And the dwarf married the youngest and the best of the princesses, and was king after her father’s death; but his two brothers married the other two sisters."
+      }
+    },
+    {
+      "slug": "the-raven",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE RAVEN.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Raven",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE RAVEN",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE RAVEN",
+        "First readable prose: There was once a queen who had a little daughter, still too young to run"
+      ],
+      "realReadableStart": "The Raven: There was once a queen who had a little daughter, still too young to run alone. One day the child was very troublesome, and the mother could not quiet it, do what she would. She grew impatient, and seeing the ravens flying round the castle, she opened the window, and said: ?I wish you were a raven and would fly away...",
+      "realReadableEnd": "...anwhile he had gone outside again and mounted his horse and thrown off the cloak. When therefore she came to the castle gate she saw him, and cried aloud for joy. Then he dismounted and took her in his arms; and she kissed him, and said, ‘Now you have indeed set me free, and tomorrow we will celebrate our marriage.’",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Raven",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "There was once a queen who had a little daughter, still too young to run alone. One day the child was very troublesome, and the mother could not quiet it, do what she would. She grew impatient, and seeing the ravens flying round the castle, she opened the window, and said: ?I wish you were a raven and would fly away...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: There was once a queen who had a little daughter, still too young to run",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE RAVEN",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Raven There was once a queen who had a little daughter, still too young to run alone. One day the child was very troublesome, and the mother could not quiet it, do what she would. She grew impatient, and seeing the ravens flying round the castle, she opened the window, and said: ?I wish you were a raven and would fly away...",
+        "end": "...anwhile he had gone outside again and mounted his horse and thrown off the cloak. When therefore she came to the castle gate she saw him, and cried aloud for joy. Then he dismounted and took her in his arms; and she kissed him, and said, ‘Now you have indeed set me free, and tomorrow we will celebrate our marriage.’"
+      }
+    },
+    {
+      "slug": "the-robber-bridegroom",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE ROBBER BRIDEGROOM.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Robber Bridegroom",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE ROBBER BRIDEGROOM",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE ROBBER BRIDEGROOM",
+        "First readable prose: There was once a miller who had one beautiful daughter, and as she was"
+      ],
+      "realReadableStart": "The Robber Bridegroom: There was once a miller who had one beautiful daughter, and as she was grown up, he was anxious that she should be well married and provided for. He said to himself, ?I will give her to the first suitable man who comes and asks for her hand.? Not long after a suitor appeared, and as he appeared to be very rich and t...",
+      "realReadableEnd": "...he bride drew forth the finger and shewed it to the assembled guests. The bridegroom, who during this recital had grown deadly pale, up and tried to escape, but the guests seized him and held him fast. They delivered him up to justice, and he and all his murderous band were condemned to death for their wicked deeds.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Robber Bridegroom",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "There was once a miller who had one beautiful daughter, and as she was grown up, he was anxious that she should be well married and provided for. He said to himself, ?I will give her to the first suitable man who comes and asks for her hand.? Not long after a suitor appeared, and as he appeared to be very rich and t...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: There was once a miller who had one beautiful daughter, and as she was",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE ROBBER BRIDEGROOM",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Robber Bridegroom There was once a miller who had one beautiful daughter, and as she was grown up, he was anxious that she should be well married and provided for. He said to himself, ?I will give her to the first suitable man who comes and asks for her hand.? Not long after a suitor appeared, and as he appeared to be very rich and t...",
+        "end": "...he bride drew forth the finger and shewed it to the assembled guests. The bridegroom, who during this recital had grown deadly pale, up and tried to escape, but the guests seized him and held him fast. They delivered him up to justice, and he and all his murderous band were condemned to death for their wicked deeds."
+      }
+    },
+    {
+      "slug": "the-salad",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE SALAD.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Salad",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE SALAD",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE SALAD",
+        "First readable prose: As a merry young huntsman was once going briskly along through a wood,"
+      ],
+      "realReadableStart": "The Salad: As a merry young huntsman was once going briskly along through a wood, there came up a little old woman, and said to him, ?Good day, good day; you seem merry enough, but I am hungry and thirsty; do pray give me something to eat.? The huntsman took pity on her, and put his hand in his pocket and gave her what he had....",
+      "realReadableEnd": "... it, it was against my will, for I always loved you very much. Your wishing-cloak hangs up in the closet, and as for the bird’s heart, I will give it you too.’ But he said, ‘Keep it, it will be just the same thing, for I mean to make you my wife.’ So they were married, and lived together very happily till they died.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Salad",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "As a merry young huntsman was once going briskly along through a wood, there came up a little old woman, and said to him, ?Good day, good day; you seem merry enough, but I am hungry and thirsty; do pray give me something to eat.? The huntsman took pity on her, and put his hand in his pocket and gave her what he had....",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: As a merry young huntsman was once going briskly along through a wood,",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE SALAD",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Salad As a merry young huntsman was once going briskly along through a wood, there came up a little old woman, and said to him, ?Good day, good day; you seem merry enough, but I am hungry and thirsty; do pray give me something to eat.? The huntsman took pity on her, and put his hand in his pocket and gave her what he had....",
+        "end": "... it, it was against my will, for I always loved you very much. Your wishing-cloak hangs up in the closet, and as for the bird’s heart, I will give it you too.’ But he said, ‘Keep it, it will be just the same thing, for I mean to make you my wife.’ So they were married, and lived together very happily till they died."
+      }
+    },
+    {
+      "slug": "the-story-of-the-youth-who-went-forth-to-learn-what-fear-was",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE STORY OF THE YOUTH WHO WENT FORTH TO LEARN WHAT FEAR WAS.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Story of the Youth Who Went Forth to Learn What Fear Was",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE STORY OF THE YOUTH WHO WENT FORTH TO LEARN WHAT FEAR WAS",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE STORY OF THE YOUTH WHO WENT FORTH TO LEARN WHAT FEAR WAS",
+        "First readable prose: A certain father had two sons, the elder of who was smart and sensible,"
+      ],
+      "realReadableStart": "The Story of the Youth Who Went Forth to Learn What Fear Was: A certain father had two sons, the elder of who was smart and sensible, and could do everything, but the younger was stupid and could neither learn nor understand anything, and when people saw him they said: ?There?s a fellow who will give his father some trouble!? When anything had to be done, it was always the eld...",
+      "realReadableEnd": "...ing was sleeping, his wife was to draw the clothes off him and empty the bucket full of cold water with the gudgeons in it over him, so that the little fishes would sprawl about him. Then he woke up and cried: ‘Oh, what makes me shudder so?--what makes me shudder so, dear wife? Ah! now I know what it is to shudder!’",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Story of the Youth Who Went Forth to Learn What Fear Was",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "A certain father had two sons, the elder of who was smart and sensible, and could do everything, but the younger was stupid and could neither learn nor understand anything, and when people saw him they said: ?There?s a fellow who will give his father some trouble!? When anything had to be done, it was always the eld...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: A certain father had two sons, the elder of who was smart and sensible,",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE STORY OF THE YOUTH WHO WENT FORTH TO LEARN WHAT FEAR WAS",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Story of the Youth Who Went Forth to Learn What Fear Was A certain father had two sons, the elder of who was smart and sensible, and could do everything, but the younger was stupid and could neither learn nor understand anything, and when people saw him they said: ?There?s a fellow who will give his father some trouble!? When anything had to be done, it was always the eld...",
+        "end": "...ing was sleeping, his wife was to draw the clothes off him and empty the bucket full of cold water with the gudgeons in it over him, so that the little fishes would sprawl about him. Then he woke up and cried: ‘Oh, what makes me shudder so?--what makes me shudder so, dear wife? Ah! now I know what it is to shudder!’"
+      }
+    },
+    {
+      "slug": "the-straw-the-coal-and-the-bean",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE STRAW, THE COAL, AND THE BEAN.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Straw, the Coal, and the Bean",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE STRAW, THE COAL, AND THE BEAN",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE STRAW, THE COAL, AND THE BEAN",
+        "First readable prose: In a village dwelt a poor old woman, who had gathered together a dish"
+      ],
+      "realReadableStart": "The Straw, the Coal, and the Bean: In a village dwelt a poor old woman, who had gathered together a dish of beans and wanted to cook them. So she made a fire on her hearth, and that it might burn the quicker, she lighted it with a handful of straw. When she was emptying the beans into the pan, one dropped without her observing it, and lay on the grou...",
+      "realReadableEnd": "...ise, if, by good fortune, a tailor who was travelling in search of work, had not sat down to rest by the brook. As he had a compassionate heart he pulled out his needle and thread, and sewed her together. The bean thanked him most prettily, but as the tailor used black thread, all beans since then have a black seam.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Straw, the Coal, and the Bean",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "In a village dwelt a poor old woman, who had gathered together a dish of beans and wanted to cook them. So she made a fire on her hearth, and that it might burn the quicker, she lighted it with a handful of straw. When she was emptying the beans into the pan, one dropped without her observing it, and lay on the grou...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: In a village dwelt a poor old woman, who had gathered together a dish",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE STRAW, THE COAL, AND THE BEAN",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Straw, the Coal, and the Bean In a village dwelt a poor old woman, who had gathered together a dish of beans and wanted to cook them. So she made a fire on her hearth, and that it might burn the quicker, she lighted it with a handful of straw. When she was emptying the beans into the pan, one dropped without her observing it, and lay on the grou...",
+        "end": "...ise, if, by good fortune, a tailor who was travelling in search of work, had not sat down to rest by the brook. As he had a compassionate heart he pulled out his needle and thread, and sewed her together. The bean thanked him most prettily, but as the tailor used black thread, all beans since then have a black seam."
+      }
+    },
+    {
+      "slug": "the-three-languages",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE THREE LANGUAGES.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Three Languages",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE THREE LANGUAGES",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE THREE LANGUAGES",
+        "First readable prose: An aged count once lived in Switzerland, who had an only son, but he"
+      ],
+      "realReadableStart": "The Three Languages: An aged count once lived in Switzerland, who had an only son, but he was stupid, and could learn nothing. Then said the father: ?Hark you, my son, try as I will I can get nothing into your head. You must go from hence, I will give you into the care of a celebrated master, who shall see what he can do with you.? The...",
+      "realReadableEnd": "...s. Then was he anointed and consecrated, and thus was fulfilled what he had heard from the frogs on his way, which had so affected him, that he was to be his Holiness the Pope. Then he had to sing a mass, and did not know one word of it, but the two doves sat continually on his shoulders, and said it all in his ear.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Three Languages",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "An aged count once lived in Switzerland, who had an only son, but he was stupid, and could learn nothing. Then said the father: ?Hark you, my son, try as I will I can get nothing into your head. You must go from hence, I will give you into the care of a celebrated master, who shall see what he can do with you.? The...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: An aged count once lived in Switzerland, who had an only son, but he",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE THREE LANGUAGES",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Three Languages An aged count once lived in Switzerland, who had an only son, but he was stupid, and could learn nothing. Then said the father: ?Hark you, my son, try as I will I can get nothing into your head. You must go from hence, I will give you into the care of a celebrated master, who shall see what he can do with you.? The...",
+        "end": "...s. Then was he anointed and consecrated, and thus was fulfilled what he had heard from the frogs on his way, which had so affected him, that he was to be his Holiness the Pope. Then he had to sing a mass, and did not know one word of it, but the two doves sat continually on his shoulders, and said it all in his ear."
+      }
+    },
+    {
+      "slug": "the-travelling-musicians",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE TRAVELLING MUSICIANS.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Travelling Musicians",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE TRAVELLING MUSICIANS",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE TRAVELLING MUSICIANS",
+        "First readable prose: An honest farmer had once an ass that had been a faithful servant to him"
+      ],
+      "realReadableStart": "The Travelling Musicians: An honest farmer had once an ass that had been a faithful servant to him a great many years, but was now growing old and every day more and more unfit for work. His master therefore was tired of keeping him and began to think of putting an end to him; but the ass, who saw that some mischief was in the wind, took him...",
+      "realReadableEnd": "...ruck him with a club, and how the devil had sat upon the top of the house and cried out, ‘Throw the rascal up here!’ After this the robbers never dared to go back to the house; but the musicians were so pleased with their quarters that they took up their abode there; and there they are, I dare say, at this very day.",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Travelling Musicians",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "An honest farmer had once an ass that had been a faithful servant to him a great many years, but was now growing old and every day more and more unfit for work. His master therefore was tired of keeping him and began to think of putting an end to him; but the ass, who saw that some mischief was in the wind, took him...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: An honest farmer had once an ass that had been a faithful servant to him",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE TRAVELLING MUSICIANS",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Travelling Musicians An honest farmer had once an ass that had been a faithful servant to him a great many years, but was now growing old and every day more and more unfit for work. His master therefore was tired of keeping him and began to think of putting an end to him; but the ass, who saw that some mischief was in the wind, took him...",
+        "end": "...ruck him with a club, and how the devil had sat upon the top of the house and cried out, ‘Throw the rascal up here!’ After this the robbers never dared to go back to the house; but the musicians were so pleased with their quarters that they took up their abode there; and there they are, I dare say, at this very day."
+      }
+    }
+  ]
+}
