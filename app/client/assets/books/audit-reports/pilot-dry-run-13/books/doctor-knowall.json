@@ -1,0 +1,87 @@
+{
+  "slug": "doctor-knowall",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/DOCTOR KNOWALL.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Doctor Knowall",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "DOCTOR KNOWALL",
+    "lineNumber": 43
+  },
+  "expectedAuthor": [
+    "Jacob Grimm; Wilhelm Grimm"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Jacob Grimm; Wilhelm Grimm",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "First readable prose: There was once upon a time a poor peasant called Crabb, who drove with"
+  ],
+  "realReadableStart": "Doctor Knowall: There was once upon a time a poor peasant called Crabb, who drove with two oxen a load of wood to the town, and sold it to a doctor for two talers. When the money was being counted out to him, it so happened that the doctor was sitting at table, and when the peasant saw how well he ate and drank, his heart desired w...",
+  "realReadableEnd": "e. But the doctor sat still and opened his A B C book, turned the pages backwards and forwards, and looked for the cock. As he could not find it immediately he said: ?I know you are there, so you had better come out!? Then the fellow in the stove thought that the doctor meant him, and full of terror, sprang out, cry...",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Doctor Knowall",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "There was once upon a time a poor peasant called Crabb, who drove with two oxen a load of wood to the town, and sold it to a doctor for two talers. When the money was being counted out to him, it so happened that the doctor was sitting at table, and when the peasant saw how well he ate and drank, his heart desired w...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: There was once upon a time a poor peasant called Crabb, who drove with",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "DOCTOR KNOWALL",
+    "author": "Author: Jacob Grimm; Wilhelm Grimm",
+    "start": "Doctor Knowall There was once upon a time a poor peasant called Crabb, who drove with two oxen a load of wood to the town, and sold it to a doctor for two talers. When the money was being counted out to him, it so happened that the doctor was sitting at table, and when the peasant saw how well he ate and drank, his heart desired w...",
+    "end": "e. But the doctor sat still and opened his A B C book, turned the pages backwards and forwards, and looked for the cock. As he could not find it immediately he said: ?I know you are there, so you had better come out!? Then the fellow in the stove thought that the doctor meant him, and full of terror, sprang out, cry..."
+  }
+}

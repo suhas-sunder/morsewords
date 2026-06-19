@@ -1,0 +1,86 @@
+{
+  "slug": "clever-elsie",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/CLEVER ELSIE.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Clever Elsie",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "CLEVER ELSIE",
+    "lineNumber": 43
+  },
+  "expectedAuthor": [
+    "Jacob Grimm; Wilhelm Grimm"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Jacob Grimm; Wilhelm Grimm",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "First readable prose: There was once a man who had a daughter who was called Clever Elsie. And"
+  ],
+  "realReadableStart": "Clever Elsie: There was once a man who had a daughter who was called Clever Elsie. And when she had grown up her father said: ?We will get her married.? ?Yes,? said the mother, ?if only someone would come who would have her.? At length a man came from a distance and wooed her, who was called Hans; but he stipulated that Clever El...",
+  "realReadableEnd": "thought: ?I will go home and ask if it be I, or if it be not I, they will be sure to know.? She ran to the door of her own house, but it was shut; then she knocked at the window and cried: ?Hans, is Elsie within?? ?Yes,? answered Hans, ?she is within.? Hereupon she was terrified, and said: ?Ah, heavens! Then it is n...",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Clever Elsie",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "There was once a man who had a daughter who was called Clever Elsie. And when she had grown up her father said: ?We will get her married.? ?Yes,? said the mother, ?if only someone would come who would have her.? At length a man came from a distance and wooed her, who was called Hans; but he stipulated that Clever El...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: There was once a man who had a daughter who was called Clever Elsie. And",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "CLEVER ELSIE",
+    "author": "Author: Jacob Grimm; Wilhelm Grimm",
+    "start": "Clever Elsie There was once a man who had a daughter who was called Clever Elsie. And when she had grown up her father said: ?We will get her married.? ?Yes,? said the mother, ?if only someone would come who would have her.? At length a man came from a distance and wooed her, who was called Hans; but he stipulated that Clever El...",
+    "end": "thought: ?I will go home and ask if it be I, or if it be not I, they will be sure to know.? She ran to the door of her own house, but it was shut; then she knocked at the window and cried: ?Hans, is Elsie within?? ?Yes,? answered Hans, ?she is within.? Hereupon she was terrified, and said: ?Ah, heavens! Then it is n..."
+  }
+}
