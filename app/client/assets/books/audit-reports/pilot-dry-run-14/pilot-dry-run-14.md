@@ -1,8 +1,12 @@
 # Pilot Book Processing Dry Run 14
 
-Generated: 2026-06-19T21:53:37.361Z
+Generated: 2026-06-19T21:59:59.979Z
 
 This is a dry-run/report-only pass. It does not write generated books, create preview assets, modify raw sources, modify Cloudflare exports, or run all-book processing.
+
+## Implementation Scope Note
+
+Dry-run 14 intentionally uses `scripts/books/pilot-book-processing-dry-run-13.ts` as the shared implementation engine. The batch-14 entry point only sets `MORSEWORDS_PILOT_DRY_RUN_BATCH=14` and imports that engine; batch 13 remains the default when the environment flag is absent. The shared-file diff is therefore required dry-run-14 implementation, not an unrelated modification.
 
 ## Inputs
 
