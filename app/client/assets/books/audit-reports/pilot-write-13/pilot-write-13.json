@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reportName": "pilot-write-13",
-  "generatedAt": "2026-06-19T20:35:33.737Z",
+  "generatedAt": "2026-06-19T21:16:08.557Z",
   "branch": "morsewords-book-processing-pilot-write-13-jun-2026",
   "mode": "controlled first-time processing",
   "sourceDryRunReport": "app/client/assets/books/audit-reports/pilot-dry-run-13/pilot-dry-run-13.json",
@@ -829,7 +829,7 @@
         "title": null,
         "kind": "chapter",
         "includeByDefault": true,
-        "wordCount": 1903,
+        "wordCount": 1917,
         "snippet": "There was once a man called Frederick: he had a wife whose name was Catherine, and they had not long been married. One day Frederick said. ‘Kate! I am going to..."
       },
       "sectionCount": 1,
@@ -839,7 +839,7 @@
           "label": "Frederick and Catherine",
           "title": null,
           "kind": "chapter",
-          "wordCount": 1903
+          "wordCount": 1917
         }
       ],
       "first5SectionsWithWordCounts": [
@@ -848,7 +848,7 @@
           "label": "Frederick and Catherine",
           "title": null,
           "kind": "chapter",
-          "wordCount": 1903
+          "wordCount": 1917
         }
       ],
       "last5SectionsWithWordCounts": [
@@ -857,11 +857,11 @@
           "label": "Frederick and Catherine",
           "title": null,
           "kind": "chapter",
-          "wordCount": 1903
+          "wordCount": 1917
         }
       ],
       "cleanupActionsApplied": {
-        "imagePlaceholderLinesRemoved": 1,
+        "imagePlaceholderLinesRemoved": 0,
         "inlinePageMarkersRemoved": 0,
         "numberedReferencesRemoved": 0,
         "trailingNonReadableBlocksRemoved": 0,
@@ -1889,7 +1889,7 @@
         "title": null,
         "kind": "chapter",
         "includeByDefault": true,
-        "wordCount": 2371,
+        "wordCount": 2386,
         "snippet": "It was the middle of winter, when the broad flakes of snow were falling around, that the queen of a country many thousand miles off sat working at her window...."
       },
       "sectionCount": 1,
@@ -1899,7 +1899,7 @@
           "label": "Snowdrop",
           "title": null,
           "kind": "chapter",
-          "wordCount": 2371
+          "wordCount": 2386
         }
       ],
       "first5SectionsWithWordCounts": [
@@ -1908,7 +1908,7 @@
           "label": "Snowdrop",
           "title": null,
           "kind": "chapter",
-          "wordCount": 2371
+          "wordCount": 2386
         }
       ],
       "last5SectionsWithWordCounts": [
@@ -1917,14 +1917,14 @@
           "label": "Snowdrop",
           "title": null,
           "kind": "chapter",
-          "wordCount": 2371
+          "wordCount": 2386
         }
       ],
       "cleanupActionsApplied": {
         "imagePlaceholderLinesRemoved": 0,
         "inlinePageMarkersRemoved": 0,
         "numberedReferencesRemoved": 0,
-        "trailingNonReadableBlocksRemoved": 1,
+        "trailingNonReadableBlocksRemoved": 0,
         "standaloneEndMarkersRemoved": 0
       },
       "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",

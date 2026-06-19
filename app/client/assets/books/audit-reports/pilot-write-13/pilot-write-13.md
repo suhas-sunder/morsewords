@@ -248,7 +248,7 @@ Supporting snippets:
 - Structure: one contiguous story section starting at dry-run verified first readable prose phrase
 - Start boundary: cleaned line 9 - start at first readable prose after source/title/byline wrapper: There was once a man called Frederick: he had a wife whose name was; write pass starts at first selected/default section
 - End boundary: cleaned line 163 - end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise
-- First default section after: Frederick and Catherine (1903 words)
+- First default section after: Frederick and Catherine (1917 words)
 - Section count: 1
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
 - Author metadata verdict: passed: author metadata comes from Gutenberg Author line
@@ -261,7 +261,7 @@ Supporting snippets:
 
 All sections:
 
-- chapter-001: Frederick and Catherine (1903 words)
+- chapter-001: Frederick and Catherine (1917 words)
 
 Supporting snippets:
 
@@ -588,7 +588,7 @@ Supporting snippets:
 - Structure: one contiguous story section starting at dry-run verified first readable prose phrase
 - Start boundary: cleaned line 9 - start at first readable prose after source/title/byline wrapper: It was the middle of winter, when the broad flakes of snow were falling; write pass starts at first selected/default section
 - End boundary: cleaned line 231 - end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise
-- First default section after: Snowdrop (2371 words)
+- First default section after: Snowdrop (2386 words)
 - Section count: 1
 - Title/default-start verdict: passed: generated title and first default section match audited source identity
 - Author metadata verdict: passed: author metadata comes from Gutenberg Author line
@@ -601,7 +601,7 @@ Supporting snippets:
 
 All sections:
 
-- chapter-001: Snowdrop (2371 words)
+- chapter-001: Snowdrop (2386 words)
 
 Supporting snippets:
 

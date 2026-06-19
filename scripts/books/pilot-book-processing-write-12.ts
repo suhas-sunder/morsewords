@@ -489,10 +489,10 @@ function sanitizeSectionText(input: string, cleanup: CleanupSummary): string {
   text = text.replace(bracketedMediaBlockPattern, "");
   cleanup.imagePlaceholderLinesRemoved += countMatches(
     text,
-    /^\s*\[?(?:Illustration|Image|Plate|Decorative image|Music|Advertisement|Sidenote)[^\n]*\]?\s*$/gim,
+    /^\s*\[?(?:Illustration|Image|Plate|Decorative image|Music|Advertisement|Sidenote)\b[^\n]*\]?\s*$/gim,
   );
   text = text.replace(
-    /^\s*\[?(?:Illustration|Image|Plate|Decorative image|Music|Advertisement|Sidenote)[^\n]*\]?\s*$/gim,
+    /^\s*\[?(?:Illustration|Image|Plate|Decorative image|Music|Advertisement|Sidenote)\b[^\n]*\]?\s*$/gim,
     "",
   );
   cleanup.inlinePageMarkersRemoved += countMatches(text, /\[(?:Pg\.?\s*)?\d+\]/gi);
@@ -503,10 +503,10 @@ function sanitizeSectionText(input: string, cleanup: CleanupSummary): string {
   text = text.replace(/^\s*THE END\s*$/gim, "");
   cleanup.trailingNonReadableBlocksRemoved += countMatches(
     text,
-    /^\s*_?By\s+(?!(?:the|a|an|his|her|its|this|that|these|those|my|our|your)\b)[^_\n]+_?\s*$/gim,
+    /^\s*_?By\s+(?!(?:and|the|a|an|his|her|its|this|that|these|those|my|our|your)\b)[^_\n]+_?\s*$/gim,
   );
   text = text.replace(
-    /^\s*_?By\s+(?!(?:the|a|an|his|her|its|this|that|these|those|my|our|your)\b)[^_\n]+_?\s*$/gim,
+    /^\s*_?By\s+(?!(?:and|the|a|an|his|her|its|this|that|these|those|my|our|your)\b)[^_\n]+_?\s*$/gim,
     "",
   );
   cleanup.trailingNonReadableBlocksRemoved += countMatches(

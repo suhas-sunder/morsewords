@@ -2844,12 +2844,12 @@
     {
       "slug": "frederick-and-catherine",
       "path": "/book-previews/frederick-and-catherine.preview.json",
-      "contentVersion": "2a6ee2e5f9f6501e",
-      "contentHash": "2a6ee2e5f9f6501ebd2e18727896234b572b62490b2efa3fbb97a768fc67f101",
+      "contentVersion": "fc05cfb202999818",
+      "contentHash": "fc05cfb2029998188cb4365765540cfcaee6aa923d86a2a241c57ccafe9f74e0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10892,
-      "previewCharacterCount": 9641,
-      "estimatedRuntimeSeconds": 3477,
+      "previewBytes": 10960,
+      "previewCharacterCount": 9709,
+      "estimatedRuntimeSeconds": 3501,
       "truncated": false
     },
     {
@@ -2954,12 +2954,12 @@
     {
       "slug": "snowdrop",
       "path": "/book-previews/snowdrop.preview.json",
-      "contentVersion": "34e75d9b9c961d92",
-      "contentHash": "34e75d9b9c961d924afaff881ef0453627a6a09c8c863aabafb5d2c0cca4aa7f",
+      "contentVersion": "d1d289934c29dbcc",
+      "contentHash": "d1d289934c29dbccebe6fa7e008e166d3abae0bafd767b86b1f08a9f26be3578",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10362,
-      "previewCharacterCount": 9300,
-      "estimatedRuntimeSeconds": 3313,
+      "previewBytes": 10436,
+      "previewCharacterCount": 9373,
+      "estimatedRuntimeSeconds": 3338,
       "truncated": true
     },
     {
