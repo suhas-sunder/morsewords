@@ -1,0 +1,1784 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-write-11-verification",
+  "generatedAt": "2026-06-19T04:13:38.027Z",
+  "branch": "morsewords-book-processing-pilot-write-11-jun-2026",
+  "mode": "post-write verification",
+  "processedBooks": [
+    "cool-air",
+    "the-dream-of-little-tuk",
+    "the-false-collar",
+    "the-naughty-boy",
+    "the-red-shoes",
+    "the-shadow",
+    "the-story-of-a-mother",
+    "the-ugly-duckling",
+    "the-adventures-of-chanticleer-and-partlet",
+    "jorinda-and-jorindel",
+    "mother-holle",
+    "rapunzel",
+    "the-juniper-tree",
+    "the-seven-ravens",
+    "the-wedding-of-mrs-fox",
+    "the-adventures-of-kintaro-the-golden-boy",
+    "the-bamboo-cutter-and-the-moon-child",
+    "the-goblin-of-adachigahara",
+    "the-jelly-fish-and-the-monkey",
+    "the-tongue-cut-sparrow"
+  ],
+  "knownDuplicateBoundaryExclusions": [
+    {
+      "slug": "the-wind-in-the-willows",
+      "generatedStatus": [],
+      "previewStatus": [],
+      "reintroducedInWriteReport": false,
+      "untouched": true
+    },
+    {
+      "slug": "the-two-magics-the-turn-of-the-screw-covering-end",
+      "generatedStatus": [],
+      "previewStatus": [],
+      "reintroducedInWriteReport": false,
+      "untouched": true
+    },
+    {
+      "slug": "the-works-of-edgar-allan-poe",
+      "generatedStatus": [],
+      "previewStatus": [],
+      "reintroducedInWriteReport": false,
+      "untouched": true
+    }
+  ],
+  "playwrightTriage": {
+    "priorFailureTitle": "Morse book page foundation > renders an approved external-authority Gutenberg book as a public page",
+    "priorFailureAssertion": "expect(getByTestId(\"book-video-preview-fullscreen-overlay\")).toHaveAttribute(\"data-fullscreen-controls-visible\", \"false\")",
+    "priorFailureExpected": "false",
+    "priorFailureActual": "true",
+    "priorFailureSelector": "getByTestId(\"book-video-preview-fullscreen-overlay\")",
+    "priorFailureTiming": "after entering fullscreen; overlay had data-fullscreen-active=\"true\" and data-fullscreen-mode=\"browser\"",
+    "priorFailureSurface": "general approved external-authority Gutenberg book public page UI, specifically Treasure Island, not a batch-11 generated book page",
+    "writeBranchFullSuite": "2026-06-19 verification rerun on morsewords-book-processing-pilot-write-11-jun-2026: 35 passed, 1 failed with --reporter=line; sole failure was the Treasure Island fullscreen-controls assertion",
+    "mainFullSuite": "2026-06-19 comparison rerun on latest main after git fetch/pull and typecheck: 35 passed, 1 failed with --reporter=line; same Treasure Island fullscreen-controls assertion failed",
+    "writeBranchNonFullscreenSubset": "2026-06-19 follow-up on morsewords-book-processing-pilot-write-11-jun-2026 with the Treasure Island fullscreen-controls test excluded: 35 passed with --reporter=line",
+    "classification": "pre-existing main failure",
+    "uiCodeChanged": false,
+    "notes": [
+      "The same full Playwright command failed on the write branch and on latest main with identical selector, assertion, expected value, and actual value.",
+      "The narrowed non-fullscreen/book-page subset passed on the write branch after excluding that one known fullscreen assertion.",
+      "The failing test is the Treasure Island public page, not a newly generated batch-11 book.",
+      "The failure occurs after the test opens fullscreen and waits for controls to auto-hide; data-fullscreen-controls-visible remains true instead of false.",
+      "No fullscreen, hover, bulb, dark-mode, or live-preview UI code was modified in this verification branch.",
+      "Classified as a pre-existing non-book UX/test failure on main, not a batch-11 regression."
+    ]
+  },
+  "auditSideEffectHandling": {
+    "titleStartDefaultAuditKnownUnrelatedCorrections": 12,
+    "unrelatedAuditChurnCommitted": false,
+    "handling": "books:title-start-default-audit is known to reapply 12 unrelated older generated-book corrections; validation side effects are restored unless they are explicit batch-11 corrections."
+  },
+  "totals": {
+    "processedVerified": 20,
+    "pass": 20,
+    "warnAccepted": 0,
+    "fail": 0,
+    "acceptedForMain": 20,
+    "correctionsApplied": 0,
+    "knownDuplicateBoundaryExclusionsVerified": 3,
+    "unresolvedSourceGeneratedBooksLeftUntouched": 11
+  },
+  "requiredReportsRead": [
+    "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+    "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.md",
+    "app/client/assets/books/audit-reports/pilot-dry-run-11/books",
+    "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+    "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.md",
+    "app/client/assets/books/audit-reports/book-startup-preview-audit-1/book-startup-preview-audit-1.json",
+    "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
+    "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
+    "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json"
+  ],
+  "qualityGateReportsRead": {
+    "pathsRead": [
+      "app/client/assets/books/audit-reports/book-startup-preview-audit-1/book-startup-preview-audit-1.json",
+      "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
+      "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
+      "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json"
+    ],
+    "startup": {
+      "generatedBookCount": 232,
+      "validStartupPreviewCount": 232,
+      "previewAssetsUpdated": [],
+      "invalidOrMissing": []
+    },
+    "titleStartDefault": {
+      "generatedBooksAudited": 232,
+      "acceptedGeneratedBooksAudited": 117,
+      "correctionsApplied": 12,
+      "acceptedBooksCorrected": 12,
+      "acceptanceRevokedPendingCorrection": 0
+    },
+    "metadataSegmentation": {
+      "generatedBooksAudited": 232,
+      "acceptedBooksAudited": 117,
+      "booksWithUnknownAuthor": 1,
+      "unknownAuthorWithClearSourceAuthor": 0,
+      "unknownAuthorRemainingJustified": 1,
+      "authorCorrectionsApplied": 0,
+      "titleCorrectionsApplied": 0,
+      "defaultStartOrSegmentationCorrectionsApplied": 0,
+      "acceptanceRevokedPendingCorrection": 0
+    },
+    "manualUiDefectFollowup": {
+      "checked": 8,
+      "acceptable": 8,
+      "corrected": 0,
+      "acceptanceRevokedPendingCorrection": 0,
+      "needsManualReview": 0
+    }
+  },
+  "unresolvedSourceGeneratedBooksLeftUntouched": [
+    {
+      "slug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "doctor-dolittle",
+      "title": "The Story of Doctor Dolittle",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 6,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "heidi",
+      "title": "Heidi",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "jabberwocky",
+      "title": "Jabberwocky",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 2,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "title": "Nights With Uncle Remus",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 21,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan [Peter and Wendy]",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 20,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "tarzan-of-the-apes",
+      "title": "Tarzan of the Apes",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-great-gatsby",
+      "title": "The Great Gatsby",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-picture-of-dorian-gray",
+      "title": "The Picture of Dorian Gray",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 23,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 12,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "title": "Wood folk at school",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 10,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    }
+  ],
+  "unresolvedSourceGeneratedBooksGitStatus": [],
+  "futureBatchRule": [
+    "valid generated readable content",
+    "correct generated title",
+    "correct author metadata or documented unresolved-author policy",
+    "no duplicate generated work under a slightly different slug unless intentionally documented",
+    "first default section from real readable content",
+    "all main readable sections included by default",
+    "meaningful source-based segmentation",
+    "valid book-specific startup preview",
+    "no SOS Help!",
+    "no generic preview fallback",
+    "no title/TOC/source/license/contributor/transcriber/byline material as default playback",
+    "selected/default source order begins from the first selected/default section"
+  ],
+  "laterPhaseRequirements": [
+    "after all books are processed, run an independent second-pass audit using a different strategy",
+    "after books and second-pass audit, add original non-spoiler 300-500+ word SEO summaries for each accepted book page",
+    "after summaries, perform full site SEO/meta review using GSC data and route-level intent",
+    "after books/SEO, run a focused rage-click UX pass for /audio, /practice, homepage, and related utility pages",
+    "final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable"
+  ],
+  "books": [
+    {
+      "slug": "cool-air",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/Cool air.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/cool-air/manifest.json",
+        "app/client/assets/books/generated/cool-air/processed_book.json",
+        "app/client/assets/books/generated/cool-air/cleaned_book.json",
+        "app/client/assets/books/generated/cool-air/rights_report.json",
+        "app/client/assets/books/generated/cool-air/processing_notes.md",
+        "app/client/assets/books/generated/cool-air/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/cool-air.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/cool-air.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/cool-air.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is Cool Air",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is H. P. Lovecraft",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is Cool Air and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at Cool Air with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "Cool Air",
+        "authorEvidence": "Author: H. P. Lovecraft",
+        "rawStart": "You ask me to explain why I am afraid of a draft of cool air; why I shiver more than others upon entering a cold room, and seem nauseated and repelled when the chill of evening creeps through the heat of a mild autumn day. There are those who say I respond to",
+        "generatedFirstSection": "You ask me to explain why I am afraid of a draft of cool air; why I shiver more than others upon entering a cold room, and seem nauseated and repelled when the chill of evening creeps through the heat of a mild autumn day. There are those who say I respond...",
+        "generatedFirstDefault": "You ask me to explain why I am afraid of a draft of cool air; why I shiver more than others upon entering a cold room, and seem nauseated and repelled when the chill of evening creeps through the heat of a mild autumn day. There are those who say I respond...",
+        "previewStart": "You ask me to explain why I am afraid of a draft of cool air; why I shiver more than others upon entering a cold room, and seem nauseated and repelled when the chill of evening creeps through the heat of a mild autumn day. There are those who say I respond...",
+        "rawEnd": "ldn't stand what he had to do; he had to get me in a strange, dark place, when he minded my letter and nursed me back. And the organs never would work again. It had to be done my way--artificial preservation--_for you see I died that time eighteen years ago_.\"",
+        "generatedEnd": "t of unusually cool air. \"The end,\" ran that noisome scrawl, \"is here. No more ice--the man looked and ran away. Warmer every minute, and the tissues can't last. I fancy you know--what I said about the will and the nerves and the preserved body after the or..."
+      }
+    },
+    {
+      "slug": "the-dream-of-little-tuk",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/The Dream of Little Tuk.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-dream-of-little-tuk/manifest.json",
+        "app/client/assets/books/generated/the-dream-of-little-tuk/processed_book.json",
+        "app/client/assets/books/generated/the-dream-of-little-tuk/cleaned_book.json",
+        "app/client/assets/books/generated/the-dream-of-little-tuk/rights_report.json",
+        "app/client/assets/books/generated/the-dream-of-little-tuk/processing_notes.md",
+        "app/client/assets/books/generated/the-dream-of-little-tuk/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-dream-of-little-tuk.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-dream-of-little-tuk.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-dream-of-little-tuk.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Dream of Little Tuk",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is H. C. Andersen",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The Dream of Little Tuk and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The Dream of Little Tuk with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE DREAM OF LITTLE TUK",
+        "authorEvidence": "Author: H. C. Andersen",
+        "rawStart": "Ah! yes, that was little Tuk: in reality his name was not Tuk, but that was what he called himself before he could speak plain: he meant it for Charles, and it is all well enough if one does but know it. He had now to take care of his little sister Augusta, wh",
+        "generatedFirstSection": "Ah! yes, that was little Tuk: in reality his name was not Tuk, but that was what he called himself before he could speak plain: he meant it for Charles, and it is all well enough if one does but know it. He had now to take care of his little sister Augusta,...",
+        "generatedFirstDefault": "Ah! yes, that was little Tuk: in reality his name was not Tuk, but that was what he called himself before he could speak plain: he meant it for Charles, and it is all well enough if one does but know it. He had now to take care of his little sister Augusta,...",
+        "previewStart": "Ah! yes, that was little Tuk: in reality his name was not Tuk, but that was what he called himself before he could speak plain: he meant it for Charles, and it is all well enough if one does but know it. He had now to take care of his little sister Augusta,...",
+        "rawEnd": "popped her head in at the door, nodded to him friendly, and said, “Thanks, many thanks, my good child, for your help! May the good ever-loving God fulfil your loveliest dream!” Little Tukey did not at all know what he had dreamed, but the loving God knew it.",
+        "generatedEnd": "ill speak well and wisely, little Tukey; and when at last you sink into your grave, you shall sleep as quietly--” “As if I lay in Soroe,” said Tuk, awaking. It was bright day, and he was now quite unable to call to mind his dream; that, however, was not at..."
+      }
+    },
+    {
+      "slug": "the-false-collar",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/The False Collar.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-false-collar/manifest.json",
+        "app/client/assets/books/generated/the-false-collar/processed_book.json",
+        "app/client/assets/books/generated/the-false-collar/cleaned_book.json",
+        "app/client/assets/books/generated/the-false-collar/rights_report.json",
+        "app/client/assets/books/generated/the-false-collar/processing_notes.md",
+        "app/client/assets/books/generated/the-false-collar/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-false-collar.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-false-collar.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-false-collar.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The False Collar",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is H. C. Andersen",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The False Collar and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The False Collar with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE FALSE COLLAR",
+        "authorEvidence": "Author: H. C. Andersen",
+        "rawStart": "There was once a fine gentleman, all of whose moveables were a boot-jack and a hair-comb: but he had the finest false collars in the world; and it is about one of these collars that we are now to hear a story. It was so old, that it began to think of marriage",
+        "generatedFirstSection": "There was once a fine gentleman, all of whose moveables were a boot-jack and a hair-comb: but he had the finest false collars in the world; and it is about one of these collars that we are now to hear a story. It was so old, that it began to think of marria...",
+        "generatedFirstDefault": "There was once a fine gentleman, all of whose moveables were a boot-jack and a hair-comb: but he had the finest false collars in the world; and it is about one of these collars that we are now to hear a story. It was so old, that it began to think of marria...",
+        "previewStart": "There was once a fine gentleman, all of whose moveables were a boot-jack and a hair-comb: but he had the finest false collars in the world; and it is about one of these collars that we are now to hear a story. It was so old, that it began to think of marria...",
+        "rawEnd": "n never know if we may not, in the course of time, also come into the rag chest, and be made into white paper, and then have our whole life's history printed on it, even the most secret, and be obliged to run about and tell it ourselves, just like this collar.",
+        "generatedEnd": "e--that went into the water-tub. I have much on my conscience, I want to become white paper!” And it became so, all the rags were turned into white paper; but the collar came to be just this very piece of white paper we here see, and on which the story is p..."
+      }
+    },
+    {
+      "slug": "the-naughty-boy",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/The Naughty Boy.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-naughty-boy/manifest.json",
+        "app/client/assets/books/generated/the-naughty-boy/processed_book.json",
+        "app/client/assets/books/generated/the-naughty-boy/cleaned_book.json",
+        "app/client/assets/books/generated/the-naughty-boy/rights_report.json",
+        "app/client/assets/books/generated/the-naughty-boy/processing_notes.md",
+        "app/client/assets/books/generated/the-naughty-boy/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-naughty-boy.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-naughty-boy.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-naughty-boy.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Naughty Boy",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is H. C. Andersen",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The Naughty Boy and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The Naughty Boy with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE NAUGHTY BOY",
+        "authorEvidence": "Author: H. C. Andersen",
+        "rawStart": "Along time ago, there lived an old poet, a thoroughly kind old poet. As he was sitting one evening in his room, a dreadful storm arose without, and the rain streamed down from heaven; but the old poet sat warm and comfortable in his chimney-corner, where the f",
+        "generatedFirstSection": "Along time ago, there lived an old poet, a thoroughly kind old poet. As he was sitting one evening in his room, a dreadful storm arose without, and the rain streamed down from heaven; but the old poet sat warm and comfortable in his chimney-corner, where th...",
+        "generatedFirstDefault": "Along time ago, there lived an old poet, a thoroughly kind old poet. As he was sitting one evening in his room, a dreadful storm arose without, and the rain streamed down from heaven; but the old poet sat warm and comfortable in his chimney-corner, where th...",
+        "previewStart": "Along time ago, there lived an old poet, a thoroughly kind old poet. As he was sitting one evening in his room, a dreadful storm arose without, and the rain streamed down from heaven; but the old poet sat warm and comfortable in his chimney-corner, where th...",
+        "rawEnd": "fter everybody. Only think, he shot an arrow once at your old grandmother! But that is a long time ago, and it is all past now; however, a thing of that sort she never forgets. Fie, naughty Cupid! But now you know him, and you know, too, how ill-behaved he is!",
+        "generatedEnd": "he sits in the great chandelier and burns in bright flames, so that people think it is really a flame, but they soon discover it is something else. He roves about in the garden of the palace and upon the ramparts: yes, once he even shot your father and moth..."
+      }
+    },
+    {
+      "slug": "the-red-shoes",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/The Red Shoes.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-red-shoes/manifest.json",
+        "app/client/assets/books/generated/the-red-shoes/processed_book.json",
+        "app/client/assets/books/generated/the-red-shoes/cleaned_book.json",
+        "app/client/assets/books/generated/the-red-shoes/rights_report.json",
+        "app/client/assets/books/generated/the-red-shoes/processing_notes.md",
+        "app/client/assets/books/generated/the-red-shoes/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-red-shoes.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-red-shoes.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-red-shoes.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Red Shoes",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is H. C. Andersen",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The Red Shoes and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The Red Shoes with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE RED SHOES",
+        "authorEvidence": "Author: H. C. Andersen",
+        "rawStart": "There was once a little girl who was very pretty and delicate, but in summer she was forced to run about with bare feet, she was so poor, and in winter wear very large wooden shoes, which made her little insteps quite red, and that looked so dangerous! In the",
+        "generatedFirstSection": "There was once a little girl who was very pretty and delicate, but in summer she was forced to run about with bare feet, she was so poor, and in winter wear very large wooden shoes, which made her little insteps quite red, and that looked so dangerous! In t...",
+        "generatedFirstDefault": "There was once a little girl who was very pretty and delicate, but in summer she was forced to run about with bare feet, she was so poor, and in winter wear very large wooden shoes, which made her little insteps quite red, and that looked so dangerous! In t...",
+        "previewStart": "There was once a little girl who was very pretty and delicate, but in summer she was forced to run about with bare feet, she was so poor, and in winter wear very large wooden shoes, which made her little insteps quite red, and that looked so dangerous! In t...",
+        "rawEnd": "ounded so sweet and soft! The clear sunshine streamed so warmly through the window into the pew where Karen sat! Her heart was so full of sunshine, peace, and joy, that it broke. Her soul flew on the sunshine to God, and there no one asked after the RED SHOES.",
+        "generatedEnd": "s. The congregation sat in cushioned seats, and sang out of their Prayer-Books. For the church itself had come to the poor girl in her narrow chamber, or else she had come into the church. She sat in the pew with the clergyman's family, and when they had en..."
+      }
+    },
+    {
+      "slug": "the-shadow",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/The Shadow.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-shadow/manifest.json",
+        "app/client/assets/books/generated/the-shadow/processed_book.json",
+        "app/client/assets/books/generated/the-shadow/cleaned_book.json",
+        "app/client/assets/books/generated/the-shadow/rights_report.json",
+        "app/client/assets/books/generated/the-shadow/processing_notes.md",
+        "app/client/assets/books/generated/the-shadow/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-shadow.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-shadow.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-shadow.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Shadow",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is H. C. Andersen",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The Shadow and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The Shadow with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE SHADOW",
+        "authorEvidence": "Author: H. C. Andersen",
+        "rawStart": "It is in the hot lands that the sun burns, sure enough! there the people become quite a mahogany brown, ay, and in the HOTTEST lands they are burnt to Negroes. But now it was only to the HOT lands that a learned man had come from the cold; there he thought tha",
+        "generatedFirstSection": "It is in the hot lands that the sun burns, sure enough! there the people become quite a mahogany brown, ay, and in the HOTTEST lands they are burnt to Negroes. But now it was only to the HOT lands that a learned man had come from the cold; there he thought...",
+        "generatedFirstDefault": "It is in the hot lands that the sun burns, sure enough! there the people become quite a mahogany brown, ay, and in the HOTTEST lands they are burnt to Negroes. But now it was only to the HOT lands that a learned man had come from the cold; there he thought...",
+        "previewStart": "It is in the hot lands that the sun burns, sure enough! there the people become quite a mahogany brown, ay, and in the HOTTEST lands they are burnt to Negroes. But now it was only to the HOT lands that a learned man had come from the cold; there he thought...",
+        "rawEnd": "nnons went off with a bum! bum! and the soldiers presented arms. That was a marriage! The princess and the shadow went out on the balcony to show themselves, and get another hurrah! The learned man heard nothing of all this--for they had deprived him of life.",
+        "generatedEnd": "is very unfortunate; it would be a real work of charity to deliver him from the little life he has, and, when I think properly over the matter, I am of opinion that it will be necessary to do away with him in all stillness!” “It is certainly hard,” said the..."
+      }
+    },
+    {
+      "slug": "the-story-of-a-mother",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/The Story of a Mother.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-story-of-a-mother/manifest.json",
+        "app/client/assets/books/generated/the-story-of-a-mother/processed_book.json",
+        "app/client/assets/books/generated/the-story-of-a-mother/cleaned_book.json",
+        "app/client/assets/books/generated/the-story-of-a-mother/rights_report.json",
+        "app/client/assets/books/generated/the-story-of-a-mother/processing_notes.md",
+        "app/client/assets/books/generated/the-story-of-a-mother/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-story-of-a-mother.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-story-of-a-mother.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-story-of-a-mother.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Story of a Mother",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is H. C. Andersen",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The Story of a Mother and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The Story of a Mother with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE STORY OF A MOTHER",
+        "authorEvidence": "Author: H. C. Andersen",
+        "rawStart": "A mother sat there with her little child. She was so downcast, so afraid that it should die! It was so pale, the small eyes had closed themselves, and it drew its breath so softly, now and then, with a deep respiration, as if it sighed; and the mother looked s",
+        "generatedFirstSection": "A mother sat there with her little child. She was so downcast, so afraid that it should die! It was so pale, the small eyes had closed themselves, and it drew its breath so softly, now and then, with a deep respiration, as if it sighed; and the mother looke...",
+        "generatedFirstDefault": "A mother sat there with her little child. She was so downcast, so afraid that it should die! It was so pale, the small eyes had closed themselves, and it drew its breath so softly, now and then, with a deep respiration, as if it sighed; and the mother looke...",
+        "previewStart": "A mother sat there with her little child. She was so downcast, so afraid that it should die! It was so pale, the small eyes had closed themselves, and it drew its breath so softly, now and then, with a deep respiration, as if it sighed; and the mother looke...",
+        "rawEnd": "r wrung her hands, fell on her knees, and prayed to our Lord: “Oh, hear me not when I pray against Thy will, which is the best! hear me not! hear me not!” And she bowed her head down in her lap, and Death took her child and went with it into the unknown land.",
+        "generatedEnd": "fate thou saw'st--thy own child's future life!” Then the mother screamed with terror, “Which of them was my child? Tell it me! Save the innocent! Save my child from all that misery! Rather take it away! Take it into God's kingdom! Forget my tears, forget my..."
+      }
+    },
+    {
+      "slug": "the-ugly-duckling",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/THE UGLY DUCKLING.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-ugly-duckling/manifest.json",
+        "app/client/assets/books/generated/the-ugly-duckling/processed_book.json",
+        "app/client/assets/books/generated/the-ugly-duckling/cleaned_book.json",
+        "app/client/assets/books/generated/the-ugly-duckling/rights_report.json",
+        "app/client/assets/books/generated/the-ugly-duckling/processing_notes.md",
+        "app/client/assets/books/generated/the-ugly-duckling/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-ugly-duckling.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-ugly-duckling.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-ugly-duckling.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Ugly Duckling",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is H. C. Andersen",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The Ugly Duckling and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The Ugly Duckling with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE UGLY DUCKLING",
+        "authorEvidence": "Author: H. C. Andersen",
+        "rawStart": "IT was so beautiful in the country. It was the summer time. The wheat fields were golden, the oats were green, and the hay stood in great stacks in the green meadows. The stork paraded about among them on his long red legs, chattering away in Egyptian, the lan",
+        "generatedFirstSection": "IT was so beautiful in the country. It was the summer time. The wheat fields were golden, the oats were green, and the hay stood in great stacks in the green meadows. The stork paraded about among them on his long red legs, chattering away in Egyptian, the...",
+        "generatedFirstDefault": "IT was so beautiful in the country. It was the summer time. The wheat fields were golden, the oats were green, and the hay stood in great stacks in the green meadows. The stork paraded about among them on his long red legs, chattering away in Egyptian, the...",
+        "previewStart": "IT was so beautiful in the country. It was the summer time. The wheat fields were golden, the oats were green, and the hay stood in great stacks in the green meadows. The stork paraded about among them on his long red legs, chattering away in Egyptian, the...",
+        "rawEnd": "ts boughs into the water before him, and the sun shone warm and bright. Then he rustled his feathers, curved his slender neck, and cried joyfully, from the depths of his heart, \"I never dreamed of such happiness as this while I was the despised ugly duckling.\"",
+        "generatedEnd": "e into the water and said, \"The new one is the most beautiful of all, he is so young and pretty.\" And the old swans bowed their heads before him. Then he felt quite ashamed and hid his head under his wing, for he did not know what to do, he was so happy--ye..."
+      }
+    },
+    {
+      "slug": "the-adventures-of-chanticleer-and-partlet",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/THE ADVENTURES OF CHANTICLEER AND PARTLET.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/manifest.json",
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/processed_book.json",
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/cleaned_book.json",
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/rights_report.json",
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/processing_notes.md",
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/sections/chapter-001.json",
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/sections/chapter-002.json",
+        "app/client/assets/books/generated/the-adventures-of-chanticleer-and-partlet/sections/chapter-003.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-adventures-of-chanticleer-and-partlet.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-adventures-of-chanticleer-and-partlet.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-adventures-of-chanticleer-and-partlet.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Adventures of Chanticleer and Partlet",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is Jacob Grimm; Wilhelm Grimm",
+        "details": []
+      },
+      "selectedStructuralConvention": "three source-numbered tale sections after parent Grimm collection title and byline",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is 1. How They Went to the Mountains to Eat Nuts and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at 3. How Partlet Died and Was Buried, and How Chanticleer Died of Grief with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 3 sections preserve three source-numbered tale sections after parent Grimm collection title and byline",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE ADVENTURES OF CHANTICLEER AND PARTLET",
+        "authorEvidence": "Author: Jacob Grimm; Wilhelm Grimm",
+        "rawStart": "The nuts are quite ripe now, said Chanticleer to his wife Partlet, suppose we go together to the mountains, and eat as many as we can, before the squirrel takes them all away. With all my heart, said Partlet, let us go and make a holiday of it together",
+        "generatedFirstSection": "‘The nuts are quite ripe now,’ said Chanticleer to his wife Partlet, ‘suppose we go together to the mountains, and eat as many as we can, before the squirrel takes them all away.’ ‘With all my heart,’ said Partlet, ‘let us go and make a holiday of it togeth...",
+        "generatedFirstDefault": "‘The nuts are quite ripe now,’ said Chanticleer to his wife Partlet, ‘suppose we go together to the mountains, and eat as many as we can, before the squirrel takes them all away.’ ‘With all my heart,’ said Partlet, ‘let us go and make a holiday of it togeth...",
+        "previewStart": "‘The nuts are quite ripe now,’ said Chanticleer to his wife Partlet, ‘suppose we go together to the mountains, and eat as many as we can, before the squirrel takes them all away.’ ‘With all my heart,’ said Partlet, ‘let us go and make a holiday of it togeth...",
+        "rawEnd": "eam and drowned. Thus Chanticleer was left alone with his dead Partlet; and having dug a grave for her, he laid her in it, and made a little hillock over her. Then he sat down by the grave, and wept and mourned, till at last he died too; and so all were dead.",
+        "generatedEnd": ", that the log of wood fell in and was carried away by the stream. Then a stone, who saw what had happened, came up and kindly offered to help poor Chanticleer by laying himself across the stream; and this time he got safely to the other side with the hears..."
+      }
+    },
+    {
+      "slug": "jorinda-and-jorindel",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/JORINDA AND JORINDEL.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/jorinda-and-jorindel/manifest.json",
+        "app/client/assets/books/generated/jorinda-and-jorindel/processed_book.json",
+        "app/client/assets/books/generated/jorinda-and-jorindel/cleaned_book.json",
+        "app/client/assets/books/generated/jorinda-and-jorindel/rights_report.json",
+        "app/client/assets/books/generated/jorinda-and-jorindel/processing_notes.md",
+        "app/client/assets/books/generated/jorinda-and-jorindel/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/jorinda-and-jorindel.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/jorinda-and-jorindel.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/jorinda-and-jorindel.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is Jorinda and Jorindel",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is Jacob Grimm; Wilhelm Grimm",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is Jorinda and Jorindel and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at Jorinda and Jorindel with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "JORINDA AND JORINDEL",
+        "authorEvidence": "Author: Jacob Grimm; Wilhelm Grimm",
+        "rawStart": "There was once an old castle, that stood in the middle of a deep gloomy wood, and in the castle lived an old fairy. Now this fairy could take any shape she pleased. All the day long she flew about in the form of an owl, or crept about the country like a cat; b",
+        "generatedFirstSection": "There was once an old castle, that stood in the middle of a deep gloomy wood, and in the castle lived an old fairy. Now this fairy could take any shape she pleased. All the day long she flew about in the form of an owl, or crept about the country like a cat...",
+        "generatedFirstDefault": "There was once an old castle, that stood in the middle of a deep gloomy wood, and in the castle lived an old fairy. Now this fairy could take any shape she pleased. All the day long she flew about in the form of an owl, or crept about the country like a cat...",
+        "previewStart": "There was once an old castle, that stood in the middle of a deep gloomy wood, and in the castle lived an old fairy. Now this fairy could take any shape she pleased. All the day long she flew about in the form of an owl, or crept about the country like a cat...",
+        "rawEnd": "took their old forms again; and he took Jorinda home, where they were married, and lived happily together many years: and so did a good many other lads, whose maidens had been forced to sing in the old fairy’s cages by themselves, much longer than they liked.",
+        "generatedEnd": "ch was his Jorinda? While he was thinking what to do, he saw the fairy had taken down one of the cages, and was making the best of her way off through the door. He ran or flew after her, touched the cage with the flower, and Jorinda stood before him, and th..."
+      }
+    },
+    {
+      "slug": "mother-holle",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/MOTHER HOLLE.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/mother-holle/manifest.json",
+        "app/client/assets/books/generated/mother-holle/processed_book.json",
+        "app/client/assets/books/generated/mother-holle/cleaned_book.json",
+        "app/client/assets/books/generated/mother-holle/rights_report.json",
+        "app/client/assets/books/generated/mother-holle/processing_notes.md",
+        "app/client/assets/books/generated/mother-holle/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/mother-holle.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/mother-holle.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/mother-holle.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is Mother Holle",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is Jacob Grimm; Wilhelm Grimm",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is Mother Holle and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at Mother Holle with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "MOTHER HOLLE",
+        "authorEvidence": "Author: Jacob Grimm; Wilhelm Grimm",
+        "rawStart": "Once upon a time there was a widow who had two daughters; one of them was beautiful and industrious, the other ugly and lazy. The mother, however, loved the ugly and lazy one best, because she was her own daughter, and so the other, who was only her stepdaught",
+        "generatedFirstSection": "Once upon a time there was a widow who had two daughters; one of them was beautiful and industrious, the other ugly and lazy. The mother, however, loved the ugly and lazy one best, because she was her own daughter, and so the other, who was only her stepdau...",
+        "generatedFirstDefault": "Once upon a time there was a widow who had two daughters; one of them was beautiful and industrious, the other ugly and lazy. The mother, however, loved the ugly and lazy one best, because she was her own daughter, and so the other, who was only her stepdau...",
+        "previewStart": "Once upon a time there was a widow who had two daughters; one of them was beautiful and industrious, the other ugly and lazy. The mother, however, loved the ugly and lazy one best, because she was her own daughter, and so the other, who was only her stepdau...",
+        "rawEnd": "azy girl had to go home covered with pitch, and the cock on the well called out as she saw her: ‘Cock-a-doodle-doo! Your dirty daughter’s come back to you.’ But, try what she would, she could not get the pitch off and it stuck to her as long as she lived.",
+        "generatedEnd": ". So Mother Holle very soon got tired of her, and told her she might go. The lazy girl was delighted at this, and thought to herself, ‘The gold will soon be mine.’ Mother Holle led her, as she had led her sister, to the broad gateway; but as she was passing..."
+      }
+    },
+    {
+      "slug": "rapunzel",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/RAPUNZEL.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/rapunzel/manifest.json",
+        "app/client/assets/books/generated/rapunzel/processed_book.json",
+        "app/client/assets/books/generated/rapunzel/cleaned_book.json",
+        "app/client/assets/books/generated/rapunzel/rights_report.json",
+        "app/client/assets/books/generated/rapunzel/processing_notes.md",
+        "app/client/assets/books/generated/rapunzel/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/rapunzel.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/rapunzel.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/rapunzel.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is Rapunzel",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is Jacob Grimm; Wilhelm Grimm",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is Rapunzel and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at Rapunzel with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "RAPUNZEL",
+        "authorEvidence": "Author: Jacob Grimm; Wilhelm Grimm",
+        "rawStart": "There were once a man and a woman who had long in vain wished for a child. At length the woman hoped that God was about to grant her desire. These people had a little window at the back of their house from which a splendid garden could be seen, which was full",
+        "generatedFirstSection": "There were once a man and a woman who had long in vain wished for a child. At length the woman hoped that God was about to grant her desire. These people had a little window at the back of their house from which a splendid garden could be seen, which was fu...",
+        "generatedFirstDefault": "There were once a man and a woman who had long in vain wished for a child. At length the woman hoped that God was about to grant her desire. These people had a little window at the back of their house from which a splendid garden could be seen, which was fu...",
+        "previewStart": "There were once a man and a woman who had long in vain wished for a child. At length the woman hoped that God was about to grant her desire. These people had a little window at the back of their house from which a splendid garden could be seen, which was fu...",
+        "rawEnd": "knew him and fell on his neck and wept. Two of her tears wetted his eyes and they grew clear again, and he could see with them as before. He led her to his kingdom where he was joyfully received, and they lived for a long time afterwards, happy and contented.",
+        "generatedEnd": "en he wandered quite blind about the forest, ate nothing but roots and berries, and did naught but lament and weep over the loss of his dearest wife. Thus he roamed about in misery for some years, and at length came to the desert where Rapunzel, with the tw..."
+      }
+    },
+    {
+      "slug": "the-juniper-tree",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/THE JUNIPER-TREE.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-juniper-tree/manifest.json",
+        "app/client/assets/books/generated/the-juniper-tree/processed_book.json",
+        "app/client/assets/books/generated/the-juniper-tree/cleaned_book.json",
+        "app/client/assets/books/generated/the-juniper-tree/rights_report.json",
+        "app/client/assets/books/generated/the-juniper-tree/processing_notes.md",
+        "app/client/assets/books/generated/the-juniper-tree/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-juniper-tree.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-juniper-tree.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-juniper-tree.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Juniper-Tree",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is Jacob Grimm; Wilhelm Grimm",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The Juniper-Tree and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The Juniper-Tree with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE JUNIPER-TREE",
+        "authorEvidence": "Author: Jacob Grimm; Wilhelm Grimm",
+        "rawStart": "Long, long ago, some two thousand years or so, there lived a rich man with a good and beautiful wife. They loved each other dearly, but sorrowed much that they had no children. So greatly did they desire to have one, that the wife prayed for it day and night,",
+        "generatedFirstSection": "Long, long ago, some two thousand years or so, there lived a rich man with a good and beautiful wife. They loved each other dearly, but sorrowed much that they had no children. So greatly did they desire to have one, that the wife prayed for it day and nigh...",
+        "generatedFirstDefault": "Long, long ago, some two thousand years or so, there lived a rich man with a good and beautiful wife. They loved each other dearly, but sorrowed much that they had no children. So greatly did they desire to have one, that the wife prayed for it day and nigh...",
+        "previewStart": "Long, long ago, some two thousand years or so, there lived a rich man with a good and beautiful wife. They loved each other dearly, but sorrowed much that they had no children. So greatly did they desire to have one, that the wife prayed for it day and nigh...",
+        "rawEnd": "ly saw mist and flame and fire rising from the spot, and when these had passed, there stood the little brother, and he took the father and little Marleen by the hand; then they all three rejoiced, and went inside together and sat down to their dinners and ate.",
+        "generatedEnd": "nd he has given me a pair of red shoes.’ The wife sprang up, with her hair standing out from her head like flames of fire. ‘Then I will go out too,’ she said, ‘and see if it will lighten my misery, for I feel as if the world were coming to an end.’ But as s..."
+      }
+    },
+    {
+      "slug": "the-seven-ravens",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/THE SEVEN RAVENS.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-seven-ravens/manifest.json",
+        "app/client/assets/books/generated/the-seven-ravens/processed_book.json",
+        "app/client/assets/books/generated/the-seven-ravens/cleaned_book.json",
+        "app/client/assets/books/generated/the-seven-ravens/rights_report.json",
+        "app/client/assets/books/generated/the-seven-ravens/processing_notes.md",
+        "app/client/assets/books/generated/the-seven-ravens/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-seven-ravens.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-seven-ravens.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-seven-ravens.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Seven Ravens",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is Jacob Grimm; Wilhelm Grimm",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The Seven Ravens and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The Seven Ravens with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE SEVEN RAVENS",
+        "authorEvidence": "Author: Jacob Grimm; Wilhelm Grimm",
+        "rawStart": "There was once a man who had seven sons, and last of all one daughter. Although the little girl was very pretty, she was so weak and small that they thought she could not live; but they said she should at once be christened. So the father sent one of his sons",
+        "generatedFirstSection": "There was once a man who had seven sons, and last of all one daughter. Although the little girl was very pretty, she was so weak and small that they thought she could not live; but they said she should at once be christened. So the father sent one of his so...",
+        "generatedFirstDefault": "There was once a man who had seven sons, and last of all one daughter. Although the little girl was very pretty, she was so weak and small that they thought she could not live; but they said she should at once be christened. So the father sent one of his so...",
+        "previewStart": "There was once a man who had seven sons, and last of all one daughter. Although the little girl was very pretty, she was so weak and small that they thought she could not live; but they said she should at once be christened. So the father sent one of his so...",
+        "rawEnd": "ome! then we should be free.’ When the little girl heard this (for she stood behind the door all the time and listened), she ran forward, and in an instant all the ravens took their right form again; and all hugged and kissed each other, and went merrily home.",
+        "generatedEnd": "nted to eat and drink, and looked for their little plates and glasses. Then said one after the other, ‘Who has eaten from my little plate? And who has been drinking out of my little glass?’ ‘Caw! Caw! well I ween Mortal lips have this way been.’ When the se..."
+      }
+    },
+    {
+      "slug": "the-wedding-of-mrs-fox",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/THE WEDDING OF MRS FOX.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-wedding-of-mrs-fox/manifest.json",
+        "app/client/assets/books/generated/the-wedding-of-mrs-fox/processed_book.json",
+        "app/client/assets/books/generated/the-wedding-of-mrs-fox/cleaned_book.json",
+        "app/client/assets/books/generated/the-wedding-of-mrs-fox/rights_report.json",
+        "app/client/assets/books/generated/the-wedding-of-mrs-fox/processing_notes.md",
+        "app/client/assets/books/generated/the-wedding-of-mrs-fox/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-wedding-of-mrs-fox.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-wedding-of-mrs-fox.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-wedding-of-mrs-fox.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Wedding of Mrs Fox",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is Jacob Grimm; Wilhelm Grimm",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The Wedding of Mrs Fox and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The Wedding of Mrs Fox with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE WEDDING OF MRS FOX",
+        "authorEvidence": "Author: Jacob Grimm; Wilhelm Grimm",
+        "rawStart": "There was once upon a time an old fox with nine tails, who believed that his wife was not faithful to him, and wished to put her to the test. He stretched himself out under the bench, did not move a limb, and behaved as if he were stone dead. Mrs Fox went up t",
+        "generatedFirstSection": "There was once upon a time an old fox with nine tails, who believed that his wife was not faithful to him, and wished to put her to the test. He stretched himself out under the bench, did not move a limb, and behaved as if he were stone dead. Mrs Fox went u...",
+        "generatedFirstDefault": "There was once upon a time an old fox with nine tails, who believed that his wife was not faithful to him, and wished to put her to the test. He stretched himself out under the bench, did not move a limb, and behaved as if he were stone dead. Mrs Fox went u...",
+        "previewStart": "There was once upon a time an old fox with nine tails, who believed that his wife was not faithful to him, and wished to put her to the test. He stretched himself out under the bench, did not move a limb, and behaved as if he were stone dead. Mrs Fox went u...",
+        "rawEnd": "For many a fine fat mouse he brought, Yet of his wife he never thought, But ate up every one he caught.’ Then the wedding was solemnized with young Mr Fox, and there was much rejoicing and dancing; and if they have not left off, they are dancing still.",
+        "generatedEnd": "es which old Mr Fox had possessed, was always lacking, and the cat had continually to send the suitors away. At length came a young fox. Then Mrs Fox said: ‘Has the gentleman red stockings on, and has a little pointed mouth?’ ‘Yes,’ said the cat, ‘he has.’..."
+      }
+    },
+    {
+      "slug": "the-adventures-of-kintaro-the-golden-boy",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/THE ADVENTURES OF KINTARO, THE GOLDEN BOY.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-adventures-of-kintaro-the-golden-boy/manifest.json",
+        "app/client/assets/books/generated/the-adventures-of-kintaro-the-golden-boy/processed_book.json",
+        "app/client/assets/books/generated/the-adventures-of-kintaro-the-golden-boy/cleaned_book.json",
+        "app/client/assets/books/generated/the-adventures-of-kintaro-the-golden-boy/rights_report.json",
+        "app/client/assets/books/generated/the-adventures-of-kintaro-the-golden-boy/processing_notes.md",
+        "app/client/assets/books/generated/the-adventures-of-kintaro-the-golden-boy/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-adventures-of-kintaro-the-golden-boy.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-adventures-of-kintaro-the-golden-boy.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-adventures-of-kintaro-the-golden-boy.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Adventures of Kintaro, the Golden Boy",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is Yei Theodora Ozaki",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The Adventures of Kintaro, the Golden Boy and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The Adventures of Kintaro, the Golden Boy with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE ADVENTURES OF KINTARO, THE GOLDEN BOY",
+        "authorEvidence": "Author: Yei Theodora Ozaki",
+        "rawStart": "Long, long ago there lived in Kyoto a brave soldier named Kintoki. Now he fell in love with a beautiful lady and married her. Not long after this, through the malice of some of his friends, he fell into disgrace at Court and was dismissed. This misfortune so p",
+        "generatedFirstSection": "Long, long ago there lived in Kyoto a brave soldier named Kintoki. Now he fell in love with a beautiful lady and married her. Not long after this, through the malice of some of his friends, he fell into disgrace at Court and was dismissed. This misfortune s...",
+        "generatedFirstDefault": "Long, long ago there lived in Kyoto a brave soldier named Kintoki. Now he fell in love with a beautiful lady and married her. Not long after this, through the malice of some of his friends, he fell into disgrace at Court and was dismissed. This misfortune s...",
+        "previewStart": "Long, long ago there lived in Kyoto a brave soldier named Kintoki. Now he fell in love with a beautiful lady and married her. Not long after this, through the malice of some of his friends, he fell into disgrace at Court and was dismissed. This misfortune s...",
+        "rawEnd": "ro of his country, and great was the power and honor and wealth that came to him. He now kept his promise and built a comfortable home for his old mother, who lived happily with him in the Capital to the end of her days. Is not this the story of a great hero?",
+        "generatedEnd": "n after this event, news was brought to the city that a cannibal monster had taken up his abode not far away and that people were stricken with fear. Lord Raiko ordered Kintaro to the rescue. He immediately started off, delighted at the prospect of trying h..."
+      }
+    },
+    {
+      "slug": "the-bamboo-cutter-and-the-moon-child",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/THE BAMBOO-CUTTER AND THE MOON-CHILD.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-bamboo-cutter-and-the-moon-child/manifest.json",
+        "app/client/assets/books/generated/the-bamboo-cutter-and-the-moon-child/processed_book.json",
+        "app/client/assets/books/generated/the-bamboo-cutter-and-the-moon-child/cleaned_book.json",
+        "app/client/assets/books/generated/the-bamboo-cutter-and-the-moon-child/rights_report.json",
+        "app/client/assets/books/generated/the-bamboo-cutter-and-the-moon-child/processing_notes.md",
+        "app/client/assets/books/generated/the-bamboo-cutter-and-the-moon-child/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-bamboo-cutter-and-the-moon-child.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-bamboo-cutter-and-the-moon-child.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-bamboo-cutter-and-the-moon-child.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Bamboo-Cutter and the Moon-Child",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is Yei Theodora Ozaki",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The Bamboo-Cutter and the Moon-Child and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The Bamboo-Cutter and the Moon-Child with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE BAMBOO-CUTTER AND THE MOON-CHILD",
+        "authorEvidence": "Author: Yei Theodora Ozaki",
+        "rawStart": "Long, long ago, there lived an old bamboo wood-cutter. He was very poor and sad also, for no child had Heaven sent to cheer his old age, and in his heart there was no hope of rest from work till he died and was laid in the quiet grave. Every morning he went fo",
+        "generatedFirstSection": "Long, long ago, there lived an old bamboo wood-cutter. He was very poor and sad also, for no child had Heaven sent to cheer his old age, and in his heart there was no hope of rest from work till he died and was laid in the quiet grave. Every morning he went...",
+        "generatedFirstDefault": "Long, long ago, there lived an old bamboo wood-cutter. He was very poor and sad also, for no child had Heaven sent to cheer his old age, and in his heart there was no hope of rest from work till he died and was laid in the quiet grave. Every morning he went...",
+        "previewStart": "Long, long ago, there lived an old bamboo wood-cutter. He was very poor and sad also, for no child had Heaven sent to cheer his old age, and in his heart there was no hope of rest from work till he died and was laid in the quiet grave. Every morning he went...",
+        "rawEnd": "so he sent it with the letter to the top of the most sacred mountain in the land. Mount Fuji, and there the Royal emissaries burnt it on the summit at sunrise. So to this day people say there is smoke to be seen rising from the top of Mount Fuji to the clouds.",
+        "generatedEnd": "them to the Emperor. Then the chariot began to roll heavenwards towards the moon, and as they all gazed with tearful eyes at the receding Princess, the dawn broke, and in the rosy light of day the moon-chariot and all in it were lost amongst the fleecy clou..."
+      }
+    },
+    {
+      "slug": "the-goblin-of-adachigahara",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/THE GOBLIN OF ADACHIGAHARA.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-goblin-of-adachigahara/manifest.json",
+        "app/client/assets/books/generated/the-goblin-of-adachigahara/processed_book.json",
+        "app/client/assets/books/generated/the-goblin-of-adachigahara/cleaned_book.json",
+        "app/client/assets/books/generated/the-goblin-of-adachigahara/rights_report.json",
+        "app/client/assets/books/generated/the-goblin-of-adachigahara/processing_notes.md",
+        "app/client/assets/books/generated/the-goblin-of-adachigahara/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-goblin-of-adachigahara.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-goblin-of-adachigahara.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-goblin-of-adachigahara.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Goblin of Adachigahara",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is Yei Theodora Ozaki",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The Goblin of Adachigahara and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The Goblin of Adachigahara with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE GOBLIN OF ADACHIGAHARA",
+        "authorEvidence": "Author: Yei Theodora Ozaki",
+        "rawStart": "Long, long ago there was a large plain called Adachigahara, in the province of Mutsu in Japan. This place was said to be haunted by a cannibal goblin who took the form of an old woman. From time to time many travelers disappeared and were never heard of more,",
+        "generatedFirstSection": "Long, long ago there was a large plain called Adachigahara, in the province of Mutsu in Japan. This place was said to be haunted by a cannibal goblin who took the form of an old woman. From time to time many travelers disappeared and were never heard of mor...",
+        "generatedFirstDefault": "Long, long ago there was a large plain called Adachigahara, in the province of Mutsu in Japan. This place was said to be haunted by a cannibal goblin who took the form of an old woman. From time to time many travelers disappeared and were never heard of mor...",
+        "previewStart": "Long, long ago there was a large plain called Adachigahara, in the province of Mutsu in Japan. This place was said to be haunted by a cannibal goblin who took the form of an old woman. From time to time many travelers disappeared and were never heard of mor...",
+        "rawEnd": "dha to whom he had prayed for help, so he took out his rosary and bowing his head as the sun rose he said his prayers and made his thanksgiving earnestly. He then set forward for another part of the country, only too glad to leave the haunted plain behind him.",
+        "generatedEnd": "as. In her hand she carried a large blood-stained knife, and she still shrieked after him, “Stop! stop!” At last, when the priest felt he could run no more, the dawn broke, and with the darkness of night the goblin vanished and he was safe. The priest now k..."
+      }
+    },
+    {
+      "slug": "the-jelly-fish-and-the-monkey",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/THE JELLY FISH AND THE MONKEY.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-jelly-fish-and-the-monkey/manifest.json",
+        "app/client/assets/books/generated/the-jelly-fish-and-the-monkey/processed_book.json",
+        "app/client/assets/books/generated/the-jelly-fish-and-the-monkey/cleaned_book.json",
+        "app/client/assets/books/generated/the-jelly-fish-and-the-monkey/rights_report.json",
+        "app/client/assets/books/generated/the-jelly-fish-and-the-monkey/processing_notes.md",
+        "app/client/assets/books/generated/the-jelly-fish-and-the-monkey/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-jelly-fish-and-the-monkey.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-jelly-fish-and-the-monkey.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-jelly-fish-and-the-monkey.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Jelly Fish and the Monkey",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is Yei Theodora Ozaki",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The Jelly Fish and the Monkey and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The Jelly Fish and the Monkey with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE JELLY FISH AND THE MONKEY",
+        "authorEvidence": "Author: Yei Theodora Ozaki",
+        "rawStart": "Long, long ago, in old Japan, the Kingdom of the Sea was governed by a wonderful King. He was called Rin Jin, or the Dragon King of the Sea. His power was immense, for he was the ruler of all sea creatures both great and small, and in his keeping were the Jewe",
+        "generatedFirstSection": "Long, long ago, in old Japan, the Kingdom of the Sea was governed by a wonderful King. He was called Rin Jin, or the Dragon King of the Sea. His power was immense, for he was the ruler of all sea creatures both great and small, and in his keeping were the J...",
+        "generatedFirstDefault": "Long, long ago, in old Japan, the Kingdom of the Sea was governed by a wonderful King. He was called Rin Jin, or the Dragon King of the Sea. His power was immense, for he was the ruler of all sea creatures both great and small, and in his keeping were the J...",
+        "previewStart": "Long, long ago, in old Japan, the Kingdom of the Sea was governed by a wonderful King. He was called Rin Jin, or the Dragon King of the Sea. His power was immense, for he was the ruler of all sea creatures both great and small, and in his keeping were the J...",
+        "rawEnd": "d bones something like a tortoise, but, ever since the Dragon King’s sentence was carried out on the ancestor of the jelly fishes, his descendants have all been soft and boneless just as you see them to-day thrown up by the waves high upon the shores of Japan.",
+        "generatedEnd": "ed. The servants of the Palace forthwith each brought out a stick and surrounded the jelly fish, and after pulling out his bones they beat him to a flat pulp, and then took him out beyond the Palace gates and threw him into the water. Here he was left to su..."
+      }
+    },
+    {
+      "slug": "the-tongue-cut-sparrow",
+      "writeAction": "first-time processed",
+      "verificationStatus": "pass",
+      "rawSourceInspected": "app/client/assets/temp-books/THE TONGUE-CUT SPARROW.txt",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-tongue-cut-sparrow/manifest.json",
+        "app/client/assets/books/generated/the-tongue-cut-sparrow/processed_book.json",
+        "app/client/assets/books/generated/the-tongue-cut-sparrow/cleaned_book.json",
+        "app/client/assets/books/generated/the-tongue-cut-sparrow/rights_report.json",
+        "app/client/assets/books/generated/the-tongue-cut-sparrow/processing_notes.md",
+        "app/client/assets/books/generated/the-tongue-cut-sparrow/sections/chapter-001.json"
+      ],
+      "previewAssetInspected": "public/book-previews/the-tongue-cut-sparrow.preview.json",
+      "dryRunReportInspected": "app/client/assets/books/audit-reports/pilot-dry-run-11/pilot-dry-run-11.json",
+      "dryRunPerBookReportsInspected": [
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-tongue-cut-sparrow.json",
+        "app/client/assets/books/audit-reports/pilot-dry-run-11/books/the-tongue-cut-sparrow.md"
+      ],
+      "writeReportInspected": "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "generatedTitleVerdict": {
+        "status": "pass",
+        "summary": "pass: generated title is The Tongue-Cut Sparrow",
+        "details": []
+      },
+      "generatedAuthorVerdict": {
+        "status": "pass",
+        "summary": "pass: generated author is Yei Theodora Ozaki",
+        "details": []
+      },
+      "selectedStructuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: first default is The Tongue-Cut Sparrow and starts from real readable content",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "pass: generated output ends at The Tongue-Cut Sparrow with source/license/end-matter tails removed",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "pass: 1 sections preserve one contiguous story section starting at dry-run verified first readable prose phrase",
+        "details": []
+      },
+      "cleanupVerdict": {
+        "status": "pass",
+        "summary": "pass: no title/TOC/source/license/contributor/transcriber/byline/default-playback artifacts detected",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "pass: preview starts from chapter-001 and matches generated content hash",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "pass: all generated main readable sections are included by default and source order starts at first default",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "remainingWarnings": [],
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionAppliedDuringVerification": null,
+      "snippets": {
+        "titleEvidence": "THE TONGUE-CUT SPARROW",
+        "authorEvidence": "Author: Yei Theodora Ozaki",
+        "rawStart": "Long, long ago in Japan there lived an old man and his wife. The old man was a good, kind-hearted, hard-working old fellow, but his wife was a regular cross-patch, who spoiled the happiness of her home by her scolding tongue. She was always grumbling about som",
+        "generatedFirstSection": "Long, long ago in Japan there lived an old man and his wife. The old man was a good, kind-hearted, hard-working old fellow, but his wife was a regular cross-patch, who spoiled the happiness of her home by her scolding tongue. She was always grumbling about...",
+        "generatedFirstDefault": "Long, long ago in Japan there lived an old man and his wife. The old man was a good, kind-hearted, hard-working old fellow, but his wife was a regular cross-patch, who spoiled the happiness of her home by her scolding tongue. She was always grumbling about...",
+        "previewStart": "Long, long ago in Japan there lived an old man and his wife. The old man was a good, kind-hearted, hard-working old fellow, but his wife was a regular cross-patch, who spoiled the happiness of her home by her scolding tongue. She was always grumbling about...",
+        "rawEnd": "degrees became a good old woman, so that her husband hardly knew her to be the same person, and they spent their last days together happily, free from want or care, spending carefully the treasure the old man had received from his pet, the tongue-cut sparrow.",
+        "generatedEnd": "her husband with tears all that had happened to her, and how she had been nearly killed by the demons in the box. Then she began to blame the sparrow, but the old man stopped her at once, saying: “Don’t blame the sparrow, it is your wickedness which has at..."
+      }
+    }
+  ]
+}
