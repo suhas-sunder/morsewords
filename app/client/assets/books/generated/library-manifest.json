@@ -13340,6 +13340,1133 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-valiant-little-tailor/manifest.json"
+    },
+    {
+      "slug": "briar-rose",
+      "title": "Briar Rose",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "77ecee301eea6b52",
+      "contentHash": "77ecee301eea6b52f6e5a25a27a7c7022db5384af0b493026d3d5d6299675c54",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Briar Rose"
+      },
+      "stats": {
+        "originalCharacterCount": 8936,
+        "cleanedCharacterCount": 7800,
+        "wordCount": 1518,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "briar-rose/manifest.json"
+    },
+    {
+      "slug": "the-blue-light",
+      "title": "The Blue Light",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "f5316a6f230ab25b",
+      "contentHash": "f5316a6f230ab25b674328deb69c928ec39a2acd19b95681c9d1922b8a7dd341",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Blue Light"
+      },
+      "stats": {
+        "originalCharacterCount": 10178,
+        "cleanedCharacterCount": 9026,
+        "wordCount": 1749,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-blue-light/manifest.json"
+    },
+    {
+      "slug": "the-elves-and-the-shoemaker",
+      "title": "The Elves and the Shoemaker",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "4c61e4472b6d50d3",
+      "contentHash": "4c61e4472b6d50d3e6df952d811e4a2405359ef4a273c283ac98eed39a06d633",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Elves and the Shoemaker"
+      },
+      "stats": {
+        "originalCharacterCount": 4892,
+        "cleanedCharacterCount": 3799,
+        "wordCount": 745,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-elves-and-the-shoemaker/manifest.json"
+    },
+    {
+      "slug": "the-four-clever-brothers",
+      "title": "The Four Clever Brothers",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "1ca2e06ec7040dbe",
+      "contentHash": "1ca2e06ec7040dbe9bbd9591c5ccfb4bb378dda4995349e97aad05e50bfe51a4",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Four Clever Brothers"
+      },
+      "stats": {
+        "originalCharacterCount": 9752,
+        "cleanedCharacterCount": 8591,
+        "wordCount": 1701,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-four-clever-brothers/manifest.json"
+    },
+    {
+      "slug": "the-fox-and-the-cat",
+      "title": "The Fox and the Cat",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "2f55164dff415a1f",
+      "contentHash": "2f55164dff415a1f40aa2872718cbe45b40b05948e81165eafe944f6f661c2fd",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Fox and the Cat"
+      },
+      "stats": {
+        "originalCharacterCount": 2513,
+        "cleanedCharacterCount": 1472,
+        "wordCount": 292,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-fox-and-the-cat/manifest.json"
+    },
+    {
+      "slug": "the-fox-and-the-horse",
+      "title": "The Fox and the Horse",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "c7ae2639e67259fd",
+      "contentHash": "c7ae2639e67259fd1acb7bc448ea2f1eef49a07213f0caa8125dad5c38963a20",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Fox and the Horse"
+      },
+      "stats": {
+        "originalCharacterCount": 3526,
+        "cleanedCharacterCount": 2461,
+        "wordCount": 495,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-fox-and-the-horse/manifest.json"
+    },
+    {
+      "slug": "the-frog-prince",
+      "title": "The Frog-Prince",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "c7668d19969378f3",
+      "contentHash": "c7668d19969378f30342e748adb5f68e5a4fb4b115333eaa05e14baffe384b93",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Frog-Prince"
+      },
+      "stats": {
+        "originalCharacterCount": 7155,
+        "cleanedCharacterCount": 6030,
+        "wordCount": 1201,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-frog-prince/manifest.json"
+    },
+    {
+      "slug": "the-golden-bird",
+      "title": "The Golden Bird",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "99082b8a71e088ec",
+      "contentHash": "99082b8a71e088ec327321b51b1394c2ed50898bd82263437583cc2ea243e11b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Golden Bird"
+      },
+      "stats": {
+        "originalCharacterCount": 13714,
+        "cleanedCharacterCount": 12488,
+        "wordCount": 2539,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-golden-bird/manifest.json"
+    },
+    {
+      "slug": "the-goose-girl",
+      "title": "The Goose-Girl",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "d0fa2f39ce60f905",
+      "contentHash": "d0fa2f39ce60f905fb9d4c685c7aa0652e2bf5bf5a9731b7021cf9055d0d5b84",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Goose-Girl"
+      },
+      "stats": {
+        "originalCharacterCount": 12623,
+        "cleanedCharacterCount": 11375,
+        "wordCount": 2248,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-goose-girl/manifest.json"
+    },
+    {
+      "slug": "the-king-of-the-golden-mountain",
+      "title": "The King of the Golden Mountain",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "7c642960547b07c8",
+      "contentHash": "7c642960547b07c878f0a1b218ac8d278800e3c6d7cee50a128ae3f888aa67dd",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The King of the Golden Mountain"
+      },
+      "stats": {
+        "originalCharacterCount": 13592,
+        "cleanedCharacterCount": 12359,
+        "wordCount": 2477,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-king-of-the-golden-mountain/manifest.json"
+    },
+    {
+      "slug": "the-little-peasant",
+      "title": "The Little Peasant",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "8b7bc0099b530df0",
+      "contentHash": "8b7bc0099b530df0db34ee2567a5f2b89e4674e2f89cef5f45634581ca0d2c32",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Little Peasant"
+      },
+      "stats": {
+        "originalCharacterCount": 11955,
+        "cleanedCharacterCount": 10771,
+        "wordCount": 2080,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-little-peasant/manifest.json"
+    },
+    {
+      "slug": "the-miser-in-the-bush",
+      "title": "The Miser in the Bush",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "2b0a4e02d0b15547",
+      "contentHash": "2b0a4e02d0b15547c7f0ad63e551f415e779a2cf47795ee8a346f8715a72e0c2",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Miser in the Bush"
+      },
+      "stats": {
+        "originalCharacterCount": 7087,
+        "cleanedCharacterCount": 5970,
+        "wordCount": 1178,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-miser-in-the-bush/manifest.json"
+    },
+    {
+      "slug": "the-mouse-the-bird-and-the-sausage",
+      "title": "The Mouse, the Bird, and the Sausage",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "58db9af4434b969e",
+      "contentHash": "58db9af4434b969e2b0629aae1f3e509dfcb65534d897c2ebc2ee156b5103d5d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Mouse, the Bird, and the Sausage"
+      },
+      "stats": {
+        "originalCharacterCount": 4738,
+        "cleanedCharacterCount": 3641,
+        "wordCount": 705,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-mouse-the-bird-and-the-sausage/manifest.json"
+    },
+    {
+      "slug": "the-old-man-and-his-grandson",
+      "title": "The Old Man and His Grandson",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "ac87350d881b596e",
+      "contentHash": "ac87350d881b596eb0db13afec538a920392d538bf3ba5332ea8a6594802771d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Old Man and His Grandson"
+      },
+      "stats": {
+        "originalCharacterCount": 2319,
+        "cleanedCharacterCount": 1271,
+        "wordCount": 250,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-old-man-and-his-grandson/manifest.json"
+    },
+    {
+      "slug": "the-pink",
+      "title": "The Pink",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "ac51628273281d36",
+      "contentHash": "ac51628273281d362d129ce2a1cb2ff61873557088029f45c161e7288ca65b42",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Pink"
+      },
+      "stats": {
+        "originalCharacterCount": 10216,
+        "cleanedCharacterCount": 9073,
+        "wordCount": 1808,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-pink/manifest.json"
+    },
+    {
+      "slug": "the-queen-bee",
+      "title": "The Queen Bee",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "a479fb116202a88f",
+      "contentHash": "a479fb116202a88f8a744765b8dbb581dbf538ac5741a798b95cb7ce1f3cf366",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Queen Bee"
+      },
+      "stats": {
+        "originalCharacterCount": 5429,
+        "cleanedCharacterCount": 4342,
+        "wordCount": 857,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-queen-bee/manifest.json"
+    },
+    {
+      "slug": "the-raven",
+      "title": "The Raven",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "6ee9a88c76d7c3ce",
+      "contentHash": "6ee9a88c76d7c3ce43ea3a526dd024a43e77af386238648a26ae1d6811c19769",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Raven"
+      },
+      "stats": {
+        "originalCharacterCount": 13574,
+        "cleanedCharacterCount": 12364,
+        "wordCount": 2420,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-raven/manifest.json"
+    },
+    {
+      "slug": "the-robber-bridegroom",
+      "title": "The Robber Bridegroom",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "285bb6badc9e780e",
+      "contentHash": "285bb6badc9e780ead12e65bc294a0eea2fca48ff40465b3465d9df1087c8b74",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Robber Bridegroom"
+      },
+      "stats": {
+        "originalCharacterCount": 8817,
+        "cleanedCharacterCount": 7649,
+        "wordCount": 1475,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-robber-bridegroom/manifest.json"
+    },
+    {
+      "slug": "the-salad",
+      "title": "The Salad",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "f936ffc3e7a83811",
+      "contentHash": "f936ffc3e7a83811e84a0d8f361e4576ff05614a38123d7000e22f43495a5a6f",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Salad"
+      },
+      "stats": {
+        "originalCharacterCount": 12165,
+        "cleanedCharacterCount": 10983,
+        "wordCount": 2204,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-salad/manifest.json"
+    },
+    {
+      "slug": "the-story-of-the-youth-who-went-forth-to-learn-what-fear-was",
+      "title": "The Story of the Youth Who Went Forth to Learn What Fear Was",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "d2ec2b78ed30ee8e",
+      "contentHash": "d2ec2b78ed30ee8eea9cafcec29a7d476457ec7c9d11ee1af82b3acb783c3c79",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Story of the Youth Who Went Forth to Learn What Fear Was"
+      },
+      "stats": {
+        "originalCharacterCount": 20805,
+        "cleanedCharacterCount": 19445,
+        "wordCount": 3802,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-story-of-the-youth-who-went-forth-to-learn-what-fear-was/manifest.json"
+    },
+    {
+      "slug": "the-straw-the-coal-and-the-bean",
+      "title": "The Straw, the Coal, and the Bean",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "9fa0c127d052a66a",
+      "contentHash": "9fa0c127d052a66a95fdb5922a9e81cc7974dc6ffa00abd76442ddaec9d9823e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Straw, the Coal, and the Bean"
+      },
+      "stats": {
+        "originalCharacterCount": 3743,
+        "cleanedCharacterCount": 2667,
+        "wordCount": 504,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-straw-the-coal-and-the-bean/manifest.json"
+    },
+    {
+      "slug": "the-three-languages",
+      "title": "The Three Languages",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "ea60a3717653873f",
+      "contentHash": "ea60a3717653873fea9a0b5dbdf8e4084496a11656c2f807e097d92d94fd614d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Three Languages"
+      },
+      "stats": {
+        "originalCharacterCount": 5917,
+        "cleanedCharacterCount": 4825,
+        "wordCount": 947,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-three-languages/manifest.json"
+    },
+    {
+      "slug": "the-travelling-musicians",
+      "title": "The Travelling Musicians",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "4afcafd9ba4dcd20",
+      "contentHash": "4afcafd9ba4dcd209752579efc3c9935449c8d64579c5898fad56a759635b213",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Travelling Musicians"
+      },
+      "stats": {
+        "originalCharacterCount": 8040,
+        "cleanedCharacterCount": 6909,
+        "wordCount": 1366,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-travelling-musicians/manifest.json"
     }
   ]
 }

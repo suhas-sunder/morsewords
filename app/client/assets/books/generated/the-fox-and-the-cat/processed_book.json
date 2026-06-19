@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "the-fox-and-the-cat",
+  "title": "The Fox and the Cat",
+  "author": "Jacob Grimm; Wilhelm Grimm",
+  "content_version": "2f55164dff415a1f",
+  "content_hash": "2f55164dff415a1f40aa2872718cbe45b40b05948e81165eafe944f6f661c2fd",
+  "source": {
+    "name": "Project Gutenberg",
+    "ebook_number": "2591",
+    "source_url": "https://www.gutenberg.org/ebooks/2591",
+    "raw_text_url": null,
+    "original_publication": "",
+    "release_date": "April 1, 2001",
+    "last_updated": ""
+  },
+  "rights": {
+    "status": "approved",
+    "approved_for_website": true,
+    "approved_for_youtube_narration": false,
+    "approved_regions": [
+      "US"
+    ],
+    "needs_manual_review": false,
+    "notes": "Pilot write pass 14 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "content": {
+    "chapters": [
+      {
+        "chapter_number": 1,
+        "title": "The Fox and the Cat",
+        "sections": [
+          {
+            "section_number": 1,
+            "text": "It happened that the cat met the fox in a forest, and as she thought to\nherself: ‘He is clever and full of experience, and much esteemed in the\nworld,’ she spoke to him in a friendly way. ‘Good day, dear Mr Fox,\nhow are you? How is all with you? How are you getting on in these hard\ntimes?’ The fox, full of all kinds of arrogance, looked at the cat from\nhead to foot, and for a long time did not know whether he would give\nany answer or not. At last he said: ‘Oh, you wretched beard-cleaner, you\npiebald fool, you hungry mouse-hunter, what can you be thinking of? Have\nyou the cheek to ask how I am getting on? What have you learnt? How\nmany arts do you understand?’ ‘I understand but one,’ replied the\ncat, modestly. ‘What art is that?’ asked the fox. ‘When the hounds are\nfollowing me, I can spring into a tree and save myself.’ ‘Is that all?’\nsaid the fox. ‘I am master of a hundred arts, and have into the bargain\na sackful of cunning. You make me sorry for you; come with me, I will\nteach you how people get away from the hounds.’ Just then came a hunter\nwith four dogs. The cat sprang nimbly up a tree, and sat down at the top\nof it, where the branches and foliage quite concealed her. ‘Open your\nsack, Mr Fox, open your sack,’ cried the cat to him, but the dogs had\nalready seized him, and were holding him fast. ‘Ah, Mr Fox,’ cried the\ncat. ‘You with your hundred arts are left in the lurch! Had you been\nable to climb like me, you would not have lost your life.’",
+            "word_count": 292,
+            "character_count": 1472,
+            "estimated_typing_minutes": 9,
+            "estimated_listening_minutes": 9
+          }
+        ]
+      }
+    ]
+  }
+}

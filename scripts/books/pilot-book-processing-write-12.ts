@@ -81,7 +81,7 @@ type UnresolvedSourceBook = {
 
 type DryRunReport = {
   schemaVersion: 1;
-  reportName: "pilot-dry-run-12" | "pilot-dry-run-13";
+  reportName: "pilot-dry-run-12" | "pilot-dry-run-13" | "pilot-dry-run-14";
   selectedBooks: string[];
   selectedCount: number;
   counts: {
@@ -218,7 +218,12 @@ type ManualBoundary = {
 
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
-const writeBatch = process.env.MORSEWORDS_PILOT_WRITE_BATCH === "13" ? 13 : 12;
+const writeBatch =
+  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "14"
+    ? 14
+    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "13"
+      ? 13
+      : 12;
 const dryRunReportName = `pilot-dry-run-${writeBatch}` as const;
 const writeReportName = `pilot-write-${writeBatch}` as const;
 const tempBooksRoot = path.join(repoRoot, "app/client/assets/temp-books");
@@ -236,8 +241,34 @@ const dryRunReportPath = path.join(dryRunRoot, `${dryRunReportName}.json`);
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 const previewManifestPath = path.join(previewRoot, "manifest.json");
 
-const SELECTED_BATCH: readonly string[] = writeBatch === 13
+const SELECTED_BATCH: readonly string[] = writeBatch === 14
   ? [
+      "briar-rose",
+      "the-blue-light",
+      "the-elves-and-the-shoemaker",
+      "the-four-clever-brothers",
+      "the-fox-and-the-cat",
+      "the-fox-and-the-horse",
+      "the-frog-prince",
+      "the-golden-bird",
+      "the-goose-girl",
+      "the-king-of-the-golden-mountain",
+      "the-little-peasant",
+      "the-miser-in-the-bush",
+      "the-mouse-the-bird-and-the-sausage",
+      "the-old-man-and-his-grandson",
+      "the-pink",
+      "the-queen-bee",
+      "the-raven",
+      "the-robber-bridegroom",
+      "the-salad",
+      "the-story-of-the-youth-who-went-forth-to-learn-what-fear-was",
+      "the-straw-the-coal-and-the-bean",
+      "the-three-languages",
+      "the-travelling-musicians",
+    ]
+  : writeBatch === 13
+    ? [
       "ashputtel",
       "cat-and-mouse-in-partnership",
       "cat-skin",
@@ -258,8 +289,8 @@ const SELECTED_BATCH: readonly string[] = writeBatch === 13
       "sweetheart-roland",
       "the-dog-and-the-sparrow",
       "the-valiant-little-tailor",
-    ]
-  : [
+      ]
+    : [
       "ole-luk-oie-the-dream-god",
       "clever-hans",
       "the-fisherman-and-his-wife",
@@ -280,7 +311,7 @@ const SELECTED_BATCH: readonly string[] = writeBatch === 13
       "the-penance",
       "mark",
       "quail-seed",
-    ];
+      ];
 
 const UNRESOLVED_SOURCE_GENERATED_BOOKS = [
   "a-princess-of-mars",
@@ -485,30 +516,22 @@ function sanitizeSectionText(input: string, cleanup: CleanupSummary): string {
   let text = normalizeBookText(input);
   const bracketedMediaBlockPattern =
     /\[\s*(?:Illustration|Image|Plate|Decorative image|Music|Advertisement|Sidenote)\b[\s\S]*?\]/gi;
+  const standaloneMediaLinePattern =
+    /^\s*(?:Illustration|Image|Plate|Decorative image|Music|Advertisement|Sidenote)(?:\s+(?:No\.?\s*)?(?:\d+|[IVXLCDM]+)\b|:)[^\n]*\s*$/gm;
+  const standaloneBylinePattern =
+    /^\s*_?By\s+[A-Z][\p{L}'’.\-]*(?:\s+(?:and|[A-Z][\p{L}'’.\-]*)){1,7}_?\s*$/gmu;
   cleanup.imagePlaceholderLinesRemoved += countMatches(text, bracketedMediaBlockPattern);
   text = text.replace(bracketedMediaBlockPattern, "");
-  cleanup.imagePlaceholderLinesRemoved += countMatches(
-    text,
-    /^\s*\[?(?:Illustration|Image|Plate|Decorative image|Music|Advertisement|Sidenote)\b[^\n]*\]?\s*$/gim,
-  );
-  text = text.replace(
-    /^\s*\[?(?:Illustration|Image|Plate|Decorative image|Music|Advertisement|Sidenote)\b[^\n]*\]?\s*$/gim,
-    "",
-  );
+  cleanup.imagePlaceholderLinesRemoved += countMatches(text, standaloneMediaLinePattern);
+  text = text.replace(standaloneMediaLinePattern, "");
   cleanup.inlinePageMarkersRemoved += countMatches(text, /\[(?:Pg\.?\s*)?\d+\]/gi);
   text = text.replace(/\[(?:Pg\.?\s*)?\d+\]/gi, "");
   cleanup.numberedReferencesRemoved += countMatches(text, /\[(?:[A-Z])?\d+\]/g);
   text = text.replace(/\[(?:[A-Z])?\d+\]/g, "");
   cleanup.standaloneEndMarkersRemoved += countMatches(text, /^\s*THE END\s*$/gim);
   text = text.replace(/^\s*THE END\s*$/gim, "");
-  cleanup.trailingNonReadableBlocksRemoved += countMatches(
-    text,
-    /^\s*_?By\s+(?!(?:and|the|a|an|his|her|its|this|that|these|those|my|our|your)\b)[^_\n]+_?\s*$/gim,
-  );
-  text = text.replace(
-    /^\s*_?By\s+(?!(?:and|the|a|an|his|her|its|this|that|these|those|my|our|your)\b)[^_\n]+_?\s*$/gim,
-    "",
-  );
+  cleanup.trailingNonReadableBlocksRemoved += countMatches(text, standaloneBylinePattern);
+  text = text.replace(standaloneBylinePattern, "");
   cleanup.trailingNonReadableBlocksRemoved += countMatches(
     text,
     /^\s*(?:A COMPLETE NOVELETTE|PART TWO OF A THREE-PART NOVEL|_A Meeting Place for Readers of_|Astounding Stories|_--The Editor\._)\s*$/gim,
@@ -1154,7 +1177,7 @@ function manualSingleStoryPhraseBoundary(
 }
 
 function dryRunStartPhrase(dryRun: DryRunBook): string | null {
-  if (writeBatch !== 13) return null;
+  if (writeBatch < 13) return null;
   const marker = ": ";
   const markerIndex = dryRun.expectedStartBoundary.indexOf(marker);
   return markerIndex >= 0
