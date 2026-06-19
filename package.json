@@ -33,6 +33,7 @@
     "books:pilot-write-9": "node --experimental-strip-types scripts/books/pilot-book-processing-write-9.ts",
     "books:pilot-write-10": "node --experimental-strip-types scripts/books/pilot-book-processing-write-10.ts",
     "books:pilot-write-11": "node --experimental-strip-types scripts/books/pilot-book-processing-write-11.ts",
+    "books:pilot-write-12": "node --experimental-strip-types scripts/books/pilot-book-processing-write-12.ts",
     "books:title-start-default-audit": "node --experimental-strip-types scripts/books/title-start-default-content-audit-1.ts",
     "books:metadata-segmentation-audit": "node --experimental-strip-types scripts/books/metadata-segmentation-correctness-audit-1.ts",
     "books:manual-ui-defect-followup": "node --experimental-strip-types scripts/books/manual-ui-defect-followup-1.ts",

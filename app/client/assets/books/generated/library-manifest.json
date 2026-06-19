@@ -11380,6 +11380,986 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-tongue-cut-sparrow/manifest.json"
+    },
+    {
+      "slug": "ole-luk-oie-the-dream-god",
+      "title": "Ole-Luk-Oie, the Dream-God",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "f8582f1c0da1fb5c",
+      "contentHash": "f8582f1c0da1fb5c9860d5291a1b856c8113b7d63d6294c4f827419159a227af",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "32571",
+        "releaseDate": "May 28, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/32571",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Ole-Luk-Oie, the Dream-God"
+      },
+      "stats": {
+        "originalCharacterCount": 26908,
+        "cleanedCharacterCount": 21414,
+        "wordCount": 3951,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "ole-luk-oie-the-dream-god/manifest.json"
+    },
+    {
+      "slug": "clever-hans",
+      "title": "Clever Hans",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "dc546628d445a2a6",
+      "contentHash": "dc546628d445a2a61cc44dc8c5a118f496fe317825bc84d981bd8c568cf162ab",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Clever Hans"
+      },
+      "stats": {
+        "originalCharacterCount": 6249,
+        "cleanedCharacterCount": 5150,
+        "wordCount": 906,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "clever-hans/manifest.json"
+    },
+    {
+      "slug": "the-fisherman-and-his-wife",
+      "title": "The Fisherman and His Wife",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "53b60980b1313722",
+      "contentHash": "53b60980b131372220d934bc2bc64094abe2bac36a0e5da3eca9593402478d2a",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Fisherman and His Wife"
+      },
+      "stats": {
+        "originalCharacterCount": 11945,
+        "cleanedCharacterCount": 10639,
+        "wordCount": 2106,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-fisherman-and-his-wife/manifest.json"
+    },
+    {
+      "slug": "the-story-of-the-old-man-who-made-withered-trees-to-flower",
+      "title": "The Story of the Old Man Who Made Withered Trees to Flower",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "a7ec92e9f9dcb95a",
+      "contentHash": "a7ec92e9f9dcb95a17a0bcbf18842bb97030bcb2f514d10a981cfc79caa7a639",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Story of the Old Man Who Made Withered Trees to Flower"
+      },
+      "stats": {
+        "originalCharacterCount": 15779,
+        "cleanedCharacterCount": 14271,
+        "wordCount": 2754,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-story-of-the-old-man-who-made-withered-trees-to-flower/manifest.json"
+    },
+    {
+      "slug": "the-story-of-urashima-taro-the-fisher-lad",
+      "title": "The Story of Urashima Taro, the Fisher Lad",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "50e3fd8f3d427a78",
+      "contentHash": "50e3fd8f3d427a784a373e3c0a699f18f728dbbeec45b3aa127736a9db9c360d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Story of Urashima Taro, the Fisher Lad"
+      },
+      "stats": {
+        "originalCharacterCount": 23822,
+        "cleanedCharacterCount": 22211,
+        "wordCount": 4251,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-story-of-urashima-taro-the-fisher-lad/manifest.json"
+    },
+    {
+      "slug": "the-story-of-the-man-who-did-not-wish-to-die",
+      "title": "The Story of the Man Who Did Not Wish to Die",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "eaa7691e38c55eea",
+      "contentHash": "eaa7691e38c55eea26d0e94fe11131a198ed4d8a460f81e517e8175856e2209c",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Story of the Man Who Did Not Wish to Die"
+      },
+      "stats": {
+        "originalCharacterCount": 15243,
+        "cleanedCharacterCount": 13833,
+        "wordCount": 2620,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-story-of-the-man-who-did-not-wish-to-die/manifest.json"
+    },
+    {
+      "slug": "the-happy-hunter-and-the-skillful-fisher",
+      "title": "The Happy Hunter and the Skillful Fisher",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "a03ef404c47f587f",
+      "contentHash": "a03ef404c47f587f18fa6562d46472570cfda48130d751e7dd5c34bba254c508",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Happy Hunter and the Skillful Fisher"
+      },
+      "stats": {
+        "originalCharacterCount": 34362,
+        "cleanedCharacterCount": 32603,
+        "wordCount": 6317,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-happy-hunter-and-the-skillful-fisher/manifest.json"
+    },
+    {
+      "slug": "the-conceited-apple-branch",
+      "title": "The Conceited Apple Branch",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "d2ce79b33a31baf7",
+      "contentHash": "d2ce79b33a31baf79cfd08c783469a5a9efe5304044427dcb7b172801e553f37",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "32571",
+        "releaseDate": "May 28, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/32571",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Conceited Apple Branch"
+      },
+      "stats": {
+        "originalCharacterCount": 12477,
+        "cleanedCharacterCount": 7351,
+        "wordCount": 1341,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-conceited-apple-branch/manifest.json"
+    },
+    {
+      "slug": "the-darning-needle",
+      "title": "The Darning-Needle",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "34354795e150c8d0",
+      "contentHash": "34354795e150c8d0b953e7baffeae04e5339885cb5778a8a5f10109ad83d576e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "32571",
+        "releaseDate": "May 28, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/32571",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Darning-Needle"
+      },
+      "stats": {
+        "originalCharacterCount": 12207,
+        "cleanedCharacterCount": 7213,
+        "wordCount": 1344,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-darning-needle/manifest.json"
+    },
+    {
+      "slug": "the-greenies",
+      "title": "The Greenies",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "d616090c88cd992b",
+      "contentHash": "d616090c88cd992b671a21c0a95f6b24983751f8e7bfc559404be90bb99340d4",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "32571",
+        "releaseDate": "May 28, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/32571",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Greenies"
+      },
+      "stats": {
+        "originalCharacterCount": 8640,
+        "cleanedCharacterCount": 3674,
+        "wordCount": 726,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-greenies/manifest.json"
+    },
+    {
+      "slug": "the-loving-pair",
+      "title": "The Loving Pair",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "d83c4c982e987cd5",
+      "contentHash": "d83c4c982e987cd58a793da38323861dbefcfc4243eda0720df8a27ef434fe70",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "32571",
+        "releaseDate": "May 28, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/32571",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Loving Pair"
+      },
+      "stats": {
+        "originalCharacterCount": 9546,
+        "cleanedCharacterCount": 4615,
+        "wordCount": 915,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-loving-pair/manifest.json"
+    },
+    {
+      "slug": "little-ida-s-flowers",
+      "title": "Little Ida's Flowers",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "6e96fbb0cb9ee05e",
+      "contentHash": "6e96fbb0cb9ee05e2906d2adc1d9df43df7e5d5010166c8e6725a9950b540d9d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "32571",
+        "releaseDate": "May 28, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/32571",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Little Ida's Flowers"
+      },
+      "stats": {
+        "originalCharacterCount": 19244,
+        "cleanedCharacterCount": 13952,
+        "wordCount": 2661,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "little-ida-s-flowers/manifest.json"
+    },
+    {
+      "slug": "the-roses-and-the-sparrows",
+      "title": "The Roses and the Sparrows",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "44fa06b5f4e8f582",
+      "contentHash": "44fa06b5f4e8f582c528bda33e365f8406f89ab63d7168ce78499f29b7aa20c8",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "32571",
+        "releaseDate": "May 28, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/32571",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Roses and the Sparrows"
+      },
+      "stats": {
+        "originalCharacterCount": 26426,
+        "cleanedCharacterCount": 21146,
+        "wordCount": 3889,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-roses-and-the-sparrows/manifest.json"
+    },
+    {
+      "slug": "the-steadfast-tin-soldier",
+      "title": "The Steadfast Tin Soldier",
+      "author": [
+        "H. C. Andersen"
+      ],
+      "contentVersion": "1271ee39898d18d1",
+      "contentHash": "1271ee39898d18d15f7ff9d2dc2f320fcdff4651b268d5e8f8da51e0b20d6127",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "32571",
+        "releaseDate": "May 28, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/32571",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Steadfast Tin Soldier"
+      },
+      "stats": {
+        "originalCharacterCount": 13970,
+        "cleanedCharacterCount": 8826,
+        "wordCount": 1691,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-steadfast-tin-soldier/manifest.json"
+    },
+    {
+      "slug": "shock-tactics",
+      "title": "Shock Tactics",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "5175b1ef150d4328",
+      "contentHash": "5175b1ef150d43285a3c17fa3ce4875e56d1f3422519e241b7f907d4de7123d9",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Shock Tactics"
+      },
+      "stats": {
+        "originalCharacterCount": 12533,
+        "cleanedCharacterCount": 10482,
+        "wordCount": 1766,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "shock-tactics/manifest.json"
+    },
+    {
+      "slug": "canossa",
+      "title": "Canossa",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "8a99a58c240cc4dd",
+      "contentHash": "8a99a58c240cc4dd4f35b2e609b48727ef55678278c84c3150141ae5ad008e86",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Canossa"
+      },
+      "stats": {
+        "originalCharacterCount": 10201,
+        "cleanedCharacterCount": 8289,
+        "wordCount": 1423,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "canossa/manifest.json"
+    },
+    {
+      "slug": "the-oversight",
+      "title": "The Oversight",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "cd5f854e4ec3beb6",
+      "contentHash": "cd5f854e4ec3beb695fae44871a4f337943a492607071963a249b08f1c24d2c1",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Oversight"
+      },
+      "stats": {
+        "originalCharacterCount": 11645,
+        "cleanedCharacterCount": 9756,
+        "wordCount": 1710,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-oversight/manifest.json"
+    },
+    {
+      "slug": "the-penance",
+      "title": "The Penance",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "4bb5c6325f183830",
+      "contentHash": "4bb5c6325f183830bbacb5d9dac3382a2ad6ac653e0a9a9c142870c7a9c69cdc",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Penance"
+      },
+      "stats": {
+        "originalCharacterCount": 14400,
+        "cleanedCharacterCount": 12484,
+        "wordCount": 2174,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-penance/manifest.json"
+    },
+    {
+      "slug": "mark",
+      "title": "Mark",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "65271fb10e0fe2de",
+      "contentHash": "65271fb10e0fe2de3db840e9dc65013f8792fcc4943c3f35f0db4b8b878b0285",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Mark"
+      },
+      "stats": {
+        "originalCharacterCount": 11391,
+        "cleanedCharacterCount": 9526,
+        "wordCount": 1680,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "mark/manifest.json"
+    },
+    {
+      "slug": "quail-seed",
+      "title": "Quail Seed",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "832699cf9df0137b",
+      "contentHash": "832699cf9df0137b40b423bd5f13f6c4959d2937ed25ff8ac9b3827e305fba3d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Quail Seed"
+      },
+      "stats": {
+        "originalCharacterCount": 14691,
+        "cleanedCharacterCount": 12669,
+        "wordCount": 2210,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "quail-seed/manifest.json"
     }
   ]
 }
