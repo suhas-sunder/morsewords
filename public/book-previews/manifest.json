@@ -2558,12 +2558,12 @@
     {
       "slug": "ole-luk-oie-the-dream-god",
       "path": "/book-previews/ole-luk-oie-the-dream-god.preview.json",
-      "contentVersion": "f8582f1c0da1fb5c",
-      "contentHash": "f8582f1c0da1fb5c9860d5291a1b856c8113b7d63d6294c4f827419159a227af",
+      "contentVersion": "c9953dfa0d5fd74a",
+      "contentHash": "c9953dfa0d5fd74a2732f414d7905f5055d13a35bf80cc65f976ae202e6970a1",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11090,
-      "previewCharacterCount": 10066,
-      "estimatedRuntimeSeconds": 3566,
+      "previewBytes": 11067,
+      "previewCharacterCount": 10049,
+      "estimatedRuntimeSeconds": 3561,
       "truncated": true
     },
     {
@@ -2591,12 +2591,12 @@
     {
       "slug": "the-story-of-the-old-man-who-made-withered-trees-to-flower",
       "path": "/book-previews/the-story-of-the-old-man-who-made-withered-trees-to-flower.preview.json",
-      "contentVersion": "a7ec92e9f9dcb95a",
-      "contentHash": "a7ec92e9f9dcb95a17a0bcbf18842bb97030bcb2f514d10a981cfc79caa7a639",
+      "contentVersion": "d23af98f1910b8d6",
+      "contentHash": "d23af98f1910b8d6bed570974dd009071fe3d571b026f96d53c82be7e12580ed",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11244,
-      "previewCharacterCount": 10153,
-      "estimatedRuntimeSeconds": 3591,
+      "previewBytes": 11185,
+      "previewCharacterCount": 10101,
+      "estimatedRuntimeSeconds": 3574,
       "truncated": true
     },
     {
@@ -2635,12 +2635,12 @@
     {
       "slug": "the-conceited-apple-branch",
       "path": "/book-previews/the-conceited-apple-branch.preview.json",
-      "contentVersion": "d2ce79b33a31baf7",
-      "contentHash": "d2ce79b33a31baf79cfd08c783469a5a9efe5304044427dcb7b172801e553f37",
+      "contentVersion": "4f9e9d400383bd1e",
+      "contentHash": "4f9e9d400383bd1ea80dd445f9976e1bd7136c182a2586d3f95e15cf4633033f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8284,
-      "previewCharacterCount": 7351,
-      "estimatedRuntimeSeconds": 2634,
+      "previewBytes": 8422,
+      "previewCharacterCount": 7488,
+      "estimatedRuntimeSeconds": 2683,
       "truncated": false
     },
     {
@@ -2679,12 +2679,12 @@
     {
       "slug": "little-ida-s-flowers",
       "path": "/book-previews/little-ida-s-flowers.preview.json",
-      "contentVersion": "6e96fbb0cb9ee05e",
-      "contentHash": "6e96fbb0cb9ee05e2906d2adc1d9df43df7e5d5010166c8e6725a9950b540d9d",
+      "contentVersion": "b89b7291fd3df048",
+      "contentHash": "b89b7291fd3df048956e7721d60a30e901ce45defd894c1aaf185f340a530536",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11071,
-      "previewCharacterCount": 10047,
-      "estimatedRuntimeSeconds": 3585,
+      "previewBytes": 11075,
+      "previewCharacterCount": 10048,
+      "estimatedRuntimeSeconds": 3586,
       "truncated": true
     },
     {
@@ -2701,12 +2701,12 @@
     {
       "slug": "the-steadfast-tin-soldier",
       "path": "/book-previews/the-steadfast-tin-soldier.preview.json",
-      "contentVersion": "1271ee39898d18d1",
-      "contentHash": "1271ee39898d18d15f7ff9d2dc2f320fcdff4651b268d5e8f8da51e0b20d6127",
+      "contentVersion": "3e91344b13c0ad48",
+      "contentHash": "3e91344b13c0ad48430462357dba47fe362d886516827410ff7b1c738c053f70",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9778,
-      "previewCharacterCount": 8826,
-      "estimatedRuntimeSeconds": 3120,
+      "previewBytes": 9849,
+      "previewCharacterCount": 8897,
+      "estimatedRuntimeSeconds": 3146,
       "truncated": false
     },
     {

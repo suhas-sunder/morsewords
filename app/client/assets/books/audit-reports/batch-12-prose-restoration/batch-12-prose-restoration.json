@@ -1,0 +1,307 @@
+{
+  "reportName": "Batch-12 prose restoration",
+  "scope": {
+    "batch12BooksCompared": 20,
+    "authorizedTargets": [
+      "ole-luk-oie-the-dream-god",
+      "the-story-of-the-old-man-who-made-withered-trees-to-flower",
+      "the-conceited-apple-branch",
+      "little-ida-s-flowers",
+      "the-steadfast-tin-soldier"
+    ],
+    "targetsCorrected": 5,
+    "outOfScopeFindings": [
+      {
+        "slug": "the-fisherman-and-his-wife",
+        "finding": "real wrapped prose line omitted: “by the seaside. The fisherman used to go out all day long a-fishing; and”",
+        "correctedHere": false
+      },
+      {
+        "slug": "the-greenies",
+        "finding": "real wrapped prose line omitted: “by this pretty name. It is only human beings who do not. They give us”",
+        "correctedHere": false
+      },
+      {
+        "slug": "shock-tactics",
+        "finding": "two real wrapped prose lines omitted, beginning “by this one splendid haul” and “By the time Bertie arrived”",
+        "correctedHere": false
+      },
+      {
+        "slug": "canossa",
+        "finding": "real wrapped prose line omitted: “musicians’ strike on, I suppose you know.”",
+        "correctedHere": false
+      },
+      {
+        "slug": "the-oversight",
+        "finding": "opening curly quotation mark omitted at the selected start boundary",
+        "correctedHere": false
+      },
+      {
+        "slug": "quail-seed",
+        "finding": "opening curly quotation mark omitted at the selected start boundary",
+        "correctedHere": false
+      }
+    ]
+  },
+  "targets": [
+    {
+      "slug": "ole-luk-oie-the-dream-god",
+      "sourceFile": "app/client/assets/temp-books/OLE-LUK-OIE THE DREAM GOD.txt",
+      "generatedFilesInspected": [
+        "app/client/assets/books/generated/ole-luk-oie-the-dream-god/manifest.json",
+        "app/client/assets/books/generated/ole-luk-oie-the-dream-god/cleaned_book.json",
+        "app/client/assets/books/generated/ole-luk-oie-the-dream-god/processed_book.json",
+        "app/client/assets/books/generated/ole-luk-oie-the-dream-god/processing_notes.md",
+        "app/client/assets/books/generated/ole-luk-oie-the-dream-god/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/ole-luk-oie-the-dream-god.preview.json",
+      "omittedProseFound": [
+        "by he caught hold of one side of the sugar heart and held it fast, and"
+      ],
+      "exactRestoredProseSnippets": [
+        "by he caught hold of one side of the sugar heart and held it fast, and"
+      ],
+      "correctionMade": "restored only source-backed readable prose and synchronized derived generated artifacts",
+      "rawVsGeneratedBodyComparisonAfterCorrection": "pass: exact character-for-character match after intentional artifact cleanup",
+      "previewImpact": "preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content",
+      "startupPreviewValid": true,
+      "finalStatus": "corrected pass"
+    },
+    {
+      "slug": "the-story-of-the-old-man-who-made-withered-trees-to-flower",
+      "sourceFile": "app/client/assets/temp-books/THE STORY OF THE OLD MAN WHO MADE WITHERED TREES TO FLOWER.txt",
+      "generatedFilesInspected": [
+        "app/client/assets/books/generated/the-story-of-the-old-man-who-made-withered-trees-to-flower/manifest.json",
+        "app/client/assets/books/generated/the-story-of-the-old-man-who-made-withered-trees-to-flower/cleaned_book.json",
+        "app/client/assets/books/generated/the-story-of-the-old-man-who-made-withered-trees-to-flower/processed_book.json",
+        "app/client/assets/books/generated/the-story-of-the-old-man-who-made-withered-trees-to-flower/processing_notes.md",
+        "app/client/assets/books/generated/the-story-of-the-old-man-who-made-withered-trees-to-flower/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-story-of-the-old-man-who-made-withered-trees-to-flower.preview.json",
+      "omittedProseFound": [
+        "by erect with pride and looking fondly at his master as if to say, “You"
+      ],
+      "exactRestoredProseSnippets": [
+        "by erect with pride and looking fondly at his master as if to say, “You"
+      ],
+      "correctionMade": "restored only source-backed readable prose and synchronized derived generated artifacts",
+      "rawVsGeneratedBodyComparisonAfterCorrection": "pass: exact character-for-character match after intentional artifact cleanup",
+      "previewImpact": "preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content",
+      "startupPreviewValid": true,
+      "finalStatus": "corrected pass"
+    },
+    {
+      "slug": "the-conceited-apple-branch",
+      "sourceFile": "app/client/assets/temp-books/THE CONCEITED APPLE BRANCH.txt",
+      "generatedFilesInspected": [
+        "app/client/assets/books/generated/the-conceited-apple-branch/manifest.json",
+        "app/client/assets/books/generated/the-conceited-apple-branch/cleaned_book.json",
+        "app/client/assets/books/generated/the-conceited-apple-branch/processed_book.json",
+        "app/client/assets/books/generated/the-conceited-apple-branch/processing_notes.md",
+        "app/client/assets/books/generated/the-conceited-apple-branch/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-conceited-apple-branch.preview.json",
+      "omittedProseFound": [
+        "By and by an old woman came into the field and, with a blunt knife",
+        "by Heaven with another kind of loveliness, and although they differ in"
+      ],
+      "exactRestoredProseSnippets": [
+        "By and by an old woman came into the field and, with a blunt knife",
+        "by Heaven with another kind of loveliness, and although they differ in"
+      ],
+      "correctionMade": "restored only source-backed readable prose and synchronized derived generated artifacts",
+      "rawVsGeneratedBodyComparisonAfterCorrection": "pass: exact character-for-character match after intentional artifact cleanup",
+      "previewImpact": "preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content",
+      "startupPreviewValid": true,
+      "finalStatus": "corrected pass"
+    },
+    {
+      "slug": "little-ida-s-flowers",
+      "sourceFile": "app/client/assets/temp-books/LITTLE IDA'S FLOWERS.txt",
+      "generatedFilesInspected": [
+        "app/client/assets/books/generated/little-ida-s-flowers/manifest.json",
+        "app/client/assets/books/generated/little-ida-s-flowers/cleaned_book.json",
+        "app/client/assets/books/generated/little-ida-s-flowers/processed_book.json",
+        "app/client/assets/books/generated/little-ida-s-flowers/processing_notes.md",
+        "app/client/assets/books/generated/little-ida-s-flowers/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/little-ida-s-flowers.preview.json",
+      "omittedProseFound": [
+        "\"MY POOR flowers are quite faded!\"",
+        "music with them. Wild hyacinths and little white snowdrops jingled merry"
+      ],
+      "exactRestoredProseSnippets": [
+        "\"MY POOR flowers are quite faded!\"",
+        "music with them. Wild hyacinths and little white snowdrops jingled merry"
+      ],
+      "correctionMade": "restored only source-backed readable prose and synchronized derived generated artifacts",
+      "rawVsGeneratedBodyComparisonAfterCorrection": "pass: exact character-for-character match after intentional artifact cleanup",
+      "previewImpact": "preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content",
+      "startupPreviewValid": true,
+      "finalStatus": "corrected pass"
+    },
+    {
+      "slug": "the-steadfast-tin-soldier",
+      "sourceFile": "app/client/assets/temp-books/THE STEADFAST TIN SOLDIER.txt",
+      "generatedFilesInspected": [
+        "app/client/assets/books/generated/the-steadfast-tin-soldier/manifest.json",
+        "app/client/assets/books/generated/the-steadfast-tin-soldier/cleaned_book.json",
+        "app/client/assets/books/generated/the-steadfast-tin-soldier/processed_book.json",
+        "app/client/assets/books/generated/the-steadfast-tin-soldier/processing_notes.md",
+        "app/client/assets/books/generated/the-steadfast-tin-soldier/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-steadfast-tin-soldier.preview.json",
+      "omittedProseFound": [
+        "by grief, no one could say. He looked at the little lady, she looked at"
+      ],
+      "exactRestoredProseSnippets": [
+        "by grief, no one could say. He looked at the little lady, she looked at"
+      ],
+      "correctionMade": "restored only source-backed readable prose and synchronized derived generated artifacts",
+      "rawVsGeneratedBodyComparisonAfterCorrection": "pass: exact character-for-character match after intentional artifact cleanup",
+      "previewImpact": "preview rebuilt for the corrected content hash; opening/default text remains real, book-specific readable content",
+      "startupPreviewValid": true,
+      "finalStatus": "corrected pass"
+    }
+  ],
+  "otherBatch12Books": [
+    {
+      "slug": "clever-hans",
+      "rawVsGeneratedBodyComparisonResult": "exact character-for-character match after intentional artifact cleanup",
+      "omissionFound": false,
+      "correctionMade": false,
+      "scopeDisposition": "pass; no correction needed"
+    },
+    {
+      "slug": "the-fisherman-and-his-wife",
+      "rawVsGeneratedBodyComparisonResult": "mismatch: real wrapped prose line omitted: “by the seaside. The fisherman used to go out all day long a-fishing; and”",
+      "omissionFound": true,
+      "correctionMade": false,
+      "scopeDisposition": "documented follow-up required; deliberately not modified on this five-target branch"
+    },
+    {
+      "slug": "the-story-of-urashima-taro-the-fisher-lad",
+      "rawVsGeneratedBodyComparisonResult": "exact character-for-character match after intentional artifact cleanup",
+      "omissionFound": false,
+      "correctionMade": false,
+      "scopeDisposition": "pass; no correction needed"
+    },
+    {
+      "slug": "the-story-of-the-man-who-did-not-wish-to-die",
+      "rawVsGeneratedBodyComparisonResult": "exact character-for-character match after intentional artifact cleanup",
+      "omissionFound": false,
+      "correctionMade": false,
+      "scopeDisposition": "pass; no correction needed"
+    },
+    {
+      "slug": "the-happy-hunter-and-the-skillful-fisher",
+      "rawVsGeneratedBodyComparisonResult": "exact character-for-character match after intentional artifact cleanup",
+      "omissionFound": false,
+      "correctionMade": false,
+      "scopeDisposition": "pass; no correction needed"
+    },
+    {
+      "slug": "the-darning-needle",
+      "rawVsGeneratedBodyComparisonResult": "exact character-for-character match after intentional artifact cleanup",
+      "omissionFound": false,
+      "correctionMade": false,
+      "scopeDisposition": "pass; no correction needed"
+    },
+    {
+      "slug": "the-greenies",
+      "rawVsGeneratedBodyComparisonResult": "mismatch: real wrapped prose line omitted: “by this pretty name. It is only human beings who do not. They give us”",
+      "omissionFound": true,
+      "correctionMade": false,
+      "scopeDisposition": "documented follow-up required; deliberately not modified on this five-target branch"
+    },
+    {
+      "slug": "the-loving-pair",
+      "rawVsGeneratedBodyComparisonResult": "exact character-for-character match after intentional artifact cleanup",
+      "omissionFound": false,
+      "correctionMade": false,
+      "scopeDisposition": "pass; no correction needed"
+    },
+    {
+      "slug": "the-roses-and-the-sparrows",
+      "rawVsGeneratedBodyComparisonResult": "exact character-for-character match after intentional artifact cleanup",
+      "omissionFound": false,
+      "correctionMade": false,
+      "scopeDisposition": "pass; no correction needed"
+    },
+    {
+      "slug": "shock-tactics",
+      "rawVsGeneratedBodyComparisonResult": "mismatch: two real wrapped prose lines omitted, beginning “by this one splendid haul” and “By the time Bertie arrived”",
+      "omissionFound": true,
+      "correctionMade": false,
+      "scopeDisposition": "documented follow-up required; deliberately not modified on this five-target branch"
+    },
+    {
+      "slug": "canossa",
+      "rawVsGeneratedBodyComparisonResult": "mismatch: real wrapped prose line omitted: “musicians’ strike on, I suppose you know.”",
+      "omissionFound": true,
+      "correctionMade": false,
+      "scopeDisposition": "documented follow-up required; deliberately not modified on this five-target branch"
+    },
+    {
+      "slug": "the-oversight",
+      "rawVsGeneratedBodyComparisonResult": "mismatch: opening curly quotation mark omitted at the selected start boundary",
+      "omissionFound": true,
+      "correctionMade": false,
+      "scopeDisposition": "documented follow-up required; deliberately not modified on this five-target branch"
+    },
+    {
+      "slug": "the-penance",
+      "rawVsGeneratedBodyComparisonResult": "exact character-for-character match after intentional artifact cleanup",
+      "omissionFound": false,
+      "correctionMade": false,
+      "scopeDisposition": "pass; no correction needed"
+    },
+    {
+      "slug": "mark",
+      "rawVsGeneratedBodyComparisonResult": "exact character-for-character match after intentional artifact cleanup",
+      "omissionFound": false,
+      "correctionMade": false,
+      "scopeDisposition": "pass; no correction needed"
+    },
+    {
+      "slug": "quail-seed",
+      "rawVsGeneratedBodyComparisonResult": "mismatch: opening curly quotation mark omitted at the selected start boundary",
+      "omissionFound": true,
+      "correctionMade": false,
+      "scopeDisposition": "documented follow-up required; deliberately not modified on this five-target branch"
+    }
+  ],
+  "intentionalCleanupClassifications": [
+    "bracketed illustration/image placeholders removed",
+    "standalone decorative star dividers removed",
+    "numeric footnote markers removed without removing their readable note prose",
+    "Project Gutenberg/source/license wrapper excluded"
+  ],
+  "protections": {
+    "rawSourcesModified": false,
+    "cloudflareExportModified": false,
+    "unresolvedSourceGeneratedBooksTouched": false,
+    "unresolvedSourceGeneratedBooks": [
+      "a-princess-of-mars",
+      "doctor-dolittle",
+      "heidi",
+      "jabberwocky",
+      "nights-with-uncle-remus",
+      "peter-pan",
+      "tarzan-of-the-apes",
+      "the-great-gatsby",
+      "the-picture-of-dorian-gray",
+      "the-thirty-nine-steps",
+      "wood-folk-at-school"
+    ],
+    "knownDuplicateBoundaryCasesReintroduced": false,
+    "knownDuplicateBoundaryCases": [
+      "the-wind-in-the-willows",
+      "the-two-magics-the-turn-of-the-screw-covering-end",
+      "the-works-of-edgar-allan-poe"
+    ],
+    "unrelatedGeneratedBooksModified": false,
+    "dryRunBatch15Started": false
+  },
+  "implementationNote": "The current shared writer already contains the narrowed standalone-media and byline cleanup rules adopted during write 14. This command restores only the five authorized batch-12 bodies and does not broadly rewrite cleanup."
+}

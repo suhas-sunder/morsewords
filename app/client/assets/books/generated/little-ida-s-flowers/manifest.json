@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "6e96fbb0cb9ee05e",
-  "contentHash": "6e96fbb0cb9ee05e2906d2adc1d9df43df7e5d5010166c8e6725a9950b540d9d",
+  "contentVersion": "b89b7291fd3df048",
+  "contentHash": "b89b7291fd3df048956e7721d60a30e901ce45defd894c1aaf185f340a530536",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 19244,
-    "cleanedCharacterCount": 13952,
-    "wordCount": 2661,
+    "cleanedCharacterCount": 14025,
+    "wordCount": 2672,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,12 +55,12 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 13952,
-      "wordCount": 2661,
+      "characterCount": 14025,
+      "wordCount": 2672,
       "estimatedTypingMinutes": 77,
-      "estimatedListeningMinutes": 83,
-      "morseCharacterEstimate": 74654,
-      "textPreview": "MY POOR flowers are quite faded!\" said little Ida. \"Only yesterday evening they were so pretty, and now all the leaves are drooping. Why do they do that?\" she..."
+      "estimatedListeningMinutes": 84,
+      "morseCharacterEstimate": 75059,
+      "textPreview": "\"MY POOR flowers are quite faded!\" said little Ida. \"Only yesterday evening they were so pretty, and now all the leaves are drooping. Why do they do that?\" she..."
     }
   ],
   "cleaning": {
@@ -78,7 +78,8 @@
       "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
       "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
       "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-      "dry-run artifact risk: illustration captions/placeholders detected"
+      "dry-run artifact risk: illustration captions/placeholders detected",
+      "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
     ]
   },
   "warnings": [
@@ -93,6 +94,7 @@
     "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
     "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
     "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-    "dry-run artifact risk: illustration captions/placeholders detected"
+    "dry-run artifact risk: illustration captions/placeholders detected",
+    "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
   ]
 }

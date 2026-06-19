@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "d2ce79b33a31baf7",
-  "contentHash": "d2ce79b33a31baf79cfd08c783469a5a9efe5304044427dcb7b172801e553f37",
+  "contentVersion": "4f9e9d400383bd1e",
+  "contentHash": "4f9e9d400383bd1ea80dd445f9976e1bd7136c182a2586d3f95e15cf4633033f",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 12477,
-    "cleanedCharacterCount": 7351,
-    "wordCount": 1341,
+    "cleanedCharacterCount": 7488,
+    "wordCount": 1368,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,11 +55,11 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 7351,
-      "wordCount": 1341,
-      "estimatedTypingMinutes": 39,
-      "estimatedListeningMinutes": 44,
-      "morseCharacterEstimate": 39499,
+      "characterCount": 7488,
+      "wordCount": 1368,
+      "estimatedTypingMinutes": 40,
+      "estimatedListeningMinutes": 45,
+      "morseCharacterEstimate": 40237,
       "textPreview": "IT WAS the month of May. The wind still blew cold, but from bush and tree, field and flower, came the welcome sound, \"Spring is come.\" Wild flowers in profusio..."
     }
   ],
@@ -78,7 +78,8 @@
       "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
       "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
       "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-      "dry-run artifact risk: illustration captions/placeholders detected"
+      "dry-run artifact risk: illustration captions/placeholders detected",
+      "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
     ]
   },
   "warnings": [
@@ -92,6 +93,7 @@
     "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
     "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
     "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-    "dry-run artifact risk: illustration captions/placeholders detected"
+    "dry-run artifact risk: illustration captions/placeholders detected",
+    "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
   ]
 }

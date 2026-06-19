@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "f8582f1c0da1fb5c",
-  "contentHash": "f8582f1c0da1fb5c9860d5291a1b856c8113b7d63d6294c4f827419159a227af",
+  "contentVersion": "c9953dfa0d5fd74a",
+  "contentHash": "c9953dfa0d5fd74a2732f414d7905f5055d13a35bf80cc65f976ae202e6970a1",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 26908,
-    "cleanedCharacterCount": 21414,
-    "wordCount": 3951,
+    "cleanedCharacterCount": 21484,
+    "wordCount": 3967,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,11 +55,11 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 21414,
-      "wordCount": 3951,
-      "estimatedTypingMinutes": 113,
-      "estimatedListeningMinutes": 127,
-      "morseCharacterEstimate": 114233,
+      "characterCount": 21484,
+      "wordCount": 3967,
+      "estimatedTypingMinutes": 114,
+      "estimatedListeningMinutes": 128,
+      "morseCharacterEstimate": 114611,
       "textPreview": "THERE is nobody in the whole world who knows so many stories as Ole-Luk-Oie, or who can relate them so nicely. In the evening while the children are seated at..."
     }
   ],
@@ -78,7 +78,8 @@
       "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
       "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
       "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-      "dry-run artifact risk: illustration captions/placeholders detected"
+      "dry-run artifact risk: illustration captions/placeholders detected",
+      "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
     ]
   },
   "warnings": [
@@ -93,6 +94,7 @@
     "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
     "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
     "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-    "dry-run artifact risk: illustration captions/placeholders detected"
+    "dry-run artifact risk: illustration captions/placeholders detected",
+    "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
   ]
 }

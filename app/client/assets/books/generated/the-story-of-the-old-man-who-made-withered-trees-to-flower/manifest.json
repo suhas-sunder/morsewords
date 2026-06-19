@@ -5,8 +5,8 @@
   "author": [
     "Yei Theodora Ozaki"
   ],
-  "contentVersion": "a7ec92e9f9dcb95a",
-  "contentHash": "a7ec92e9f9dcb95a17a0bcbf18842bb97030bcb2f514d10a981cfc79caa7a639",
+  "contentVersion": "d23af98f1910b8d6",
+  "contentHash": "d23af98f1910b8d6bed570974dd009071fe3d571b026f96d53c82be7e12580ed",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 15779,
-    "cleanedCharacterCount": 14271,
-    "wordCount": 2754,
+    "cleanedCharacterCount": 14342,
+    "wordCount": 2769,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,11 +55,11 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 14271,
-      "wordCount": 2754,
-      "estimatedTypingMinutes": 79,
+      "characterCount": 14342,
+      "wordCount": 2769,
+      "estimatedTypingMinutes": 80,
       "estimatedListeningMinutes": 85,
-      "morseCharacterEstimate": 75756,
+      "morseCharacterEstimate": 76145,
       "textPreview": "Long, long ago there lived an old man and his wife who supported themselves by cultivating a small plot of land. Their life had been a very happy and peaceful..."
     }
   ],
@@ -78,7 +78,8 @@
       "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
       "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
       "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-      "dry-run artifact risk: illustration captions/placeholders detected"
+      "dry-run artifact risk: illustration captions/placeholders detected",
+      "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
     ]
   },
   "warnings": [
@@ -92,6 +93,7 @@
     "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
     "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
     "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-    "dry-run artifact risk: illustration captions/placeholders detected"
+    "dry-run artifact risk: illustration captions/placeholders detected",
+    "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
   ]
 }

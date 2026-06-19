@@ -10,3 +10,9 @@ Processed by pilot write pass 12.
 - Final recommendation: accepted for review
 
 This output is intentionally review-gated before larger batch processing or Cloudflare export.
+
+## Batch-12 prose restoration
+
+- Restored source-backed prose removed by the earlier over-broad cleanup rule.
+- Final generated readable body matches the sanitized raw tale body character-for-character.
+- No source, title, table-of-contents, license, contributor, transcriber, byline, or parent-collection material was introduced.

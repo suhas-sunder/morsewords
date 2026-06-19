@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "1271ee39898d18d1",
-  "contentHash": "1271ee39898d18d15f7ff9d2dc2f320fcdff4651b268d5e8f8da51e0b20d6127",
+  "contentVersion": "3e91344b13c0ad48",
+  "contentHash": "3e91344b13c0ad48430462357dba47fe362d886516827410ff7b1c738c053f70",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 13970,
-    "cleanedCharacterCount": 8826,
-    "wordCount": 1691,
+    "cleanedCharacterCount": 8897,
+    "wordCount": 1706,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,11 +55,11 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 8826,
-      "wordCount": 1691,
+      "characterCount": 8897,
+      "wordCount": 1706,
       "estimatedTypingMinutes": 49,
-      "estimatedListeningMinutes": 52,
-      "morseCharacterEstimate": 46793,
+      "estimatedListeningMinutes": 53,
+      "morseCharacterEstimate": 47185,
       "textPreview": "THERE were once five and twenty tin soldiers. They were brothers, for they had all been made out of the same old tin spoon. They all shouldered their bayonets,..."
     }
   ],
@@ -78,7 +78,8 @@
       "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
       "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
       "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-      "dry-run artifact risk: illustration captions/placeholders detected"
+      "dry-run artifact risk: illustration captions/placeholders detected",
+      "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
     ]
   },
   "warnings": [
@@ -93,6 +94,7 @@
     "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
     "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
     "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
-    "dry-run artifact risk: illustration captions/placeholders detected"
+    "dry-run artifact risk: illustration captions/placeholders detected",
+    "Batch-12 prose restoration recovered source-backed readable text removed by the earlier over-broad cleanup rule."
   ]
 }
