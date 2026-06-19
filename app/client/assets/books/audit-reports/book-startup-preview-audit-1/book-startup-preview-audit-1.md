@@ -1,12 +1,12 @@
 # Book Startup Preview Audit 1
 
-Generated at: 2026-06-18T20:57:52.434Z
+Generated at: 2026-06-19T06:44:55.230Z
 
 ## Summary
 
-- Generated books checked: 174
-- Preview assets found: 174
-- Valid startup previews: 174
+- Generated books checked: 252
+- Preview assets found: 252
+- Valid startup previews: 252
 - Preview assets updated by this audit run: none
 - Invalid or missing previews: none
 - Suspicious first default sections: none
@@ -15,7 +15,7 @@ Generated at: 2026-06-18T20:57:52.434Z
 
 | Recommendation | Books |
 | --- | ---: |
-| valid | 174 |
+| valid | 252 |
 | preview asset needs regeneration from generated readable sections | 0 |
 | generated book needs processing correction later | 0 |
 | blocked/manual review | 0 |
@@ -198,6 +198,84 @@ Generated at: 2026-06-18T20:57:52.434Z
 | six-girls-a-home-story | valid | chapter-001 (chapter) | 25/25 | valid | none |
 | the-regent-s-daughter | valid | chapter-001 (chapter) | 38/38 | valid | none |
 | winnie-the-pooh | valid | chapter-001 (chapter) | 10/10 | valid | none |
+| a-study-in-scarlet | valid | chapter-001 (chapter) | 14/14 | valid | none |
+| dagon | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| deep-sea-plunderings | valid | chapter-001 (chapter) | 24/24 | valid | none |
+| five-little-peppers-at-school | valid | chapter-001 (chapter) | 25/25 | valid | none |
+| pickman-s-model | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| quo-vadis | valid | chapter-001 (chapter) | 73/73 | valid | none |
+| the-amateur-cracksman | valid | chapter-001 (chapter) | 8/8 | valid | none |
+| the-black-star-passes | valid | chapter-001 (chapter) | 18/18 | valid | none |
+| the-blue-castle | valid | chapter-001 (chapter) | 45/45 | valid | none |
+| the-brothers-karamazov | valid | chapter-001 (chapter) | 96/96 | valid | none |
+| the-buccaneer | valid | chapter-001 (chapter) | 46/46 | valid | none |
+| the-cats-of-ulthar | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-festival | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-history-of-sir-richard-calmady-a-romance | valid | chapter-001 (chapter) | 60/60 | valid | none |
+| the-nameless-city | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-three-taps-a-detective-story-without-a-moral | valid | chapter-001 (chapter) | 25/25 | valid | none |
+| the-turmoil | valid | chapter-001 (chapter) | 33/33 | valid | none |
+| under-the-red-dragon | valid | chapter-001 (chapter) | 61/61 | valid | none |
+| the-time-machine | valid | chapter-001 (chapter) | 17/17 | valid | none |
+| kidnapped | valid | chapter-001 (chapter) | 30/30 | valid | none |
+| oliver-twist | valid | chapter-001 (chapter) | 53/53 | valid | none |
+| the-benson-murder-case | valid | chapter-001 (chapter) | 25/25 | valid | none |
+| the-inspector-french-s-greatest-case | valid | chapter-001 (chapter) | 20/20 | valid | none |
+| murder-in-the-maze | valid | chapter-001 (chapter) | 18/18 | valid | none |
+| the-house-of-arden-a-story-for-children | valid | chapter-001 (chapter) | 14/14 | valid | none |
+| the-shadow-over-innsmouth | valid | chapter-001 (chapter) | 5/5 | valid | none |
+| the-thing-on-the-door-step | valid | chapter-001 (chapter) | 7/7 | valid | none |
+| at-the-mountains-of-madness | valid | chapter-001 (chapter) | 12/12 | valid | none |
+| the-remarkable-case-of-davidson-s-eyes | valid | chapter-001 (chapter) | 5/5 | valid | none |
+| the-haunter-of-the-dark | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-innocence-of-father-brown | valid | chapter-001 (chapter) | 12/12 | valid | none |
+| astounding-stories-of-super-science | valid | chapter-001 (chapter) | 6/6 | valid | none |
+| a-story-of-the-stone-age | valid | chapter-001 (chapter) | 5/5 | valid | none |
+| the-magic-shop | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-man-who-could-work-miracles | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-truth-about-pyecraft | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| filmer | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| two-in-a-sack | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| cool-air | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-dream-of-little-tuk | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-false-collar | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-naughty-boy | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-red-shoes | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-shadow | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-story-of-a-mother | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-ugly-duckling | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-adventures-of-chanticleer-and-partlet | valid | chapter-001 (chapter) | 3/3 | valid | none |
+| jorinda-and-jorindel | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| mother-holle | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| rapunzel | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-juniper-tree | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-seven-ravens | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-wedding-of-mrs-fox | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-adventures-of-kintaro-the-golden-boy | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-bamboo-cutter-and-the-moon-child | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-goblin-of-adachigahara | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-jelly-fish-and-the-monkey | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-tongue-cut-sparrow | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| ole-luk-oie-the-dream-god | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| clever-hans | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-fisherman-and-his-wife | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-story-of-the-old-man-who-made-withered-trees-to-flower | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-story-of-urashima-taro-the-fisher-lad | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-story-of-the-man-who-did-not-wish-to-die | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-happy-hunter-and-the-skillful-fisher | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-conceited-apple-branch | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-darning-needle | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-greenies | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-loving-pair | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| little-ida-s-flowers | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-roses-and-the-sparrows | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-steadfast-tin-soldier | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| shock-tactics | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| canossa | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-oversight | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| the-penance | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| mark | valid | chapter-001 (chapter) | 1/1 | valid | none |
+| quail-seed | valid | chapter-001 (chapter) | 1/1 | valid | none |
 
 ## Protected Paths
 

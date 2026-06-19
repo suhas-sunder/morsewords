@@ -1,10 +1,10 @@
 {
   "reportName": "metadata-segmentation-correctness-audit-1",
-  "generatedAt": "2026-06-18T20:52:10.042Z",
-  "branch": "morsewords-book-processing-pilot-write-8-jun-2026",
+  "generatedAt": "2026-06-19T06:46:06.710Z",
+  "branch": "morsewords-book-processing-pilot-write-12-jun-2026",
   "scope": "All currently generated books were audited against generated metadata, raw source author evidence where resolvable, first default content, segmentation shape, startup preview starts, and selected-source runtime regression coverage.",
   "totals": {
-    "generatedBooksAudited": 174,
+    "generatedBooksAudited": 252,
     "acceptedBooksAudited": 117,
     "booksWithUnknownAuthor": 1,
     "unknownAuthorWithClearSourceAuthor": 0,
@@ -506,6 +506,98 @@
       "warnings": []
     },
     {
+      "slug": "a-story-of-the-stone-age",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "A Story of the Stone Age",
+      "generatedAuthor": [
+        "Herbert George Wells"
+      ],
+      "generatedAuthorDisplay": "Herbert George Wells",
+      "rawSourceFileUsed": "A Story of the Stone Age.txt",
+      "expectedTitleFromSourceOrIdentity": "A Story of the Stone Age",
+      "expectedAuthorFromRawSource": [
+        "Herbert George Wells"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Herbert George Wells",
+          "lineNumber": 12
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "a-story-of-the-stone-age"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Ugh-Lomi and Uya",
+        "kind": "chapter",
+        "snippet": "I—UGH-LOMI AND UYA This story is of a time beyond the memory of man, before the beginning of history, a time when one might have walked dryshod from France (as we call it now) to England, and when a broad and sluggish..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "a-study-in-scarlet",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "A Study in Scarlet",
+      "generatedAuthor": [
+        "Arthur Conan Doyle"
+      ],
+      "generatedAuthorDisplay": "Arthur Conan Doyle",
+      "rawSourceFileUsed": "A Study in Scarlet.txt",
+      "expectedTitleFromSourceOrIdentity": "A Study in Scarlet",
+      "expectedAuthorFromRawSource": [
+        "Arthur Conan Doyle"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Arthur Conan Doyle",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "a-study-in-scarlet"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Part I.",
+        "kind": "chapter",
+        "snippet": "PART I. (_Being a reprint from the Reminiscences of_ JOHN H. WATSON, M.D., _Late of the Army Medical Department._) CHAPTER I. MR. SHERLOCK HOLMES. In the year 1878 I took my degree of Doctor of Medicine of the Univers..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "a-tale-of-two-cities",
       "acceptedBeforeAudit": true,
       "generatedTitle": "A Tale of Two Cities",
@@ -968,6 +1060,52 @@
       "warnings": []
     },
     {
+      "slug": "astounding-stories-of-super-science",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Astounding Stories of Super-Science, October, 1930",
+      "generatedAuthor": [
+        "Various"
+      ],
+      "generatedAuthorDisplay": "Various",
+      "rawSourceFileUsed": "Astounding Stories of Super-Science.txt",
+      "expectedTitleFromSourceOrIdentity": "Astounding Stories of Super-Science, October, 1930",
+      "expectedAuthorFromRawSource": [
+        "Various"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Various",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "astounding-stories-of-super-science"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Stolen Brains",
+        "kind": "chapter",
+        "snippet": "Stolen Brains \"I hope, Carnes,\" said Dr. Bird, \"that we get good fishing.\" \"Good fishing? Will you please tell me what you are talking about?\" \"I am talking about fishing, old dear. Have you seen the evening paper?\" \"..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "at-the-earth-s-core",
       "acceptedBeforeAudit": false,
       "generatedTitle": "At the Earth's Core",
@@ -1000,6 +1138,52 @@
         "title": "Chapter 1",
         "kind": "chapter",
         "snippet": "I TOWARD THE ETERNAL FIRES I was born in Connecticut about thirty years ago. My name is David Innes. My father was a wealthy mine owner. When I was nineteen he died. All his property was to be mine when I had attained..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "at-the-mountains-of-madness",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "At the Mountains of Madness",
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthorDisplay": "H. P. Lovecraft",
+      "rawSourceFileUsed": "At the mountains of madness.txt",
+      "expectedTitleFromSourceOrIdentity": "At the Mountains of Madness",
+      "expectedAuthorFromRawSource": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. P. Lovecraft",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "at-the-mountains-of-madness"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Section 1",
+        "kind": "chapter",
+        "snippet": "I am forced into speech because men of science have refused to follow my advice without knowing why. It is altogether against my will that I tell my reasons for opposing this contemplated invasion of the antarctic--wi..."
       },
       "firstDefaultStartsWithRealReadableContent": true,
       "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
@@ -1198,6 +1382,52 @@
       "warnings": []
     },
     {
+      "slug": "canossa",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Canossa",
+      "generatedAuthor": [
+        "Saki"
+      ],
+      "generatedAuthorDisplay": "Saki",
+      "rawSourceFileUsed": "CANOSSA.txt",
+      "expectedTitleFromSourceOrIdentity": "Canossa",
+      "expectedAuthorFromRawSource": [
+        "Saki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Saki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "canossa"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Canossa",
+        "kind": "chapter",
+        "snippet": "Demosthenes Platterbaff, the eminent Unrest Inducer, stood on his trial for a serious offence, and the eyes of the political world were focussed on the jury. The offence, it should be stated, was serious for the Gover..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "catriona",
       "acceptedBeforeAudit": true,
       "generatedTitle": "Catriona",
@@ -1238,6 +1468,99 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "clever-hans",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Clever Hans",
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthorDisplay": "Jacob Grimm; Wilhelm Grimm",
+      "rawSourceFileUsed": "CLEVER HANS.txt",
+      "expectedTitleFromSourceOrIdentity": "Clever Hans",
+      "expectedAuthorFromRawSource": [
+        "Jacob Grimm",
+        "Wilhelm Grimm"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Jacob Grimm / Wilhelm Grimm",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "clever-hans"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Clever Hans",
+        "kind": "chapter",
+        "snippet": "The mother of Hans said: ‘Whither away, Hans?’ Hans answered: ‘To Gretel.’ ‘Behave well, Hans.’ ‘Oh, I’ll behave well. Goodbye, mother.’ ‘Goodbye, Hans.’ Hans comes to Gretel. ‘Good day, Gretel.’ ‘Good day, Hans. What..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "cool-air",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Cool Air",
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthorDisplay": "H. P. Lovecraft",
+      "rawSourceFileUsed": "Cool air.txt",
+      "expectedTitleFromSourceOrIdentity": "Cool Air",
+      "expectedAuthorFromRawSource": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. P. Lovecraft",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "cool-air"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Cool Air",
+        "kind": "chapter",
+        "snippet": "You ask me to explain why I am afraid of a draft of cool air; why I shiver more than others upon entering a cold room, and seem nauseated and repelled when the chill of evening creeps through the heat of a mild autumn..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -1330,6 +1653,98 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "dagon",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Dagon",
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthorDisplay": "H. P. Lovecraft",
+      "rawSourceFileUsed": "Dagon.txt",
+      "expectedTitleFromSourceOrIdentity": "Dagon",
+      "expectedAuthorFromRawSource": [
+        "Howard Phillips Lovecraft (1890-1937)"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Howard Phillips Lovecraft (1890-1937)",
+          "lineNumber": 18
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "dagon"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Dagon",
+        "kind": "chapter",
+        "snippet": "I am writing this under an appreciable mental strain, since by tonight I shall be no more. Penniless, and at the end of my supply of the drug which alone makes life endurable, I can bear the torture no longer; and sha..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "deep-sea-plunderings",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Deep-Sea Plunderings",
+      "generatedAuthor": [
+        "Frank Thomas Bullen"
+      ],
+      "generatedAuthorDisplay": "Frank Thomas Bullen",
+      "rawSourceFileUsed": "Deep-Sea Plunderings.txt",
+      "expectedTitleFromSourceOrIdentity": "Deep-Sea Plunderings",
+      "expectedAuthorFromRawSource": [
+        "Frank Thomas Bullen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Frank Thomas Bullen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "deep-sea-plunderings"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "THROUGH FIRE AND WATER",
+        "kind": "chapter",
+        "snippet": "THROUGH FIRE AND WATER “What a clumsy, barrel-bellied old hooker she is, Field!” Thus, closing his telescope with a bang, the elegant chief officer of the Mirzapore, steel four-masted clipper ship of 5000 tons burden,..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -1568,6 +1983,52 @@
       "warnings": []
     },
     {
+      "slug": "filmer",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Filmer",
+      "generatedAuthor": [
+        "H. G. Wells"
+      ],
+      "generatedAuthorDisplay": "H. G. Wells",
+      "rawSourceFileUsed": "FILMER.txt",
+      "expectedTitleFromSourceOrIdentity": "Filmer",
+      "expectedAuthorFromRawSource": [
+        "H. G. Wells"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. G. Wells",
+          "lineNumber": 12
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "filmer"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Filmer",
+        "kind": "chapter",
+        "snippet": "In truth the mastery of flying was the work of thousands of men—this man a suggestion and that an experiment, until at last only one vigorous intellectual effort was needed to finish the work. But the inexorable injus..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "five-children-and-it",
       "acceptedBeforeAudit": false,
       "generatedTitle": "Five Children and It",
@@ -1654,6 +2115,52 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "five-little-peppers-at-school",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Five Little Peppers at School",
+      "generatedAuthor": [
+        "Margaret Sidney"
+      ],
+      "generatedAuthorDisplay": "Margaret Sidney",
+      "rawSourceFileUsed": "Five Little Peppers at School.txt",
+      "expectedTitleFromSourceOrIdentity": "Five Little Peppers at School",
+      "expectedAuthorFromRawSource": [
+        "Margaret Sidney"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Margaret Sidney",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "five-little-peppers-at-school"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Hard Times for Joel",
+        "kind": "chapter",
+        "snippet": "I HARD TIMES FOR JOEL \"Come on, Pepper.\" One of the boys rushed down the dormitory hall, giving a bang on Joel's door as he passed. \"All right,\" said Joel a bit crossly, \"I'm coming.\" \"Last bell,\" came back on the win..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -2351,6 +2858,99 @@
       "warnings": []
     },
     {
+      "slug": "jorinda-and-jorindel",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Jorinda and Jorindel",
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthorDisplay": "Jacob Grimm; Wilhelm Grimm",
+      "rawSourceFileUsed": "JORINDA AND JORINDEL.txt",
+      "expectedTitleFromSourceOrIdentity": "Jorinda and Jorindel",
+      "expectedAuthorFromRawSource": [
+        "Jacob Grimm",
+        "Wilhelm Grimm"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Jacob Grimm / Wilhelm Grimm",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "jorinda-and-jorindel"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Jorinda and Jorindel",
+        "kind": "chapter",
+        "snippet": "There was once an old castle, that stood in the middle of a deep gloomy wood, and in the castle lived an old fairy. Now this fairy could take any shape she pleased. All the day long she flew about in the form of an ow..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "kidnapped",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Kidnapped",
+      "generatedAuthor": [
+        "Robert Louis Stevenson"
+      ],
+      "generatedAuthorDisplay": "Robert Louis Stevenson",
+      "rawSourceFileUsed": "Kidnapped.txt",
+      "expectedTitleFromSourceOrIdentity": "Kidnapped",
+      "expectedAuthorFromRawSource": [
+        "Robert Louis Stevenson"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Robert Louis Stevenson",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "kidnapped"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "I Set Off Upon My Journey To The House Of Shaws",
+        "kind": "chapter",
+        "snippet": "CHAPTER I I SET OFF UPON MY JOURNEY TO THE HOUSE OF SHAWS I will begin the story of my adventures with a certain morning early in the month of June, the year of grace 1751, when I took the key for the last time out of..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "king-arthur-and-the-knights-of-the-round-table",
       "acceptedBeforeAudit": false,
       "generatedTitle": "King Arthur and the Knights of the Round Table",
@@ -2483,6 +3083,52 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "little-ida-s-flowers",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Little Ida's Flowers",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "LITTLE IDA'S FLOWERS.txt",
+      "expectedTitleFromSourceOrIdentity": "Little Ida's Flowers",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "little-ida-s-flowers"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Little Ida's Flowers",
+        "kind": "chapter",
+        "snippet": "MY POOR flowers are quite faded!\" said little Ida. \"Only yesterday evening they were so pretty, and now all the leaves are drooping. Why do they do that?\" she asked of the student, who sat on the sofa. He was a great ..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -2673,6 +3319,52 @@
       "warnings": []
     },
     {
+      "slug": "mark",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Mark",
+      "generatedAuthor": [
+        "Saki"
+      ],
+      "generatedAuthorDisplay": "Saki",
+      "rawSourceFileUsed": "MARK.txt",
+      "expectedTitleFromSourceOrIdentity": "Mark",
+      "expectedAuthorFromRawSource": [
+        "Saki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Saki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "mark"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Mark",
+        "kind": "chapter",
+        "snippet": "Augustus Mellowkent was a novelist with a future; that is to say, a limited but increasing number of people read his books, and there seemed good reason to suppose that if he steadily continued to turn out novels year..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "metamorphosis",
       "acceptedBeforeAudit": false,
       "generatedTitle": "Metamorphosis",
@@ -2759,6 +3451,99 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "mother-holle",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Mother Holle",
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthorDisplay": "Jacob Grimm; Wilhelm Grimm",
+      "rawSourceFileUsed": "MOTHER HOLLE.txt",
+      "expectedTitleFromSourceOrIdentity": "Mother Holle",
+      "expectedAuthorFromRawSource": [
+        "Jacob Grimm",
+        "Wilhelm Grimm"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Jacob Grimm / Wilhelm Grimm",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "mother-holle"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Mother Holle",
+        "kind": "chapter",
+        "snippet": "Once upon a time there was a widow who had two daughters; one of them was beautiful and industrious, the other ugly and lazy. The mother, however, loved the ugly and lazy one best, because she was her own daughter, an..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "murder-in-the-maze",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Murder in the Maze",
+      "generatedAuthor": [
+        "J. J. Connington"
+      ],
+      "generatedAuthorDisplay": "J. J. Connington",
+      "rawSourceFileUsed": "Murder in the Maze.txt",
+      "expectedTitleFromSourceOrIdentity": "Murder in the Maze",
+      "expectedAuthorFromRawSource": [
+        "J. J. Connington"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: J. J. Connington",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "murder-in-the-maze"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Chapter 1",
+        "kind": "chapter",
+        "snippet": "CHAPTER I. The Hackleton Case Neville Shandon stood at the window of his brother’s study gazing contentedly out over the Whistlefield grounds. This was a good place to recuperate in, he reflected, especially when one ..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -2855,6 +3640,98 @@
       "warnings": [
         "Preview does not clearly start from the first real default section."
       ]
+    },
+    {
+      "slug": "ole-luk-oie-the-dream-god",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Ole-Luk-Oie, the Dream-God",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "OLE-LUK-OIE THE DREAM GOD.txt",
+      "expectedTitleFromSourceOrIdentity": "Ole-Luk-Oie, the Dream-God",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "ole-luk-oie-the-dream-god"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Ole-Luk-Oie, the Dream-God",
+        "kind": "chapter",
+        "snippet": "THERE is nobody in the whole world who knows so many stories as Ole-Luk-Oie, or who can relate them so nicely. In the evening while the children are seated at the tea table or in their little chairs, very softly he co..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "oliver-twist",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Oliver Twist",
+      "generatedAuthor": [
+        "Charles Dickens"
+      ],
+      "generatedAuthorDisplay": "Charles Dickens",
+      "rawSourceFileUsed": "Oliver Twist.txt",
+      "expectedTitleFromSourceOrIdentity": "Oliver Twist",
+      "expectedAuthorFromRawSource": [
+        "Charles Dickens"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Charles Dickens",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "oliver-twist"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Treats Of The Place Where Oliver Twist Was Born And Of The",
+        "kind": "chapter",
+        "snippet": "CHAPTER I. TREATS OF THE PLACE WHERE OLIVER TWIST WAS BORN AND OF THE CIRCUMSTANCES ATTENDING HIS BIRTH Among other public buildings in a certain town, which for many reasons it will be prudent to refrain from mention..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
     },
     {
       "slug": "parnassus-on-wheels",
@@ -2979,6 +3856,52 @@
         "title": "Chapter 1",
         "kind": "chapter",
         "snippet": "Chapter I. PETER BREAKS THROUGH All children, except one, grow up. They soon know that they will grow up, and the way Wendy knew was this. One day when she was two years old she was playing in a garden, and she plucke..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "pickman-s-model",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Pickman's Model",
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthorDisplay": "H. P. Lovecraft",
+      "rawSourceFileUsed": "Pickman's Model.txt",
+      "expectedTitleFromSourceOrIdentity": "Pickman's Model",
+      "expectedAuthorFromRawSource": [
+        "H. P. Lovecraft (1890-1937)"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. P. Lovecraft (1890-1937)",
+          "lineNumber": 18
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "pickman-s-model"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Pickman's Model",
+        "kind": "chapter",
+        "snippet": "You needn't think I'm crazy, Eliot--plenty of others have queerer prejudices than this. Why don't you laugh at Oliver's grandfather, who won't ride in a motor? If I don't like that damned subway, it's my own business;..."
       },
       "firstDefaultStartsWithRealReadableContent": true,
       "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
@@ -3177,6 +4100,98 @@
       "warnings": []
     },
     {
+      "slug": "quail-seed",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Quail Seed",
+      "generatedAuthor": [
+        "Saki"
+      ],
+      "generatedAuthorDisplay": "Saki",
+      "rawSourceFileUsed": "QUAIL SEED.txt",
+      "expectedTitleFromSourceOrIdentity": "Quail Seed",
+      "expectedAuthorFromRawSource": [
+        "Saki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Saki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "quail-seed"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Quail Seed",
+        "kind": "chapter",
+        "snippet": "The outlook is not encouraging for us smaller businesses,” said Mr. Scarrick to the artist and his sister, who had taken rooms over his suburban grocery store. “These big concerns are offering all sorts of attractions..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "quo-vadis",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Quo Vadis: A Narrative of the Time of Nero",
+      "generatedAuthor": [
+        "Henryk Sienkiewicz"
+      ],
+      "generatedAuthorDisplay": "Henryk Sienkiewicz",
+      "rawSourceFileUsed": "Quo Vadis.txt",
+      "expectedTitleFromSourceOrIdentity": "Quo Vadis: A Narrative of the Time of Nero",
+      "expectedAuthorFromRawSource": [
+        "Henryk Sienkiewicz"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Henryk Sienkiewicz",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "quo-vadis"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Chapter 1",
+        "kind": "chapter",
+        "snippet": "Chapter I PETRONIUS woke only about midday, and as usual greatly wearied. The evening before he had been at one of Nero’s feasts, which was prolonged till late at night. For some time his health had been failing. He s..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "rainbow-valley",
       "acceptedBeforeAudit": true,
       "generatedTitle": "Rainbow Valley",
@@ -3217,6 +4232,53 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "rapunzel",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Rapunzel",
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthorDisplay": "Jacob Grimm; Wilhelm Grimm",
+      "rawSourceFileUsed": "RAPUNZEL.txt",
+      "expectedTitleFromSourceOrIdentity": "Rapunzel",
+      "expectedAuthorFromRawSource": [
+        "Jacob Grimm",
+        "Wilhelm Grimm"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Jacob Grimm / Wilhelm Grimm",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "rapunzel"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Rapunzel",
+        "kind": "chapter",
+        "snippet": "There were once a man and a woman who had long in vain wished for a child. At length the woman hoped that God was about to grant her desire. These people had a little window at the back of their house from which a spl..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -3499,6 +4561,52 @@
       "warnings": []
     },
     {
+      "slug": "shock-tactics",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Shock Tactics",
+      "generatedAuthor": [
+        "Saki"
+      ],
+      "generatedAuthorDisplay": "Saki",
+      "rawSourceFileUsed": "SHOCK TACTICS.txt",
+      "expectedTitleFromSourceOrIdentity": "Shock Tactics",
+      "expectedAuthorFromRawSource": [
+        "Saki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Saki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "shock-tactics"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Shock Tactics",
+        "kind": "chapter",
+        "snippet": "On a late spring afternoon Ella McCarthy sat on a green-painted chair in Kensington Gardens, staring listlessly at an uninteresting stretch of park landscape, that blossomed suddenly into tropical radiance as an expec..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "six-girls-a-home-story",
       "acceptedBeforeAudit": false,
       "generatedTitle": "Six Girls: A Home Story",
@@ -3727,6 +4835,53 @@
       "warnings": []
     },
     {
+      "slug": "the-adventures-of-chanticleer-and-partlet",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Adventures of Chanticleer and Partlet",
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthorDisplay": "Jacob Grimm; Wilhelm Grimm",
+      "rawSourceFileUsed": "THE ADVENTURES OF CHANTICLEER AND PARTLET.txt",
+      "expectedTitleFromSourceOrIdentity": "The Adventures of Chanticleer and Partlet",
+      "expectedAuthorFromRawSource": [
+        "Jacob Grimm",
+        "Wilhelm Grimm"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Jacob Grimm / Wilhelm Grimm",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-adventures-of-chanticleer-and-partlet"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "1. How They Went to the Mountains to Eat Nuts",
+        "kind": "chapter",
+        "snippet": "‘The nuts are quite ripe now,’ said Chanticleer to his wife Partlet, ‘suppose we go together to the mountains, and eat as many as we can, before the squirrel takes them all away.’ ‘With all my heart,’ said Partlet, ‘l..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-adventures-of-ferdinand-count-fathom",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Adventures of Ferdinand Count Fathom — Complete",
@@ -3767,6 +4922,52 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-adventures-of-kintaro-the-golden-boy",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Adventures of Kintaro, the Golden Boy",
+      "generatedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "generatedAuthorDisplay": "Yei Theodora Ozaki",
+      "rawSourceFileUsed": "THE ADVENTURES OF KINTARO, THE GOLDEN BOY.txt",
+      "expectedTitleFromSourceOrIdentity": "The Adventures of Kintaro, the Golden Boy",
+      "expectedAuthorFromRawSource": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Yei Theodora Ozaki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-adventures-of-kintaro-the-golden-boy"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Adventures of Kintaro, the Golden Boy",
+        "kind": "chapter",
+        "snippet": "Long, long ago there lived in Kyoto a brave soldier named Kintoki. Now he fell in love with a beautiful lady and married her. Not long after this, through the malice of some of his friends, he fell into disgrace at Co..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -3911,6 +5112,52 @@
       "warnings": []
     },
     {
+      "slug": "the-amateur-cracksman",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Amateur Cracksman",
+      "generatedAuthor": [
+        "E. W. Hornung"
+      ],
+      "generatedAuthorDisplay": "E. W. Hornung",
+      "rawSourceFileUsed": "The Amateur Cracksman.txt",
+      "expectedTitleFromSourceOrIdentity": "The Amateur Cracksman",
+      "expectedAuthorFromRawSource": [
+        "E. W. Hornung"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: E. W. Hornung",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-amateur-cracksman"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "THE IDES OF MARCH",
+        "kind": "chapter",
+        "snippet": "THE IDES OF MARCH I It was half-past twelve when I returned to the Albany as a last desperate resort. The scene of my disaster was much as I had left it. The baccarat-counters still strewed the table, with the empty g..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-arabian-nights",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Arabian Nights: Their Best-known Tales",
@@ -4001,6 +5248,52 @@
       "warnings": []
     },
     {
+      "slug": "the-bamboo-cutter-and-the-moon-child",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Bamboo-Cutter and the Moon-Child",
+      "generatedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "generatedAuthorDisplay": "Yei Theodora Ozaki",
+      "rawSourceFileUsed": "THE BAMBOO-CUTTER AND THE MOON-CHILD.txt",
+      "expectedTitleFromSourceOrIdentity": "The Bamboo-Cutter and the Moon-Child",
+      "expectedAuthorFromRawSource": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Yei Theodora Ozaki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-bamboo-cutter-and-the-moon-child"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Bamboo-Cutter and the Moon-Child",
+        "kind": "chapter",
+        "snippet": "Long, long ago, there lived an old bamboo wood-cutter. He was very poor and sad also, for no child had Heaven sent to cheer his old age, and in his heart there was no hope of rest from work till he died and was laid i..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-bell",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Bell",
@@ -4047,6 +5340,144 @@
       "warnings": []
     },
     {
+      "slug": "the-benson-murder-case",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Benson Murder Case",
+      "generatedAuthor": [
+        "S. S. Van Dine"
+      ],
+      "generatedAuthorDisplay": "S. S. Van Dine",
+      "rawSourceFileUsed": "The Benson Murder Case.txt",
+      "expectedTitleFromSourceOrIdentity": "The Benson Murder Case",
+      "expectedAuthorFromRawSource": [
+        "S. S. Van Dine"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: S. S. Van Dine",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-benson-murder-case"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Chapter 1",
+        "kind": "chapter",
+        "snippet": "CHAPTER I. Philo Vance at Home (Friday, June 14; 8.30 a.m.) It happened that, on the morning of the momentous June the fourteenth when the discovery of the murdered body of Alvin H. Benson created a sensation which, t..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-black-star-passes",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Black Star Passes",
+      "generatedAuthor": [
+        "John W. Campbell, Jr."
+      ],
+      "generatedAuthorDisplay": "John W. Campbell, Jr.",
+      "rawSourceFileUsed": "The Black Star Passes.txt",
+      "expectedTitleFromSourceOrIdentity": "The Black Star Passes",
+      "expectedAuthorFromRawSource": [
+        "Jr. John W. Campbell"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Jr. John W. Campbell",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-black-star-passes"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Chapter 1",
+        "kind": "chapter",
+        "snippet": "I. On the thirty-ninth floor of a large New York apartment two young men were lounging about after a strenuous game of tennis. The blue tendrils of smoke from their pipes rose slowly, to be drawn away by the efficient..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-blue-castle",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Blue Castle: a novel",
+      "generatedAuthor": [
+        "L. M. Montgomery"
+      ],
+      "generatedAuthorDisplay": "L. M. Montgomery",
+      "rawSourceFileUsed": "The Blue Castle.txt",
+      "expectedTitleFromSourceOrIdentity": "The Blue Castle: a novel",
+      "expectedAuthorFromRawSource": [
+        "L. M. Montgomery"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: L. M. Montgomery",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-blue-castle"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Chapter 1",
+        "kind": "chapter",
+        "snippet": "CHAPTER I If it had not rained on a certain May morning Valancy Stirling’s whole life would have been entirely different. She would have gone, with the rest of her clan, to Aunt Wellington’s engagement picnic and Dr. ..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-book-of-dragons",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Book of Dragons",
@@ -4087,6 +5518,98 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-brothers-karamazov",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Brothers Karamazov",
+      "generatedAuthor": [
+        "Fyodor Dostoyevsky"
+      ],
+      "generatedAuthorDisplay": "Fyodor Dostoyevsky",
+      "rawSourceFileUsed": "The Brothers Karamazov.txt",
+      "expectedTitleFromSourceOrIdentity": "The Brothers Karamazov",
+      "expectedAuthorFromRawSource": [
+        "Fyodor Dostoyevsky"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Fyodor Dostoyevsky",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-brothers-karamazov"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Book I. The History Of A Family",
+        "kind": "chapter",
+        "snippet": "Book I. The History Of A Family Chapter I. Fyodor Pavlovitch Karamazov Alexey Fyodorovitch Karamazov was the third son of Fyodor Pavlovitch Karamazov, a land owner well known in our district in his own day, and still ..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-buccaneer",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Buccaneer: A Tale",
+      "generatedAuthor": [
+        "Mrs. S. C. Hall"
+      ],
+      "generatedAuthorDisplay": "Mrs. S. C. Hall",
+      "rawSourceFileUsed": "The Buccaneer.txt",
+      "expectedTitleFromSourceOrIdentity": "The Buccaneer: A Tale",
+      "expectedAuthorFromRawSource": [
+        "Mrs. S. C. Hall"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Mrs. S. C. Hall",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-buccaneer"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Chapter 1",
+        "kind": "chapter",
+        "snippet": "CHAPTER I. With roomy decks, her guns of mighty strength, Whose low-laid mouths each mounting billow laves, Deep in her draught, and warlike in her length, She seems a sea wasp flying on the waves. DRYDEN. It was betw..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -4179,6 +5702,98 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-cats-of-ulthar",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Cats of Ulthar",
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthorDisplay": "H. P. Lovecraft",
+      "rawSourceFileUsed": "The Cats of Ulthar.txt",
+      "expectedTitleFromSourceOrIdentity": "The Cats of Ulthar",
+      "expectedAuthorFromRawSource": [
+        "Howard Phillips Lovecraft (1890-1937)"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Howard Phillips Lovecraft (1890-1937)",
+          "lineNumber": 18
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-cats-of-ulthar"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Cats of Ulthar",
+        "kind": "chapter",
+        "snippet": "It is said that in Ulthar, which lies beyond the river Skai, no man may kill a cat; and this I can verily believe as I gaze upon him who sitteth purring before the fire. For the cat is cryptic, and close to strange th..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-conceited-apple-branch",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Conceited Apple Branch",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "THE CONCEITED APPLE BRANCH.txt",
+      "expectedTitleFromSourceOrIdentity": "The Conceited Apple Branch",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-conceited-apple-branch"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Conceited Apple Branch",
+        "kind": "chapter",
+        "snippet": "IT WAS the month of May. The wind still blew cold, but from bush and tree, field and flower, came the welcome sound, \"Spring is come.\" Wild flowers in profusion covered the hedges. Under the little apple tree Spring s..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -4282,6 +5897,52 @@
       "warnings": []
     },
     {
+      "slug": "the-darning-needle",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Darning-Needle",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "THE DARNING-NEEDLE.txt",
+      "expectedTitleFromSourceOrIdentity": "The Darning-Needle",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-darning-needle"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Darning-Needle",
+        "kind": "chapter",
+        "snippet": "THERE was once a Darning-needle who thought herself so fine that she came at last to believe that she was fit for embroidery. \"Mind now that you hold me fast,\" she said to the Fingers that took her up. \"Pray don't los..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-divine-comedy",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The divine comedy",
@@ -4368,6 +6029,52 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-dream-of-little-tuk",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Dream of Little Tuk",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "The Dream of Little Tuk.txt",
+      "expectedTitleFromSourceOrIdentity": "The Dream of Little Tuk",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-dream-of-little-tuk"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Dream of Little Tuk",
+        "kind": "chapter",
+        "snippet": "Ah! yes, that was little Tuk: in reality his name was not Tuk, but that was what he called himself before he could speak plain: he meant it for Charles, and it is all well enough if one does but know it. He had now to..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -4650,6 +6357,52 @@
       "warnings": []
     },
     {
+      "slug": "the-false-collar",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The False Collar",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "The False Collar.txt",
+      "expectedTitleFromSourceOrIdentity": "The False Collar",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-false-collar"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The False Collar",
+        "kind": "chapter",
+        "snippet": "There was once a fine gentleman, all of whose moveables were a boot-jack and a hair-comb: but he had the finest false collars in the world; and it is about one of these collars that we are now to hear a story. It was ..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-federalist-papers",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Federalist Papers",
@@ -4698,6 +6451,52 @@
       "warnings": []
     },
     {
+      "slug": "the-festival",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Festival",
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthorDisplay": "H. P. Lovecraft",
+      "rawSourceFileUsed": "The festival.txt",
+      "expectedTitleFromSourceOrIdentity": "The Festival",
+      "expectedAuthorFromRawSource": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. P. Lovecraft",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-festival"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Festival",
+        "kind": "chapter",
+        "snippet": "I was far from home, and the spell of the eastern sea was upon me. In the twilight I heard it pounding on the rocks, and I knew it lay just over the hill where the twisting willows writhed against the clearing sky and..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-fir-tree",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Fir Tree",
@@ -4738,6 +6537,99 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-fisherman-and-his-wife",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Fisherman and His Wife",
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthorDisplay": "Jacob Grimm; Wilhelm Grimm",
+      "rawSourceFileUsed": "THE FISHERMAN AND HIS WIFE.txt",
+      "expectedTitleFromSourceOrIdentity": "The Fisherman and His Wife",
+      "expectedAuthorFromRawSource": [
+        "Jacob Grimm",
+        "Wilhelm Grimm"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Jacob Grimm / Wilhelm Grimm",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-fisherman-and-his-wife"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Fisherman and His Wife",
+        "kind": "chapter",
+        "snippet": "There was once a fisherman who lived with his wife in a pigsty, close one day, as he sat on the shore with his rod, looking at the sparkling waves and watching his line, all on a sudden his float was dragged away deep..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-goblin-of-adachigahara",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Goblin of Adachigahara",
+      "generatedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "generatedAuthorDisplay": "Yei Theodora Ozaki",
+      "rawSourceFileUsed": "THE GOBLIN OF ADACHIGAHARA.txt",
+      "expectedTitleFromSourceOrIdentity": "The Goblin of Adachigahara",
+      "expectedAuthorFromRawSource": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Yei Theodora Ozaki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-goblin-of-adachigahara"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Goblin of Adachigahara",
+        "kind": "chapter",
+        "snippet": "Long, long ago there was a large plain called Adachigahara, in the province of Mutsu in Japan. This place was said to be haunted by a cannibal goblin who took the form of an old woman. From time to time many travelers..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -4836,6 +6728,52 @@
       "warnings": []
     },
     {
+      "slug": "the-greenies",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Greenies",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "THE GREENIES.txt",
+      "expectedTitleFromSourceOrIdentity": "The Greenies",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-greenies"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Greenies",
+        "kind": "chapter",
+        "snippet": "A ROSE TREE stood in the window. But a little while ago it had been green and fresh, and now it looked sickly--it was in poor health, no doubt. A whole regiment was quartered on it and was eating it up; yet, notwithst..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-happy-family",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Happy Family",
@@ -4876,6 +6814,144 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-happy-hunter-and-the-skillful-fisher",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Happy Hunter and the Skillful Fisher",
+      "generatedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "generatedAuthorDisplay": "Yei Theodora Ozaki",
+      "rawSourceFileUsed": "THE HAPPY HUNTER AND THE SKILLFUL FISHER.txt",
+      "expectedTitleFromSourceOrIdentity": "The Happy Hunter and the Skillful Fisher",
+      "expectedAuthorFromRawSource": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Yei Theodora Ozaki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-happy-hunter-and-the-skillful-fisher"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Happy Hunter and the Skillful Fisher",
+        "kind": "chapter",
+        "snippet": "Long, long ago Japan was governed by Hohodemi, the fourth Mikoto (or Augustness) in descent from the illustrious Amaterasu, the Sun Goddess. He was not only as handsome as his ancestress was beautiful, but he was also..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-haunter-of-the-dark",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Haunter of the Dark",
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthorDisplay": "H. P. Lovecraft",
+      "rawSourceFileUsed": "The haunter of the dark.txt",
+      "expectedTitleFromSourceOrIdentity": "The Haunter of the Dark",
+      "expectedAuthorFromRawSource": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. P. Lovecraft",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-haunter-of-the-dark"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Haunter of the Dark",
+        "kind": "chapter",
+        "snippet": "I have seen the dark universe yawning Where the black planets roll without aim-- Where they roll in their horror unheeded, Without knowledge or luster or name. --_Nemesis._ Cautious investigators will hesitate to chal..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-history-of-sir-richard-calmady-a-romance",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The History of Sir Richard Calmady: A Romance",
+      "generatedAuthor": [
+        "Lucas Malet"
+      ],
+      "generatedAuthorDisplay": "Lucas Malet",
+      "rawSourceFileUsed": "The History of Sir Richard Calmady - A Romance.txt",
+      "expectedTitleFromSourceOrIdentity": "The History of Sir Richard Calmady: A Romance",
+      "expectedAuthorFromRawSource": [
+        "Lucas Malet"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Lucas Malet",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-history-of-sir-richard-calmady-a-romance"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Book I",
+        "kind": "chapter",
+        "snippet": "BOOK I THE CLOWN CHAPTER I ACQUAINTING THE READER WITH A FAIR DOMAIN AND THE MAKER THEREOF In that fortunate hour of English history, when the cruel sights and haunting insecurities of the Middle Ages had passed away,..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -4974,6 +7050,52 @@
       "warnings": []
     },
     {
+      "slug": "the-house-of-arden-a-story-for-children",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The House of Arden: A Story for Children",
+      "generatedAuthor": [
+        "E. Nesbit"
+      ],
+      "generatedAuthorDisplay": "E. Nesbit",
+      "rawSourceFileUsed": "The House of Arden - A Story for Children.txt",
+      "expectedTitleFromSourceOrIdentity": "The House of Arden: A Story for Children",
+      "expectedAuthorFromRawSource": [
+        "E. Nesbit"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: E. Nesbit",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-house-of-arden-a-story-for-children"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Arden's Lord",
+        "kind": "chapter",
+        "snippet": "CHAPTER I ARDEN'S LORD It had been a great house once, with farms and fields, money and jewels--with tenants and squires and men-at-arms. The head of the house had ridden out three days' journey to meet King Henry at ..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-house-without-a-key",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The House Without a Key",
@@ -5066,6 +7188,98 @@
       "warnings": []
     },
     {
+      "slug": "the-innocence-of-father-brown",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Innocence of Father Brown",
+      "generatedAuthor": [
+        "G. K. Chesterton"
+      ],
+      "generatedAuthorDisplay": "G. K. Chesterton",
+      "rawSourceFileUsed": "The innocence of Father Brown.txt",
+      "expectedTitleFromSourceOrIdentity": "The Innocence of Father Brown",
+      "expectedAuthorFromRawSource": [
+        "G. K. Chesterton"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: G. K. Chesterton",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-innocence-of-father-brown"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Blue Cross",
+        "kind": "chapter",
+        "snippet": "The Blue Cross Between the silver ribbon of morning and the green glittering ribbon of sea, the boat touched Harwich and let loose a swarm of folk like flies, among whom the man we must follow was by no means conspicu..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-inspector-french-s-greatest-case",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Inspector French's Greatest Case",
+      "generatedAuthor": [
+        "Freeman Wills Crofts"
+      ],
+      "generatedAuthorDisplay": "Freeman Wills Crofts",
+      "rawSourceFileUsed": "The Inspector French’s Greatest Case.txt",
+      "expectedTitleFromSourceOrIdentity": "The Inspector French's Greatest Case",
+      "expectedAuthorFromRawSource": [
+        "Freeman Wills Crofts"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Freeman Wills Crofts",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-inspector-french-s-greatest-case"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Chapter 1",
+        "kind": "chapter",
+        "snippet": "CHAPTER I MURDER! THE back streets surrounding Hatton Garden, in the City of London, do not form at the best of times a cheerful or inspiring prospect. Narrow and mean, and flanked with ugly, sordid-looking buildings ..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-invisible-man-a-grotesque-romance",
       "acceptedBeforeAudit": false,
       "generatedTitle": "The Invisible Man: A Grotesque Romance",
@@ -5098,6 +7312,52 @@
         "title": "Chapter 1",
         "kind": "chapter",
         "snippet": "CHAPTER I. THE STRANGE MAN’S ARRIVAL The stranger came early in February, one wintry day, through a biting wind and a driving snow, the last snowfall of the year, over the down, walking from Bramblehurst railway stati..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-jelly-fish-and-the-monkey",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Jelly Fish and the Monkey",
+      "generatedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "generatedAuthorDisplay": "Yei Theodora Ozaki",
+      "rawSourceFileUsed": "THE JELLY FISH AND THE MONKEY.txt",
+      "expectedTitleFromSourceOrIdentity": "The Jelly Fish and the Monkey",
+      "expectedAuthorFromRawSource": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Yei Theodora Ozaki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-jelly-fish-and-the-monkey"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Jelly Fish and the Monkey",
+        "kind": "chapter",
+        "snippet": "Long, long ago, in old Japan, the Kingdom of the Sea was governed by a wonderful King. He was called Rin Jin, or the Dragon King of the Sea. His power was immense, for he was the ruler of all sea creatures both great ..."
       },
       "firstDefaultStartsWithRealReadableContent": true,
       "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
@@ -5152,6 +7412,53 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-juniper-tree",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Juniper-Tree",
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthorDisplay": "Jacob Grimm; Wilhelm Grimm",
+      "rawSourceFileUsed": "THE JUNIPER-TREE.txt",
+      "expectedTitleFromSourceOrIdentity": "The Juniper-Tree",
+      "expectedAuthorFromRawSource": [
+        "Jacob Grimm",
+        "Wilhelm Grimm"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Jacob Grimm / Wilhelm Grimm",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-juniper-tree"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Juniper-Tree",
+        "kind": "chapter",
+        "snippet": "Long, long ago, some two thousand years or so, there lived a rich man with a good and beautiful wife. They loved each other dearly, but sorrowed much that they had no children. So greatly did they desire to have one, ..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -5526,6 +7833,52 @@
       "warnings": []
     },
     {
+      "slug": "the-loving-pair",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Loving Pair",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "THE LOVING PAIR.txt",
+      "expectedTitleFromSourceOrIdentity": "The Loving Pair",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-loving-pair"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Loving Pair",
+        "kind": "chapter",
+        "snippet": "A WHIPPING Top and a Ball lay close together in a drawer among other playthings. One day the Top said to the Ball, \"Since we are living so much together, why should we not be lovers?\" But the Ball, being made of moroc..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-lurking-fear",
       "acceptedBeforeAudit": false,
       "generatedTitle": "The lurking fear",
@@ -5558,6 +7911,52 @@
         "title": "The Shadow on the Chimney",
         "kind": "chapter",
         "snippet": "_1. The Shadow on the Chimney_ There was thunder in the air on the night I went to the deserted mansion atop Tempest Mountain to find the lurking fear. I was not alone, for foolhardiness was not then mixed with that l..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-magic-shop",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Magic Shop",
+      "generatedAuthor": [
+        "H. G. Wells"
+      ],
+      "generatedAuthorDisplay": "H. G. Wells",
+      "rawSourceFileUsed": "THE MAGIC SHOP.txt",
+      "expectedTitleFromSourceOrIdentity": "The Magic Shop",
+      "expectedAuthorFromRawSource": [
+        "H. G. Wells"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. G. Wells",
+          "lineNumber": 12
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-magic-shop"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Magic Shop",
+        "kind": "chapter",
+        "snippet": "I had seen the Magic Shop from afar several times; I had passed it once or twice, a shop window of alluring little objects, magic balls, magic hens, wonderful cones, ventriloquist dolls, the material of the basket tri..."
       },
       "firstDefaultStartsWithRealReadableContent": true,
       "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
@@ -5612,6 +8011,52 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-man-who-could-work-miracles",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Man Who Could Work Miracles",
+      "generatedAuthor": [
+        "Herbert George Wells"
+      ],
+      "generatedAuthorDisplay": "Herbert George Wells",
+      "rawSourceFileUsed": "The Man Who Could Work Miracles.txt",
+      "expectedTitleFromSourceOrIdentity": "The Man Who Could Work Miracles",
+      "expectedAuthorFromRawSource": [
+        "Herbert George Wells"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Herbert George Wells",
+          "lineNumber": 12
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-man-who-could-work-miracles"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Man Who Could Work Miracles",
+        "kind": "chapter",
+        "snippet": "It is doubtful whether the gift was innate. For my own part, I think it came to him suddenly. Indeed, until he was thirty he was a sceptic, and did not believe in miraculous powers. And here, since it is the most conv..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -5894,6 +8339,98 @@
       "warnings": []
     },
     {
+      "slug": "the-nameless-city",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Nameless City",
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthorDisplay": "H. P. Lovecraft",
+      "rawSourceFileUsed": "The Nameless City.txt",
+      "expectedTitleFromSourceOrIdentity": "The Nameless City",
+      "expectedAuthorFromRawSource": [
+        "Howard Phillips Lovecraft (1890-1937)"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Howard Phillips Lovecraft (1890-1937)",
+          "lineNumber": 18
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-nameless-city"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Nameless City",
+        "kind": "chapter",
+        "snippet": "When I drew nigh the nameless city I knew it was accursed. I was traveling in a parched and terrible valley under the moon, and afar I saw it protruding uncannily above the sands as parts of a corpse might protrude fr..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-naughty-boy",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Naughty Boy",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "The Naughty Boy.txt",
+      "expectedTitleFromSourceOrIdentity": "The Naughty Boy",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-naughty-boy"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Naughty Boy",
+        "kind": "chapter",
+        "snippet": "Along time ago, there lived an old poet, a thoroughly kind old poet. As he was sitting one evening in his room, a dreadful storm arose without, and the rain streamed down from heaven; but the old poet sat warm and com..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-octopus-a-story-of-california",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Octopus: A Story of California",
@@ -6018,6 +8555,98 @@
         "title": "The Other Gods",
         "kind": "chapter",
         "snippet": "Atop the tallest of earth’s peaks dwell the gods of earth, and suffer no man to tell that he hath looked upon them. Lesser peaks they once inhabited; but ever the men from the plains would scale the slopes of rock and..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-oversight",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Oversight",
+      "generatedAuthor": [
+        "Saki"
+      ],
+      "generatedAuthorDisplay": "Saki",
+      "rawSourceFileUsed": "THE OVERSIGHT.txt",
+      "expectedTitleFromSourceOrIdentity": "The Oversight",
+      "expectedAuthorFromRawSource": [
+        "Saki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Saki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-oversight"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Oversight",
+        "kind": "chapter",
+        "snippet": "It’s like a Chinese puzzle,” said Lady Prowche resentfully, staring at a scribbled list of names that spread over two or three loose sheets of notepaper on her writing-table. Most of the names had a pencil mark runnin..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-penance",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Penance",
+      "generatedAuthor": [
+        "Saki"
+      ],
+      "generatedAuthorDisplay": "Saki",
+      "rawSourceFileUsed": "THE PENANCE.txt",
+      "expectedTitleFromSourceOrIdentity": "The Penance",
+      "expectedAuthorFromRawSource": [
+        "Saki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Saki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-penance"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Penance",
+        "kind": "chapter",
+        "snippet": "Octavian Ruttle was one of those lively cheerful individuals on whom amiability had set its unmistakable stamp, and, like most of his kind, his soul’s peace depended in large measure on the unstinted approval of his f..."
       },
       "firstDefaultStartsWithRealReadableContent": true,
       "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
@@ -6306,6 +8935,52 @@
       "warnings": []
     },
     {
+      "slug": "the-red-shoes",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Red Shoes",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "The Red Shoes.txt",
+      "expectedTitleFromSourceOrIdentity": "The Red Shoes",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-red-shoes"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Red Shoes",
+        "kind": "chapter",
+        "snippet": "There was once a little girl who was very pretty and delicate, but in summer she was forced to run about with bare feet, she was so poor, and in winter wear very large wooden shoes, which made her little insteps quite..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-red-thumb-mark",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Red Thumb Mark",
@@ -6385,6 +9060,98 @@
         "title": "Chapter 1",
         "kind": "chapter",
         "snippet": "CHAPTER I. AN ABBESS OF THE EIGHTEENTH CENTURY. On the 8th February, 1719, a carriage, bearing the fleur-de-lis of France, with the motto of Orleans, preceded by two outriders and a page, entered the porch of the Abbe..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-remarkable-case-of-davidson-s-eyes",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Remarkable Case of Davidson's Eyes",
+      "generatedAuthor": [
+        "H. G. Wells"
+      ],
+      "generatedAuthorDisplay": "H. G. Wells",
+      "rawSourceFileUsed": "THE REMARKABLE CASE OF DAVIDSON'S EYES.txt",
+      "expectedTitleFromSourceOrIdentity": "The Remarkable Case of Davidson's Eyes",
+      "expectedAuthorFromRawSource": [
+        "H. G. Wells"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. G. Wells",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-remarkable-case-of-davidson-s-eyes"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Section 1",
+        "kind": "chapter",
+        "snippet": "The transitory mental aberration of Sidney Davidson, remarkable enough in itself, is still more remarkable if Wade's explanation is to be credited. It sets one dreaming of the oddest possibilities of intercommunicatio..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-roses-and-the-sparrows",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Roses and the Sparrows",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "THE ROSES AND THE SPARROWS.txt",
+      "expectedTitleFromSourceOrIdentity": "The Roses and the Sparrows",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-roses-and-the-sparrows"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Roses and the Sparrows",
+        "kind": "chapter",
+        "snippet": "IT really appeared as if something very important were going on by the duck pond, but this was not the case. A few minutes before, all the ducks had been resting on the water or standing on their heads--for that they ..."
       },
       "firstDefaultStartsWithRealReadableContent": true,
       "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
@@ -6631,6 +9398,145 @@
       "warnings": []
     },
     {
+      "slug": "the-seven-ravens",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Seven Ravens",
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthorDisplay": "Jacob Grimm; Wilhelm Grimm",
+      "rawSourceFileUsed": "THE SEVEN RAVENS.txt",
+      "expectedTitleFromSourceOrIdentity": "The Seven Ravens",
+      "expectedAuthorFromRawSource": [
+        "Jacob Grimm",
+        "Wilhelm Grimm"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Jacob Grimm / Wilhelm Grimm",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-seven-ravens"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Seven Ravens",
+        "kind": "chapter",
+        "snippet": "There was once a man who had seven sons, and last of all one daughter. Although the little girl was very pretty, she was so weak and small that they thought she could not live; but they said she should at once be chri..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-shadow",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Shadow",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "The Shadow.txt",
+      "expectedTitleFromSourceOrIdentity": "The Shadow",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-shadow"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Shadow",
+        "kind": "chapter",
+        "snippet": "It is in the hot lands that the sun burns, sure enough! there the people become quite a mahogany brown, ay, and in the HOTTEST lands they are burnt to Negroes. But now it was only to the HOT lands that a learned man h..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-shadow-over-innsmouth",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Shadow over Innsmouth",
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthorDisplay": "H. P. Lovecraft",
+      "rawSourceFileUsed": "The shadow over Innsmouth.txt",
+      "expectedTitleFromSourceOrIdentity": "The Shadow over Innsmouth",
+      "expectedAuthorFromRawSource": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. P. Lovecraft",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-shadow-over-innsmouth"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Section 1",
+        "kind": "chapter",
+        "snippet": "During the winter of 1927-28 Federal government officials made a strange and secret investigation of certain conditions in the ancient Massachusetts seaport of Innsmouth. The public first learned of it in February, wh..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-shoes-of-fortune",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Shoes of Fortune",
@@ -6861,6 +9767,98 @@
       "warnings": []
     },
     {
+      "slug": "the-steadfast-tin-soldier",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Steadfast Tin Soldier",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "THE STEADFAST TIN SOLDIER.txt",
+      "expectedTitleFromSourceOrIdentity": "The Steadfast Tin Soldier",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-steadfast-tin-soldier"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Steadfast Tin Soldier",
+        "kind": "chapter",
+        "snippet": "THERE were once five and twenty tin soldiers. They were brothers, for they had all been made out of the same old tin spoon. They all shouldered their bayonets, held themselves upright, and looked straight before them...."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-story-of-a-mother",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Story of a Mother",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "The Story of a Mother.txt",
+      "expectedTitleFromSourceOrIdentity": "The Story of a Mother",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-story-of-a-mother"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Story of a Mother",
+        "kind": "chapter",
+        "snippet": "A mother sat there with her little child. She was so downcast, so afraid that it should die! It was so pale, the small eyes had closed themselves, and it drew its breath so softly, now and then, with a deep respiratio..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-story-of-the-inexperienced-ghost",
       "acceptedBeforeAudit": true,
       "generatedTitle": "Twelve Stories and a Dream",
@@ -6901,6 +9899,144 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-story-of-the-man-who-did-not-wish-to-die",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Story of the Man Who Did Not Wish to Die",
+      "generatedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "generatedAuthorDisplay": "Yei Theodora Ozaki",
+      "rawSourceFileUsed": "THE STORY OF THE MAN WHO DID NOT WISH TO DIE.txt",
+      "expectedTitleFromSourceOrIdentity": "The Story of the Man Who Did Not Wish to Die",
+      "expectedAuthorFromRawSource": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Yei Theodora Ozaki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-story-of-the-man-who-did-not-wish-to-die"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Story of the Man Who Did Not Wish to Die",
+        "kind": "chapter",
+        "snippet": "Long, long ago there lived a man called Sentaro. His surname meant “Millionaire,” but although he was not so rich as all that, he was still very far removed from being poor. He had inherited a small fortune from his f..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-story-of-the-old-man-who-made-withered-trees-to-flower",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Story of the Old Man Who Made Withered Trees to Flower",
+      "generatedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "generatedAuthorDisplay": "Yei Theodora Ozaki",
+      "rawSourceFileUsed": "THE STORY OF THE OLD MAN WHO MADE WITHERED TREES TO FLOWER.txt",
+      "expectedTitleFromSourceOrIdentity": "The Story of the Old Man Who Made Withered Trees to Flower",
+      "expectedAuthorFromRawSource": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Yei Theodora Ozaki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-story-of-the-old-man-who-made-withered-trees-to-flower"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Story of the Old Man Who Made Withered Trees to Flower",
+        "kind": "chapter",
+        "snippet": "Long, long ago there lived an old man and his wife who supported themselves by cultivating a small plot of land. Their life had been a very happy and peaceful one save for one great sorrow, and this was they had no ch..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-story-of-urashima-taro-the-fisher-lad",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Story of Urashima Taro, the Fisher Lad",
+      "generatedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "generatedAuthorDisplay": "Yei Theodora Ozaki",
+      "rawSourceFileUsed": "THE STORY OF URASHIMA TARO, THE FISHER LAD.txt",
+      "expectedTitleFromSourceOrIdentity": "The Story of Urashima Taro, the Fisher Lad",
+      "expectedAuthorFromRawSource": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Yei Theodora Ozaki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-story-of-urashima-taro-the-fisher-lad"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Story of Urashima Taro, the Fisher Lad",
+        "kind": "chapter",
+        "snippet": "Long, long ago in the province of Tango there lived on the shore of Japan in the little fishing village of Mizu-no-ye a young fisherman named Urashima Taro. His father had been a fisherman before him, and his skill ha..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -6999,6 +10135,52 @@
       "warnings": []
     },
     {
+      "slug": "the-thing-on-the-door-step",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Thing on the Door-Step",
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthorDisplay": "H. P. Lovecraft",
+      "rawSourceFileUsed": "The thing on the door-step.txt",
+      "expectedTitleFromSourceOrIdentity": "The Thing on the Door-Step",
+      "expectedAuthorFromRawSource": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. P. Lovecraft",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-thing-on-the-door-step"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Section 1",
+        "kind": "chapter",
+        "snippet": "It is true that I have sent six bullets through the head of my best friend, and yet I hope to show by this statement that I am not his murderer. At first I shall be called a madman--madder than the man I shot in his c..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-thirty-nine-steps",
       "acceptedBeforeAudit": false,
       "generatedTitle": "The Thirty-Nine Steps",
@@ -7090,6 +10272,144 @@
       "warnings": []
     },
     {
+      "slug": "the-three-taps-a-detective-story-without-a-moral",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Three Taps",
+      "generatedAuthor": [
+        "Ronald Arbuthnott Knox"
+      ],
+      "generatedAuthorDisplay": "Ronald Arbuthnott Knox",
+      "rawSourceFileUsed": "The three taps - A detective story without a moral.txt",
+      "expectedTitleFromSourceOrIdentity": "The Three Taps",
+      "expectedAuthorFromRawSource": [
+        "Ronald Arbuthnott Knox"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Ronald Arbuthnott Knox",
+          "lineNumber": 14
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-three-taps-a-detective-story-without-a-moral"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Chapter 1",
+        "kind": "chapter",
+        "snippet": "Chapter I The Euthanasia Policy The principles of insurance, they tell us, were not hidden from our Anglo-Saxon forefathers. How anybody had the enterprise in those rough-and-tumble days to guarantee a client against ..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-time-machine",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Time Machine",
+      "generatedAuthor": [
+        "H. G. Wells"
+      ],
+      "generatedAuthorDisplay": "H. G. Wells",
+      "rawSourceFileUsed": "The Time Machine.txt",
+      "expectedTitleFromSourceOrIdentity": "The Time Machine",
+      "expectedAuthorFromRawSource": [
+        "H. G. Wells"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. G. Wells",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-time-machine"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Chapter 1",
+        "kind": "chapter",
+        "snippet": "I. Introduction The Time Traveller (for so it will be convenient to speak of him) was expounding a recondite matter to us. His pale grey eyes shone and twinkled, and his usually pale face was flushed and animated. The..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-tongue-cut-sparrow",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Tongue-Cut Sparrow",
+      "generatedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "generatedAuthorDisplay": "Yei Theodora Ozaki",
+      "rawSourceFileUsed": "THE TONGUE-CUT SPARROW.txt",
+      "expectedTitleFromSourceOrIdentity": "The Tongue-Cut Sparrow",
+      "expectedAuthorFromRawSource": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Yei Theodora Ozaki",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-tongue-cut-sparrow"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Tongue-Cut Sparrow",
+        "kind": "chapter",
+        "snippet": "Long, long ago in Japan there lived an old man and his wife. The old man was a good, kind-hearted, hard-working old fellow, but his wife was a regular cross-patch, who spoiled the happiness of her home by her scolding..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "the-tower-treasure",
       "acceptedBeforeAudit": false,
       "generatedTitle": "The tower treasure",
@@ -7122,6 +10442,98 @@
         "title": "Chapter 1",
         "kind": "chapter",
         "snippet": "CHAPTER I THE SPEED DEMON \"After the help we gave dad on that forgery case I guess he'll begin to think we _could_ be detectives when we grow up.\" \"Why shouldn't we? Isn't he one of the most famous detectives in the c..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-truth-about-pyecraft",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Truth About Pyecraft",
+      "generatedAuthor": [
+        "H. G. Wells"
+      ],
+      "generatedAuthorDisplay": "H. G. Wells",
+      "rawSourceFileUsed": "THE TRUTH ABOUT PYECRAFT.txt",
+      "expectedTitleFromSourceOrIdentity": "The Truth About Pyecraft",
+      "expectedAuthorFromRawSource": [
+        "H. G. Wells"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. G. Wells",
+          "lineNumber": 12
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-truth-about-pyecraft"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Truth About Pyecraft",
+        "kind": "chapter",
+        "snippet": "He sits not a dozen yards away. If I glance over my shoulder I can see him. And if I catch his eye—and usually I catch his eye—it meets me with an expression. It is mainly an imploring look—and yet with suspicion in i..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-turmoil",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Turmoil: A Novel",
+      "generatedAuthor": [
+        "Booth Tarkington"
+      ],
+      "generatedAuthorDisplay": "Booth Tarkington",
+      "rawSourceFileUsed": "The Turmoil.txt",
+      "expectedTitleFromSourceOrIdentity": "The Turmoil: A Novel",
+      "expectedAuthorFromRawSource": [
+        "Booth Tarkington"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Booth Tarkington",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-turmoil"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Chapter 1",
+        "kind": "chapter",
+        "snippet": "CHAPTER I There is a midland city in the heart of fair, open country, a dirty and wonderful city nesting dingily in the fog of its own smoke. The stranger must feel the dirt before he feels the wonder, for the dirt wi..."
       },
       "firstDefaultStartsWithRealReadableContent": true,
       "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
@@ -7176,6 +10588,52 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-ugly-duckling",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Ugly Duckling",
+      "generatedAuthor": [
+        "H. C. Andersen"
+      ],
+      "generatedAuthorDisplay": "H. C. Andersen",
+      "rawSourceFileUsed": "THE UGLY DUCKLING.txt",
+      "expectedTitleFromSourceOrIdentity": "The Ugly Duckling",
+      "expectedAuthorFromRawSource": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: H. C. Andersen",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-ugly-duckling"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Ugly Duckling",
+        "kind": "chapter",
+        "snippet": "IT was so beautiful in the country. It was the summer time. The wheat fields were golden, the oats were green, and the hay stood in great stacks in the green meadows. The stork paraded about among them on his long red..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -7406,6 +10864,53 @@
       "meaningfulSourceHeadingsExistButWereIgnored": false,
       "previewStartsAtRealFirstReadableContent": true,
       "acceptedStatusShouldRemainValid": true,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "the-wedding-of-mrs-fox",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Wedding of Mrs Fox",
+      "generatedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "generatedAuthorDisplay": "Jacob Grimm; Wilhelm Grimm",
+      "rawSourceFileUsed": "THE WEDDING OF MRS FOX.txt",
+      "expectedTitleFromSourceOrIdentity": "The Wedding of Mrs Fox",
+      "expectedAuthorFromRawSource": [
+        "Jacob Grimm",
+        "Wilhelm Grimm"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Jacob Grimm / Wilhelm Grimm",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "the-wedding-of-mrs-fox"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "The Wedding of Mrs Fox",
+        "kind": "chapter",
+        "snippet": "There was once upon a time an old fox with nine tails, who believed that his wife was not faithful to him, and wished to put her to the test. He stretched himself out under the bench, did not move a limb, and behaved ..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
       "classifications": [
         "still acceptable"
       ],
@@ -7734,6 +11239,52 @@
       "warnings": []
     },
     {
+      "slug": "two-in-a-sack",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Two in a Sack",
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthorDisplay": "Andrew Lang",
+      "rawSourceFileUsed": "TWO IN A SACK.txt",
+      "expectedTitleFromSourceOrIdentity": "Two in a Sack",
+      "expectedAuthorFromRawSource": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "two-in-a-sack"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "Two in a Sack",
+        "kind": "chapter",
+        "snippet": "What a life that poor man led with his wife, to be sure! Not a day passed without her scolding him and calling him names, and indeed sometimes she would take the broom from behind the stove and beat him with it. He ha..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
       "slug": "typhoon",
       "acceptedBeforeAudit": false,
       "generatedTitle": "Typhoon",
@@ -7766,6 +11317,52 @@
         "title": "Chapter 1",
         "kind": "chapter",
         "snippet": "I Captain MacWhirr, of the steamer Nan-Shan, had a physiognomy that, in the order of material appearances, was the exact counterpart of his mind: it presented no marked characteristics of firmness or stupidity; it had..."
+      },
+      "firstDefaultStartsWithRealReadableContent": true,
+      "firstChapterPartStoryOrPrologueMissingOrExcluded": false,
+      "generatedSectionLabelsMeaningful": true,
+      "generatedSectionLabelsGenericFallbackChunks": false,
+      "meaningfulSourceHeadingsExistButWereIgnored": false,
+      "previewStartsAtRealFirstReadableContent": true,
+      "acceptedStatusShouldRemainValid": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "warnings": []
+    },
+    {
+      "slug": "under-the-red-dragon",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Under the Red Dragon: A Novel",
+      "generatedAuthor": [
+        "James Grant"
+      ],
+      "generatedAuthorDisplay": "James Grant",
+      "rawSourceFileUsed": "Under the Red Dragon.txt",
+      "expectedTitleFromSourceOrIdentity": "Under the Red Dragon: A Novel",
+      "expectedAuthorFromRawSource": [
+        "James Grant"
+      ],
+      "authorEvidence": [
+        {
+          "kind": "gutenberg Author line",
+          "text": "Author: James Grant",
+          "lineNumber": 13
+        }
+      ],
+      "generatedAuthorIsUnknown": false,
+      "unknownAuthorJustified": false,
+      "titleDuplicatedAcrossUnrelatedSlugs": false,
+      "duplicateGeneratedTitleSlugs": [
+        "under-the-red-dragon"
+      ],
+      "titleAppearsInheritedFromParentCollection": false,
+      "parentCollectionTitleOrBylineLeaksIntoDefaultPlayback": false,
+      "firstDefaultSection": {
+        "id": "chapter-001",
+        "title": "--THE INVITATION",
+        "kind": "chapter",
+        "snippet": "CHAPTER I.--THE INVITATION. \"And _she_ is to be there--nay, is there already; so one more chance is given me to meet her. But for what?--to part again silently, and more helplessly bewitched than ever, perhaps. Ah, ne..."
       },
       "firstDefaultStartsWithRealReadableContent": true,
       "firstChapterPartStoryOrPrologueMissingOrExcluded": false,

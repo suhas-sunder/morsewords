@@ -48,6 +48,7 @@
     "books:pilot-write-9-verify": "node --experimental-strip-types scripts/books/verify-pilot-write-9.ts",
     "books:pilot-write-10-verify": "node --experimental-strip-types scripts/books/verify-pilot-write-10.ts",
     "books:pilot-write-11-verify": "node --experimental-strip-types scripts/books/verify-pilot-write-11.ts",
+    "books:pilot-write-12-verify": "node --experimental-strip-types scripts/books/verify-pilot-write-12.ts",
     "books:startup-preview-audit": "node --experimental-strip-types scripts/books/book-startup-preview-audit-1.ts",
     "books:build-previews": "node --experimental-strip-types scripts/books/build-book-previews.ts",
     "books:candidate-report": "node --experimental-strip-types scripts/books/generate-first-publication-candidate-report.ts",

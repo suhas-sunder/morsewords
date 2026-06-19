@@ -4,7 +4,7 @@ Focused audit for generated title identity, author metadata, first default conte
 
 ## Summary
 
-- Generated books audited: 174
+- Generated books audited: 252
 - Accepted books audited: 117
 - Books with Unknown author display: 1
 - Unknown author with clear source author: 0
@@ -49,6 +49,8 @@ Focused audit for generated title identity, author metadata, first default conte
 | a-midsummer-night-s-dream | yes | William Shakespeare | William Shakespeare | A Midsummer Night's Dream.txt | accepted remains valid | none |
 | a-princess-of-mars | no | Edgar Rice Burroughs | Unknown author | unresolved | not accepted | none |
 | a-room-with-a-view | yes | E. M. Forster | E. M. Forster | A Room with a View.txt | accepted remains valid | none |
+| a-story-of-the-stone-age | no | Herbert George Wells | Herbert George Wells | A Story of the Stone Age.txt | not accepted | none |
+| a-study-in-scarlet | no | Arthur Conan Doyle | Arthur Conan Doyle | A Study in Scarlet.txt | not accepted | none |
 | a-tale-of-two-cities | yes | Charles Dickens | Charles Dickens | A Tale of Two Cities.txt | accepted remains valid | none |
 | agamemnon-of-aeschylus | yes | Aeschylus | Aeschylus | Agamemnon of Aeschylus.txt | accepted remains valid | none |
 | alices-adventures-in-wonderland | yes | Lewis Carroll | Lewis Carroll | alices-adventures-in-wonderland.txt | accepted remains valid | none |
@@ -59,21 +61,30 @@ Focused audit for generated title identity, author metadata, first default conte
 | anne-of-green-gables | yes | L. M. Montgomery | L. M. Montgomery | Anne of Green Gables.txt | accepted remains valid | none |
 | anne-of-green-gables-gutenberg-45 | yes | L. M. Montgomery | L. M. Montgomery | Anne of Green Gables.txt | accepted remains valid | none |
 | around-the-world-in-eighty-days | yes | Jules Verne | Jules Verne | around-the-world-in-eighty-days.txt | accepted remains valid | none |
+| astounding-stories-of-super-science | no | Various | Various | Astounding Stories of Super-Science.txt | not accepted | none |
 | at-the-earth-s-core | no | Edgar Rice Burroughs | Edgar Rice Burroughs | At the Earth's Core.txt | not accepted | none |
+| at-the-mountains-of-madness | no | H. P. Lovecraft | H. P. Lovecraft | At the mountains of madness.txt | not accepted | none |
 | black-beauty | yes | Anna Sewell | Anna Sewell | black-beauty.txt | accepted remains valid | none |
 | botchan | yes | Soseki Natsume | Soseki Natsume | Botchan.txt | accepted remains valid | none |
 | can-you-forgive-her | no | Anthony Trollope | Anthony Trollope | Can You Forgive Her.txt | not accepted | none |
 | candide | yes | Voltaire | Voltaire | Candide.txt | accepted remains valid | none |
+| canossa | no | Saki | Saki | CANOSSA.txt | not accepted | none |
 | catriona | yes | Robert Louis Stevenson | Robert Louis Stevenson | Catriona.txt | accepted remains valid | none |
+| clever-hans | no | Jacob Grimm; Wilhelm Grimm | Jacob Grimm, Wilhelm Grimm | CLEVER HANS.txt | not accepted | none |
+| cool-air | no | H. P. Lovecraft | H. P. Lovecraft | Cool air.txt | not accepted | none |
 | cranford | yes | Elizabeth Cleghorn Gaskell | Elizabeth Cleghorn Gaskell | Cranford.txt | accepted remains valid | none |
 | crime-and-punishment | yes | Fyodor Dostoyevsky | Fyodor Dostoyevsky | Crime and Punishment.txt | accepted remains valid | none |
+| dagon | no | H. P. Lovecraft | Howard Phillips Lovecraft (1890-1937) | Dagon.txt | not accepted | none |
+| deep-sea-plunderings | no | Frank Thomas Bullen | Frank Thomas Bullen | Deep-Sea Plunderings.txt | not accepted | none |
 | despair-s-last-journey | no | David Christie Murray | David Christie Murray | Despair's Last Journey.txt | not accepted | none |
 | doctor-dolittle | no | Hugh Lofting | Unknown author | unresolved | not accepted | Preview does not clearly start from the first real default section. |
 | don-quixote | yes | Miguel de Cervantes Saavedra | Miguel de Cervantes Saavedra | Don Quixote.txt | accepted remains valid | none |
 | dr-jekyll-and-mr-hyde | no | Robert Louis Stevenson | Robert Louis Stevenson | Dr. Jekyll and Mr. Hyde.txt | not accepted | Preview does not clearly start from the first real default section. |
 | dracula | yes | Bram Stoker | Bram Stoker | Dracula.txt | accepted remains valid | none |
+| filmer | no | H. G. Wells | H. G. Wells | FILMER.txt | not accepted | none |
 | five-children-and-it | no | E. Nesbit | E. Nesbit | Five Children and It.txt | not accepted | none |
 | five-little-peppers-and-how-they-grew | yes | Margaret Sidney | Margaret Sidney | five-little-peppers-and-how-they-grew.txt | accepted remains valid | none |
+| five-little-peppers-at-school | no | Margaret Sidney | Margaret Sidney | Five Little Peppers at School.txt | not accepted | none |
 | five-weeks-in-a-balloon | yes | Jules Verne | Jules Verne | Five Weeks in a Balloon.txt | accepted remains valid | none |
 | flatland-a-romance-of-many-dimensions | no | Edwin Abbott Abbott | Edwin Abbott Abbott | Flatland - A Romance of Many Dimensions.txt | not accepted | none |
 | for-the-duration-of-the-war | yes | Saki | Saki | FOR THE DURATION OF THE WAR.txt | accepted remains valid | none |
@@ -89,67 +100,106 @@ Focused audit for generated title identity, author metadata, first default conte
 | jabberwocky | no | Lewis Carroll | Unknown author | unresolved | not accepted | Preview does not clearly start from the first real default section. |
 | jack-and-jill | yes | Louisa May Alcott | Louisa May Alcott | jack-and-jill.txt | accepted remains valid | none |
 | jane-eyre | yes | Charlotte Brontë | Charlotte Brontë | Jane Eyre.txt | accepted remains valid | none |
+| jorinda-and-jorindel | no | Jacob Grimm; Wilhelm Grimm | Jacob Grimm, Wilhelm Grimm | JORINDA AND JORINDEL.txt | not accepted | none |
+| kidnapped | no | Robert Louis Stevenson | Robert Louis Stevenson | Kidnapped.txt | not accepted | none |
 | king-arthur-and-the-knights-of-the-round-table | no | Sir Thomas Malory | Sir Thomas Malory | King Arthur and the Knights of the Round Table.txt | not accepted | none |
 | les-miserables | yes | Victor Hugo | Victor Hugo | Les Misérables.txt | accepted remains valid | none |
 | little-fuzzy | yes | H. Beam Piper | H. Beam Piper | Little Fuzzy.txt | accepted remains valid | none |
+| little-ida-s-flowers | no | H. C. Andersen | H. C. Andersen | LITTLE IDA'S FLOWERS.txt | not accepted | none |
 | little-women | yes | Louisa May Alcott | Louisa May Alcott | Little Women.txt | accepted remains valid | none |
 | lord-jim | no | Joseph Conrad | Joseph Conrad | Lord Jim.txt | not accepted | none |
 | love-among-the-chickens | no | P. G. Wodehouse | P. G. Wodehouse | Love Among the Chickens.txt | not accepted | none |
 | macbeth | yes | William Shakespeare | William Shakespeare | Macbeth.txt | accepted remains valid | none |
+| mark | no | Saki | Saki | MARK.txt | not accepted | none |
 | metamorphosis | no | Franz Kafka | Franz Kafka | Metamorphosis.txt | not accepted | none |
 | moby-dick | yes | Herman Melville | Herman Melville | Moby Dick.txt | accepted remains valid | none |
+| mother-holle | no | Jacob Grimm; Wilhelm Grimm | Jacob Grimm, Wilhelm Grimm | MOTHER HOLLE.txt | not accepted | none |
+| murder-in-the-maze | no | J. J. Connington | J. J. Connington | Murder in the Maze.txt | not accepted | none |
 | new-treasure-seekers | yes | E. Nesbit | E. Nesbit | new-treasure-seekers.txt | accepted remains valid | none |
 | nights-with-uncle-remus | no | Joel Chandler Harris | Unknown author | unresolved | not accepted | Preview does not clearly start from the first real default section. |
+| ole-luk-oie-the-dream-god | no | H. C. Andersen | H. C. Andersen | OLE-LUK-OIE THE DREAM GOD.txt | not accepted | none |
+| oliver-twist | no | Charles Dickens | Charles Dickens | Oliver Twist.txt | not accepted | none |
 | parnassus-on-wheels | no | Christopher Morley | Christopher Morley | Parnassus on Wheels.txt | not accepted | none |
 | persuasion | yes | Jane Austen | Jane Austen | Persuasion.txt | accepted remains valid | none |
 | peter-pan | no | J. M. Barrie | Unknown author | unresolved | not accepted | none |
+| pickman-s-model | no | H. P. Lovecraft | H. P. Lovecraft (1890-1937) | Pickman's Model.txt | not accepted | none |
 | pointed-roofs | yes | Dorothy M. Richardson | Dorothy M. Richardson | Pointed Roofs.txt | accepted remains valid | none |
 | pollyanna | no | Eleanor H. Porter | Eleanor H. Porter | Pollyanna.txt | not accepted | none |
 | pride-and-prejudice | yes | Jane Austen | Jane Austen | Pride and Prejudice.txt | accepted remains valid | none |
 | pygmalion | yes | Bernard Shaw | Bernard Shaw | Pygmalion.txt | accepted remains valid | none |
+| quail-seed | no | Saki | Saki | QUAIL SEED.txt | not accepted | none |
+| quo-vadis | no | Henryk Sienkiewicz | Henryk Sienkiewicz | Quo Vadis.txt | not accepted | none |
 | rainbow-valley | yes | L. M. Montgomery | L. M. Montgomery | rainbow-valley.txt | accepted remains valid | none |
+| rapunzel | no | Jacob Grimm; Wilhelm Grimm | Jacob Grimm, Wilhelm Grimm | RAPUNZEL.txt | not accepted | none |
 | rinkitink-in-oz | yes | L. Frank Baum | L. Frank Baum | rinkitink-in-oz.txt | accepted remains valid | none |
 | robert-orange | no | John Oliver Hobbes | John Oliver Hobbes | Robert Orange.txt | not accepted | none |
 | romeo-and-juliet | yes | William Shakespeare | William Shakespeare | Romeo and Juliet.txt | accepted remains valid | none |
 | room-13 | yes | Edgar Wallace | Edgar Wallace | Room 13.txt | accepted remains valid | none |
 | sense-and-sensibility | yes | Jane Austen | Jane Austen | Sense and Sensibility.txt | accepted remains valid | none |
 | shen-of-the-sea-a-book-for-children | no | Arthur Bowie Chrisman | Arthur Bowie Chrisman | Shen of the Sea - A Book for Children.txt | not accepted | none |
+| shock-tactics | no | Saki | Saki | SHOCK TACTICS.txt | not accepted | none |
 | six-girls-a-home-story | no | Fannie Belle Irving | Fannie Belle Irving | Six Girls - A Home Story.txt | not accepted | none |
 | spoon-river-anthology | yes | Edgar Lee Masters | Edgar Lee Masters | Spoon River Anthology.txt | accepted remains valid | none |
 | sun-tzu-on-the-art-of-war | yes | active 6th century B.C. Sunzi | active 6th century B.C. Sunzi | Sun Tzŭ on the Art of War.txt | accepted remains valid | none |
 | tales-of-war | yes | Lord Dunsany | Lord Dunsany | Tales of War.txt | accepted remains valid | none |
 | tarzan-of-the-apes | no | Edgar Rice Burroughs | Unknown author | unresolved | not accepted | none |
+| the-adventures-of-chanticleer-and-partlet | no | Jacob Grimm; Wilhelm Grimm | Jacob Grimm, Wilhelm Grimm | THE ADVENTURES OF CHANTICLEER AND PARTLET.txt | not accepted | none |
 | the-adventures-of-ferdinand-count-fathom | yes | T. Smollett | T. Smollett | The Adventures of Ferdinand Count Fathom.txt | accepted remains valid | none |
+| the-adventures-of-kintaro-the-golden-boy | no | Yei Theodora Ozaki | Yei Theodora Ozaki | THE ADVENTURES OF KINTARO, THE GOLDEN BOY.txt | not accepted | none |
 | the-adventures-of-pinocchio | no | Carlo Collodi | Carlo Collodi | The Adventures of Pinocchio.txt | not accepted | none |
 | the-adventures-of-roderick-random | yes | T. Smollett | T. Smollett | The Adventures of Roderick Random.txt | accepted remains valid | none |
 | the-adventures-of-tom-sawyer | yes | Mark Twain | Mark Twain | The Adventures of Tom Sawyer.txt | accepted remains valid | none |
+| the-amateur-cracksman | no | E. W. Hornung | E. W. Hornung | The Amateur Cracksman.txt | not accepted | none |
 | the-arabian-nights | yes | Unknown author | Unknown author | the-arabian-nights.txt | accepted remains valid | Raw source has editor metadata but no source-identified author; this needs manual metadata policy before replacing author with editor. |
 | the-art-of-war | yes | active 6th century B.C. Sunzi | active 6th century B.C. Sunzi | The Art of War.txt | accepted remains valid | none |
+| the-bamboo-cutter-and-the-moon-child | no | Yei Theodora Ozaki | Yei Theodora Ozaki | THE BAMBOO-CUTTER AND THE MOON-CHILD.txt | not accepted | none |
 | the-bell | yes | H. C. Andersen | H. C. Andersen | The Bell.txt | accepted remains valid | none |
+| the-benson-murder-case | no | S. S. Van Dine | S. S. Van Dine | The Benson Murder Case.txt | not accepted | none |
+| the-black-star-passes | no | John W. Campbell, Jr. | Jr. John W. Campbell | The Black Star Passes.txt | not accepted | none |
+| the-blue-castle | no | L. M. Montgomery | L. M. Montgomery | The Blue Castle.txt | not accepted | none |
 | the-book-of-dragons | yes | E. Nesbit | E. Nesbit | the-book-of-dragons.txt | accepted remains valid | none |
+| the-brothers-karamazov | no | Fyodor Dostoyevsky | Fyodor Dostoyevsky | The Brothers Karamazov.txt | not accepted | none |
+| the-buccaneer | no | Mrs. S. C. Hall | Mrs. S. C. Hall | The Buccaneer.txt | not accepted | none |
 | the-call-of-cthulhu | yes | H. P. Lovecraft | H. P. Lovecraft | The call of Cthulhu.txt | accepted remains valid | none |
 | the-call-of-the-wild | yes | Jack London | Jack London | The call of the wild.txt | accepted remains valid | none |
+| the-cats-of-ulthar | no | H. P. Lovecraft | Howard Phillips Lovecraft (1890-1937) | The Cats of Ulthar.txt | not accepted | none |
+| the-conceited-apple-branch | no | H. C. Andersen | H. C. Andersen | THE CONCEITED APPLE BRANCH.txt | not accepted | none |
 | the-count-of-monte-cristo | yes | Alexandre Dumas Auguste Maquet | Alexandre Dumas, Auguste Maquet | The Count of Monte Cristo.txt | accepted remains valid | none |
 | the-count-of-monte-cristo-gutenberg-1184 | yes | Alexandre Dumas, Auguste Maquet | Alexandre Dumas, Auguste Maquet | The Count of Monte Cristo.txt | accepted remains valid | none |
+| the-darning-needle | no | H. C. Andersen | H. C. Andersen | THE DARNING-NEEDLE.txt | not accepted | none |
 | the-divine-comedy | yes | Dante Alighieri | Dante Alighieri | The Divine Comedy.txt | accepted remains valid | none |
 | the-door-in-the-wall | yes | H. G. Wells | H. G. Wells | THE DOOR IN THE WALL.txt | accepted remains valid | none |
+| the-dream-of-little-tuk | no | H. C. Andersen | H. C. Andersen | The Dream of Little Tuk.txt | not accepted | none |
 | the-dunwich-horror | no | H. P. Lovecraft | H. P. Lovecraft | The Dunwich horror.txt | not accepted | none |
 | the-elderbush | yes | H. C. Andersen | H. C. Andersen | The Elderbush.txt | accepted remains valid | none |
 | the-elements-of-style | yes | William Strunk | William Strunk | The Elements of Style.txt | accepted remains valid | none |
 | the-emerald-city-of-oz | yes | L. Frank Baum | L. Frank Baum | the-emerald-city-of-oz.txt | accepted remains valid | none |
 | the-emperor-s-new-clothes | yes | H. C. Andersen | H. C. Andersen | THE EMPEROR'S NEW CLOTHES.txt | accepted remains valid | none |
 | the-expedition-of-humphry-clinker | yes | T. Smollett | T. Smollett | The Expedition of Humphry Clinker.txt | accepted remains valid | none |
+| the-false-collar | no | H. C. Andersen | H. C. Andersen | The False Collar.txt | not accepted | none |
 | the-federalist-papers | yes | Alexander Hamilton John Jay James Madison | Alexander Hamilton, John Jay, James Madison | The Federalist Papers.txt | accepted remains valid | none |
+| the-festival | no | H. P. Lovecraft | H. P. Lovecraft | The festival.txt | not accepted | none |
 | the-fir-tree | yes | H. C. Andersen | H. C. Andersen | The Fir Tree.txt | accepted remains valid | none |
+| the-fisherman-and-his-wife | no | Jacob Grimm; Wilhelm Grimm | Jacob Grimm, Wilhelm Grimm | THE FISHERMAN AND HIS WIFE.txt | not accepted | none |
+| the-goblin-of-adachigahara | no | Yei Theodora Ozaki | Yei Theodora Ozaki | THE GOBLIN OF ADACHIGAHARA.txt | not accepted | none |
 | the-great-gatsby | no | F. Scott Fitzgerald | Unknown author | unresolved | not accepted | Preview does not clearly start from the first real default section. |
 | the-green-mummy | no | Fergus Hume | Fergus Hume | The Green Mummy.txt | not accepted | none |
+| the-greenies | no | H. C. Andersen | H. C. Andersen | THE GREENIES.txt | not accepted | none |
 | the-happy-family | yes | H. C. Andersen | H. C. Andersen | The Happy Family.txt | accepted remains valid | none |
+| the-happy-hunter-and-the-skillful-fisher | no | Yei Theodora Ozaki | Yei Theodora Ozaki | THE HAPPY HUNTER AND THE SKILLFUL FISHER.txt | not accepted | none |
+| the-haunter-of-the-dark | no | H. P. Lovecraft | H. P. Lovecraft | The haunter of the dark.txt | not accepted | none |
+| the-history-of-sir-richard-calmady-a-romance | no | Lucas Malet | Lucas Malet | The History of Sir Richard Calmady - A Romance.txt | not accepted | none |
 | the-hound | no | H. P. Lovecraft | H. P. Lovecraft | The Hound.txt | not accepted | none |
 | the-hound-of-the-baskervilles | yes | Arthur Conan Doyle | Arthur Conan Doyle | The Hound of the Baskervilles.txt | accepted remains valid | none |
+| the-house-of-arden-a-story-for-children | no | E. Nesbit | E. Nesbit | The House of Arden - A Story for Children.txt | not accepted | none |
 | the-house-without-a-key | yes | Earl Derr Biggers | Earl Derr Biggers | The house without a key.txt | accepted remains valid | none |
 | the-importance-of-being-earnest-a-trivial-comedy-for-serious-people | yes | Oscar Wilde | Oscar Wilde | The Importance of Being Earnest - A Trivial Comedy for Serious People.txt | accepted remains valid | none |
+| the-innocence-of-father-brown | no | G. K. Chesterton | G. K. Chesterton | The innocence of Father Brown.txt | not accepted | none |
+| the-inspector-french-s-greatest-case | no | Freeman Wills Crofts | Freeman Wills Crofts | The Inspector French’s Greatest Case.txt | not accepted | none |
 | the-invisible-man-a-grotesque-romance | no | H. G. Wells | H. G. Wells | The Invisible Man - A Grotesque Romance.txt | not accepted | none |
+| the-jelly-fish-and-the-monkey | no | Yei Theodora Ozaki | Yei Theodora Ozaki | THE JELLY FISH AND THE MONKEY.txt | not accepted | none |
 | the-jungle-book | yes | Rudyard Kipling | Rudyard Kipling | The Jungle Book.txt | accepted remains valid | none |
+| the-juniper-tree | no | Jacob Grimm; Wilhelm Grimm | Jacob Grimm, Wilhelm Grimm | THE JUNIPER-TREE.txt | not accepted | none |
 | the-king-in-yellow | yes | Robert W. Chambers | Robert W. Chambers | The King in Yellow.txt | accepted remains valid | none |
 | the-lady-of-the-lake | no | Walter Scott | Walter Scott | The Lady of the Lake.txt | not accepted | none |
 | the-laughing-cavalier-the-story-of-the-ancestor-of-the-scarlet-pimpernel | no | Baroness Orczy | Baroness Emmuska Orczy Orczy | The Laughing Cavalier - The Story of the Ancestor of the Scarlet Pimpernel.txt | not accepted | none |
@@ -158,47 +208,73 @@ Focused audit for generated title identity, author metadata, first default conte
 | the-lerouge-case | yes | Emile Gaboriau | Emile Gaboriau | The Lerouge Case.txt | accepted remains valid | none |
 | the-life-and-adventures-of-robinson-crusoe | yes | Daniel Defoe | Daniel Defoe | The Life and Adventures of Robinson Crusoe.txt | accepted remains valid | none |
 | the-lost-world | yes | Arthur Conan Doyle | Arthur Conan Doyle | The Lost World.txt | accepted remains valid | none |
+| the-loving-pair | no | H. C. Andersen | H. C. Andersen | THE LOVING PAIR.txt | not accepted | none |
 | the-lurking-fear | no | H. P. Lovecraft | H. P. Lovecraft | The lurking fear.txt | not accepted | none |
+| the-magic-shop | no | H. G. Wells | H. G. Wells | THE MAGIC SHOP.txt | not accepted | none |
 | the-maltese-falcon | yes | Dashiell Hammett | Dashiell Hammett | The Maltese falcon.txt | accepted remains valid | none |
+| the-man-who-could-work-miracles | no | Herbert George Wells | Herbert George Wells | The Man Who Could Work Miracles.txt | not accepted | none |
 | the-man-who-was-thursday-a-nightmare | yes | G. K. Chesterton | G. K. Chesterton | The Man Who Was Thursday - A Nightmare.txt | accepted remains valid | none |
 | the-mark-of-zorro | no | Johnston McCulley | Johnston McCulley | The mark of Zorro.txt | not accepted | none |
 | the-masque-of-the-red-death | no | Edgar Allan Poe | Edgar Allan Poe | The Masque of the Red Death.txt | not accepted | none |
 | the-money-box | yes | H. C. Andersen | H. C. Andersen | THE MONEY BOX.txt | accepted remains valid | none |
 | the-monkey-s-paw | no | W. W. Jacobs | W. W. Jacobs | The Monkey's Paw.txt | not accepted | none |
 | the-mystery-of-edwin-drood | yes | Charles Dickens | Charles Dickens | The Mystery of Edwin Drood.txt | accepted remains valid | none |
+| the-nameless-city | no | H. P. Lovecraft | Howard Phillips Lovecraft (1890-1937) | The Nameless City.txt | not accepted | none |
+| the-naughty-boy | no | H. C. Andersen | H. C. Andersen | The Naughty Boy.txt | not accepted | none |
 | the-octopus-a-story-of-california | yes | Frank Norris | Frank Norris | The Octopus - A Story of California.txt | accepted remains valid | none |
 | the-old-house | yes | H. C. Andersen | H. C. Andersen | The Old House.txt | accepted remains valid | none |
 | the-other-gods | no | H. P. Lovecraft | H. P. Lovecraft | The Other Gods.txt | not accepted | none |
+| the-oversight | no | Saki | Saki | THE OVERSIGHT.txt | not accepted | none |
+| the-penance | no | Saki | Saki | THE PENANCE.txt | not accepted | none |
 | the-picture-of-dorian-gray | no | Oscar Wilde | Unknown author | unresolved | not accepted | none |
 | the-prince-and-the-pauper | yes | Mark Twain | Mark Twain | The Prince and the Pauper.txt | accepted remains valid | none |
 | the-princess-and-the-goblin | yes | George MacDonald | George MacDonald | the-princess-and-the-goblin.txt | accepted remains valid | none |
 | the-railway-children | yes | E. Nesbit | E. Nesbit | the-railway-children.txt | accepted remains valid | none |
 | the-real-princess | yes | H. C. Andersen | H. C. Andersen | The Real Princess.txt | accepted remains valid | none |
 | the-red-room | no | H. G. Wells | H. G. Wells | The Red Room.txt | not accepted | none |
+| the-red-shoes | no | H. C. Andersen | H. C. Andersen | The Red Shoes.txt | not accepted | none |
 | the-red-thumb-mark | yes | R. Austin Freeman | R. Austin Freeman | The Red Thumb Mark.txt | accepted remains valid | none |
 | the-regent-s-daughter | no | Alexandre Dumas | Alexandre Dumas, Auguste Maquet | The regent's daughter.txt | not accepted | none |
+| the-remarkable-case-of-davidson-s-eyes | no | H. G. Wells | H. G. Wells | THE REMARKABLE CASE OF DAVIDSON'S EYES.txt | not accepted | none |
+| the-roses-and-the-sparrows | no | H. C. Andersen | H. C. Andersen | THE ROSES AND THE SPARROWS.txt | not accepted | none |
 | the-scarlet-letter | no | Nathaniel Hawthorne | Nathaniel Hawthorne | The Scarlet Letter.txt | not accepted | none |
 | the-sea-lady | no | Herbert George Wells | Herbert George Wells | The Sea Lady.txt | not accepted | none |
 | the-sea-wolf | yes | Jack London | Jack London | the sea-wolf.txt | accepted remains valid | none |
 | the-secret-garden | yes | Frances Hodgson Burnett | Frances Hodgson Burnett | The Secret Garden.txt | accepted remains valid | none |
 | the-secret-garden-gutenberg-113 | yes | Frances Hodgson Burnett | Frances Hodgson Burnett | The Secret Garden.txt | accepted remains valid | none |
+| the-seven-ravens | no | Jacob Grimm; Wilhelm Grimm | Jacob Grimm, Wilhelm Grimm | THE SEVEN RAVENS.txt | not accepted | none |
+| the-shadow | no | H. C. Andersen | H. C. Andersen | The Shadow.txt | not accepted | none |
+| the-shadow-over-innsmouth | no | H. P. Lovecraft | H. P. Lovecraft | The shadow over Innsmouth.txt | not accepted | none |
 | the-shoes-of-fortune | yes | H. C. Andersen | H. C. Andersen | The Shoes of Fortune.txt | accepted remains valid | none |
 | the-shunned-house | yes | H. P. Lovecraft | H. P. Lovecraft | The Shunned House.txt | accepted remains valid | none |
 | the-silver-key | no | H. P. Lovecraft | H. P. Lovecraft | The silver key.txt | not accepted | none |
 | the-snow-queen | yes | H. C. Andersen | H. C. Andersen | THE SNOW QUEEN.txt | accepted remains valid | none |
 | the-statement-of-randolph-carter | no | H. P. Lovecraft | H. P. Lovecraft | The Statement of Randolph Carter.txt | not accepted | none |
+| the-steadfast-tin-soldier | no | H. C. Andersen | H. C. Andersen | THE STEADFAST TIN SOLDIER.txt | not accepted | none |
+| the-story-of-a-mother | no | H. C. Andersen | H. C. Andersen | The Story of a Mother.txt | not accepted | none |
 | the-story-of-the-inexperienced-ghost | yes | H. G. Wells | H. G. Wells | THE STORY OF THE INEXPERIENCED GHOST.txt | accepted remains valid | none |
+| the-story-of-the-man-who-did-not-wish-to-die | no | Yei Theodora Ozaki | Yei Theodora Ozaki | THE STORY OF THE MAN WHO DID NOT WISH TO DIE.txt | not accepted | none |
+| the-story-of-the-old-man-who-made-withered-trees-to-flower | no | Yei Theodora Ozaki | Yei Theodora Ozaki | THE STORY OF THE OLD MAN WHO MADE WITHERED TREES TO FLOWER.txt | not accepted | none |
+| the-story-of-urashima-taro-the-fisher-lad | no | Yei Theodora Ozaki | Yei Theodora Ozaki | THE STORY OF URASHIMA TARO, THE FISHER LAD.txt | not accepted | none |
 | the-swineherd | yes | H. C. Andersen | H. C. Andersen | The Swineherd.txt | accepted remains valid | none |
 | the-tempest | yes | William Shakespeare | William Shakespeare | The Tempest.txt | accepted remains valid | none |
+| the-thing-on-the-door-step | no | H. P. Lovecraft | H. P. Lovecraft | The thing on the door-step.txt | not accepted | none |
 | the-thirty-nine-steps | no | John Buchan | Unknown author | unresolved | not accepted | none |
 | the-three-musketeers | yes | Alexandre Dumas Auguste Maquet | Alexandre Dumas, Auguste Maquet | the-three-musketeers.txt | accepted remains valid | none |
+| the-three-taps-a-detective-story-without-a-moral | no | Ronald Arbuthnott Knox | Ronald Arbuthnott Knox | The three taps - A detective story without a moral.txt | not accepted | none |
+| the-time-machine | no | H. G. Wells | H. G. Wells | The Time Machine.txt | not accepted | none |
+| the-tongue-cut-sparrow | no | Yei Theodora Ozaki | Yei Theodora Ozaki | THE TONGUE-CUT SPARROW.txt | not accepted | none |
 | the-tower-treasure | no | Franklin W. Dixon | Franklin W. Dixon | The tower treasure.txt | not accepted | none |
+| the-truth-about-pyecraft | no | H. G. Wells | H. G. Wells | THE TRUTH ABOUT PYECRAFT.txt | not accepted | none |
+| the-turmoil | no | Booth Tarkington | Booth Tarkington | The Turmoil.txt | not accepted | none |
 | the-turn-of-the-screw | yes | Henry James | Henry James | The Turn of the Screw.txt | accepted remains valid | none |
+| the-ugly-duckling | no | H. C. Andersen | H. C. Andersen | THE UGLY DUCKLING.txt | not accepted | none |
 | the-virginian-a-horseman-of-the-plains | no | Owen Wister | Owen Wister | The Virginian - A Horseman of the Plains.txt | not accepted | none |
 | the-wailing-octopus-a-rick-brant-science-adventure-story | no | Harold L. Goodwin | Harold L. Goodwin | The Wailing Octopus - A Rick Brant Science-Adventure Story.txt | not accepted | none |
 | the-war-of-the-worlds | yes | H. G. Wells | H. G. Wells | The War of the Worlds.txt | accepted remains valid | none |
 | the-warden | no | Anthony Trollope | Anthony Trollope | The Warden.txt | not accepted | none |
 | the-water-babies | yes | Charles Kingsley | Charles Kingsley | the-water-babies.txt | accepted remains valid | none |
+| the-wedding-of-mrs-fox | no | Jacob Grimm; Wilhelm Grimm | Jacob Grimm, Wilhelm Grimm | THE WEDDING OF MRS FOX.txt | not accepted | none |
 | the-wendigo | yes | Algernon Blackwood | Algernon Blackwood | The Wendigo.txt | accepted remains valid | none |
 | the-winning-of-olwen | yes | Andrew Lang | Andrew Lang | The Winning of Olwen.txt | accepted remains valid | none |
 | the-wonderful-wizard-of-oz | yes | L. Frank Baum | L. Frank Baum | the-wonderful-wizard-of-oz.txt | accepted remains valid | none |
@@ -206,7 +282,9 @@ Focused audit for generated title identity, author metadata, first default conte
 | treasure-island | yes | Robert Louis Stevenson | Robert Louis Stevenson | treasure-island.txt | accepted remains valid | none |
 | triplanetary | yes | E. E. Smith | E. E. Smith | Triplanetary.txt | accepted remains valid | none |
 | twenty-thousand-leagues-under-the-sea | yes | Jules Verne | Jules Verne | Twenty Thousand Leagues under the Sea.txt | accepted remains valid | none |
+| two-in-a-sack | no | Andrew Lang | Andrew Lang | TWO IN A SACK.txt | not accepted | none |
 | typhoon | no | Joseph Conrad | Joseph Conrad | Typhoon.txt | not accepted | none |
+| under-the-red-dragon | no | James Grant | James Grant | Under the Red Dragon.txt | not accepted | none |
 | unicorns | no | James Huneker | James Huneker | Unicorns.txt | not accepted | none |
 | violet-fairy-book | yes | Andrew Lang | Andrew Lang | Violet Fairy Book.txt | accepted remains valid | none |
 | wind-in-the-willows | yes | Kenneth Grahame | Kenneth Grahame | The Wind in the Willows.txt | accepted remains valid | none |

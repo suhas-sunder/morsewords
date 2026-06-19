@@ -4,7 +4,7 @@ Focused false-positive audit for generated book title identity, first default co
 
 ## Summary
 
-- Generated books audited: 174
+- Generated books audited: 252
 - Accepted/generated books audited: 117
 - Corrections applied: 12
 - Accepted books corrected: 12
@@ -195,6 +195,8 @@ Focused false-positive audit for generated book title identity, first default co
 | a-midsummer-night-s-dream | yes | A Midsummer Night's Dream | A Midsummer Night's Dream | A Midsummer Night's Dream.txt | still acceptable | still acceptable |
 | a-princess-of-mars | no | A princess of Mars | A Princess of Mars | unresolved | still acceptable | not previously accepted |
 | a-room-with-a-view | yes | A Room with a View | A Room with a View | A Room with a View.txt | still acceptable | still acceptable |
+| a-story-of-the-stone-age | no | A Story of the Stone Age | A Story of the Stone Age | A Story of the Stone Age.txt | still acceptable | not previously accepted |
+| a-study-in-scarlet | no | A Study in Scarlet | A Study in Scarlet | A Study in Scarlet.txt | still acceptable | not previously accepted |
 | a-tale-of-two-cities | yes | A Tale of Two Cities | A Tale of Two Cities | A Tale of Two Cities.txt | still acceptable | still acceptable |
 | agamemnon-of-aeschylus | yes | The Agamemnon of Aeschylus | Agamemnon of Aeschylus | Agamemnon of Aeschylus.txt | still acceptable | still acceptable |
 | alices-adventures-in-wonderland | yes | Alice's Adventures in Wonderland | Alices Adventures in Wonderland | alices-adventures-in-wonderland.txt | still acceptable | still acceptable |
@@ -205,21 +207,30 @@ Focused false-positive audit for generated book title identity, first default co
 | anne-of-green-gables | yes | Anne of Green Gables | Anne of Green Gables | Anne of Green Gables.txt | still acceptable | still acceptable |
 | anne-of-green-gables-gutenberg-45 | yes | Anne of Green Gables | Anne of Green Gables 45 | unresolved | still acceptable | still acceptable |
 | around-the-world-in-eighty-days | yes | Around the World in Eighty Days | Around the World in Eighty Days | around-the-world-in-eighty-days.txt | still acceptable | still acceptable |
+| astounding-stories-of-super-science | no | Astounding Stories of Super-Science, October, 1930 | Astounding Stories of Super Science | Astounding Stories of Super-Science.txt | still acceptable | not previously accepted |
 | at-the-earth-s-core | no | At the Earth's Core | At the Earth s Core | At the Earth's Core.txt | still acceptable | not previously accepted |
+| at-the-mountains-of-madness | no | At the Mountains of Madness | At the Mountains of Madness | At the mountains of madness.txt | still acceptable | not previously accepted |
 | black-beauty | yes | Black Beauty The autobiography of a horse | Black Beauty | black-beauty.txt | still acceptable | still acceptable |
 | botchan | yes | Botchan (Master Darling) | Botchan | Botchan.txt | still acceptable | still acceptable |
 | can-you-forgive-her | no | Can You Forgive Her? | Can You Forgive Her | Can You Forgive Her.txt | still acceptable | not previously accepted |
 | candide | yes | Candide | Candide | Candide.txt | still acceptable | still acceptable |
+| canossa | no | Canossa | Canossa | CANOSSA.txt | still acceptable | not previously accepted |
 | catriona | yes | Catriona | Catriona | Catriona.txt | still acceptable | still acceptable |
+| clever-hans | no | Clever Hans | Clever Hans | CLEVER HANS.txt | still acceptable | not previously accepted |
+| cool-air | no | Cool Air | Cool Air | Cool air.txt | still acceptable | not previously accepted |
 | cranford | yes | Cranford | Cranford | Cranford.txt | still acceptable | still acceptable |
 | crime-and-punishment | yes | Crime and Punishment | Crime and Punishment | Crime and Punishment.txt | still acceptable | still acceptable |
+| dagon | no | Dagon | Dagon | Dagon.txt | still acceptable | not previously accepted |
+| deep-sea-plunderings | no | Deep-Sea Plunderings | Deep Sea Plunderings | Deep-Sea Plunderings.txt | still acceptable | not previously accepted |
 | despair-s-last-journey | no | Despair's Last Journey | Despair s Last Journey | Despair's Last Journey.txt | still acceptable | not previously accepted |
 | doctor-dolittle | no | The Story of Doctor Dolittle | Doctor Dolittle | unresolved | needs generated start/default correction | not previously accepted |
 | don-quixote | yes | Don Quixote | Don Quixote | Don Quixote.txt | still acceptable | still acceptable |
 | dr-jekyll-and-mr-hyde | no | The strange case of Dr. Jekyll and Mr. Hyde | Dr Jekyll and Mr Hyde | Dr. Jekyll and Mr. Hyde.txt | needs generated start/default correction | not previously accepted |
 | dracula | yes | Dracula | Dracula | Dracula.txt | still acceptable | still acceptable |
+| filmer | no | Filmer | Filmer | FILMER.txt | still acceptable | not previously accepted |
 | five-children-and-it | no | Five Children and It | Five Children and It | Five Children and It.txt | still acceptable | not previously accepted |
 | five-little-peppers-and-how-they-grew | yes | Five Little Peppers and How They Grew | Five Little Peppers and How They Grew | five-little-peppers-and-how-they-grew.txt | still acceptable | still acceptable |
+| five-little-peppers-at-school | no | Five Little Peppers at School | Five Little Peppers At School | Five Little Peppers at School.txt | still acceptable | not previously accepted |
 | five-weeks-in-a-balloon | yes | Five Weeks in a Balloon | Five Weeks in a Balloon | Five Weeks in a Balloon.txt | still acceptable | still acceptable |
 | flatland-a-romance-of-many-dimensions | no | Flatland: A Romance of Many Dimensions | Flatland a Romance of Many Dimensions | Flatland - A Romance of Many Dimensions.txt | still acceptable | not previously accepted |
 | for-the-duration-of-the-war | yes | The Toys of Peace, and Other Papers | For the Duration of the War | FOR THE DURATION OF THE WAR.txt | still acceptable | still acceptable |
@@ -235,67 +246,106 @@ Focused false-positive audit for generated book title identity, first default co
 | jabberwocky | no | Jabberwocky | Jabberwocky | unresolved | needs generated start/default correction | not previously accepted |
 | jack-and-jill | yes | Jack and Jill | Jack and Jill | jack-and-jill.txt | still acceptable | still acceptable |
 | jane-eyre | yes | Jane Eyre: An Autobiography | Jane Eyre | Jane Eyre.txt | still acceptable | still acceptable |
+| jorinda-and-jorindel | no | Jorinda and Jorindel | Jorinda and Jorindel | JORINDA AND JORINDEL.txt | still acceptable | not previously accepted |
+| kidnapped | no | Kidnapped | Kidnapped | Kidnapped.txt | still acceptable | not previously accepted |
 | king-arthur-and-the-knights-of-the-round-table | no | King Arthur and the Knights of the Round Table | King Arthur and the Knights of the Round Table | King Arthur and the Knights of the Round Table.txt | still acceptable | not previously accepted |
 | les-miserables | yes | Les Misérables | Les Miserables | Les Misérables.txt | still acceptable | still acceptable |
 | little-fuzzy | yes | Little Fuzzy | Little Fuzzy | Little Fuzzy.txt | still acceptable | still acceptable |
+| little-ida-s-flowers | no | Little Ida's Flowers | Little Ida s Flowers | LITTLE IDA'S FLOWERS.txt | still acceptable | not previously accepted |
 | little-women | yes | Little Women; Or, Meg, Jo, Beth, and Amy | Little Women | Little Women.txt | still acceptable | still acceptable |
 | lord-jim | no | Lord Jim | Lord Jim | Lord Jim.txt | still acceptable | not previously accepted |
 | love-among-the-chickens | no | Love Among the Chickens | Love Among the Chickens | Love Among the Chickens.txt | still acceptable | not previously accepted |
 | macbeth | yes | Macbeth | Macbeth | Macbeth.txt | still acceptable | still acceptable |
+| mark | no | Mark | Mark | MARK.txt | still acceptable | not previously accepted |
 | metamorphosis | no | Metamorphosis | Metamorphosis | Metamorphosis.txt | still acceptable | not previously accepted |
 | moby-dick | yes | Moby-Dick; or, The Whale | Moby Dick | Moby Dick.txt | still acceptable | still acceptable |
+| mother-holle | no | Mother Holle | Mother Holle | MOTHER HOLLE.txt | still acceptable | not previously accepted |
+| murder-in-the-maze | no | Murder in the Maze | Murder in the Maze | Murder in the Maze.txt | still acceptable | not previously accepted |
 | new-treasure-seekers | yes | New Treasure Seekers; Or, The Bastable Children in Search of a Fortune | New Treasure Seekers | new-treasure-seekers.txt | still acceptable | still acceptable |
 | nights-with-uncle-remus | no | Nights With Uncle Remus | Nights with Uncle Remus | unresolved | needs generated start/default correction | not previously accepted |
+| ole-luk-oie-the-dream-god | no | Ole-Luk-Oie, the Dream-God | Ole Luk Oie the Dream God | OLE-LUK-OIE THE DREAM GOD.txt | still acceptable | not previously accepted |
+| oliver-twist | no | Oliver Twist | Oliver Twist | Oliver Twist.txt | still acceptable | not previously accepted |
 | parnassus-on-wheels | no | Parnassus on Wheels | Parnassus On Wheels | Parnassus on Wheels.txt | still acceptable | not previously accepted |
 | persuasion | yes | Persuasion | Persuasion | Persuasion.txt | still acceptable | still acceptable |
 | peter-pan | no | Peter Pan [Peter and Wendy] | Peter Pan | unresolved | still acceptable | not previously accepted |
+| pickman-s-model | no | Pickman's Model | Pickman s Model | Pickman's Model.txt | still acceptable | not previously accepted |
 | pointed-roofs | yes | Pointed Roofs | Pointed Roofs | Pointed Roofs.txt | still acceptable | still acceptable |
 | pollyanna | no | Pollyanna | Pollyanna | Pollyanna.txt | still acceptable | not previously accepted |
 | pride-and-prejudice | yes | Pride and Prejudice | Pride and Prejudice | Pride and Prejudice.txt | still acceptable | still acceptable |
 | pygmalion | yes | Pygmalion | Pygmalion | Pygmalion.txt | still acceptable | still acceptable |
+| quail-seed | no | Quail Seed | Quail Seed | QUAIL SEED.txt | still acceptable | not previously accepted |
+| quo-vadis | no | Quo Vadis: A Narrative of the Time of Nero | Quo Vadis | Quo Vadis.txt | still acceptable | not previously accepted |
 | rainbow-valley | yes | Rainbow Valley | Rainbow Valley | rainbow-valley.txt | still acceptable | still acceptable |
+| rapunzel | no | Rapunzel | Rapunzel | RAPUNZEL.txt | still acceptable | not previously accepted |
 | rinkitink-in-oz | yes | Rinkitink in Oz | Rinkitink in Oz | rinkitink-in-oz.txt | still acceptable | still acceptable |
 | robert-orange | no | Robert Orange | Robert Orange | Robert Orange.txt | still acceptable | not previously accepted |
 | romeo-and-juliet | yes | Romeo and Juliet | Romeo and Juliet | Romeo and Juliet.txt | still acceptable | still acceptable |
 | room-13 | yes | Room 13 | Room 13 | Room 13.txt | still acceptable | still acceptable |
 | sense-and-sensibility | yes | Sense and Sensibility | Sense and Sensibility | Sense and Sensibility.txt | still acceptable | still acceptable |
 | shen-of-the-sea-a-book-for-children | no | Shen of the Sea: A Book for Children | Shen of the Sea a Book for Children | Shen of the Sea - A Book for Children.txt | still acceptable | not previously accepted |
+| shock-tactics | no | Shock Tactics | Shock Tactics | SHOCK TACTICS.txt | still acceptable | not previously accepted |
 | six-girls-a-home-story | no | Six Girls: A Home Story | Six Girls a Home Story | Six Girls - A Home Story.txt | still acceptable | not previously accepted |
 | spoon-river-anthology | yes | Spoon River Anthology | Spoon River Anthology | Spoon River Anthology.txt | still acceptable | still acceptable |
 | sun-tzu-on-the-art-of-war | yes | Sun Tzŭ on the Art of War: The Oldest Military Treatise in the World | Sun Tzu On the Art of War | Sun Tzŭ on the Art of War.txt | still acceptable | still acceptable |
 | tales-of-war | yes | Tales of War | Tales of War | Tales of War.txt | still acceptable | still acceptable |
 | tarzan-of-the-apes | no | Tarzan of the Apes | Tarzan of the Apes | unresolved | still acceptable | not previously accepted |
+| the-adventures-of-chanticleer-and-partlet | no | The Adventures of Chanticleer and Partlet | The Adventures of Chanticleer and Partlet | THE ADVENTURES OF CHANTICLEER AND PARTLET.txt | still acceptable | not previously accepted |
 | the-adventures-of-ferdinand-count-fathom | yes | The Adventures of Ferdinand Count Fathom — Complete | The Adventures of Ferdinand Count Fathom | The Adventures of Ferdinand Count Fathom.txt | still acceptable | still acceptable |
+| the-adventures-of-kintaro-the-golden-boy | no | The Adventures of Kintaro, the Golden Boy | The Adventures of Kintaro the Golden Boy | THE ADVENTURES OF KINTARO, THE GOLDEN BOY.txt | still acceptable | not previously accepted |
 | the-adventures-of-pinocchio | no | The Adventures of Pinocchio | The Adventures of Pinocchio | The Adventures of Pinocchio.txt | still acceptable | not previously accepted |
 | the-adventures-of-roderick-random | yes | The Adventures of Roderick Random | The Adventures of Roderick Random | The Adventures of Roderick Random.txt | still acceptable | still acceptable |
 | the-adventures-of-tom-sawyer | yes | The Adventures of Tom Sawyer | The Adventures of Tom Sawyer | The Adventures of Tom Sawyer.txt | still acceptable | still acceptable |
+| the-amateur-cracksman | no | The Amateur Cracksman | The Amateur Cracksman | The Amateur Cracksman.txt | still acceptable | not previously accepted |
 | the-arabian-nights | yes | The Arabian Nights: Their Best-known Tales | The Arabian Nights | the-arabian-nights.txt | still acceptable | still acceptable |
 | the-art-of-war | yes | The Art of War | The Art of War | The Art of War.txt | still acceptable | still acceptable |
+| the-bamboo-cutter-and-the-moon-child | no | The Bamboo-Cutter and the Moon-Child | The Bamboo Cutter and the Moon Child | THE BAMBOO-CUTTER AND THE MOON-CHILD.txt | still acceptable | not previously accepted |
 | the-bell | yes | The Bell | The Bell | The Bell.txt | still acceptable | corrected in this pass |
+| the-benson-murder-case | no | The Benson Murder Case | The Benson Murder Case | The Benson Murder Case.txt | still acceptable | not previously accepted |
+| the-black-star-passes | no | The Black Star Passes | The Black Star Passes | The Black Star Passes.txt | still acceptable | not previously accepted |
+| the-blue-castle | no | The Blue Castle: a novel | The Blue Castle | The Blue Castle.txt | still acceptable | not previously accepted |
 | the-book-of-dragons | yes | The Book of Dragons | The Book of Dragons | the-book-of-dragons.txt | still acceptable | still acceptable |
+| the-brothers-karamazov | no | The Brothers Karamazov | The Brothers Karamazov | The Brothers Karamazov.txt | still acceptable | not previously accepted |
+| the-buccaneer | no | The Buccaneer: A Tale | The Buccaneer | The Buccaneer.txt | still acceptable | not previously accepted |
 | the-call-of-cthulhu | yes | The call of Cthulhu | The Call of Cthulhu | The call of Cthulhu.txt | still acceptable | still acceptable |
 | the-call-of-the-wild | yes | The Call of the Wild | The Call of the Wild | The call of the wild.txt | still acceptable | still acceptable |
+| the-cats-of-ulthar | no | The Cats of Ulthar | The Cats of Ulthar | The Cats of Ulthar.txt | still acceptable | not previously accepted |
+| the-conceited-apple-branch | no | The Conceited Apple Branch | The Conceited Apple Branch | THE CONCEITED APPLE BRANCH.txt | still acceptable | not previously accepted |
 | the-count-of-monte-cristo | yes | The Count of Monte Cristo | The Count of Monte Cristo | The Count of Monte Cristo.txt | still acceptable | still acceptable |
 | the-count-of-monte-cristo-gutenberg-1184 | yes | The Count of Monte Cristo | The Count of Monte Cristo 1184 | unresolved | still acceptable | still acceptable |
+| the-darning-needle | no | The Darning-Needle | The Darning Needle | THE DARNING-NEEDLE.txt | still acceptable | not previously accepted |
 | the-divine-comedy | yes | The divine comedy | The Divine Comedy | The Divine Comedy.txt | still acceptable | still acceptable |
 | the-door-in-the-wall | yes | The Door in the Wall | The Door in the Wall | THE DOOR IN THE WALL.txt | still acceptable | still acceptable |
+| the-dream-of-little-tuk | no | The Dream of Little Tuk | The Dream of Little Tuk | The Dream of Little Tuk.txt | still acceptable | not previously accepted |
 | the-dunwich-horror | no | The Dunwich horror | The Dunwich Horror | The Dunwich horror.txt | still acceptable | not previously accepted |
 | the-elderbush | yes | The Elderbush | The Elderbush | The Elderbush.txt | still acceptable | corrected in this pass |
 | the-elements-of-style | yes | The Elements of Style | The Elements of Style | The Elements of Style.txt | still acceptable | still acceptable |
 | the-emerald-city-of-oz | yes | The Emerald City of Oz | The Emerald City of Oz | the-emerald-city-of-oz.txt | still acceptable | still acceptable |
 | the-emperor-s-new-clothes | yes | The Emperor's New Clothes | The Emperor's New Clothes | THE EMPEROR'S NEW CLOTHES.txt | still acceptable | corrected in this pass |
 | the-expedition-of-humphry-clinker | yes | The Expedition of Humphry Clinker | The Expedition of Humphry Clinker | The Expedition of Humphry Clinker.txt | still acceptable | still acceptable |
+| the-false-collar | no | The False Collar | The False Collar | The False Collar.txt | still acceptable | not previously accepted |
 | the-federalist-papers | yes | The Federalist Papers | The Federalist Papers | The Federalist Papers.txt | still acceptable | still acceptable |
+| the-festival | no | The Festival | The Festival | The festival.txt | still acceptable | not previously accepted |
 | the-fir-tree | yes | The Fir Tree | The Fir Tree | The Fir Tree.txt | still acceptable | corrected in this pass |
+| the-fisherman-and-his-wife | no | The Fisherman and His Wife | The Fisherman and His Wife | THE FISHERMAN AND HIS WIFE.txt | still acceptable | not previously accepted |
+| the-goblin-of-adachigahara | no | The Goblin of Adachigahara | The Goblin of Adachigahara | THE GOBLIN OF ADACHIGAHARA.txt | still acceptable | not previously accepted |
 | the-great-gatsby | no | The Great Gatsby | The Great Gatsby | unresolved | needs generated start/default correction | not previously accepted |
 | the-green-mummy | no | The Green Mummy | The Green Mummy | The Green Mummy.txt | still acceptable | not previously accepted |
+| the-greenies | no | The Greenies | The Greenies | THE GREENIES.txt | still acceptable | not previously accepted |
 | the-happy-family | yes | The Happy Family | The Happy Family | The Happy Family.txt | still acceptable | still acceptable |
+| the-happy-hunter-and-the-skillful-fisher | no | The Happy Hunter and the Skillful Fisher | The Happy Hunter and the Skillful Fisher | THE HAPPY HUNTER AND THE SKILLFUL FISHER.txt | still acceptable | not previously accepted |
+| the-haunter-of-the-dark | no | The Haunter of the Dark | The Haunter of the Dark | The haunter of the dark.txt | still acceptable | not previously accepted |
+| the-history-of-sir-richard-calmady-a-romance | no | The History of Sir Richard Calmady: A Romance | The History of Sir Richard Calmady a Romance | The History of Sir Richard Calmady - A Romance.txt | still acceptable | not previously accepted |
 | the-hound | no | The Hound | The Hound | The Hound.txt | still acceptable | not previously accepted |
 | the-hound-of-the-baskervilles | yes | The Hound of the Baskervilles | The Hound of the Baskervilles | The Hound of the Baskervilles.txt | still acceptable | still acceptable |
+| the-house-of-arden-a-story-for-children | no | The House of Arden: A Story for Children | The House of Arden a Story for Children | The House of Arden - A Story for Children.txt | still acceptable | not previously accepted |
 | the-house-without-a-key | yes | The House Without a Key | The House Without a Key | The house without a key.txt | still acceptable | still acceptable |
 | the-importance-of-being-earnest-a-trivial-comedy-for-serious-people | yes | The Importance of Being Earnest: A Trivial Comedy for Serious People | The Importance of Being Earnest a Trivial Comedy for Serious People | The Importance of Being Earnest - A Trivial Comedy for Serious People.txt | still acceptable | still acceptable |
+| the-innocence-of-father-brown | no | The Innocence of Father Brown | The Innocence of Father Brown | The innocence of Father Brown.txt | still acceptable | not previously accepted |
+| the-inspector-french-s-greatest-case | no | The Inspector French's Greatest Case | The Inspector French s Greatest Case | The Inspector French’s Greatest Case.txt | still acceptable | not previously accepted |
 | the-invisible-man-a-grotesque-romance | no | The Invisible Man: A Grotesque Romance | The Invisible Man a Grotesque Romance | The Invisible Man - A Grotesque Romance.txt | still acceptable | not previously accepted |
+| the-jelly-fish-and-the-monkey | no | The Jelly Fish and the Monkey | The Jelly Fish and the Monkey | THE JELLY FISH AND THE MONKEY.txt | still acceptable | not previously accepted |
 | the-jungle-book | yes | The Jungle Book | The Jungle Book | The Jungle Book.txt | still acceptable | still acceptable |
+| the-juniper-tree | no | The Juniper-Tree | The Juniper Tree | THE JUNIPER-TREE.txt | still acceptable | not previously accepted |
 | the-king-in-yellow | yes | The King in Yellow | The King in Yellow | The King in Yellow.txt | still acceptable | still acceptable |
 | the-lady-of-the-lake | no | The Lady of the Lake | The Lady of the Lake | The Lady of the Lake.txt | still acceptable | not previously accepted |
 | the-laughing-cavalier-the-story-of-the-ancestor-of-the-scarlet-pimpernel | no | The Laughing Cavalier: The Story of the Ancestor of the Scarlet Pimpernel | The Laughing Cavalier the Story of the Ancestor of the Scarlet Pimpernel | The Laughing Cavalier - The Story of the Ancestor of the Scarlet Pimpernel.txt | still acceptable | not previously accepted |
@@ -304,47 +354,73 @@ Focused false-positive audit for generated book title identity, first default co
 | the-lerouge-case | yes | The Lerouge Case | The Lerouge Case | The Lerouge Case.txt | still acceptable | still acceptable |
 | the-life-and-adventures-of-robinson-crusoe | yes | The Life and Adventures of Robinson Crusoe | The Life and Adventures of Robinson Crusoe | The Life and Adventures of Robinson Crusoe.txt | still acceptable | still acceptable |
 | the-lost-world | yes | The Lost World | The Lost World | The Lost World.txt | still acceptable | still acceptable |
+| the-loving-pair | no | The Loving Pair | The Loving Pair | THE LOVING PAIR.txt | still acceptable | not previously accepted |
 | the-lurking-fear | no | The lurking fear | The Lurking Fear | The lurking fear.txt | still acceptable | not previously accepted |
+| the-magic-shop | no | The Magic Shop | The Magic Shop | THE MAGIC SHOP.txt | still acceptable | not previously accepted |
 | the-maltese-falcon | yes | The Maltese Falcon | The Maltese Falcon | The Maltese falcon.txt | still acceptable | still acceptable |
+| the-man-who-could-work-miracles | no | The Man Who Could Work Miracles | The Man Who Could Work Miracles | The Man Who Could Work Miracles.txt | still acceptable | not previously accepted |
 | the-man-who-was-thursday-a-nightmare | yes | The Man Who Was Thursday: A Nightmare | The Man Who Was Thursday a Nightmare | The Man Who Was Thursday - A Nightmare.txt | still acceptable | still acceptable |
 | the-mark-of-zorro | no | The mark of Zorro | The Mark of Zorro | The mark of Zorro.txt | still acceptable | not previously accepted |
 | the-masque-of-the-red-death | no | The Masque of the Red Death | The Masque of the Red Death | The Masque of the Red Death.txt | still acceptable | not previously accepted |
 | the-money-box | yes | The Money Box | The Money Box | THE MONEY BOX.txt | still acceptable | corrected in this pass |
 | the-monkey-s-paw | no | The Monkey's Paw | The Monkey s Paw | The Monkey's Paw.txt | still acceptable | not previously accepted |
 | the-mystery-of-edwin-drood | yes | The Mystery of Edwin Drood | The Mystery of Edwin Drood | The Mystery of Edwin Drood.txt | still acceptable | still acceptable |
+| the-nameless-city | no | The Nameless City | The Nameless City | The Nameless City.txt | still acceptable | not previously accepted |
+| the-naughty-boy | no | The Naughty Boy | The Naughty Boy | The Naughty Boy.txt | still acceptable | not previously accepted |
 | the-octopus-a-story-of-california | yes | The Octopus: A Story of California | The Octopus a Story of California | The Octopus - A Story of California.txt | still acceptable | still acceptable |
 | the-old-house | yes | The Old House | The Old House | The Old House.txt | still acceptable | corrected in this pass |
 | the-other-gods | no | The Other Gods | The Other Gods | The Other Gods.txt | still acceptable | not previously accepted |
+| the-oversight | no | The Oversight | The Oversight | THE OVERSIGHT.txt | still acceptable | not previously accepted |
+| the-penance | no | The Penance | The Penance | THE PENANCE.txt | still acceptable | not previously accepted |
 | the-picture-of-dorian-gray | no | The Picture of Dorian Gray | The Picture of Dorian Gray | unresolved | still acceptable | not previously accepted |
 | the-prince-and-the-pauper | yes | The Prince and the Pauper | The Prince and the Pauper | The Prince and the Pauper.txt | still acceptable | still acceptable |
 | the-princess-and-the-goblin | yes | The Princess and the Goblin | The Princess and the Goblin | the-princess-and-the-goblin.txt | still acceptable | still acceptable |
 | the-railway-children | yes | The Railway Children | The Railway Children | the-railway-children.txt | still acceptable | still acceptable |
 | the-real-princess | yes | The Real Princess | The Real Princess | The Real Princess.txt | still acceptable | corrected in this pass |
 | the-red-room | no | The Red Room | The Red Room | The Red Room.txt | still acceptable | not previously accepted |
+| the-red-shoes | no | The Red Shoes | The Red Shoes | The Red Shoes.txt | still acceptable | not previously accepted |
 | the-red-thumb-mark | yes | The Red Thumb Mark | The Red Thumb Mark | The Red Thumb Mark.txt | still acceptable | still acceptable |
 | the-regent-s-daughter | no | The regent's daughter | The Regent s Daughter | The regent's daughter.txt | still acceptable | not previously accepted |
+| the-remarkable-case-of-davidson-s-eyes | no | The Remarkable Case of Davidson's Eyes | The Remarkable Case of Davidson s Eyes | THE REMARKABLE CASE OF DAVIDSON'S EYES.txt | still acceptable | not previously accepted |
+| the-roses-and-the-sparrows | no | The Roses and the Sparrows | The Roses and the Sparrows | THE ROSES AND THE SPARROWS.txt | still acceptable | not previously accepted |
 | the-scarlet-letter | no | The Scarlet Letter | The Scarlet Letter | The Scarlet Letter.txt | still acceptable | not previously accepted |
 | the-sea-lady | no | The Sea Lady | The Sea Lady | The Sea Lady.txt | still acceptable | not previously accepted |
 | the-sea-wolf | yes | The Sea-Wolf | The Sea Wolf | the sea-wolf.txt | still acceptable | still acceptable |
 | the-secret-garden | yes | The Secret Garden | The Secret Garden | The Secret Garden.txt | still acceptable | still acceptable |
 | the-secret-garden-gutenberg-113 | yes | The Secret Garden | The Secret Garden 113 | unresolved | still acceptable | still acceptable |
+| the-seven-ravens | no | The Seven Ravens | The Seven Ravens | THE SEVEN RAVENS.txt | still acceptable | not previously accepted |
+| the-shadow | no | The Shadow | The Shadow | The Shadow.txt | still acceptable | not previously accepted |
+| the-shadow-over-innsmouth | no | The Shadow over Innsmouth | The Shadow Over Innsmouth | The shadow over Innsmouth.txt | still acceptable | not previously accepted |
 | the-shoes-of-fortune | yes | The Shoes of Fortune | The Shoes of Fortune | The Shoes of Fortune.txt | still acceptable | corrected in this pass |
 | the-shunned-house | yes | The Shunned House | The Shunned House | The Shunned House.txt | still acceptable | still acceptable |
 | the-silver-key | no | The silver key | The Silver Key | The silver key.txt | still acceptable | not previously accepted |
 | the-snow-queen | yes | The Snow Queen | The Snow Queen | THE SNOW QUEEN.txt | still acceptable | corrected in this pass |
 | the-statement-of-randolph-carter | no | The Statement of Randolph Carter | The Statement of Randolph Carter | The Statement of Randolph Carter.txt | still acceptable | not previously accepted |
+| the-steadfast-tin-soldier | no | The Steadfast Tin Soldier | The Steadfast Tin Soldier | THE STEADFAST TIN SOLDIER.txt | still acceptable | not previously accepted |
+| the-story-of-a-mother | no | The Story of a Mother | The Story of a Mother | The Story of a Mother.txt | still acceptable | not previously accepted |
 | the-story-of-the-inexperienced-ghost | yes | Twelve Stories and a Dream | The Story of the Inexperienced Ghost | THE STORY OF THE INEXPERIENCED GHOST.txt | still acceptable | still acceptable |
+| the-story-of-the-man-who-did-not-wish-to-die | no | The Story of the Man Who Did Not Wish to Die | The Story of the Man Who Did Not Wish to Die | THE STORY OF THE MAN WHO DID NOT WISH TO DIE.txt | still acceptable | not previously accepted |
+| the-story-of-the-old-man-who-made-withered-trees-to-flower | no | The Story of the Old Man Who Made Withered Trees to Flower | The Story of the Old Man Who Made Withered Trees to Flower | THE STORY OF THE OLD MAN WHO MADE WITHERED TREES TO FLOWER.txt | still acceptable | not previously accepted |
+| the-story-of-urashima-taro-the-fisher-lad | no | The Story of Urashima Taro, the Fisher Lad | The Story of Urashima Taro the Fisher Lad | THE STORY OF URASHIMA TARO, THE FISHER LAD.txt | still acceptable | not previously accepted |
 | the-swineherd | yes | The Swineherd | The Swineherd | The Swineherd.txt | still acceptable | corrected in this pass |
 | the-tempest | yes | The Tempest | The Tempest | The Tempest.txt | still acceptable | still acceptable |
+| the-thing-on-the-door-step | no | The Thing on the Door-Step | The Thing On the Door Step | The thing on the door-step.txt | still acceptable | not previously accepted |
 | the-thirty-nine-steps | no | The Thirty-Nine Steps | The Thirty Nine Steps | unresolved | still acceptable | not previously accepted |
 | the-three-musketeers | yes | The Three Musketeers | The Three Musketeers | the-three-musketeers.txt | still acceptable | still acceptable |
+| the-three-taps-a-detective-story-without-a-moral | no | The Three Taps | The Three Taps a Detective Story Without a Moral | The three taps - A detective story without a moral.txt | still acceptable | not previously accepted |
+| the-time-machine | no | The Time Machine | The Time Machine | The Time Machine.txt | still acceptable | not previously accepted |
+| the-tongue-cut-sparrow | no | The Tongue-Cut Sparrow | The Tongue Cut Sparrow | THE TONGUE-CUT SPARROW.txt | still acceptable | not previously accepted |
 | the-tower-treasure | no | The tower treasure | The Tower Treasure | The tower treasure.txt | still acceptable | not previously accepted |
+| the-truth-about-pyecraft | no | The Truth About Pyecraft | The Truth About Pyecraft | THE TRUTH ABOUT PYECRAFT.txt | still acceptable | not previously accepted |
+| the-turmoil | no | The Turmoil: A Novel | The Turmoil | The Turmoil.txt | still acceptable | not previously accepted |
 | the-turn-of-the-screw | yes | The Turn of the Screw | The Turn of the Screw | The Turn of the Screw.txt | still acceptable | still acceptable |
+| the-ugly-duckling | no | The Ugly Duckling | The Ugly Duckling | THE UGLY DUCKLING.txt | still acceptable | not previously accepted |
 | the-virginian-a-horseman-of-the-plains | no | The Virginian: A Horseman of the Plains | The Virginian a Horseman of the Plains | The Virginian - A Horseman of the Plains.txt | still acceptable | not previously accepted |
 | the-wailing-octopus-a-rick-brant-science-adventure-story | no | The Wailing Octopus: A Rick Brant Science-Adventure Story | The Wailing Octopus a Rick Brant Science Adventure Story | The Wailing Octopus - A Rick Brant Science-Adventure Story.txt | still acceptable | not previously accepted |
 | the-war-of-the-worlds | yes | The War of the Worlds | The War of the Worlds | The War of the Worlds.txt | still acceptable | still acceptable |
 | the-warden | no | The Warden | The Warden | The Warden.txt | still acceptable | not previously accepted |
 | the-water-babies | yes | The Water-Babies: A Fairy Tale for a Land-Baby | The Water Babies | the-water-babies.txt | still acceptable | still acceptable |
+| the-wedding-of-mrs-fox | no | The Wedding of Mrs Fox | The Wedding of Mrs Fox | THE WEDDING OF MRS FOX.txt | still acceptable | not previously accepted |
 | the-wendigo | yes | The Wendigo | The Wendigo | The Wendigo.txt | still acceptable | still acceptable |
 | the-winning-of-olwen | yes | The Winning of Olwen | The Winning of Olwen | The Winning of Olwen.txt | still acceptable | corrected in this pass |
 | the-wonderful-wizard-of-oz | yes | The Wonderful Wizard of Oz | The Wonderful Wizard of Oz | the-wonderful-wizard-of-oz.txt | still acceptable | still acceptable |
@@ -352,7 +428,9 @@ Focused false-positive audit for generated book title identity, first default co
 | treasure-island | yes | Treasure Island | Treasure Island | treasure-island.txt | still acceptable | still acceptable |
 | triplanetary | yes | Triplanetary | Triplanetary | Triplanetary.txt | still acceptable | still acceptable |
 | twenty-thousand-leagues-under-the-sea | yes | Twenty Thousand Leagues under the Sea | Twenty Thousand Leagues Under the Sea | Twenty Thousand Leagues under the Sea.txt | still acceptable | still acceptable |
+| two-in-a-sack | no | Two in a Sack | Two in a Sack | TWO IN A SACK.txt | still acceptable | not previously accepted |
 | typhoon | no | Typhoon | Typhoon | Typhoon.txt | still acceptable | not previously accepted |
+| under-the-red-dragon | no | Under the Red Dragon: A Novel | Under the Red Dragon | Under the Red Dragon.txt | still acceptable | not previously accepted |
 | unicorns | no | Unicorns | Unicorns | Unicorns.txt | still acceptable | not previously accepted |
 | violet-fairy-book | yes | The Violet Fairy Book | Violet Fairy Book | Violet Fairy Book.txt | still acceptable | still acceptable |
 | wind-in-the-willows | yes | The Wind in the Willows | Wind in the Willows | unresolved | still acceptable | still acceptable |

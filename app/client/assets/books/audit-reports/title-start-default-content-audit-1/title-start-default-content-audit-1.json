@@ -1,6 +1,6 @@
 {
   "reportName": "title-start-default-content-audit-1",
-  "generatedAt": "2026-06-18T20:51:56.740Z",
+  "generatedAt": "2026-06-19T06:45:18.294Z",
   "branch": "morsewords-book-processing-pilot-write-6-jun-2026",
   "scope": "All generated books; accepted/generated slugs from completed pilot batches through write batch 6 are identified.",
   "criticalExamples": [
@@ -17,7 +17,7 @@
     "romeo-and-juliet"
   ],
   "totals": {
-    "generatedBooksAudited": 174,
+    "generatedBooksAudited": 252,
     "acceptedGeneratedBooksAudited": 117,
     "correctionsApplied": 12,
     "acceptedBooksCorrected": 12,
@@ -950,6 +950,66 @@
       "warnings": []
     },
     {
+      "slug": "a-story-of-the-stone-age",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "A Story of the Stone Age",
+      "expectedTitle": "A Story of the Stone Age",
+      "sourceFilename": "A Story of the Stone Age.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "a-story-of-the-stone-age"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Ugh-Lomi and Uya",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "I—UGH-LOMI AND UYA This story is of a time beyond the memory of man, before the beginning of history, a time when one might have walked dryshod from France (as we call it now) to England, and when a broad and sluggish T...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "I—UGH-LOMI AND UYA This story is of a time beyond the memory of man, before the beginning of history, a time when one might have walked dryshod from France (as we call it now) to England, and when a broad and sluggish T...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "a-study-in-scarlet",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "A Study in Scarlet",
+      "expectedTitle": "A Study in Scarlet",
+      "sourceFilename": "A Study in Scarlet.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "a-study-in-scarlet"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Part I.",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "PART I. (_Being a reprint from the Reminiscences of_ JOHN H. WATSON, M.D., _Late of the Army Medical Department._) CHAPTER I. MR. SHERLOCK HOLMES. In the year 1878 I took my degree of Doctor of Medicine of the Universit...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "PART I. (_Being a reprint from the Reminiscences of_ JOHN H. WATSON, M.D., _Late of the Army Medical Department._) CHAPTER I. MR. SHERLOCK HOLMES. In the year 1878 I took my degree of Doctor of Medicine of the Universit...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "a-tale-of-two-cities",
       "acceptedBeforeAudit": true,
       "generatedTitle": "A Tale of Two Cities",
@@ -1257,6 +1317,36 @@
       "warnings": []
     },
     {
+      "slug": "astounding-stories-of-super-science",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Astounding Stories of Super-Science, October, 1930",
+      "expectedTitle": "Astounding Stories of Super Science",
+      "sourceFilename": "Astounding Stories of Super-Science.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "astounding-stories-of-super-science"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Stolen Brains",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Stolen Brains \"I hope, Carnes,\" said Dr. Bird, \"that we get good fishing.\" \"Good fishing? Will you please tell me what you are talking about?\" \"I am talking about fishing, old dear. Have you seen the evening paper?\" \"No...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Stolen Brains \"I hope, Carnes,\" said Dr. Bird, \"that we get good fishing.\" \"Good fishing? Will you please tell me what you are talking about?\" \"I am talking about fishing, old dear. Have you seen the evening paper?\" \"No...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "at-the-earth-s-core",
       "acceptedBeforeAudit": false,
       "generatedTitle": "At the Earth's Core",
@@ -1277,6 +1367,36 @@
       "firstDefaultBeginsWithMetadata": false,
       "chapterOneOrFirstStoryMissingOrExcluded": false,
       "previewStartSnippet": "I TOWARD THE ETERNAL FIRES I was born in Connecticut about thirty years ago. My name is David Innes. My father was a wealthy mine owner. When I was nineteen he died. All his property was to be mine when I had attained m...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "at-the-mountains-of-madness",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "At the Mountains of Madness",
+      "expectedTitle": "At the Mountains of Madness",
+      "sourceFilename": "At the mountains of madness.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "at-the-mountains-of-madness"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Section 1",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "I am forced into speech because men of science have refused to follow my advice without knowing why. It is altogether against my will that I tell my reasons for opposing this contemplated invasion of the antarctic--with...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "I am forced into speech because men of science have refused to follow my advice without knowing why. It is altogether against my will that I tell my reasons for opposing this contemplated invasion of the antarctic--with...",
       "previewStartsFromRealReadableContent": true,
       "previewBeginsWithParentCollectionMetadata": false,
       "previewContainsSosHelp": false,
@@ -1407,6 +1527,36 @@
       "warnings": []
     },
     {
+      "slug": "canossa",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Canossa",
+      "expectedTitle": "Canossa",
+      "sourceFilename": "CANOSSA.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "canossa"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Canossa",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Demosthenes Platterbaff, the eminent Unrest Inducer, stood on his trial for a serious offence, and the eyes of the political world were focussed on the jury. The offence, it should be stated, was serious for the Governm...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Demosthenes Platterbaff, the eminent Unrest Inducer, stood on his trial for a serious offence, and the eyes of the political world were focussed on the jury. The offence, it should be stated, was serious for the Governm...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "catriona",
       "acceptedBeforeAudit": true,
       "generatedTitle": "Catriona",
@@ -1434,6 +1584,66 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "clever-hans",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Clever Hans",
+      "expectedTitle": "Clever Hans",
+      "sourceFilename": "CLEVER HANS.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "clever-hans"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Clever Hans",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "The mother of Hans said: ‘Whither away, Hans?’ Hans answered: ‘To Gretel.’ ‘Behave well, Hans.’ ‘Oh, I’ll behave well. Goodbye, mother.’ ‘Goodbye, Hans.’ Hans comes to Gretel. ‘Good day, Gretel.’ ‘Good day, Hans. What d...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "The mother of Hans said: ‘Whither away, Hans?’ Hans answered: ‘To Gretel.’ ‘Behave well, Hans.’ ‘Oh, I’ll behave well. Goodbye, mother.’ ‘Goodbye, Hans.’ Hans comes to Gretel. ‘Good day, Gretel.’ ‘Good day, Hans. What d...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "cool-air",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Cool Air",
+      "expectedTitle": "Cool Air",
+      "sourceFilename": "Cool air.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "cool-air"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Cool Air",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "You ask me to explain why I am afraid of a draft of cool air; why I shiver more than others upon entering a cold room, and seem nauseated and repelled when the chill of evening creeps through the heat of a mild autumn d...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "You ask me to explain why I am afraid of a draft of cool air; why I shiver more than others upon entering a cold room, and seem nauseated and repelled when the chill of evening creeps through the heat of a mild autumn d...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -1494,6 +1704,66 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "dagon",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Dagon",
+      "expectedTitle": "Dagon",
+      "sourceFilename": "Dagon.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "dagon"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Dagon",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "I am writing this under an appreciable mental strain, since by tonight I shall be no more. Penniless, and at the end of my supply of the drug which alone makes life endurable, I can bear the torture no longer; and shall...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "I am writing this under an appreciable mental strain, since by tonight I shall be no more. Penniless, and at the end of my supply of the drug which alone makes life endurable, I can bear the torture no longer; and shall...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "deep-sea-plunderings",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Deep-Sea Plunderings",
+      "expectedTitle": "Deep Sea Plunderings",
+      "sourceFilename": "Deep-Sea Plunderings.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "deep-sea-plunderings"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "THROUGH FIRE AND WATER",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "THROUGH FIRE AND WATER “What a clumsy, barrel-bellied old hooker she is, Field!” Thus, closing his telescope with a bang, the elegant chief officer of the Mirzapore, steel four-masted clipper ship of 5000 tons burden, p...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "THROUGH FIRE AND WATER “What a clumsy, barrel-bellied old hooker she is, Field!” Thus, closing his telescope with a bang, the elegant chief officer of the Mirzapore, steel four-masted clipper ship of 5000 tons burden, p...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -1649,6 +1919,36 @@
       "warnings": []
     },
     {
+      "slug": "filmer",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Filmer",
+      "expectedTitle": "Filmer",
+      "sourceFilename": "FILMER.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "filmer"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Filmer",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "In truth the mastery of flying was the work of thousands of men—this man a suggestion and that an experiment, until at last only one vigorous intellectual effort was needed to finish the work. But the inexorable injusti...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "In truth the mastery of flying was the work of thousands of men—this man a suggestion and that an experiment, until at last only one vigorous intellectual effort was needed to finish the work. But the inexorable injusti...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "five-children-and-it",
       "acceptedBeforeAudit": false,
       "generatedTitle": "Five Children and It",
@@ -1706,6 +2006,36 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "five-little-peppers-at-school",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Five Little Peppers at School",
+      "expectedTitle": "Five Little Peppers At School",
+      "sourceFilename": "Five Little Peppers at School.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "five-little-peppers-at-school"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Hard Times for Joel",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "I HARD TIMES FOR JOEL \"Come on, Pepper.\" One of the boys rushed down the dormitory hall, giving a bang on Joel's door as he passed. \"All right,\" said Joel a bit crossly, \"I'm coming.\" \"Last bell,\" came back on the wind....",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "I HARD TIMES FOR JOEL \"Come on, Pepper.\" One of the boys rushed down the dormitory hall, giving a bang on Joel's door as he passed. \"All right,\" said Joel a bit crossly, \"I'm coming.\" \"Last bell,\" came back on the wind....",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -2163,6 +2493,66 @@
       "warnings": []
     },
     {
+      "slug": "jorinda-and-jorindel",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Jorinda and Jorindel",
+      "expectedTitle": "Jorinda and Jorindel",
+      "sourceFilename": "JORINDA AND JORINDEL.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "jorinda-and-jorindel"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Jorinda and Jorindel",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "There was once an old castle, that stood in the middle of a deep gloomy wood, and in the castle lived an old fairy. Now this fairy could take any shape she pleased. All the day long she flew about in the form of an owl,...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "There was once an old castle, that stood in the middle of a deep gloomy wood, and in the castle lived an old fairy. Now this fairy could take any shape she pleased. All the day long she flew about in the form of an owl,...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "kidnapped",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Kidnapped",
+      "expectedTitle": "Kidnapped",
+      "sourceFilename": "Kidnapped.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "kidnapped"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "I Set Off Upon My Journey To The House Of Shaws",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "CHAPTER I I SET OFF UPON MY JOURNEY TO THE HOUSE OF SHAWS I will begin the story of my adventures with a certain morning early in the month of June, the year of grace 1751, when I took the key for the last time out of t...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "CHAPTER I I SET OFF UPON MY JOURNEY TO THE HOUSE OF SHAWS I will begin the story of my adventures with a certain morning early in the month of June, the year of grace 1751, when I took the key for the last time out of t...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "king-arthur-and-the-knights-of-the-round-table",
       "acceptedBeforeAudit": false,
       "generatedTitle": "King Arthur and the Knights of the Round Table",
@@ -2250,6 +2640,36 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "little-ida-s-flowers",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Little Ida's Flowers",
+      "expectedTitle": "Little Ida s Flowers",
+      "sourceFilename": "LITTLE IDA'S FLOWERS.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "little-ida-s-flowers"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Little Ida's Flowers",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "MY POOR flowers are quite faded!\" said little Ida. \"Only yesterday evening they were so pretty, and now all the leaves are drooping. Why do they do that?\" she asked of the student, who sat on the sofa. He was a great fa...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "MY POOR flowers are quite faded!\" said little Ida. \"Only yesterday evening they were so pretty, and now all the leaves are drooping. Why do they do that?\" she asked of the student, who sat on the sofa. He was a great fa...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -2373,6 +2793,36 @@
       "warnings": []
     },
     {
+      "slug": "mark",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Mark",
+      "expectedTitle": "Mark",
+      "sourceFilename": "MARK.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "mark"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Mark",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Augustus Mellowkent was a novelist with a future; that is to say, a limited but increasing number of people read his books, and there seemed good reason to suppose that if he steadily continued to turn out novels year b...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Augustus Mellowkent was a novelist with a future; that is to say, a limited but increasing number of people read his books, and there seemed good reason to suppose that if he steadily continued to turn out novels year b...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "metamorphosis",
       "acceptedBeforeAudit": false,
       "generatedTitle": "Metamorphosis",
@@ -2430,6 +2880,66 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "mother-holle",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Mother Holle",
+      "expectedTitle": "Mother Holle",
+      "sourceFilename": "MOTHER HOLLE.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "mother-holle"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Mother Holle",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Once upon a time there was a widow who had two daughters; one of them was beautiful and industrious, the other ugly and lazy. The mother, however, loved the ugly and lazy one best, because she was her own daughter, and...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Once upon a time there was a widow who had two daughters; one of them was beautiful and industrious, the other ugly and lazy. The mother, however, loved the ugly and lazy one best, because she was her own daughter, and...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "murder-in-the-maze",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Murder in the Maze",
+      "expectedTitle": "Murder in the Maze",
+      "sourceFilename": "Murder in the Maze.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "murder-in-the-maze"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Chapter 1",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "CHAPTER I. The Hackleton Case Neville Shandon stood at the window of his brother’s study gazing contentedly out over the Whistlefield grounds. This was a good place to recuperate in, he reflected, especially when one co...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "CHAPTER I. The Hackleton Case Neville Shandon stood at the window of his brother’s study gazing contentedly out over the Whistlefield grounds. This was a good place to recuperate in, he reflected, especially when one co...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -2493,6 +3003,66 @@
       "warnings": [
         "No clear temp-books source match was resolved for this generated book."
       ]
+    },
+    {
+      "slug": "ole-luk-oie-the-dream-god",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Ole-Luk-Oie, the Dream-God",
+      "expectedTitle": "Ole Luk Oie the Dream God",
+      "sourceFilename": "OLE-LUK-OIE THE DREAM GOD.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "ole-luk-oie-the-dream-god"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Ole-Luk-Oie, the Dream-God",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "THERE is nobody in the whole world who knows so many stories as Ole-Luk-Oie, or who can relate them so nicely. In the evening while the children are seated at the tea table or in their little chairs, very softly he come...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "THERE is nobody in the whole world who knows so many stories as Ole-Luk-Oie, or who can relate them so nicely. In the evening while the children are seated at the tea table or in their little chairs, very softly he come...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "oliver-twist",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Oliver Twist",
+      "expectedTitle": "Oliver Twist",
+      "sourceFilename": "Oliver Twist.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "oliver-twist"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Treats Of The Place Where Oliver Twist Was Born And Of The",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "CHAPTER I. TREATS OF THE PLACE WHERE OLIVER TWIST WAS BORN AND OF THE CIRCUMSTANCES ATTENDING HIS BIRTH Among other public buildings in a certain town, which for many reasons it will be prudent to refrain from mentionin...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "CHAPTER I. TREATS OF THE PLACE WHERE OLIVER TWIST WAS BORN AND OF THE CIRCUMSTANCES ATTENDING HIS BIRTH Among other public buildings in a certain town, which for many reasons it will be prudent to refrain from mentionin...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
     },
     {
       "slug": "parnassus-on-wheels",
@@ -2585,6 +3155,36 @@
       "warnings": [
         "No clear temp-books source match was resolved for this generated book."
       ]
+    },
+    {
+      "slug": "pickman-s-model",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Pickman's Model",
+      "expectedTitle": "Pickman s Model",
+      "sourceFilename": "Pickman's Model.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "pickman-s-model"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Pickman's Model",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "You needn't think I'm crazy, Eliot--plenty of others have queerer prejudices than this. Why don't you laugh at Oliver's grandfather, who won't ride in a motor? If I don't like that damned subway, it's my own business; a...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "You needn't think I'm crazy, Eliot--plenty of others have queerer prejudices than this. Why don't you laugh at Oliver's grandfather, who won't ride in a motor? If I don't like that damned subway, it's my own business; a...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
     },
     {
       "slug": "pointed-roofs",
@@ -2707,6 +3307,66 @@
       "warnings": []
     },
     {
+      "slug": "quail-seed",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Quail Seed",
+      "expectedTitle": "Quail Seed",
+      "sourceFilename": "QUAIL SEED.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "quail-seed"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Quail Seed",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "The outlook is not encouraging for us smaller businesses,” said Mr. Scarrick to the artist and his sister, who had taken rooms over his suburban grocery store. “These big concerns are offering all sorts of attractions t...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "The outlook is not encouraging for us smaller businesses,” said Mr. Scarrick to the artist and his sister, who had taken rooms over his suburban grocery store. “These big concerns are offering all sorts of attractions t...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "quo-vadis",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Quo Vadis: A Narrative of the Time of Nero",
+      "expectedTitle": "Quo Vadis",
+      "sourceFilename": "Quo Vadis.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "quo-vadis"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Chapter 1",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Chapter I PETRONIUS woke only about midday, and as usual greatly wearied. The evening before he had been at one of Nero’s feasts, which was prolonged till late at night. For some time his health had been failing. He sai...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Chapter I PETRONIUS woke only about midday, and as usual greatly wearied. The evening before he had been at one of Nero’s feasts, which was prolonged till late at night. For some time his health had been failing. He sai...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "rainbow-valley",
       "acceptedBeforeAudit": true,
       "generatedTitle": "Rainbow Valley",
@@ -2734,6 +3394,36 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "rapunzel",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Rapunzel",
+      "expectedTitle": "Rapunzel",
+      "sourceFilename": "RAPUNZEL.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "rapunzel"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Rapunzel",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "There were once a man and a woman who had long in vain wished for a child. At length the woman hoped that God was about to grant her desire. These people had a little window at the back of their house from which a splen...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "There were once a man and a woman who had long in vain wished for a child. At length the woman hoped that God was about to grant her desire. These people had a little window at the back of their house from which a splen...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -2917,6 +3607,36 @@
       "warnings": []
     },
     {
+      "slug": "shock-tactics",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Shock Tactics",
+      "expectedTitle": "Shock Tactics",
+      "sourceFilename": "SHOCK TACTICS.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "shock-tactics"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Shock Tactics",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "On a late spring afternoon Ella McCarthy sat on a green-painted chair in Kensington Gardens, staring listlessly at an uninteresting stretch of park landscape, that blossomed suddenly into tropical radiance as an expecte...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "On a late spring afternoon Ella McCarthy sat on a green-painted chair in Kensington Gardens, staring listlessly at an uninteresting stretch of park landscape, that blossomed suddenly into tropical radiance as an expecte...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "six-girls-a-home-story",
       "acceptedBeforeAudit": false,
       "generatedTitle": "Six Girls: A Home Story",
@@ -3069,6 +3789,36 @@
       ]
     },
     {
+      "slug": "the-adventures-of-chanticleer-and-partlet",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Adventures of Chanticleer and Partlet",
+      "expectedTitle": "The Adventures of Chanticleer and Partlet",
+      "sourceFilename": "THE ADVENTURES OF CHANTICLEER AND PARTLET.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-adventures-of-chanticleer-and-partlet"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "1. How They Went to the Mountains to Eat Nuts",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "‘The nuts are quite ripe now,’ said Chanticleer to his wife Partlet, ‘suppose we go together to the mountains, and eat as many as we can, before the squirrel takes them all away.’ ‘With all my heart,’ said Partlet, ‘let...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "‘The nuts are quite ripe now,’ said Chanticleer to his wife Partlet, ‘suppose we go together to the mountains, and eat as many as we can, before the squirrel takes them all away.’ ‘With all my heart,’ said Partlet, ‘let...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-adventures-of-ferdinand-count-fathom",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Adventures of Ferdinand Count Fathom — Complete",
@@ -3096,6 +3846,36 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "the-adventures-of-kintaro-the-golden-boy",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Adventures of Kintaro, the Golden Boy",
+      "expectedTitle": "The Adventures of Kintaro the Golden Boy",
+      "sourceFilename": "THE ADVENTURES OF KINTARO, THE GOLDEN BOY.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-adventures-of-kintaro-the-golden-boy"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Adventures of Kintaro, the Golden Boy",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Long, long ago there lived in Kyoto a brave soldier named Kintoki. Now he fell in love with a beautiful lady and married her. Not long after this, through the malice of some of his friends, he fell into disgrace at Cour...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Long, long ago there lived in Kyoto a brave soldier named Kintoki. Now he fell in love with a beautiful lady and married her. Not long after this, through the malice of some of his friends, he fell into disgrace at Cour...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -3189,6 +3969,36 @@
       "warnings": []
     },
     {
+      "slug": "the-amateur-cracksman",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Amateur Cracksman",
+      "expectedTitle": "The Amateur Cracksman",
+      "sourceFilename": "The Amateur Cracksman.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-amateur-cracksman"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "THE IDES OF MARCH",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "THE IDES OF MARCH I It was half-past twelve when I returned to the Albany as a last desperate resort. The scene of my disaster was much as I had left it. The baccarat-counters still strewed the table, with the empty gla...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "THE IDES OF MARCH I It was half-past twelve when I returned to the Albany as a last desperate resort. The scene of my disaster was much as I had left it. The baccarat-counters still strewed the table, with the empty gla...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-arabian-nights",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Arabian Nights: Their Best-known Tales",
@@ -3249,6 +4059,36 @@
       "warnings": []
     },
     {
+      "slug": "the-bamboo-cutter-and-the-moon-child",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Bamboo-Cutter and the Moon-Child",
+      "expectedTitle": "The Bamboo Cutter and the Moon Child",
+      "sourceFilename": "THE BAMBOO-CUTTER AND THE MOON-CHILD.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-bamboo-cutter-and-the-moon-child"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Bamboo-Cutter and the Moon-Child",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Long, long ago, there lived an old bamboo wood-cutter. He was very poor and sad also, for no child had Heaven sent to cheer his old age, and in his heart there was no hope of rest from work till he died and was laid in...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Long, long ago, there lived an old bamboo wood-cutter. He was very poor and sad also, for no child had Heaven sent to cheer his old age, and in his heart there was no hope of rest from work till he died and was laid in...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-bell",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Bell",
@@ -3279,6 +4119,96 @@
       "warnings": []
     },
     {
+      "slug": "the-benson-murder-case",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Benson Murder Case",
+      "expectedTitle": "The Benson Murder Case",
+      "sourceFilename": "The Benson Murder Case.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-benson-murder-case"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Chapter 1",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "CHAPTER I. Philo Vance at Home (Friday, June 14; 8.30 a.m.) It happened that, on the morning of the momentous June the fourteenth when the discovery of the murdered body of Alvin H. Benson created a sensation which, to...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "CHAPTER I. Philo Vance at Home (Friday, June 14; 8.30 a.m.) It happened that, on the morning of the momentous June the fourteenth when the discovery of the murdered body of Alvin H. Benson created a sensation which, to...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-black-star-passes",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Black Star Passes",
+      "expectedTitle": "The Black Star Passes",
+      "sourceFilename": "The Black Star Passes.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-black-star-passes"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Chapter 1",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "I. On the thirty-ninth floor of a large New York apartment two young men were lounging about after a strenuous game of tennis. The blue tendrils of smoke from their pipes rose slowly, to be drawn away by the efficient v...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "I. On the thirty-ninth floor of a large New York apartment two young men were lounging about after a strenuous game of tennis. The blue tendrils of smoke from their pipes rose slowly, to be drawn away by the efficient v...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-blue-castle",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Blue Castle: a novel",
+      "expectedTitle": "The Blue Castle",
+      "sourceFilename": "The Blue Castle.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-blue-castle"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Chapter 1",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "CHAPTER I If it had not rained on a certain May morning Valancy Stirling’s whole life would have been entirely different. She would have gone, with the rest of her clan, to Aunt Wellington’s engagement picnic and Dr. Tr...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "CHAPTER I If it had not rained on a certain May morning Valancy Stirling’s whole life would have been entirely different. She would have gone, with the rest of her clan, to Aunt Wellington’s engagement picnic and Dr. Tr...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-book-of-dragons",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Book of Dragons",
@@ -3306,6 +4236,66 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "the-brothers-karamazov",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Brothers Karamazov",
+      "expectedTitle": "The Brothers Karamazov",
+      "sourceFilename": "The Brothers Karamazov.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-brothers-karamazov"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Book I. The History Of A Family",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Book I. The History Of A Family Chapter I. Fyodor Pavlovitch Karamazov Alexey Fyodorovitch Karamazov was the third son of Fyodor Pavlovitch Karamazov, a land owner well known in our district in his own day, and still re...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Book I. The History Of A Family Chapter I. Fyodor Pavlovitch Karamazov Alexey Fyodorovitch Karamazov was the third son of Fyodor Pavlovitch Karamazov, a land owner well known in our district in his own day, and still re...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-buccaneer",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Buccaneer: A Tale",
+      "expectedTitle": "The Buccaneer",
+      "sourceFilename": "The Buccaneer.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-buccaneer"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Chapter 1",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "CHAPTER I. With roomy decks, her guns of mighty strength, Whose low-laid mouths each mounting billow laves, Deep in her draught, and warlike in her length, She seems a sea wasp flying on the waves. DRYDEN. It was betwee...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "CHAPTER I. With roomy decks, her guns of mighty strength, Whose low-laid mouths each mounting billow laves, Deep in her draught, and warlike in her length, She seems a sea wasp flying on the waves. DRYDEN. It was betwee...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -3369,6 +4359,66 @@
       "warnings": [
         "Static generated data starts at Chapter I; manual Chapter II symptom was traced to runtime selected-source assembly reordering during hydration/saved-state restoration, not generated-data failure."
       ]
+    },
+    {
+      "slug": "the-cats-of-ulthar",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Cats of Ulthar",
+      "expectedTitle": "The Cats of Ulthar",
+      "sourceFilename": "The Cats of Ulthar.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-cats-of-ulthar"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Cats of Ulthar",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "It is said that in Ulthar, which lies beyond the river Skai, no man may kill a cat; and this I can verily believe as I gaze upon him who sitteth purring before the fire. For the cat is cryptic, and close to strange thin...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "It is said that in Ulthar, which lies beyond the river Skai, no man may kill a cat; and this I can verily believe as I gaze upon him who sitteth purring before the fire. For the cat is cryptic, and close to strange thin...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-conceited-apple-branch",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Conceited Apple Branch",
+      "expectedTitle": "The Conceited Apple Branch",
+      "sourceFilename": "THE CONCEITED APPLE BRANCH.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-conceited-apple-branch"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Conceited Apple Branch",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "IT WAS the month of May. The wind still blew cold, but from bush and tree, field and flower, came the welcome sound, \"Spring is come.\" Wild flowers in profusion covered the hedges. Under the little apple tree Spring see...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "IT WAS the month of May. The wind still blew cold, but from bush and tree, field and flower, came the welcome sound, \"Spring is come.\" Wild flowers in profusion covered the hedges. Under the little apple tree Spring see...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
     },
     {
       "slug": "the-count-of-monte-cristo",
@@ -3438,6 +4488,36 @@
       ]
     },
     {
+      "slug": "the-darning-needle",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Darning-Needle",
+      "expectedTitle": "The Darning Needle",
+      "sourceFilename": "THE DARNING-NEEDLE.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-darning-needle"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Darning-Needle",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "THERE was once a Darning-needle who thought herself so fine that she came at last to believe that she was fit for embroidery. \"Mind now that you hold me fast,\" she said to the Fingers that took her up. \"Pray don't lose...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "THERE was once a Darning-needle who thought herself so fine that she came at last to believe that she was fit for embroidery. \"Mind now that you hold me fast,\" she said to the Fingers that took her up. \"Pray don't lose...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-divine-comedy",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The divine comedy",
@@ -3495,6 +4575,36 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "the-dream-of-little-tuk",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Dream of Little Tuk",
+      "expectedTitle": "The Dream of Little Tuk",
+      "sourceFilename": "The Dream of Little Tuk.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-dream-of-little-tuk"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Dream of Little Tuk",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Ah! yes, that was little Tuk: in reality his name was not Tuk, but that was what he called himself before he could speak plain: he meant it for Charles, and it is all well enough if one does but know it. He had now to t...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Ah! yes, that was little Tuk: in reality his name was not Tuk, but that was what he called himself before he could speak plain: he meant it for Charles, and it is all well enough if one does but know it. He had now to t...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -3678,6 +4788,36 @@
       "warnings": []
     },
     {
+      "slug": "the-false-collar",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The False Collar",
+      "expectedTitle": "The False Collar",
+      "sourceFilename": "The False Collar.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-false-collar"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The False Collar",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "There was once a fine gentleman, all of whose moveables were a boot-jack and a hair-comb: but he had the finest false collars in the world; and it is about one of these collars that we are now to hear a story. It was so...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "There was once a fine gentleman, all of whose moveables were a boot-jack and a hair-comb: but he had the finest false collars in the world; and it is about one of these collars that we are now to hear a story. It was so...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-federalist-papers",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Federalist Papers",
@@ -3708,6 +4848,36 @@
       "warnings": []
     },
     {
+      "slug": "the-festival",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Festival",
+      "expectedTitle": "The Festival",
+      "sourceFilename": "The festival.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-festival"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Festival",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "I was far from home, and the spell of the eastern sea was upon me. In the twilight I heard it pounding on the rocks, and I knew it lay just over the hill where the twisting willows writhed against the clearing sky and t...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "I was far from home, and the spell of the eastern sea was upon me. In the twilight I heard it pounding on the rocks, and I knew it lay just over the hill where the twisting willows writhed against the clearing sky and t...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-fir-tree",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Fir Tree",
@@ -3735,6 +4905,66 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "corrected in this pass",
+      "warnings": []
+    },
+    {
+      "slug": "the-fisherman-and-his-wife",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Fisherman and His Wife",
+      "expectedTitle": "The Fisherman and His Wife",
+      "sourceFilename": "THE FISHERMAN AND HIS WIFE.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-fisherman-and-his-wife"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Fisherman and His Wife",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "There was once a fisherman who lived with his wife in a pigsty, close one day, as he sat on the shore with his rod, looking at the sparkling waves and watching his line, all on a sudden his float was dragged away deep i...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "There was once a fisherman who lived with his wife in a pigsty, close one day, as he sat on the shore with his rod, looking at the sparkling waves and watching his line, all on a sudden his float was dragged away deep i...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-goblin-of-adachigahara",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Goblin of Adachigahara",
+      "expectedTitle": "The Goblin of Adachigahara",
+      "sourceFilename": "THE GOBLIN OF ADACHIGAHARA.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-goblin-of-adachigahara"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Goblin of Adachigahara",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Long, long ago there was a large plain called Adachigahara, in the province of Mutsu in Japan. This place was said to be haunted by a cannibal goblin who took the form of an old woman. From time to time many travelers d...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Long, long ago there was a large plain called Adachigahara, in the province of Mutsu in Japan. This place was said to be haunted by a cannibal goblin who took the form of an old woman. From time to time many travelers d...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -3800,6 +5030,36 @@
       "warnings": []
     },
     {
+      "slug": "the-greenies",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Greenies",
+      "expectedTitle": "The Greenies",
+      "sourceFilename": "THE GREENIES.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-greenies"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Greenies",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "A ROSE TREE stood in the window. But a little while ago it had been green and fresh, and now it looked sickly--it was in poor health, no doubt. A whole regiment was quartered on it and was eating it up; yet, notwithstan...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "A ROSE TREE stood in the window. But a little while ago it had been green and fresh, and now it looked sickly--it was in poor health, no doubt. A whole regiment was quartered on it and was eating it up; yet, notwithstan...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-happy-family",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Happy Family",
@@ -3827,6 +5087,96 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "the-happy-hunter-and-the-skillful-fisher",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Happy Hunter and the Skillful Fisher",
+      "expectedTitle": "The Happy Hunter and the Skillful Fisher",
+      "sourceFilename": "THE HAPPY HUNTER AND THE SKILLFUL FISHER.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-happy-hunter-and-the-skillful-fisher"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Happy Hunter and the Skillful Fisher",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Long, long ago Japan was governed by Hohodemi, the fourth Mikoto (or Augustness) in descent from the illustrious Amaterasu, the Sun Goddess. He was not only as handsome as his ancestress was beautiful, but he was also v...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Long, long ago Japan was governed by Hohodemi, the fourth Mikoto (or Augustness) in descent from the illustrious Amaterasu, the Sun Goddess. He was not only as handsome as his ancestress was beautiful, but he was also v...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-haunter-of-the-dark",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Haunter of the Dark",
+      "expectedTitle": "The Haunter of the Dark",
+      "sourceFilename": "The haunter of the dark.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-haunter-of-the-dark"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Haunter of the Dark",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "I have seen the dark universe yawning Where the black planets roll without aim-- Where they roll in their horror unheeded, Without knowledge or luster or name. --_Nemesis._ Cautious investigators will hesitate to challe...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "I have seen the dark universe yawning Where the black planets roll without aim-- Where they roll in their horror unheeded, Without knowledge or luster or name. --_Nemesis._ Cautious investigators will hesitate to challe...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-history-of-sir-richard-calmady-a-romance",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The History of Sir Richard Calmady: A Romance",
+      "expectedTitle": "The History of Sir Richard Calmady a Romance",
+      "sourceFilename": "The History of Sir Richard Calmady - A Romance.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-history-of-sir-richard-calmady-a-romance"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Book I",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "BOOK I THE CLOWN CHAPTER I ACQUAINTING THE READER WITH A FAIR DOMAIN AND THE MAKER THEREOF In that fortunate hour of English history, when the cruel sights and haunting insecurities of the Middle Ages had passed away, a...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "BOOK I THE CLOWN CHAPTER I ACQUAINTING THE READER WITH A FAIR DOMAIN AND THE MAKER THEREOF In that fortunate hour of English history, when the cruel sights and haunting insecurities of the Middle Ages had passed away, a...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -3890,6 +5240,36 @@
       "warnings": []
     },
     {
+      "slug": "the-house-of-arden-a-story-for-children",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The House of Arden: A Story for Children",
+      "expectedTitle": "The House of Arden a Story for Children",
+      "sourceFilename": "The House of Arden - A Story for Children.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-house-of-arden-a-story-for-children"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Arden's Lord",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "CHAPTER I ARDEN'S LORD It had been a great house once, with farms and fields, money and jewels--with tenants and squires and men-at-arms. The head of the house had ridden out three days' journey to meet King Henry at th...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "CHAPTER I ARDEN'S LORD It had been a great house once, with farms and fields, money and jewels--with tenants and squires and men-at-arms. The head of the house had ridden out three days' journey to meet King Henry at th...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-house-without-a-key",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The House Without a Key",
@@ -3950,6 +5330,66 @@
       "warnings": []
     },
     {
+      "slug": "the-innocence-of-father-brown",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Innocence of Father Brown",
+      "expectedTitle": "The Innocence of Father Brown",
+      "sourceFilename": "The innocence of Father Brown.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-innocence-of-father-brown"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Blue Cross",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "The Blue Cross Between the silver ribbon of morning and the green glittering ribbon of sea, the boat touched Harwich and let loose a swarm of folk like flies, among whom the man we must follow was by no means conspicuou...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "The Blue Cross Between the silver ribbon of morning and the green glittering ribbon of sea, the boat touched Harwich and let loose a swarm of folk like flies, among whom the man we must follow was by no means conspicuou...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-inspector-french-s-greatest-case",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Inspector French's Greatest Case",
+      "expectedTitle": "The Inspector French s Greatest Case",
+      "sourceFilename": "The Inspector French’s Greatest Case.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-inspector-french-s-greatest-case"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Chapter 1",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "CHAPTER I MURDER! THE back streets surrounding Hatton Garden, in the City of London, do not form at the best of times a cheerful or inspiring prospect. Narrow and mean, and flanked with ugly, sordid-looking buildings gr...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "CHAPTER I MURDER! THE back streets surrounding Hatton Garden, in the City of London, do not form at the best of times a cheerful or inspiring prospect. Narrow and mean, and flanked with ugly, sordid-looking buildings gr...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-invisible-man-a-grotesque-romance",
       "acceptedBeforeAudit": false,
       "generatedTitle": "The Invisible Man: A Grotesque Romance",
@@ -3970,6 +5410,36 @@
       "firstDefaultBeginsWithMetadata": false,
       "chapterOneOrFirstStoryMissingOrExcluded": false,
       "previewStartSnippet": "CHAPTER I. THE STRANGE MAN’S ARRIVAL The stranger came early in February, one wintry day, through a biting wind and a driving snow, the last snowfall of the year, over the down, walking from Bramblehurst railway station...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-jelly-fish-and-the-monkey",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Jelly Fish and the Monkey",
+      "expectedTitle": "The Jelly Fish and the Monkey",
+      "sourceFilename": "THE JELLY FISH AND THE MONKEY.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-jelly-fish-and-the-monkey"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Jelly Fish and the Monkey",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Long, long ago, in old Japan, the Kingdom of the Sea was governed by a wonderful King. He was called Rin Jin, or the Dragon King of the Sea. His power was immense, for he was the ruler of all sea creatures both great an...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Long, long ago, in old Japan, the Kingdom of the Sea was governed by a wonderful King. He was called Rin Jin, or the Dragon King of the Sea. His power was immense, for he was the ruler of all sea creatures both great an...",
       "previewStartsFromRealReadableContent": true,
       "previewBeginsWithParentCollectionMetadata": false,
       "previewContainsSosHelp": false,
@@ -4007,6 +5477,36 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "the-juniper-tree",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Juniper-Tree",
+      "expectedTitle": "The Juniper Tree",
+      "sourceFilename": "THE JUNIPER-TREE.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-juniper-tree"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Juniper-Tree",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Long, long ago, some two thousand years or so, there lived a rich man with a good and beautiful wife. They loved each other dearly, but sorrowed much that they had no children. So greatly did they desire to have one, th...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Long, long ago, some two thousand years or so, there lived a rich man with a good and beautiful wife. They loved each other dearly, but sorrowed much that they had no children. So greatly did they desire to have one, th...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -4250,6 +5750,36 @@
       "warnings": []
     },
     {
+      "slug": "the-loving-pair",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Loving Pair",
+      "expectedTitle": "The Loving Pair",
+      "sourceFilename": "THE LOVING PAIR.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-loving-pair"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Loving Pair",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "A WHIPPING Top and a Ball lay close together in a drawer among other playthings. One day the Top said to the Ball, \"Since we are living so much together, why should we not be lovers?\" But the Ball, being made of morocco...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "A WHIPPING Top and a Ball lay close together in a drawer among other playthings. One day the Top said to the Ball, \"Since we are living so much together, why should we not be lovers?\" But the Ball, being made of morocco...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-lurking-fear",
       "acceptedBeforeAudit": false,
       "generatedTitle": "The lurking fear",
@@ -4270,6 +5800,36 @@
       "firstDefaultBeginsWithMetadata": false,
       "chapterOneOrFirstStoryMissingOrExcluded": false,
       "previewStartSnippet": "_1. The Shadow on the Chimney_ There was thunder in the air on the night I went to the deserted mansion atop Tempest Mountain to find the lurking fear. I was not alone, for foolhardiness was not then mixed with that lov...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-magic-shop",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Magic Shop",
+      "expectedTitle": "The Magic Shop",
+      "sourceFilename": "THE MAGIC SHOP.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-magic-shop"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Magic Shop",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "I had seen the Magic Shop from afar several times; I had passed it once or twice, a shop window of alluring little objects, magic balls, magic hens, wonderful cones, ventriloquist dolls, the material of the basket trick...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "I had seen the Magic Shop from afar several times; I had passed it once or twice, a shop window of alluring little objects, magic balls, magic hens, wonderful cones, ventriloquist dolls, the material of the basket trick...",
       "previewStartsFromRealReadableContent": true,
       "previewBeginsWithParentCollectionMetadata": false,
       "previewContainsSosHelp": false,
@@ -4307,6 +5867,36 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "the-man-who-could-work-miracles",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Man Who Could Work Miracles",
+      "expectedTitle": "The Man Who Could Work Miracles",
+      "sourceFilename": "The Man Who Could Work Miracles.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-man-who-could-work-miracles"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Man Who Could Work Miracles",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "It is doubtful whether the gift was innate. For my own part, I think it came to him suddenly. Indeed, until he was thirty he was a sceptic, and did not believe in miraculous powers. And here, since it is the most conven...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "It is doubtful whether the gift was innate. For my own part, I think it came to him suddenly. Indeed, until he was thirty he was a sceptic, and did not believe in miraculous powers. And here, since it is the most conven...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -4490,6 +6080,66 @@
       "warnings": []
     },
     {
+      "slug": "the-nameless-city",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Nameless City",
+      "expectedTitle": "The Nameless City",
+      "sourceFilename": "The Nameless City.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-nameless-city"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Nameless City",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "When I drew nigh the nameless city I knew it was accursed. I was traveling in a parched and terrible valley under the moon, and afar I saw it protruding uncannily above the sands as parts of a corpse might protrude from...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "When I drew nigh the nameless city I knew it was accursed. I was traveling in a parched and terrible valley under the moon, and afar I saw it protruding uncannily above the sands as parts of a corpse might protrude from...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-naughty-boy",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Naughty Boy",
+      "expectedTitle": "The Naughty Boy",
+      "sourceFilename": "The Naughty Boy.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-naughty-boy"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Naughty Boy",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Along time ago, there lived an old poet, a thoroughly kind old poet. As he was sitting one evening in his room, a dreadful storm arose without, and the rain streamed down from heaven; but the old poet sat warm and comfo...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Along time ago, there lived an old poet, a thoroughly kind old poet. As he was sitting one evening in his room, a dreadful storm arose without, and the rain streamed down from heaven; but the old poet sat warm and comfo...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-octopus-a-story-of-california",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Octopus: A Story of California",
@@ -4570,6 +6220,66 @@
       "firstDefaultBeginsWithMetadata": false,
       "chapterOneOrFirstStoryMissingOrExcluded": false,
       "previewStartSnippet": "Atop the tallest of earth’s peaks dwell the gods of earth, and suffer no man to tell that he hath looked upon them. Lesser peaks they once inhabited; but ever the men from the plains would scale the slopes of rock and s...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-oversight",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Oversight",
+      "expectedTitle": "The Oversight",
+      "sourceFilename": "THE OVERSIGHT.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-oversight"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Oversight",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "It’s like a Chinese puzzle,” said Lady Prowche resentfully, staring at a scribbled list of names that spread over two or three loose sheets of notepaper on her writing-table. Most of the names had a pencil mark running...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "It’s like a Chinese puzzle,” said Lady Prowche resentfully, staring at a scribbled list of names that spread over two or three loose sheets of notepaper on her writing-table. Most of the names had a pencil mark running...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-penance",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Penance",
+      "expectedTitle": "The Penance",
+      "sourceFilename": "THE PENANCE.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-penance"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Penance",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Octavian Ruttle was one of those lively cheerful individuals on whom amiability had set its unmistakable stamp, and, like most of his kind, his soul’s peace depended in large measure on the unstinted approval of his fel...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Octavian Ruttle was one of those lively cheerful individuals on whom amiability had set its unmistakable stamp, and, like most of his kind, his soul’s peace depended in large measure on the unstinted approval of his fel...",
       "previewStartsFromRealReadableContent": true,
       "previewBeginsWithParentCollectionMetadata": false,
       "previewContainsSosHelp": false,
@@ -4762,6 +6472,36 @@
       "warnings": []
     },
     {
+      "slug": "the-red-shoes",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Red Shoes",
+      "expectedTitle": "The Red Shoes",
+      "sourceFilename": "The Red Shoes.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-red-shoes"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Red Shoes",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "There was once a little girl who was very pretty and delicate, but in summer she was forced to run about with bare feet, she was so poor, and in winter wear very large wooden shoes, which made her little insteps quite r...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "There was once a little girl who was very pretty and delicate, but in summer she was forced to run about with bare feet, she was so poor, and in winter wear very large wooden shoes, which made her little insteps quite r...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-red-thumb-mark",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Red Thumb Mark",
@@ -4812,6 +6552,66 @@
       "firstDefaultBeginsWithMetadata": false,
       "chapterOneOrFirstStoryMissingOrExcluded": false,
       "previewStartSnippet": "CHAPTER I. AN ABBESS OF THE EIGHTEENTH CENTURY. On the 8th February, 1719, a carriage, bearing the fleur-de-lis of France, with the motto of Orleans, preceded by two outriders and a page, entered the porch of the Abbey...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-remarkable-case-of-davidson-s-eyes",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Remarkable Case of Davidson's Eyes",
+      "expectedTitle": "The Remarkable Case of Davidson s Eyes",
+      "sourceFilename": "THE REMARKABLE CASE OF DAVIDSON'S EYES.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-remarkable-case-of-davidson-s-eyes"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Section 1",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "The transitory mental aberration of Sidney Davidson, remarkable enough in itself, is still more remarkable if Wade's explanation is to be credited. It sets one dreaming of the oddest possibilities of intercommunication...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "The transitory mental aberration of Sidney Davidson, remarkable enough in itself, is still more remarkable if Wade's explanation is to be credited. It sets one dreaming of the oddest possibilities of intercommunication...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-roses-and-the-sparrows",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Roses and the Sparrows",
+      "expectedTitle": "The Roses and the Sparrows",
+      "sourceFilename": "THE ROSES AND THE SPARROWS.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-roses-and-the-sparrows"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Roses and the Sparrows",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "IT really appeared as if something very important were going on by the duck pond, but this was not the case. A few minutes before, all the ducks had been resting on the water or standing on their heads--for that they ca...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "IT really appeared as if something very important were going on by the duck pond, but this was not the case. A few minutes before, all the ducks had been resting on the water or standing on their heads--for that they ca...",
       "previewStartsFromRealReadableContent": true,
       "previewBeginsWithParentCollectionMetadata": false,
       "previewContainsSosHelp": false,
@@ -4979,6 +6779,96 @@
       ]
     },
     {
+      "slug": "the-seven-ravens",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Seven Ravens",
+      "expectedTitle": "The Seven Ravens",
+      "sourceFilename": "THE SEVEN RAVENS.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-seven-ravens"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Seven Ravens",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "There was once a man who had seven sons, and last of all one daughter. Although the little girl was very pretty, she was so weak and small that they thought she could not live; but they said she should at once be christ...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "There was once a man who had seven sons, and last of all one daughter. Although the little girl was very pretty, she was so weak and small that they thought she could not live; but they said she should at once be christ...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-shadow",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Shadow",
+      "expectedTitle": "The Shadow",
+      "sourceFilename": "The Shadow.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-shadow"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Shadow",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "It is in the hot lands that the sun burns, sure enough! there the people become quite a mahogany brown, ay, and in the HOTTEST lands they are burnt to Negroes. But now it was only to the HOT lands that a learned man had...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "It is in the hot lands that the sun burns, sure enough! there the people become quite a mahogany brown, ay, and in the HOTTEST lands they are burnt to Negroes. But now it was only to the HOT lands that a learned man had...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-shadow-over-innsmouth",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Shadow over Innsmouth",
+      "expectedTitle": "The Shadow Over Innsmouth",
+      "sourceFilename": "The shadow over Innsmouth.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-shadow-over-innsmouth"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Section 1",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "During the winter of 1927-28 Federal government officials made a strange and secret investigation of certain conditions in the ancient Massachusetts seaport of Innsmouth. The public first learned of it in February, when...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "During the winter of 1927-28 Federal government officials made a strange and secret investigation of certain conditions in the ancient Massachusetts seaport of Innsmouth. The public first learned of it in February, when...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-shoes-of-fortune",
       "acceptedBeforeAudit": true,
       "generatedTitle": "The Shoes of Fortune",
@@ -5129,6 +7019,66 @@
       "warnings": []
     },
     {
+      "slug": "the-steadfast-tin-soldier",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Steadfast Tin Soldier",
+      "expectedTitle": "The Steadfast Tin Soldier",
+      "sourceFilename": "THE STEADFAST TIN SOLDIER.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-steadfast-tin-soldier"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Steadfast Tin Soldier",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "THERE were once five and twenty tin soldiers. They were brothers, for they had all been made out of the same old tin spoon. They all shouldered their bayonets, held themselves upright, and looked straight before them. T...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "THERE were once five and twenty tin soldiers. They were brothers, for they had all been made out of the same old tin spoon. They all shouldered their bayonets, held themselves upright, and looked straight before them. T...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-story-of-a-mother",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Story of a Mother",
+      "expectedTitle": "The Story of a Mother",
+      "sourceFilename": "The Story of a Mother.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-story-of-a-mother"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Story of a Mother",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "A mother sat there with her little child. She was so downcast, so afraid that it should die! It was so pale, the small eyes had closed themselves, and it drew its breath so softly, now and then, with a deep respiration,...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "A mother sat there with her little child. She was so downcast, so afraid that it should die! It was so pale, the small eyes had closed themselves, and it drew its breath so softly, now and then, with a deep respiration,...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-story-of-the-inexperienced-ghost",
       "acceptedBeforeAudit": true,
       "generatedTitle": "Twelve Stories and a Dream",
@@ -5156,6 +7106,96 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "the-story-of-the-man-who-did-not-wish-to-die",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Story of the Man Who Did Not Wish to Die",
+      "expectedTitle": "The Story of the Man Who Did Not Wish to Die",
+      "sourceFilename": "THE STORY OF THE MAN WHO DID NOT WISH TO DIE.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-story-of-the-man-who-did-not-wish-to-die"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Story of the Man Who Did Not Wish to Die",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Long, long ago there lived a man called Sentaro. His surname meant “Millionaire,” but although he was not so rich as all that, he was still very far removed from being poor. He had inherited a small fortune from his fat...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Long, long ago there lived a man called Sentaro. His surname meant “Millionaire,” but although he was not so rich as all that, he was still very far removed from being poor. He had inherited a small fortune from his fat...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-story-of-the-old-man-who-made-withered-trees-to-flower",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Story of the Old Man Who Made Withered Trees to Flower",
+      "expectedTitle": "The Story of the Old Man Who Made Withered Trees to Flower",
+      "sourceFilename": "THE STORY OF THE OLD MAN WHO MADE WITHERED TREES TO FLOWER.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-story-of-the-old-man-who-made-withered-trees-to-flower"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Story of the Old Man Who Made Withered Trees to Flower",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Long, long ago there lived an old man and his wife who supported themselves by cultivating a small plot of land. Their life had been a very happy and peaceful one save for one great sorrow, and this was they had no chil...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Long, long ago there lived an old man and his wife who supported themselves by cultivating a small plot of land. Their life had been a very happy and peaceful one save for one great sorrow, and this was they had no chil...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-story-of-urashima-taro-the-fisher-lad",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Story of Urashima Taro, the Fisher Lad",
+      "expectedTitle": "The Story of Urashima Taro the Fisher Lad",
+      "sourceFilename": "THE STORY OF URASHIMA TARO, THE FISHER LAD.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-story-of-urashima-taro-the-fisher-lad"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Story of Urashima Taro, the Fisher Lad",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Long, long ago in the province of Tango there lived on the shore of Japan in the little fishing village of Mizu-no-ye a young fisherman named Urashima Taro. His father had been a fisherman before him, and his skill had...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Long, long ago in the province of Tango there lived on the shore of Japan in the little fishing village of Mizu-no-ye a young fisherman named Urashima Taro. His father had been a fisherman before him, and his skill had...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -5216,6 +7256,36 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "the-thing-on-the-door-step",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Thing on the Door-Step",
+      "expectedTitle": "The Thing On the Door Step",
+      "sourceFilename": "The thing on the door-step.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-thing-on-the-door-step"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Section 1",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "It is true that I have sent six bullets through the head of my best friend, and yet I hope to show by this statement that I am not his murderer. At first I shall be called a madman--madder than the man I shot in his cel...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "It is true that I have sent six bullets through the head of my best friend, and yet I hope to show by this statement that I am not his murderer. At first I shall be called a madman--madder than the man I shot in his cel...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -5281,6 +7351,96 @@
       "warnings": []
     },
     {
+      "slug": "the-three-taps-a-detective-story-without-a-moral",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Three Taps",
+      "expectedTitle": "The Three Taps a Detective Story Without a Moral",
+      "sourceFilename": "The three taps - A detective story without a moral.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-three-taps-a-detective-story-without-a-moral"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Chapter 1",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Chapter I The Euthanasia Policy The principles of insurance, they tell us, were not hidden from our Anglo-Saxon forefathers. How anybody had the enterprise in those rough-and-tumble days to guarantee a client against “f...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Chapter I The Euthanasia Policy The principles of insurance, they tell us, were not hidden from our Anglo-Saxon forefathers. How anybody had the enterprise in those rough-and-tumble days to guarantee a client against “f...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-time-machine",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Time Machine",
+      "expectedTitle": "The Time Machine",
+      "sourceFilename": "The Time Machine.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-time-machine"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Chapter 1",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "I. Introduction The Time Traveller (for so it will be convenient to speak of him) was expounding a recondite matter to us. His pale grey eyes shone and twinkled, and his usually pale face was flushed and animated. The f...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "I. Introduction The Time Traveller (for so it will be convenient to speak of him) was expounding a recondite matter to us. His pale grey eyes shone and twinkled, and his usually pale face was flushed and animated. The f...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-tongue-cut-sparrow",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Tongue-Cut Sparrow",
+      "expectedTitle": "The Tongue Cut Sparrow",
+      "sourceFilename": "THE TONGUE-CUT SPARROW.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-tongue-cut-sparrow"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Tongue-Cut Sparrow",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "Long, long ago in Japan there lived an old man and his wife. The old man was a good, kind-hearted, hard-working old fellow, but his wife was a regular cross-patch, who spoiled the happiness of her home by her scolding t...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "Long, long ago in Japan there lived an old man and his wife. The old man was a good, kind-hearted, hard-working old fellow, but his wife was a regular cross-patch, who spoiled the happiness of her home by her scolding t...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "the-tower-treasure",
       "acceptedBeforeAudit": false,
       "generatedTitle": "The tower treasure",
@@ -5301,6 +7461,66 @@
       "firstDefaultBeginsWithMetadata": false,
       "chapterOneOrFirstStoryMissingOrExcluded": false,
       "previewStartSnippet": "CHAPTER I THE SPEED DEMON \"After the help we gave dad on that forgery case I guess he'll begin to think we _could_ be detectives when we grow up.\" \"Why shouldn't we? Isn't he one of the most famous detectives in the cou...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-truth-about-pyecraft",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Truth About Pyecraft",
+      "expectedTitle": "The Truth About Pyecraft",
+      "sourceFilename": "THE TRUTH ABOUT PYECRAFT.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-truth-about-pyecraft"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Truth About Pyecraft",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "He sits not a dozen yards away. If I glance over my shoulder I can see him. And if I catch his eye—and usually I catch his eye—it meets me with an expression. It is mainly an imploring look—and yet with suspicion in it....",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "He sits not a dozen yards away. If I glance over my shoulder I can see him. And if I catch his eye—and usually I catch his eye—it meets me with an expression. It is mainly an imploring look—and yet with suspicion in it....",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "the-turmoil",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Turmoil: A Novel",
+      "expectedTitle": "The Turmoil",
+      "sourceFilename": "The Turmoil.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-turmoil"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Chapter 1",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "CHAPTER I There is a midland city in the heart of fair, open country, a dirty and wonderful city nesting dingily in the fog of its own smoke. The stranger must feel the dirt before he feels the wonder, for the dirt will...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "CHAPTER I There is a midland city in the heart of fair, open country, a dirty and wonderful city nesting dingily in the fog of its own smoke. The stranger must feel the dirt before he feels the wonder, for the dirt will...",
       "previewStartsFromRealReadableContent": true,
       "previewBeginsWithParentCollectionMetadata": false,
       "previewContainsSosHelp": false,
@@ -5338,6 +7558,36 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "the-ugly-duckling",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Ugly Duckling",
+      "expectedTitle": "The Ugly Duckling",
+      "sourceFilename": "THE UGLY DUCKLING.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-ugly-duckling"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Ugly Duckling",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "IT was so beautiful in the country. It was the summer time. The wheat fields were golden, the oats were green, and the hay stood in great stacks in the green meadows. The stork paraded about among them on his long red l...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "IT was so beautiful in the country. It was the summer time. The wheat fields were golden, the oats were green, and the hay stood in great stacks in the green meadows. The stork paraded about among them on his long red l...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -5488,6 +7738,36 @@
         "still acceptable"
       ],
       "acceptanceVerdict": "still acceptable",
+      "warnings": []
+    },
+    {
+      "slug": "the-wedding-of-mrs-fox",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "The Wedding of Mrs Fox",
+      "expectedTitle": "The Wedding of Mrs Fox",
+      "sourceFilename": "THE WEDDING OF MRS FOX.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "the-wedding-of-mrs-fox"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "The Wedding of Mrs Fox",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "There was once upon a time an old fox with nine tails, who believed that his wife was not faithful to him, and wished to put her to the test. He stretched himself out under the bench, did not move a limb, and behaved as...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "There was once upon a time an old fox with nine tails, who believed that his wife was not faithful to him, and wished to put her to the test. He stretched himself out under the bench, did not move a limb, and behaved as...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
       "warnings": []
     },
     {
@@ -5701,6 +7981,36 @@
       "warnings": []
     },
     {
+      "slug": "two-in-a-sack",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Two in a Sack",
+      "expectedTitle": "Two in a Sack",
+      "sourceFilename": "TWO IN A SACK.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "two-in-a-sack"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "Two in a Sack",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "What a life that poor man led with his wife, to be sure! Not a day passed without her scolding him and calling him names, and indeed sometimes she would take the broom from behind the stove and beat him with it. He had...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "What a life that poor man led with his wife, to be sure! Not a day passed without her scolding him and calling him names, and indeed sometimes she would take the broom from behind the stove and beat him with it. He had...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
       "slug": "typhoon",
       "acceptedBeforeAudit": false,
       "generatedTitle": "Typhoon",
@@ -5721,6 +8031,36 @@
       "firstDefaultBeginsWithMetadata": false,
       "chapterOneOrFirstStoryMissingOrExcluded": false,
       "previewStartSnippet": "I Captain MacWhirr, of the steamer Nan-Shan, had a physiognomy that, in the order of material appearances, was the exact counterpart of his mind: it presented no marked characteristics of firmness or stupidity; it had n...",
+      "previewStartsFromRealReadableContent": true,
+      "previewBeginsWithParentCollectionMetadata": false,
+      "previewContainsSosHelp": false,
+      "classifications": [
+        "still acceptable"
+      ],
+      "acceptanceVerdict": "not previously accepted",
+      "warnings": []
+    },
+    {
+      "slug": "under-the-red-dragon",
+      "acceptedBeforeAudit": false,
+      "generatedTitle": "Under the Red Dragon: A Novel",
+      "expectedTitle": "Under the Red Dragon",
+      "sourceFilename": "Under the Red Dragon.txt",
+      "generatedOutputExists": true,
+      "previewAssetExists": true,
+      "duplicateGeneratedTitleSlugs": [
+        "under-the-red-dragon"
+      ],
+      "titleAppearsParentCollection": false,
+      "titleShouldBeCorrected": false,
+      "firstDefaultSectionId": "chapter-001",
+      "firstDefaultSectionTitle": "--THE INVITATION",
+      "firstDefaultSectionKind": "chapter",
+      "firstDefaultTextSnippet": "CHAPTER I.--THE INVITATION. \"And _she_ is to be there--nay, is there already; so one more chance is given me to meet her. But for what?--to part again silently, and more helplessly bewitched than ever, perhaps. Ah, neve...",
+      "firstDefaultBeginsWithRealReadableContent": true,
+      "firstDefaultBeginsWithMetadata": false,
+      "chapterOneOrFirstStoryMissingOrExcluded": false,
+      "previewStartSnippet": "CHAPTER I.--THE INVITATION. \"And _she_ is to be there--nay, is there already; so one more chance is given me to meet her. But for what?--to part again silently, and more helplessly bewitched than ever, perhaps. Ah, neve...",
       "previewStartsFromRealReadableContent": true,
       "previewBeginsWithParentCollectionMetadata": false,
       "previewContainsSosHelp": false,
