@@ -12360,6 +12360,986 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "quail-seed/manifest.json"
+    },
+    {
+      "slug": "ashputtel",
+      "title": "Ashputtel",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "a28d34db615a116e",
+      "contentHash": "a28d34db615a116eacc0b2a34e6f3beb163b96d2f0c692e94acd1726ae546b97",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Ashputtel"
+      },
+      "stats": {
+        "originalCharacterCount": 14499,
+        "cleanedCharacterCount": 13244,
+        "wordCount": 2585,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "ashputtel/manifest.json"
+    },
+    {
+      "slug": "cat-and-mouse-in-partnership",
+      "title": "Cat and Mouse in Partnership",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "dad6069fa9d92667",
+      "contentHash": "dad6069fa9d926670f3a9f8c0c9d1ccef76483bd1be06410629525ca68c289d9",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Cat and Mouse in Partnership"
+      },
+      "stats": {
+        "originalCharacterCount": 6185,
+        "cleanedCharacterCount": 5074,
+        "wordCount": 983,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "cat-and-mouse-in-partnership/manifest.json"
+    },
+    {
+      "slug": "cat-skin",
+      "title": "Cat-Skin",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "3bee141b4371ee58",
+      "contentHash": "3bee141b4371ee583e665a37e0387baeca03b60ac3adf1b339298874466c9f72",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Cat-Skin"
+      },
+      "stats": {
+        "originalCharacterCount": 11754,
+        "cleanedCharacterCount": 10584,
+        "wordCount": 2136,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "cat-skin/manifest.json"
+    },
+    {
+      "slug": "clever-elsie",
+      "title": "Clever Elsie",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "a329915aa9c35fd3",
+      "contentHash": "a329915aa9c35fd33e7f2915131127a469b3b9d8191e8b915fcadb692e5bac42",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Clever Elsie"
+      },
+      "stats": {
+        "originalCharacterCount": 7874,
+        "cleanedCharacterCount": 6762,
+        "wordCount": 1338,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "clever-elsie/manifest.json"
+    },
+    {
+      "slug": "clever-gretel",
+      "title": "Clever Gretel",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "afad13d6f082c0e6",
+      "contentHash": "afad13d6f082c0e6b6eb0eabc3cadad208c7eceb2357b511835acbe719b70221",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Clever Gretel"
+      },
+      "stats": {
+        "originalCharacterCount": 5908,
+        "cleanedCharacterCount": 4823,
+        "wordCount": 935,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "clever-gretel/manifest.json"
+    },
+    {
+      "slug": "doctor-knowall",
+      "title": "Doctor Knowall",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "8e1b81bf37240c3b",
+      "contentHash": "8e1b81bf37240c3bc1e22e477c41b0fe4913e78e3c2f387b31f748f2281c8949",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Doctor Knowall"
+      },
+      "stats": {
+        "originalCharacterCount": 5085,
+        "cleanedCharacterCount": 4012,
+        "wordCount": 779,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "doctor-knowall/manifest.json"
+    },
+    {
+      "slug": "frederick-and-catherine",
+      "title": "Frederick and Catherine",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "2a6ee2e5f9f6501e",
+      "contentHash": "2a6ee2e5f9f6501ebd2e18727896234b572b62490b2efa3fbb97a768fc67f101",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Frederick and Catherine"
+      },
+      "stats": {
+        "originalCharacterCount": 10891,
+        "cleanedCharacterCount": 9641,
+        "wordCount": 1903,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "frederick-and-catherine/manifest.json"
+    },
+    {
+      "slug": "fundevogel",
+      "title": "Fundevogel",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "3f109d07f1d0eb4a",
+      "contentHash": "3f109d07f1d0eb4a0eec6b429127910d9b2259eee8fc245fc5a7f830c708b6fe",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Fundevogel"
+      },
+      "stats": {
+        "originalCharacterCount": 5986,
+        "cleanedCharacterCount": 4901,
+        "wordCount": 939,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "fundevogel/manifest.json"
+    },
+    {
+      "slug": "hans-in-luck",
+      "title": "Hans in Luck",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "b64e78f9abcfd172",
+      "contentHash": "b64e78f9abcfd1724cc084f78ebfc2629b09e06aa7ec9458484895ec4bfc969e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Hans in Luck"
+      },
+      "stats": {
+        "originalCharacterCount": 12961,
+        "cleanedCharacterCount": 11746,
+        "wordCount": 2378,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "hans-in-luck/manifest.json"
+    },
+    {
+      "slug": "hansel-and-gretel",
+      "title": "Hansel and Gretel",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "8c21eca174c8b14b",
+      "contentHash": "8c21eca174c8b14bb1920ed469182037028b903cd899e690b2a8cf9d2c5c912e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Hansel and Gretel"
+      },
+      "stats": {
+        "originalCharacterCount": 16656,
+        "cleanedCharacterCount": 15387,
+        "wordCount": 2942,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "hansel-and-gretel/manifest.json"
+    },
+    {
+      "slug": "iron-hans",
+      "title": "Iron Hans",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "c10ab01dbcb4a57d",
+      "contentHash": "c10ab01dbcb4a57d4b106e3b4f21c7256d8befb768f995a687cf73309434fb15",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Iron Hans"
+      },
+      "stats": {
+        "originalCharacterCount": 17664,
+        "cleanedCharacterCount": 16406,
+        "wordCount": 3228,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "iron-hans/manifest.json"
+    },
+    {
+      "slug": "king-grisly-beard",
+      "title": "King Grisly-Beard",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "129a1edb92671c01",
+      "contentHash": "129a1edb92671c01979db0d0f3c7ed4e8e7dd8c80cee439d403935d11fe0ffff",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for King Grisly-Beard"
+      },
+      "stats": {
+        "originalCharacterCount": 8668,
+        "cleanedCharacterCount": 7529,
+        "wordCount": 1481,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "king-grisly-beard/manifest.json"
+    },
+    {
+      "slug": "lily-and-the-lion",
+      "title": "Lily and the Lion",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "1499fa5bbae51d6f",
+      "contentHash": "1499fa5bbae51d6fd045501b5ac59f606cab1806eb4bb1d703566f1de5a770d6",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Lily and the Lion"
+      },
+      "stats": {
+        "originalCharacterCount": 13143,
+        "cleanedCharacterCount": 11936,
+        "wordCount": 2351,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "lily-and-the-lion/manifest.json"
+    },
+    {
+      "slug": "little-red-riding-hood",
+      "title": "Little Red Riding Hood",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "0dd2d0e3dbe389c7",
+      "contentHash": "0dd2d0e3dbe389c7ec6c88a3587b9a8da8101d585044a9d579ffdf99c833e68d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Little Red Riding Hood"
+      },
+      "stats": {
+        "originalCharacterCount": 8549,
+        "cleanedCharacterCount": 7375,
+        "wordCount": 1387,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "little-red-riding-hood/manifest.json"
+    },
+    {
+      "slug": "old-sultan",
+      "title": "Old Sultan",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "ccb154bb43d7bdcb",
+      "contentHash": "ccb154bb43d7bdcb28d3fcc021d93022e706e071a6cc756fb892382fd7362c5a",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Old Sultan"
+      },
+      "stats": {
+        "originalCharacterCount": 5454,
+        "cleanedCharacterCount": 4377,
+        "wordCount": 874,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "old-sultan/manifest.json"
+    },
+    {
+      "slug": "rumpelstiltskin",
+      "title": "Rumpelstiltskin",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "0b515310137670a2",
+      "contentHash": "0b515310137670a2075a129d0bf26c2290cd69eb0770e232b8edf912d8b7d9dd",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Rumpelstiltskin"
+      },
+      "stats": {
+        "originalCharacterCount": 6962,
+        "cleanedCharacterCount": 5835,
+        "wordCount": 1148,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "rumpelstiltskin/manifest.json"
+    },
+    {
+      "slug": "snowdrop",
+      "title": "Snowdrop",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "34e75d9b9c961d92",
+      "contentHash": "34e75d9b9c961d924afaff881ef0453627a6a09c8c863aabafb5d2c0cca4aa7f",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Snowdrop"
+      },
+      "stats": {
+        "originalCharacterCount": 13522,
+        "cleanedCharacterCount": 12213,
+        "wordCount": 2371,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "snowdrop/manifest.json"
+    },
+    {
+      "slug": "sweetheart-roland",
+      "title": "Sweetheart Roland",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "78dbadefff782bac",
+      "contentHash": "78dbadefff782bac010151bfe2697582db9d316891262f5af875f4423fbcf5ee",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Sweetheart Roland"
+      },
+      "stats": {
+        "originalCharacterCount": 8772,
+        "cleanedCharacterCount": 7636,
+        "wordCount": 1480,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "sweetheart-roland/manifest.json"
+    },
+    {
+      "slug": "the-dog-and-the-sparrow",
+      "title": "The Dog and the Sparrow",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "3c7b21cb90595eae",
+      "contentHash": "3c7b21cb90595eaeaed6cb438117227d2f4c438378a216dda7d93479fc7057b4",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Dog and the Sparrow"
+      },
+      "stats": {
+        "originalCharacterCount": 7940,
+        "cleanedCharacterCount": 6818,
+        "wordCount": 1348,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-dog-and-the-sparrow/manifest.json"
+    },
+    {
+      "slug": "the-valiant-little-tailor",
+      "title": "The Valiant Little Tailor",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "da9173fc56b56c7f",
+      "contentHash": "da9173fc56b56c7f332f8e302929defaacb620a382e01291a35ec03161989e26",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 13 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Valiant Little Tailor"
+      },
+      "stats": {
+        "originalCharacterCount": 18690,
+        "cleanedCharacterCount": 17398,
+        "wordCount": 3350,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-valiant-little-tailor/manifest.json"
     }
   ]
 }

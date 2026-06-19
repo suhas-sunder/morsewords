@@ -81,7 +81,7 @@ type UnresolvedSourceBook = {
 
 type DryRunReport = {
   schemaVersion: 1;
-  reportName: "pilot-dry-run-12";
+  reportName: "pilot-dry-run-12" | "pilot-dry-run-13";
   selectedBooks: string[];
   selectedCount: number;
   counts: {
@@ -218,43 +218,69 @@ type ManualBoundary = {
 
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
+const writeBatch = process.env.MORSEWORDS_PILOT_WRITE_BATCH === "13" ? 13 : 12;
+const dryRunReportName = `pilot-dry-run-${writeBatch}` as const;
+const writeReportName = `pilot-write-${writeBatch}` as const;
 const tempBooksRoot = path.join(repoRoot, "app/client/assets/temp-books");
 const generatedRoot = path.join(repoRoot, "app/client/assets/books/generated");
 const previewRoot = path.join(repoRoot, "public/book-previews");
 const dryRunRoot = path.join(
   repoRoot,
-  "app/client/assets/books/audit-reports/pilot-dry-run-12",
+  `app/client/assets/books/audit-reports/${dryRunReportName}`,
 );
 const writeReportRoot = path.join(
   repoRoot,
-  "app/client/assets/books/audit-reports/pilot-write-12",
+  `app/client/assets/books/audit-reports/${writeReportName}`,
 );
-const dryRunReportPath = path.join(dryRunRoot, "pilot-dry-run-12.json");
+const dryRunReportPath = path.join(dryRunRoot, `${dryRunReportName}.json`);
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 const previewManifestPath = path.join(previewRoot, "manifest.json");
 
-const SELECTED_BATCH = [
-  "ole-luk-oie-the-dream-god",
-  "clever-hans",
-  "the-fisherman-and-his-wife",
-  "the-story-of-the-old-man-who-made-withered-trees-to-flower",
-  "the-story-of-urashima-taro-the-fisher-lad",
-  "the-story-of-the-man-who-did-not-wish-to-die",
-  "the-happy-hunter-and-the-skillful-fisher",
-  "the-conceited-apple-branch",
-  "the-darning-needle",
-  "the-greenies",
-  "the-loving-pair",
-  "little-ida-s-flowers",
-  "the-roses-and-the-sparrows",
-  "the-steadfast-tin-soldier",
-  "shock-tactics",
-  "canossa",
-  "the-oversight",
-  "the-penance",
-  "mark",
-  "quail-seed",
-] as const;
+const SELECTED_BATCH: readonly string[] = writeBatch === 13
+  ? [
+      "ashputtel",
+      "cat-and-mouse-in-partnership",
+      "cat-skin",
+      "clever-elsie",
+      "clever-gretel",
+      "doctor-knowall",
+      "frederick-and-catherine",
+      "fundevogel",
+      "hans-in-luck",
+      "hansel-and-gretel",
+      "iron-hans",
+      "king-grisly-beard",
+      "lily-and-the-lion",
+      "little-red-riding-hood",
+      "old-sultan",
+      "rumpelstiltskin",
+      "snowdrop",
+      "sweetheart-roland",
+      "the-dog-and-the-sparrow",
+      "the-valiant-little-tailor",
+    ]
+  : [
+      "ole-luk-oie-the-dream-god",
+      "clever-hans",
+      "the-fisherman-and-his-wife",
+      "the-story-of-the-old-man-who-made-withered-trees-to-flower",
+      "the-story-of-urashima-taro-the-fisher-lad",
+      "the-story-of-the-man-who-did-not-wish-to-die",
+      "the-happy-hunter-and-the-skillful-fisher",
+      "the-conceited-apple-branch",
+      "the-darning-needle",
+      "the-greenies",
+      "the-loving-pair",
+      "little-ida-s-flowers",
+      "the-roses-and-the-sparrows",
+      "the-steadfast-tin-soldier",
+      "shock-tactics",
+      "canossa",
+      "the-oversight",
+      "the-penance",
+      "mark",
+      "quail-seed",
+    ];
 
 const UNRESOLVED_SOURCE_GENERATED_BOOKS = [
   "a-princess-of-mars",
@@ -270,35 +296,16 @@ const UNRESOLVED_SOURCE_GENERATED_BOOKS = [
   "wood-folk-at-school",
 ] as const;
 
-const EXPECTED_FINAL_SECTION_COUNTS: Record<string, number> = {
-  "ole-luk-oie-the-dream-god": 1,
-  "clever-hans": 1,
-  "the-fisherman-and-his-wife": 1,
-  "the-story-of-the-old-man-who-made-withered-trees-to-flower": 1,
-  "the-story-of-urashima-taro-the-fisher-lad": 1,
-  "the-story-of-the-man-who-did-not-wish-to-die": 1,
-  "the-happy-hunter-and-the-skillful-fisher": 1,
-  "the-conceited-apple-branch": 1,
-  "the-darning-needle": 1,
-  "the-greenies": 1,
-  "the-loving-pair": 1,
-  "little-ida-s-flowers": 1,
-  "the-roses-and-the-sparrows": 1,
-  "the-steadfast-tin-soldier": 1,
-  "shock-tactics": 1,
-  "canossa": 1,
-  "the-oversight": 1,
-  "the-penance": 1,
-  "mark": 1,
-  "quail-seed": 1,
-};
+const EXPECTED_FINAL_SECTION_COUNTS: Record<string, number> = Object.fromEntries(
+  SELECTED_BATCH.map((slug) => [slug, 1]),
+);
 
 const MANUAL_SKIP_REASONS: Record<string, string> = {};
 
 const FUTURE_BATCH_RULE = [
   "valid generated readable content",
   "correct generated title",
-  "correct author metadata or documented unresolved-author policy",
+  "correct author/compiler/collector/translator metadata or documented unresolved-author policy",
   "no duplicate generated work under a slightly different slug unless intentionally documented",
   "first default section from real readable content",
   "all main readable sections included by default",
@@ -306,7 +313,7 @@ const FUTURE_BATCH_RULE = [
   "valid book-specific startup preview",
   "no SOS Help!",
   "no generic preview fallback",
-  "no title/TOC/source/license/contributor/transcriber/byline material as default playback",
+  "no title/TOC/source/license/contributor/transcriber/byline/parent-collection material as default playback",
   "selected/default source order begins from the first selected/default section",
 ];
 
@@ -315,6 +322,7 @@ const LATER_PHASE_REQUIREMENTS = [
   "after books and second-pass audit, add original non-spoiler 300-500+ word SEO summaries for each accepted book page",
   "after summaries, perform full site SEO/meta review using GSC data and route-level intent",
   "after books/SEO, run a focused rage-click UX pass for /audio, /practice, homepage, and related utility pages",
+  "investigate the SSR heap OOM separately if it keeps appearing during plain npm run build",
   "final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable",
 ];
 
@@ -495,9 +503,12 @@ function sanitizeSectionText(input: string, cleanup: CleanupSummary): string {
   text = text.replace(/^\s*THE END\s*$/gim, "");
   cleanup.trailingNonReadableBlocksRemoved += countMatches(
     text,
-    /^\s*_?By\s+[^_\n]+_?\s*$/gim,
+    /^\s*_?By\s+(?!(?:the|a|an|his|her|its|this|that|these|those|my|our|your)\b)[^_\n]+_?\s*$/gim,
   );
-  text = text.replace(/^\s*_?By\s+[^_\n]+_?\s*$/gim, "");
+  text = text.replace(
+    /^\s*_?By\s+(?!(?:the|a|an|his|her|its|this|that|these|those|my|our|your)\b)[^_\n]+_?\s*$/gim,
+    "",
+  );
   cleanup.trailingNonReadableBlocksRemoved += countMatches(
     text,
     /^\s*(?:A COMPLETE NOVELETTE|PART TWO OF A THREE-PART NOVEL|_A Meeting Place for Readers of_|Astounding Stories|_--The Editor\._)\s*$/gim,
@@ -680,7 +691,7 @@ function makeMetadata(
       rightsBasis: "public-domain-us",
       rightsReviewed: true,
       rightsNotes:
-        "Pilot write pass 12 processed this audited Project Gutenberg source for review-gated MorseWords book output.",
+        `Pilot write pass ${writeBatch} processed this audited Project Gutenberg source for review-gated MorseWords book output.`,
     },
     cover: {
       src: null,
@@ -1142,6 +1153,15 @@ function manualSingleStoryPhraseBoundary(
   ];
 }
 
+function dryRunStartPhrase(dryRun: DryRunBook): string | null {
+  if (writeBatch !== 13) return null;
+  const marker = ": ";
+  const markerIndex = dryRun.expectedStartBoundary.indexOf(marker);
+  return markerIndex >= 0
+    ? dryRun.expectedStartBoundary.slice(markerIndex + marker.length).trim()
+    : null;
+}
+
 function lineMatchesBoundarySpec(line: SourceLine, spec: BoundarySpec) {
   return normalizedLoose(line.trimmed) === normalizedLoose(spec.sourceLabel);
 }
@@ -1243,7 +1263,8 @@ function buildSectionsForBook(
   });
   warnings.push(...analysis.redFlags);
 
-  const singleStoryStartPhrase = SINGLE_STORY_START_PHRASES[dryRun.slug];
+  const singleStoryStartPhrase =
+    SINGLE_STORY_START_PHRASES[dryRun.slug] ?? dryRunStartPhrase(dryRun);
   if (singleStoryStartPhrase) {
     return {
       sections: sectionsFromBoundaries(
@@ -1506,7 +1527,7 @@ function buildManifest(
       processedBookPath: "processed_book.json",
       cleanedBookPath: "cleaned_book.json",
       rightsNotes:
-        "Pilot write pass 12 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export.",
+        `Pilot write pass ${writeBatch} processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export.`,
     },
     cover: {
       src: null,
@@ -1548,7 +1569,7 @@ function buildManifest(
       warnings,
     },
     warnings: [
-      "Generated by controlled pilot write pass 12; review before scaling to larger batches or Cloudflare export.",
+      `Generated by controlled pilot write pass ${writeBatch}; review before scaling to larger batches or Cloudflare export.`,
       ...(cleanupSummary.imagePlaceholderLinesRemoved > 0
         ? ["Illustration/image placeholder lines removed from playable text."]
         : []),
@@ -1732,7 +1753,7 @@ function buildRightsReport(
     duplicate_resolution_source: "not-needed",
     canada_us_v1_status: "approved",
     reasoning_summary:
-      "Controlled pilot write pass 12 used audited Project Gutenberg public-domain source text after dry-run review. Generated output remains review-gated before any Cloudflare export.",
+      `Controlled pilot write pass ${writeBatch} used audited Project Gutenberg public-domain source text after dry-run review. Generated output remains review-gated before any Cloudflare export.`,
     evidence_snippets: [
       manifest.source.sourceUrl
         ? `Project Gutenberg source URL: ${manifest.source.sourceUrl}`
@@ -1884,13 +1905,13 @@ function duplicateNearDuplicateCheck(dryRun: DryRunBook): {
   if (duplicate.slug === dryRun.slug) {
     return {
       blocking: false,
-      message: `passed: ${duplicate.slug} is the selected batch-12 slug and may be regenerated by this targeted command`,
+      message: `passed: ${duplicate.slug} is the selected batch-${writeBatch} slug and may be regenerated by this targeted command`,
     };
   }
 
   return {
     blocking: true,
-    message: `blocked: existing generated slug ${duplicate.slug} already has title "${duplicate.title}" and author ${duplicate.author.join(", ")}; dry-run 12 did not document a distinct-version reason for creating ${dryRun.slug}`,
+    message: `blocked: existing generated slug ${duplicate.slug} already has title "${duplicate.title}" and author ${duplicate.author.join(", ")}; dry-run ${writeBatch} did not document a distinct-version reason for creating ${dryRun.slug}`,
   };
 }
 
@@ -2053,7 +2074,7 @@ function updatePreviewManifest(entries: PreviewEntry[]) {
 function makeProcessingNotes(report: BookReport): string {
   return `# ${report.slug}
 
-Processed by pilot write pass 12.
+Processed by pilot write pass ${writeBatch}.
 
 - Source: ${report.sourceFileUsed}
 - Start boundary: cleaned line ${report.startBoundaryUsed.cleanedLine ?? "n/a"} (${report.startBoundaryUsed.reason})
@@ -2375,9 +2396,9 @@ function writeMarkdownReport(report: {
   books: BookReport[];
 }) {
   const lines = [
-    "# Pilot write batch 12",
+    `# Pilot write batch ${writeBatch}`,
     "",
-    "Controlled first-time processing pass for the exact raw-only books selected by pilot dry-run batch 12.",
+    `Controlled first-time processing pass for the exact raw-only books selected by pilot dry-run batch ${writeBatch}.`,
     "",
     "## Totals",
     "",
@@ -2448,12 +2469,12 @@ function writeMarkdownReport(report: {
     ...LATER_PHASE_REQUIREMENTS.map((rule) => `- ${rule}`),
     "",
   ];
-  writeText(path.join(writeReportRoot, "pilot-write-12.md"), `${lines.join("\n").trimEnd()}\n`);
+  writeText(path.join(writeReportRoot, `${writeReportName}.md`), `${lines.join("\n").trimEnd()}\n`);
 }
 
 function main() {
   const dryRun = readJson<DryRunReport>(dryRunReportPath);
-  if (dryRun.reportName !== "pilot-dry-run-12") {
+  if (dryRun.reportName !== dryRunReportName) {
     throw new Error(`Unexpected dry-run report ${dryRun.reportName}.`);
   }
   const selectedFromReport = dryRun.books
@@ -2503,13 +2524,13 @@ function main() {
     ],
     selectedIntersectAcceptedExclusion: [] as string[],
     note:
-      "This write pass uses only the exact selected list from pilot-dry-run-12.json. Known duplicate/manual/boundary exclusions and unresolved-source generated books remain untouched.",
+      `This write pass uses only the exact selected list from ${dryRunReportName}.json. Known duplicate/manual/boundary exclusions and unresolved-source generated books remain untouched.`,
   };
   const jsonReport = {
     schemaVersion: 1,
-    reportName: "pilot-write-12",
+    reportName: writeReportName,
     generatedAt,
-    branch: "morsewords-book-processing-pilot-write-12-jun-2026",
+    branch: `morsewords-book-processing-pilot-write-${writeBatch}-jun-2026`,
     mode: "controlled first-time processing",
     sourceDryRunReport: statusPath(dryRunReportPath),
     selectedBooks: [...SELECTED_BATCH],
@@ -2528,7 +2549,7 @@ function main() {
     books: reports,
   };
 
-  writeJson(path.join(writeReportRoot, "pilot-write-12.json"), jsonReport);
+  writeJson(path.join(writeReportRoot, `${writeReportName}.json`), jsonReport);
   writeMarkdownReport({
     generatedAt,
     totals: jsonReport.totals,
@@ -2539,7 +2560,7 @@ function main() {
   });
 
   console.log(
-    `Pilot write 12 complete: ${processed.length} first-time processed, ${skipped.length} skipped, ${dryRun.unresolvedSourceGeneratedBooksLeftUntouched.length} unresolved-source generated books untouched.`,
+    `Pilot write ${writeBatch} complete: ${processed.length} first-time processed, ${skipped.length} skipped, ${dryRun.unresolvedSourceGeneratedBooksLeftUntouched.length} unresolved-source generated books untouched.`,
   );
 }
 
