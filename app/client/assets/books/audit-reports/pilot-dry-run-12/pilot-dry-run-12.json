@@ -1,0 +1,1968 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-dry-run-12",
+  "generatedAt": "2026-06-19T05:47:29.303Z",
+  "branch": "morsewords-book-processing-pilot-dry-run-12-jun-2026",
+  "baseMainCommit": "439d2949a4886f012ef212a7f80795ca3e9e9f70",
+  "mode": "dry-run/report-only",
+  "selectedBooks": [
+    "ole-luk-oie-the-dream-god",
+    "clever-hans",
+    "the-fisherman-and-his-wife",
+    "the-story-of-the-old-man-who-made-withered-trees-to-flower",
+    "the-story-of-urashima-taro-the-fisher-lad",
+    "the-story-of-the-man-who-did-not-wish-to-die",
+    "the-happy-hunter-and-the-skillful-fisher",
+    "the-conceited-apple-branch",
+    "the-darning-needle",
+    "the-greenies",
+    "the-loving-pair",
+    "little-ida-s-flowers",
+    "the-roses-and-the-sparrows",
+    "the-steadfast-tin-soldier",
+    "shock-tactics",
+    "canossa",
+    "the-oversight",
+    "the-penance",
+    "mark",
+    "quail-seed"
+  ],
+  "selectedCount": 20,
+  "candidateTypeCounts": {
+    "rawOnly": 20,
+    "unresolvedSourceGeneratedReportOnly": 11
+  },
+  "counts": {
+    "controlledFirstTimeProcessing": 20,
+    "manualReview": 0,
+    "blocked": 0,
+    "skippedUnsafe": 261
+  },
+  "acceptedExclusion": {
+    "count": 222,
+    "reportInputs": [
+      "app/client/assets/books/audit-reports/pilot-write-1/pilot-write-1.json",
+      "app/client/assets/books/audit-reports/pilot-write-2/pilot-write-2.json",
+      "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "app/client/assets/books/audit-reports/pilot-write-4/pilot-write-4.json",
+      "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "app/client/assets/books/audit-reports/pilot-write-6/pilot-write-6.json",
+      "app/client/assets/books/audit-reports/pilot-write-6-verification/pilot-write-6-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-7/pilot-write-7.json",
+      "app/client/assets/books/audit-reports/pilot-write-7-verification/pilot-write-7-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-8/pilot-write-8.json",
+      "app/client/assets/books/audit-reports/pilot-write-8-verification/pilot-write-8-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-9/pilot-write-9.json",
+      "app/client/assets/books/audit-reports/pilot-write-9-verification/pilot-write-9-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-10/pilot-write-10.json",
+      "app/client/assets/books/audit-reports/pilot-write-10-verification/pilot-write-10-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "app/client/assets/books/audit-reports/pilot-write-11-verification/pilot-write-11-verification.json",
+      "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
+      "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
+      "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json"
+    ],
+    "ambiguities": []
+  },
+  "candidatePool": {
+    "rawOnlyCandidatesConsidered": 281,
+    "knownManualBlockedSuspiciousExcludedCount": 12,
+    "selectedRawOnlyCount": 20,
+    "rejectedBySafetyGatesCount": 261
+  },
+  "unresolvedSourceGeneratedBooksLeftUntouched": [
+    {
+      "slug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "doctor-dolittle",
+      "title": "The Story of Doctor Dolittle",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 6,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "heidi",
+      "title": "Heidi",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "jabberwocky",
+      "title": "Jabberwocky",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 2,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "title": "Nights With Uncle Remus",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 21,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan [Peter and Wendy]",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 20,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "tarzan-of-the-apes",
+      "title": "Tarzan of the Apes",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-great-gatsby",
+      "title": "The Great Gatsby",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-picture-of-dorian-gray",
+      "title": "The Picture of Dorian Gray",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 23,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 12,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "title": "Wood folk at school",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 10,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    }
+  ],
+  "duplicateNearDuplicateCandidatesSkipped": [
+    {
+      "slug": "the-wind-in-the-willows",
+      "reason": "Skipped as a known duplicate of existing generated wind-in-the-willows; write batch 8 accepted the skip and no distinct-version policy exists."
+    },
+    {
+      "slug": "the-two-magics-the-turn-of-the-screw-covering-end",
+      "reason": "Skipped as a known duplicate/boundary-risk case; write batch 9 found this raw file contains a full The Turn of the Screw while generated the-turn-of-the-screw already exists and no distinct-version policy exists."
+    }
+  ],
+  "boundaryDefectCandidatesSkipped": [
+    {
+      "slug": "the-works-of-edgar-allan-poe",
+      "reason": "Skipped as a known boundary-defect case; write batch 9 found raw Volume 2 begins with THE PURLOINED LETTER while the dry-run boundary would have dropped that opening collection content."
+    }
+  ],
+  "inputReports": [
+    "app/client/assets/books/audit-reports/book-processing-audit-pass-1.json",
+    "app/client/assets/books/audit-reports/book-processing-audit-pass-2.json",
+    "app/client/assets/books/audit-reports/book-structure-audit-1/book-structure-audit-1.json",
+    "app/client/assets/books/audit-reports/book-startup-preview-audit-1/book-startup-preview-audit-1.json",
+    "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
+    "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
+    "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
+    "app/client/assets/books/audit-reports/pilot-write-11-verification/pilot-write-11-verification.json"
+  ],
+  "sourceDetectorUsed": "scripts/books/lib/book-structure-detection.ts",
+  "protectedPaths": {
+    "rawSourceInput": "app/client/assets/temp-books",
+    "generatedBooks": "app/client/assets/books/generated",
+    "cloudflareExport": "app/client/assets/books/cloudflare-export",
+    "previewAssets": "public/book-previews"
+  },
+  "futureBatchRules": [
+    "Future book batches fail unless each processed book has valid generated readable content.",
+    "Future book batches fail unless each processed book has the correct generated title.",
+    "Future book batches fail unless each processed book has correct author metadata or a documented unresolved-author policy.",
+    "Future book batches fail if duplicate generated work appears under a slightly different slug without intentional documentation.",
+    "Future book batches fail unless the first default section begins with real readable content.",
+    "Future book batches fail unless all main readable sections are included by default.",
+    "Future book batches fail unless segmentation is meaningful and source-based.",
+    "Future book batches fail unless startup preview is valid, book-specific, and starts from real readable generated content.",
+    "Future book batches fail if preview contains SOS Help! or generic preview fallback text.",
+    "Future book batches fail if title/TOC/source/license/contributor/transcriber/byline material enters default playback.",
+    "Future book batches fail unless selected/default source order begins from the first selected/default section.",
+    "Do not mark a book safe when meaningful headings exist but proposed output would become vague Part 1 / Part 2 chunks.",
+    "Do not mark a book safe when the expected generated title would be inherited from a parent collection instead of the actual book or story identity.",
+    "Do not mark a book safe when the author would be Unknown Author even though the source clearly identifies an author.",
+    "Do not mark a book safe when the first default content would not be the real readable opening.",
+    "Do not mark a book safe when Chapter 1, Part 1, first story, or prologue would be missing or excluded incorrectly.",
+    "Do not allow title page, parent collection title, byline, contents, source notes, illustration captions, contributor notes, transcriber notes, or license material into default playback.",
+    "Do not allow previews to start after the true beginning.",
+    "Do not allow selected/default source order to begin anywhere other than the first selected/default section.",
+    "Do not ignore meaningful story, play, poem, letter, chapter, part, or section structure.",
+    "Do not rely only on literal words like chapter, volume, or part; use repeated heading patterns, body/TOC matches, paragraph shape, spacing, and section length distribution.",
+    "Do not accept a future write unless generated readable content is valid, the title is correct, the author metadata is correct or has a documented unresolved-author policy, all main readable sections are selected by default, and the startup preview is book-specific.",
+    "Do not accept SOS Help!, generic preview fallback, or title/TOC/source/license/contributor/transcriber/byline material as default playback."
+  ],
+  "laterPhaseRequirements": [
+    "After all books are processed, run an independent second-pass audit using a different strategy.",
+    "After books and the second-pass audit, add original non-spoiler 300-500+ word SEO summaries for each accepted book page.",
+    "After summaries, perform full site SEO/meta review using GSC data and route-level intent.",
+    "After books/SEO, run a focused rage-click UX pass for /audio, /practice, homepage, and related utility pages.",
+    "Final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable."
+  ],
+  "books": [
+    {
+      "slug": "ole-luk-oie-the-dream-god",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/OLE-LUK-OIE THE DREAM GOD.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "Ole-Luk-Oie, the Dream-God",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "OLE-LUK-OIE THE DREAM GOD",
+        "lineNumber": 137
+      },
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "high",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: THERE is nobody in the whole world who knows so many stories as"
+      ],
+      "realReadableStart": "Ole-Luk-Oie, the Dream-God: THERE is nobody in the whole world who knows so many stories as Ole-Luk-Oie, or who can relate them so nicely. In the evening while the children are seated at the tea table or in their little chairs, very softly he comes up the stairs, for he walks in his socks. He opens the doors without the slightest noise and thr...",
+      "realReadableEnd": "get free, for they seemed fastened to the seat. \"Why, Death is a most splendid Luk-Oie,\" said Hjalmar. \"I am not in the least afraid of him.\" \"You need have no fear of him,\" said Ole-Luk-Oie; \"but take care and keep a good conduct book.\" \"Now I call that very instructive,\" murmured the great-grandfather's portrait....",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": true,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "Ole-Luk-Oie, the Dream-God",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "THERE is nobody in the whole world who knows so many stories as Ole-Luk-Oie, or who can relate them so nicely. In the evening while the children are seated at the tea table or in their little chairs, very softly he comes up the stairs, for he walks in his socks. He opens the doors without the slightest noise and thr...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: THERE is nobody in the whole world who knows so many stories as",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default",
+        "illustration captions/placeholders must be removed from default playback"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "illustration captions/placeholders detected"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "OLE-LUK-OIE THE DREAM GOD",
+        "author": "Author: H. C. Andersen",
+        "start": "Ole-Luk-Oie, the Dream-God THERE is nobody in the whole world who knows so many stories as Ole-Luk-Oie, or who can relate them so nicely. In the evening while the children are seated at the tea table or in their little chairs, very softly he comes up the stairs, for he walks in his socks. He opens the doors without the slightest noise and thr...",
+        "end": "get free, for they seemed fastened to the seat. \"Why, Death is a most splendid Luk-Oie,\" said Hjalmar. \"I am not in the least afraid of him.\" \"You need have no fear of him,\" said Ole-Luk-Oie; \"but take care and keep a good conduct book.\" \"Now I call that very instructive,\" murmured the great-grandfather's portrait...."
+      }
+    },
+    {
+      "slug": "clever-hans",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/CLEVER HANS.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "Clever Hans",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "CLEVER HANS",
+        "lineNumber": 43
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "high",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: The mother of Hans said"
+      ],
+      "realReadableStart": "Clever Hans: The mother of Hans said: ?Whither away, Hans?? Hans answered: ?To Gretel.? ?Behave well, Hans.? ?Oh, I?ll behave well. Goodbye, mother.? ?Goodbye, Hans.? Hans comes to Gretel. ?Good day, Gretel.? ?Good day, Hans. What do you bring that is good?? ?I bring nothing, I want to have something given me.? Gretel presents H...",
+      "realReadableEnd": "did you take her?? ?I took her nothing.? ?What did Gretel give you?? ?She gave me nothing, she came with me.? ?Where have you left Gretel?? ?I led her by the rope, tied her to the rack, and scattered some grass for her.? ?That was ill done, Hans, you should have cast friendly eyes on her.? ?Never mind, will do bette...",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "Clever Hans",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "The mother of Hans said: ?Whither away, Hans?? Hans answered: ?To Gretel.? ?Behave well, Hans.? ?Oh, I?ll behave well. Goodbye, mother.? ?Goodbye, Hans.? Hans comes to Gretel. ?Good day, Gretel.? ?Good day, Hans. What do you bring that is good?? ?I bring nothing, I want to have something given me.? Gretel presents H...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: The mother of Hans said",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "safe for normal processing",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "CLEVER HANS",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "Clever Hans The mother of Hans said: ?Whither away, Hans?? Hans answered: ?To Gretel.? ?Behave well, Hans.? ?Oh, I?ll behave well. Goodbye, mother.? ?Goodbye, Hans.? Hans comes to Gretel. ?Good day, Gretel.? ?Good day, Hans. What do you bring that is good?? ?I bring nothing, I want to have something given me.? Gretel presents H...",
+        "end": "did you take her?? ?I took her nothing.? ?What did Gretel give you?? ?She gave me nothing, she came with me.? ?Where have you left Gretel?? ?I led her by the rope, tied her to the rack, and scattered some grass for her.? ?That was ill done, Hans, you should have cast friendly eyes on her.? ?Never mind, will do bette..."
+      }
+    },
+    {
+      "slug": "the-fisherman-and-his-wife",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE FISHERMAN AND HIS WIFE.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Fisherman and His Wife",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE FISHERMAN AND HIS WIFE",
+        "lineNumber": 44
+      },
+      "expectedAuthor": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Jacob Grimm; Wilhelm Grimm",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "high",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: There was once a fisherman who lived with his wife in a pigsty"
+      ],
+      "realReadableStart": "The Fisherman and His Wife: There was once a fisherman who lived with his wife in a pigsty, close by the seaside. The fisherman used to go out all day long a-fishing; and one day, as he sat on the shore with his rod, looking at the sparkling waves and watching his line, all on a sudden his float was dragged away deep into the water: and in dra...",
+      "realReadableEnd": "d; and you might have seen in the sea great black waves, swelling up like mountains with crowns of white foam upon their heads. And the fisherman crept towards the sea, and cried out, as well as he could: ?O man of the sea! Hearken to me! My wife Ilsabill Will have her own will, And hath sent me to beg a boon of the...",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Fisherman and His Wife",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "There was once a fisherman who lived with his wife in a pigsty, close by the seaside. The fisherman used to go out all day long a-fishing; and one day, as he sat on the shore with his rod, looking at the sparkling waves and watching his line, all on a sudden his float was dragged away deep into the water: and in dra...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: There was once a fisherman who lived with his wife in a pigsty",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE FISHERMAN AND HIS WIFE",
+        "author": "Author: Jacob Grimm; Wilhelm Grimm",
+        "start": "The Fisherman and His Wife There was once a fisherman who lived with his wife in a pigsty, close by the seaside. The fisherman used to go out all day long a-fishing; and one day, as he sat on the shore with his rod, looking at the sparkling waves and watching his line, all on a sudden his float was dragged away deep into the water: and in dra...",
+        "end": "d; and you might have seen in the sea great black waves, swelling up like mountains with crowns of white foam upon their heads. And the fisherman crept towards the sea, and cried out, as well as he could: ?O man of the sea! Hearken to me! My wife Ilsabill Will have her own will, And hath sent me to beg a boon of the..."
+      }
+    },
+    {
+      "slug": "the-story-of-the-old-man-who-made-withered-trees-to-flower",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE STORY OF THE OLD MAN WHO MADE WITHERED TREES TO FLOWER.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Story of the Old Man Who Made Withered Trees to Flower",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE STORY OF THE OLD MAN WHO MADE WITHERED TREES TO FLOWER",
+        "lineNumber": 49
+      },
+      "expectedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Yei Theodora Ozaki",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "medium",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: Long, long ago there lived an old man and his wife"
+      ],
+      "realReadableStart": "The Story of the Old Man Who Made Withered Trees to Flower: Long, long ago there lived an old man and his wife who supported themselves by cultivating a small plot of land. Their life had been a very happy and peaceful one save for one great sorrow, and this was they had no child. Their only pet was a dog named Shiro, and on him they lavished all the affection of their old a...",
+      "realReadableEnd": "ngry, and he ordered his retainers to arrest the false Hana-Saka-Jijii at once and put him in prison for an impostor. From this imprisonment the wicked old man was never freed. Thus did he meet with punishment at last for all his evil doings. The good old man, however, with the treasure of gold coins which Shiro had...",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": true,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Story of the Old Man Who Made Withered Trees to Flower",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "Long, long ago there lived an old man and his wife who supported themselves by cultivating a small plot of land. Their life had been a very happy and peaceful one save for one great sorrow, and this was they had no child. Their only pet was a dog named Shiro, and on him they lavished all the affection of their old a...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Long, long ago there lived an old man and his wife",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default",
+        "illustration captions/placeholders must be removed from default playback"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "illustration captions/placeholders detected"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Real opening or ending content may be at risk around the audited boundary.",
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE STORY OF THE OLD MAN WHO MADE WITHERED TREES TO FLOWER",
+        "author": "Author: Yei Theodora Ozaki",
+        "start": "The Story of the Old Man Who Made Withered Trees to Flower Long, long ago there lived an old man and his wife who supported themselves by cultivating a small plot of land. Their life had been a very happy and peaceful one save for one great sorrow, and this was they had no child. Their only pet was a dog named Shiro, and on him they lavished all the affection of their old a...",
+        "end": "ngry, and he ordered his retainers to arrest the false Hana-Saka-Jijii at once and put him in prison for an impostor. From this imprisonment the wicked old man was never freed. Thus did he meet with punishment at last for all his evil doings. The good old man, however, with the treasure of gold coins which Shiro had..."
+      }
+    },
+    {
+      "slug": "the-story-of-urashima-taro-the-fisher-lad",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE STORY OF URASHIMA TARO, THE FISHER LAD.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Story of Urashima Taro, the Fisher Lad",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE STORY OF URASHIMA TARO, THE FISHER LAD",
+        "lineNumber": 47
+      },
+      "expectedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Yei Theodora Ozaki",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "medium",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: Long, long ago in the province of Tango"
+      ],
+      "realReadableStart": "The Story of Urashima Taro, the Fisher Lad: Long, long ago in the province of Tango there lived on the shore of Japan in the little fishing village of Mizu-no-ye a young fisherman named Urashima Taro. His father had been a fisherman before him, and his skill had more than doubly descended to his son, for Urashima was the most skillful fisher in all that count...",
+      "realReadableEnd": "the sea. Urashima, who had been till that moment like a strong and handsome youth of twenty-four, suddenly became very, very old. His back doubled up with age, his hair turned snowy white, his face wrinkled and he fell down dead on the beach. Poor Urashima! because of his disobedience he could never return to the Se...",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": true,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Story of Urashima Taro, the Fisher Lad",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "Long, long ago in the province of Tango there lived on the shore of Japan in the little fishing village of Mizu-no-ye a young fisherman named Urashima Taro. His father had been a fisherman before him, and his skill had more than doubly descended to his son, for Urashima was the most skillful fisher in all that count...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Long, long ago in the province of Tango",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default",
+        "illustration captions/placeholders must be removed from default playback"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "illustration captions/placeholders detected"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Real opening or ending content may be at risk around the audited boundary.",
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE STORY OF URASHIMA TARO, THE FISHER LAD",
+        "author": "Author: Yei Theodora Ozaki",
+        "start": "The Story of Urashima Taro, the Fisher Lad Long, long ago in the province of Tango there lived on the shore of Japan in the little fishing village of Mizu-no-ye a young fisherman named Urashima Taro. His father had been a fisherman before him, and his skill had more than doubly descended to his son, for Urashima was the most skillful fisher in all that count...",
+        "end": "the sea. Urashima, who had been till that moment like a strong and handsome youth of twenty-four, suddenly became very, very old. His back doubled up with age, his hair turned snowy white, his face wrinkled and he fell down dead on the beach. Poor Urashima! because of his disobedience he could never return to the Se..."
+      }
+    },
+    {
+      "slug": "the-story-of-the-man-who-did-not-wish-to-die",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE STORY OF THE MAN WHO DID NOT WISH TO DIE.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Story of the Man Who Did Not Wish to Die",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE STORY OF THE MAN WHO DID NOT WISH TO DIE",
+        "lineNumber": 49
+      },
+      "expectedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Yei Theodora Ozaki",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "medium",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: Long, long ago there lived a man called Sentaro"
+      ],
+      "realReadableStart": "The Story of the Man Who Did Not Wish to Die: Long, long ago there lived a man called Sentaro. His surname meant ?Millionaire,? but although he was not so rich as all that, he was still very far removed from being poor. He had inherited a small fortune from his father and lived on this, spending his time carelessly, without any serious thoughts of work, till he...",
+      "realReadableEnd": "desires are granted they do not bring happiness.? ?In this book I give you there are many precepts good for you to know?if you study them, you will be guided in the way I have pointed out to you.? The angel disappeared as soon as he had finished speaking, and Sentaro took the lesson to heart. With the book in his ha...",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": true,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Story of the Man Who Did Not Wish to Die",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "Long, long ago there lived a man called Sentaro. His surname meant ?Millionaire,? but although he was not so rich as all that, he was still very far removed from being poor. He had inherited a small fortune from his father and lived on this, spending his time carelessly, without any serious thoughts of work, till he...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Long, long ago there lived a man called Sentaro",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default",
+        "illustration captions/placeholders must be removed from default playback"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "illustration captions/placeholders detected"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Real opening or ending content may be at risk around the audited boundary.",
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE STORY OF THE MAN WHO DID NOT WISH TO DIE",
+        "author": "Author: Yei Theodora Ozaki",
+        "start": "The Story of the Man Who Did Not Wish to Die Long, long ago there lived a man called Sentaro. His surname meant ?Millionaire,? but although he was not so rich as all that, he was still very far removed from being poor. He had inherited a small fortune from his father and lived on this, spending his time carelessly, without any serious thoughts of work, till he...",
+        "end": "desires are granted they do not bring happiness.? ?In this book I give you there are many precepts good for you to know?if you study them, you will be guided in the way I have pointed out to you.? The angel disappeared as soon as he had finished speaking, and Sentaro took the lesson to heart. With the book in his ha..."
+      }
+    },
+    {
+      "slug": "the-happy-hunter-and-the-skillful-fisher",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE HAPPY HUNTER AND THE SKILLFUL FISHER.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Happy Hunter and the Skillful Fisher",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE HAPPY HUNTER AND THE SKILLFUL FISHER",
+        "lineNumber": 49
+      },
+      "expectedAuthor": [
+        "Yei Theodora Ozaki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Yei Theodora Ozaki",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: Long, long ago Japan was governed by Hohodemi"
+      ],
+      "realReadableStart": "The Happy Hunter and the Skillful Fisher: Long, long ago Japan was governed by Hohodemi, the fourth Mikoto (or Augustness) in descent from the illustrious Amaterasu, the Sun Goddess. He was not only as handsome as his ancestress was beautiful, but he was also very strong and brave, and was famous for being the greatest hunter in the land. Because of his mat...",
+      "realReadableEnd": "Tamayori, and all the inmates of the Palace, came out to say ?Good-by,? and before the sound of the last farewell had died away the Happy Hunter passed out from under the gateway, past the well of happy memory standing in the shade of the great KATSURA trees on his way to the beach. Here he found, instead of the que...",
+      "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": true,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Happy Hunter and the Skillful Fisher",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "Long, long ago Japan was governed by Hohodemi, the fourth Mikoto (or Augustness) in descent from the illustrious Amaterasu, the Sun Goddess. He was not only as handsome as his ancestress was beautiful, but he was also very strong and brave, and was famous for being the greatest hunter in the land. Because of his mat...",
+      "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Long, long ago Japan was governed by Hohodemi",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default",
+        "illustration captions/placeholders must be removed from default playback"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "illustration captions/placeholders detected"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Real opening or ending content may be at risk around the audited boundary.",
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE HAPPY HUNTER AND THE SKILLFUL FISHER",
+        "author": "Author: Yei Theodora Ozaki",
+        "start": "The Happy Hunter and the Skillful Fisher Long, long ago Japan was governed by Hohodemi, the fourth Mikoto (or Augustness) in descent from the illustrious Amaterasu, the Sun Goddess. He was not only as handsome as his ancestress was beautiful, but he was also very strong and brave, and was famous for being the greatest hunter in the land. Because of his mat...",
+        "end": "Tamayori, and all the inmates of the Palace, came out to say ?Good-by,? and before the sound of the last farewell had died away the Happy Hunter passed out from under the gateway, past the well of happy memory standing in the shade of the great KATSURA trees on his way to the beach. Here he found, instead of the que..."
+      }
+    },
+    {
+      "slug": "the-conceited-apple-branch",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE CONCEITED APPLE BRANCH.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Conceited Apple Branch",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE CONCEITED APPLE BRANCH",
+        "lineNumber": 137
+      },
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "medium",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: IT WAS the month of May"
+      ],
+      "realReadableStart": "The Conceited Apple Branch: IT WAS the month of May. The wind still blew cold, but from bush and tree, field and flower, came the welcome sound, \"Spring is come.\" Wild flowers in profusion covered the hedges. Under the little apple tree Spring seemed busy, and he told his tale from one of the branches, which hung fresh and blooming and covered...",
+      "realReadableEnd": "r garlands of green stems and golden flowers. But the eldest among them gathered carefully the faded flowers, on the stem of which were grouped together the seeds, in the form of a white, feathery coronal. These loose, airy wool-flowers are very beautiful, and look like fine, snowy feathers or down. The children hel...",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": true,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Conceited Apple Branch",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "IT WAS the month of May. The wind still blew cold, but from bush and tree, field and flower, came the welcome sound, \"Spring is come.\" Wild flowers in profusion covered the hedges. Under the little apple tree Spring seemed busy, and he told his tale from one of the branches, which hung fresh and blooming and covered...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: IT WAS the month of May",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default",
+        "illustration captions/placeholders must be removed from default playback"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "illustration captions/placeholders detected"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE CONCEITED APPLE BRANCH",
+        "author": "Author: H. C. Andersen",
+        "start": "The Conceited Apple Branch IT WAS the month of May. The wind still blew cold, but from bush and tree, field and flower, came the welcome sound, \"Spring is come.\" Wild flowers in profusion covered the hedges. Under the little apple tree Spring seemed busy, and he told his tale from one of the branches, which hung fresh and blooming and covered...",
+        "end": "r garlands of green stems and golden flowers. But the eldest among them gathered carefully the faded flowers, on the stem of which were grouped together the seeds, in the form of a white, feathery coronal. These loose, airy wool-flowers are very beautiful, and look like fine, snowy feathers or down. The children hel..."
+      }
+    },
+    {
+      "slug": "the-darning-needle",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE DARNING-NEEDLE.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Darning-Needle",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE DARNING-NEEDLE",
+        "lineNumber": 137
+      },
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "medium",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: THERE was once a Darning-needle"
+      ],
+      "realReadableStart": "The Darning-Needle: THERE was once a Darning-needle who thought herself so fine that she came at last to believe that she was fit for embroidery. \"Mind now that you hold me fast,\" she said to the Fingers that took her up. \"Pray don't lose me. If I should fall on the ground I should certainly be lost, I am so fine.\" \"That's more than yo...",
+      "realReadableEnd": "that one is something a little more than an ordinary person. My seasickness is all over now. The more genteel and honorable one is, the more one can endure.\" Crash went the eggshell, as a wagon rolled over both of them. It was a wonder that she did not break. \"Mercy, what a crushing weight!\" said the Darning-needle....",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": true,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Darning-Needle",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "THERE was once a Darning-needle who thought herself so fine that she came at last to believe that she was fit for embroidery. \"Mind now that you hold me fast,\" she said to the Fingers that took her up. \"Pray don't lose me. If I should fall on the ground I should certainly be lost, I am so fine.\" \"That's more than yo...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: THERE was once a Darning-needle",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default",
+        "illustration captions/placeholders must be removed from default playback"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "illustration captions/placeholders detected"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE DARNING-NEEDLE",
+        "author": "Author: H. C. Andersen",
+        "start": "The Darning-Needle THERE was once a Darning-needle who thought herself so fine that she came at last to believe that she was fit for embroidery. \"Mind now that you hold me fast,\" she said to the Fingers that took her up. \"Pray don't lose me. If I should fall on the ground I should certainly be lost, I am so fine.\" \"That's more than yo...",
+        "end": "that one is something a little more than an ordinary person. My seasickness is all over now. The more genteel and honorable one is, the more one can endure.\" Crash went the eggshell, as a wagon rolled over both of them. It was a wonder that she did not break. \"Mercy, what a crushing weight!\" said the Darning-needle...."
+      }
+    },
+    {
+      "slug": "the-greenies",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE GREENIES.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Greenies",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE GREENIES",
+        "lineNumber": 137
+      },
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "medium",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: A ROSE TREE stood in the window"
+      ],
+      "realReadableStart": "The Greenies: A ROSE TREE stood in the window. But a little while ago it had been green and fresh, and now it looked sickly--it was in poor health, no doubt. A whole regiment was quartered on it and was eating it up; yet, notwithstanding this seeming greediness, the regiment was a very decent and respectable one. It wore bright-g...",
+      "realReadableEnd": "e, and the bubble grows large and radiant and looks as if there were a pearl lying inside it. The bubble swayed and swung. It flew to the door and then burst, but the door opened wide, and there stood Dame Fairytale herself! And now she will tell you better than I can about (I will not say the name) the little green...",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": true,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Greenies",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "A ROSE TREE stood in the window. But a little while ago it had been green and fresh, and now it looked sickly--it was in poor health, no doubt. A whole regiment was quartered on it and was eating it up; yet, notwithstanding this seeming greediness, the regiment was a very decent and respectable one. It wore bright-g...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: A ROSE TREE stood in the window",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default",
+        "illustration captions/placeholders must be removed from default playback"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "illustration captions/placeholders detected"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE GREENIES",
+        "author": "Author: H. C. Andersen",
+        "start": "The Greenies A ROSE TREE stood in the window. But a little while ago it had been green and fresh, and now it looked sickly--it was in poor health, no doubt. A whole regiment was quartered on it and was eating it up; yet, notwithstanding this seeming greediness, the regiment was a very decent and respectable one. It wore bright-g...",
+        "end": "e, and the bubble grows large and radiant and looks as if there were a pearl lying inside it. The bubble swayed and swung. It flew to the door and then burst, but the door opened wide, and there stood Dame Fairytale herself! And now she will tell you better than I can about (I will not say the name) the little green..."
+      }
+    },
+    {
+      "slug": "the-loving-pair",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE LOVING PAIR.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Loving Pair",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE LOVING PAIR",
+        "lineNumber": 136
+      },
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "medium",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: A WHIPPING Top and a Ball lay close together"
+      ],
+      "realReadableStart": "The Loving Pair: A WHIPPING Top and a Ball lay close together in a drawer among other playthings. One day the Top said to the Ball, \"Since we are living so much together, why should we not be lovers?\" But the Ball, being made of morocco leather, thought herself a very high-bred lady, and would hear nothing of such a proposal. On the...",
+      "realReadableEnd": "eard, the more sure he became that this was indeed she. Then came the housemaid to empty the dustbin. \"Hullo!\" she cried; \"why, here's the gilt Top.\" And so the Top was brought again to the playroom, to be used and honored as before, while nothing was again heard of the Ball. And the Top never spoke again of his old...",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": true,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Loving Pair",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "A WHIPPING Top and a Ball lay close together in a drawer among other playthings. One day the Top said to the Ball, \"Since we are living so much together, why should we not be lovers?\" But the Ball, being made of morocco leather, thought herself a very high-bred lady, and would hear nothing of such a proposal. On the...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: A WHIPPING Top and a Ball lay close together",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default",
+        "illustration captions/placeholders must be removed from default playback"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "illustration captions/placeholders detected"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE LOVING PAIR",
+        "author": "Author: H. C. Andersen",
+        "start": "The Loving Pair A WHIPPING Top and a Ball lay close together in a drawer among other playthings. One day the Top said to the Ball, \"Since we are living so much together, why should we not be lovers?\" But the Ball, being made of morocco leather, thought herself a very high-bred lady, and would hear nothing of such a proposal. On the...",
+        "end": "eard, the more sure he became that this was indeed she. Then came the housemaid to empty the dustbin. \"Hullo!\" she cried; \"why, here's the gilt Top.\" And so the Top was brought again to the playroom, to be used and honored as before, while nothing was again heard of the Ball. And the Top never spoke again of his old..."
+      }
+    },
+    {
+      "slug": "little-ida-s-flowers",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/LITTLE IDA'S FLOWERS.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "Little Ida's Flowers",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "LITTLE IDA'S FLOWERS",
+        "lineNumber": 137
+      },
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "medium",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: \"MY POOR flowers are quite faded"
+      ],
+      "realReadableStart": "Little Ida's Flowers: \"MY POOR flowers are quite faded!\" said little Ida. \"Only yesterday evening they were so pretty, and now all the leaves are drooping. Why do they do that?\" she asked of the student, who sat on the sofa. He was a great favorite with her, because he used to tell her the prettiest of stories and cut out the most amusin...",
+      "realReadableEnd": "each a new crossbow, which they brought with them to show to Ida. She told them of the poor flowers that were dead and were to be buried in the garden. So the two boys walked in front, with their bows slung across their shoulders, and little Ida followed, carrying the dead flowers in their pretty coffin. A little gr...",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": true,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "Little Ida's Flowers",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "\"MY POOR flowers are quite faded!\" said little Ida. \"Only yesterday evening they were so pretty, and now all the leaves are drooping. Why do they do that?\" she asked of the student, who sat on the sofa. He was a great favorite with her, because he used to tell her the prettiest of stories and cut out the most amusin...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: \"MY POOR flowers are quite faded",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default",
+        "illustration captions/placeholders must be removed from default playback"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "illustration captions/placeholders detected"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "LITTLE IDA'S FLOWERS",
+        "author": "Author: H. C. Andersen",
+        "start": "Little Ida's Flowers \"MY POOR flowers are quite faded!\" said little Ida. \"Only yesterday evening they were so pretty, and now all the leaves are drooping. Why do they do that?\" she asked of the student, who sat on the sofa. He was a great favorite with her, because he used to tell her the prettiest of stories and cut out the most amusin...",
+        "end": "each a new crossbow, which they brought with them to show to Ida. She told them of the poor flowers that were dead and were to be buried in the garden. So the two boys walked in front, with their bows slung across their shoulders, and little Ida followed, carrying the dead flowers in their pretty coffin. A little gr..."
+      }
+    },
+    {
+      "slug": "the-roses-and-the-sparrows",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE ROSES AND THE SPARROWS.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Roses and the Sparrows",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE ROSES AND THE SPARROWS",
+        "lineNumber": 137
+      },
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "medium",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: IT really appeared as if something very important were going on by the"
+      ],
+      "realReadableStart": "The Roses and the Sparrows: IT really appeared as if something very important were going on by the duck pond, but this was not the case. A few minutes before, all the ducks had been resting on the water or standing on their heads--for that they can do--and then they all swam in a bustle to the shore. The traces of their feet could be seen on t...",
+      "realReadableEnd": "day. It is as if each day were a holiday.\" \"Tweet,\" said the sparrows to each other. \"Yes, these really are our old neighbors. We remember their origin near the pond. Tweet! how they have risen, to be sure. Some people seem to get on while they are asleep. Ah! there's a withered leaf. I can see it quite plainly.\" An...",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": true,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Roses and the Sparrows",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "IT really appeared as if something very important were going on by the duck pond, but this was not the case. A few minutes before, all the ducks had been resting on the water or standing on their heads--for that they can do--and then they all swam in a bustle to the shore. The traces of their feet could be seen on t...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: IT really appeared as if something very important were going on by the",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default",
+        "illustration captions/placeholders must be removed from default playback"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "illustration captions/placeholders detected"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE ROSES AND THE SPARROWS",
+        "author": "Author: H. C. Andersen",
+        "start": "The Roses and the Sparrows IT really appeared as if something very important were going on by the duck pond, but this was not the case. A few minutes before, all the ducks had been resting on the water or standing on their heads--for that they can do--and then they all swam in a bustle to the shore. The traces of their feet could be seen on t...",
+        "end": "day. It is as if each day were a holiday.\" \"Tweet,\" said the sparrows to each other. \"Yes, these really are our old neighbors. We remember their origin near the pond. Tweet! how they have risen, to be sure. Some people seem to get on while they are asleep. Ah! there's a withered leaf. I can see it quite plainly.\" An..."
+      }
+    },
+    {
+      "slug": "the-steadfast-tin-soldier",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE STEADFAST TIN SOLDIER.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Steadfast Tin Soldier",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE STEADFAST TIN SOLDIER",
+        "lineNumber": 137
+      },
+      "expectedAuthor": [
+        "H. C. Andersen"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. C. Andersen",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "medium",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: THERE were once five and twenty tin soldiers"
+      ],
+      "realReadableStart": "The Steadfast Tin Soldier: THERE were once five and twenty tin soldiers. They were brothers, for they had all been made out of the same old tin spoon. They all shouldered their bayonets, held themselves upright, and looked straight before them. Their uniforms were very smart-looking--red and blue--and very splendid. The first thing they heard...",
+      "realReadableEnd": "d say. He looked at the little lady, she looked at him, and he felt himself melting; still he stood firm as ever, with his bayonet on his shoulder. Then suddenly the door flew open; the wind caught the Dancer, and she flew straight into the stove to the Tin Soldier, flashed up in a flame, and was gone! The Tin Soldi...",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": true,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Steadfast Tin Soldier",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "THERE were once five and twenty tin soldiers. They were brothers, for they had all been made out of the same old tin spoon. They all shouldered their bayonets, held themselves upright, and looked straight before them. Their uniforms were very smart-looking--red and blue--and very splendid. The first thing they heard...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: THERE were once five and twenty tin soldiers",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default",
+        "illustration captions/placeholders must be removed from default playback"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "illustration captions/placeholders detected"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE STEADFAST TIN SOLDIER",
+        "author": "Author: H. C. Andersen",
+        "start": "The Steadfast Tin Soldier THERE were once five and twenty tin soldiers. They were brothers, for they had all been made out of the same old tin spoon. They all shouldered their bayonets, held themselves upright, and looked straight before them. Their uniforms were very smart-looking--red and blue--and very splendid. The first thing they heard...",
+        "end": "d say. He looked at the little lady, she looked at him, and he felt himself melting; still he stood firm as ever, with his bayonet on his shoulder. Then suddenly the door flew open; the wind caught the Dancer, and she flew straight into the stove to the Tin Soldier, flashed up in a flame, and was gone! The Tin Soldi..."
+      }
+    },
+    {
+      "slug": "shock-tactics",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/SHOCK TACTICS.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "Shock Tactics",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "SHOCK TACTICS",
+        "lineNumber": 61
+      },
+      "expectedAuthor": [
+        "Saki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Saki",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "high",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: On a late spring afternoon Ella McCarthy"
+      ],
+      "realReadableStart": "Shock Tactics: On a late spring afternoon Ella McCarthy sat on a green-painted chair in Kensington Gardens, staring listlessly at an uninteresting stretch of park landscape, that blossomed suddenly into tropical radiance as an expected figure appeared in the middle distance. ?Hullo, Bertie!? she exclaimed sedately, when the figure...",
+      "realReadableEnd": "ose letters?? whimpered Mrs. Heasant. ?I should have known what to think of them,? said Bertie; ?if you choose to excite yourself over other people?s correspondence it?s your own fault. Anyhow, I?m going for a doctor.? It was Bertie?s great opportunity, and he knew it. His mother was conscious of the fact that she w...",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": true,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "Shock Tactics",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "On a late spring afternoon Ella McCarthy sat on a green-painted chair in Kensington Gardens, staring listlessly at an uninteresting stretch of park landscape, that blossomed suddenly into tropical radiance as an expected figure appeared in the middle distance. ?Hullo, Bertie!? she exclaimed sedately, when the figure...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: On a late spring afternoon Ella McCarthy",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "contents or list material must not enter default playback",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "safe for normal processing",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "SHOCK TACTICS",
+        "author": "Author: Saki",
+        "start": "Shock Tactics On a late spring afternoon Ella McCarthy sat on a green-painted chair in Kensington Gardens, staring listlessly at an uninteresting stretch of park landscape, that blossomed suddenly into tropical radiance as an expected figure appeared in the middle distance. ?Hullo, Bertie!? she exclaimed sedately, when the figure...",
+        "end": "ose letters?? whimpered Mrs. Heasant. ?I should have known what to think of them,? said Bertie; ?if you choose to excite yourself over other people?s correspondence it?s your own fault. Anyhow, I?m going for a doctor.? It was Bertie?s great opportunity, and he knew it. His mother was conscious of the fact that she w..."
+      }
+    },
+    {
+      "slug": "canossa",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/CANOSSA.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "Canossa",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "CANOSSA",
+        "lineNumber": 63
+      },
+      "expectedAuthor": [
+        "Saki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Saki",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "medium",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: Demosthenes Platterbaff"
+      ],
+      "realReadableStart": "Canossa: Demosthenes Platterbaff, the eminent Unrest Inducer, stood on his trial for a serious offence, and the eyes of the political world were focussed on the jury. The offence, it should be stated, was serious for the Government rather than for the prisoner. He had blown up the Albert Hall on the eve of the great Liberal...",
+      "realReadableEnd": "o it? the prisoner strode forth to freedom. The word of the song had reference, it was understood, to the incarcerating Government and not to the destroyer of the Albert Hall. The seat was lost, after all, by a narrow majority. The local Trade Unionists took offence at the fact of Cabinet Ministers having personally...",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "Canossa",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "Demosthenes Platterbaff, the eminent Unrest Inducer, stood on his trial for a serious offence, and the eyes of the political world were focussed on the jury. The offence, it should be stated, was serious for the Government rather than for the prisoner. He had blown up the Albert Hall on the eve of the great Liberal...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Demosthenes Platterbaff",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "CANOSSA",
+        "author": "Author: Saki",
+        "start": "Canossa Demosthenes Platterbaff, the eminent Unrest Inducer, stood on his trial for a serious offence, and the eyes of the political world were focussed on the jury. The offence, it should be stated, was serious for the Government rather than for the prisoner. He had blown up the Albert Hall on the eve of the great Liberal...",
+        "end": "o it? the prisoner strode forth to freedom. The word of the song had reference, it was understood, to the incarcerating Government and not to the destroyer of the Albert Hall. The seat was lost, after all, by a narrow majority. The local Trade Unionists took offence at the fact of Cabinet Ministers having personally..."
+      }
+    },
+    {
+      "slug": "the-oversight",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE OVERSIGHT.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Oversight",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE OVERSIGHT",
+        "lineNumber": 63
+      },
+      "expectedAuthor": [
+        "Saki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Saki",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "medium",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: ?It?s like a Chinese puzzle"
+      ],
+      "realReadableStart": "The Oversight: ?It?s like a Chinese puzzle,? said Lady Prowche resentfully, staring at a scribbled list of names that spread over two or three loose sheets of notepaper on her writing-table. Most of the names had a pencil mark running through them. ?What is like a Chinese puzzle?? asked Lena Luddleford briskly; she rather prided h...",
+      "realReadableEnd": "a scene from one of Hogarth?s pictures. I never felt so humiliated in my life. What the servants must have thought!? ?But who were the offenders?? ?Oh, naturally the very two that we took all the trouble about.? ?I thought they agreed on every subject that one could violently disagree about?religion, politics, vivis...",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Oversight",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "?It?s like a Chinese puzzle,? said Lady Prowche resentfully, staring at a scribbled list of names that spread over two or three loose sheets of notepaper on her writing-table. Most of the names had a pencil mark running through them. ?What is like a Chinese puzzle?? asked Lena Luddleford briskly; she rather prided h...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: “It’s like a Chinese puzzle",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE OVERSIGHT",
+        "author": "Author: Saki",
+        "start": "The Oversight ?It?s like a Chinese puzzle,? said Lady Prowche resentfully, staring at a scribbled list of names that spread over two or three loose sheets of notepaper on her writing-table. Most of the names had a pencil mark running through them. ?What is like a Chinese puzzle?? asked Lena Luddleford briskly; she rather prided h...",
+        "end": "a scene from one of Hogarth?s pictures. I never felt so humiliated in my life. What the servants must have thought!? ?But who were the offenders?? ?Oh, naturally the very two that we took all the trouble about.? ?I thought they agreed on every subject that one could violently disagree about?religion, politics, vivis..."
+      }
+    },
+    {
+      "slug": "the-penance",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE PENANCE.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "The Penance",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE PENANCE",
+        "lineNumber": 63
+      },
+      "expectedAuthor": [
+        "Saki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Saki",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "medium",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: Octavian Ruttle"
+      ],
+      "realReadableStart": "The Penance: Octavian Ruttle was one of those lively cheerful individuals on whom amiability had set its unmistakable stamp, and, like most of his kind, his soul?s peace depended in large measure on the unstinted approval of his fellows. In hunting to death a small tabby cat he had done a thing of which he scarcely approved hims...",
+      "realReadableEnd": "umber seemed to have passed. A box of matches lay at his feet and was resorted to on the fairly frequent occasions when the candle succumbed to the night breezes. The house loomed inscrutable in the middle distance, but as Octavian conscientiously repeated the formula of his penance he felt certain that three pairs...",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": true,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Penance",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "Octavian Ruttle was one of those lively cheerful individuals on whom amiability had set its unmistakable stamp, and, like most of his kind, his soul?s peace depended in large measure on the unstinted approval of his fellows. In hunting to death a small tabby cat he had done a thing of which he scarcely approved hims...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Octavian Ruttle",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "contents or list material must not enter default playback",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE PENANCE",
+        "author": "Author: Saki",
+        "start": "The Penance Octavian Ruttle was one of those lively cheerful individuals on whom amiability had set its unmistakable stamp, and, like most of his kind, his soul?s peace depended in large measure on the unstinted approval of his fellows. In hunting to death a small tabby cat he had done a thing of which he scarcely approved hims...",
+        "end": "umber seemed to have passed. A box of matches lay at his feet and was resorted to on the fairly frequent occasions when the candle succumbed to the night breezes. The house loomed inscrutable in the middle distance, but as Octavian conscientiously repeated the formula of his penance he felt certain that three pairs..."
+      }
+    },
+    {
+      "slug": "mark",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/MARK.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "Mark",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "MARK",
+        "lineNumber": 63
+      },
+      "expectedAuthor": [
+        "Saki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Saki",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: Augustus Mellowkent was a novelist"
+      ],
+      "realReadableStart": "Mark: Augustus Mellowkent was a novelist with a future; that is to say, a limited but increasing number of people read his books, and there seemed good reason to suppose that if he steadily continued to turn out novels year by year a progressively increasing circle of readers would acquire the Mellowkent habit, and demand...",
+      "realReadableEnd": "a visit without a couple of Mark Mellowkents in his kit-bag. Perhaps sensation is more in your line. I wonder if I?ve got a copy of _The Python?s Kiss_.? Caiaphas did not wait to be tempted with selections from that thrilling work of fiction. With a muttered remark about having no time to waste on monkey-talk, he ga...",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "Mark",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "Augustus Mellowkent was a novelist with a future; that is to say, a limited but increasing number of people read his books, and there seemed good reason to suppose that if he steadily continued to turn out novels year by year a progressively increasing circle of readers would acquire the Mellowkent habit, and demand...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Augustus Mellowkent was a novelist",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "MARK",
+        "author": "Author: Saki",
+        "start": "Mark Augustus Mellowkent was a novelist with a future; that is to say, a limited but increasing number of people read his books, and there seemed good reason to suppose that if he steadily continued to turn out novels year by year a progressively increasing circle of readers would acquire the Mellowkent habit, and demand...",
+        "end": "a visit without a couple of Mark Mellowkents in his kit-bag. Perhaps sensation is more in your line. I wonder if I?ve got a copy of _The Python?s Kiss_.? Caiaphas did not wait to be tempted with selections from that thrilling work of fiction. With a muttered remark about having no time to waste on monkey-talk, he ga..."
+      }
+    },
+    {
+      "slug": "quail-seed",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/QUAIL SEED.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+      "expectedGeneratedTitle": "Quail Seed",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "QUAIL SEED",
+        "lineNumber": 63
+      },
+      "expectedAuthor": [
+        "Saki"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Saki",
+        "lineNumber": 13
+      },
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "First readable prose: ?The outlook is not encouraging for us smaller businesses"
+      ],
+      "realReadableStart": "Quail Seed: ?The outlook is not encouraging for us smaller businesses,? said Mr. Scarrick to the artist and his sister, who had taken rooms over his suburban grocery store. ?These big concerns are offering all sorts of attractions to the shopping public which we couldn?t afford to imitate, even on a small scale?reading-rooms an...",
+      "realReadableEnd": "isfied his requirements. He, too, took his departure, and the shop was slowly emptied of its parcel and gossip laden customers. It was Emily Yorling?s ?day?, and most of the shoppers made their way to her drawing-room. To go direct from a shopping expedition to a tea party was what was known locally as ?living in a...",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "Quail Seed",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "?The outlook is not encouraging for us smaller businesses,? said Mr. Scarrick to the artist and his sister, who had taken rooms over his suburban grocery store. ?These big concerns are offering all sorts of attractions to the shopping public which we couldn?t afford to imitate, even on a small scale?reading-rooms an...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: “The outlook is not encouraging for us smaller businesses",
+      "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "QUAIL SEED",
+        "author": "Author: Saki",
+        "start": "Quail Seed ?The outlook is not encouraging for us smaller businesses,? said Mr. Scarrick to the artist and his sister, who had taken rooms over his suburban grocery store. ?These big concerns are offering all sorts of attractions to the shopping public which we couldn?t afford to imitate, even on a small scale?reading-rooms an...",
+        "end": "isfied his requirements. He, too, took his departure, and the shop was slowly emptied of its parcel and gossip laden customers. It was Emily Yorling?s ?day?, and most of the shoppers made their way to her drawing-room. To go direct from a shopping expedition to a tea party was what was known locally as ?living in a..."
+      }
+    }
+  ]
+}
