@@ -1,0 +1,87 @@
+{
+  "slug": "the-adventures-of-chanticleer-and-partlet",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE ADVENTURES OF CHANTICLEER AND PARTLET.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Adventures of Chanticleer and Partlet",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE ADVENTURES OF CHANTICLEER AND PARTLET",
+    "lineNumber": 43
+  },
+  "expectedAuthor": [
+    "Jacob Grimm; Wilhelm Grimm"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Jacob Grimm; Wilhelm Grimm",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "arabic-numbered titled story sections after parent collection wrapper",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "1. HOW THEY WENT TO THE MOUNTAINS TO EAT NUTS",
+    "2. HOW CHANTICLEER AND PARTLET WENT TO VISIT MR KORBES",
+    "3. HOW PARTLET DIED AND WAS BURIED, AND HOW CHANTICLEER DIED OF GRIEF"
+  ],
+  "realReadableStart": "1. HOW THEY WENT TO THE MOUNTAINS TO EAT NUTS: The nuts are quite ripe now,? said Chanticleer to his wife Partlet, ?suppose we go together to the mountains, and eat as many as we can, before the squirrel takes them all away.? ?With all my heart,? said Partlet, ?let us go and make a holiday of it together.? So they went to the mountains; and as it was a lovely da...",
+  "realReadableEnd": "ross the stream; and this time he got safely to the other side with the hearse, and managed to get Partlet out of it; but the fox and the other mourners, who were sitting behind, were too heavy, and fell back into the water and were all carried away by the stream and drowned. Thus Chanticleer was left alone with his...",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "1. HOW THEY WENT TO THE MOUNTAINS TO EAT NUTS",
+  "expectedDefaultReadableSections": "all 3 planned arabic-numbered titled story sections after parent collection wrapper sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 3,
+  "likelyPreviewStart": "The nuts are quite ripe now,? said Chanticleer to his wife Partlet, ?suppose we go together to the mountains, and eat as many as we can, before the squirrel takes them all away.? ?With all my heart,? said Partlet, ?let us go and make a holiday of it together.? So they went to the mountains; and as it was a lovely da...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at 1. HOW THEY WENT TO THE MOUNTAINS TO EAT NUTS: The nuts are quite ripe now",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use the three numbered story sections beginning with 1. HOW THEY WENT TO THE MOUNTAINS TO EAT NUTS; exclude parent Grimm title/byline/source wrapper; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "later ordinal headings are present; verify Chapter/Part/Book 1 remains included and selected first",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE ADVENTURES OF CHANTICLEER AND PARTLET",
+    "author": "Author: Jacob Grimm; Wilhelm Grimm",
+    "start": "1. HOW THEY WENT TO THE MOUNTAINS TO EAT NUTS The nuts are quite ripe now,? said Chanticleer to his wife Partlet, ?suppose we go together to the mountains, and eat as many as we can, before the squirrel takes them all away.? ?With all my heart,? said Partlet, ?let us go and make a holiday of it together.? So they went to the mountains; and as it was a lovely da...",
+    "end": "ross the stream; and this time he got safely to the other side with the hearse, and managed to get Partlet out of it; but the fox and the other mourners, who were sitting behind, were too heavy, and fell back into the water and were all carried away by the stream and drowned. Thus Chanticleer was left alone with his..."
+  }
+}

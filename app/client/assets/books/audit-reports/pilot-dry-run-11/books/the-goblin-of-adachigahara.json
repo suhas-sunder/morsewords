@@ -1,0 +1,87 @@
+{
+  "slug": "the-goblin-of-adachigahara",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE GOBLIN OF ADACHIGAHARA.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Goblin of Adachigahara",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE GOBLIN OF ADACHIGAHARA",
+    "lineNumber": 49
+  },
+  "expectedAuthor": [
+    "Yei Theodora Ozaki"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Yei Theodora Ozaki",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "First readable prose: Long, long ago there was a large plain called Adachigahara"
+  ],
+  "realReadableStart": "The Goblin of Adachigahara: Long, long ago there was a large plain called Adachigahara, in the province of Mutsu in Japan. This place was said to be haunted by a cannibal goblin who took the form of an old woman. From time to time many travelers disappeared and were never heard of more, and the old women round the charcoal braziers in the even...",
+  "realReadableEnd": "th the darkness of night the goblin vanished and he was safe. The priest now knew that he had met the Goblin of Adachigahara, the story of whom he had often heard but never believed to be true. He felt that he owed his wonderful escape to the protection of Buddha to whom he had prayed for help, so he took out his ro...",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Goblin of Adachigahara",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "Long, long ago there was a large plain called Adachigahara, in the province of Mutsu in Japan. This place was said to be haunted by a cannibal goblin who took the form of an old woman. From time to time many travelers disappeared and were never heard of more, and the old women round the charcoal braziers in the even...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Long, long ago there was a large plain called Adachigahara",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary.",
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE GOBLIN OF ADACHIGAHARA",
+    "author": "Author: Yei Theodora Ozaki",
+    "start": "The Goblin of Adachigahara Long, long ago there was a large plain called Adachigahara, in the province of Mutsu in Japan. This place was said to be haunted by a cannibal goblin who took the form of an old woman. From time to time many travelers disappeared and were never heard of more, and the old women round the charcoal braziers in the even...",
+    "end": "th the darkness of night the goblin vanished and he was safe. The priest now knew that he had met the Goblin of Adachigahara, the story of whom he had often heard but never believed to be true. He felt that he owed his wonderful escape to the protection of Buddha to whom he had prayed for help, so he took out his ro..."
+  }
+}
