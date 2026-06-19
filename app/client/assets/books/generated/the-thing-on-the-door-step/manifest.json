@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-thing-on-the-door-step",
+  "title": "The Thing on the Door-Step",
+  "author": [
+    "H. P. Lovecraft"
+  ],
+  "contentVersion": "31afa95554f1172f",
+  "contentHash": "31afa95554f1172f0f5cab4b493c2e5fd4384b42a30fb387a6118e490cb354cf",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "73230",
+    "releaseDate": "March 22, 2024",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/73230",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Thing on the Door-Step"
+  },
+  "stats": {
+    "originalCharacterCount": 82738,
+    "cleanedCharacterCount": 60324,
+    "wordCount": 10697,
+    "sectionCount": 7,
+    "includedSectionCount": 7
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Section 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 7895,
+      "wordCount": 1342,
+      "estimatedTypingMinutes": 39,
+      "estimatedListeningMinutes": 48,
+      "morseCharacterEstimate": 42305,
+      "textPreview": "It is true that I have sent six bullets through the head of my best friend, and yet I hope to show by this statement that I am not his murderer. At first I sha..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Section 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 7860,
+      "wordCount": 1344,
+      "estimatedTypingMinutes": 39,
+      "estimatedListeningMinutes": 47,
+      "morseCharacterEstimate": 42190,
+      "textPreview": "2 Edward was thirty-eight when he met Asenath Waite. She was, I judge, about twenty-three at the time; and was taking a special course in mediæval meta-physics..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Section 3",
+      "title": null,
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 7233,
+      "wordCount": 1229,
+      "estimatedTypingMinutes": 36,
+      "estimatedListeningMinutes": 44,
+      "morseCharacterEstimate": 38988,
+      "textPreview": "3 For the next two years I saw less and less of Derby. A fortnight would sometimes slip by without the familiar three-and-two strokes at the front door; and wh..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Section 4",
+      "title": null,
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 12340,
+      "wordCount": 2220,
+      "estimatedTypingMinutes": 64,
+      "estimatedListeningMinutes": 75,
+      "morseCharacterEstimate": 66740,
+      "textPreview": "4 Derby had been married more than three years on that August day when I got that telegram from Maine. I had not seen him for two months, but had heard he was..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Section 5",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 11734,
+      "wordCount": 2174,
+      "estimatedTypingMinutes": 63,
+      "estimatedListeningMinutes": 71,
+      "morseCharacterEstimate": 63514,
+      "textPreview": "5 The next two months were full of rumors. People spoke of seeing Derby more and more in his new energized state, and Asenath was scarcely ever in to her calle..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Section 6",
+      "title": null,
+      "order": 6,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-006.json",
+      "characterCount": 4290,
+      "wordCount": 768,
+      "estimatedTypingMinutes": 22,
+      "estimatedListeningMinutes": 26,
+      "morseCharacterEstimate": 23085,
+      "textPreview": "6 Edward went to pieces rapidly after that. He did not call again, but I went daily to see him. He would always be sitting in his library, staring at nothing a..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Section 7",
+      "title": null,
+      "order": 7,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-007.json",
+      "characterCount": 8972,
+      "wordCount": 1620,
+      "estimatedTypingMinutes": 47,
+      "estimatedListeningMinutes": 53,
+      "morseCharacterEstimate": 47505,
+      "textPreview": "7 It was in the night--after that second evening--that stark, utter horror burst over me and weighted my spirit with a black, clutching panic from which it can..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 82738,
+    "cleanedCharacterCount": 60324,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": [
+      "Write pass starts section 1 at the first prose paragraph because the cleaned source has no standalone 1 marker, then preserves 2-7.",
+      "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+      "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+      "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+      "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+      "Write pass adjusted display-title capitalization from the Project Gutenberg Title line after confirming the same source identity."
+    ]
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 10; review before scaling to larger batches or Cloudflare export.",
+    "Illustration/image placeholder lines removed from playable text.",
+    "Trailing source, transcriber, catalog, or volume-note blocks removed from playable text.",
+    "Write pass starts section 1 at the first prose paragraph because the cleaned source has no standalone 1 marker, then preserves 2-7.",
+    "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+    "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+    "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+    "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets",
+    "Write pass adjusted display-title capitalization from the Project Gutenberg Title line after confirming the same source identity."
+  ]
+}

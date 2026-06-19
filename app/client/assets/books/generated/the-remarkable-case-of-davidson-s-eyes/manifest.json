@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-remarkable-case-of-davidson-s-eyes",
+  "title": "The Remarkable Case of Davidson's Eyes",
+  "author": [
+    "H. G. Wells"
+  ],
+  "contentVersion": "197b0ae45ad70a85",
+  "contentHash": "197b0ae45ad70a85716ba035112d9c1f9fa7243057936b0ba65732291a045609",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "12750",
+    "releaseDate": "June 26, 2004",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Remarkable Case of Davidson's Eyes"
+  },
+  "stats": {
+    "originalCharacterCount": 22999,
+    "cleanedCharacterCount": 20825,
+    "wordCount": 3836,
+    "sectionCount": 5,
+    "includedSectionCount": 5
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Section 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 5521,
+      "wordCount": 998,
+      "estimatedTypingMinutes": 29,
+      "estimatedListeningMinutes": 34,
+      "morseCharacterEstimate": 30055,
+      "textPreview": "The transitory mental aberration of Sidney Davidson, remarkable enough in itself, is still more remarkable if Wade's explanation is to be credited. It sets one..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Section 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 3086,
+      "wordCount": 570,
+      "estimatedTypingMinutes": 17,
+      "estimatedListeningMinutes": 19,
+      "morseCharacterEstimate": 16839,
+      "textPreview": "II. It was just then that Boyce came in. So soon as he spoke Davidson exclaimed: \"Old Boyce! Dead too! What a lark!\" I hastened to explain that Davidson was in..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Section 3",
+      "title": null,
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 5838,
+      "wordCount": 1089,
+      "estimatedTypingMinutes": 32,
+      "estimatedListeningMinutes": 35,
+      "morseCharacterEstimate": 31161,
+      "textPreview": "III. That was the beginning. For three weeks this strange affection of Davidson's eyes continued unabated. It was far worse than being blind. He was absolutely..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Section 4",
+      "title": null,
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 2898,
+      "wordCount": 548,
+      "estimatedTypingMinutes": 16,
+      "estimatedListeningMinutes": 18,
+      "morseCharacterEstimate": 15506,
+      "textPreview": "IV. For three weeks Davidson remained in this singular state, seeing what at the time we imagined was an altogether phantasmal world, and stone blind to the wo..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Section 5",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 3482,
+      "wordCount": 631,
+      "estimatedTypingMinutes": 19,
+      "estimatedListeningMinutes": 21,
+      "morseCharacterEstimate": 18666,
+      "textPreview": "V. And now to tell of the queerest thing of all. About two years after his cure I dined with the Davidsons, and after dinner a man named Atkins called in. He i..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 22999,
+    "cleanedCharacterCount": 20825,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": [
+      "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+      "Write pass uses the individual story title and starts at first prose, excluding parent collection title, dedication, and acknowledgements.",
+      "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+      "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+      "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+      "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+    ]
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 10; review before scaling to larger batches or Cloudflare export.",
+    "Trailing source, transcriber, catalog, or volume-note blocks removed from playable text.",
+    "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+    "Write pass uses the individual story title and starts at first prose, excluding parent collection title, dedication, and acknowledgements.",
+    "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+    "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+    "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+    "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+  ]
+}

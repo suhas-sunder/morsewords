@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "slug": "astounding-stories-of-super-science",
+  "title": "Astounding Stories of Super-Science, October, 1930",
+  "author": [
+    "Various"
+  ],
+  "contentVersion": "05c85dcb8dd444a8",
+  "contentHash": "05c85dcb8dd444a8cdc7b8cb9ab84444936158811b373ef9085abfafb3f72789",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "29882",
+    "releaseDate": "September 1, 2009",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/29882",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for Astounding Stories of Super-Science, October, 1930"
+  },
+  "stats": {
+    "originalCharacterCount": 492094,
+    "cleanedCharacterCount": 446933,
+    "wordCount": 78020,
+    "sectionCount": 6,
+    "includedSectionCount": 6
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Stolen Brains",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 57147,
+      "wordCount": 10472,
+      "estimatedTypingMinutes": 300,
+      "estimatedListeningMinutes": 341,
+      "morseCharacterEstimate": 306008,
+      "textPreview": "Stolen Brains \"I hope, Carnes,\" said Dr. Bird, \"that we get good fishing.\" \"Good fishing? Will you please tell me what you are talking about?\" \"I am talking ab..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "The Invisible Death",
+      "title": null,
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 173839,
+      "wordCount": 30170,
+      "estimatedTypingMinutes": 862,
+      "estimatedListeningMinutes": 1037,
+      "morseCharacterEstimate": 932812,
+      "textPreview": "The Invisible Death CHAPTER I _Out of the Hangman's Hands_ \"You speak,\" said Von Kettler, jeering, \"as if you really believed that you had the power of life an..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Prisoners on the Electron",
+      "title": null,
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 63968,
+      "wordCount": 11053,
+      "estimatedTypingMinutes": 316,
+      "estimatedListeningMinutes": 381,
+      "morseCharacterEstimate": 342402,
+      "textPreview": "Prisoners on the Electron The blood-red glow of a slanting sun bathed the towers of New York's serrated skyline, then dropped into a molten sea beyond the wint..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Jetta of the Lowlands",
+      "title": null,
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 75199,
+      "wordCount": 13593,
+      "estimatedTypingMinutes": 389,
+      "estimatedListeningMinutes": 450,
+      "morseCharacterEstimate": 404745,
+      "textPreview": "Jetta of the Lowlands WHAT HAS GONE BEFORE In the year 2020 the oceans have long since drained from the surface of the earth, leaving bared to sun and wind the..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "An Extra Man",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 39027,
+      "wordCount": 6851,
+      "estimatedTypingMinutes": 196,
+      "estimatedListeningMinutes": 232,
+      "morseCharacterEstimate": 208756,
+      "textPreview": "An Extra Man Rays of the August mid-day sun pouring through the museum's glass roof beat upon the eight soldiers surrounding the central exhibit, which for thi..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "The Reader's Corner",
+      "title": null,
+      "order": 6,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-006.json",
+      "characterCount": 37753,
+      "wordCount": 5881,
+      "estimatedTypingMinutes": 169,
+      "estimatedListeningMinutes": 208,
+      "morseCharacterEstimate": 186916,
+      "textPreview": "The Reader's Corner _The Invisible X-Flyers_ The following is a semi-technical description of the operation of the invisible X-flyers used in \"Jetta of the Low..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 492094,
+    "cleanedCharacterCount": 446933,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": [
+      "Write pass preserved issue-level story/article headings instead of starting inside only The Invisible Death's Chapter I.",
+      "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+      "dry-run cleanup risk: contents or list material must not enter default playback",
+      "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+      "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+      "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+      "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+      "dry-run collection-title risk: ensure the generated title stays the collection title and individual story titles become sections",
+      "dry-run artifact risk: illustration captions/placeholders detected"
+    ]
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 10; review before scaling to larger batches or Cloudflare export.",
+    "Illustration/image placeholder lines removed from playable text.",
+    "Trailing source, transcriber, catalog, or volume-note blocks removed from playable text.",
+    "Write pass preserved issue-level story/article headings instead of starting inside only The Invisible Death's Chapter I.",
+    "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+    "dry-run cleanup risk: contents or list material must not enter default playback",
+    "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+    "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+    "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+    "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+    "dry-run collection-title risk: ensure the generated title stays the collection title and individual story titles become sections",
+    "dry-run artifact risk: illustration captions/placeholders detected"
+  ]
+}

@@ -9420,6 +9420,986 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "under-the-red-dragon/manifest.json"
+    },
+    {
+      "slug": "the-time-machine",
+      "title": "The Time Machine",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "352ea9183b7cab8a",
+      "contentHash": "352ea9183b7cab8a1e4e98a06dac1eaf1a39f631f3eea74efa5e25d843661718",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "35",
+        "releaseDate": "October 2, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/35",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Time Machine"
+      },
+      "stats": {
+        "originalCharacterCount": 202494,
+        "cleanedCharacterCount": 178883,
+        "wordCount": 32616,
+        "sectionCount": 17,
+        "includedSectionCount": 17
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-time-machine/manifest.json"
+    },
+    {
+      "slug": "kidnapped",
+      "title": "Kidnapped",
+      "author": [
+        "Robert Louis Stevenson"
+      ],
+      "contentVersion": "f96e4d6028b6fb16",
+      "contentHash": "f96e4d6028b6fb16925c4d6909172851569c94f07f521ba9578554a5ac41cdbc",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "421",
+        "releaseDate": "January 16, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/421",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Kidnapped"
+      },
+      "stats": {
+        "originalCharacterCount": 451252,
+        "cleanedCharacterCount": 409343,
+        "wordCount": 80562,
+        "sectionCount": 30,
+        "includedSectionCount": 30
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "kidnapped/manifest.json"
+    },
+    {
+      "slug": "oliver-twist",
+      "title": "Oliver Twist",
+      "author": [
+        "Charles Dickens"
+      ],
+      "contentVersion": "8e5cb138252ad55d",
+      "contentHash": "8e5cb138252ad55d7cb3a95e0b7904a59ed3239786c85eb90cef42a0c608b9a3",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "730",
+        "releaseDate": "November 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/730",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Oliver Twist"
+      },
+      "stats": {
+        "originalCharacterCount": 931655,
+        "cleanedCharacterCount": 885911,
+        "wordCount": 160066,
+        "sectionCount": 53,
+        "includedSectionCount": 53
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "oliver-twist/manifest.json"
+    },
+    {
+      "slug": "the-benson-murder-case",
+      "title": "The Benson Murder Case",
+      "author": [
+        "S. S. Van Dine"
+      ],
+      "contentVersion": "6691345620a860e1",
+      "contentHash": "6691345620a860e13baf3a798b165200c7a67a111589f984adfbf2a93e03b938",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "70634",
+        "releaseDate": "April 23, 2023",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/70634",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Benson Murder Case"
+      },
+      "stats": {
+        "originalCharacterCount": 515519,
+        "cleanedCharacterCount": 474581,
+        "wordCount": 83909,
+        "sectionCount": 25,
+        "includedSectionCount": 25
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-benson-murder-case/manifest.json"
+    },
+    {
+      "slug": "the-inspector-french-s-greatest-case",
+      "title": "The Inspector French's Greatest Case",
+      "author": [
+        "Freeman Wills Crofts"
+      ],
+      "contentVersion": "57b11a8c73f0ae39",
+      "contentHash": "57b11a8c73f0ae396ed38aba741192b18fbb93cc2b22a1bdbb60cba26b6d6175",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "65553",
+        "releaseDate": "June 7, 2021",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/65553",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Inspector French's Greatest Case"
+      },
+      "stats": {
+        "originalCharacterCount": 487920,
+        "cleanedCharacterCount": 438448,
+        "wordCount": 79440,
+        "sectionCount": 20,
+        "includedSectionCount": 20
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-inspector-french-s-greatest-case/manifest.json"
+    },
+    {
+      "slug": "murder-in-the-maze",
+      "title": "Murder in the Maze",
+      "author": [
+        "J. J. Connington"
+      ],
+      "contentVersion": "d4332002c92f500d",
+      "contentHash": "d4332002c92f500db0dd775a9c498da8600dce23f3323dcf0803cb1cc28f0bdb",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "71351",
+        "releaseDate": "August 6, 2023",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/71351",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Murder in the Maze"
+      },
+      "stats": {
+        "originalCharacterCount": 416488,
+        "cleanedCharacterCount": 404599,
+        "wordCount": 75608,
+        "sectionCount": 18,
+        "includedSectionCount": 18
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "murder-in-the-maze/manifest.json"
+    },
+    {
+      "slug": "the-house-of-arden-a-story-for-children",
+      "title": "The House of Arden: A Story for Children",
+      "author": [
+        "E. Nesbit"
+      ],
+      "contentVersion": "98e41c31fb13c41a",
+      "contentHash": "98e41c31fb13c41a366fc919890292bd750d79755f8fdd5d4823174ce137fdee",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "57799",
+        "releaseDate": "August 29, 2018",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/57799",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The House of Arden: A Story for Children"
+      },
+      "stats": {
+        "originalCharacterCount": 433088,
+        "cleanedCharacterCount": 394406,
+        "wordCount": 72677,
+        "sectionCount": 14,
+        "includedSectionCount": 14
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-house-of-arden-a-story-for-children/manifest.json"
+    },
+    {
+      "slug": "the-shadow-over-innsmouth",
+      "title": "The Shadow over Innsmouth",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "0bc834a94cc4afe8",
+      "contentHash": "0bc834a94cc4afe8a779b1fd3d27beb7b3cbeced4e3bed939c9afb8012250b3b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "73181",
+        "releaseDate": "March 16, 2024",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/73181",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Shadow over Innsmouth"
+      },
+      "stats": {
+        "originalCharacterCount": 118477,
+        "cleanedCharacterCount": 95695,
+        "wordCount": 17047,
+        "sectionCount": 5,
+        "includedSectionCount": 5
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-shadow-over-innsmouth/manifest.json"
+    },
+    {
+      "slug": "the-thing-on-the-door-step",
+      "title": "The Thing on the Door-Step",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "31afa95554f1172f",
+      "contentHash": "31afa95554f1172f0f5cab4b493c2e5fd4384b42a30fb387a6118e490cb354cf",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "73230",
+        "releaseDate": "March 22, 2024",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/73230",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Thing on the Door-Step"
+      },
+      "stats": {
+        "originalCharacterCount": 82738,
+        "cleanedCharacterCount": 60324,
+        "wordCount": 10697,
+        "sectionCount": 7,
+        "includedSectionCount": 7
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-thing-on-the-door-step/manifest.json"
+    },
+    {
+      "slug": "at-the-mountains-of-madness",
+      "title": "At the Mountains of Madness",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "0d49ec3cb026a8ef",
+      "contentHash": "0d49ec3cb026a8efdf114e9efd728d81f4ff4cf8bbe4e285dc391a29ebcb9106",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "70652",
+        "releaseDate": "April 27, 2023",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/70652",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for At the Mountains of Madness"
+      },
+      "stats": {
+        "originalCharacterCount": 270201,
+        "cleanedCharacterCount": 241157,
+        "wordCount": 39952,
+        "sectionCount": 12,
+        "includedSectionCount": 12
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "at-the-mountains-of-madness/manifest.json"
+    },
+    {
+      "slug": "the-remarkable-case-of-davidson-s-eyes",
+      "title": "The Remarkable Case of Davidson's Eyes",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "197b0ae45ad70a85",
+      "contentHash": "197b0ae45ad70a85716ba035112d9c1f9fa7243057936b0ba65732291a045609",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Remarkable Case of Davidson's Eyes"
+      },
+      "stats": {
+        "originalCharacterCount": 22999,
+        "cleanedCharacterCount": 20825,
+        "wordCount": 3836,
+        "sectionCount": 5,
+        "includedSectionCount": 5
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-remarkable-case-of-davidson-s-eyes/manifest.json"
+    },
+    {
+      "slug": "the-haunter-of-the-dark",
+      "title": "The Haunter of the Dark",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "9a4045e18d0a6c1d",
+      "contentHash": "9a4045e18d0a6c1dde54e658768490e1c3026b41ea6892ac57aca5a5957446dc",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "73233",
+        "releaseDate": "March 22, 2024",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/73233",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Haunter of the Dark"
+      },
+      "stats": {
+        "originalCharacterCount": 76424,
+        "cleanedCharacterCount": 54465,
+        "wordCount": 9223,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-haunter-of-the-dark/manifest.json"
+    },
+    {
+      "slug": "the-innocence-of-father-brown",
+      "title": "The Innocence of Father Brown",
+      "author": [
+        "G. K. Chesterton"
+      ],
+      "contentVersion": "861b02a1cda4d227",
+      "contentHash": "861b02a1cda4d227bc9ac5d357381101517a5c2834e2bae07864a9e2d6c707fb",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "204",
+        "releaseDate": "July 9, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/204",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Innocence of Father Brown"
+      },
+      "stats": {
+        "originalCharacterCount": 468787,
+        "cleanedCharacterCount": 438636,
+        "wordCount": 79663,
+        "sectionCount": 12,
+        "includedSectionCount": 12
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-innocence-of-father-brown/manifest.json"
+    },
+    {
+      "slug": "astounding-stories-of-super-science",
+      "title": "Astounding Stories of Super-Science, October, 1930",
+      "author": [
+        "Various"
+      ],
+      "contentVersion": "05c85dcb8dd444a8",
+      "contentHash": "05c85dcb8dd444a8cdc7b8cb9ab84444936158811b373ef9085abfafb3f72789",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "29882",
+        "releaseDate": "September 1, 2009",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/29882",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Astounding Stories of Super-Science, October, 1930"
+      },
+      "stats": {
+        "originalCharacterCount": 492094,
+        "cleanedCharacterCount": 446933,
+        "wordCount": 78020,
+        "sectionCount": 6,
+        "includedSectionCount": 6
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "astounding-stories-of-super-science/manifest.json"
+    },
+    {
+      "slug": "a-story-of-the-stone-age",
+      "title": "A Story of the Stone Age",
+      "author": [
+        "Herbert George Wells"
+      ],
+      "contentVersion": "78efad4f4bbfe950",
+      "contentHash": "78efad4f4bbfe9505c6a0d9bbe80457fcf3ccb13240936d3122fe33de361a1ac",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "27365",
+        "releaseDate": "November 30, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/27365",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Story of the Stone Age"
+      },
+      "stats": {
+        "originalCharacterCount": 123448,
+        "cleanedCharacterCount": 121218,
+        "wordCount": 22345,
+        "sectionCount": 5,
+        "includedSectionCount": 5
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-story-of-the-stone-age/manifest.json"
+    },
+    {
+      "slug": "the-magic-shop",
+      "title": "The Magic Shop",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "1e112b6fe36288a3",
+      "contentHash": "1e112b6fe36288a37dad2104c03e27fc5f36dbae66ec5484b832a19562b8de60",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1743",
+        "releaseDate": "September 21, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1743",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Magic Shop"
+      },
+      "stats": {
+        "originalCharacterCount": 22820,
+        "cleanedCharacterCount": 21832,
+        "wordCount": 3986,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-magic-shop/manifest.json"
+    },
+    {
+      "slug": "the-man-who-could-work-miracles",
+      "title": "The Man Who Could Work Miracles",
+      "author": [
+        "Herbert George Wells"
+      ],
+      "contentVersion": "f69cd63088a840e4",
+      "contentHash": "f69cd63088a840e41a5fd1527a8efcf03ecf5d9f04ab5bb2ff987ffbda81a187",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "27365",
+        "releaseDate": "November 30, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/27365",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Man Who Could Work Miracles"
+      },
+      "stats": {
+        "originalCharacterCount": 38427,
+        "cleanedCharacterCount": 37202,
+        "wordCount": 6516,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-man-who-could-work-miracles/manifest.json"
+    },
+    {
+      "slug": "the-truth-about-pyecraft",
+      "title": "The Truth About Pyecraft",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "9143f010cfd931c0",
+      "contentHash": "9143f010cfd931c0c85976990498ed271a49988c14ea48ef3c2ed59bb292d3eb",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1743",
+        "releaseDate": "September 21, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1743",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Truth About Pyecraft"
+      },
+      "stats": {
+        "originalCharacterCount": 21088,
+        "cleanedCharacterCount": 20030,
+        "wordCount": 3720,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-truth-about-pyecraft/manifest.json"
+    },
+    {
+      "slug": "filmer",
+      "title": "Filmer",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "84e885d33fcf3ffc",
+      "contentHash": "84e885d33fcf3ffcd16fcec6ca076c4843cc7845900fbaf7225e467dc9d4af9e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1743",
+        "releaseDate": "September 21, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1743",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Filmer"
+      },
+      "stats": {
+        "originalCharacterCount": 39348,
+        "cleanedCharacterCount": 38442,
+        "wordCount": 6628,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "filmer/manifest.json"
+    },
+    {
+      "slug": "two-in-a-sack",
+      "title": "Two in a Sack",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "2933d9b73d5c9fe3",
+      "contentHash": "2933d9b73d5c9fe3d838742086f00e28fffe5ef56dcdae731a1b2a5e42c3e03e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Two in a Sack"
+      },
+      "stats": {
+        "originalCharacterCount": 9443,
+        "cleanedCharacterCount": 8147,
+        "wordCount": 1512,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "two-in-a-sack/manifest.json"
     }
   ]
 }

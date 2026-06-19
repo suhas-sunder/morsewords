@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-shadow-over-innsmouth",
+  "title": "The Shadow over Innsmouth",
+  "author": [
+    "H. P. Lovecraft"
+  ],
+  "contentVersion": "0bc834a94cc4afe8",
+  "contentHash": "0bc834a94cc4afe8a779b1fd3d27beb7b3cbeced4e3bed939c9afb8012250b3b",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "73181",
+    "releaseDate": "March 16, 2024",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/73181",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Shadow over Innsmouth"
+  },
+  "stats": {
+    "originalCharacterCount": 118477,
+    "cleanedCharacterCount": 95695,
+    "wordCount": 17047,
+    "sectionCount": 5,
+    "includedSectionCount": 5
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Section 1",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 14479,
+      "wordCount": 2555,
+      "estimatedTypingMinutes": 73,
+      "estimatedListeningMinutes": 87,
+      "morseCharacterEstimate": 77735,
+      "textPreview": "During the winter of 1927-28 Federal government officials made a strange and secret investigation of certain conditions in the ancient Massachusetts seaport of..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Section 2",
+      "title": null,
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 14237,
+      "wordCount": 2463,
+      "estimatedTypingMinutes": 71,
+      "estimatedListeningMinutes": 85,
+      "morseCharacterEstimate": 76099,
+      "textPreview": "II Shortly before ten the next morning I stood with my one small valise in front of Hammond's Drug Store in old Market Square waiting for the Innsmouth bus. In..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Section 3",
+      "title": null,
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 22815,
+      "wordCount": 4186,
+      "estimatedTypingMinutes": 120,
+      "estimatedListeningMinutes": 138,
+      "morseCharacterEstimate": 124112,
+      "textPreview": "III I had been assured that the old man could do nothing but hint at wild, disjointed, and incredible legends, and I had been warned that the natives made it u..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Section 4",
+      "title": null,
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 30814,
+      "wordCount": 5484,
+      "estimatedTypingMinutes": 157,
+      "estimatedListeningMinutes": 183,
+      "morseCharacterEstimate": 164691,
+      "textPreview": "IV I can hardly describe the mood in which I was left by this harrowing episode--an episode at once mad and pitiful, grotesque and terrifying. The grocery boy..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Section 5",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 13350,
+      "wordCount": 2359,
+      "estimatedTypingMinutes": 68,
+      "estimatedListeningMinutes": 80,
+      "morseCharacterEstimate": 71501,
+      "textPreview": "V It was a gentle daylight rain that awaked me from my stupor in the brush-grown railway cut, and when I staggered out to the roadway ahead I saw no trace of a..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 118477,
+    "cleanedCharacterCount": 95695,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": [
+      "Write pass starts section I at the first prose paragraph because the cleaned source has no standalone I marker, then preserves II-V.",
+      "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+      "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+      "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+      "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+      "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+      "dry-run artifact risk: illustration captions/placeholders detected",
+      "Write pass adjusted display-title capitalization from the Project Gutenberg Title line after confirming the same source identity."
+    ]
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 10; review before scaling to larger batches or Cloudflare export.",
+    "Illustration/image placeholder lines removed from playable text.",
+    "Trailing source, transcriber, catalog, or volume-note blocks removed from playable text.",
+    "Write pass starts section I at the first prose paragraph because the cleaned source has no standalone I marker, then preserves II-V.",
+    "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+    "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+    "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+    "dry-run cleanup risk: illustration captions/placeholders must be removed from default playback",
+    "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+    "dry-run artifact risk: illustration captions/placeholders detected",
+    "Write pass adjusted display-title capitalization from the Project Gutenberg Title line after confirming the same source identity."
+  ]
+}

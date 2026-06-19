@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "slug": "a-story-of-the-stone-age",
+  "title": "A Story of the Stone Age",
+  "author": [
+    "Herbert George Wells"
+  ],
+  "contentVersion": "78efad4f4bbfe950",
+  "contentHash": "78efad4f4bbfe9505c6a0d9bbe80457fcf3ccb13240936d3122fe33de361a1ac",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "27365",
+    "releaseDate": "November 30, 2008",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/27365",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 10 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for A Story of the Stone Age"
+  },
+  "stats": {
+    "originalCharacterCount": 123448,
+    "cleanedCharacterCount": 121218,
+    "wordCount": 22345,
+    "sectionCount": 5,
+    "includedSectionCount": 5
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Section 1",
+      "title": "Ugh-Lomi and Uya",
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 33030,
+      "wordCount": 6072,
+      "estimatedTypingMinutes": 174,
+      "estimatedListeningMinutes": 196,
+      "morseCharacterEstimate": 176358,
+      "textPreview": "I—UGH-LOMI AND UYA This story is of a time beyond the memory of man, before the beginning of history, a time when one might have walked dryshod from France (as..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Section 2",
+      "title": "The Cave Bear",
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 24563,
+      "wordCount": 4524,
+      "estimatedTypingMinutes": 130,
+      "estimatedListeningMinutes": 147,
+      "morseCharacterEstimate": 131919,
+      "textPreview": "II—THE CAVE BEAR In the days when Eudena and Ugh-lomi fled from the people of Uya towards the fir-clad mountains of the Weald, across the forests of sweet ches..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Section 3",
+      "title": "The First Horseman",
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 22055,
+      "wordCount": 4020,
+      "estimatedTypingMinutes": 115,
+      "estimatedListeningMinutes": 132,
+      "morseCharacterEstimate": 118153,
+      "textPreview": "III—THE FIRST HORSEMAN In the days before Ugh-lomi there was little trouble between the horses and men. They lived apart—the men in the river swamps and thicke..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Section 4",
+      "title": "Uya the Lion",
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 20440,
+      "wordCount": 3777,
+      "estimatedTypingMinutes": 108,
+      "estimatedListeningMinutes": 122,
+      "morseCharacterEstimate": 109051,
+      "textPreview": "IV—UYA THE LION The old lion was in luck. The tribe had a certain pride in their ruler, but that was all the satisfaction they got out of it. He came the very..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Section 5",
+      "title": "The Fight in the Lion's Thicket",
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 21130,
+      "wordCount": 3952,
+      "estimatedTypingMinutes": 113,
+      "estimatedListeningMinutes": 126,
+      "morseCharacterEstimate": 113080,
+      "textPreview": "V—THE FIGHT IN THE LION'S THICKET Ugh-lomi lay still, his back against an alder, and his thigh was a red mass terrible to see. No civilised man could have live..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 123448,
+    "cleanedCharacterCount": 121218,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": [
+      "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+      "Write pass starts at section I and excludes the parent collection URL/production wrapper.",
+      "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+      "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+      "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+      "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+      "dry-run title/default-start risk: first default section is meaningful but should be verified manually in write pass",
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+    ]
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 10; review before scaling to larger batches or Cloudflare export.",
+    "Inline page markers removed from playable text.",
+    "Trailing source, transcriber, catalog, or volume-note blocks removed from playable text.",
+    "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+    "Write pass starts at section I and excludes the parent collection URL/production wrapper.",
+    "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+    "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+    "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+    "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+    "dry-run title/default-start risk: first default section is meaningful but should be verified manually in write pass",
+    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+  ]
+}
