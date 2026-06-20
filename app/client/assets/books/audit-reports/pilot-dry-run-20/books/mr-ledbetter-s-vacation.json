@@ -1,0 +1,97 @@
+{
+  "slug": "mr-ledbetter-s-vacation",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/MR. LEDBETTER'S VACATION.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Mr. Ledbetter’s Vacation",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "MR. LEDBETTER'S VACATION",
+    "lineNumber": 32
+  },
+  "expectedAuthor": [
+    "H. G. Wells"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: H. G. Wells",
+    "lineNumber": 12
+  },
+  "expectedCreatorRole": "author as identified by the source",
+  "metadataEvidence": [
+    {
+      "source": "Gutenberg Author line",
+      "text": "Author: H. G. Wells",
+      "lineNumber": 12
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: MR. LEDBETTER'S VACATION",
+    "First readable prose: My friend, Mr. Ledbetter, is a round-faced little man"
+  ],
+  "realReadableStart": "Mr. Ledbetter’s Vacation: My friend, Mr. Ledbetter, is a round-faced little man, whose natural mildness of eye is gigantically exaggerated when you catch the beam through his glasses, and whose deep, deliberate voice irritates irritable people. A certain elaborate clearness of enunciation has come with him to his present vicarage from his sc...",
+  "realReadableEnd": "...igation to you—a load that I fear I can never fully repay. Although if gratitude...” And so forth. At the end he repeated his request for me to burn the letter. So the remarkable story of Mr. Ledbetter's Vacation ends. That breach with his aunt was not of long duration. The old lady had forgiven him before she died.",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Mr. Ledbetter’s Vacation",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "My friend, Mr. Ledbetter, is a round-faced little man, whose natural mildness of eye is gigantically exaggerated when you catch the beam through his glasses, and whose deep, deliberate voice irritates irritable people. A certain elaborate clearness of enunciation has come with him to his present vicarage from his sc...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: My friend, Mr. Ledbetter, is a round-faced little man",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "medium",
+    "pass2Reasons": [
+      "Medium-confidence start boundary remains manageable but needs review.",
+      "Medium-confidence end boundary remains manageable but needs review."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "MR. LEDBETTER'S VACATION",
+    "author": "Author: H. G. Wells",
+    "metadata": "Author: H. G. Wells",
+    "start": "Mr. Ledbetter’s Vacation My friend, Mr. Ledbetter, is a round-faced little man, whose natural mildness of eye is gigantically exaggerated when you catch the beam through his glasses, and whose deep, deliberate voice irritates irritable people. A certain elaborate clearness of enunciation has come with him to his present vicarage from his sc...",
+    "end": "...igation to you—a load that I fear I can never fully repay. Although if gratitude...” And so forth. At the end he repeated his request for me to burn the letter. So the remarkable story of Mr. Ledbetter's Vacation ends. That breach with his aunt was not of long duration. The old lady had forgiven him before she died."
+  }
+}

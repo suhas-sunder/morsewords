@@ -159,7 +159,8 @@ type DryRunReport = {
     | "pilot-dry-run-16"
     | "pilot-dry-run-17"
     | "pilot-dry-run-18"
-    | "pilot-dry-run-19";
+    | "pilot-dry-run-19"
+    | "pilot-dry-run-20";
   generatedAt: string;
   branch: string;
   baseMainCommit: string;
@@ -224,19 +225,21 @@ type DryRunReport = {
 
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
-const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "19"
-  ? 19
-  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "18"
-    ? 18
-    : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "17"
-      ? 17
-      : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "16"
-        ? 16
-        : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "15"
-          ? 15
-          : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "14"
-            ? 14
-            : 13;
+const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "20"
+  ? 20
+  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "19"
+    ? 19
+    : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "18"
+      ? 18
+      : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "17"
+        ? 17
+        : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "16"
+          ? 16
+          : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "15"
+            ? 15
+            : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "14"
+              ? 14
+              : 13;
 const dryRunReportName = `pilot-dry-run-${dryRunBatch}` as const;
 const tempBooksRoot = path.join(repoRoot, "app/client/assets/temp-books");
 const generatedRoot = path.join(repoRoot, "app/client/assets/books/generated");
@@ -317,6 +320,12 @@ const acceptedReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-18-verification/pilot-write-18-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 20
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-19/pilot-write-19.json",
+        "app/client/assets/books/audit-reports/pilot-write-19-verification/pilot-write-19-verification.json",
+      ]
+    : []),
   "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
   "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
   "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
@@ -357,6 +366,11 @@ const inputReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-18-verification/pilot-write-18-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 20
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-19-verification/pilot-write-19-verification.json",
+      ]
+    : []),
   ...(dryRunBatch >= 14
     ? [
         "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
@@ -371,7 +385,30 @@ const structureJsonPath = path.join(
 const pass2JsonPath = path.join(auditRoot, "book-processing-audit-pass-2.json");
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 
-const selectedBatch: readonly string[] = dryRunBatch === 19
+const selectedBatch: readonly string[] = dryRunBatch === 20
+  ? [
+      "moti",
+      "the-brown-bear-of-norway",
+      "the-escape-of-the-mouse",
+      "the-fairy-nurse",
+      "the-four-gifts",
+      "the-goat-s-ears-of-the-emperor-trojan",
+      "the-groac-h-of-the-isle-of-lok",
+      "the-heart-of-a-monkey",
+      "the-hoodie-crow",
+      "the-jogi-s-punishment",
+      "the-king-of-the-waterfalls",
+      "the-one-handed-girl",
+      "the-raspberry-worm",
+      "the-rich-brother-and-the-poor-brother",
+      "jimmy-goggles-the-god",
+      "miss-winchelsea-s-heart",
+      "mr-brisher-s-treasure",
+      "mr-ledbetter-s-vacation",
+      "mr-skelmersdale-in-fairyland",
+      "the-new-accelerator",
+    ]
+  : dryRunBatch === 19
   ? [
       "the-child-who-came-from-an-egg",
       "the-finest-liar-in-the-world",
@@ -763,6 +800,28 @@ const titleOverrides: Record<string, string> = {
   "the-underground-workers": "The Underground Workers",
   "the-young-man-who-would-have-his-eyes-opened":
     "The Young Man Who Would Have His Eyes Opened",
+  moti: "Moti",
+  "the-brown-bear-of-norway": "The Brown Bear of Norway",
+  "the-escape-of-the-mouse": "The Escape of the Mouse",
+  "the-fairy-nurse": "The Fairy Nurse",
+  "the-four-gifts": "The Four Gifts",
+  "the-goat-s-ears-of-the-emperor-trojan":
+    "The Goat’s Ears of the Emperor Trojan",
+  "the-groac-h-of-the-isle-of-lok": "The Groac’h of the Isle of Lok",
+  "the-heart-of-a-monkey": "The Heart of a Monkey",
+  "the-hoodie-crow": "The Hoodie-Crow",
+  "the-jogi-s-punishment": "The Jogi’s Punishment",
+  "the-king-of-the-waterfalls": "The King of the Waterfalls",
+  "the-one-handed-girl": "The One-Handed Girl",
+  "the-raspberry-worm": "The Raspberry Worm",
+  "the-rich-brother-and-the-poor-brother":
+    "The Rich Brother and the Poor Brother",
+  "jimmy-goggles-the-god": "Jimmy Goggles the God",
+  "miss-winchelsea-s-heart": "Miss Winchelsea’s Heart",
+  "mr-brisher-s-treasure": "Mr. Brisher’s Treasure",
+  "mr-ledbetter-s-vacation": "Mr. Ledbetter’s Vacation",
+  "mr-skelmersdale-in-fairyland": "Mr. Skelmersdale in Fairyland",
+  "the-new-accelerator": "The New Accelerator",
 };
 
 const singleStoryStartPhrases: Record<string, string> = {
@@ -1061,6 +1120,30 @@ const singleStoryStartPhrases: Record<string, string> = {
     "On a bitter night somewhere between Christmas and the New Year, a man",
   "the-young-man-who-would-have-his-eyes-opened":
     "Once upon a time there lived a youth who was never happy unless he was",
+  moti: "Once upon a time there was a youth called Moti",
+  "the-brown-bear-of-norway": "There was once a king in Ireland",
+  "the-escape-of-the-mouse":
+    "Manawyddan the prince and his friend Pryderi were wanderers",
+  "the-fairy-nurse": "There was once a little farmer and his wife living near Coolgarrow",
+  "the-four-gifts": "In the old land of Brittany, once called Cornwall",
+  "the-goat-s-ears-of-the-emperor-trojan":
+    "Once upon a time there lived an emperor whose name was Trojan",
+  "the-groac-h-of-the-isle-of-lok": "In old times, when all kinds of wonderful things happened in Brittany",
+  "the-heart-of-a-monkey": "A long time ago a little town made up of a collection",
+  "the-hoodie-crow": "Once there lived a farmer who had three daughters",
+  "the-jogi-s-punishment": "Once upon a time there came to the ancient city of Rahmatabad",
+  "the-king-of-the-waterfalls": "When the young king of Easaidh Ruadh came into his kingdom",
+  "the-one-handed-girl": "An old couple once lived in a hut under a grove of palm trees",
+  "the-raspberry-worm": "‘Phew!’ cried Lisa",
+  "the-rich-brother-and-the-poor-brother":
+    "There was once a rich old man who had two sons",
+  "jimmy-goggles-the-god": "“It isn't every one who's been a god,” said the sunburnt man",
+  "miss-winchelsea-s-heart": "Miss Winchelsea was going to Rome",
+  "mr-brisher-s-treasure": "“You can't be TOO careful WHO you marry,” said Mr. Brisher",
+  "mr-ledbetter-s-vacation":
+    "My friend, Mr. Ledbetter, is a round-faced little man",
+  "mr-skelmersdale-in-fairyland": "“There's a man in that shop,” said the Doctor",
+  "the-new-accelerator": "Certainly, if ever a man found a guinea when he was looking for a pin",
 };
 
 const sectioningStartOverrides: Record<
@@ -1214,6 +1297,26 @@ const individualStorySlugs = new Set([
   "the-two-frogs",
   "the-underground-workers",
   "the-young-man-who-would-have-his-eyes-opened",
+  "moti",
+  "the-brown-bear-of-norway",
+  "the-escape-of-the-mouse",
+  "the-fairy-nurse",
+  "the-four-gifts",
+  "the-goat-s-ears-of-the-emperor-trojan",
+  "the-groac-h-of-the-isle-of-lok",
+  "the-heart-of-a-monkey",
+  "the-hoodie-crow",
+  "the-jogi-s-punishment",
+  "the-king-of-the-waterfalls",
+  "the-one-handed-girl",
+  "the-raspberry-worm",
+  "the-rich-brother-and-the-poor-brother",
+  "jimmy-goggles-the-god",
+  "miss-winchelsea-s-heart",
+  "mr-brisher-s-treasure",
+  "mr-ledbetter-s-vacation",
+  "mr-skelmersdale-in-fairyland",
+  "the-new-accelerator",
 ]);
 
 const dryRun17GrimmSlugs = new Set([
@@ -1291,10 +1394,28 @@ const dryRun19LangSlugs = new Set([
   "the-young-man-who-would-have-his-eyes-opened",
 ]);
 
+const dryRun20LangSlugs = new Set([
+  "moti",
+  "the-brown-bear-of-norway",
+  "the-escape-of-the-mouse",
+  "the-fairy-nurse",
+  "the-four-gifts",
+  "the-goat-s-ears-of-the-emperor-trojan",
+  "the-groac-h-of-the-isle-of-lok",
+  "the-heart-of-a-monkey",
+  "the-hoodie-crow",
+  "the-jogi-s-punishment",
+  "the-king-of-the-waterfalls",
+  "the-one-handed-girl",
+  "the-raspberry-worm",
+  "the-rich-brother-and-the-poor-brother",
+]);
+
 function isLangEditorSlug(slug: string) {
   return dryRun17LangSlugs.has(slug) ||
     dryRun18LangSlugs.has(slug) ||
-    dryRun19LangSlugs.has(slug);
+    dryRun19LangSlugs.has(slug) ||
+    dryRun20LangSlugs.has(slug);
 }
 
 function readJson<T>(filePath: string): T {
@@ -1528,7 +1649,8 @@ function deriveAcceptedSlugs() {
       relativePath.includes("pilot-write-15-verification") ||
       relativePath.includes("pilot-write-16-verification") ||
       relativePath.includes("pilot-write-17-verification") ||
-      relativePath.includes("pilot-write-18-verification")
+      relativePath.includes("pilot-write-18-verification") ||
+      relativePath.includes("pilot-write-19-verification")
     ) {
       for (const book of books) {
         if (book.acceptedForMain === true && typeof book.slug === "string") {
@@ -2506,7 +2628,7 @@ function buildReport() {
       "After books and the second-pass audit, add original non-spoiler 300-500+ word SEO summaries for each accepted book page.",
       "After summaries, perform full site SEO/meta review using GSC data and route-level intent.",
       "After books/SEO, run a focused rage-click UX pass for /audio, /practice, homepage, and related utility pages.",
-      "Investigate the SSR heap OOM separately if it keeps appearing during plain npm run build.",
+      "Investigate the SSR heap OOM separately.",
       "Investigate the in-app Browser sandbox issue separately.",
       "Final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable.",
     ],
