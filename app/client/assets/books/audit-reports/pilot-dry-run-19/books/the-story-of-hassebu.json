@@ -1,0 +1,104 @@
+{
+  "slug": "the-story-of-hassebu",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE STORY OF HASSEBU.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Story of Hassebu",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE STORY OF HASSEBU",
+    "lineNumber": 52
+  },
+  "expectedAuthor": [
+    "Andrew Lang"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Andrew Lang",
+    "lineNumber": 13
+  },
+  "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+  "metadataEvidence": [
+    {
+      "source": "Gutenberg Author line",
+      "text": "Author: Andrew Lang",
+      "lineNumber": 13
+    },
+    {
+      "source": "visible editor byline",
+      "text": "Edited By Andrew Lang",
+      "lineNumber": 42
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE STORY OF HASSEBU",
+    "First readable prose: Once upon a time there lived a poor woman who had only one child, and"
+  ],
+  "realReadableStart": "The Story of Hassebu: Once upon a time there lived a poor woman who had only one child, and he was a little boy called Hassebu. When he ceased to be a baby, and his mother thought it was time for him to learn to read, she sent him to school. And, after he had done with school, he was put into a shop to learn how to make clothes, and did...",
+  "realReadableEnd": "...d, and this is for you,” and he will drink it and die! and your soul will rest.’ And they went their way into the town, and all happened as the King of the Snakes had said. And the Sultan loved Hassebu, who became a great physician, and cured many sick people. But he was always sorry for the poor King of the Snakes.",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Story of Hassebu",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "Once upon a time there lived a poor woman who had only one child, and he was a little boy called Hassebu. When he ceased to be a baby, and his mother thought it was time for him to learn to read, she sent him to school. And, after he had done with school, he was put into a shop to learn how to make clothes, and did...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Once upon a time there lived a poor woman who had only one child, and",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [
+    "future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale"
+  ],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE STORY OF HASSEBU",
+    "author": "Author: Andrew Lang",
+    "metadata": "Author: Andrew Lang; Edited By Andrew Lang",
+    "start": "The Story of Hassebu Once upon a time there lived a poor woman who had only one child, and he was a little boy called Hassebu. When he ceased to be a baby, and his mother thought it was time for him to learn to read, she sent him to school. And, after he had done with school, he was put into a shop to learn how to make clothes, and did...",
+    "end": "...d, and this is for you,” and he will drink it and die! and your soul will rest.’ And they went their way into the town, and all happened as the King of the Snakes had said. And the Sultan loved Hassebu, who became a great physician, and cured many sick people. But he was always sorry for the poor King of the Snakes."
+  }
+}

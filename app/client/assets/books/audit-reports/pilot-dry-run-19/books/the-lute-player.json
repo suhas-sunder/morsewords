@@ -1,0 +1,104 @@
+{
+  "slug": "the-lute-player",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE LUTE PLAYER.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Lute Player",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE LUTE PLAYER",
+    "lineNumber": 52
+  },
+  "expectedAuthor": [
+    "Andrew Lang"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Andrew Lang",
+    "lineNumber": 13
+  },
+  "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+  "metadataEvidence": [
+    {
+      "source": "Gutenberg Author line",
+      "text": "Author: Andrew Lang",
+      "lineNumber": 13
+    },
+    {
+      "source": "visible editor byline",
+      "text": "Edited By Andrew Lang",
+      "lineNumber": 42
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE LUTE PLAYER",
+    "First readable prose: Once upon a time there was a king and queen who lived happily and"
+  ],
+  "realReadableStart": "The Lute Player: Once upon a time there was a king and queen who lived happily and comfortably together. They were very fond of each other and had nothing to worry them, but at last the king grew restless. He longed to go out into the world, to try his strength in battle against some enemy and to win all kinds of honour and glory. S...",
+  "realReadableEnd": "...her long cloak and everyone saw it was the queen. Who can tell how happy the king was? In the joy of his heart he gave a great feast to the whole world, and the whole world came and rejoiced with him for a whole week. I was there too, and ate and drank many good things. I sha’n’t forget that feast as long as I live.",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Lute Player",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "Once upon a time there was a king and queen who lived happily and comfortably together. They were very fond of each other and had nothing to worry them, but at last the king grew restless. He longed to go out into the world, to try his strength in battle against some enemy and to win all kinds of honour and glory. S...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Once upon a time there was a king and queen who lived happily and",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [
+    "future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale"
+  ],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE LUTE PLAYER",
+    "author": "Author: Andrew Lang",
+    "metadata": "Author: Andrew Lang; Edited By Andrew Lang",
+    "start": "The Lute Player Once upon a time there was a king and queen who lived happily and comfortably together. They were very fond of each other and had nothing to worry them, but at last the king grew restless. He longed to go out into the world, to try his strength in battle against some enemy and to win all kinds of honour and glory. S...",
+    "end": "...her long cloak and everyone saw it was the queen. Who can tell how happy the king was? In the joy of his heart he gave a great feast to the whole world, and the whole world came and rejoiced with him for a whole week. I was there too, and ate and drank many good things. I sha’n’t forget that feast as long as I live."
+  }
+}

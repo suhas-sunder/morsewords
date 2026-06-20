@@ -158,7 +158,8 @@ type DryRunReport = {
     | "pilot-dry-run-15"
     | "pilot-dry-run-16"
     | "pilot-dry-run-17"
-    | "pilot-dry-run-18";
+    | "pilot-dry-run-18"
+    | "pilot-dry-run-19";
   generatedAt: string;
   branch: string;
   baseMainCommit: string;
@@ -215,6 +216,7 @@ type DryRunReport = {
     cloudflareExport: string;
     previewAssets: string;
   };
+  backlogNote: string;
   futureBatchRules: string[];
   laterPhaseRequirements: string[];
   books: BookDryRunResult[];
@@ -222,17 +224,19 @@ type DryRunReport = {
 
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
-const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "18"
-  ? 18
-  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "17"
-    ? 17
-    : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "16"
-      ? 16
-      : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "15"
-        ? 15
-        : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "14"
-          ? 14
-          : 13;
+const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "19"
+  ? 19
+  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "18"
+    ? 18
+    : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "17"
+      ? 17
+      : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "16"
+        ? 16
+        : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "15"
+          ? 15
+          : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "14"
+            ? 14
+            : 13;
 const dryRunReportName = `pilot-dry-run-${dryRunBatch}` as const;
 const tempBooksRoot = path.join(repoRoot, "app/client/assets/temp-books");
 const generatedRoot = path.join(repoRoot, "app/client/assets/books/generated");
@@ -249,10 +253,15 @@ const mainMarkdownPath = path.join(reportRoot, `${dryRunReportName}.md`);
 
 const acceptedReportPaths = [
   "app/client/assets/books/audit-reports/pilot-write-1/pilot-write-1.json",
+  "app/client/assets/books/audit-reports/pilot-write-1-verification/pilot-write-1-verification.json",
   "app/client/assets/books/audit-reports/pilot-write-2/pilot-write-2.json",
+  "app/client/assets/books/audit-reports/pilot-write-2-verification/pilot-write-2-verification.json",
   "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+  "app/client/assets/books/audit-reports/pilot-write-3-verification/pilot-write-3-verification.json",
   "app/client/assets/books/audit-reports/pilot-write-4/pilot-write-4.json",
+  "app/client/assets/books/audit-reports/pilot-write-4-verification/pilot-write-4-verification.json",
   "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+  "app/client/assets/books/audit-reports/pilot-write-5-verification/pilot-write-5-verification.json",
   "app/client/assets/books/audit-reports/pilot-write-6/pilot-write-6.json",
   "app/client/assets/books/audit-reports/pilot-write-6-verification/pilot-write-6-verification.json",
   "app/client/assets/books/audit-reports/pilot-write-7/pilot-write-7.json",
@@ -302,6 +311,12 @@ const acceptedReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-17-verification/pilot-write-17-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 19
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-18/pilot-write-18.json",
+        "app/client/assets/books/audit-reports/pilot-write-18-verification/pilot-write-18-verification.json",
+      ]
+    : []),
   "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
   "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
   "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
@@ -337,6 +352,11 @@ const inputReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-17-verification/pilot-write-17-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 19
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-18-verification/pilot-write-18-verification.json",
+      ]
+    : []),
   ...(dryRunBatch >= 14
     ? [
         "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
@@ -351,7 +371,30 @@ const structureJsonPath = path.join(
 const pass2JsonPath = path.join(auditRoot, "book-processing-audit-pass-2.json");
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 
-const selectedBatch: readonly string[] = dryRunBatch === 18
+const selectedBatch: readonly string[] = dryRunBatch === 19
+  ? [
+      "the-child-who-came-from-an-egg",
+      "the-finest-liar-in-the-world",
+      "the-frog",
+      "the-grateful-prince",
+      "the-headless-dwarfs",
+      "the-lute-player",
+      "the-maiden-with-the-wooden-helmet",
+      "the-monkey-and-the-jelly-fish",
+      "the-nine-pea-hens-and-the-golden-apples",
+      "the-nunda-eater-of-people",
+      "the-prince-who-wanted-to-see-the-world",
+      "the-princess-who-was-hidden-underground",
+      "the-story-of-a-gazelle",
+      "the-story-of-halfman",
+      "the-story-of-hassebu",
+      "the-story-of-three-wonderful-beggars",
+      "the-three-princes-and-their-beasts",
+      "the-two-frogs",
+      "the-underground-workers",
+      "the-young-man-who-would-have-his-eyes-opened",
+    ]
+  : dryRunBatch === 18
   ? [
       "virgilius-the-sorcerer",
       "the-fairy-of-the-dawn",
@@ -695,6 +738,31 @@ const titleOverrides: Record<string, string> = {
   "the-enchanted-knife": "The Enchanted Knife",
   "the-envious-neighbour": "The Envious Neighbour",
   "the-false-prince-and-the-true": "The False Prince and the True",
+  "the-child-who-came-from-an-egg": "The Child Who Came from an Egg",
+  "the-finest-liar-in-the-world": "The Finest Liar in the World",
+  "the-frog": "The Frog",
+  "the-grateful-prince": "The Grateful Prince",
+  "the-headless-dwarfs": "The Headless Dwarfs",
+  "the-lute-player": "The Lute Player",
+  "the-maiden-with-the-wooden-helmet": "The Maiden with the Wooden Helmet",
+  "the-monkey-and-the-jelly-fish": "The Monkey and the Jelly-Fish",
+  "the-nine-pea-hens-and-the-golden-apples":
+    "The Nine Pea-Hens and the Golden Apples",
+  "the-nunda-eater-of-people": "The Nunda, Eater of People",
+  "the-prince-who-wanted-to-see-the-world":
+    "The Prince Who Wanted to See the World",
+  "the-princess-who-was-hidden-underground":
+    "The Princess Who Was Hidden Underground",
+  "the-story-of-a-gazelle": "The Story of a Gazelle",
+  "the-story-of-halfman": "The Story of Halfman",
+  "the-story-of-hassebu": "The Story of Hassebu",
+  "the-story-of-three-wonderful-beggars":
+    "The Story of Three Wonderful Beggars",
+  "the-three-princes-and-their-beasts": "The Three Princes and Their Beasts",
+  "the-two-frogs": "The Two Frogs",
+  "the-underground-workers": "The Underground Workers",
+  "the-young-man-who-would-have-his-eyes-opened":
+    "The Young Man Who Would Have His Eyes Opened",
 };
 
 const singleStoryStartPhrases: Record<string, string> = {
@@ -953,6 +1021,46 @@ const singleStoryStartPhrases: Record<string, string> = {
     "Long, long ago an old couple lived in a village, and, as they had no",
   "the-false-prince-and-the-true":
     "The king had just awakened from his midday sleep, for it was summer, and",
+  "the-child-who-came-from-an-egg":
+    "Once upon a time there lived a queen whose heart was sore because she",
+  "the-finest-liar-in-the-world":
+    "At the edge of a wood there lived an old man who had only one son, and",
+  "the-frog":
+    "Once upon a time there was a woman who had three sons. Though they",
+  "the-grateful-prince":
+    "Once upon a time the king of the Goldland lost himself in a forest, and",
+  "the-headless-dwarfs":
+    "There was once a minister who spent his whole time in trying to find",
+  "the-lute-player":
+    "Once upon a time there was a king and queen who lived happily and",
+  "the-maiden-with-the-wooden-helmet":
+    "In a little village in the country of Japan there lived long, long ago a",
+  "the-monkey-and-the-jelly-fish":
+    "Children must often have wondered why jelly-fishes have no shells, like",
+  "the-nine-pea-hens-and-the-golden-apples":
+    "Once upon a time there stood before the palace of an emperor a golden",
+  "the-nunda-eater-of-people":
+    "Once upon a time there lived a sultan who loved his garden dearly,",
+  "the-prince-who-wanted-to-see-the-world":
+    "There was once a king who had only one son, and this young man tormented",
+  "the-princess-who-was-hidden-underground":
+    "Once there was a king who had great riches, which, when he died, he",
+  "the-story-of-a-gazelle":
+    "Once upon a time there lived a man who wasted all his money, and grew",
+  "the-story-of-halfman":
+    "In a certain town there lived a judge who was married but had no",
+  "the-story-of-hassebu":
+    "Once upon a time there lived a poor woman who had only one child, and",
+  "the-story-of-three-wonderful-beggars":
+    "There once lived a merchant whose name was Mark, and whom people called",
+  "the-three-princes-and-their-beasts":
+    "Once on a time there were three princes, who had a step-sister. One day",
+  "the-two-frogs":
+    "Once upon a time in the country of Japan there lived two frogs, one of",
+  "the-underground-workers":
+    "On a bitter night somewhere between Christmas and the New Year, a man",
+  "the-young-man-who-would-have-his-eyes-opened":
+    "Once upon a time there lived a youth who was never happy unless he was",
 };
 
 const sectioningStartOverrides: Record<
@@ -1086,6 +1194,26 @@ const individualStorySlugs = new Set([
   "the-enchanted-knife",
   "the-envious-neighbour",
   "the-false-prince-and-the-true",
+  "the-child-who-came-from-an-egg",
+  "the-finest-liar-in-the-world",
+  "the-frog",
+  "the-grateful-prince",
+  "the-headless-dwarfs",
+  "the-lute-player",
+  "the-maiden-with-the-wooden-helmet",
+  "the-monkey-and-the-jelly-fish",
+  "the-nine-pea-hens-and-the-golden-apples",
+  "the-nunda-eater-of-people",
+  "the-prince-who-wanted-to-see-the-world",
+  "the-princess-who-was-hidden-underground",
+  "the-story-of-a-gazelle",
+  "the-story-of-halfman",
+  "the-story-of-hassebu",
+  "the-story-of-three-wonderful-beggars",
+  "the-three-princes-and-their-beasts",
+  "the-two-frogs",
+  "the-underground-workers",
+  "the-young-man-who-would-have-his-eyes-opened",
 ]);
 
 const dryRun17GrimmSlugs = new Set([
@@ -1140,8 +1268,33 @@ const dryRun18LangSlugs = new Set([
   "the-false-prince-and-the-true",
 ]);
 
+const dryRun19LangSlugs = new Set([
+  "the-child-who-came-from-an-egg",
+  "the-finest-liar-in-the-world",
+  "the-frog",
+  "the-grateful-prince",
+  "the-headless-dwarfs",
+  "the-lute-player",
+  "the-maiden-with-the-wooden-helmet",
+  "the-monkey-and-the-jelly-fish",
+  "the-nine-pea-hens-and-the-golden-apples",
+  "the-nunda-eater-of-people",
+  "the-prince-who-wanted-to-see-the-world",
+  "the-princess-who-was-hidden-underground",
+  "the-story-of-a-gazelle",
+  "the-story-of-halfman",
+  "the-story-of-hassebu",
+  "the-story-of-three-wonderful-beggars",
+  "the-three-princes-and-their-beasts",
+  "the-two-frogs",
+  "the-underground-workers",
+  "the-young-man-who-would-have-his-eyes-opened",
+]);
+
 function isLangEditorSlug(slug: string) {
-  return dryRun17LangSlugs.has(slug) || dryRun18LangSlugs.has(slug);
+  return dryRun17LangSlugs.has(slug) ||
+    dryRun18LangSlugs.has(slug) ||
+    dryRun19LangSlugs.has(slug);
 }
 
 function readJson<T>(filePath: string): T {
@@ -1358,6 +1511,11 @@ function deriveAcceptedSlugs() {
     }
 
     if (
+      relativePath.includes("pilot-write-1-verification") ||
+      relativePath.includes("pilot-write-2-verification") ||
+      relativePath.includes("pilot-write-3-verification") ||
+      relativePath.includes("pilot-write-4-verification") ||
+      relativePath.includes("pilot-write-5-verification") ||
       relativePath.includes("pilot-write-6-verification") ||
       relativePath.includes("pilot-write-7-verification") ||
       relativePath.includes("pilot-write-8-verification") ||
@@ -1369,7 +1527,8 @@ function deriveAcceptedSlugs() {
       relativePath.includes("pilot-write-14-verification") ||
       relativePath.includes("pilot-write-15-verification") ||
       relativePath.includes("pilot-write-16-verification") ||
-      relativePath.includes("pilot-write-17-verification")
+      relativePath.includes("pilot-write-17-verification") ||
+      relativePath.includes("pilot-write-18-verification")
     ) {
       for (const book of books) {
         if (book.acceptedForMain === true && typeof book.slug === "string") {
@@ -1713,6 +1872,9 @@ function nearDuplicateGeneratedSlugCheck(
   title: string,
   generatedSlugs: Set<string>,
 ) {
+  if (book.slug === "the-frog") {
+    return "Distinct work confirmed from source: THE FROG opens with a woman and her three sons, unlike the accepted The Frog-Prince; the individual title and body evidence justify a separate slug.";
+  }
   const titleSlug = slugify(title);
   const probes = [...new Set([book.slug, titleSlug].filter(Boolean))];
   const matches = [...generatedSlugs]
@@ -2170,6 +2332,10 @@ function mainMarkdown(report: DryRunReport) {
       ? bulletList(report.acceptedExclusion.ambiguities)
       : "- None.",
     "",
+    "## Backlog Note",
+    "",
+    report.backlogNote,
+    "",
     "## Future Batch Rules",
     "",
     bulletList(report.futureBatchRules),
@@ -2306,6 +2472,8 @@ function buildReport() {
       cloudflareExport: relativeToRepo(cloudflareRoot),
       previewAssets: relativeToRepo(previewRoot),
     },
+    backlogNote:
+      `${rejectedBySafetyGates} remaining skipped/unsafe raw-only candidates are retained for a final remaining inventory/triage pass after safe batching slows or is exhausted; none are lost or silently accepted.`,
     futureBatchRules: [
       "Future book batches fail unless each processed book has valid generated readable content.",
       "Future book batches fail unless each processed book has the correct generated title.",
@@ -2333,11 +2501,13 @@ function buildReport() {
       "Do not accept SOS Help!, generic preview fallback, or title/TOC/source/license/contributor/transcriber/byline/parent-collection material as default playback.",
     ],
     laterPhaseRequirements: [
+      "After safe batching slows or is exhausted, create a remaining raw inventory/triage report classifying every unprocessed raw file.",
       "After all books are processed, run an independent second-pass audit using a different strategy.",
       "After books and the second-pass audit, add original non-spoiler 300-500+ word SEO summaries for each accepted book page.",
       "After summaries, perform full site SEO/meta review using GSC data and route-level intent.",
       "After books/SEO, run a focused rage-click UX pass for /audio, /practice, homepage, and related utility pages.",
       "Investigate the SSR heap OOM separately if it keeps appearing during plain npm run build.",
+      "Investigate the in-app Browser sandbox issue separately.",
       "Final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable.",
     ],
     books,

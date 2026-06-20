@@ -1,0 +1,105 @@
+{
+  "slug": "the-three-princes-and-their-beasts",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE THREE PRINCES AND THEIR BEASTS.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Three Princes and Their Beasts",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE THREE PRINCES AND THEIR BEASTS",
+    "lineNumber": 52
+  },
+  "expectedAuthor": [
+    "Andrew Lang"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Andrew Lang",
+    "lineNumber": 13
+  },
+  "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+  "metadataEvidence": [
+    {
+      "source": "Gutenberg Author line",
+      "text": "Author: Andrew Lang",
+      "lineNumber": 13
+    },
+    {
+      "source": "visible editor byline",
+      "text": "Edited By Andrew Lang",
+      "lineNumber": 42
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE THREE PRINCES AND THEIR BEASTS",
+    "First readable prose: Once on a time there were three princes, who had a step-sister. One day"
+  ],
+  "realReadableStart": "The Three Princes and Their Beasts: Once on a time there were three princes, who had a step-sister. One day they all set out hunting together. When they had gone some way through a thick wood they came on a great grey wolf with three cubs. Just as they were going to shoot, the wolf spoke and said, ‘Do not shoot me, and I will give each of you one of m...",
+  "realReadableEnd": "... that stood around. And in a moment the two princes stood before their brother, and their beasts stood round them. Then the three princes set off together to the town. And the king did not know which was his son-in-law, but the princess knew which was her husband, and there were great rejoicings throughout the land.",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Three Princes and Their Beasts",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "Once on a time there were three princes, who had a step-sister. One day they all set out hunting together. When they had gone some way through a thick wood they came on a great grey wolf with three cubs. Just as they were going to shoot, the wolf spoke and said, ‘Do not shoot me, and I will give each of you one of m...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Once on a time there were three princes, who had a step-sister. One day",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [
+    "future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale"
+  ],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE THREE PRINCES AND THEIR BEASTS",
+    "author": "Author: Andrew Lang",
+    "metadata": "Author: Andrew Lang; Edited By Andrew Lang",
+    "start": "The Three Princes and Their Beasts Once on a time there were three princes, who had a step-sister. One day they all set out hunting together. When they had gone some way through a thick wood they came on a great grey wolf with three cubs. Just as they were going to shoot, the wolf spoke and said, ‘Do not shoot me, and I will give each of you one of m...",
+    "end": "... that stood around. And in a moment the two princes stood before their brother, and their beasts stood round them. Then the three princes set off together to the town. And the king did not know which was his son-in-law, but the princess knew which was her husband, and there were great rejoicings throughout the land."
+  }
+}
