@@ -90,7 +90,8 @@ type DryRunReport = {
     | "pilot-dry-run-15"
     | "pilot-dry-run-16"
     | "pilot-dry-run-17"
-    | "pilot-dry-run-18";
+    | "pilot-dry-run-18"
+    | "pilot-dry-run-19";
   selectedBooks: string[];
   selectedCount: number;
   counts: {
@@ -243,19 +244,21 @@ type ManualBoundary = {
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
 const writeBatch =
-  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "18"
-    ? 18
-    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "17"
-      ? 17
-      : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "16"
-        ? 16
-        : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "15"
-          ? 15
-          : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "14"
-            ? 14
-            : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "13"
-              ? 13
-              : 12;
+  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "19"
+    ? 19
+    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "18"
+      ? 18
+      : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "17"
+        ? 17
+        : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "16"
+          ? 16
+          : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "15"
+            ? 15
+            : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "14"
+              ? 14
+              : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "13"
+                ? 13
+                : 12;
 const dryRunReportName = `pilot-dry-run-${writeBatch}` as const;
 const writeReportName = `pilot-write-${writeBatch}` as const;
 const tempBooksRoot = path.join(repoRoot, "app/client/assets/temp-books");
@@ -273,7 +276,30 @@ const dryRunReportPath = path.join(dryRunRoot, `${dryRunReportName}.json`);
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 const previewManifestPath = path.join(previewRoot, "manifest.json");
 
-const SELECTED_BATCH: readonly string[] = writeBatch === 18
+const SELECTED_BATCH: readonly string[] = writeBatch === 19
+  ? [
+      "the-child-who-came-from-an-egg",
+      "the-finest-liar-in-the-world",
+      "the-frog",
+      "the-grateful-prince",
+      "the-headless-dwarfs",
+      "the-lute-player",
+      "the-maiden-with-the-wooden-helmet",
+      "the-monkey-and-the-jelly-fish",
+      "the-nine-pea-hens-and-the-golden-apples",
+      "the-nunda-eater-of-people",
+      "the-prince-who-wanted-to-see-the-world",
+      "the-princess-who-was-hidden-underground",
+      "the-story-of-a-gazelle",
+      "the-story-of-halfman",
+      "the-story-of-hassebu",
+      "the-story-of-three-wonderful-beggars",
+      "the-three-princes-and-their-beasts",
+      "the-two-frogs",
+      "the-underground-workers",
+      "the-young-man-who-would-have-his-eyes-opened",
+    ]
+  : writeBatch === 18
   ? [
       "virgilius-the-sorcerer",
       "the-fairy-of-the-dawn",
@@ -480,6 +506,12 @@ const LATER_PHASE_REQUIREMENTS = [
   "after books/SEO, run a focused rage-click UX pass for /audio, /practice, homepage, and related utility pages",
   "investigate the SSR heap OOM separately if it keeps appearing during plain npm run build",
   "final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable",
+];
+
+const BACKLOG_NOTE = [
+  "Dry-run 19 still had 116 skipped/unsafe raw-only candidates before write.",
+  "These are not treated as lost or missed.",
+  "After safe batching slows/exhausts, create a dedicated remaining raw inventory/triage report classifying every unprocessed raw file.",
 ];
 
 const METADATA_OVERRIDES: Record<
@@ -2726,6 +2758,10 @@ function writeMarkdownReport(report: {
     "",
     ...FUTURE_BATCH_RULE.map((rule) => `- ${rule}`),
     "",
+    "## Backlog note",
+    "",
+    ...BACKLOG_NOTE,
+    "",
     "## Later-phase requirements",
     "",
     ...LATER_PHASE_REQUIREMENTS.map((rule) => `- ${rule}`),
@@ -2808,6 +2844,7 @@ function main() {
     },
     acceptedExclusionClarification,
     unresolvedSourceGeneratedBooksLeftUntouched: dryRun.unresolvedSourceGeneratedBooksLeftUntouched,
+    backlogNote: BACKLOG_NOTE,
     futureBatchRule: FUTURE_BATCH_RULE,
     laterPhaseRequirements: LATER_PHASE_REQUIREMENTS,
     books: reports,

@@ -1,0 +1,2800 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-write-19",
+  "generatedAt": "2026-06-20T19:53:23.771Z",
+  "branch": "morsewords-book-processing-pilot-write-19-jun-2026",
+  "mode": "controlled first-time processing",
+  "sourceDryRunReport": "app/client/assets/books/audit-reports/pilot-dry-run-19/pilot-dry-run-19.json",
+  "selectedBooks": [
+    "the-child-who-came-from-an-egg",
+    "the-finest-liar-in-the-world",
+    "the-frog",
+    "the-grateful-prince",
+    "the-headless-dwarfs",
+    "the-lute-player",
+    "the-maiden-with-the-wooden-helmet",
+    "the-monkey-and-the-jelly-fish",
+    "the-nine-pea-hens-and-the-golden-apples",
+    "the-nunda-eater-of-people",
+    "the-prince-who-wanted-to-see-the-world",
+    "the-princess-who-was-hidden-underground",
+    "the-story-of-a-gazelle",
+    "the-story-of-halfman",
+    "the-story-of-hassebu",
+    "the-story-of-three-wonderful-beggars",
+    "the-three-princes-and-their-beasts",
+    "the-two-frogs",
+    "the-underground-workers",
+    "the-young-man-who-would-have-his-eyes-opened"
+  ],
+  "totals": {
+    "selected": 20,
+    "firstTimeProcessed": 20,
+    "skipped": 0,
+    "manualReview": 0,
+    "blocked": 0,
+    "unresolvedSourceGeneratedBooksLeftUntouched": 11
+  },
+  "acceptedExclusionClarification": {
+    "dryRunAcceptedExclusionCount": 365,
+    "knownDuplicateBoundaryExclusions": [
+      "the-wind-in-the-willows",
+      "the-two-magics-the-turn-of-the-screw-covering-end",
+      "japanese-fairy-tales",
+      "the-works-of-edgar-allan-poe",
+      "snow-white-and-rose-red"
+    ],
+    "selectedIntersectAcceptedExclusion": [],
+    "note": "This write pass uses only the exact selected list from pilot-dry-run-19.json. Known duplicate/manual/boundary exclusions and unresolved-source generated books remain untouched."
+  },
+  "unresolvedSourceGeneratedBooksLeftUntouched": [
+    {
+      "slug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "doctor-dolittle",
+      "title": "The Story of Doctor Dolittle",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 6,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "heidi",
+      "title": "Heidi",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "jabberwocky",
+      "title": "Jabberwocky",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 2,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "title": "Nights With Uncle Remus",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 21,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan [Peter and Wendy]",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 20,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "tarzan-of-the-apes",
+      "title": "Tarzan of the Apes",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-great-gatsby",
+      "title": "The Great Gatsby",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-picture-of-dorian-gray",
+      "title": "The Picture of Dorian Gray",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 23,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 12,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "title": "Wood folk at school",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 10,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    }
+  ],
+  "backlogNote": [
+    "Dry-run 19 still had 116 skipped/unsafe raw-only candidates before write.",
+    "These are not treated as lost or missed.",
+    "After safe batching slows/exhausts, create a dedicated remaining raw inventory/triage report classifying every unprocessed raw file."
+  ],
+  "futureBatchRule": [
+    "valid generated readable content",
+    "correct generated title",
+    "correct author/compiler/collector/translator metadata or documented unresolved-author policy",
+    "no duplicate generated work under a slightly different slug unless intentionally documented",
+    "first default section from real readable content",
+    "all main readable sections included by default",
+    "meaningful source-based segmentation",
+    "valid book-specific startup preview",
+    "no SOS Help!",
+    "no generic preview fallback",
+    "no title/TOC/source/license/contributor/transcriber/byline/parent-collection material as default playback",
+    "no real prose removed by cleanup",
+    "selected/default source order begins from the first selected/default section"
+  ],
+  "laterPhaseRequirements": [
+    "after all books are processed, run an independent second-pass audit using a different strategy",
+    "after books and second-pass audit, add original non-spoiler 300-500+ word SEO summaries for each accepted book page",
+    "after summaries, perform full site SEO/meta review using GSC data and route-level intent",
+    "after books/SEO, run a focused rage-click UX pass for /audio, /practice, homepage, and related utility pages",
+    "investigate the SSR heap OOM separately if it keeps appearing during plain npm run build",
+    "final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable"
+  ],
+  "books": [
+    {
+      "slug": "the-child-who-came-from-an-egg",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE CHILD WHO CAME FROM AN EGG.txt",
+      "expectedTitle": "The Child Who Came from an Egg",
+      "generatedTitle": "The Child Who Came from an Egg",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-child-who-came-from-an-egg/manifest.json",
+        "app/client/assets/books/generated/the-child-who-came-from-an-egg/cleaned_book.json",
+        "app/client/assets/books/generated/the-child-who-came-from-an-egg/processed_book.json",
+        "app/client/assets/books/generated/the-child-who-came-from-an-egg/rights_report.json",
+        "app/client/assets/books/generated/the-child-who-came-from-an-egg/processing_notes.md",
+        "app/client/assets/books/generated/the-child-who-came-from-an-egg/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-child-who-came-from-an-egg.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: Once upon a time there lived a queen whose heart was sore because she; write pass starts at first selected/default section",
+        "snippet": "Once upon a time there lived a queen whose heart was sore because she had no children. She was sad enough when her husband was at home with her, but when he was away she would see nobody, but sat and wept all day long. Now it happened that a war broke out wit"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 312,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "the hands of a wizard.’ Then she vanished, and was never seen again, nor the wonder-working basket either; but now that Dotterine’s troubles were over she could get on without them, and she and the young king lived happily together till the end of their days."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 16966,
+        "generatedCharacterCount": 16966,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Child Who Came from an Egg",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3268,
+        "snippet": "Once upon a time there lived a queen whose heart was sore because she had no children. She was sad enough when her husband was at home with her, but when he wa..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Child Who Came from an Egg",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3268
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Child Who Came from an Egg",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3268
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Child Who Came from an Egg",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3268
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE CHILD WHO CAME FROM AN EGG",
+        "author": "Author: Andrew Lang",
+        "start": "The Child Who Came from an Egg Once upon a time there lived a queen whose heart was sore because she had no children. She was sad enough when her husband was at home with her, but when he was away she would see nobody, but sat and wept all day long. Now it happened that a war broke out with the king of a neighbouring country, and the queen was le...",
+        "end": "...ho was given to your mother to bring up, to save her from the hands of a wizard.’ Then she vanished, and was never seen again, nor the wonder-working basket either; but now that Dotterine’s troubles were over she could get on without them, and she and the young king lived happily together till the end of their days."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-finest-liar-in-the-world",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE FINEST LIAR IN THE WORLD.txt",
+      "expectedTitle": "The Finest Liar in the World",
+      "generatedTitle": "The Finest Liar in the World",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-finest-liar-in-the-world/manifest.json",
+        "app/client/assets/books/generated/the-finest-liar-in-the-world/cleaned_book.json",
+        "app/client/assets/books/generated/the-finest-liar-in-the-world/processed_book.json",
+        "app/client/assets/books/generated/the-finest-liar-in-the-world/rights_report.json",
+        "app/client/assets/books/generated/the-finest-liar-in-the-world/processing_notes.md",
+        "app/client/assets/books/generated/the-finest-liar-in-the-world/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-finest-liar-in-the-world.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: At the edge of a wood there lived an old man who had only one son, and; write pass starts at first selected/default section",
+        "snippet": "At the edge of a wood there lived an old man who had only one son, and one day he called the boy to him and said he wanted some corn ground, but the youth must be sure never to enter any mill where the miller was beardless. The boy took the corn and set out,"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 138,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "red a loud scream, and let fall a parchment on which was written, “The cake is mine, and the beardless one goes empty-handed.”’ With these words the boy rose, took the cake, and went home, while the beardless one remained behind to swallow his disappointment."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 7532,
+        "generatedCharacterCount": 7532,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Finest Liar in the World",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1546,
+        "snippet": "At the edge of a wood there lived an old man who had only one son, and one day he called the boy to him and said he wanted some corn ground, but the youth must..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Finest Liar in the World",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1546
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Finest Liar in the World",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1546
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Finest Liar in the World",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1546
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE FINEST LIAR IN THE WORLD",
+        "author": "Author: Andrew Lang",
+        "start": "The Finest Liar in the World At the edge of a wood there lived an old man who had only one son, and one day he called the boy to him and said he wanted some corn ground, but the youth must be sure never to enter any mill where the miller was beardless. The boy took the corn and set out, and before he had gone very far he saw a large mill in fro...",
+        "end": "...autiously up to him, and gave him such a kick that he uttered a loud scream, and let fall a parchment on which was written, “The cake is mine, and the beardless one goes empty-handed.”’ With these words the boy rose, took the cake, and went home, while the beardless one remained behind to swallow his disappointment."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-frog",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE FROG.txt",
+      "expectedTitle": "The Frog",
+      "generatedTitle": "The Frog",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-frog/manifest.json",
+        "app/client/assets/books/generated/the-frog/cleaned_book.json",
+        "app/client/assets/books/generated/the-frog/processed_book.json",
+        "app/client/assets/books/generated/the-frog/rights_report.json",
+        "app/client/assets/books/generated/the-frog/processing_notes.md",
+        "app/client/assets/books/generated/the-frog/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-frog.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: Once upon a time there was a woman who had three sons. Though they; write pass starts at first selected/default section",
+        "snippet": "Once upon a time there was a woman who had three sons. Though they were peasants they were well off, for the soil on which they lived was fruitful, and yielded rich crops. One day they all three told their mother they meant to get married. To which their mothe"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 149,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "his lovely bride drove to his mother’s home. Great was the delight of the mother at her youngest son’s good fortune. A beautiful house was built for them; she was the favourite daughter-in-law; everything went well with them, and they lived happily ever after."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 7168,
+        "generatedCharacterCount": 7168,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Frog",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1374,
+        "snippet": "Once upon a time there was a woman who had three sons. Though they were peasants they were well off, for the soil on which they lived was fruitful, and yielded..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Frog",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1374
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Frog",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1374
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Frog",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1374
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE FROG",
+        "author": "Author: Andrew Lang",
+        "start": "The Frog Once upon a time there was a woman who had three sons. Though they were peasants they were well off, for the soil on which they lived was fruitful, and yielded rich crops. One day they all three told their mother they meant to get married. To which their mother replied: ‘Do as you like, but see that you choose good...",
+        "end": "...g done this, the witches disappeared, and the youth with his lovely bride drove to his mother’s home. Great was the delight of the mother at her youngest son’s good fortune. A beautiful house was built for them; she was the favourite daughter-in-law; everything went well with them, and they lived happily ever after."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-grateful-prince",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE GRATEFUL PRINCE.txt",
+      "expectedTitle": "The Grateful Prince",
+      "generatedTitle": "The Grateful Prince",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-grateful-prince/manifest.json",
+        "app/client/assets/books/generated/the-grateful-prince/cleaned_book.json",
+        "app/client/assets/books/generated/the-grateful-prince/processed_book.json",
+        "app/client/assets/books/generated/the-grateful-prince/rights_report.json",
+        "app/client/assets/books/generated/the-grateful-prince/processing_notes.md",
+        "app/client/assets/books/generated/the-grateful-prince/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-grateful-prince.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: Once upon a time the king of the Goldland lost himself in a forest, and; write pass starts at first selected/default section",
+        "snippet": "Once upon a time the king of the Goldland lost himself in a forest, and try as he would he could not find the way out. As he was wandering down one path which had looked at first more hopeful than the rest he saw a man coming towards him. What are you doing"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 653,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "nd, calling his councillors, he told them all the strange things that had befallen him, and how the maiden had borne him safe through all. And the councillors cried with one voice, ‘Let her be your wife, and our liege lady.’ And that is the end of the story."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 32400,
+        "generatedCharacterCount": 32400,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Grateful Prince",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 6294,
+        "snippet": "Once upon a time the king of the Goldland lost himself in a forest, and try as he would he could not find the way out. As he was wandering down one path which..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Grateful Prince",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6294
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Grateful Prince",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6294
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Grateful Prince",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6294
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE GRATEFUL PRINCE",
+        "author": "Author: Andrew Lang",
+        "start": "The Grateful Prince Once upon a time the king of the Goldland lost himself in a forest, and try as he would he could not find the way out. As he was wandering down one path which had looked at first more hopeful than the rest he saw a man coming towards him. ‘What are you doing here, friend?’ asked the stranger; ‘darkness is falling fa...",
+        "end": "...he stood in the presence of his people as their new king, and, calling his councillors, he told them all the strange things that had befallen him, and how the maiden had borne him safe through all. And the councillors cried with one voice, ‘Let her be your wife, and our liege lady.’ And that is the end of the story."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-headless-dwarfs",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE HEADLESS DWARFS.txt",
+      "expectedTitle": "The Headless Dwarfs",
+      "generatedTitle": "The Headless Dwarfs",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-headless-dwarfs/manifest.json",
+        "app/client/assets/books/generated/the-headless-dwarfs/cleaned_book.json",
+        "app/client/assets/books/generated/the-headless-dwarfs/processed_book.json",
+        "app/client/assets/books/generated/the-headless-dwarfs/rights_report.json",
+        "app/client/assets/books/generated/the-headless-dwarfs/processing_notes.md",
+        "app/client/assets/books/generated/the-headless-dwarfs/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-headless-dwarfs.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: There was once a minister who spent his whole time in trying to find; write pass starts at first selected/default section",
+        "snippet": "There was once a minister who spent his whole time in trying to find a servant who would undertake to ring the church bells at midnight, in addition to all his other duties. Of course it was not everyone who cared to get up in the middle of the night, when he"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 286,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "d of service. As, however, he did not claim any wages, the minister made no objections, but allowed him to do as he wished. So Hans went his way, bought himself a large house, and married a young wife, and lived happily and prosperously to the end of his days."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 14766,
+        "generatedCharacterCount": 14766,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Headless Dwarfs",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2840,
+        "snippet": "There was once a minister who spent his whole time in trying to find a servant who would undertake to ring the church bells at midnight, in addition to all his..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Headless Dwarfs",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2840
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Headless Dwarfs",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2840
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Headless Dwarfs",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2840
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE HEADLESS DWARFS",
+        "author": "Author: Andrew Lang",
+        "start": "The Headless Dwarfs There was once a minister who spent his whole time in trying to find a servant who would undertake to ring the church bells at midnight, in addition to all his other duties. Of course it was not everyone who cared to get up in the middle of the night, when he had been working hard all day; still, a good many had agr...",
+        "end": "...and informed the minister that he wished to break his bond of service. As, however, he did not claim any wages, the minister made no objections, but allowed him to do as he wished. So Hans went his way, bought himself a large house, and married a young wife, and lived happily and prosperously to the end of his days."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-lute-player",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE LUTE PLAYER.txt",
+      "expectedTitle": "The Lute Player",
+      "generatedTitle": "The Lute Player",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-lute-player/manifest.json",
+        "app/client/assets/books/generated/the-lute-player/cleaned_book.json",
+        "app/client/assets/books/generated/the-lute-player/processed_book.json",
+        "app/client/assets/books/generated/the-lute-player/rights_report.json",
+        "app/client/assets/books/generated/the-lute-player/processing_notes.md",
+        "app/client/assets/books/generated/the-lute-player/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-lute-player.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: Once upon a time there was a king and queen who lived happily and; write pass starts at first selected/default section",
+        "snippet": "Once upon a time there was a king and queen who lived happily and comfortably together. They were very fond of each other and had nothing to worry them, but at last the king grew restless. He longed to go out into the world, to try his strength in battle again"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 195,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "tell how happy the king was? In the joy of his heart he gave a great feast to the whole world, and the whole world came and rejoiced with him for a whole week. I was there too, and ate and drank many good things. I sha’n’t forget that feast as long as I live."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 7771,
+        "generatedCharacterCount": 7771,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Lute Player",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1478,
+        "snippet": "Once upon a time there was a king and queen who lived happily and comfortably together. They were very fond of each other and had nothing to worry them, but at..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Lute Player",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1478
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Lute Player",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1478
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Lute Player",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1478
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE LUTE PLAYER",
+        "author": "Author: Andrew Lang",
+        "start": "The Lute Player Once upon a time there was a king and queen who lived happily and comfortably together. They were very fond of each other and had nothing to worry them, but at last the king grew restless. He longed to go out into the world, to try his strength in battle against some enemy and to win all kinds of honour and glory. S...",
+        "end": "...her long cloak and everyone saw it was the queen. Who can tell how happy the king was? In the joy of his heart he gave a great feast to the whole world, and the whole world came and rejoiced with him for a whole week. I was there too, and ate and drank many good things. I sha’n’t forget that feast as long as I live."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-maiden-with-the-wooden-helmet",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE MAIDEN WITH THE WOODEN HELMET.txt",
+      "expectedTitle": "The Maiden with the Wooden Helmet",
+      "generatedTitle": "The Maiden with the Wooden Helmet",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-maiden-with-the-wooden-helmet/manifest.json",
+        "app/client/assets/books/generated/the-maiden-with-the-wooden-helmet/cleaned_book.json",
+        "app/client/assets/books/generated/the-maiden-with-the-wooden-helmet/processed_book.json",
+        "app/client/assets/books/generated/the-maiden-with-the-wooden-helmet/rights_report.json",
+        "app/client/assets/books/generated/the-maiden-with-the-wooden-helmet/processing_notes.md",
+        "app/client/assets/books/generated/the-maiden-with-the-wooden-helmet/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-maiden-with-the-wooden-helmet.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: In a little village in the country of Japan there lived long, long ago a; write pass starts at first selected/default section",
+        "snippet": "In a little village in the country of Japan there lived long, long ago a man and his wife. For many years they were happy and prosperous, but bad times came, and at last nothing was left them but their daughter, who was as beautiful as the morning. The neighbo"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 126,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "hing they had ever seen or heard of. The night was passed in singing and dancing, and then the bride and bridegroom went to their own house, where they lived till they died, and had many children, who were famous throughout Japan for their goodness and beauty."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 7507,
+        "generatedCharacterCount": 7507,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Maiden with the Wooden Helmet",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1454,
+        "snippet": "In a little village in the country of Japan there lived long, long ago a man and his wife. For many years they were happy and prosperous, but bad times came, a..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Maiden with the Wooden Helmet",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1454
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Maiden with the Wooden Helmet",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1454
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Maiden with the Wooden Helmet",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1454
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE MAIDEN WITH THE WOODEN HELMET",
+        "author": "Author: Andrew Lang",
+        "start": "The Maiden with the Wooden Helmet In a little village in the country of Japan there lived long, long ago a man and his wife. For many years they were happy and prosperous, but bad times came, and at last nothing was left them but their daughter, who was as beautiful as the morning. The neighbours were very kind, and would have done anything they cou...",
+        "end": "...ds than at the beauty of the bride, which was beyond anything they had ever seen or heard of. The night was passed in singing and dancing, and then the bride and bridegroom went to their own house, where they lived till they died, and had many children, who were famous throughout Japan for their goodness and beauty."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-monkey-and-the-jelly-fish",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE MONKEY AND THE JELLY-FISH.txt",
+      "expectedTitle": "The Monkey and the Jelly-Fish",
+      "generatedTitle": "The Monkey and the Jelly-Fish",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-monkey-and-the-jelly-fish/manifest.json",
+        "app/client/assets/books/generated/the-monkey-and-the-jelly-fish/cleaned_book.json",
+        "app/client/assets/books/generated/the-monkey-and-the-jelly-fish/processed_book.json",
+        "app/client/assets/books/generated/the-monkey-and-the-jelly-fish/rights_report.json",
+        "app/client/assets/books/generated/the-monkey-and-the-jelly-fish/processing_notes.md",
+        "app/client/assets/books/generated/the-monkey-and-the-jelly-fish/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-monkey-and-the-jelly-fish.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: Children must often have wondered why jelly-fishes have no shells, like; write pass starts at first selected/default section",
+        "snippet": "Children must often have wondered why jelly-fishes have no shells, like so many of the creatures that are washed up every day on the beach. In old times this was not so; the jelly-fish had as hard a shell as any of them, but he lost it through his own fault, a"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 113,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "ow he had suffered the monkey to escape. But, as sometimes happens, the turtle was allowed to go scot-free, and had his shell given back to him, and all the punishment fell on the poor jelly-fish, who was condemned by the queen to go shieldless for ever after."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 6656,
+        "generatedCharacterCount": 6656,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Monkey and the Jelly-Fish",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1296,
+        "snippet": "Children must often have wondered why jelly-fishes have no shells, like so many of the creatures that are washed up every day on the beach. In old times this w..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Monkey and the Jelly-Fish",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1296
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Monkey and the Jelly-Fish",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1296
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Monkey and the Jelly-Fish",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1296
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE MONKEY AND THE JELLY-FISH",
+        "author": "Author: Andrew Lang",
+        "start": "The Monkey and the Jelly-Fish Children must often have wondered why jelly-fishes have no shells, like so many of the creatures that are washed up every day on the beach. In old times this was not so; the jelly-fish had as hard a shell as any of them, but he lost it through his own fault, as may be seen in this story. The sea-queen Otohime, whom...",
+        "end": "...s advisers and tell them all that had befallen him, and how he had suffered the monkey to escape. But, as sometimes happens, the turtle was allowed to go scot-free, and had his shell given back to him, and all the punishment fell on the poor jelly-fish, who was condemned by the queen to go shieldless for ever after."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-nine-pea-hens-and-the-golden-apples",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE NINE PEA-HENS AND THE GOLDEN APPLES.txt",
+      "expectedTitle": "The Nine Pea-Hens and the Golden Apples",
+      "generatedTitle": "The Nine Pea-Hens and the Golden Apples",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-nine-pea-hens-and-the-golden-apples/manifest.json",
+        "app/client/assets/books/generated/the-nine-pea-hens-and-the-golden-apples/cleaned_book.json",
+        "app/client/assets/books/generated/the-nine-pea-hens-and-the-golden-apples/processed_book.json",
+        "app/client/assets/books/generated/the-nine-pea-hens-and-the-golden-apples/rights_report.json",
+        "app/client/assets/books/generated/the-nine-pea-hens-and-the-golden-apples/processing_notes.md",
+        "app/client/assets/books/generated/the-nine-pea-hens-and-the-golden-apples/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-nine-pea-hens-and-the-golden-apples.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: Once upon a time there stood before the palace of an emperor a golden; write pass starts at first selected/default section",
+        "snippet": "Once upon a time there stood before the palace of an emperor a golden apple tree, which blossomed and bore fruit each night. But every morning the fruit was gone, and the boughs were bare of blossom, without anyone being able to discover who was the thief. At"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 386,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "on the ground, and come and join us.’ And the dragon’s horse plunged and reared, and the dragon fell on a rock, which broke him in pieces. Then the empress mounted his horse, and rode back with her husband to her kingdom, over which they ruled for many years."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 18937,
+        "generatedCharacterCount": 18937,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Nine Pea-Hens and the Golden Apples",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3718,
+        "snippet": "Once upon a time there stood before the palace of an emperor a golden apple tree, which blossomed and bore fruit each night. But every morning the fruit was go..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Nine Pea-Hens and the Golden Apples",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3718
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Nine Pea-Hens and the Golden Apples",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3718
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Nine Pea-Hens and the Golden Apples",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3718
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE NINE PEA-HENS AND THE GOLDEN APPLES",
+        "author": "Author: Andrew Lang",
+        "start": "The Nine Pea-Hens and the Golden Apples Once upon a time there stood before the palace of an emperor a golden apple tree, which blossomed and bore fruit each night. But every morning the fruit was gone, and the boughs were bare of blossom, without anyone being able to discover who was the thief. At last the emperor said to his eldest son, ‘If only I could...",
+        "end": "...ster like that? Kick him off, and let him break in pieces on the ground, and come and join us.’ And the dragon’s horse plunged and reared, and the dragon fell on a rock, which broke him in pieces. Then the empress mounted his horse, and rode back with her husband to her kingdom, over which they ruled for many years."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-nunda-eater-of-people",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE NUNDA, EATER OF PEOPLE.txt",
+      "expectedTitle": "The Nunda, Eater of People",
+      "generatedTitle": "The Nunda, Eater of People",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-nunda-eater-of-people/manifest.json",
+        "app/client/assets/books/generated/the-nunda-eater-of-people/cleaned_book.json",
+        "app/client/assets/books/generated/the-nunda-eater-of-people/processed_book.json",
+        "app/client/assets/books/generated/the-nunda-eater-of-people/rights_report.json",
+        "app/client/assets/books/generated/the-nunda-eater-of-people/processing_notes.md",
+        "app/client/assets/books/generated/the-nunda-eater-of-people/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-nunda-eater-of-people.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: Once upon a time there lived a sultan who loved his garden dearly,; write pass starts at first selected/default section",
+        "snippet": "Once upon a time there lived a sultan who loved his garden dearly, and planted it with trees and flowers and fruits from all parts of the world. He went to see them three times every day: first at seven o clock, when he got up, then at three, and lastly at hal"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 455,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "ging the Nunda with him, he felt that the man did not dwell on the earth whose joy was greater than his. And the people bowed down to the boy and gave him presents, and loved him, because he had delivered them from the bondage of fear, and had slain the Nunda."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 20298,
+        "generatedCharacterCount": 20298,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Nunda, Eater of People",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 4060,
+        "snippet": "Once upon a time there lived a sultan who loved his garden dearly, and planted it with trees and flowers and fruits from all parts of the world. He went to see..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Nunda, Eater of People",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4060
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Nunda, Eater of People",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4060
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Nunda, Eater of People",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4060
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE NUNDA, EATER OF PEOPLE",
+        "author": "Author: Andrew Lang",
+        "start": "The Nunda, Eater of People Once upon a time there lived a sultan who loved his garden dearly, and planted it with trees and flowers and fruits from all parts of the world. He went to see them three times every day: first at seven o’clock, when he got up, then at three, and lastly at half-past five. There was no plant and no vegetable which es...",
+        "end": "...r heard the news, and that his son was come, and was bringing the Nunda with him, he felt that the man did not dwell on the earth whose joy was greater than his. And the people bowed down to the boy and gave him presents, and loved him, because he had delivered them from the bondage of fear, and had slain the Nunda."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-prince-who-wanted-to-see-the-world",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE PRINCE WHO WANTED TO SEE THE WORLD.txt",
+      "expectedTitle": "The Prince Who Wanted to See the World",
+      "generatedTitle": "The Prince Who Wanted to See the World",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-prince-who-wanted-to-see-the-world/manifest.json",
+        "app/client/assets/books/generated/the-prince-who-wanted-to-see-the-world/cleaned_book.json",
+        "app/client/assets/books/generated/the-prince-who-wanted-to-see-the-world/processed_book.json",
+        "app/client/assets/books/generated/the-prince-who-wanted-to-see-the-world/rights_report.json",
+        "app/client/assets/books/generated/the-prince-who-wanted-to-see-the-world/processing_notes.md",
+        "app/client/assets/books/generated/the-prince-who-wanted-to-see-the-world/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-prince-who-wanted-to-see-the-world.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: There was once a king who had only one son, and this young man tormented; write pass starts at first selected/default section",
+        "snippet": "There was once a king who had only one son, and this young man tormented his father from morning till night to allow him to travel in far countries. For a long time the king refused to give him leave; but at last, wearied out, he granted permission, and ordere"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 224,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "lar round his neck, and held a feather on which was written the name of the dove. And at last his memory came back to him, and he declared he would marry the princess and nobody else. So the next day the wedding took place, and they lived happy till they died."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 11830,
+        "generatedCharacterCount": 11830,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Prince Who Wanted to See the World",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2340,
+        "snippet": "There was once a king who had only one son, and this young man tormented his father from morning till night to allow him to travel in far countries. For a long..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Prince Who Wanted to See the World",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2340
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Prince Who Wanted to See the World",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2340
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Prince Who Wanted to See the World",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2340
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE PRINCE WHO WANTED TO SEE THE WORLD",
+        "author": "Author: Andrew Lang",
+        "start": "The Prince Who Wanted to See the World There was once a king who had only one son, and this young man tormented his father from morning till night to allow him to travel in far countries. For a long time the king refused to give him leave; but at last, wearied out, he granted permission, and ordered his treasurer to produce a large sum of money for the p...",
+        "end": "...and see if it fits you.’ And it did. Then they hung a collar round his neck, and held a feather on which was written the name of the dove. And at last his memory came back to him, and he declared he would marry the princess and nobody else. So the next day the wedding took place, and they lived happy till they died."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-princess-who-was-hidden-underground",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE PRINCESS WHO WAS HIDDEN UNDERGROUND.txt",
+      "expectedTitle": "The Princess Who Was Hidden Underground",
+      "generatedTitle": "The Princess Who Was Hidden Underground",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-princess-who-was-hidden-underground/manifest.json",
+        "app/client/assets/books/generated/the-princess-who-was-hidden-underground/cleaned_book.json",
+        "app/client/assets/books/generated/the-princess-who-was-hidden-underground/processed_book.json",
+        "app/client/assets/books/generated/the-princess-who-was-hidden-underground/rights_report.json",
+        "app/client/assets/books/generated/the-princess-who-was-hidden-underground/processing_notes.md",
+        "app/client/assets/books/generated/the-princess-who-was-hidden-underground/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-princess-who-was-hidden-underground.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: Once there was a king who had great riches, which, when he died, he; write pass starts at first selected/default section",
+        "snippet": "Once there was a king who had great riches, which, when he died, he divided among his three sons. The two eldest of these lived in rioting and feasting, and thus wasted and squandered their father s wealth till nothing remained, and they found themselves in wa"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 115,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "cording to their understanding, began to clean her wings with her bill, and the lad said: ‘She who cleans her wings is the princess.’ Now the king could do nothing more but give her to the young man to wife, and they lived together in great joy and happiness."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 5308,
+        "generatedCharacterCount": 5308,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Princess Who Was Hidden Underground",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1022,
+        "snippet": "Once there was a king who had great riches, which, when he died, he divided among his three sons. The two eldest of these lived in rioting and feasting, and th..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Princess Who Was Hidden Underground",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1022
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Princess Who Was Hidden Underground",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1022
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Princess Who Was Hidden Underground",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1022
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE PRINCESS WHO WAS HIDDEN UNDERGROUND",
+        "author": "Author: Andrew Lang",
+        "start": "The Princess Who Was Hidden Underground Once there was a king who had great riches, which, when he died, he divided among his three sons. The two eldest of these lived in rioting and feasting, and thus wasted and squandered their father’s wealth till nothing remained, and they found themselves in want and misery. The youngest of the three sons, on the con...",
+        "end": "... ‘Now show me which is my daughter.’ Then the princess, according to their understanding, began to clean her wings with her bill, and the lad said: ‘She who cleans her wings is the princess.’ Now the king could do nothing more but give her to the young man to wife, and they lived together in great joy and happiness."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-story-of-a-gazelle",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE STORY OF A GAZELLE.txt",
+      "expectedTitle": "The Story of a Gazelle",
+      "generatedTitle": "The Story of a Gazelle",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-story-of-a-gazelle/manifest.json",
+        "app/client/assets/books/generated/the-story-of-a-gazelle/cleaned_book.json",
+        "app/client/assets/books/generated/the-story-of-a-gazelle/processed_book.json",
+        "app/client/assets/books/generated/the-story-of-a-gazelle/rights_report.json",
+        "app/client/assets/books/generated/the-story-of-a-gazelle/processing_notes.md",
+        "app/client/assets/books/generated/the-story-of-a-gazelle/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-story-of-a-gazelle.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: Once upon a time there lived a man who wasted all his money, and grew; write pass starts at first selected/default section",
+        "snippet": "Once upon a time there lived a man who wasted all his money, and grew so poor that his only food was a few grains of corn, which he scratched like a fowl from out of a dust-heap. One day he was scratching as usual among a dust-heap in the street, hoping to fi"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 635,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "her husband’s side, and in her sleep she dreamed that she was once more in her father’s house, and when she woke up it was no dream. And the man dreamed that he was on the dust-heap, scratching. And when he woke, behold! that also was no dream, but the truth."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 29273,
+        "generatedCharacterCount": 29273,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Story of a Gazelle",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 5790,
+        "snippet": "Once upon a time there lived a man who wasted all his money, and grew so poor that his only food was a few grains of corn, which he scratched like a fowl from..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Story of a Gazelle",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5790
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Story of a Gazelle",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5790
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Story of a Gazelle",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5790
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE STORY OF A GAZELLE",
+        "author": "Author: Andrew Lang",
+        "start": "The Story of a Gazelle Once upon a time there lived a man who wasted all his money, and grew so poor that his only food was a few grains of corn, which he scratched like a fowl from out of a dust-heap. One day he was scratching as usual among a dust-heap in the street, hoping to find something for breakfast, when his eye fell upon a small...",
+        "end": "...days of mourning were at an end, the wife was sleeping at her husband’s side, and in her sleep she dreamed that she was once more in her father’s house, and when she woke up it was no dream. And the man dreamed that he was on the dust-heap, scratching. And when he woke, behold! that also was no dream, but the truth."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-story-of-halfman",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE STORY OF HALFMAN.txt",
+      "expectedTitle": "The Story of Halfman",
+      "generatedTitle": "The Story of Halfman",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-story-of-halfman/manifest.json",
+        "app/client/assets/books/generated/the-story-of-halfman/cleaned_book.json",
+        "app/client/assets/books/generated/the-story-of-halfman/processed_book.json",
+        "app/client/assets/books/generated/the-story-of-halfman/rights_report.json",
+        "app/client/assets/books/generated/the-story-of-halfman/processing_notes.md",
+        "app/client/assets/books/generated/the-story-of-halfman/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-story-of-halfman.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: In a certain town there lived a judge who was married but had no; write pass starts at first selected/default section",
+        "snippet": "In a certain town there lived a judge who was married but had no children. One day he was standing lost in thought before his house, when an old man passed by. What is the matter, sir, said he, you look troubled? Oh, leave me alone, my good man! But w"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 439,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "y mother greeting and tell her not to be anxious any more, for she can keep all her children.’ And Halfman mounted his horse and rode home, and told his wife all he had seen, and the message sent by Mohammed--Mohammed the son of Halfman, the son of the judge."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 18552,
+        "generatedCharacterCount": 18552,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Story of Halfman",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3637,
+        "snippet": "In a certain town there lived a judge who was married but had no children. One day he was standing lost in thought before his house, when an old man passed by...."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Story of Halfman",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3637
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Story of Halfman",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3637
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Story of Halfman",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3637
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE STORY OF HALFMAN",
+        "author": "Author: Andrew Lang",
+        "start": "The Story of Halfman In a certain town there lived a judge who was married but had no children. One day he was standing lost in thought before his house, when an old man passed by. ‘What is the matter, sir, said he, ‘you look troubled?’ ‘Oh, leave me alone, my good man!’ ‘But what is it?’ persisted the other. ‘Well, I am successful in m...",
+        "end": "...his father and said, ‘Go in peace, dear father, and give my mother greeting and tell her not to be anxious any more, for she can keep all her children.’ And Halfman mounted his horse and rode home, and told his wife all he had seen, and the message sent by Mohammed--Mohammed the son of Halfman, the son of the judge."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-story-of-hassebu",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE STORY OF HASSEBU.txt",
+      "expectedTitle": "The Story of Hassebu",
+      "generatedTitle": "The Story of Hassebu",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-story-of-hassebu/manifest.json",
+        "app/client/assets/books/generated/the-story-of-hassebu/cleaned_book.json",
+        "app/client/assets/books/generated/the-story-of-hassebu/processed_book.json",
+        "app/client/assets/books/generated/the-story-of-hassebu/rights_report.json",
+        "app/client/assets/books/generated/the-story-of-hassebu/processing_notes.md",
+        "app/client/assets/books/generated/the-story-of-hassebu/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-story-of-hassebu.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: Once upon a time there lived a poor woman who had only one child, and; write pass starts at first selected/default section",
+        "snippet": "Once upon a time there lived a poor woman who had only one child, and he was a little boy called Hassebu. When he ceased to be a baby, and his mother thought it was time for him to learn to read, she sent him to school. And, after he had done with school, he w"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 191,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "your soul will rest.’ And they went their way into the town, and all happened as the King of the Snakes had said. And the Sultan loved Hassebu, who became a great physician, and cured many sick people. But he was always sorry for the poor King of the Snakes."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 9170,
+        "generatedCharacterCount": 9170,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Story of Hassebu",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1853,
+        "snippet": "Once upon a time there lived a poor woman who had only one child, and he was a little boy called Hassebu. When he ceased to be a baby, and his mother thought i..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Story of Hassebu",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1853
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Story of Hassebu",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1853
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Story of Hassebu",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1853
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE STORY OF HASSEBU",
+        "author": "Author: Andrew Lang",
+        "start": "The Story of Hassebu Once upon a time there lived a poor woman who had only one child, and he was a little boy called Hassebu. When he ceased to be a baby, and his mother thought it was time for him to learn to read, she sent him to school. And, after he had done with school, he was put into a shop to learn how to make clothes, and did...",
+        "end": "...d, and this is for you,” and he will drink it and die! and your soul will rest.’ And they went their way into the town, and all happened as the King of the Snakes had said. And the Sultan loved Hassebu, who became a great physician, and cured many sick people. But he was always sorry for the poor King of the Snakes."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-story-of-three-wonderful-beggars",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE STORY OF THREE WONDERFUL BEGGARS.txt",
+      "expectedTitle": "The Story of Three Wonderful Beggars",
+      "generatedTitle": "The Story of Three Wonderful Beggars",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-story-of-three-wonderful-beggars/manifest.json",
+        "app/client/assets/books/generated/the-story-of-three-wonderful-beggars/cleaned_book.json",
+        "app/client/assets/books/generated/the-story-of-three-wonderful-beggars/processed_book.json",
+        "app/client/assets/books/generated/the-story-of-three-wonderful-beggars/rights_report.json",
+        "app/client/assets/books/generated/the-story-of-three-wonderful-beggars/processing_notes.md",
+        "app/client/assets/books/generated/the-story-of-three-wonderful-beggars/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-story-of-three-wonderful-beggars.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: There once lived a merchant whose name was Mark, and whom people called; write pass starts at first selected/default section",
+        "snippet": "There once lived a merchant whose name was Mark, and whom people called Mark the Rich. He was a very hard-hearted man, for he could not bear poor people, and if he caught sight of a beggar anywhere near his house, he would order the servants to drive him awa"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 327,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": ". He helped the poor and fed and clothed the hungry and naked and all Mark’s riches became his. For many years Mark has been ferrying people across the river. His face is wrinkled, his hair and beard are snow white, and his eyes are dim; but still he rows on."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 14244,
+        "generatedCharacterCount": 14244,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Story of Three Wonderful Beggars",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2774,
+        "snippet": "There once lived a merchant whose name was Mark, and whom people called ‘Mark the Rich.’ He was a very hard-hearted man, for he could not bear poor people, and..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Story of Three Wonderful Beggars",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2774
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Story of Three Wonderful Beggars",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2774
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Story of Three Wonderful Beggars",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2774
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE STORY OF THREE WONDERFUL BEGGARS",
+        "author": "Author: Andrew Lang",
+        "start": "The Story of Three Wonderful Beggars There once lived a merchant whose name was Mark, and whom people called ‘Mark the Rich.’ He was a very hard-hearted man, for he could not bear poor people, and if he caught sight of a beggar anywhere near his house, he would order the servants to drive him away, or would set the dogs at him. One day three very poor...",
+        "end": "... his dear wife, and his kind mother-in-law lived with them. He helped the poor and fed and clothed the hungry and naked and all Mark’s riches became his. For many years Mark has been ferrying people across the river. His face is wrinkled, his hair and beard are snow white, and his eyes are dim; but still he rows on."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-three-princes-and-their-beasts",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE THREE PRINCES AND THEIR BEASTS.txt",
+      "expectedTitle": "The Three Princes and Their Beasts",
+      "generatedTitle": "The Three Princes and Their Beasts",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-three-princes-and-their-beasts/manifest.json",
+        "app/client/assets/books/generated/the-three-princes-and-their-beasts/cleaned_book.json",
+        "app/client/assets/books/generated/the-three-princes-and-their-beasts/processed_book.json",
+        "app/client/assets/books/generated/the-three-princes-and-their-beasts/rights_report.json",
+        "app/client/assets/books/generated/the-three-princes-and-their-beasts/processing_notes.md",
+        "app/client/assets/books/generated/the-three-princes-and-their-beasts/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-three-princes-and-their-beasts.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: Once on a time there were three princes, who had a step-sister. One day; write pass starts at first selected/default section",
+        "snippet": "Once on a time there were three princes, who had a step-sister. One day they all set out hunting together. When they had gone some way through a thick wood they came on a great grey wolf with three cubs. Just as they were going to shoot, the wolf spoke and sai"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 279,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "before their brother, and their beasts stood round them. Then the three princes set off together to the town. And the king did not know which was his son-in-law, but the princess knew which was her husband, and there were great rejoicings throughout the land."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 14155,
+        "generatedCharacterCount": 14155,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Three Princes and Their Beasts",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2779,
+        "snippet": "Once on a time there were three princes, who had a step-sister. One day they all set out hunting together. When they had gone some way through a thick wood the..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Three Princes and Their Beasts",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2779
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Three Princes and Their Beasts",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2779
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Three Princes and Their Beasts",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2779
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: contents or list material must not enter default playback",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE THREE PRINCES AND THEIR BEASTS",
+        "author": "Author: Andrew Lang",
+        "start": "The Three Princes and Their Beasts Once on a time there were three princes, who had a step-sister. One day they all set out hunting together. When they had gone some way through a thick wood they came on a great grey wolf with three cubs. Just as they were going to shoot, the wolf spoke and said, ‘Do not shoot me, and I will give each of you one of m...",
+        "end": "... that stood around. And in a moment the two princes stood before their brother, and their beasts stood round them. Then the three princes set off together to the town. And the king did not know which was his son-in-law, but the princess knew which was her husband, and there were great rejoicings throughout the land."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-two-frogs",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE TWO FROGS.txt",
+      "expectedTitle": "The Two Frogs",
+      "generatedTitle": "The Two Frogs",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-two-frogs/manifest.json",
+        "app/client/assets/books/generated/the-two-frogs/cleaned_book.json",
+        "app/client/assets/books/generated/the-two-frogs/processed_book.json",
+        "app/client/assets/books/generated/the-two-frogs/rights_report.json",
+        "app/client/assets/books/generated/the-two-frogs/processing_notes.md",
+        "app/client/assets/books/generated/the-two-frogs/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-two-frogs.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: Once upon a time in the country of Japan there lived two frogs, one of; write pass starts at first selected/default section",
+        "snippet": "Once upon a time in the country of Japan there lived two frogs, one of whom made his home in a ditch near the town of Osaka, on the sea coast, while the other dwelt in a clear little stream which ran through the city of Kioto. At such a great distance apart, t"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 55,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "and they both fell down on the grass. Then they took a polite farewell of each other, and set off for home again, and to the end of their lives they believed that Osaka and Kioto, which are as different to look at as two towns can be, were as like as two peas."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 3014,
+        "generatedCharacterCount": 3014,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Two Frogs",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 592,
+        "snippet": "Once upon a time in the country of Japan there lived two frogs, one of whom made his home in a ditch near the town of Osaka, on the sea coast, while the other..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Two Frogs",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 592
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Two Frogs",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 592
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Two Frogs",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 592
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE TWO FROGS",
+        "author": "Author: Andrew Lang",
+        "start": "The Two Frogs Once upon a time in the country of Japan there lived two frogs, one of whom made his home in a ditch near the town of Osaka, on the sea coast, while the other dwelt in a clear little stream which ran through the city of Kioto. At such a great distance apart, they had never even heard of each other; but, funnily enou...",
+        "end": "... he spoke he took his hands from his friend’s shoulders, and they both fell down on the grass. Then they took a polite farewell of each other, and set off for home again, and to the end of their lives they believed that Osaka and Kioto, which are as different to look at as two towns can be, were as like as two peas."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-underground-workers",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE UNDERGROUND WORKERS.txt",
+      "expectedTitle": "The Underground Workers",
+      "generatedTitle": "The Underground Workers",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-underground-workers/manifest.json",
+        "app/client/assets/books/generated/the-underground-workers/cleaned_book.json",
+        "app/client/assets/books/generated/the-underground-workers/processed_book.json",
+        "app/client/assets/books/generated/the-underground-workers/rights_report.json",
+        "app/client/assets/books/generated/the-underground-workers/processing_notes.md",
+        "app/client/assets/books/generated/the-underground-workers/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-underground-workers.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: On a bitter night somewhere between Christmas and the New Year, a man; write pass starts at first selected/default section",
+        "snippet": "On a bitter night somewhere between Christmas and the New Year, a man set out to walk to the neighbouring village. It was not many miles off, but the snow was so thick that there were no roads, or walls, or hedges left to guide him, and very soon he lost his w"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 217,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": ", and after he had paid for it there was plenty of money left over. When he was settled, he married a pretty girl who lived near by, and had some children, to whom on his death-bed he told the story of the lord of the underworld, and how he had made Hans rich."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 11922,
+        "generatedCharacterCount": 11922,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Underground Workers",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2297,
+        "snippet": "On a bitter night somewhere between Christmas and the New Year, a man set out to walk to the neighbouring village. It was not many miles off, but the snow was..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Underground Workers",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2297
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Underground Workers",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2297
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Underground Workers",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2297
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE UNDERGROUND WORKERS",
+        "author": "Author: Andrew Lang",
+        "start": "The Underground Workers On a bitter night somewhere between Christmas and the New Year, a man set out to walk to the neighbouring village. It was not many miles off, but the snow was so thick that there were no roads, or walls, or hedges left to guide him, and very soon he lost his way altogether, and was glad to get shelter from the wind...",
+        "end": "...bout him. It did not take him long to find what he wanted, and after he had paid for it there was plenty of money left over. When he was settled, he married a pretty girl who lived near by, and had some children, to whom on his death-bed he told the story of the lord of the underworld, and how he had made Hans rich."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-young-man-who-would-have-his-eyes-opened",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/THE YOUNG MAN WHO WOULD HAVE HIS EYES OPENED.txt",
+      "expectedTitle": "The Young Man Who Would Have His Eyes Opened",
+      "generatedTitle": "The Young Man Who Would Have His Eyes Opened",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited By Andrew Lang",
+          "lineNumber": 42
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-young-man-who-would-have-his-eyes-opened/manifest.json",
+        "app/client/assets/books/generated/the-young-man-who-would-have-his-eyes-opened/cleaned_book.json",
+        "app/client/assets/books/generated/the-young-man-who-would-have-his-eyes-opened/processed_book.json",
+        "app/client/assets/books/generated/the-young-man-who-would-have-his-eyes-opened/rights_report.json",
+        "app/client/assets/books/generated/the-young-man-who-would-have-his-eyes-opened/processing_notes.md",
+        "app/client/assets/books/generated/the-young-man-who-would-have-his-eyes-opened/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-young-man-who-would-have-his-eyes-opened.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: no existing generated slug matched the normalized title/author identity",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: Once upon a time there lived a youth who was never happy unless he was; write pass starts at first selected/default section",
+        "snippet": "Once upon a time there lived a youth who was never happy unless he was prying into something that other people knew nothing about. After he had learned to understand the language of birds and beasts, he discovered accidentally that a great deal took place unde"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 111,
+        "reason": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "em night and day, and ceased to care about anything else in the world, and was sick to the end of his life with longing for that beautiful vision. And that was the way he learned that the wizard had spoken truly when he said, ‘Blindness is man’s highest good.’"
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 6811,
+        "generatedCharacterCount": 6811,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Young Man Who Would Have His Eyes Opened",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1300,
+        "snippet": "Once upon a time there lived a youth who was never happy unless he was prying into something that other people knew nothing about. After he had learned to unde..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Young Man Who Would Have His Eyes Opened",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1300
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Young Man Who Would Have His Eyes Opened",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1300
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Young Man Who Would Have His Eyes Opened",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1300
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "THE YOUNG MAN WHO WOULD HAVE HIS EYES OPENED",
+        "author": "Author: Andrew Lang",
+        "start": "The Young Man Who Would Have His Eyes Opened Once upon a time there lived a youth who was never happy unless he was prying into something that other people knew nothing about. After he had learned to understand the language of birds and beasts, he discovered accidentally that a great deal took place under cover of night which mortal eyes never saw. From that m...",
+        "end": "...after he never saw them again. Still, he thought about them night and day, and ceased to care about anything else in the world, and was sick to the end of his life with longing for that beautiful vision. And that was the way he learned that the wizard had spoken truly when he said, ‘Blindness is man’s highest good.’"
+      },
+      "finalRecommendation": "accepted for review"
+    }
+  ]
+}

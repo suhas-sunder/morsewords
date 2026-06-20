@@ -18387,6 +18387,986 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-false-prince-and-the-true/manifest.json"
+    },
+    {
+      "slug": "the-child-who-came-from-an-egg",
+      "title": "The Child Who Came from an Egg",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "93a716e311709843",
+      "contentHash": "93a716e31170984370dfa554117c713c2cbee72098786e886570e99037b521a5",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Child Who Came from an Egg"
+      },
+      "stats": {
+        "originalCharacterCount": 18350,
+        "cleanedCharacterCount": 16966,
+        "wordCount": 3268,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-child-who-came-from-an-egg/manifest.json"
+    },
+    {
+      "slug": "the-finest-liar-in-the-world",
+      "title": "The Finest Liar in the World",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "1468f8680971cb05",
+      "contentHash": "1468f8680971cb051c1d03dc1456964733ec6f26702acdefab825889301316a7",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Finest Liar in the World"
+      },
+      "stats": {
+        "originalCharacterCount": 8739,
+        "cleanedCharacterCount": 7532,
+        "wordCount": 1546,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-finest-liar-in-the-world/manifest.json"
+    },
+    {
+      "slug": "the-frog",
+      "title": "The Frog",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "4fda1dbf3f8b9a35",
+      "contentHash": "4fda1dbf3f8b9a35f4c64cf621f6231f1e1c96fd9fbb77bd8240872ff77eb590",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Frog"
+      },
+      "stats": {
+        "originalCharacterCount": 8365,
+        "cleanedCharacterCount": 7168,
+        "wordCount": 1374,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-frog/manifest.json"
+    },
+    {
+      "slug": "the-grateful-prince",
+      "title": "The Grateful Prince",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "7371bb24cb6fdf6f",
+      "contentHash": "7371bb24cb6fdf6f5369b64c7b81006623378b475eb1c99569b3f03764d3b3bc",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Grateful Prince"
+      },
+      "stats": {
+        "originalCharacterCount": 34116,
+        "cleanedCharacterCount": 32400,
+        "wordCount": 6294,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-grateful-prince/manifest.json"
+    },
+    {
+      "slug": "the-headless-dwarfs",
+      "title": "The Headless Dwarfs",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "d786cdc39738e104",
+      "contentHash": "d786cdc39738e10410ac5d09d936aa898d22b58a06a8d89f4e0341bac897bf10",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Headless Dwarfs"
+      },
+      "stats": {
+        "originalCharacterCount": 16111,
+        "cleanedCharacterCount": 14766,
+        "wordCount": 2840,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-headless-dwarfs/manifest.json"
+    },
+    {
+      "slug": "the-lute-player",
+      "title": "The Lute Player",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "af399c81e922506e",
+      "contentHash": "af399c81e922506ef4b8f3071d79fc222d2738cf0ad048cd9ce5c4d534a43abd",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Lute Player"
+      },
+      "stats": {
+        "originalCharacterCount": 9022,
+        "cleanedCharacterCount": 7771,
+        "wordCount": 1478,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-lute-player/manifest.json"
+    },
+    {
+      "slug": "the-maiden-with-the-wooden-helmet",
+      "title": "The Maiden with the Wooden Helmet",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "d81b2511ee949759",
+      "contentHash": "d81b2511ee949759b4e126746e5d85bddd91bb349d605cc3fa8d5b278ab5a626",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Maiden with the Wooden Helmet"
+      },
+      "stats": {
+        "originalCharacterCount": 8706,
+        "cleanedCharacterCount": 7507,
+        "wordCount": 1454,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-maiden-with-the-wooden-helmet/manifest.json"
+    },
+    {
+      "slug": "the-monkey-and-the-jelly-fish",
+      "title": "The Monkey and the Jelly-Fish",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "45429e288f7af232",
+      "contentHash": "45429e288f7af2327441c7a36bdee53c5347b3e9b3e52a9db739e57fb88c1c64",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Monkey and the Jelly-Fish"
+      },
+      "stats": {
+        "originalCharacterCount": 7838,
+        "cleanedCharacterCount": 6656,
+        "wordCount": 1296,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-monkey-and-the-jelly-fish/manifest.json"
+    },
+    {
+      "slug": "the-nine-pea-hens-and-the-golden-apples",
+      "title": "The Nine Pea-Hens and the Golden Apples",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "d2d08420cfdea58f",
+      "contentHash": "d2d08420cfdea58febdd479b4e9cf50d2b72e038f79eefcaab6d706f5cc0e780",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Nine Pea-Hens and the Golden Apples"
+      },
+      "stats": {
+        "originalCharacterCount": 20404,
+        "cleanedCharacterCount": 18937,
+        "wordCount": 3718,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-nine-pea-hens-and-the-golden-apples/manifest.json"
+    },
+    {
+      "slug": "the-nunda-eater-of-people",
+      "title": "The Nunda, Eater of People",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "db916b9f5ae01eb2",
+      "contentHash": "db916b9f5ae01eb23605fab3fc852dfb2fa851e3b1f37b1965c8cba724af012b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Nunda, Eater of People"
+      },
+      "stats": {
+        "originalCharacterCount": 21818,
+        "cleanedCharacterCount": 20298,
+        "wordCount": 4060,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-nunda-eater-of-people/manifest.json"
+    },
+    {
+      "slug": "the-prince-who-wanted-to-see-the-world",
+      "title": "The Prince Who Wanted to See the World",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "b6cafc1678d85258",
+      "contentHash": "b6cafc1678d85258f15ad8efaed7cbb819f33e4e5e9d30a401dde54a8ccba5c7",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Prince Who Wanted to See the World"
+      },
+      "stats": {
+        "originalCharacterCount": 13132,
+        "cleanedCharacterCount": 11830,
+        "wordCount": 2340,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-prince-who-wanted-to-see-the-world/manifest.json"
+    },
+    {
+      "slug": "the-princess-who-was-hidden-underground",
+      "title": "The Princess Who Was Hidden Underground",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "e51f79b42f2939b6",
+      "contentHash": "e51f79b42f2939b664979142146b35ca3f447989a2ef2aa910df5cb56df0f1e6",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Princess Who Was Hidden Underground"
+      },
+      "stats": {
+        "originalCharacterCount": 6507,
+        "cleanedCharacterCount": 5308,
+        "wordCount": 1022,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-princess-who-was-hidden-underground/manifest.json"
+    },
+    {
+      "slug": "the-story-of-a-gazelle",
+      "title": "The Story of a Gazelle",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "afe0853d8eca2952",
+      "contentHash": "afe0853d8eca295265c5bceb665dc3c713cc196fdc72cd518a24282eef91dfa2",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Story of a Gazelle"
+      },
+      "stats": {
+        "originalCharacterCount": 30970,
+        "cleanedCharacterCount": 29273,
+        "wordCount": 5790,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-story-of-a-gazelle/manifest.json"
+    },
+    {
+      "slug": "the-story-of-halfman",
+      "title": "The Story of Halfman",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "67a65390eb06a0e4",
+      "contentHash": "67a65390eb06a0e4fee1bb9a6007d15abca32bc002ad20f438177cef8abf2d69",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Story of Halfman"
+      },
+      "stats": {
+        "originalCharacterCount": 20052,
+        "cleanedCharacterCount": 18552,
+        "wordCount": 3637,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-story-of-halfman/manifest.json"
+    },
+    {
+      "slug": "the-story-of-hassebu",
+      "title": "The Story of Hassebu",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "4e35cd06f0b3d54b",
+      "contentHash": "4e35cd06f0b3d54b27e58a1b017a45e68925c7635f0e8360bb15f991972da047",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Story of Hassebu"
+      },
+      "stats": {
+        "originalCharacterCount": 10424,
+        "cleanedCharacterCount": 9170,
+        "wordCount": 1853,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-story-of-hassebu/manifest.json"
+    },
+    {
+      "slug": "the-story-of-three-wonderful-beggars",
+      "title": "The Story of Three Wonderful Beggars",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "a3c00268bb9fdaf0",
+      "contentHash": "a3c00268bb9fdaf05ca094ab93e1f985b4403bcca0645a82c6a3e08f52e179b0",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Story of Three Wonderful Beggars"
+      },
+      "stats": {
+        "originalCharacterCount": 15648,
+        "cleanedCharacterCount": 14244,
+        "wordCount": 2774,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-story-of-three-wonderful-beggars/manifest.json"
+    },
+    {
+      "slug": "the-three-princes-and-their-beasts",
+      "title": "The Three Princes and Their Beasts",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "0d196120ccffefc8",
+      "contentHash": "0d196120ccffefc87cd39d95f09a59637877270b198c3ea70877807ed098d65a",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Three Princes and Their Beasts"
+      },
+      "stats": {
+        "originalCharacterCount": 15511,
+        "cleanedCharacterCount": 14155,
+        "wordCount": 2779,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-three-princes-and-their-beasts/manifest.json"
+    },
+    {
+      "slug": "the-two-frogs",
+      "title": "The Two Frogs",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "54bc283a5271e11f",
+      "contentHash": "54bc283a5271e11fe96e4e8d3ce0b0bf7dfe95a1adddcb92a065ea85da4e6a1a",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Two Frogs"
+      },
+      "stats": {
+        "originalCharacterCount": 4124,
+        "cleanedCharacterCount": 3014,
+        "wordCount": 592,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-two-frogs/manifest.json"
+    },
+    {
+      "slug": "the-underground-workers",
+      "title": "The Underground Workers",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "81f5f54a6010e5c4",
+      "contentHash": "81f5f54a6010e5c4fac34e2a0150410f12ffcbd7bc6d3c9e36f3a316834204d0",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Underground Workers"
+      },
+      "stats": {
+        "originalCharacterCount": 13202,
+        "cleanedCharacterCount": 11922,
+        "wordCount": 2297,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-underground-workers/manifest.json"
+    },
+    {
+      "slug": "the-young-man-who-would-have-his-eyes-opened",
+      "title": "The Young Man Who Would Have His Eyes Opened",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "e736478cf99791fc",
+      "contentHash": "e736478cf99791fc725a8dd302b2c98e0b2d9067958814852736f613f1c01e9c",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Young Man Who Would Have His Eyes Opened"
+      },
+      "stats": {
+        "originalCharacterCount": 8006,
+        "cleanedCharacterCount": 6811,
+        "wordCount": 1300,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-young-man-who-would-have-his-eyes-opened/manifest.json"
     }
   ]
 }
