@@ -1,0 +1,87 @@
+{
+  "slug": "the-toys-of-peace",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE TOYS OF PEACE.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Toys of Peace",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE TOYS OF PEACE",
+    "lineNumber": 37
+  },
+  "expectedAuthor": [
+    "Saki"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Saki",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE TOYS OF PEACE",
+    "First readable prose: ?Harvey,? said Eleanor Bope, handing her brother a cutting from a London"
+  ],
+  "realReadableStart": "The Toys of Peace: ?Harvey,? said Eleanor Bope, handing her brother a cutting from a London morning paper of the 19th of March, ?just read this about children?s toys, please; it exactly carries out some of our ideas about influence and upbringing.? ?In the view of the National Peace Council,? ran the extract, ?there are grave objectio...",
+  "realReadableEnd": "... ink over the devoted building—“and the surviving five hundred are dragged off to the French ships. ‘I have lost a Marshal,’ says Louis, ‘but I do not go back empty-handed.’” Harvey stole away from the room, and sought out his sister. “Eleanor,” he said, “the experiment—” “Yes?” “Has failed. We have begun too late.”",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Toys of Peace",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "?Harvey,? said Eleanor Bope, handing her brother a cutting from a London morning paper of the 19th of March, ?just read this about children?s toys, please; it exactly carries out some of our ideas about influence and upbringing.? ?In the view of the National Peace Council,? ran the extract, ?there are grave objectio...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: “Harvey,” said Eleanor Bope, handing her brother a cutting from a London",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE TOYS OF PEACE",
+    "author": "Author: Saki",
+    "start": "The Toys of Peace ?Harvey,? said Eleanor Bope, handing her brother a cutting from a London morning paper of the 19th of March, ?just read this about children?s toys, please; it exactly carries out some of our ideas about influence and upbringing.? ?In the view of the National Peace Council,? ran the extract, ?there are grave objectio...",
+    "end": "... ink over the devoted building—“and the surviving five hundred are dragged off to the French ships. ‘I have lost a Marshal,’ says Louis, ‘but I do not go back empty-handed.’” Harvey stole away from the room, and sought out his sister. “Eleanor,” he said, “the experiment—” “Yes?” “Has failed. We have begun too late.”"
+  }
+}

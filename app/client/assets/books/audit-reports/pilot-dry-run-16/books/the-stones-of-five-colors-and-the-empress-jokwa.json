@@ -1,0 +1,90 @@
+{
+  "slug": "the-stones-of-five-colors-and-the-empress-jokwa",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE STONES OF FIVE COLORS AND THE EMPRESS JOKWA.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Stones of Five Colors and the Empress Jokwa",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE STONES OF FIVE COLORS AND THE EMPRESS JOKWA",
+    "lineNumber": 46
+  },
+  "expectedAuthor": [
+    "Yei Theodora Ozaki"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Yei Theodora Ozaki",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE STONES OF FIVE COLORS AND THE EMPRESS JOKWA",
+    "First readable prose: Long, long ago there lived a great Chinese Empress who succeeded her"
+  ],
+  "realReadableStart": "The Stones of Five Colors and the Empress Jokwa: Long, long ago there lived a great Chinese Empress who succeeded her brother the Emperor Fuki. It was the age of giants, and the Empress Jokwa, for that was her name, was twenty-five feet high, nearly as tall as her brother. She was a wonderful woman, and an able ruler. There is an interesting story of how she mende...",
+  "realReadableEnd": "...try the roads. They found that what the Empress’s deputies had told them was correct. After the examination of the heavenly roads, the Sun and Moon again gave light to the earth. All the people rejoiced greatly, and peace and prosperity were secured in China for a long time under the reign of the wise Empress Jokwa.",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Stones of Five Colors and the Empress Jokwa",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "Long, long ago there lived a great Chinese Empress who succeeded her brother the Emperor Fuki. It was the age of giants, and the Empress Jokwa, for that was her name, was twenty-five feet high, nearly as tall as her brother. She was a wonderful woman, and an able ruler. There is an interesting story of how she mende...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Long, long ago there lived a great Chinese Empress who succeeded her",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary.",
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE STONES OF FIVE COLORS AND THE EMPRESS JOKWA",
+    "author": "Author: Yei Theodora Ozaki",
+    "start": "The Stones of Five Colors and the Empress Jokwa Long, long ago there lived a great Chinese Empress who succeeded her brother the Emperor Fuki. It was the age of giants, and the Empress Jokwa, for that was her name, was twenty-five feet high, nearly as tall as her brother. She was a wonderful woman, and an able ruler. There is an interesting story of how she mende...",
+    "end": "...try the roads. They found that what the Empress’s deputies had told them was correct. After the examination of the heavenly roads, the Sun and Moon again gave light to the earth. All the people rejoiced greatly, and peace and prosperity were secured in China for a long time under the reign of the wise Empress Jokwa."
+  }
+}

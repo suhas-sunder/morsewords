@@ -1,0 +1,89 @@
+{
+  "slug": "the-quarrel-of-the-monkey-and-the-crab",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE QUARREL OF THE MONKEY AND THE CRAB.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Quarrel of the Monkey and the Crab",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE QUARREL OF THE MONKEY AND THE CRAB",
+    "lineNumber": 49
+  },
+  "expectedAuthor": [
+    "Yei Theodora Ozaki"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Yei Theodora Ozaki",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE QUARREL OF THE MONKEY AND THE CRAB",
+    "First readable prose: Long, long ago, one bright autumn day in Japan, it happened, that a"
+  ],
+  "realReadableStart": "The Quarrel of the Monkey and the Crab: Long, long ago, one bright autumn day in Japan, it happened, that a pink-faced monkey and a yellow crab were playing together along the bank of a river. As they were running about, the crab found a rice-dumpling and the monkey a persimmon-seed. The crab picked up the rice-dumpling and showed it to the monkey, saying...",
+  "realReadableEnd": "...t monkey. “Can you still lie? I will soon put an end to your breath!” and with that he cut off the monkey’s head with his pitcher claws. Thus the wicked monkey met his well-merited punishment, and the young crab avenged his father’s death. This is the end of the story of the monkey, the crab, and the persimmon-seed.",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Quarrel of the Monkey and the Crab",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "Long, long ago, one bright autumn day in Japan, it happened, that a pink-faced monkey and a yellow crab were playing together along the bank of a river. As they were running about, the crab found a rice-dumpling and the monkey a persimmon-seed. The crab picked up the rice-dumpling and showed it to the monkey, saying...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Long, long ago, one bright autumn day in Japan, it happened, that a",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE QUARREL OF THE MONKEY AND THE CRAB",
+    "author": "Author: Yei Theodora Ozaki",
+    "start": "The Quarrel of the Monkey and the Crab Long, long ago, one bright autumn day in Japan, it happened, that a pink-faced monkey and a yellow crab were playing together along the bank of a river. As they were running about, the crab found a rice-dumpling and the monkey a persimmon-seed. The crab picked up the rice-dumpling and showed it to the monkey, saying...",
+    "end": "...t monkey. “Can you still lie? I will soon put an end to your breath!” and with that he cut off the monkey’s head with his pitcher claws. Thus the wicked monkey met his well-merited punishment, and the young crab avenged his father’s death. This is the end of the story of the monkey, the crab, and the persimmon-seed."
+  }
+}

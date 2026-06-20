@@ -149,7 +149,11 @@ type BookDryRunResult = {
 
 type DryRunReport = {
   schemaVersion: 1;
-  reportName: "pilot-dry-run-13" | "pilot-dry-run-14" | "pilot-dry-run-15";
+  reportName:
+    | "pilot-dry-run-13"
+    | "pilot-dry-run-14"
+    | "pilot-dry-run-15"
+    | "pilot-dry-run-16";
   generatedAt: string;
   branch: string;
   baseMainCommit: string;
@@ -207,11 +211,13 @@ type DryRunReport = {
 
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
-const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "15"
-  ? 15
-  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "14"
-    ? 14
-    : 13;
+const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "16"
+  ? 16
+  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "15"
+    ? 15
+    : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "14"
+      ? 14
+      : 13;
 const dryRunReportName = `pilot-dry-run-${dryRunBatch}` as const;
 const tempBooksRoot = path.join(repoRoot, "app/client/assets/temp-books");
 const generatedRoot = path.join(repoRoot, "app/client/assets/books/generated");
@@ -263,6 +269,12 @@ const acceptedReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-14-verification/pilot-write-14-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 16
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-15/pilot-write-15.json",
+        "app/client/assets/books/audit-reports/pilot-write-15-verification/pilot-write-15-verification.json",
+      ]
+    : []),
   "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
   "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
   "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
@@ -283,6 +295,11 @@ const inputReportPaths = [
         "app/client/assets/books/audit-reports/batch-12-prose-restoration/batch-12-prose-restoration.json",
       ]
     : []),
+  ...(dryRunBatch >= 16
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-15-verification/pilot-write-15-verification.json",
+      ]
+    : []),
   ...(dryRunBatch >= 14
     ? [
         "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
@@ -297,7 +314,30 @@ const structureJsonPath = path.join(
 const pass2JsonPath = path.join(auditRoot, "book-processing-audit-pass-2.json");
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 
-const selectedBatch: readonly string[] = dryRunBatch === 15
+const selectedBatch: readonly string[] = dryRunBatch === 16
+  ? [
+      "the-purple-of-the-balkan-kings",
+      "the-seven-cream-jugs",
+      "the-sheep",
+      "the-threat",
+      "the-toys-of-peace",
+      "the-wolves-of-cernogratz",
+      "how-an-old-man-lost-his-wen",
+      "momotaro-or-the-story-of-the-son-of-a-peach",
+      "my-lord-bag-of-rice",
+      "the-mirror-of-matsuyama",
+      "the-ogre-of-rashomon",
+      "the-quarrel-of-the-monkey-and-the-crab",
+      "the-sagacious-monkey-and-the-boar",
+      "the-shinansha-or-the-south-pointing-carriage",
+      "the-stones-of-five-colors-and-the-empress-jokwa",
+      "the-story-of-prince-yamato-take",
+      "the-story-of-princess-hase",
+      "the-white-hare-and-the-crocodiles",
+      "the-golden-goose",
+      "the-turnip",
+    ]
+  : dryRunBatch === 15
   ? [
       "a-bread-and-butter-miss",
       "bertie-s-christmas-eve",
@@ -495,6 +535,30 @@ const titleOverrides: Record<string, string> = {
   "the-mappined-life": "The Mappined Life",
   "the-occasional-garden": "The Occasional Garden",
   "the-phantom-luncheon": "The Phantom Luncheon",
+  "the-purple-of-the-balkan-kings": "The Purple of the Balkan Kings",
+  "the-seven-cream-jugs": "The Seven Cream Jugs",
+  "the-sheep": "The Sheep",
+  "the-threat": "The Threat",
+  "the-toys-of-peace": "The Toys of Peace",
+  "the-wolves-of-cernogratz": "The Wolves of Cernogratz",
+  "how-an-old-man-lost-his-wen": "How an Old Man Lost His Wen",
+  "momotaro-or-the-story-of-the-son-of-a-peach":
+    "Momotaro, or the Story of the Son of a Peach",
+  "my-lord-bag-of-rice": "My Lord Bag of Rice",
+  "the-mirror-of-matsuyama": "The Mirror of Matsuyama",
+  "the-ogre-of-rashomon": "The Ogre of Rashomon",
+  "the-quarrel-of-the-monkey-and-the-crab":
+    "The Quarrel of the Monkey and the Crab",
+  "the-sagacious-monkey-and-the-boar": "The Sagacious Monkey and the Boar",
+  "the-shinansha-or-the-south-pointing-carriage":
+    "The “Shinansha,” or the South Pointing Carriage",
+  "the-stones-of-five-colors-and-the-empress-jokwa":
+    "The Stones of Five Colors and the Empress Jokwa",
+  "the-story-of-prince-yamato-take": "The Story of Prince Yamato Take",
+  "the-story-of-princess-hase": "The Story of Princess Hase",
+  "the-white-hare-and-the-crocodiles": "The White Hare and the Crocodiles",
+  "the-golden-goose": "The Golden Goose",
+  "the-turnip": "The Turnip",
 };
 
 const singleStoryStartPhrases: Record<string, string> = {
@@ -633,6 +697,46 @@ const singleStoryStartPhrases: Record<string, string> = {
     "“Don’t talk to me about town gardens,” said Elinor Rapsley; “which means,",
   "the-phantom-luncheon":
     "“The Smithly-Dubbs are in Town,” said Sir James.  “I wish you would show",
+  "the-purple-of-the-balkan-kings":
+    "Luitpold Wolkenstein, financier and diplomat on a small, obtrusive,",
+  "the-seven-cream-jugs":
+    "“I suppose we shall never see Wilfred Pigeoncote here now that he has",
+  "the-sheep":
+    "The enemy had declared “no trumps.”  Rupert played out his ace and king",
+  "the-threat":
+    "Sir Lulworth Quayne sat in the lounge of his favourite restaurant, the",
+  "the-toys-of-peace":
+    "“Harvey,” said Eleanor Bope, handing her brother a cutting from a London",
+  "the-wolves-of-cernogratz":
+    "“Are there any old legends attached to the castle?” asked Conrad of his",
+  "how-an-old-man-lost-his-wen":
+    "Many, many years ago there lived a good old man who had a wen like a",
+  "momotaro-or-the-story-of-the-son-of-a-peach":
+    "Long, long ago there lived, an old man and an old woman; they were",
+  "my-lord-bag-of-rice":
+    "Long, long ago there lived, in Japan a brave warrior known to all as",
+  "the-mirror-of-matsuyama":
+    "Long years ago in old Japan there lived in the Province of Echigo, a",
+  "the-ogre-of-rashomon":
+    "Long, long ago in Kyoto, the people of the city were terrified by",
+  "the-quarrel-of-the-monkey-and-the-crab":
+    "Long, long ago, one bright autumn day in Japan, it happened, that a",
+  "the-sagacious-monkey-and-the-boar":
+    "Long, long ago, there lived in the province of Shinshin in Japan, a",
+  "the-shinansha-or-the-south-pointing-carriage":
+    "The compass, with its needle always pointing to the North, is quite a",
+  "the-stones-of-five-colors-and-the-empress-jokwa":
+    "Long, long ago there lived a great Chinese Empress who succeeded her",
+  "the-story-of-prince-yamato-take":
+    "The insignia of the great Japanese Empire is composed of three",
+  "the-story-of-princess-hase":
+    "Many, many years ago there lived in Nara, the ancient Capital of Japan,",
+  "the-white-hare-and-the-crocodiles":
+    "Long, long ago, when all the animals could talk, there lived in the",
+  "the-golden-goose":
+    "There was a man who had three sons, the youngest of whom was called",
+  "the-turnip":
+    "There were two brothers who were both soldiers; the one was rich and",
 };
 
 const sectioningStartOverrides: Record<
@@ -706,6 +810,26 @@ const individualStorySlugs = new Set([
   "the-goblin-of-adachigahara",
   "the-jelly-fish-and-the-monkey",
   "the-tongue-cut-sparrow",
+  "the-purple-of-the-balkan-kings",
+  "the-seven-cream-jugs",
+  "the-sheep",
+  "the-threat",
+  "the-toys-of-peace",
+  "the-wolves-of-cernogratz",
+  "how-an-old-man-lost-his-wen",
+  "momotaro-or-the-story-of-the-son-of-a-peach",
+  "my-lord-bag-of-rice",
+  "the-mirror-of-matsuyama",
+  "the-ogre-of-rashomon",
+  "the-quarrel-of-the-monkey-and-the-crab",
+  "the-sagacious-monkey-and-the-boar",
+  "the-shinansha-or-the-south-pointing-carriage",
+  "the-stones-of-five-colors-and-the-empress-jokwa",
+  "the-story-of-prince-yamato-take",
+  "the-story-of-princess-hase",
+  "the-white-hare-and-the-crocodiles",
+  "the-golden-goose",
+  "the-turnip",
 ]);
 
 function readJson<T>(filePath: string): T {
@@ -906,7 +1030,8 @@ function deriveAcceptedSlugs() {
       relativePath.includes("pilot-write-11-verification") ||
       relativePath.includes("pilot-write-12-verification") ||
       relativePath.includes("pilot-write-13-verification") ||
-      relativePath.includes("pilot-write-14-verification")
+      relativePath.includes("pilot-write-14-verification") ||
+      relativePath.includes("pilot-write-15-verification")
     ) {
       for (const book of books) {
         if (book.acceptedForMain === true && typeof book.slug === "string") {
@@ -1218,7 +1343,7 @@ function readableEndSnippet(cleanedText: string) {
       body = body.slice(0, Math.floor(body.length * 0.65) + match.index);
     }
   }
-  const theEndMatches = [...body.matchAll(/\bTHE END\b/gi)];
+  const theEndMatches = [...body.matchAll(/^[ \t]*THE END[ \t]*$/gim)];
   const lastTheEnd = theEndMatches[theEndMatches.length - 1];
   if (lastTheEnd && lastTheEnd.index && lastTheEnd.index > body.length * 0.65) {
     body = body.slice(0, lastTheEnd.index + lastTheEnd[0].length);
@@ -1826,6 +1951,7 @@ function buildReport() {
       "Future book batches fail unless startup preview is valid, book-specific, and starts from real readable generated content.",
       "Future book batches fail if preview contains SOS Help! or generic preview fallback text.",
       "Future book batches fail if title/TOC/source/license/contributor/transcriber/byline/parent-collection material enters default playback.",
+      "Future book batches fail if cleanup removes real prose, punctuation, dialogue, or the readable ending.",
       "Future book batches fail unless selected/default source order begins from the first selected/default section.",
       "Do not mark a book safe when meaningful headings exist but proposed output would become vague Part 1 / Part 2 chunks.",
       "Do not mark a book safe when the expected generated title would be inherited from a parent collection instead of the actual book or story identity.",

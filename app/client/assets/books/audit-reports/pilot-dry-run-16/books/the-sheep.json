@@ -1,0 +1,87 @@
+{
+  "slug": "the-sheep",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE SHEEP.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Sheep",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE SHEEP",
+    "lineNumber": 63
+  },
+  "expectedAuthor": [
+    "Saki"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Saki",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE SHEEP",
+    "First readable prose: The enemy had declared ?no trumps.? Rupert played out his ace and king"
+  ],
+  "realReadableStart": "The Sheep: The enemy had declared ?no trumps.? Rupert played out his ace and king of clubs and cleared the adversary of that suit; then the Sheep, whom the Fates had inflicted on him for a partner, took the third round with the queen of clubs, and, having no other club to lead back, opened another suit. The enemy won the remai...",
+  "realReadableEnd": "...initely disappeared under the ice-rift. Kathleen Athling and her husband stay the greater part of the year with Rupert, and a small Robbie stands in some danger of being idolised by a devoted uncle. But for twelve months of the year Rupert’s most inseparable and valued companion is a sturdy tawny and white yard-dog.",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Sheep",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "The enemy had declared ?no trumps.? Rupert played out his ace and king of clubs and cleared the adversary of that suit; then the Sheep, whom the Fates had inflicted on him for a partner, took the third round with the queen of clubs, and, having no other club to lead back, opened another suit. The enemy won the remai...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: The enemy had declared “no trumps.”  Rupert played out his ace and king",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE SHEEP",
+    "author": "Author: Saki",
+    "start": "The Sheep The enemy had declared ?no trumps.? Rupert played out his ace and king of clubs and cleared the adversary of that suit; then the Sheep, whom the Fates had inflicted on him for a partner, took the third round with the queen of clubs, and, having no other club to lead back, opened another suit. The enemy won the remai...",
+    "end": "...initely disappeared under the ice-rift. Kathleen Athling and her husband stay the greater part of the year with Rupert, and a small Robbie stands in some danger of being idolised by a devoted uncle. But for twelve months of the year Rupert’s most inseparable and valued companion is a sturdy tawny and white yard-dog."
+  }
+}

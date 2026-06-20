@@ -1,0 +1,87 @@
+{
+  "slug": "the-turnip",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE TURNIP.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Turnip",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE TURNIP",
+    "lineNumber": 43
+  },
+  "expectedAuthor": [
+    "Jacob Grimm; Wilhelm Grimm"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Jacob Grimm; Wilhelm Grimm",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE TURNIP",
+    "First readable prose: There were two brothers who were both soldiers; the one was rich and"
+  ],
+  "realReadableStart": "The Turnip: There were two brothers who were both soldiers; the one was rich and the other poor. The poor man thought he would try to better himself; so, pulling off his red coat, he became a gardener, and dug his ground well, and sowed turnips. When the seed came up, there was one plant bigger than all the rest; and it kept ge...",
+  "realReadableEnd": "...er wisdom dangling in the air. ‘How is it with thee, friend?’ said he, ‘dost thou not feel that wisdom comes unto thee? Rest there in peace, till thou art a wiser man than thou wert.’ So saying, he trotted off on the student’s nag, and left the poor fellow to gather wisdom till somebody should come and let him down.",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Turnip",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "There were two brothers who were both soldiers; the one was rich and the other poor. The poor man thought he would try to better himself; so, pulling off his red coat, he became a gardener, and dug his ground well, and sowed turnips. When the seed came up, there was one plant bigger than all the rest; and it kept ge...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: There were two brothers who were both soldiers; the one was rich and",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE TURNIP",
+    "author": "Author: Jacob Grimm; Wilhelm Grimm",
+    "start": "The Turnip There were two brothers who were both soldiers; the one was rich and the other poor. The poor man thought he would try to better himself; so, pulling off his red coat, he became a gardener, and dug his ground well, and sowed turnips. When the seed came up, there was one plant bigger than all the rest; and it kept ge...",
+    "end": "...er wisdom dangling in the air. ‘How is it with thee, friend?’ said he, ‘dost thou not feel that wisdom comes unto thee? Rest there in peace, till thou art a wiser man than thou wert.’ So saying, he trotted off on the student’s nag, and left the poor fellow to gather wisdom till somebody should come and let him down."
+  }
+}
