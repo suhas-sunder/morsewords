@@ -19367,6 +19367,986 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-young-man-who-would-have-his-eyes-opened/manifest.json"
+    },
+    {
+      "slug": "moti",
+      "title": "Moti",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "e5ca63ec2a8020d0",
+      "contentHash": "e5ca63ec2a8020d0054db1e26670fad7617a6d23df5dff52ee8d7a302170d251",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Moti"
+      },
+      "stats": {
+        "originalCharacterCount": 16776,
+        "cleanedCharacterCount": 15451,
+        "wordCount": 2979,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "moti/manifest.json"
+    },
+    {
+      "slug": "the-brown-bear-of-norway",
+      "title": "The Brown Bear of Norway",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "f85c4a64c184b871",
+      "contentHash": "f85c4a64c184b87127f62d2bad129d19fd7d03efb002804c5fe33e497c9345fc",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Brown Bear of Norway"
+      },
+      "stats": {
+        "originalCharacterCount": 18631,
+        "cleanedCharacterCount": 17248,
+        "wordCount": 3408,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-brown-bear-of-norway/manifest.json"
+    },
+    {
+      "slug": "the-escape-of-the-mouse",
+      "title": "The Escape of the Mouse",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "8284863d2bb35abd",
+      "contentHash": "8284863d2bb35abda5f49838d3baee3a5f51480a8f3dbd10c40ac67799fdbd48",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Escape of the Mouse"
+      },
+      "stats": {
+        "originalCharacterCount": 17346,
+        "cleanedCharacterCount": 15917,
+        "wordCount": 3025,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-escape-of-the-mouse/manifest.json"
+    },
+    {
+      "slug": "the-fairy-nurse",
+      "title": "The Fairy Nurse",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "c4d23cefe7eb5eed",
+      "contentHash": "c4d23cefe7eb5eedfc93f3809a8dae85b9f096496cec4b5e1aa38d2d044d2fda",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Fairy Nurse"
+      },
+      "stats": {
+        "originalCharacterCount": 8965,
+        "cleanedCharacterCount": 7787,
+        "wordCount": 1566,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-fairy-nurse/manifest.json"
+    },
+    {
+      "slug": "the-four-gifts",
+      "title": "The Four Gifts",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "0472533cca89d53c",
+      "contentHash": "0472533cca89d53c0bb63b6d14100c469d6d3ba75b77785d0f561a72fafc1f5e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Four Gifts"
+      },
+      "stats": {
+        "originalCharacterCount": 19579,
+        "cleanedCharacterCount": 18174,
+        "wordCount": 3499,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-four-gifts/manifest.json"
+    },
+    {
+      "slug": "the-goat-s-ears-of-the-emperor-trojan",
+      "title": "The Goat’s Ears of the Emperor Trojan",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "9ab7d18af61fd08c",
+      "contentHash": "9ab7d18af61fd08c6566c5c52beeefc755ee59c66e2bd2bcf3985b0e05e6b0b9",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Goat’s Ears of the Emperor Trojan"
+      },
+      "stats": {
+        "originalCharacterCount": 5700,
+        "cleanedCharacterCount": 4538,
+        "wordCount": 872,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-goat-s-ears-of-the-emperor-trojan/manifest.json"
+    },
+    {
+      "slug": "the-groac-h-of-the-isle-of-lok",
+      "title": "The Groac’h of the Isle of Lok",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "9f324b16576e7be3",
+      "contentHash": "9f324b16576e7be38c575fef97e39ace5412f4eb8b37239955359318d77b1828",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Groac’h of the Isle of Lok"
+      },
+      "stats": {
+        "originalCharacterCount": 19102,
+        "cleanedCharacterCount": 17654,
+        "wordCount": 3430,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-groac-h-of-the-isle-of-lok/manifest.json"
+    },
+    {
+      "slug": "the-heart-of-a-monkey",
+      "title": "The Heart of a Monkey",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "08ebd425a8329e8f",
+      "contentHash": "08ebd425a8329e8f21fa006eb7b1416e22a2a64b60d86630389aee6c22dbabe5",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Heart of a Monkey"
+      },
+      "stats": {
+        "originalCharacterCount": 17356,
+        "cleanedCharacterCount": 15956,
+        "wordCount": 3117,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-heart-of-a-monkey/manifest.json"
+    },
+    {
+      "slug": "the-hoodie-crow",
+      "title": "The Hoodie-Crow",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "af92cfdbef57c197",
+      "contentHash": "af92cfdbef57c19735588bfc6cd05e138dc021e57e475bcdfe4f38d6dc433993",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Hoodie-Crow"
+      },
+      "stats": {
+        "originalCharacterCount": 8909,
+        "cleanedCharacterCount": 7707,
+        "wordCount": 1539,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-hoodie-crow/manifest.json"
+    },
+    {
+      "slug": "the-jogi-s-punishment",
+      "title": "The Jogi’s Punishment",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "3eadcb0a874c370b",
+      "contentHash": "3eadcb0a874c370b234f14b728c10c6e45b03864acaf2302cb1671ef2fe08339",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Jogi’s Punishment"
+      },
+      "stats": {
+        "originalCharacterCount": 12576,
+        "cleanedCharacterCount": 11292,
+        "wordCount": 2177,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-jogi-s-punishment/manifest.json"
+    },
+    {
+      "slug": "the-king-of-the-waterfalls",
+      "title": "The King of the Waterfalls",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "074e9616913d2ec4",
+      "contentHash": "074e9616913d2ec44266a9a4225346a5fc1709dd10097bf6e59e8be156c81e78",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The King of the Waterfalls"
+      },
+      "stats": {
+        "originalCharacterCount": 22494,
+        "cleanedCharacterCount": 20976,
+        "wordCount": 4145,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-king-of-the-waterfalls/manifest.json"
+    },
+    {
+      "slug": "the-one-handed-girl",
+      "title": "The One-Handed Girl",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "61993eced957d2b4",
+      "contentHash": "61993eced957d2b478a06689ae286fd6a44e7756217c92f673b91ae90a030e73",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The One-Handed Girl"
+      },
+      "stats": {
+        "originalCharacterCount": 28899,
+        "cleanedCharacterCount": 27255,
+        "wordCount": 5346,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-one-handed-girl/manifest.json"
+    },
+    {
+      "slug": "the-raspberry-worm",
+      "title": "The Raspberry Worm",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "2f8aac426c6e5553",
+      "contentHash": "2f8aac426c6e5553bfb30a34c5ced91276fa0ead842decb7315d8afa0418382f",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Raspberry Worm"
+      },
+      "stats": {
+        "originalCharacterCount": 26197,
+        "cleanedCharacterCount": 24609,
+        "wordCount": 4659,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-raspberry-worm/manifest.json"
+    },
+    {
+      "slug": "the-rich-brother-and-the-poor-brother",
+      "title": "The Rich Brother and the Poor Brother",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "f6a22f656cb6b2a0",
+      "contentHash": "f6a22f656cb6b2a0ee83c9fd57837a6a4bba384514ebe2f2ba75c0a995f7baf9",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Rich Brother and the Poor Brother"
+      },
+      "stats": {
+        "originalCharacterCount": 21410,
+        "cleanedCharacterCount": 19971,
+        "wordCount": 3920,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-rich-brother-and-the-poor-brother/manifest.json"
+    },
+    {
+      "slug": "jimmy-goggles-the-god",
+      "title": "Jimmy Goggles the God",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "2d9cb5858528338c",
+      "contentHash": "2d9cb5858528338c5d939949678c902a417db2ac6197efd5cae1fbf777b11633",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1743",
+        "releaseDate": "September 21, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1743",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Jimmy Goggles the God"
+      },
+      "stats": {
+        "originalCharacterCount": 27954,
+        "cleanedCharacterCount": 27087,
+        "wordCount": 5190,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "jimmy-goggles-the-god/manifest.json"
+    },
+    {
+      "slug": "miss-winchelsea-s-heart",
+      "title": "Miss Winchelsea’s Heart",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "3ec4623fe50169ea",
+      "contentHash": "3ec4623fe50169ea4a49f436f2ad5dea9b354c976b34682dbc2f31e142f001bf",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1743",
+        "releaseDate": "September 21, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1743",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Miss Winchelsea’s Heart"
+      },
+      "stats": {
+        "originalCharacterCount": 39780,
+        "cleanedCharacterCount": 38907,
+        "wordCount": 6814,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "miss-winchelsea-s-heart/manifest.json"
+    },
+    {
+      "slug": "mr-brisher-s-treasure",
+      "title": "Mr. Brisher’s Treasure",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "d5f4c5a7c7880ac5",
+      "contentHash": "d5f4c5a7c7880ac50e860e5c85ed2ad0b59fd6e21905288d7d91877ce4732bdd",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1743",
+        "releaseDate": "September 21, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1743",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Mr. Brisher’s Treasure"
+      },
+      "stats": {
+        "originalCharacterCount": 20527,
+        "cleanedCharacterCount": 19559,
+        "wordCount": 3800,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "mr-brisher-s-treasure/manifest.json"
+    },
+    {
+      "slug": "mr-ledbetter-s-vacation",
+      "title": "Mr. Ledbetter’s Vacation",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "1a059d7aee335369",
+      "contentHash": "1a059d7aee335369d45aa7e97841ab5da529f7626a9fc480636f2a2ac8ef408d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1743",
+        "releaseDate": "September 21, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1743",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Mr. Ledbetter’s Vacation"
+      },
+      "stats": {
+        "originalCharacterCount": 39678,
+        "cleanedCharacterCount": 38720,
+        "wordCount": 6904,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "mr-ledbetter-s-vacation/manifest.json"
+    },
+    {
+      "slug": "mr-skelmersdale-in-fairyland",
+      "title": "Mr. Skelmersdale in Fairyland",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "00e418ccfa8e9a7c",
+      "contentHash": "00e418ccfa8e9a7c3d142a30837e0ad858903b295602673c410403623f5dfcc5",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1743",
+        "releaseDate": "September 21, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1743",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Mr. Skelmersdale in Fairyland"
+      },
+      "stats": {
+        "originalCharacterCount": 29840,
+        "cleanedCharacterCount": 28907,
+        "wordCount": 5330,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "mr-skelmersdale-in-fairyland/manifest.json"
+    },
+    {
+      "slug": "the-new-accelerator",
+      "title": "The New Accelerator",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "954f5d50dea4ef56",
+      "contentHash": "954f5d50dea4ef56e448f39cfaadeb50c8f3485603a8001ebd6cd3670026d3b7",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1743",
+        "releaseDate": "September 21, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1743",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The New Accelerator"
+      },
+      "stats": {
+        "originalCharacterCount": 31103,
+        "cleanedCharacterCount": 30116,
+        "wordCount": 5453,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-new-accelerator/manifest.json"
     }
   ]
 }

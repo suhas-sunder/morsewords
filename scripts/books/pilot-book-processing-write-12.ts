@@ -91,7 +91,8 @@ type DryRunReport = {
     | "pilot-dry-run-16"
     | "pilot-dry-run-17"
     | "pilot-dry-run-18"
-    | "pilot-dry-run-19";
+    | "pilot-dry-run-19"
+    | "pilot-dry-run-20";
   selectedBooks: string[];
   selectedCount: number;
   counts: {
@@ -244,21 +245,23 @@ type ManualBoundary = {
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
 const writeBatch =
-  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "19"
-    ? 19
-    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "18"
-      ? 18
-      : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "17"
-        ? 17
-        : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "16"
-          ? 16
-          : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "15"
-            ? 15
-            : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "14"
-              ? 14
-              : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "13"
-                ? 13
-                : 12;
+  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "20"
+    ? 20
+    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "19"
+      ? 19
+      : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "18"
+        ? 18
+        : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "17"
+          ? 17
+          : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "16"
+            ? 16
+            : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "15"
+              ? 15
+              : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "14"
+                ? 14
+                : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "13"
+                  ? 13
+                  : 12;
 const dryRunReportName = `pilot-dry-run-${writeBatch}` as const;
 const writeReportName = `pilot-write-${writeBatch}` as const;
 const tempBooksRoot = path.join(repoRoot, "app/client/assets/temp-books");
@@ -276,7 +279,30 @@ const dryRunReportPath = path.join(dryRunRoot, `${dryRunReportName}.json`);
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 const previewManifestPath = path.join(previewRoot, "manifest.json");
 
-const SELECTED_BATCH: readonly string[] = writeBatch === 19
+const SELECTED_BATCH: readonly string[] = writeBatch === 20
+  ? [
+      "moti",
+      "the-brown-bear-of-norway",
+      "the-escape-of-the-mouse",
+      "the-fairy-nurse",
+      "the-four-gifts",
+      "the-goat-s-ears-of-the-emperor-trojan",
+      "the-groac-h-of-the-isle-of-lok",
+      "the-heart-of-a-monkey",
+      "the-hoodie-crow",
+      "the-jogi-s-punishment",
+      "the-king-of-the-waterfalls",
+      "the-one-handed-girl",
+      "the-raspberry-worm",
+      "the-rich-brother-and-the-poor-brother",
+      "jimmy-goggles-the-god",
+      "miss-winchelsea-s-heart",
+      "mr-brisher-s-treasure",
+      "mr-ledbetter-s-vacation",
+      "mr-skelmersdale-in-fairyland",
+      "the-new-accelerator",
+    ]
+  : writeBatch === 19
   ? [
       "the-child-who-came-from-an-egg",
       "the-finest-liar-in-the-world",
@@ -508,11 +534,17 @@ const LATER_PHASE_REQUIREMENTS = [
   "final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable",
 ];
 
-const BACKLOG_NOTE = [
-  "Dry-run 19 still had 116 skipped/unsafe raw-only candidates before write.",
-  "These are not treated as lost or missed.",
-  "After safe batching slows/exhausts, create a dedicated remaining raw inventory/triage report classifying every unprocessed raw file.",
-];
+const BACKLOG_NOTE = writeBatch === 20
+  ? [
+      "Dry-run 20 still had 96 skipped/unsafe raw-only candidates before write.",
+      "These are not treated as lost or missed.",
+      "After safe batching slows/exhausts, create a dedicated remaining raw inventory/triage report classifying every unprocessed raw file.",
+    ]
+  : [
+      "Dry-run 19 still had 116 skipped/unsafe raw-only candidates before write.",
+      "These are not treated as lost or missed.",
+      "After safe batching slows/exhausts, create a dedicated remaining raw inventory/triage report classifying every unprocessed raw file.",
+    ];
 
 const METADATA_OVERRIDES: Record<
   string,
@@ -690,6 +722,8 @@ function sanitizeSectionText(input: string, cleanup: CleanupSummary): string {
   text = text.replace(/\[(?:Pg\.?\s*)?\d+\]/gi, "");
   cleanup.numberedReferencesRemoved += countMatches(text, /\[(?:[A-Z])?\d+\]/g);
   text = text.replace(/\[(?:[A-Z])?\d+\]/g, "");
+  cleanup.numberedReferencesRemoved += countMatches(text, /\[FN#\d+:[^\]]+\]/gi);
+  text = text.replace(/\[FN#\d+:[^\]]+\]/gi, "");
   cleanup.standaloneEndMarkersRemoved += countMatches(text, /^\s*THE END\s*$/gim);
   text = text.replace(/^\s*THE END\s*$/gim, "");
   cleanup.trailingNonReadableBlocksRemoved += countMatches(text, standaloneBylinePattern);
@@ -749,6 +783,11 @@ function sanitizeSectionText(input: string, cleanup: CleanupSummary): string {
   text = cutTrailingBlock(
     text,
     /\n\s*[\[|]?\s*TRANSCRIBER(?:['’]S|S)? NOTES?:?[\s\S]*$/i,
+    cleanup,
+  );
+  text = cutTrailingBlock(
+    text,
+    /\n\s*From\s+['"\u2018\u201c][^\n]*(?:Tales|Stories|Sagas|Fables|Book)[^\n]*['"\u2019\u201d]?\s*$/i,
     cleanup,
   );
   text = cutTrailingBlock(text, /\n\s*GLOSSARY AND INDEX\s*[\s\S]*$/i, cleanup);
@@ -2089,6 +2128,7 @@ function sectionSummary(sections: DetectedBookSection[]): SectionReportSummary[]
 }
 
 function sourceLooksUnsafe(text: string): boolean {
+  if (/\bFN#\d+\b/i.test(text)) return true;
   return /Project Gutenberg|Gutenberg License|START OF (?:THE|THIS) PROJECT GUTENBERG|END OF (?:THE|THIS) PROJECT GUTENBERG|www\.gutenberg|Distributed Proofreading|Transcriber's Notes?|Contact Us|Site Map|All Rights Reserved|Copyright ©/i.test(
     text,
   );
@@ -2104,7 +2144,7 @@ function previewLooksUnsafe(previewText: string): boolean {
 }
 
 function defaultTextHasCleanupArtifacts(text: string): boolean {
-  return /\[(?:Illustration|Image|Plate|Pg\.?\s*\d+|\d+)\]/i.test(text);
+  return /\[(?:Illustration|Image|Plate|Pg\.?\s*\d+|\d+|FN#\d+)/i.test(text);
 }
 
 function normalizedDuplicateKey(input: string) {
