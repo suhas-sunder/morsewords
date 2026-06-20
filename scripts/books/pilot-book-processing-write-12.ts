@@ -49,6 +49,8 @@ type DryRunBook = {
   expectedGeneratedTitle: string;
   expectedAuthor: string[];
   authorEvidence: Evidence;
+  expectedCreatorRole?: string;
+  metadataEvidence?: Evidence[];
   detectedStructuralConvention: string;
   meaningfulHeadingsExist: boolean;
   expectedFirstDefaultSection: string;
@@ -86,7 +88,8 @@ type DryRunReport = {
     | "pilot-dry-run-13"
     | "pilot-dry-run-14"
     | "pilot-dry-run-15"
-    | "pilot-dry-run-16";
+    | "pilot-dry-run-16"
+    | "pilot-dry-run-17";
   selectedBooks: string[];
   selectedCount: number;
   counts: {
@@ -178,6 +181,9 @@ type BookReport = {
   expectedAuthor: string[];
   generatedAuthor: string[] | null;
   authorEvidence: Evidence;
+  expectedCreatorRole: string;
+  generatedCreatorRole: string | null;
+  metadataEvidence: Evidence[];
   generatedFilesChanged: string[];
   previewAssetChanged: string | null;
   duplicateNearDuplicateSlugCheckResult: string;
@@ -236,15 +242,17 @@ type ManualBoundary = {
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
 const writeBatch =
-  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "16"
-    ? 16
-    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "15"
-      ? 15
-      : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "14"
-        ? 14
-        : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "13"
-          ? 13
-          : 12;
+  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "17"
+    ? 17
+    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "16"
+      ? 16
+      : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "15"
+        ? 15
+        : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "14"
+          ? 14
+          : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "13"
+            ? 13
+            : 12;
 const dryRunReportName = `pilot-dry-run-${writeBatch}` as const;
 const writeReportName = `pilot-write-${writeBatch}` as const;
 const tempBooksRoot = path.join(repoRoot, "app/client/assets/temp-books");
@@ -262,8 +270,31 @@ const dryRunReportPath = path.join(dryRunRoot, `${dryRunReportName}.json`);
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 const previewManifestPath = path.join(previewRoot, "manifest.json");
 
-const SELECTED_BATCH: readonly string[] = writeBatch === 16
+const SELECTED_BATCH: readonly string[] = writeBatch === 17
   ? [
+      "the-twelve-dancing-princesses",
+      "the-twelve-huntsmen",
+      "the-water-of-life",
+      "the-white-snake",
+      "the-willow-wren-and-the-bear",
+      "the-wolf-and-the-seven-little-kids",
+      "tom-thumb",
+      "elder-tree-mother",
+      "little-thumbelina",
+      "sunshine-stories",
+      "the-leaping-match",
+      "a-fish-story",
+      "a-french-puck",
+      "a-lost-paradise",
+      "how-brave-walter-hunted-wolves",
+      "little-lasse",
+      "the-sea-king-s-gift",
+      "the-story-of-a-very-bad-boy",
+      "the-three-crowns",
+      "the-wonderful-tune",
+    ]
+  : writeBatch === 16
+    ? [
       "the-purple-of-the-balkan-kings",
       "the-seven-cream-jugs",
       "the-sheep",
@@ -2242,6 +2273,9 @@ function makeSkippedReport(
     expectedAuthor: dryRun.expectedAuthor,
     generatedAuthor: null,
     authorEvidence: dryRun.authorEvidence,
+    expectedCreatorRole: dryRun.expectedCreatorRole ?? "author as identified by the source",
+    generatedCreatorRole: null,
+    metadataEvidence: dryRun.metadataEvidence ?? [dryRun.authorEvidence],
     generatedFilesChanged: [],
     previewAssetChanged: null,
     duplicateNearDuplicateSlugCheckResult,
@@ -2463,6 +2497,12 @@ function processSelectedBook(dryRun: DryRunBook): {
     expectedAuthor: metadata.author,
     generatedAuthor: manifest.author,
     authorEvidence: metadata.authorEvidence,
+    expectedCreatorRole: dryRun.expectedCreatorRole ?? "author as identified by the source",
+    generatedCreatorRole:
+      JSON.stringify(manifest.author) === JSON.stringify(metadata.author)
+        ? `represented in generated author metadata; ${dryRun.expectedCreatorRole ?? "author as identified by the source"}`
+        : null,
+    metadataEvidence: dryRun.metadataEvidence ?? [metadata.authorEvidence],
     generatedFilesChanged: [],
     previewAssetChanged: null,
     duplicateNearDuplicateSlugCheckResult: duplicateCheck.message,
@@ -2591,7 +2631,9 @@ function writeMarkdownReport(report: {
       `- Source: ${book.sourceFileUsed}`,
       `- Expected/generated title: ${book.expectedTitle} / ${book.generatedTitle ?? "n/a"}`,
       `- Expected/generated author: ${book.expectedAuthor.join(", ")} / ${book.generatedAuthor?.join(", ") ?? "n/a"}`,
+      `- Expected/generated creator role: ${book.expectedCreatorRole} / ${book.generatedCreatorRole ?? "n/a"}`,
       `- Author evidence: ${book.authorEvidence.source} - ${book.authorEvidence.text}`,
+      `- Metadata evidence: ${book.metadataEvidence.map((item) => `${item.source} - ${item.text}`).join("; ")}`,
       `- Generated files changed: ${book.generatedFilesChanged.length > 0 ? book.generatedFilesChanged.join(", ") : "none"}`,
       `- Preview asset changed: ${book.previewAssetChanged ?? "none"}`,
       `- Duplicate/near-duplicate slug check: ${book.duplicateNearDuplicateSlugCheckResult}`,
