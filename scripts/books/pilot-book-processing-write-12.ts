@@ -89,7 +89,8 @@ type DryRunReport = {
     | "pilot-dry-run-14"
     | "pilot-dry-run-15"
     | "pilot-dry-run-16"
-    | "pilot-dry-run-17";
+    | "pilot-dry-run-17"
+    | "pilot-dry-run-18";
   selectedBooks: string[];
   selectedCount: number;
   counts: {
@@ -242,17 +243,19 @@ type ManualBoundary = {
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
 const writeBatch =
-  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "17"
-    ? 17
-    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "16"
-      ? 16
-      : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "15"
-        ? 15
-        : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "14"
-          ? 14
-          : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "13"
-            ? 13
-            : 12;
+  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "18"
+    ? 18
+    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "17"
+      ? 17
+      : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "16"
+        ? 16
+        : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "15"
+          ? 15
+          : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "14"
+            ? 14
+            : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "13"
+              ? 13
+              : 12;
 const dryRunReportName = `pilot-dry-run-${writeBatch}` as const;
 const writeReportName = `pilot-write-${writeBatch}` as const;
 const tempBooksRoot = path.join(repoRoot, "app/client/assets/temp-books");
@@ -270,8 +273,31 @@ const dryRunReportPath = path.join(dryRunRoot, `${dryRunReportName}.json`);
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 const previewManifestPath = path.join(previewRoot, "manifest.json");
 
-const SELECTED_BATCH: readonly string[] = writeBatch === 17
+const SELECTED_BATCH: readonly string[] = writeBatch === 18
   ? [
+      "virgilius-the-sorcerer",
+      "the-fairy-of-the-dawn",
+      "the-brownie-of-the-lake",
+      "the-girl-who-pretended-to-be-a-boy",
+      "the-lady-of-the-fountain",
+      "a-tale-of-the-tontlawald",
+      "how-a-fish-swam-in-the-air-and-a-hare-in-the-water",
+      "jesper-who-herded-the-hares",
+      "mogarzea-and-his-son",
+      "schippeitaro",
+      "stan-bolovan",
+      "the-battle-of-the-birds",
+      "the-believing-husbands",
+      "the-bones-of-djulung",
+      "the-boys-with-the-golden-stars",
+      "the-castle-of-kerglas",
+      "the-enchanted-deer",
+      "the-enchanted-knife",
+      "the-envious-neighbour",
+      "the-false-prince-and-the-true",
+    ]
+  : writeBatch === 17
+    ? [
       "the-twelve-dancing-princesses",
       "the-twelve-huntsmen",
       "the-water-of-life",
@@ -292,8 +318,8 @@ const SELECTED_BATCH: readonly string[] = writeBatch === 17
       "the-story-of-a-very-bad-boy",
       "the-three-crowns",
       "the-wonderful-tune",
-    ]
-  : writeBatch === 16
+      ]
+    : writeBatch === 16
     ? [
       "the-purple-of-the-balkan-kings",
       "the-seven-cream-jugs",
@@ -1585,6 +1611,14 @@ function metadataFor(dryRun: DryRunBook) {
   };
 }
 
+function sourceBackedEditorFor(dryRun: DryRunBook, rawText: string): string | null {
+  const editorEvidence = dryRun.metadataEvidence?.find((evidence) =>
+    /editor/i.test(evidence.source),
+  );
+  if (!editorEvidence || !rawText.includes(editorEvidence.text)) return null;
+  return editorEvidence.text.match(/^Edited\s+By\s+(.+)$/i)?.[1]?.trim() ?? null;
+}
+
 function includeKindsFor(sections: DetectedBookSection[]): BookSectionKind[] {
   const kinds = [
     ...new Set(sections.filter((section) => section.includeByDefault).map((section) => section.kind)),
@@ -1878,6 +1912,7 @@ function compareRawVsGeneratedBody(
 function buildRightsReport(
   manifest: GeneratedBookManifest,
   rawText: string,
+  editor: string | null,
 ): BookRightsReport {
   const author = manifest.author.join(", ");
   const gutenbergId = manifest.source.gutenbergId ?? "";
@@ -1902,7 +1937,7 @@ function buildRightsReport(
     translator: "",
     translator_death_year: null,
     illustrator: "",
-    editor: "",
+    editor: editor ?? "",
     introduction_author: "",
     contains_modern_intro_or_notes: false,
     contains_transcriber_notes: /transcriber/i.test(rawText),
@@ -2380,6 +2415,18 @@ function processSelectedBook(dryRun: DryRunBook): {
   }
 
   const rawText = fs.readFileSync(sourcePath, "utf8");
+  const sourceBackedEditor = sourceBackedEditorFor(dryRun, rawText);
+  if (/^editor:/i.test(dryRun.expectedCreatorRole ?? "") && !sourceBackedEditor) {
+    return {
+      report: makeSkippedReport(
+        dryRun,
+        "Expected editor role was not confirmed by the dry-run evidence in the raw source.",
+        duplicateCheck.message,
+      ),
+      manifest: null,
+      previewEntry: null,
+    };
+  }
   const cleanupSummary = emptyCleanupSummary();
   const built = buildSectionsForBook(dryRun, rawText, cleanupSummary);
   const cleanedLines = lineRecords(built.cleanedText);
@@ -2473,7 +2520,7 @@ function processSelectedBook(dryRun: DryRunBook): {
       previewEntry: null,
     };
   }
-  const rightsReport = buildRightsReport(manifest, rawText);
+  const rightsReport = buildRightsReport(manifest, rawText, sourceBackedEditor);
   const preview = makePreviewAsset(manifest, sections);
   if (previewLooksUnsafe(preview.asset.previewText)) {
     return {
@@ -2499,8 +2546,10 @@ function processSelectedBook(dryRun: DryRunBook): {
     authorEvidence: metadata.authorEvidence,
     expectedCreatorRole: dryRun.expectedCreatorRole ?? "author as identified by the source",
     generatedCreatorRole:
-      JSON.stringify(manifest.author) === JSON.stringify(metadata.author)
-        ? `represented in generated author metadata; ${dryRun.expectedCreatorRole ?? "author as identified by the source"}`
+      sourceBackedEditor
+        ? `editor: ${sourceBackedEditor} in rights_report.json; creator name retained in generated author field`
+        : JSON.stringify(manifest.author) === JSON.stringify(metadata.author)
+          ? `represented in generated author metadata; ${dryRun.expectedCreatorRole ?? "author as identified by the source"}`
         : null,
     metadataEvidence: dryRun.metadataEvidence ?? [metadata.authorEvidence],
     generatedFilesChanged: [],
@@ -2531,8 +2580,9 @@ function processSelectedBook(dryRun: DryRunBook): {
         ? "passed: generated title and first default section match audited source identity"
         : "requires review",
     authorMetadataVerdict:
-      JSON.stringify(manifest.author) === JSON.stringify(metadata.author)
-        ? `passed: author metadata comes from ${metadata.authorEvidence.source}`
+      JSON.stringify(manifest.author) === JSON.stringify(metadata.author) &&
+      (!/^editor:/i.test(dryRun.expectedCreatorRole ?? "") || rightsReport.editor === sourceBackedEditor)
+        ? `passed: creator metadata comes from ${metadata.authorEvidence.source}${sourceBackedEditor ? ` and editor metadata is preserved as ${sourceBackedEditor} in rights_report.json` : ""}`
         : "requires review",
     segmentationVerdict:
       "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
@@ -2732,7 +2782,9 @@ function main() {
     knownDuplicateBoundaryExclusions: [
       "the-wind-in-the-willows",
       "the-two-magics-the-turn-of-the-screw-covering-end",
+      ...(writeBatch >= 18 ? ["japanese-fairy-tales"] : []),
       "the-works-of-edgar-allan-poe",
+      ...(writeBatch >= 18 ? ["snow-white-and-rose-red"] : []),
     ],
     selectedIntersectAcceptedExclusion: [] as string[],
     note:

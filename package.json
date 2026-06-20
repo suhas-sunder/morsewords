@@ -45,6 +45,7 @@
     "books:pilot-write-15": "node --experimental-strip-types scripts/books/pilot-book-processing-write-15.ts",
     "books:pilot-write-16": "node --experimental-strip-types scripts/books/pilot-book-processing-write-16.ts",
     "books:pilot-write-17": "node --experimental-strip-types scripts/books/pilot-book-processing-write-17.ts",
+    "books:pilot-write-18": "node --experimental-strip-types scripts/books/pilot-book-processing-write-18.ts",
     "books:batch-12-prose-restore": "node --experimental-strip-types scripts/books/batch-12-prose-restoration.ts",
     "books:title-start-default-audit": "node --experimental-strip-types scripts/books/title-start-default-content-audit-1.ts",
     "books:metadata-segmentation-audit": "node --experimental-strip-types scripts/books/metadata-segmentation-correctness-audit-1.ts",

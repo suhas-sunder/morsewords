@@ -17407,6 +17407,986 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-wonderful-tune/manifest.json"
+    },
+    {
+      "slug": "virgilius-the-sorcerer",
+      "title": "Virgilius the Sorcerer",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "0fb00b464f2c4a7a",
+      "contentHash": "0fb00b464f2c4a7af688196df78518066a46ec45b6902b05299bbc1e8f294484",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Virgilius the Sorcerer"
+      },
+      "stats": {
+        "originalCharacterCount": 18554,
+        "cleanedCharacterCount": 17167,
+        "wordCount": 3196,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "virgilius-the-sorcerer/manifest.json"
+    },
+    {
+      "slug": "the-fairy-of-the-dawn",
+      "title": "The Fairy of the Dawn",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "1750acb02a843d7e",
+      "contentHash": "1750acb02a843d7e89862e75ebcd99d5970c22a4b51d84b801e62c76949b1420",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Fairy of the Dawn"
+      },
+      "stats": {
+        "originalCharacterCount": 47216,
+        "cleanedCharacterCount": 45135,
+        "wordCount": 8735,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-fairy-of-the-dawn/manifest.json"
+    },
+    {
+      "slug": "the-brownie-of-the-lake",
+      "title": "The Brownie of the Lake",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "2727f11f9405cb58",
+      "contentHash": "2727f11f9405cb5851abfd0ecf7401582ddf44a8c18e68d7bb314b78e4b26837",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Brownie of the Lake"
+      },
+      "stats": {
+        "originalCharacterCount": 14573,
+        "cleanedCharacterCount": 13261,
+        "wordCount": 2556,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-brownie-of-the-lake/manifest.json"
+    },
+    {
+      "slug": "the-girl-who-pretended-to-be-a-boy",
+      "title": "The Girl Who Pretended to Be a Boy",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "203e25c8775e4f2c",
+      "contentHash": "203e25c8775e4f2c23b8357fac8926f6681eafe9201834df0c6e148dccf88930",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Girl Who Pretended to Be a Boy"
+      },
+      "stats": {
+        "originalCharacterCount": 40710,
+        "cleanedCharacterCount": 38875,
+        "wordCount": 7390,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-girl-who-pretended-to-be-a-boy/manifest.json"
+    },
+    {
+      "slug": "the-lady-of-the-fountain",
+      "title": "The Lady of the Fountain",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "46613ef2bd303810",
+      "contentHash": "46613ef2bd303810847bbc89bb18aa7ccd649a77d8e70091837d62d12e542106",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Lady of the Fountain"
+      },
+      "stats": {
+        "originalCharacterCount": 30283,
+        "cleanedCharacterCount": 28644,
+        "wordCount": 5612,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-lady-of-the-fountain/manifest.json"
+    },
+    {
+      "slug": "a-tale-of-the-tontlawald",
+      "title": "A Tale of the Tontlawald",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "ab6d99ac13a087bc",
+      "contentHash": "ab6d99ac13a087bc79edb5abd7eb495c8d0fdb8568f0078fdcd938e648c87c33",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Tale of the Tontlawald"
+      },
+      "stats": {
+        "originalCharacterCount": 23869,
+        "cleanedCharacterCount": 22396,
+        "wordCount": 4343,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-tale-of-the-tontlawald/manifest.json"
+    },
+    {
+      "slug": "how-a-fish-swam-in-the-air-and-a-hare-in-the-water",
+      "title": "How a Fish Swam in the Air and a Hare in the Water",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "59a63caf03899ca2",
+      "contentHash": "59a63caf03899ca2fe3dc877b84689b069e66c9ed22ffead6b832cb7e4a996fa",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for How a Fish Swam in the Air and a Hare in the Water"
+      },
+      "stats": {
+        "originalCharacterCount": 8506,
+        "cleanedCharacterCount": 7224,
+        "wordCount": 1416,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "how-a-fish-swam-in-the-air-and-a-hare-in-the-water/manifest.json"
+    },
+    {
+      "slug": "jesper-who-herded-the-hares",
+      "title": "Jesper Who Herded the Hares",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "ed0466a06b38fcdd",
+      "contentHash": "ed0466a06b38fcddc36abedd608edec14e914a578d80a9b89684ea7db7017833",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Jesper Who Herded the Hares"
+      },
+      "stats": {
+        "originalCharacterCount": 20358,
+        "cleanedCharacterCount": 18906,
+        "wordCount": 3669,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "jesper-who-herded-the-hares/manifest.json"
+    },
+    {
+      "slug": "mogarzea-and-his-son",
+      "title": "Mogarzea and His Son",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "bd7343ec311c411e",
+      "contentHash": "bd7343ec311c411e0bd8a80077bf59ba5333d0fdea80aaba4944257ea04edccc",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Mogarzea and His Son"
+      },
+      "stats": {
+        "originalCharacterCount": 10803,
+        "cleanedCharacterCount": 9542,
+        "wordCount": 1875,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "mogarzea-and-his-son/manifest.json"
+    },
+    {
+      "slug": "schippeitaro",
+      "title": "Schippeitaro",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "706c2e005d0f73f1",
+      "contentHash": "706c2e005d0f73f1cd352577b0d6174170477d26d8d8857a95cfe601e4dcc3e2",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Schippeitaro"
+      },
+      "stats": {
+        "originalCharacterCount": 7130,
+        "cleanedCharacterCount": 5970,
+        "wordCount": 1135,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "schippeitaro/manifest.json"
+    },
+    {
+      "slug": "stan-bolovan",
+      "title": "Stan Bolovan",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "72988f25f8d25145",
+      "contentHash": "72988f25f8d25145a6a3342d40db7b7187e12aec7cc5a1692147212e6a2a5bb4",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Stan Bolovan"
+      },
+      "stats": {
+        "originalCharacterCount": 20292,
+        "cleanedCharacterCount": 18812,
+        "wordCount": 3686,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "stan-bolovan/manifest.json"
+    },
+    {
+      "slug": "the-battle-of-the-birds",
+      "title": "The Battle of the Birds",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "a8905a82f4b8577a",
+      "contentHash": "a8905a82f4b8577ac96c8c2b836f08a797f1a7787b251cbf1f81461fd8397a44",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Battle of the Birds"
+      },
+      "stats": {
+        "originalCharacterCount": 23688,
+        "cleanedCharacterCount": 22148,
+        "wordCount": 4392,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-battle-of-the-birds/manifest.json"
+    },
+    {
+      "slug": "the-believing-husbands",
+      "title": "The Believing Husbands",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "78d08d92388d6789",
+      "contentHash": "78d08d92388d6789882517e035176d3caf4ab5b3523ff29de20f1c5d10d86409",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Believing Husbands"
+      },
+      "stats": {
+        "originalCharacterCount": 6871,
+        "cleanedCharacterCount": 5650,
+        "wordCount": 1113,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-believing-husbands/manifest.json"
+    },
+    {
+      "slug": "the-bones-of-djulung",
+      "title": "The Bones of Djulung",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "e79bc04c6300532b",
+      "contentHash": "e79bc04c6300532bc7cc41a78e1076e275a725045771f978a71e24d75088dd94",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Bones of Djulung"
+      },
+      "stats": {
+        "originalCharacterCount": 9129,
+        "cleanedCharacterCount": 7926,
+        "wordCount": 1554,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-bones-of-djulung/manifest.json"
+    },
+    {
+      "slug": "the-boys-with-the-golden-stars",
+      "title": "The Boys with the Golden Stars",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "4a7a095ab6499c15",
+      "contentHash": "4a7a095ab6499c1567d050e38cfa16c33b4624dd4cece068ae98df162681eca4",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Boys with the Golden Stars"
+      },
+      "stats": {
+        "originalCharacterCount": 16210,
+        "cleanedCharacterCount": 14810,
+        "wordCount": 2810,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-boys-with-the-golden-stars/manifest.json"
+    },
+    {
+      "slug": "the-castle-of-kerglas",
+      "title": "The Castle of Kerglas",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "d91328142f05e4d7",
+      "contentHash": "d91328142f05e4d7d7ea592ce219532106f1bd154bb8723f1ceb771d8be21b47",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Castle of Kerglas"
+      },
+      "stats": {
+        "originalCharacterCount": 25814,
+        "cleanedCharacterCount": 24276,
+        "wordCount": 4650,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-castle-of-kerglas/manifest.json"
+    },
+    {
+      "slug": "the-enchanted-deer",
+      "title": "The Enchanted Deer",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "c341280c08b2f4ba",
+      "contentHash": "c341280c08b2f4ba1ca98031bf8d47288d4896965c8de4eb9ad8322cad707069",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Enchanted Deer"
+      },
+      "stats": {
+        "originalCharacterCount": 17043,
+        "cleanedCharacterCount": 15681,
+        "wordCount": 3130,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-enchanted-deer/manifest.json"
+    },
+    {
+      "slug": "the-enchanted-knife",
+      "title": "The Enchanted Knife",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "9e97cc3950bcbd77",
+      "contentHash": "9e97cc3950bcbd772811c9dce745c373d1010c991fcd65854b8ea795dd243b97",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Enchanted Knife"
+      },
+      "stats": {
+        "originalCharacterCount": 5591,
+        "cleanedCharacterCount": 4452,
+        "wordCount": 866,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-enchanted-knife/manifest.json"
+    },
+    {
+      "slug": "the-envious-neighbour",
+      "title": "The Envious Neighbour",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "15c11e21dbf2ec9c",
+      "contentHash": "15c11e21dbf2ec9c6fa526d5124be04f8ba78ff447418a3823d7632a1de5ac59",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Envious Neighbour"
+      },
+      "stats": {
+        "originalCharacterCount": 9914,
+        "cleanedCharacterCount": 8703,
+        "wordCount": 1711,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-envious-neighbour/manifest.json"
+    },
+    {
+      "slug": "the-false-prince-and-the-true",
+      "title": "The False Prince and the True",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "184ca94859e599d1",
+      "contentHash": "184ca94859e599d13c4ff399ad2d139be536b37b7b05b9b995ef8e82be36b404",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The False Prince and the True"
+      },
+      "stats": {
+        "originalCharacterCount": 15678,
+        "cleanedCharacterCount": 14339,
+        "wordCount": 2789,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-false-prince-and-the-true/manifest.json"
     }
   ]
 }
