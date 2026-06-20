@@ -157,7 +157,8 @@ type DryRunReport = {
     | "pilot-dry-run-14"
     | "pilot-dry-run-15"
     | "pilot-dry-run-16"
-    | "pilot-dry-run-17";
+    | "pilot-dry-run-17"
+    | "pilot-dry-run-18";
   generatedAt: string;
   branch: string;
   baseMainCommit: string;
@@ -221,15 +222,17 @@ type DryRunReport = {
 
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
-const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "17"
-  ? 17
-  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "16"
-    ? 16
-    : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "15"
-    ? 15
-    : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "14"
-      ? 14
-      : 13;
+const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "18"
+  ? 18
+  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "17"
+    ? 17
+    : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "16"
+      ? 16
+      : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "15"
+        ? 15
+        : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "14"
+          ? 14
+          : 13;
 const dryRunReportName = `pilot-dry-run-${dryRunBatch}` as const;
 const tempBooksRoot = path.join(repoRoot, "app/client/assets/temp-books");
 const generatedRoot = path.join(repoRoot, "app/client/assets/books/generated");
@@ -293,6 +296,12 @@ const acceptedReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-16-verification/pilot-write-16-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 18
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-17/pilot-write-17.json",
+        "app/client/assets/books/audit-reports/pilot-write-17-verification/pilot-write-17-verification.json",
+      ]
+    : []),
   "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
   "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
   "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
@@ -323,6 +332,11 @@ const inputReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-16-verification/pilot-write-16-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 18
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-17-verification/pilot-write-17-verification.json",
+      ]
+    : []),
   ...(dryRunBatch >= 14
     ? [
         "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
@@ -337,7 +351,30 @@ const structureJsonPath = path.join(
 const pass2JsonPath = path.join(auditRoot, "book-processing-audit-pass-2.json");
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 
-const selectedBatch: readonly string[] = dryRunBatch === 17
+const selectedBatch: readonly string[] = dryRunBatch === 18
+  ? [
+      "virgilius-the-sorcerer",
+      "the-fairy-of-the-dawn",
+      "the-brownie-of-the-lake",
+      "the-girl-who-pretended-to-be-a-boy",
+      "the-lady-of-the-fountain",
+      "a-tale-of-the-tontlawald",
+      "how-a-fish-swam-in-the-air-and-a-hare-in-the-water",
+      "jesper-who-herded-the-hares",
+      "mogarzea-and-his-son",
+      "schippeitaro",
+      "stan-bolovan",
+      "the-battle-of-the-birds",
+      "the-believing-husbands",
+      "the-bones-of-djulung",
+      "the-boys-with-the-golden-stars",
+      "the-castle-of-kerglas",
+      "the-enchanted-deer",
+      "the-enchanted-knife",
+      "the-envious-neighbour",
+      "the-false-prince-and-the-true",
+    ]
+  : dryRunBatch === 17
   ? [
       "the-twelve-dancing-princesses",
       "the-twelve-huntsmen",
@@ -467,7 +504,9 @@ const knownManualBlockedSuspicious = new Set([
   "the-plattner-story",
   "the-wind-in-the-willows",
   "the-two-magics-the-turn-of-the-screw-covering-end",
+  "japanese-fairy-tales",
   "the-works-of-edgar-allan-poe",
+  "snow-white-and-rose-red",
 ]);
 
 const duplicateNearDuplicateCandidatesSkipped = [
@@ -635,6 +674,27 @@ const titleOverrides: Record<string, string> = {
   "the-story-of-a-very-bad-boy": "The Story of a Very Bad Boy",
   "the-three-crowns": "The Three Crowns",
   "the-wonderful-tune": "The Wonderful Tune",
+  "virgilius-the-sorcerer": "Virgilius the Sorcerer",
+  "the-fairy-of-the-dawn": "The Fairy of the Dawn",
+  "the-brownie-of-the-lake": "The Brownie of the Lake",
+  "the-girl-who-pretended-to-be-a-boy": "The Girl Who Pretended to Be a Boy",
+  "the-lady-of-the-fountain": "The Lady of the Fountain",
+  "a-tale-of-the-tontlawald": "A Tale of the Tontlawald",
+  "how-a-fish-swam-in-the-air-and-a-hare-in-the-water":
+    "How a Fish Swam in the Air and a Hare in the Water",
+  "jesper-who-herded-the-hares": "Jesper Who Herded the Hares",
+  "mogarzea-and-his-son": "Mogarzea and His Son",
+  schippeitaro: "Schippeitaro",
+  "stan-bolovan": "Stan Bolovan",
+  "the-battle-of-the-birds": "The Battle of the Birds",
+  "the-believing-husbands": "The Believing Husbands",
+  "the-bones-of-djulung": "The Bones of Djulung",
+  "the-boys-with-the-golden-stars": "The Boys with the Golden Stars",
+  "the-castle-of-kerglas": "The Castle of Kerglas",
+  "the-enchanted-deer": "The Enchanted Deer",
+  "the-enchanted-knife": "The Enchanted Knife",
+  "the-envious-neighbour": "The Envious Neighbour",
+  "the-false-prince-and-the-true": "The False Prince and the True",
 };
 
 const singleStoryStartPhrases: Record<string, string> = {
@@ -853,6 +913,46 @@ const singleStoryStartPhrases: Record<string, string> = {
     "There was once a king who had three daughters.",
   "the-wonderful-tune":
     "Maurice Connor was the king",
+  "virgilius-the-sorcerer":
+    "Long, long ago there was born to a Roman knight and his wife Maja a",
+  "the-fairy-of-the-dawn":
+    "Once upon a time what should happen DID happen; and if it had not",
+  "the-brownie-of-the-lake":
+    "Once upon a time there lived in France a man whose name was Jalm Riou.",
+  "the-girl-who-pretended-to-be-a-boy":
+    "Once upon a time there lived an emperor who was a great conqueror, and",
+  "the-lady-of-the-fountain":
+    "In the centre of the great hall in the castle of Caerleon upon Usk, king",
+  "a-tale-of-the-tontlawald":
+    "Long, long ago there stood in the midst of a country covered with lakes",
+  "how-a-fish-swam-in-the-air-and-a-hare-in-the-water":
+    "Once upon a time an old man and his wife lived together in a little",
+  "jesper-who-herded-the-hares":
+    "There was once a king who ruled over a kingdom somewhere between sunrise",
+  "mogarzea-and-his-son":
+    "There was once a little boy, whose father and mother, when they were",
+  schippeitaro:
+    "It was the custom in old times that as soon as a Japanese boy reached",
+  "stan-bolovan":
+    "Once upon a time what happened did happen, and if it had not happened",
+  "the-battle-of-the-birds":
+    "There was to be a great battle between all the creatures of the earth",
+  "the-believing-husbands":
+    "Once upon a time there dwelt in the land of Erin a young man who was",
+  "the-bones-of-djulung":
+    "In a beautiful island that lies in the southern seas, where chains of",
+  "the-boys-with-the-golden-stars":
+    "Once upon a time what happened did happen: and if it had not happened,",
+  "the-castle-of-kerglas":
+    "Peronnik was a poor idiot who belonged to nobody, and he would have died",
+  "the-enchanted-deer":
+    "A young man was out walking one day in Erin, leading a stout cart-horse",
+  "the-enchanted-knife":
+    "Once upon a time there lived a young man who vowed that he would never",
+  "the-envious-neighbour":
+    "Long, long ago an old couple lived in a village, and, as they had no",
+  "the-false-prince-and-the-true":
+    "The king had just awakened from his midday sleep, for it was summer, and",
 };
 
 const sectioningStartOverrides: Record<
@@ -966,6 +1066,26 @@ const individualStorySlugs = new Set([
   "the-story-of-a-very-bad-boy",
   "the-three-crowns",
   "the-wonderful-tune",
+  "virgilius-the-sorcerer",
+  "the-fairy-of-the-dawn",
+  "the-brownie-of-the-lake",
+  "the-girl-who-pretended-to-be-a-boy",
+  "the-lady-of-the-fountain",
+  "a-tale-of-the-tontlawald",
+  "how-a-fish-swam-in-the-air-and-a-hare-in-the-water",
+  "jesper-who-herded-the-hares",
+  "mogarzea-and-his-son",
+  "schippeitaro",
+  "stan-bolovan",
+  "the-battle-of-the-birds",
+  "the-believing-husbands",
+  "the-bones-of-djulung",
+  "the-boys-with-the-golden-stars",
+  "the-castle-of-kerglas",
+  "the-enchanted-deer",
+  "the-enchanted-knife",
+  "the-envious-neighbour",
+  "the-false-prince-and-the-true",
 ]);
 
 const dryRun17GrimmSlugs = new Set([
@@ -996,6 +1116,33 @@ const dryRun17LangSlugs = new Set([
   "the-three-crowns",
   "the-wonderful-tune",
 ]);
+
+const dryRun18LangSlugs = new Set([
+  "virgilius-the-sorcerer",
+  "the-fairy-of-the-dawn",
+  "the-brownie-of-the-lake",
+  "the-girl-who-pretended-to-be-a-boy",
+  "the-lady-of-the-fountain",
+  "a-tale-of-the-tontlawald",
+  "how-a-fish-swam-in-the-air-and-a-hare-in-the-water",
+  "jesper-who-herded-the-hares",
+  "mogarzea-and-his-son",
+  "schippeitaro",
+  "stan-bolovan",
+  "the-battle-of-the-birds",
+  "the-believing-husbands",
+  "the-bones-of-djulung",
+  "the-boys-with-the-golden-stars",
+  "the-castle-of-kerglas",
+  "the-enchanted-deer",
+  "the-enchanted-knife",
+  "the-envious-neighbour",
+  "the-false-prince-and-the-true",
+]);
+
+function isLangEditorSlug(slug: string) {
+  return dryRun17LangSlugs.has(slug) || dryRun18LangSlugs.has(slug);
+}
 
 function readJson<T>(filePath: string): T {
   return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
@@ -1125,7 +1272,7 @@ function creatorRoleFor(slug: string) {
   if (dryRun17AndersenSlugs.has(slug)) {
     return "author: H. C. Andersen; editor: J. H. Stickney";
   }
-  if (dryRun17LangSlugs.has(slug)) {
+  if (isLangEditorSlug(slug)) {
     return "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)";
   }
   return "author as identified by the source";
@@ -1137,7 +1284,7 @@ function metadataEvidenceFor(rawText: string, slug: string, authorEvidence: Evid
     ? findHeaderEvidence(rawText, /^By Jacob Grimm and Wilhelm Grimm$/i, "visible collection byline")
     : dryRun17AndersenSlugs.has(slug)
       ? findHeaderEvidence(rawText, /^Editor:\s*J\. H\. Stickney$/i, "Gutenberg Editor line")
-      : dryRun17LangSlugs.has(slug)
+      : isLangEditorSlug(slug)
         ? findHeaderEvidence(rawText, /^Edited by Andrew Lang$/i, "visible editor byline")
         : null;
   if (roleEvidence && !evidence.some((item) => item.text === roleEvidence.text)) {
@@ -1220,7 +1367,9 @@ function deriveAcceptedSlugs() {
       relativePath.includes("pilot-write-12-verification") ||
       relativePath.includes("pilot-write-13-verification") ||
       relativePath.includes("pilot-write-14-verification") ||
-      relativePath.includes("pilot-write-15-verification")
+      relativePath.includes("pilot-write-15-verification") ||
+      relativePath.includes("pilot-write-16-verification") ||
+      relativePath.includes("pilot-write-17-verification")
     ) {
       for (const book of books) {
         if (book.acceptedForMain === true && typeof book.slug === "string") {
@@ -1736,7 +1885,7 @@ function inspectBook(
     ...(authorEvidence.source === "Gutenberg Author line"
       ? []
       : ["author did not come from a Gutenberg Author line; verify byline directly"]),
-    ...(dryRun17LangSlugs.has(slug)
+    ...(isLangEditorSlug(slug)
       ? ["future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale"]
       : []),
     ...(dryRun17AndersenSlugs.has(slug)

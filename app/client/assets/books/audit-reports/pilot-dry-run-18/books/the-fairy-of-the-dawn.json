@@ -1,0 +1,104 @@
+{
+  "slug": "the-fairy-of-the-dawn",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE FAIRY OF THE DAWN.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Fairy of the Dawn",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE FAIRY OF THE DAWN",
+    "lineNumber": 52
+  },
+  "expectedAuthor": [
+    "Andrew Lang"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Andrew Lang",
+    "lineNumber": 13
+  },
+  "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+  "metadataEvidence": [
+    {
+      "source": "Gutenberg Author line",
+      "text": "Author: Andrew Lang",
+      "lineNumber": 13
+    },
+    {
+      "source": "visible editor byline",
+      "text": "Edited By Andrew Lang",
+      "lineNumber": 42
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE FAIRY OF THE DAWN",
+    "First readable prose: Once upon a time what should happen DID happen; and if it had not"
+  ],
+  "realReadableStart": "The Fairy of the Dawn: Once upon a time what should happen DID happen; and if it had not happened this tale would never have been told. There was once an emperor, very great and mighty, and he ruled over an empire so large that no one knew where it began and where it ended. But if nobody could tell the exact extent of his sovereignty ever...",
+  "realReadableEnd": "...ave the chance, and then we will set out on our way home. It is a good thing you have us with you, to protect you from harm.’ The horse neighed, and Petru knew what it meant, and did not go with his brothers. No, he went home to his father, and cured his blindness; and as for his brothers, they never returned again.",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Fairy of the Dawn",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "Once upon a time what should happen DID happen; and if it had not happened this tale would never have been told. There was once an emperor, very great and mighty, and he ruled over an empire so large that no one knew where it began and where it ended. But if nobody could tell the exact extent of his sovereignty ever...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Once upon a time what should happen DID happen; and if it had not",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [
+    "future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale"
+  ],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE FAIRY OF THE DAWN",
+    "author": "Author: Andrew Lang",
+    "metadata": "Author: Andrew Lang; Edited By Andrew Lang",
+    "start": "The Fairy of the Dawn Once upon a time what should happen DID happen; and if it had not happened this tale would never have been told. There was once an emperor, very great and mighty, and he ruled over an empire so large that no one knew where it began and where it ended. But if nobody could tell the exact extent of his sovereignty ever...",
+    "end": "...ave the chance, and then we will set out on our way home. It is a good thing you have us with you, to protect you from harm.’ The horse neighed, and Petru knew what it meant, and did not go with his brothers. No, he went home to his father, and cured his blindness; and as for his brothers, they never returned again."
+  }
+}
