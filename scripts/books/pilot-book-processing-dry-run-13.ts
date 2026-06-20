@@ -89,6 +89,8 @@ type BookDryRunResult = {
   titleEvidence: Evidence;
   expectedAuthor: string[];
   authorEvidence: Evidence;
+  expectedCreatorRole: string;
+  metadataEvidence: Evidence[];
   apparentWorkType:
     | "standalone book"
     | "individual story"
@@ -142,6 +144,7 @@ type BookDryRunResult = {
   snippets: {
     title: string;
     author: string;
+    metadata: string;
     start: string;
     end: string;
   };
@@ -153,7 +156,8 @@ type DryRunReport = {
     | "pilot-dry-run-13"
     | "pilot-dry-run-14"
     | "pilot-dry-run-15"
-    | "pilot-dry-run-16";
+    | "pilot-dry-run-16"
+    | "pilot-dry-run-17";
   generatedAt: string;
   branch: string;
   baseMainCommit: string;
@@ -196,6 +200,12 @@ type DryRunReport = {
     slug: string;
     reason: string;
   }>;
+  sharedDryRunScriptScopeFinding: {
+    classification: string;
+    files: string[];
+    resolution: string;
+    unrelatedChangesFound: boolean;
+  };
   inputReports: string[];
   sourceDetectorUsed: string;
   protectedPaths: {
@@ -211,9 +221,11 @@ type DryRunReport = {
 
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
-const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "16"
-  ? 16
-  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "15"
+const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "17"
+  ? 17
+  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "16"
+    ? 16
+    : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "15"
     ? 15
     : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "14"
       ? 14
@@ -275,6 +287,12 @@ const acceptedReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-15-verification/pilot-write-15-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 17
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-16/pilot-write-16.json",
+        "app/client/assets/books/audit-reports/pilot-write-16-verification/pilot-write-16-verification.json",
+      ]
+    : []),
   "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
   "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
   "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
@@ -300,6 +318,11 @@ const inputReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-15-verification/pilot-write-15-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 17
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-16-verification/pilot-write-16-verification.json",
+      ]
+    : []),
   ...(dryRunBatch >= 14
     ? [
         "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
@@ -314,8 +337,31 @@ const structureJsonPath = path.join(
 const pass2JsonPath = path.join(auditRoot, "book-processing-audit-pass-2.json");
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 
-const selectedBatch: readonly string[] = dryRunBatch === 16
+const selectedBatch: readonly string[] = dryRunBatch === 17
   ? [
+      "the-twelve-dancing-princesses",
+      "the-twelve-huntsmen",
+      "the-water-of-life",
+      "the-white-snake",
+      "the-willow-wren-and-the-bear",
+      "the-wolf-and-the-seven-little-kids",
+      "tom-thumb",
+      "elder-tree-mother",
+      "little-thumbelina",
+      "sunshine-stories",
+      "the-leaping-match",
+      "a-fish-story",
+      "a-french-puck",
+      "a-lost-paradise",
+      "how-brave-walter-hunted-wolves",
+      "little-lasse",
+      "the-sea-king-s-gift",
+      "the-story-of-a-very-bad-boy",
+      "the-three-crowns",
+      "the-wonderful-tune",
+    ]
+  : dryRunBatch === 16
+    ? [
       "the-purple-of-the-balkan-kings",
       "the-seven-cream-jugs",
       "the-sheep",
@@ -435,6 +481,11 @@ const duplicateNearDuplicateCandidatesSkipped = [
     reason:
       "Skipped as a known duplicate/boundary-risk case; write batch 9 found this raw file contains a full The Turn of the Screw while generated the-turn-of-the-screw already exists and no distinct-version policy exists.",
   },
+  {
+    slug: "japanese-fairy-tales",
+    reason:
+      "Skipped as a parent-collection near-duplicate: its individual Ozaki tales are already represented by accepted generated story pages, and no distinct collection-page policy has been approved.",
+  },
 ] as const;
 
 const boundaryDefectCandidatesSkipped = [
@@ -442,6 +493,11 @@ const boundaryDefectCandidatesSkipped = [
     slug: "the-works-of-edgar-allan-poe",
     reason:
       "Skipped as a known boundary-defect case; write batch 9 found raw Volume 2 begins with THE PURLOINED LETTER while the dry-run boundary would have dropped that opening collection content.",
+  },
+  {
+    slug: "snow-white-and-rose-red",
+    reason:
+      "Skipped for boundary review: the raw excerpt appends a collection-level editorial note after the tale's true ending, so generic cleaned-source end detection would include non-story material.",
   },
 ] as const;
 
@@ -559,6 +615,26 @@ const titleOverrides: Record<string, string> = {
   "the-white-hare-and-the-crocodiles": "The White Hare and the Crocodiles",
   "the-golden-goose": "The Golden Goose",
   "the-turnip": "The Turnip",
+  "the-twelve-dancing-princesses": "The Twelve Dancing Princesses",
+  "the-twelve-huntsmen": "The Twelve Huntsmen",
+  "the-water-of-life": "The Water of Life",
+  "the-white-snake": "The White Snake",
+  "the-willow-wren-and-the-bear": "The Willow-Wren and the Bear",
+  "the-wolf-and-the-seven-little-kids": "The Wolf and the Seven Little Kids",
+  "tom-thumb": "Tom Thumb",
+  "elder-tree-mother": "Elder-Tree Mother",
+  "little-thumbelina": "Little Thumbelina",
+  "sunshine-stories": "Sunshine Stories",
+  "the-leaping-match": "The Leaping Match",
+  "a-fish-story": "A Fish Story",
+  "a-french-puck": "A French Puck",
+  "a-lost-paradise": "A Lost Paradise",
+  "how-brave-walter-hunted-wolves": "How Brave Walter Hunted Wolves",
+  "little-lasse": "Little Lasse",
+  "the-sea-king-s-gift": "The Sea King’s Gift",
+  "the-story-of-a-very-bad-boy": "The Story of a Very Bad Boy",
+  "the-three-crowns": "The Three Crowns",
+  "the-wonderful-tune": "The Wonderful Tune",
 };
 
 const singleStoryStartPhrases: Record<string, string> = {
@@ -737,6 +813,46 @@ const singleStoryStartPhrases: Record<string, string> = {
     "There was a man who had three sons, the youngest of whom was called",
   "the-turnip":
     "There were two brothers who were both soldiers; the one was rich and",
+  "the-twelve-dancing-princesses":
+    "There was a king who had twelve beautiful daughters. They slept in",
+  "the-twelve-huntsmen":
+    "There was once a king’s son who had a bride whom he loved very much.",
+  "the-water-of-life":
+    "Long before you or I were born, there reigned, in a country a great way",
+  "the-white-snake":
+    "A long time ago there lived a king who was famed for his wisdom through",
+  "the-willow-wren-and-the-bear":
+    "Once in summer-time the bear and the wolf were walking in the forest,",
+  "the-wolf-and-the-seven-little-kids":
+    "There was once upon a time an old goat who had seven little kids, and",
+  "tom-thumb":
+    "A poor woodman sat in his cottage one night, smoking his pipe by the",
+  "elder-tree-mother":
+    "THERE was once a little boy who had taken cold by going out and getting",
+  "little-thumbelina":
+    "THERE was once a woman who wished very much to have a little child.",
+  "sunshine-stories":
+    "\"I AM going to tell a story,\" said the Wind.",
+  "the-leaping-match":
+    "THE Flea, the Grasshopper, and the Frog once wanted to see which of them",
+  "a-fish-story":
+    "Perhaps you think that fishes were always fishes, and never lived",
+  "a-french-puck":
+    "Among the mountain pastures and valleys",
+  "a-lost-paradise":
+    "In the middle of a great forest there lived a long time ago a",
+  "how-brave-walter-hunted-wolves":
+    "A little back from the high road there stands a house",
+  "little-lasse":
+    "There was once a little boy whose name was Lars",
+  "the-sea-king-s-gift":
+    "There was once a fisherman who was called Salmon",
+  "the-story-of-a-very-bad-boy":
+    "Once upon a time there lived in a little village",
+  "the-three-crowns":
+    "There was once a king who had three daughters.",
+  "the-wonderful-tune":
+    "Maurice Connor was the king",
 };
 
 const sectioningStartOverrides: Record<
@@ -830,6 +946,55 @@ const individualStorySlugs = new Set([
   "the-white-hare-and-the-crocodiles",
   "the-golden-goose",
   "the-turnip",
+  "the-twelve-dancing-princesses",
+  "the-twelve-huntsmen",
+  "the-water-of-life",
+  "the-white-snake",
+  "the-willow-wren-and-the-bear",
+  "the-wolf-and-the-seven-little-kids",
+  "tom-thumb",
+  "elder-tree-mother",
+  "little-thumbelina",
+  "sunshine-stories",
+  "the-leaping-match",
+  "a-fish-story",
+  "a-french-puck",
+  "a-lost-paradise",
+  "how-brave-walter-hunted-wolves",
+  "little-lasse",
+  "the-sea-king-s-gift",
+  "the-story-of-a-very-bad-boy",
+  "the-three-crowns",
+  "the-wonderful-tune",
+]);
+
+const dryRun17GrimmSlugs = new Set([
+  "the-twelve-dancing-princesses",
+  "the-twelve-huntsmen",
+  "the-water-of-life",
+  "the-white-snake",
+  "the-willow-wren-and-the-bear",
+  "the-wolf-and-the-seven-little-kids",
+  "tom-thumb",
+]);
+
+const dryRun17AndersenSlugs = new Set([
+  "elder-tree-mother",
+  "little-thumbelina",
+  "sunshine-stories",
+  "the-leaping-match",
+]);
+
+const dryRun17LangSlugs = new Set([
+  "a-fish-story",
+  "a-french-puck",
+  "a-lost-paradise",
+  "how-brave-walter-hunted-wolves",
+  "little-lasse",
+  "the-sea-king-s-gift",
+  "the-story-of-a-very-bad-boy",
+  "the-three-crowns",
+  "the-wonderful-tune",
 ]);
 
 function readJson<T>(filePath: string): T {
@@ -864,13 +1029,9 @@ function assertReadableInput(filePath: string) {
   }
 }
 
-function toAscii(input: string) {
-  return input.replace(/[^\x09\x0A\x0D\x20-\x7E]/g, "?");
-}
-
 function compactText(input: string | null | undefined, maxLength = 260) {
   if (!input) return "";
-  const compact = toAscii(input).replace(/\s+/g, " ").trim();
+  const compact = input.replace(/\s+/g, " ").trim();
   if (compact.length <= maxLength) return compact;
   return `${compact.slice(0, maxLength - 3).trimEnd()}...`;
 }
@@ -955,6 +1116,34 @@ function findAuthorEvidence(rawText: string): Evidence | null {
     };
   }
   return null;
+}
+
+function creatorRoleFor(slug: string) {
+  if (dryRun17GrimmSlugs.has(slug)) {
+    return "authors: Jacob Grimm and Wilhelm Grimm (raw source labels them as authors)";
+  }
+  if (dryRun17AndersenSlugs.has(slug)) {
+    return "author: H. C. Andersen; editor: J. H. Stickney";
+  }
+  if (dryRun17LangSlugs.has(slug)) {
+    return "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)";
+  }
+  return "author as identified by the source";
+}
+
+function metadataEvidenceFor(rawText: string, slug: string, authorEvidence: Evidence) {
+  const evidence = [authorEvidence];
+  const roleEvidence = dryRun17GrimmSlugs.has(slug)
+    ? findHeaderEvidence(rawText, /^By Jacob Grimm and Wilhelm Grimm$/i, "visible collection byline")
+    : dryRun17AndersenSlugs.has(slug)
+      ? findHeaderEvidence(rawText, /^Editor:\s*J\. H\. Stickney$/i, "Gutenberg Editor line")
+      : dryRun17LangSlugs.has(slug)
+        ? findHeaderEvidence(rawText, /^Edited by Andrew Lang$/i, "visible editor byline")
+        : null;
+  if (roleEvidence && !evidence.some((item) => item.text === roleEvidence.text)) {
+    evidence.push(roleEvidence);
+  }
+  return evidence;
 }
 
 function evidenceValue(evidence: Evidence | null, label: string) {
@@ -1466,6 +1655,8 @@ function inspectBook(
     .replace(/^by\s+/i, "")
     .trim();
   const expectedAuthor = authorList(authorFromEvidence || structureBook.likelyAuthor);
+  const expectedCreatorRole = creatorRoleFor(slug);
+  const metadataEvidence = metadataEvidenceFor(rawText, slug, authorEvidence);
 
   const hardFailures = selectedHardFailures(
     structureBook,
@@ -1541,10 +1732,17 @@ function inspectBook(
   ) {
     titleRisks.push("first default section is meaningful but should be verified manually in write pass");
   }
-  const authorRisks =
-    authorEvidence.source === "Gutenberg Author line"
+  const authorRisks = [
+    ...(authorEvidence.source === "Gutenberg Author line"
       ? []
-      : ["author did not come from a Gutenberg Author line; verify byline directly"];
+      : ["author did not come from a Gutenberg Author line; verify byline directly"]),
+    ...(dryRun17LangSlugs.has(slug)
+      ? ["future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale"]
+      : []),
+    ...(dryRun17AndersenSlugs.has(slug)
+      ? ["J. H. Stickney is source-backed as editor and must not replace H. C. Andersen in the author field"]
+      : []),
+  ];
   const collectionRisks = singleStory
     ? [
         "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
@@ -1585,6 +1783,8 @@ function inspectBook(
     titleEvidence,
     expectedAuthor,
     authorEvidence,
+    expectedCreatorRole,
+    metadataEvidence,
     apparentWorkType,
     detectedStructuralConvention: headingPlan.convention,
     structureConfidence: analysis.confidenceLevel,
@@ -1637,6 +1837,7 @@ function inspectBook(
     snippets: {
       title: titleEvidence.text,
       author: authorEvidence.text,
+      metadata: metadataEvidence.map((item) => item.text).join("; "),
       start: `${firstLabel} ${firstPreview}`,
       end: readableEndSnippet(cleaned.cleanedText),
     },
@@ -1669,6 +1870,8 @@ function bookMarkdown(book: BookDryRunResult) {
     `- Author evidence: ${escapeMarkdown(book.authorEvidence.source)}${
       book.authorEvidence.lineNumber ? ` line ${book.authorEvidence.lineNumber}` : ""
     } - ${escapeMarkdown(book.authorEvidence.text)}`,
+    `- Expected author/compiler/collector/translator/reteller role: ${escapeMarkdown(book.expectedCreatorRole)}`,
+    `- Metadata evidence: ${escapeMarkdown(book.metadataEvidence.map((item) => `${item.source}${item.lineNumber ? ` line ${item.lineNumber}` : ""}: ${item.text}`).join("; "))}`,
     `- Apparent work type: ${book.apparentWorkType}`,
     `- Detected structural convention: ${escapeMarkdown(book.detectedStructuralConvention)}`,
     `- Structure confidence: ${book.structureConfidence}`,
@@ -1714,6 +1917,7 @@ function bookMarkdown(book: BookDryRunResult) {
     "",
     `- Title: ${escapeMarkdown(book.snippets.title)}`,
     `- Author: ${escapeMarkdown(book.snippets.author)}`,
+    `- Metadata: ${escapeMarkdown(book.snippets.metadata)}`,
     `- Start: ${escapeMarkdown(book.snippets.start)}`,
     `- End: ${escapeMarkdown(book.snippets.end)}`,
     "",
@@ -1740,7 +1944,7 @@ function mainMarkdown(report: DryRunReport) {
       (book) =>
         `| ${book.slug} | ${book.apparentWorkType} | ${escapeMarkdown(
           book.expectedGeneratedTitle,
-        )} | ${escapeMarkdown(book.expectedAuthor.join(", "))} | ${escapeMarkdown(
+        )} | ${escapeMarkdown(book.expectedAuthor.join(", "))} | ${escapeMarkdown(book.expectedCreatorRole)} | ${escapeMarkdown(
           book.detectedStructuralConvention,
         )} | ${book.likelySectionCount} | ${book.currentStatus} |`,
     )
@@ -1758,6 +1962,9 @@ function mainMarkdown(report: DryRunReport) {
           "## Implementation Scope Note",
           "",
           `Dry-run ${dryRunBatch} intentionally uses \`scripts/books/pilot-book-processing-dry-run-13.ts\` as the shared implementation engine. The batch-${dryRunBatch} entry point only sets \`MORSEWORDS_PILOT_DRY_RUN_BATCH=${dryRunBatch}\` and imports that engine; batch 13 remains the default when the environment flag is absent. The shared-file diff is therefore required dry-run-${dryRunBatch} implementation, not an unrelated modification.`,
+          `- Classification: ${report.sharedDryRunScriptScopeFinding.classification}`,
+          `- Resolution: ${report.sharedDryRunScriptScopeFinding.resolution}`,
+          `- Unrelated changes found: ${report.sharedDryRunScriptScopeFinding.unrelatedChangesFound ? "yes" : "no"}`,
           "",
         ]
       : []),
@@ -1804,8 +2011,8 @@ function mainMarkdown(report: DryRunReport) {
     "",
     "## Recommendation Table",
     "",
-    "| Slug | Type | Expected title | Expected author | Structure | Sections | Status |",
-    "| --- | --- | --- | --- | --- | ---: | --- |",
+    "| Slug | Type | Expected title | Expected author | Creator role | Structure | Sections | Status |",
+    "| --- | --- | --- | --- | --- | --- | ---: | --- |",
     rows,
     "",
     "## Accepted Status Ambiguities",
@@ -1932,6 +2139,16 @@ function buildReport() {
     unresolvedSourceGeneratedBooksLeftUntouched: unresolvedGenerated,
     duplicateNearDuplicateCandidatesSkipped: [...duplicateNearDuplicateCandidatesSkipped],
     boundaryDefectCandidatesSkipped: [...boundaryDefectCandidatesSkipped],
+    sharedDryRunScriptScopeFinding: {
+      classification: `harmless shared implementation intentionally used by dry-run ${dryRunBatch}`,
+      files: [
+        "scripts/books/pilot-book-processing-dry-run-13.ts",
+        `scripts/books/pilot-book-processing-dry-run-${dryRunBatch}.ts`,
+      ],
+      resolution:
+        `Retain the shared-engine change: dry-run ${dryRunBatch} adds only its report inputs, selection evidence, safety skips, metadata-role reporting, and environment dispatch while preserving batch 13 as the default.`,
+      unrelatedChangesFound: false,
+    },
     inputReports: [...inputReportPaths],
     sourceDetectorUsed: "scripts/books/lib/book-structure-detection.ts",
     protectedPaths: {

@@ -1,0 +1,105 @@
+{
+  "slug": "sunshine-stories",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/SUNSHINE STORIES.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Sunshine Stories",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "SUNSHINE STORIES",
+    "lineNumber": 137
+  },
+  "expectedAuthor": [
+    "H. C. Andersen"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: H. C. Andersen",
+    "lineNumber": 13
+  },
+  "expectedCreatorRole": "author: H. C. Andersen; editor: J. H. Stickney",
+  "metadataEvidence": [
+    {
+      "source": "Gutenberg Author line",
+      "text": "Author: H. C. Andersen",
+      "lineNumber": 13
+    },
+    {
+      "source": "Gutenberg Editor line",
+      "text": "Editor: J. H. Stickney",
+      "lineNumber": 15
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: SUNSHINE STORIES",
+    "First readable prose: \"I AM going to tell a story,\" said the Wind."
+  ],
+  "realReadableStart": "Sunshine Stories: \"I AM going to tell a story,\" said the Wind. \"I beg your pardon,\" said the Rain, \"but now it is my turn. Have you not been howling round the corner this long time, as hard as ever you could?\" \"Is this the gratitude you owe me?\" said the Wind; \"I, who in honor of you turn inside out--yes, even break--all the umbrella...",
+  "realReadableEnd": "...ul home, content even in their poverty. And so their life became a real Sunshine Story.\" \"I think we had better stop now,\" said the Wind. \"I am dreadfully bored. The Sunshine has talked long enough.\" \"I think so, too,\" said the Rain. And what do we others who have heard the story say? We say, \"Now the story's done.\"",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": true,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Sunshine Stories",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "\"I AM going to tell a story,\" said the Wind. \"I beg your pardon,\" said the Rain, \"but now it is my turn. Have you not been howling round the corner this long time, as hard as ever you could?\" \"Is this the gratitude you owe me?\" said the Wind; \"I, who in honor of you turn inside out--yes, even break--all the umbrella...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: \"I AM going to tell a story,\" said the Wind.",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default",
+    "illustration captions/placeholders must be removed from default playback"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [
+    "J. H. Stickney is source-backed as editor and must not replace H. C. Andersen in the author field"
+  ],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "illustration captions/placeholders detected"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "SUNSHINE STORIES",
+    "author": "Author: H. C. Andersen",
+    "metadata": "Author: H. C. Andersen; Editor: J. H. Stickney",
+    "start": "Sunshine Stories \"I AM going to tell a story,\" said the Wind. \"I beg your pardon,\" said the Rain, \"but now it is my turn. Have you not been howling round the corner this long time, as hard as ever you could?\" \"Is this the gratitude you owe me?\" said the Wind; \"I, who in honor of you turn inside out--yes, even break--all the umbrella...",
+    "end": "...ul home, content even in their poverty. And so their life became a real Sunshine Story.\" \"I think we had better stop now,\" said the Wind. \"I am dreadfully bored. The Sunshine has talked long enough.\" \"I think so, too,\" said the Rain. And what do we others who have heard the story say? We say, \"Now the story's done.\""
+  }
+}

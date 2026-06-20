@@ -1,0 +1,101 @@
+{
+  "slug": "the-water-of-life",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE WATER OF LIFE.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Water of Life",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE WATER OF LIFE",
+    "lineNumber": 43
+  },
+  "expectedAuthor": [
+    "Jacob Grimm; Wilhelm Grimm"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Jacob Grimm; Wilhelm Grimm",
+    "lineNumber": 13
+  },
+  "expectedCreatorRole": "authors: Jacob Grimm and Wilhelm Grimm (raw source labels them as authors)",
+  "metadataEvidence": [
+    {
+      "source": "Gutenberg Author line",
+      "text": "Author: Jacob Grimm; Wilhelm Grimm",
+      "lineNumber": 13
+    },
+    {
+      "source": "visible collection byline",
+      "text": "By Jacob Grimm and Wilhelm Grimm",
+      "lineNumber": 35
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE WATER OF LIFE",
+    "First readable prose: Long before you or I were born, there reigned, in a country a great way"
+  ],
+  "realReadableStart": "The Water of Life: Long before you or I were born, there reigned, in a country a great way off, a king who had three sons. This king once fell very ill--so ill that nobody thought he could live. His sons were very much grieved at their father’s sickness; and as they were walking together very mournfully in the garden of the palace, a...",
+  "realReadableEnd": "...nd old, noble and squire, gentle and simple, came at once on the summons; and among the rest came the friendly dwarf, with the sugarloaf hat, and a new scarlet cloak. And the wedding was held, and the merry bells run. And all the good people they danced and they sung, And feasted and frolick’d I can’t tell how long.",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Water of Life",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "Long before you or I were born, there reigned, in a country a great way off, a king who had three sons. This king once fell very ill--so ill that nobody thought he could live. His sons were very much grieved at their father’s sickness; and as they were walking together very mournfully in the garden of the palace, a...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Long before you or I were born, there reigned, in a country a great way",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE WATER OF LIFE",
+    "author": "Author: Jacob Grimm; Wilhelm Grimm",
+    "metadata": "Author: Jacob Grimm; Wilhelm Grimm; By Jacob Grimm and Wilhelm Grimm",
+    "start": "The Water of Life Long before you or I were born, there reigned, in a country a great way off, a king who had three sons. This king once fell very ill--so ill that nobody thought he could live. His sons were very much grieved at their father’s sickness; and as they were walking together very mournfully in the garden of the palace, a...",
+    "end": "...nd old, noble and squire, gentle and simple, came at once on the summons; and among the rest came the friendly dwarf, with the sugarloaf hat, and a new scarlet cloak. And the wedding was held, and the merry bells run. And all the good people they danced and they sung, And feasted and frolick’d I can’t tell how long."
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "slug": "the-white-snake",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE WHITE SNAKE.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The White Snake",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE WHITE SNAKE",
+    "lineNumber": 43
+  },
+  "expectedAuthor": [
+    "Jacob Grimm; Wilhelm Grimm"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Jacob Grimm; Wilhelm Grimm",
+    "lineNumber": 13
+  },
+  "expectedCreatorRole": "authors: Jacob Grimm and Wilhelm Grimm (raw source labels them as authors)",
+  "metadataEvidence": [
+    {
+      "source": "Gutenberg Author line",
+      "text": "Author: Jacob Grimm; Wilhelm Grimm",
+      "lineNumber": 13
+    },
+    {
+      "source": "visible collection byline",
+      "text": "By Jacob Grimm and Wilhelm Grimm",
+      "lineNumber": 35
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE WHITE SNAKE",
+    "First readable prose: A long time ago there lived a king who was famed for his wisdom through"
+  ],
+  "realReadableStart": "The White Snake: A long time ago there lived a king who was famed for his wisdom through all the land. Nothing was hidden from him, and it seemed as if news of the most secret things was brought to him through the air. But he had a strange custom; every day after dinner, when the table was cleared, and no one else was present, a tru...",
+  "realReadableEnd": "...u the apple.’ The youth, full of joy, set out homewards, and took the Golden Apple to the king’s beautiful daughter, who had now no more excuses left to make. They cut the Apple of Life in two and ate it together; and then her heart became full of love for him, and they lived in undisturbed happiness to a great age.",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The White Snake",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "A long time ago there lived a king who was famed for his wisdom through all the land. Nothing was hidden from him, and it seemed as if news of the most secret things was brought to him through the air. But he had a strange custom; every day after dinner, when the table was cleared, and no one else was present, a tru...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: A long time ago there lived a king who was famed for his wisdom through",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "medium",
+    "pass2Reasons": [
+      "Medium-confidence start boundary remains manageable but needs review.",
+      "Medium-confidence end boundary remains manageable but needs review."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE WHITE SNAKE",
+    "author": "Author: Jacob Grimm; Wilhelm Grimm",
+    "metadata": "Author: Jacob Grimm; Wilhelm Grimm; By Jacob Grimm and Wilhelm Grimm",
+    "start": "The White Snake A long time ago there lived a king who was famed for his wisdom through all the land. Nothing was hidden from him, and it seemed as if news of the most secret things was brought to him through the air. But he had a strange custom; every day after dinner, when the table was cleared, and no one else was present, a tru...",
+    "end": "...u the apple.’ The youth, full of joy, set out homewards, and took the Golden Apple to the king’s beautiful daughter, who had now no more excuses left to make. They cut the Apple of Life in two and ate it together; and then her heart became full of love for him, and they lived in undisturbed happiness to a great age."
+  }
+}
