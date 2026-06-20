@@ -1,0 +1,1728 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-write-20-verification",
+  "generatedAt": "2026-06-20T23:34:32.427Z",
+  "branch": "morsewords-book-processing-pilot-write-20-jun-2026",
+  "sourceWriteCommit": "112d770bd8fa0dec17fac12870686679942055eb",
+  "scope": "post-write QA/review of the exact 20 pilot write batch 20 books; no additional books processed",
+  "sourceReportsRead": [
+    "app/client/assets/books/audit-reports/pilot-dry-run-20/pilot-dry-run-20.json",
+    "app/client/assets/books/audit-reports/pilot-dry-run-20/pilot-dry-run-20.md",
+    "app/client/assets/books/audit-reports/pilot-write-20/pilot-write-20.json",
+    "app/client/assets/books/audit-reports/pilot-write-20/pilot-write-20.md",
+    "app/client/assets/books/audit-reports/batch-12-prose-restoration/batch-12-prose-restoration.json"
+  ],
+  "dryRunBooksDirectoryRead": "app/client/assets/books/audit-reports/pilot-dry-run-20/books",
+  "selectedBooks": [
+    "moti",
+    "the-brown-bear-of-norway",
+    "the-escape-of-the-mouse",
+    "the-fairy-nurse",
+    "the-four-gifts",
+    "the-goat-s-ears-of-the-emperor-trojan",
+    "the-groac-h-of-the-isle-of-lok",
+    "the-heart-of-a-monkey",
+    "the-hoodie-crow",
+    "the-jogi-s-punishment",
+    "the-king-of-the-waterfalls",
+    "the-one-handed-girl",
+    "the-raspberry-worm",
+    "the-rich-brother-and-the-poor-brother",
+    "jimmy-goggles-the-god",
+    "miss-winchelsea-s-heart",
+    "mr-brisher-s-treasure",
+    "mr-ledbetter-s-vacation",
+    "mr-skelmersdale-in-fairyland",
+    "the-new-accelerator"
+  ],
+  "totals": {
+    "verified": 20,
+    "pass": 20,
+    "warnAccepted": 0,
+    "fail": 0,
+    "acceptedForMain": 20,
+    "correctionNeededBeforeMain": 0
+  },
+  "rawVsGeneratedOverall": {
+    "compared": 20,
+    "exact": 20,
+    "mismatches": 0
+  },
+  "sharedWriteScriptScopeFinding": {
+    "files": [
+      "scripts/books/pilot-book-processing-write-12.ts",
+      "scripts/books/pilot-book-processing-write-20.ts"
+    ],
+    "classification": "harmless shared implementation intentionally used by write batch 20",
+    "classificationNumber": 1,
+    "resolution": "Retain the write-12 change. Batches 13-20 use five-line wrappers that set MORSEWORDS_PILOT_WRITE_BATCH and import the established write-12 runner; this diff adds batch-20 typing, selection, dispatch, backlog-note reporting, and narrow cleanup for the selected sources' FN marker/source-attribution cases.",
+    "unrelatedChangesFound": false,
+    "movedToSharedHelper": false,
+    "restoredToOriginMain": false
+  },
+  "batch12ProseRestoration": {
+    "result": "pass",
+    "batch12BooksCompared": 20,
+    "remainingBatch12RawVsGeneratedMismatches": 0,
+    "remainingBatch12ProseOmissions": 0,
+    "remainingMissingOpeningQuoteDefects": 0
+  },
+  "specialFocus": {
+    "exactSpelling": "Groac’h, Jogi, Jimmy Goggles the God, Miss Winchelsea’s Heart, Mr. Brisher’s Treasure, Mr. Ledbetter’s Vacation, Mr. Skelmersdale in Fairyland, and The New Accelerator match source-audited titles exactly.",
+    "creatorRoles": "14/14 Lang tales preserve Andrew Lang's source-backed editor role in rights metadata; 6/6 Wells stories preserve H. G. Wells as source-backed author; no batch-20 title uses Unknown Author.",
+    "wrappedLineProse": "20/20 sanitized raw bodies match every generated body copy character-for-character (20/20 exact).",
+    "collectionMetadata": "20/20 use the individual tale title and exclude parent collection/title/byline/source wrapper material from default playback."
+  },
+  "correctionsMadeDuringVerification": [],
+  "unresolvedSourceGeneratedBooksUntouched": [
+    "a-princess-of-mars",
+    "doctor-dolittle",
+    "heidi",
+    "jabberwocky",
+    "nights-with-uncle-remus",
+    "peter-pan",
+    "tarzan-of-the-apes",
+    "the-great-gatsby",
+    "the-picture-of-dorian-gray",
+    "the-thirty-nine-steps",
+    "wood-folk-at-school"
+  ],
+  "unresolvedSourceStatus": [],
+  "knownDuplicateBoundarySkipsNotReintroduced": [
+    "the-wind-in-the-willows",
+    "the-two-magics-the-turn-of-the-screw-covering-end",
+    "japanese-fairy-tales",
+    "the-works-of-edgar-allan-poe",
+    "snow-white-and-rose-red"
+  ],
+  "knownSkipStatus": [],
+  "protectedPaths": {
+    "rawSourcesModified": false,
+    "cloudflareExportsModified": false,
+    "unrelatedGeneratedOrPreviewChanges": []
+  },
+  "validationResults": {
+    "typecheck": "pass",
+    "pilotWrite20": "pass: 20 first-time processed, 0 skipped, 11 unresolved-source generated untouched",
+    "batch12ProseRestore": "pass: 20/20 exact",
+    "startupPreviewAudit": "pass: 415 generated startup previews, 415 valid, 0 preview updates",
+    "titleStartDefaultAudit": "pass: 415 audited, 12 known unrelated corrections restored, 0 accepted-book revocations",
+    "metadataSegmentationAudit": "pass: 415 audited, 0 author corrections, 1 documented unknown-author case, 0 accepted-book revocations",
+    "manualUiDefectFollowup": "pass: 8 checked, 8 acceptable, 0 corrected/revoked/manual review",
+    "targetedVerifier": "pass: 20 pass, 0 warn accepted, 0 fail, raw/generated 20/20 exact",
+    "appBuild": "not run; books:build prohibited for this task",
+    "standalonePlaywright": "35/36 passed; only failure is known/pre-existing fullscreen-controls visibility assertion",
+    "smokeTests": "pass: 23/23 smoke tests",
+    "gitDiffCheck": "pass"
+  },
+  "browserAndPlaywright": {
+    "inAppBrowserNote": "The in-app Browser sandbox issue was not part of this book branch. Standalone Playwright was used for QA.",
+    "inAppBrowserSandboxIssueLeftUntouched": true,
+    "standalonePlaywrightResult": "35/36 passed; only failure is known/pre-existing fullscreen-controls visibility assertion",
+    "knownFullscreenOnlyFailure": true
+  },
+  "auditSideEffectHandling": {
+    "result": "Known validation churn from write/title/start/metadata/manual/startup audits was restored before commit; verification report/script/package command remain."
+  },
+  "backlogNote": [
+    "Dry-run 20 still had 96 skipped/unsafe raw-only candidates before write.",
+    "These are not treated as lost or missed.",
+    "After safe batching slows/exhausts, create a dedicated remaining raw inventory/triage report classifying every unprocessed raw file."
+  ],
+  "books": [
+    {
+      "slug": "moti",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/moti/manifest.json",
+        "app/client/assets/books/generated/moti/cleaned_book.json",
+        "app/client/assets/books/generated/moti/processed_book.json",
+        "app/client/assets/books/generated/moti/rights_report.json",
+        "app/client/assets/books/generated/moti/processing_notes.md",
+        "app/client/assets/books/generated/moti/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/moti.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"Moti\"; parent collection \"The Lilac Fairy Book\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "Andrew Lang is source-backed as editor; rights metadata preserves that role, the legacy creator array contains no Unknown Author, and collection metadata does not replace tale metadata.",
+        "details": [
+          "Gutenberg Author line: Author: Andrew Lang",
+          "visible editor byline: Edited by Andrew Lang",
+          "Rights editor: Andrew Lang"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 15451",
+          "Generated characters: 15451",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "‘Moti’",
+        "metadata": "Author: Andrew Lang; Edited by Andrew Lang; editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+        "rawStart": "Once upon a time there was a youth called Moti, who was very big and strong, but the clumsiest creature you can imagine. So clumsy was he that he was always putting his great feet into the bowls of sweet milk or curds...",
+        "generatedStart": "Once upon a time there was a youth called Moti, who was very big and strong, but the clumsiest creature you can imagine. So clumsy was he that he was always putting his great feet into the bowls of sweet milk or curds...",
+        "rawEnd": "...ed long and contrived always to be looked up to as a fountain of wisdom, valour, and discretion by all except his relations, who could never understand what he had done to be considered so much wiser than anyone else.",
+        "generatedEnd": "...ed long and contrived always to be looked up to as a fountain of wisdom, valour, and discretion by all except his relations, who could never understand what he had done to be considered so much wiser than anyone else.",
+        "previewStart": "Once upon a time there was a youth called Moti, who was very big and strong, but the clumsiest creature you can imagine. So clumsy was he that he was always putting his great feet into the bowls of sweet milk or curds..."
+      }
+    },
+    {
+      "slug": "the-brown-bear-of-norway",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-brown-bear-of-norway/manifest.json",
+        "app/client/assets/books/generated/the-brown-bear-of-norway/cleaned_book.json",
+        "app/client/assets/books/generated/the-brown-bear-of-norway/processed_book.json",
+        "app/client/assets/books/generated/the-brown-bear-of-norway/rights_report.json",
+        "app/client/assets/books/generated/the-brown-bear-of-norway/processing_notes.md",
+        "app/client/assets/books/generated/the-brown-bear-of-norway/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-brown-bear-of-norway.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"The Brown Bear of Norway\"; parent collection \"The Lilac Fairy Book\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "Andrew Lang is source-backed as editor; rights metadata preserves that role, the legacy creator array contains no Unknown Author, and collection metadata does not replace tale metadata.",
+        "details": [
+          "Gutenberg Author line: Author: Andrew Lang",
+          "visible editor byline: Edited by Andrew Lang",
+          "Rights editor: Andrew Lang"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 17248",
+          "Generated characters: 17248",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The Brown Bear of Norway",
+        "metadata": "Author: Andrew Lang; Edited by Andrew Lang; editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+        "rawStart": "There was once a king in Ireland, and he had three daughters, and very nice princesses they were. And one day, when they and their father were walking on the lawn, the king began to joke with them, and to ask them who...",
+        "generatedStart": "There was once a king in Ireland, and he had three daughters, and very nice princesses they were. And one day, when they and their father were walking on the lawn, the king began to joke with them, and to ask them who...",
+        "rawEnd": "...n they set out for their own palace. The kings of Ireland and of Munster and Ulster, and their wives, soon came to visit them, and may every one that deserves it be as happy as the Brown Bear of Norway and his family.",
+        "generatedEnd": "...n they set out for their own palace. The kings of Ireland and of Munster and Ulster, and their wives, soon came to visit them, and may every one that deserves it be as happy as the Brown Bear of Norway and his family.",
+        "previewStart": "There was once a king in Ireland, and he had three daughters, and very nice princesses they were. And one day, when they and their father were walking on the lawn, the king began to joke with them, and to ask them who..."
+      }
+    },
+    {
+      "slug": "the-escape-of-the-mouse",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-escape-of-the-mouse/manifest.json",
+        "app/client/assets/books/generated/the-escape-of-the-mouse/cleaned_book.json",
+        "app/client/assets/books/generated/the-escape-of-the-mouse/processed_book.json",
+        "app/client/assets/books/generated/the-escape-of-the-mouse/rights_report.json",
+        "app/client/assets/books/generated/the-escape-of-the-mouse/processing_notes.md",
+        "app/client/assets/books/generated/the-escape-of-the-mouse/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-escape-of-the-mouse.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"The Escape of the Mouse\"; parent collection \"The Lilac Fairy Book\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "Andrew Lang is source-backed as editor; rights metadata preserves that role, the legacy creator array contains no Unknown Author, and collection metadata does not replace tale metadata.",
+        "details": [
+          "Gutenberg Author line: Author: Andrew Lang",
+          "visible editor byline: Edited by Andrew Lang",
+          "Rights editor: Andrew Lang"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 15917",
+          "Generated characters: 15917",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The Escape of the Mouse",
+        "metadata": "Author: Andrew Lang; Edited by Andrew Lang; editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+        "rawStart": "Manawyddan the prince and his friend Pryderi were wanderers, for the brother of Manawyddan had been slain, and his throne taken from him. Very sorrowful was Manawyddan, but Pryderi was stout of heart, and bade him be ...",
+        "generatedStart": "Manawyddan the prince and his friend Pryderi were wanderers, for the brother of Manawyddan had been slain, and his throne taken from him. Very sorrowful was Manawyddan, but Pryderi was stout of heart, and bade him be ...",
+        "rawEnd": "... spell didst thou lay upon Pryderi and Rhiannon?’ ‘Pryderi has had the knockers of the gate of my palace hung about him, and Rhiannon has carried the collars of my asses around her neck,’ said the bishop with a smile.",
+        "generatedEnd": "... spell didst thou lay upon Pryderi and Rhiannon?’ ‘Pryderi has had the knockers of the gate of my palace hung about him, and Rhiannon has carried the collars of my asses around her neck,’ said the bishop with a smile.",
+        "previewStart": "Manawyddan the prince and his friend Pryderi were wanderers, for the brother of Manawyddan had been slain, and his throne taken from him. Very sorrowful was Manawyddan, but Pryderi was stout of heart, and bade him be ..."
+      }
+    },
+    {
+      "slug": "the-fairy-nurse",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-fairy-nurse/manifest.json",
+        "app/client/assets/books/generated/the-fairy-nurse/cleaned_book.json",
+        "app/client/assets/books/generated/the-fairy-nurse/processed_book.json",
+        "app/client/assets/books/generated/the-fairy-nurse/rights_report.json",
+        "app/client/assets/books/generated/the-fairy-nurse/processing_notes.md",
+        "app/client/assets/books/generated/the-fairy-nurse/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-fairy-nurse.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"The Fairy Nurse\"; parent collection \"The Lilac Fairy Book\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "Andrew Lang is source-backed as editor; rights metadata preserves that role, the legacy creator array contains no Unknown Author, and collection metadata does not replace tale metadata.",
+        "details": [
+          "Gutenberg Author line: Author: Andrew Lang",
+          "visible editor byline: Edited by Andrew Lang",
+          "Rights editor: Andrew Lang"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 7787",
+          "Generated characters: 7787",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The Fairy Nurse",
+        "metadata": "Author: Andrew Lang; Edited by Andrew Lang; editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+        "rawStart": "There was once a little farmer and his wife living near Coolgarrow. They had three children, and my story happened while the youngest was a baby. The wife was a good wife enough, but her mind was all on her family and...",
+        "generatedStart": "There was once a little farmer and his wife living near Coolgarrow. They had three children, and my story happened while the youngest was a baby. The wife was a good wife enough, but her mind was all on her family and...",
+        "rawEnd": "...s no better than a withered dock-leaf.’ ‘Maybe, then,’ says he, ‘it will be different now,’ and he struck the eye next him with a switch. Friends, she never saw a glimmer after with that one till the day of her death.",
+        "generatedEnd": "...s no better than a withered dock-leaf.’ ‘Maybe, then,’ says he, ‘it will be different now,’ and he struck the eye next him with a switch. Friends, she never saw a glimmer after with that one till the day of her death.",
+        "previewStart": "There was once a little farmer and his wife living near Coolgarrow. They had three children, and my story happened while the youngest was a baby. The wife was a good wife enough, but her mind was all on her family and..."
+      }
+    },
+    {
+      "slug": "the-four-gifts",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-four-gifts/manifest.json",
+        "app/client/assets/books/generated/the-four-gifts/cleaned_book.json",
+        "app/client/assets/books/generated/the-four-gifts/processed_book.json",
+        "app/client/assets/books/generated/the-four-gifts/rights_report.json",
+        "app/client/assets/books/generated/the-four-gifts/processing_notes.md",
+        "app/client/assets/books/generated/the-four-gifts/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-four-gifts.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"The Four Gifts\"; parent collection \"The Lilac Fairy Book\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "Andrew Lang is source-backed as editor; rights metadata preserves that role, the legacy creator array contains no Unknown Author, and collection metadata does not replace tale metadata.",
+        "details": [
+          "Gutenberg Author line: Author: Andrew Lang",
+          "visible editor byline: Edited by Andrew Lang",
+          "Rights editor: Andrew Lang"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 18174",
+          "Generated characters: 18174",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The Four Gifts",
+        "metadata": "Author: Andrew Lang; Edited by Andrew Lang; editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+        "rawStart": "In the old land of Brittany, once called Cornwall, there lived a woman named Barbaik Bourhis, who spent all her days in looking after her farm with the help of her niece Tephany. Early and late the two might be seen i...",
+        "generatedStart": "In the old land of Brittany, once called Cornwall, there lived a woman named Barbaik Bourhis, who spent all her days in looking after her farm with the help of her niece Tephany. Early and late the two might be seen i...",
+        "rawEnd": "...r after all it was not yourself you thought of but him.’ Never again did Tephany see the old woman, but she forgave Denis for selling her tears, and in time he grew to be a good husband, who did his own share of work.",
+        "generatedEnd": "...r after all it was not yourself you thought of but him.’ Never again did Tephany see the old woman, but she forgave Denis for selling her tears, and in time he grew to be a good husband, who did his own share of work.",
+        "previewStart": "In the old land of Brittany, once called Cornwall, there lived a woman named Barbaik Bourhis, who spent all her days in looking after her farm with the help of her niece Tephany. Early and late the two might be seen i..."
+      }
+    },
+    {
+      "slug": "the-goat-s-ears-of-the-emperor-trojan",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-goat-s-ears-of-the-emperor-trojan/manifest.json",
+        "app/client/assets/books/generated/the-goat-s-ears-of-the-emperor-trojan/cleaned_book.json",
+        "app/client/assets/books/generated/the-goat-s-ears-of-the-emperor-trojan/processed_book.json",
+        "app/client/assets/books/generated/the-goat-s-ears-of-the-emperor-trojan/rights_report.json",
+        "app/client/assets/books/generated/the-goat-s-ears-of-the-emperor-trojan/processing_notes.md",
+        "app/client/assets/books/generated/the-goat-s-ears-of-the-emperor-trojan/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-goat-s-ears-of-the-emperor-trojan.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"The Goat’s Ears of the Emperor Trojan\"; parent collection \"The Violet Fairy Book\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "Andrew Lang is source-backed as editor; rights metadata preserves that role, the legacy creator array contains no Unknown Author, and collection metadata does not replace tale metadata.",
+        "details": [
+          "Gutenberg Author line: Author: Andrew Lang",
+          "visible editor byline: Edited By Andrew Lang",
+          "Rights editor: Andrew Lang"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 4538",
+          "Generated characters: 4538",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "THE GOAT’S EARS OF THE EMPEROR TROJAN",
+        "metadata": "Author: Andrew Lang; Edited By Andrew Lang; editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+        "rawStart": "Once upon a time there lived an emperor whose name was Trojan, and he had ears like a goat. Every morning, when he was shaved, he asked if the man saw anything odd about him, and as each fresh barber always replied th...",
+        "generatedStart": "Once upon a time there lived an emperor whose name was Trojan, and he had ears like a goat. Every morning, when he was shaved, he asked if the man saw anything odd about him, and as each fresh barber always replied th...",
+        "rawEnd": "...thing came but the words, ‘The Emperor Trojan has goat’s ears.’ Then the emperor knew that even the earth gave up its secrets, and he granted the young man his life, but he never allowed him to be his barber any more.",
+        "generatedEnd": "...thing came but the words, ‘The Emperor Trojan has goat’s ears.’ Then the emperor knew that even the earth gave up its secrets, and he granted the young man his life, but he never allowed him to be his barber any more.",
+        "previewStart": "Once upon a time there lived an emperor whose name was Trojan, and he had ears like a goat. Every morning, when he was shaved, he asked if the man saw anything odd about him, and as each fresh barber always replied th..."
+      }
+    },
+    {
+      "slug": "the-groac-h-of-the-isle-of-lok",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-groac-h-of-the-isle-of-lok/manifest.json",
+        "app/client/assets/books/generated/the-groac-h-of-the-isle-of-lok/cleaned_book.json",
+        "app/client/assets/books/generated/the-groac-h-of-the-isle-of-lok/processed_book.json",
+        "app/client/assets/books/generated/the-groac-h-of-the-isle-of-lok/rights_report.json",
+        "app/client/assets/books/generated/the-groac-h-of-the-isle-of-lok/processing_notes.md",
+        "app/client/assets/books/generated/the-groac-h-of-the-isle-of-lok/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-groac-h-of-the-isle-of-lok.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"The Groac’h of the Isle of Lok\"; parent collection \"The Lilac Fairy Book\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "Andrew Lang is source-backed as editor; rights metadata preserves that role, the legacy creator array contains no Unknown Author, and collection metadata does not replace tale metadata.",
+        "details": [
+          "Gutenberg Author line: Author: Andrew Lang",
+          "visible editor byline: Edited by Andrew Lang",
+          "Rights editor: Andrew Lang"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 17654",
+          "Generated characters: 17654",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The Groac’h of the Isle of Lok",
+        "metadata": "Author: Andrew Lang; Edited by Andrew Lang; editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+        "rawStart": "In old times, when all kinds of wonderful things happened in Brittany, there lived in the village of Lanillis, a young man named Houarn Pogamm and a girl called Bellah Postik. They were cousins, and as their mothers w...",
+        "generatedStart": "In old times, when all kinds of wonderful things happened in Brittany, there lived in the village of Lanillis, a young man named Houarn Pogamm and a girl called Bellah Postik. They were cousins, and as their mothers w...",
+        "rawEnd": "...tten that they had so long wished for, they were able to buy lands for miles round for themselves, and gave each man who had been delivered from the Groac’h a small farm, where he lived happily to the end of his days.",
+        "generatedEnd": "...tten that they had so long wished for, they were able to buy lands for miles round for themselves, and gave each man who had been delivered from the Groac’h a small farm, where he lived happily to the end of his days.",
+        "previewStart": "In old times, when all kinds of wonderful things happened in Brittany, there lived in the village of Lanillis, a young man named Houarn Pogamm and a girl called Bellah Postik. They were cousins, and as their mothers w..."
+      }
+    },
+    {
+      "slug": "the-heart-of-a-monkey",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-heart-of-a-monkey/manifest.json",
+        "app/client/assets/books/generated/the-heart-of-a-monkey/cleaned_book.json",
+        "app/client/assets/books/generated/the-heart-of-a-monkey/processed_book.json",
+        "app/client/assets/books/generated/the-heart-of-a-monkey/rights_report.json",
+        "app/client/assets/books/generated/the-heart-of-a-monkey/processing_notes.md",
+        "app/client/assets/books/generated/the-heart-of-a-monkey/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-heart-of-a-monkey.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"The Heart of a Monkey\"; parent collection \"The Lilac Fairy Book\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "Andrew Lang is source-backed as editor; rights metadata preserves that role, the legacy creator array contains no Unknown Author, and collection metadata does not replace tale metadata.",
+        "details": [
+          "Gutenberg Author line: Author: Andrew Lang",
+          "visible editor byline: Edited by Andrew Lang",
+          "Rights editor: Andrew Lang"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 15956",
+          "Generated characters: 15956",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The Heart of a Monkey",
+        "metadata": "Author: Andrew Lang; Edited by Andrew Lang; editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+        "rawStart": "A long time ago a little town made up of a collection of low huts stood in a tiny green valley at the foot of a cliff. Of course the people had taken great care to build their houses out of reach of the highest tide w...",
+        "generatedStart": "A long time ago a little town made up of a collection of low huts stood in a tiny green valley at the foot of a cliff. Of course the people had taken great care to build their houses out of reach of the highest tide w...",
+        "rawEnd": "...n the sky, it is time for you to begin your homeward journey. You will have a nice cool voyage, and I hope you will find the sultan better. Farewell!’ And the monkey disappeared among the green branches, and was gone.",
+        "generatedEnd": "...n the sky, it is time for you to begin your homeward journey. You will have a nice cool voyage, and I hope you will find the sultan better. Farewell!’ And the monkey disappeared among the green branches, and was gone.",
+        "previewStart": "A long time ago a little town made up of a collection of low huts stood in a tiny green valley at the foot of a cliff. Of course the people had taken great care to build their houses out of reach of the highest tide w..."
+      }
+    },
+    {
+      "slug": "the-hoodie-crow",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-hoodie-crow/manifest.json",
+        "app/client/assets/books/generated/the-hoodie-crow/cleaned_book.json",
+        "app/client/assets/books/generated/the-hoodie-crow/processed_book.json",
+        "app/client/assets/books/generated/the-hoodie-crow/rights_report.json",
+        "app/client/assets/books/generated/the-hoodie-crow/processing_notes.md",
+        "app/client/assets/books/generated/the-hoodie-crow/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-hoodie-crow.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"The Hoodie-Crow\"; parent collection \"The Lilac Fairy Book\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "Andrew Lang is source-backed as editor; rights metadata preserves that role, the legacy creator array contains no Unknown Author, and collection metadata does not replace tale metadata.",
+        "details": [
+          "Gutenberg Author line: Author: Andrew Lang",
+          "visible editor byline: Edited by Andrew Lang",
+          "Rights editor: Andrew Lang"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 7707",
+          "Generated characters: 7707",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The Hoodie-Crow",
+        "metadata": "Author: Andrew Lang; Edited by Andrew Lang; editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+        "rawStart": "Once there lived a farmer who had three daughters, and good useful girls they were, up with the sun, and doing all the work of the house. One morning they all ran down to the river to wash their clothes, when a hoodie...",
+        "generatedStart": "Once there lived a farmer who had three daughters, and good useful girls they were, up with the sun, and doing all the work of the house. One morning they all ran down to the river to wash their clothes, when a hoodie...",
+        "rawEnd": "... and they went back the way she had come, and stopped at the three houses in order to take their little sons to their own home. But the story never says who had stolen them, nor what the coarse comb had to do with it.",
+        "generatedEnd": "... and they went back the way she had come, and stopped at the three houses in order to take their little sons to their own home. But the story never says who had stolen them, nor what the coarse comb had to do with it.",
+        "previewStart": "Once there lived a farmer who had three daughters, and good useful girls they were, up with the sun, and doing all the work of the house. One morning they all ran down to the river to wash their clothes, when a hoodie..."
+      }
+    },
+    {
+      "slug": "the-jogi-s-punishment",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-jogi-s-punishment/manifest.json",
+        "app/client/assets/books/generated/the-jogi-s-punishment/cleaned_book.json",
+        "app/client/assets/books/generated/the-jogi-s-punishment/processed_book.json",
+        "app/client/assets/books/generated/the-jogi-s-punishment/rights_report.json",
+        "app/client/assets/books/generated/the-jogi-s-punishment/processing_notes.md",
+        "app/client/assets/books/generated/the-jogi-s-punishment/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-jogi-s-punishment.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"The Jogi’s Punishment\"; parent collection \"The Lilac Fairy Book\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "Andrew Lang is source-backed as editor; rights metadata preserves that role, the legacy creator array contains no Unknown Author, and collection metadata does not replace tale metadata.",
+        "details": [
+          "Gutenberg Author line: Author: Andrew Lang",
+          "visible editor byline: Edited by Andrew Lang",
+          "Rights editor: Andrew Lang"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 11292",
+          "Generated characters: 11292",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The Jogi’s Punishment",
+        "metadata": "Author: Andrew Lang; Edited by Andrew Lang; editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+        "rawStart": "Once upon a time there came to the ancient city of Rahmatabad a jogi of holy appearance, who took up his abode under a tree outside the city, where he would sit for days at a time fasting from food and drink, motionle...",
+        "generatedStart": "Once upon a time there came to the ancient city of Rahmatabad a jogi of holy appearance, who took up his abode under a tree outside the city, where he would sit for days at a time fasting from food and drink, motionle...",
+        "rawEnd": "...pieces on the threshold of his dwelling! Very soon the story spread, as stories will, and reached the ears of the princess and her husband, and when she knew that her enemy was dead she made her peace with her father.",
+        "generatedEnd": "...pieces on the threshold of his dwelling! Very soon the story spread, as stories will, and reached the ears of the princess and her husband, and when she knew that her enemy was dead she made her peace with her father.",
+        "previewStart": "Once upon a time there came to the ancient city of Rahmatabad a jogi of holy appearance, who took up his abode under a tree outside the city, where he would sit for days at a time fasting from food and drink, motionle..."
+      }
+    },
+    {
+      "slug": "the-king-of-the-waterfalls",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-king-of-the-waterfalls/manifest.json",
+        "app/client/assets/books/generated/the-king-of-the-waterfalls/cleaned_book.json",
+        "app/client/assets/books/generated/the-king-of-the-waterfalls/processed_book.json",
+        "app/client/assets/books/generated/the-king-of-the-waterfalls/rights_report.json",
+        "app/client/assets/books/generated/the-king-of-the-waterfalls/processing_notes.md",
+        "app/client/assets/books/generated/the-king-of-the-waterfalls/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-king-of-the-waterfalls.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"The King of the Waterfalls\"; parent collection \"The Lilac Fairy Book\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "Andrew Lang is source-backed as editor; rights metadata preserves that role, the legacy creator array contains no Unknown Author, and collection metadata does not replace tale metadata.",
+        "details": [
+          "Gutenberg Author line: Author: Andrew Lang",
+          "visible editor byline: Edited by Andrew Lang",
+          "Rights editor: Andrew Lang"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 20976",
+          "Generated characters: 20976",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The King of the Waterfalls",
+        "metadata": "Author: Andrew Lang; Edited by Andrew Lang; editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+        "rawStart": "When the young king of Easaidh Ruadh came into his kingdom, the first thing he thought of was how he could amuse himself best. The sports that all his life had pleased him best suddenly seemed to have grown dull, and ...",
+        "generatedStart": "When the young king of Easaidh Ruadh came into his kingdom, the first thing he thought of was how he could amuse himself best. The sports that all his life had pleased him best suddenly seemed to have grown dull, and ...",
+        "rawEnd": "...ey knew that the giant was dead, because they had found his soul. Next day they mounted the two horses and rode home again, visiting their friends the brown otter and the hoary hawk and the slim yellow dog by the way.",
+        "generatedEnd": "...ey knew that the giant was dead, because they had found his soul. Next day they mounted the two horses and rode home again, visiting their friends the brown otter and the hoary hawk and the slim yellow dog by the way.",
+        "previewStart": "When the young king of Easaidh Ruadh came into his kingdom, the first thing he thought of was how he could amuse himself best. The sports that all his life had pleased him best suddenly seemed to have grown dull, and ..."
+      }
+    },
+    {
+      "slug": "the-one-handed-girl",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-one-handed-girl/manifest.json",
+        "app/client/assets/books/generated/the-one-handed-girl/cleaned_book.json",
+        "app/client/assets/books/generated/the-one-handed-girl/processed_book.json",
+        "app/client/assets/books/generated/the-one-handed-girl/rights_report.json",
+        "app/client/assets/books/generated/the-one-handed-girl/processing_notes.md",
+        "app/client/assets/books/generated/the-one-handed-girl/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-one-handed-girl.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"The One-Handed Girl\"; parent collection \"The Lilac Fairy Book\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "Andrew Lang is source-backed as editor; rights metadata preserves that role, the legacy creator array contains no Unknown Author, and collection metadata does not replace tale metadata.",
+        "details": [
+          "Gutenberg Author line: Author: Andrew Lang",
+          "visible editor byline: Edited by Andrew Lang",
+          "Rights editor: Andrew Lang"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 27255",
+          "Generated characters: 27255",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The One-Handed Girl",
+        "metadata": "Author: Andrew Lang; Edited by Andrew Lang; editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+        "rawStart": "An old couple once lived in a hut under a grove of palm trees, and they had one son and one daughter. They were all very happy together for many years, and then the father became very ill, and felt he was going to die...",
+        "generatedStart": "An old couple once lived in a hut under a grove of palm trees, and they had one son and one daughter. They were all very happy together for many years, and then the father became very ill, and felt he was going to die...",
+        "rawEnd": "...! our son is growing quite a big boy.’ ‘And what shall be done to your brother?’ asked the king, who was glad to think that someone had acted in this matter worse than himself. ‘Put him out of the town,’ answered she.",
+        "generatedEnd": "...! our son is growing quite a big boy.’ ‘And what shall be done to your brother?’ asked the king, who was glad to think that someone had acted in this matter worse than himself. ‘Put him out of the town,’ answered she.",
+        "previewStart": "An old couple once lived in a hut under a grove of palm trees, and they had one son and one daughter. They were all very happy together for many years, and then the father became very ill, and felt he was going to die..."
+      }
+    },
+    {
+      "slug": "the-raspberry-worm",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-raspberry-worm/manifest.json",
+        "app/client/assets/books/generated/the-raspberry-worm/cleaned_book.json",
+        "app/client/assets/books/generated/the-raspberry-worm/processed_book.json",
+        "app/client/assets/books/generated/the-raspberry-worm/rights_report.json",
+        "app/client/assets/books/generated/the-raspberry-worm/processing_notes.md",
+        "app/client/assets/books/generated/the-raspberry-worm/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-raspberry-worm.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"The Raspberry Worm\"; parent collection \"The Lilac Fairy Book\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "Andrew Lang is source-backed as editor; rights metadata preserves that role, the legacy creator array contains no Unknown Author, and collection metadata does not replace tale metadata.",
+        "details": [
+          "Gutenberg Author line: Author: Andrew Lang",
+          "visible editor byline: Edited by Andrew Lang",
+          "Rights editor: Andrew Lang"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 24609",
+          "Generated characters: 24609",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The Raspberry Worm",
+        "metadata": "Author: Andrew Lang; Edited by Andrew Lang; editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+        "rawStart": "‘Phew!’ cried Lisa. ‘Ugh!’ cried Aina. ‘What now?’ cried the big sister. ‘A worm!’ cried Lisa. ‘On the raspberry!’ cried Aina. ‘Kill it!’ cried Otto. ‘What a fuss over a poor little worm!’ said the big sister scornful...",
+        "generatedStart": "‘Phew!’ cried Lisa. ‘Ugh!’ cried Aina. ‘What now?’ cried the big sister. ‘A worm!’ cried Lisa. ‘On the raspberry!’ cried Aina. ‘Kill it!’ cried Otto. ‘What a fuss over a poor little worm!’ said the big sister scornful...",
+        "rawEnd": "...ard crushed into powder in the heather. Then Bernez went home, and showed his wealth to Marzinne, who this time did not refuse him as a brother-in-law, and he and Rozennik were married, and lived happy for ever after.",
+        "generatedEnd": "...ard crushed into powder in the heather. Then Bernez went home, and showed his wealth to Marzinne, who this time did not refuse him as a brother-in-law, and he and Rozennik were married, and lived happy for ever after.",
+        "previewStart": "‘Phew!’ cried Lisa. ‘Ugh!’ cried Aina. ‘What now?’ cried the big sister. ‘A worm!’ cried Lisa. ‘On the raspberry!’ cried Aina. ‘Kill it!’ cried Otto. ‘What a fuss over a poor little worm!’ said the big sister scornful..."
+      }
+    },
+    {
+      "slug": "the-rich-brother-and-the-poor-brother",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-rich-brother-and-the-poor-brother/manifest.json",
+        "app/client/assets/books/generated/the-rich-brother-and-the-poor-brother/cleaned_book.json",
+        "app/client/assets/books/generated/the-rich-brother-and-the-poor-brother/processed_book.json",
+        "app/client/assets/books/generated/the-rich-brother-and-the-poor-brother/rights_report.json",
+        "app/client/assets/books/generated/the-rich-brother-and-the-poor-brother/processing_notes.md",
+        "app/client/assets/books/generated/the-rich-brother-and-the-poor-brother/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-rich-brother-and-the-poor-brother.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"The Rich Brother and the Poor Brother\"; parent collection \"The Lilac Fairy Book\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "Andrew Lang is source-backed as editor; rights metadata preserves that role, the legacy creator array contains no Unknown Author, and collection metadata does not replace tale metadata.",
+        "details": [
+          "Gutenberg Author line: Author: Andrew Lang",
+          "visible editor byline: Edited by Andrew Lang",
+          "Rights editor: Andrew Lang"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 19971",
+          "Generated characters: 19971",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The Rich Brother and the Poor Brother",
+        "metadata": "Author: Andrew Lang; Edited by Andrew Lang; editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+        "rawStart": "There was once a rich old man who had two sons, and as his wife was dead, the elder lived with him, and helped him to look after his property. For a long time all went well; the young man got up very early in the morn...",
+        "generatedStart": "There was once a rich old man who had two sons, and as his wife was dead, the elder lived with him, and helped him to look after his property. For a long time all went well; the young man got up very early in the morn...",
+        "rawEnd": "... and slowly shook their heads. ‘We will pay the fine,’ said they, and the judge nodded. So the poor man rode the mule home, and brought back to his family enough money to keep them in comfort to the end of their days.",
+        "generatedEnd": "... and slowly shook their heads. ‘We will pay the fine,’ said they, and the judge nodded. So the poor man rode the mule home, and brought back to his family enough money to keep them in comfort to the end of their days.",
+        "previewStart": "There was once a rich old man who had two sons, and as his wife was dead, the elder lived with him, and helped him to look after his property. For a long time all went well; the young man got up very early in the morn..."
+      }
+    },
+    {
+      "slug": "jimmy-goggles-the-god",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/jimmy-goggles-the-god/manifest.json",
+        "app/client/assets/books/generated/jimmy-goggles-the-god/cleaned_book.json",
+        "app/client/assets/books/generated/jimmy-goggles-the-god/processed_book.json",
+        "app/client/assets/books/generated/jimmy-goggles-the-god/rights_report.json",
+        "app/client/assets/books/generated/jimmy-goggles-the-god/processing_notes.md",
+        "app/client/assets/books/generated/jimmy-goggles-the-god/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/jimmy-goggles-the-god.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"Jimmy Goggles the God\"; parent collection \"Twelve Stories and a Dream\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "H. G. Wells is source-backed as author, no Unknown Author appears, and no parent collection metadata replaces the individual story metadata.",
+        "details": [
+          "Gutenberg Author line: Author: H. G. Wells",
+          "Rights editor: "
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 27087",
+          "Generated characters: 27087",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "JIMMY GOGGLES THE GOD",
+        "metadata": "Author: H. G. Wells; author as identified by the source",
+        "rawStart": "“It isn't every one who's been a god,” said the sunburnt man. “But it's happened to me. Among other things.” I intimated my sense of his condescension. “It don't leave much for ambition, does it?” said the sunburnt ma...",
+        "generatedStart": "“It isn't every one who's been a god,” said the sunburnt man. “But it's happened to me. Among other things.” I intimated my sense of his condescension. “It don't leave much for ambition, does it?” said the sunburnt ma...",
+        "rawEnd": "...ing. My face was my fortune, as the saying is. And just a squeak of eight thousand pounds of gold—fifth share. But the natives cut up rusty, thank goodness, because they thought it was him had driven their luck away.”",
+        "generatedEnd": "...ing. My face was my fortune, as the saying is. And just a squeak of eight thousand pounds of gold—fifth share. But the natives cut up rusty, thank goodness, because they thought it was him had driven their luck away.”",
+        "previewStart": "“It isn't every one who's been a god,” said the sunburnt man. “But it's happened to me. Among other things.” I intimated my sense of his condescension. “It don't leave much for ambition, does it?” said the sunburnt ma..."
+      }
+    },
+    {
+      "slug": "miss-winchelsea-s-heart",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/miss-winchelsea-s-heart/manifest.json",
+        "app/client/assets/books/generated/miss-winchelsea-s-heart/cleaned_book.json",
+        "app/client/assets/books/generated/miss-winchelsea-s-heart/processed_book.json",
+        "app/client/assets/books/generated/miss-winchelsea-s-heart/rights_report.json",
+        "app/client/assets/books/generated/miss-winchelsea-s-heart/processing_notes.md",
+        "app/client/assets/books/generated/miss-winchelsea-s-heart/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/miss-winchelsea-s-heart.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"Miss Winchelsea’s Heart\"; parent collection \"Twelve Stories and a Dream\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "H. G. Wells is source-backed as author, no Unknown Author appears, and no parent collection metadata replaces the individual story metadata.",
+        "details": [
+          "Gutenberg Author line: Author: H. G. Wells",
+          "Rights editor: "
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 38907",
+          "Generated characters: 38907",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "MISS WINCHELSEA'S HEART",
+        "metadata": "Author: H. G. Wells; author as identified by the source",
+        "rawStart": "Miss Winchelsea was going to Rome. The matter had filled her mind for a month or more, and had overflowed so abundantly into her conversation that quite a number of people who were not going to Rome, and who were not ...",
+        "generatedStart": "Miss Winchelsea was going to Rome. The matter had filled her mind for a month or more, and had overflowed so abundantly into her conversation that quite a number of people who were not going to Rome, and who were not ...",
+        "rawEnd": "...end. Under various excuses she avoided visiting them again. After a time the visitor's room was occupied by their two little boys, and Fanny's invitations ceased. The intimacy of her letters had long since faded away.",
+        "generatedEnd": "...end. Under various excuses she avoided visiting them again. After a time the visitor's room was occupied by their two little boys, and Fanny's invitations ceased. The intimacy of her letters had long since faded away.",
+        "previewStart": "Miss Winchelsea was going to Rome. The matter had filled her mind for a month or more, and had overflowed so abundantly into her conversation that quite a number of people who were not going to Rome, and who were not ..."
+      }
+    },
+    {
+      "slug": "mr-brisher-s-treasure",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/mr-brisher-s-treasure/manifest.json",
+        "app/client/assets/books/generated/mr-brisher-s-treasure/cleaned_book.json",
+        "app/client/assets/books/generated/mr-brisher-s-treasure/processed_book.json",
+        "app/client/assets/books/generated/mr-brisher-s-treasure/rights_report.json",
+        "app/client/assets/books/generated/mr-brisher-s-treasure/processing_notes.md",
+        "app/client/assets/books/generated/mr-brisher-s-treasure/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/mr-brisher-s-treasure.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"Mr. Brisher’s Treasure\"; parent collection \"Twelve Stories and a Dream\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "H. G. Wells is source-backed as author, no Unknown Author appears, and no parent collection metadata replaces the individual story metadata.",
+        "details": [
+          "Gutenberg Author line: Author: H. G. Wells",
+          "Rights editor: "
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 19559",
+          "Generated characters: 19559",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "MR. BRISHER'S TREASURE",
+        "metadata": "Author: H. G. Wells; author as identified by the source",
+        "rawStart": "“You can't be TOO careful WHO you marry,” said Mr. Brisher, and pulled thoughtfully with a fat-wristed hand at the lank moustache that hides his want of chin. “That's why—” I ventured. “Yes,” said Mr. Brisher, with a ...",
+        "generatedStart": "“You can't be TOO careful WHO you marry,” said Mr. Brisher, and pulled thoughtfully with a fat-wristed hand at the lank moustache that hides his want of chin. “That's why—” I ventured. “Yes,” said Mr. Brisher, with a ...",
+        "rawEnd": "...they made of it. But they got 'im, though he dodged tremenjous. Traced 'is 'aving passed, oh!—nearly a dozen bad 'arf-crowns.” “And you didn't—?” “No fear. And it didn't do 'IM much good to say it was treasure trove.”",
+        "generatedEnd": "...they made of it. But they got 'im, though he dodged tremenjous. Traced 'is 'aving passed, oh!—nearly a dozen bad 'arf-crowns.” “And you didn't—?” “No fear. And it didn't do 'IM much good to say it was treasure trove.”",
+        "previewStart": "“You can't be TOO careful WHO you marry,” said Mr. Brisher, and pulled thoughtfully with a fat-wristed hand at the lank moustache that hides his want of chin. “That's why—” I ventured. “Yes,” said Mr. Brisher, with a ..."
+      }
+    },
+    {
+      "slug": "mr-ledbetter-s-vacation",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/mr-ledbetter-s-vacation/manifest.json",
+        "app/client/assets/books/generated/mr-ledbetter-s-vacation/cleaned_book.json",
+        "app/client/assets/books/generated/mr-ledbetter-s-vacation/processed_book.json",
+        "app/client/assets/books/generated/mr-ledbetter-s-vacation/rights_report.json",
+        "app/client/assets/books/generated/mr-ledbetter-s-vacation/processing_notes.md",
+        "app/client/assets/books/generated/mr-ledbetter-s-vacation/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/mr-ledbetter-s-vacation.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"Mr. Ledbetter’s Vacation\"; parent collection \"Twelve Stories and a Dream\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "H. G. Wells is source-backed as author, no Unknown Author appears, and no parent collection metadata replaces the individual story metadata.",
+        "details": [
+          "Gutenberg Author line: Author: H. G. Wells",
+          "Rights editor: "
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 38720",
+          "Generated characters: 38720",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "MR. LEDBETTER'S VACATION",
+        "metadata": "Author: H. G. Wells; author as identified by the source",
+        "rawStart": "My friend, Mr. Ledbetter, is a round-faced little man, whose natural mildness of eye is gigantically exaggerated when you catch the beam through his glasses, and whose deep, deliberate voice irritates irritable people...",
+        "generatedStart": "My friend, Mr. Ledbetter, is a round-faced little man, whose natural mildness of eye is gigantically exaggerated when you catch the beam through his glasses, and whose deep, deliberate voice irritates irritable people...",
+        "rawEnd": "...t the end he repeated his request for me to burn the letter. So the remarkable story of Mr. Ledbetter's Vacation ends. That breach with his aunt was not of long duration. The old lady had forgiven him before she died.",
+        "generatedEnd": "...t the end he repeated his request for me to burn the letter. So the remarkable story of Mr. Ledbetter's Vacation ends. That breach with his aunt was not of long duration. The old lady had forgiven him before she died.",
+        "previewStart": "My friend, Mr. Ledbetter, is a round-faced little man, whose natural mildness of eye is gigantically exaggerated when you catch the beam through his glasses, and whose deep, deliberate voice irritates irritable people..."
+      }
+    },
+    {
+      "slug": "mr-skelmersdale-in-fairyland",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/mr-skelmersdale-in-fairyland/manifest.json",
+        "app/client/assets/books/generated/mr-skelmersdale-in-fairyland/cleaned_book.json",
+        "app/client/assets/books/generated/mr-skelmersdale-in-fairyland/processed_book.json",
+        "app/client/assets/books/generated/mr-skelmersdale-in-fairyland/rights_report.json",
+        "app/client/assets/books/generated/mr-skelmersdale-in-fairyland/processing_notes.md",
+        "app/client/assets/books/generated/mr-skelmersdale-in-fairyland/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/mr-skelmersdale-in-fairyland.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"Mr. Skelmersdale in Fairyland\"; parent collection \"Twelve Stories and a Dream\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "H. G. Wells is source-backed as author, no Unknown Author appears, and no parent collection metadata replaces the individual story metadata.",
+        "details": [
+          "Gutenberg Author line: Author: H. G. Wells",
+          "Rights editor: "
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 28907",
+          "Generated characters: 28907",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "MR. SKELMERSDALE IN FAIRYLAND",
+        "metadata": "Author: H. G. Wells; author as identified by the source",
+        "rawStart": "“There's a man in that shop,” said the Doctor, “who has been in Fairyland.” “Nonsense!” I said, and stared back at the shop. It was the usual village shop, post-office, telegraph wire on its brow, zinc pans and brushe...",
+        "generatedStart": "“There's a man in that shop,” said the Doctor, “who has been in Fairyland.” “Nonsense!” I said, and stared back at the shop. It was the usual village shop, post-office, telegraph wire on its brow, zinc pans and brushe...",
+        "rawEnd": "...o difficult for him to express in words. “One gets talking,” he said at last at the door, and smiled wanly, and so vanished from my eyes. And that is the tale of Mr. Skelmersdale in Fairyland just as he told it to me.",
+        "generatedEnd": "...o difficult for him to express in words. “One gets talking,” he said at last at the door, and smiled wanly, and so vanished from my eyes. And that is the tale of Mr. Skelmersdale in Fairyland just as he told it to me.",
+        "previewStart": "“There's a man in that shop,” said the Doctor, “who has been in Fairyland.” “Nonsense!” I said, and stared back at the shop. It was the usual village shop, post-office, telegraph wire on its brow, zinc pans and brushe..."
+      }
+    },
+    {
+      "slug": "the-new-accelerator",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-new-accelerator/manifest.json",
+        "app/client/assets/books/generated/the-new-accelerator/cleaned_book.json",
+        "app/client/assets/books/generated/the-new-accelerator/processed_book.json",
+        "app/client/assets/books/generated/the-new-accelerator/rights_report.json",
+        "app/client/assets/books/generated/the-new-accelerator/processing_notes.md",
+        "app/client/assets/books/generated/the-new-accelerator/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-new-accelerator.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual title preserved exactly as \"The New Accelerator\"; parent collection \"Twelve Stories and a Dream\" is excluded from title and playback.",
+        "details": []
+      },
+      "authorCompilerCollectorTranslatorRetellerEditorVerdict": {
+        "status": "pass",
+        "summary": "H. G. Wells is source-backed as author, no Unknown Author appears, and no parent collection metadata replaces the individual story metadata.",
+        "details": [
+          "Gutenberg Author line: Author: H. G. Wells",
+          "Rights editor: "
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 30116",
+          "Generated characters: 30116",
+          "All generated copies agree: yes"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Body starts at the dry-run verified first readable prose phrase.",
+        "details": []
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "True readable ending and final sentence are preserved exactly after sanitization.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "One source-based section is appropriate for this undivided tale and is default-selected.",
+        "details": []
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No parent collection title, TOC, source/license/contributor/transcriber/byline-only material enters playback; prose, punctuation, quotes, dialogue, wrapped lines, and ending remain exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts at real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All readable story content is included by default and selected/default source order begins with the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "THE NEW ACCELERATOR",
+        "metadata": "Author: H. G. Wells; author as identified by the source",
+        "rawStart": "Certainly, if ever a man found a guinea when he was looking for a pin it is my good friend Professor Gibberne. I have heard before of investigators overshooting the mark, but never quite to the extent that he has done...",
+        "generatedStart": "Certainly, if ever a man found a guinea when he was looking for a pin it is my good friend Professor Gibberne. I have heard before of investigators overshooting the mark, but never quite to the extent that he has done...",
+        "rawEnd": "...very thoroughly, and we have decided that this is purely a matter of medical jurisprudence and altogether outside our province. We shall manufacture and sell the Accelerator, and, as for the consequences—we shall see.",
+        "generatedEnd": "...very thoroughly, and we have decided that this is purely a matter of medical jurisprudence and altogether outside our province. We shall manufacture and sell the Accelerator, and, as for the consequences—we shall see.",
+        "previewStart": "Certainly, if ever a man found a guinea when he was looking for a pin it is my good friend Professor Gibberne. I have heard before of investigators overshooting the mark, but never quite to the extent that he has done..."
+      }
+    }
+  ]
+}
