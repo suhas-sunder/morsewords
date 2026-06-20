@@ -81,7 +81,12 @@ type UnresolvedSourceBook = {
 
 type DryRunReport = {
   schemaVersion: 1;
-  reportName: "pilot-dry-run-12" | "pilot-dry-run-13" | "pilot-dry-run-14" | "pilot-dry-run-15";
+  reportName:
+    | "pilot-dry-run-12"
+    | "pilot-dry-run-13"
+    | "pilot-dry-run-14"
+    | "pilot-dry-run-15"
+    | "pilot-dry-run-16";
   selectedBooks: string[];
   selectedCount: number;
   counts: {
@@ -231,13 +236,15 @@ type ManualBoundary = {
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
 const writeBatch =
-  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "15"
-    ? 15
-    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "14"
-    ? 14
-    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "13"
-      ? 13
-      : 12;
+  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "16"
+    ? 16
+    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "15"
+      ? 15
+      : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "14"
+        ? 14
+        : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "13"
+          ? 13
+          : 12;
 const dryRunReportName = `pilot-dry-run-${writeBatch}` as const;
 const writeReportName = `pilot-write-${writeBatch}` as const;
 const tempBooksRoot = path.join(repoRoot, "app/client/assets/temp-books");
@@ -255,8 +262,31 @@ const dryRunReportPath = path.join(dryRunRoot, `${dryRunReportName}.json`);
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 const previewManifestPath = path.join(previewRoot, "manifest.json");
 
-const SELECTED_BATCH: readonly string[] = writeBatch === 15
+const SELECTED_BATCH: readonly string[] = writeBatch === 16
   ? [
+      "the-purple-of-the-balkan-kings",
+      "the-seven-cream-jugs",
+      "the-sheep",
+      "the-threat",
+      "the-toys-of-peace",
+      "the-wolves-of-cernogratz",
+      "how-an-old-man-lost-his-wen",
+      "momotaro-or-the-story-of-the-son-of-a-peach",
+      "my-lord-bag-of-rice",
+      "the-mirror-of-matsuyama",
+      "the-ogre-of-rashomon",
+      "the-quarrel-of-the-monkey-and-the-crab",
+      "the-sagacious-monkey-and-the-boar",
+      "the-shinansha-or-the-south-pointing-carriage",
+      "the-stones-of-five-colors-and-the-empress-jokwa",
+      "the-story-of-prince-yamato-take",
+      "the-story-of-princess-hase",
+      "the-white-hare-and-the-crocodiles",
+      "the-golden-goose",
+      "the-turnip",
+    ]
+  : writeBatch === 15
+    ? [
       "a-bread-and-butter-miss",
       "bertie-s-christmas-eve",
       "excepting-mrs-pentherby",

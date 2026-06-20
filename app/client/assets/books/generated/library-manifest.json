@@ -15447,6 +15447,986 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-phantom-luncheon/manifest.json"
+    },
+    {
+      "slug": "the-purple-of-the-balkan-kings",
+      "title": "The Purple of the Balkan Kings",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "c844afbc4a0feee1",
+      "contentHash": "c844afbc4a0feee104a9c6ac8f1ad552bf1eeccd7a177d67fb49a66acb8fb7a9",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Purple of the Balkan Kings"
+      },
+      "stats": {
+        "originalCharacterCount": 8258,
+        "cleanedCharacterCount": 6451,
+        "wordCount": 1067,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-purple-of-the-balkan-kings/manifest.json"
+    },
+    {
+      "slug": "the-seven-cream-jugs",
+      "title": "The Seven Cream Jugs",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "d1e583757546c3bb",
+      "contentHash": "d1e583757546c3bb8c20309c620d8a3eeb3de2066f31158b089f951c2db308f2",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Seven Cream Jugs"
+      },
+      "stats": {
+        "originalCharacterCount": 13572,
+        "cleanedCharacterCount": 11597,
+        "wordCount": 2044,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-seven-cream-jugs/manifest.json"
+    },
+    {
+      "slug": "the-sheep",
+      "title": "The Sheep",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "aa73f6e0ed360ae3",
+      "contentHash": "aa73f6e0ed360ae3e497c2b69304435758659b012b3661cdfb9b5240946893fa",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Sheep"
+      },
+      "stats": {
+        "originalCharacterCount": 13101,
+        "cleanedCharacterCount": 11216,
+        "wordCount": 1967,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-sheep/manifest.json"
+    },
+    {
+      "slug": "the-threat",
+      "title": "The Threat",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "c03cada757b5e1b2",
+      "contentHash": "c03cada757b5e1b26d2c51a5acf37c1d22eb332159da464694bcb71f262c93b0",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Threat"
+      },
+      "stats": {
+        "originalCharacterCount": 11457,
+        "cleanedCharacterCount": 9594,
+        "wordCount": 1642,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-threat/manifest.json"
+    },
+    {
+      "slug": "the-toys-of-peace",
+      "title": "The Toys of Peace",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "f330fe03abb1a452",
+      "contentHash": "f330fe03abb1a45214a411c3c86f29e5f8adbabbceb373495f36b4dee01780dd",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Toys of Peace"
+      },
+      "stats": {
+        "originalCharacterCount": 12848,
+        "cleanedCharacterCount": 10935,
+        "wordCount": 1896,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-toys-of-peace/manifest.json"
+    },
+    {
+      "slug": "the-wolves-of-cernogratz",
+      "title": "The Wolves of Cernogratz",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "9294ba6566436bd4",
+      "contentHash": "9294ba6566436bd403b90f19e7275dc24ed678f32f60ddb5d7290d7f0c85c55b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Wolves of Cernogratz"
+      },
+      "stats": {
+        "originalCharacterCount": 11284,
+        "cleanedCharacterCount": 9385,
+        "wordCount": 1706,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-wolves-of-cernogratz/manifest.json"
+    },
+    {
+      "slug": "how-an-old-man-lost-his-wen",
+      "title": "How an Old Man Lost His Wen",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "307a263810a204a1",
+      "contentHash": "307a263810a204a1c6b6c7fce13a2cca6e0d537978193a1d76b63a816beaa17b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for How an Old Man Lost His Wen"
+      },
+      "stats": {
+        "originalCharacterCount": 12546,
+        "cleanedCharacterCount": 11195,
+        "wordCount": 2174,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "how-an-old-man-lost-his-wen/manifest.json"
+    },
+    {
+      "slug": "momotaro-or-the-story-of-the-son-of-a-peach",
+      "title": "Momotaro, or the Story of the Son of a Peach",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "e8c4448e9ace7816",
+      "contentHash": "e8c4448e9ace78167d4d7b2e9744cae786bc1e93791744f8a8517b43776bf94a",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Momotaro, or the Story of the Son of a Peach"
+      },
+      "stats": {
+        "originalCharacterCount": 24213,
+        "cleanedCharacterCount": 22561,
+        "wordCount": 4416,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "momotaro-or-the-story-of-the-son-of-a-peach/manifest.json"
+    },
+    {
+      "slug": "my-lord-bag-of-rice",
+      "title": "My Lord Bag of Rice",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "47a2a464bf7fcd09",
+      "contentHash": "47a2a464bf7fcd090a754b9a20dba8a159d454554cf9bf52e98d3726852484d6",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for My Lord Bag of Rice"
+      },
+      "stats": {
+        "originalCharacterCount": 13692,
+        "cleanedCharacterCount": 12340,
+        "wordCount": 2324,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "my-lord-bag-of-rice/manifest.json"
+    },
+    {
+      "slug": "the-mirror-of-matsuyama",
+      "title": "The Mirror of Matsuyama",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "15cb4decb64121de",
+      "contentHash": "15cb4decb64121de537b405371dc1a718e7d3a84502e050a9de207b8db8ca2f1",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Mirror of Matsuyama"
+      },
+      "stats": {
+        "originalCharacterCount": 29392,
+        "cleanedCharacterCount": 27756,
+        "wordCount": 5314,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-mirror-of-matsuyama/manifest.json"
+    },
+    {
+      "slug": "the-ogre-of-rashomon",
+      "title": "The Ogre of Rashomon",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "33681358bf906a9d",
+      "contentHash": "33681358bf906a9d481a425cf2cf0b076e83c0d2d95fd2e9f4759bf014f47001",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Ogre of Rashomon"
+      },
+      "stats": {
+        "originalCharacterCount": 12750,
+        "cleanedCharacterCount": 11394,
+        "wordCount": 2237,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-ogre-of-rashomon/manifest.json"
+    },
+    {
+      "slug": "the-quarrel-of-the-monkey-and-the-crab",
+      "title": "The Quarrel of the Monkey and the Crab",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "31e94d13ec9aa601",
+      "contentHash": "31e94d13ec9aa601253d245538464ebc25b022cde7a4734ea317aff9da63f9ec",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Quarrel of the Monkey and the Crab"
+      },
+      "stats": {
+        "originalCharacterCount": 15602,
+        "cleanedCharacterCount": 14202,
+        "wordCount": 2722,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-quarrel-of-the-monkey-and-the-crab/manifest.json"
+    },
+    {
+      "slug": "the-sagacious-monkey-and-the-boar",
+      "title": "The Sagacious Monkey and the Boar",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "db8eed7df6aa0e9a",
+      "contentHash": "db8eed7df6aa0e9a2c3fc02d63850dff66c4abd1347a2babedae134f3eb3308d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Sagacious Monkey and the Boar"
+      },
+      "stats": {
+        "originalCharacterCount": 5963,
+        "cleanedCharacterCount": 4738,
+        "wordCount": 943,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-sagacious-monkey-and-the-boar/manifest.json"
+    },
+    {
+      "slug": "the-shinansha-or-the-south-pointing-carriage",
+      "title": "The “Shinansha,” or the South Pointing Carriage",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "bd66959c46f8d604",
+      "contentHash": "bd66959c46f8d604fbe8b2537327f7df45fff471a2effd51e44f7ab307e06f70",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The “Shinansha,” or the South Pointing Carriage"
+      },
+      "stats": {
+        "originalCharacterCount": 7608,
+        "cleanedCharacterCount": 6339,
+        "wordCount": 1187,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-shinansha-or-the-south-pointing-carriage/manifest.json"
+    },
+    {
+      "slug": "the-stones-of-five-colors-and-the-empress-jokwa",
+      "title": "The Stones of Five Colors and the Empress Jokwa",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "4f750ee229c37b8d",
+      "contentHash": "4f750ee229c37b8d360f41aa64154aa50298eaf766183286039d085e49a9ce7c",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Stones of Five Colors and the Empress Jokwa"
+      },
+      "stats": {
+        "originalCharacterCount": 17768,
+        "cleanedCharacterCount": 16301,
+        "wordCount": 3055,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-stones-of-five-colors-and-the-empress-jokwa/manifest.json"
+    },
+    {
+      "slug": "the-story-of-prince-yamato-take",
+      "title": "The Story of Prince Yamato Take",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "e763159a5cb80c8f",
+      "contentHash": "e763159a5cb80c8fb8ac31ac857c6215aa72051d89c6eee15b864184d65e19da",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Story of Prince Yamato Take"
+      },
+      "stats": {
+        "originalCharacterCount": 30038,
+        "cleanedCharacterCount": 28389,
+        "wordCount": 5338,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-story-of-prince-yamato-take/manifest.json"
+    },
+    {
+      "slug": "the-story-of-princess-hase",
+      "title": "The Story of Princess Hase",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "0d670a0fd99981ac",
+      "contentHash": "0d670a0fd99981ac7498a331d1d6178f41eeeffb23f220cf2c4e18e6d8d73891",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Story of Princess Hase"
+      },
+      "stats": {
+        "originalCharacterCount": 18015,
+        "cleanedCharacterCount": 16592,
+        "wordCount": 3016,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-story-of-princess-hase/manifest.json"
+    },
+    {
+      "slug": "the-white-hare-and-the-crocodiles",
+      "title": "The White Hare and the Crocodiles",
+      "author": [
+        "Yei Theodora Ozaki"
+      ],
+      "contentVersion": "1ad55749b36a538f",
+      "contentHash": "1ad55749b36a538f1d2c3c9535f2b9557e51e00ad56f7c5eadc1b20b82091006",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4018",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4018",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The White Hare and the Crocodiles"
+      },
+      "stats": {
+        "originalCharacterCount": 12389,
+        "cleanedCharacterCount": 11017,
+        "wordCount": 2151,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-white-hare-and-the-crocodiles/manifest.json"
+    },
+    {
+      "slug": "the-golden-goose",
+      "title": "The Golden Goose",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "cb8afe5363268524",
+      "contentHash": "cb8afe5363268524fcf1eba77133d53d4d026b46349507fb588530e443193fd7",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Golden Goose"
+      },
+      "stats": {
+        "originalCharacterCount": 9265,
+        "cleanedCharacterCount": 8102,
+        "wordCount": 1588,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-golden-goose/manifest.json"
+    },
+    {
+      "slug": "the-turnip",
+      "title": "The Turnip",
+      "author": [
+        "Jacob Grimm; Wilhelm Grimm"
+      ],
+      "contentVersion": "3dec8bd1deadbf9d",
+      "contentHash": "3dec8bd1deadbf9d9148ca92523625c1af4527ae35968212da43abf798cac580",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 16 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Turnip"
+      },
+      "stats": {
+        "originalCharacterCount": 7026,
+        "cleanedCharacterCount": 5912,
+        "wordCount": 1155,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-turnip/manifest.json"
     }
   ]
 }
