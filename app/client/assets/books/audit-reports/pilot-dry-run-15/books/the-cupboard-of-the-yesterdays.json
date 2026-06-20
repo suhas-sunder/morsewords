@@ -1,0 +1,89 @@
+{
+  "slug": "the-cupboard-of-the-yesterdays",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE CUPBOARD OF THE YESTERDAYS.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Cupboard of the Yesterdays",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE CUPBOARD OF THE YESTERDAYS",
+    "lineNumber": 62
+  },
+  "expectedAuthor": [
+    "Saki"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Saki",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE CUPBOARD OF THE YESTERDAYS",
+    "First readable prose: ?War is a cruelly destructive thing,? said the Wanderer, dropping his"
+  ],
+  "realReadableStart": "The Cupboard of the Yesterdays: ?War is a cruelly destructive thing,? said the Wanderer, dropping his newspaper to the floor and staring reflectively into space. ?Ah, yes, indeed,? said the Merchant, responding readily to what seemed like a safe platitude; ?when one thinks of the loss of life and limb, the desolated homesteads, the ruined?? ?I was...",
+  "realReadableEnd": "...he piquancy of the incident was not within striking distance of his comprehension. “I should have been shocked at hearing such a thing about any one I had known,” he said. “The present war,” continued his companion, without stopping to discuss two hopelessly divergent points of view, “may be the beginning of the end",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Cupboard of the Yesterdays",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "?War is a cruelly destructive thing,? said the Wanderer, dropping his newspaper to the floor and staring reflectively into space. ?Ah, yes, indeed,? said the Merchant, responding readily to what seemed like a safe platitude; ?when one thinks of the loss of life and limb, the desolated homesteads, the ruined?? ?I was...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: “War is a cruelly destructive thing,” said the Wanderer, dropping his",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "medium",
+    "pass2Reasons": [
+      "Medium-confidence start boundary remains manageable but needs review.",
+      "Medium-confidence end boundary remains manageable but needs review.",
+      "Footnote/reference section detected."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE CUPBOARD OF THE YESTERDAYS",
+    "author": "Author: Saki",
+    "start": "The Cupboard of the Yesterdays ?War is a cruelly destructive thing,? said the Wanderer, dropping his newspaper to the floor and staring reflectively into space. ?Ah, yes, indeed,? said the Merchant, responding readily to what seemed like a safe platitude; ?when one thinks of the loss of life and limb, the desolated homesteads, the ruined?? ?I was...",
+    "end": "...he piquancy of the incident was not within striking distance of his comprehension. “I should have been shocked at hearing such a thing about any one I had known,” he said. “The present war,” continued his companion, without stopping to discuss two hopelessly divergent points of view, “may be the beginning of the end"
+  }
+}

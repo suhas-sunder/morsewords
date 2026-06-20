@@ -149,7 +149,7 @@ type BookDryRunResult = {
 
 type DryRunReport = {
   schemaVersion: 1;
-  reportName: "pilot-dry-run-13" | "pilot-dry-run-14";
+  reportName: "pilot-dry-run-13" | "pilot-dry-run-14" | "pilot-dry-run-15";
   generatedAt: string;
   branch: string;
   baseMainCommit: string;
@@ -207,7 +207,11 @@ type DryRunReport = {
 
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
-const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "14" ? 14 : 13;
+const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "15"
+  ? 15
+  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "14"
+    ? 14
+    : 13;
 const dryRunReportName = `pilot-dry-run-${dryRunBatch}` as const;
 const tempBooksRoot = path.join(repoRoot, "app/client/assets/temp-books");
 const generatedRoot = path.join(repoRoot, "app/client/assets/books/generated");
@@ -242,10 +246,21 @@ const acceptedReportPaths = [
   "app/client/assets/books/audit-reports/pilot-write-11-verification/pilot-write-11-verification.json",
   "app/client/assets/books/audit-reports/pilot-write-12/pilot-write-12.json",
   "app/client/assets/books/audit-reports/pilot-write-12-verification/pilot-write-12-verification.json",
+  ...(dryRunBatch >= 15
+    ? [
+        "app/client/assets/books/audit-reports/batch-12-prose-restoration/batch-12-prose-restoration.json",
+      ]
+    : []),
   ...(dryRunBatch >= 14
     ? [
         "app/client/assets/books/audit-reports/pilot-write-13/pilot-write-13.json",
         "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
+      ]
+    : []),
+  ...(dryRunBatch >= 15
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-14/pilot-write-14.json",
+        "app/client/assets/books/audit-reports/pilot-write-14-verification/pilot-write-14-verification.json",
       ]
     : []),
   "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
@@ -262,6 +277,12 @@ const inputReportPaths = [
   "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
   "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
   "app/client/assets/books/audit-reports/pilot-write-12-verification/pilot-write-12-verification.json",
+  ...(dryRunBatch >= 15
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-14-verification/pilot-write-14-verification.json",
+        "app/client/assets/books/audit-reports/batch-12-prose-restoration/batch-12-prose-restoration.json",
+      ]
+    : []),
   ...(dryRunBatch >= 14
     ? [
         "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
@@ -276,7 +297,30 @@ const structureJsonPath = path.join(
 const pass2JsonPath = path.join(auditRoot, "book-processing-audit-pass-2.json");
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 
-const selectedBatch: readonly string[] = dryRunBatch === 14
+const selectedBatch: readonly string[] = dryRunBatch === 15
+  ? [
+      "a-bread-and-butter-miss",
+      "bertie-s-christmas-eve",
+      "excepting-mrs-pentherby",
+      "fate",
+      "forewarned",
+      "hyacinth",
+      "louis",
+      "louise",
+      "morlvera",
+      "tea",
+      "the-bull",
+      "the-cupboard-of-the-yesterdays",
+      "the-disappearance-of-crispina-umberleigh",
+      "the-guests",
+      "the-hedgehog",
+      "the-image-of-the-lost-soul",
+      "the-interlopers",
+      "the-mappined-life",
+      "the-occasional-garden",
+      "the-phantom-luncheon",
+    ]
+  : dryRunBatch === 14
   ? [
       "briar-rose",
       "the-blue-light",
@@ -430,6 +474,27 @@ const titleOverrides: Record<string, string> = {
   "the-straw-the-coal-and-the-bean": "The Straw, the Coal, and the Bean",
   "the-three-languages": "The Three Languages",
   "the-travelling-musicians": "The Travelling Musicians",
+  "a-bread-and-butter-miss": "A Bread and Butter Miss",
+  "bertie-s-christmas-eve": "Bertie's Christmas Eve",
+  "excepting-mrs-pentherby": "Excepting Mrs. Pentherby",
+  fate: "Fate",
+  forewarned: "Forewarned",
+  hyacinth: "Hyacinth",
+  louis: "Louis",
+  louise: "Louise",
+  morlvera: "Morlvera",
+  tea: "Tea",
+  "the-bull": "The Bull",
+  "the-cupboard-of-the-yesterdays": "The Cupboard of the Yesterdays",
+  "the-disappearance-of-crispina-umberleigh":
+    "The Disappearance of Crispina Umberleigh",
+  "the-guests": "The Guests",
+  "the-hedgehog": "The Hedgehog",
+  "the-image-of-the-lost-soul": "The Image of the Lost Soul",
+  "the-interlopers": "The Interlopers",
+  "the-mappined-life": "The Mappined Life",
+  "the-occasional-garden": "The Occasional Garden",
+  "the-phantom-luncheon": "The Phantom Luncheon",
 };
 
 const singleStoryStartPhrases: Record<string, string> = {
@@ -533,6 +598,41 @@ const singleStoryStartPhrases: Record<string, string> = {
     "An honest farmer had once an ass that had been a faithful servant to him",
   mark: "Augustus Mellowkent was a novelist",
   "quail-seed": "“The outlook is not encouraging for us smaller businesses",
+  "a-bread-and-butter-miss":
+    "“Starling Chatter and Oakhill have both dropped back in the betting,”",
+  "bertie-s-christmas-eve":
+    "It was Christmas Eve, and the family circle of Luke Steffink, Esq., was",
+  "excepting-mrs-pentherby":
+    "It was Reggie Bruttle’s own idea for converting what had threatened to be",
+  fate: "Rex Dillot was nearly twenty-four, almost good-looking and quite",
+  forewarned:
+    "Alethia Debchance sat in a corner of an otherwise empty railway carriage,",
+  hyacinth:
+    "“The new fashion of introducing the candidate’s children into an election",
+  louis: "“It would be jolly to spend Easter in Vienna this year,” said",
+  louise: "“The tea will be quite cold, you’d better ring for some more,” said the",
+  morlvera:
+    "The Olympic Toy Emporium occupied a conspicuous frontage in an important",
+  tea: "James Cushat-Prinkly was a young man who had always had a settled",
+  "the-bull":
+    "Tom Yorkfield had always regarded his half-brother, Laurence, with a lazy",
+  "the-cupboard-of-the-yesterdays":
+    "“War is a cruelly destructive thing,” said the Wanderer, dropping his",
+  "the-disappearance-of-crispina-umberleigh":
+    "In a first-class carriage of a train speeding Balkanward across the flat,",
+  "the-guests": "“The landscape seen from our windows is certainly charming,” said",
+  "the-hedgehog":
+    "A “Mixed Double” of young people were contesting a game of lawn tennis at",
+  "the-image-of-the-lost-soul":
+    "There were a number of carved stone figures placed at intervals along the",
+  "the-interlopers":
+    "In a forest of mixed growth somewhere on the eastern spurs of the",
+  "the-mappined-life":
+    "“These Mappin Terraces at the Zoological Gardens are a great improvement",
+  "the-occasional-garden":
+    "“Don’t talk to me about town gardens,” said Elinor Rapsley; “which means,",
+  "the-phantom-luncheon":
+    "“The Smithly-Dubbs are in Town,” said Sir James.  “I wish you would show",
 };
 
 const sectioningStartOverrides: Record<
@@ -778,6 +878,25 @@ function deriveAcceptedSlugs() {
       continue;
     }
 
+    if (relativePath.includes("batch-12-prose-restoration")) {
+      const scope = report.scope as
+        | {
+            authorizedTargets?: unknown[];
+            originalCorrectedTargets?: unknown[];
+            additionalCorrectedTargets?: unknown[];
+          }
+        | undefined;
+      const targets = [
+        ...(scope?.authorizedTargets ?? []),
+        ...(scope?.originalCorrectedTargets ?? []),
+        ...(scope?.additionalCorrectedTargets ?? []),
+      ];
+      for (const slug of targets) {
+        if (typeof slug === "string") accepted.add(slug);
+      }
+      continue;
+    }
+
     if (
       relativePath.includes("pilot-write-6-verification") ||
       relativePath.includes("pilot-write-7-verification") ||
@@ -786,7 +905,8 @@ function deriveAcceptedSlugs() {
       relativePath.includes("pilot-write-10-verification") ||
       relativePath.includes("pilot-write-11-verification") ||
       relativePath.includes("pilot-write-12-verification") ||
-      relativePath.includes("pilot-write-13-verification")
+      relativePath.includes("pilot-write-13-verification") ||
+      relativePath.includes("pilot-write-14-verification")
     ) {
       for (const book of books) {
         if (book.acceptedForMain === true && typeof book.slug === "string") {
@@ -1508,11 +1628,11 @@ function mainMarkdown(report: DryRunReport) {
     "",
     "This is a dry-run/report-only pass. It does not write generated books, create preview assets, modify raw sources, modify Cloudflare exports, or run all-book processing.",
     "",
-    ...(dryRunBatch === 14
+    ...(dryRunBatch >= 14
       ? [
           "## Implementation Scope Note",
           "",
-          "Dry-run 14 intentionally uses `scripts/books/pilot-book-processing-dry-run-13.ts` as the shared implementation engine. The batch-14 entry point only sets `MORSEWORDS_PILOT_DRY_RUN_BATCH=14` and imports that engine; batch 13 remains the default when the environment flag is absent. The shared-file diff is therefore required dry-run-14 implementation, not an unrelated modification.",
+          `Dry-run ${dryRunBatch} intentionally uses \`scripts/books/pilot-book-processing-dry-run-13.ts\` as the shared implementation engine. The batch-${dryRunBatch} entry point only sets \`MORSEWORDS_PILOT_DRY_RUN_BATCH=${dryRunBatch}\` and imports that engine; batch 13 remains the default when the environment flag is absent. The shared-file diff is therefore required dry-run-${dryRunBatch} implementation, not an unrelated modification.`,
           "",
         ]
       : []),

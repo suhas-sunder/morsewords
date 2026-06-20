@@ -1,0 +1,87 @@
+{
+  "slug": "the-image-of-the-lost-soul",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE IMAGE OF THE LOST SOUL.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Image of the Lost Soul",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE IMAGE OF THE LOST SOUL",
+    "lineNumber": 63
+  },
+  "expectedAuthor": [
+    "Saki"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Saki",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE IMAGE OF THE LOST SOUL",
+    "First readable prose: There were a number of carved stone figures placed at intervals along the"
+  ],
+  "realReadableStart": "The Image of the Lost Soul: There were a number of carved stone figures placed at intervals along the parapets of the old Cathedral; some of them represented angels, others kings and bishops, and nearly all were in attitudes of pious exaltation and composure. But one figure, low down on the cold north side of the building, had neither crown, m...",
+  "realReadableEnd": "...ornice and lay now in a broken mass on the dust-heap outside the verger’s lodge. “It is just as well,” cooed the fat pigeons, after they had peered at the matter for some minutes; “now we shall have a nice angel put up there. Certainly they will put an angel there.” “After joy . . . sorrow,” rang out the great bell.",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Image of the Lost Soul",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "There were a number of carved stone figures placed at intervals along the parapets of the old Cathedral; some of them represented angels, others kings and bishops, and nearly all were in attitudes of pious exaltation and composure. But one figure, low down on the cold north side of the building, had neither crown, m...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: There were a number of carved stone figures placed at intervals along the",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE IMAGE OF THE LOST SOUL",
+    "author": "Author: Saki",
+    "start": "The Image of the Lost Soul There were a number of carved stone figures placed at intervals along the parapets of the old Cathedral; some of them represented angels, others kings and bishops, and nearly all were in attitudes of pious exaltation and composure. But one figure, low down on the cold north side of the building, had neither crown, m...",
+    "end": "...ornice and lay now in a broken mass on the dust-heap outside the verger’s lodge. “It is just as well,” cooed the fat pigeons, after they had peered at the matter for some minutes; “now we shall have a nice angel put up there. Certainly they will put an angel there.” “After joy . . . sorrow,” rang out the great bell."
+  }
+}

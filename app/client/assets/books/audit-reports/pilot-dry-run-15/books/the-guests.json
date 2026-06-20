@@ -1,0 +1,87 @@
+{
+  "slug": "the-guests",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE GUESTS.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Guests",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE GUESTS",
+    "lineNumber": 63
+  },
+  "expectedAuthor": [
+    "Saki"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Saki",
+    "lineNumber": 13
+  },
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE GUESTS",
+    "First readable prose: ?The landscape seen from our windows is certainly charming,? said"
+  ],
+  "realReadableStart": "The Guests: ?The landscape seen from our windows is certainly charming,? said Annabel; ?those cherry orchards and green meadows, and the river winding along the valley, and the church tower peeping out among the elms, they all make a most effective picture. There?s something dreadfully sleepy and languorous about it, though; st...",
+  "realReadableEnd": "...ns fired to frighten the animal away, as the Bishop suggested, it would probably merely have left the bedroom to come into the already over-crowded drawing-room. Altogether it was rather a relief when they both left. Now, perhaps, you can understand my appreciation of a sleepy countryside where things don’t happen.”",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Guests",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "?The landscape seen from our windows is certainly charming,? said Annabel; ?those cherry orchards and green meadows, and the river winding along the valley, and the church tower peeping out among the elms, they all make a most effective picture. There?s something dreadfully sleepy and languorous about it, though; st...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: “The landscape seen from our windows is certainly charming,” said",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE GUESTS",
+    "author": "Author: Saki",
+    "start": "The Guests ?The landscape seen from our windows is certainly charming,? said Annabel; ?those cherry orchards and green meadows, and the river winding along the valley, and the church tower peeping out among the elms, they all make a most effective picture. There?s something dreadfully sleepy and languorous about it, though; st...",
+    "end": "...ns fired to frighten the animal away, as the Bishop suggested, it would probably merely have left the bedroom to come into the already over-crowded drawing-room. Altogether it was rather a relief when they both left. Now, perhaps, you can understand my appreciation of a sleepy countryside where things don’t happen.”"
+  }
+}
