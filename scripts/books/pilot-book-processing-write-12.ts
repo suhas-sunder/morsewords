@@ -81,7 +81,7 @@ type UnresolvedSourceBook = {
 
 type DryRunReport = {
   schemaVersion: 1;
-  reportName: "pilot-dry-run-12" | "pilot-dry-run-13" | "pilot-dry-run-14";
+  reportName: "pilot-dry-run-12" | "pilot-dry-run-13" | "pilot-dry-run-14" | "pilot-dry-run-15";
   selectedBooks: string[];
   selectedCount: number;
   counts: {
@@ -153,6 +153,16 @@ type BoundaryReport = {
   snippet: string | null;
 };
 
+type RawGeneratedBodyComparison = {
+  status: "pass" | "fail";
+  rawCharacterCount: number;
+  generatedCharacterCount: number;
+  sectionCount: number;
+  allGeneratedCopiesAgree: boolean;
+  message: string;
+  differences: string[];
+};
+
 type BookReport = {
   slug: string;
   dryRunStatus: DryRunStatus;
@@ -169,6 +179,7 @@ type BookReport = {
   startBoundaryUsed: BoundaryReport;
   endBoundaryUsed: BoundaryReport;
   structuralConvention: string;
+  rawVsGeneratedBodyComparisonResult: RawGeneratedBodyComparison | null;
   firstDefaultSectionAfterProcessing: SectionSnapshot;
   sectionCount: number;
   allSectionsWithWordCounts: SectionReportSummary[];
@@ -178,6 +189,7 @@ type BookReport = {
   titleDefaultStartRiskVerdict: string;
   authorMetadataVerdict: string;
   segmentationVerdict: string;
+  prosePreservationVerdict: string;
   previewVerdict: string;
   startupPreviewValid: boolean;
   allMainReadableDefaultVerdict: string;
@@ -219,7 +231,9 @@ type ManualBoundary = {
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
 const writeBatch =
-  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "14"
+  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "15"
+    ? 15
+    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "14"
     ? 14
     : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "13"
       ? 13
@@ -241,7 +255,30 @@ const dryRunReportPath = path.join(dryRunRoot, `${dryRunReportName}.json`);
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 const previewManifestPath = path.join(previewRoot, "manifest.json");
 
-const SELECTED_BATCH: readonly string[] = writeBatch === 14
+const SELECTED_BATCH: readonly string[] = writeBatch === 15
+  ? [
+      "a-bread-and-butter-miss",
+      "bertie-s-christmas-eve",
+      "excepting-mrs-pentherby",
+      "fate",
+      "forewarned",
+      "hyacinth",
+      "louis",
+      "louise",
+      "morlvera",
+      "tea",
+      "the-bull",
+      "the-cupboard-of-the-yesterdays",
+      "the-disappearance-of-crispina-umberleigh",
+      "the-guests",
+      "the-hedgehog",
+      "the-image-of-the-lost-soul",
+      "the-interlopers",
+      "the-mappined-life",
+      "the-occasional-garden",
+      "the-phantom-luncheon",
+    ]
+  : writeBatch === 14
   ? [
       "briar-rose",
       "the-blue-light",
@@ -345,6 +382,7 @@ const FUTURE_BATCH_RULE = [
   "no SOS Help!",
   "no generic preview fallback",
   "no title/TOC/source/license/contributor/transcriber/byline/parent-collection material as default playback",
+  "no real prose removed by cleanup",
   "selected/default source order begins from the first selected/default section",
 ];
 
@@ -366,6 +404,11 @@ const METADATA_OVERRIDES: Record<
     warning: string;
   }
 > = {
+  "bertie-s-christmas-eve": {
+    title: "Bertie\u2019s Christmas Eve",
+    warning:
+      "Write pass preserved the raw source apostrophe from the BERTIE\u2019S CHRISTMAS EVE heading.",
+  },
 };
 
 function readJson<T>(filePath: string): T {
@@ -1728,6 +1771,49 @@ function buildProcessedBook(
   };
 }
 
+function joinGeneratedBodyFromSections(
+  sections: Array<{ text?: string; displayText?: string }>,
+): string {
+  return sections
+    .map((section) => String(section.displayText ?? section.text ?? ""))
+    .join("\n\n");
+}
+
+function compareRawVsGeneratedBody(
+  sections: DetectedBookSection[],
+  sectionJson: GeneratedBookSectionJson[],
+  cleanedBook: CleanedBookJson,
+  processedBook: ProcessedBookJson,
+): RawGeneratedBodyComparison {
+  const rawBody = sections.map((section) => section.text).join("\n\n");
+  const generatedBody = joinGeneratedBodyFromSections(sectionJson);
+  const cleanedBody = joinGeneratedBodyFromSections(cleanedBook.sections);
+  const processedBody = processedBook.content.chapters
+    .flatMap((chapter) => chapter.sections.map((section) => section.text))
+    .join("\n\n");
+  const differences = [
+    generatedBody !== rawBody ? "section display/morse text differs from sanitized raw body" : null,
+    cleanedBody !== rawBody ? "cleaned_book text differs from sanitized raw body" : null,
+    processedBody !== rawBody ? "processed_book text differs from sanitized raw body" : null,
+    sectionJson.some((section) => section.displayText !== section.morseSourceText)
+      ? "displayText and morseSourceText differ"
+      : null,
+  ].filter((item): item is string => item !== null);
+  const allGeneratedCopiesAgree = differences.length === 0;
+
+  return {
+    status: allGeneratedCopiesAgree ? "pass" : "fail",
+    rawCharacterCount: rawBody.length,
+    generatedCharacterCount: generatedBody.length,
+    sectionCount: sections.length,
+    allGeneratedCopiesAgree,
+    message: allGeneratedCopiesAgree
+      ? "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies"
+      : "fail: generated readable body differs from the sanitized raw story body",
+    differences,
+  };
+}
+
 function buildRightsReport(
   manifest: GeneratedBookManifest,
   rawText: string,
@@ -2140,6 +2226,7 @@ function makeSkippedReport(
       snippet: null,
     },
     structuralConvention: dryRun.detectedStructuralConvention,
+    rawVsGeneratedBodyComparisonResult: null,
     firstDefaultSectionAfterProcessing: {
       id: null,
       label: null,
@@ -2157,6 +2244,7 @@ function makeSkippedReport(
     titleDefaultStartRiskVerdict: "not generated",
     authorMetadataVerdict: "not generated",
     segmentationVerdict: "not generated",
+    prosePreservationVerdict: "not generated",
     previewVerdict: "not generated",
     startupPreviewValid: false,
     allMainReadableDefaultVerdict: "not generated",
@@ -2304,6 +2392,23 @@ function processSelectedBook(dryRun: DryRunBook): {
   const sectionJson = sections.map((section) => makeSectionJson(manifest.slug, section));
   const cleanedBook = buildCleanedBook(manifest, sections);
   const processedBook = buildProcessedBook(manifest, sections);
+  const bodyComparison = compareRawVsGeneratedBody(
+    sections,
+    sectionJson,
+    cleanedBook,
+    processedBook,
+  );
+  if (bodyComparison.status !== "pass") {
+    return {
+      report: makeSkippedReport(
+        dryRun,
+        `Raw-vs-generated body comparison failed before writing: ${bodyComparison.differences.join("; ")}`,
+        duplicateCheck.message,
+      ),
+      manifest: null,
+      previewEntry: null,
+    };
+  }
   const rightsReport = buildRightsReport(manifest, rawText);
   const preview = makePreviewAsset(manifest, sections);
   if (previewLooksUnsafe(preview.asset.previewText)) {
@@ -2344,6 +2449,7 @@ function processSelectedBook(dryRun: DryRunBook): {
       `${dryRun.expectedEndBoundary}; write pass keeps the final readable section and trims trailing source noise`,
     ),
     structuralConvention: built.structuralConvention,
+    rawVsGeneratedBodyComparisonResult: bodyComparison,
     firstDefaultSectionAfterProcessing: firstDefaultSnapshot(sections),
     sectionCount: sections.length,
     allSectionsWithWordCounts: sectionSummary(sections),
@@ -2360,6 +2466,10 @@ function processSelectedBook(dryRun: DryRunBook): {
         : "requires review",
     segmentationVerdict:
       "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+    prosePreservationVerdict:
+      bodyComparison.status === "pass"
+        ? "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges"
+        : "requires review: generated body differs from sanitized raw story body",
     previewVerdict: `valid book-specific preview from ${preview.sourceSections.join(", ")}`,
     startupPreviewValid: true,
     allMainReadableDefaultVerdict:
@@ -2452,15 +2562,22 @@ function writeMarkdownReport(report: {
       `- Expected/generated title: ${book.expectedTitle} / ${book.generatedTitle ?? "n/a"}`,
       `- Expected/generated author: ${book.expectedAuthor.join(", ")} / ${book.generatedAuthor?.join(", ") ?? "n/a"}`,
       `- Author evidence: ${book.authorEvidence.source} - ${book.authorEvidence.text}`,
+      `- Generated files changed: ${book.generatedFilesChanged.length > 0 ? book.generatedFilesChanged.join(", ") : "none"}`,
+      `- Preview asset changed: ${book.previewAssetChanged ?? "none"}`,
       `- Duplicate/near-duplicate slug check: ${book.duplicateNearDuplicateSlugCheckResult}`,
       `- Structure: ${book.structuralConvention}`,
       `- Start boundary: cleaned line ${book.startBoundaryUsed.cleanedLine ?? "n/a"} - ${book.startBoundaryUsed.reason}`,
       `- End boundary: cleaned line ${book.endBoundaryUsed.cleanedLine ?? "n/a"} - ${book.endBoundaryUsed.reason}`,
+      `- Raw-vs-generated body comparison: ${book.rawVsGeneratedBodyComparisonResult?.message ?? "not generated"}`,
+      book.rawVsGeneratedBodyComparisonResult
+        ? `- Raw/generated body characters: ${book.rawVsGeneratedBodyComparisonResult.rawCharacterCount} / ${book.rawVsGeneratedBodyComparisonResult.generatedCharacterCount}`
+        : "- Raw/generated body characters: n/a",
       `- First default section after: ${book.firstDefaultSectionAfterProcessing.label ?? "n/a"} (${book.firstDefaultSectionAfterProcessing.wordCount ?? "n/a"} words)`,
       `- Section count: ${book.sectionCount}`,
       `- Title/default-start verdict: ${book.titleDefaultStartRiskVerdict}`,
       `- Author metadata verdict: ${book.authorMetadataVerdict}`,
       `- Segmentation verdict: ${book.segmentationVerdict}`,
+      `- Prose-preservation verdict: ${book.prosePreservationVerdict}`,
       `- Preview verdict: ${book.previewVerdict}`,
       `- Startup preview valid: ${book.startupPreviewValid ? "yes" : "no"}`,
       `- All-main-readable-default verdict: ${book.allMainReadableDefaultVerdict}`,

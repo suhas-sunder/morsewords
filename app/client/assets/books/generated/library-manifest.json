@@ -14467,6 +14467,986 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-travelling-musicians/manifest.json"
+    },
+    {
+      "slug": "a-bread-and-butter-miss",
+      "title": "A Bread and Butter Miss",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "cc691240e96f8acb",
+      "contentHash": "cc691240e96f8acbf1d88a3bfaa79f1d5e5be383e159312d2b4dacdfafd198cb",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Bread and Butter Miss"
+      },
+      "stats": {
+        "originalCharacterCount": 11572,
+        "cleanedCharacterCount": 9654,
+        "wordCount": 1742,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-bread-and-butter-miss/manifest.json"
+    },
+    {
+      "slug": "bertie-s-christmas-eve",
+      "title": "Bertie’s Christmas Eve",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "e1a7ddf755c89a96",
+      "contentHash": "e1a7ddf755c89a9641e121087db407bd335f52750c2be7c237a63d15ce3cb201",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Bertie’s Christmas Eve"
+      },
+      "stats": {
+        "originalCharacterCount": 13676,
+        "cleanedCharacterCount": 11750,
+        "wordCount": 2031,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "bertie-s-christmas-eve/manifest.json"
+    },
+    {
+      "slug": "excepting-mrs-pentherby",
+      "title": "Excepting Mrs. Pentherby",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "be118939585d2d6e",
+      "contentHash": "be118939585d2d6e8902a1df87c63616258b1179eecee2df0a0452b0af371c80",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Excepting Mrs. Pentherby"
+      },
+      "stats": {
+        "originalCharacterCount": 12840,
+        "cleanedCharacterCount": 10948,
+        "wordCount": 1933,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "excepting-mrs-pentherby/manifest.json"
+    },
+    {
+      "slug": "fate",
+      "title": "Fate",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "b538b6bd318950ee",
+      "contentHash": "b538b6bd318950eee2eb7917a75937946744567adcf158da09cdf534113d6980",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Fate"
+      },
+      "stats": {
+        "originalCharacterCount": 11813,
+        "cleanedCharacterCount": 9949,
+        "wordCount": 1788,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "fate/manifest.json"
+    },
+    {
+      "slug": "forewarned",
+      "title": "Forewarned",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "6093d23da0523eb5",
+      "contentHash": "6093d23da0523eb5fbaeacf6f3d657330e888190c929efc9214811608287a662",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Forewarned"
+      },
+      "stats": {
+        "originalCharacterCount": 16104,
+        "cleanedCharacterCount": 14179,
+        "wordCount": 2477,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "forewarned/manifest.json"
+    },
+    {
+      "slug": "hyacinth",
+      "title": "Hyacinth",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "12c0f9d8097e16be",
+      "contentHash": "12c0f9d8097e16bebd078684c7c1fcdd99328de81724c84207aaaf5e8876f9be",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Hyacinth"
+      },
+      "stats": {
+        "originalCharacterCount": 14867,
+        "cleanedCharacterCount": 12930,
+        "wordCount": 2318,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "hyacinth/manifest.json"
+    },
+    {
+      "slug": "louis",
+      "title": "Louis",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "024751353a1dbe84",
+      "contentHash": "024751353a1dbe84c4f5f550870f34d2fc25eebbb69466a79d282d28257e428e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Louis"
+      },
+      "stats": {
+        "originalCharacterCount": 11930,
+        "cleanedCharacterCount": 10064,
+        "wordCount": 1870,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "louis/manifest.json"
+    },
+    {
+      "slug": "louise",
+      "title": "Louise",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "8f13cf2a6fd98c8c",
+      "contentHash": "8f13cf2a6fd98c8caf34da7ce75f344ec37a178b2a76a566f076106ffbe7f6b9",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Louise"
+      },
+      "stats": {
+        "originalCharacterCount": 10091,
+        "cleanedCharacterCount": 8247,
+        "wordCount": 1549,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "louise/manifest.json"
+    },
+    {
+      "slug": "morlvera",
+      "title": "Morlvera",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "7bc64113f70296f3",
+      "contentHash": "7bc64113f70296f3a2a842d0b6e2627bc9b0cb16023031cfeda72d80f262a612",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Morlvera"
+      },
+      "stats": {
+        "originalCharacterCount": 10978,
+        "cleanedCharacterCount": 9112,
+        "wordCount": 1621,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "morlvera/manifest.json"
+    },
+    {
+      "slug": "tea",
+      "title": "Tea",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "8c3268ecf80e2568",
+      "contentHash": "8c3268ecf80e2568720b9b7bccb9221ac51f31e173b0456ec5e66d63c77bf421",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Tea"
+      },
+      "stats": {
+        "originalCharacterCount": 11050,
+        "cleanedCharacterCount": 9217,
+        "wordCount": 1613,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "tea/manifest.json"
+    },
+    {
+      "slug": "the-bull",
+      "title": "The Bull",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "dcaf7893ad3e2902",
+      "contentHash": "dcaf7893ad3e29028d0c2b181af27fc7e6510f6265a3171972932c3367e695dd",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Bull"
+      },
+      "stats": {
+        "originalCharacterCount": 11354,
+        "cleanedCharacterCount": 9515,
+        "wordCount": 1705,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-bull/manifest.json"
+    },
+    {
+      "slug": "the-cupboard-of-the-yesterdays",
+      "title": "The Cupboard of the Yesterdays",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "393562dc4849b609",
+      "contentHash": "393562dc4849b609a27cf7837029c4fe2000a0347d943891febf9ad2ac1ddaf5",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Cupboard of the Yesterdays"
+      },
+      "stats": {
+        "originalCharacterCount": 9781,
+        "cleanedCharacterCount": 7939,
+        "wordCount": 1384,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-cupboard-of-the-yesterdays/manifest.json"
+    },
+    {
+      "slug": "the-disappearance-of-crispina-umberleigh",
+      "title": "The Disappearance of Crispina Umberleigh",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "cac5d4be17f33b50",
+      "contentHash": "cac5d4be17f33b500819b7d78bc2d1770fa07c38e06e09129e15ef5652330eda",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Disappearance of Crispina Umberleigh"
+      },
+      "stats": {
+        "originalCharacterCount": 12348,
+        "cleanedCharacterCount": 10449,
+        "wordCount": 1790,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-disappearance-of-crispina-umberleigh/manifest.json"
+    },
+    {
+      "slug": "the-guests",
+      "title": "The Guests",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "85c66365329a2103",
+      "contentHash": "85c66365329a21030421e6c49cff41ee0523ea082f8f3a9c44493ab37240078e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Guests"
+      },
+      "stats": {
+        "originalCharacterCount": 10334,
+        "cleanedCharacterCount": 8492,
+        "wordCount": 1498,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-guests/manifest.json"
+    },
+    {
+      "slug": "the-hedgehog",
+      "title": "The Hedgehog",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "31fca5337cf166ac",
+      "contentHash": "31fca5337cf166ac48f9c73371f2d9ded8fd019632663f7ed5862be084a0c3f7",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Hedgehog"
+      },
+      "stats": {
+        "originalCharacterCount": 12729,
+        "cleanedCharacterCount": 10818,
+        "wordCount": 1907,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-hedgehog/manifest.json"
+    },
+    {
+      "slug": "the-image-of-the-lost-soul",
+      "title": "The Image of the Lost Soul",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "7001ed3c7d3f05b3",
+      "contentHash": "7001ed3c7d3f05b33f68cf5fbcc70788c531d19f6ac87afdec9991b11306fe85",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Image of the Lost Soul"
+      },
+      "stats": {
+        "originalCharacterCount": 6757,
+        "cleanedCharacterCount": 4964,
+        "wordCount": 883,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-image-of-the-lost-soul/manifest.json"
+    },
+    {
+      "slug": "the-interlopers",
+      "title": "The Interlopers",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "1c53ee8605a97e5d",
+      "contentHash": "1c53ee8605a97e5d3de665b1c182e2a24ec0c79cd25f28c7e2420d0cde4c30d3",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Interlopers"
+      },
+      "stats": {
+        "originalCharacterCount": 13772,
+        "cleanedCharacterCount": 11854,
+        "wordCount": 2156,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-interlopers/manifest.json"
+    },
+    {
+      "slug": "the-mappined-life",
+      "title": "The Mappined Life",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "0169baa80c314c18",
+      "contentHash": "0169baa80c314c1887d1f2b19868ac5deb505796a3b881988a99129f15b22a84",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Mappined Life"
+      },
+      "stats": {
+        "originalCharacterCount": 10897,
+        "cleanedCharacterCount": 9048,
+        "wordCount": 1614,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-mappined-life/manifest.json"
+    },
+    {
+      "slug": "the-occasional-garden",
+      "title": "The Occasional Garden",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "661e53376c48992f",
+      "contentHash": "661e53376c48992fa4f3467be3358a502a3ee3ada763cc4f71b94fa5df877555",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Occasional Garden"
+      },
+      "stats": {
+        "originalCharacterCount": 10557,
+        "cleanedCharacterCount": 8715,
+        "wordCount": 1526,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-occasional-garden/manifest.json"
+    },
+    {
+      "slug": "the-phantom-luncheon",
+      "title": "The Phantom Luncheon",
+      "author": [
+        "Saki"
+      ],
+      "contentVersion": "a1a4467a4dc888e6",
+      "contentHash": "a1a4467a4dc888e619c521f821ae6c95e9c92df055e7821f3d30e50d4ceb1a1a",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1477",
+        "releaseDate": "October 1, 1998",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1477",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 15 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Phantom Luncheon"
+      },
+      "stats": {
+        "originalCharacterCount": 10484,
+        "cleanedCharacterCount": 8606,
+        "wordCount": 1515,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-phantom-luncheon/manifest.json"
     }
   ]
 }
