@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-dry-run-24",
+  "generatedAt": "2026-06-21T08:51:17.450Z",
+  "branch": "morsewords-book-processing-pilot-dry-run-24-jun-2026",
+  "baseMainCommit": "6798c5ec51f591a8462ee470f6a771d7aafe5eb8",
+  "mode": "dry-run/report-only",
+  "selectedBooks": [],
+  "selectedCount": 0,
+  "fewerThan20SafeCandidatesRemain": true,
+  "zeroSafeCandidatesRemain": true,
+  "candidateTypeCounts": {
+    "rawOnly": 0,
+    "unresolvedSourceGeneratedReportOnly": 11
+  },
+  "counts": {
+    "controlledFirstTimeProcessing": 0,
+    "manualReview": 0,
+    "blocked": 0,
+    "skippedUnsafe": 46
+  },
+  "acceptedExclusion": {
+    "count": 455,
+    "reportInputs": [
+      "app/client/assets/books/audit-reports/pilot-write-1/pilot-write-1.json",
+      "app/client/assets/books/audit-reports/pilot-write-1-verification/pilot-write-1-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-2/pilot-write-2.json",
+      "app/client/assets/books/audit-reports/pilot-write-2-verification/pilot-write-2-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "app/client/assets/books/audit-reports/pilot-write-3-verification/pilot-write-3-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-4/pilot-write-4.json",
+      "app/client/assets/books/audit-reports/pilot-write-4-verification/pilot-write-4-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "app/client/assets/books/audit-reports/pilot-write-5-verification/pilot-write-5-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-6/pilot-write-6.json",
+      "app/client/assets/books/audit-reports/pilot-write-6-verification/pilot-write-6-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-7/pilot-write-7.json",
+      "app/client/assets/books/audit-reports/pilot-write-7-verification/pilot-write-7-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-8/pilot-write-8.json",
+      "app/client/assets/books/audit-reports/pilot-write-8-verification/pilot-write-8-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-9/pilot-write-9.json",
+      "app/client/assets/books/audit-reports/pilot-write-9-verification/pilot-write-9-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-10/pilot-write-10.json",
+      "app/client/assets/books/audit-reports/pilot-write-10-verification/pilot-write-10-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "app/client/assets/books/audit-reports/pilot-write-11-verification/pilot-write-11-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-12/pilot-write-12.json",
+      "app/client/assets/books/audit-reports/pilot-write-12-verification/pilot-write-12-verification.json",
+      "app/client/assets/books/audit-reports/batch-12-prose-restoration/batch-12-prose-restoration.json",
+      "app/client/assets/books/audit-reports/pilot-write-13/pilot-write-13.json",
+      "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-14/pilot-write-14.json",
+      "app/client/assets/books/audit-reports/pilot-write-14-verification/pilot-write-14-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-15/pilot-write-15.json",
+      "app/client/assets/books/audit-reports/pilot-write-15-verification/pilot-write-15-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-16/pilot-write-16.json",
+      "app/client/assets/books/audit-reports/pilot-write-16-verification/pilot-write-16-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-17/pilot-write-17.json",
+      "app/client/assets/books/audit-reports/pilot-write-17-verification/pilot-write-17-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-18/pilot-write-18.json",
+      "app/client/assets/books/audit-reports/pilot-write-18-verification/pilot-write-18-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-19/pilot-write-19.json",
+      "app/client/assets/books/audit-reports/pilot-write-19-verification/pilot-write-19-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-20/pilot-write-20.json",
+      "app/client/assets/books/audit-reports/pilot-write-20-verification/pilot-write-20-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-21/pilot-write-21.json",
+      "app/client/assets/books/audit-reports/pilot-write-21-verification/pilot-write-21-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-22/pilot-write-22.json",
+      "app/client/assets/books/audit-reports/pilot-write-22-verification/pilot-write-22-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-23/pilot-write-23.json",
+      "app/client/assets/books/audit-reports/pilot-write-23-verification/pilot-write-23-verification.json",
+      "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
+      "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
+      "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json"
+    ],
+    "ambiguities": []
+  },
+  "candidatePool": {
+    "rawOnlyCandidatesConsidered": 46,
+    "knownManualBlockedSuspiciousExcludedCount": 14,
+    "selectedRawOnlyCount": 0,
+    "rejectedBySafetyGatesCount": 46
+  },
+  "unresolvedSourceGeneratedBooksLeftUntouched": [
+    {
+      "slug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "doctor-dolittle",
+      "title": "The Story of Doctor Dolittle",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 6,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "heidi",
+      "title": "Heidi",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "jabberwocky",
+      "title": "Jabberwocky",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 2,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "title": "Nights With Uncle Remus",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 21,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan [Peter and Wendy]",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 20,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "tarzan-of-the-apes",
+      "title": "Tarzan of the Apes",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-great-gatsby",
+      "title": "The Great Gatsby",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-picture-of-dorian-gray",
+      "title": "The Picture of Dorian Gray",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 23,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 12,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "title": "Wood folk at school",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 10,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    }
+  ],
+  "duplicateNearDuplicateCandidatesSkipped": [
+    {
+      "slug": "the-wind-in-the-willows",
+      "reason": "Skipped as a known duplicate of existing generated wind-in-the-willows; write batch 8 accepted the skip and no distinct-version policy exists."
+    },
+    {
+      "slug": "the-two-magics-the-turn-of-the-screw-covering-end",
+      "reason": "Skipped as a known duplicate/boundary-risk case; write batch 9 found this raw file contains a full The Turn of the Screw while generated the-turn-of-the-screw already exists and no distinct-version policy exists."
+    },
+    {
+      "slug": "japanese-fairy-tales",
+      "reason": "Skipped as a parent-collection near-duplicate: its individual Ozaki tales are already represented by accepted generated story pages, and no distinct collection-page policy has been approved."
+    }
+  ],
+  "boundaryDefectCandidatesSkipped": [
+    {
+      "slug": "the-works-of-edgar-allan-poe",
+      "reason": "Skipped as a known boundary-defect case; write batch 9 found raw Volume 2 begins with THE PURLOINED LETTER while the dry-run boundary would have dropped that opening collection content."
+    },
+    {
+      "slug": "snow-white-and-rose-red",
+      "reason": "Skipped for boundary review: the raw excerpt appends a collection-level editorial note after the tale's true ending, so generic cleaned-source end detection would include non-story material."
+    }
+  ],
+  "sharedDryRunScriptScopeFinding": {
+    "classification": "harmless shared implementation intentionally used by dry-run 24",
+    "files": [
+      "scripts/books/pilot-book-processing-dry-run-13.ts",
+      "scripts/books/pilot-book-processing-dry-run-24.ts"
+    ],
+    "resolution": "Retain the shared-engine change: dry-run 24 adds write-23 report inputs, explicitly records that zero safe deterministic candidates remain, creates an empty per-book report directory, and does not write generated books, previews, raw sources, or Cloudflare exports.",
+    "unrelatedChangesFound": false
+  },
+  "inputReports": [
+    "app/client/assets/books/audit-reports/book-processing-audit-pass-1.json",
+    "app/client/assets/books/audit-reports/book-processing-audit-pass-2.json",
+    "app/client/assets/books/audit-reports/book-structure-audit-1/book-structure-audit-1.json",
+    "app/client/assets/books/audit-reports/book-startup-preview-audit-1/book-startup-preview-audit-1.json",
+    "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
+    "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
+    "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
+    "app/client/assets/books/audit-reports/pilot-write-12-verification/pilot-write-12-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-14-verification/pilot-write-14-verification.json",
+    "app/client/assets/books/audit-reports/batch-12-prose-restoration/batch-12-prose-restoration.json",
+    "app/client/assets/books/audit-reports/pilot-write-15-verification/pilot-write-15-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-16-verification/pilot-write-16-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-17-verification/pilot-write-17-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-18-verification/pilot-write-18-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-19-verification/pilot-write-19-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-20-verification/pilot-write-20-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-21-verification/pilot-write-21-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-22-verification/pilot-write-22-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-23-verification/pilot-write-23-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json"
+  ],
+  "sourceDetectorUsed": "scripts/books/lib/book-structure-detection.ts",
+  "protectedPaths": {
+    "rawSourceInput": "app/client/assets/temp-books",
+    "generatedBooks": "app/client/assets/books/generated",
+    "cloudflareExport": "app/client/assets/books/cloudflare-export",
+    "previewAssets": "public/book-previews"
+  },
+  "backlogNote": "46 remaining skipped/unsafe raw-only candidates are retained for a final remaining inventory/triage pass after safe batching slows or is exhausted; none are lost or silently accepted.",
+  "futureBatchRules": [
+    "Future book batches fail unless each processed book has valid generated readable content.",
+    "Future book batches fail unless each processed book has the correct generated title.",
+    "Future book batches fail unless each processed book has correct author/compiler/collector/translator metadata or a documented unresolved-author policy.",
+    "Future book batches fail if duplicate generated work appears under a slightly different slug without intentional documentation.",
+    "Future book batches fail unless the first default section begins with real readable content.",
+    "Future book batches fail unless all main readable sections are included by default.",
+    "Future book batches fail unless segmentation is meaningful and source-based.",
+    "Future book batches fail unless startup preview is valid, book-specific, and starts from real readable generated content.",
+    "Future book batches fail if preview contains SOS Help! or generic preview fallback text.",
+    "Future book batches fail if title/TOC/source/license/contributor/transcriber/byline/parent-collection material enters default playback.",
+    "Future book batches fail if cleanup removes real prose, punctuation, dialogue, or the readable ending.",
+    "Future book batches fail unless selected/default source order begins from the first selected/default section.",
+    "Do not mark a book safe when meaningful headings exist but proposed output would become vague Part 1 / Part 2 chunks.",
+    "Do not mark a book safe when the expected generated title would be inherited from a parent collection instead of the actual book or story identity.",
+    "Do not mark a book safe when the author would be Unknown Author even though the source clearly identifies an author.",
+    "Do not mark a book safe when the first default content would not be the real readable opening.",
+    "Do not mark a book safe when Chapter 1, Part 1, first story, or prologue would be missing or excluded incorrectly.",
+    "Do not allow title page, parent collection title, byline, contents, source notes, illustration captions, contributor notes, transcriber notes, or license material into default playback.",
+    "Do not allow previews to start after the true beginning.",
+    "Do not allow selected/default source order to begin anywhere other than the first selected/default section.",
+    "Do not ignore meaningful story, play, poem, letter, chapter, part, or section structure.",
+    "Do not rely only on literal words like chapter, volume, or part; use repeated heading patterns, body/TOC matches, paragraph shape, spacing, and section length distribution.",
+    "Do not accept a future write unless generated readable content is valid, the title is correct, the author/compiler/collector/translator metadata is correct or has a documented unresolved-author policy, all main readable sections are selected by default, and the startup preview is book-specific.",
+    "Do not accept SOS Help!, generic preview fallback, or title/TOC/source/license/contributor/transcriber/byline/parent-collection material as default playback."
+  ],
+  "laterPhaseRequirements": [
+    "After safe batching slows or is exhausted, create a remaining raw inventory/triage report classifying every unprocessed raw file.",
+    "After all books are processed, run an independent second-pass audit using a different strategy.",
+    "After books and the second-pass audit, add original non-spoiler 300-500+ word SEO summaries for each accepted book page.",
+    "After summaries, perform full site SEO/meta review using GSC data and route-level intent.",
+    "After books/SEO, run a focused rage-click UX pass for /audio, /practice, homepage, and related utility pages.",
+    "Investigate the SSR heap OOM separately.",
+    "Investigate the in-app Browser sandbox issue separately.",
+    "Investigate intermittent fullscreen Playwright/UI behavior separately.",
+    "Final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable."
+  ],
+  "books": []
+}

@@ -163,7 +163,8 @@ type DryRunReport = {
     | "pilot-dry-run-20"
     | "pilot-dry-run-21"
     | "pilot-dry-run-22"
-    | "pilot-dry-run-23";
+    | "pilot-dry-run-23"
+    | "pilot-dry-run-24";
   generatedAt: string;
   branch: string;
   baseMainCommit: string;
@@ -171,6 +172,7 @@ type DryRunReport = {
   selectedBooks: string[];
   selectedCount: number;
   fewerThan20SafeCandidatesRemain: boolean;
+  zeroSafeCandidatesRemain: boolean;
   candidateTypeCounts: {
     rawOnly: number;
     unresolvedSourceGeneratedReportOnly: number;
@@ -229,7 +231,9 @@ type DryRunReport = {
 
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
-const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "23"
+const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "24"
+  ? 24
+  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "23"
   ? 23
   : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "22"
   ? 22
@@ -354,6 +358,12 @@ const acceptedReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-22-verification/pilot-write-22-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 24
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-23/pilot-write-23.json",
+        "app/client/assets/books/audit-reports/pilot-write-23-verification/pilot-write-23-verification.json",
+      ]
+    : []),
   "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
   "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
   "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
@@ -414,6 +424,11 @@ const inputReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-22-verification/pilot-write-22-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 24
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-23-verification/pilot-write-23-verification.json",
+      ]
+    : []),
   ...(dryRunBatch >= 14
     ? [
         "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
@@ -428,7 +443,9 @@ const structureJsonPath = path.join(
 const pass2JsonPath = path.join(auditRoot, "book-processing-audit-pass-2.json");
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 
-const selectedBatch: readonly string[] = dryRunBatch === 23
+const selectedBatch: readonly string[] = dryRunBatch === 24
+  ? []
+  : dryRunBatch === 23
   ? [
       "in-the-modern-vein",
       "the-argonauts-of-the-air",
@@ -1943,7 +1960,8 @@ function deriveAcceptedSlugs() {
       relativePath.includes("pilot-write-19-verification") ||
       relativePath.includes("pilot-write-20-verification") ||
       relativePath.includes("pilot-write-21-verification") ||
-      relativePath.includes("pilot-write-22-verification")
+      relativePath.includes("pilot-write-22-verification") ||
+      relativePath.includes("pilot-write-23-verification")
     ) {
       for (const book of books) {
         if (book.acceptedForMain === true && typeof book.slug === "string") {
@@ -2746,12 +2764,15 @@ function mainMarkdown(report: DryRunReport) {
     "",
     "## Selected Books",
     "",
-    report.selectedBooks.map((slug) => `- ${slug}`).join("\n"),
+    report.selectedBooks.length > 0
+      ? report.selectedBooks.map((slug) => `- ${slug}`).join("\n")
+      : "- None. Dry-run 24 selected zero books because the report-derived safe deterministic pool was exhausted after write batch 23.",
     "",
     "## Counts",
     "",
     `- Selected books: ${report.selectedCount}`,
     `- Fewer than 20 safe candidates remain: ${report.fewerThan20SafeCandidatesRemain ? "yes" : "no"}`,
+    `- Zero safe candidates remain: ${report.zeroSafeCandidatesRemain ? "yes" : "no"}`,
     `- Raw-only selected: ${report.candidateTypeCounts.rawOnly}`,
     `- Unresolved-source generated report-only: ${report.candidateTypeCounts.unresolvedSourceGeneratedReportOnly}`,
     `- Needs first-time controlled processing: ${report.counts.controlledFirstTimeProcessing}`,
@@ -2843,6 +2864,7 @@ function buildReport() {
   const pass2BySlug = new Map(pass2.books.map((book) => [book.slug, book]));
   const structureBySlug = new Map(structure.books.map((book) => [book.slug, book]));
   const generatedSlugs = new Set(library.books.map((book) => book.slug));
+  fs.mkdirSync(reportBooksRoot, { recursive: true });
 
   const rawOnlyCandidatePool = structure.books.filter(
     (book) =>
@@ -2865,6 +2887,17 @@ function buildReport() {
     writeText(path.join(reportBooksRoot, `${slug}.md`), bookMarkdown(result));
     return result;
   });
+  if (books.length === 0) {
+    writeText(
+      path.join(reportBooksRoot, "README.md"),
+      [
+        `# Pilot Dry Run ${dryRunBatch}: Per-Book Reports`,
+        "",
+        "No per-book reports were produced because this dry-run selected zero safe deterministic candidates for controlled first-time processing.",
+        "",
+      ].join("\n"),
+    );
+  }
 
   const selectedSet = new Set(selectedBatch);
   const unresolvedGenerated = unresolvedGeneratedSlugs.map((slug) => {
@@ -2894,6 +2927,7 @@ function buildReport() {
     selectedBooks: [...selectedBatch],
     selectedCount: selectedBatch.length,
     fewerThan20SafeCandidatesRemain: selectedBatch.length < 20,
+    zeroSafeCandidatesRemain: selectedBatch.length === 0,
     candidateTypeCounts: {
       rawOnly: books.length,
       unresolvedSourceGeneratedReportOnly: unresolvedGenerated.length,
@@ -2924,7 +2958,9 @@ function buildReport() {
         "scripts/books/pilot-book-processing-dry-run-13.ts",
         `scripts/books/pilot-book-processing-dry-run-${dryRunBatch}.ts`,
       ],
-      resolution: dryRunBatch === 22
+      resolution: dryRunBatch === 24
+        ? "Retain the shared-engine change: dry-run 24 adds write-23 report inputs, explicitly records that zero safe deterministic candidates remain, creates an empty per-book report directory, and does not write generated books, previews, raw sources, or Cloudflare exports."
+        : dryRunBatch === 22
         ? "Retain the scoped shared-helper extension: batch-21 report-derived exclusions, exact batch-22 title/author/start/section evidence, source-site footer trimming, and provenance labeling improve report accuracy without writing book artifacts; batch 13 stays the default."
         : dryRunBatch === 21
         ? "Retain the shared-helper fix: exact individual title and first-prose evidence permits collection-extracted one-story sources to bypass only a TOC/body false-positive, while fallback and huge-section red flags remain hard failures; batch 13 stays the default."
