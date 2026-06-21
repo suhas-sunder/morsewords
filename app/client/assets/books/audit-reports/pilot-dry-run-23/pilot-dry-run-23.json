@@ -1,0 +1,1279 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-dry-run-23",
+  "generatedAt": "2026-06-21T07:30:15.429Z",
+  "branch": "morsewords-book-processing-pilot-dry-run-23-jun-2026",
+  "baseMainCommit": "3243d982b006cc0253d82831b9b0a71d04f8bd8e",
+  "mode": "dry-run/report-only",
+  "selectedBooks": [
+    "in-the-modern-vein",
+    "the-argonauts-of-the-air",
+    "the-dreams-in-the-witch-house",
+    "the-jilting-of-jane",
+    "the-lost-inheritance",
+    "the-purple-pileus",
+    "the-shadow-out-of-time",
+    "the-strange-high-house-in-the-mist",
+    "the-valley-of-spiders",
+    "the-whisperer-in-darkness"
+  ],
+  "selectedCount": 10,
+  "fewerThan20SafeCandidatesRemain": true,
+  "candidateTypeCounts": {
+    "rawOnly": 10,
+    "unresolvedSourceGeneratedReportOnly": 11
+  },
+  "counts": {
+    "controlledFirstTimeProcessing": 10,
+    "manualReview": 0,
+    "blocked": 0,
+    "skippedUnsafe": 46
+  },
+  "acceptedExclusion": {
+    "count": 445,
+    "reportInputs": [
+      "app/client/assets/books/audit-reports/pilot-write-1/pilot-write-1.json",
+      "app/client/assets/books/audit-reports/pilot-write-1-verification/pilot-write-1-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-2/pilot-write-2.json",
+      "app/client/assets/books/audit-reports/pilot-write-2-verification/pilot-write-2-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-3/pilot-write-3.json",
+      "app/client/assets/books/audit-reports/pilot-write-3-verification/pilot-write-3-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-4/pilot-write-4.json",
+      "app/client/assets/books/audit-reports/pilot-write-4-verification/pilot-write-4-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-5/pilot-write-5.json",
+      "app/client/assets/books/audit-reports/pilot-write-5-verification/pilot-write-5-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-6/pilot-write-6.json",
+      "app/client/assets/books/audit-reports/pilot-write-6-verification/pilot-write-6-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-7/pilot-write-7.json",
+      "app/client/assets/books/audit-reports/pilot-write-7-verification/pilot-write-7-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-8/pilot-write-8.json",
+      "app/client/assets/books/audit-reports/pilot-write-8-verification/pilot-write-8-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-9/pilot-write-9.json",
+      "app/client/assets/books/audit-reports/pilot-write-9-verification/pilot-write-9-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-10/pilot-write-10.json",
+      "app/client/assets/books/audit-reports/pilot-write-10-verification/pilot-write-10-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-11/pilot-write-11.json",
+      "app/client/assets/books/audit-reports/pilot-write-11-verification/pilot-write-11-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-12/pilot-write-12.json",
+      "app/client/assets/books/audit-reports/pilot-write-12-verification/pilot-write-12-verification.json",
+      "app/client/assets/books/audit-reports/batch-12-prose-restoration/batch-12-prose-restoration.json",
+      "app/client/assets/books/audit-reports/pilot-write-13/pilot-write-13.json",
+      "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-14/pilot-write-14.json",
+      "app/client/assets/books/audit-reports/pilot-write-14-verification/pilot-write-14-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-15/pilot-write-15.json",
+      "app/client/assets/books/audit-reports/pilot-write-15-verification/pilot-write-15-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-16/pilot-write-16.json",
+      "app/client/assets/books/audit-reports/pilot-write-16-verification/pilot-write-16-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-17/pilot-write-17.json",
+      "app/client/assets/books/audit-reports/pilot-write-17-verification/pilot-write-17-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-18/pilot-write-18.json",
+      "app/client/assets/books/audit-reports/pilot-write-18-verification/pilot-write-18-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-19/pilot-write-19.json",
+      "app/client/assets/books/audit-reports/pilot-write-19-verification/pilot-write-19-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-20/pilot-write-20.json",
+      "app/client/assets/books/audit-reports/pilot-write-20-verification/pilot-write-20-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-21/pilot-write-21.json",
+      "app/client/assets/books/audit-reports/pilot-write-21-verification/pilot-write-21-verification.json",
+      "app/client/assets/books/audit-reports/pilot-write-22/pilot-write-22.json",
+      "app/client/assets/books/audit-reports/pilot-write-22-verification/pilot-write-22-verification.json",
+      "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
+      "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
+      "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json"
+    ],
+    "ambiguities": []
+  },
+  "candidatePool": {
+    "rawOnlyCandidatesConsidered": 56,
+    "knownManualBlockedSuspiciousExcludedCount": 14,
+    "selectedRawOnlyCount": 10,
+    "rejectedBySafetyGatesCount": 46
+  },
+  "unresolvedSourceGeneratedBooksLeftUntouched": [
+    {
+      "slug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "doctor-dolittle",
+      "title": "The Story of Doctor Dolittle",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 6,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "heidi",
+      "title": "Heidi",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "jabberwocky",
+      "title": "Jabberwocky",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 2,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "title": "Nights With Uncle Remus",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 21,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan [Peter and Wendy]",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 20,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "tarzan-of-the-apes",
+      "title": "Tarzan of the Apes",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-great-gatsby",
+      "title": "The Great Gatsby",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-picture-of-dorian-gray",
+      "title": "The Picture of Dorian Gray",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 23,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 12,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "title": "Wood folk at school",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 10,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    }
+  ],
+  "duplicateNearDuplicateCandidatesSkipped": [
+    {
+      "slug": "the-wind-in-the-willows",
+      "reason": "Skipped as a known duplicate of existing generated wind-in-the-willows; write batch 8 accepted the skip and no distinct-version policy exists."
+    },
+    {
+      "slug": "the-two-magics-the-turn-of-the-screw-covering-end",
+      "reason": "Skipped as a known duplicate/boundary-risk case; write batch 9 found this raw file contains a full The Turn of the Screw while generated the-turn-of-the-screw already exists and no distinct-version policy exists."
+    },
+    {
+      "slug": "japanese-fairy-tales",
+      "reason": "Skipped as a parent-collection near-duplicate: its individual Ozaki tales are already represented by accepted generated story pages, and no distinct collection-page policy has been approved."
+    }
+  ],
+  "boundaryDefectCandidatesSkipped": [
+    {
+      "slug": "the-works-of-edgar-allan-poe",
+      "reason": "Skipped as a known boundary-defect case; write batch 9 found raw Volume 2 begins with THE PURLOINED LETTER while the dry-run boundary would have dropped that opening collection content."
+    },
+    {
+      "slug": "snow-white-and-rose-red",
+      "reason": "Skipped for boundary review: the raw excerpt appends a collection-level editorial note after the tale's true ending, so generic cleaned-source end detection would include non-story material."
+    }
+  ],
+  "sharedDryRunScriptScopeFinding": {
+    "classification": "harmless shared implementation intentionally used by dry-run 23",
+    "files": [
+      "scripts/books/pilot-book-processing-dry-run-13.ts",
+      "scripts/books/pilot-book-processing-dry-run-23.ts"
+    ],
+    "resolution": "Retain the shared-engine change: dry-run 23 adds only its report inputs, selection evidence, safety skips, metadata-role reporting, and environment dispatch while preserving batch 13 as the default.",
+    "unrelatedChangesFound": false
+  },
+  "inputReports": [
+    "app/client/assets/books/audit-reports/book-processing-audit-pass-1.json",
+    "app/client/assets/books/audit-reports/book-processing-audit-pass-2.json",
+    "app/client/assets/books/audit-reports/book-structure-audit-1/book-structure-audit-1.json",
+    "app/client/assets/books/audit-reports/book-startup-preview-audit-1/book-startup-preview-audit-1.json",
+    "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
+    "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
+    "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
+    "app/client/assets/books/audit-reports/pilot-write-12-verification/pilot-write-12-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-14-verification/pilot-write-14-verification.json",
+    "app/client/assets/books/audit-reports/batch-12-prose-restoration/batch-12-prose-restoration.json",
+    "app/client/assets/books/audit-reports/pilot-write-15-verification/pilot-write-15-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-16-verification/pilot-write-16-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-17-verification/pilot-write-17-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-18-verification/pilot-write-18-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-19-verification/pilot-write-19-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-20-verification/pilot-write-20-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-21-verification/pilot-write-21-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-22-verification/pilot-write-22-verification.json",
+    "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json"
+  ],
+  "sourceDetectorUsed": "scripts/books/lib/book-structure-detection.ts",
+  "protectedPaths": {
+    "rawSourceInput": "app/client/assets/temp-books",
+    "generatedBooks": "app/client/assets/books/generated",
+    "cloudflareExport": "app/client/assets/books/cloudflare-export",
+    "previewAssets": "public/book-previews"
+  },
+  "backlogNote": "46 remaining skipped/unsafe raw-only candidates are retained for a final remaining inventory/triage pass after safe batching slows or is exhausted; none are lost or silently accepted.",
+  "futureBatchRules": [
+    "Future book batches fail unless each processed book has valid generated readable content.",
+    "Future book batches fail unless each processed book has the correct generated title.",
+    "Future book batches fail unless each processed book has correct author/compiler/collector/translator metadata or a documented unresolved-author policy.",
+    "Future book batches fail if duplicate generated work appears under a slightly different slug without intentional documentation.",
+    "Future book batches fail unless the first default section begins with real readable content.",
+    "Future book batches fail unless all main readable sections are included by default.",
+    "Future book batches fail unless segmentation is meaningful and source-based.",
+    "Future book batches fail unless startup preview is valid, book-specific, and starts from real readable generated content.",
+    "Future book batches fail if preview contains SOS Help! or generic preview fallback text.",
+    "Future book batches fail if title/TOC/source/license/contributor/transcriber/byline/parent-collection material enters default playback.",
+    "Future book batches fail if cleanup removes real prose, punctuation, dialogue, or the readable ending.",
+    "Future book batches fail unless selected/default source order begins from the first selected/default section.",
+    "Do not mark a book safe when meaningful headings exist but proposed output would become vague Part 1 / Part 2 chunks.",
+    "Do not mark a book safe when the expected generated title would be inherited from a parent collection instead of the actual book or story identity.",
+    "Do not mark a book safe when the author would be Unknown Author even though the source clearly identifies an author.",
+    "Do not mark a book safe when the first default content would not be the real readable opening.",
+    "Do not mark a book safe when Chapter 1, Part 1, first story, or prologue would be missing or excluded incorrectly.",
+    "Do not allow title page, parent collection title, byline, contents, source notes, illustration captions, contributor notes, transcriber notes, or license material into default playback.",
+    "Do not allow previews to start after the true beginning.",
+    "Do not allow selected/default source order to begin anywhere other than the first selected/default section.",
+    "Do not ignore meaningful story, play, poem, letter, chapter, part, or section structure.",
+    "Do not rely only on literal words like chapter, volume, or part; use repeated heading patterns, body/TOC matches, paragraph shape, spacing, and section length distribution.",
+    "Do not accept a future write unless generated readable content is valid, the title is correct, the author/compiler/collector/translator metadata is correct or has a documented unresolved-author policy, all main readable sections are selected by default, and the startup preview is book-specific.",
+    "Do not accept SOS Help!, generic preview fallback, or title/TOC/source/license/contributor/transcriber/byline/parent-collection material as default playback."
+  ],
+  "laterPhaseRequirements": [
+    "After safe batching slows or is exhausted, create a remaining raw inventory/triage report classifying every unprocessed raw file.",
+    "After all books are processed, run an independent second-pass audit using a different strategy.",
+    "After books and the second-pass audit, add original non-spoiler 300-500+ word SEO summaries for each accepted book page.",
+    "After summaries, perform full site SEO/meta review using GSC data and route-level intent.",
+    "After books/SEO, run a focused rage-click UX pass for /audio, /practice, homepage, and related utility pages.",
+    "Investigate the SSR heap OOM separately.",
+    "Investigate the in-app Browser sandbox issue separately.",
+    "Investigate intermittent fullscreen Playwright/UI behavior separately.",
+    "Final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable."
+  ],
+  "books": [
+    {
+      "slug": "in-the-modern-vein",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/IN THE MODERN VEIN.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only Project Gutenberg source with reuse/source evidence present; no generated publish status exists yet",
+      "expectedGeneratedTitle": "In the Modern Vein",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "IN THE MODERN VEIN",
+        "lineNumber": 18
+      },
+      "expectedAuthor": [
+        "H. G. Wells"
+      ],
+      "authorEvidence": {
+        "source": "visible title-page author line",
+        "text": "H. G. WELLS",
+        "lineNumber": 7
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible title-page author line",
+          "text": "H. G. WELLS",
+          "lineNumber": 7
+        }
+      ],
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: IN THE MODERN VEIN",
+        "First readable prose: Of course the cultivated reader has heard of Aubrey Vair."
+      ],
+      "realReadableStart": "In the Modern Vein: Of course the cultivated reader has heard of Aubrey Vair. He has published on three several occasions volumes of delicate verses,—some, indeed, border on indelicacy,—and his column “Of Things Literary” in the Climax is well known. His Byronic visage and an interview have appeared in the Perfect Lady. It was Aubrey V...",
+      "realReadableEnd": "...editations to the level of fried potatoes. “These potatoes”—he remarked, after a pause during which he was struggling with recollection. “Yes. These potatoes have exactly the tints of the dead leaves of the hazel.” “What a fanciful poet it is!” said Mrs. Aubrey Vair. “Taste them. They are very nice potatoes indeed.”",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "In the Modern Vein",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "Of course the cultivated reader has heard of Aubrey Vair. He has published on three several occasions volumes of delicate verses,—some, indeed, border on indelicacy,—and his column “Of Things Literary” in the Climax is well known. His Byronic visage and an interview have appeared in the Perfect Lady. It was Aubrey V...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Of course the cultivated reader has heard of Aubrey Vair.",
+      "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "no structure red flags; preserve the detected source-based headings"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [
+        "author did not come from a Gutenberg Author line; verify byline directly"
+      ],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Real opening or ending content may be at risk around the audited boundary.",
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "needs manual sectioning review",
+        "structureRedFlags": [
+          "TOC/body confusion is likely",
+          "start/end boundary confidence is low"
+        ],
+        "startBoundaryConfidence": "low",
+        "endBoundaryConfidence": "low"
+      },
+      "snippets": {
+        "title": "IN THE MODERN VEIN",
+        "author": "H. G. WELLS",
+        "metadata": "H. G. WELLS",
+        "start": "In the Modern Vein Of course the cultivated reader has heard of Aubrey Vair. He has published on three several occasions volumes of delicate verses,—some, indeed, border on indelicacy,—and his column “Of Things Literary” in the Climax is well known. His Byronic visage and an interview have appeared in the Perfect Lady. It was Aubrey V...",
+        "end": "...editations to the level of fried potatoes. “These potatoes”—he remarked, after a pause during which he was struggling with recollection. “Yes. These potatoes have exactly the tints of the dead leaves of the hazel.” “What a fanciful poet it is!” said Mrs. Aubrey Vair. “Taste them. They are very nice potatoes indeed.”"
+      }
+    },
+    {
+      "slug": "the-argonauts-of-the-air",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE ARGONAUTS OF THE AIR.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only Project Gutenberg source with reuse/source evidence present; no generated publish status exists yet",
+      "expectedGeneratedTitle": "The Argonauts of the Air",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE ARGONAUTS OF THE AIR",
+        "lineNumber": 18
+      },
+      "expectedAuthor": [
+        "H. G. Wells"
+      ],
+      "authorEvidence": {
+        "source": "visible title-page author line",
+        "text": "H. G. WELLS",
+        "lineNumber": 7
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible title-page author line",
+          "text": "H. G. WELLS",
+          "lineNumber": 7
+        }
+      ],
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE ARGONAUTS OF THE AIR",
+        "First readable prose: One saw Monson’s Flying Machine from the windows of the trains passing"
+      ],
+      "realReadableStart": "The Argonauts of the Air: One saw Monson’s Flying Machine from the windows of the trains passing either along the South-Western main line or along the line between Wimbledon and Worcester Park,—to be more exact, one saw the huge scaffoldings which limited the flight of the apparatus. They rose over the tree-tops, a massive alley of interlaci...",
+      "realReadableEnd": "...and of[46] gallant experimentalists who will sooner or later master this great problem of flying. And between Worcester Park and Malden there still stands that portentous avenue of iron-work, rusting now, and dangerous here and there, to witness to the first desperate struggle for man’s right of way through the air.",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Argonauts of the Air",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "One saw Monson’s Flying Machine from the windows of the trains passing either along the South-Western main line or along the line between Wimbledon and Worcester Park,—to be more exact, one saw the huge scaffoldings which limited the flight of the apparatus. They rose over the tree-tops, a massive alley of interlaci...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: One saw Monson’s Flying Machine from the windows of the trains passing",
+      "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "no structure red flags; preserve the detected source-based headings"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [
+        "author did not come from a Gutenberg Author line; verify byline directly"
+      ],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Real opening or ending content may be at risk around the audited boundary.",
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "needs manual sectioning review",
+        "structureRedFlags": [
+          "TOC/body confusion is likely",
+          "start/end boundary confidence is low"
+        ],
+        "startBoundaryConfidence": "low",
+        "endBoundaryConfidence": "low"
+      },
+      "snippets": {
+        "title": "THE ARGONAUTS OF THE AIR",
+        "author": "H. G. WELLS",
+        "metadata": "H. G. WELLS",
+        "start": "The Argonauts of the Air One saw Monson’s Flying Machine from the windows of the trains passing either along the South-Western main line or along the line between Wimbledon and Worcester Park,—to be more exact, one saw the huge scaffoldings which limited the flight of the apparatus. They rose over the tree-tops, a massive alley of interlaci...",
+        "end": "...and of[46] gallant experimentalists who will sooner or later master this great problem of flying. And between Worcester Park and Malden there still stands that portentous avenue of iron-work, rusting now, and dangerous here and there, to witness to the first desperate struggle for man’s right of way through the air."
+      }
+    },
+    {
+      "slug": "the-dreams-in-the-witch-house",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/The Dreams in the Witch-House.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; public/restricted status remains write-review gated and no generated publish status exists yet",
+      "expectedGeneratedTitle": "The Dreams in the Witch-House",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "The Dreams in the Witch-House",
+        "lineNumber": 30
+      },
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "Faded Page Author metadata line",
+        "text": "_Author:_ Howard Phillips Lovecraft (1890-1937)",
+        "lineNumber": 18
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "Faded Page Author metadata line",
+          "text": "_Author:_ Howard Phillips Lovecraft (1890-1937)",
+          "lineNumber": 18
+        }
+      ],
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "medium",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: The Dreams in the Witch-House",
+        "First readable prose: Whether the dreams brought on the fever or the"
+      ],
+      "realReadableStart": "The Dreams in the Witch-House: Whether the dreams brought on the fever or the fever brought on the dreams Walter Gilman did not know. Behind everything crouched the brooding, festering horror of the ancient town, and of the moldy, unhallowed garret gable where he wrote and studied and wrestled with figures and formulæ when he was not tossing on t...",
+      "realReadableEnd": "...rody of a human skull. The workmen crossed themselves in fright when they came upon this blasphemy, but later burned candles of gratitude in St. Stanislaus’ Church because of the shrill, ghostly tittering they felt they would never hear again. [The end of _The Dreams in the Witch-House_ by Howard Phillips Lovecraft]",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Dreams in the Witch-House",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "Whether the dreams brought on the fever or the fever brought on the dreams Walter Gilman did not know. Behind everything crouched the brooding, festering horror of the ancient town, and of the moldy, unhallowed garret gable where he wrote and studied and wrestled with figures and formulæ when he was not tossing on t...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Whether the dreams brought on the fever or the",
+      "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [
+        "author did not come from a Gutenberg Author line; verify byline directly"
+      ],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [
+          "start/end boundary confidence is low"
+        ],
+        "startBoundaryConfidence": "low",
+        "endBoundaryConfidence": "low"
+      },
+      "snippets": {
+        "title": "The Dreams in the Witch-House",
+        "author": "_Author:_ Howard Phillips Lovecraft (1890-1937)",
+        "metadata": "_Author:_ Howard Phillips Lovecraft (1890-1937)",
+        "start": "The Dreams in the Witch-House Whether the dreams brought on the fever or the fever brought on the dreams Walter Gilman did not know. Behind everything crouched the brooding, festering horror of the ancient town, and of the moldy, unhallowed garret gable where he wrote and studied and wrestled with figures and formulæ when he was not tossing on t...",
+        "end": "...rody of a human skull. The workmen crossed themselves in fright when they came upon this blasphemy, but later burned candles of gratitude in St. Stanislaus’ Church because of the shrill, ghostly tittering they felt they would never hear again. [The end of _The Dreams in the Witch-House_ by Howard Phillips Lovecraft]"
+      }
+    },
+    {
+      "slug": "the-jilting-of-jane",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE JILTING OF JANE.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only Project Gutenberg source with reuse/source evidence present; no generated publish status exists yet",
+      "expectedGeneratedTitle": "The Jilting of Jane",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE JILTING OF JANE",
+        "lineNumber": 18
+      },
+      "expectedAuthor": [
+        "H. G. Wells"
+      ],
+      "authorEvidence": {
+        "source": "visible title-page author line",
+        "text": "H. G. WELLS",
+        "lineNumber": 7
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible title-page author line",
+          "text": "H. G. WELLS",
+          "lineNumber": 7
+        }
+      ],
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE JILTING OF JANE",
+        "First readable prose: As I sit writing in my study, I can hear our Jane bumping"
+      ],
+      "realReadableStart": "The Jilting of Jane: As I sit writing in my study, I can hear our Jane bumping her way downstairs with a brush and dustpan. She used in the old days to sing hymn tunes, or the British national song for the time being, to these instruments, but latterly she has been silent and even careful over her work. Time was when I prayed with fervo...",
+      "realReadableEnd": "...one out of Jane’s scrubbing and brush work. Indeed, something passed the other day with the butcher-boy—but that scarcely belongs to this story. However, Jane is young still, and time and change are at work with her. We all have our sorrows, but I do not believe very much in the existence of sorrows that never heal.",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Jilting of Jane",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "As I sit writing in my study, I can hear our Jane bumping her way downstairs with a brush and dustpan. She used in the old days to sing hymn tunes, or the British national song for the time being, to these instruments, but latterly she has been silent and even careful over her work. Time was when I prayed with fervo...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: As I sit writing in my study, I can hear our Jane bumping",
+      "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [
+        "author did not come from a Gutenberg Author line; verify byline directly"
+      ],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Real opening or ending content may be at risk around the audited boundary.",
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "needs manual sectioning review",
+        "structureRedFlags": [
+          "TOC/body confusion is likely",
+          "start/end boundary confidence is low"
+        ],
+        "startBoundaryConfidence": "low",
+        "endBoundaryConfidence": "low"
+      },
+      "snippets": {
+        "title": "THE JILTING OF JANE",
+        "author": "H. G. WELLS",
+        "metadata": "H. G. WELLS",
+        "start": "The Jilting of Jane As I sit writing in my study, I can hear our Jane bumping her way downstairs with a brush and dustpan. She used in the old days to sing hymn tunes, or the British national song for the time being, to these instruments, but latterly she has been silent and even careful over her work. Time was when I prayed with fervo...",
+        "end": "...one out of Jane’s scrubbing and brush work. Indeed, something passed the other day with the butcher-boy—but that scarcely belongs to this story. However, Jane is young still, and time and change are at work with her. We all have our sorrows, but I do not believe very much in the existence of sorrows that never heal."
+      }
+    },
+    {
+      "slug": "the-lost-inheritance",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE LOST INHERITANCE.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only Project Gutenberg source with reuse/source evidence present; no generated publish status exists yet",
+      "expectedGeneratedTitle": "The Lost Inheritance",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE LOST INHERITANCE",
+        "lineNumber": 18
+      },
+      "expectedAuthor": [
+        "H. G. Wells"
+      ],
+      "authorEvidence": {
+        "source": "visible title-page author line",
+        "text": "H. G. WELLS",
+        "lineNumber": 7
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible title-page author line",
+          "text": "H. G. WELLS",
+          "lineNumber": 7
+        }
+      ],
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE LOST INHERITANCE",
+        "First readable prose: “My uncle,” said the man with the glass eye"
+      ],
+      "realReadableStart": "The Lost Inheritance: “My uncle,” said the man with the glass eye, “was what you might call a hemi-semi-demi millionaire. He was worth about a hundred and twenty thousand. Quite. And he left me all his money.” I glanced at the shiny sleeve of his coat, and my eye travelled up to the frayed collar. “Every penny,” said the man with the gla...",
+      "realReadableEnd": "... it shows you, don’t it?”—his eye went down to the tankard again,—“It shows you, too, how we poor human beings fail to understand one another.” But there was no misunderstanding the eloquent thirst of his eye. He accepted with ill-feigned surprise. He said, in the usual subtle formula, that he didn’t mind if he did.",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Lost Inheritance",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "“My uncle,” said the man with the glass eye, “was what you might call a hemi-semi-demi millionaire. He was worth about a hundred and twenty thousand. Quite. And he left me all his money.” I glanced at the shiny sleeve of his coat, and my eye travelled up to the frayed collar. “Every penny,” said the man with the gla...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: “My uncle,” said the man with the glass eye",
+      "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "no structure red flags; preserve the detected source-based headings"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [
+        "author did not come from a Gutenberg Author line; verify byline directly"
+      ],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Real opening or ending content may be at risk around the audited boundary.",
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "needs manual sectioning review",
+        "structureRedFlags": [
+          "TOC/body confusion is likely",
+          "start/end boundary confidence is low"
+        ],
+        "startBoundaryConfidence": "low",
+        "endBoundaryConfidence": "low"
+      },
+      "snippets": {
+        "title": "THE LOST INHERITANCE",
+        "author": "H. G. WELLS",
+        "metadata": "H. G. WELLS",
+        "start": "The Lost Inheritance “My uncle,” said the man with the glass eye, “was what you might call a hemi-semi-demi millionaire. He was worth about a hundred and twenty thousand. Quite. And he left me all his money.” I glanced at the shiny sleeve of his coat, and my eye travelled up to the frayed collar. “Every penny,” said the man with the gla...",
+        "end": "... it shows you, don’t it?”—his eye went down to the tankard again,—“It shows you, too, how we poor human beings fail to understand one another.” But there was no misunderstanding the eloquent thirst of his eye. He accepted with ill-feigned surprise. He said, in the usual subtle formula, that he didn’t mind if he did."
+      }
+    },
+    {
+      "slug": "the-purple-pileus",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE PURPLE PILEUS.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only Project Gutenberg source with reuse/source evidence present; no generated publish status exists yet",
+      "expectedGeneratedTitle": "The Purple Pileus",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE PURPLE PILEUS",
+        "lineNumber": 18
+      },
+      "expectedAuthor": [
+        "H. G. Wells"
+      ],
+      "authorEvidence": {
+        "source": "visible title-page author line",
+        "text": "H. G. WELLS",
+        "lineNumber": 7
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible title-page author line",
+          "text": "H. G. WELLS",
+          "lineNumber": 7
+        }
+      ],
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE PURPLE PILEUS",
+        "First readable prose: Mr. Coombes was sick of life."
+      ],
+      "realReadableStart": "The Purple Pileus: Mr. Coombes was sick of life. He walked away from his unhappy home, and, sick not only of his own existence, but of everybody else’s, turned aside down Gaswork Lane to avoid the town, and, crossing the wooden bridge that goes over the canal to Starling’s Cottages, was presently alone in the damp pinewoods and out of...",
+      "realReadableEnd": "...m presently. “I can’t see what use they are in the world.” Mr. Coombes looked. “I dessay they’re sent for some wise purpose,” said Mr. Coombes. And that was as much thanks as the purple pileus ever got for maddening this absurd little man to the pitch of decisive action, and so altering the whole course of his life.",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": false,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Purple Pileus",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "Mr. Coombes was sick of life. He walked away from his unhappy home, and, sick not only of his own existence, but of everybody else’s, turned aside down Gaswork Lane to avoid the town, and, crossing the wooden bridge that goes over the canal to Starling’s Cottages, was presently alone in the damp pinewoods and out of...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Mr. Coombes was sick of life.",
+      "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [
+        "author did not come from a Gutenberg Author line; verify byline directly"
+      ],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Real opening or ending content may be at risk around the audited boundary.",
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "needs manual sectioning review",
+        "structureRedFlags": [
+          "TOC/body confusion is likely",
+          "start/end boundary confidence is low"
+        ],
+        "startBoundaryConfidence": "low",
+        "endBoundaryConfidence": "low"
+      },
+      "snippets": {
+        "title": "THE PURPLE PILEUS",
+        "author": "H. G. WELLS",
+        "metadata": "H. G. WELLS",
+        "start": "The Purple Pileus Mr. Coombes was sick of life. He walked away from his unhappy home, and, sick not only of his own existence, but of everybody else’s, turned aside down Gaswork Lane to avoid the town, and, crossing the wooden bridge that goes over the canal to Starling’s Cottages, was presently alone in the damp pinewoods and out of...",
+        "end": "...m presently. “I can’t see what use they are in the world.” Mr. Coombes looked. “I dessay they’re sent for some wise purpose,” said Mr. Coombes. And that was as much thanks as the purple pileus ever got for maddening this absurd little man to the pitch of decisive action, and so altering the whole course of his life."
+      }
+    },
+    {
+      "slug": "the-shadow-out-of-time",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/The Shadow Out of Time.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; public/restricted status remains write-review gated and no generated publish status exists yet",
+      "expectedGeneratedTitle": "The Shadow Out of Time",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE SHADOW OUT OF TIME",
+        "lineNumber": 30
+      },
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "Faded Page Author metadata line",
+        "text": "_Author:_ H. P. (Howard Phillips) Lovecraft, (1890-1937)",
+        "lineNumber": 18
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "Faded Page Author metadata line",
+          "text": "_Author:_ H. P. (Howard Phillips) Lovecraft, (1890-1937)",
+          "lineNumber": 18
+        }
+      ],
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "high",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE SHADOW OUT OF TIME",
+        "First readable prose: After twenty-two years of nightmare and terror"
+      ],
+      "realReadableStart": "The Shadow Out of Time: After twenty-two years of nightmare and terror, saved only by a desperate conviction of the mythical source of certain impressions, I am unwilling to vouch for the truth of that which I think I found in Western Australia on the night of July 17-18, 1935. There is reason to hope that my experience was wholly or partl...",
+      "realReadableEnd": "...eerly pigmented letters on the brittle, æon-browned cellulose pages were not indeed any nameless hieroglyphs of Earth’s youth. They were, instead, the letters of our familiar alphabet, spelling out the words of the English language, in my own handwriting. [The end of <i>The Shadow Out of Time</i> by H. P. Lovecraft]",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Shadow Out of Time",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "After twenty-two years of nightmare and terror, saved only by a desperate conviction of the mythical source of certain impressions, I am unwilling to vouch for the truth of that which I think I found in Western Australia on the night of July 17-18, 1935. There is reason to hope that my experience was wholly or partl...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: After twenty-two years of nightmare and terror",
+      "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "later ordinal headings are present; verify Chapter/Part/Book 1 remains included and selected first",
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [
+        "author did not come from a Gutenberg Author line; verify byline directly"
+      ],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "Review required if selected: possible generated slug overlap with the-shadow.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "needs manual sectioning review",
+        "structureRedFlags": [
+          "start/end boundary confidence is low"
+        ],
+        "startBoundaryConfidence": "low",
+        "endBoundaryConfidence": "low"
+      },
+      "snippets": {
+        "title": "THE SHADOW OUT OF TIME",
+        "author": "_Author:_ H. P. (Howard Phillips) Lovecraft, (1890-1937)",
+        "metadata": "_Author:_ H. P. (Howard Phillips) Lovecraft, (1890-1937)",
+        "start": "The Shadow Out of Time After twenty-two years of nightmare and terror, saved only by a desperate conviction of the mythical source of certain impressions, I am unwilling to vouch for the truth of that which I think I found in Western Australia on the night of July 17-18, 1935. There is reason to hope that my experience was wholly or partl...",
+        "end": "...eerly pigmented letters on the brittle, æon-browned cellulose pages were not indeed any nameless hieroglyphs of Earth’s youth. They were, instead, the letters of our familiar alphabet, spelling out the words of the English language, in my own handwriting. [The end of <i>The Shadow Out of Time</i> by H. P. Lovecraft]"
+      }
+    },
+    {
+      "slug": "the-strange-high-house-in-the-mist",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/The Strange High House in the Mist.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; public/restricted status remains write-review gated and no generated publish status exists yet",
+      "expectedGeneratedTitle": "The Strange High House in the Mist",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "The Strange High House in the Mist",
+        "lineNumber": 33
+      },
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "Faded Page Author metadata line",
+        "text": "_Author:_ Howard Phillips Lovecraft (1890-1937)",
+        "lineNumber": 18
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "Faded Page Author metadata line",
+          "text": "_Author:_ Howard Phillips Lovecraft (1890-1937)",
+          "lineNumber": 18
+        }
+      ],
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: The Strange High House in the Mist",
+        "First readable prose: In the morning mist comes up from the sea by the cliffs beyond"
+      ],
+      "realReadableStart": "The Strange High House in the Mist: In the morning mist comes up from the sea by the cliffs beyond Kingsport. White and feathery it comes from the deep to its brothers the clouds, full of dreams of dank pastures and caves of leviathan. And later, in still summer rains on the steep roofs of poets, the clouds scatter bits of those dreams, that men shall...",
+      "realReadableEnd": "... nestling uneasy on its lesser cliffs below that awesome hanging sentinel of rock, sees oceanward only a mystic whiteness, as if the cliff's rim were the rim of all earth, and the solemn bells of the buoys tolled free in the æther of faëry. [The end of The Strange High House in the Mist by Howard Phillips Lovecraft]",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": true,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Strange High House in the Mist",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "In the morning mist comes up from the sea by the cliffs beyond Kingsport. White and feathery it comes from the deep to its brothers the clouds, full of dreams of dank pastures and caves of leviathan. And later, in still summer rains on the steep roofs of poets, the clouds scatter bits of those dreams, that men shall...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: In the morning mist comes up from the sea by the cliffs beyond",
+      "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default",
+        "illustration captions/placeholders must be removed from default playback"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [
+        "author did not come from a Gutenberg Author line; verify byline directly"
+      ],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "illustration captions/placeholders detected"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "needs manual sectioning review",
+        "structureRedFlags": [
+          "TOC/body confusion is likely",
+          "start/end boundary confidence is low"
+        ],
+        "startBoundaryConfidence": "low",
+        "endBoundaryConfidence": "low"
+      },
+      "snippets": {
+        "title": "The Strange High House in the Mist",
+        "author": "_Author:_ Howard Phillips Lovecraft (1890-1937)",
+        "metadata": "_Author:_ Howard Phillips Lovecraft (1890-1937)",
+        "start": "The Strange High House in the Mist In the morning mist comes up from the sea by the cliffs beyond Kingsport. White and feathery it comes from the deep to its brothers the clouds, full of dreams of dank pastures and caves of leviathan. And later, in still summer rains on the steep roofs of poets, the clouds scatter bits of those dreams, that men shall...",
+        "end": "... nestling uneasy on its lesser cliffs below that awesome hanging sentinel of rock, sees oceanward only a mystic whiteness, as if the cliff's rim were the rim of all earth, and the solemn bells of the buoys tolled free in the æther of faëry. [The end of The Strange High House in the Mist by Howard Phillips Lovecraft]"
+      }
+    },
+    {
+      "slug": "the-valley-of-spiders",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/THE VALLEY OF SPIDERS.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only Project Gutenberg source with reuse/source evidence present; no generated publish status exists yet",
+      "expectedGeneratedTitle": "The Valley of Spiders",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "THE VALLEY OF SPIDERS",
+        "lineNumber": 34
+      },
+      "expectedAuthor": [
+        "H. G. Wells"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: H. G. Wells",
+        "lineNumber": 12
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: H. G. Wells",
+          "lineNumber": 12
+        }
+      ],
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "low",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: THE VALLEY OF SPIDERS",
+        "First readable prose: The gaunt man with the scarred lip was the first to speak."
+      ],
+      "realReadableStart": "The Valley of Spiders: The gaunt man with the scarred lip was the first to speak. “Nowhere,” he said, with a sigh of disappointment in his voice. “But after all, they had a full day's start.” “They don't know we are after them,” said the little man on the white horse. “SHE would know,” said the leader bitterly, as if speaking to himself....",
+      "realReadableEnd": "...r. Once, where a number ran together over a bare place, he was minded to dismount and trample them with his boots, but this impulse he overcame. Ever and again he turned in his saddle, and looked back at the smoke. “Spiders,” he muttered over and over again. “Spiders! Well, well.... The next time I must spin a web.”",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": false,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Valley of Spiders",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "The gaunt man with the scarred lip was the first to speak. “Nowhere,” he said, with a sigh of disappointment in his voice. “But after all, they had a full day's start.” “They don't know we are after them,” said the little man on the white horse. “SHE would know,” said the leader bitterly, as if speaking to himself....",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: The gaunt man with the scarred lip was the first to speak.",
+      "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "process with warnings",
+        "structureRedFlags": [],
+        "startBoundaryConfidence": "medium",
+        "endBoundaryConfidence": "medium"
+      },
+      "snippets": {
+        "title": "THE VALLEY OF SPIDERS",
+        "author": "Author: H. G. Wells",
+        "metadata": "Author: H. G. Wells",
+        "start": "The Valley of Spiders The gaunt man with the scarred lip was the first to speak. “Nowhere,” he said, with a sigh of disappointment in his voice. “But after all, they had a full day's start.” “They don't know we are after them,” said the little man on the white horse. “SHE would know,” said the leader bitterly, as if speaking to himself....",
+        "end": "...r. Once, where a number ran together over a bare place, he was minded to dismount and trample them with his boots, but this impulse he overcame. Ever and again he turned in his saddle, and looked back at the smoke. “Spiders,” he muttered over and over again. “Spiders! Well, well.... The next time I must spin a web.”"
+      }
+    },
+    {
+      "slug": "the-whisperer-in-darkness",
+      "candidateType": "raw-only",
+      "sourceFileUsed": "app/client/assets/temp-books/The Whisperer in Darkness.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "review-only raw source; public/restricted status remains write-review gated and no generated publish status exists yet",
+      "expectedGeneratedTitle": "The Whisperer in Darkness",
+      "titleEvidence": {
+        "source": "source body heading",
+        "text": "The Whisperer in Darkness",
+        "lineNumber": 30
+      },
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "Faded Page Author metadata line",
+        "text": "H. P. Lovecraft",
+        "lineNumber": null
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "Faded Page Author metadata line",
+          "text": "H. P. Lovecraft",
+          "lineNumber": null
+        }
+      ],
+      "apparentWorkType": "individual story",
+      "detectedStructuralConvention": "single contiguous story section",
+      "structureConfidence": "high",
+      "meaningfulHeadingsExist": true,
+      "meaningfulHeadingExamples": [
+        "Source tale heading: The Whisperer in Darkness",
+        "First readable prose: Bear in mind closely that I did not see any actual visual horror"
+      ],
+      "realReadableStart": "The Whisperer in Darkness: Bear in mind closely that I did not see any actual visual horror at the end. To say that a mental shock was the cause of what I inferred--that last straw which sent me racing out of the lonely Akeley farmhouse and through the wild domed hills of Vermont in a commandeered motor at night--is to ignore the plainest fac...",
+      "realReadableEnd": "...helf . . . poor devil . . . \"prodigious surgical, biological, chemical, and mechanical skill\" . . . . For the things in the chair, perfect to the last, subtle detail of microscopic resemblance--or identity--were the face and hands of Henry Wentworth Akeley. [The end of _The Whisperer in Darkness_ by H. P. Lovecraft]",
+      "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "sourceNoisePresent": {
+        "titlePageOrByline": true,
+        "contentsOrToc": false,
+        "sourceOrLicense": true,
+        "contributorOrTranscriberNotes": true,
+        "illustrationCaptions": true,
+        "footnotesOrPageMarkers": false
+      },
+      "expectedFirstDefaultSection": "The Whisperer in Darkness",
+      "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+      "likelySectionCount": 1,
+      "likelyPreviewStart": "Bear in mind closely that I did not see any actual visual horror at the end. To say that a mental shock was the cause of what I inferred--that last straw which sent me racing out of the lonely Akeley farmhouse and through the wild domed hills of Vermont in a commandeered motor at night--is to ignore the plainest fac...",
+      "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+      "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+      "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Bear in mind closely that I did not see any actual visual horror",
+      "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+      "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+      "segmentationRisks": [
+        "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+      ],
+      "cleanupRisks": [
+        "title page, byline, publication, or copyright material appears before body content",
+        "Project Gutenberg/source/license material must be removed",
+        "contributor or transcriber notes must be removed or preserved only as non-default",
+        "illustration captions/placeholders must be removed from default playback"
+      ],
+      "titleDefaultStartRisks": [
+        "write pass must keep title/byline material out of default playback"
+      ],
+      "authorMetadataRisks": [
+        "author did not come from a Gutenberg Author line; verify byline directly"
+      ],
+      "collectionTitleLeakageRisks": [
+        "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+      ],
+      "illustrationPageMarkerFootnoteRisks": [
+        "illustration captions/placeholders detected"
+      ],
+      "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+      "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+      "currentStatus": "needs first-time controlled processing",
+      "recommendationForNextPass": "controlled first-time processing",
+      "priorAuditSignals": {
+        "pass2Risk": "high",
+        "pass2Reasons": [
+          "Start or end boundary still has low confidence after context inspection."
+        ],
+        "structureRecommendedHandling": "needs manual sectioning review",
+        "structureRedFlags": [
+          "body headings were found but rejected by the selected strategy",
+          "start/end boundary confidence is low"
+        ],
+        "startBoundaryConfidence": "low",
+        "endBoundaryConfidence": "low"
+      },
+      "snippets": {
+        "title": "The Whisperer in Darkness",
+        "author": "H. P. Lovecraft",
+        "metadata": "H. P. Lovecraft",
+        "start": "The Whisperer in Darkness Bear in mind closely that I did not see any actual visual horror at the end. To say that a mental shock was the cause of what I inferred--that last straw which sent me racing out of the lonely Akeley farmhouse and through the wild domed hills of Vermont in a commandeered motor at night--is to ignore the plainest fac...",
+        "end": "...helf . . . poor devil . . . \"prodigious surgical, biological, chemical, and mechanical skill\" . . . . For the things in the chair, perfect to the last, subtle detail of microscopic resemblance--or identity--were the face and hands of Henry Wentworth Akeley. [The end of _The Whisperer in Darkness_ by H. P. Lovecraft]"
+      }
+    }
+  ]
+}

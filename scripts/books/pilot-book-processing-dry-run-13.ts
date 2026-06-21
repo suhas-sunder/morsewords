@@ -162,7 +162,8 @@ type DryRunReport = {
     | "pilot-dry-run-19"
     | "pilot-dry-run-20"
     | "pilot-dry-run-21"
-    | "pilot-dry-run-22";
+    | "pilot-dry-run-22"
+    | "pilot-dry-run-23";
   generatedAt: string;
   branch: string;
   baseMainCommit: string;
@@ -228,7 +229,9 @@ type DryRunReport = {
 
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
-const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "22"
+const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "23"
+  ? 23
+  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "22"
   ? 22
   : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "21"
   ? 21
@@ -345,6 +348,12 @@ const acceptedReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-21-verification/pilot-write-21-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 23
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-22/pilot-write-22.json",
+        "app/client/assets/books/audit-reports/pilot-write-22-verification/pilot-write-22-verification.json",
+      ]
+    : []),
   "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
   "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
   "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
@@ -400,6 +409,11 @@ const inputReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-21-verification/pilot-write-21-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 23
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-22-verification/pilot-write-22-verification.json",
+      ]
+    : []),
   ...(dryRunBatch >= 14
     ? [
         "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
@@ -414,7 +428,20 @@ const structureJsonPath = path.join(
 const pass2JsonPath = path.join(auditRoot, "book-processing-audit-pass-2.json");
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 
-const selectedBatch: readonly string[] = dryRunBatch === 22
+const selectedBatch: readonly string[] = dryRunBatch === 23
+  ? [
+      "in-the-modern-vein",
+      "the-argonauts-of-the-air",
+      "the-dreams-in-the-witch-house",
+      "the-jilting-of-jane",
+      "the-lost-inheritance",
+      "the-purple-pileus",
+      "the-shadow-out-of-time",
+      "the-strange-high-house-in-the-mist",
+      "the-valley-of-spiders",
+      "the-whisperer-in-darkness",
+    ]
+  : dryRunBatch === 22
   ? [
       "a-slip-under-the-microscope",
       "a-story-of-the-days-to-come",
@@ -937,6 +964,16 @@ const titleOverrides: Record<string, string> = {
   "the-tree": "The Tree",
   "the-unnamable": "The Unnamable",
   "the-white-ship": "The White Ship",
+  "in-the-modern-vein": "In the Modern Vein",
+  "the-argonauts-of-the-air": "The Argonauts of the Air",
+  "the-dreams-in-the-witch-house": "The Dreams in the Witch-House",
+  "the-jilting-of-jane": "The Jilting of Jane",
+  "the-lost-inheritance": "The Lost Inheritance",
+  "the-purple-pileus": "The Purple Pileus",
+  "the-shadow-out-of-time": "The Shadow Out of Time",
+  "the-strange-high-house-in-the-mist": "The Strange High House in the Mist",
+  "the-valley-of-spiders": "The Valley of Spiders",
+  "the-whisperer-in-darkness": "The Whisperer in Darkness",
 };
 
 const authorOverrides: Record<
@@ -947,6 +984,56 @@ const authorOverrides: Record<
     names: ["H. G. Wells"],
     evidencePattern: /^H\. G\. WELLS$/i,
     evidenceSource: "visible title-page author line",
+  },
+  "in-the-modern-vein": {
+    names: ["H. G. Wells"],
+    evidencePattern: /^H\. G\. WELLS$/i,
+    evidenceSource: "visible title-page author line",
+  },
+  "the-argonauts-of-the-air": {
+    names: ["H. G. Wells"],
+    evidencePattern: /^H\. G\. WELLS$/i,
+    evidenceSource: "visible title-page author line",
+  },
+  "the-jilting-of-jane": {
+    names: ["H. G. Wells"],
+    evidencePattern: /^H\. G\. WELLS$/i,
+    evidenceSource: "visible title-page author line",
+  },
+  "the-lost-inheritance": {
+    names: ["H. G. Wells"],
+    evidencePattern: /^H\. G\. WELLS$/i,
+    evidenceSource: "visible title-page author line",
+  },
+  "the-purple-pileus": {
+    names: ["H. G. Wells"],
+    evidencePattern: /^H\. G\. WELLS$/i,
+    evidenceSource: "visible title-page author line",
+  },
+  "the-valley-of-spiders": {
+    names: ["H. G. Wells"],
+    evidencePattern: /^Author:\s+H\. G\. Wells$/i,
+    evidenceSource: "Gutenberg Author line",
+  },
+  "the-dreams-in-the-witch-house": {
+    names: ["H. P. Lovecraft"],
+    evidencePattern: /^_Author:_\s+Howard Phillips Lovecraft\b/i,
+    evidenceSource: "Faded Page Author metadata line",
+  },
+  "the-shadow-out-of-time": {
+    names: ["H. P. Lovecraft"],
+    evidencePattern: /^_Author:_\s+H\. P\. \(Howard Phillips\) Lovecraft\b/i,
+    evidenceSource: "Faded Page Author metadata line",
+  },
+  "the-strange-high-house-in-the-mist": {
+    names: ["H. P. Lovecraft"],
+    evidencePattern: /^_Author:_\s+Howard Phillips Lovecraft\b/i,
+    evidenceSource: "Faded Page Author metadata line",
+  },
+  "the-whisperer-in-darkness": {
+    names: ["H. P. Lovecraft"],
+    evidencePattern: /^_Author:_\s+H\. P\. \(Howard Phillips\)\b/i,
+    evidenceSource: "Faded Page Author metadata line",
   },
 };
 
@@ -1315,6 +1402,22 @@ const singleStoryStartPhrases: Record<string, string> = {
   "the-unnamable":
     "We were sitting on a dilapidated seventeenth-century tomb",
   "the-white-ship": "I am Basil Elton, keeper of the North Point light",
+  "in-the-modern-vein": "Of course the cultivated reader has heard of Aubrey Vair.",
+  "the-argonauts-of-the-air":
+    "One saw Monson’s Flying Machine from the windows of the trains passing",
+  "the-dreams-in-the-witch-house":
+    "Whether the dreams brought on the fever or the",
+  "the-jilting-of-jane":
+    "As I sit writing in my study, I can hear our Jane bumping",
+  "the-lost-inheritance": "“My uncle,” said the man with the glass eye",
+  "the-purple-pileus": "Mr. Coombes was sick of life.",
+  "the-shadow-out-of-time": "After twenty-two years of nightmare and terror",
+  "the-strange-high-house-in-the-mist":
+    "In the morning mist comes up from the sea by the cliffs beyond",
+  "the-valley-of-spiders":
+    "The gaunt man with the scarred lip was the first to speak.",
+  "the-whisperer-in-darkness":
+    "Bear in mind closely that I did not see any actual visual horror",
 };
 
 const sectioningStartOverrides: Record<
@@ -1839,7 +1942,8 @@ function deriveAcceptedSlugs() {
       relativePath.includes("pilot-write-18-verification") ||
       relativePath.includes("pilot-write-19-verification") ||
       relativePath.includes("pilot-write-20-verification") ||
-      relativePath.includes("pilot-write-21-verification")
+      relativePath.includes("pilot-write-21-verification") ||
+      relativePath.includes("pilot-write-22-verification")
     ) {
       for (const book of books) {
         if (book.acceptedForMain === true && typeof book.slug === "string") {
@@ -2871,6 +2975,7 @@ function buildReport() {
       "After books/SEO, run a focused rage-click UX pass for /audio, /practice, homepage, and related utility pages.",
       "Investigate the SSR heap OOM separately.",
       "Investigate the in-app Browser sandbox issue separately.",
+      "Investigate intermittent fullscreen Playwright/UI behavior separately.",
       "Final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable.",
     ],
     books,

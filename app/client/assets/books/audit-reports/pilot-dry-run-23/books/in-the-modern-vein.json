@@ -1,0 +1,101 @@
+{
+  "slug": "in-the-modern-vein",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/IN THE MODERN VEIN.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only Project Gutenberg source with reuse/source evidence present; no generated publish status exists yet",
+  "expectedGeneratedTitle": "In the Modern Vein",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "IN THE MODERN VEIN",
+    "lineNumber": 18
+  },
+  "expectedAuthor": [
+    "H. G. Wells"
+  ],
+  "authorEvidence": {
+    "source": "visible title-page author line",
+    "text": "H. G. WELLS",
+    "lineNumber": 7
+  },
+  "expectedCreatorRole": "author as identified by the source",
+  "metadataEvidence": [
+    {
+      "source": "visible title-page author line",
+      "text": "H. G. WELLS",
+      "lineNumber": 7
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: IN THE MODERN VEIN",
+    "First readable prose: Of course the cultivated reader has heard of Aubrey Vair."
+  ],
+  "realReadableStart": "In the Modern Vein: Of course the cultivated reader has heard of Aubrey Vair. He has published on three several occasions volumes of delicate verses,—some, indeed, border on indelicacy,—and his column “Of Things Literary” in the Climax is well known. His Byronic visage and an interview have appeared in the Perfect Lady. It was Aubrey V...",
+  "realReadableEnd": "...editations to the level of fried potatoes. “These potatoes”—he remarked, after a pause during which he was struggling with recollection. “Yes. These potatoes have exactly the tints of the dead leaves of the hazel.” “What a fanciful poet it is!” said Mrs. Aubrey Vair. “Taste them. They are very nice potatoes indeed.”",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "In the Modern Vein",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "Of course the cultivated reader has heard of Aubrey Vair. He has published on three several occasions volumes of delicate verses,—some, indeed, border on indelicacy,—and his column “Of Things Literary” in the Climax is well known. His Byronic visage and an interview have appeared in the Perfect Lady. It was Aubrey V...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Of course the cultivated reader has heard of Aubrey Vair.",
+  "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "no structure red flags; preserve the detected source-based headings"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [
+    "author did not come from a Gutenberg Author line; verify byline directly"
+  ],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary.",
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "needs manual sectioning review",
+    "structureRedFlags": [
+      "TOC/body confusion is likely",
+      "start/end boundary confidence is low"
+    ],
+    "startBoundaryConfidence": "low",
+    "endBoundaryConfidence": "low"
+  },
+  "snippets": {
+    "title": "IN THE MODERN VEIN",
+    "author": "H. G. WELLS",
+    "metadata": "H. G. WELLS",
+    "start": "In the Modern Vein Of course the cultivated reader has heard of Aubrey Vair. He has published on three several occasions volumes of delicate verses,—some, indeed, border on indelicacy,—and his column “Of Things Literary” in the Climax is well known. His Byronic visage and an interview have appeared in the Perfect Lady. It was Aubrey V...",
+    "end": "...editations to the level of fried potatoes. “These potatoes”—he remarked, after a pause during which he was struggling with recollection. “Yes. These potatoes have exactly the tints of the dead leaves of the hazel.” “What a fanciful poet it is!” said Mrs. Aubrey Vair. “Taste them. They are very nice potatoes indeed.”"
+  }
+}

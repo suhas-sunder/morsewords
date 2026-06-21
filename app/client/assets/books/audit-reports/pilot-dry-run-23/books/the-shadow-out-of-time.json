@@ -1,0 +1,101 @@
+{
+  "slug": "the-shadow-out-of-time",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Shadow Out of Time.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; public/restricted status remains write-review gated and no generated publish status exists yet",
+  "expectedGeneratedTitle": "The Shadow Out of Time",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE SHADOW OUT OF TIME",
+    "lineNumber": 30
+  },
+  "expectedAuthor": [
+    "H. P. Lovecraft"
+  ],
+  "authorEvidence": {
+    "source": "Faded Page Author metadata line",
+    "text": "_Author:_ H. P. (Howard Phillips) Lovecraft, (1890-1937)",
+    "lineNumber": 18
+  },
+  "expectedCreatorRole": "author as identified by the source",
+  "metadataEvidence": [
+    {
+      "source": "Faded Page Author metadata line",
+      "text": "_Author:_ H. P. (Howard Phillips) Lovecraft, (1890-1937)",
+      "lineNumber": 18
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE SHADOW OUT OF TIME",
+    "First readable prose: After twenty-two years of nightmare and terror"
+  ],
+  "realReadableStart": "The Shadow Out of Time: After twenty-two years of nightmare and terror, saved only by a desperate conviction of the mythical source of certain impressions, I am unwilling to vouch for the truth of that which I think I found in Western Australia on the night of July 17-18, 1935. There is reason to hope that my experience was wholly or partl...",
+  "realReadableEnd": "...eerly pigmented letters on the brittle, æon-browned cellulose pages were not indeed any nameless hieroglyphs of Earth’s youth. They were, instead, the letters of our familiar alphabet, spelling out the words of the English language, in my own handwriting. [The end of <i>The Shadow Out of Time</i> by H. P. Lovecraft]",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Shadow Out of Time",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "After twenty-two years of nightmare and terror, saved only by a desperate conviction of the mythical source of certain impressions, I am unwilling to vouch for the truth of that which I think I found in Western Australia on the night of July 17-18, 1935. There is reason to hope that my experience was wholly or partl...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: After twenty-two years of nightmare and terror",
+  "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "later ordinal headings are present; verify Chapter/Part/Book 1 remains included and selected first",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [
+    "author did not come from a Gutenberg Author line; verify byline directly"
+  ],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "Review required if selected: possible generated slug overlap with the-shadow.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "needs manual sectioning review",
+    "structureRedFlags": [
+      "start/end boundary confidence is low"
+    ],
+    "startBoundaryConfidence": "low",
+    "endBoundaryConfidence": "low"
+  },
+  "snippets": {
+    "title": "THE SHADOW OUT OF TIME",
+    "author": "_Author:_ H. P. (Howard Phillips) Lovecraft, (1890-1937)",
+    "metadata": "_Author:_ H. P. (Howard Phillips) Lovecraft, (1890-1937)",
+    "start": "The Shadow Out of Time After twenty-two years of nightmare and terror, saved only by a desperate conviction of the mythical source of certain impressions, I am unwilling to vouch for the truth of that which I think I found in Western Australia on the night of July 17-18, 1935. There is reason to hope that my experience was wholly or partl...",
+    "end": "...eerly pigmented letters on the brittle, æon-browned cellulose pages were not indeed any nameless hieroglyphs of Earth’s youth. They were, instead, the letters of our familiar alphabet, spelling out the words of the English language, in my own handwriting. [The end of <i>The Shadow Out of Time</i> by H. P. Lovecraft]"
+  }
+}

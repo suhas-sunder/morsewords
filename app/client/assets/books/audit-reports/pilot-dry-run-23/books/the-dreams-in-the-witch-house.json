@@ -1,0 +1,101 @@
+{
+  "slug": "the-dreams-in-the-witch-house",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Dreams in the Witch-House.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; public/restricted status remains write-review gated and no generated publish status exists yet",
+  "expectedGeneratedTitle": "The Dreams in the Witch-House",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "The Dreams in the Witch-House",
+    "lineNumber": 30
+  },
+  "expectedAuthor": [
+    "H. P. Lovecraft"
+  ],
+  "authorEvidence": {
+    "source": "Faded Page Author metadata line",
+    "text": "_Author:_ Howard Phillips Lovecraft (1890-1937)",
+    "lineNumber": 18
+  },
+  "expectedCreatorRole": "author as identified by the source",
+  "metadataEvidence": [
+    {
+      "source": "Faded Page Author metadata line",
+      "text": "_Author:_ Howard Phillips Lovecraft (1890-1937)",
+      "lineNumber": 18
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: The Dreams in the Witch-House",
+    "First readable prose: Whether the dreams brought on the fever or the"
+  ],
+  "realReadableStart": "The Dreams in the Witch-House: Whether the dreams brought on the fever or the fever brought on the dreams Walter Gilman did not know. Behind everything crouched the brooding, festering horror of the ancient town, and of the moldy, unhallowed garret gable where he wrote and studied and wrestled with figures and formulæ when he was not tossing on t...",
+  "realReadableEnd": "...rody of a human skull. The workmen crossed themselves in fright when they came upon this blasphemy, but later burned candles of gratitude in St. Stanislaus’ Church because of the shrill, ghostly tittering they felt they would never hear again. [The end of _The Dreams in the Witch-House_ by Howard Phillips Lovecraft]",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Dreams in the Witch-House",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "Whether the dreams brought on the fever or the fever brought on the dreams Walter Gilman did not know. Behind everything crouched the brooding, festering horror of the ancient town, and of the moldy, unhallowed garret gable where he wrote and studied and wrestled with figures and formulæ when he was not tossing on t...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Whether the dreams brought on the fever or the",
+  "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [
+    "author did not come from a Gutenberg Author line; verify byline directly"
+  ],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [
+      "start/end boundary confidence is low"
+    ],
+    "startBoundaryConfidence": "low",
+    "endBoundaryConfidence": "low"
+  },
+  "snippets": {
+    "title": "The Dreams in the Witch-House",
+    "author": "_Author:_ Howard Phillips Lovecraft (1890-1937)",
+    "metadata": "_Author:_ Howard Phillips Lovecraft (1890-1937)",
+    "start": "The Dreams in the Witch-House Whether the dreams brought on the fever or the fever brought on the dreams Walter Gilman did not know. Behind everything crouched the brooding, festering horror of the ancient town, and of the moldy, unhallowed garret gable where he wrote and studied and wrestled with figures and formulæ when he was not tossing on t...",
+    "end": "...rody of a human skull. The workmen crossed themselves in fright when they came upon this blasphemy, but later burned candles of gratitude in St. Stanislaus’ Church because of the shrill, ghostly tittering they felt they would never hear again. [The end of _The Dreams in the Witch-House_ by Howard Phillips Lovecraft]"
+  }
+}
