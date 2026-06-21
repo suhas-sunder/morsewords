@@ -9,6 +9,7 @@ import {
   morseBookPath,
 } from "~/client/data/morseBooks";
 import { morseBookAuthorSchemaPeople } from "~/client/data/morseBookDisplay";
+import { getMorseBookSeoSummary } from "~/client/data/morseBookSeoSummaries";
 import { absoluteUrl } from "~/client/data/routes";
 import { SITE_URL } from "~/client/seo";
 
@@ -45,11 +46,14 @@ export const meta: Route.MetaFunction = ({ data }) => {
   const book = data.bookSummary;
   const path = morseAudiobookPath(book.slug);
   const canonical = absoluteUrl(path);
+  const seoSummary = getMorseBookSeoSummary(book.slug);
   return [
     { title: `${book.title} Live Morse Player | MorseWords` },
     {
       name: "description",
-      content: `Watch and listen to ${book.title} as live browser-generated Morse code with chapter selection, scrubbing, and saved progress.`,
+      content:
+        seoSummary?.description ??
+        `Watch and listen to ${book.title} as live browser-generated Morse code with chapter selection, scrubbing, and saved progress.`,
     },
     { tagName: "link", rel: "canonical", href: canonical },
     { property: "og:url", content: canonical },
@@ -65,13 +69,16 @@ export default function MorseAudiobookRoute({
   const audiobookUrl = absoluteUrl(morseAudiobookPath(book.slug));
   const bookUrl = absoluteUrl(morseBookPath(book.slug));
   const author = morseBookAuthorSchemaPeople(book.author);
+  const seoSummary = getMorseBookSeoSummary(book.slug);
   const detailJsonLd = [
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
       name: `${book.title} live Morse player`,
       url: audiobookUrl,
-      description: `Live browser-generated Morse player controls for ${book.title}.`,
+      description:
+        seoSummary?.description ??
+        `Live browser-generated Morse player controls for ${book.title}.`,
       isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
       about: {
         "@type": "Book",

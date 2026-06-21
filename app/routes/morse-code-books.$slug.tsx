@@ -13,6 +13,7 @@ import {
   isMorseBookPublishReady,
   morseBookPath,
 } from "~/client/data/morseBooks";
+import { getMorseBookSeoSummary } from "~/client/data/morseBookSeoSummaries";
 import { absoluteUrl } from "~/client/data/routes";
 
 function isUnpublishedPreviewRequest(request: Request) {
@@ -132,11 +133,14 @@ export const meta: Route.MetaFunction = ({ data }) => {
 
   const path = morseBookPath(book.slug);
   const canonical = absoluteUrl(path);
+  const seoSummary = getMorseBookSeoSummary(book.slug);
   return [
     { title: `${book.title} in Morse Code | MorseWords` },
     {
       name: "description",
-      content: `Read ${book.title} as cleaned book text, preview Morse code, download MP3, or open the live Morse player.`,
+      content:
+        seoSummary?.description ??
+        `Read ${book.title} as cleaned book text, preview Morse code, download MP3, or open the live Morse player.`,
     },
     { tagName: "link", rel: "canonical", href: canonical },
     { property: "og:url", content: canonical },

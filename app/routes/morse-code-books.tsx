@@ -22,6 +22,7 @@ import {
   morseBookPath,
 } from "~/client/data/morseBooks";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
+import { getMorseBookSeoSummary } from "~/client/data/morseBookSeoSummaries";
 import type { MorseBookLibrarySummary } from "~/client/data/morseBookTypes";
 import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -279,9 +280,11 @@ function hubSubjectsForBook(book: MorseBookLibrarySummary) {
 }
 
 function hubDescriptionForBook(book: MorseBookLibrarySummary) {
+  const seoDescription = getMorseBookSeoSummary(book.slug)?.description;
   const curatedDescription = APPROVED_BOOK_PRESENTATION[book.slug]?.description;
   const sourceDescription = displayBookDescription(book.description).trim();
   return (
+    seoDescription ||
     curatedDescription ||
     sourceDescription ||
     "A processed Project Gutenberg reference text prepared for browser-local Morse reading, MP3 audio, and live playback."

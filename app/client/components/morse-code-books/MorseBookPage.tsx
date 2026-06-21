@@ -120,6 +120,10 @@ import {
   mainMorseBookStructureLabelPattern,
 } from "~/client/data/morseBookSectionDefaults";
 import {
+  getMorseBookSeoSummary,
+  getMorseBookSeoSummaryParagraphs,
+} from "~/client/data/morseBookSeoSummaries";
+import {
   formatMorseBookAuthors,
   getMorseBookAuthorDisplay,
 } from "~/client/data/morseBookDisplay";
@@ -903,6 +907,11 @@ function MorseBookWorkspace({
   const authorDisplay = React.useMemo(
     () => getMorseBookAuthorDisplay(book.author),
     [book.author],
+  );
+  const seoSummary = getMorseBookSeoSummary(book.slug);
+  const seoSummaryParagraphs = React.useMemo(
+    () => getMorseBookSeoSummaryParagraphs(book.slug),
+    [book.slug],
   );
   const sourceMetadataLabel = bookSourceMetadataLabel(book.source);
   const sourceMetadataHref = bookSourceMetadataHref(book.source);
@@ -2520,7 +2529,25 @@ function MorseBookWorkspace({
                 {authorDisplay.contextText}
               </p>
             ) : null}
-            {book.description ? (
+            {seoSummary ? (
+              <section
+                className="mt-5"
+                aria-labelledby="morse-book-summary-heading"
+                data-testid="morse-book-seo-summary"
+              >
+                <h2
+                  id="morse-book-summary-heading"
+                  className="mw-heading text-xl font-extrabold text-sky-950"
+                >
+                  About this Morse book
+                </h2>
+                <div className="mt-3 max-w-[68ch] space-y-3 text-base leading-relaxed text-slate-700">
+                  {seoSummaryParagraphs.map((paragraph, index) => (
+                    <p key={`${book.slug}-seo-summary-${index}`}>{paragraph}</p>
+                  ))}
+                </div>
+              </section>
+            ) : book.description ? (
               <p className="mt-3 max-w-[68ch] text-base leading-relaxed text-slate-700">
                 {book.description}
               </p>

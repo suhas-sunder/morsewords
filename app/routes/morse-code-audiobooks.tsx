@@ -18,6 +18,7 @@ import {
   morseBookPath,
 } from "~/client/data/morseBooks";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
+import { getMorseBookSeoSummary } from "~/client/data/morseBookSeoSummaries";
 import type { MorseBookLibrarySummary } from "~/client/data/morseBookTypes";
 import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -68,6 +69,9 @@ function uniqueSorted(values: string[]) {
 }
 
 function audiobookDescription(book: MorseBookLibrarySummary) {
+  const seoDescription = getMorseBookSeoSummary(book.slug)?.description;
+  if (seoDescription) return seoDescription;
+
   const description = book.description.trim();
   if (description && !description.toLowerCase().includes("development-only")) {
     return description;
