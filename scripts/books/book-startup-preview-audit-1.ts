@@ -166,6 +166,9 @@ const sourceBoilerplateAnywherePattern =
 const earlyEmbeddedFrontMatterPattern =
   /\b(table of contents|list of illustrations|frontispiece|illustrations?|title page|copyright|published|all rights reserved|preface)\b/i;
 
+const frontMatterPublishedContextPattern =
+  /\b(first published|published by|published for|published at|published in (?:london|new york|\d{4})|publisher|publication date)\b/i;
+
 const earlyShortMatterPattern =
   /\b(cover|frontispiece|by\s+[a-z]|published|copyright|all rights reserved|contents|table of contents)\b/i;
 
@@ -259,6 +262,10 @@ function normalizedSectionText(
 function hasEarlyEmbeddedFrontMatter(text: string) {
   const match = earlyEmbeddedFrontMatterPattern.exec(text);
   if (!match) return false;
+  if (match[0].toLowerCase() === "published") {
+    const context = text.slice(Math.max(0, match.index - 40), match.index + 120);
+    if (!frontMatterPublishedContextPattern.test(context)) return false;
+  }
   return countWords(text.slice(0, match.index)) <= 80;
 }
 

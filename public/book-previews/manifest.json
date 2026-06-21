@@ -5007,6 +5007,116 @@
       "previewCharacterCount": 10220,
       "estimatedRuntimeSeconds": 3601,
       "truncated": true
+    },
+    {
+      "slug": "in-the-modern-vein",
+      "path": "/book-previews/in-the-modern-vein.preview.json",
+      "contentVersion": "ca9b83e42b242a0a",
+      "contentHash": "ca9b83e42b242a0aa33b0d53e2bad0ca5c58a174082d9963d1cda4adad4ddcf6",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10994,
+      "previewCharacterCount": 9903,
+      "estimatedRuntimeSeconds": 3561,
+      "truncated": true
+    },
+    {
+      "slug": "the-argonauts-of-the-air",
+      "path": "/book-previews/the-argonauts-of-the-air.preview.json",
+      "contentVersion": "04cef57dd616116a",
+      "contentHash": "04cef57dd616116a2c705d4144ba92b47f7ce0be1d213bc6fd3fda741b3008a6",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10799,
+      "previewCharacterCount": 9796,
+      "estimatedRuntimeSeconds": 3514,
+      "truncated": true
+    },
+    {
+      "slug": "the-dreams-in-the-witch-house",
+      "path": "/book-previews/the-dreams-in-the-witch-house.preview.json",
+      "contentVersion": "4504f7fba1500315",
+      "contentHash": "4504f7fba150031504e4c36e5bf25880a56bad619b7a4a35829085feeaf8aaf1",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10695,
+      "previewCharacterCount": 9761,
+      "estimatedRuntimeSeconds": 3483,
+      "truncated": true
+    },
+    {
+      "slug": "the-jilting-of-jane",
+      "path": "/book-previews/the-jilting-of-jane.preview.json",
+      "contentVersion": "ca66cb9cbaf47919",
+      "contentHash": "ca66cb9cbaf479198721d70a91e803a8ca07dcede885762bbdfa1d985018eb61",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10619,
+      "previewCharacterCount": 9466,
+      "estimatedRuntimeSeconds": 3409,
+      "truncated": true
+    },
+    {
+      "slug": "the-lost-inheritance",
+      "path": "/book-previews/the-lost-inheritance.preview.json",
+      "contentVersion": "9efcc00c16bec863",
+      "contentHash": "9efcc00c16bec86359869114989d92ff81e0307af91db55bd9340df5ce513a9e",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10945,
+      "previewCharacterCount": 9882,
+      "estimatedRuntimeSeconds": 3564,
+      "truncated": true
+    },
+    {
+      "slug": "the-purple-pileus",
+      "path": "/book-previews/the-purple-pileus.preview.json",
+      "contentVersion": "2906741661c4a3aa",
+      "contentHash": "2906741661c4a3aa8b09ee55f5b6a3517d56753b1e812f5b979bb7f29dabf3da",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10954,
+      "previewCharacterCount": 9931,
+      "estimatedRuntimeSeconds": 3588,
+      "truncated": true
+    },
+    {
+      "slug": "the-shadow-out-of-time",
+      "path": "/book-previews/the-shadow-out-of-time.preview.json",
+      "contentVersion": "1d391266975746f9",
+      "contentHash": "1d391266975746f935cbfe5941d77d9c255b51decec5599664e54204e7d69586",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10944,
+      "previewCharacterCount": 10014,
+      "estimatedRuntimeSeconds": 3587,
+      "truncated": true
+    },
+    {
+      "slug": "the-strange-high-house-in-the-mist",
+      "path": "/book-previews/the-strange-high-house-in-the-mist.preview.json",
+      "contentVersion": "e967e41e94947f63",
+      "contentHash": "e967e41e94947f6352435668784442ef9b770bb1cda0312bff456c4167879a70",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10691,
+      "previewCharacterCount": 9762,
+      "estimatedRuntimeSeconds": 3470,
+      "truncated": true
+    },
+    {
+      "slug": "the-valley-of-spiders",
+      "path": "/book-previews/the-valley-of-spiders.preview.json",
+      "contentVersion": "642ed6b96c9150bd",
+      "contentHash": "642ed6b96c9150bd7d6980c1ea54ac7c8e05328c0c247440e083a8e779ddbef9",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10863,
+      "previewCharacterCount": 9860,
+      "estimatedRuntimeSeconds": 3515,
+      "truncated": true
+    },
+    {
+      "slug": "the-whisperer-in-darkness",
+      "path": "/book-previews/the-whisperer-in-darkness.preview.json",
+      "contentVersion": "62ef46481506e4af",
+      "contentHash": "62ef46481506e4af02dba73e54b6716d8b06067795b38009ae1105e7915e56b3",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 10848,
+      "previewCharacterCount": 9935,
+      "estimatedRuntimeSeconds": 3540,
+      "truncated": true
     }
   ],
   "missing": []

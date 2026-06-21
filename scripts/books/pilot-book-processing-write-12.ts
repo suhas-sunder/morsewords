@@ -85,6 +85,7 @@ type UnresolvedSourceBook = {
 type DryRunReport = {
   schemaVersion: 1;
   reportName:
+    | "pilot-dry-run-23"
     | "pilot-dry-run-22"
     | "pilot-dry-run-12"
     | "pilot-dry-run-13"
@@ -248,7 +249,9 @@ type ManualBoundary = {
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
 const writeBatch =
-  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "22"
+  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "23"
+    ? 23
+  : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "22"
     ? 22
     : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "21"
       ? 21
@@ -286,7 +289,20 @@ const dryRunReportPath = path.join(dryRunRoot, `${dryRunReportName}.json`);
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 const previewManifestPath = path.join(previewRoot, "manifest.json");
 
-const SELECTED_BATCH: readonly string[] = writeBatch === 22
+const SELECTED_BATCH: readonly string[] = writeBatch === 23
+  ? [
+      "in-the-modern-vein",
+      "the-argonauts-of-the-air",
+      "the-dreams-in-the-witch-house",
+      "the-jilting-of-jane",
+      "the-lost-inheritance",
+      "the-purple-pileus",
+      "the-shadow-out-of-time",
+      "the-strange-high-house-in-the-mist",
+      "the-valley-of-spiders",
+      "the-whisperer-in-darkness",
+    ]
+  : writeBatch === 22
   ? [
       "a-slip-under-the-microscope",
       "a-story-of-the-days-to-come",
@@ -587,7 +603,13 @@ const LATER_PHASE_REQUIREMENTS = [
   "final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable",
 ];
 
-const BACKLOG_NOTE = writeBatch === 22
+const BACKLOG_NOTE = writeBatch === 23
+  ? [
+      "Dry-run 23 still had 46 skipped/unsafe raw-only candidates before write.",
+      "These are not treated as lost or missed.",
+      "After safe batching slows/exhausts, create a dedicated remaining raw inventory/triage report classifying every unprocessed raw file.",
+    ]
+  : writeBatch === 22
   ? [
       "Dry-run 22 still had 56 skipped/unsafe raw-only candidates before write.",
       "These are not treated as lost or missed.",
@@ -1109,6 +1131,16 @@ function manualChapterRomanBoundaries(cleanedText: string): ManualBoundary[] {
 const SINGLE_STORY_SLUGS = new Set<string>([]);
 
 const SINGLE_STORY_START_PHRASES: Record<string, string> = {
+  "in-the-modern-vein": "Of course the cultivated reader has heard of Aubrey Vair.",
+  "the-argonauts-of-the-air": "One saw Monson’s Flying Machine from the windows of the trains passing",
+  "the-dreams-in-the-witch-house": "Whether the dreams brought on the fever or the",
+  "the-jilting-of-jane": "As I sit writing in my study, I can hear our Jane bumping",
+  "the-lost-inheritance": "“My uncle,” said the man with the glass eye",
+  "the-purple-pileus": "Mr. Coombes was sick of life.",
+  "the-shadow-out-of-time": "After twenty-two years of nightmare and terror",
+  "the-strange-high-house-in-the-mist": "In the morning mist comes up from the sea by the cliffs beyond",
+  "the-valley-of-spiders": "The gaunt man with the scarred lip was the first to speak.",
+  "the-whisperer-in-darkness": "Bear in mind closely that I did not see any actual visual horror",
   "cool-air": "You ask me to explain why I am afraid of a draft of cool air",
   "ole-luk-oie-the-dream-god": "THERE is nobody in the whole world who knows so many stories as",
   "the-dream-of-little-tuk": "Ah! yes, that was little Tuk",

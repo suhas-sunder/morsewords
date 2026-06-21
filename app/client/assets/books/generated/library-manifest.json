@@ -22307,6 +22307,496 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-white-ship/manifest.json"
+    },
+    {
+      "slug": "in-the-modern-vein",
+      "title": "In the Modern Vein",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "ca9b83e42b242a0a",
+      "contentHash": "ca9b83e42b242a0aa33b0d53e2bad0ca5c58a174082d9963d1cda4adad4ddcf6",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 23 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for In the Modern Vein"
+      },
+      "stats": {
+        "originalCharacterCount": 20821,
+        "cleanedCharacterCount": 20310,
+        "wordCount": 3595,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "in-the-modern-vein/manifest.json"
+    },
+    {
+      "slug": "the-argonauts-of-the-air",
+      "title": "The Argonauts of the Air",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "04cef57dd616116a",
+      "contentHash": "04cef57dd616116a2c705d4144ba92b47f7ce0be1d213bc6fd3fda741b3008a6",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 23 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Argonauts of the Air"
+      },
+      "stats": {
+        "originalCharacterCount": 26443,
+        "cleanedCharacterCount": 26023,
+        "wordCount": 4504,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-argonauts-of-the-air/manifest.json"
+    },
+    {
+      "slug": "the-dreams-in-the-witch-house",
+      "title": "The Dreams in the Witch-House",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "4504f7fba1500315",
+      "contentHash": "4504f7fba150031504e4c36e5bf25880a56bad619b7a4a35829085feeaf8aaf1",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 23 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Dreams in the Witch-House"
+      },
+      "stats": {
+        "originalCharacterCount": 90346,
+        "cleanedCharacterCount": 67045,
+        "wordCount": 11527,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-dreams-in-the-witch-house/manifest.json"
+    },
+    {
+      "slug": "the-jilting-of-jane",
+      "title": "The Jilting of Jane",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "ca66cb9cbaf47919",
+      "contentHash": "ca66cb9cbaf479198721d70a91e803a8ca07dcede885762bbdfa1d985018eb61",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 23 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Jilting of Jane"
+      },
+      "stats": {
+        "originalCharacterCount": 14704,
+        "cleanedCharacterCount": 14323,
+        "wordCount": 2697,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-jilting-of-jane/manifest.json"
+    },
+    {
+      "slug": "the-lost-inheritance",
+      "title": "The Lost Inheritance",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "9efcc00c16bec863",
+      "contentHash": "9efcc00c16bec86359869114989d92ff81e0307af91db55bd9340df5ce513a9e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 23 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Lost Inheritance"
+      },
+      "stats": {
+        "originalCharacterCount": 14709,
+        "cleanedCharacterCount": 14398,
+        "wordCount": 2800,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-lost-inheritance/manifest.json"
+    },
+    {
+      "slug": "the-purple-pileus",
+      "title": "The Purple Pileus",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "2906741661c4a3aa",
+      "contentHash": "2906741661c4a3aa8b09ee55f5b6a3517d56753b1e812f5b979bb7f29dabf3da",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 23 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Purple Pileus"
+      },
+      "stats": {
+        "originalCharacterCount": 25391,
+        "cleanedCharacterCount": 24963,
+        "wordCount": 4586,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-purple-pileus/manifest.json"
+    },
+    {
+      "slug": "the-shadow-out-of-time",
+      "title": "The Shadow Out of Time",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "1d391266975746f9",
+      "contentHash": "1d391266975746f935cbfe5941d77d9c255b51decec5599664e54204e7d69586",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 23 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Shadow Out of Time"
+      },
+      "stats": {
+        "originalCharacterCount": 154925,
+        "cleanedCharacterCount": 148840,
+        "wordCount": 25412,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-shadow-out-of-time/manifest.json"
+    },
+    {
+      "slug": "the-strange-high-house-in-the-mist",
+      "title": "The Strange High House in the Mist",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "e967e41e94947f63",
+      "contentHash": "e967e41e94947f6352435668784442ef9b770bb1cda0312bff456c4167879a70",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 23 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Strange High House in the Mist"
+      },
+      "stats": {
+        "originalCharacterCount": 23284,
+        "cleanedCharacterCount": 21079,
+        "wordCount": 3789,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-strange-high-house-in-the-mist/manifest.json"
+    },
+    {
+      "slug": "the-valley-of-spiders",
+      "title": "The Valley of Spiders",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "642ed6b96c9150bd",
+      "contentHash": "642ed6b96c9150bd7d6980c1ea54ac7c8e05328c0c247440e083a8e779ddbef9",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1743",
+        "releaseDate": "September 21, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1743",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 23 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Valley of Spiders"
+      },
+      "stats": {
+        "originalCharacterCount": 23597,
+        "cleanedCharacterCount": 21384,
+        "wordCount": 3898,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-valley-of-spiders/manifest.json"
+    },
+    {
+      "slug": "the-whisperer-in-darkness",
+      "title": "The Whisperer in Darkness",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "62ef46481506e4af",
+      "contentHash": "62ef46481506e4af02dba73e54b6716d8b06067795b38009ae1105e7915e56b3",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 23 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Whisperer in Darkness"
+      },
+      "stats": {
+        "originalCharacterCount": 159724,
+        "cleanedCharacterCount": 155006,
+        "wordCount": 26501,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-whisperer-in-darkness/manifest.json"
     }
   ]
 }
