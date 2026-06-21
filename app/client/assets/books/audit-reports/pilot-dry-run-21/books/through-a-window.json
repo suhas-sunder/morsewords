@@ -1,0 +1,98 @@
+{
+  "slug": "through-a-window",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THROUGH A WINDOW.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Through a Window",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THROUGH A WINDOW",
+    "lineNumber": 65
+  },
+  "expectedAuthor": [
+    "H. G. Wells"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: H. G. Wells",
+    "lineNumber": 13
+  },
+  "expectedCreatorRole": "author as identified by the source",
+  "metadataEvidence": [
+    {
+      "source": "Gutenberg Author line",
+      "text": "Author: H. G. Wells",
+      "lineNumber": 13
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THROUGH A WINDOW",
+    "First readable prose: After his legs were set, they carried Bailey into the study and put"
+  ],
+  "realReadableStart": "Through a Window: After his legs were set, they carried Bailey into the study and put him on a couch before the open window. There he lay, a live--even a feverish man down to the loins, and below that a double-barrelled mummy swathed in white wrappings. He tried to read, even tried to write a little, but most of the time he looked ou...",
+  "realReadableEnd": "...ttle with all his strength on to the Malay's face. The krees fell heavily upon the floor. \"Easy with those legs,\" said Bailey, as young Fitzgibbon and one of the boating party lifted the body off him. Young Fitzgibbon was very white in the face. \"I didn't mean to kill him,\" he said. \"It's just as well,\" said Bailey.",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Through a Window",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "After his legs were set, they carried Bailey into the study and put him on a couch before the open window. There he lay, a live--even a feverish man down to the loins, and below that a double-barrelled mummy swathed in white wrappings. He tried to read, even tried to write a little, but most of the time he looked ou...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: After his legs were set, they carried Bailey into the study and put",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "needs manual sectioning review",
+    "structureRedFlags": [
+      "TOC/body confusion is likely"
+    ],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THROUGH A WINDOW",
+    "author": "Author: H. G. Wells",
+    "metadata": "Author: H. G. Wells",
+    "start": "Through a Window After his legs were set, they carried Bailey into the study and put him on a couch before the open window. There he lay, a live--even a feverish man down to the loins, and below that a double-barrelled mummy swathed in white wrappings. He tried to read, even tried to write a little, but most of the time he looked ou...",
+    "end": "...ttle with all his strength on to the Malay's face. The krees fell heavily upon the floor. \"Easy with those legs,\" said Bailey, as young Fitzgibbon and one of the boating party lifted the body off him. Young Fitzgibbon was very white in the face. \"I didn't mean to kill him,\" he said. \"It's just as well,\" said Bailey."
+  }
+}

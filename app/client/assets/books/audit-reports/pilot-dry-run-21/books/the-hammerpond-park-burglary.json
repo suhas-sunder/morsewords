@@ -1,0 +1,98 @@
+{
+  "slug": "the-hammerpond-park-burglary",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE HAMMERPOND PARK BURGLARY.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Hammerpond Park Burglary",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE HAMMERPOND PARK BURGLARY",
+    "lineNumber": 65
+  },
+  "expectedAuthor": [
+    "H. G. Wells"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: H. G. Wells",
+    "lineNumber": 13
+  },
+  "expectedCreatorRole": "author as identified by the source",
+  "metadataEvidence": [
+    {
+      "source": "Gutenberg Author line",
+      "text": "Author: H. G. Wells",
+      "lineNumber": 13
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE HAMMERPOND PARK BURGLARY",
+    "First readable prose: It is a moot point whether burglary is to be considered as a sport, a"
+  ],
+  "realReadableStart": "The Hammerpond Park Burglary: It is a moot point whether burglary is to be considered as a sport, a trade, or an art. For a trade, the technique is scarcely rigid enough, and its claims to be considered an art are vitiated by the mercenary element that qualifies its triumphs. On the whole it seems to be most justly ranked as sport, a sport for w...",
+  "realReadableEnd": "...room, the little red room next to Lord Aveling's suite. The dawn found a deserted easel bearing a canvas with a green inscription, in the Hammerpond Park, and it found Hammerpond House in commotion. But if the dawn found Mr Teddy Watkins and the Aveling diamonds, it did not communicate the information to the police.",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Hammerpond Park Burglary",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "It is a moot point whether burglary is to be considered as a sport, a trade, or an art. For a trade, the technique is scarcely rigid enough, and its claims to be considered an art are vitiated by the mercenary element that qualifies its triumphs. On the whole it seems to be most justly ranked as sport, a sport for w...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: It is a moot point whether burglary is to be considered as a sport, a",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "needs manual sectioning review",
+    "structureRedFlags": [
+      "TOC/body confusion is likely"
+    ],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE HAMMERPOND PARK BURGLARY",
+    "author": "Author: H. G. Wells",
+    "metadata": "Author: H. G. Wells",
+    "start": "The Hammerpond Park Burglary It is a moot point whether burglary is to be considered as a sport, a trade, or an art. For a trade, the technique is scarcely rigid enough, and its claims to be considered an art are vitiated by the mercenary element that qualifies its triumphs. On the whole it seems to be most justly ranked as sport, a sport for w...",
+    "end": "...room, the little red room next to Lord Aveling's suite. The dawn found a deserted easel bearing a canvas with a green inscription, in the Hammerpond Park, and it found Hammerpond House in commotion. But if the dawn found Mr Teddy Watkins and the Aveling diamonds, it did not communicate the information to the police."
+  }
+}

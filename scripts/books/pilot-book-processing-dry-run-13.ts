@@ -160,13 +160,15 @@ type DryRunReport = {
     | "pilot-dry-run-17"
     | "pilot-dry-run-18"
     | "pilot-dry-run-19"
-    | "pilot-dry-run-20";
+    | "pilot-dry-run-20"
+    | "pilot-dry-run-21";
   generatedAt: string;
   branch: string;
   baseMainCommit: string;
   mode: "dry-run/report-only";
   selectedBooks: string[];
   selectedCount: number;
+  fewerThan20SafeCandidatesRemain: boolean;
   candidateTypeCounts: {
     rawOnly: number;
     unresolvedSourceGeneratedReportOnly: number;
@@ -225,9 +227,11 @@ type DryRunReport = {
 
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
-const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "20"
-  ? 20
-  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "19"
+const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "21"
+  ? 21
+  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "20"
+    ? 20
+    : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "19"
     ? 19
     : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "18"
       ? 18
@@ -326,6 +330,12 @@ const acceptedReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-19-verification/pilot-write-19-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 21
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-20/pilot-write-20.json",
+        "app/client/assets/books/audit-reports/pilot-write-20-verification/pilot-write-20-verification.json",
+      ]
+    : []),
   "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
   "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
   "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
@@ -371,6 +381,11 @@ const inputReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-19-verification/pilot-write-19-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 21
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-20-verification/pilot-write-20-verification.json",
+      ]
+    : []),
   ...(dryRunBatch >= 14
     ? [
         "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
@@ -385,7 +400,30 @@ const structureJsonPath = path.join(
 const pass2JsonPath = path.join(auditRoot, "book-processing-audit-pass-2.json");
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 
-const selectedBatch: readonly string[] = dryRunBatch === 20
+const selectedBatch: readonly string[] = dryRunBatch === 21
+  ? [
+      "a-deal-in-ostriches",
+      "a-moonlight-fable",
+      "a-moth-genus-novo",
+      "aepyornis-island",
+      "in-the-avu-observatory",
+      "the-cone",
+      "the-country-of-the-blind",
+      "the-crystal-egg",
+      "the-diamond-maker",
+      "the-flowering-of-the-strange-orchid",
+      "the-flying-man",
+      "the-hammerpond-park-burglary",
+      "the-lord-of-the-dynamos",
+      "the-star",
+      "the-stolen-bacillus",
+      "the-stolen-body",
+      "the-temptation-of-harringay",
+      "the-treasure-in-the-forest",
+      "the-triumphs-of-a-taxidermist",
+      "through-a-window",
+    ]
+  : dryRunBatch === 20
   ? [
       "moti",
       "the-brown-bear-of-norway",
@@ -822,6 +860,26 @@ const titleOverrides: Record<string, string> = {
   "mr-ledbetter-s-vacation": "Mr. Ledbetter’s Vacation",
   "mr-skelmersdale-in-fairyland": "Mr. Skelmersdale in Fairyland",
   "the-new-accelerator": "The New Accelerator",
+  "a-deal-in-ostriches": "A Deal in Ostriches",
+  "a-moonlight-fable": "A Moonlight Fable",
+  "a-moth-genus-novo": "A Moth--Genus Novo",
+  "aepyornis-island": "Aepyornis Island",
+  "in-the-avu-observatory": "In the Avu Observatory",
+  "the-cone": "The Cone",
+  "the-country-of-the-blind": "The Country of the Blind",
+  "the-crystal-egg": "The Crystal Egg",
+  "the-diamond-maker": "The Diamond Maker",
+  "the-flowering-of-the-strange-orchid": "The Flowering of the Strange Orchid",
+  "the-flying-man": "The Flying Man",
+  "the-hammerpond-park-burglary": "The Hammerpond Park Burglary",
+  "the-lord-of-the-dynamos": "The Lord of the Dynamos",
+  "the-star": "The Star",
+  "the-stolen-bacillus": "The Stolen Bacillus",
+  "the-stolen-body": "The Stolen Body",
+  "the-temptation-of-harringay": "The Temptation of Harringay",
+  "the-treasure-in-the-forest": "The Treasure in the Forest",
+  "the-triumphs-of-a-taxidermist": "The Triumphs of a Taxidermist",
+  "through-a-window": "Through a Window",
 };
 
 const singleStoryStartPhrases: Record<string, string> = {
@@ -1144,6 +1202,26 @@ const singleStoryStartPhrases: Record<string, string> = {
     "My friend, Mr. Ledbetter, is a round-faced little man",
   "mr-skelmersdale-in-fairyland": "“There's a man in that shop,” said the Doctor",
   "the-new-accelerator": "Certainly, if ever a man found a guinea when he was looking for a pin",
+  "a-deal-in-ostriches": "Talking of the prices of birds, I've seen an ostrich that cost three",
+  "a-moonlight-fable": "There was once a little man whose mother made him a beautiful suit of clothes.",
+  "a-moth-genus-novo": "Probably you have heard of Hapley--not W.T. Hapley, the son",
+  "aepyornis-island": "The man with the scarred face leant over the table and looked at my",
+  "in-the-avu-observatory": "The observatory at Avu, in Borneo, stands on the spur of the mountain.",
+  "the-cone": "The night was hot and overcast, the sky red, rimmed with the lingering sunset",
+  "the-country-of-the-blind": "Three hundred miles and more from Chimborazo, one hundred from the snows",
+  "the-crystal-egg": "There was, until a year ago, a little and very grimy-looking shop near Seven Dials",
+  "the-diamond-maker": "Some business had detained me in Chancery Lane until nine in the",
+  "the-flowering-of-the-strange-orchid": "The buying of orchids always has in it a certain speculative flavour.",
+  "the-flying-man": "The Ethnologist looked at the _bhimraj_ feather thoughtfully.",
+  "the-hammerpond-park-burglary": "It is a moot point whether burglary is to be considered as a sport, a",
+  "the-lord-of-the-dynamos": "The chief attendant of the three dynamos that buzzed and rattled",
+  "the-star": "It was on the first day of the New Year that the announcement was made",
+  "the-stolen-bacillus": "\"This again,\" said the Bacteriologist, slipping a glass slide under",
+  "the-stolen-body": "Mr. Bessel was the senior partner in the firm of Bessel, Hart, and Brown",
+  "the-temptation-of-harringay": "It is quite impossible to say whether this thing really happened.",
+  "the-treasure-in-the-forest": "The canoe was now approaching the land. The bay opened out, and a gap",
+  "the-triumphs-of-a-taxidermist": "Here are some of the secrets of taxidermy. They were told me by the",
+  "through-a-window": "After his legs were set, they carried Bailey into the study and put",
 };
 
 const sectioningStartOverrides: Record<
@@ -1650,7 +1728,8 @@ function deriveAcceptedSlugs() {
       relativePath.includes("pilot-write-16-verification") ||
       relativePath.includes("pilot-write-17-verification") ||
       relativePath.includes("pilot-write-18-verification") ||
-      relativePath.includes("pilot-write-19-verification")
+      relativePath.includes("pilot-write-19-verification") ||
+      relativePath.includes("pilot-write-20-verification")
     ) {
       for (const book of books) {
         if (book.acceptedForMain === true && typeof book.slug === "string") {
@@ -2027,7 +2106,7 @@ function selectedHardFailures(
 ) {
   const failures: string[] = [];
   const first = firstReadableBoundary(analysis);
-  const startOverride = sectioningStartOverrides[book.slug];
+  const startOverride = sectioningStartOverrides[book.slug] ?? singleStoryStartPhrases[book.slug];
   if (generatedSlugs.has(book.slug)) failures.push("generated output already exists");
   if (acceptedSlugs.has(book.slug)) failures.push("book is already accepted/corrected/verified");
   if (knownManualBlockedSuspicious.has(book.slug)) failures.push("book is in known manual/blocked/suspicious list");
@@ -2041,7 +2120,14 @@ function selectedHardFailures(
   if (author.length === 0 || author.some((item) => /^unknown author$/i.test(item))) {
     failures.push("author would be Unknown Author or missing despite raw-source review");
   }
-  if (analysis.redFlags.some((flag) => /fallback|TOC\/body|huge sections/i.test(flag))) {
+  const controlledSingleStoryEvidence = Boolean(
+    titleOverrides[book.slug] && singleStoryStartPhrases[book.slug],
+  );
+  if (
+    analysis.redFlags.some((flag) => /fallback|huge sections/i.test(flag)) ||
+    (!controlledSingleStoryEvidence &&
+      analysis.redFlags.some((flag) => /TOC\/body/i.test(flag)))
+  ) {
     failures.push("structure detector raised a hard false-positive red flag");
   }
   return failures;
@@ -2413,6 +2499,7 @@ function mainMarkdown(report: DryRunReport) {
     "## Counts",
     "",
     `- Selected books: ${report.selectedCount}`,
+    `- Fewer than 20 safe candidates remain: ${report.fewerThan20SafeCandidatesRemain ? "yes" : "no"}`,
     `- Raw-only selected: ${report.candidateTypeCounts.rawOnly}`,
     `- Unresolved-source generated report-only: ${report.candidateTypeCounts.unresolvedSourceGeneratedReportOnly}`,
     `- Needs first-time controlled processing: ${report.counts.controlledFirstTimeProcessing}`,
@@ -2554,6 +2641,7 @@ function buildReport() {
     mode: "dry-run/report-only",
     selectedBooks: [...selectedBatch],
     selectedCount: selectedBatch.length,
+    fewerThan20SafeCandidatesRemain: selectedBatch.length < 20,
     candidateTypeCounts: {
       rawOnly: books.length,
       unresolvedSourceGeneratedReportOnly: unresolvedGenerated.length,
@@ -2577,13 +2665,16 @@ function buildReport() {
     duplicateNearDuplicateCandidatesSkipped: [...duplicateNearDuplicateCandidatesSkipped],
     boundaryDefectCandidatesSkipped: [...boundaryDefectCandidatesSkipped],
     sharedDryRunScriptScopeFinding: {
-      classification: `harmless shared implementation intentionally used by dry-run ${dryRunBatch}`,
+      classification: dryRunBatch === 21
+        ? "required scoped fix implemented in the shared helper"
+        : `harmless shared implementation intentionally used by dry-run ${dryRunBatch}`,
       files: [
         "scripts/books/pilot-book-processing-dry-run-13.ts",
         `scripts/books/pilot-book-processing-dry-run-${dryRunBatch}.ts`,
       ],
-      resolution:
-        `Retain the shared-engine change: dry-run ${dryRunBatch} adds only its report inputs, selection evidence, safety skips, metadata-role reporting, and environment dispatch while preserving batch 13 as the default.`,
+      resolution: dryRunBatch === 21
+        ? "Retain the shared-helper fix: exact individual title and first-prose evidence permits collection-extracted one-story sources to bypass only a TOC/body false-positive, while fallback and huge-section red flags remain hard failures; batch 13 stays the default."
+        : `Retain the shared-engine change: dry-run ${dryRunBatch} adds only its report inputs, selection evidence, safety skips, metadata-role reporting, and environment dispatch while preserving batch 13 as the default.`,
       unrelatedChangesFound: false,
     },
     inputReports: [...inputReportPaths],

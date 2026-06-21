@@ -1,0 +1,99 @@
+{
+  "slug": "the-temptation-of-harringay",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE TEMPTATION OF HARRINGAY.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Temptation of Harringay",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE TEMPTATION OF HARRINGAY",
+    "lineNumber": 65
+  },
+  "expectedAuthor": [
+    "H. G. Wells"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: H. G. Wells",
+    "lineNumber": 13
+  },
+  "expectedCreatorRole": "author as identified by the source",
+  "metadataEvidence": [
+    {
+      "source": "Gutenberg Author line",
+      "text": "Author: H. G. Wells",
+      "lineNumber": 13
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE TEMPTATION OF HARRINGAY",
+    "First readable prose: It is quite impossible to say whether this thing really happened."
+  ],
+  "realReadableStart": "The Temptation of Harringay: It is quite impossible to say whether this thing really happened. It depends entirely on the word of R.M. Harringay, who is an artist. Following his version of the affair, the narrative deposes that Harringay went into his studio about ten o'clock to see what he could make of the head that he had been working at the...",
+  "realReadableEnd": "...he had not photographed the Devil before he painted him out. This is Harringay's story--not mine. He supports it by a small canvas (24 by 20) enamelled a pale green, and by violent asseverations. It is also true that he never has produced a masterpiece, and in the opinion of his intimate friends probably never will.",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Temptation of Harringay",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "It is quite impossible to say whether this thing really happened. It depends entirely on the word of R.M. Harringay, who is an artist. Following his version of the affair, the narrative deposes that Harringay went into his studio about ten o'clock to see what he could make of the head that he had been working at the...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: It is quite impossible to say whether this thing really happened.",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "medium",
+    "pass2Reasons": [
+      "Medium-confidence start boundary remains manageable but needs review.",
+      "Medium-confidence end boundary remains manageable but needs review."
+    ],
+    "structureRecommendedHandling": "needs manual sectioning review",
+    "structureRedFlags": [
+      "TOC/body confusion is likely"
+    ],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE TEMPTATION OF HARRINGAY",
+    "author": "Author: H. G. Wells",
+    "metadata": "Author: H. G. Wells",
+    "start": "The Temptation of Harringay It is quite impossible to say whether this thing really happened. It depends entirely on the word of R.M. Harringay, who is an artist. Following his version of the affair, the narrative deposes that Harringay went into his studio about ten o'clock to see what he could make of the head that he had been working at the...",
+    "end": "...he had not photographed the Devil before he painted him out. This is Harringay's story--not mine. He supports it by a small canvas (24 by 20) enamelled a pale green, and by violent asseverations. It is also true that he never has produced a masterpiece, and in the opinion of his intimate friends probably never will."
+  }
+}

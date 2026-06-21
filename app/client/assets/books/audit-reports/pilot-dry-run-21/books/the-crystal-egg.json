@@ -1,0 +1,99 @@
+{
+  "slug": "the-crystal-egg",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/THE CRYSTAL EGG.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "The Crystal Egg",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "THE CRYSTAL EGG",
+    "lineNumber": 33
+  },
+  "expectedAuthor": [
+    "Herbert George Wells"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Herbert George Wells",
+    "lineNumber": 12
+  },
+  "expectedCreatorRole": "author as identified by the source",
+  "metadataEvidence": [
+    {
+      "source": "Gutenberg Author line",
+      "text": "Author: Herbert George Wells",
+      "lineNumber": 12
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: THE CRYSTAL EGG",
+    "First readable prose: There was, until a year ago, a little and very grimy-looking shop near Seven Dials"
+  ],
+  "realReadableStart": "The Crystal Egg: There was, until a year ago, a little and very grimy-looking shop near Seven Dials, over which, in weather-worn yellow lettering, the name of \"C. Cave, Naturalist and Dealer in Antiquities,\" was inscribed. The contents of its window were curiously variegated. They comprised some elephant tusks and an imperfect set o...",
+  "realReadableEnd": "...e both believe further that the terrestrial crystal must have been—possibly at some remote[33] date—sent hither from that planet, in order to give the Martians a near view of our affairs. Possibly the fellows to the crystals in the other masts are also on our globe. No theory of hallucination suffices for the facts.",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": true,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Crystal Egg",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "There was, until a year ago, a little and very grimy-looking shop near Seven Dials, over which, in weather-worn yellow lettering, the name of \"C. Cave, Naturalist and Dealer in Antiquities,\" was inscribed. The contents of its window were curiously variegated. They comprised some elephant tusks and an imperfect set o...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: There was, until a year ago, a little and very grimy-looking shop near Seven Dials",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "contents or list material must not enter default playback",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary.",
+      "Start or end boundary still has low confidence after context inspection.",
+      "Dense numbered bracket references indicate footnote-heavy or parser-junk risk."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "THE CRYSTAL EGG",
+    "author": "Author: Herbert George Wells",
+    "metadata": "Author: Herbert George Wells",
+    "start": "The Crystal Egg There was, until a year ago, a little and very grimy-looking shop near Seven Dials, over which, in weather-worn yellow lettering, the name of \"C. Cave, Naturalist and Dealer in Antiquities,\" was inscribed. The contents of its window were curiously variegated. They comprised some elephant tusks and an imperfect set o...",
+    "end": "...e both believe further that the terrestrial crystal must have been—possibly at some remote[33] date—sent hither from that planet, in order to give the Martians a near view of our affairs. Possibly the fellows to the crystals in the other masts are also on our globe. No theory of hallucination suffices for the facts."
+  }
+}

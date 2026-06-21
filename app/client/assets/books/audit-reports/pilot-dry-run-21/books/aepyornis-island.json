@@ -1,0 +1,98 @@
+{
+  "slug": "aepyornis-island",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/AEPYORNIS ISLAND.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; no generated publish/restricted status exists yet",
+  "expectedGeneratedTitle": "Aepyornis Island",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "AEPYORNIS ISLAND",
+    "lineNumber": 65
+  },
+  "expectedAuthor": [
+    "H. G. Wells"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: H. G. Wells",
+    "lineNumber": 13
+  },
+  "expectedCreatorRole": "author as identified by the source",
+  "metadataEvidence": [
+    {
+      "source": "Gutenberg Author line",
+      "text": "Author: H. G. Wells",
+      "lineNumber": 13
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "low",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: AEPYORNIS ISLAND",
+    "First readable prose: The man with the scarred face leant over the table and looked at my"
+  ],
+  "realReadableStart": "Aepyornis Island: The man with the scarred face leant over the table and looked at my bundle. \"Orchids?\" he asked. \"A few,\" I said. \"Cypripediums,\" he said. \"Chiefly,\" said I. \"Anything new? I thought not. _I_ did these islands twenty-five--twenty-seven years ago. If you find anything new here--well it's brand new. I didn't leave muc...",
+  "realReadableEnd": "... found after old Havers died, in his collection, and then a _vastissimus_ turned up.\" \"Winslow was telling me as much,\" said the man with the scar. \"If they get any more Aepyornises, he reckons some scientific swell will go and burst a bloodvessel. But it was a queer thing to happen to a man; wasn't it--altogether?\"",
+  "frontMatterDefaultPolicy": "No leading front matter detected before the first selected body section.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "Aepyornis Island",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "The man with the scarred face leant over the table and looked at my bundle. \"Orchids?\" he asked. \"A few,\" I said. \"Cypripediums,\" he said. \"Chiefly,\" said I. \"Anything new? I thought not. _I_ did these islands twenty-five--twenty-seven years ago. If you find anything new here--well it's brand new. I didn't leave muc...",
+  "frontMatterToExcludeOrPreserveNonDefault": "No leading front matter detected before the first selected body section.",
+  "endMatterToExclude": "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: The man with the scarred face leant over the table and looked at my",
+  "expectedEndBoundary": "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "needs manual sectioning review",
+    "structureRedFlags": [
+      "TOC/body confusion is likely"
+    ],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "AEPYORNIS ISLAND",
+    "author": "Author: H. G. Wells",
+    "metadata": "Author: H. G. Wells",
+    "start": "Aepyornis Island The man with the scarred face leant over the table and looked at my bundle. \"Orchids?\" he asked. \"A few,\" I said. \"Cypripediums,\" he said. \"Chiefly,\" said I. \"Anything new? I thought not. _I_ did these islands twenty-five--twenty-seven years ago. If you find anything new here--well it's brand new. I didn't leave muc...",
+    "end": "... found after old Havers died, in his collection, and then a _vastissimus_ turned up.\" \"Winslow was telling me as much,\" said the man with the scar. \"If they get any more Aepyornises, he reckons some scientific swell will go and burst a bloodvessel. But it was a queer thing to happen to a man; wasn't it--altogether?\""
+  }
+}
