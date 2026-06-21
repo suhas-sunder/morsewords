@@ -21327,6 +21327,986 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "through-a-window/manifest.json"
+    },
+    {
+      "slug": "a-slip-under-the-microscope",
+      "title": "A Slip Under the Microscope",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "d6527eaf71a997fa",
+      "contentHash": "d6527eaf71a997fa84c59d8c22421be6641876aae5aad7e797d9435416e3904e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Slip Under the Microscope"
+      },
+      "stats": {
+        "originalCharacterCount": 41105,
+        "cleanedCharacterCount": 40549,
+        "wordCount": 6999,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-slip-under-the-microscope/manifest.json"
+    },
+    {
+      "slug": "a-story-of-the-days-to-come",
+      "title": "A Story of the Days to Come",
+      "author": [
+        "Herbert George Wells"
+      ],
+      "contentVersion": "99e39a718405d36f",
+      "contentHash": "99e39a718405d36f1e34d495dcc20810e27d13c72bb21b58add909f143ef0e4c",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "27365",
+        "releaseDate": "November 30, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/27365",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Story of the Days to Come"
+      },
+      "stats": {
+        "originalCharacterCount": 185985,
+        "cleanedCharacterCount": 183035,
+        "wordCount": 32199,
+        "sectionCount": 5,
+        "includedSectionCount": 5
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-story-of-the-days-to-come/manifest.json"
+    },
+    {
+      "slug": "beyond-the-wall-of-sleep",
+      "title": "Beyond the Wall of Sleep",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "5bffb0a276a77f49",
+      "contentHash": "5bffb0a276a77f496932accbc0cd719dcc177e93d1a1483ffcd1e1d02c668bfd",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Beyond the Wall of Sleep"
+      },
+      "stats": {
+        "originalCharacterCount": 25515,
+        "cleanedCharacterCount": 25088,
+        "wordCount": 4324,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "beyond-the-wall-of-sleep/manifest.json"
+    },
+    {
+      "slug": "celephais",
+      "title": "Celephaïs",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "014f99cb03d77bbd",
+      "contentHash": "014f99cb03d77bbd4decc4c21abd0571b368d466541cb8f26077034c3d0c107e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Celephaïs"
+      },
+      "stats": {
+        "originalCharacterCount": 14481,
+        "cleanedCharacterCount": 14100,
+        "wordCount": 2529,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "celephais/manifest.json"
+    },
+    {
+      "slug": "hypnos",
+      "title": "Hypnos",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "7b3cfbf7cd4922e9",
+      "contentHash": "7b3cfbf7cd4922e952167f3a279565d5224d67652329c6406bb88a117c4f4731",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Hypnos"
+      },
+      "stats": {
+        "originalCharacterCount": 16219,
+        "cleanedCharacterCount": 15825,
+        "wordCount": 2815,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "hypnos/manifest.json"
+    },
+    {
+      "slug": "ibid",
+      "title": "Ibid",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "224d72e2e32ad705",
+      "contentHash": "224d72e2e32ad7054c219e5245924b612b3313c9c1c677990c10ccf33adf0330",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Ibid"
+      },
+      "stats": {
+        "originalCharacterCount": 10891,
+        "cleanedCharacterCount": 10422,
+        "wordCount": 1772,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "ibid/manifest.json"
+    },
+    {
+      "slug": "in-the-vault",
+      "title": "In the Vault",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "4a2cce74c73dac59",
+      "contentHash": "4a2cce74c73dac5958a9e5e23e54f7abdbe1faeb2bdb85e9a117f8279cf2f705",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for In the Vault"
+      },
+      "stats": {
+        "originalCharacterCount": 19846,
+        "cleanedCharacterCount": 19361,
+        "wordCount": 3410,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "in-the-vault/manifest.json"
+    },
+    {
+      "slug": "nyarlathotep",
+      "title": "Nyarlathotep",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "21078dc9ab2c0cb0",
+      "contentHash": "21078dc9ab2c0cb09aa5db5fd44bf8f0a4da3fd59b6b83fb1bdd133d0c3822cb",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Nyarlathotep"
+      },
+      "stats": {
+        "originalCharacterCount": 7115,
+        "cleanedCharacterCount": 6732,
+        "wordCount": 1137,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "nyarlathotep/manifest.json"
+    },
+    {
+      "slug": "polaris",
+      "title": "Polaris",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "0c29858d690c6687",
+      "contentHash": "0c29858d690c6687f7d87a5070ded45893202029ec7cbd3759558a113d0f15a0",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Polaris"
+      },
+      "stats": {
+        "originalCharacterCount": 8728,
+        "cleanedCharacterCount": 8338,
+        "wordCount": 1520,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "polaris/manifest.json"
+    },
+    {
+      "slug": "the-alchemist",
+      "title": "The Alchemist",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "b03ee89c8e91eca6",
+      "contentHash": "b03ee89c8e91eca65ed9632154f5bfa97e4c26687dd7bba5dd709788799730c5",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Alchemist"
+      },
+      "stats": {
+        "originalCharacterCount": 21080,
+        "cleanedCharacterCount": 20682,
+        "wordCount": 3687,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-alchemist/manifest.json"
+    },
+    {
+      "slug": "the-beast-in-the-cave",
+      "title": "The Beast in the Cave",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "e2051886decf0a6a",
+      "contentHash": "e2051886decf0a6a56bbe23e1adf9965a77d1b17c65e96851a56385c77ac9a79",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Beast in the Cave"
+      },
+      "stats": {
+        "originalCharacterCount": 14628,
+        "cleanedCharacterCount": 14220,
+        "wordCount": 2480,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-beast-in-the-cave/manifest.json"
+    },
+    {
+      "slug": "the-doom-that-came-to-sarnath",
+      "title": "The Doom That Came to Sarnath",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "ac9604124789dc61",
+      "contentHash": "ac9604124789dc61cf880f319f0543ab4e67e5b0601412cfef9affc933785adc",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Doom That Came to Sarnath"
+      },
+      "stats": {
+        "originalCharacterCount": 15695,
+        "cleanedCharacterCount": 15268,
+        "wordCount": 2696,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-doom-that-came-to-sarnath/manifest.json"
+    },
+    {
+      "slug": "the-moon-bog",
+      "title": "The Moon-Bog",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "5c40ec3959fc5c02",
+      "contentHash": "5c40ec3959fc5c02bdd141289b0600c90b526b48e7ee9fdcf7fa01745e78330e",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Moon-Bog"
+      },
+      "stats": {
+        "originalCharacterCount": 19058,
+        "cleanedCharacterCount": 18662,
+        "wordCount": 3418,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-moon-bog/manifest.json"
+    },
+    {
+      "slug": "the-outsider",
+      "title": "The Outsider",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "96e57a916428332d",
+      "contentHash": "96e57a916428332df6aef014b9dc167ea6678c8a0719fa4aad1f46c1baac6ec7",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Outsider"
+      },
+      "stats": {
+        "originalCharacterCount": 15081,
+        "cleanedCharacterCount": 14660,
+        "wordCount": 2595,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-outsider/manifest.json"
+    },
+    {
+      "slug": "the-shifty-lad",
+      "title": "The Shifty Lad",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "d4f36690285f7db8",
+      "contentHash": "d4f36690285f7db8833c81502d22b72f4224078a0ce36a7651e0ee7a3b418c0f",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "3454",
+        "releaseDate": "October 1, 2002",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Shifty Lad"
+      },
+      "stats": {
+        "originalCharacterCount": 23844,
+        "cleanedCharacterCount": 22349,
+        "wordCount": 4438,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-shifty-lad/manifest.json"
+    },
+    {
+      "slug": "the-temple",
+      "title": "The Temple",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "4f31b0851f95d42a",
+      "contentHash": "4f31b0851f95d42a63a3f7e917751d36457ce65b5c9dbb0bc7f81db8f14b924d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Temple"
+      },
+      "stats": {
+        "originalCharacterCount": 31089,
+        "cleanedCharacterCount": 30677,
+        "wordCount": 5403,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-temple/manifest.json"
+    },
+    {
+      "slug": "the-tomb",
+      "title": "The Tomb",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "0dcf1e2508abc75a",
+      "contentHash": "0dcf1e2508abc75a46f7fe7e9653a2e8f7d47b8d63f24b8e4301eae154e8aefe",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Tomb"
+      },
+      "stats": {
+        "originalCharacterCount": 23813,
+        "cleanedCharacterCount": 23387,
+        "wordCount": 4176,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-tomb/manifest.json"
+    },
+    {
+      "slug": "the-tree",
+      "title": "The Tree",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "3ade66e44c35c760",
+      "contentHash": "3ade66e44c35c760c356c23d094e9c850026e41daf4d2480e9988b64587d2e41",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Tree"
+      },
+      "stats": {
+        "originalCharacterCount": 9743,
+        "cleanedCharacterCount": 9357,
+        "wordCount": 1631,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-tree/manifest.json"
+    },
+    {
+      "slug": "the-unnamable",
+      "title": "The Unnamable",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "c671dfcf4f979d41",
+      "contentHash": "c671dfcf4f979d41ac57737a07ce6c54df445492a87e4e36525b504a0604e483",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Unnamable"
+      },
+      "stats": {
+        "originalCharacterCount": 17522,
+        "cleanedCharacterCount": 17116,
+        "wordCount": 2961,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-unnamable/manifest.json"
+    },
+    {
+      "slug": "the-white-ship",
+      "title": "The White Ship",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "b73ab2a505d4d538",
+      "contentHash": "b73ab2a505d4d53891d43ad8b65c85885934e925853154063b4a4342b6833f41",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The White Ship"
+      },
+      "stats": {
+        "originalCharacterCount": 14131,
+        "cleanedCharacterCount": 13733,
+        "wordCount": 2530,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-white-ship/manifest.json"
     }
   ]
 }

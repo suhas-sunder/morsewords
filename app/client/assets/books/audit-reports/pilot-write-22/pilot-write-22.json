@@ -1,0 +1,2802 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-write-22",
+  "generatedAt": "2026-06-21T06:13:10.228Z",
+  "branch": "morsewords-book-processing-pilot-write-22-jun-2026",
+  "mode": "controlled first-time processing",
+  "sourceDryRunReport": "app/client/assets/books/audit-reports/pilot-dry-run-22/pilot-dry-run-22.json",
+  "selectedBooks": [
+    "a-slip-under-the-microscope",
+    "a-story-of-the-days-to-come",
+    "beyond-the-wall-of-sleep",
+    "celephais",
+    "hypnos",
+    "ibid",
+    "in-the-vault",
+    "nyarlathotep",
+    "polaris",
+    "the-alchemist",
+    "the-beast-in-the-cave",
+    "the-doom-that-came-to-sarnath",
+    "the-moon-bog",
+    "the-outsider",
+    "the-shifty-lad",
+    "the-temple",
+    "the-tomb",
+    "the-tree",
+    "the-unnamable",
+    "the-white-ship"
+  ],
+  "totals": {
+    "selected": 20,
+    "firstTimeProcessed": 20,
+    "skipped": 0,
+    "manualReview": 0,
+    "blocked": 0,
+    "unresolvedSourceGeneratedBooksLeftUntouched": 11
+  },
+  "playwrightFullscreenDiagnostic": {
+    "initialWrite22Result": "35/36 failed on exitFullscreenButton.click pointer-intercept timeout at line 1081",
+    "cleanMainResult": "36/36 passed after dry-run 22 was merged to main",
+    "write22RepeatResult": "36/36 passed on repeat",
+    "classification": "intermittent fullscreen test/UI issue not reproduced consistently; not evidence of a write batch 22 content regression",
+    "fullscreenUiModified": false,
+    "note": "Standalone Playwright initially failed 35/36 on write-22 with exitFullscreenButton.click pointer-intercept timeout at line 1081. Clean main after dry-run 22 was merged passed 36/36, and a repeat on write-22 also passed 36/36, so this is classified as an intermittent fullscreen test/UI issue not reproduced consistently. Fullscreen UI was not modified in this branch."
+  },
+  "acceptedExclusionClarification": {
+    "dryRunAcceptedExclusionCount": 425,
+    "knownDuplicateBoundaryExclusions": [
+      "the-wind-in-the-willows",
+      "the-two-magics-the-turn-of-the-screw-covering-end",
+      "japanese-fairy-tales",
+      "the-works-of-edgar-allan-poe",
+      "snow-white-and-rose-red"
+    ],
+    "selectedIntersectAcceptedExclusion": [],
+    "note": "This write pass uses only the exact selected list from pilot-dry-run-22.json. Known duplicate/manual/boundary exclusions and unresolved-source generated books remain untouched."
+  },
+  "unresolvedSourceGeneratedBooksLeftUntouched": [
+    {
+      "slug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "doctor-dolittle",
+      "title": "The Story of Doctor Dolittle",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 6,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "heidi",
+      "title": "Heidi",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "jabberwocky",
+      "title": "Jabberwocky",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 2,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "title": "Nights With Uncle Remus",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 21,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan [Peter and Wendy]",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 20,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "tarzan-of-the-apes",
+      "title": "Tarzan of the Apes",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 30,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-great-gatsby",
+      "title": "The Great Gatsby",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 11,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-picture-of-dorian-gray",
+      "title": "The Picture of Dorian Gray",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 23,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 12,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "title": "Wood folk at school",
+      "candidateType": "unresolved-source generated, report-only",
+      "generatedSectionCount": 10,
+      "reason": "Left untouched because no exact raw source was safely resolved from temp-books for this dry-run."
+    }
+  ],
+  "backlogNote": [
+    "Dry-run 22 still had 56 skipped/unsafe raw-only candidates before write.",
+    "These are not treated as lost or missed.",
+    "After safe batching slows/exhausts, create a dedicated remaining raw inventory/triage report classifying every unprocessed raw file."
+  ],
+  "futureBatchRule": [
+    "valid generated readable content",
+    "correct generated title",
+    "correct author/compiler/collector/translator metadata or documented unresolved-author policy",
+    "no duplicate generated work under a slightly different slug unless intentionally documented",
+    "first default section from real readable content",
+    "all main readable sections included by default",
+    "meaningful source-based segmentation",
+    "valid book-specific startup preview",
+    "no SOS Help!",
+    "no generic preview fallback",
+    "no title/TOC/source/license/contributor/transcriber/byline/parent-collection material as default playback",
+    "no real prose removed by cleanup",
+    "selected/default source order begins from the first selected/default section"
+  ],
+  "laterPhaseRequirements": [
+    "after all books are processed, run an independent second-pass audit using a different strategy",
+    "after books and second-pass audit, add original non-spoiler 300-500+ word SEO summaries for each accepted book page",
+    "after summaries, perform full site SEO/meta review using GSC data and route-level intent",
+    "after books/SEO, run a focused rage-click UX pass for /audio, /practice, homepage, and related utility pages",
+    "investigate the SSR heap OOM separately if it keeps appearing during plain npm run build",
+    "final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable"
+  ],
+  "books": [
+    {
+      "slug": "a-slip-under-the-microscope",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/A SLIP UNDER THE MICROSCOPE.txt",
+      "expectedTitle": "A Slip Under the Microscope",
+      "generatedTitle": "A Slip Under the Microscope",
+      "expectedAuthor": [
+        "H. G. Wells"
+      ],
+      "generatedAuthor": [
+        "H. G. Wells"
+      ],
+      "authorEvidence": {
+        "source": "visible title-page author line",
+        "text": "H. G. WELLS",
+        "lineNumber": 7
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible title-page author line",
+          "text": "H. G. WELLS",
+          "lineNumber": 7
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/a-slip-under-the-microscope/manifest.json",
+        "app/client/assets/books/generated/a-slip-under-the-microscope/cleaned_book.json",
+        "app/client/assets/books/generated/a-slip-under-the-microscope/processed_book.json",
+        "app/client/assets/books/generated/a-slip-under-the-microscope/rights_report.json",
+        "app/client/assets/books/generated/a-slip-under-the-microscope/processing_notes.md",
+        "app/client/assets/books/generated/a-slip-under-the-microscope/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/a-slip-under-the-microscope.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: a-slip-under-the-microscope is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 15,
+        "reason": "start at first readable prose after source/title/byline wrapper: Outside the laboratory windows was a watery-grey fog; write pass starts at first selected/default section",
+        "snippet": "Outside the laboratory windows was a watery-grey fog, and within a close warmth and the yellow light of the green-shaded gas lamps that stood two to each table down its narrow length. On each table stood a couple of glass jars containing the mangled vestiges o"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 221,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "he girl in spectacles, and walked to her own place. “It’s true, all the same,” said the girl in spectacles, peering and smiling at Wedderburn. But Wedderburn did not answer her. She was indeed one of those people who seem destined to make unanswered remarks."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 40549,
+        "generatedCharacterCount": 40549,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "A Slip Under the Microscope",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 6999,
+        "snippet": "Outside the laboratory windows was a watery-grey fog, and within a close warmth and the yellow light of the green-shaded gas lamps that stood two to each table..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "A Slip Under the Microscope",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6999
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "A Slip Under the Microscope",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6999
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "A Slip Under the Microscope",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 6999
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 27,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible title-page author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "A SLIP UNDER THE MICROSCOPE",
+        "author": "H. G. WELLS",
+        "start": "A Slip Under the Microscope Outside the laboratory windows was a watery-grey fog, and within a close warmth and the yellow light of the green-shaded gas lamps that stood two to each table down its narrow length. On each table stood a couple of glass jars containing the mangled vestiges of the crayfish, mussels, frogs, and guineapigs, upon whic...",
+        "end": "...ely believe it then,” and abruptly she turned her back on the girl in spectacles, and walked to her own place. “It’s true, all the same,” said the girl in spectacles, peering and smiling at Wedderburn. But Wedderburn did not answer her. She was indeed one of those people who seem destined to make unanswered remarks."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "a-story-of-the-days-to-come",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/A Story of the Days to Come.txt",
+      "expectedTitle": "A Story of the Days to Come",
+      "generatedTitle": "A Story of the Days to Come",
+      "expectedAuthor": [
+        "Herbert George Wells"
+      ],
+      "generatedAuthor": [
+        "Herbert George Wells"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Herbert George Wells",
+        "lineNumber": 12
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Herbert George Wells",
+          "lineNumber": 12
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/a-story-of-the-days-to-come/manifest.json",
+        "app/client/assets/books/generated/a-story-of-the-days-to-come/cleaned_book.json",
+        "app/client/assets/books/generated/a-story-of-the-days-to-come/processed_book.json",
+        "app/client/assets/books/generated/a-story-of-the-days-to-come/rights_report.json",
+        "app/client/assets/books/generated/a-story-of-the-days-to-come/processing_notes.md",
+        "app/client/assets/books/generated/a-story-of-the-days-to-come/sections/chapter-001.json",
+        "app/client/assets/books/generated/a-story-of-the-days-to-come/sections/chapter-002.json",
+        "app/client/assets/books/generated/a-story-of-the-days-to-come/sections/chapter-003.json",
+        "app/client/assets/books/generated/a-story-of-the-days-to-come/sections/chapter-004.json",
+        "app/client/assets/books/generated/a-story-of-the-days-to-come/sections/chapter-005.json"
+      ],
+      "previewAssetChanged": "public/book-previews/a-story-of-the-days-to-come.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: a-story-of-the-days-to-come is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 9,
+        "reason": "start at I—THE CURE FOR LOVE: The excellent Mr. Morris was an Englishman; write pass starts at first selected/default section",
+        "snippet": "I—THE CURE FOR LOVE The excellent Mr. Morris was an Englishman, and he lived in the days of Queen Victoria the Good. He was a prosperous and very sensible man; he read the Times and went to church, and as he grew towards middle age an expression of quiet conte"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 1344,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "her. He fondled it softly, still looking out upon the spacious gold-woven view. So they sat as the sun went down. Until presently Elizabeth shivered. Denton recalled himself abruptly from these spacious issues of his leisure, and went in to fetch her a shawl."
+      },
+      "structuralConvention": "five roman-numbered titled story parts from the individual Wells story",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 183043,
+        "generatedCharacterCount": 183043,
+        "sectionCount": 5,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Part 1",
+        "title": "The Cure for Love",
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 6332,
+        "snippet": "I—THE CURE FOR LOVE The excellent Mr. Morris was an Englishman, and he lived in the days of Queen Victoria the Good. He was a prosperous and very sensible man;..."
+      },
+      "sectionCount": 5,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Part 1",
+          "title": "The Cure for Love",
+          "kind": "chapter",
+          "wordCount": 6332
+        },
+        {
+          "id": "chapter-002",
+          "label": "Part 2",
+          "title": "The Vacant Country",
+          "kind": "chapter",
+          "wordCount": 6784
+        },
+        {
+          "id": "chapter-003",
+          "label": "Part 3",
+          "title": "The Ways of the City",
+          "kind": "chapter",
+          "wordCount": 6853
+        },
+        {
+          "id": "chapter-004",
+          "label": "Part 4",
+          "title": "Underneath",
+          "kind": "chapter",
+          "wordCount": 6487
+        },
+        {
+          "id": "chapter-005",
+          "label": "Part 5",
+          "title": "Bindon Intervenes",
+          "kind": "chapter",
+          "wordCount": 5743
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Part 1",
+          "title": "The Cure for Love",
+          "kind": "chapter",
+          "wordCount": 6332
+        },
+        {
+          "id": "chapter-002",
+          "label": "Part 2",
+          "title": "The Vacant Country",
+          "kind": "chapter",
+          "wordCount": 6784
+        },
+        {
+          "id": "chapter-003",
+          "label": "Part 3",
+          "title": "The Ways of the City",
+          "kind": "chapter",
+          "wordCount": 6853
+        },
+        {
+          "id": "chapter-004",
+          "label": "Part 4",
+          "title": "Underneath",
+          "kind": "chapter",
+          "wordCount": 6487
+        },
+        {
+          "id": "chapter-005",
+          "label": "Part 5",
+          "title": "Bindon Intervenes",
+          "kind": "chapter",
+          "wordCount": 5743
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Part 1",
+          "title": "The Cure for Love",
+          "kind": "chapter",
+          "wordCount": 6332
+        },
+        {
+          "id": "chapter-002",
+          "label": "Part 2",
+          "title": "The Vacant Country",
+          "kind": "chapter",
+          "wordCount": 6784
+        },
+        {
+          "id": "chapter-003",
+          "label": "Part 3",
+          "title": "The Ways of the City",
+          "kind": "chapter",
+          "wordCount": 6853
+        },
+        {
+          "id": "chapter-004",
+          "label": "Part 4",
+          "title": "Underneath",
+          "kind": "chapter",
+          "wordCount": 6487
+        },
+        {
+          "id": "chapter-005",
+          "label": "Part 5",
+          "title": "Bindon Intervenes",
+          "kind": "chapter",
+          "wordCount": 5743
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 157,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass preserved all five source-titled parts and excluded the parent collection and contents wrapper from playable text.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "A STORY OF THE DAYS TO COME",
+        "author": "Author: Herbert George Wells",
+        "start": "I—THE CURE FOR LOVE The excellent Mr. Morris was an Englishman, and he lived in the days of Queen Victoria the Good. He was a prosperous and very sensible man; he read the Times and went to church, and as he grew towards middle age an expression of quiet contented contempt for all who were not as himself settled on his face. He was one...",
+        "end": "...r. After a time she laid a gentle hand on his beside her. He fondled it softly, still looking out upon the spacious gold-woven[324] view. So they sat as the sun went down. Until presently Elizabeth shivered. Denton recalled himself abruptly from these spacious issues of his leisure, and went in to fetch her a shawl."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "beyond-the-wall-of-sleep",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/Beyond the Wall of Sleep.txt",
+      "expectedTitle": "Beyond the Wall of Sleep",
+      "generatedTitle": "Beyond the Wall of Sleep",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/beyond-the-wall-of-sleep/manifest.json",
+        "app/client/assets/books/generated/beyond-the-wall-of-sleep/cleaned_book.json",
+        "app/client/assets/books/generated/beyond-the-wall-of-sleep/processed_book.json",
+        "app/client/assets/books/generated/beyond-the-wall-of-sleep/rights_report.json",
+        "app/client/assets/books/generated/beyond-the-wall-of-sleep/processing_notes.md",
+        "app/client/assets/books/generated/beyond-the-wall-of-sleep/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/beyond-the-wall-of-sleep.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: beyond-the-wall-of-sleep is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 7,
+        "reason": "start at first readable prose after source/title/byline wrapper: “I have an exposition of sleep come upon me.”; write pass starts at first selected/default section",
+        "snippet": "I have an exposition of sleep come upon me. —Shakespeare. I have frequently wondered if the majority of mankind ever pause to reflect upon the occasionally titanic significance of dreams, and of the obscure world to which they belong. Whilst the greater num"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 31,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "m Algol. No star had been visible at that point before. Within twenty-four hours the stranger had become so bright that it outshone Capella. In a week or two it had visibly faded, and in the course of a few months it was hardly discernible with the naked eye.”"
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 25088,
+        "generatedCharacterCount": 25088,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Beyond the Wall of Sleep",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 4324,
+        "snippet": "“I have an exposition of sleep come upon me.” —Shakespeare. I have frequently wondered if the majority of mankind ever pause to reflect upon the occasionally t..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Beyond the Wall of Sleep",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4324
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Beyond the Wall of Sleep",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4324
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Beyond the Wall of Sleep",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4324
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "Beyond the Wall of Sleep",
+        "author": "By H. P. Lovecraft",
+        "start": "Beyond the Wall of Sleep “I have an exposition of sleep come upon me.” —Shakespeare. I have frequently wondered if the majority of mankind ever pause to reflect upon the occasionally titanic significance of dreams, and of the obscure world to which they belong. Whilst the greater number of our nocturnal visions are perhaps no more than fain...",
+        "end": "...iscovered by Dr. Anderson, of Edinburgh, not very far from Algol. No star had been visible at that point before. Within twenty-four hours the stranger had become so bright that it outshone Capella. In a week or two it had visibly faded, and in the course of a few months it was hardly discernible with the naked eye.”"
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "celephais",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/Celephaïs.txt",
+      "expectedTitle": "Celephaïs",
+      "generatedTitle": "Celephaïs",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/celephais/manifest.json",
+        "app/client/assets/books/generated/celephais/cleaned_book.json",
+        "app/client/assets/books/generated/celephais/processed_book.json",
+        "app/client/assets/books/generated/celephais/rights_report.json",
+        "app/client/assets/books/generated/celephais/processing_notes.md",
+        "app/client/assets/books/generated/celephais/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/celephais.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: celephais is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 7,
+        "reason": "start at first readable prose after source/title/byline wrapper: In a dream Kuranes saw the city in the valley; write pass starts at first selected/default section",
+        "snippet": "In a dream Kuranes saw the city in the valley, and the sea-coast beyond, and the snowy peak overlooking the sea, and the gaily painted galleys that sail out of the harbour toward the distant regions where the sea meets the sky. In a dream it was also that he c"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 17,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "a tramp who had stumbled through the half-deserted village at dawn; played mockingly, and cast it upon the rocks by ivy-covered Trevor Towers, where a notably fat and especially offensive millionaire brewer enjoys the purchased atmosphere of extinct nobility."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 14100,
+        "generatedCharacterCount": 14100,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Celephaïs",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2529,
+        "snippet": "In a dream Kuranes saw the city in the valley, and the sea-coast beyond, and the snowy peak overlooking the sea, and the gaily painted galleys that sail out of..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Celephaïs",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2529
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Celephaïs",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2529
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Celephaïs",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2529
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "Celephaïs",
+        "author": "By H. P. Lovecraft",
+        "start": "Celephaïs In a dream Kuranes saw the city in the valley, and the sea-coast beyond, and the snowy peak overlooking the sea, and the gaily painted galleys that sail out of the harbour toward the distant regions where the sea meets the sky. In a dream it was also that he came by his name of Kuranes, for when awake he was called...",
+        "end": "...mouth the channel tides played mockingly with the body of a tramp who had stumbled through the half-deserted village at dawn; played mockingly, and cast it upon the rocks by ivy-covered Trevor Towers, where a notably fat and especially offensive millionaire brewer enjoys the purchased atmosphere of extinct nobility."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "hypnos",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/Hypnos.txt",
+      "expectedTitle": "Hypnos",
+      "generatedTitle": "Hypnos",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/hypnos/manifest.json",
+        "app/client/assets/books/generated/hypnos/cleaned_book.json",
+        "app/client/assets/books/generated/hypnos/processed_book.json",
+        "app/client/assets/books/generated/hypnos/rights_report.json",
+        "app/client/assets/books/generated/hypnos/processing_notes.md",
+        "app/client/assets/books/generated/hypnos/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/hypnos.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: hypnos is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 9,
+        "reason": "start at first readable prose after source/title/byline wrapper: “Apropos of sleep, that sinister adventure of all our nights; write pass starts at first selected/default section",
+        "snippet": "Apropos of sleep, that sinister adventure of all our nights, we may say that men go to bed daily with an audacity that would be incomprehensible if we did not know that it is the result of ignorance of the danger. —Baudelaire. May the merciful gods, if indee"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 24,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "ed face, curved, smiling lips, Olympian brow, and dense locks waving and poppy-crowned. They say that that haunting memory-face is modelled from my own, as it was at twenty-five, but upon the marble base is carven a single name in the letters of Attica—’ΥΠΝΟΣ."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 15825,
+        "generatedCharacterCount": 15825,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Hypnos",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2815,
+        "snippet": "“Apropos of sleep, that sinister adventure of all our nights, we may say that men go to bed daily with an audacity that would be incomprehensible if we did not..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Hypnos",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2815
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Hypnos",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2815
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Hypnos",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2815
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "Hypnos",
+        "author": "By H. P. Lovecraft",
+        "start": "Hypnos “Apropos of sleep, that sinister adventure of all our nights, we may say that men go to bed daily with an audacity that would be incomprehensible if we did not know that it is the result of ignorance of the danger.” —Baudelaire. May the merciful gods, if indeed there be such, guard those hours when no power of the w...",
+        "end": "... the youth that is outside time, and with beauteous bearded face, curved, smiling lips, Olympian brow, and dense locks waving and poppy-crowned. They say that that haunting memory-face is modelled from my own, as it was at twenty-five, but upon the marble base is carven a single name in the letters of Attica—’ΥΠΝΟΣ."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "ibid",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/Ibid.txt",
+      "expectedTitle": "Ibid",
+      "generatedTitle": "Ibid",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/ibid/manifest.json",
+        "app/client/assets/books/generated/ibid/cleaned_book.json",
+        "app/client/assets/books/generated/ibid/processed_book.json",
+        "app/client/assets/books/generated/ibid/rights_report.json",
+        "app/client/assets/books/generated/ibid/processing_notes.md",
+        "app/client/assets/books/generated/ibid/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/ibid.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: ibid is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: The erroneous idea that Ibid is the author of the Lives; write pass starts at first selected/default section",
+        "snippet": "The erroneous idea that Ibid is the author of the Lives is so frequently met with, even among those pretending to a degree of culture, that it is worth correcting. It should be a matter of general knowledge that Cf. is responsible for this work. Ibid s masterp"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 32,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": ", Vol. XV, p. 720. 3 Following Procopius, Goth. x.y.z. 4 Following Jornandes, Codex Murat. xxj. 4144. 5 After Pagi, 50–50. 6 Not till the appearance of von Schweinkopf’s work in 1797 were St. Ibid and the rhetorician properly re-identified."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 10422,
+        "generatedCharacterCount": 10422,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Ibid",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1772,
+        "snippet": "The erroneous idea that Ibid is the author of the Lives is so frequently met with, even among those pretending to a degree of culture, that it is worth correct..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Ibid",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1772
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Ibid",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1772
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Ibid",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1772
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: contents or list material must not enter default playback",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: numbered endnotes are intentional parodic apparatus; preserve them deliberately instead of deleting them as generic source noise",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: intentional numbered endnotes require explicit preservation and ordering"
+      ],
+      "supportingSnippets": {
+        "title": "Ibid",
+        "author": "By H. P. Lovecraft",
+        "start": "Ibid The erroneous idea that Ibid is the author of the Lives is so frequently met with, even among those pretending to a degree of culture, that it is worth correcting. It should be a matter of general knowledge that Cf. is responsible for this work. Ibid’s masterpiece, on the other hand, was the famous Op. Cit. wherein...",
+        "end": "..., Vol. XX, p. 598. 2 Influences Romains dans le Moyen Age (Fond du Lac, 1877), Vol. XV, p. 720. 3 Following Procopius, Goth. x.y.z. 4 Following Jornandes, Codex Murat. xxj. 4144. 5 After Pagi, 50–50. 6 Not till the appearance of von Schweinkopf’s work in 1797 were St. Ibid and the rhetorician properly re-identified."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "in-the-vault",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/In the Vault.txt",
+      "expectedTitle": "In the Vault",
+      "generatedTitle": "In the Vault",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/in-the-vault/manifest.json",
+        "app/client/assets/books/generated/in-the-vault/cleaned_book.json",
+        "app/client/assets/books/generated/in-the-vault/processed_book.json",
+        "app/client/assets/books/generated/in-the-vault/rights_report.json",
+        "app/client/assets/books/generated/in-the-vault/processing_notes.md",
+        "app/client/assets/books/generated/in-the-vault/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/in-the-vault.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: in-the-vault is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 10,
+        "reason": "start at first readable prose after source/title/byline wrapper: There is nothing more absurd, as I view it, than that conventional association; write pass starts at first selected/default section",
+        "snippet": "There is nothing more absurd, as I view it, than that conventional association of the homely and the wholesome which seems to pervade the psychology of the multitude. Mention a bucolic Yankee setting, a bungling and thick-fibred village undertaker, and a carel"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 32,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "t. I’ve seen sights before, but there was one thing too much here. An eye for an eye! Great heavens, Birch, but you got what you deserved. The skull turned my stomach, but the other was worse—those ankles cut neatly off to fit Matt Fenner’s cast-aside coffin!”"
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 19361,
+        "generatedCharacterCount": 19361,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "In the Vault",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3410,
+        "snippet": "There is nothing more absurd, as I view it, than that conventional association of the homely and the wholesome which seems to pervade the psychology of the mul..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "In the Vault",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3410
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "In the Vault",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3410
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "In the Vault",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3410
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "In the Vault",
+        "author": "By H. P. Lovecraft",
+        "start": "In the Vault There is nothing more absurd, as I view it, than that conventional association of the homely and the wholesome which seems to pervade the psychology of the multitude. Mention a bucolic Yankee setting, a bungling and thick-fibred village undertaker, and a careless mishap in a tomb, and no average reader can be brough...",
+        "end": ".... His head was broken in, and everything was tumbled about. I’ve seen sights before, but there was one thing too much here. An eye for an eye! Great heavens, Birch, but you got what you deserved. The skull turned my stomach, but the other was worse—those ankles cut neatly off to fit Matt Fenner’s cast-aside coffin!”"
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "nyarlathotep",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/Nyarlathotep.txt",
+      "expectedTitle": "Nyarlathotep",
+      "generatedTitle": "Nyarlathotep",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/nyarlathotep/manifest.json",
+        "app/client/assets/books/generated/nyarlathotep/cleaned_book.json",
+        "app/client/assets/books/generated/nyarlathotep/processed_book.json",
+        "app/client/assets/books/generated/nyarlathotep/rights_report.json",
+        "app/client/assets/books/generated/nyarlathotep/processing_notes.md",
+        "app/client/assets/books/generated/nyarlathotep/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/nyarlathotep.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: nyarlathotep is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 7,
+        "reason": "start at first readable prose after source/title/byline wrapper: Nyarlathotep . . . the crawling chaos; write pass starts at first selected/default section",
+        "snippet": "Nyarlathotep . . . the crawling chaos . . . I am the last . . . I will tell the audient void. . . . I do not recall distinctly when it began, but it was months ago. The general tension was horrible. To a season of political and social upheaval was added a"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 13,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "blasphemous flutes from inconceivable, unlighted chambers beyond Time; the detestable pounding and piping whereunto dance slowly, awkwardly, and absurdly the gigantic, tenebrous ultimate gods—the blind, voiceless, mindless gargoyles whose soul is Nyarlathotep."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 6732,
+        "generatedCharacterCount": 6732,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Nyarlathotep",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1137,
+        "snippet": "Nyarlathotep . . . the crawling chaos . . . I am the last . . . I will tell the audient void. . . . I do not recall distinctly when it began, but it was months..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Nyarlathotep",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1137
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Nyarlathotep",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1137
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Nyarlathotep",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1137
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "Nyarlathotep",
+        "author": "By H. P. Lovecraft",
+        "start": "Nyarlathotep Nyarlathotep . . . the crawling chaos . . . I am the last . . . I will tell the audient void. . . . I do not recall distinctly when it began, but it was months ago. The general tension was horrible. To a season of political and social upheaval was added a strange and brooding apprehension of hideous physical danger;...",
+        "end": "...addening beating of drums, and thin, monotonous whine of blasphemous flutes from inconceivable, unlighted chambers beyond Time; the detestable pounding and piping whereunto dance slowly, awkwardly, and absurdly the gigantic, tenebrous ultimate gods—the blind, voiceless, mindless gargoyles whose soul is Nyarlathotep."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "polaris",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/Polaris.txt",
+      "expectedTitle": "Polaris",
+      "generatedTitle": "Polaris",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/polaris/manifest.json",
+        "app/client/assets/books/generated/polaris/cleaned_book.json",
+        "app/client/assets/books/generated/polaris/processed_book.json",
+        "app/client/assets/books/generated/polaris/rights_report.json",
+        "app/client/assets/books/generated/polaris/processing_notes.md",
+        "app/client/assets/books/generated/polaris/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/polaris.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: polaris is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 7,
+        "reason": "start at first readable prose after source/title/byline wrapper: Into the north window of my chamber glows the Pole Star; write pass starts at first selected/default section",
+        "snippet": "Into the north window of my chamber glows the Pole Star with uncanny light. All through the long hellish hours of blackness it shines there. And in the autumn of the year, when the winds from the north curse and whine, and the red-leaved trees of the swamp mut"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 30,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "wamp and a cemetery on a low hillock; the Pole Star, evil and monstrous, leers down from the black vault, winking hideously like an insane watching eye which strives to convey some strange message, yet recalls nothing save that it once had a message to convey."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 8338,
+        "generatedCharacterCount": 8338,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "Polaris",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1520,
+        "snippet": "Into the north window of my chamber glows the Pole Star with uncanny light. All through the long hellish hours of blackness it shines there. And in the autumn..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Polaris",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1520
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Polaris",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1520
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "Polaris",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1520
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "Polaris",
+        "author": "By H. P. Lovecraft",
+        "start": "Polaris Into the north window of my chamber glows the Pole Star with uncanny light. All through the long hellish hours of blackness it shines there. And in the autumn of the year, when the winds from the north curse and whine, and the red-leaved trees of the swamp mutter things to one another in the small hours of the morni...",
+        "end": "...dream of a house of stone and brick south of a sinister swamp and a cemetery on a low hillock; the Pole Star, evil and monstrous, leers down from the black vault, winking hideously like an insane watching eye which strives to convey some strange message, yet recalls nothing save that it once had a message to convey."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-alchemist",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Alchemist.txt",
+      "expectedTitle": "The Alchemist",
+      "generatedTitle": "The Alchemist",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-alchemist/manifest.json",
+        "app/client/assets/books/generated/the-alchemist/cleaned_book.json",
+        "app/client/assets/books/generated/the-alchemist/processed_book.json",
+        "app/client/assets/books/generated/the-alchemist/rights_report.json",
+        "app/client/assets/books/generated/the-alchemist/processing_notes.md",
+        "app/client/assets/books/generated/the-alchemist/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-alchemist.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: the-alchemist is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 7,
+        "reason": "start at first readable prose after source/title/byline wrapper: High up, crowning the grassy summit of a swelling mound; write pass starts at first selected/default section",
+        "snippet": "High up, crowning the grassy summit of a swelling mound whose sides are wooded near the base with the gnarled trees of the primeval forest, stands the old chateau of my ancestors. For centuries its lofty battlements have frowned down upon the wild and rugged c"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 26,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "e dreadful curse upon your house? Have I not told you of the great elixir of eternal life? Know you not how the secret of Alchemy was solved? I tell you, it is I! I! I! that have lived for six hundred years to maintain my revenge, FOR I AM CHARLES LE SORCIER!”"
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 20682,
+        "generatedCharacterCount": 20682,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Alchemist",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3687,
+        "snippet": "High up, crowning the grassy summit of a swelling mound whose sides are wooded near the base with the gnarled trees of the primeval forest, stands the old chat..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Alchemist",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3687
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Alchemist",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3687
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Alchemist",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3687
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: contents or list material must not enter default playback",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "The Alchemist",
+        "author": "By H. P. Lovecraft",
+        "start": "The Alchemist High up, crowning the grassy summit of a swelling mound whose sides are wooded near the base with the gnarled trees of the primeval forest, stands the old chateau of my ancestors. For centuries its lofty battlements have frowned down upon the wild and rugged countryside about, serving as a home and stronghold for th...",
+        "end": "...he will which has through six long centuries fulfilled the dreadful curse upon your house? Have I not told you of the great elixir of eternal life? Know you not how the secret of Alchemy was solved? I tell you, it is I! I! I! that have lived for six hundred years to maintain my revenge, FOR I AM CHARLES LE SORCIER!”"
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-beast-in-the-cave",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Beast in the Cave.txt",
+      "expectedTitle": "The Beast in the Cave",
+      "generatedTitle": "The Beast in the Cave",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-beast-in-the-cave/manifest.json",
+        "app/client/assets/books/generated/the-beast-in-the-cave/cleaned_book.json",
+        "app/client/assets/books/generated/the-beast-in-the-cave/processed_book.json",
+        "app/client/assets/books/generated/the-beast-in-the-cave/rights_report.json",
+        "app/client/assets/books/generated/the-beast-in-the-cave/processing_notes.md",
+        "app/client/assets/books/generated/the-beast-in-the-cave/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-beast-in-the-cave.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: the-beast-in-the-cave is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 7,
+        "reason": "start at first readable prose after source/title/byline wrapper: The horrible conclusion which had been gradually obtruding itself; write pass starts at first selected/default section",
+        "snippet": "The horrible conclusion which had been gradually obtruding itself upon my confused and reluctant mind was now an awful certainty. I was lost, completely, hopelessly lost in the vast and labyrinthine recesses of the Mammoth Cave. Turn as I might, in no directio"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 20,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "nd reverence succeeded in its place, for the sounds uttered by the stricken figure that lay stretched out on the limestone had told us the awesome truth. The creature I had killed, the strange beast of the unfathomed cave was, or had at one time been, a MAN!!!"
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 14220,
+        "generatedCharacterCount": 14220,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Beast in the Cave",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2480,
+        "snippet": "The horrible conclusion which had been gradually obtruding itself upon my confused and reluctant mind was now an awful certainty. I was lost, completely, hopel..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Beast in the Cave",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2480
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Beast in the Cave",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2480
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Beast in the Cave",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2480
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "The Beast in the Cave",
+        "author": "By H. P. Lovecraft",
+        "start": "The Beast in the Cave The horrible conclusion which had been gradually obtruding itself upon my confused and reluctant mind was now an awful certainty. I was lost, completely, hopelessly lost in the vast and labyrinthine recesses of the Mammoth Cave. Turn as I might, in no direction could my straining vision seize on any object capable o...",
+        "end": "...oor ahead. Then fear left, and wonder, awe, compassion, and reverence succeeded in its place, for the sounds uttered by the stricken figure that lay stretched out on the limestone had told us the awesome truth. The creature I had killed, the strange beast of the unfathomed cave was, or had at one time been, a MAN!!!"
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-doom-that-came-to-sarnath",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Doom That Came to Sarnath.txt",
+      "expectedTitle": "The Doom That Came to Sarnath",
+      "generatedTitle": "The Doom That Came to Sarnath",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-doom-that-came-to-sarnath/manifest.json",
+        "app/client/assets/books/generated/the-doom-that-came-to-sarnath/cleaned_book.json",
+        "app/client/assets/books/generated/the-doom-that-came-to-sarnath/processed_book.json",
+        "app/client/assets/books/generated/the-doom-that-came-to-sarnath/rights_report.json",
+        "app/client/assets/books/generated/the-doom-that-came-to-sarnath/processing_notes.md",
+        "app/client/assets/books/generated/the-doom-that-came-to-sarnath/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-doom-that-came-to-sarnath.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: the-doom-that-came-to-sarnath is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 7,
+        "reason": "start at first readable prose after source/title/byline wrapper: There is in the land of Mnar a vast still lake; write pass starts at first selected/default section",
+        "snippet": "There is in the land of Mnar a vast still lake that is fed by no stream and out of which no stream flows. Ten thousand years ago there stood by its shore the mighty city of Sarnath, but Sarnath stands there no more. It is told that in the immemorial years"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 23,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "dol of stone; an exceedingly ancient idol coated with seaweed and chiselled in the likeness of Bokrug, the great water-lizard. That idol, enshrined in the high temple at Ilarnek, was subsequently worshipped beneath the gibbous moon throughout the land of Mnar."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 15268,
+        "generatedCharacterCount": 15268,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Doom That Came to Sarnath",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2696,
+        "snippet": "There is in the land of Mnar a vast still lake that is fed by no stream and out of which no stream flows. Ten thousand years ago there stood by its shore the m..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Doom That Came to Sarnath",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2696
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Doom That Came to Sarnath",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2696
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Doom That Came to Sarnath",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2696
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "The Doom That Came to Sarnath",
+        "author": "By H. P. Lovecraft",
+        "start": "The Doom That Came to Sarnath There is in the land of Mnar a vast still lake that is fed by no stream and out of which no stream flows. Ten thousand years ago there stood by its shore the mighty city of Sarnath, but Sarnath stands there no more. It is told that in the immemorial years when the world was young, before ever the men of Sarnath came...",
+        "end": "...But half buried in the rushes was spied a curious green idol of stone; an exceedingly ancient idol coated with seaweed and chiselled in the likeness of Bokrug, the great water-lizard. That idol, enshrined in the high temple at Ilarnek, was subsequently worshipped beneath the gibbous moon throughout the land of Mnar."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-moon-bog",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Moon-Bog.txt",
+      "expectedTitle": "The Moon-Bog",
+      "generatedTitle": "The Moon-Bog",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-moon-bog/manifest.json",
+        "app/client/assets/books/generated/the-moon-bog/cleaned_book.json",
+        "app/client/assets/books/generated/the-moon-bog/processed_book.json",
+        "app/client/assets/books/generated/the-moon-bog/rights_report.json",
+        "app/client/assets/books/generated/the-moon-bog/processing_notes.md",
+        "app/client/assets/books/generated/the-moon-bog/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-moon-bog.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: the-moon-bog is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 7,
+        "reason": "start at first readable prose after source/title/byline wrapper: Somewhere, to what remote and fearsome region I know not; write pass starts at first selected/default section",
+        "snippet": "Somewhere, to what remote and fearsome region I know not, Denys Barry has gone. I was with him the last night he lived among men, and heard his screams when the thing came to him; but all the peasants and police in County Meath could never find him, or the oth"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 26,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "ured a thin shadow slowly writhing; a vague contorted shadow struggling as if drawn by unseen daemons. Crazed as I was, I saw in that awful shadow a monstrous resemblance—a nauseous, unbelievable caricature—a blasphemous effigy of him who had been Denys Barry."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 18662,
+        "generatedCharacterCount": 18662,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Moon-Bog",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 3418,
+        "snippet": "Somewhere, to what remote and fearsome region I know not, Denys Barry has gone. I was with him the last night he lived among men, and heard his screams when th..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Moon-Bog",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3418
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Moon-Bog",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3418
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Moon-Bog",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 3418
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "The Moon-Bog",
+        "author": "By H. P. Lovecraft",
+        "start": "The Moon-Bog Somewhere, to what remote and fearsome region I know not, Denys Barry has gone. I was with him the last night he lived among men, and heard his screams when the thing came to him; but all the peasants and police in County Meath could never find him, or the others, though they searched long and far. And now I shudder...",
+        "end": ".... And upward along that pallid path my fevered fancy pictured a thin shadow slowly writhing; a vague contorted shadow struggling as if drawn by unseen daemons. Crazed as I was, I saw in that awful shadow a monstrous resemblance—a nauseous, unbelievable caricature—a blasphemous effigy of him who had been Denys Barry."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-outsider",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Outsider.txt",
+      "expectedTitle": "The Outsider",
+      "generatedTitle": "The Outsider",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-outsider/manifest.json",
+        "app/client/assets/books/generated/the-outsider/cleaned_book.json",
+        "app/client/assets/books/generated/the-outsider/processed_book.json",
+        "app/client/assets/books/generated/the-outsider/rights_report.json",
+        "app/client/assets/books/generated/the-outsider/processing_notes.md",
+        "app/client/assets/books/generated/the-outsider/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-outsider.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: the-outsider is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 7,
+        "reason": "start at first readable prose after source/title/byline wrapper: That night the Baron dreamt of many a woe;; write pass starts at first selected/default section",
+        "snippet": "That night the Baron dreamt of many a woe; And all his warrior-guests, with shade and form Of witch, and demon, and large coffin-worm, Were long be-nightmared. —Keats. Unhappy is he to whom the memories of childhood bring only fear and sadness. Wretched is he"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 49,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "ider; a stranger in this century and among those who are still men. This I have known ever since I stretched out my fingers to the abomination within that great gilded frame; stretched out my fingers and touched a cold and unyielding surface of polished glass."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 14660,
+        "generatedCharacterCount": 14660,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Outsider",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2595,
+        "snippet": "That night the Baron dreamt of many a woe; And all his warrior-guests, with shade and form Of witch, and demon, and large coffin-worm, Were long be-nightmared...."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Outsider",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2595
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Outsider",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2595
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Outsider",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2595
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "The Outsider",
+        "author": "By H. P. Lovecraft",
+        "start": "The Outsider That night the Baron dreamt of many a woe; And all his warrior-guests, with shade and form Of witch, and demon, and large coffin-worm, Were long be-nightmared. —Keats. Unhappy is he to whom the memories of childhood bring only fear and sadness. Wretched is he who looks back upon lone hours in vast and dismal chamber...",
+        "end": "...h nepenthe has calmed me, I know always that I am an outsider; a stranger in this century and among those who are still men. This I have known ever since I stretched out my fingers to the abomination within that great gilded frame; stretched out my fingers and touched a cold and unyielding surface of polished glass."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-shifty-lad",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Shifty Lad.txt",
+      "expectedTitle": "The Shifty Lad",
+      "generatedTitle": "The Shifty Lad",
+      "expectedAuthor": [
+        "Andrew Lang"
+      ],
+      "generatedAuthor": [
+        "Andrew Lang"
+      ],
+      "authorEvidence": {
+        "source": "Gutenberg Author line",
+        "text": "Author: Andrew Lang",
+        "lineNumber": 13
+      },
+      "expectedCreatorRole": "editor: Andrew Lang (Project Gutenberg labels him as author; visible source byline says Edited by)",
+      "generatedCreatorRole": "editor: Andrew Lang in rights_report.json; creator name retained in generated author field",
+      "metadataEvidence": [
+        {
+          "source": "Gutenberg Author line",
+          "text": "Author: Andrew Lang",
+          "lineNumber": 13
+        },
+        {
+          "source": "visible editor byline",
+          "text": "Edited by Andrew Lang",
+          "lineNumber": 32
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-shifty-lad/manifest.json",
+        "app/client/assets/books/generated/the-shifty-lad/cleaned_book.json",
+        "app/client/assets/books/generated/the-shifty-lad/processed_book.json",
+        "app/client/assets/books/generated/the-shifty-lad/rights_report.json",
+        "app/client/assets/books/generated/the-shifty-lad/processing_notes.md",
+        "app/client/assets/books/generated/the-shifty-lad/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-shifty-lad.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: the-shifty-lad is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 6,
+        "reason": "start at first readable prose after source/title/byline wrapper: In the land of Erin there dwelt long ago a widow; write pass starts at first selected/default section",
+        "snippet": "In the land of Erin there dwelt long ago a widow who had an only son. He was a clever boy, so she saved up enough money to send him to school, and, as soon as he was old enough, to apprentice him to any trade that he would choose. But when the time came, he sa"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 451,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "as he spoke a great cry arose that the palace was burning. The princess turned round with a start, and let go her handkerchief, and the Shifty Lad fell, and struck his head on a stone, and died in an instant. So his mother’s prophecy had come true, after all."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 22349,
+        "generatedCharacterCount": 22349,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Shifty Lad",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 4438,
+        "snippet": "In the land of Erin there dwelt long ago a widow who had an only son. He was a clever boy, so she saved up enough money to send him to school, and, as soon as..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Shifty Lad",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4438
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Shifty Lad",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4438
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Shifty Lad",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4438
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 0,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from Gutenberg Author line and editor metadata is preserved as Andrew Lang in rights_report.json",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "The Shifty Lad",
+        "author": "Author: Andrew Lang",
+        "start": "The Shifty Lad In the land of Erin there dwelt long ago a widow who had an only son. He was a clever boy, so she saved up enough money to send him to school, and, as soon as he was old enough, to apprentice him to any trade that he would choose. But when the time came, he said he would not be bound to any trade, and that he meant...",
+        "end": "...h of the princess. ‘Now pull me up again,’ called he; but as he spoke a great cry arose that the palace was burning. The princess turned round with a start, and let go her handkerchief, and the Shifty Lad fell, and struck his head on a stone, and died in an instant. So his mother’s prophecy had come true, after all."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-temple",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Temple.txt",
+      "expectedTitle": "The Temple",
+      "generatedTitle": "The Temple",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-temple/manifest.json",
+        "app/client/assets/books/generated/the-temple/cleaned_book.json",
+        "app/client/assets/books/generated/the-temple/processed_book.json",
+        "app/client/assets/books/generated/the-temple/rights_report.json",
+        "app/client/assets/books/generated/the-temple/processing_notes.md",
+        "app/client/assets/books/generated/the-temple/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-temple.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: the-temple is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 7,
+        "reason": "start at first readable prose after source/title/byline wrapper: (Manuscript found on the coast of Yucatan.); write pass starts at first selected/default section",
+        "snippet": "(Manuscript found on the coast of Yucatan.) On August 20, 1917, I, Karl Heinrich, Graf von Altberg-Ehrenstein, Lieutenant-Commander in the Imperial German Navy and in charge of the submarine U-29, deposit this bottle and record in the Atlantic Ocean at a poin"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 44,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "forgotten depths. This daemoniac laughter which I hear as I write comes only from my own weakening brain. So I will carefully don my diving suit and walk boldly up the steps into that primal shrine; that silent secret of unfathomed waters and uncounted years."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 30677,
+        "generatedCharacterCount": 30677,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Temple",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 5403,
+        "snippet": "(Manuscript found on the coast of Yucatan.) On August 20, 1917, I, Karl Heinrich, Graf von Altberg-Ehrenstein, Lieutenant-Commander in the Imperial German Navy..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Temple",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5403
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Temple",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5403
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Temple",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 5403
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "The Temple",
+        "author": "By H. P. Lovecraft",
+        "start": "The Temple (Manuscript found on the coast of Yucatan.) On August 20, 1917, I, Karl Heinrich, Graf von Altberg-Ehrenstein, Lieutenant-Commander in the Imperial German Navy and in charge of the submarine U-29, deposit this bottle and record in the Atlantic Ocean at a point to me unknown but probably about N. Latitude 20°, W. Lon...",
+        "end": "..., and I shall die calmly, like a German, in the black and forgotten depths. This daemoniac laughter which I hear as I write comes only from my own weakening brain. So I will carefully don my diving suit and walk boldly up the steps into that primal shrine; that silent secret of unfathomed waters and uncounted years."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-tomb",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Tomb.txt",
+      "expectedTitle": "The Tomb",
+      "generatedTitle": "The Tomb",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-tomb/manifest.json",
+        "app/client/assets/books/generated/the-tomb/cleaned_book.json",
+        "app/client/assets/books/generated/the-tomb/processed_book.json",
+        "app/client/assets/books/generated/the-tomb/rights_report.json",
+        "app/client/assets/books/generated/the-tomb/processing_notes.md",
+        "app/client/assets/books/generated/the-tomb/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-tomb.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: the-tomb is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 7,
+        "reason": "start at first readable prose after source/title/byline wrapper: “Sedibus ut saltem placidis in morte quiescam.”; write pass starts at first selected/default section",
+        "snippet": "Sedibus ut saltem placidis in morte quiescam. —Virgil. In relating the circumstances which have led to my confinement within this refuge for the demented, I am aware that my present position will create a natural doubt of the authenticity of my narrative. I"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 62,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "e tomb perpetually ajar, and descended with a lantern into the murky depths. On a slab in an alcove he found an old but empty coffin whose tarnished plate bears the single word “Jervas”. In that coffin and in that vault they have promised me I shall be buried."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 23387,
+        "generatedCharacterCount": 23387,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Tomb",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 4176,
+        "snippet": "“Sedibus ut saltem placidis in morte quiescam.” —Virgil. In relating the circumstances which have led to my confinement within this refuge for the demented, I..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Tomb",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4176
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Tomb",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4176
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Tomb",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 4176
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "The Tomb",
+        "author": "By H. P. Lovecraft",
+        "start": "The Tomb “Sedibus ut saltem placidis in morte quiescam.” —Virgil. In relating the circumstances which have led to my confinement within this refuge for the demented, I am aware that my present position will create a natural doubt of the authenticity of my narrative. It is an unfortunate fact that the bulk of humanity is too...",
+        "end": "...ek ago he burst open the lock which chains the door of the tomb perpetually ajar, and descended with a lantern into the murky depths. On a slab in an alcove he found an old but empty coffin whose tarnished plate bears the single word “Jervas”. In that coffin and in that vault they have promised me I shall be buried."
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-tree",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Tree.txt",
+      "expectedTitle": "The Tree",
+      "generatedTitle": "The Tree",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-tree/manifest.json",
+        "app/client/assets/books/generated/the-tree/cleaned_book.json",
+        "app/client/assets/books/generated/the-tree/processed_book.json",
+        "app/client/assets/books/generated/the-tree/rights_report.json",
+        "app/client/assets/books/generated/the-tree/processing_notes.md",
+        "app/client/assets/books/generated/the-tree/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-tree.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: the-tree is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 7,
+        "reason": "start at first readable prose after source/title/byline wrapper: “Fata viam invenient.”; write pass starts at first selected/default section",
+        "snippet": "Fata viam invenient. On a verdant slope of Mount Maenalus, in Arcadia, there stands an olive grove about the ruins of a villa. Close by is a tomb, once beautiful with the sublimest sculptures, but now fallen into as great decay as the house. At one end of t"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 22,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "y of Musides. But the olive grove still stands, as does the tree growing out of the tomb of Kalos, and the old bee-keeper told me that sometimes the boughs whisper to one another in the night-wind, saying over and over again, “Οἶδα! Οἶδα!—I know! I know!”"
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 9357,
+        "generatedCharacterCount": 9357,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Tree",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 1631,
+        "snippet": "“Fata viam invenient.” On a verdant slope of Mount Maenalus, in Arcadia, there stands an olive grove about the ruins of a villa. Close by is a tomb, once beaut..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Tree",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1631
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Tree",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1631
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Tree",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 1631
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "The Tree",
+        "author": "By H. P. Lovecraft",
+        "start": "The Tree “Fata viam invenient.” On a verdant slope of Mount Maenalus, in Arcadia, there stands an olive grove about the ruins of a villa. Close by is a tomb, once beautiful with the sublimest sculptures, but now fallen into as great decay as the house. At one end of that tomb, its curious roots displacing the time-stained bl...",
+        "end": "...le temple commemorating the gifts, virtues, and brotherly piety of Musides. But the olive grove still stands, as does the tree growing out of the tomb of Kalos, and the old bee-keeper told me that sometimes the boughs whisper to one another in the night-wind, saying over and over again, “Οἶδα! Οἶδα!—I know! I know!”"
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-unnamable",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The Unnamable.txt",
+      "expectedTitle": "The Unnamable",
+      "generatedTitle": "The Unnamable",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-unnamable/manifest.json",
+        "app/client/assets/books/generated/the-unnamable/cleaned_book.json",
+        "app/client/assets/books/generated/the-unnamable/processed_book.json",
+        "app/client/assets/books/generated/the-unnamable/rights_report.json",
+        "app/client/assets/books/generated/the-unnamable/processing_notes.md",
+        "app/client/assets/books/generated/the-unnamable/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-unnamable.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: the-unnamable is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 7,
+        "reason": "start at first readable prose after source/title/byline wrapper: We were sitting on a dilapidated seventeenth-century tomb; write pass starts at first selected/default section",
+        "snippet": "We were sitting on a dilapidated seventeenth-century tomb in the late afternoon of an autumn day at the old burying-ground in Arkham, and speculating about the unnamable. Looking toward the giant willow in the centre of the cemetery, whose trunk has nearly eng"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 34,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": "cted— “No—it wasn’t that way at all. It was everywhere—a gelatin—a slime—yet it had shapes, a thousand shapes of horror beyond all memory. There were eyes—and a blemish. It was the pit—the maelstrom—the ultimate abomination. Carter, it was the unnamable!”"
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 17116,
+        "generatedCharacterCount": 17116,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The Unnamable",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2961,
+        "snippet": "We were sitting on a dilapidated seventeenth-century tomb in the late afternoon of an autumn day at the old burying-ground in Arkham, and speculating about the..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Unnamable",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2961
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Unnamable",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2961
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The Unnamable",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2961
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "The Unnamable",
+        "author": "By H. P. Lovecraft",
+        "start": "The Unnamable We were sitting on a dilapidated seventeenth-century tomb in the late afternoon of an autumn day at the old burying-ground in Arkham, and speculating about the unnamable. Looking toward the giant willow in the centre of the cemetery, whose trunk has nearly engulfed an ancient, illegible slab, I had made a fantastic...",
+        "end": "... dazed to exult when he whispered back a thing I had half expected— “No—it wasn’t that way at all. It was everywhere—a gelatin—a slime—yet it had shapes, a thousand shapes of horror beyond all memory. There were eyes—and a blemish. It was the pit—the maelstrom—the ultimate abomination. Carter, it was the unnamable!”"
+      },
+      "finalRecommendation": "accepted for review"
+    },
+    {
+      "slug": "the-white-ship",
+      "dryRunStatus": "needs first-time controlled processing",
+      "finalAction": "first-time processed",
+      "sourceFileUsed": "app/client/assets/temp-books/The White Ship.txt",
+      "expectedTitle": "The White Ship",
+      "generatedTitle": "The White Ship",
+      "expectedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "generatedAuthor": [
+        "H. P. Lovecraft"
+      ],
+      "authorEvidence": {
+        "source": "visible byline",
+        "text": "By H. P. Lovecraft",
+        "lineNumber": 5
+      },
+      "expectedCreatorRole": "author as identified by the source",
+      "generatedCreatorRole": "represented in generated author metadata; author as identified by the source",
+      "metadataEvidence": [
+        {
+          "source": "visible byline",
+          "text": "By H. P. Lovecraft",
+          "lineNumber": 5
+        }
+      ],
+      "generatedFilesChanged": [
+        "app/client/assets/books/generated/the-white-ship/manifest.json",
+        "app/client/assets/books/generated/the-white-ship/cleaned_book.json",
+        "app/client/assets/books/generated/the-white-ship/processed_book.json",
+        "app/client/assets/books/generated/the-white-ship/rights_report.json",
+        "app/client/assets/books/generated/the-white-ship/processing_notes.md",
+        "app/client/assets/books/generated/the-white-ship/sections/chapter-001.json"
+      ],
+      "previewAssetChanged": "public/book-previews/the-white-ship.preview.json",
+      "duplicateNearDuplicateSlugCheckResult": "passed: the-white-ship is the selected batch-22 slug and may be regenerated by this targeted command",
+      "startBoundaryUsed": {
+        "cleanedLine": 7,
+        "reason": "start at first readable prose after source/title/byline wrapper: I am Basil Elton, keeper of the North Point light; write pass starts at first selected/default section",
+        "snippet": "I am Basil Elton, keeper of the North Point light that my father and grandfather kept before me. Far from the shore stands the grey lighthouse, above sunken slimy rocks that are seen when the tide is low, but unseen when the tide is high. Past that beacon for"
+      },
+      "endBoundaryUsed": {
+        "cleanedLine": 24,
+        "reason": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes; write pass keeps the final readable section and trims trailing source noise",
+        "snippet": ", of a whiteness greater than that of the wave-tips or of the mountain snow. And thereafter the ocean told me its secrets no more; and though many times since has the moon shone full and high in the heavens, the White Ship from the South came never again."
+      },
+      "structuralConvention": "one contiguous story section starting at dry-run verified first readable prose phrase",
+      "rawVsGeneratedBodyComparisonResult": {
+        "status": "pass",
+        "rawCharacterCount": 13733,
+        "generatedCharacterCount": 13733,
+        "sectionCount": 1,
+        "allGeneratedCopiesAgree": true,
+        "message": "pass: generated readable body matches the sanitized raw story body character-for-character across section, cleaned, and processed copies",
+        "differences": []
+      },
+      "firstDefaultSectionAfterProcessing": {
+        "id": "chapter-001",
+        "label": "The White Ship",
+        "title": null,
+        "kind": "chapter",
+        "includeByDefault": true,
+        "wordCount": 2530,
+        "snippet": "I am Basil Elton, keeper of the North Point light that my father and grandfather kept before me. Far from the shore stands the grey lighthouse, above sunken sl..."
+      },
+      "sectionCount": 1,
+      "allSectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The White Ship",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2530
+        }
+      ],
+      "first5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The White Ship",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2530
+        }
+      ],
+      "last5SectionsWithWordCounts": [
+        {
+          "id": "chapter-001",
+          "label": "The White Ship",
+          "title": null,
+          "kind": "chapter",
+          "wordCount": 2530
+        }
+      ],
+      "cleanupActionsApplied": {
+        "imagePlaceholderLinesRemoved": 0,
+        "inlinePageMarkersRemoved": 0,
+        "numberedReferencesRemoved": 0,
+        "trailingNonReadableBlocksRemoved": 2,
+        "standaloneEndMarkersRemoved": 0
+      },
+      "titleDefaultStartRiskVerdict": "passed: generated title and first default section match audited source identity",
+      "authorMetadataVerdict": "passed: creator metadata comes from visible byline",
+      "segmentationVerdict": "passed: source-based heading strategy preserved; no vague fallback Part 1 / Part 2 chunks used",
+      "prosePreservationVerdict": "passed: generated readable body matches the sanitized raw story body character-for-character and no generated copy diverges",
+      "previewVerdict": "valid book-specific preview from chapter-001",
+      "startupPreviewValid": true,
+      "allMainReadableDefaultVerdict": "all generated readable sections included by default",
+      "remainingWarnings": [
+        "Missing Project Gutenberg start marker; body text was not destructively stripped.",
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: author did not come from a Gutenberg Author line; verify byline directly",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ],
+      "supportingSnippets": {
+        "title": "The White Ship",
+        "author": "By H. P. Lovecraft",
+        "start": "The White Ship I am Basil Elton, keeper of the North Point light that my father and grandfather kept before me. Far from the shore stands the grey lighthouse, above sunken slimy rocks that are seen when the tide is low, but unseen when the tide is high. Past that beacon for a century have swept the majestic barques of the seven se...",
+        "end": "...whose hue was as of the azure sky, and a single shattered spar, of a whiteness greater than that of the wave-tips or of the mountain snow. And thereafter the ocean told me its secrets no more; and though many times since has the moon shone full and high in the heavens, the White Ship from the South came never again."
+      },
+      "finalRecommendation": "accepted for review"
+    }
+  ]
+}

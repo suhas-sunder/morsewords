@@ -85,6 +85,7 @@ type UnresolvedSourceBook = {
 type DryRunReport = {
   schemaVersion: 1;
   reportName:
+    | "pilot-dry-run-22"
     | "pilot-dry-run-12"
     | "pilot-dry-run-13"
     | "pilot-dry-run-14"
@@ -247,8 +248,10 @@ type ManualBoundary = {
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
 const writeBatch =
-  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "21"
-    ? 21
+  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "22"
+    ? 22
+    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "21"
+      ? 21
     : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "20"
       ? 20
       : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "19"
@@ -283,7 +286,30 @@ const dryRunReportPath = path.join(dryRunRoot, `${dryRunReportName}.json`);
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 const previewManifestPath = path.join(previewRoot, "manifest.json");
 
-const SELECTED_BATCH: readonly string[] = writeBatch === 21
+const SELECTED_BATCH: readonly string[] = writeBatch === 22
+  ? [
+      "a-slip-under-the-microscope",
+      "a-story-of-the-days-to-come",
+      "beyond-the-wall-of-sleep",
+      "celephais",
+      "hypnos",
+      "ibid",
+      "in-the-vault",
+      "nyarlathotep",
+      "polaris",
+      "the-alchemist",
+      "the-beast-in-the-cave",
+      "the-doom-that-came-to-sarnath",
+      "the-moon-bog",
+      "the-outsider",
+      "the-shifty-lad",
+      "the-temple",
+      "the-tomb",
+      "the-tree",
+      "the-unnamable",
+      "the-white-ship",
+    ]
+  : writeBatch === 21
   ? [
       "a-deal-in-ostriches",
       "a-moonlight-fable",
@@ -531,7 +557,7 @@ const UNRESOLVED_SOURCE_GENERATED_BOOKS = [
 ] as const;
 
 const EXPECTED_FINAL_SECTION_COUNTS: Record<string, number> = Object.fromEntries(
-  SELECTED_BATCH.map((slug) => [slug, 1]),
+  SELECTED_BATCH.map((slug) => [slug, slug === "a-story-of-the-days-to-come" ? 5 : 1]),
 );
 
 const MANUAL_SKIP_REASONS: Record<string, string> = {};
@@ -561,7 +587,13 @@ const LATER_PHASE_REQUIREMENTS = [
   "final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable",
 ];
 
-const BACKLOG_NOTE = writeBatch === 21
+const BACKLOG_NOTE = writeBatch === 22
+  ? [
+      "Dry-run 22 still had 56 skipped/unsafe raw-only candidates before write.",
+      "These are not treated as lost or missed.",
+      "After safe batching slows/exhausts, create a dedicated remaining raw inventory/triage report classifying every unprocessed raw file.",
+    ]
+  : writeBatch === 21
   ? [
       "Dry-run 21 still had 76 skipped/unsafe raw-only candidates before write.",
       "These are not treated as lost or missed.",
@@ -1140,6 +1172,20 @@ type BoundaryPlan = {
 };
 
 const SECTION_BOUNDARY_PLANS: Record<string, BoundaryPlan> = {
+  "a-story-of-the-days-to-come": {
+    startPhrase: "The excellent Mr. Morris was an Englishman",
+    structuralConvention:
+      "five roman-numbered titled story parts from the individual Wells story",
+    warning:
+      "Write pass preserved all five source-titled parts and excluded the parent collection and contents wrapper from playable text.",
+    specs: [
+      ["I—THE CURE FOR LOVE", "Part 1", "The Cure for Love"],
+      ["II—THE VACANT COUNTRY", "Part 2", "The Vacant Country"],
+      ["III—THE WAYS OF THE CITY", "Part 3", "The Ways of the City"],
+      ["IV—UNDERNEATH", "Part 4", "Underneath"],
+      ["V—BINDON INTERVENES", "Part 5", "Bindon Intervenes"],
+    ].map((entry): BoundarySpec => ({ sourceLabel: String(entry[0]), label: String(entry[1]), title: entry[2] })),
+  },
   "the-adventures-of-chanticleer-and-partlet": {
     startPhrase: "The nuts are quite ripe now",
     contentStartsAfterHeading: true,
@@ -1520,6 +1566,20 @@ function buildSectionsForBook(
   });
   warnings.push(...analysis.redFlags);
 
+  const boundaryPlan = SECTION_BOUNDARY_PLANS[dryRun.slug];
+  if (boundaryPlan) {
+    return {
+      sections: sectionsFromBoundaries(
+        cleanedText,
+        manualBoundariesFromPlan(cleanedText, boundaryPlan),
+        cleanup,
+      ),
+      warnings: [...warnings, boundaryPlan.warning],
+      structuralConvention: boundaryPlan.structuralConvention,
+      cleanedText,
+    };
+  }
+
   const singleStoryStartPhrase =
     SINGLE_STORY_START_PHRASES[dryRun.slug] ?? dryRunStartPhrase(dryRun);
   if (singleStoryStartPhrase) {
@@ -1535,20 +1595,6 @@ function buildSectionsForBook(
       ],
       structuralConvention:
         "one contiguous story section starting at dry-run verified first readable prose phrase",
-      cleanedText,
-    };
-  }
-
-  const boundaryPlan = SECTION_BOUNDARY_PLANS[dryRun.slug];
-  if (boundaryPlan) {
-    return {
-      sections: sectionsFromBoundaries(
-        cleanedText,
-        manualBoundariesFromPlan(cleanedText, boundaryPlan),
-        cleanup,
-      ),
-      warnings: [...warnings, boundaryPlan.warning],
-      structuralConvention: boundaryPlan.structuralConvention,
       cleanedText,
     };
   }

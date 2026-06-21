@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "slug": "a-story-of-the-days-to-come",
+  "title": "A Story of the Days to Come",
+  "author": [
+    "Herbert George Wells"
+  ],
+  "contentVersion": "99e39a718405d36f",
+  "contentHash": "99e39a718405d36f1e34d495dcc20810e27d13c72bb21b58add909f143ef0e4c",
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "27365",
+    "releaseDate": "November 30, 2008",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/27365",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 22 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for A Story of the Days to Come"
+  },
+  "stats": {
+    "originalCharacterCount": 185985,
+    "cleanedCharacterCount": 183035,
+    "wordCount": 32199,
+    "sectionCount": 5,
+    "includedSectionCount": 5
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Part 1",
+      "title": "The Cure for Love",
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 35511,
+      "wordCount": 6332,
+      "estimatedTypingMinutes": 181,
+      "estimatedListeningMinutes": 212,
+      "morseCharacterEstimate": 190579,
+      "textPreview": "I—THE CURE FOR LOVE The excellent Mr. Morris was an Englishman, and he lived in the days of Queen Victoria the Good. He was a prosperous and very sensible man;..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Part 2",
+      "title": "The Vacant Country",
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 38062,
+      "wordCount": 6784,
+      "estimatedTypingMinutes": 194,
+      "estimatedListeningMinutes": 227,
+      "morseCharacterEstimate": 203904,
+      "textPreview": "II—THE VACANT COUNTRY The world, they say, changed more between the year 1800 and the year 1900 than it had done in the previous five hundred years. That centu..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Part 3",
+      "title": "The Ways of the City",
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 39732,
+      "wordCount": 6853,
+      "estimatedTypingMinutes": 196,
+      "estimatedListeningMinutes": 237,
+      "morseCharacterEstimate": 212967,
+      "textPreview": "III—THE WAYS OF THE CITY Prominent if not paramount among world-changing inventions in the history of man is that series of contrivances in locomotion that beg..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Part 4",
+      "title": "Underneath",
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 36657,
+      "wordCount": 6487,
+      "estimatedTypingMinutes": 186,
+      "estimatedListeningMinutes": 219,
+      "morseCharacterEstimate": 196928,
+      "textPreview": "IV—UNDERNEATH Under the stars one may reach upward and touch resignation, whatever the evil thing may be, but in the heat and stress of the day's work we lapse..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Part 5",
+      "title": "Bindon Intervenes",
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 33073,
+      "wordCount": 5743,
+      "estimatedTypingMinutes": 165,
+      "estimatedListeningMinutes": 198,
+      "morseCharacterEstimate": 177407,
+      "textPreview": "V—BINDON INTERVENES In Bindon's younger days he had dabbled in speculation and made three brilliant flukes. For the rest of his life he had the wisdom to let g..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 185985,
+    "cleanedCharacterCount": 183035,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": [
+      "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+      "Write pass preserved all five source-titled parts and excluded the parent collection and contents wrapper from playable text.",
+      "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+      "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+      "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+      "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+    ]
+  },
+  "warnings": [
+    "Generated by controlled pilot write pass 22; review before scaling to larger batches or Cloudflare export.",
+    "Inline page markers removed from playable text.",
+    "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+    "Write pass preserved all five source-titled parts and excluded the parent collection and contents wrapper from playable text.",
+    "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+    "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+    "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+    "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+    "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+  ]
+}
