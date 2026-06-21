@@ -47,6 +47,7 @@ type PilotSummaryAuditItem = {
   shortWorkException: string | null;
   spoilerRisk: "pass" | "fail";
   sourceBoilerplateRisk: "pass" | "fail";
+  internalProcessLeakRisk: "pass" | "fail";
   duplicateSummaryRisk: "pass" | "fail";
   rawSourcePathLeakRisk: "pass" | "fail";
   sourceTextCopyRisk: "pass" | "fail";
@@ -75,6 +76,7 @@ type SeoSummaryAuditReport = {
     wordCount: "pass" | "fail";
     spoilerRisk: "pass" | "fail";
     sourceBoilerplate: "pass" | "fail";
+    internalProcessLeak: "pass" | "fail";
     duplicateSummary: "pass" | "fail";
     sourceTextCopy: "pass" | "fail";
     result: "pass" | "fail";
@@ -143,6 +145,8 @@ const spoilerLabelPattern =
   /\b(in the end|at the end|the story ends with|ends with|the final twist|the ending reveals|finally reveals)\b/i;
 const rawSourceLeakPattern =
   /\b(app[\\/]+client[\\/]+assets[\\/]+temp-books|temp-books|raw source|\.txt\b|\.epub\b|\.pdf\b)\b/i;
+const internalProcessLeakPattern =
+  /\b(pilot\b.{0,50}\b(?:summary|batch|set|check|example|item|choice|substitute|coverage|rollout|scaling)|(?:summary|batch|set)\b.{0,30}\bpilot|future summary (?:batch(?:es)?|expansion)|summary (?:batch(?:es)?|expansion|schema|handling|rollout|records?)|generated (?:library|section|page|title)|defect-fix phase|route validation|audit review|metadata check|schema check|slug substitution|controlled batch|accepted (?:Poe )?substitute|unavailable [^.]{0,80}(?:slot|suggestion)|broader summary rollout|scaling (?:beyond|across|the full set))\b/i;
 
 function readJson<T>(filePath: string): T {
   return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
@@ -276,6 +280,15 @@ function auditSummaryRecord({
     errors.push("Summary appears to leak a raw source path or raw-source filename.");
   }
 
+  const internalProcessLeakRisk = internalProcessLeakPattern.test(
+    `${description}\n${summary}`,
+  )
+    ? "fail"
+    : "pass";
+  if (internalProcessLeakRisk === "fail") {
+    errors.push("Summary contains internal pilot, audit, or rollout language.");
+  }
+
   const duplicateSummaryRisk =
     record && (duplicateCounts.get(normalizeText(record.summary)) ?? 0) > 1
       ? "fail"
@@ -328,6 +341,7 @@ function auditSummaryRecord({
     shortWorkException: record?.shortWorkException ?? null,
     spoilerRisk,
     sourceBoilerplateRisk,
+    internalProcessLeakRisk,
     duplicateSummaryRisk,
     rawSourcePathLeakRisk,
     sourceTextCopyRisk,
@@ -349,12 +363,16 @@ function reportValidation(results: PilotSummaryAuditItem[]) {
   const hasDuplicateFailures = results.some(
     (item) => item.duplicateSummaryRisk === "fail",
   );
+  const hasInternalProcessLeaks = results.some(
+    (item) => item.internalProcessLeakRisk === "fail",
+  );
   const hasCopyFailures = results.some((item) => item.sourceTextCopyRisk === "fail");
   const hasFailures =
     hasMetadataFailures ||
     hasWordCountFailures ||
     hasSpoilerFailures ||
     hasBoilerplateFailures ||
+    hasInternalProcessLeaks ||
     hasDuplicateFailures ||
     hasCopyFailures ||
     results.some((item) => item.status === "fail");
@@ -364,6 +382,7 @@ function reportValidation(results: PilotSummaryAuditItem[]) {
     wordCount: hasWordCountFailures ? "fail" : "pass",
     spoilerRisk: hasSpoilerFailures ? "fail" : "pass",
     sourceBoilerplate: hasBoilerplateFailures ? "fail" : "pass",
+    internalProcessLeak: hasInternalProcessLeaks ? "fail" : "pass",
     duplicateSummary: hasDuplicateFailures ? "fail" : "pass",
     sourceTextCopy: hasCopyFailures ? "fail" : "pass",
     result: hasFailures ? "fail" : "pass",
@@ -374,7 +393,7 @@ function markdownReport(report: SeoSummaryAuditReport) {
   const itemRows = report.results
     .map(
       (item) =>
-        `| ${item.slug} | ${item.summaryWordCount} | ${item.titleMatchesGenerated ? "pass" : "fail"} | ${item.spoilerRisk} | ${item.sourceBoilerplateRisk} | ${item.duplicateSummaryRisk} | ${item.status} |`,
+        `| ${item.slug} | ${item.summaryWordCount} | ${item.titleMatchesGenerated ? "pass" : "fail"} | ${item.spoilerRisk} | ${item.sourceBoilerplateRisk} | ${item.internalProcessLeakRisk} | ${item.duplicateSummaryRisk} | ${item.status} |`,
     )
     .join("\n");
   const substitutions = report.substitutions
@@ -416,8 +435,8 @@ ${substitutions || "- None"}
 
 ## Summary validation
 
-| Slug | Summary words | Metadata | Spoiler risk | Source boilerplate | Duplicate summary | Status |
-| --- | ---: | --- | --- | --- | --- | --- |
+| Slug | Summary words | Metadata | Spoiler risk | Source boilerplate | Internal process leak | Duplicate summary | Status |
+| --- | ---: | --- | --- | --- | --- | --- | --- |
 ${itemRows}
 
 ## Validation categories
@@ -426,6 +445,7 @@ ${itemRows}
 - Word count: ${report.validation.wordCount}
 - Spoiler-risk result: ${report.validation.spoilerRisk}
 - Source-boilerplate result: ${report.validation.sourceBoilerplate}
+- Internal-process-leak result: ${report.validation.internalProcessLeak}
 - Duplicate-summary result: ${report.validation.duplicateSummary}
 - Source-text copy result: ${report.validation.sourceTextCopy}
 
@@ -484,6 +504,7 @@ function main() {
       shortWorkException: null,
       spoilerRisk: "pass",
       sourceBoilerplateRisk: "pass",
+      internalProcessLeakRisk: "pass",
       duplicateSummaryRisk: "pass",
       rawSourcePathLeakRisk: "pass",
       sourceTextCopyRisk: "pass",
@@ -537,6 +558,7 @@ function main() {
   console.log(`word count: ${validation.wordCount}`);
   console.log(`spoiler risk: ${validation.spoilerRisk}`);
   console.log(`source boilerplate: ${validation.sourceBoilerplate}`);
+  console.log(`internal process leaks: ${validation.internalProcessLeak}`);
   console.log(`duplicate summaries: ${validation.duplicateSummary}`);
   console.log(`source text copy: ${validation.sourceTextCopy}`);
   console.log(`report: ${path.relative(repoRoot, reportJsonPath)}`);

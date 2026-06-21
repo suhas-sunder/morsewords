@@ -1,0 +1,145 @@
+{
+  "generatedAt": "2026-06-21T17:25:25.2167157-04:00",
+  "branch": "morsewords-book-seo-summary-pilot-jun-2026",
+  "pilotCommitVerified": "c3040a8eee9a79ca2edace774b4130976099630c",
+  "branchScopeVerdict": "pass: the pilot commit changed exactly the 11 intended files and no unrelated files",
+  "filesInspected": [
+    "app/client/assets/books/seo-summaries/book-seo-summaries.json",
+    "app/client/data/morseBookSeoSummaries.ts",
+    "app/client/components/morse-code-books/MorseBookPage.tsx",
+    "app/routes/morse-code-books.$slug.tsx",
+    "app/routes/morse-code-audiobooks.$slug.tsx",
+    "app/routes/morse-code-books.tsx",
+    "app/routes/morse-code-audiobooks.tsx",
+    "scripts/books/book-seo-summary-audit.ts",
+    "package.json",
+    "app/client/assets/books/audit-reports/book-seo-summary-pilot/book-seo-summary-pilot.json",
+    "app/client/assets/books/audit-reports/book-seo-summary-pilot/book-seo-summary-pilot.md",
+    "app/client/assets/books/generated/library-manifest.json",
+    "app/client/assets/books/cloudflare-export/public-manifest.json",
+    "public/book-previews/manifest.json",
+    "tests/qa-robustness-review/morse-book-page.spec.ts"
+  ],
+  "counts": {
+    "summaryCount": 20,
+    "pilotSlugCount": 20,
+    "passCount": 20,
+    "warnCount": 0,
+    "failCount": 0,
+    "correctionCount": 20
+  },
+  "pilotSlugs": [
+    "the-time-machine",
+    "the-war-of-the-worlds",
+    "the-country-of-the-blind",
+    "the-star",
+    "the-strange-high-house-in-the-mist",
+    "the-whisperer-in-darkness",
+    "the-outsider",
+    "alices-adventures-in-wonderland",
+    "the-wonderful-wizard-of-oz",
+    "anne-of-green-gables",
+    "a-christmas-carol",
+    "dracula",
+    "frankenstein",
+    "dr-jekyll-and-mr-hyde",
+    "the-legend-of-sleepy-hollow",
+    "the-masque-of-the-red-death",
+    "ashputtel",
+    "the-shifty-lad",
+    "the-arabian-nights",
+    "the-three-crowns"
+  ],
+  "substitutions": [
+    {
+      "suggestedSlug": "alice-s-adventures-in-wonderland",
+      "actualSlug": "alices-adventures-in-wonderland"
+    },
+    {
+      "suggestedSlug": "the-strange-case-of-dr-jekyll-and-mr-hyde",
+      "actualSlug": "dr-jekyll-and-mr-hyde"
+    },
+    {
+      "suggestedSlug": "the-tell-tale-heart",
+      "actualSlug": "the-masque-of-the-red-death"
+    },
+    {
+      "suggestedSlug": "the-three-little-pigs",
+      "actualSlug": "the-three-crowns"
+    },
+    {
+      "suggestedSlug": "cinderella",
+      "actualSlug": "ashputtel"
+    },
+    {
+      "suggestedSlug": "the-odyssey",
+      "actualSlug": "the-arabian-nights"
+    }
+  ],
+  "results": [
+    { "slug": "the-time-machine", "wordCount": 300, "status": "pass" },
+    { "slug": "the-war-of-the-worlds", "wordCount": 309, "status": "pass" },
+    { "slug": "the-country-of-the-blind", "wordCount": 306, "status": "pass" },
+    { "slug": "the-star", "wordCount": 309, "status": "pass" },
+    { "slug": "the-strange-high-house-in-the-mist", "wordCount": 310, "status": "pass" },
+    { "slug": "the-whisperer-in-darkness", "wordCount": 308, "status": "pass" },
+    { "slug": "the-outsider", "wordCount": 306, "status": "pass" },
+    { "slug": "alices-adventures-in-wonderland", "wordCount": 304, "status": "pass" },
+    { "slug": "the-wonderful-wizard-of-oz", "wordCount": 307, "status": "pass" },
+    { "slug": "anne-of-green-gables", "wordCount": 304, "status": "pass" },
+    { "slug": "a-christmas-carol", "wordCount": 303, "status": "pass" },
+    { "slug": "dracula", "wordCount": 307, "status": "pass" },
+    { "slug": "frankenstein", "wordCount": 307, "status": "pass" },
+    { "slug": "dr-jekyll-and-mr-hyde", "wordCount": 300, "status": "pass" },
+    { "slug": "the-legend-of-sleepy-hollow", "wordCount": 307, "status": "pass" },
+    { "slug": "the-masque-of-the-red-death", "wordCount": 303, "status": "pass" },
+    { "slug": "ashputtel", "wordCount": 306, "status": "pass" },
+    { "slug": "the-shifty-lad", "wordCount": 306, "status": "pass" },
+    { "slug": "the-arabian-nights", "wordCount": 308, "status": "pass" },
+    { "slug": "the-three-crowns", "wordCount": 304, "status": "pass" }
+  ],
+  "validation": {
+    "exactControlledSet": "pass: exactly 20 records and no all-book generation",
+    "generatedSlugExistence": "pass",
+    "metadataMatch": "pass",
+    "wordCount": "pass: all summaries contain 300-310 words",
+    "originalityAndSourceBoilerplate": "pass: no exact source passage, no matching 18-word generated-text phrase, and no prohibited source boilerplate",
+    "spoilerRisk": "pass: manual review and automated ending-label scan found no explicit ending spoilers",
+    "searchUsefulness": "pass after correction: genre, tone, setting, central conflict, and Morse practice value are present without keyword stuffing",
+    "duplicateSummary": "pass",
+    "rawOrInternalPathLeak": "pass",
+    "internalProcessLeak": "pass after correction"
+  },
+  "corrections": {
+    "made": true,
+    "rootCause": "All 20 otherwise-valid summaries included at least one sentence aimed at pilot reviewers rather than readers, including pilot, generated-output, substitution, schema, audit, or rollout commentary.",
+    "fix": "Replaced only the internal process sentences with reader-facing literary and Morse practice guidance while preserving factual scope and the 300-word minimum.",
+    "toolingChange": "The pilot audit now fails summaries that expose internal pilot, audit, generated-output, or rollout language."
+  },
+  "routeIntegration": {
+    "storage": "pass: separate static JSON asset",
+    "lookup": "pass: deterministic module-scope Map lookup",
+    "pilotBookSummary": "pass",
+    "pilotAudiobookSummary": "pass",
+    "listingRoutes": "pass",
+    "metadataDescriptions": "pass",
+    "missingSummaryFallback": "pass: non-pilot Treasure Island retained its normal page and deterministic fallback metadata",
+    "loaderRuntimeWork": "pass: no loader-side summary parsing or network request was added",
+    "ssrAndImportRisk": "pass: static JSON import and deterministic lookups are SSR-compatible"
+  },
+  "uiSmoke": {
+    "result": "pass",
+    "browserPath": "The in-app browser could load index content but timed out during detail-route CDP setup; the repository Playwright harness was used as the permitted fallback.",
+    "focusedCheck": "1/1 pass: book index, audiobook index, Time Machine development preview summary, Anne of Green Gables public book and audiobook summaries, book-to-audiobook navigation, and Treasure Island non-pilot fallback.",
+    "requiredSuite": "35/36 pass; the only failure was the known pre-existing fullscreen-controls visibility assertion at line 1071.",
+    "publicManifestContext": "The intentionally untouched local Cloudflare public manifest contains 74 books and 9 of the 20 pilot slugs. The other 11 accepted/generated pilot books, including The Time Machine, were verified through the supported development preview path and were not exported in this task."
+  },
+  "mergeReady": true,
+  "recommendedNextPhase": "merge pilot and scale summaries in controlled batches",
+  "protectedPaths": {
+    "rawSourcesModified": false,
+    "generatedBooksModified": false,
+    "previewsModified": false,
+    "cloudflareExportsModified": false
+  }
+}

@@ -1,6 +1,6 @@
 # Book SEO Summary Pilot
 
-Generated: 2026-06-21T20:39:29.353Z
+Generated: 2026-06-21T21:30:22.132Z
 
 ## Executive summary
 
@@ -60,28 +60,28 @@ Separate static JSON data asset imported by book routes and validation tooling. 
 
 ## Summary validation
 
-| Slug | Summary words | Metadata | Spoiler risk | Source boilerplate | Duplicate summary | Status |
-| --- | ---: | --- | --- | --- | --- | --- |
-| the-time-machine | 300 | pass | pass | pass | pass | pass |
-| the-war-of-the-worlds | 304 | pass | pass | pass | pass | pass |
-| the-country-of-the-blind | 308 | pass | pass | pass | pass | pass |
-| the-star | 302 | pass | pass | pass | pass | pass |
-| the-strange-high-house-in-the-mist | 300 | pass | pass | pass | pass | pass |
-| the-whisperer-in-darkness | 300 | pass | pass | pass | pass | pass |
-| the-outsider | 300 | pass | pass | pass | pass | pass |
-| alices-adventures-in-wonderland | 300 | pass | pass | pass | pass | pass |
-| the-wonderful-wizard-of-oz | 301 | pass | pass | pass | pass | pass |
-| anne-of-green-gables | 300 | pass | pass | pass | pass | pass |
-| a-christmas-carol | 300 | pass | pass | pass | pass | pass |
-| dracula | 300 | pass | pass | pass | pass | pass |
-| frankenstein | 301 | pass | pass | pass | pass | pass |
-| dr-jekyll-and-mr-hyde | 301 | pass | pass | pass | pass | pass |
-| the-legend-of-sleepy-hollow | 300 | pass | pass | pass | pass | pass |
-| the-masque-of-the-red-death | 300 | pass | pass | pass | pass | pass |
-| ashputtel | 300 | pass | pass | pass | pass | pass |
-| the-shifty-lad | 301 | pass | pass | pass | pass | pass |
-| the-arabian-nights | 300 | pass | pass | pass | pass | pass |
-| the-three-crowns | 300 | pass | pass | pass | pass | pass |
+| Slug | Summary words | Metadata | Spoiler risk | Source boilerplate | Internal process leak | Duplicate summary | Status |
+| --- | ---: | --- | --- | --- | --- | --- | --- |
+| the-time-machine | 300 | pass | pass | pass | pass | pass | pass |
+| the-war-of-the-worlds | 309 | pass | pass | pass | pass | pass | pass |
+| the-country-of-the-blind | 306 | pass | pass | pass | pass | pass | pass |
+| the-star | 309 | pass | pass | pass | pass | pass | pass |
+| the-strange-high-house-in-the-mist | 310 | pass | pass | pass | pass | pass | pass |
+| the-whisperer-in-darkness | 308 | pass | pass | pass | pass | pass | pass |
+| the-outsider | 306 | pass | pass | pass | pass | pass | pass |
+| alices-adventures-in-wonderland | 304 | pass | pass | pass | pass | pass | pass |
+| the-wonderful-wizard-of-oz | 307 | pass | pass | pass | pass | pass | pass |
+| anne-of-green-gables | 304 | pass | pass | pass | pass | pass | pass |
+| a-christmas-carol | 303 | pass | pass | pass | pass | pass | pass |
+| dracula | 307 | pass | pass | pass | pass | pass | pass |
+| frankenstein | 307 | pass | pass | pass | pass | pass | pass |
+| dr-jekyll-and-mr-hyde | 300 | pass | pass | pass | pass | pass | pass |
+| the-legend-of-sleepy-hollow | 307 | pass | pass | pass | pass | pass | pass |
+| the-masque-of-the-red-death | 303 | pass | pass | pass | pass | pass | pass |
+| ashputtel | 306 | pass | pass | pass | pass | pass | pass |
+| the-shifty-lad | 306 | pass | pass | pass | pass | pass | pass |
+| the-arabian-nights | 308 | pass | pass | pass | pass | pass | pass |
+| the-three-crowns | 304 | pass | pass | pass | pass | pass | pass |
 
 ## Validation categories
 
@@ -89,6 +89,7 @@ Separate static JSON data asset imported by book routes and validation tooling. 
 - Word count: pass
 - Spoiler-risk result: pass
 - Source-boilerplate result: pass
+- Internal-process-leak result: pass
 - Duplicate-summary result: pass
 - Source-text copy result: pass
 
