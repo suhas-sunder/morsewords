@@ -161,7 +161,8 @@ type DryRunReport = {
     | "pilot-dry-run-18"
     | "pilot-dry-run-19"
     | "pilot-dry-run-20"
-    | "pilot-dry-run-21";
+    | "pilot-dry-run-21"
+    | "pilot-dry-run-22";
   generatedAt: string;
   branch: string;
   baseMainCommit: string;
@@ -227,7 +228,9 @@ type DryRunReport = {
 
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
-const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "21"
+const dryRunBatch = process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "22"
+  ? 22
+  : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "21"
   ? 21
   : process.env.MORSEWORDS_PILOT_DRY_RUN_BATCH === "20"
     ? 20
@@ -336,6 +339,12 @@ const acceptedReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-20-verification/pilot-write-20-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 22
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-21/pilot-write-21.json",
+        "app/client/assets/books/audit-reports/pilot-write-21-verification/pilot-write-21-verification.json",
+      ]
+    : []),
   "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
   "app/client/assets/books/audit-reports/metadata-segmentation-correctness-audit-1/metadata-segmentation-correctness-audit-1.json",
   "app/client/assets/books/audit-reports/manual-ui-defect-followup-1/manual-ui-defect-followup-1.json",
@@ -386,6 +395,11 @@ const inputReportPaths = [
         "app/client/assets/books/audit-reports/pilot-write-20-verification/pilot-write-20-verification.json",
       ]
     : []),
+  ...(dryRunBatch >= 22
+    ? [
+        "app/client/assets/books/audit-reports/pilot-write-21-verification/pilot-write-21-verification.json",
+      ]
+    : []),
   ...(dryRunBatch >= 14
     ? [
         "app/client/assets/books/audit-reports/pilot-write-13-verification/pilot-write-13-verification.json",
@@ -400,7 +414,30 @@ const structureJsonPath = path.join(
 const pass2JsonPath = path.join(auditRoot, "book-processing-audit-pass-2.json");
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 
-const selectedBatch: readonly string[] = dryRunBatch === 21
+const selectedBatch: readonly string[] = dryRunBatch === 22
+  ? [
+      "a-slip-under-the-microscope",
+      "a-story-of-the-days-to-come",
+      "beyond-the-wall-of-sleep",
+      "celephais",
+      "hypnos",
+      "ibid",
+      "in-the-vault",
+      "nyarlathotep",
+      "polaris",
+      "the-alchemist",
+      "the-beast-in-the-cave",
+      "the-doom-that-came-to-sarnath",
+      "the-moon-bog",
+      "the-outsider",
+      "the-shifty-lad",
+      "the-temple",
+      "the-tomb",
+      "the-tree",
+      "the-unnamable",
+      "the-white-ship",
+    ]
+  : dryRunBatch === 21
   ? [
       "a-deal-in-ostriches",
       "a-moonlight-fable",
@@ -880,6 +917,37 @@ const titleOverrides: Record<string, string> = {
   "the-treasure-in-the-forest": "The Treasure in the Forest",
   "the-triumphs-of-a-taxidermist": "The Triumphs of a Taxidermist",
   "through-a-window": "Through a Window",
+  "a-slip-under-the-microscope": "A Slip Under the Microscope",
+  "a-story-of-the-days-to-come": "A Story of the Days to Come",
+  "beyond-the-wall-of-sleep": "Beyond the Wall of Sleep",
+  celephais: "Celephaïs",
+  hypnos: "Hypnos",
+  ibid: "Ibid",
+  "in-the-vault": "In the Vault",
+  nyarlathotep: "Nyarlathotep",
+  polaris: "Polaris",
+  "the-alchemist": "The Alchemist",
+  "the-beast-in-the-cave": "The Beast in the Cave",
+  "the-doom-that-came-to-sarnath": "The Doom That Came to Sarnath",
+  "the-moon-bog": "The Moon-Bog",
+  "the-outsider": "The Outsider",
+  "the-shifty-lad": "The Shifty Lad",
+  "the-temple": "The Temple",
+  "the-tomb": "The Tomb",
+  "the-tree": "The Tree",
+  "the-unnamable": "The Unnamable",
+  "the-white-ship": "The White Ship",
+};
+
+const authorOverrides: Record<
+  string,
+  { names: string[]; evidencePattern: RegExp; evidenceSource: string }
+> = {
+  "a-slip-under-the-microscope": {
+    names: ["H. G. Wells"],
+    evidencePattern: /^H\. G\. WELLS$/i,
+    evidenceSource: "visible title-page author line",
+  },
 };
 
 const singleStoryStartPhrases: Record<string, string> = {
@@ -1222,6 +1290,31 @@ const singleStoryStartPhrases: Record<string, string> = {
   "the-treasure-in-the-forest": "The canoe was now approaching the land. The bay opened out, and a gap",
   "the-triumphs-of-a-taxidermist": "Here are some of the secrets of taxidermy. They were told me by the",
   "through-a-window": "After his legs were set, they carried Bailey into the study and put",
+  "a-slip-under-the-microscope":
+    "Outside the laboratory windows was a watery-grey fog",
+  "beyond-the-wall-of-sleep":
+    "“I have an exposition of sleep come upon me.”",
+  celephais: "In a dream Kuranes saw the city in the valley",
+  hypnos: "“Apropos of sleep, that sinister adventure of all our nights",
+  ibid: "The erroneous idea that Ibid is the author of the Lives",
+  "in-the-vault":
+    "There is nothing more absurd, as I view it, than that conventional association",
+  nyarlathotep: "Nyarlathotep . . . the crawling chaos",
+  polaris: "Into the north window of my chamber glows the Pole Star",
+  "the-alchemist": "High up, crowning the grassy summit of a swelling mound",
+  "the-beast-in-the-cave":
+    "The horrible conclusion which had been gradually obtruding itself",
+  "the-doom-that-came-to-sarnath":
+    "There is in the land of Mnar a vast still lake",
+  "the-moon-bog": "Somewhere, to what remote and fearsome region I know not",
+  "the-outsider": "That night the Baron dreamt of many a woe;",
+  "the-shifty-lad": "In the land of Erin there dwelt long ago a widow",
+  "the-temple": "(Manuscript found on the coast of Yucatan.)",
+  "the-tomb": "“Sedibus ut saltem placidis in morte quiescam.”",
+  "the-tree": "“Fata viam invenient.”",
+  "the-unnamable":
+    "We were sitting on a dilapidated seventeenth-century tomb",
+  "the-white-ship": "I am Basil Elton, keeper of the North Point light",
 };
 
 const sectioningStartOverrides: Record<
@@ -1235,6 +1328,21 @@ const sectioningStartOverrides: Record<
     examples: string[];
   }
 > = {
+  "a-story-of-the-days-to-come": {
+    label: "I—THE CURE FOR LOVE",
+    startPhrase: "The excellent Mr. Morris was an Englishman",
+    convention: "five roman-numbered titled story parts",
+    likelySectionCount: 5,
+    strategyNote:
+      "the five source headings from I—THE CURE FOR LOVE through V—BINDON INTERVENES; reject isolated dialogue fragments selected by the generic detector",
+    examples: [
+      "I—THE CURE FOR LOVE",
+      "II—THE VACANT COUNTRY",
+      "III—THE WAYS OF THE CITY",
+      "IV—UNDERNEATH",
+      "V—BINDON INTERVENES",
+    ],
+  },
   "the-adventures-of-chanticleer-and-partlet": {
     label: "1. HOW THEY WENT TO THE MOUNTAINS TO EAT NUTS",
     startPhrase: "The nuts are quite ripe now",
@@ -1267,7 +1375,7 @@ const unresolvedGeneratedSlugs = [
 const sourceNoisePatterns = {
   contentsOrToc: /\b(contents|table of contents|list of illustrations)\b/i,
   sourceOrLicense:
-    /\b(project gutenberg|gutenberg-tm|full license|terms of use|release date|ebook|e-book|copyright laws)\b/i,
+    /\b(project gutenberg|gutenberg-tm|full license|terms of use|release date|ebook|e-book|copyright laws|all rights reserved|site map|return to)\b/i,
   contributorOrTranscriberNotes:
     /\b(produced by|distributed proofreading|pgdp|transcriber|transcriber's notes?|credits:)\b/i,
   illustrationCaptions: /\[\s*illustration\b|frontispiece|illustrated by/i,
@@ -1493,7 +1601,8 @@ function isLangEditorSlug(slug: string) {
   return dryRun17LangSlugs.has(slug) ||
     dryRun18LangSlugs.has(slug) ||
     dryRun19LangSlugs.has(slug) ||
-    dryRun20LangSlugs.has(slug);
+    dryRun20LangSlugs.has(slug) ||
+    slug === "the-shifty-lad";
 }
 
 function readJson<T>(filePath: string): T {
@@ -1729,7 +1838,8 @@ function deriveAcceptedSlugs() {
       relativePath.includes("pilot-write-17-verification") ||
       relativePath.includes("pilot-write-18-verification") ||
       relativePath.includes("pilot-write-19-verification") ||
-      relativePath.includes("pilot-write-20-verification")
+      relativePath.includes("pilot-write-20-verification") ||
+      relativePath.includes("pilot-write-21-verification")
     ) {
       for (const book of books) {
         if (book.acceptedForMain === true && typeof book.slug === "string") {
@@ -2034,6 +2144,7 @@ function readableEndSnippet(cleanedText: string) {
     /\n\s*Transcriber(?:'s)? Notes?:/i,
     /\n\s*\[The other stories included in this volume/i,
     /\n\s*End of Project Gutenberg/i,
+    /\n\s*Return to [^\n]+/i,
   ];
   for (const pattern of trailingPatterns) {
     const match = pattern.exec(body.slice(Math.floor(body.length * 0.65)));
@@ -2051,6 +2162,16 @@ function readableEndSnippet(cleanedText: string) {
     .replace(/\s+/g, " ")
     .trim();
   return tail.length <= 320 ? tail : `...${tail.slice(-317)}`;
+}
+
+function publicRestrictedStatusFor(rawText: string) {
+  if (/all rights reserved/i.test(rawText)) {
+    return "review-only raw source; modern source-site wrapper is marked All Rights Reserved and must be excluded from any future generated body; no generated publish status exists yet";
+  }
+  if (/project gutenberg/i.test(rawText)) {
+    return "review-only Project Gutenberg source with reuse/source evidence present; no generated publish status exists yet";
+  }
+  return "review-only raw source; public/restricted status remains write-review gated and no generated publish status exists yet";
 }
 
 function titleLooksLikeParentCollection(book: StructureAuditBook, title: string) {
@@ -2160,20 +2281,40 @@ function inspectBook(
   const bodyTitleEvidence = findTitleHeadingEvidence(rawText, expectedTitle);
   if (titleOverrides[slug] && bodyTitleEvidence) {
     titleEvidence = bodyTitleEvidence;
-  }
-
-  const authorEvidence =
-    findAuthorEvidence(rawText) ??
-    findHeaderEvidence(rawText, /^by\s+(.{2,120})$/i, "visible byline") ?? {
-      source: "structure audit fallback",
-      text: authorList(structureBook.likelyAuthor).join(", "),
+  } else if (
+    titleOverrides[slug] &&
+    slugify(path.basename(structureBook.sourceFilename, path.extname(structureBook.sourceFilename))) === slug
+  ) {
+    titleEvidence = {
+      source: "review-only source filename corroborated by the story text",
+      text: expectedTitle,
       lineNumber: null,
     };
+  }
+
+  const authorOverride = authorOverrides[slug];
+  const authorEvidence = authorOverride
+    ? findHeaderEvidence(
+        rawText,
+        authorOverride.evidencePattern,
+        authorOverride.evidenceSource,
+      ) ?? {
+        source: authorOverride.evidenceSource,
+        text: authorOverride.names.join(", "),
+        lineNumber: null,
+      }
+    : findAuthorEvidence(rawText) ??
+      findHeaderEvidence(rawText, /^by\s+(.{2,120})$/i, "visible byline") ?? {
+        source: "structure audit fallback",
+        text: authorList(structureBook.likelyAuthor).join(", "),
+        lineNumber: null,
+      };
   const authorFromEvidence = authorEvidence.text
     .replace(/^Author:\s*/i, "")
     .replace(/^by\s+/i, "")
     .trim();
-  const expectedAuthor = authorList(authorFromEvidence || structureBook.likelyAuthor);
+  const expectedAuthor = authorOverride?.names ??
+    authorList(authorFromEvidence || structureBook.likelyAuthor);
   const expectedCreatorRole = creatorRoleFor(slug);
   const metadataEvidence = metadataEvidenceFor(rawText, slug, authorEvidence);
 
@@ -2191,6 +2332,11 @@ function inspectBook(
 
   const noise = detectSourceNoise(rawText, cleaned.cleanedText, first.offset);
   const cleanupRisks = cleanupRisksFromNoise(noise);
+  if (slug === "ibid") {
+    cleanupRisks.push(
+      "numbered endnotes are intentional parodic apparatus; preserve them deliberately instead of deleting them as generic source noise",
+    );
+  }
   const sectioningStartOverride = sectioningStartOverrides[slug];
   const sectioningStartOffset = sectioningStartOverride
     ? cleaned.cleanedText.indexOf(sectioningStartOverride.startPhrase)
@@ -2283,21 +2429,23 @@ function inspectBook(
   const artifactRisks = [
     noise.illustrationCaptions ? "illustration captions/placeholders detected" : "",
     noise.footnotesOrPageMarkers ? "footnotes or page markers detected" : "",
+    slug === "ibid"
+      ? "intentional numbered endnotes require explicit preservation and ordering"
+      : "",
   ].filter(Boolean);
   const frontMatterPolicy =
     first.offset > 0
       ? "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional."
       : "No leading front matter detected before the first selected body section.";
   const endMatterPolicy =
-    "Exclude Project Gutenberg footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.";
+    "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.";
 
   return {
     slug,
     candidateType: "raw-only",
     sourceFileUsed: relativeToRepo(sourcePath),
     sourceFolder: relativeToRepo(path.dirname(sourcePath)),
-    publicRestrictedStatus:
-      "review-only raw source; no generated publish/restricted status exists yet",
+    publicRestrictedStatus: publicRestrictedStatusFor(rawText),
     expectedGeneratedTitle: expectedTitle,
     titleEvidence,
     expectedAuthor,
@@ -2324,7 +2472,7 @@ function inspectBook(
       : sectioningOverride
       ? `start at ${sectioningOverride.label}: ${sectioningOverride.startPhrase}`
       : `start at cleaned-body line ${first.lineNumber}: ${first.normalized}`,
-    expectedEndBoundary: "end before Project Gutenberg footer/license and before trailing transcriber, catalog, or source notes",
+    expectedEndBoundary: "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
     expectedSectioningStrategy: `use ${headingPlan.strategyNote}; never replace meaningful headings with vague Part 1 / Part 2 chunks`,
     segmentationRisks:
       segmentationRisks.length > 0
@@ -2665,14 +2813,16 @@ function buildReport() {
     duplicateNearDuplicateCandidatesSkipped: [...duplicateNearDuplicateCandidatesSkipped],
     boundaryDefectCandidatesSkipped: [...boundaryDefectCandidatesSkipped],
     sharedDryRunScriptScopeFinding: {
-      classification: dryRunBatch === 21
+      classification: dryRunBatch === 21 || dryRunBatch === 22
         ? "required scoped fix implemented in the shared helper"
         : `harmless shared implementation intentionally used by dry-run ${dryRunBatch}`,
       files: [
         "scripts/books/pilot-book-processing-dry-run-13.ts",
         `scripts/books/pilot-book-processing-dry-run-${dryRunBatch}.ts`,
       ],
-      resolution: dryRunBatch === 21
+      resolution: dryRunBatch === 22
+        ? "Retain the scoped shared-helper extension: batch-21 report-derived exclusions, exact batch-22 title/author/start/section evidence, source-site footer trimming, and provenance labeling improve report accuracy without writing book artifacts; batch 13 stays the default."
+        : dryRunBatch === 21
         ? "Retain the shared-helper fix: exact individual title and first-prose evidence permits collection-extracted one-story sources to bypass only a TOC/body false-positive, while fallback and huge-section red flags remain hard failures; batch 13 stays the default."
         : `Retain the shared-engine change: dry-run ${dryRunBatch} adds only its report inputs, selection evidence, safety skips, metadata-role reporting, and environment dispatch while preserving batch 13 as the default.`,
       unrelatedChangesFound: false,

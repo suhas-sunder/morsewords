@@ -1,0 +1,102 @@
+{
+  "slug": "the-beast-in-the-cave",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/The Beast in the Cave.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only raw source; modern source-site wrapper is marked All Rights Reserved and must be excluded from any future generated body; no generated publish status exists yet",
+  "expectedGeneratedTitle": "The Beast in the Cave",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "The Beast in the Cave",
+    "lineNumber": 4
+  },
+  "expectedAuthor": [
+    "H. P. Lovecraft"
+  ],
+  "authorEvidence": {
+    "source": "visible byline",
+    "text": "By H. P. Lovecraft",
+    "lineNumber": 5
+  },
+  "expectedCreatorRole": "author as identified by the source",
+  "metadataEvidence": [
+    {
+      "source": "visible byline",
+      "text": "By H. P. Lovecraft",
+      "lineNumber": 5
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: The Beast in the Cave",
+    "First readable prose: The horrible conclusion which had been gradually obtruding itself"
+  ],
+  "realReadableStart": "The Beast in the Cave: The horrible conclusion which had been gradually obtruding itself upon my confused and reluctant mind was now an awful certainty. I was lost, completely, hopelessly lost in the vast and labyrinthine recesses of the Mammoth Cave. Turn as I might, in no direction could my straining vision seize on any object capable o...",
+  "realReadableEnd": "...oor ahead. Then fear left, and wonder, awe, compassion, and reverence succeeded in its place, for the sounds uttered by the stricken figure that lay stretched out on the limestone had told us the awesome truth. The creature I had killed, the strange beast of the unfathomed cave was, or had at one time been, a MAN!!!",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "The Beast in the Cave",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "The horrible conclusion which had been gradually obtruding itself upon my confused and reluctant mind was now an awful certainty. I was lost, completely, hopelessly lost in the vast and labyrinthine recesses of the Mammoth Cave. Turn as I might, in no direction could my straining vision seize on any object capable o...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: The horrible conclusion which had been gradually obtruding itself",
+  "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [
+    "author did not come from a Gutenberg Author line; verify byline directly"
+  ],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary.",
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [
+      "start/end boundary confidence is low"
+    ],
+    "startBoundaryConfidence": "low",
+    "endBoundaryConfidence": "low"
+  },
+  "snippets": {
+    "title": "The Beast in the Cave",
+    "author": "By H. P. Lovecraft",
+    "metadata": "By H. P. Lovecraft",
+    "start": "The Beast in the Cave The horrible conclusion which had been gradually obtruding itself upon my confused and reluctant mind was now an awful certainty. I was lost, completely, hopelessly lost in the vast and labyrinthine recesses of the Mammoth Cave. Turn as I might, in no direction could my straining vision seize on any object capable o...",
+    "end": "...oor ahead. Then fear left, and wonder, awe, compassion, and reverence succeeded in its place, for the sounds uttered by the stricken figure that lay stretched out on the limestone had told us the awesome truth. The creature I had killed, the strange beast of the unfathomed cave was, or had at one time been, a MAN!!!"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "slug": "a-slip-under-the-microscope",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/A SLIP UNDER THE MICROSCOPE.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only Project Gutenberg source with reuse/source evidence present; no generated publish status exists yet",
+  "expectedGeneratedTitle": "A Slip Under the Microscope",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "A SLIP UNDER THE MICROSCOPE",
+    "lineNumber": 14
+  },
+  "expectedAuthor": [
+    "H. G. Wells"
+  ],
+  "authorEvidence": {
+    "source": "visible title-page author line",
+    "text": "H. G. WELLS",
+    "lineNumber": 7
+  },
+  "expectedCreatorRole": "author as identified by the source",
+  "metadataEvidence": [
+    {
+      "source": "visible title-page author line",
+      "text": "H. G. WELLS",
+      "lineNumber": 7
+    }
+  ],
+  "apparentWorkType": "individual story",
+  "detectedStructuralConvention": "single contiguous story section",
+  "structureConfidence": "medium",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "Source tale heading: A SLIP UNDER THE MICROSCOPE",
+    "First readable prose: Outside the laboratory windows was a watery-grey fog"
+  ],
+  "realReadableStart": "A Slip Under the Microscope: Outside the laboratory windows was a watery-grey fog, and within a close warmth and the yellow light of the green-shaded gas lamps that stood two to each table down its narrow length. On each table stood a couple of glass jars containing the mangled vestiges of the crayfish, mussels, frogs, and guineapigs, upon whic...",
+  "realReadableEnd": "...ely believe it then,” and abruptly she turned her back on the girl in spectacles, and walked to her own place. “It’s true, all the same,” said the girl in spectacles, peering and smiling at Wedderburn. But Wedderburn did not answer her. She was indeed one of those people who seem destined to make unanswered remarks.",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": false,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "A Slip Under the Microscope",
+  "expectedDefaultReadableSections": "all 1 planned single contiguous story section sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 1,
+  "likelyPreviewStart": "Outside the laboratory windows was a watery-grey fog, and within a close warmth and the yellow light of the green-shaded gas lamps that stood two to each table down its narrow length. On each table stood a couple of glass jars containing the mangled vestiges of the crayfish, mussels, frogs, and guineapigs, upon whic...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at first readable prose after source/title/byline wrapper: Outside the laboratory windows was a watery-grey fog",
+  "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use one contiguous story section after excluding source, title, byline, publication, and transcriber wrapper lines; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [
+    "author did not come from a Gutenberg Author line; verify byline directly"
+  ],
+  "collectionTitleLeakageRisks": [
+    "ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback"
+  ],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary.",
+      "Start or end boundary still has low confidence after context inspection."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [
+      "start/end boundary confidence is low"
+    ],
+    "startBoundaryConfidence": "low",
+    "endBoundaryConfidence": "low"
+  },
+  "snippets": {
+    "title": "A SLIP UNDER THE MICROSCOPE",
+    "author": "H. G. WELLS",
+    "metadata": "H. G. WELLS",
+    "start": "A Slip Under the Microscope Outside the laboratory windows was a watery-grey fog, and within a close warmth and the yellow light of the green-shaded gas lamps that stood two to each table down its narrow length. On each table stood a couple of glass jars containing the mangled vestiges of the crayfish, mussels, frogs, and guineapigs, upon whic...",
+    "end": "...ely believe it then,” and abruptly she turned her back on the girl in spectacles, and walked to her own place. “It’s true, all the same,” said the girl in spectacles, peering and smiling at Wedderburn. But Wedderburn did not answer her. She was indeed one of those people who seem destined to make unanswered remarks."
+  }
+}

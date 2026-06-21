@@ -1,0 +1,98 @@
+{
+  "slug": "a-story-of-the-days-to-come",
+  "candidateType": "raw-only",
+  "sourceFileUsed": "app/client/assets/temp-books/A Story of the Days to Come.txt",
+  "sourceFolder": "app/client/assets/temp-books",
+  "publicRestrictedStatus": "review-only Project Gutenberg source with reuse/source evidence present; no generated publish status exists yet",
+  "expectedGeneratedTitle": "A Story of the Days to Come",
+  "titleEvidence": {
+    "source": "source body heading",
+    "text": "A STORY OF THE DAYS TO COME",
+    "lineNumber": 34
+  },
+  "expectedAuthor": [
+    "Herbert George Wells"
+  ],
+  "authorEvidence": {
+    "source": "Gutenberg Author line",
+    "text": "Author: Herbert George Wells",
+    "lineNumber": 12
+  },
+  "expectedCreatorRole": "author as identified by the source",
+  "metadataEvidence": [
+    {
+      "source": "Gutenberg Author line",
+      "text": "Author: Herbert George Wells",
+      "lineNumber": 12
+    }
+  ],
+  "apparentWorkType": "standalone book",
+  "detectedStructuralConvention": "five roman-numbered titled story parts",
+  "structureConfidence": "high",
+  "meaningfulHeadingsExist": true,
+  "meaningfulHeadingExamples": [
+    "I—THE CURE FOR LOVE",
+    "II—THE VACANT COUNTRY",
+    "III—THE WAYS OF THE CITY",
+    "IV—UNDERNEATH",
+    "V—BINDON INTERVENES"
+  ],
+  "realReadableStart": "I—THE CURE FOR LOVE: The excellent Mr. Morris was an Englishman, and he lived in the days of Queen Victoria the Good. He was a prosperous and very sensible man; he read the Times and went to church, and as he grew towards middle age an expression of quiet contented contempt for all who were not as himself settled on his face. He was one...",
+  "realReadableEnd": "...r. After a time she laid a gentle hand on his beside her. He fondled it softly, still looking out upon the spacious gold-woven[324] view. So they sat as the sun went down. Until presently Elizabeth shivered. Denton recalled himself abruptly from these spacious issues of his leisure, and went in to fetch her a shawl.",
+  "frontMatterDefaultPolicy": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "sourceNoisePresent": {
+    "titlePageOrByline": true,
+    "contentsOrToc": false,
+    "sourceOrLicense": true,
+    "contributorOrTranscriberNotes": true,
+    "illustrationCaptions": false,
+    "footnotesOrPageMarkers": false
+  },
+  "expectedFirstDefaultSection": "I—THE CURE FOR LOVE",
+  "expectedDefaultReadableSections": "all 5 planned five roman-numbered titled story parts sections unless a future write inspection demotes true front/back matter",
+  "likelySectionCount": 5,
+  "likelyPreviewStart": "The excellent Mr. Morris was an Englishman, and he lived in the days of Queen Victoria the Good. He was a prosperous and very sensible man; he read the Times and went to church, and as he grew towards middle age an expression of quiet contented contempt for all who were not as himself settled on his face. He was one...",
+  "frontMatterToExcludeOrPreserveNonDefault": "Remove title page, contents, illustrations, source notes, and bylines from default playback; preserve only useful author/editor notes as non-default sections when intentional.",
+  "endMatterToExclude": "Exclude Project Gutenberg or source-site footer/license and trailing transcriber, catalog, source, or publisher-ad material from default playback.",
+  "expectedStartBoundary": "start at I—THE CURE FOR LOVE: The excellent Mr. Morris was an Englishman",
+  "expectedEndBoundary": "end before Project Gutenberg or source-site footer/license and before trailing transcriber, catalog, or source notes",
+  "expectedSectioningStrategy": "use the five source headings from I—THE CURE FOR LOVE through V—BINDON INTERVENES; reject isolated dialogue fragments selected by the generic detector; never replace meaningful headings with vague Part 1 / Part 2 chunks",
+  "segmentationRisks": [
+    "structure audit recommends processing with warnings; write pass must verify boundaries directly from raw source",
+    "dry-run filtered at least one detector-selected wrapper heading; write pass must keep wrapper/source material out of playable sections"
+  ],
+  "cleanupRisks": [
+    "title page, byline, publication, or copyright material appears before body content",
+    "Project Gutenberg/source/license material must be removed",
+    "contributor or transcriber notes must be removed or preserved only as non-default"
+  ],
+  "titleDefaultStartRisks": [
+    "write pass must keep title/byline material out of default playback"
+  ],
+  "authorMetadataRisks": [],
+  "collectionTitleLeakageRisks": [],
+  "illustrationPageMarkerFootnoteRisks": [
+    "no obvious illustration/page-marker/footnote risk in snippets"
+  ],
+  "duplicateNearDuplicateSlugCheck": "No exact or close generated slug match detected among current generated books.",
+  "selectedSourceOrderingRisk": "no generated selected-source exists yet; future write must make selected-source text begin with this first selected/default section",
+  "currentStatus": "needs first-time controlled processing",
+  "recommendationForNextPass": "controlled first-time processing",
+  "priorAuditSignals": {
+    "pass2Risk": "high",
+    "pass2Reasons": [
+      "Real opening or ending content may be at risk around the audited boundary."
+    ],
+    "structureRecommendedHandling": "process with warnings",
+    "structureRedFlags": [],
+    "startBoundaryConfidence": "medium",
+    "endBoundaryConfidence": "medium"
+  },
+  "snippets": {
+    "title": "A STORY OF THE DAYS TO COME",
+    "author": "Author: Herbert George Wells",
+    "metadata": "Author: Herbert George Wells",
+    "start": "I—THE CURE FOR LOVE The excellent Mr. Morris was an Englishman, and he lived in the days of Queen Victoria the Good. He was a prosperous and very sensible man; he read the Times and went to church, and as he grew towards middle age an expression of quiet contented contempt for all who were not as himself settled on his face. He was one...",
+    "end": "...r. After a time she laid a gentle hand on his beside her. He fondled it softly, still looking out upon the spacious gold-woven[324] view. So they sat as the sun went down. Until presently Elizabeth shivered. Denton recalled himself abruptly from these spacious issues of his leisure, and went in to fetch her a shawl."
+  }
+}
