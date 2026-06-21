@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "reportName": "second-pass-defect-fixes",
+  "generatedAt": "2026-06-21T15:26:55.9110827-04:00",
+  "branch": "morsewords-fix-second-pass-book-defects-jun-2026",
+  "mode": "targeted-fix/report-only-except-preview-manifest",
+  "defects": [
+    {
+      "defectId": "second-pass-dr-jekyll-preview-default-section-mismatch",
+      "slug": "dr-jekyll-and-mr-hyde",
+      "auditFinding": "Preview manifest defaultSectionId part-001 differs from preview asset defaultSectionId part-002.",
+      "filesInspected": [
+        "public/book-previews/manifest.json",
+        "public/book-previews/dr-jekyll-and-mr-hyde.preview.json",
+        "app/client/assets/books/generated/dr-jekyll-and-mr-hyde/manifest.json",
+        "app/client/assets/books/generated/dr-jekyll-and-mr-hyde/sections/part-001.json",
+        "app/client/assets/books/generated/dr-jekyll-and-mr-hyde/sections/part-002.json",
+        "app/client/assets/books/audit-reports/book-startup-preview-audit-1/book-startup-preview-audit-1.json",
+        "app/client/assets/books/audit-reports/title-start-default-content-audit-1/title-start-default-content-audit-1.json",
+        "app/client/assets/books/audit-reports/independent-second-pass-book-audit/independent-second-pass-book-audit.json"
+      ],
+      "rootCause": "The startup preview asset had already been generated from the startup-safe readable section part-002, but the preview manifest entry still carried stale metadata from part-001.",
+      "chosenFix": "Updated only the dr-jekyll-and-mr-hyde entry in public/book-previews/manifest.json so defaultSectionId and derived preview metrics match the existing preview asset.",
+      "before": {
+        "previewManifestDefaultSectionId": "part-001",
+        "previewManifestPreviewBytes": 11637,
+        "previewManifestPreviewCharacterCount": 10552,
+        "previewManifestEstimatedRuntimeSeconds": 3800,
+        "previewAssetDefaultSectionId": "part-002"
+      },
+      "after": {
+        "previewManifestDefaultSectionId": "part-002",
+        "previewManifestPreviewBytes": 11719,
+        "previewManifestPreviewCharacterCount": 10574,
+        "previewManifestEstimatedRuntimeSeconds": 3807,
+        "previewAssetDefaultSectionId": "part-002"
+      },
+      "whyChosenSectionIsCorrect": [
+        "part-002 exists in generated output.",
+        "The preview asset starts from part-002 and contains real readable story content.",
+        "Startup preview audit reports part-002 as the first default generated section and marks the preview valid.",
+        "part-001 starts with title/byline/contents material before the story body, so it is not the startup-safe preview/default section.",
+        "The independent audit now reports 0 fail-needs-fix after the manifest entry is aligned."
+      ],
+      "shortEvidenceSnippets": {
+        "part001Opening": "The Strange Case Of Dr. Jekyll And Mr. Hyde by Robert Louis Stevenson Contents...",
+        "part002Opening": "A fortnight later, by excellent good fortune, the doctor gave one of his pleasant dinners...",
+        "previewOpening": "A fortnight later, by excellent good fortune, the doctor gave one of his pleasant dinners..."
+      },
+      "otherAuditWarningsTouched": false,
+      "validationResults": {
+        "status": "complete",
+        "typecheck": "pass",
+        "batch12ProseRestore": "20/20 pass",
+        "startupPreviewAudit": "465 generated book startup previews; 465 valid; 0 preview updates",
+        "titleStartDefaultAudit": "465 generated books audited; 12 known unrelated corrections applied by audit script and restored; 0 accepted books still revoked",
+        "metadataSegmentationAudit": "465 generated books audited; 0 author corrections; 1 unknown-author case remains documented; 0 accepted books revoked",
+        "manualUiDefectFollowup": "8 checked; 8 acceptable; 0 corrected; 0 revoked; 0 manual review",
+        "independentSecondPassAuditAfterFix": {
+          "generatedBooks": 465,
+          "previewAssets": 465,
+          "pass": 399,
+          "warnAccepted": 66,
+          "failNeedsFix": 0,
+          "manualReview": 0
+        },
+        "playwrightMorseBookPage": "35 passed, 1 known/pre-existing fullscreen-controls visibility assertion failure",
+        "smokeTests": "23 passed",
+        "diffCheck": "pass"
+      }
+    }
+  ],
+  "protectedPathConfirmation": {
+    "rawSourcesModified": false,
+    "cloudflareExportsModified": false,
+    "unrelatedGeneratedBooksModified": false,
+    "unrelatedPreviewsModified": false
+  }
+}

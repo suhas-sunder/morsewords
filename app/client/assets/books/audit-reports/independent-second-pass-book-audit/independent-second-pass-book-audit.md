@@ -1,6 +1,6 @@
 # Independent Second-Pass Book Audit
 
-Generated: 2026-06-21T19:05:44.672Z
+Generated: 2026-06-21T19:30:08.818Z
 
 ## Executive summary
 
@@ -12,10 +12,10 @@ This report independently reconstructed the generated book inventory, preview in
 - Preview manifest entries: 465
 - Manifest consistency result: pass
 - Pass: 399
-- Warn-accepted: 65
-- Fail-needs-fix: 1
+- Warn-accepted: 66
+- Fail-needs-fix: 0
 - Manual-review: 0
-- Recommended next phase: Fix specific generated book defects before SEO summaries
+- Recommended next phase: Proceed with SEO summaries while tracking non-blocking source-resolution debt
 
 ## Manifest consistency
 
@@ -54,7 +54,7 @@ These books remain accepted as currently generated, but source resolution is sti
 
 ## Preview findings
 
-- dr-jekyll-and-mr-hyde: Preview manifest defaultSectionId part-001 differs from preview asset defaultSectionId part-002. (fail-needs-fix)
+- No preview fallback, SOS Help, missing-preview, or preview-manifest defects found.
 
 ## Metadata findings
 
@@ -102,7 +102,7 @@ These books remain accepted as currently generated, but source resolution is sti
 - anne-of-green-gables-gutenberg-45: Earlier readable-looking generated section(s) precede the startup/default section: title-page-001. (warn-accepted)
 - doctor-dolittle: Earlier readable-looking generated section(s) precede the startup/default section: part-001. (warn-accepted)
 - don-quixote: Earlier readable-looking generated section(s) precede the startup/default section: introduction-001. (warn-accepted)
-- dr-jekyll-and-mr-hyde: Earlier readable-looking generated section(s) precede the startup/default section: part-001. (fail-needs-fix)
+- dr-jekyll-and-mr-hyde: Earlier readable-looking generated section(s) precede the startup/default section: part-001. (warn-accepted)
 - five-weeks-in-a-balloon: Earlier readable-looking generated section(s) precede the startup/default section: preface-001. (warn-accepted)
 - four-day-planet: Earlier readable-looking generated section(s) precede the startup/default section: title-page-001. (warn-accepted)
 - heidi: Empty or malformed section(s): part-011. (warn-accepted)
@@ -193,7 +193,7 @@ These books remain accepted as currently generated, but source resolution is sti
 
 ## Recommended next phase
 
-Fix specific generated book defects before SEO summaries
+Proceed with SEO summaries while tracking non-blocking source-resolution debt
 
 ## Later-phase requirements restated only
 

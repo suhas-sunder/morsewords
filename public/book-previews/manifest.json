@@ -162,10 +162,10 @@
       "path": "/book-previews/dr-jekyll-and-mr-hyde.preview.json",
       "contentVersion": "15c792a791222168",
       "contentHash": "15c792a791222168d9e832e1e804af7dc2daebcdf6e0f31eee27a0b625944b09",
-      "defaultSectionId": "part-001",
-      "previewBytes": 11637,
-      "previewCharacterCount": 10552,
-      "estimatedRuntimeSeconds": 3800,
+      "defaultSectionId": "part-002",
+      "previewBytes": 11719,
+      "previewCharacterCount": 10574,
+      "estimatedRuntimeSeconds": 3807,
       "truncated": true
     },
     {

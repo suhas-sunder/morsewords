@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reportName": "independent-second-pass-book-audit",
-  "generatedAt": "2026-06-21T19:05:44.672Z",
+  "generatedAt": "2026-06-21T19:30:08.818Z",
   "branch": "morsewords-independent-second-pass-book-audit-jun-2026",
   "mode": "report-only/independent-second-pass",
   "sourcePaths": {
@@ -16,8 +16,8 @@
     "previewAssetFiles": 465,
     "previewManifestEntries": 465,
     "pass": 399,
-    "warnAccepted": 65,
-    "failNeedsFix": 1,
+    "warnAccepted": 66,
+    "failNeedsFix": 0,
     "manualReview": 0
   },
   "manifestConsistency": {
@@ -222,13 +222,7 @@
     }
   ],
   "sourceHeaderLicenseTocLeakageFindings": [],
-  "previewFindings": [
-    {
-      "slug": "dr-jekyll-and-mr-hyde",
-      "issue": "Preview manifest defaultSectionId part-001 differs from preview asset defaultSectionId part-002.",
-      "status": "fail-needs-fix"
-    }
-  ],
+  "previewFindings": [],
   "metadataFindings": [
     {
       "slug": "a-christmas-carol",
@@ -440,7 +434,7 @@
     {
       "slug": "dr-jekyll-and-mr-hyde",
       "issue": "Earlier readable-looking generated section(s) precede the startup/default section: part-001.",
-      "status": "fail-needs-fix"
+      "status": "warn-accepted"
     },
     {
       "slug": "five-weeks-in-a-balloon",
@@ -683,7 +677,7 @@
       }
     }
   },
-  "recommendedNextPhase": "Fix specific generated book defects before SEO summaries",
+  "recommendedNextPhase": "Proceed with SEO summaries while tracking non-blocking source-resolution debt",
   "laterPhaseRequirementsRestatedOnly": [
     "Original non-spoiler 300-500+ word SEO summaries after second-pass audit.",
     "Full site SEO/meta review using GSC data and route intent after summaries.",
@@ -5283,11 +5277,9 @@
       "warnings": [
         "First selected/default section does not directly match generated source order."
       ],
-      "failures": [
-        "Preview manifest defaultSectionId part-001 differs from preview asset defaultSectionId part-002."
-      ],
-      "finalAuditStatus": "fail-needs-fix",
-      "recommendedNextAction": "fix generated book or preview defect before SEO summaries"
+      "failures": [],
+      "finalAuditStatus": "warn-accepted",
+      "recommendedNextAction": "no generated fix now; carry warning into SEO-summary planning"
     },
     {
       "slug": "dracula",
