@@ -47,6 +47,7 @@ type DryRunBook = {
   candidateType: "raw-only";
   sourceFileUsed: string;
   expectedGeneratedTitle: string;
+  titleEvidence: Evidence;
   expectedAuthor: string[];
   authorEvidence: Evidence;
   expectedCreatorRole?: string;
@@ -92,7 +93,8 @@ type DryRunReport = {
     | "pilot-dry-run-17"
     | "pilot-dry-run-18"
     | "pilot-dry-run-19"
-    | "pilot-dry-run-20";
+    | "pilot-dry-run-20"
+    | "pilot-dry-run-21";
   selectedBooks: string[];
   selectedCount: number;
   counts: {
@@ -245,9 +247,11 @@ type ManualBoundary = {
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
 const writeBatch =
-  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "20"
-    ? 20
-    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "19"
+  process.env.MORSEWORDS_PILOT_WRITE_BATCH === "21"
+    ? 21
+    : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "20"
+      ? 20
+      : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "19"
       ? 19
       : process.env.MORSEWORDS_PILOT_WRITE_BATCH === "18"
         ? 18
@@ -279,7 +283,30 @@ const dryRunReportPath = path.join(dryRunRoot, `${dryRunReportName}.json`);
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 const previewManifestPath = path.join(previewRoot, "manifest.json");
 
-const SELECTED_BATCH: readonly string[] = writeBatch === 20
+const SELECTED_BATCH: readonly string[] = writeBatch === 21
+  ? [
+      "a-deal-in-ostriches",
+      "a-moonlight-fable",
+      "a-moth-genus-novo",
+      "aepyornis-island",
+      "in-the-avu-observatory",
+      "the-cone",
+      "the-country-of-the-blind",
+      "the-crystal-egg",
+      "the-diamond-maker",
+      "the-flowering-of-the-strange-orchid",
+      "the-flying-man",
+      "the-hammerpond-park-burglary",
+      "the-lord-of-the-dynamos",
+      "the-star",
+      "the-stolen-bacillus",
+      "the-stolen-body",
+      "the-temptation-of-harringay",
+      "the-treasure-in-the-forest",
+      "the-triumphs-of-a-taxidermist",
+      "through-a-window",
+    ]
+  : writeBatch === 20
   ? [
       "moti",
       "the-brown-bear-of-norway",
@@ -534,7 +561,13 @@ const LATER_PHASE_REQUIREMENTS = [
   "final cleanup should remove temporary audit scripts/reports and code bloat only after everything is stable",
 ];
 
-const BACKLOG_NOTE = writeBatch === 20
+const BACKLOG_NOTE = writeBatch === 21
+  ? [
+      "Dry-run 21 still had 76 skipped/unsafe raw-only candidates before write.",
+      "These are not treated as lost or missed.",
+      "After safe batching slows/exhausts, create a dedicated remaining raw inventory/triage report classifying every unprocessed raw file.",
+    ]
+  : writeBatch === 20
   ? [
       "Dry-run 20 still had 96 skipped/unsafe raw-only candidates before write.",
       "These are not treated as lost or missed.",
@@ -2487,6 +2520,28 @@ function processSelectedBook(dryRun: DryRunBook): {
   }
 
   const rawText = fs.readFileSync(sourcePath, "utf8");
+  if (!rawText.includes(dryRun.titleEvidence.text)) {
+    return {
+      report: makeSkippedReport(
+        dryRun,
+        "Expected individual story title evidence was not found in the raw source.",
+        duplicateCheck.message,
+      ),
+      manifest: null,
+      previewEntry: null,
+    };
+  }
+  if (!rawText.includes(dryRun.authorEvidence.text)) {
+    return {
+      report: makeSkippedReport(
+        dryRun,
+        "Expected author evidence was not found in the raw source.",
+        duplicateCheck.message,
+      ),
+      manifest: null,
+      previewEntry: null,
+    };
+  }
   const sourceBackedEditor = sourceBackedEditorFor(dryRun, rawText);
   if (/^editor:/i.test(dryRun.expectedCreatorRole ?? "") && !sourceBackedEditor) {
     return {

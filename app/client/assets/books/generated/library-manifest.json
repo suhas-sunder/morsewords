@@ -20347,6 +20347,986 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-new-accelerator/manifest.json"
+    },
+    {
+      "slug": "a-deal-in-ostriches",
+      "title": "A Deal in Ostriches",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "f8ca1a56c76b1291",
+      "contentHash": "f8ca1a56c76b1291d4467787c1ec20a592b652726733809f69c381048105bbf0",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Deal in Ostriches"
+      },
+      "stats": {
+        "originalCharacterCount": 11566,
+        "cleanedCharacterCount": 9735,
+        "wordCount": 1856,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-deal-in-ostriches/manifest.json"
+    },
+    {
+      "slug": "a-moonlight-fable",
+      "title": "A Moonlight Fable",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "1605294ff5da88f7",
+      "contentHash": "1605294ff5da88f76ff7f9a3d1eb9a8f62d15d99cd8824ee4833e0b80f735aa3",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "456",
+        "releaseDate": "March, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/456",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Moonlight Fable"
+      },
+      "stats": {
+        "originalCharacterCount": 10271,
+        "cleanedCharacterCount": 9308,
+        "wordCount": 1739,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-moonlight-fable/manifest.json"
+    },
+    {
+      "slug": "a-moth-genus-novo",
+      "title": "A Moth--Genus Novo",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "c3b0f385bcf417d5",
+      "contentHash": "c3b0f385bcf417d5053115b0feb87750be533e2ddfee4277bb5f81f1bcb85404",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Moth--Genus Novo"
+      },
+      "stats": {
+        "originalCharacterCount": 24471,
+        "cleanedCharacterCount": 22393,
+        "wordCount": 4008,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-moth-genus-novo/manifest.json"
+    },
+    {
+      "slug": "aepyornis-island",
+      "title": "Aepyornis Island",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "8f6185e3cfb19c73",
+      "contentHash": "8f6185e3cfb19c7378f5bb69f05875c30e28a0197dd682a7d36b872c91cdc8c2",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Aepyornis Island"
+      },
+      "stats": {
+        "originalCharacterCount": 27699,
+        "cleanedCharacterCount": 25576,
+        "wordCount": 5004,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "aepyornis-island/manifest.json"
+    },
+    {
+      "slug": "in-the-avu-observatory",
+      "title": "In the Avu Observatory",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "e19ca997e58ec3d7",
+      "contentHash": "e19ca997e58ec3d757a965ffab72dff2315525802fa8b19a9770dfddca947d2f",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for In the Avu Observatory"
+      },
+      "stats": {
+        "originalCharacterCount": 17087,
+        "cleanedCharacterCount": 15140,
+        "wordCount": 2719,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "in-the-avu-observatory/manifest.json"
+    },
+    {
+      "slug": "the-cone",
+      "title": "The Cone",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "cf052823a89c6e85",
+      "contentHash": "cf052823a89c6e858210ddc9f523ef3156ba835fb5f8eb13a25757317be03540",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "456",
+        "releaseDate": "March, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/456",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Cone"
+      },
+      "stats": {
+        "originalCharacterCount": 24977,
+        "cleanedCharacterCount": 23855,
+        "wordCount": 4276,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-cone/manifest.json"
+    },
+    {
+      "slug": "the-country-of-the-blind",
+      "title": "The Country of the Blind",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "166f2ff1d1018fda",
+      "contentHash": "166f2ff1d1018fda84bda2a705576138176caefd100aa5a93107e36736b11274",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "456",
+        "releaseDate": "March, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/456",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Country of the Blind"
+      },
+      "stats": {
+        "originalCharacterCount": 53818,
+        "cleanedCharacterCount": 52466,
+        "wordCount": 9614,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-country-of-the-blind/manifest.json"
+    },
+    {
+      "slug": "the-crystal-egg",
+      "title": "The Crystal Egg",
+      "author": [
+        "Herbert George Wells"
+      ],
+      "contentVersion": "50732deb23f8f8ff",
+      "contentHash": "50732deb23f8f8ff3e8d61950432904aecf6819e8ee80832a86911c98364a563",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "27365",
+        "releaseDate": "November 30, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/27365",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Crystal Egg"
+      },
+      "stats": {
+        "originalCharacterCount": 40127,
+        "cleanedCharacterCount": 39093,
+        "wordCount": 6860,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-crystal-egg/manifest.json"
+    },
+    {
+      "slug": "the-diamond-maker",
+      "title": "The Diamond Maker",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "9a471a01e8df79c5",
+      "contentHash": "9a471a01e8df79c5ac1e21c68043a184050def459b9885a9cac9c29a48fa3144",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Diamond Maker"
+      },
+      "stats": {
+        "originalCharacterCount": 17628,
+        "cleanedCharacterCount": 15666,
+        "wordCount": 2961,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-diamond-maker/manifest.json"
+    },
+    {
+      "slug": "the-flowering-of-the-strange-orchid",
+      "title": "The Flowering of the Strange Orchid",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "14f75ab8bcf959e6",
+      "contentHash": "14f75ab8bcf959e6fd7a0800d98ec098d8854651deddbde13d60b7ae6ee35541",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Flowering of the Strange Orchid"
+      },
+      "stats": {
+        "originalCharacterCount": 18776,
+        "cleanedCharacterCount": 16696,
+        "wordCount": 2974,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-flowering-of-the-strange-orchid/manifest.json"
+    },
+    {
+      "slug": "the-flying-man",
+      "title": "The Flying Man",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "88c630b3948891fc",
+      "contentHash": "88c630b3948891fc362449d6fe32bc947a4a253b52a6f2b9617666b23c8aa321",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Flying Man"
+      },
+      "stats": {
+        "originalCharacterCount": 15852,
+        "cleanedCharacterCount": 13914,
+        "wordCount": 2675,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-flying-man/manifest.json"
+    },
+    {
+      "slug": "the-hammerpond-park-burglary",
+      "title": "The Hammerpond Park Burglary",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "2f1a0758bbab4f76",
+      "contentHash": "2f1a0758bbab4f76c0dc3ee84918f2bcddcb68d0971eef387d901769ea7704f3",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Hammerpond Park Burglary"
+      },
+      "stats": {
+        "originalCharacterCount": 17429,
+        "cleanedCharacterCount": 15444,
+        "wordCount": 2671,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-hammerpond-park-burglary/manifest.json"
+    },
+    {
+      "slug": "the-lord-of-the-dynamos",
+      "title": "The Lord of the Dynamos",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "61d48eb1eb73073a",
+      "contentHash": "61d48eb1eb73073a390ba6ec6eea1fcb42dd842b1e49a5f54b117c8ea7f79df6",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Lord of the Dynamos"
+      },
+      "stats": {
+        "originalCharacterCount": 21213,
+        "cleanedCharacterCount": 19194,
+        "wordCount": 3401,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-lord-of-the-dynamos/manifest.json"
+    },
+    {
+      "slug": "the-star",
+      "title": "The Star",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "a86109125af8f8f4",
+      "contentHash": "a86109125af8f8f4830c5a35c7ab508f0246b285d65e5e1a7ef429b81bc6958d",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "456",
+        "releaseDate": "March, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/456",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Star"
+      },
+      "stats": {
+        "originalCharacterCount": 26225,
+        "cleanedCharacterCount": 25219,
+        "wordCount": 4457,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-star/manifest.json"
+    },
+    {
+      "slug": "the-stolen-bacillus",
+      "title": "The Stolen Bacillus",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "9a4155e24aa97225",
+      "contentHash": "9a4155e24aa972259a083dd6610a37ebe9c8a6f4ac23b4c91152a3e725e9f2fc",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Stolen Bacillus"
+      },
+      "stats": {
+        "originalCharacterCount": 15883,
+        "cleanedCharacterCount": 13930,
+        "wordCount": 2461,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-stolen-bacillus/manifest.json"
+    },
+    {
+      "slug": "the-stolen-body",
+      "title": "The Stolen Body",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "de487ab10d69a823",
+      "contentHash": "de487ab10d69a82394c6990dfc40bd722dce4c93ecc54dcc202ad67340ae7b8c",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1743",
+        "releaseDate": "September 21, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1743",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Stolen Body"
+      },
+      "stats": {
+        "originalCharacterCount": 36364,
+        "cleanedCharacterCount": 35493,
+        "wordCount": 6349,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-stolen-body/manifest.json"
+    },
+    {
+      "slug": "the-temptation-of-harringay",
+      "title": "The Temptation of Harringay",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "38322f7620d82b20",
+      "contentHash": "38322f7620d82b20efc6e009527cecc3265161655dc3707f08a2f6434f2af232",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Temptation of Harringay"
+      },
+      "stats": {
+        "originalCharacterCount": 12956,
+        "cleanedCharacterCount": 11049,
+        "wordCount": 1946,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-temptation-of-harringay/manifest.json"
+    },
+    {
+      "slug": "the-treasure-in-the-forest",
+      "title": "The Treasure in the Forest",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "54d5401998d0fda3",
+      "contentHash": "54d5401998d0fda34af6b6cd8ed2e69bc91dd1ee9f51d86d4e3e0801f81db08a",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Treasure in the Forest"
+      },
+      "stats": {
+        "originalCharacterCount": 18401,
+        "cleanedCharacterCount": 16366,
+        "wordCount": 2950,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-treasure-in-the-forest/manifest.json"
+    },
+    {
+      "slug": "the-triumphs-of-a-taxidermist",
+      "title": "The Triumphs of a Taxidermist",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "e0aca7dcccade45a",
+      "contentHash": "e0aca7dcccade45a68d66b594a178520c11a215e3165ad793d0da454bee125ae",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Triumphs of a Taxidermist"
+      },
+      "stats": {
+        "originalCharacterCount": 9888,
+        "cleanedCharacterCount": 8056,
+        "wordCount": 1485,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-triumphs-of-a-taxidermist/manifest.json"
+    },
+    {
+      "slug": "through-a-window",
+      "title": "Through a Window",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "197393ecbd25bd88",
+      "contentHash": "197393ecbd25bd88a9f9fe748e030589cc323aac3bfc41af5f7fcb37ebef070b",
+      "language": "en",
+      "description": "",
+      "subjects": [],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "12750",
+        "releaseDate": "June 26, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "not-needed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Through a Window"
+      },
+      "stats": {
+        "originalCharacterCount": 19285,
+        "cleanedCharacterCount": 17271,
+        "wordCount": 3096,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "through-a-window/manifest.json"
     }
   ]
 }
