@@ -1,0 +1,962 @@
+{
+  "schemaVersion": 1,
+  "reportName": "pilot-write-23-verification",
+  "generatedAt": "2026-06-21T08:33:42.343Z",
+  "branch": "morsewords-book-processing-pilot-write-23-jun-2026",
+  "sourceWriteCommit": "b659d3bbe5bcb1899806e125170e669f50510c11",
+  "scope": "post-write QA/review of the exact 10 pilot write batch 23 books; no additional books processed",
+  "sourceReportsRead": [
+    "app/client/assets/books/audit-reports/pilot-dry-run-23/pilot-dry-run-23.json",
+    "app/client/assets/books/audit-reports/pilot-dry-run-23/pilot-dry-run-23.md",
+    "app/client/assets/books/audit-reports/pilot-write-23/pilot-write-23.json",
+    "app/client/assets/books/audit-reports/pilot-write-23/pilot-write-23.md",
+    "app/client/assets/books/audit-reports/batch-12-prose-restoration/batch-12-prose-restoration.json"
+  ],
+  "dryRunBooksDirectoryRead": "app/client/assets/books/audit-reports/pilot-dry-run-23/books",
+  "selectedBooks": [
+    "in-the-modern-vein",
+    "the-argonauts-of-the-air",
+    "the-dreams-in-the-witch-house",
+    "the-jilting-of-jane",
+    "the-lost-inheritance",
+    "the-purple-pileus",
+    "the-shadow-out-of-time",
+    "the-strange-high-house-in-the-mist",
+    "the-valley-of-spiders",
+    "the-whisperer-in-darkness"
+  ],
+  "totals": {
+    "verified": 10,
+    "pass": 10,
+    "warnAccepted": 0,
+    "fail": 0,
+    "acceptedForMain": 10,
+    "correctionNeededBeforeMain": 0
+  },
+  "rawVsGeneratedOverall": {
+    "compared": 10,
+    "exact": 10,
+    "mismatches": 0
+  },
+  "sharedWriteScriptScopeFinding": {
+    "files": [
+      "scripts/books/pilot-book-processing-write-12.ts",
+      "scripts/books/pilot-book-processing-write-23.ts"
+    ],
+    "classification": "harmless shared implementation intentionally used by write batch 23",
+    "classificationNumber": 1,
+    "resolution": "Retain the write-12 change for this branch. The batch-23 wrapper sets MORSEWORDS_PILOT_WRITE_BATCH and imports the established shared writer; the shared diff adds batch-23 dispatch, exact selected slug list, backlog note, and source-backed single-story start phrases.",
+    "unrelatedChangesFound": false,
+    "movedToSharedHelper": false,
+    "restoredToOriginMain": false
+  },
+  "startupAuditHeuristicScopeFinding": {
+    "file": "scripts/books/book-startup-preview-audit-1.ts",
+    "classification": "valid scoped startup-audit heuristic fix needed because real prose used the word “published”",
+    "classificationNumber": 1,
+    "resolution": "Retain the startup-audit change. It does not ignore publication/source material generally; it only stops treating bare narrative 'published' as front matter unless nearby context matches publication/source metadata such as 'published by', 'first published', publisher, or publication date.",
+    "actualPublicationLeakageHidden": false,
+    "broaderAuditBehaviorChange": false,
+    "restoredToOriginMain": false
+  },
+  "batch12ProseRestoration": {
+    "result": "pass",
+    "batch12BooksCompared": 20,
+    "remainingBatch12RawVsGeneratedMismatches": 0,
+    "remainingBatch12ProseOmissions": 0,
+    "remainingMissingOpeningQuoteDefects": 0
+  },
+  "specialFocus": {
+    "wellsMetadataAndTitles": "6/6 Wells stories preserve exact dry-run story titles and source-backed H. G. Wells metadata; no Unknown Author fallback is present.",
+    "lovecraftMetadataTitlesAndWrappers": "4/4 Lovecraft stories preserve exact generated title spelling, H. P. Lovecraft metadata, opening/ending text, and accepted source/rights treatment with no site header, navigation, copyright note, or parent collection material in default playback.",
+    "publishedHeuristicSafety": "The startup-audit 'published' heuristic was checked against In the Modern Vein: the generated text begins with real Wells prose using 'published' narratively, while source/publication-note leakage patterns remain rejected.",
+    "prosePreservation": "10/10 sanitized raw bodies match every generated body copy character-for-character; no cleanup rule removed punctuation, quote marks, dialogue, initials, scientific terms, archaic diction, unusual names, or ending sentences."
+  },
+  "correctionsMadeDuringVerification": [],
+  "unresolvedSourceGeneratedBooksUntouched": [
+    "a-princess-of-mars",
+    "doctor-dolittle",
+    "heidi",
+    "jabberwocky",
+    "nights-with-uncle-remus",
+    "peter-pan",
+    "tarzan-of-the-apes",
+    "the-great-gatsby",
+    "the-picture-of-dorian-gray",
+    "the-thirty-nine-steps",
+    "wood-folk-at-school"
+  ],
+  "unresolvedSourceStatus": [],
+  "knownDuplicateBoundarySkipsNotReintroduced": [
+    "the-wind-in-the-willows",
+    "the-two-magics-the-turn-of-the-screw-covering-end",
+    "japanese-fairy-tales",
+    "the-works-of-edgar-allan-poe",
+    "snow-white-and-rose-red"
+  ],
+  "knownSkipStatus": [],
+  "protectedPaths": {
+    "rawSourcesModified": false,
+    "cloudflareExportsModified": false,
+    "unrelatedGeneratedOrPreviewChanges": []
+  },
+  "validationResults": {
+    "typecheck": "passed",
+    "pilotWrite23": "passed: 10 first-time processed, 0 skipped, 11 unresolved-source generated books untouched",
+    "batch12ProseRestore": "passed: 20/20 raw/generated exact",
+    "startupPreviewAudit": "passed: 465 generated, 465 valid startup previews, 0 preview updates",
+    "titleStartDefaultAudit": "passed: 465 audited, 12 known unrelated corrections applied then restored, 0 accepted-book revocations",
+    "metadataSegmentationAudit": "passed: 465 audited, 0 author corrections, 1 documented unknown-author case, 0 accepted-book revocations",
+    "manualUiDefectFollowup": "passed: 8 checked, 8 acceptable, 0 corrected, 0 revoked",
+    "targetedVerifier": "passed: 10 pass, 0 warn accepted, 0 fail; raw/generated 10/10 exact",
+    "standalonePlaywright": "passed: 36/36",
+    "smokeTests": "passed: 23/23",
+    "gitDiffCheck": "passed"
+  },
+  "browserAndPlaywright": {
+    "standalonePlaywrightResult": "passed: 36/36",
+    "knownFullscreenOnlyFailure": false,
+    "pointerInterceptClassifiedIntermittent": false,
+    "fullscreenUiLeftUntouched": true
+  },
+  "auditSideEffectHandling": {
+    "result": "validation churn from batch-12/startup/title/metadata/manual/write rerun was restored before commit; only verification report/script/package command remain"
+  },
+  "backlogNote": [
+    "Dry-run 23 still had 46 skipped/unsafe raw-only candidates before write.",
+    "These are not treated as lost or missed.",
+    "After safe batching slows/exhausts, create a dedicated remaining raw inventory/triage report classifying every unprocessed raw file."
+  ],
+  "books": [
+    {
+      "slug": "in-the-modern-vein",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/in-the-modern-vein/manifest.json",
+        "app/client/assets/books/generated/in-the-modern-vein/cleaned_book.json",
+        "app/client/assets/books/generated/in-the-modern-vein/processed_book.json",
+        "app/client/assets/books/generated/in-the-modern-vein/rights_report.json",
+        "app/client/assets/books/generated/in-the-modern-vein/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/in-the-modern-vein.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual story title preserved as \"In the Modern Vein\"; no parent/source title is default playback.",
+        "details": [
+          "Source title evidence: IN THE MODERN VEIN"
+        ]
+      },
+      "authorVerdict": {
+        "status": "pass",
+        "summary": "H. G. Wells author metadata is source-backed; Unknown Author is absent.",
+        "details": [
+          "visible title-page author line: H. G. WELLS",
+          "Rights author: H. G. Wells"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 20310",
+          "Generated characters: 20310"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body starts at the true readable beginning verified in dry-run/write evidence.",
+        "details": [
+          "Start marker: Of course the cultivated reader has heard of Aubrey Vair."
+        ]
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body preserves the true readable ending and final sentence.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning is source-based as one contiguous individual story section, not arbitrary Part chunks.",
+        "details": [
+          "In the Modern Vein"
+        ]
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No source/site wrapper, parent collection title, TOC, license, contributor/transcriber note, copyright/navigation text, byline-only material, or cleanup artifact enters default playback; prose is exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts from real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default and selected/default order begins from the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "IN THE MODERN VEIN",
+        "metadata": "H. G. WELLS",
+        "rawStart": "Of course the cultivated reader has heard of Aubrey Vair. He has published on three several occasions volumes of delicate verses,—some, indeed, border on indelicacy,—and his column “Of Things Literary” in the Climax i...",
+        "generatedStart": "Of course the cultivated reader has heard of Aubrey Vair. He has published on three several occasions volumes of delicate verses,—some, indeed, border on indelicacy,—and his column “Of Things Literary” in the Climax i...",
+        "rawEnd": "...he was struggling with recollection. “Yes. These potatoes have exactly the tints of the dead leaves of the hazel.” “What a fanciful poet it is!” said Mrs. Aubrey Vair. “Taste them. They are very nice potatoes indeed.”",
+        "generatedEnd": "...he was struggling with recollection. “Yes. These potatoes have exactly the tints of the dead leaves of the hazel.” “What a fanciful poet it is!” said Mrs. Aubrey Vair. “Taste them. They are very nice potatoes indeed.”",
+        "previewStart": "Of course the cultivated reader has heard of Aubrey Vair. He has published on three several occasions volumes of delicate verses,—some, indeed, border on indelicacy,—and his column “Of Things Literary” in the Climax i..."
+      }
+    },
+    {
+      "slug": "the-argonauts-of-the-air",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-argonauts-of-the-air/manifest.json",
+        "app/client/assets/books/generated/the-argonauts-of-the-air/cleaned_book.json",
+        "app/client/assets/books/generated/the-argonauts-of-the-air/processed_book.json",
+        "app/client/assets/books/generated/the-argonauts-of-the-air/rights_report.json",
+        "app/client/assets/books/generated/the-argonauts-of-the-air/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-argonauts-of-the-air.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual story title preserved as \"The Argonauts of the Air\"; no parent/source title is default playback.",
+        "details": [
+          "Source title evidence: THE ARGONAUTS OF THE AIR"
+        ]
+      },
+      "authorVerdict": {
+        "status": "pass",
+        "summary": "H. G. Wells author metadata is source-backed; Unknown Author is absent.",
+        "details": [
+          "visible title-page author line: H. G. WELLS",
+          "Rights author: H. G. Wells"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 26023",
+          "Generated characters: 26023"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body starts at the true readable beginning verified in dry-run/write evidence.",
+        "details": [
+          "Start marker: One saw Monson’s Flying Machine from the windows of the trains passing"
+        ]
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body preserves the true readable ending and final sentence.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning is source-based as one contiguous individual story section, not arbitrary Part chunks.",
+        "details": [
+          "The Argonauts of the Air"
+        ]
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No source/site wrapper, parent collection title, TOC, license, contributor/transcriber note, copyright/navigation text, byline-only material, or cleanup artifact enters default playback; prose is exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts from real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default and selected/default order begins from the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "THE ARGONAUTS OF THE AIR",
+        "metadata": "H. G. WELLS",
+        "rawStart": "One saw Monson’s Flying Machine from the windows of the trains passing either along the South-Western main line or along the line between Wimbledon and Worcester Park,—to be more exact, one saw the huge scaffoldings w...",
+        "generatedStart": "One saw Monson’s Flying Machine from the windows of the trains passing either along the South-Western main line or along the line between Wimbledon and Worcester Park,—to be more exact, one saw the huge scaffoldings w...",
+        "rawEnd": "...d between Worcester Park and Malden there still stands that portentous avenue of iron-work, rusting now, and dangerous here and there, to witness to the first desperate struggle for man’s right of way through the air.",
+        "generatedEnd": "...d between Worcester Park and Malden there still stands that portentous avenue of iron-work, rusting now, and dangerous here and there, to witness to the first desperate struggle for man’s right of way through the air.",
+        "previewStart": "One saw Monson’s Flying Machine from the windows of the trains passing either along the South-Western main line or along the line between Wimbledon and Worcester Park,—to be more exact, one saw the huge scaffoldings w..."
+      }
+    },
+    {
+      "slug": "the-dreams-in-the-witch-house",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-dreams-in-the-witch-house/manifest.json",
+        "app/client/assets/books/generated/the-dreams-in-the-witch-house/cleaned_book.json",
+        "app/client/assets/books/generated/the-dreams-in-the-witch-house/processed_book.json",
+        "app/client/assets/books/generated/the-dreams-in-the-witch-house/rights_report.json",
+        "app/client/assets/books/generated/the-dreams-in-the-witch-house/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-dreams-in-the-witch-house.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual story title preserved as \"The Dreams in the Witch-House\"; no parent/source title is default playback.",
+        "details": [
+          "Source title evidence: The Dreams in the Witch-House"
+        ]
+      },
+      "authorVerdict": {
+        "status": "pass",
+        "summary": "H. P. Lovecraft author metadata is source-backed; Unknown Author is absent.",
+        "details": [
+          "Faded Page Author metadata line: _Author:_ Howard Phillips Lovecraft (1890-1937)",
+          "Rights author: H. P. Lovecraft"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 67045",
+          "Generated characters: 67045"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body starts at the true readable beginning verified in dry-run/write evidence.",
+        "details": [
+          "Start marker: Whether the dreams brought on the fever or the"
+        ]
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body preserves the true readable ending and final sentence.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning is source-based as one contiguous individual story section, not arbitrary Part chunks.",
+        "details": [
+          "The Dreams in the Witch-House"
+        ]
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No source/site wrapper, parent collection title, TOC, license, contributor/transcriber note, copyright/navigation text, byline-only material, or cleanup artifact enters default playback; prose is exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts from real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default and selected/default order begins from the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The Dreams in the Witch-House",
+        "metadata": "_Author:_ Howard Phillips Lovecraft (1890-1937)",
+        "rawStart": "Whether the dreams brought on the fever or the fever brought on the dreams Walter Gilman did not know. Behind everything crouched the brooding, festering horror of the ancient town, and of the moldy, unhallowed garret...",
+        "generatedStart": "Whether the dreams brought on the fever or the fever brought on the dreams Walter Gilman did not know. Behind everything crouched the brooding, festering horror of the ancient town, and of the moldy, unhallowed garret...",
+        "rawEnd": "...p, and tried to call out and waken him. Something, however, closed his throat. He was not his own master. Had he signed the black man’s book after all? Then his fevered, abnormal hearing caught the distant, wind-borne",
+        "generatedEnd": "...p, and tried to call out and waken him. Something, however, closed his throat. He was not his own master. Had he signed the black man’s book after all? Then his fevered, abnormal hearing caught the distant, wind-borne",
+        "previewStart": "Whether the dreams brought on the fever or the fever brought on the dreams Walter Gilman did not know. Behind everything crouched the brooding, festering horror of the ancient town, and of the moldy, unhallowed garret..."
+      }
+    },
+    {
+      "slug": "the-jilting-of-jane",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-jilting-of-jane/manifest.json",
+        "app/client/assets/books/generated/the-jilting-of-jane/cleaned_book.json",
+        "app/client/assets/books/generated/the-jilting-of-jane/processed_book.json",
+        "app/client/assets/books/generated/the-jilting-of-jane/rights_report.json",
+        "app/client/assets/books/generated/the-jilting-of-jane/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-jilting-of-jane.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual story title preserved as \"The Jilting of Jane\"; no parent/source title is default playback.",
+        "details": [
+          "Source title evidence: THE JILTING OF JANE"
+        ]
+      },
+      "authorVerdict": {
+        "status": "pass",
+        "summary": "H. G. Wells author metadata is source-backed; Unknown Author is absent.",
+        "details": [
+          "visible title-page author line: H. G. WELLS",
+          "Rights author: H. G. Wells"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 14323",
+          "Generated characters: 14323"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body starts at the true readable beginning verified in dry-run/write evidence.",
+        "details": [
+          "Start marker: As I sit writing in my study, I can hear our Jane bumping"
+        ]
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body preserves the true readable ending and final sentence.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning is source-based as one contiguous individual story section, not arbitrary Part chunks.",
+        "details": [
+          "The Jilting of Jane"
+        ]
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No source/site wrapper, parent collection title, TOC, license, contributor/transcriber note, copyright/navigation text, byline-only material, or cleanup artifact enters default playback; prose is exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts from real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default and selected/default order begins from the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "THE JILTING OF JANE",
+        "metadata": "H. G. WELLS",
+        "rawStart": "As I sit writing in my study, I can hear our Jane bumping her way downstairs with a brush and dustpan. She used in the old days to sing hymn tunes, or the British national song for the time being, to these instruments...",
+        "generatedStart": "As I sit writing in my study, I can hear our Jane bumping her way downstairs with a brush and dustpan. She used in the old days to sing hymn tunes, or the British national song for the time being, to these instruments...",
+        "rawEnd": "...boy—but that scarcely belongs to this story. However, Jane is young still, and time and change are at work with her. We all have our sorrows, but I do not believe very much in the existence of sorrows that never heal.",
+        "generatedEnd": "...boy—but that scarcely belongs to this story. However, Jane is young still, and time and change are at work with her. We all have our sorrows, but I do not believe very much in the existence of sorrows that never heal.",
+        "previewStart": "As I sit writing in my study, I can hear our Jane bumping her way downstairs with a brush and dustpan. She used in the old days to sing hymn tunes, or the British national song for the time being, to these instruments..."
+      }
+    },
+    {
+      "slug": "the-lost-inheritance",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-lost-inheritance/manifest.json",
+        "app/client/assets/books/generated/the-lost-inheritance/cleaned_book.json",
+        "app/client/assets/books/generated/the-lost-inheritance/processed_book.json",
+        "app/client/assets/books/generated/the-lost-inheritance/rights_report.json",
+        "app/client/assets/books/generated/the-lost-inheritance/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-lost-inheritance.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual story title preserved as \"The Lost Inheritance\"; no parent/source title is default playback.",
+        "details": [
+          "Source title evidence: THE LOST INHERITANCE"
+        ]
+      },
+      "authorVerdict": {
+        "status": "pass",
+        "summary": "H. G. Wells author metadata is source-backed; Unknown Author is absent.",
+        "details": [
+          "visible title-page author line: H. G. WELLS",
+          "Rights author: H. G. Wells"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 14398",
+          "Generated characters: 14398"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body starts at the true readable beginning verified in dry-run/write evidence.",
+        "details": [
+          "Start marker: “My uncle,” said the man with the glass eye"
+        ]
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body preserves the true readable ending and final sentence.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning is source-based as one contiguous individual story section, not arbitrary Part chunks.",
+        "details": [
+          "The Lost Inheritance"
+        ]
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No source/site wrapper, parent collection title, TOC, license, contributor/transcriber note, copyright/navigation text, byline-only material, or cleanup artifact enters default playback; prose is exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts from real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default and selected/default order begins from the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "THE LOST INHERITANCE",
+        "metadata": "H. G. WELLS",
+        "rawStart": "“My uncle,” said the man with the glass eye, “was what you might call a hemi-semi-demi millionaire. He was worth about a hundred and twenty thousand. Quite. And he left me all his money.” I glanced at the shiny sleeve...",
+        "generatedStart": "“My uncle,” said the man with the glass eye, “was what you might call a hemi-semi-demi millionaire. He was worth about a hundred and twenty thousand. Quite. And he left me all his money.” I glanced at the shiny sleeve...",
+        "rawEnd": "...man beings fail to understand one another.” But there was no misunderstanding the eloquent thirst of his eye. He accepted with ill-feigned surprise. He said, in the usual subtle formula, that he didn’t mind if he did.",
+        "generatedEnd": "...man beings fail to understand one another.” But there was no misunderstanding the eloquent thirst of his eye. He accepted with ill-feigned surprise. He said, in the usual subtle formula, that he didn’t mind if he did.",
+        "previewStart": "“My uncle,” said the man with the glass eye, “was what you might call a hemi-semi-demi millionaire. He was worth about a hundred and twenty thousand. Quite. And he left me all his money.” I glanced at the shiny sleeve..."
+      }
+    },
+    {
+      "slug": "the-purple-pileus",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-purple-pileus/manifest.json",
+        "app/client/assets/books/generated/the-purple-pileus/cleaned_book.json",
+        "app/client/assets/books/generated/the-purple-pileus/processed_book.json",
+        "app/client/assets/books/generated/the-purple-pileus/rights_report.json",
+        "app/client/assets/books/generated/the-purple-pileus/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-purple-pileus.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual story title preserved as \"The Purple Pileus\"; no parent/source title is default playback.",
+        "details": [
+          "Source title evidence: THE PURPLE PILEUS"
+        ]
+      },
+      "authorVerdict": {
+        "status": "pass",
+        "summary": "H. G. Wells author metadata is source-backed; Unknown Author is absent.",
+        "details": [
+          "visible title-page author line: H. G. WELLS",
+          "Rights author: H. G. Wells"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 24963",
+          "Generated characters: 24963"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body starts at the true readable beginning verified in dry-run/write evidence.",
+        "details": [
+          "Start marker: Mr. Coombes was sick of life."
+        ]
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body preserves the true readable ending and final sentence.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning is source-based as one contiguous individual story section, not arbitrary Part chunks.",
+        "details": [
+          "The Purple Pileus"
+        ]
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No source/site wrapper, parent collection title, TOC, license, contributor/transcriber note, copyright/navigation text, byline-only material, or cleanup artifact enters default playback; prose is exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts from real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default and selected/default order begins from the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "THE PURPLE PILEUS",
+        "metadata": "H. G. WELLS",
+        "rawStart": "Mr. Coombes was sick of life. He walked away from his unhappy home, and, sick not only of his own existence, but of everybody else’s, turned aside down Gaswork Lane to avoid the town, and, crossing the wooden bridge t...",
+        "generatedStart": "Mr. Coombes was sick of life. He walked away from his unhappy home, and, sick not only of his own existence, but of everybody else’s, turned aside down Gaswork Lane to avoid the town, and, crossing the wooden bridge t...",
+        "rawEnd": "...t for some wise purpose,” said Mr. Coombes. And that was as much thanks as the purple pileus ever got for maddening this absurd little man to the pitch of decisive action, and so altering the whole course of his life.",
+        "generatedEnd": "...t for some wise purpose,” said Mr. Coombes. And that was as much thanks as the purple pileus ever got for maddening this absurd little man to the pitch of decisive action, and so altering the whole course of his life.",
+        "previewStart": "Mr. Coombes was sick of life. He walked away from his unhappy home, and, sick not only of his own existence, but of everybody else’s, turned aside down Gaswork Lane to avoid the town, and, crossing the wooden bridge t..."
+      }
+    },
+    {
+      "slug": "the-shadow-out-of-time",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-shadow-out-of-time/manifest.json",
+        "app/client/assets/books/generated/the-shadow-out-of-time/cleaned_book.json",
+        "app/client/assets/books/generated/the-shadow-out-of-time/processed_book.json",
+        "app/client/assets/books/generated/the-shadow-out-of-time/rights_report.json",
+        "app/client/assets/books/generated/the-shadow-out-of-time/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-shadow-out-of-time.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual story title preserved as \"The Shadow Out of Time\"; no parent/source title is default playback.",
+        "details": [
+          "Source title evidence: THE SHADOW OUT OF TIME"
+        ]
+      },
+      "authorVerdict": {
+        "status": "pass",
+        "summary": "H. P. Lovecraft author metadata is source-backed; Unknown Author is absent.",
+        "details": [
+          "Faded Page Author metadata line: _Author:_ H. P. (Howard Phillips) Lovecraft, (1890-1937)",
+          "Rights author: H. P. Lovecraft"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 148840",
+          "Generated characters: 148840"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body starts at the true readable beginning verified in dry-run/write evidence.",
+        "details": [
+          "Start marker: After twenty-two years of nightmare and terror"
+        ]
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body preserves the true readable ending and final sentence.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning is source-based as one contiguous individual story section, not arbitrary Part chunks.",
+        "details": [
+          "The Shadow Out of Time"
+        ]
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No source/site wrapper, parent collection title, TOC, license, contributor/transcriber note, copyright/navigation text, byline-only material, or cleanup artifact enters default playback; prose is exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts from real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default and selected/default order begins from the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "THE SHADOW OUT OF TIME",
+        "metadata": "_Author:_ H. P. (Howard Phillips) Lovecraft, (1890-1937)",
+        "rawStart": "After twenty-two years of nightmare and terror, saved only by a desperate conviction of the mythical source of certain impressions, I am unwilling to vouch for the truth of that which I think I found in Western Austra...",
+        "generatedStart": "After twenty-two years of nightmare and terror, saved only by a desperate conviction of the mythical source of certain impressions, I am unwilling to vouch for the truth of that which I think I found in Western Austra...",
+        "rawEnd": "...roglyphs of Earth’s youth. They were, instead, the letters of our familiar alphabet, spelling out the words of the English language, in my own handwriting. [The end of <i>The Shadow Out of Time</i> by H. P. Lovecraft]",
+        "generatedEnd": "...roglyphs of Earth’s youth. They were, instead, the letters of our familiar alphabet, spelling out the words of the English language, in my own handwriting. [The end of <i>The Shadow Out of Time</i> by H. P. Lovecraft]",
+        "previewStart": "After twenty-two years of nightmare and terror, saved only by a desperate conviction of the mythical source of certain impressions, I am unwilling to vouch for the truth of that which I think I found in Western Austra..."
+      }
+    },
+    {
+      "slug": "the-strange-high-house-in-the-mist",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-strange-high-house-in-the-mist/manifest.json",
+        "app/client/assets/books/generated/the-strange-high-house-in-the-mist/cleaned_book.json",
+        "app/client/assets/books/generated/the-strange-high-house-in-the-mist/processed_book.json",
+        "app/client/assets/books/generated/the-strange-high-house-in-the-mist/rights_report.json",
+        "app/client/assets/books/generated/the-strange-high-house-in-the-mist/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-strange-high-house-in-the-mist.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual story title preserved as \"The Strange High House in the Mist\"; no parent/source title is default playback.",
+        "details": [
+          "Source title evidence: The Strange High House in the Mist"
+        ]
+      },
+      "authorVerdict": {
+        "status": "pass",
+        "summary": "H. P. Lovecraft author metadata is source-backed; Unknown Author is absent.",
+        "details": [
+          "Faded Page Author metadata line: _Author:_ Howard Phillips Lovecraft (1890-1937)",
+          "Rights author: H. P. Lovecraft"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 21079",
+          "Generated characters: 21079"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body starts at the true readable beginning verified in dry-run/write evidence.",
+        "details": [
+          "Start marker: In the morning mist comes up from the sea by the cliffs beyond"
+        ]
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body preserves the true readable ending and final sentence.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning is source-based as one contiguous individual story section, not arbitrary Part chunks.",
+        "details": [
+          "The Strange High House in the Mist"
+        ]
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No source/site wrapper, parent collection title, TOC, license, contributor/transcriber note, copyright/navigation text, byline-only material, or cleanup artifact enters default playback; prose is exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts from real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default and selected/default order begins from the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The Strange High House in the Mist",
+        "metadata": "_Author:_ Howard Phillips Lovecraft (1890-1937)",
+        "rawStart": "In the morning mist comes up from the sea by the cliffs beyond Kingsport. White and feathery it comes from the deep to its brothers the clouds, full of dreams of dank pastures and caves of leviathan. And later, in sti...",
+        "generatedStart": "In the morning mist comes up from the sea by the cliffs beyond Kingsport. White and feathery it comes from the deep to its brothers the clouds, full of dreams of dank pastures and caves of leviathan. And later, in sti...",
+        "rawEnd": "...ly a mystic whiteness, as if the cliff's rim were the rim of all earth, and the solemn bells of the buoys tolled free in the æther of faëry. [The end of The Strange High House in the Mist by Howard Phillips Lovecraft]",
+        "generatedEnd": "...ly a mystic whiteness, as if the cliff's rim were the rim of all earth, and the solemn bells of the buoys tolled free in the æther of faëry. [The end of The Strange High House in the Mist by Howard Phillips Lovecraft]",
+        "previewStart": "In the morning mist comes up from the sea by the cliffs beyond Kingsport. White and feathery it comes from the deep to its brothers the clouds, full of dreams of dank pastures and caves of leviathan. And later, in sti..."
+      }
+    },
+    {
+      "slug": "the-valley-of-spiders",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-valley-of-spiders/manifest.json",
+        "app/client/assets/books/generated/the-valley-of-spiders/cleaned_book.json",
+        "app/client/assets/books/generated/the-valley-of-spiders/processed_book.json",
+        "app/client/assets/books/generated/the-valley-of-spiders/rights_report.json",
+        "app/client/assets/books/generated/the-valley-of-spiders/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-valley-of-spiders.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual story title preserved as \"The Valley of Spiders\"; no parent/source title is default playback.",
+        "details": [
+          "Source title evidence: THE VALLEY OF SPIDERS"
+        ]
+      },
+      "authorVerdict": {
+        "status": "pass",
+        "summary": "H. G. Wells author metadata is source-backed; Unknown Author is absent.",
+        "details": [
+          "Gutenberg Author line: Author: H. G. Wells",
+          "Rights author: H. G. Wells"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 21384",
+          "Generated characters: 21384"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body starts at the true readable beginning verified in dry-run/write evidence.",
+        "details": [
+          "Start marker: The gaunt man with the scarred lip was the first to speak."
+        ]
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body preserves the true readable ending and final sentence.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning is source-based as one contiguous individual story section, not arbitrary Part chunks.",
+        "details": [
+          "The Valley of Spiders"
+        ]
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No source/site wrapper, parent collection title, TOC, license, contributor/transcriber note, copyright/navigation text, byline-only material, or cleanup artifact enters default playback; prose is exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts from real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default and selected/default order begins from the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "THE VALLEY OF SPIDERS",
+        "metadata": "Author: H. G. Wells",
+        "rawStart": "The gaunt man with the scarred lip was the first to speak. “Nowhere,” he said, with a sigh of disappointment in his voice. “But after all, they had a full day's start.” “They don't know we are after them,” said the li...",
+        "generatedStart": "The gaunt man with the scarred lip was the first to speak. “Nowhere,” he said, with a sigh of disappointment in his voice. “But after all, they had a full day's start.” “They don't know we are after them,” said the li...",
+        "rawEnd": "...ith his boots, but this impulse he overcame. Ever and again he turned in his saddle, and looked back at the smoke. “Spiders,” he muttered over and over again. “Spiders! Well, well.... The next time I must spin a web.”",
+        "generatedEnd": "...ith his boots, but this impulse he overcame. Ever and again he turned in his saddle, and looked back at the smoke. “Spiders,” he muttered over and over again. “Spiders! Well, well.... The next time I must spin a web.”",
+        "previewStart": "The gaunt man with the scarred lip was the first to speak. “Nowhere,” he said, with a sigh of disappointment in his voice. “But after all, they had a full day's start.” “They don't know we are after them,” said the li..."
+      }
+    },
+    {
+      "slug": "the-whisperer-in-darkness",
+      "verificationStatus": "pass",
+      "generatedOutputInspected": [
+        "app/client/assets/books/generated/the-whisperer-in-darkness/manifest.json",
+        "app/client/assets/books/generated/the-whisperer-in-darkness/cleaned_book.json",
+        "app/client/assets/books/generated/the-whisperer-in-darkness/processed_book.json",
+        "app/client/assets/books/generated/the-whisperer-in-darkness/rights_report.json",
+        "app/client/assets/books/generated/the-whisperer-in-darkness/sections/chapter-001.json"
+      ],
+      "previewInspected": "public/book-previews/the-whisperer-in-darkness.preview.json",
+      "titleVerdict": {
+        "status": "pass",
+        "summary": "Individual story title preserved as \"The Whisperer in Darkness\"; no parent/source title is default playback.",
+        "details": [
+          "Source title evidence: The Whisperer in Darkness"
+        ]
+      },
+      "authorVerdict": {
+        "status": "pass",
+        "summary": "H. P. Lovecraft author metadata is source-backed; Unknown Author is absent.",
+        "details": [
+          "Faded Page Author metadata line: H. P. Lovecraft",
+          "Rights author: H. P. Lovecraft"
+        ]
+      },
+      "rawVsGeneratedBodyComparisonVerdict": {
+        "status": "pass",
+        "summary": "Sanitized raw body matches section display/Morse text, cleaned_book, and processed_book character-for-character.",
+        "details": [
+          "Raw characters: 155006",
+          "Generated characters: 155006"
+        ]
+      },
+      "startBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body starts at the true readable beginning verified in dry-run/write evidence.",
+        "details": [
+          "Start marker: Bear in mind closely that I did not see any actual visual horror"
+        ]
+      },
+      "endBoundaryVerdict": {
+        "status": "pass",
+        "summary": "Generated body preserves the true readable ending and final sentence.",
+        "details": []
+      },
+      "sectioningVerdict": {
+        "status": "pass",
+        "summary": "Sectioning is source-based as one contiguous individual story section, not arbitrary Part chunks.",
+        "details": [
+          "The Whisperer in Darkness"
+        ]
+      },
+      "cleanupProsePreservationVerdict": {
+        "status": "pass",
+        "summary": "No source/site wrapper, parent collection title, TOC, license, contributor/transcriber note, copyright/navigation text, byline-only material, or cleanup artifact enters default playback; prose is exact.",
+        "details": []
+      },
+      "previewVerdict": {
+        "status": "pass",
+        "summary": "Preview is valid, book-specific, starts from real readable content, and contains no SOS Help or generic fallback.",
+        "details": []
+      },
+      "allMainReadableDefaultVerdict": {
+        "status": "pass",
+        "summary": "All main readable sections are included by default and selected/default order begins from the first section.",
+        "details": []
+      },
+      "startupPreviewValid": true,
+      "acceptedForMain": true,
+      "correctionNeededBeforeMain": false,
+      "correctionMadeDuringVerification": false,
+      "remainingWarnings": [],
+      "snippets": {
+        "title": "The Whisperer in Darkness",
+        "metadata": "H. P. Lovecraft",
+        "rawStart": "Bear in mind closely that I did not see any actual visual horror at the end. To say that a mental shock was the cause of what I inferred--that last straw which sent me racing out of the lonely Akeley farmhouse and thr...",
+        "generatedStart": "Bear in mind closely that I did not see any actual visual horror at the end. To say that a mental shock was the cause of what I inferred--that last straw which sent me racing out of the lonely Akeley farmhouse and thr...",
+        "rawEnd": ".... For the things in the chair, perfect to the last, subtle detail of microscopic resemblance--or identity--were the face and hands of Henry Wentworth Akeley. [The end of _The Whisperer in Darkness_ by H. P. Lovecraft]",
+        "generatedEnd": ".... For the things in the chair, perfect to the last, subtle detail of microscopic resemblance--or identity--were the face and hands of Henry Wentworth Akeley. [The end of _The Whisperer in Darkness_ by H. P. Lovecraft]",
+        "previewStart": "Bear in mind closely that I did not see any actual visual horror at the end. To say that a mental shock was the cause of what I inferred--that last straw which sent me racing out of the lonely Akeley farmhouse and thr..."
+      }
+    }
+  ]
+}
