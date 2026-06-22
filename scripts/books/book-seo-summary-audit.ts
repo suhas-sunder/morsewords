@@ -32,6 +32,7 @@ type SeoSummaryData = {
   }>;
   expectedSummaryCount?: number;
   batch1Slugs?: string[];
+  batch2Slugs?: string[];
   summaries: SeoSummaryRecord[];
 };
 
@@ -69,11 +70,14 @@ type SeoSummaryAuditReport = {
     previousSummaryCount: number;
     newSummaryCount: number;
     summaryRecordCount: number;
+    missingSummaryCountBeforeBatch: number;
     missingSummaryCount: number;
     passCount: number;
     failCount: number;
   };
   selectedSlugs: string[];
+  firstStillMissingSlugsAfterBatch: string[];
+  coverageNote: string;
   skippedSelectedSlugs: string[];
   results: PilotSummaryAuditItem[];
   validation: {
@@ -129,16 +133,16 @@ const reportRoot = path.join(
   "assets",
   "books",
   "audit-reports",
-  "book-seo-summary-batch-1",
+  "book-seo-summary-batch-2",
 );
-const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-1.json");
-const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-1.md");
+const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-2.json");
+const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-2.md");
 
 const summaryFilesChanged = [
   "app/client/assets/books/seo-summaries/book-seo-summaries.json",
   "scripts/books/book-seo-summary-audit.ts",
-  "app/client/assets/books/audit-reports/book-seo-summary-batch-1/book-seo-summary-batch-1.json",
-  "app/client/assets/books/audit-reports/book-seo-summary-batch-1/book-seo-summary-batch-1.md",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-2/book-seo-summary-batch-2.json",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-2/book-seo-summary-batch-2.md",
 ];
 
 const sourceBoilerplatePattern =
@@ -449,6 +453,15 @@ function isAcceptedGeneratedBook(book: GeneratedLibraryBookSummary) {
   );
 }
 
+function selectedSlugsForActiveBatch(summaryData: SeoSummaryData) {
+  const batchMatch = summaryData.summarySet.match(/book-seo-summary-batch-(\d+)/);
+  if (!batchMatch) return [];
+  const batchNumber = Number(batchMatch[1]);
+  if (batchNumber === 1) return summaryData.batch1Slugs ?? [];
+  if (batchNumber === 2) return summaryData.batch2Slugs ?? [];
+  return [];
+}
+
 function markdownReport(report: SeoSummaryAuditReport) {
   const selected = new Set(report.selectedSlugs);
   const itemRows = report.results
@@ -463,7 +476,7 @@ function markdownReport(report: SeoSummaryAuditReport) {
     .map((item) => `- ${item.slug}: ${item.errors.join("; ")}`)
     .join("\n");
 
-  return `# Book SEO Summary Batch 1
+  return `# Book SEO Summary Batch 2
 
 Generated: ${report.generatedAt}
 
@@ -472,14 +485,21 @@ Generated: ${report.generatedAt}
 - Previous summaries: ${report.counts.previousSummaryCount}
 - New summaries: ${report.counts.newSummaryCount}
 - Total summaries: ${report.counts.summaryRecordCount}
-- Books still using the deterministic fallback: ${report.counts.missingSummaryCount}
+- Missing summaries before batch: ${report.counts.missingSummaryCountBeforeBatch}
+- Missing summaries after batch: ${report.counts.missingSummaryCount}
 - Validation result: ${report.validation.result}
 
 The 50 new records use the existing separate static summary asset. Generated book text, preview assets, raw sources, and Cloudflare export payloads were not modified.
 
+${report.coverageNote}
+
 ## Selected slugs
 
 ${report.selectedSlugs.map((slug) => `- ${slug}`).join("\n")}
+
+## First 25 still-missing slugs after batch
+
+${report.firstStillMissingSlugsAfterBatch.map((slug) => `- ${slug}`).join("\n")}
 
 ## Substitutions or skipped selections
 
@@ -537,16 +557,25 @@ function main() {
     }),
   );
 
-  const selectedSlugs = summaryData.batch1Slugs ?? [];
-  const pilotSlugSet = new Set(summaryData.pilotSlugs);
+  const selectedSlugs = selectedSlugsForActiveBatch(summaryData);
+  const selectedSlugSet = new Set(selectedSlugs);
+  const previousSummarySlugSet = new Set(
+    summaryData.summaries
+      .map((summary) => summary.slug)
+      .filter((slug) => !selectedSlugSet.has(slug)),
+  );
+  const acceptedBooks = libraryManifest.books.filter(isAcceptedGeneratedBook);
   const expectedSelectedSlugs = libraryManifest.books
     .filter(isAcceptedGeneratedBook)
-    .filter((book) => !pilotSlugSet.has(book.slug))
+    .filter((book) => !previousSummarySlugSet.has(book.slug))
     .slice(0, 50)
     .map((book) => book.slug);
   const summarySlugs = summaryData.summaries.map((summary) => summary.slug);
   const summarySlugSet = new Set(summarySlugs);
-  const expectedSummaryCount = summaryData.expectedSummaryCount ?? 70;
+  const expectedSummaryCount = summaryData.expectedSummaryCount ?? summaryData.summaries.length;
+  const missingAfterBatch = acceptedBooks.filter(
+    (book) => !summarySlugSet.has(book.slug),
+  );
   const controlledBatchSelection = sameStringArray(
     selectedSlugs,
     expectedSelectedSlugs,
@@ -590,16 +619,21 @@ function main() {
     filesChanged: summaryFilesChanged,
     counts: {
       generatedBookCount: libraryManifest.books.length,
-      previousSummaryCount: summaryData.pilotSlugs.length,
+      previousSummaryCount: previousSummarySlugSet.size,
       newSummaryCount: selectedSlugs.length,
       summaryRecordCount: summaryData.summaries.length,
-      missingSummaryCount:
-        libraryManifest.books.filter(isAcceptedGeneratedBook).length -
-        summarySlugSet.size,
+      missingSummaryCountBeforeBatch:
+        acceptedBooks.length - previousSummarySlugSet.size,
+      missingSummaryCount: missingAfterBatch.length,
       passCount,
       failCount,
     },
     selectedSlugs,
+    firstStillMissingSlugsAfterBatch: missingAfterBatch
+      .slice(0, 25)
+      .map((book) => book.slug),
+    coverageNote:
+      "No accepted generated book is permanently excluded from summary coverage; remaining books are carried forward by deterministic manifest order.",
     skippedSelectedSlugs: controlledBatchSelection ? [] : expectedSelectedSlugs,
     results,
     validation,
