@@ -3,7 +3,7 @@ import type { Route } from "./+types/morse-code-audiobooks.$slug";
 import MorseBookPage from "~/client/components/morse-code-books/MorseBookPage";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
-  getPublishedMorseBookSummariesRuntime,
+  getDiscoverableMorseBookSummary,
   isMorseBookPublishReady,
   morseAudiobookPath,
   morseBookPath,
@@ -19,10 +19,7 @@ export async function loader({ params }: Route.LoaderArgs) {
     throw new Response("Morse audiobook not found", { status: 404 });
   }
 
-  const summary =
-    (await getPublishedMorseBookSummariesRuntime()).find(
-      (book) => book.slug === slug,
-    ) ?? null;
+  const summary = getDiscoverableMorseBookSummary(slug);
   if (!summary || !isMorseBookPublishReady(summary)) {
     throw new Response("Morse audiobook not found", { status: 404 });
   }

@@ -105,6 +105,7 @@ import type { BookSourceSection } from "~/client/components/morse-code-book-tran
 import {
   getDefaultMorseBookSectionId,
   getMorseBookPublicContent,
+  getRelatedMorseBooksByAuthor,
   getMorseBookSections,
   isMorseBookPublishReady,
   morseAudiobookPath,
@@ -912,6 +913,11 @@ function MorseBookWorkspace({
   const seoSummaryParagraphs = React.useMemo(
     () => getMorseBookSeoSummaryParagraphs(book.slug),
     [book.slug],
+  );
+  const relatedAuthorKey = book.author.join("\u0000");
+  const relatedAuthorBooks = React.useMemo(
+    () => getRelatedMorseBooksByAuthor(book.slug, book.author),
+    [book.slug, relatedAuthorKey],
   );
   const sourceMetadataLabel = bookSourceMetadataLabel(book.source);
   const sourceMetadataHref = bookSourceMetadataHref(book.source);
@@ -2448,6 +2454,25 @@ function MorseBookWorkspace({
         }
       />
 
+      <nav
+        className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm"
+        aria-label={isAudiobook ? "Audiobook library navigation" : "Book library navigation"}
+        data-testid="morse-book-library-navigation"
+      >
+        <Link
+          to={isAudiobook ? ROUTES.morseAudiobooks : ROUTES.morseBooks}
+          className={metadataLinkClass}
+        >
+          {isAudiobook ? "All Morse audiobooks" : "All Morse books"}
+        </Link>
+        <Link
+          to={isAudiobook ? ROUTES.morseBooks : ROUTES.morseAudiobooks}
+          className={metadataLinkClass}
+        >
+          {isAudiobook ? "Morse book library" : "Morse audiobook library"}
+        </Link>
+      </nav>
+
       <section className="mt-6 grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:items-start">
         <BookCover book={book} />
         <div
@@ -2551,6 +2576,38 @@ function MorseBookWorkspace({
               <p className="mt-3 max-w-[68ch] text-base leading-relaxed text-slate-700">
                 {book.description}
               </p>
+            ) : null}
+
+            {relatedAuthorBooks.length > 0 ? (
+              <section
+                className="mt-6"
+                aria-labelledby="morse-book-related-author-heading"
+                data-testid="morse-book-related-author"
+              >
+                <h2
+                  id="morse-book-related-author-heading"
+                  className="mw-heading text-xl font-extrabold text-sky-950"
+                >
+                  More by this author
+                </h2>
+                <ul className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+                  {relatedAuthorBooks.map((relatedBook) => (
+                    <li key={relatedBook.slug} className="min-w-0">
+                      <Link
+                        to={
+                          isAudiobook
+                            ? morseAudiobookPath(relatedBook.slug)
+                            : morseBookPath(relatedBook.slug)
+                        }
+                        className={metadataLinkClass}
+                        data-mw-related-author-slug={relatedBook.slug}
+                      >
+                        {relatedBook.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
             ) : null}
           </div>
 

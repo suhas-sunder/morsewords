@@ -11,7 +11,7 @@ import {
   SYMBOL_PAGES,
 } from "~/client/data/morseContent";
 import {
-  getPublishedMorseBookSummaries,
+  getDiscoverableMorseBookSummaries,
   morseAudiobookPath,
   morseBookPath,
   morseBookPrintPath,
@@ -49,19 +49,21 @@ const symbolSitemapLinks = Object.values(SYMBOL_PAGES).map((item) => ({
   description: item.metaDescription,
 }));
 
-const morseBookSitemapLinks = getPublishedMorseBookSummaries().map((book) => ({
+const discoverableMorseBooks = getDiscoverableMorseBookSummaries();
+
+const morseBookSitemapLinks = discoverableMorseBooks.map((book) => ({
   label: `${book.title} in Morse Code`,
   to: morseBookPath(book.slug),
   description: `Read ${book.title} by ${formatMorseBookAuthors(book.author)} as cleaned Morse-ready book text with MP3 download controls and a live player link.`,
 }));
 
-const morseAudiobookSitemapLinks = getPublishedMorseBookSummaries().map((book) => ({
+const morseAudiobookSitemapLinks = discoverableMorseBooks.map((book) => ({
   label: `${book.title} Live Morse Player`,
   to: morseAudiobookPath(book.slug),
   description: `Open ${book.title} by ${formatMorseBookAuthors(book.author)} as a live browser Morse player with chapter selection, scrubbing, and saved progress.`,
 }));
 
-const morseBookPrintSitemapLinks = getPublishedMorseBookSummaries().map((book) => ({
+const morseBookPrintSitemapLinks = discoverableMorseBooks.map((book) => ({
   label: `${book.title} Printable Morse Pages`,
   to: morseBookPrintPath(book.slug),
   description: `Print ${book.title} by ${formatMorseBookAuthors(book.author)} as text and Morse study pages with QR and source notes.`,

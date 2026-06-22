@@ -3,6 +3,8 @@ import { Link } from "react-router";
 
 import type { Route } from "./+types/morse-code-audiobooks";
 
+import MorseBookLinkDirectory from "~/client/components/morse-code-books/MorseBookLinkDirectory";
+import MorseBookPagination from "~/client/components/morse-code-books/MorseBookPagination";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
@@ -13,9 +15,8 @@ import {
 } from "~/client/components/shared/MorseLearningLayout";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import {
-  getPublishedMorseBookSummariesRuntime,
+  getDiscoverableMorseBookSummaries,
   morseAudiobookPath,
-  morseBookPath,
 } from "~/client/data/morseBooks";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import { getMorseBookSeoSummary } from "~/client/data/morseBookSeoSummaries";
@@ -162,7 +163,7 @@ function resultCountText({
 
 export async function loader() {
   return {
-    books: await getPublishedMorseBookSummariesRuntime(),
+    books: getDiscoverableMorseBookSummaries(),
   };
 }
 
@@ -445,13 +446,15 @@ export default function MorseCodeAudiobooksRoute({
                   ))}
                 </div>
                 {pageCount > 1 ? (
-                  <PaginationControls
+                  <MorseBookPagination
+                    ariaLabel="Morse audiobooks pages"
                     currentPage={activePage}
                     pageCount={pageCount}
                     onPageChange={(page) => {
                       setCurrentPage(page);
                       returnToCollectionTop({ focusHeading: true });
                     }}
+                    testId="morse-audiobooks-pagination"
                   />
                 ) : null}
               </>
@@ -472,6 +475,8 @@ export default function MorseCodeAudiobooksRoute({
           </div>
         </div>
       </section>
+
+      <MorseBookLinkDirectory books={books} mode="audiobook" />
 
       <section className="mt-9 sm:mt-11" aria-labelledby="morse-audiobooks-flow">
         <div className="max-w-[68ch]">
@@ -496,69 +501,6 @@ export default function MorseCodeAudiobooksRoute({
   );
 }
 
-function PaginationControls({
-  currentPage,
-  onPageChange,
-  pageCount,
-}: {
-  currentPage: number;
-  onPageChange: (page: number) => void;
-  pageCount: number;
-}) {
-  const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
-
-  return (
-    <nav
-      className="mt-5 flex flex-wrap items-center justify-center gap-2"
-      aria-label="Morse audiobooks pages"
-      data-testid="morse-audiobooks-pagination"
-    >
-      <button
-        type="button"
-        onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-        disabled={currentPage === 1}
-        className={toolControlButtonClass({
-          rounded: "lg",
-          size: "sm",
-          disabled: currentPage === 1,
-        })}
-      >
-        Previous
-      </button>
-      {pages.map((page) => {
-        const isCurrent = page === currentPage;
-        return (
-          <button
-            key={page}
-            type="button"
-            onClick={() => onPageChange(page)}
-            aria-current={isCurrent ? "page" : undefined}
-            className={toolControlButtonClass({
-              active: isCurrent,
-              rounded: "lg",
-              size: "sm",
-            })}
-          >
-            {page}
-          </button>
-        );
-      })}
-      <button
-        type="button"
-        onClick={() => onPageChange(Math.min(pageCount, currentPage + 1))}
-        disabled={currentPage === pageCount}
-        className={toolControlButtonClass({
-          rounded: "lg",
-          size: "sm",
-          disabled: currentPage === pageCount,
-        })}
-      >
-        Next
-      </button>
-    </nav>
-  );
-}
-
 function AudiobookCard({ book }: { book: AudiobookSummary }) {
   const metadata = [
     "Morse audiobook",
@@ -571,7 +513,7 @@ function AudiobookCard({ book }: { book: AudiobookSummary }) {
 
   return (
     <Link
-      to={morseBookPath(book.slug)}
+      to={morseAudiobookPath(book.slug)}
       className="mw-static-surface group flex h-full min-w-0 cursor-pointer flex-col rounded-xl bg-[#fffdf8]/90 p-3 text-left no-underline hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:p-4"
       data-testid="morse-audiobook-card"
       data-mw-morse-audiobook-card-slug={book.slug}
@@ -626,7 +568,7 @@ function AudiobookCard({ book }: { book: AudiobookSummary }) {
             tone: "dark",
           })}
         >
-          Open book page
+          Open live player
         </span>
       </div>
     </Link>

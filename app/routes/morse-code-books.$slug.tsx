@@ -7,9 +7,9 @@ import {
   UNPUBLISHED_BOOK_PREVIEW_PARAM,
   UNPUBLISHED_BOOK_PREVIEW_VALUE,
   getDefaultMorseBookSectionId,
+  getDiscoverableMorseBookSummary,
   getMorseBookManifest,
   getMorseBookSection,
-  getPublishedMorseBookSummariesRuntime,
   isMorseBookPublishReady,
   morseBookPath,
 } from "~/client/data/morseBooks";
@@ -45,10 +45,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   const testPreviewMode = isTestPublishedPreviewRequest(request, slug);
 
   if (!previewMode && !testPreviewMode) {
-    const summary =
-      (await getPublishedMorseBookSummariesRuntime()).find(
-        (book) => book.slug === slug,
-      ) ?? null;
+    const summary = getDiscoverableMorseBookSummary(slug);
     if (!summary || !isMorseBookPublishReady(summary)) {
       throw new Response("Morse book not found", { status: 404 });
     }

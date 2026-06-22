@@ -471,6 +471,67 @@ export function isMorseBookPublishReady(
   );
 }
 
+const discoverableMorseBooks = libraryManifest.books
+  .filter((book) => isMorseBookPublishReady(book))
+  .sort((left, right) => {
+    const titleResult = left.title.localeCompare(right.title);
+    return titleResult !== 0 ? titleResult : left.slug.localeCompare(right.slug);
+  });
+const discoverableMorseBooksBySlug = new Map(
+  discoverableMorseBooks.map((book) => [book.slug, book]),
+);
+
+function normalizedAuthorKey(author: string) {
+  return author.trim().replace(/\s+/g, " ").toLowerCase();
+}
+
+const discoverableMorseBooksByAuthor = new Map<
+  string,
+  MorseBookLibrarySummary[]
+>();
+
+for (const book of discoverableMorseBooks) {
+  for (const author of book.author) {
+    const key = normalizedAuthorKey(author);
+    if (!key) continue;
+    const books = discoverableMorseBooksByAuthor.get(key) ?? [];
+    books.push(book);
+    discoverableMorseBooksByAuthor.set(key, books);
+  }
+}
+
+export function getDiscoverableMorseBookSummaries() {
+  return [...discoverableMorseBooks];
+}
+
+export function getDiscoverableMorseBookSummary(slug: string) {
+  return discoverableMorseBooksBySlug.get(slug) ?? null;
+}
+
+export function getRelatedMorseBooksByAuthor(
+  currentSlug: string,
+  authors: readonly string[],
+  limit = 4,
+) {
+  if (limit <= 0) return [];
+
+  const relatedBySlug = new Map<string, MorseBookLibrarySummary>();
+  for (const author of authors) {
+    const key = normalizedAuthorKey(author);
+    if (!key) continue;
+    for (const book of discoverableMorseBooksByAuthor.get(key) ?? []) {
+      if (book.slug !== currentSlug) relatedBySlug.set(book.slug, book);
+    }
+  }
+
+  return [...relatedBySlug.values()]
+    .sort((left, right) => {
+      const titleResult = left.title.localeCompare(right.title);
+      return titleResult !== 0 ? titleResult : left.slug.localeCompare(right.slug);
+    })
+    .slice(0, limit);
+}
+
 function normalizeContentBaseUrl(value: unknown) {
   return normalizeMorseBookContentBaseUrl(value);
 }

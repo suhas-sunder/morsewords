@@ -836,7 +836,7 @@ test.describe("Morse book page foundation", () => {
     expect(unknownAudiobookResponse.status()).toBe(404);
   });
 
-  test("default book cards link to primary book pages while audiobook routes remain", async ({
+  test("book and audiobook cards link to their matching detail routes", async ({
     page,
     request,
   }) => {
@@ -855,6 +855,11 @@ test.describe("Morse book page foundation", () => {
     await expect(
       page.locator('a[href^="/morse-code-audiobooks/"]'),
     ).toHaveCount(0);
+    const bookDirectory = page.getByTestId("morse-book-complete-directory");
+    await expect(bookDirectory).toHaveAttribute("data-mw-directory-count", "465");
+    await expect(
+      bookDirectory.locator('a[data-mw-directory-slug]'),
+    ).toHaveCount(465);
 
     await page.goto("/morse-code-audiobooks", {
       waitUntil: "domcontentloaded",
@@ -864,11 +869,23 @@ test.describe("Morse book page foundation", () => {
     await expect(firstAudiobookCard).toBeVisible();
     await expect(firstAudiobookCard).toHaveAttribute(
       "href",
-      /^\/morse-code-books\/[^/?#]+$/,
+      /^\/morse-code-audiobooks\/[^/?#]+$/,
     );
     await expect(
-      page.locator('a[href^="/morse-code-audiobooks/"]'),
-    ).toHaveCount(0);
+      page.locator(
+        'a[data-testid="morse-audiobook-card"][href^="/morse-code-audiobooks/"]',
+      ),
+    ).toHaveCount(12);
+    const audiobookDirectory = page.getByTestId(
+      "morse-audiobook-complete-directory",
+    );
+    await expect(audiobookDirectory).toHaveAttribute(
+      "data-mw-directory-count",
+      "465",
+    );
+    await expect(
+      audiobookDirectory.locator('a[data-mw-directory-slug]'),
+    ).toHaveCount(465);
 
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
@@ -2282,6 +2299,7 @@ test.describe("Morse book page foundation", () => {
     ).toHaveAttribute(
       "data-mw-morse-book-translator-source-sections",
       violetDefaultSectionIds.join(","),
+      { timeout: 30_000 },
     );
     await expect(page.locator("[data-mw-morse-book-source-preview]")).toContainText(
       "A TALE OF THE TONTLAWALD",

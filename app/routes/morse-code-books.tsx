@@ -3,6 +3,8 @@ import { Link } from "react-router";
 
 import type { Route } from "./+types/morse-code-books";
 
+import MorseBookLinkDirectory from "~/client/components/morse-code-books/MorseBookLinkDirectory";
+import MorseBookPagination from "~/client/components/morse-code-books/MorseBookPagination";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
@@ -17,8 +19,8 @@ import {
   TEST_PUBLISHED_BOOK_PREVIEW_VALUE,
   TEST_PUBLISHED_BOOK_SLUG,
   UNPUBLISHED_BOOK_PREVIEW_PARAM,
+  getDiscoverableMorseBookSummaries,
   getPublishedMorseBookSummariesRuntime,
-  morseAudiobookPath,
   morseBookPath,
 } from "~/client/data/morseBooks";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
@@ -338,10 +340,13 @@ export async function loader({ request }: Route.LoaderArgs) {
   const includeTestFixture = isTestPublishedPreviewRequest(request);
   const includeTestCollectionFixture = isTestCollectionPreviewRequest(request);
   return {
-    books: await getPublishedMorseBookSummariesRuntime({
-      includeTestFixture,
-      includeTestCollectionFixture,
-    }),
+    books:
+      includeTestFixture || includeTestCollectionFixture
+        ? await getPublishedMorseBookSummariesRuntime({
+            includeTestFixture,
+            includeTestCollectionFixture,
+          })
+        : getDiscoverableMorseBookSummaries(),
     includeTestFixture: includeTestFixture || includeTestCollectionFixture,
   };
 }
@@ -483,7 +488,7 @@ export default function MorseCodeBooksHubRoute({
               "@type": "ListItem",
               position: index + 1,
               name: book.title,
-              url: canonicalUrl(morseAudiobookPath(book.slug)),
+              url: canonicalUrl(morseBookPath(book.slug)),
             })),
           },
         }
@@ -648,10 +653,12 @@ export default function MorseCodeBooksHubRoute({
                   ))}
                 </div>
                 {hasMultiplePages ? (
-                  <PaginationControls
+                  <MorseBookPagination
+                    ariaLabel="Morse books pages"
                     currentPage={activePage}
                     pageCount={pageCount}
                     onPageChange={handlePageChange}
+                    testId="morse-books-pagination"
                   />
                 ) : null}
               </>
@@ -661,6 +668,10 @@ export default function MorseCodeBooksHubRoute({
           </div>
         </div>
       </section>
+
+      {!includeTestFixture ? (
+        <MorseBookLinkDirectory books={books} mode="book" />
+      ) : null}
 
       <section className="mt-9 sm:mt-11" aria-labelledby="morse-books-workflow">
         <div className="max-w-[68ch]">
@@ -722,69 +733,6 @@ export default function MorseCodeBooksHubRoute({
 
       <BreadcrumbTrail current="Morse Code Books" placement="contentFooter" />
     </main>
-  );
-}
-
-function PaginationControls({
-  currentPage,
-  onPageChange,
-  pageCount,
-}: {
-  currentPage: number;
-  onPageChange: (page: number) => void;
-  pageCount: number;
-}) {
-  const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
-
-  return (
-    <nav
-      className="mt-5 flex flex-wrap items-center justify-center gap-2"
-      aria-label="Morse books pages"
-      data-testid="morse-books-pagination"
-    >
-      <button
-        type="button"
-        onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-        disabled={currentPage === 1}
-        className={toolControlButtonClass({
-          rounded: "lg",
-          size: "sm",
-          disabled: currentPage === 1,
-        })}
-      >
-        Previous
-      </button>
-      {pages.map((page) => {
-        const isCurrent = page === currentPage;
-        return (
-          <button
-            key={page}
-            type="button"
-            onClick={() => onPageChange(page)}
-            aria-current={isCurrent ? "page" : undefined}
-            className={toolControlButtonClass({
-              active: isCurrent,
-              rounded: "lg",
-              size: "sm",
-            })}
-          >
-            {page}
-          </button>
-        );
-      })}
-      <button
-        type="button"
-        onClick={() => onPageChange(Math.min(pageCount, currentPage + 1))}
-        disabled={currentPage === pageCount}
-        className={toolControlButtonClass({
-          rounded: "lg",
-          size: "sm",
-          disabled: currentPage === pageCount,
-        })}
-      >
-        Next
-      </button>
-    </nav>
   );
 }
 
