@@ -33,6 +33,7 @@ type SeoSummaryData = {
   expectedSummaryCount?: number;
   batch1Slugs?: string[];
   batch2Slugs?: string[];
+  batch3Slugs?: string[];
   summaries: SeoSummaryRecord[];
 };
 
@@ -78,6 +79,16 @@ type SeoSummaryAuditReport = {
   selectedSlugs: string[];
   firstStillMissingSlugsAfterBatch: string[];
   coverageNote: string;
+  remainingRawCandidateCheckpoint: {
+    sourceReportPath: string;
+    classifiedRawOnlyUnsafeCount: number;
+    checkpoint: string;
+  };
+  unresolvedSourceGeneratedBookCheckpoint: {
+    sourceReportPath: string;
+    unresolvedSourceGeneratedCount: number;
+    checkpoint: string;
+  };
   skippedSelectedSlugs: string[];
   results: PilotSummaryAuditItem[];
   validation: {
@@ -133,16 +144,26 @@ const reportRoot = path.join(
   "assets",
   "books",
   "audit-reports",
-  "book-seo-summary-batch-2",
+  "book-seo-summary-batch-3",
 );
-const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-2.json");
-const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-2.md");
+const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-3.json");
+const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-3.md");
+const remainingRawInventoryTriagePath = path.join(
+  repoRoot,
+  "app",
+  "client",
+  "assets",
+  "books",
+  "audit-reports",
+  "remaining-raw-inventory-triage",
+  "remaining-raw-inventory-triage.json",
+);
 
 const summaryFilesChanged = [
   "app/client/assets/books/seo-summaries/book-seo-summaries.json",
   "scripts/books/book-seo-summary-audit.ts",
-  "app/client/assets/books/audit-reports/book-seo-summary-batch-2/book-seo-summary-batch-2.json",
-  "app/client/assets/books/audit-reports/book-seo-summary-batch-2/book-seo-summary-batch-2.md",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-3/book-seo-summary-batch-3.json",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-3/book-seo-summary-batch-3.md",
 ];
 
 const sourceBoilerplatePattern =
@@ -459,6 +480,7 @@ function selectedSlugsForActiveBatch(summaryData: SeoSummaryData) {
   const batchNumber = Number(batchMatch[1]);
   if (batchNumber === 1) return summaryData.batch1Slugs ?? [];
   if (batchNumber === 2) return summaryData.batch2Slugs ?? [];
+  if (batchNumber === 3) return summaryData.batch3Slugs ?? [];
   return [];
 }
 
@@ -476,7 +498,7 @@ function markdownReport(report: SeoSummaryAuditReport) {
     .map((item) => `- ${item.slug}: ${item.errors.join("; ")}`)
     .join("\n");
 
-  return `# Book SEO Summary Batch 2
+  return `# Book SEO Summary Batch 3
 
 Generated: ${report.generatedAt}
 
@@ -492,6 +514,14 @@ Generated: ${report.generatedAt}
 The 50 new records use the existing separate static summary asset. Generated book text, preview assets, raw sources, and Cloudflare export payloads were not modified.
 
 ${report.coverageNote}
+
+## Remaining book checkpoint
+
+Current generated library summary coverage is being tracked separately from remaining raw-candidate debt.
+
+- Remaining raw-candidate debt from inventory triage is not closed: ${report.remainingRawCandidateCheckpoint.classifiedRawOnlyUnsafeCount} skipped/unsafe/manual/raw candidates remain classified.
+- Unresolved-source generated-book debt is still documented: ${report.unresolvedSourceGeneratedBookCheckpoint.unresolvedSourceGeneratedCount} generated books remain source-unresolved but non-blocking.
+- Before final Cloudflare export, the remaining raw inventory must be revisited so any manually acceptable books can be processed and then added to summaries, sitemap/nav/internal links, audits, and export.
 
 ## Selected slugs
 
@@ -544,6 +574,13 @@ ${report.recommendedNextSummaryBatchSize} summaries
 function main() {
   const libraryManifest = readJson<GeneratedLibraryManifest>(libraryManifestPath);
   const summaryData = readJson<SeoSummaryData>(summaryPath);
+  const remainingRawTriage = readJson<{
+    counts?: {
+      classifiedRawOnlyUnsafeCount?: number;
+      dryRun24SkippedUnsafeRawOnlyCount?: number;
+      unresolvedSourceGeneratedCount?: number;
+    };
+  }>(remainingRawInventoryTriagePath);
   const generatedBySlug = new Map(
     libraryManifest.books.map((book) => [book.slug, book]),
   );
@@ -634,6 +671,24 @@ function main() {
       .map((book) => book.slug),
     coverageNote:
       "No accepted generated book is permanently excluded from summary coverage; remaining books are carried forward by deterministic manifest order.",
+    remainingRawCandidateCheckpoint: {
+      sourceReportPath:
+        "app/client/assets/books/audit-reports/remaining-raw-inventory-triage/remaining-raw-inventory-triage.json",
+      classifiedRawOnlyUnsafeCount:
+        remainingRawTriage.counts?.classifiedRawOnlyUnsafeCount ??
+        remainingRawTriage.counts?.dryRun24SkippedUnsafeRawOnlyCount ??
+        46,
+      checkpoint:
+        "Current generated library summary coverage is tracked separately from remaining raw-candidate debt; remaining raw candidates are not processed in this summary branch.",
+    },
+    unresolvedSourceGeneratedBookCheckpoint: {
+      sourceReportPath:
+        "app/client/assets/books/audit-reports/remaining-raw-inventory-triage/remaining-raw-inventory-triage.json",
+      unresolvedSourceGeneratedCount:
+        remainingRawTriage.counts?.unresolvedSourceGeneratedCount ?? 11,
+      checkpoint:
+        "Unresolved-source generated books remain documented and non-blocking for current summary coverage, but source resolution is still tracked before final export decisions.",
+    },
     skippedSelectedSlugs: controlledBatchSelection ? [] : expectedSelectedSlugs,
     results,
     validation,
