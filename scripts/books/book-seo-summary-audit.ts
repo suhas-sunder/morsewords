@@ -34,6 +34,7 @@ type SeoSummaryData = {
   batch1Slugs?: string[];
   batch2Slugs?: string[];
   batch3Slugs?: string[];
+  batch4Slugs?: string[];
   summaries: SeoSummaryRecord[];
 };
 
@@ -144,10 +145,10 @@ const reportRoot = path.join(
   "assets",
   "books",
   "audit-reports",
-  "book-seo-summary-batch-3",
+  "book-seo-summary-batch-4",
 );
-const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-3.json");
-const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-3.md");
+const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-4.json");
+const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-4.md");
 const remainingRawInventoryTriagePath = path.join(
   repoRoot,
   "app",
@@ -162,8 +163,8 @@ const remainingRawInventoryTriagePath = path.join(
 const summaryFilesChanged = [
   "app/client/assets/books/seo-summaries/book-seo-summaries.json",
   "scripts/books/book-seo-summary-audit.ts",
-  "app/client/assets/books/audit-reports/book-seo-summary-batch-3/book-seo-summary-batch-3.json",
-  "app/client/assets/books/audit-reports/book-seo-summary-batch-3/book-seo-summary-batch-3.md",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-4/book-seo-summary-batch-4.json",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-4/book-seo-summary-batch-4.md",
 ];
 
 const sourceBoilerplatePattern =
@@ -481,6 +482,7 @@ function selectedSlugsForActiveBatch(summaryData: SeoSummaryData) {
   if (batchNumber === 1) return summaryData.batch1Slugs ?? [];
   if (batchNumber === 2) return summaryData.batch2Slugs ?? [];
   if (batchNumber === 3) return summaryData.batch3Slugs ?? [];
+  if (batchNumber === 4) return summaryData.batch4Slugs ?? [];
   return [];
 }
 
@@ -498,7 +500,7 @@ function markdownReport(report: SeoSummaryAuditReport) {
     .map((item) => `- ${item.slug}: ${item.errors.join("; ")}`)
     .join("\n");
 
-  return `# Book SEO Summary Batch 3
+  return `# Book SEO Summary Batch 4
 
 Generated: ${report.generatedAt}
 
