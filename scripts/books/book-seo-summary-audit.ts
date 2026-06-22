@@ -30,6 +30,8 @@ type SeoSummaryData = {
     actualSlug: string;
     reason: string;
   }>;
+  expectedSummaryCount?: number;
+  batch1Slugs?: string[];
   summaries: SeoSummaryRecord[];
 };
 
@@ -47,6 +49,7 @@ type PilotSummaryAuditItem = {
   shortWorkException: string | null;
   spoilerRisk: "pass" | "fail";
   sourceBoilerplateRisk: "pass" | "fail";
+  authorityFormLeakRisk: "pass" | "fail";
   internalProcessLeakRisk: "pass" | "fail";
   duplicateSummaryRisk: "pass" | "fail";
   rawSourcePathLeakRisk: "pass" | "fail";
@@ -63,22 +66,30 @@ type SeoSummaryAuditReport = {
   filesChanged: string[];
   counts: {
     generatedBookCount: number;
-    pilotSlugCount: number;
+    previousSummaryCount: number;
+    newSummaryCount: number;
     summaryRecordCount: number;
+    missingSummaryCount: number;
     passCount: number;
     failCount: number;
   };
-  pilotSlugs: string[];
-  substitutions: SeoSummaryData["substitutions"];
+  selectedSlugs: string[];
+  skippedSelectedSlugs: string[];
   results: PilotSummaryAuditItem[];
   validation: {
+    summaryCount: "pass" | "fail";
+    controlledBatchSelection: "pass" | "fail";
+    summarySlugUniqueness: "pass" | "fail";
+    generatedSlugExistence: "pass" | "fail";
     metadataMatch: "pass" | "fail";
     wordCount: "pass" | "fail";
     spoilerRisk: "pass" | "fail";
     sourceBoilerplate: "pass" | "fail";
+    authorityFormLeak: "pass" | "fail";
     internalProcessLeak: "pass" | "fail";
     duplicateSummary: "pass" | "fail";
     sourceTextCopy: "pass" | "fail";
+    missingSummaryFallback: "pass" | "fail";
     result: "pass" | "fail";
   };
   protectedPaths: {
@@ -88,7 +99,7 @@ type SeoSummaryAuditReport = {
     cloudflareExports: string;
     modifiedByThisAudit: false;
   };
-  recommendedNextStep: string;
+  recommendedNextSummaryBatchSize: number;
 };
 
 const currentFile = fileURLToPath(import.meta.url);
@@ -118,23 +129,16 @@ const reportRoot = path.join(
   "assets",
   "books",
   "audit-reports",
-  "book-seo-summary-pilot",
+  "book-seo-summary-batch-1",
 );
-const reportJsonPath = path.join(reportRoot, "book-seo-summary-pilot.json");
-const reportMdPath = path.join(reportRoot, "book-seo-summary-pilot.md");
+const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-1.json");
+const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-1.md");
 
 const summaryFilesChanged = [
   "app/client/assets/books/seo-summaries/book-seo-summaries.json",
-  "app/client/data/morseBookSeoSummaries.ts",
-  "app/client/components/morse-code-books/MorseBookPage.tsx",
-  "app/routes/morse-code-books.$slug.tsx",
-  "app/routes/morse-code-audiobooks.$slug.tsx",
-  "app/routes/morse-code-books.tsx",
-  "app/routes/morse-code-audiobooks.tsx",
   "scripts/books/book-seo-summary-audit.ts",
-  "package.json",
-  "app/client/assets/books/audit-reports/book-seo-summary-pilot/book-seo-summary-pilot.json",
-  "app/client/assets/books/audit-reports/book-seo-summary-pilot/book-seo-summary-pilot.md",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-1/book-seo-summary-batch-1.json",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-1/book-seo-summary-batch-1.md",
 ];
 
 const sourceBoilerplatePattern =
@@ -145,8 +149,12 @@ const spoilerLabelPattern =
   /\b(in the end|at the end|the story ends with|ends with|the final twist|the ending reveals|finally reveals)\b/i;
 const rawSourceLeakPattern =
   /\b(app[\\/]+client[\\/]+assets[\\/]+temp-books|temp-books|raw source|\.txt\b|\.epub\b|\.pdf\b)\b/i;
+const internalPathLeakPattern =
+  /\b(app[\\/]client[\\/]|public[\\/]book-previews|scripts[\\/]books|audit-reports|cloudflare-export|assets[\\/]books[\\/]generated)\b/i;
 const internalProcessLeakPattern =
   /\b(pilot\b.{0,50}\b(?:summary|batch|set|check|example|item|choice|substitute|coverage|rollout|scaling)|(?:summary|batch|set)\b.{0,30}\bpilot|future summary (?:batch(?:es)?|expansion)|summary (?:batch(?:es)?|expansion|schema|handling|rollout|records?)|generated (?:library|section|page|title)|defect-fix phase|route validation|audit review|metadata check|schema check|slug substitution|controlled batch|accepted (?:Poe )?substitute|unavailable [^.]{0,80}(?:slot|suggestion)|broader summary rollout|scaling (?:beyond|across|the full set))\b/i;
+const authorityFormLeakPattern =
+  /\b(?:active\s+(?:\d{1,4}|\d+(?:st|nd|rd|th)\s+century)(?:\s+(?:B\.C\.|BCE|A\.D\.|CE))?|fl\.\s*(?:c\.?\s*)?\d{1,4}|approximately\s+(?:\d{1,4}|\d+(?:st|nd|rd|th)\s+century)|author-date authority heading)\b/i;
 
 function readJson<T>(filePath: string): T {
   return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
@@ -228,7 +236,7 @@ function auditSummaryRecord({
 }): PilotSummaryAuditItem {
   const errors: string[] = [];
   if (!book) errors.push("Generated book was not found in library manifest.");
-  if (!record) errors.push("Pilot summary record was not found.");
+  if (!record) errors.push("Summary record was not found.");
 
   const titleMatchesGenerated = Boolean(book && record && record.title === book.title);
   if (book && record && !titleMatchesGenerated) {
@@ -273,11 +281,22 @@ function auditSummaryRecord({
     errors.push("Summary contains an obvious ending-spoiler label.");
   }
 
-  const rawSourcePathLeakRisk = rawSourceLeakPattern.test(`${description}\n${summary}`)
+  const authorityFormLeakRisk = authorityFormLeakPattern.test(
+    `${description}\n${summary}`,
+  )
     ? "fail"
     : "pass";
+  if (authorityFormLeakRisk === "fail") {
+    errors.push("Summary prose contains catalog-style authority-form wording.");
+  }
+
+  const rawSourcePathLeakRisk =
+    rawSourceLeakPattern.test(`${description}\n${summary}`) ||
+    internalPathLeakPattern.test(`${description}\n${summary}`)
+      ? "fail"
+      : "pass";
   if (rawSourcePathLeakRisk === "fail") {
-    errors.push("Summary appears to leak a raw source path or raw-source filename.");
+    errors.push("Summary appears to leak a raw source or internal file path.");
   }
 
   const internalProcessLeakRisk = internalProcessLeakPattern.test(
@@ -294,7 +313,7 @@ function auditSummaryRecord({
       ? "fail"
       : "pass";
   if (duplicateSummaryRisk === "fail") {
-    errors.push("Summary text duplicates another pilot summary.");
+    errors.push("Summary text duplicates another book summary.");
   }
 
   let sourceTextCopyRisk: "pass" | "fail" = "pass";
@@ -341,6 +360,7 @@ function auditSummaryRecord({
     shortWorkException: record?.shortWorkException ?? null,
     spoilerRisk,
     sourceBoilerplateRisk,
+    authorityFormLeakRisk,
     internalProcessLeakRisk,
     duplicateSummaryRisk,
     rawSourcePathLeakRisk,
@@ -351,7 +371,16 @@ function auditSummaryRecord({
   };
 }
 
-function reportValidation(results: PilotSummaryAuditItem[]) {
+function reportValidation(
+  results: PilotSummaryAuditItem[],
+  checks: {
+    summaryCount: boolean;
+    controlledBatchSelection: boolean;
+    summarySlugUniqueness: boolean;
+    generatedSlugExistence: boolean;
+    missingSummaryFallback: boolean;
+  },
+) {
   const hasMetadataFailures = results.some(
     (item) => !item.titleMatchesGenerated || !item.authorMatchesGenerated,
   );
@@ -359,6 +388,9 @@ function reportValidation(results: PilotSummaryAuditItem[]) {
   const hasSpoilerFailures = results.some((item) => item.spoilerRisk === "fail");
   const hasBoilerplateFailures = results.some(
     (item) => item.sourceBoilerplateRisk === "fail" || item.rawSourcePathLeakRisk === "fail",
+  );
+  const hasAuthorityFormLeaks = results.some(
+    (item) => item.authorityFormLeakRisk === "fail",
   );
   const hasDuplicateFailures = results.some(
     (item) => item.duplicateSummaryRisk === "fail",
@@ -368,38 +400,62 @@ function reportValidation(results: PilotSummaryAuditItem[]) {
   );
   const hasCopyFailures = results.some((item) => item.sourceTextCopyRisk === "fail");
   const hasFailures =
+    !checks.summaryCount ||
+    !checks.controlledBatchSelection ||
+    !checks.summarySlugUniqueness ||
+    !checks.generatedSlugExistence ||
+    !checks.missingSummaryFallback ||
     hasMetadataFailures ||
     hasWordCountFailures ||
     hasSpoilerFailures ||
     hasBoilerplateFailures ||
+    hasAuthorityFormLeaks ||
     hasInternalProcessLeaks ||
     hasDuplicateFailures ||
     hasCopyFailures ||
     results.some((item) => item.status === "fail");
 
   return {
+    summaryCount: checks.summaryCount ? "pass" : "fail",
+    controlledBatchSelection: checks.controlledBatchSelection ? "pass" : "fail",
+    summarySlugUniqueness: checks.summarySlugUniqueness ? "pass" : "fail",
+    generatedSlugExistence: checks.generatedSlugExistence ? "pass" : "fail",
     metadataMatch: hasMetadataFailures ? "fail" : "pass",
     wordCount: hasWordCountFailures ? "fail" : "pass",
     spoilerRisk: hasSpoilerFailures ? "fail" : "pass",
     sourceBoilerplate: hasBoilerplateFailures ? "fail" : "pass",
+    authorityFormLeak: hasAuthorityFormLeaks ? "fail" : "pass",
     internalProcessLeak: hasInternalProcessLeaks ? "fail" : "pass",
     duplicateSummary: hasDuplicateFailures ? "fail" : "pass",
     sourceTextCopy: hasCopyFailures ? "fail" : "pass",
+    missingSummaryFallback: checks.missingSummaryFallback ? "pass" : "fail",
     result: hasFailures ? "fail" : "pass",
   } satisfies SeoSummaryAuditReport["validation"];
 }
 
+function isAcceptedGeneratedBook(book: GeneratedLibraryBookSummary) {
+  const approvedBySource =
+    book.source.approvalSource === "file-evidence" ||
+    book.source.approvalSource === "external-authority" ||
+    (book.source.approvalSource === "owner-reviewed" &&
+      book.source.rightsReviewed === true) ||
+    (book.source.approvalSource === undefined &&
+      book.source.rightsReviewed === true);
+  return (
+    approvedBySource &&
+    book.source.publishReady === true &&
+    book.source.rightsStatus === "approved" &&
+    book.source.processingAllowed === true
+  );
+}
+
 function markdownReport(report: SeoSummaryAuditReport) {
+  const selected = new Set(report.selectedSlugs);
   const itemRows = report.results
+    .filter((item) => selected.has(item.slug))
     .map(
       (item) =>
-        `| ${item.slug} | ${item.summaryWordCount} | ${item.titleMatchesGenerated ? "pass" : "fail"} | ${item.spoilerRisk} | ${item.sourceBoilerplateRisk} | ${item.internalProcessLeakRisk} | ${item.duplicateSummaryRisk} | ${item.status} |`,
-    )
-    .join("\n");
-  const substitutions = report.substitutions
-    .map(
-      (substitution) =>
-        `- ${substitution.suggestedSlug} -> ${substitution.actualSlug}: ${substitution.reason}`,
+        `| ${item.slug} | ${item.summaryWordCount} | ${item.titleMatchesGenerated && item.authorMatchesGenerated ? "pass" : "fail"} | ${item.spoilerRisk} | ${item.sourceBoilerplateRisk} | ${item.authorityFormLeakRisk} | ${item.duplicateSummaryRisk} | ${item.status} |`,
     )
     .join("\n");
   const failures = report.results
@@ -407,63 +463,61 @@ function markdownReport(report: SeoSummaryAuditReport) {
     .map((item) => `- ${item.slug}: ${item.errors.join("; ")}`)
     .join("\n");
 
-  return `# Book SEO Summary Pilot
+  return `# Book SEO Summary Batch 1
 
 Generated: ${report.generatedAt}
 
 ## Executive summary
 
-The pilot adds ${report.counts.summaryRecordCount} original, non-spoiler book summary records for ${report.counts.pilotSlugCount} accepted generated books. The chosen storage approach is a separate SEO summary JSON asset imported by the book routes and audit tooling, so generated book text, preview assets, raw sources, and Cloudflare export payloads are not modified.
+- Previous summaries: ${report.counts.previousSummaryCount}
+- New summaries: ${report.counts.newSummaryCount}
+- Total summaries: ${report.counts.summaryRecordCount}
+- Books still using the deterministic fallback: ${report.counts.missingSummaryCount}
+- Validation result: ${report.validation.result}
 
-Validation result: ${report.validation.result}
+The 50 new records use the existing separate static summary asset. Generated book text, preview assets, raw sources, and Cloudflare export payloads were not modified.
 
-## Storage approach
+## Selected slugs
 
-${report.chosenSummaryStorageApproach}
+${report.selectedSlugs.map((slug) => `- ${slug}`).join("\n")}
 
-## Files changed
+## Substitutions or skipped selections
 
-${report.filesChanged.map((file) => `- ${file}`).join("\n")}
-
-## Pilot slugs
-
-${report.pilotSlugs.map((slug) => `- ${slug}`).join("\n")}
-
-## Substitutions
-
-${substitutions || "- None"}
+${report.skippedSelectedSlugs.length > 0 ? report.skippedSelectedSlugs.map((slug) => `- ${slug}`).join("\n") : "- None"}
 
 ## Summary validation
 
-| Slug | Summary words | Metadata | Spoiler risk | Source boilerplate | Internal process leak | Duplicate summary | Status |
+| Slug | Words | Metadata | Spoiler risk | Source boilerplate | Authority form | Duplicate body | Status |
 | --- | ---: | --- | --- | --- | --- | --- | --- |
 ${itemRows}
 
 ## Validation categories
 
+- Total count: ${report.validation.summaryCount}
+- Deterministic batch selection: ${report.validation.controlledBatchSelection}
+- Unique slugs: ${report.validation.summarySlugUniqueness}
+- Generated slug existence: ${report.validation.generatedSlugExistence}
 - Metadata match: ${report.validation.metadataMatch}
 - Word count: ${report.validation.wordCount}
-- Spoiler-risk result: ${report.validation.spoilerRisk}
-- Source-boilerplate result: ${report.validation.sourceBoilerplate}
-- Internal-process-leak result: ${report.validation.internalProcessLeak}
-- Duplicate-summary result: ${report.validation.duplicateSummary}
-- Source-text copy result: ${report.validation.sourceTextCopy}
+- Spoiler risk: ${report.validation.spoilerRisk}
+- Source boilerplate and internal paths: ${report.validation.sourceBoilerplate}
+- Catalog-style authority form: ${report.validation.authorityFormLeak}
+- Internal process language: ${report.validation.internalProcessLeak}
+- Duplicate summary bodies: ${report.validation.duplicateSummary}
+- Source-text copy: ${report.validation.sourceTextCopy}
+- Missing-summary fallback: ${report.validation.missingSummaryFallback}
 
 ## Failures
 
 ${failures || "- None"}
 
-## Protected paths
+## Files changed
 
-- Raw sources: ${report.protectedPaths.rawSources}
-- Generated books: ${report.protectedPaths.generatedBooks}
-- Preview assets: ${report.protectedPaths.previews}
-- Cloudflare exports: ${report.protectedPaths.cloudflareExports}
-- Modified by this audit: no
+${report.filesChanged.map((file) => `- ${file}`).join("\n")}
 
-## Recommended next step
+## Recommended next batch size
 
-${report.recommendedNextStep}
+${report.recommendedNextSummaryBatchSize} summaries
 `;
 }
 
@@ -473,48 +527,60 @@ function main() {
   const generatedBySlug = new Map(
     libraryManifest.books.map((book) => [book.slug, book]),
   );
-  const summariesBySlug = new Map(
-    summaryData.summaries.map((summary) => [summary.slug, summary]),
-  );
   const duplicateCounts = duplicateSummaryMap(summaryData.summaries);
-  const results = summaryData.pilotSlugs.map((slug) =>
+  const results = summaryData.summaries.map((record) =>
     auditSummaryRecord({
-      book: generatedBySlug.get(slug) ?? null,
+      book: generatedBySlug.get(record.slug) ?? null,
       duplicateCounts,
-      record: summariesBySlug.get(slug) ?? null,
-      slug,
+      record,
+      slug: record.slug,
     }),
   );
 
-  const extraSummarySlugs = summaryData.summaries
-    .map((summary) => summary.slug)
-    .filter((slug) => !summaryData.pilotSlugs.includes(slug));
-  for (const slug of extraSummarySlugs) {
-    results.push({
-      slug,
-      title: summariesBySlug.get(slug)?.title ?? null,
-      author: summariesBySlug.get(slug)?.author ?? [],
-      generatedBookExists: generatedBySlug.has(slug),
-      summaryRecordExists: true,
-      titleMatchesGenerated: false,
-      authorMatchesGenerated: false,
-      descriptionWordCount: countWords(summariesBySlug.get(slug)?.description ?? ""),
-      summaryWordCount: countWords(summariesBySlug.get(slug)?.summary ?? ""),
-      wordCountWithinTarget: false,
-      shortWorkException: null,
-      spoilerRisk: "pass",
-      sourceBoilerplateRisk: "pass",
-      internalProcessLeakRisk: "pass",
-      duplicateSummaryRisk: "pass",
-      rawSourcePathLeakRisk: "pass",
-      sourceTextCopyRisk: "pass",
-      sourceTextComparisonNote: "not attempted: summary is outside pilot set",
-      status: "fail",
-      errors: ["Summary record is outside the controlled 20-book pilot set."],
-    });
-  }
-
-  const validation = reportValidation(results);
+  const selectedSlugs = summaryData.batch1Slugs ?? [];
+  const pilotSlugSet = new Set(summaryData.pilotSlugs);
+  const expectedSelectedSlugs = libraryManifest.books
+    .filter(isAcceptedGeneratedBook)
+    .filter((book) => !pilotSlugSet.has(book.slug))
+    .slice(0, 50)
+    .map((book) => book.slug);
+  const summarySlugs = summaryData.summaries.map((summary) => summary.slug);
+  const summarySlugSet = new Set(summarySlugs);
+  const expectedSummaryCount = summaryData.expectedSummaryCount ?? 70;
+  const controlledBatchSelection = sameStringArray(
+    selectedSlugs,
+    expectedSelectedSlugs,
+  );
+  const generatedSlugExistence = summarySlugs.every((slug) =>
+    generatedBySlug.has(slug),
+  );
+  const dataModule = fs.readFileSync(
+    path.join(repoRoot, "app/client/data/morseBookSeoSummaries.ts"),
+    "utf8",
+  );
+  const bookRoute = fs.readFileSync(
+    path.join(repoRoot, "app/routes/morse-code-books.$slug.tsx"),
+    "utf8",
+  );
+  const audiobookRoute = fs.readFileSync(
+    path.join(repoRoot, "app/routes/morse-code-audiobooks.$slug.tsx"),
+    "utf8",
+  );
+  const missingSummaryFallback =
+    dataModule.includes("bookSeoSummaryBySlug.get(slug) ?? null") &&
+    bookRoute.includes("seoSummary?.description ??") &&
+    audiobookRoute.includes("seoSummary?.description ??");
+  const checks = {
+    summaryCount:
+      summaryData.summaries.length === expectedSummaryCount &&
+      summaryData.pilotSlugs.length === 20 &&
+      selectedSlugs.length === 50,
+    controlledBatchSelection,
+    summarySlugUniqueness: summarySlugSet.size === summarySlugs.length,
+    generatedSlugExistence,
+    missingSummaryFallback,
+  };
+  const validation = reportValidation(results, checks);
   const passCount = results.filter((result) => result.status === "pass").length;
   const failCount = results.length - passCount;
   const report: SeoSummaryAuditReport = {
@@ -524,13 +590,17 @@ function main() {
     filesChanged: summaryFilesChanged,
     counts: {
       generatedBookCount: libraryManifest.books.length,
-      pilotSlugCount: summaryData.pilotSlugs.length,
+      previousSummaryCount: summaryData.pilotSlugs.length,
+      newSummaryCount: selectedSlugs.length,
       summaryRecordCount: summaryData.summaries.length,
+      missingSummaryCount:
+        libraryManifest.books.filter(isAcceptedGeneratedBook).length -
+        summarySlugSet.size,
       passCount,
       failCount,
     },
-    pilotSlugs: summaryData.pilotSlugs,
-    substitutions: summaryData.substitutions,
+    selectedSlugs,
+    skippedSelectedSlugs: controlledBatchSelection ? [] : expectedSelectedSlugs,
     results,
     validation,
     protectedPaths: {
@@ -540,32 +610,28 @@ function main() {
       cloudflareExports: "app/client/assets/books/cloudflare-export",
       modifiedByThisAudit: false,
     },
-    recommendedNextStep:
-      validation.result === "pass"
-        ? "Scale the summary process in reviewable batches, reusing this schema and audit command, before the full site SEO/meta review."
-        : "Fix the failed pilot summary records before scaling beyond the first 20 summaries.",
+    recommendedNextSummaryBatchSize: validation.result === "pass" ? 50 : 0,
   };
 
   fs.mkdirSync(reportRoot, { recursive: true });
   fs.writeFileSync(reportJsonPath, `${JSON.stringify(report, null, 2)}\n`);
   fs.writeFileSync(reportMdPath, markdownReport(report));
 
-  console.log(
-    `book SEO summary pilot audit: ${passCount} pass, ${failCount} fail`,
-  );
-  console.log(`pilot summaries: ${summaryData.summaries.length}/20`);
+  console.log(`book SEO summary audit: ${passCount} pass, ${failCount} fail`);
+  console.log(`summaries: ${summaryData.summaries.length}/${expectedSummaryCount}`);
+  console.log(`controlled batch selection: ${validation.controlledBatchSelection}`);
   console.log(`metadata match: ${validation.metadataMatch}`);
   console.log(`word count: ${validation.wordCount}`);
   console.log(`spoiler risk: ${validation.spoilerRisk}`);
   console.log(`source boilerplate: ${validation.sourceBoilerplate}`);
+  console.log(`authority-form leaks: ${validation.authorityFormLeak}`);
   console.log(`internal process leaks: ${validation.internalProcessLeak}`);
   console.log(`duplicate summaries: ${validation.duplicateSummary}`);
   console.log(`source text copy: ${validation.sourceTextCopy}`);
+  console.log(`missing-summary fallback: ${validation.missingSummaryFallback}`);
   console.log(`report: ${path.relative(repoRoot, reportJsonPath)}`);
 
-  if (validation.result !== "pass") {
-    process.exitCode = 1;
-  }
+  if (validation.result !== "pass") process.exitCode = 1;
 }
 
 main();
