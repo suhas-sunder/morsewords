@@ -126,6 +126,10 @@
     }
   },
   "netlifyBuildFix": {
+    "netlifyDeployInspection": {
+      "available": false,
+      "reason": "Netlify deploy inspection was not possible from the local environment because there was no Netlify auth token, no local login, and no site state file. The branch therefore includes both code-side SSR bundle reduction and an explicit Netlify build heap configuration."
+    },
     "rootCause": [
       "SEO summaries were imported as a full JSON module through route/component code, causing the summary dataset to be reachable from broad client and SSR chunks.",
       "The production SSR bundle also statically analyzed the development-only generated-book review-content module, expanding import.meta.glob over generated manifests and sections and exhausting the 4096 MB heap during SSR transform."
@@ -137,6 +141,12 @@
       "Netlify includes the summary JSON as a function data file.",
       "Development-only generated-book review-content loading is opaque to production Vite analysis, preventing generated section globs from entering the SSR build graph."
     ],
+    "heapConfiguration": {
+      "location": "netlify.toml [build.environment]",
+      "nodeOptions": "--max-old-space-size=6144",
+      "duplicateOrConflictingHeapSettings": false,
+      "packageBuildNetlifyScript": "react-router build"
+    },
     "buildNetlifyResult": "pass"
   },
   "protectedFolderStatus": {

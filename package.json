@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
-    "build:netlify": "cross-env NODE_OPTIONS=--max-old-space-size=4096 react-router build",
+    "build:netlify": "react-router build",
     "books:build": "node --experimental-strip-types scripts/books/build-book-library.ts",
     "books:apply-review": "node --experimental-strip-types scripts/books/apply-book-review-approvals.ts",
     "books:audit-pass-1": "node --experimental-strip-types scripts/books/audit-book-processing-pass-1.ts",

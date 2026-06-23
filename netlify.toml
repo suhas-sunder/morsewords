@@ -8,6 +8,9 @@
   command = "npm run build:netlify"
   publish = "build/client"
 
+[build.environment]
+  NODE_OPTIONS = "--max-old-space-size=6144"
+
 [functions]
   included_files = ["app/client/assets/books/seo-summaries/book-seo-summaries.json"]
 

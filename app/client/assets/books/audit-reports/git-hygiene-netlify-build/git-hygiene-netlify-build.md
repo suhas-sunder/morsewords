@@ -52,6 +52,11 @@ No suspicious untracked artifact was found that needs to be committed.
 
 ## Netlify Build Fix
 
+Netlify deploy inspection was not possible from the local environment because
+there was no Netlify auth token, no local login, and no site state file. The
+branch therefore includes both code-side SSR bundle reduction and an explicit
+Netlify build heap configuration.
+
 Root cause:
 
 - SEO summaries were imported as a full JSON module through broad route/component
@@ -72,6 +77,14 @@ Fix strategy:
 - Include the summary JSON in Netlify functions as a data file.
 - Keep generated-book review content available for development while preventing
   production SSR from statically expanding the generated section glob.
+
+Netlify heap configuration:
+
+- `netlify.toml` sets `[build.environment] NODE_OPTIONS =
+  "--max-old-space-size=6144"`.
+- `package.json` keeps `build:netlify` as `react-router build`, so there is no
+  duplicate lower heap cap in the package script.
+- No duplicate or conflicting heap settings remain.
 
 `npm run build:netlify` result: pass.
 
