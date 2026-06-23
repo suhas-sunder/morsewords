@@ -628,6 +628,10 @@ function main() {
     path.join(repoRoot, "app/client/data/morseBookSeoSummaries.ts"),
     "utf8",
   );
+  const serverDataModule = fs.readFileSync(
+    path.join(repoRoot, "app/client/data/morseBookSeoSummaries.server.ts"),
+    "utf8",
+  );
   const bookRoute = fs.readFileSync(
     path.join(repoRoot, "app/routes/morse-code-books.$slug.tsx"),
     "utf8",
@@ -637,7 +641,12 @@ function main() {
     "utf8",
   );
   const missingSummaryFallback =
-    dataModule.includes("bookSeoSummaryBySlug.get(slug) ?? null") &&
+    dataModule.includes("getMorseBookSeoSummaryParagraphs") &&
+    serverDataModule.includes("readFileSync") &&
+    serverDataModule.includes(
+      "loadMorseBookSeoSummaryBySlug().get(slug) ?? null",
+    ) &&
+    serverDataModule.includes("book-seo-summaries.json") &&
     bookRoute.includes("seoSummary?.description ??") &&
     audiobookRoute.includes("seoSummary?.description ??");
   const checks = {

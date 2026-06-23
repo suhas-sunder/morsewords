@@ -1,0 +1,154 @@
+{
+  "generatedAt": "2026-06-23",
+  "branch": "morsewords-git-hygiene-netlify-build-fix-jun-2026",
+  "scope": [
+    "git hygiene and artifact audit",
+    "Netlify SSR build OOM fix",
+    "SEO summary loading strategy"
+  ],
+  "gitignore": {
+    "changed": true,
+    "alreadyCovered": [
+      ".DS_Store",
+      "/node_modules/",
+      "/build/",
+      "/tmp/",
+      "/test-artifacts/",
+      "app/client/assets/temp-books/",
+      "app/client/assets/text/*.txt",
+      "app/client/assets/books/**/*.mp3",
+      "app/client/assets/books/**/*.wav",
+      "app/client/assets/books/**/*.webm",
+      "app/client/assets/books/**/*.mp4",
+      "app/client/assets/books/**/*.pdf",
+      "app/client/assets/books/**/*.zip",
+      "app/client/assets/books/**/tmp/",
+      "app/client/assets/books/**/scratch/",
+      "app/client/assets/books/**/.DS_Store"
+    ],
+    "addedPatterns": [
+      "*.log",
+      "*.tmp",
+      "/dist/",
+      "/.netlify/",
+      "/temp/",
+      "/coverage/",
+      "/playwright-report/",
+      "/test-results/",
+      "*.trace.zip",
+      "*.webm",
+      "*.mp4"
+    ],
+    "ignoredArtifactPatternsConfirmed": [
+      "/build/",
+      "/dist/",
+      "/.netlify/",
+      "/node_modules/",
+      "/coverage/",
+      "/playwright-report/",
+      "/test-results/",
+      "*.trace.zip",
+      "*.webm",
+      "*.mp4",
+      "*.log",
+      "*.tmp",
+      "/tmp/",
+      "/temp/",
+      ".DS_Store"
+    ]
+  },
+  "artifactAudit": {
+    "commandsReviewed": [
+      "git status --short",
+      "git status --ignored --short",
+      "git ls-files",
+      "git ls-files app/client/assets/books/cloudflare-export",
+      "git ls-files | rg \"tmp|temp|playwright|trace|video|screenshot|build/|dist/|\\\\.netlify|coverage|cache|cloudflare-export|C:/tmp\"",
+      "cat .gitignore"
+    ],
+    "suspiciousTrackedArtifactsFound": [
+      {
+        "path": ".netlify/v1/functions/react-router-server.mjs",
+        "classification": "generated Netlify build artifact",
+        "action": "removed from git tracking"
+      },
+      {
+        "path": "tmp-dev-server.log",
+        "classification": "local dev server log",
+        "action": "removed from git tracking"
+      },
+      {
+        "path": "tmp-dev-server.err.log",
+        "classification": "local dev server error log",
+        "action": "removed from git tracking"
+      },
+      {
+        "path": "tatus",
+        "classification": "accidental console capture",
+        "action": "removed from git tracking"
+      }
+    ],
+    "suspiciousUntrackedArtifactsFound": [],
+    "tempSummaryFiles": {
+      "patternsChecked": [
+        "morse-seo-b1-*.json",
+        "morse-seo-b1-word-additions.json"
+      ],
+      "repoMatches": [],
+      "cTmpMatches": []
+    }
+  },
+  "folderClassifications": {
+    "app/client/assets/books/audit-reports/": {
+      "classification": "intentional project audit reports",
+      "policy": "may be committed when created for an explicit audit task",
+      "status": "new git-hygiene-netlify-build report intentionally added"
+    },
+    "app/client/assets/temp-books/": {
+      "classification": "raw source inventory",
+      "policy": "must not be casually edited or committed outside raw-source review work",
+      "status": "unchanged"
+    },
+    "app/client/assets/books/generated/": {
+      "classification": "intentional generated app content",
+      "policy": "only changed in explicit book-processing branches",
+      "status": "validation churn restored; unchanged in final diff"
+    },
+    "public/book-previews/": {
+      "classification": "intentional preview app content",
+      "policy": "only changed in explicit book-processing branches",
+      "status": "validation churn restored; unchanged in final diff"
+    },
+    "app/client/assets/books/cloudflare-export/": {
+      "classification": "generated deployment/export artifact currently tracked",
+      "policy": "do not modify or casually commit; only touch during explicit Cloudflare export phase",
+      "status": "unchanged"
+    }
+  },
+  "netlifyBuildFix": {
+    "rootCause": [
+      "SEO summaries were imported as a full JSON module through route/component code, causing the summary dataset to be reachable from broad client and SSR chunks.",
+      "The production SSR bundle also statically analyzed the development-only generated-book review-content module, expanding import.meta.glob over generated manifests and sections and exhausting the 4096 MB heap during SSR transform."
+    ],
+    "summaryLoadingStrategy": [
+      "Client-safe summary module now exports only types, constants, and paragraph splitting.",
+      "Route loaders use a server-only summary lookup and pass only the current summary or compact description map to rendered components.",
+      "The server-only summary lookup reads the JSON data lazily from disk instead of importing it as bundled JS.",
+      "Netlify includes the summary JSON as a function data file.",
+      "Development-only generated-book review-content loading is opaque to production Vite analysis, preventing generated section globs from entering the SSR build graph."
+    ],
+    "buildNetlifyResult": "pass"
+  },
+  "protectedFolderStatus": {
+    "rawSources": "unchanged",
+    "generatedBooks": "unchanged",
+    "previewAssets": "unchanged",
+    "cloudflareExport": "unchanged"
+  },
+  "notStarted": [
+    "summary batch 6",
+    "Cloudflare export",
+    "GSC/meta review",
+    "remaining raw candidate processing"
+  ]
+}

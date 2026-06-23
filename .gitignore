@@ -1,15 +1,26 @@
 .DS_Store
 /node_modules/
 *.tsbuildinfo
+*.log
+*.tmp
 
 # React Router
 /.react-router/
 /build/
+/dist/
+/.netlify/
 
 # Local audit and screenshot artifacts
 /output/
 /tmp/
+/temp/
+/coverage/
+/playwright-report/
+/test-results/
 /test-artifacts/
+*.trace.zip
+*.webm
+*.mp4
 
 # Local-only Morse book reference/source folders. The processed public book
 # runtime uses committed generated manifests/JSON plus optional Cloudflare

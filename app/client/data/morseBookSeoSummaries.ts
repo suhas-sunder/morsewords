@@ -1,5 +1,3 @@
-import bookSeoSummariesJson from "~/client/assets/books/seo-summaries/book-seo-summaries.json";
-
 export type MorseBookSeoSummary = {
   slug: string;
   title: string;
@@ -26,24 +24,12 @@ export type MorseBookSeoSummaryData = {
   summaries: MorseBookSeoSummary[];
 };
 
-const bookSeoSummaries = bookSeoSummariesJson as MorseBookSeoSummaryData;
-const bookSeoSummaryBySlug = new Map(
-  bookSeoSummaries.summaries.map((summary) => [summary.slug, summary]),
-);
-
 export const MORSE_BOOK_SEO_SUMMARY_STORAGE_APPROACH =
-  bookSeoSummaries.storageApproach;
+  "Server-side JSON lookup; route loaders pass only the current summary or compact descriptions into client components.";
 
-export function getMorseBookSeoSummary(slug: string) {
-  return bookSeoSummaryBySlug.get(slug) ?? null;
-}
-
-export function getMorseBookSeoSummaryData() {
-  return bookSeoSummaries;
-}
-
-export function getMorseBookSeoSummaryParagraphs(slug: string) {
-  const summary = getMorseBookSeoSummary(slug);
+export function getMorseBookSeoSummaryParagraphs(
+  summary: Pick<MorseBookSeoSummary, "summary"> | null | undefined,
+) {
   if (!summary) return [];
   return summary.summary
     .split(/\n{2,}/)

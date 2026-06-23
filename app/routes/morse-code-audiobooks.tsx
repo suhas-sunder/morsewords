@@ -19,7 +19,6 @@ import {
   morseAudiobookPath,
 } from "~/client/data/morseBooks";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
-import { getMorseBookSeoSummary } from "~/client/data/morseBookSeoSummaries";
 import type { MorseBookLibrarySummary } from "~/client/data/morseBookTypes";
 import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -42,6 +41,7 @@ type SortMode =
   | "word-count-desc";
 
 type AudiobookSummary = MorseBookLibrarySummary & {
+  hubDescription: string;
   searchText: string;
   sortIndex: number;
   subjectsForHub: string[];
@@ -69,8 +69,18 @@ function uniqueSorted(values: string[]) {
   );
 }
 
-function audiobookDescription(book: MorseBookLibrarySummary) {
-  const seoDescription = getMorseBookSeoSummary(book.slug)?.description;
+async function loadSeoDescriptionsBySlug(books: readonly MorseBookLibrarySummary[]) {
+  const { getMorseBookSeoDescriptionsBySlug } = await import(
+    "~/client/data/morseBookSeoSummaries.server"
+  );
+  return getMorseBookSeoDescriptionsBySlug(books.map((book) => book.slug));
+}
+
+function audiobookDescription(
+  book: MorseBookLibrarySummary,
+  seoDescriptionsBySlug: Record<string, string>,
+) {
+  const seoDescription = seoDescriptionsBySlug[book.slug];
   if (seoDescription) return seoDescription;
 
   const description = book.description.trim();
@@ -83,13 +93,15 @@ function audiobookDescription(book: MorseBookLibrarySummary) {
 function enrichAudiobook(
   book: MorseBookLibrarySummary,
   sortIndex: number,
+  seoDescriptionsBySlug: Record<string, string>,
 ): AudiobookSummary {
   const subjectsForHub = uniqueSorted(book.subjects.map(cleanSubject));
   const hubSubjects = subjectsForHub.length > 0 ? subjectsForHub : ["Classics"];
+  const hubDescription = audiobookDescription(book, seoDescriptionsBySlug);
   const searchText = [
     book.title,
     bookAuthor(book),
-    audiobookDescription(book),
+    hubDescription,
     book.language,
     book.source.provider,
     ...hubSubjects,
@@ -99,6 +111,7 @@ function enrichAudiobook(
 
   return {
     ...book,
+    hubDescription,
     searchText,
     sortIndex,
     subjectsForHub: hubSubjects,
@@ -162,8 +175,10 @@ function resultCountText({
 }
 
 export async function loader() {
+  const books = getDiscoverableMorseBookSummaries();
   return {
-    books: getDiscoverableMorseBookSummaries(),
+    books,
+    seoDescriptionsBySlug: await loadSeoDescriptionsBySlug(books),
   };
 }
 
@@ -183,7 +198,7 @@ export const meta: Route.MetaFunction = () =>
 export default function MorseCodeAudiobooksRoute({
   loaderData,
 }: Route.ComponentProps) {
-  const { books } = loaderData;
+  const { books, seoDescriptionsBySlug } = loaderData;
   const [query, setQuery] = React.useState("");
   const [subjectFilter, setSubjectFilter] = React.useState("all");
   const [sortMode, setSortMode] = React.useState<SortMode>(DEFAULT_SORT_MODE);
@@ -192,8 +207,11 @@ export default function MorseCodeAudiobooksRoute({
   const collectionModuleRef = React.useRef<HTMLDivElement | null>(null);
 
   const audiobookBooks = React.useMemo(
-    () => books.map((book, index) => enrichAudiobook(book, index)),
-    [books],
+    () =>
+      books.map((book, index) =>
+        enrichAudiobook(book, index, seoDescriptionsBySlug),
+      ),
+    [books, seoDescriptionsBySlug],
   );
   const subjectOptions = React.useMemo(
     () => subjectOptionsForBooks(audiobookBooks),
@@ -547,7 +565,7 @@ function AudiobookCard({ book }: { book: AudiobookSummary }) {
           className="mw-text-muted break-words text-sm leading-relaxed text-slate-700"
           data-testid="morse-audiobook-card-description"
         >
-          {audiobookDescription(book)}
+          {book.hubDescription}
         </p>
         <p
           className="break-words font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500"

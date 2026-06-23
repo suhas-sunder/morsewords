@@ -1,6 +1,0 @@
-
-> dev
-> cross-env NODE_ENV=development node server.js
-
-Starting development server
-Server is running on http://localhost:3001

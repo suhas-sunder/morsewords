@@ -24,7 +24,6 @@ import {
   morseBookPath,
 } from "~/client/data/morseBooks";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
-import { getMorseBookSeoSummary } from "~/client/data/morseBookSeoSummaries";
 import type { MorseBookLibrarySummary } from "~/client/data/morseBookTypes";
 import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -281,8 +280,18 @@ function hubSubjectsForBook(book: MorseBookLibrarySummary) {
   return subjects.length > 0 ? subjects : ["Classics"];
 }
 
-function hubDescriptionForBook(book: MorseBookLibrarySummary) {
-  const seoDescription = getMorseBookSeoSummary(book.slug)?.description;
+async function loadSeoDescriptionsBySlug(books: readonly MorseBookLibrarySummary[]) {
+  const { getMorseBookSeoDescriptionsBySlug } = await import(
+    "~/client/data/morseBookSeoSummaries.server"
+  );
+  return getMorseBookSeoDescriptionsBySlug(books.map((book) => book.slug));
+}
+
+function hubDescriptionForBook(
+  book: MorseBookLibrarySummary,
+  seoDescriptionsBySlug: Record<string, string>,
+) {
+  const seoDescription = seoDescriptionsBySlug[book.slug];
   const curatedDescription = APPROVED_BOOK_PRESENTATION[book.slug]?.description;
   const sourceDescription = displayBookDescription(book.description).trim();
   return (
@@ -296,9 +305,10 @@ function hubDescriptionForBook(book: MorseBookLibrarySummary) {
 function enrichBookForHub(
   book: MorseBookLibrarySummary,
   hubSortIndex: number,
+  seoDescriptionsBySlug: Record<string, string>,
 ): HubBook {
   const hubSubjects = hubSubjectsForBook(book);
-  const hubDescription = hubDescriptionForBook(book);
+  const hubDescription = hubDescriptionForBook(book, seoDescriptionsBySlug);
   const hubBook = {
     ...book,
     hubDescription,
@@ -339,15 +349,17 @@ function publicBookHref(book: MorseBookLibrarySummary, includeTestFixture: boole
 export async function loader({ request }: Route.LoaderArgs) {
   const includeTestFixture = isTestPublishedPreviewRequest(request);
   const includeTestCollectionFixture = isTestCollectionPreviewRequest(request);
+  const books =
+    includeTestFixture || includeTestCollectionFixture
+      ? await getPublishedMorseBookSummariesRuntime({
+          includeTestFixture,
+          includeTestCollectionFixture,
+        })
+      : getDiscoverableMorseBookSummaries();
   return {
-    books:
-      includeTestFixture || includeTestCollectionFixture
-        ? await getPublishedMorseBookSummariesRuntime({
-            includeTestFixture,
-            includeTestCollectionFixture,
-          })
-        : getDiscoverableMorseBookSummaries(),
+    books,
     includeTestFixture: includeTestFixture || includeTestCollectionFixture,
+    seoDescriptionsBySlug: await loadSeoDescriptionsBySlug(books),
   };
 }
 
@@ -368,7 +380,7 @@ export const meta: Route.MetaFunction = ({ data }) =>
 export default function MorseCodeBooksHubRoute({
   loaderData,
 }: Route.ComponentProps) {
-  const { books, includeTestFixture } = loaderData;
+  const { books, includeTestFixture, seoDescriptionsBySlug } = loaderData;
   const [query, setQuery] = React.useState("");
   const [subjectFilter, setSubjectFilter] = React.useState("all");
   const [sortMode, setSortMode] = React.useState<SortMode>(DEFAULT_SORT_MODE);
@@ -377,8 +389,11 @@ export default function MorseCodeBooksHubRoute({
   const collectionModuleRef = React.useRef<HTMLDivElement | null>(null);
 
   const hubBooks = React.useMemo(
-    () => books.map((book, index) => enrichBookForHub(book, index)),
-    [books],
+    () =>
+      books.map((book, index) =>
+        enrichBookForHub(book, index, seoDescriptionsBySlug),
+      ),
+    [books, seoDescriptionsBySlug],
   );
   const subjectOptions = React.useMemo(
     () => subjectOptionsForBooks(hubBooks),

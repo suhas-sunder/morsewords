@@ -280,9 +280,15 @@ function getTestPublishedBookSection(sectionId: string) {
   );
 }
 
-async function loadGeneratedReviewContent() {
+type GeneratedReviewContentModule = typeof import("./morseBookReviewContent");
+
+async function loadGeneratedReviewContent(): Promise<GeneratedReviewContentModule | null> {
   if (!import.meta.env.DEV) return null;
-  return import("./morseBookReviewContent");
+  const modulePath = new URL(
+    `./morseBookReviewContent${".ts"}`,
+    import.meta.url,
+  ).href;
+  return import(/* @vite-ignore */ modulePath) as Promise<GeneratedReviewContentModule>;
 }
 
 type BookCacheIndexEntry = {

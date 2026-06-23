@@ -9,9 +9,15 @@ import {
   morseBookPath,
 } from "~/client/data/morseBooks";
 import { morseBookAuthorSchemaPeople } from "~/client/data/morseBookDisplay";
-import { getMorseBookSeoSummary } from "~/client/data/morseBookSeoSummaries";
 import { absoluteUrl } from "~/client/data/routes";
 import { SITE_URL } from "~/client/seo";
+
+async function loadMorseBookSeoSummary(slug: string) {
+  const { getMorseBookSeoSummary } = await import(
+    "~/client/data/morseBookSeoSummaries.server"
+  );
+  return getMorseBookSeoSummary(slug);
+}
 
 export async function loader({ params }: Route.LoaderArgs) {
   const slug = params.slug;
@@ -29,6 +35,7 @@ export async function loader({ params }: Route.LoaderArgs) {
     book: null,
     initialSection: null,
     previewMode: null,
+    seoSummary: await loadMorseBookSeoSummary(slug),
   };
 }
 
@@ -43,7 +50,7 @@ export const meta: Route.MetaFunction = ({ data }) => {
   const book = data.bookSummary;
   const path = morseAudiobookPath(book.slug);
   const canonical = absoluteUrl(path);
-  const seoSummary = getMorseBookSeoSummary(book.slug);
+  const seoSummary = data.seoSummary;
   return [
     { title: `${book.title} Live Morse Player | MorseWords` },
     {
@@ -66,7 +73,7 @@ export default function MorseAudiobookRoute({
   const audiobookUrl = absoluteUrl(morseAudiobookPath(book.slug));
   const bookUrl = absoluteUrl(morseBookPath(book.slug));
   const author = morseBookAuthorSchemaPeople(book.author);
-  const seoSummary = getMorseBookSeoSummary(book.slug);
+  const seoSummary = loaderData.seoSummary;
   const detailJsonLd = [
     {
       "@context": "https://schema.org",
@@ -107,6 +114,7 @@ export default function MorseAudiobookRoute({
         initialSection={loaderData.initialSection}
         mode="audiobook"
         previewMode={loaderData.previewMode}
+        seoSummary={seoSummary}
       />
     </>
   );

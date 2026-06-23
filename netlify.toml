@@ -8,5 +8,8 @@
   command = "npm run build:netlify"
   publish = "build/client"
 
+[functions]
+  included_files = ["app/client/assets/books/seo-summaries/book-seo-summaries.json"]
+
 [dev]
   command = "react-router dev"

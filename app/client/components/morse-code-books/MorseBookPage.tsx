@@ -121,8 +121,8 @@ import {
   mainMorseBookStructureLabelPattern,
 } from "~/client/data/morseBookSectionDefaults";
 import {
-  getMorseBookSeoSummary,
   getMorseBookSeoSummaryParagraphs,
+  type MorseBookSeoSummary,
 } from "~/client/data/morseBookSeoSummaries";
 import {
   formatMorseBookAuthors,
@@ -185,6 +185,7 @@ type MorseBookPageProps = {
   initialSection: MorseBookSectionJson | null;
   mode?: "book" | "audiobook";
   previewMode: "unpublished" | "test-published" | null;
+  seoSummary: MorseBookSeoSummary | null;
 };
 
 type MorseBookRuntimeState =
@@ -640,6 +641,7 @@ export default function MorseBookPage({
   initialSection,
   mode = "book",
   previewMode,
+  seoSummary,
 }: MorseBookPageProps) {
   const initialRuntimeState = React.useMemo<MorseBookRuntimeState>(() => {
     if (book && initialSection) {
@@ -790,6 +792,7 @@ export default function MorseBookPage({
       initialSection={runtimeState.initialSection}
       mode={mode}
       previewMode={previewMode}
+      seoSummary={seoSummary}
     />
   );
 }
@@ -897,22 +900,23 @@ function MorseBookWorkspace({
   initialSection,
   mode,
   previewMode,
+  seoSummary,
 }: {
   book: MorseBookManifest;
   fullBookLoading: boolean;
   initialSection: MorseBookSectionJson;
   mode: "book" | "audiobook";
   previewMode: "unpublished" | "test-published" | null;
+  seoSummary: MorseBookSeoSummary | null;
 }) {
   const isAudiobook = mode === "audiobook";
   const authorDisplay = React.useMemo(
     () => getMorseBookAuthorDisplay(book.author),
     [book.author],
   );
-  const seoSummary = getMorseBookSeoSummary(book.slug);
   const seoSummaryParagraphs = React.useMemo(
-    () => getMorseBookSeoSummaryParagraphs(book.slug),
-    [book.slug],
+    () => getMorseBookSeoSummaryParagraphs(seoSummary),
+    [seoSummary],
   );
   const relatedAuthorKey = book.author.join("\u0000");
   const relatedAuthorBooks = React.useMemo(

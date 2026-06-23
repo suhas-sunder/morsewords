@@ -13,8 +13,14 @@ import {
   isMorseBookPublishReady,
   morseBookPath,
 } from "~/client/data/morseBooks";
-import { getMorseBookSeoSummary } from "~/client/data/morseBookSeoSummaries";
 import { absoluteUrl } from "~/client/data/routes";
+
+async function loadMorseBookSeoSummary(slug: string) {
+  const { getMorseBookSeoSummary } = await import(
+    "~/client/data/morseBookSeoSummaries.server"
+  );
+  return getMorseBookSeoSummary(slug);
+}
 
 function isUnpublishedPreviewRequest(request: Request) {
   const url = new URL(request.url);
@@ -55,6 +61,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
       book: null,
       initialSection: null,
       previewMode: null,
+      seoSummary: await loadMorseBookSeoSummary(slug),
     };
   }
 
@@ -91,6 +98,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     book,
     initialSection,
     previewMode: previewState,
+    seoSummary: await loadMorseBookSeoSummary(slug),
   };
 }
 
@@ -130,7 +138,7 @@ export const meta: Route.MetaFunction = ({ data }) => {
 
   const path = morseBookPath(book.slug);
   const canonical = absoluteUrl(path);
-  const seoSummary = getMorseBookSeoSummary(book.slug);
+  const seoSummary = data.seoSummary;
   return [
     { title: `${book.title} in Morse Code | MorseWords` },
     {
@@ -152,6 +160,7 @@ export default function MorseBookRoute({ loaderData }: Route.ComponentProps) {
       bookSummary={loaderData.bookSummary}
       initialSection={loaderData.initialSection}
       previewMode={loaderData.previewMode}
+      seoSummary={loaderData.seoSummary}
     />
   );
 }
