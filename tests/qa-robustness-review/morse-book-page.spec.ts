@@ -25,6 +25,9 @@ const THE_HAPPY_FAMILY_SLUG = "the-happy-family";
 const THE_ELDERBUSH_SLUG = "the-elderbush";
 const THE_BOOK_OF_DRAGONS_SLUG = "the-book-of-dragons";
 const THE_EMERALD_CITY_OF_OZ_SLUG = "the-emerald-city-of-oz";
+const NON_SUMMARY_BOOK_SLUG = "king-grisly-beard";
+const NON_SUMMARY_BOOK_PREVIEW_PATH =
+  `/morse-code-books/${NON_SUMMARY_BOOK_SLUG}?preview=unpublished`;
 const ALICE_PUBLIC_PATH = `/morse-code-books/${ALICE_SLUG}`;
 const APPROVED_BOOK_PUBLIC_PATH = `/morse-code-books/${APPROVED_BOOK_SLUG}`;
 const NETWORK_BOOK_PUBLIC_PATH = `/morse-code-books/${NETWORK_BOOK_SLUG}`;
@@ -813,7 +816,8 @@ test.describe("Morse book page foundation", () => {
     expect(sitemapText).not.toContain(TEST_BOOK_PUBLIC_PATH);
   });
 
-  test("exposes processed temp books and rejects unknown public slugs", async ({
+  test("exposes processed temp books and keeps summary fallback conditional", async ({
+    page,
     request,
   }) => {
     const aliceResponse = await request.get(ALICE_PUBLIC_PATH);
@@ -834,6 +838,20 @@ test.describe("Morse book page foundation", () => {
       "/morse-code-audiobooks/not-a-real-book",
     );
     expect(unknownAudiobookResponse.status()).toBe(404);
+
+    await openPublicBook(page, APPROVED_BOOK_PUBLIC_PATH);
+    const summaryLink = page.getByTestId("morse-book-summary-link");
+    await expect(summaryLink).toHaveAttribute("href", "#book-summary");
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await summaryLink.click();
+    await expect
+      .poll(() => page.evaluate(() => window.location.hash))
+      .toBe("#book-summary");
+    await expect(page.getByTestId("morse-book-seo-summary")).toBeVisible();
+
+    await openPublicBook(page, NON_SUMMARY_BOOK_PREVIEW_PATH);
+    await expect(page.getByTestId("morse-book-summary-link")).toHaveCount(0);
+    await expect(page.getByTestId("morse-book-seo-summary")).toHaveCount(0);
   });
 
   test("book and audiobook cards link to their matching detail routes", async ({
@@ -977,6 +995,45 @@ test.describe("Morse book page foundation", () => {
       "href",
       "#book-mp3-download",
     );
+    const bookHeader = page.getByTestId("morse-book-header");
+    const summaryLink = bookHeader.getByTestId("morse-book-summary-link");
+    const seoSummary = page.getByTestId("morse-book-seo-summary");
+    const relatedAuthor = page.getByTestId("morse-book-related-author");
+    await expect(summaryLink).toBeVisible();
+    await expect(summaryLink).toHaveAttribute("href", "#book-summary");
+    await expect(bookHeader.getByTestId("morse-book-seo-summary")).toHaveCount(0);
+    await expect(bookHeader.getByTestId("morse-book-related-author")).toHaveCount(0);
+    await expect(seoSummary).toBeVisible();
+    await expect(relatedAuthor).toBeVisible();
+    const lowerContentOrder = await page.evaluate(() => {
+      const source = document.querySelector(
+        '[data-testid="morse-book-source-notes"]',
+      );
+      const summary = document.querySelector("#book-summary");
+      const related = document.querySelector(
+        '[data-testid="morse-book-related-author"]',
+      );
+      return {
+        sourceBeforeSummary: Boolean(
+          source &&
+            summary &&
+            (source.compareDocumentPosition(summary) &
+              Node.DOCUMENT_POSITION_FOLLOWING) !==
+              0,
+        ),
+        summaryBeforeRelated: Boolean(
+          summary &&
+            related &&
+            (summary.compareDocumentPosition(related) &
+              Node.DOCUMENT_POSITION_FOLLOWING) !==
+              0,
+        ),
+      };
+    });
+    expect(lowerContentOrder).toEqual({
+      sourceBeforeSummary: true,
+      summaryBeforeRelated: true,
+    });
     const livePlayer = page.locator("#book-live-morse-player");
     const livePlayerDownloadLink = livePlayer.getByTestId(
       "morse-book-live-download-link",
@@ -1238,6 +1295,7 @@ test.describe("Morse book page foundation", () => {
     await expect(
       selectorRows.first().locator("[data-mw-morse-book-section-selection-state]"),
     ).toContainText(/Included|Not selected|Available section/);
+
   });
 
   test("loads one approved book JSON and reuses it for section switching", async ({
@@ -1785,6 +1843,32 @@ test.describe("Morse book page foundation", () => {
     await expect(
       page.getByRole("link", { name: /Project Gutenberg ebook #43/ }),
     ).toHaveAttribute("href", "https://www.gutenberg.org/ebooks/43");
+    const audiobookHeader = page.getByTestId("morse-book-header");
+    await expect(
+      audiobookHeader.getByTestId("morse-book-summary-link"),
+    ).toHaveAttribute("href", "#book-summary");
+    await expect(
+      audiobookHeader.getByTestId("morse-book-seo-summary"),
+    ).toHaveCount(0);
+    await expect(
+      audiobookHeader.getByTestId("morse-book-related-author"),
+    ).toHaveCount(0);
+    await expect(page.getByTestId("morse-book-seo-summary")).toBeVisible();
+    await expect(page.getByTestId("morse-book-related-author")).toBeVisible();
+    const audiobookSummaryAfterSource = await page.evaluate(() => {
+      const source = document.querySelector(
+        '[data-testid="morse-book-source-notes"]',
+      );
+      const summary = document.querySelector("#book-summary");
+      return Boolean(
+        source &&
+          summary &&
+          (source.compareDocumentPosition(summary) &
+            Node.DOCUMENT_POSITION_FOLLOWING) !==
+            0,
+      );
+    });
+    expect(audiobookSummaryAfterSource).toBe(true);
     expect(bookJsonRequests).toHaveLength(1);
 
     const sectionSelect = page.getByTestId("morse-book-live-section-select");

@@ -2473,7 +2473,10 @@ function MorseBookWorkspace({
         </Link>
       </nav>
 
-      <section className="mt-6 grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:items-start">
+      <section
+        className="mt-6 grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:items-start"
+        data-testid="morse-book-header"
+      >
         <BookCover book={book} />
         <div
           className={
@@ -2554,61 +2557,6 @@ function MorseBookWorkspace({
                 {authorDisplay.contextText}
               </p>
             ) : null}
-            {seoSummary ? (
-              <section
-                className="mt-5"
-                aria-labelledby="morse-book-summary-heading"
-                data-testid="morse-book-seo-summary"
-              >
-                <h2
-                  id="morse-book-summary-heading"
-                  className="mw-heading text-xl font-extrabold text-sky-950"
-                >
-                  About this Morse book
-                </h2>
-                <div className="mt-3 max-w-[68ch] space-y-3 text-base leading-relaxed text-slate-700">
-                  {seoSummaryParagraphs.map((paragraph, index) => (
-                    <p key={`${book.slug}-seo-summary-${index}`}>{paragraph}</p>
-                  ))}
-                </div>
-              </section>
-            ) : book.description ? (
-              <p className="mt-3 max-w-[68ch] text-base leading-relaxed text-slate-700">
-                {book.description}
-              </p>
-            ) : null}
-
-            {relatedAuthorBooks.length > 0 ? (
-              <section
-                className="mt-6"
-                aria-labelledby="morse-book-related-author-heading"
-                data-testid="morse-book-related-author"
-              >
-                <h2
-                  id="morse-book-related-author-heading"
-                  className="mw-heading text-xl font-extrabold text-sky-950"
-                >
-                  More by this author
-                </h2>
-                <ul className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2">
-                  {relatedAuthorBooks.map((relatedBook) => (
-                    <li key={relatedBook.slug} className="min-w-0">
-                      <Link
-                        to={
-                          isAudiobook
-                            ? morseAudiobookPath(relatedBook.slug)
-                            : morseBookPath(relatedBook.slug)
-                        }
-                        className={metadataLinkClass}
-                        data-mw-related-author-slug={relatedBook.slug}
-                      >
-                        {relatedBook.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ) : null}
           </div>
 
           {isAudiobook ? (
@@ -2636,31 +2584,48 @@ function MorseBookWorkspace({
             />
           </div>
 
-          {!isAudiobook && publishReady ? (
+          {publishReady && (!isAudiobook || seoSummary) ? (
             <div className="flex flex-wrap gap-3 lg:mt-auto">
-              <a
-                href="#book-live-morse-player"
-                className={toolControlButtonClass({
-                  tone: "dark",
-                  rounded: "xl",
-                })}
-                data-testid="morse-book-view-live-translation-link"
-              >
-                <PlayIcon size={18} title={undefined} aria-hidden="true" />
-                View Live Translation
-              </a>
-              <a
-                href="#book-mp3-download"
-                className={toolControlButtonClass({
-                  tone: "light",
-                  hover: "dark",
-                  rounded: "xl",
-                })}
-                data-testid="morse-book-download-audiobook-link"
-              >
-                <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-                Download Audiobook MP3
-              </a>
+              {!isAudiobook ? (
+                <>
+                  <a
+                    href="#book-live-morse-player"
+                    className={toolControlButtonClass({
+                      tone: "dark",
+                      rounded: "xl",
+                    })}
+                    data-testid="morse-book-view-live-translation-link"
+                  >
+                    <PlayIcon size={18} title={undefined} aria-hidden="true" />
+                    View Live Translation
+                  </a>
+                  <a
+                    href="#book-mp3-download"
+                    className={toolControlButtonClass({
+                      tone: "light",
+                      hover: "dark",
+                      rounded: "xl",
+                    })}
+                    data-testid="morse-book-download-audiobook-link"
+                  >
+                    <DownloadIcon size={18} title={undefined} aria-hidden="true" />
+                    Download Audiobook MP3
+                  </a>
+                </>
+              ) : null}
+              {seoSummary ? (
+                <a
+                  href="#book-summary"
+                  className={toolControlButtonClass({
+                    tone: "light",
+                    hover: "dark",
+                    rounded: "xl",
+                  })}
+                  data-testid="morse-book-summary-link"
+                >
+                  Read book summary
+                </a>
+              ) : null}
             </div>
           ) : null}
 
@@ -3412,7 +3377,10 @@ function MorseBookWorkspace({
       </section>
       )}
 
-      <section className="mt-10 mw-static-surface rounded-xl p-5">
+      <section
+        className="mt-10 mw-static-surface rounded-xl p-5"
+        data-testid="morse-book-source-notes"
+      >
         <h2 className="mw-heading text-2xl font-extrabold text-sky-950">
           Source notes
         </h2>
@@ -3445,6 +3413,59 @@ function MorseBookWorkspace({
           </p>
         </div>
       </section>
+
+      {seoSummary ? (
+        <section
+          id="book-summary"
+          className="mt-10 scroll-mt-24"
+          aria-labelledby="morse-book-summary-heading"
+          data-testid="morse-book-seo-summary"
+        >
+          <h2
+            id="morse-book-summary-heading"
+            className="mw-heading text-2xl font-extrabold text-sky-950"
+          >
+            About this Morse book
+          </h2>
+          <div className="mt-3 max-w-[68ch] space-y-3 text-base leading-relaxed text-slate-700">
+            {seoSummaryParagraphs.map((paragraph, index) => (
+              <p key={`${book.slug}-seo-summary-${index}`}>{paragraph}</p>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {relatedAuthorBooks.length > 0 ? (
+        <section
+          className="mt-8"
+          aria-labelledby="morse-book-related-author-heading"
+          data-testid="morse-book-related-author"
+        >
+          <h2
+            id="morse-book-related-author-heading"
+            className="mw-heading text-xl font-extrabold text-sky-950"
+          >
+            More by this author
+          </h2>
+          <ul className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+            {relatedAuthorBooks.map((relatedBook) => (
+              <li key={relatedBook.slug} className="min-w-0">
+                <Link
+                  to={
+                    isAudiobook
+                      ? morseAudiobookPath(relatedBook.slug)
+                      : morseBookPath(relatedBook.slug)
+                  }
+                  className={metadataLinkClass}
+                  data-mw-related-author-slug={relatedBook.slug}
+                >
+                  {relatedBook.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <div
         hidden
