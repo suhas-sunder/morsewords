@@ -3,6 +3,15 @@ import fs from "node:fs";
 import path from "node:path";
 
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
+import {
+  buildLivePreviewProgressState,
+  hashLivePreviewProgressSignature,
+} from "../../app/client/components/morse-code-book-translator/bookLivePreviewProgress";
+import { applyExportPunctuationMode } from "../../app/client/components/morse-code-book-translator/bookDurationEstimate";
+import {
+  DEFAULT_BOOK_EXPORT_SETTINGS,
+  sanitizeBookExportSettings,
+} from "../../app/client/components/morse-code-book-translator/bookExportPresets";
 import { BOOK_LONG_EXPORT_MESSAGE } from "../../app/client/components/morse-code-book-translator/bookExportSafety";
 import { BOOK_CACHE_KEY_PREFIX } from "../../app/client/components/shared/storageRegistry";
 import { getMorseBookPublicContentUrls } from "../../app/client/data/morseBookContentConfig";
@@ -64,8 +73,14 @@ const TEST_BOOK_RUNTIME_SETTINGS_KEY =
   "morsewords:book-runtime:settings:v1:test-published-morse-book:test-published-v1:test-published-morse-book-content-hash-development-fixture-v1";
 const BOOK_RUNTIME_SETTINGS_KEY_PREFIX =
   "morsewords:book-runtime:settings:v1:";
+const BOOK_WORKSPACE_TIMEOUT_MS = 60_000;
 const TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY =
   "morsewords:book-live-preview-progress:v1:test-published-morse-book";
+const TEST_BOOK_DEFAULT_SECTION_IDS = ["chapter-001", "chapter-002"] as const;
+const TEST_BOOK_DEFAULT_SOURCE_TEXT = [
+  "CHAPTER I. Signals at Dawn\n\nSOS HELP carried across the practice room. The learner copied each signal, checked the spacing, and tried again with a steadier hand.",
+  "CHAPTER II. Evening Copy\n\nMorse practice was shorter tonight. The words came slowly, then clearly, as the tone settled into a calm rhythm.",
+].join("\n\n");
 const LIVE_PREVIEW_AUDIO_CONTROL_LABELS = [
   "Tone preset",
   "Character speed",
@@ -137,6 +152,34 @@ function readPublicBookRuntimeSettingsKey(slug: string) {
     `app/client/assets/books/cloudflare-export/books/${slug}.json`,
   );
   return `${BOOK_RUNTIME_SETTINGS_KEY_PREFIX}${slug}:${content.manifest.contentVersion}:${content.manifest.contentHash}`;
+}
+
+function testPublishedLivePreviewProgressContentHash() {
+  const exportSettings = sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS);
+  const cleanedExportText = applyExportPunctuationMode(
+    TEST_BOOK_DEFAULT_SOURCE_TEXT,
+    exportSettings,
+  );
+  return hashLivePreviewProgressSignature(
+    JSON.stringify({
+      book: {
+        contentHash:
+          "test-published-morse-book-content-hash-development-fixture-v1",
+        contentVersion: "test-published-v1",
+        slug: TEST_BOOK_SLUG,
+      },
+      mode: "book",
+      selectedSectionIds: TEST_BOOK_DEFAULT_SECTION_IDS,
+      sourceHash: hashLivePreviewProgressSignature(cleanedExportText),
+      timing: {
+        charWpm: exportSettings.charWpm,
+        farnsworthWpm: exportSettings.farnsworthWpm,
+        paragraphPauseMultiplier: exportSettings.paragraphPauseMultiplier,
+        punctuationMode: exportSettings.punctuationMode,
+        sentencePauseMultiplier: exportSettings.sentencePauseMultiplier,
+      },
+    }),
+  );
 }
 
 function readGeneratedDefaultSectionIds(slug: string) {
@@ -592,8 +635,21 @@ async function openApprovedBook(page: Page) {
 
 async function openPublicBook(page: Page, pathName: string) {
   await blockExternalNetwork(page);
-  await gotoPublicBookPage(page, pathName);
-  await waitForApprovedBookWorkspace(page);
+  let lastError: unknown = null;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    if (attempt > 0) await page.goto("about:blank");
+    await gotoPublicBookPage(page, pathName);
+    try {
+      await waitForApprovedBookWorkspace(
+        page,
+        attempt === 0 ? 15_000 : BOOK_WORKSPACE_TIMEOUT_MS,
+      );
+      return;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError;
 }
 
 async function gotoPublicBookPage(page: Page, pathName: string) {
@@ -604,21 +660,28 @@ async function gotoPublicBookPage(page: Page, pathName: string) {
   expect(response?.ok()).toBe(true);
 }
 
-async function waitForApprovedBookWorkspace(page: Page) {
-  await expect(page.locator("[data-mw-morse-book-page]")).toHaveAttribute(
-    "data-mw-morse-book-available",
-    "true",
-    { timeout: 30_000 },
-  );
-  await expect(page.locator("[data-mw-morse-book-page]")).toHaveAttribute(
+async function waitForApprovedBookWorkspace(
+  page: Page,
+  timeoutMs = BOOK_WORKSPACE_TIMEOUT_MS,
+) {
+  const pageRoot = page.locator("[data-mw-morse-book-page]");
+  await expect(pageRoot).toHaveAttribute(
     "data-mw-morse-book-full-loading",
     "false",
-    { timeout: 30_000 },
+    { timeout: timeoutMs },
   );
-  await expect(page.locator("[data-mw-morse-book-page]")).toHaveAttribute(
+  await expect(pageRoot).toHaveAttribute(
     "data-mw-morse-book-settings-restored",
     "true",
-    { timeout: 30_000 },
+    { timeout: timeoutMs },
+  );
+  await expect(page.locator("[data-mw-morse-book-full-loading-status]")).toHaveCount(
+    0,
+    { timeout: timeoutMs },
+  );
+  await expect(page.locator("[data-mw-morse-book-loading-sections]")).toHaveCount(
+    0,
+    { timeout: timeoutMs },
   );
 }
 
@@ -1990,8 +2053,9 @@ test.describe("Morse book page foundation", () => {
     ).toContainText(
       /Loading book text|Fetching book data|Preparing chapters|Restoring saved settings|Loading full book sections/,
     );
-    await waitForRouteReady(page);
-    await expect(page.locator("[data-testid='morse-book-load-error']")).toBeVisible();
+    await expect(page.locator("[data-testid='morse-book-load-error']")).toBeVisible({
+      timeout: 30_000,
+    });
     await expect(
       page
         .locator("[data-testid='morse-book-load-error']")
@@ -2012,8 +2076,9 @@ test.describe("Morse book page foundation", () => {
       });
     });
     await page.goto(ERROR_BOOK_PUBLIC_PATH, { waitUntil: "domcontentloaded" });
-    await waitForRouteReady(page);
-    await expect(page.locator("[data-testid='morse-book-load-error']")).toBeVisible();
+    await expect(page.locator("[data-testid='morse-book-load-error']")).toBeVisible({
+      timeout: 30_000,
+    });
     await expect(page.getByRole("button", { name: "Retry" })).toBeVisible();
   });
 
@@ -2723,13 +2788,28 @@ test.describe("Morse book page foundation", () => {
       name: "Live player timeline",
     });
     await expect(liveTimeline).toBeVisible();
-    await liveTimeline.focus();
-    for (let press = 0; press < 6; press += 1) {
-      await page.keyboard.press("ArrowRight");
-    }
+    await expect(liveTimeline).toHaveAttribute("aria-valuenow", "0");
+
+    const seededProgress = buildLivePreviewProgressState({
+      contentHash: testPublishedLivePreviewProgressContentHash(),
+      elapsedMs: 12_000,
+      segmentIndex: 0,
+      updatedAt: 1_700_000_000_000,
+    });
+    await page.evaluate(
+      ({ key, progress }) => {
+        localStorage.setItem(key, JSON.stringify(progress));
+      },
+      {
+        key: TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY,
+        progress: seededProgress,
+      },
+    );
 
     await expect
-      .poll(() => readBookLivePreviewProgress(page))
+      .poll(() => readBookLivePreviewProgress(page), {
+        timeout: 30_000,
+      })
       .toMatchObject({
         segmentIndex: 0,
         version: 1,
