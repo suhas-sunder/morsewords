@@ -1,8 +1,34 @@
+import type {
+  MorseBookLibrarySummary,
+  MorseBookManifest,
+} from "./morseBookTypes";
+
 export type MorseBookAuthorDisplay = {
   contextText: string;
   names: string[];
   text: string;
 };
+
+export function preserveMorseBookDisplayTitle(
+  book: MorseBookManifest,
+  canonicalSummary: Pick<MorseBookLibrarySummary, "cover" | "slug" | "title">,
+) {
+  if (
+    book.slug !== canonicalSummary.slug ||
+    book.title === canonicalSummary.title
+  ) {
+    return book;
+  }
+
+  return {
+    ...book,
+    title: canonicalSummary.title,
+    cover: {
+      ...book.cover,
+      alt: canonicalSummary.cover.alt,
+    },
+  };
+}
 
 const ACTIVE_PREFIX_PATTERN = /^active\s+/i;
 const ACTIVE_AUTHOR_WITH_ERA_PATTERN =

@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "slug": "for-the-duration-of-the-war",
-  "title": "The Toys of Peace, and Other Papers",
+  "title": "For the Duration of the War",
   "author": [
     "Saki"
   ],
-  "contentVersion": "537c4b8dcf007806",
-  "contentHash": "537c4b8dcf0078064dedaf38a2a54654378f1701ab0a3e9eb367eacea9b9a06b",
+  "contentVersion": "a789b13ed39f462f",
+  "contentHash": "a789b13ed39f462f0435c21e423c7eff582efa2c28347400fb09cf45942000c2",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -31,7 +31,7 @@
   "cover": {
     "src": null,
     "placeholder": true,
-    "alt": "Placeholder cover for The Toys of Peace, and Other Papers"
+    "alt": "Placeholder cover for For the Duration of the War"
   },
   "stats": {
     "originalCharacterCount": 30593,

@@ -15,6 +15,7 @@ import {
 import { BOOK_LONG_EXPORT_MESSAGE } from "../../app/client/components/morse-code-book-translator/bookExportSafety";
 import { BOOK_CACHE_KEY_PREFIX } from "../../app/client/components/shared/storageRegistry";
 import { getMorseBookPublicContentUrls } from "../../app/client/data/morseBookContentConfig";
+import { preserveMorseBookDisplayTitle } from "../../app/client/data/morseBookDisplay";
 
 const ROOT = process.cwd();
 const ALICE_SLUG = "alices-adventures-in-wonderland";
@@ -35,6 +36,29 @@ const THE_ELDERBUSH_SLUG = "the-elderbush";
 const THE_BOOK_OF_DRAGONS_SLUG = "the-book-of-dragons";
 const THE_EMERALD_CITY_OF_OZ_SLUG = "the-emerald-city-of-oz";
 const NON_SUMMARY_BOOK_SLUG = "king-grisly-beard";
+const REQUIRED_STORY_TITLES = {
+  "the-dream-of-little-tuk": "The Dream of Little Tuk",
+  "the-false-collar": "The False Collar",
+  "the-naughty-boy": "The Naughty Boy",
+  "the-red-shoes": "The Red Shoes",
+  "the-shadow": "The Shadow",
+  "the-story-of-a-mother": "The Story of a Mother",
+  "the-ugly-duckling": "The Ugly Duckling",
+  "ole-luk-oie-the-dream-god": "Ole-Luk-Oie, the Dream-God",
+  "little-ida-s-flowers": "Little Ida's Flowers",
+  "the-steadfast-tin-soldier": "The Steadfast Tin Soldier",
+  "hansel-and-gretel": "Hansel and Gretel",
+  "little-red-riding-hood": "Little Red Riding Hood",
+  rumpelstiltskin: "Rumpelstiltskin",
+  "the-frog-prince": "The Frog-Prince",
+  "the-goose-girl": "The Goose-Girl",
+  "the-golden-bird": "The Golden Bird",
+  "the-bamboo-cutter-and-the-moon-child":
+    "The Bamboo-Cutter and the Moon-Child",
+  "the-goblin-of-adachigahara": "The Goblin of Adachigahara",
+  "the-jelly-fish-and-the-monkey": "The Jelly Fish and the Monkey",
+  "the-tongue-cut-sparrow": "The Tongue-Cut Sparrow",
+} as const;
 const NON_SUMMARY_BOOK_PREVIEW_PATH =
   `/morse-code-books/${NON_SUMMARY_BOOK_SLUG}?preview=unpublished`;
 const ALICE_PUBLIC_PATH = `/morse-code-books/${ALICE_SLUG}`;
@@ -825,6 +849,100 @@ test.describe("Morse book page foundation", () => {
       publicManifestUrl: "https://cdn.example.test/morse-books/public-manifest.json",
       bookUrl: "https://cdn.example.test/morse-books/books/treasure-island.json",
     });
+  });
+
+  test("keeps canonical story titles across generated, SEO, and stale public metadata", () => {
+    type DisplayManifest = Parameters<typeof preserveMorseBookDisplayTitle>[0];
+    type CanonicalSummary = Parameters<typeof preserveMorseBookDisplayTitle>[1];
+    const library = readJson<{ books: Array<CanonicalSummary & { title: string }> }>(
+      "app/client/assets/books/generated/library-manifest.json",
+    );
+    const seo = readJson<{
+      expectedSummaryCount: number;
+      summaries: Array<{ slug: string; title: string }>;
+    }>("app/client/assets/books/seo-summaries/book-seo-summaries.json");
+
+    expect(library.books).toHaveLength(465);
+    for (const [slug, title] of Object.entries(REQUIRED_STORY_TITLES)) {
+      expect(library.books.find((book) => book.slug === slug)?.title).toBe(title);
+      const summary = seo.summaries.find((item) => item.slug === slug);
+      if (summary) expect(summary.title).toBe(title);
+    }
+
+    expect(seo.summaries).toHaveLength(270);
+    expect(seo.expectedSummaryCount).toBe(270);
+    expect(
+      library.books.find((book) => book.slug === "for-the-duration-of-the-war")
+        ?.title,
+    ).toBe("For the Duration of the War");
+    expect(
+      library.books.find(
+        (book) => book.slug === "the-story-of-the-inexperienced-ghost",
+      )?.title,
+    ).toBe("The Story of the Inexperienced Ghost");
+
+    const elderbushSummary = library.books.find(
+      (book) => book.slug === THE_ELDERBUSH_SLUG,
+    );
+    const stalePublicContent = readJson<{ manifest: DisplayManifest }>(
+      "app/client/assets/books/cloudflare-export/books/the-elderbush.json",
+    );
+    expect(elderbushSummary).toBeTruthy();
+    expect(stalePublicContent.manifest.title).toBe("Andersen's Fairy Tales");
+    const normalizedManifest = preserveMorseBookDisplayTitle(
+      stalePublicContent.manifest,
+      elderbushSummary!,
+    );
+    expect(normalizedManifest.title).toBe("The Elderbush");
+    expect(normalizedManifest.cover.alt).toContain("The Elderbush");
+  });
+
+  test("renders individual story titles on book and audiobook surfaces", async ({
+    page,
+  }) => {
+    await blockExternalNetwork(page);
+    await page.goto("/morse-code-books", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await page
+      .getByLabel("Search title, author, description, or subject")
+      .fill("The Ugly Duckling");
+    const bookCard = page.locator(
+      '[data-testid="morse-book-card"][data-mw-morse-book-card-slug="the-ugly-duckling"]',
+    );
+    await expect(bookCard.getByTestId("morse-book-card-title")).toHaveText(
+      "The Ugly Duckling",
+    );
+
+    await page.goto("/morse-code-audiobooks", {
+      waitUntil: "domcontentloaded",
+    });
+    await waitForRouteReady(page);
+    await page
+      .getByLabel("Search Morse audiobooks by title, author, source, or subject")
+      .fill("The Ugly Duckling");
+    const audiobookCard = page.locator(
+      '[data-testid="morse-audiobook-card"][data-mw-morse-audiobook-card-slug="the-ugly-duckling"]',
+    );
+    await expect(
+      audiobookCard.getByTestId("morse-audiobook-card-title"),
+    ).toHaveText("The Ugly Duckling");
+
+    await openPublicBook(page, "/morse-code-books/the-elderbush");
+    await expect(page.locator("h1")).toHaveText("The Elderbush");
+    await openPublicBook(page, "/morse-code-audiobooks/the-elderbush");
+    await expect(page.locator("h1")).toHaveText("The Elderbush");
+
+    for (const [slug, title] of [
+      ["the-ugly-duckling", "The Ugly Duckling"],
+      ["the-red-shoes", "The Red Shoes"],
+      ["hansel-and-gretel", "Hansel and Gretel"],
+    ] as const) {
+      await openGeneratedBookPreview(
+        page,
+        `/morse-code-books/${slug}?preview=unpublished`,
+      );
+      await expect(page.locator("h1")).toHaveText(title);
+    }
   });
 
   test("keeps generated book summaries summary-only and publishes processed temp books", async ({

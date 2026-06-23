@@ -1,0 +1,685 @@
+{
+  "schemaVersion": 1,
+  "auditName": "story-title-display-integrity",
+  "auditDate": "2026-06-23",
+  "generatedEntriesChecked": 465,
+  "rootCause": {
+    "generatedMetadata": "Pilot write pass 6 used the dry-run source collection title for two single-story extractions.",
+    "routeDisplay": "Whole-book hydration trusted an older public payload manifest title and replaced the canonical generated-library title.",
+    "protectedPublicPayloadEvidence": "Ten protected public payloads repeat Andersen's Fairy Tales while their canonical generated records have individual story titles."
+  },
+  "duplicateTitleAudit": {
+    "before": {
+      "generated465": [
+        {
+          "title": "Anne of Green Gables",
+          "slugs": [
+            "anne-of-green-gables",
+            "anne-of-green-gables-gutenberg-45"
+          ],
+          "classification": "legitimate",
+          "reason": "Documented retained source/slug variant; duplicateResolutionSource records the deterministic source match."
+        },
+        {
+          "title": "The Count of Monte Cristo",
+          "slugs": [
+            "the-count-of-monte-cristo",
+            "the-count-of-monte-cristo-gutenberg-1184"
+          ],
+          "classification": "legitimate",
+          "reason": "Documented retained source/slug variants; both records are explicitly marked manual-review."
+        },
+        {
+          "title": "The Secret Garden",
+          "slugs": [
+            "the-secret-garden",
+            "the-secret-garden-gutenberg-113"
+          ],
+          "classification": "legitimate",
+          "reason": "Two documented Project Gutenberg editions (ebooks 17396 and 113), not anthology story extractions."
+        }
+      ],
+      "protectedPublicPayload": [
+        {
+          "title": "Andersen's Fairy Tales",
+          "slugs": [
+            "the-bell",
+            "the-elderbush",
+            "the-emperor-s-new-clothes",
+            "the-fir-tree",
+            "the-leap-frog",
+            "the-old-house",
+            "the-real-princess",
+            "the-shoes-of-fortune",
+            "the-snow-queen",
+            "the-swineherd"
+          ],
+          "classification": "suspicious",
+          "reason": "A parent collection title is repeated across extracted-story slugs."
+        },
+        {
+          "title": "Anne of Green Gables",
+          "slugs": [
+            "anne-of-green-gables",
+            "anne-of-green-gables-gutenberg-45"
+          ],
+          "classification": "legitimate",
+          "reason": "Documented retained source/slug variant; duplicateResolutionSource records the deterministic source match."
+        },
+        {
+          "title": "The Count of Monte Cristo",
+          "slugs": [
+            "the-count-of-monte-cristo",
+            "the-count-of-monte-cristo-gutenberg-1184"
+          ],
+          "classification": "legitimate",
+          "reason": "Documented retained source/slug variants; both records are explicitly marked manual-review."
+        },
+        {
+          "title": "The Secret Garden",
+          "slugs": [
+            "the-secret-garden",
+            "the-secret-garden-gutenberg-113"
+          ],
+          "classification": "legitimate",
+          "reason": "Two documented Project Gutenberg editions (ebooks 17396 and 113), not anthology story extractions."
+        }
+      ]
+    },
+    "after": {
+      "generated465": [
+        {
+          "title": "Anne of Green Gables",
+          "slugs": [
+            "anne-of-green-gables",
+            "anne-of-green-gables-gutenberg-45"
+          ],
+          "classification": "legitimate",
+          "reason": "Documented retained source/slug variant; duplicateResolutionSource records the deterministic source match."
+        },
+        {
+          "title": "The Count of Monte Cristo",
+          "slugs": [
+            "the-count-of-monte-cristo",
+            "the-count-of-monte-cristo-gutenberg-1184"
+          ],
+          "classification": "legitimate",
+          "reason": "Documented retained source/slug variants; both records are explicitly marked manual-review."
+        },
+        {
+          "title": "The Secret Garden",
+          "slugs": [
+            "the-secret-garden",
+            "the-secret-garden-gutenberg-113"
+          ],
+          "classification": "legitimate",
+          "reason": "Two documented Project Gutenberg editions (ebooks 17396 and 113), not anthology story extractions."
+        }
+      ],
+      "protectedPublicPayloadAfterDisplayAdapter": [
+        {
+          "title": "Anne of Green Gables",
+          "slugs": [
+            "anne-of-green-gables",
+            "anne-of-green-gables-gutenberg-45"
+          ],
+          "classification": "legitimate",
+          "reason": "Documented retained source/slug variant; duplicateResolutionSource records the deterministic source match."
+        },
+        {
+          "title": "The Count of Monte Cristo",
+          "slugs": [
+            "the-count-of-monte-cristo",
+            "the-count-of-monte-cristo-gutenberg-1184"
+          ],
+          "classification": "legitimate",
+          "reason": "Documented retained source/slug variants; both records are explicitly marked manual-review."
+        },
+        {
+          "title": "The Secret Garden",
+          "slugs": [
+            "the-secret-garden",
+            "the-secret-garden-gutenberg-113"
+          ],
+          "classification": "legitimate",
+          "reason": "Two documented Project Gutenberg editions (ebooks 17396 and 113), not anthology story extractions."
+        }
+      ]
+    }
+  },
+  "parentCollectionLeakage": {
+    "before": {
+      "generatedMetadata": [
+        {
+          "slug": "for-the-duration-of-the-war",
+          "beforeTitle": "The Toys of Peace, and Other Papers",
+          "afterTitle": "For the Duration of the War",
+          "sourceCollectionTitle": "The Toys of Peace, and Other Papers"
+        },
+        {
+          "slug": "the-story-of-the-inexperienced-ghost",
+          "beforeTitle": "Twelve Stories and a Dream",
+          "afterTitle": "The Story of the Inexperienced Ghost",
+          "sourceCollectionTitle": "Twelve Stories and a Dream"
+        }
+      ],
+      "protectedPublicPayload": [
+        {
+          "slug": "the-bell",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Bell",
+          "bookPath": "books/the-bell.json"
+        },
+        {
+          "slug": "the-elderbush",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Elderbush",
+          "bookPath": "books/the-elderbush.json"
+        },
+        {
+          "slug": "the-emperor-s-new-clothes",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Emperor's New Clothes",
+          "bookPath": "books/the-emperor-s-new-clothes.json"
+        },
+        {
+          "slug": "the-fir-tree",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Fir Tree",
+          "bookPath": "books/the-fir-tree.json"
+        },
+        {
+          "slug": "the-leap-frog",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Leap-Frog",
+          "bookPath": "books/the-leap-frog.json"
+        },
+        {
+          "slug": "the-old-house",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Old House",
+          "bookPath": "books/the-old-house.json"
+        },
+        {
+          "slug": "the-real-princess",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Real Princess",
+          "bookPath": "books/the-real-princess.json"
+        },
+        {
+          "slug": "the-shoes-of-fortune",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Shoes of Fortune",
+          "bookPath": "books/the-shoes-of-fortune.json"
+        },
+        {
+          "slug": "the-snow-queen",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Snow Queen",
+          "bookPath": "books/the-snow-queen.json"
+        },
+        {
+          "slug": "the-swineherd",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Swineherd",
+          "bookPath": "books/the-swineherd.json"
+        }
+      ]
+    },
+    "after": {
+      "generatedMetadata": [],
+      "userFacingDisplay": [],
+      "protectedPayloadFilesStillStored": [
+        {
+          "slug": "the-bell",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Bell",
+          "bookPath": "books/the-bell.json"
+        },
+        {
+          "slug": "the-elderbush",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Elderbush",
+          "bookPath": "books/the-elderbush.json"
+        },
+        {
+          "slug": "the-emperor-s-new-clothes",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Emperor's New Clothes",
+          "bookPath": "books/the-emperor-s-new-clothes.json"
+        },
+        {
+          "slug": "the-fir-tree",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Fir Tree",
+          "bookPath": "books/the-fir-tree.json"
+        },
+        {
+          "slug": "the-leap-frog",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Leap-Frog",
+          "bookPath": "books/the-leap-frog.json"
+        },
+        {
+          "slug": "the-old-house",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Old House",
+          "bookPath": "books/the-old-house.json"
+        },
+        {
+          "slug": "the-real-princess",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Real Princess",
+          "bookPath": "books/the-real-princess.json"
+        },
+        {
+          "slug": "the-shoes-of-fortune",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Shoes of Fortune",
+          "bookPath": "books/the-shoes-of-fortune.json"
+        },
+        {
+          "slug": "the-snow-queen",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Snow Queen",
+          "bookPath": "books/the-snow-queen.json"
+        },
+        {
+          "slug": "the-swineherd",
+          "payloadTitle": "Andersen's Fairy Tales",
+          "canonicalTitle": "The Swineherd",
+          "bookPath": "books/the-swineherd.json"
+        }
+      ]
+    }
+  },
+  "titleSourceCollectionFieldMismatches": {
+    "publicPayloadVsCanonicalGenerated": [
+      {
+        "slug": "the-bell",
+        "payloadTitle": "Andersen's Fairy Tales",
+        "canonicalTitle": "The Bell",
+        "classification": "parent-collection-leakage"
+      },
+      {
+        "slug": "the-elderbush",
+        "payloadTitle": "Andersen's Fairy Tales",
+        "canonicalTitle": "The Elderbush",
+        "classification": "parent-collection-leakage"
+      },
+      {
+        "slug": "the-emperor-s-new-clothes",
+        "payloadTitle": "Andersen's Fairy Tales",
+        "canonicalTitle": "The Emperor's New Clothes",
+        "classification": "parent-collection-leakage"
+      },
+      {
+        "slug": "the-fir-tree",
+        "payloadTitle": "Andersen's Fairy Tales",
+        "canonicalTitle": "The Fir Tree",
+        "classification": "parent-collection-leakage"
+      },
+      {
+        "slug": "the-leap-frog",
+        "payloadTitle": "Andersen's Fairy Tales",
+        "canonicalTitle": "The Leap-Frog",
+        "classification": "parent-collection-leakage"
+      },
+      {
+        "slug": "the-old-house",
+        "payloadTitle": "Andersen's Fairy Tales",
+        "canonicalTitle": "The Old House",
+        "classification": "parent-collection-leakage"
+      },
+      {
+        "slug": "the-real-princess",
+        "payloadTitle": "Andersen's Fairy Tales",
+        "canonicalTitle": "The Real Princess",
+        "classification": "parent-collection-leakage"
+      },
+      {
+        "slug": "the-shoes-of-fortune",
+        "payloadTitle": "Andersen's Fairy Tales",
+        "canonicalTitle": "The Shoes of Fortune",
+        "classification": "parent-collection-leakage"
+      },
+      {
+        "slug": "the-snow-queen",
+        "payloadTitle": "Andersen's Fairy Tales",
+        "canonicalTitle": "The Snow Queen",
+        "classification": "parent-collection-leakage"
+      },
+      {
+        "slug": "the-swineherd",
+        "payloadTitle": "Andersen's Fairy Tales",
+        "canonicalTitle": "The Swineherd",
+        "classification": "parent-collection-leakage"
+      },
+      {
+        "slug": "frankenstein",
+        "payloadTitle": "Frankenstein; or, the modern prometheus",
+        "canonicalTitle": "Frankenstein; or, the Modern Prometheus",
+        "classification": "canonical-title-normalization"
+      },
+      {
+        "slug": "the-call-of-the-wild",
+        "payloadTitle": "The call of the wild",
+        "canonicalTitle": "The Call of the Wild",
+        "classification": "canonical-title-normalization"
+      },
+      {
+        "slug": "the-three-musketeers",
+        "payloadTitle": "The three musketeers",
+        "canonicalTitle": "The Three Musketeers",
+        "classification": "canonical-title-normalization"
+      }
+    ],
+    "generatedFiles": [
+      {
+        "slug": "black-beauty",
+        "libraryTitle": "Black Beauty The autobiography of a horse",
+        "file": "rights_report.json",
+        "fileTitle": "Black Beauty",
+        "classification": "benign-source-variant",
+        "reason": "The rights evidence uses the short source title 'Black Beauty'; the user-facing generated title carries the source subtitle."
+      },
+      {
+        "slug": "peter-pan",
+        "libraryTitle": "Peter Pan [Peter and Wendy]",
+        "file": "rights_report.json",
+        "fileTitle": "Peter Pan",
+        "classification": "benign-source-variant",
+        "reason": "The rights evidence uses the short source title 'Peter Pan'; the user-facing generated title retains the catalog bracket title."
+      }
+    ],
+    "suspiciousGeneratedFiles": [],
+    "note": "Collection provenance is represented by source URL/ebook metadata and summary context; it is not allowed to replace the canonical title."
+  },
+  "requiredSlugVerification": [
+    {
+      "slug": "the-dream-of-little-tuk",
+      "expectedTitle": "The Dream of Little Tuk",
+      "actualTitle": "The Dream of Little Tuk",
+      "status": "pass"
+    },
+    {
+      "slug": "the-false-collar",
+      "expectedTitle": "The False Collar",
+      "actualTitle": "The False Collar",
+      "status": "pass"
+    },
+    {
+      "slug": "the-naughty-boy",
+      "expectedTitle": "The Naughty Boy",
+      "actualTitle": "The Naughty Boy",
+      "status": "pass"
+    },
+    {
+      "slug": "the-red-shoes",
+      "expectedTitle": "The Red Shoes",
+      "actualTitle": "The Red Shoes",
+      "status": "pass"
+    },
+    {
+      "slug": "the-shadow",
+      "expectedTitle": "The Shadow",
+      "actualTitle": "The Shadow",
+      "status": "pass"
+    },
+    {
+      "slug": "the-story-of-a-mother",
+      "expectedTitle": "The Story of a Mother",
+      "actualTitle": "The Story of a Mother",
+      "status": "pass"
+    },
+    {
+      "slug": "the-ugly-duckling",
+      "expectedTitle": "The Ugly Duckling",
+      "actualTitle": "The Ugly Duckling",
+      "status": "pass"
+    },
+    {
+      "slug": "ole-luk-oie-the-dream-god",
+      "expectedTitle": "Ole-Luk-Oie, the Dream-God",
+      "actualTitle": "Ole-Luk-Oie, the Dream-God",
+      "status": "pass"
+    },
+    {
+      "slug": "little-ida-s-flowers",
+      "expectedTitle": "Little Ida's Flowers",
+      "actualTitle": "Little Ida's Flowers",
+      "status": "pass"
+    },
+    {
+      "slug": "the-steadfast-tin-soldier",
+      "expectedTitle": "The Steadfast Tin Soldier",
+      "actualTitle": "The Steadfast Tin Soldier",
+      "status": "pass"
+    },
+    {
+      "slug": "hansel-and-gretel",
+      "expectedTitle": "Hansel and Gretel",
+      "actualTitle": "Hansel and Gretel",
+      "status": "pass"
+    },
+    {
+      "slug": "little-red-riding-hood",
+      "expectedTitle": "Little Red Riding Hood",
+      "actualTitle": "Little Red Riding Hood",
+      "status": "pass"
+    },
+    {
+      "slug": "rumpelstiltskin",
+      "expectedTitle": "Rumpelstiltskin",
+      "actualTitle": "Rumpelstiltskin",
+      "status": "pass"
+    },
+    {
+      "slug": "the-frog-prince",
+      "expectedTitle": "The Frog-Prince",
+      "actualTitle": "The Frog-Prince",
+      "status": "pass"
+    },
+    {
+      "slug": "the-goose-girl",
+      "expectedTitle": "The Goose-Girl",
+      "actualTitle": "The Goose-Girl",
+      "status": "pass"
+    },
+    {
+      "slug": "the-golden-bird",
+      "expectedTitle": "The Golden Bird",
+      "actualTitle": "The Golden Bird",
+      "status": "pass"
+    },
+    {
+      "slug": "the-bamboo-cutter-and-the-moon-child",
+      "expectedTitle": "The Bamboo-Cutter and the Moon-Child",
+      "actualTitle": "The Bamboo-Cutter and the Moon-Child",
+      "status": "pass"
+    },
+    {
+      "slug": "the-goblin-of-adachigahara",
+      "expectedTitle": "The Goblin of Adachigahara",
+      "actualTitle": "The Goblin of Adachigahara",
+      "status": "pass"
+    },
+    {
+      "slug": "the-jelly-fish-and-the-monkey",
+      "expectedTitle": "The Jelly Fish and the Monkey",
+      "actualTitle": "The Jelly Fish and the Monkey",
+      "status": "pass"
+    },
+    {
+      "slug": "the-tongue-cut-sparrow",
+      "expectedTitle": "The Tongue-Cut Sparrow",
+      "actualTitle": "The Tongue-Cut Sparrow",
+      "status": "pass"
+    }
+  ],
+  "affectedRouteListCardExamples": [
+    {
+      "surface": "/morse-code-books",
+      "result": "Cards and directory links use canonical generated titles."
+    },
+    {
+      "surface": "/morse-code-audiobooks",
+      "result": "Cards and directory links use canonical generated titles."
+    },
+    {
+      "surface": "/morse-code-books/the-elderbush",
+      "before": "Andersen's Fairy Tales after whole-book hydration",
+      "after": "The Elderbush"
+    },
+    {
+      "surface": "/morse-code-audiobooks/the-elderbush",
+      "before": "Andersen's Fairy Tales after whole-book hydration",
+      "after": "The Elderbush"
+    },
+    {
+      "surface": "/morse-code-books/the-ugly-duckling",
+      "after": "The Ugly Duckling"
+    },
+    {
+      "surface": "/morse-code-books/the-red-shoes",
+      "after": "The Red Shoes"
+    },
+    {
+      "surface": "/morse-code-books/hansel-and-gretel",
+      "after": "Hansel and Gretel"
+    },
+    {
+      "surface": "/morse-code-audiobooks/the-ugly-duckling",
+      "after": "The Ugly Duckling"
+    }
+  ],
+  "fixedEntries": {
+    "generatedMetadata": [
+      {
+        "slug": "for-the-duration-of-the-war",
+        "beforeTitle": "The Toys of Peace, and Other Papers",
+        "afterTitle": "For the Duration of the War",
+        "sourceCollectionTitle": "The Toys of Peace, and Other Papers"
+      },
+      {
+        "slug": "the-story-of-the-inexperienced-ghost",
+        "beforeTitle": "Twelve Stories and a Dream",
+        "afterTitle": "The Story of the Inexperienced Ghost",
+        "sourceCollectionTitle": "Twelve Stories and a Dream"
+      }
+    ],
+    "routeDisplayIntegrity": [
+      {
+        "slug": "the-bell",
+        "beforeTitle": "Andersen's Fairy Tales",
+        "afterTitle": "The Bell"
+      },
+      {
+        "slug": "the-elderbush",
+        "beforeTitle": "Andersen's Fairy Tales",
+        "afterTitle": "The Elderbush"
+      },
+      {
+        "slug": "the-emperor-s-new-clothes",
+        "beforeTitle": "Andersen's Fairy Tales",
+        "afterTitle": "The Emperor's New Clothes"
+      },
+      {
+        "slug": "the-fir-tree",
+        "beforeTitle": "Andersen's Fairy Tales",
+        "afterTitle": "The Fir Tree"
+      },
+      {
+        "slug": "the-leap-frog",
+        "beforeTitle": "Andersen's Fairy Tales",
+        "afterTitle": "The Leap-Frog"
+      },
+      {
+        "slug": "the-old-house",
+        "beforeTitle": "Andersen's Fairy Tales",
+        "afterTitle": "The Old House"
+      },
+      {
+        "slug": "the-real-princess",
+        "beforeTitle": "Andersen's Fairy Tales",
+        "afterTitle": "The Real Princess"
+      },
+      {
+        "slug": "the-shoes-of-fortune",
+        "beforeTitle": "Andersen's Fairy Tales",
+        "afterTitle": "The Shoes of Fortune"
+      },
+      {
+        "slug": "the-snow-queen",
+        "beforeTitle": "Andersen's Fairy Tales",
+        "afterTitle": "The Snow Queen"
+      },
+      {
+        "slug": "the-swineherd",
+        "beforeTitle": "Andersen's Fairy Tales",
+        "afterTitle": "The Swineherd"
+      }
+    ]
+  },
+  "routeDisplayGuard": {
+    "publicSummaryUsesCanonicalTitle": true,
+    "publicContentUsesCanonicalTitle": true
+  },
+  "seoSummaryConsistency": {
+    "expectedSummaryCount": 270,
+    "summaryCount": 270,
+    "matchingTitleCount": 270,
+    "mismatches": [],
+    "metadataChangedSlugs": [
+      "for-the-duration-of-the-war",
+      "the-story-of-the-inexperienced-ghost"
+    ],
+    "summaryBodiesChanged": false
+  },
+  "changeScope": {
+    "generatedMetadataChanged": true,
+    "routeDisplayLogicChanged": true,
+    "seoSummaryMetadataChanged": true,
+    "storyTextChanged": false,
+    "slugsChanged": false,
+    "cloudflareExportChanged": false
+  },
+  "fixedFiles": [
+    "app/client/data/morseBookDisplay.ts",
+    "app/client/data/morseBooks.ts",
+    "scripts/books/pilot-book-processing-write-6.ts",
+    "scripts/books/story-title-display-integrity-audit.ts",
+    "app/client/assets/books/generated/library-manifest.json",
+    "app/client/assets/books/generated/for-the-duration-of-the-war/{manifest,cleaned_book,processed_book,rights_report}.json",
+    "app/client/assets/books/generated/the-story-of-the-inexperienced-ghost/{manifest,cleaned_book,processed_book,rights_report}.json",
+    "public/book-previews/for-the-duration-of-the-war.preview.json",
+    "public/book-previews/the-story-of-the-inexperienced-ghost.preview.json",
+    "public/book-previews/manifest.json",
+    "app/client/assets/books/seo-summaries/book-seo-summaries.json",
+    "tests/qa-robustness-review/morse-book-page.spec.ts",
+    "package.json"
+  ],
+  "unresolvedTitleCases": [
+    "10 protected Cloudflare export payload titles remain stale by instruction; the display adapter now prevents them from replacing canonical titles, and the next separately authorized export should regenerate them.",
+    "black-beauty: rights_report.json retains a documented non-display source-title variant (The rights evidence uses the short source title 'Black Beauty'; the user-facing generated title carries the source subtitle.)",
+    "peter-pan: rights_report.json retains a documented non-display source-title variant (The rights evidence uses the short source title 'Peter Pan'; the user-facing generated title retains the catalog bracket title.)"
+  ],
+  "protectedFolders": {
+    "rawSources": {
+      "path": "app/client/assets/temp-books",
+      "changedByTask": false
+    },
+    "cloudflareExport": {
+      "path": "app/client/assets/books/cloudflare-export",
+      "changedByTask": false,
+      "inspectedReadOnly": true
+    }
+  },
+  "recommendation": {
+    "summaryBatch6": "Summary batch 6 can resume after this branch is reviewed/merged; do not start it in this branch."
+  },
+  "validation": {
+    "result": "pass",
+    "failures": []
+  }
+}

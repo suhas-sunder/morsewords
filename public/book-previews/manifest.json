@@ -1271,8 +1271,8 @@
     {
       "slug": "for-the-duration-of-the-war",
       "path": "/book-previews/for-the-duration-of-the-war.preview.json",
-      "contentVersion": "537c4b8dcf007806",
-      "contentHash": "537c4b8dcf0078064dedaf38a2a54654378f1701ab0a3e9eb367eacea9b9a06b",
+      "contentVersion": "a789b13ed39f462f",
+      "contentHash": "a789b13ed39f462f0435c21e423c7eff582efa2c28347400fb09cf45942000c2",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10650,
       "previewCharacterCount": 9684,
@@ -1381,8 +1381,8 @@
     {
       "slug": "the-story-of-the-inexperienced-ghost",
       "path": "/book-previews/the-story-of-the-inexperienced-ghost.preview.json",
-      "contentVersion": "bb51a81a1ab64198",
-      "contentHash": "bb51a81a1ab64198cb5b6562607cb1a6ec1c8efd1c2598bcd30cfa3458ba4b61",
+      "contentVersion": "a6a235a947a8d85e",
+      "contentHash": "a6a235a947a8d85eb84bf4a4af8a3af8174673e7686df346438bf61c6a4b6c42",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10592,
       "previewCharacterCount": 9630,

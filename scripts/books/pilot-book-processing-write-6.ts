@@ -133,6 +133,7 @@ type CleanupSummary = {
 
 type ProcessingPlan = {
   slug: string;
+  displayTitle?: string;
   structuralConvention: string;
   startLine: number;
   endLine: number;
@@ -735,6 +736,7 @@ function makeProcessingPlans(): Record<string, ProcessingPlan> {
     },
     "for-the-duration-of-the-war": {
       slug: "for-the-duration-of-the-war",
+      displayTitle: "For the Duration of the War",
       structuralConvention: "single short story excerpt",
       startLine: 66,
       endLine: 251,
@@ -848,6 +850,7 @@ function makeProcessingPlans(): Record<string, ProcessingPlan> {
     },
     "the-story-of-the-inexperienced-ghost": {
       slug: "the-story-of-the-inexperienced-ghost",
+      displayTitle: "The Story of the Inexperienced Ghost",
       structuralConvention: "single short story excerpt",
       startLine: 35,
       endLine: 297,
@@ -1504,8 +1507,23 @@ function processSelectedBook(dryRun: DryRunBook, plan: ProcessingPlan): {
   if (cleanupSummary.imagePlaceholderLinesRemoved > 0) warnings.push("Illustration/image placeholders were removed from playable text.");
   if (cleanupSummary.standaloneFinisLinesRemoved > 0) warnings.push("Standalone terminal end marker was removed from playable text.");
 
-  const contentHash = buildContentHash(dryRun.slug, dryRun.title, dryRun.author, sections);
-  const manifest = buildManifest(dryRun, rawText, sections, contentHash, cleanupSummary, warnings);
+  const displayTitle = plan.displayTitle ?? dryRun.title;
+  const displayDryRun =
+    displayTitle === dryRun.title ? dryRun : { ...dryRun, title: displayTitle };
+  const contentHash = buildContentHash(
+    displayDryRun.slug,
+    displayDryRun.title,
+    displayDryRun.author,
+    sections,
+  );
+  const manifest = buildManifest(
+    displayDryRun,
+    rawText,
+    sections,
+    contentHash,
+    cleanupSummary,
+    warnings,
+  );
   const sectionJson = sections.map((section) => makeSectionJson(manifest.slug, section));
   const cleanedBook = buildCleanedBook(manifest, sections);
   const processedBook = buildProcessedBook(manifest, sections);

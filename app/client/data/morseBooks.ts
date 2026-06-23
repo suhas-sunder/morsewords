@@ -23,6 +23,7 @@ import type {
   MorseBookSectionSummary,
 } from "./morseBookTypes";
 import { getDefaultMorseBookLiveSectionId } from "./morseBookSectionDefaults";
+import { preserveMorseBookDisplayTitle } from "./morseBookDisplay";
 import {
   getMorseBookPublicContentUrls as getConfiguredMorseBookPublicContentUrls,
   normalizeMorseBookContentBaseUrl,
@@ -558,9 +559,11 @@ function cloudflareContentUrl(path: string) {
 function publicSummaryToLibrarySummary(
   book: MorseBookPublicSummary,
 ): MorseBookLibrarySummary {
+  const canonicalSummary = discoverableMorseBooksBySlug.get(book.slug);
+  const displayTitle = canonicalSummary?.title ?? book.title;
   return {
     slug: book.slug,
-    title: book.title,
+    title: displayTitle,
     author: book.author,
     contentVersion: book.contentVersion,
     contentHash: book.contentHash,
@@ -586,7 +589,7 @@ function publicSummaryToLibrarySummary(
     cover: {
       src: null,
       placeholder: true,
-      alt: `Placeholder cover for ${book.title}`,
+      alt: canonicalSummary?.cover.alt ?? `Placeholder cover for ${displayTitle}`,
     },
     stats: book.stats,
     defaults: {
@@ -630,10 +633,14 @@ function isPublicBookContent(value: unknown): value is MorseBookPublicContentJso
 function normalizePublicBookContent(
   content: MorseBookPublicContentJson,
 ): MorseBookPublicContentJson {
+  const canonicalSummary = discoverableMorseBooksBySlug.get(content.slug);
   return {
     ...content,
     contentVersion: content.contentVersion ?? content.manifest.contentVersion,
     contentHash: content.contentHash ?? content.manifest.contentHash,
+    manifest: canonicalSummary
+      ? preserveMorseBookDisplayTitle(content.manifest, canonicalSummary)
+      : content.manifest,
   };
 }
 

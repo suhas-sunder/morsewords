@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "slug": "the-story-of-the-inexperienced-ghost",
-  "title": "Twelve Stories and a Dream",
+  "title": "The Story of the Inexperienced Ghost",
   "author": [
     "H. G. Wells"
   ],
-  "contentVersion": "bb51a81a1ab64198",
-  "contentHash": "bb51a81a1ab64198cb5b6562607cb1a6ec1c8efd1c2598bcd30cfa3458ba4b61",
+  "contentVersion": "a6a235a947a8d85e",
+  "contentHash": "a6a235a947a8d85eb84bf4a4af8a3af8174673e7686df346438bf61c6a4b6c42",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -31,7 +31,7 @@
   "cover": {
     "src": null,
     "placeholder": true,
-    "alt": "Placeholder cover for Twelve Stories and a Dream"
+    "alt": "Placeholder cover for The Story of the Inexperienced Ghost"
   },
   "stats": {
     "originalCharacterCount": 27582,
