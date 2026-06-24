@@ -36,6 +36,7 @@ type SeoSummaryData = {
   batch3Slugs?: string[];
   batch4Slugs?: string[];
   batch5Slugs?: string[];
+  batch6Slugs?: string[];
   summaries: SeoSummaryRecord[];
 };
 
@@ -91,6 +92,26 @@ type SeoSummaryAuditReport = {
     unresolvedSourceGeneratedCount: number;
     checkpoint: string;
   };
+  urlIndexabilityFinalReleaseBlocker: {
+    sourceReportPath: string;
+    status: "open-final-release-blocker";
+    existingLinkingAuditResult: "pass" | "fail";
+    existingBrokenInternalLinkCount: number;
+    existingMissingSitemapUrlCount: number;
+    requiredBeforeCloudflareExport: string[];
+  };
+  storyTitleIntegrityCheckpoint: {
+    sourceReportPath: string;
+    generatedEntriesChecked: number;
+    sourceValidationResult: "pass" | "fail";
+    parentCollectionLeakageResult: "pass" | "fail";
+    checkpoint: string;
+  };
+  selectedSlugSubstitutions: Array<{
+    expectedSlug: string;
+    actualSlug: string;
+    reason: string;
+  }>;
   skippedSelectedSlugs: string[];
   results: PilotSummaryAuditItem[];
   validation: {
@@ -99,6 +120,8 @@ type SeoSummaryAuditReport = {
     summarySlugUniqueness: "pass" | "fail";
     generatedSlugExistence: "pass" | "fail";
     metadataMatch: "pass" | "fail";
+    parentCollectionTitleLeakage: "pass" | "fail";
+    storyTitleIntegrity: "pass" | "fail";
     wordCount: "pass" | "fail";
     spoilerRisk: "pass" | "fail";
     sourceBoilerplate: "pass" | "fail";
@@ -146,10 +169,10 @@ const reportRoot = path.join(
   "assets",
   "books",
   "audit-reports",
-  "book-seo-summary-batch-5",
+  "book-seo-summary-batch-6",
 );
-const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-5.json");
-const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-5.md");
+const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-6.json");
+const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-6.md");
 const remainingRawInventoryTriagePath = path.join(
   repoRoot,
   "app",
@@ -160,12 +183,33 @@ const remainingRawInventoryTriagePath = path.join(
   "remaining-raw-inventory-triage",
   "remaining-raw-inventory-triage.json",
 );
+const storyTitleIntegrityPath = path.join(
+  repoRoot,
+  "app",
+  "client",
+  "assets",
+  "books",
+  "audit-reports",
+  "story-title-display-integrity",
+  "story-title-display-integrity.json",
+);
+const linkingSitemapAuditPath = path.join(
+  repoRoot,
+  "app",
+  "client",
+  "assets",
+  "books",
+  "audit-reports",
+  "book-sitemap-nav-internal-linking",
+  "book-sitemap-nav-internal-linking.json",
+);
 
 const summaryFilesChanged = [
   "app/client/assets/books/seo-summaries/book-seo-summaries.json",
   "scripts/books/book-seo-summary-audit.ts",
-  "app/client/assets/books/audit-reports/book-seo-summary-batch-5/book-seo-summary-batch-5.json",
-  "app/client/assets/books/audit-reports/book-seo-summary-batch-5/book-seo-summary-batch-5.md",
+  "tests/qa-robustness-review/morse-book-page.spec.ts",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-6/book-seo-summary-batch-6.json",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-6/book-seo-summary-batch-6.md",
 ];
 
 const sourceBoilerplatePattern =
@@ -283,10 +327,11 @@ function auditSummaryRecord({
   const summaryWordCount = countWords(summary);
   const hasShortWorkException = Boolean(record?.shortWorkException?.trim());
   const wordCountWithinTarget =
-    summaryWordCount >= 300 || (summaryWordCount >= 180 && hasShortWorkException);
+    (summaryWordCount >= 300 && summaryWordCount <= 500) ||
+    (summaryWordCount >= 180 && summaryWordCount <= 500 && hasShortWorkException);
   if (!wordCountWithinTarget) {
     errors.push(
-      `Summary word count ${summaryWordCount} is below target without an approved short-work exception.`,
+      `Summary word count ${summaryWordCount} is outside the 300–500 target without an approved short-work exception.`,
     );
   }
 
@@ -405,6 +450,8 @@ function reportValidation(
     controlledBatchSelection: boolean;
     summarySlugUniqueness: boolean;
     generatedSlugExistence: boolean;
+    parentCollectionTitleLeakage: boolean;
+    storyTitleIntegrity: boolean;
     missingSummaryFallback: boolean;
   },
 ) {
@@ -431,6 +478,8 @@ function reportValidation(
     !checks.controlledBatchSelection ||
     !checks.summarySlugUniqueness ||
     !checks.generatedSlugExistence ||
+    !checks.parentCollectionTitleLeakage ||
+    !checks.storyTitleIntegrity ||
     !checks.missingSummaryFallback ||
     hasMetadataFailures ||
     hasWordCountFailures ||
@@ -448,6 +497,10 @@ function reportValidation(
     summarySlugUniqueness: checks.summarySlugUniqueness ? "pass" : "fail",
     generatedSlugExistence: checks.generatedSlugExistence ? "pass" : "fail",
     metadataMatch: hasMetadataFailures ? "fail" : "pass",
+    parentCollectionTitleLeakage: checks.parentCollectionTitleLeakage
+      ? "pass"
+      : "fail",
+    storyTitleIntegrity: checks.storyTitleIntegrity ? "pass" : "fail",
     wordCount: hasWordCountFailures ? "fail" : "pass",
     spoilerRisk: hasSpoilerFailures ? "fail" : "pass",
     sourceBoilerplate: hasBoilerplateFailures ? "fail" : "pass",
@@ -485,6 +538,7 @@ function selectedSlugsForActiveBatch(summaryData: SeoSummaryData) {
   if (batchNumber === 3) return summaryData.batch3Slugs ?? [];
   if (batchNumber === 4) return summaryData.batch4Slugs ?? [];
   if (batchNumber === 5) return summaryData.batch5Slugs ?? [];
+  if (batchNumber === 6) return summaryData.batch6Slugs ?? [];
   return [];
 }
 
@@ -502,30 +556,48 @@ function markdownReport(report: SeoSummaryAuditReport) {
     .map((item) => `- ${item.slug}: ${item.errors.join("; ")}`)
     .join("\n");
 
-  return `# Book SEO Summary Batch 5
+  return `# Book SEO Summary Batch 6
 
 Generated: ${report.generatedAt}
 
-## Executive summary
+## Current generated-library summary coverage
 
-- Previous summaries: ${report.counts.previousSummaryCount}
-- New summaries: ${report.counts.newSummaryCount}
-- Total summaries: ${report.counts.summaryRecordCount}
-- Missing summaries before batch: ${report.counts.missingSummaryCountBeforeBatch}
-- Missing summaries after batch: ${report.counts.missingSummaryCount}
+- Current generated/validated books: ${report.counts.generatedBookCount}
+- Summaries before batch 6: ${report.counts.previousSummaryCount}
+- New summaries in batch 6: ${report.counts.newSummaryCount}
+- Summaries after batch 6: ${report.counts.summaryRecordCount}
+- Current generated summaries missing before batch 6: ${report.counts.missingSummaryCountBeforeBatch}
+- Current generated summaries remaining after batch 6: ${report.counts.missingSummaryCount}
 - Validation result: ${report.validation.result}
 
 The 50 new records use the existing separate static summary asset. Generated book text, preview assets, raw sources, and Cloudflare export payloads were not modified.
 
 ${report.coverageNote}
 
-## Remaining book checkpoint
+## Remaining raw-candidate debt
 
-Current generated library summary coverage is being tracked separately from remaining raw-candidate debt.
+- ${report.remainingRawCandidateCheckpoint.classifiedRawOnlyUnsafeCount} raw candidates still require later review before final export.
+- ${report.remainingRawCandidateCheckpoint.checkpoint}
 
-- Remaining raw-candidate debt from inventory triage is not closed: ${report.remainingRawCandidateCheckpoint.classifiedRawOnlyUnsafeCount} skipped/unsafe/manual/raw candidates remain classified.
-- Unresolved-source generated-book debt is still documented: ${report.unresolvedSourceGeneratedBookCheckpoint.unresolvedSourceGeneratedCount} generated books remain source-unresolved but non-blocking.
-- Before final Cloudflare export, the remaining raw inventory must be revisited so any manually acceptable books can be processed and then added to summaries, sitemap/nav/internal links, audits, and export.
+## Unresolved-source generated books
+
+- ${report.unresolvedSourceGeneratedBookCheckpoint.unresolvedSourceGeneratedCount} unresolved-source generated books remain documented.
+- ${report.unresolvedSourceGeneratedBookCheckpoint.checkpoint}
+
+## Final-release URL/indexability blocker
+
+- Status: ${report.urlIndexabilityFinalReleaseBlocker.status}
+- Existing linking/sitemap audit: ${report.urlIndexabilityFinalReleaseBlocker.existingLinkingAuditResult}
+- Existing broken internal links: ${report.urlIndexabilityFinalReleaseBlocker.existingBrokenInternalLinkCount}
+- Existing missing sitemap URLs: ${report.urlIndexabilityFinalReleaseBlocker.existingMissingSitemapUrlCount}
+${report.urlIndexabilityFinalReleaseBlocker.requiredBeforeCloudflareExport.map((item) => `- ${item}`).join("\n")}
+
+## Story-title integrity checkpoint
+
+- Generated entries checked: ${report.storyTitleIntegrityCheckpoint.generatedEntriesChecked}
+- Source validation: ${report.storyTitleIntegrityCheckpoint.sourceValidationResult}
+- Parent-collection title leakage: ${report.storyTitleIntegrityCheckpoint.parentCollectionLeakageResult}
+- ${report.storyTitleIntegrityCheckpoint.checkpoint}
 
 ## Selected slugs
 
@@ -537,7 +609,8 @@ ${report.firstStillMissingSlugsAfterBatch.map((slug) => `- ${slug}`).join("\n")}
 
 ## Substitutions or skipped selections
 
-${report.skippedSelectedSlugs.length > 0 ? report.skippedSelectedSlugs.map((slug) => `- ${slug}`).join("\n") : "- None"}
+${report.selectedSlugSubstitutions.length > 0 ? report.selectedSlugSubstitutions.map((item) => `- ${item.expectedSlug} -> ${item.actualSlug}: ${item.reason}`).join("\n") : "- Substitutions: none"}
+${report.skippedSelectedSlugs.length > 0 ? report.skippedSelectedSlugs.map((slug) => `- Skipped: ${slug}`).join("\n") : "- Skipped selections: none"}
 
 ## Summary validation
 
@@ -552,6 +625,8 @@ ${itemRows}
 - Unique slugs: ${report.validation.summarySlugUniqueness}
 - Generated slug existence: ${report.validation.generatedSlugExistence}
 - Metadata match: ${report.validation.metadataMatch}
+- Parent-collection title leakage: ${report.validation.parentCollectionTitleLeakage}
+- Story-title integrity: ${report.validation.storyTitleIntegrity}
 - Word count: ${report.validation.wordCount}
 - Spoiler risk: ${report.validation.spoilerRisk}
 - Source boilerplate and internal paths: ${report.validation.sourceBoilerplate}
@@ -585,6 +660,26 @@ function main() {
       unresolvedSourceGeneratedCount?: number;
     };
   }>(remainingRawInventoryTriagePath);
+  const storyTitleIntegrity = readJson<{
+    generatedEntriesChecked?: number;
+    parentCollectionLeakage?: {
+      after?: {
+        generatedMetadata?: unknown[];
+        userFacingDisplay?: unknown[];
+      };
+    };
+    validation?: {
+      result?: "pass" | "fail";
+      failures?: unknown[];
+    };
+  }>(storyTitleIntegrityPath);
+  const linkingSitemapAudit = readJson<{
+    counts?: {
+      brokenInternalLinkCount?: number;
+      missingSitemapUrlCount?: number;
+    };
+    result?: "pass" | "fail";
+  }>(linkingSitemapAuditPath);
   const generatedBySlug = new Map(
     libraryManifest.books.map((book) => [book.slug, book]),
   );
@@ -649,6 +744,14 @@ function main() {
     serverDataModule.includes("book-seo-summaries.json") &&
     bookRoute.includes("seoSummary?.description ??") &&
     audiobookRoute.includes("seoSummary?.description ??");
+  const parentCollectionTitleLeakage =
+    (storyTitleIntegrity.parentCollectionLeakage?.after?.generatedMetadata
+      ?.length ?? 0) === 0 &&
+    (storyTitleIntegrity.parentCollectionLeakage?.after?.userFacingDisplay
+      ?.length ?? 0) === 0;
+  const storyTitleIntegrityPass =
+    storyTitleIntegrity.validation?.result === "pass" &&
+    (storyTitleIntegrity.validation.failures?.length ?? 0) === 0;
   const checks = {
     summaryCount:
       summaryData.summaries.length === expectedSummaryCount &&
@@ -657,6 +760,8 @@ function main() {
     controlledBatchSelection,
     summarySlugUniqueness: summarySlugSet.size === summarySlugs.length,
     generatedSlugExistence,
+    parentCollectionTitleLeakage,
+    storyTitleIntegrity: storyTitleIntegrityPass,
     missingSummaryFallback,
   };
   const validation = reportValidation(results, checks);
@@ -702,6 +807,34 @@ function main() {
       checkpoint:
         "Unresolved-source generated books remain documented and non-blocking for current summary coverage, but source resolution is still tracked before final export decisions.",
     },
+    urlIndexabilityFinalReleaseBlocker: {
+      sourceReportPath:
+        "app/client/assets/books/audit-reports/book-sitemap-nav-internal-linking/book-sitemap-nav-internal-linking.json",
+      status: "open-final-release-blocker",
+      existingLinkingAuditResult: linkingSitemapAudit.result ?? "fail",
+      existingBrokenInternalLinkCount:
+        linkingSitemapAudit.counts?.brokenInternalLinkCount ?? -1,
+      existingMissingSitemapUrlCount:
+        linkingSitemapAudit.counts?.missingSitemapUrlCount ?? -1,
+      requiredBeforeCloudflareExport: [
+        "Audit sitemap and planned URLs before Cloudflare export.",
+        "Leave no broken planned URL in the final sitemap.",
+        "Decide canonical and index/noindex treatment for book, audiobook, print, and live variants before final signoff.",
+      ],
+    },
+    storyTitleIntegrityCheckpoint: {
+      sourceReportPath:
+        "app/client/assets/books/audit-reports/story-title-display-integrity/story-title-display-integrity.json",
+      generatedEntriesChecked: storyTitleIntegrity.generatedEntriesChecked ?? 0,
+      sourceValidationResult:
+        storyTitleIntegrity.validation?.result ?? "fail",
+      parentCollectionLeakageResult: parentCollectionTitleLeakage
+        ? "pass"
+        : "fail",
+      checkpoint:
+        "Corrected generated story titles remain the display source of truth; batch-6 summary titles and authors must match current generated metadata exactly.",
+    },
+    selectedSlugSubstitutions: [],
     skippedSelectedSlugs: controlledBatchSelection ? [] : expectedSelectedSlugs,
     results,
     validation,
@@ -723,6 +856,10 @@ function main() {
   console.log(`summaries: ${summaryData.summaries.length}/${expectedSummaryCount}`);
   console.log(`controlled batch selection: ${validation.controlledBatchSelection}`);
   console.log(`metadata match: ${validation.metadataMatch}`);
+  console.log(
+    `parent-collection title leakage: ${validation.parentCollectionTitleLeakage}`,
+  );
+  console.log(`story-title integrity: ${validation.storyTitleIntegrity}`);
   console.log(`word count: ${validation.wordCount}`);
   console.log(`spoiler risk: ${validation.spoilerRisk}`);
   console.log(`source boilerplate: ${validation.sourceBoilerplate}`);
