@@ -901,28 +901,52 @@ test.describe("Morse book page foundation", () => {
     page,
   }) => {
     await blockExternalNetwork(page);
-    await page.goto("/morse-code-books", { waitUntil: "domcontentloaded" });
+    await page.goto("/morse-code-books", { waitUntil: "load" });
     await waitForRouteReady(page);
-    await page
-      .getByLabel("Search title, author, description, or subject")
-      .fill("The Ugly Duckling");
+    await expect(page.getByTestId("morse-books-browser")).toBeVisible();
+    await expect(page.getByTestId("morse-books-result-count")).toHaveText(
+      "Showing 1-12 of 465 books",
+    );
+    const bookSearch = page.getByLabel(
+      "Search title, author, description, or subject",
+    );
+    await expect(bookSearch).toBeEditable();
+    await bookSearch.clear();
+    await bookSearch.fill("The Ugly Duckling");
+    await expect(bookSearch).toHaveValue("The Ugly Duckling");
+    await expect(page.getByTestId("morse-books-result-count")).toHaveText(
+      "Showing 1 of 1 book",
+    );
     const bookCard = page.locator(
       '[data-testid="morse-book-card"][data-mw-morse-book-card-slug="the-ugly-duckling"]',
     );
+    await expect(page.getByTestId("morse-book-card")).toHaveCount(1);
     await expect(bookCard.getByTestId("morse-book-card-title")).toHaveText(
       "The Ugly Duckling",
     );
 
     await page.goto("/morse-code-audiobooks", {
-      waitUntil: "domcontentloaded",
+      waitUntil: "load",
     });
     await waitForRouteReady(page);
-    await page
-      .getByLabel("Search Morse audiobooks by title, author, source, or subject")
-      .fill("The Ugly Duckling");
+    await expect(page.getByTestId("morse-audiobooks-browser")).toBeVisible();
+    await expect(page.getByTestId("morse-audiobooks-result-count")).toHaveText(
+      "Showing 1-12 of 465 audiobooks",
+    );
+    const audiobookSearch = page.getByLabel(
+      "Search Morse audiobooks by title, author, source, or subject",
+    );
+    await expect(audiobookSearch).toBeEditable();
+    await audiobookSearch.clear();
+    await audiobookSearch.fill("The Ugly Duckling");
+    await expect(audiobookSearch).toHaveValue("The Ugly Duckling");
+    await expect(
+      page.getByTestId("morse-audiobooks-result-count"),
+    ).toHaveText("Showing 1 of 1 audiobook");
     const audiobookCard = page.locator(
       '[data-testid="morse-audiobook-card"][data-mw-morse-audiobook-card-slug="the-ugly-duckling"]',
     );
+    await expect(page.getByTestId("morse-audiobook-card")).toHaveCount(1);
     await expect(
       audiobookCard.getByTestId("morse-audiobook-card-title"),
     ).toHaveText("The Ugly Duckling");
@@ -1043,7 +1067,7 @@ test.describe("Morse book page foundation", () => {
     expect(audiobookResponse.ok()).toBe(true);
 
     await blockExternalNetwork(page);
-    await page.goto("/morse-code-books", { waitUntil: "domcontentloaded" });
+    await page.goto("/morse-code-books", { waitUntil: "load" });
     await waitForRouteReady(page);
     const firstBookCard = page.getByTestId("morse-book-card").first();
     await expect(firstBookCard).toBeVisible();
@@ -1061,7 +1085,7 @@ test.describe("Morse book page foundation", () => {
     ).toHaveCount(465);
 
     await page.goto("/morse-code-audiobooks", {
-      waitUntil: "domcontentloaded",
+      waitUntil: "load",
     });
     await waitForRouteReady(page);
     const firstAudiobookCard = page.getByTestId("morse-audiobook-card").first();
@@ -1086,7 +1110,7 @@ test.describe("Morse book page foundation", () => {
       audiobookDirectory.locator('a[data-mw-directory-slug]'),
     ).toHaveCount(465);
 
-    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.goto("/", { waitUntil: "load" });
     await waitForRouteReady(page);
     const featuredBooks = page.locator(
       '[aria-labelledby="featured-morse-books-title"]',
@@ -1102,15 +1126,27 @@ test.describe("Morse book page foundation", () => {
       featuredBooks.locator('a[href^="/morse-code-audiobooks/"]'),
     ).toHaveCount(0);
 
-    await page.getByRole("button", { name: "More" }).click();
+    const moreButton = page.getByRole("button", { name: "More" });
+    await expect(moreButton).toHaveAttribute("aria-expanded", "false");
+    await moreButton.click();
+    await expect(moreButton).toHaveAttribute("aria-expanded", "true");
+    const moreDialog = page.getByRole("dialog", {
+      name: "More MorseWords tools",
+    });
+    await expect(moreDialog).toBeVisible();
+    const moreSearch = moreDialog.getByPlaceholder("Search tools...");
+    await expect(moreSearch).toBeEditable();
+    await moreSearch.clear();
+    await moreSearch.fill("Treasure Island");
+    await expect(moreSearch).toHaveValue("Treasure Island");
+    const treasureIslandLink = moreDialog.locator(
+      `a[href="${APPROVED_BOOK_PUBLIC_PATH}"]`,
+    );
+    await expect(treasureIslandLink).toHaveCount(1);
+    await expect(treasureIslandLink).toContainText("Treasure Island");
     await expect(
-      page
-        .locator(`a[href="${APPROVED_BOOK_PUBLIC_PATH}"]`)
-        .filter({ hasText: "Treasure Island" })
-        .first(),
-    ).toBeVisible();
-    await expect(page.locator(`a[href="${APPROVED_AUDIOBOOK_PUBLIC_PATH}"]`))
-      .toHaveCount(0);
+      moreDialog.locator(`a[href="${APPROVED_AUDIOBOOK_PUBLIC_PATH}"]`),
+    ).toHaveCount(0);
   });
 
   test("renders an approved external-authority Gutenberg book as a public page", async ({
