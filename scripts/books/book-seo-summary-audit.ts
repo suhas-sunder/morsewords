@@ -37,6 +37,7 @@ type SeoSummaryData = {
   batch4Slugs?: string[];
   batch5Slugs?: string[];
   batch6Slugs?: string[];
+  batch7Slugs?: string[];
   summaries: SeoSummaryRecord[];
 };
 
@@ -100,11 +101,35 @@ type SeoSummaryAuditReport = {
     existingMissingSitemapUrlCount: number;
     requiredBeforeCloudflareExport: string[];
   };
+  poeReplacementCheckpoint: {
+    status: "pending-later-processing";
+    requiredLater: string[];
+    checkpoint: string;
+  };
+  mobileFinalStageCheckpoint: {
+    status: "pending-final-stage";
+    requiredLater: string[];
+    checkpoint: string;
+  };
   storyTitleIntegrityCheckpoint: {
     sourceReportPath: string;
     generatedEntriesChecked: number;
     sourceValidationResult: "pass" | "fail";
     parentCollectionLeakageResult: "pass" | "fail";
+    checkpoint: string;
+  };
+  summaryLayoutWidthCheckpoint: {
+    sourceBranch: string;
+    mergedMainCommit: string;
+    status: "merged-and-validated";
+    desktopSourceNotesWidthPx: number;
+    desktopSummaryWidthPx: number;
+    desktopColumns: number;
+    mobileSummaryWidthPx: number;
+    mobileColumns: number;
+    horizontalOverflow: "none";
+    sourceOrder: string;
+    headerShortcut: string;
     checkpoint: string;
   };
   selectedSlugSubstitutions: Array<{
@@ -169,10 +194,10 @@ const reportRoot = path.join(
   "assets",
   "books",
   "audit-reports",
-  "book-seo-summary-batch-6",
+  "book-seo-summary-batch-7",
 );
-const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-6.json");
-const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-6.md");
+const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-7.json");
+const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-7.md");
 const remainingRawInventoryTriagePath = path.join(
   repoRoot,
   "app",
@@ -208,8 +233,8 @@ const summaryFilesChanged = [
   "app/client/assets/books/seo-summaries/book-seo-summaries.json",
   "scripts/books/book-seo-summary-audit.ts",
   "tests/qa-robustness-review/morse-book-page.spec.ts",
-  "app/client/assets/books/audit-reports/book-seo-summary-batch-6/book-seo-summary-batch-6.json",
-  "app/client/assets/books/audit-reports/book-seo-summary-batch-6/book-seo-summary-batch-6.md",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-7/book-seo-summary-batch-7.json",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-7/book-seo-summary-batch-7.md",
 ];
 
 const sourceBoilerplatePattern =
@@ -539,6 +564,7 @@ function selectedSlugsForActiveBatch(summaryData: SeoSummaryData) {
   if (batchNumber === 4) return summaryData.batch4Slugs ?? [];
   if (batchNumber === 5) return summaryData.batch5Slugs ?? [];
   if (batchNumber === 6) return summaryData.batch6Slugs ?? [];
+  if (batchNumber === 7) return summaryData.batch7Slugs ?? [];
   return [];
 }
 
@@ -556,18 +582,18 @@ function markdownReport(report: SeoSummaryAuditReport) {
     .map((item) => `- ${item.slug}: ${item.errors.join("; ")}`)
     .join("\n");
 
-  return `# Book SEO Summary Batch 6
+  return `# Book SEO Summary Batch 7
 
 Generated: ${report.generatedAt}
 
 ## Current generated-library summary coverage
 
 - Current generated/validated books: ${report.counts.generatedBookCount}
-- Summaries before batch 6: ${report.counts.previousSummaryCount}
-- New summaries in batch 6: ${report.counts.newSummaryCount}
-- Summaries after batch 6: ${report.counts.summaryRecordCount}
-- Current generated summaries missing before batch 6: ${report.counts.missingSummaryCountBeforeBatch}
-- Current generated summaries remaining after batch 6: ${report.counts.missingSummaryCount}
+- Summaries before batch 7: ${report.counts.previousSummaryCount}
+- New summaries in batch 7: ${report.counts.newSummaryCount}
+- Summaries after batch 7: ${report.counts.summaryRecordCount}
+- Current generated summaries missing before batch 7: ${report.counts.missingSummaryCountBeforeBatch}
+- Current generated summaries remaining after batch 7: ${report.counts.missingSummaryCount}
 - Validation result: ${report.validation.result}
 
 The 50 new records use the existing separate static summary asset. Generated book text, preview assets, raw sources, and Cloudflare export payloads were not modified.
@@ -592,12 +618,39 @@ ${report.coverageNote}
 - Existing missing sitemap URLs: ${report.urlIndexabilityFinalReleaseBlocker.existingMissingSitemapUrlCount}
 ${report.urlIndexabilityFinalReleaseBlocker.requiredBeforeCloudflareExport.map((item) => `- ${item}`).join("\n")}
 
+## Pending Poe replacement task
+
+- Status: ${report.poeReplacementCheckpoint.status}
+${report.poeReplacementCheckpoint.requiredLater.map((item) => `- ${item}`).join("\n")}
+- ${report.poeReplacementCheckpoint.checkpoint}
+
+## Final mobile stage
+
+- Status: ${report.mobileFinalStageCheckpoint.status}
+${report.mobileFinalStageCheckpoint.requiredLater.map((item) => `- ${item}`).join("\n")}
+- ${report.mobileFinalStageCheckpoint.checkpoint}
+
 ## Story-title integrity checkpoint
 
 - Generated entries checked: ${report.storyTitleIntegrityCheckpoint.generatedEntriesChecked}
 - Source validation: ${report.storyTitleIntegrityCheckpoint.sourceValidationResult}
 - Parent-collection title leakage: ${report.storyTitleIntegrityCheckpoint.parentCollectionLeakageResult}
 - ${report.storyTitleIntegrityCheckpoint.checkpoint}
+
+## Summary layout width checkpoint
+
+- Source branch: ${report.summaryLayoutWidthCheckpoint.sourceBranch}
+- Merged main commit: ${report.summaryLayoutWidthCheckpoint.mergedMainCommit}
+- Status: ${report.summaryLayoutWidthCheckpoint.status}
+- Desktop source notes width: ${report.summaryLayoutWidthCheckpoint.desktopSourceNotesWidthPx}px
+- Desktop summary width: ${report.summaryLayoutWidthCheckpoint.desktopSummaryWidthPx}px
+- Desktop columns: ${report.summaryLayoutWidthCheckpoint.desktopColumns}
+- Mobile summary width: ${report.summaryLayoutWidthCheckpoint.mobileSummaryWidthPx}px
+- Mobile columns: ${report.summaryLayoutWidthCheckpoint.mobileColumns}
+- Horizontal overflow: ${report.summaryLayoutWidthCheckpoint.horizontalOverflow}
+- Source order: ${report.summaryLayoutWidthCheckpoint.sourceOrder}
+- Header shortcut: ${report.summaryLayoutWidthCheckpoint.headerShortcut}
+- ${report.summaryLayoutWidthCheckpoint.checkpoint}
 
 ## Selected slugs
 
@@ -817,10 +870,32 @@ function main() {
       existingMissingSitemapUrlCount:
         linkingSitemapAudit.counts?.missingSitemapUrlCount ?? -1,
       requiredBeforeCloudflareExport: [
-        "Audit sitemap and planned URLs before Cloudflare export.",
-        "Leave no broken planned URL in the final sitemap.",
-        "Decide canonical and index/noindex treatment for book, audiobook, print, and live variants before final signoff.",
+        "Existing sitemap URLs are intentional by default.",
+        "Planned sitemap URLs that currently 404 should be implemented correctly unless there is a strong reason not to.",
+        "Do not remove, redirect, noindex, or canonicalize away planned URLs without a valid reason and discussion.",
+        "No broken planned URL may remain in the final sitemap.",
+        "Book, audiobook, print, and live variants need canonical and index/noindex decisions before final signoff.",
       ],
+    },
+    poeReplacementCheckpoint: {
+      status: "pending-later-processing",
+      requiredLater: [
+        "Later remove broad Poe collection generated entries if present.",
+        "Later process only newly added individual Poe short stories.",
+        "Do not disturb already accepted/generated works except the two broad Poe removals.",
+      ],
+      checkpoint:
+        "Poe collection replacement remains pending and was not processed in this summary branch.",
+    },
+    mobileFinalStageCheckpoint: {
+      status: "pending-final-stage",
+      requiredLater: [
+        "Run mobile checks after major milestones.",
+        "Keep broad mobile optimization discussion as the very last stage.",
+        "Do not break working desktop behavior for mobile changes.",
+      ],
+      checkpoint:
+        "Broad mobile optimization was not started in this summary branch.",
     },
     storyTitleIntegrityCheckpoint: {
       sourceReportPath:
@@ -832,7 +907,23 @@ function main() {
         ? "pass"
         : "fail",
       checkpoint:
-        "Corrected generated story titles remain the display source of truth; batch-6 summary titles and authors must match current generated metadata exactly.",
+        "Corrected generated story titles remain the display source of truth; batch-7 summary titles and authors must match current generated metadata exactly.",
+    },
+    summaryLayoutWidthCheckpoint: {
+      sourceBranch: "morsewords-book-summary-width-fix-jun-2026",
+      mergedMainCommit: "41b93db8",
+      status: "merged-and-validated",
+      desktopSourceNotesWidthPx: 1056,
+      desktopSummaryWidthPx: 1056,
+      desktopColumns: 2,
+      mobileSummaryWidthPx: 343,
+      mobileColumns: 1,
+      horizontalOverflow: "none",
+      sourceOrder: "Summary remains below Source notes.",
+      headerShortcut:
+        "Header remains clean with only the conditional Read book summary shortcut.",
+      checkpoint:
+        "Summary section uses full lower-section width and remains visually aligned with the merged main summary-width fix.",
     },
     selectedSlugSubstitutions: [],
     skippedSelectedSlugs: controlledBatchSelection ? [] : expectedSelectedSlugs,
