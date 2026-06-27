@@ -1251,6 +1251,33 @@ test.describe("Morse book page foundation", () => {
       sourceBeforeSummary: true,
       summaryBeforeRelated: true,
     });
+    const summaryLayout = await page.evaluate(() => {
+      const source = document.querySelector(
+        '[data-testid="morse-book-source-notes"]',
+      ) as HTMLElement | null;
+      const summary = document.querySelector(
+        '[data-testid="morse-book-seo-summary"]',
+      ) as HTMLElement | null;
+      const summaryBody = document.querySelector(
+        '[data-testid="morse-book-seo-summary-body"]',
+      ) as HTMLElement | null;
+
+      return {
+        sourceWidth: source?.getBoundingClientRect().width ?? 0,
+        summaryWidth: summary?.getBoundingClientRect().width ?? 0,
+        summaryBodyWidth: summaryBody?.getBoundingClientRect().width ?? 0,
+        summaryColumnCount: summaryBody
+          ? getComputedStyle(summaryBody).columnCount
+          : "",
+      };
+    });
+    expect(summaryLayout.summaryWidth).toBeGreaterThanOrEqual(
+      summaryLayout.sourceWidth * 0.95,
+    );
+    expect(summaryLayout.summaryBodyWidth).toBeGreaterThanOrEqual(
+      summaryLayout.sourceWidth * 0.9,
+    );
+    expect(summaryLayout.summaryColumnCount).toBe("2");
     const livePlayer = page.locator("#book-live-morse-player");
     const livePlayerDownloadLink = livePlayer.getByTestId(
       "morse-book-live-download-link",
@@ -3465,6 +3492,25 @@ test.describe("Morse book page foundation", () => {
     );
     expect(overflow).toBeLessThanOrEqual(1);
     await expect(page.getByRole("heading", { name: /Alice's Adventures/ })).toBeVisible();
+    await expect(page.getByTestId("morse-book-seo-summary")).toBeVisible();
+    const mobileSummaryLayout = await page.evaluate(() => {
+      const summaryBody = document.querySelector(
+        '[data-testid="morse-book-seo-summary-body"]',
+      ) as HTMLElement | null;
+      const bodyRect = summaryBody?.getBoundingClientRect();
+
+      return {
+        columnCount: summaryBody ? getComputedStyle(summaryBody).columnCount : "",
+        left: bodyRect?.left ?? 0,
+        right: bodyRect?.right ?? 0,
+        viewportWidth: window.innerWidth,
+      };
+    });
+    expect(mobileSummaryLayout.columnCount).toBe("1");
+    expect(mobileSummaryLayout.left).toBeGreaterThanOrEqual(0);
+    expect(mobileSummaryLayout.right).toBeLessThanOrEqual(
+      mobileSummaryLayout.viewportWidth + 1,
+    );
     await expect(page.locator("[data-mw-morse-book-morse-preview]")).toBeVisible();
     expect(
       await contrastRatio(page.getByRole("heading", { name: /Alice's Adventures/ })),

@@ -3431,9 +3431,17 @@ function MorseBookWorkspace({
           >
             About this Morse book
           </h2>
-          <div className="mt-3 max-w-[68ch] space-y-3 text-base leading-relaxed text-slate-700">
+          <div
+            className="mt-3 max-w-none columns-1 gap-7 space-y-3 text-base leading-relaxed text-slate-700 lg:columns-2 lg:gap-8"
+            data-testid="morse-book-seo-summary-body"
+          >
             {seoSummaryParagraphs.map((paragraph, index) => (
-              <p key={`${book.slug}-seo-summary-${index}`}>{paragraph}</p>
+              <p
+                className="break-inside-avoid"
+                key={`${book.slug}-seo-summary-${index}`}
+              >
+                {paragraph}
+              </p>
             ))}
           </div>
         </section>
