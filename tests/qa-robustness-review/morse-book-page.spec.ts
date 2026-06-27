@@ -35,7 +35,7 @@ const THE_HAPPY_FAMILY_SLUG = "the-happy-family";
 const THE_ELDERBUSH_SLUG = "the-elderbush";
 const THE_BOOK_OF_DRAGONS_SLUG = "the-book-of-dragons";
 const THE_EMERALD_CITY_OF_OZ_SLUG = "the-emerald-city-of-oz";
-const NON_SUMMARY_BOOK_SLUG = "schippeitaro";
+const NON_SUMMARY_BOOK_SLUG = "the-new-accelerator";
 const REQUIRED_STORY_TITLES = {
   "the-dream-of-little-tuk": "The Dream of Little Tuk",
   "the-false-collar": "The False Collar",
@@ -869,8 +869,8 @@ test.describe("Morse book page foundation", () => {
       if (summary) expect(summary.title).toBe(title);
     }
 
-    expect(seo.summaries).toHaveLength(370);
-    expect(seo.expectedSummaryCount).toBe(370);
+    expect(seo.summaries).toHaveLength(420);
+    expect(seo.expectedSummaryCount).toBe(420);
     expect(
       library.books.find((book) => book.slug === "for-the-duration-of-the-war")
         ?.title,

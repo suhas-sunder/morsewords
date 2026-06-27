@@ -38,6 +38,7 @@ type SeoSummaryData = {
   batch5Slugs?: string[];
   batch6Slugs?: string[];
   batch7Slugs?: string[];
+  batch8Slugs?: string[];
   summaries: SeoSummaryRecord[];
 };
 
@@ -194,10 +195,10 @@ const reportRoot = path.join(
   "assets",
   "books",
   "audit-reports",
-  "book-seo-summary-batch-7",
+  "book-seo-summary-batch-8",
 );
-const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-7.json");
-const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-7.md");
+const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-8.json");
+const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-8.md");
 const remainingRawInventoryTriagePath = path.join(
   repoRoot,
   "app",
@@ -233,8 +234,8 @@ const summaryFilesChanged = [
   "app/client/assets/books/seo-summaries/book-seo-summaries.json",
   "scripts/books/book-seo-summary-audit.ts",
   "tests/qa-robustness-review/morse-book-page.spec.ts",
-  "app/client/assets/books/audit-reports/book-seo-summary-batch-7/book-seo-summary-batch-7.json",
-  "app/client/assets/books/audit-reports/book-seo-summary-batch-7/book-seo-summary-batch-7.md",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-8/book-seo-summary-batch-8.json",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-8/book-seo-summary-batch-8.md",
 ];
 
 const sourceBoilerplatePattern =
@@ -565,6 +566,7 @@ function selectedSlugsForActiveBatch(summaryData: SeoSummaryData) {
   if (batchNumber === 5) return summaryData.batch5Slugs ?? [];
   if (batchNumber === 6) return summaryData.batch6Slugs ?? [];
   if (batchNumber === 7) return summaryData.batch7Slugs ?? [];
+  if (batchNumber === 8) return summaryData.batch8Slugs ?? [];
   return [];
 }
 
@@ -589,11 +591,11 @@ Generated: ${report.generatedAt}
 ## Current generated-library summary coverage
 
 - Current generated/validated books: ${report.counts.generatedBookCount}
-- Summaries before batch 7: ${report.counts.previousSummaryCount}
-- New summaries in batch 7: ${report.counts.newSummaryCount}
-- Summaries after batch 7: ${report.counts.summaryRecordCount}
-- Current generated summaries missing before batch 7: ${report.counts.missingSummaryCountBeforeBatch}
-- Current generated summaries remaining after batch 7: ${report.counts.missingSummaryCount}
+- Summaries before batch 8: ${report.counts.previousSummaryCount}
+- New summaries in batch 8: ${report.counts.newSummaryCount}
+- Summaries after batch 8: ${report.counts.summaryRecordCount}
+- Current generated summaries missing before batch 8: ${report.counts.missingSummaryCountBeforeBatch}
+- Current generated summaries remaining after batch 8: ${report.counts.missingSummaryCount}
 - Validation result: ${report.validation.result}
 
 The 50 new records use the existing separate static summary asset. Generated book text, preview assets, raw sources, and Cloudflare export payloads were not modified.
@@ -907,7 +909,7 @@ function main() {
         ? "pass"
         : "fail",
       checkpoint:
-        "Corrected generated story titles remain the display source of truth; batch-7 summary titles and authors must match current generated metadata exactly.",
+        "Corrected generated story titles remain the display source of truth; batch-8 summary titles and authors must match current generated metadata exactly.",
     },
     summaryLayoutWidthCheckpoint: {
       sourceBranch: "morsewords-book-summary-width-fix-jun-2026",
