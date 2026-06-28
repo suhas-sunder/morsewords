@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-case-of-charles-dexter-ward",
+  "title": "The Case of Charles Dexter Ward",
+  "author": [
+    "H. P. Lovecraft"
+  ],
+  "contentVersion": "a446781e2a09cf21",
+  "contentHash": "a446781e2a09cf21359e81e3da78810385949b3a7d9a6992daf55672387a8d21",
+  "language": "en",
+  "description": "A Providence weird tale of antiquarian research, family history, and a mystery that reaches into the colonial past.",
+  "subjects": [
+    "Weird fiction",
+    "Gothic fiction",
+    "Mystery"
+  ],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "73547",
+    "releaseDate": "May 5, 2024",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/73547",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "owner-reviewed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Targeted remaining raw-candidate completion processed this accepted candidate after manual boundary and metadata review. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Case of Charles Dexter Ward"
+  },
+  "stats": {
+    "originalCharacterCount": 288533,
+    "cleanedCharacterCount": 262224,
+    "wordCount": 44472,
+    "sectionCount": 5,
+    "includedSectionCount": 5
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "1.",
+      "title": "A Result and a Prologue",
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 12535,
+      "wordCount": 2058,
+      "estimatedTypingMinutes": 59,
+      "estimatedListeningMinutes": 74,
+      "morseCharacterEstimate": 66482,
+      "textPreview": "From a private hospital for the insane near Providence, Rhode Island, there recently disappeared an exceedingly singular person. He bore the name of Charles De..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "2.",
+      "title": "An Antecedent and a Horror",
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 55635,
+      "wordCount": 9339,
+      "estimatedTypingMinutes": 267,
+      "estimatedListeningMinutes": 327,
+      "morseCharacterEstimate": 293688,
+      "textPreview": "Joseph Curwen, as revealed by the rambling legends embodied in what Ward heard and unearthed, was a very astonishing, enigmatic, obscurely horrible individual...."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "3.",
+      "title": "A Search and an Evocation",
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 53926,
+      "wordCount": 9080,
+      "estimatedTypingMinutes": 260,
+      "estimatedListeningMinutes": 316,
+      "morseCharacterEstimate": 284307,
+      "textPreview": "Charles Ward, as we have seen, first learned in 1918 of his descent from Joseph Curwen. That he at once took an intense interest in everything pertaining to th..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "4.",
+      "title": "A Mutation and a Madness",
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 57852,
+      "wordCount": 9857,
+      "estimatedTypingMinutes": 282,
+      "estimatedListeningMinutes": 335,
+      "morseCharacterEstimate": 300997,
+      "textPreview": "In the week following that memorable Good Friday, Charles Ward was seen more often than usual, and was continually carrying books between his library and the a..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "5.",
+      "title": "A Nightmare and a Cataclysm",
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 82276,
+      "wordCount": 14138,
+      "estimatedTypingMinutes": 404,
+      "estimatedListeningMinutes": 483,
+      "morseCharacterEstimate": 434396,
+      "textPreview": "And now swiftly followed that hideous experience which has left its indelible mark of fear on the soul of Marinus Bicknell Willett, and has added a decade to t..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 288533,
+    "cleanedCharacterCount": 262224,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": [
+      "Targeted remaining raw-candidate completion used explicit manual boundaries instead of a broad all-book rebuild.",
+      "Local startup preview intentionally stores only starter text, not the full work."
+    ]
+  },
+  "warnings": [
+    "Generated by targeted remaining raw-candidate completion; review before Cloudflare export.",
+    "Cloudflare export was not run.",
+    "Manual review promoted this former boundary-risk item after confirming a clean Project Gutenberg source and five explicit numbered parts."
+  ]
+}

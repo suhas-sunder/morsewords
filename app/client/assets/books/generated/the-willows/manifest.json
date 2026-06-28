@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-willows",
+  "title": "The Willows",
+  "author": [
+    "Algernon Blackwood"
+  ],
+  "contentVersion": "c2e1fc788b46a69a",
+  "contentHash": "c2e1fc788b46a69a9fceedc3a4879a5a5d85774684aa30d29a8fe00ef727e346",
+  "language": "en",
+  "description": "A weird-fiction novella set on the Danube, where two travelers camp among willows and sense an alien pressure around them.",
+  "subjects": [
+    "Weird fiction",
+    "Horror",
+    "Adventure"
+  ],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "11438",
+    "releaseDate": "March 1, 2004",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/11438",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "owner-reviewed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Targeted remaining raw-candidate completion processed this accepted candidate after manual boundary and metadata review. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Willows"
+  },
+  "stats": {
+    "originalCharacterCount": 130996,
+    "cleanedCharacterCount": 109067,
+    "wordCount": 19787,
+    "sectionCount": 5,
+    "includedSectionCount": 5
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "I.",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 34899,
+      "wordCount": 6269,
+      "estimatedTypingMinutes": 180,
+      "estimatedListeningMinutes": 208,
+      "morseCharacterEstimate": 186437,
+      "textPreview": "After leaving Vienna, and long before you come to Budapest, the Danube enters a region of singular loneliness and desolation, where its waters spread away on a..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "II.",
+      "title": null,
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 6482,
+      "wordCount": 1159,
+      "estimatedTypingMinutes": 34,
+      "estimatedListeningMinutes": 39,
+      "morseCharacterEstimate": 34481,
+      "textPreview": "Suddenly I found myself lying awake, peering from my sandy mattress through the door of the tent. I looked at my watch pinned against the canvas, and saw by th..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "III.",
+      "title": null,
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 8289,
+      "wordCount": 1495,
+      "estimatedTypingMinutes": 43,
+      "estimatedListeningMinutes": 49,
+      "morseCharacterEstimate": 44040,
+      "textPreview": "As though further to convince me that I had not been dreaming, I remember that it was a long time before I fell again into a troubled and restless sleep; and e..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "IV.",
+      "title": null,
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 49859,
+      "wordCount": 9067,
+      "estimatedTypingMinutes": 260,
+      "estimatedListeningMinutes": 297,
+      "morseCharacterEstimate": 266867,
+      "textPreview": "The sun was high in the heavens when my companion woke me from a heavy sleep and announced that the porridge was cooked and there was just time to bathe. The g..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "V.",
+      "title": null,
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 9538,
+      "wordCount": 1797,
+      "estimatedTypingMinutes": 52,
+      "estimatedListeningMinutes": 57,
+      "morseCharacterEstimate": 50758,
+      "textPreview": "It was my firm intention to lie awake all night and watch, but the exhaustion of nerves and body decreed otherwise, and sleep after a while came over me with a..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 130996,
+    "cleanedCharacterCount": 109067,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": [
+      "Targeted remaining raw-candidate completion used explicit manual boundaries instead of a broad all-book rebuild.",
+      "Local startup preview intentionally stores only starter text, not the full work."
+    ]
+  },
+  "warnings": [
+    "Generated by targeted remaining raw-candidate completion; review before Cloudflare export.",
+    "Cloudflare export was not run.",
+    "Manual review promoted this former boundary-risk item after confirming a clean Project Gutenberg source and five clear roman-numeral sections."
+  ]
+}

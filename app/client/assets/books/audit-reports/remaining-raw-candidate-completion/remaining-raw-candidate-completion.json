@@ -1,0 +1,620 @@
+{
+  "schemaVersion": 1,
+  "reportName": "remaining-raw-candidate-completion",
+  "generatedAt": "2026-06-28T03:53:25.990Z",
+  "branch": "morsewords-remaining-raw-candidate-completion-jun-2026",
+  "previousGeneratedCount": 488,
+  "previousSeoSummaryCount": 488,
+  "actualRawFilesCurrentlyInTempBooks": 527,
+  "rawFilesAlreadyGeneratedByDirectSlugMatch": 449,
+  "rawFilesNotGeneratedByDirectSlugMatch": 78,
+  "actualRemainingRawCandidatesFoundAfterPoe": 54,
+  "old46ReconciliationResult": {
+    "oldUnsafeCheckpointCount": 46,
+    "noLongerPresentInRaw": [
+      "the-works-of-edgar-allan-poe-the-raven-edition"
+    ],
+    "nowGenerated": [
+      "the-sad-story-of-a-dramatic-critic",
+      "under-the-knife",
+      "the-case-of-charles-dexter-ward",
+      "the-willows"
+    ],
+    "stillNeedActionCount": 41,
+    "stillNeedAction": [
+      "the-apple",
+      "the-dream-quest-of-unknown-kadath",
+      "the-story-of-the-late-mr-elvesham",
+      "hamlet",
+      "plays-of-sophocles-oedipus-the-king-oedipus-at-colonus-antigone",
+      "the-odyssey",
+      "twenty-years-after",
+      "middlemarch",
+      "the-countess-of-pembroke-s-arcadia",
+      "the-financier",
+      "the-leavenworth-case",
+      "the-mysterious-affair-at-styles",
+      "the-sign-of-the-four",
+      "war-and-peace",
+      "yellow-gentians-and-blue",
+      "beowulf-an-anglo-saxon-epic-poem",
+      "an-enquiry-concerning-human-understanding",
+      "emma",
+      "erewhon-or-over-the-range",
+      "father-goriot",
+      "figures-of-earth-a-comedy-of-appearances",
+      "five-little-friends",
+      "goblin-tales-of-lancashire",
+      "great-expectations",
+      "history-of-tom-jones",
+      "island-nights-entertainments",
+      "north-and-south",
+      "northern-lights",
+      "siddhartha",
+      "the-adventures-of-sherlock-holmes",
+      "the-arabian-nights-entertainments",
+      "the-happy-prince-and-other-tales",
+      "the-iliad",
+      "the-moonstone",
+      "the-mysteries-of-udolpho",
+      "the-private-memoirs-and-confessions-of-a-justified-sinner",
+      "the-woman-in-white",
+      "travelers-five-along-life-s-highway",
+      "walden-and-on-the-duty-of-civil-disobedience",
+      "the-history-of-dwarf-long-nose",
+      "the-little-match-girl"
+    ]
+  },
+  "newRawFilesDiscovered": [
+    "A DESCENT INTO THE MAELSTROM.txt",
+    "BERENICE.txt",
+    "HOP-FROG.txt",
+    "LIGEIA.txt",
+    "MORELLA.txt",
+    "MS. FOUND IN A BOTTLE.txt",
+    "SOME WORDS WITH A MUMMY.txt",
+    "THE BLACK CAT.txt",
+    "THE CASK OF AMONTILLADO.txt",
+    "THE FACTS IN THE CASE OF M. VALDEMAR.txt",
+    "THE FALL OF THE HOUSE OF USHER.txt",
+    "THE MAN OF THE CROWD.txt",
+    "THE MURDERS IN THE RUE MORGUE.txt",
+    "THE OBLONG BOX.txt",
+    "THE OVAL PORTRAIT.txt",
+    "THE PIT AND THE PENDULUM.txt",
+    "THE PREMATURE BURIAL.txt",
+    "THE PURLOINED LETTER.txt",
+    "THE SPHINX.txt",
+    "THE SYSTEM OF DOCTOR TARR AND PROFESSOR FETHER.txt",
+    "THE TELL-TALE HEART.txt",
+    "THOU ART THE MAN.txt",
+    "WILLIAM WILSON.txt"
+  ],
+  "removedFromRawByUserCandidates": [
+    "screenshot-2026-06-13-014010",
+    "the-works-of-edgar-allan-poe",
+    "the-works-of-edgar-allan-poe-the-raven-edition"
+  ],
+  "acceptedGeneratedCandidates": [
+    {
+      "slug": "a-catastrophe",
+      "title": "A Catastrophe",
+      "author": [
+        "H. G. Wells"
+      ],
+      "oldCategory": "manual-review-required",
+      "sectionCount": 1,
+      "wordCount": 3177,
+      "summaryWordCount": 305,
+      "previewCharacterCount": 1189,
+      "previewBytes": 1928
+    },
+    {
+      "slug": "in-the-abyss",
+      "title": "In the Abyss",
+      "author": [
+        "H. G. Wells"
+      ],
+      "oldCategory": "manual-review-required",
+      "sectionCount": 1,
+      "wordCount": 6169,
+      "summaryWordCount": 303,
+      "previewCharacterCount": 895,
+      "previewBytes": 1698
+    },
+    {
+      "slug": "pollock-and-the-porroh-man",
+      "title": "Pollock and the Porroh Man",
+      "author": [
+        "H. G. Wells"
+      ],
+      "oldCategory": "manual-review-required",
+      "sectionCount": 1,
+      "wordCount": 6120,
+      "summaryWordCount": 313,
+      "previewCharacterCount": 1246,
+      "previewBytes": 2002
+    },
+    {
+      "slug": "the-colour-out-of-space",
+      "title": "The Colour Out of Space",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "oldCategory": "manual-review-required",
+      "sectionCount": 1,
+      "wordCount": 12330,
+      "summaryWordCount": 307,
+      "previewCharacterCount": 1036,
+      "previewBytes": 1792
+    },
+    {
+      "slug": "the-plattner-story",
+      "title": "The Plattner Story",
+      "author": [
+        "H. G. Wells"
+      ],
+      "oldCategory": "manual-review-required",
+      "sectionCount": 1,
+      "wordCount": 7781,
+      "summaryWordCount": 306,
+      "previewCharacterCount": 1199,
+      "previewBytes": 1945
+    },
+    {
+      "slug": "the-sad-story-of-a-dramatic-critic",
+      "title": "The Sad Story of a Dramatic Critic",
+      "author": [
+        "H. G. Wells"
+      ],
+      "oldCategory": "unsafe-metadata-risk",
+      "sectionCount": 1,
+      "wordCount": 3161,
+      "summaryWordCount": 304,
+      "previewCharacterCount": 1196,
+      "previewBytes": 1986
+    },
+    {
+      "slug": "under-the-knife",
+      "title": "Under the Knife",
+      "author": [
+        "H. G. Wells"
+      ],
+      "oldCategory": "unsafe-metadata-risk",
+      "sectionCount": 1,
+      "wordCount": 5571,
+      "summaryWordCount": 305,
+      "previewCharacterCount": 1221,
+      "previewBytes": 1961
+    },
+    {
+      "slug": "the-willows",
+      "title": "The Willows",
+      "author": [
+        "Algernon Blackwood"
+      ],
+      "oldCategory": "unsafe-start-or-end-boundary-risk",
+      "sectionCount": 5,
+      "wordCount": 19787,
+      "summaryWordCount": 303,
+      "previewCharacterCount": 1112,
+      "previewBytes": 1837
+    },
+    {
+      "slug": "the-case-of-charles-dexter-ward",
+      "title": "The Case of Charles Dexter Ward",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "oldCategory": "unsafe-start-or-end-boundary-risk",
+      "sectionCount": 5,
+      "wordCount": 44472,
+      "summaryWordCount": 307,
+      "previewCharacterCount": 992,
+      "previewBytes": 1754
+    }
+  ],
+  "manualDeferredSkippedCandidates": {
+    "manualReviewRequired": [],
+    "futureBespokeRequired": [
+      {
+        "slug": "hamlet",
+        "reason": "requires a dedicated bespoke/manual processing pass"
+      },
+      {
+        "slug": "plays-of-sophocles-oedipus-the-king-oedipus-at-colonus-antigone",
+        "reason": "requires a dedicated bespoke/manual processing pass"
+      },
+      {
+        "slug": "the-odyssey",
+        "reason": "requires a dedicated bespoke/manual processing pass"
+      },
+      {
+        "slug": "twenty-years-after",
+        "reason": "requires a dedicated bespoke/manual processing pass"
+      }
+    ],
+    "duplicateOrNearDuplicate": [
+      {
+        "slug": "japanese-fairy-tales",
+        "reason": "left ungenerated to avoid duplicate or near-duplicate public pages"
+      },
+      {
+        "slug": "the-two-magics-the-turn-of-the-screw-covering-end",
+        "reason": "left ungenerated to avoid duplicate or near-duplicate public pages"
+      },
+      {
+        "slug": "the-wind-in-the-willows",
+        "reason": "left ungenerated to avoid duplicate or near-duplicate public pages"
+      }
+    ],
+    "blockedSourceOrRightsRisk": [
+      {
+        "slug": "the-apple",
+        "reason": "source/provenance or rights evidence remains insufficient for this automated pass"
+      },
+      {
+        "slug": "the-dream-quest-of-unknown-kadath",
+        "reason": "source/provenance or rights evidence remains insufficient for this automated pass"
+      },
+      {
+        "slug": "the-story-of-the-late-mr-elvesham",
+        "reason": "source/provenance or rights evidence remains insufficient for this automated pass"
+      }
+    ],
+    "unsafeBoundary": [
+      {
+        "slug": "an-enquiry-concerning-human-understanding",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "emma",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "erewhon-or-over-the-range",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "father-goriot",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "figures-of-earth-a-comedy-of-appearances",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "five-little-friends",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "goblin-tales-of-lancashire",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "great-expectations",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "history-of-tom-jones",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "island-nights-entertainments",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "north-and-south",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "northern-lights",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "siddhartha",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "the-adventures-of-sherlock-holmes",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "the-arabian-nights-entertainments",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "the-happy-prince-and-other-tales",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "the-iliad",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "the-moonstone",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "the-mysteries-of-udolpho",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "the-private-memoirs-and-confessions-of-a-justified-sinner",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "the-woman-in-white",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "travelers-five-along-life-s-highway",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      },
+      {
+        "slug": "walden-and-on-the-duty-of-civil-disobedience",
+        "reason": "start/end or section boundaries still need manual/bespoke review"
+      }
+    ],
+    "unsafeAutomation": [
+      {
+        "slug": "middlemarch",
+        "reason": "structure is too complex for safe targeted automation in this branch"
+      },
+      {
+        "slug": "the-countess-of-pembroke-s-arcadia",
+        "reason": "structure is too complex for safe targeted automation in this branch"
+      },
+      {
+        "slug": "the-financier",
+        "reason": "structure is too complex for safe targeted automation in this branch"
+      },
+      {
+        "slug": "the-leavenworth-case",
+        "reason": "structure is too complex for safe targeted automation in this branch"
+      },
+      {
+        "slug": "the-mysterious-affair-at-styles",
+        "reason": "structure is too complex for safe targeted automation in this branch"
+      },
+      {
+        "slug": "the-sign-of-the-four",
+        "reason": "structure is too complex for safe targeted automation in this branch"
+      },
+      {
+        "slug": "war-and-peace",
+        "reason": "structure is too complex for safe targeted automation in this branch"
+      },
+      {
+        "slug": "yellow-gentians-and-blue",
+        "reason": "structure is too complex for safe targeted automation in this branch"
+      }
+    ],
+    "unsafeMetadata": [
+      {
+        "slug": "beowulf-an-anglo-saxon-epic-poem",
+        "reason": "metadata evidence remains insufficient or boundary mixed with another story"
+      }
+    ],
+    "unsafeTitleParentCollection": [
+      {
+        "slug": "the-history-of-dwarf-long-nose",
+        "reason": "parent collection/title evidence remains too weak for an individual public page"
+      },
+      {
+        "slug": "the-little-match-girl",
+        "reason": "raw file visibly contains a different Andersen story and cannot support this title"
+      }
+    ],
+    "knownBoundaryDefect": [
+      {
+        "slug": "snow-white-and-rose-red",
+        "reason": "known boundary defect remains unresolved"
+      },
+      {
+        "slug": "the-works-of-edgar-allan-poe",
+        "reason": "raw file is no longer present after user/Poe cleanup"
+      }
+    ],
+    "nonBookOrInvalid": [
+      {
+        "slug": "new-text-document",
+        "reason": "raw file is no longer present"
+      },
+      {
+        "slug": "screenshot-2026-06-13-014010",
+        "reason": "raw file is no longer present"
+      }
+    ]
+  },
+  "newGeneratedCount": 497,
+  "newSeoSummaryCount": 497,
+  "missingSummaryCount": 0,
+  "missingSummarySlugs": [],
+  "summariesAddedForNewAcceptedBooks": [
+    "a-catastrophe",
+    "in-the-abyss",
+    "pollock-and-the-porroh-man",
+    "the-colour-out-of-space",
+    "the-plattner-story",
+    "the-sad-story-of-a-dramatic-critic",
+    "under-the-knife",
+    "the-willows",
+    "the-case-of-charles-dexter-ward"
+  ],
+  "newPreviewsCreated": [
+    "a-catastrophe",
+    "in-the-abyss",
+    "pollock-and-the-porroh-man",
+    "the-colour-out-of-space",
+    "the-plattner-story",
+    "the-sad-story-of-a-dramatic-critic",
+    "under-the-knife",
+    "the-willows",
+    "the-case-of-charles-dexter-ward"
+  ],
+  "previewSizeRangeForNewChangedBooks": "895-1246 chars",
+  "previewSizePolicyResultForNewChangedBooks": "pass: new previews are starter text only, roughly around 1 KB where practical, and not full chapters.",
+  "starterPreviewVisibilityCheckpoint": "pass: book pages use local starter preview text when full Cloudflare JSON is unavailable; Cloudflare export was not run.",
+  "existingPreviewLoadingArchitectureBlockerFound": false,
+  "routeUiCheckResult": {
+    "browserAvailability": "Browser plugin available and used through the in-app browser.",
+    "newlyAcceptedBookPage": "pass: /morse-code-books/the-willows?preview=unpublished rendered The Willows by Algernon Blackwood with no framework overlay.",
+    "newlyAcceptedSummaryPlacement": "pass: The Willows summary rendered below Source notes; the Read book summary link was unique and scrolled to #book-summary.",
+    "starterPreviewVisible": "pass: The Willows starter preview text was visible without waiting for a full Cloudflare export payload.",
+    "newPreviewSize": "pass: new preview range is 895-1246 chars.",
+    "newlyAcceptedAudiobookRoute": "pass: /morse-code-audiobooks/the-willows renders the expected deferred public availability message until Cloudflare export runs.",
+    "existingPoeStoryPage": "pass: /morse-code-books/the-tell-tale-heart?preview=unpublished rendered The Tell-Tale Heart by Edgar Allan Poe.",
+    "existingNonPoeSummaryPage": "pass: /morse-code-books/the-new-accelerator?preview=unpublished rendered The New Accelerator by H. G. Wells.",
+    "correctedTitlePage": "pass: /morse-code-books/the-raven?preview=unpublished rendered The Raven by Jacob Grimm.",
+    "bookListingCount": "pass: /morse-code-books rendered 497 BOOKS.",
+    "audiobookListingCount": "pass: /morse-code-audiobooks rendered 497 AUDIOBOOKS.",
+    "desktopSummaryWidth": "pass: The Willows summary width stayed constrained at 512px in the desktop check.",
+    "mobileOverflow": "pass: 375px mobile viewport showed no horizontal overflow.",
+    "consoleHealth": "pass: no relevant current-page browser warnings or errors after excluding stale Vite websocket logs from the earlier 127.0.0.1:3101 dev server."
+  },
+  "remainingRawCandidateCountAfterBranch": 45,
+  "remainingRawCandidateSlugsAfterBranch": [
+    "hamlet",
+    "plays-of-sophocles-oedipus-the-king-oedipus-at-colonus-antigone",
+    "the-odyssey",
+    "twenty-years-after",
+    "japanese-fairy-tales",
+    "the-two-magics-the-turn-of-the-screw-covering-end",
+    "the-wind-in-the-willows",
+    "snow-white-and-rose-red",
+    "the-apple",
+    "the-dream-quest-of-unknown-kadath",
+    "the-story-of-the-late-mr-elvesham",
+    "middlemarch",
+    "the-countess-of-pembroke-s-arcadia",
+    "the-financier",
+    "the-leavenworth-case",
+    "the-mysterious-affair-at-styles",
+    "the-sign-of-the-four",
+    "war-and-peace",
+    "yellow-gentians-and-blue",
+    "beowulf-an-anglo-saxon-epic-poem",
+    "an-enquiry-concerning-human-understanding",
+    "emma",
+    "erewhon-or-over-the-range",
+    "father-goriot",
+    "figures-of-earth-a-comedy-of-appearances",
+    "five-little-friends",
+    "goblin-tales-of-lancashire",
+    "great-expectations",
+    "history-of-tom-jones",
+    "island-nights-entertainments",
+    "north-and-south",
+    "northern-lights",
+    "siddhartha",
+    "the-adventures-of-sherlock-holmes",
+    "the-arabian-nights-entertainments",
+    "the-happy-prince-and-other-tales",
+    "the-iliad",
+    "the-moonstone",
+    "the-mysteries-of-udolpho",
+    "the-private-memoirs-and-confessions-of-a-justified-sinner",
+    "the-woman-in-white",
+    "travelers-five-along-life-s-highway",
+    "walden-and-on-the-duty-of-civil-disobedience",
+    "the-history-of-dwarf-long-nose",
+    "the-little-match-girl"
+  ],
+  "unresolvedSourceGeneratedBookCheckpoint": "11 unresolved-source generated books remain documented for the next dedicated review branch.",
+  "cloudflareExportCheckpoint": "Cloudflare export was not run and cloudflare-export remains a protected clean folder.",
+  "urlPageIndexabilityBlockerCheckpoint": "URL/page/indexability and planned-page implementation remains a later final-release blocker.",
+  "mobileFinalStageCheckpoint": "Broad mobile optimization remains the very last stage and was not started.",
+  "filesChangedByScript": [
+    "app/client/assets/books/generated/a-catastrophe/manifest.json",
+    "app/client/assets/books/generated/a-catastrophe/cleaned_book.json",
+    "app/client/assets/books/generated/a-catastrophe/processed_book.json",
+    "app/client/assets/books/generated/a-catastrophe/rights_report.json",
+    "app/client/assets/books/generated/a-catastrophe/processing_notes.md",
+    "app/client/assets/books/generated/a-catastrophe/sections/chapter-001.json",
+    "public/book-previews/a-catastrophe.preview.json",
+    "app/client/assets/books/generated/in-the-abyss/manifest.json",
+    "app/client/assets/books/generated/in-the-abyss/cleaned_book.json",
+    "app/client/assets/books/generated/in-the-abyss/processed_book.json",
+    "app/client/assets/books/generated/in-the-abyss/rights_report.json",
+    "app/client/assets/books/generated/in-the-abyss/processing_notes.md",
+    "app/client/assets/books/generated/in-the-abyss/sections/chapter-001.json",
+    "public/book-previews/in-the-abyss.preview.json",
+    "app/client/assets/books/generated/pollock-and-the-porroh-man/manifest.json",
+    "app/client/assets/books/generated/pollock-and-the-porroh-man/cleaned_book.json",
+    "app/client/assets/books/generated/pollock-and-the-porroh-man/processed_book.json",
+    "app/client/assets/books/generated/pollock-and-the-porroh-man/rights_report.json",
+    "app/client/assets/books/generated/pollock-and-the-porroh-man/processing_notes.md",
+    "app/client/assets/books/generated/pollock-and-the-porroh-man/sections/chapter-001.json",
+    "public/book-previews/pollock-and-the-porroh-man.preview.json",
+    "app/client/assets/books/generated/the-colour-out-of-space/manifest.json",
+    "app/client/assets/books/generated/the-colour-out-of-space/cleaned_book.json",
+    "app/client/assets/books/generated/the-colour-out-of-space/processed_book.json",
+    "app/client/assets/books/generated/the-colour-out-of-space/rights_report.json",
+    "app/client/assets/books/generated/the-colour-out-of-space/processing_notes.md",
+    "app/client/assets/books/generated/the-colour-out-of-space/sections/chapter-001.json",
+    "public/book-previews/the-colour-out-of-space.preview.json",
+    "app/client/assets/books/generated/the-plattner-story/manifest.json",
+    "app/client/assets/books/generated/the-plattner-story/cleaned_book.json",
+    "app/client/assets/books/generated/the-plattner-story/processed_book.json",
+    "app/client/assets/books/generated/the-plattner-story/rights_report.json",
+    "app/client/assets/books/generated/the-plattner-story/processing_notes.md",
+    "app/client/assets/books/generated/the-plattner-story/sections/chapter-001.json",
+    "public/book-previews/the-plattner-story.preview.json",
+    "app/client/assets/books/generated/the-sad-story-of-a-dramatic-critic/manifest.json",
+    "app/client/assets/books/generated/the-sad-story-of-a-dramatic-critic/cleaned_book.json",
+    "app/client/assets/books/generated/the-sad-story-of-a-dramatic-critic/processed_book.json",
+    "app/client/assets/books/generated/the-sad-story-of-a-dramatic-critic/rights_report.json",
+    "app/client/assets/books/generated/the-sad-story-of-a-dramatic-critic/processing_notes.md",
+    "app/client/assets/books/generated/the-sad-story-of-a-dramatic-critic/sections/chapter-001.json",
+    "public/book-previews/the-sad-story-of-a-dramatic-critic.preview.json",
+    "app/client/assets/books/generated/under-the-knife/manifest.json",
+    "app/client/assets/books/generated/under-the-knife/cleaned_book.json",
+    "app/client/assets/books/generated/under-the-knife/processed_book.json",
+    "app/client/assets/books/generated/under-the-knife/rights_report.json",
+    "app/client/assets/books/generated/under-the-knife/processing_notes.md",
+    "app/client/assets/books/generated/under-the-knife/sections/chapter-001.json",
+    "public/book-previews/under-the-knife.preview.json",
+    "app/client/assets/books/generated/the-willows/manifest.json",
+    "app/client/assets/books/generated/the-willows/cleaned_book.json",
+    "app/client/assets/books/generated/the-willows/processed_book.json",
+    "app/client/assets/books/generated/the-willows/rights_report.json",
+    "app/client/assets/books/generated/the-willows/processing_notes.md",
+    "app/client/assets/books/generated/the-willows/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-willows/sections/chapter-002.json",
+    "app/client/assets/books/generated/the-willows/sections/chapter-003.json",
+    "app/client/assets/books/generated/the-willows/sections/chapter-004.json",
+    "app/client/assets/books/generated/the-willows/sections/chapter-005.json",
+    "public/book-previews/the-willows.preview.json",
+    "app/client/assets/books/generated/the-case-of-charles-dexter-ward/manifest.json",
+    "app/client/assets/books/generated/the-case-of-charles-dexter-ward/cleaned_book.json",
+    "app/client/assets/books/generated/the-case-of-charles-dexter-ward/processed_book.json",
+    "app/client/assets/books/generated/the-case-of-charles-dexter-ward/rights_report.json",
+    "app/client/assets/books/generated/the-case-of-charles-dexter-ward/processing_notes.md",
+    "app/client/assets/books/generated/the-case-of-charles-dexter-ward/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-case-of-charles-dexter-ward/sections/chapter-002.json",
+    "app/client/assets/books/generated/the-case-of-charles-dexter-ward/sections/chapter-003.json",
+    "app/client/assets/books/generated/the-case-of-charles-dexter-ward/sections/chapter-004.json",
+    "app/client/assets/books/generated/the-case-of-charles-dexter-ward/sections/chapter-005.json",
+    "public/book-previews/the-case-of-charles-dexter-ward.preview.json"
+  ],
+  "validationResults": {
+    "targetedGeneration": "pass",
+    "seoSummaryCoverage": "pass",
+    "typecheck": "pass",
+    "seoSummaryAudit": "pass: 497/497",
+    "batch12ProseRestore": "pass",
+    "startupPreviewAudit": "pass: 497 valid",
+    "titleStartDefaultAudit": "pass after restoring known unrelated generated/preview churn and reapplying targeted branch output",
+    "metadataSegmentationAudit": "pass",
+    "manualUiDefectFollowup": "pass: 8/8 acceptable",
+    "independentSecondPassAudit": "pass: 497 generated, 431 pass, 66 warn-accepted, 0 fail-needs-fix",
+    "linkingSitemapAudit": "pass: 497 book URLs and 497 audiobook URLs",
+    "testIfPresent": "pass: 23/23",
+    "netlifyBuild": "pass: only the existing Vite chunk-size warning; no Cloudflare payload-size failure",
+    "playwright": "pass: 38/38",
+    "gitDiffCheck": "pass: line-ending warnings only",
+    "fullValidation": "pass"
+  },
+  "recommendedNextMajorPhase": "Review the 11 unresolved-source generated books, unless remaining raw candidates still require a second manual/bespoke branch."
+}

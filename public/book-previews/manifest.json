@@ -5370,6 +5370,105 @@
       "previewCharacterCount": 1155,
       "estimatedRuntimeSeconds": 373,
       "truncated": true
+    },
+    {
+      "slug": "a-catastrophe",
+      "path": "/book-previews/a-catastrophe.preview.json",
+      "contentVersion": "bf00cfc593d6787c",
+      "contentHash": "bf00cfc593d6787c6d7f1b34397d660e88d65e03837fe3a9fd936dcf0076b10e",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1928,
+      "previewCharacterCount": 1189,
+      "estimatedRuntimeSeconds": 431,
+      "truncated": true
+    },
+    {
+      "slug": "in-the-abyss",
+      "path": "/book-previews/in-the-abyss.preview.json",
+      "contentVersion": "714ed9fad1c9bc80",
+      "contentHash": "714ed9fad1c9bc80ce79fa116c34ce81e5c826f1e3744953e2bea593b087aa45",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1698,
+      "previewCharacterCount": 895,
+      "estimatedRuntimeSeconds": 322,
+      "truncated": true
+    },
+    {
+      "slug": "pollock-and-the-porroh-man",
+      "path": "/book-previews/pollock-and-the-porroh-man.preview.json",
+      "contentVersion": "c53027bb3ede3411",
+      "contentHash": "c53027bb3ede341146273de2bd8bb26b75b5300828f5c05ac343ebc5028c34b3",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 2002,
+      "previewCharacterCount": 1246,
+      "estimatedRuntimeSeconds": 445,
+      "truncated": true
+    },
+    {
+      "slug": "the-colour-out-of-space",
+      "path": "/book-previews/the-colour-out-of-space.preview.json",
+      "contentVersion": "8a32d4b3a6373cc6",
+      "contentHash": "8a32d4b3a6373cc667077361e29f8e0517da3440295e5326455307033db47948",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1792,
+      "previewCharacterCount": 1036,
+      "estimatedRuntimeSeconds": 368,
+      "truncated": true
+    },
+    {
+      "slug": "the-plattner-story",
+      "path": "/book-previews/the-plattner-story.preview.json",
+      "contentVersion": "92f5e3a438adf978",
+      "contentHash": "92f5e3a438adf9781f4cd079130edae8df3df72407abbdcb1c7c645511e6163e",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1945,
+      "previewCharacterCount": 1199,
+      "estimatedRuntimeSeconds": 424,
+      "truncated": true
+    },
+    {
+      "slug": "the-sad-story-of-a-dramatic-critic",
+      "path": "/book-previews/the-sad-story-of-a-dramatic-critic.preview.json",
+      "contentVersion": "26c797fa8eb5be3f",
+      "contentHash": "26c797fa8eb5be3fc514bf7874dda5ae5247f6aa78df0b02465edf3ff14fdd53",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1986,
+      "previewCharacterCount": 1196,
+      "estimatedRuntimeSeconds": 429,
+      "truncated": true
+    },
+    {
+      "slug": "under-the-knife",
+      "path": "/book-previews/under-the-knife.preview.json",
+      "contentVersion": "6218568c9d5792a9",
+      "contentHash": "6218568c9d5792a9383bcf6fe8f763d3a0f8405d16acf829513b6e6e005d52d4",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1961,
+      "previewCharacterCount": 1221,
+      "estimatedRuntimeSeconds": 435,
+      "truncated": true
+    },
+    {
+      "slug": "the-willows",
+      "path": "/book-previews/the-willows.preview.json",
+      "contentVersion": "c2e1fc788b46a69a",
+      "contentHash": "c2e1fc788b46a69a9fceedc3a4879a5a5d85774684aa30d29a8fe00ef727e346",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1837,
+      "previewCharacterCount": 1112,
+      "estimatedRuntimeSeconds": 396,
+      "truncated": true
+    },
+    {
+      "slug": "the-case-of-charles-dexter-ward",
+      "path": "/book-previews/the-case-of-charles-dexter-ward.preview.json",
+      "contentVersion": "a446781e2a09cf21",
+      "contentHash": "a446781e2a09cf21359e81e3da78810385949b3a7d9a6992daf55672387a8d21",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1754,
+      "previewCharacterCount": 992,
+      "estimatedRuntimeSeconds": 357,
+      "truncated": true
     }
   ],
   "missing": []

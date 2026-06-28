@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "summarySet": "poe-replacement-raw-reconciliation",
+  "summarySet": "remaining-raw-candidate-completion",
   "generatedAt": "2026-06-28",
   "storageApproach": "Separate static JSON data asset imported by book routes and validation tooling. Summaries are not embedded in generated book text, preview assets, raw sources, or Cloudflare export payloads.",
   "suggestedPilotSlugs": [
@@ -79,7 +79,7 @@
       "reason": "The Odyssey is not currently generated; The Arabian Nights keeps a long classic story-collection sample in the pilot."
     }
   ],
-  "expectedSummaryCount": 488,
+  "expectedSummaryCount": 497,
   "batch1Slugs": [
     "a-childs-garden-of-verses",
     "a-princess-of-mars",
@@ -4575,6 +4575,87 @@
       ],
       "description": "A Gothic double story about conscience, identity, rivalry, and a narrator pursued by his own name.",
       "summary": "William Wilson by Edgar Allan Poe is a Gothic double story about identity, conscience, and rivalry. The narrator chooses the name William Wilson and looks back on a life shaped by pride, secrecy, and a strange figure who shares his name and seems to interfere at decisive moments. The settings move from school to broader social spaces, but the central conflict remains psychological: the narrator wants freedom for his own will while another presence appears to check, mirror, or expose him.\n\nThe tone is confessional, elegant, and increasingly uncanny. Poe uses school memories, social ambition, and the double motif to create tension without relying on a single haunted room. For Morse practice, William Wilson is useful because it has varied scenes, formal reflection, and repeated names that help anchor the listener. Typists can practice longer narrative paragraphs, dialogue-like moments, and vocabulary tied to education, reputation, and moral pressure. In audio, the recurrence of the name and the rival presence gives the story a clear thread through its more elaborate passages.\n\nThis is a strong intermediate or advanced selection because it is longer and more psychologically layered than some of Poe's shortest tales. A good routine is to practice the school opening first, then move into later confrontations in separate sessions. The story rewards repetition because the central conflict becomes clearer as the narrator's self-description accumulates. Without spoiling the final movement, William Wilson offers a classic Poe experience of pursuit turned inward. For MorseWords users, it builds endurance with literary prose while keeping the practice grounded in a memorable premise: a person cannot easily escape the voice, name, or conscience that follows him.\n\nFor a practical Morse session, use William Wilson as a repeatable passage: preview the opening text, listen once for structure, then type a shorter selection again at a slightly higher speed. That routine keeps the literary setting present while turning the story into clear, measurable practice for accuracy, punctuation, and endurance."
+    },
+    {
+      "slug": "a-catastrophe",
+      "title": "A Catastrophe",
+      "author": [
+        "H. G. Wells"
+      ],
+      "description": "A compact realist story of a struggling shopkeeper, private anxiety, and a sudden turn of fortune.",
+      "summary": "A Catastrophe by H. G. Wells is a short realist story about money trouble, domestic pressure, and the strange emotional arithmetic of everyday life. The setting is a small draper's shop where Winslow, a shopkeeper with failing stock and unpaid bills, slowly understands that his business is in serious danger. The central conflict is practical and moral at once: he and his wife face ruin, but their private reactions to bad news are tangled with hope, propriety, fear, and the need to keep going.\n\nThe tone is quietly comic, observant, and a little merciless. Wells does not build the story around adventure or spectacle; he watches ordinary people under financial strain and lets their small gestures reveal more than they say aloud. Readers should expect shop details, household rhythms, restrained dialogue, and a closing movement that changes the pressure without turning the story into a simple moral lesson.\n\nFor Morse typing practice, A Catastrophe is useful because it is short enough for a focused session but rich in sentence rhythm. It gives learners names, shop terms, money references, and Victorian social phrasing without requiring a long commitment. The prose moves between plain narration and carefully qualified thought, which makes it good for practicing punctuation and steady spacing. In audio, the story's domestic setting is easy to follow, so learners can concentrate on accuracy rather than plot confusion. The piece also rewards repeat practice because its ordinary objects carry emotional weight: invoices, shutters, letters, breakfast, and shop stock all become signals of changing fortune. For drills, the slow buildup is helpful: a learner can type one paragraph for accuracy, then replay the same scene to hear how small changes in wording alter the emotional pressure. It is a strong choice for anyone who wants a complete literary exercise with realistic stakes, mild irony, and manageable length."
+    },
+    {
+      "slug": "in-the-abyss",
+      "title": "In the Abyss",
+      "author": [
+        "H. G. Wells"
+      ],
+      "description": "A scientific romance about a daring descent into the deep ocean and the unknown world below.",
+      "summary": "In the Abyss by H. G. Wells is an early science-fiction sea adventure built around a bold experiment: sending a man down into the deepest reaches of the ocean inside a steel sphere. The story begins with practical questions of pressure, engineering, courage, and risk, then turns the descent into an encounter with a world that human beings can barely imagine. The central conflict is survival and discovery. Elstead must trust his apparatus, his nerve, and his powers of observation while the sea becomes both a physical danger and a doorway into the unknown.\n\nThe tone is speculative, tense, and exploratory. Wells gives the machinery enough detail to make the premise feel plausible, then uses darkness, depth, and isolation to create wonder. The setting shifts from shipboard debate to the ocean floor, so readers get both scientific conversation and strange visual description. The story includes peril, but its main pleasure is curiosity: what might exist beyond ordinary human sight?\n\nFor Morse practice, In the Abyss is a rewarding intermediate text. It has technical vocabulary, names, measurements, and long descriptive passages that encourage careful copying. The alternation between dialogue and observation helps typists practice changes in pace. In audio, the descent gives the listener a clear structure, and repeated references to pressure, light, and depth make it easier to keep orientation. Learners can use the opening as a warm-up, then repeat the undersea passages at a slower speed for accuracy. The story is also useful for practicing numbers and physical scale, since pressure, depth, time, and distance shape the suspense. Its vocabulary makes a good review list before a session, especially for learners who want to separate unfamiliar words from Morse timing work. It is fun because it feels like an expedition, and useful because its scientific romance style trains patience with detailed prose."
+    },
+    {
+      "slug": "pollock-and-the-porroh-man",
+      "title": "Pollock and the Porroh Man",
+      "author": [
+        "H. G. Wells"
+      ],
+      "description": "A dark colonial Gothic story about fear, guilt, and a hostile presence that follows a reckless traveler.",
+      "summary": "Pollock and the Porroh Man by H. G. Wells is a dark Gothic adventure set against a colonial West African expedition. Pollock, an English traveler with more confidence than judgment, becomes entangled in violence, fear, and a local spiritual authority he does not understand. The central conflict is psychological as much as physical: Pollock tries to treat the danger as a problem he can outrun or explain away, but guilt and dread keep closing in. The story should be read as period fiction, with colonial attitudes and language that belong to its time rather than to modern understanding.\n\nThe tone is oppressive, feverish, and morally uneasy. Wells uses heat, travel, rumor, and the pressure of an unfamiliar environment to make Pollock's fear feel increasingly inescapable. The premise includes violence and horror, but the useful reading experience comes from watching panic and conscience alter what the character sees. The setting gives the story a harsh intensity, while the narration keeps asking whether the real terror is outside Pollock or inside him.\n\nFor Morse practice, this is best for intermediate or advanced learners who are comfortable with darker material. The text has names, place references, dialogue, and long descriptive paragraphs that require accurate pacing. Typists can practice careful punctuation while following a story that steadily tightens. In audio, the repeated return of Pollock's fear gives listeners a strong thread through the older prose. The story also trains careful attention to tone, since the narration shifts between outward incident, memory, physical unease, and inward alarm. Because the material is intense, it works best in short, deliberate sessions where the learner can keep the language clear without dwelling on the violence. A good session is to copy a short opening passage, review unfamiliar words, and then continue in controlled sections rather than rushing. The story is not light, but it is memorable and effective for sustained attention."
+    },
+    {
+      "slug": "the-colour-out-of-space",
+      "title": "The Colour Out of Space",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "description": "A cosmic horror story about a rural New England farm, an uncanny meteorite, and a blight beyond ordinary explanation.",
+      "summary": "The Colour Out of Space by H. P. Lovecraft is a cosmic horror story set in the hills west of Arkham, where an old rural landscape bears the memory of something no one can properly name. The frame follows a surveyor who hears local accounts of a farm marked by an uncanny event after a meteorite falls nearby. The central conflict is not a fight with a visible monster, but a struggle to understand a presence that changes land, plants, animals, and human confidence in natural order.\n\nThe tone is eerie, patient, and increasingly alien. Lovecraft builds dread through reports, local memory, scientific curiosity, and the slow collapse of ordinary explanations. The setting is important: stony New England farms, wells, woods, and abandoned ground make the horror feel rooted in place even when the threat seems to come from beyond familiar nature. The story includes illness and decay, but the summary focus here is atmosphere, mystery, and the pressure of the unknown rather than graphic detail.\n\nFor Morse typing practice, The Colour Out of Space is a strong endurance piece. It is longer than a quick short story, with formal narration, regional names, scientific language, and descriptive passages that ask for steady attention. Learners can practice the opening landscape at a slow speed, then move into shorter sections where testimony and observation alternate. In audio, the recurring place names and the gradual investigation help listeners stay oriented. The story is especially good for learning to hold accuracy across paragraphs where the action is subtle but the imagery keeps changing. It also gives typists practice with a measured investigative voice, where each remembered detail modifies what came before. It is useful for practicing complex sentences and unusual vocabulary, and it is fun for readers who enjoy weird fiction because the central mystery remains unsettling without needing constant action."
+    },
+    {
+      "slug": "the-plattner-story",
+      "title": "The Plattner Story",
+      "author": [
+        "H. G. Wells"
+      ],
+      "description": "A science-fantasy tale about a schoolmaster, a strange explosion, and an alleged journey outside ordinary space.",
+      "summary": "The Plattner Story by H. G. Wells is a science-fantasy tale about evidence, disbelief, and a schoolmaster whose body and experience seem to defy ordinary space. Gottfried Plattner is introduced through testimony, medical oddity, and a narrator trying to sound reasonable about an unreasonable case. The central conflict is interpretive: if the facts are real, Plattner has passed through an impossible displacement; if they are not, then a remarkable body of evidence must somehow be explained away.\n\nThe tone is curious, skeptical, and uncanny. Wells frames the story almost like a case report, with witnesses, photographs, schoolroom details, and cautious commentary. The setting begins in a small private school and expands into a strange other-world described through Plattner's account. That combination makes the story feel both domestic and cosmic: chalk dust, boys, and chemistry equipment stand beside speculation about dimensions and unseen watchers.\n\nFor Morse practice, The Plattner Story is useful because it has a clear premise and varied prose. Typists will encounter names, technical hints, school vocabulary, dialogue, and long explanatory sentences. The narrator's careful tone rewards accurate punctuation, while the weird scenes provide enough momentum to keep a practice session lively. In audio, the story is easy to divide: first the evidence, then the accident, then Plattner's report. Learners can repeat one part at a time, building speed only after the names and sentence rhythm feel familiar. The story also gives practice with explanatory prose that sounds almost documentary, which is useful for learners who want more than action sentences. Its blend of testimony and wonder makes it a good bridge between realistic narration and stranger speculative passages, and its compact structure supports review in one sitting. It is especially good for readers who want classic speculative fiction that is stranger than a simple invention story but still grounded in a concrete, memorable setup."
+    },
+    {
+      "slug": "the-sad-story-of-a-dramatic-critic",
+      "title": "The Sad Story of a Dramatic Critic",
+      "author": [
+        "H. G. Wells"
+      ],
+      "description": "A comic fantasy of manners about criticism, theatrical habits, and a personality gradually overtaken by performance.",
+      "summary": "The Sad Story of a Dramatic Critic by H. G. Wells is a comic fantasy about identity, habit, and the contagious force of theater. The narrator, Egbert Craddock Cummins, explains how he became a dramatic critic almost by accident and then found his personality changing under the pressure of the plays, actors, gestures, and phrases he was supposed to observe. The central conflict is absurd but precise: he wants to remain his ordinary self, yet the theatrical world keeps rewriting his manners from the outside in.\n\nThe tone is satirical, brisk, and self-mocking. Wells turns professional criticism into a kind of comic affliction, with the narrator aware of his own ridiculousness even as he cannot stop performing it. The setting moves through newspaper offices, theaters, social encounters, and the narrator's increasingly dramatic self-consciousness. It is a lighter selection than Wells's stranger scientific romances, but it still has a speculative idea at its core: what if repeated exposure to a style of life could alter the person who studies it?\n\nFor Morse practice, this story is approachable and lively. It offers first-person narration, comic timing, names, abbreviations, and dialogue-like bursts that help learners practice punctuation and rhythm. Because the plot is easy to follow, typists can focus on accuracy rather than decoding a complicated structure. In audio, the narrator's shifting voice makes the piece fun to replay, especially when his ordinary explanations slide into theatrical phrasing. The comic premise also helps with retention: repeated practice is easier when the character's predicament is memorable and the voice keeps changing. It is also a friendly contrast piece after darker stories in the library, giving typists formal prose without a grim mood. It is a good medium-short drill for learners who want humor, human observation, and a complete story that does not depend on horror or heavy action."
+    },
+    {
+      "slug": "under-the-knife",
+      "title": "Under the Knife",
+      "author": [
+        "H. G. Wells"
+      ],
+      "description": "A speculative story about surgery, consciousness, and a narrator's strange inward journey under anesthesia.",
+      "summary": "Under the Knife by H. G. Wells is a speculative short story about illness, surgery, and the uncertain border between the body and consciousness. The narrator approaches an operation with dread and detachment, then describes an extraordinary inward experience while under anesthesia. The central conflict is philosophical as well as personal: he is vulnerable on the operating table, but his mind seems to move into a wider, stranger field of perception. Wells uses the premise to ask what selfhood might feel like when ordinary bodily sensation falls away.\n\nThe tone is reflective, tense, and visionary. The medical setting gives the story concrete stakes, while the narrator's altered awareness opens into speculation about death, identity, and the scale of human life. The story includes surgical danger, but it can be read without dwelling on graphic detail; the real emphasis is on perception and the shock of feeling separated from familiar limits.\n\nFor Morse practice, Under the Knife is a strong intermediate text. It has formal nineteenth-century prose, medical terms, philosophical reflection, and a clear first-person voice. Typists can practice long sentences that shift from ordinary description to abstract thought. In audio, the movement from walking through London to the operation and then to the narrator's strange experience gives the listener a useful structure. A good routine is to practice the opening in small pieces, then replay the altered-consciousness passages slowly for accuracy. The story also helps learners work with changes in register, from practical medical talk to expansive speculation, without losing the sentence thread. Its vocabulary gives a useful mix of everyday city detail, medical language, and metaphysical reflection in one compact work. It is useful because it trains patience with reflective prose, and it is fun because its central question remains vivid: what might the mind encounter when the body is almost out of reach?"
+    },
+    {
+      "slug": "the-willows",
+      "title": "The Willows",
+      "author": [
+        "Algernon Blackwood"
+      ],
+      "description": "A weird-fiction novella set on the Danube, where two travelers camp among willows and sense an alien pressure around them.",
+      "summary": "The Willows by Algernon Blackwood is a classic weird-fiction novella set on the Danube, where two travelers make camp among shifting islands, wind, water, and endless low willow bushes. The central conflict is not a conventional pursuit but a deepening sense of exposure. The men try to understand whether the landscape is merely dangerous or whether something vast and alien presses through it. Their practical travel decisions become entangled with fear, awe, and the feeling that ordinary human categories are too small for the place.\n\nThe tone is atmospheric, patient, and uncanny. Blackwood builds tension through weather, river movement, sound, distance, and the travelers' changing confidence. The setting is the story's great force: the Danube wilderness feels beautiful, unstable, and increasingly indifferent to human comfort. Horror arrives through suggestion rather than simple shock, so readers experience the unease as a slow accumulation of details.\n\nFor Morse practice, The Willows is excellent for endurance and descriptive accuracy. It has five clear sections, which makes it easy to divide into sessions. Learners can use the opening landscape as a slow listening exercise, then practice later passages where dialogue and observation alternate. The prose includes long sentences, natural description, place references, and subtle changes in mood, all useful for careful copying. In audio, the recurring river imagery helps listeners keep their place even when the atmosphere grows abstract. The story also rewards careful volume and speed choices, because too fast a pass can flatten the gradual changes in fear and setting. Its natural imagery is ideal for checking whether copied words stay meaningful rather than becoming mechanical signals. It is best for intermediate or advanced typists, but beginners can still use short passages. The reward is a memorable practice text that teaches patience, attention, and rhythm through one of the great haunted landscapes in public-domain fiction."
+    },
+    {
+      "slug": "the-case-of-charles-dexter-ward",
+      "title": "The Case of Charles Dexter Ward",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "description": "A Providence weird tale of antiquarian research, family history, and a mystery that reaches into the colonial past.",
+      "summary": "The Case of Charles Dexter Ward by H. P. Lovecraft is a long weird tale set in Providence, Rhode Island, where antiquarian curiosity opens into a disturbing family mystery. Charles Dexter Ward is drawn into colonial records, old houses, obscure scholarship, and the history of Joseph Curwen, an ancestor whose reputation carries more than ordinary scandal. The central conflict is investigative and psychological: friends and family try to understand Ward's transformation, while the past seems to become dangerously active in the present.\n\nThe tone is archival, Gothic, and increasingly tense. Lovecraft uses letters, local history, family documents, medical concern, and antiquarian detail to make the mystery feel layered rather than immediate. The setting is one of the story's pleasures: Providence streets, old rooms, records, and hidden places create a strong sense of place. The horror involves occult research and implied danger, but the reading experience is largely about inquiry, atmosphere, and the slow assembly of clues.\n\nFor Morse practice, this is an advanced endurance selection. Its five parts give learners natural stopping points, and the prose offers names, dates, quotations, formal narration, and long historical passages. Typists should not rush it; a better method is to work one part at a time, preview names, and repeat dense paragraphs until the rhythm settles. In audio, the mystery structure helps maintain orientation even through elaborate sentences. The work is useful for serious practice because it demands attention to punctuation and proper nouns, and it is fun for readers who like weird fiction with documents, old cities, and a central question that deepens rather than resolves too quickly. It also gives a different kind of practice from the shorter tales: instead of one quick arc, learners manage a layered investigation across multiple sessions. That makes it suitable for a longer training plan where each part becomes its own measurable milestone."
     }
   ],
   "batch3Slugs": [
@@ -4960,5 +5041,16 @@
     "the-tell-tale-heart",
     "thou-art-the-man",
     "william-wilson"
+  ],
+  "remainingRawCandidateCompletionSlugs": [
+    "a-catastrophe",
+    "in-the-abyss",
+    "pollock-and-the-porroh-man",
+    "the-colour-out-of-space",
+    "the-plattner-story",
+    "the-sad-story-of-a-dramatic-critic",
+    "under-the-knife",
+    "the-willows",
+    "the-case-of-charles-dexter-ward"
   ]
 }

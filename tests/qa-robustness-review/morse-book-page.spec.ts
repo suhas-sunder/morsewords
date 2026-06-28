@@ -98,7 +98,14 @@ const TEST_BOOK_RUNTIME_SETTINGS_KEY =
 const BOOK_RUNTIME_SETTINGS_KEY_PREFIX =
   "morsewords:book-runtime:settings:v1:";
 const BOOK_WORKSPACE_TIMEOUT_MS = 90_000;
-const EXPECTED_GENERATED_BOOK_COUNT = 488;
+const EXPECTED_GENERATED_BOOK_COUNT = (
+  JSON.parse(
+    fs.readFileSync(
+      path.join(ROOT, "app/client/assets/books/generated/library-manifest.json"),
+      "utf8",
+    ),
+  ) as { books: unknown[] }
+).books.length;
 const TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY =
   "morsewords:book-live-preview-progress:v1:test-published-morse-book";
 const TEST_BOOK_DEFAULT_SECTION_IDS = ["chapter-001", "chapter-002"] as const;

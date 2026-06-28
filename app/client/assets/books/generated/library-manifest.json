@@ -24050,6 +24050,483 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "william-wilson/manifest.json"
+    },
+    {
+      "slug": "a-catastrophe",
+      "title": "A Catastrophe",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "bf00cfc593d6787c",
+      "contentHash": "bf00cfc593d6787c6d7f1b34397d660e88d65e03837fe3a9fd936dcf0076b10e",
+      "language": "en",
+      "description": "A compact realist story of a struggling shopkeeper, private anxiety, and a sudden turn of fortune.",
+      "subjects": [
+        "Short story",
+        "Realist fiction",
+        "Social fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted remaining raw-candidate completion processed this accepted candidate after manual boundary and metadata review. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Catastrophe"
+      },
+      "stats": {
+        "originalCharacterCount": 18257,
+        "cleanedCharacterCount": 17883,
+        "wordCount": 3177,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-catastrophe/manifest.json"
+    },
+    {
+      "slug": "in-the-abyss",
+      "title": "In the Abyss",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "714ed9fad1c9bc80",
+      "contentHash": "714ed9fad1c9bc80ce79fa116c34ce81e5c826f1e3744953e2bea593b087aa45",
+      "language": "en",
+      "description": "A scientific romance about a daring descent into the deep ocean and the unknown world below.",
+      "subjects": [
+        "Science fiction",
+        "Sea story",
+        "Adventure"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted remaining raw-candidate completion processed this accepted candidate after manual boundary and metadata review. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for In the Abyss"
+      },
+      "stats": {
+        "originalCharacterCount": 34771,
+        "cleanedCharacterCount": 34263,
+        "wordCount": 6169,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "in-the-abyss/manifest.json"
+    },
+    {
+      "slug": "pollock-and-the-porroh-man",
+      "title": "Pollock and the Porroh Man",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "c53027bb3ede3411",
+      "contentHash": "c53027bb3ede341146273de2bd8bb26b75b5300828f5c05ac343ebc5028c34b3",
+      "language": "en",
+      "description": "A dark colonial Gothic story about fear, guilt, and a hostile presence that follows a reckless traveler.",
+      "subjects": [
+        "Gothic fiction",
+        "Psychological horror",
+        "Adventure"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted remaining raw-candidate completion processed this accepted candidate after manual boundary and metadata review. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Pollock and the Porroh Man"
+      },
+      "stats": {
+        "originalCharacterCount": 34067,
+        "cleanedCharacterCount": 33505,
+        "wordCount": 6120,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "pollock-and-the-porroh-man/manifest.json"
+    },
+    {
+      "slug": "the-colour-out-of-space",
+      "title": "The Colour Out of Space",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "8a32d4b3a6373cc6",
+      "contentHash": "8a32d4b3a6373cc667077361e29f8e0517da3440295e5326455307033db47948",
+      "language": "en",
+      "description": "A cosmic horror story about a rural New England farm, an uncanny meteorite, and a blight beyond ordinary explanation.",
+      "subjects": [
+        "Cosmic horror",
+        "Science fiction",
+        "Gothic fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "68236",
+        "releaseDate": "June 4, 2022",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/68236",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted remaining raw-candidate completion processed this accepted candidate after manual boundary and metadata review. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Colour Out of Space"
+      },
+      "stats": {
+        "originalCharacterCount": 91024,
+        "cleanedCharacterCount": 69159,
+        "wordCount": 12330,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-colour-out-of-space/manifest.json"
+    },
+    {
+      "slug": "the-plattner-story",
+      "title": "The Plattner Story",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "92f5e3a438adf978",
+      "contentHash": "92f5e3a438adf9781f4cd079130edae8df3df72407abbdcb1c7c645511e6163e",
+      "language": "en",
+      "description": "A science-fantasy tale about a schoolmaster, a strange explosion, and an alleged journey outside ordinary space.",
+      "subjects": [
+        "Science fiction",
+        "Fantasy",
+        "Speculative fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted remaining raw-candidate completion processed this accepted candidate after manual boundary and metadata review. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Plattner Story"
+      },
+      "stats": {
+        "originalCharacterCount": 45263,
+        "cleanedCharacterCount": 44880,
+        "wordCount": 7781,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-plattner-story/manifest.json"
+    },
+    {
+      "slug": "the-sad-story-of-a-dramatic-critic",
+      "title": "The Sad Story of a Dramatic Critic",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "26c797fa8eb5be3f",
+      "contentHash": "26c797fa8eb5be3fc514bf7874dda5ae5247f6aa78df0b02465edf3ff14fdd53",
+      "language": "en",
+      "description": "A comic fantasy of manners about criticism, theatrical habits, and a personality gradually overtaken by performance.",
+      "subjects": [
+        "Comic fiction",
+        "Satire",
+        "Short story"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted remaining raw-candidate completion processed this accepted candidate after manual boundary and metadata review. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Sad Story of a Dramatic Critic"
+      },
+      "stats": {
+        "originalCharacterCount": 17673,
+        "cleanedCharacterCount": 17288,
+        "wordCount": 3161,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-sad-story-of-a-dramatic-critic/manifest.json"
+    },
+    {
+      "slug": "under-the-knife",
+      "title": "Under the Knife",
+      "author": [
+        "H. G. Wells"
+      ],
+      "contentVersion": "6218568c9d5792a9",
+      "contentHash": "6218568c9d5792a9383bcf6fe8f763d3a0f8405d16acf829513b6e6e005d52d4",
+      "language": "en",
+      "description": "A speculative story about surgery, consciousness, and a narrator's strange inward journey under anesthesia.",
+      "subjects": [
+        "Speculative fiction",
+        "Psychological fiction",
+        "Short story"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": null,
+        "releaseDate": null,
+        "sourceUrl": null,
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted remaining raw-candidate completion processed this accepted candidate after manual boundary and metadata review. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Under the Knife"
+      },
+      "stats": {
+        "originalCharacterCount": 53849,
+        "cleanedCharacterCount": 30757,
+        "wordCount": 5571,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "under-the-knife/manifest.json"
+    },
+    {
+      "slug": "the-willows",
+      "title": "The Willows",
+      "author": [
+        "Algernon Blackwood"
+      ],
+      "contentVersion": "c2e1fc788b46a69a",
+      "contentHash": "c2e1fc788b46a69a9fceedc3a4879a5a5d85774684aa30d29a8fe00ef727e346",
+      "language": "en",
+      "description": "A weird-fiction novella set on the Danube, where two travelers camp among willows and sense an alien pressure around them.",
+      "subjects": [
+        "Weird fiction",
+        "Horror",
+        "Adventure"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "11438",
+        "releaseDate": "March 1, 2004",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/11438",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted remaining raw-candidate completion processed this accepted candidate after manual boundary and metadata review. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Willows"
+      },
+      "stats": {
+        "originalCharacterCount": 130996,
+        "cleanedCharacterCount": 109067,
+        "wordCount": 19787,
+        "sectionCount": 5,
+        "includedSectionCount": 5
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-willows/manifest.json"
+    },
+    {
+      "slug": "the-case-of-charles-dexter-ward",
+      "title": "The Case of Charles Dexter Ward",
+      "author": [
+        "H. P. Lovecraft"
+      ],
+      "contentVersion": "a446781e2a09cf21",
+      "contentHash": "a446781e2a09cf21359e81e3da78810385949b3a7d9a6992daf55672387a8d21",
+      "language": "en",
+      "description": "A Providence weird tale of antiquarian research, family history, and a mystery that reaches into the colonial past.",
+      "subjects": [
+        "Weird fiction",
+        "Gothic fiction",
+        "Mystery"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "73547",
+        "releaseDate": "May 5, 2024",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/73547",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted remaining raw-candidate completion processed this accepted candidate after manual boundary and metadata review. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Case of Charles Dexter Ward"
+      },
+      "stats": {
+        "originalCharacterCount": 288533,
+        "cleanedCharacterCount": 262224,
+        "wordCount": 44472,
+        "sectionCount": 5,
+        "includedSectionCount": 5
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-case-of-charles-dexter-ward/manifest.json"
     }
   ]
 }
