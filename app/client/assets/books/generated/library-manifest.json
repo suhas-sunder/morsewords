@@ -24857,6 +24857,336 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-man-with-the-twisted-lip/manifest.json"
+    },
+    {
+      "slug": "the-adventure-of-the-blue-carbuncle",
+      "title": "The Adventure of the Blue Carbuncle",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "52f860b3995c4437",
+      "contentHash": "52f860b3995c44376e1cc5c6a5e3efa5edbef8b53693ea2809aadd259b7005d4",
+      "language": "en",
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a Christmas goose, a lost hat, a blue gem, and a trail of practical clues.",
+      "subjects": [
+        "Detective fiction",
+        "Short stories",
+        "Mystery fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1661",
+        "releaseDate": "March 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1661",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Sherlock story-split pass 2 processed this accepted story after manual collection-split, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Adventure of the Blue Carbuncle"
+      },
+      "stats": {
+        "originalCharacterCount": 593909,
+        "cleanedCharacterCount": 42071,
+        "wordCount": 7897,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-adventure-of-the-blue-carbuncle/manifest.json"
+    },
+    {
+      "slug": "the-adventure-of-the-speckled-band",
+      "title": "The Adventure of the Speckled Band",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "ff7a8fc1da82f2ba",
+      "contentHash": "ff7a8fc1da82f2ba08c07fdc0e4b451b29764db476e917f84b75f95a5613a815",
+      "language": "en",
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a frightened client, a locked-room danger, and a clue hidden in a strange phrase.",
+      "subjects": [
+        "Detective fiction",
+        "Short stories",
+        "Mystery fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1661",
+        "releaseDate": "March 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1661",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Sherlock story-split pass 2 processed this accepted story after manual collection-split, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Adventure of the Speckled Band"
+      },
+      "stats": {
+        "originalCharacterCount": 593909,
+        "cleanedCharacterCount": 52906,
+        "wordCount": 9867,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-adventure-of-the-speckled-band/manifest.json"
+    },
+    {
+      "slug": "the-adventure-of-the-engineer-s-thumb",
+      "title": "The Adventure of the Engineer's Thumb",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "c03823b5fb5cc0e2",
+      "contentHash": "c03823b5fb5cc0e222c15be731ead21472911e27a72dceaa27fd1631b33fa3d1",
+      "language": "en",
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a hydraulic engineer, a dangerous commission, and a violent mystery.",
+      "subjects": [
+        "Detective fiction",
+        "Short stories",
+        "Mystery fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1661",
+        "releaseDate": "March 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1661",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Sherlock story-split pass 2 processed this accepted story after manual collection-split, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Adventure of the Engineer's Thumb"
+      },
+      "stats": {
+        "originalCharacterCount": 593909,
+        "cleanedCharacterCount": 44558,
+        "wordCount": 8329,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-adventure-of-the-engineer-s-thumb/manifest.json"
+    },
+    {
+      "slug": "the-adventure-of-the-noble-bachelor",
+      "title": "The Adventure of the Noble Bachelor",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "446b8a8f170e3159",
+      "contentHash": "446b8a8f170e31596ccae531bc28f423d489d02632cb2421df17032708fb336a",
+      "language": "en",
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a vanished bride, a public marriage mystery, and a private explanation.",
+      "subjects": [
+        "Detective fiction",
+        "Short stories",
+        "Mystery fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1661",
+        "releaseDate": "March 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1661",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Sherlock story-split pass 2 processed this accepted story after manual collection-split, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Adventure of the Noble Bachelor"
+      },
+      "stats": {
+        "originalCharacterCount": 593909,
+        "cleanedCharacterCount": 44108,
+        "wordCount": 8183,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-adventure-of-the-noble-bachelor/manifest.json"
+    },
+    {
+      "slug": "the-adventure-of-the-beryl-coronet",
+      "title": "The Adventure of the Beryl Coronet",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "2998b13b2fb4e782",
+      "contentHash": "2998b13b2fb4e782c75ec5bc707e93da4cc7513716a1d9626b0545fda585217e",
+      "language": "en",
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a damaged coronet, a family accusation, and evidence inside a household.",
+      "subjects": [
+        "Detective fiction",
+        "Short stories",
+        "Mystery fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1661",
+        "releaseDate": "March 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1661",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Sherlock story-split pass 2 processed this accepted story after manual collection-split, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Adventure of the Beryl Coronet"
+      },
+      "stats": {
+        "originalCharacterCount": 593909,
+        "cleanedCharacterCount": 50960,
+        "wordCount": 9714,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-adventure-of-the-beryl-coronet/manifest.json"
+    },
+    {
+      "slug": "the-adventure-of-the-copper-beeches",
+      "title": "The Adventure of the Copper Beeches",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "8ebfc53b619a9759",
+      "contentHash": "8ebfc53b619a97595ef8c80440cf26578b23750d0e5a314715d17a3fdee6669f",
+      "language": "en",
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a governess, an unusual job offer, and a house with hidden danger.",
+      "subjects": [
+        "Detective fiction",
+        "Short stories",
+        "Mystery fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1661",
+        "releaseDate": "March 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1661",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Sherlock story-split pass 2 processed this accepted story after manual collection-split, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Adventure of the Copper Beeches"
+      },
+      "stats": {
+        "originalCharacterCount": 593909,
+        "cleanedCharacterCount": 53093,
+        "wordCount": 10010,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-adventure-of-the-copper-beeches/manifest.json"
     }
   ]
 }

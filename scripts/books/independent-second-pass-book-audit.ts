@@ -348,7 +348,7 @@ const sourceRiskRemovedSlugs = [
   "wood-folk-at-school",
 ] as const;
 
-const expectedGeneratedBookCount = 502;
+const expectedGeneratedBookCount = 508;
 
 function unresolvedSourceSlugsFromReview() {
   if (!fs.existsSync(unresolvedSourceReviewReportPath)) {

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "summarySet": "sherlock-story-split-pass-1",
+  "summarySet": "sherlock-story-split-pass-2",
   "generatedAt": "2026-06-28",
   "storageApproach": "Separate static JSON data asset imported by book routes and validation tooling. Summaries are not embedded in generated book text, preview assets, raw sources, or Cloudflare export payloads.",
   "suggestedPilotSlugs": [
@@ -79,7 +79,7 @@
       "reason": "The Odyssey is not currently generated; The Arabian Nights keeps a long classic story-collection sample in the pilot."
     }
   ],
-  "expectedSummaryCount": 502,
+  "expectedSummaryCount": 508,
   "batch1Slugs": [
     "a-childs-garden-of-verses",
     "anna-karenina",
@@ -4693,6 +4693,60 @@
       ],
       "description": "Arthur Conan Doyle's Sherlock Holmes story about a missing gentleman, a mysterious beggar, and an identity puzzle.",
       "summary": "The Man with the Twisted Lip begins with Watson being drawn into a personal errand that unexpectedly leads back to Sherlock Holmes. A respectable man has vanished under strange circumstances, and the trail points toward a shabby room, an opium den, and a beggar whose appearance seems to hide more than it reveals. The case turns on identity, observation, and the difference between public appearance and private fact.\n\nFor MorseWords practice, this story is valuable because it has a strong sequence of scenes. Watson's opening errand, the surprise meeting with Holmes, the missing-person account, and the final explanation each provide natural practice blocks. Learners can work through one scene at a time or listen to the whole story for a longer detective session.\n\nThe vocabulary is varied but anchored by repeated names, places, and case details. Holmes, Watson, St. Clair, Boone, the window, the coat, and the room all return as clues, helping listeners stay oriented while the mystery develops. The story also includes sustained dialogue, descriptive passages, and formal explanation, so it supports both Morse listening and typing practice.\n\nBecause the solution depends on a hidden role rather than a complicated chain of action, the story rewards careful attention to detail. Slower playback can make the changes in speaker and setting easier to follow, while later replays can focus on cleaner word gaps, punctuation, and longer-sentence endurance.\n\nIt is also a useful story for practicing transitions between locations. The opening moves from a domestic request to a city errand and then into Holmes's investigation, so learners must follow setting changes without relying on chapter breaks. That makes the text a good intermediate step before longer mystery chapters with more characters and more frequent scene shifts. Its staged reveal rewards patient listening and deliberate replay across focused sessions."
+    },
+    {
+      "slug": "the-adventure-of-the-blue-carbuncle",
+      "title": "The Adventure of the Blue Carbuncle",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a Christmas goose, a lost hat, a blue gem, and a trail of practical clues.",
+      "summary": "The Adventure of the Blue Carbuncle turns a seasonal oddity into a compact Sherlock Holmes investigation. Watson finds Holmes studying a battered hat, and the trail soon expands to a Christmas goose, a missing jewel, and a chain of ordinary people whose actions reveal more than they intend. The story is playful and practical, showing Holmes building a case from small physical details and everyday errands rather than dramatic confrontation.\n\nFor MorseWords learners, this story is useful because it has strong concrete anchors: the hat, the goose, the blue stone, the market, and the repeated questions about where each object came from. Those recurring details make the mystery easier to follow in Morse audio while still giving learners varied vocabulary and dialogue. The Christmas setting also gives the prose a different rhythm from the darker cases.\n\nThe story works well as a listening and copying exercise because it moves through clear stages. Learners can practice Holmes's first observations, the interviews about the goose, or the final explanation as separate blocks. The names and object words repeat often enough to support review, while the sentence structure still feels like real literary prose.\n\nBecause the solution depends on tracing ownership and motive, slower playback helps learners catch transitions between speakers and locations. Replaying the market sequence is especially helpful for practicing names, addresses, and quoted questions. The result is a friendly detective story that gives enough mystery to stay engaging without overwhelming a beginner with too many characters at once.\n\nIt is also a good confidence text after shorter fables or fairy tales. The plot rewards attention to evidence, but the central objects remain memorable, so learners can check their comprehension as they copy. Repeated sessions can focus first on the story, then on punctuation, word gaps, and the longer explanatory passages."
+    },
+    {
+      "slug": "the-adventure-of-the-speckled-band",
+      "title": "The Adventure of the Speckled Band",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a frightened client, a locked-room danger, and a clue hidden in a strange phrase.",
+      "summary": "The Adventure of the Speckled Band is one of the most suspenseful Sherlock Holmes stories. A frightened woman comes to Holmes after the strange death of her sister and the return of a mysterious phrase spoken in the night. The case moves from Baker Street to a country house where family pressure, unusual rooms, and small architectural details all matter.\n\nFor MorseWords practice, the story is strong because the narrative has a clear emotional pull and a memorable clue. Learners hear repeated references to rooms, bells, beds, windows, and the strange phrase at the center of the mystery. Those repeated details give orientation points during a longer and more tense story, while the dialogue keeps the pace readable.\n\nThe story is useful for practicing careful listening around descriptions. Holmes and Watson examine physical arrangements, compare statements, and prepare for a night watch, so learners must follow both action and explanation. Slower Morse playback is helpful for the room descriptions, while later replays can focus on the more dramatic final sequence.\n\nBecause the plot depends on danger and timing, it rewards exact attention to sentence endings and speaker changes. A learner can divide the story into the client interview, the journey and inspection, and the night scene. Each section has a distinct rhythm, making it practical for short review sessions.\n\nThis story is best for learners who are ready for sustained prose with suspense. It includes names, places, legal family details, and vivid sensory language, so it stretches vocabulary without becoming abstract. The result is a gripping practice text that encourages repeat listening because every small clue feels important.\n\nIt also helps learners practice restraint with speed. The tension can tempt a faster pace, but the evidence is easiest to follow when the room layout and repeated warnings are copied accurately first. Once those anchors are familiar, the same passage becomes a useful confidence-building replay."
+    },
+    {
+      "slug": "the-adventure-of-the-engineer-s-thumb",
+      "title": "The Adventure of the Engineer's Thumb",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a hydraulic engineer, a dangerous commission, and a violent mystery.",
+      "summary": "The Adventure of the Engineer's Thumb is a brisk Sherlock Holmes case with a strong action premise. A wounded hydraulic engineer arrives with a strange account of a secretive night commission, a remote house, and machinery that turns out to be connected to a criminal operation. The story is unusual among the Holmes adventures because the danger has already become physical before Holmes begins to reason through the case.\n\nFor MorseWords learners, this story offers clear scene changes and practical technical vocabulary. The engineer's account includes travel, money, machinery, rooms, pressure, and escape, so learners practice more than drawing-room conversation. The narrative remains easy to follow because the central event is vivid and the client's testimony provides a straightforward sequence.\n\nThe story is especially useful for practicing longer first-person explanation. Learners can replay the engineer's narrative in smaller sections, listening for how the job is proposed, how the location is described, and how suspicion builds. The repeated technical terms give useful anchors while the suspense keeps the practice from feeling mechanical.\n\nBecause the case involves urgency and physical movement, pacing matters. Slower playback helps with names, measurements, and machinery references; later replays can focus on the chase-like passages and the final interpretation. The story also gives good punctuation practice because it alternates between Watson's framing, the client's account, and Holmes's deductions.\n\nThis is a helpful intermediate text for learners who want a livelier Holmes story. It has enough action to hold attention, but the structure is still compact and mostly linear. That makes it suitable for copying practice, listening endurance, and review of unfamiliar technical words in a memorable context.\n\nIt is also good for checking how well learners handle unfamiliar nouns under pressure. Repeated replays can separate the technical vocabulary from the suspense, turning a dramatic account into a steady practice piece for names, measurements, tools, and movement."
+    },
+    {
+      "slug": "the-adventure-of-the-noble-bachelor",
+      "title": "The Adventure of the Noble Bachelor",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a vanished bride, a public marriage mystery, and a private explanation.",
+      "summary": "The Adventure of the Noble Bachelor begins with a society scandal: a bride disappears almost immediately after her wedding to an English nobleman. Holmes treats the public drama as a puzzle of motive, identity, and timing, using newspaper reports, witness details, and a few overlooked facts to find the private story behind the visible embarrassment.\n\nFor MorseWords learners, this story is helpful because it blends formal social language with direct investigative dialogue. Titles, names, marriage terms, newspaper phrasing, and personal statements all appear often. Those repeated categories make the story good for practicing proper nouns and punctuation while still following a compact mystery.\n\nThe plot moves through a clean sequence of evidence. Learners can work through the client interview, the public account of the wedding, and Holmes's resolution as separate practice blocks. The vocabulary is less technical than some Holmes cases, but the social context asks listeners to track relationships carefully.\n\nBecause the story turns on hidden personal history rather than violence or chase scenes, it rewards patient listening and accurate copying. Slower playback helps with the formal names and quoted explanations, while faster replay can build confidence once the situation is familiar. The result is a useful contrast to the darker or more action-heavy adventures.\n\nThis story also gives learners practice with tone. Much of the mystery depends on public appearance, private feeling, and how different characters explain the same event. That makes it a good Morse text for hearing sentence rhythm, speaker changes, and the difference between report, dialogue, and Holmes's final reasoning.\n\nBecause the case is socially framed, it is useful for reviewing titles and formal address without losing the plot. Learners can compare the newspaper-style wording with conversational explanation, then replay the conclusion to check whether the relationship clues stayed clear. It is compact, polished practice for formal detective prose."
+    },
+    {
+      "slug": "the-adventure-of-the-beryl-coronet",
+      "title": "The Adventure of the Beryl Coronet",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a damaged coronet, a family accusation, and evidence inside a household.",
+      "summary": "The Adventure of the Beryl Coronet is a domestic mystery with high stakes. A banker receives a precious coronet as security, locks it inside his home, and then discovers it damaged under circumstances that appear to implicate his own son. Holmes must look past the obvious accusation and read the household details, tracks, motives, and emotional pressures around the missing jewels.\n\nFor MorseWords learners, the story is useful because it has a strong central object and repeated family terms. The coronet, stones, banker, son, niece, and household movements return throughout the case, giving listeners stable anchors. At the same time, the narrative includes formal business language, domestic conflict, and outdoor evidence, so the vocabulary stays varied.\n\nThe story is a good candidate for sectioned practice even though it is one standalone story. Learners can replay the banker's account slowly, then work through Holmes's investigation and final explanation. The case contains long explanatory passages, but the central question remains clear: what really happened to the coronet and why?\n\nBecause the mystery depends on misread evidence, careful Morse listening is rewarded. Slower speeds help learners catch who did what, when, and where; later replays can focus on punctuation and smooth word spacing. The emotional stakes also make the formal prose easier to remember across repeated sessions.\n\nThis story works well for learners moving into longer detective pieces. It asks them to track family relationships and physical clues at the same time, but it does not sprawl across many chapters. That balance makes it practical for focused listening, copying, and review of names, objects, and cause-and-effect language.\n\nIt also supports careful review of emotional vocabulary. The accusation, worry, loyalty, and relief around the household give the prose a clear human shape, so learners can listen for meaning while still practicing exact Morse spacing and punctuation."
+    },
+    {
+      "slug": "the-adventure-of-the-copper-beeches",
+      "title": "The Adventure of the Copper Beeches",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a governess, an unusual job offer, and a house with hidden danger.",
+      "summary": "The Adventure of the Copper Beeches closes the collection with a case that begins as an unsettling job offer. Violet Hunter asks Holmes whether she should accept a governess position with strange conditions about her hair, clothing, and behavior. The arrangement leads to a country house, a controlling employer, and evidence that someone is being hidden from view.\n\nFor MorseWords learners, this story is valuable because the premise is easy to remember and the clues recur clearly. The job offer, hair, blue dress, window, room, and household rules all become listening anchors. The story also gives learners a strong female client narrative, which creates a different rhythm from cases centered on police reports or male business clients.\n\nThe text works well in short practice blocks. Learners can start with Violet Hunter's interview, then replay the arrival at the house, the strange instructions, and the final investigation. Each block has concrete details and dialogue, making it useful for copying practice as well as listening comprehension.\n\nBecause the story builds unease through ordinary domestic instructions, careful pacing helps. Slower playback makes it easier to hear the conditions of the job and the relationships inside the house; later replays can focus on the more active investigation. The repeated descriptions are excellent for checking word spacing and punctuation.\n\nThis story is also a fitting final Sherlock practice piece because it combines social observation, suspense, and physical clues. It is substantial enough for endurance work but still compact compared with a novel. Learners can return to it for repeated sessions, using the memorable setup to build confidence with longer literary Morse audio.\n\nThe governess premise also makes the early dialogue easy to summarize before replaying. That helps learners test comprehension first, then return for accuracy work on names, household directions, and the shifting clues that make the house feel increasingly suspicious."
     }
   ],
   "batch3Slugs": [
@@ -5109,5 +5163,13 @@
     "the-boscombe-valley-mystery",
     "the-five-orange-pips",
     "the-man-with-the-twisted-lip"
+  ],
+  "sherlockStorySplitPass2Slugs": [
+    "the-adventure-of-the-blue-carbuncle",
+    "the-adventure-of-the-speckled-band",
+    "the-adventure-of-the-engineer-s-thumb",
+    "the-adventure-of-the-noble-bachelor",
+    "the-adventure-of-the-beryl-coronet",
+    "the-adventure-of-the-copper-beeches"
   ]
 }

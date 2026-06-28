@@ -39,6 +39,7 @@ const NEWLY_SUMMARIZED_BOOK_SLUG = "the-new-accelerator";
 const BESPOKE_PASS_1_BOOK_SLUG = "five-little-friends";
 const BESPOKE_PASS_2_BOOK_SLUG = "the-happy-prince";
 const SHERLOCK_PASS_1_BOOK_SLUG = "a-scandal-in-bohemia";
+const SHERLOCK_PASS_2_BOOK_SLUG = "the-adventure-of-the-blue-carbuncle";
 const REQUIRED_STORY_TITLES = {
   "the-dream-of-little-tuk": "The Dream of Little Tuk",
   "the-false-collar": "The False Collar",
@@ -47,6 +48,12 @@ const REQUIRED_STORY_TITLES = {
   "the-shadow": "The Shadow",
   "the-story-of-a-mother": "The Story of a Mother",
   "the-ugly-duckling": "The Ugly Duckling",
+  "the-adventure-of-the-blue-carbuncle": "The Adventure of the Blue Carbuncle",
+  "the-adventure-of-the-speckled-band": "The Adventure of the Speckled Band",
+  "the-adventure-of-the-engineer-s-thumb": "The Adventure of the Engineer's Thumb",
+  "the-adventure-of-the-noble-bachelor": "The Adventure of the Noble Bachelor",
+  "the-adventure-of-the-beryl-coronet": "The Adventure of the Beryl Coronet",
+  "the-adventure-of-the-copper-beeches": "The Adventure of the Copper Beeches",
   "ole-luk-oie-the-dream-god": "Ole-Luk-Oie, the Dream-God",
   "little-ida-s-flowers": "Little Ida's Flowers",
   "the-steadfast-tin-soldier": "The Steadfast Tin Soldier",
@@ -104,6 +111,8 @@ const STARTER_PREVIEW_FIRST_RENDER_PATHS = [
   `/morse-code-audiobooks/${BESPOKE_PASS_2_BOOK_SLUG}`,
   `/morse-code-books/${SHERLOCK_PASS_1_BOOK_SLUG}`,
   `/morse-code-audiobooks/${SHERLOCK_PASS_1_BOOK_SLUG}`,
+  `/morse-code-books/${SHERLOCK_PASS_2_BOOK_SLUG}`,
+  `/morse-code-audiobooks/${SHERLOCK_PASS_2_BOOK_SLUG}`,
 ] as const;
 const SOURCE_RISK_REMOVED_BOOK_SLUGS = [
   "a-princess-of-mars",

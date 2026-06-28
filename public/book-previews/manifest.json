@@ -5524,6 +5524,72 @@
       "previewCharacterCount": 1094,
       "estimatedRuntimeSeconds": 394,
       "truncated": true
+    },
+    {
+      "slug": "the-adventure-of-the-blue-carbuncle",
+      "path": "the-adventure-of-the-blue-carbuncle.preview.json",
+      "contentVersion": "52f860b3995c4437",
+      "contentHash": "52f860b3995c44376e1cc5c6a5e3efa5edbef8b53693ea2809aadd259b7005d4",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1748,
+      "previewCharacterCount": 979,
+      "estimatedRuntimeSeconds": 350,
+      "truncated": true
+    },
+    {
+      "slug": "the-adventure-of-the-speckled-band",
+      "path": "the-adventure-of-the-speckled-band.preview.json",
+      "contentVersion": "ff7a8fc1da82f2ba",
+      "contentHash": "ff7a8fc1da82f2ba08c07fdc0e4b451b29764db476e917f84b75f95a5613a815",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1979,
+      "previewCharacterCount": 1229,
+      "estimatedRuntimeSeconds": 436,
+      "truncated": true
+    },
+    {
+      "slug": "the-adventure-of-the-engineer-s-thumb",
+      "path": "the-adventure-of-the-engineer-s-thumb.preview.json",
+      "contentVersion": "c03823b5fb5cc0e2",
+      "contentHash": "c03823b5fb5cc0e222c15be731ead21472911e27a72dceaa27fd1631b33fa3d1",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1873,
+      "previewCharacterCount": 1115,
+      "estimatedRuntimeSeconds": 399,
+      "truncated": true
+    },
+    {
+      "slug": "the-adventure-of-the-noble-bachelor",
+      "path": "the-adventure-of-the-noble-bachelor.preview.json",
+      "contentVersion": "446b8a8f170e3159",
+      "contentHash": "446b8a8f170e31596ccae531bc28f423d489d02632cb2421df17032708fb336a",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1784,
+      "previewCharacterCount": 1034,
+      "estimatedRuntimeSeconds": 367,
+      "truncated": true
+    },
+    {
+      "slug": "the-adventure-of-the-beryl-coronet",
+      "path": "the-adventure-of-the-beryl-coronet.preview.json",
+      "contentVersion": "2998b13b2fb4e782",
+      "contentHash": "2998b13b2fb4e782c75ec5bc707e93da4cc7513716a1d9626b0545fda585217e",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1698,
+      "previewCharacterCount": 938,
+      "estimatedRuntimeSeconds": 335,
+      "truncated": true
+    },
+    {
+      "slug": "the-adventure-of-the-copper-beeches",
+      "path": "the-adventure-of-the-copper-beeches.preview.json",
+      "contentVersion": "8ebfc53b619a9759",
+      "contentHash": "8ebfc53b619a97595ef8c80440cf26578b23750d0e5a314715d17a3fdee6669f",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1690,
+      "previewCharacterCount": 919,
+      "estimatedRuntimeSeconds": 329,
+      "truncated": true
     }
   ],
   "missing": []
