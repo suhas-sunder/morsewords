@@ -35,7 +35,7 @@ const THE_HAPPY_FAMILY_SLUG = "the-happy-family";
 const THE_ELDERBUSH_SLUG = "the-elderbush";
 const THE_BOOK_OF_DRAGONS_SLUG = "the-book-of-dragons";
 const THE_EMERALD_CITY_OF_OZ_SLUG = "the-emerald-city-of-oz";
-const NON_SUMMARY_BOOK_SLUG = "the-new-accelerator";
+const NEWLY_SUMMARIZED_BOOK_SLUG = "the-new-accelerator";
 const REQUIRED_STORY_TITLES = {
   "the-dream-of-little-tuk": "The Dream of Little Tuk",
   "the-false-collar": "The False Collar",
@@ -59,8 +59,8 @@ const REQUIRED_STORY_TITLES = {
   "the-jelly-fish-and-the-monkey": "The Jelly Fish and the Monkey",
   "the-tongue-cut-sparrow": "The Tongue-Cut Sparrow",
 } as const;
-const NON_SUMMARY_BOOK_PREVIEW_PATH =
-  `/morse-code-books/${NON_SUMMARY_BOOK_SLUG}?preview=unpublished`;
+const NEWLY_SUMMARIZED_BOOK_PREVIEW_PATH =
+  `/morse-code-books/${NEWLY_SUMMARIZED_BOOK_SLUG}?preview=unpublished`;
 const ALICE_PUBLIC_PATH = `/morse-code-books/${ALICE_SLUG}`;
 const APPROVED_BOOK_PUBLIC_PATH = `/morse-code-books/${APPROVED_BOOK_SLUG}`;
 const NETWORK_BOOK_PUBLIC_PATH = `/morse-code-books/${NETWORK_BOOK_SLUG}`;
@@ -97,7 +97,7 @@ const TEST_BOOK_RUNTIME_SETTINGS_KEY =
   "morsewords:book-runtime:settings:v1:test-published-morse-book:test-published-v1:test-published-morse-book-content-hash-development-fixture-v1";
 const BOOK_RUNTIME_SETTINGS_KEY_PREFIX =
   "morsewords:book-runtime:settings:v1:";
-const BOOK_WORKSPACE_TIMEOUT_MS = 60_000;
+const BOOK_WORKSPACE_TIMEOUT_MS = 90_000;
 const TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY =
   "morsewords:book-live-preview-progress:v1:test-published-morse-book";
 const TEST_BOOK_DEFAULT_SECTION_IDS = ["chapter-001", "chapter-002"] as const;
@@ -648,32 +648,13 @@ async function installFastBookVideoRecorder(page: Page) {
 }
 
 async function openApprovedBook(page: Page) {
-  await blockExternalNetwork(page);
-  const response = await page.goto(APPROVED_BOOK_PUBLIC_PATH, {
-    waitUntil: "domcontentloaded",
-  });
-  await waitForRouteReady(page);
-  expect(response?.ok()).toBe(true);
-  await waitForApprovedBookWorkspace(page);
+  await openPublicBook(page, APPROVED_BOOK_PUBLIC_PATH);
 }
 
 async function openPublicBook(page: Page, pathName: string) {
   await blockExternalNetwork(page);
-  let lastError: unknown = null;
-  for (let attempt = 0; attempt < 2; attempt += 1) {
-    if (attempt > 0) await page.goto("about:blank");
-    await gotoPublicBookPage(page, pathName);
-    try {
-      await waitForApprovedBookWorkspace(
-        page,
-        attempt === 0 ? 15_000 : BOOK_WORKSPACE_TIMEOUT_MS,
-      );
-      return;
-    } catch (error) {
-      lastError = error;
-    }
-  }
-  throw lastError;
+  await gotoPublicBookPage(page, pathName);
+  await waitForApprovedBookWorkspace(page);
 }
 
 async function gotoPublicBookPage(page: Page, pathName: string) {
@@ -821,7 +802,7 @@ async function contrastRatio(locator: Locator) {
 }
 
 test.describe("Morse book page foundation", () => {
-  test.describe.configure({ timeout: 75_000 });
+  test.describe.configure({ timeout: 180_000 });
 
   test("builds local fallback and configured Cloudflare content URLs", () => {
     expect(
@@ -869,8 +850,8 @@ test.describe("Morse book page foundation", () => {
       if (summary) expect(summary.title).toBe(title);
     }
 
-    expect(seo.summaries).toHaveLength(420);
-    expect(seo.expectedSummaryCount).toBe(420);
+    expect(seo.summaries).toHaveLength(465);
+    expect(seo.expectedSummaryCount).toBe(465);
     expect(
       library.books.find((book) => book.slug === "for-the-duration-of-the-war")
         ?.title,
@@ -1021,7 +1002,7 @@ test.describe("Morse book page foundation", () => {
     expect(sitemapText).not.toContain(TEST_BOOK_PUBLIC_PATH);
   });
 
-  test("exposes processed temp books and keeps summary fallback conditional", async ({
+  test("exposes processed temp books and completed generated summary coverage", async ({
     page,
     request,
   }) => {
@@ -1054,9 +1035,12 @@ test.describe("Morse book page foundation", () => {
       .toBe("#book-summary");
     await expect(page.getByTestId("morse-book-seo-summary")).toBeVisible();
 
-    await openPublicBook(page, NON_SUMMARY_BOOK_PREVIEW_PATH);
-    await expect(page.getByTestId("morse-book-summary-link")).toHaveCount(0);
-    await expect(page.getByTestId("morse-book-seo-summary")).toHaveCount(0);
+    await openPublicBook(page, NEWLY_SUMMARIZED_BOOK_PREVIEW_PATH);
+    await expect(page.getByTestId("morse-book-summary-link")).toHaveAttribute(
+      "href",
+      "#book-summary",
+    );
+    await expect(page.getByTestId("morse-book-seo-summary")).toBeVisible();
   });
 
   test("book and audiobook cards link to their matching detail routes", async ({

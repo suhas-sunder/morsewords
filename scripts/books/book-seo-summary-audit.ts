@@ -39,6 +39,7 @@ type SeoSummaryData = {
   batch6Slugs?: string[];
   batch7Slugs?: string[];
   batch8Slugs?: string[];
+  batch9Slugs?: string[];
   summaries: SeoSummaryRecord[];
 };
 
@@ -166,6 +167,7 @@ type SeoSummaryAuditReport = {
     modifiedByThisAudit: false;
   };
   recommendedNextSummaryBatchSize: number;
+  recommendedNextStepAfterCurrentGeneratedSummaryCompletion: string[];
 };
 
 const currentFile = fileURLToPath(import.meta.url);
@@ -195,10 +197,10 @@ const reportRoot = path.join(
   "assets",
   "books",
   "audit-reports",
-  "book-seo-summary-batch-8",
+  "book-seo-summary-batch-9",
 );
-const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-8.json");
-const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-8.md");
+const reportJsonPath = path.join(reportRoot, "book-seo-summary-batch-9.json");
+const reportMdPath = path.join(reportRoot, "book-seo-summary-batch-9.md");
 const remainingRawInventoryTriagePath = path.join(
   repoRoot,
   "app",
@@ -234,8 +236,8 @@ const summaryFilesChanged = [
   "app/client/assets/books/seo-summaries/book-seo-summaries.json",
   "scripts/books/book-seo-summary-audit.ts",
   "tests/qa-robustness-review/morse-book-page.spec.ts",
-  "app/client/assets/books/audit-reports/book-seo-summary-batch-8/book-seo-summary-batch-8.json",
-  "app/client/assets/books/audit-reports/book-seo-summary-batch-8/book-seo-summary-batch-8.md",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-9/book-seo-summary-batch-9.json",
+  "app/client/assets/books/audit-reports/book-seo-summary-batch-9/book-seo-summary-batch-9.md",
 ];
 
 const sourceBoilerplatePattern =
@@ -567,6 +569,7 @@ function selectedSlugsForActiveBatch(summaryData: SeoSummaryData) {
   if (batchNumber === 6) return summaryData.batch6Slugs ?? [];
   if (batchNumber === 7) return summaryData.batch7Slugs ?? [];
   if (batchNumber === 8) return summaryData.batch8Slugs ?? [];
+  if (batchNumber === 9) return summaryData.batch9Slugs ?? [];
   return [];
 }
 
@@ -584,21 +587,21 @@ function markdownReport(report: SeoSummaryAuditReport) {
     .map((item) => `- ${item.slug}: ${item.errors.join("; ")}`)
     .join("\n");
 
-  return `# Book SEO Summary Batch 7
+  return `# Book SEO Summary Batch 9
 
 Generated: ${report.generatedAt}
 
 ## Current generated-library summary coverage
 
 - Current generated/validated books: ${report.counts.generatedBookCount}
-- Summaries before batch 8: ${report.counts.previousSummaryCount}
-- New summaries in batch 8: ${report.counts.newSummaryCount}
-- Summaries after batch 8: ${report.counts.summaryRecordCount}
-- Current generated summaries missing before batch 8: ${report.counts.missingSummaryCountBeforeBatch}
-- Current generated summaries remaining after batch 8: ${report.counts.missingSummaryCount}
+- Summaries before batch 9: ${report.counts.previousSummaryCount}
+- New summaries in batch 9: ${report.counts.newSummaryCount}
+- Summaries after batch 9: ${report.counts.summaryRecordCount}
+- Current generated summaries missing before batch 9: ${report.counts.missingSummaryCountBeforeBatch}
+- Current generated summaries remaining after batch 9: ${report.counts.missingSummaryCount}
 - Validation result: ${report.validation.result}
 
-The 50 new records use the existing separate static summary asset. Generated book text, preview assets, raw sources, and Cloudflare export payloads were not modified.
+The 45 new records use the existing separate static summary asset. Generated book text, preview assets, raw sources, and Cloudflare export payloads were not modified.
 
 ${report.coverageNote}
 
@@ -658,9 +661,9 @@ ${report.mobileFinalStageCheckpoint.requiredLater.map((item) => `- ${item}`).joi
 
 ${report.selectedSlugs.map((slug) => `- ${slug}`).join("\n")}
 
-## First 25 still-missing slugs after batch
+## Still-missing slugs after batch
 
-${report.firstStillMissingSlugsAfterBatch.map((slug) => `- ${slug}`).join("\n")}
+${report.firstStillMissingSlugsAfterBatch.length > 0 ? report.firstStillMissingSlugsAfterBatch.map((slug) => `- ${slug}`).join("\n") : "- None"}
 
 ## Substitutions or skipped selections
 
@@ -699,7 +702,11 @@ ${failures || "- None"}
 
 ${report.filesChanged.map((file) => `- ${file}`).join("\n")}
 
-## Recommended next batch size
+## Recommended next major phase
+
+${report.recommendedNextStepAfterCurrentGeneratedSummaryCompletion.map((item) => `- ${item}`).join("\n")}
+
+## Recommended next summary batch size
 
 ${report.recommendedNextSummaryBatchSize} summaries
 `;
@@ -759,7 +766,7 @@ function main() {
   const expectedSelectedSlugs = libraryManifest.books
     .filter(isAcceptedGeneratedBook)
     .filter((book) => !previousSummarySlugSet.has(book.slug))
-    .slice(0, 50)
+    .slice(0, selectedSlugs.length)
     .map((book) => book.slug);
   const summarySlugs = summaryData.summaries.map((summary) => summary.slug);
   const summarySlugSet = new Set(summarySlugs);
@@ -811,7 +818,8 @@ function main() {
     summaryCount:
       summaryData.summaries.length === expectedSummaryCount &&
       summaryData.pilotSlugs.length === 20 &&
-      selectedSlugs.length === 50,
+      selectedSlugs.length === 45 &&
+      missingAfterBatch.length === 0,
     controlledBatchSelection,
     summarySlugUniqueness: summarySlugSet.size === summarySlugs.length,
     generatedSlugExistence,
@@ -843,7 +851,7 @@ function main() {
       .slice(0, 25)
       .map((book) => book.slug),
     coverageNote:
-      "No accepted generated book is permanently excluded from summary coverage; remaining books are carried forward by deterministic manifest order.",
+      "All current accepted generated books now have summary coverage. Remaining raw-candidate and unresolved-source debt is tracked separately and was not processed in this summary branch.",
     remainingRawCandidateCheckpoint: {
       sourceReportPath:
         "app/client/assets/books/audit-reports/remaining-raw-inventory-triage/remaining-raw-inventory-triage.json",
@@ -909,7 +917,7 @@ function main() {
         ? "pass"
         : "fail",
       checkpoint:
-        "Corrected generated story titles remain the display source of truth; batch-8 summary titles and authors must match current generated metadata exactly.",
+        "Corrected generated story titles remain the display source of truth; batch-9 summary titles and authors must match current generated metadata exactly.",
     },
     summaryLayoutWidthCheckpoint: {
       sourceBranch: "morsewords-book-summary-width-fix-jun-2026",
@@ -938,7 +946,14 @@ function main() {
       cloudflareExports: "app/client/assets/books/cloudflare-export",
       modifiedByThisAudit: false,
     },
-    recommendedNextSummaryBatchSize: validation.result === "pass" ? 50 : 0,
+    recommendedNextSummaryBatchSize: 0,
+    recommendedNextStepAfterCurrentGeneratedSummaryCompletion: [
+      "Do not start export yet.",
+      "Next major phase should handle raw/generated changes:",
+      "Poe collection replacement and individual Poe story additions.",
+      "Remaining raw-candidate review.",
+      "Unresolved-source generated-book review.",
+    ],
   };
 
   fs.mkdirSync(reportRoot, { recursive: true });
