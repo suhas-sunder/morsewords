@@ -75,6 +75,14 @@ type TriageReport = {
   knownItemsPreserved?: unknown;
 };
 
+type UnresolvedSourceGeneratedReviewReport = {
+  reviewedUnresolvedSourceSlugs?: string[];
+  decisions?: Array<{
+    slug: string;
+    decision: string;
+  }>;
+};
+
 type RightsReport = {
   author?: string;
   credits?: string;
@@ -314,12 +322,16 @@ const triageReportPath = path.join(
   repoRoot,
   "app/client/assets/books/audit-reports/remaining-raw-inventory-triage/remaining-raw-inventory-triage.json",
 );
+const unresolvedSourceReviewReportPath = path.join(
+  repoRoot,
+  "app/client/assets/books/audit-reports/unresolved-source-generated-review/unresolved-source-generated-review.json",
+);
 const batch12ReportPath = path.join(
   repoRoot,
   "app/client/assets/books/audit-reports/batch-12-prose-restoration/batch-12-prose-restoration.json",
 );
 
-const unresolvedSourceSlugs = [
+const fallbackUnresolvedSourceSlugs = [
   "a-princess-of-mars",
   "doctor-dolittle",
   "heidi",
@@ -332,6 +344,22 @@ const unresolvedSourceSlugs = [
   "the-thirty-nine-steps",
   "wood-folk-at-school",
 ] as const;
+
+const expectedGeneratedBookCount = 497;
+
+function unresolvedSourceSlugsFromReview() {
+  if (!fs.existsSync(unresolvedSourceReviewReportPath)) {
+    return [...fallbackUnresolvedSourceSlugs];
+  }
+  const report = readJson<UnresolvedSourceGeneratedReviewReport>(unresolvedSourceReviewReportPath);
+  const reviewed = new Set(report.reviewedUnresolvedSourceSlugs ?? fallbackUnresolvedSourceSlugs);
+  const resolved = new Set(
+    (report.decisions ?? [])
+      .filter((decision) => decision.decision.startsWith("resolved-"))
+      .map((decision) => decision.slug),
+  );
+  return [...reviewed].filter((slug) => !resolved.has(slug));
+}
 
 const knownDuplicateBoundaryRawSkipSlugs = [
   "the-wind-in-the-willows",
@@ -907,6 +935,7 @@ ${report.protectedPathConfirmation}
 function main() {
   assertSafeOutputPaths();
 
+  const unresolvedSourceSlugs = unresolvedSourceSlugsFromReview();
   const libraryManifest = readJson<GeneratedLibraryManifest>(libraryManifestPath);
   const previewManifest = readJson<PreviewManifest>(previewManifestPath);
   const triageReport = readOptionalJson<TriageReport>(triageReportPath);
@@ -1270,15 +1299,17 @@ function main() {
     .filter((slug) => !previewFileSlugs.has(slug));
 
   const manifestIssues = [
-    generatedBookDirs.length !== 465
-      ? `Expected 465 generated books, found ${generatedBookDirs.length}.`
+    generatedBookDirs.length !== expectedGeneratedBookCount
+      ? `Expected ${expectedGeneratedBookCount} generated books, found ${generatedBookDirs.length}.`
       : null,
-    libraryManifest.books.length !== 465
-      ? `Expected 465 library manifest entries, found ${libraryManifest.books.length}.`
+    libraryManifest.books.length !== expectedGeneratedBookCount
+      ? `Expected ${expectedGeneratedBookCount} library manifest entries, found ${libraryManifest.books.length}.`
       : null,
-    previewFiles.length !== 465 ? `Expected 465 preview files, found ${previewFiles.length}.` : null,
-    previewManifest.books.length !== 465
-      ? `Expected 465 preview manifest entries, found ${previewManifest.books.length}.`
+    previewFiles.length !== expectedGeneratedBookCount
+      ? `Expected ${expectedGeneratedBookCount} preview files, found ${previewFiles.length}.`
+      : null,
+    previewManifest.books.length !== expectedGeneratedBookCount
+      ? `Expected ${expectedGeneratedBookCount} preview manifest entries, found ${previewManifest.books.length}.`
       : null,
     generatedDirectoriesMissingFromLibraryManifest.length
       ? `Generated directories missing from library manifest: ${generatedDirectoriesMissingFromLibraryManifest.join(", ")}.`

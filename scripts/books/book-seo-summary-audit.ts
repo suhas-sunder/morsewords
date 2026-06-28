@@ -172,6 +172,14 @@ type SeoSummaryAuditReport = {
   recommendedNextStepAfterCurrentGeneratedSummaryCompletion: string[];
 };
 
+type UnresolvedSourceGeneratedReviewReport = {
+  reviewedUnresolvedSourceSlugs?: string[];
+  decisions?: Array<{
+    slug: string;
+    decision: string;
+  }>;
+};
+
 const currentFile = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFile), "../..");
 const generatedRoot = path.join(
@@ -212,6 +220,16 @@ const remainingRawInventoryTriagePath = path.join(
   "audit-reports",
   "remaining-raw-inventory-triage",
   "remaining-raw-inventory-triage.json",
+);
+const unresolvedSourceGeneratedReviewPath = path.join(
+  repoRoot,
+  "app",
+  "client",
+  "assets",
+  "books",
+  "audit-reports",
+  "unresolved-source-generated-review",
+  "unresolved-source-generated-review.json",
 );
 const storyTitleIntegrityPath = path.join(
   repoRoot,
@@ -259,6 +277,26 @@ const authorityFormLeakPattern =
 
 function readJson<T>(filePath: string): T {
   return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
+}
+
+function readOptionalJson<T>(filePath: string): T | null {
+  if (!fs.existsSync(filePath)) return null;
+  return readJson<T>(filePath);
+}
+
+function reviewedUnresolvedSourceRemainingCount(fallbackCount: number) {
+  const review = readOptionalJson<UnresolvedSourceGeneratedReviewReport>(
+    unresolvedSourceGeneratedReviewPath,
+  );
+  if (!review) return fallbackCount;
+  const reviewed = new Set(review.reviewedUnresolvedSourceSlugs ?? []);
+  const resolved = new Set(
+    (review.decisions ?? [])
+      .filter((decision) => decision.decision.startsWith("resolved-"))
+      .map((decision) => decision.slug),
+  );
+  if (reviewed.size === 0) return fallbackCount;
+  return [...reviewed].filter((slug) => !resolved.has(slug)).length;
 }
 
 function normalizeText(value: string) {
@@ -732,6 +770,9 @@ function main() {
       unresolvedSourceGeneratedCount?: number;
     };
   }>(remainingRawInventoryTriagePath);
+  const unresolvedSourceGeneratedCount = reviewedUnresolvedSourceRemainingCount(
+    remainingRawTriage.counts?.unresolvedSourceGeneratedCount ?? 11,
+  );
   const storyTitleIntegrity = readJson<{
     generatedEntriesChecked?: number;
     parentCollectionLeakage?: {
@@ -874,9 +915,10 @@ function main() {
     },
     unresolvedSourceGeneratedBookCheckpoint: {
       sourceReportPath:
-        "app/client/assets/books/audit-reports/remaining-raw-inventory-triage/remaining-raw-inventory-triage.json",
-      unresolvedSourceGeneratedCount:
-        remainingRawTriage.counts?.unresolvedSourceGeneratedCount ?? 11,
+        fs.existsSync(unresolvedSourceGeneratedReviewPath)
+          ? "app/client/assets/books/audit-reports/unresolved-source-generated-review/unresolved-source-generated-review.json"
+          : "app/client/assets/books/audit-reports/remaining-raw-inventory-triage/remaining-raw-inventory-triage.json",
+      unresolvedSourceGeneratedCount,
       checkpoint:
         "Unresolved-source generated books remain documented and non-blocking for current summary coverage, but source resolution is still tracked before final export decisions.",
     },

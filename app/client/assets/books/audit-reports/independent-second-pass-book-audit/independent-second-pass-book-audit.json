@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reportName": "independent-second-pass-book-audit",
-  "generatedAt": "2026-06-21T19:30:08.818Z",
+  "generatedAt": "2026-06-28T05:04:13.596Z",
   "branch": "morsewords-independent-second-pass-book-audit-jun-2026",
   "mode": "report-only/independent-second-pass",
   "sourcePaths": {
@@ -11,12 +11,12 @@
     "cloudflareExport": "app/client/assets/books/cloudflare-export"
   },
   "counts": {
-    "generatedBookDirectories": 465,
-    "generatedBooksInLibraryManifest": 465,
-    "previewAssetFiles": 465,
-    "previewManifestEntries": 465,
-    "pass": 399,
-    "warnAccepted": 66,
+    "generatedBookDirectories": 497,
+    "generatedBooksInLibraryManifest": 497,
+    "previewAssetFiles": 497,
+    "previewManifestEntries": 497,
+    "pass": 432,
+    "warnAccepted": 65,
     "failNeedsFix": 0,
     "manualReview": 0
   },
@@ -46,7 +46,7 @@
     "status": "20/20 pass; no remaining raw/generated mismatches"
   },
   "unresolvedSourceGeneratedBookSummary": {
-    "count": 11,
+    "count": 9,
     "books": [
       {
         "slug": "a-princess-of-mars",
@@ -119,28 +119,6 @@
         "generatedTitle": "Tarzan of the Apes",
         "generatedAuthor": [
           "Edgar Rice Burroughs"
-        ],
-        "previewValid": true,
-        "defaultStartReadable": true,
-        "sourceRemainsUnresolved": true,
-        "recommendation": "Stay accepted pending future manual source resolution."
-      },
-      {
-        "slug": "the-great-gatsby",
-        "generatedTitle": "The Great Gatsby",
-        "generatedAuthor": [
-          "F. Scott Fitzgerald"
-        ],
-        "previewValid": true,
-        "defaultStartReadable": true,
-        "sourceRemainsUnresolved": true,
-        "recommendation": "Stay accepted pending future manual source resolution."
-      },
-      {
-        "slug": "the-picture-of-dorian-gray",
-        "generatedTitle": "The Picture of Dorian Gray",
-        "generatedAuthor": [
-          "Oscar Wilde"
         ],
         "previewValid": true,
         "defaultStartReadable": true,
@@ -578,9 +556,9 @@
     }
   ],
   "rawVsGeneratedComparisonSummary": {
-    "exactSampledPass": 442,
+    "exactSampledPass": 451,
     "sampledWarn": 8,
-    "unavailable": 15,
+    "unavailable": 38,
     "notAttempted": 0,
     "sampledWarnings": [
       {
@@ -657,20 +635,20 @@
       }
     },
     "lovecraftTitles": {
-      "count": 40,
+      "count": 42,
       "authorMetadataWarnings": [],
       "statuses": {
-        "pass": 40,
+        "pass": 42,
         "warn-accepted": 0,
         "fail-needs-fix": 0,
         "manual-review": 0
       }
     },
     "wellsTitles": {
-      "count": 48,
+      "count": 54,
       "authorMetadataWarnings": [],
       "statuses": {
-        "pass": 48,
+        "pass": 54,
         "warn-accepted": 0,
         "fail-needs-fix": 0,
         "manual-review": 0
@@ -757,6 +735,81 @@
         "rawComparisonEndPhrase": "of reproach directed at her when whitebait was announced winner at the comfortable price of fourteen to one"
       },
       "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "a-catastrophe",
+      "generatedTitle": "A Catastrophe",
+      "contributorMetadata": {
+        "author": [
+          "H. G. Wells"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": null
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "A Catastrophe",
+      "firstDefaultSectionOpeningText": "The little shop was not paying. The realisation came insensibly. Winslow was not the man for definite addition and subtraction and sudden discovery. He became aware of the truth in his mind gradually, as though it had always been there. A lot of facts had c...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 3177,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": true,
+        "path": "app/client/assets/temp-books/A CATASTROPHE.txt",
+        "triageCategory": "manual-review-required"
+      },
+      "rawSourceComparisonStatus": "exact/sampled-pass",
+      "rawSourceComparisonNote": "Start and end generated text samples were found in the raw source.",
+      "evidenceSnippets": {
+        "previewStart": "The little shop was not paying. The realisation came insensibly. Winslow was not the man for definite addition and subtraction and sudden discovery. He became aware of the truth in his mind gradually, as though it had...",
+        "generatedDefaultStart": "The little shop was not paying. The realisation came insensibly. Winslow was not the man for definite addition and subtraction and sudden discovery. He became aware of the truth in his mind gradually, as though it had...",
+        "rawComparisonStartPhrase": "the little shop was not paying the realisation came insensibly winslow was not the man for definite addition",
+        "rawComparisonEndPhrase": "things bravely in this sad unaccountable world it was quite midday before either of them mentioned the cottages"
+      },
+      "specialGroups": [
+        "wells"
+      ],
       "warnings": [],
       "failures": [],
       "finalAuditStatus": "pass",
@@ -988,6 +1041,79 @@
         "recent-batch-21-23",
         "wells"
       ],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "a-descent-into-the-maelstrom",
+      "generatedTitle": "A Descent into the Maelstrom",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "A Descent into the Maelstrom",
+      "firstDefaultSectionOpeningText": "The ways of God in Nature, as in Providence, are not as our ways; nor are the models that we frame any way commensurate to the vastness, profundity, and unsearchableness of His works, _which have a depth in them greater than the well of Democritus_. —_Josep...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 7054,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "The ways of God in Nature, as in Providence, are not as our ways; nor are the models that we frame any way commensurate to the vastness, profundity, and unsearchableness of His works, _which have a depth in them great...",
+        "generatedDefaultStart": "The ways of God in Nature, as in Providence, are not as our ways; nor are the models that we frame any way commensurate to the vastness, profundity, and unsearchableness of His works, _which have a depth in them great...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
       "warnings": [],
       "failures": [],
       "finalAuditStatus": "pass",
@@ -3401,6 +3527,79 @@
       "specialGroups": [
         "lovecraft"
       ],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "berenice",
+      "generatedTitle": "Berenice",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "Berenice",
+      "firstDefaultSectionOpeningText": "Dicebant mihi sodales, si sepulchrum amicae visitarem, curas meas aliquar tulum fore levatas.—_Ebn Zaiat_. Misery is manifold. The wretchedness of earth is multiform. Overreaching the wide horizon as the rainbow, its hues are as various as the hues of that ...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 3220,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "Dicebant mihi sodales, si sepulchrum amicae visitarem, curas meas aliquar tulum fore levatas.—_Ebn Zaiat_. Misery is manifold. The wretchedness of earth is multiform. Overreaching the wide horizon as the rainbow, its ...",
+        "generatedDefaultStart": "Dicebant mihi sodales, si sepulchrum amicae visitarem, curas meas aliquar tulum fore levatas.—_Ebn Zaiat_. Misery is manifold. The wretchedness of earth is multiform. Overreaching the wide horizon as the rainbow, its ...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
       "warnings": [],
       "failures": [],
       "finalAuditStatus": "pass",
@@ -6019,7 +6218,7 @@
     },
     {
       "slug": "for-the-duration-of-the-war",
-      "generatedTitle": "The Toys of Peace, and Other Papers",
+      "generatedTitle": "For the Duration of the War",
       "contributorMetadata": {
         "author": [
           "Saki"
@@ -7070,6 +7269,79 @@
       "recommendedNextAction": "no action"
     },
     {
+      "slug": "hop-frog",
+      "generatedTitle": "Hop-Frog",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "Hop-Frog",
+      "firstDefaultSectionOpeningText": "I never knew anyone so keenly alive to a joke as the king was. He seemed to live only for joking. To tell a good story of the joke kind, and to tell it well, was the surest road to his favor. Thus it happened that his seven ministers were all noted for thei...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 3621,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "I never knew anyone so keenly alive to a joke as the king was. He seemed to live only for joking. To tell a good story of the joke kind, and to tell it well, was the surest road to his favor. Thus it happened that his...",
+        "generatedDefaultStart": "I never knew anyone so keenly alive to a joke as the king was. He seemed to live only for joking. To tell a good story of the joke kind, and to tell it well, was the surest road to his favor. Thus it happened that his...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
       "slug": "how-a-fish-swam-in-the-air-and-a-hare-in-the-water",
       "generatedTitle": "How a Fish Swam in the Air and a Hare in the Water",
       "contributorMetadata": {
@@ -7582,6 +7854,81 @@
       "specialGroups": [
         "recent-batch-21-23",
         "lovecraft"
+      ],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "in-the-abyss",
+      "generatedTitle": "In the Abyss",
+      "contributorMetadata": {
+        "author": [
+          "H. G. Wells"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": null
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "In the Abyss",
+      "firstDefaultSectionOpeningText": "The lieutenant stood in front of the steel sphere and gnawed a piece of pine splinter. “What do you think of it, Steevens?” he asked. “It’s an idea,” said Steevens, in the tone of one who keeps an open mind. “I believe it will smash—flat,” said the lieutena...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 6169,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": true,
+        "path": "app/client/assets/temp-books/IN THE ABYSS.txt",
+        "triageCategory": "manual-review-required"
+      },
+      "rawSourceComparisonStatus": "exact/sampled-pass",
+      "rawSourceComparisonNote": "Start and end generated text samples were found in the raw source.",
+      "evidenceSnippets": {
+        "previewStart": "The lieutenant stood in front of the steel sphere and gnawed a piece of pine splinter. “What do you think of it, Steevens?” he asked. “It’s an idea,” said Steevens, in the tone of one who keeps an open mind. “I believ...",
+        "generatedDefaultStart": "The lieutenant stood in front of the steel sphere and gnawed a piece of pine splinter. “What do you think of it, Steevens?” he asked. “It’s an idea,” said Steevens, in the tone of one who keeps an open mind. “I believ...",
+        "rawComparisonStartPhrase": "the lieutenant stood in front of the steel sphere and gnawed a piece of pine splinter what do",
+        "rawComparisonEndPhrase": "attempt will be made to verify his strange story of these hitherto unsuspected cities of the deep sea"
+      },
+      "specialGroups": [
+        "wells"
       ],
       "warnings": [],
       "failures": [],
@@ -8649,6 +8996,79 @@
       "failures": [],
       "finalAuditStatus": "warn-accepted",
       "recommendedNextAction": "track metadata note before or during SEO summaries"
+    },
+    {
+      "slug": "ligeia",
+      "generatedTitle": "Ligeia",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "Ligeia",
+      "firstDefaultSectionOpeningText": "And the will therein lieth, which dieth not. Who knoweth the mysteries of the will, with its vigor? For God is but a great will pervading all things by nature of its intentness. Man doth not yield himself to the angels, nor unto death utterly, save only thr...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 6174,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "And the will therein lieth, which dieth not. Who knoweth the mysteries of the will, with its vigor? For God is but a great will pervading all things by nature of its intentness. Man doth not yield himself to the angel...",
+        "generatedDefaultStart": "And the will therein lieth, which dieth not. Who knoweth the mysteries of the will, with its vigor? For God is but a great will pervading all things by nature of its intentness. Man doth not yield himself to the angel...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
     },
     {
       "slug": "lily-and-the-lion",
@@ -9983,6 +10403,79 @@
       "recommendedNextAction": "no action"
     },
     {
+      "slug": "morella",
+      "generatedTitle": "Morella",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "Morella",
+      "firstDefaultSectionOpeningText": "Itself, by itself, solely, one everlasting, and single. —PLATO—_Sympos_. With a feeling of deep yet most singular affection I regarded my friend Morella. Thrown by accident into her society many years ago, my soul from our first meeting, burned with fires i...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 2133,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "Itself, by itself, solely, one everlasting, and single. —PLATO—_Sympos_. With a feeling of deep yet most singular affection I regarded my friend Morella. Thrown by accident into her society many years ago, my soul fro...",
+        "generatedDefaultStart": "Itself, by itself, solely, one everlasting, and single. —PLATO—_Sympos_. With a feeling of deep yet most singular affection I regarded my friend Morella. Thrown by accident into her society many years ago, my soul fro...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
       "slug": "morlvera",
       "generatedTitle": "Morlvera",
       "contributorMetadata": {
@@ -10423,6 +10916,79 @@
       "specialGroups": [
         "wells"
       ],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "ms-found-in-a-bottle",
+      "generatedTitle": "MS. Found in a Bottle",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "MS. Found in a Bottle",
+      "firstDefaultSectionOpeningText": "Qui n’a plus qu’un moment a vivre N’a plus rien a dissimuler. —Quinault—Atys. Of my country and of my family I have little to say. Ill usage and length of years have driven me from the one, and estranged me from the other. Hereditary wealth afforded me an e...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 4191,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "Qui n’a plus qu’un moment a vivre N’a plus rien a dissimuler. —Quinault—Atys. Of my country and of my family I have little to say. Ill usage and length of years have driven me from the one, and estranged me from the o...",
+        "generatedDefaultStart": "Qui n’a plus qu’un moment a vivre N’a plus rien a dissimuler. —Quinault—Atys. Of my country and of my family I have little to say. Ill usage and length of years have driven me from the one, and estranged me from the o...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
       "warnings": [],
       "failures": [],
       "finalAuditStatus": "pass",
@@ -11475,6 +12041,81 @@
       "specialGroups": [
         "recent-batch-21-23",
         "lovecraft"
+      ],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "pollock-and-the-porroh-man",
+      "generatedTitle": "Pollock and the Porroh Man",
+      "contributorMetadata": {
+        "author": [
+          "H. G. Wells"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": null
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "Pollock and the Porroh Man",
+      "firstDefaultSectionOpeningText": "It was in a swampy village on the lagoon river behind the Turner Peninsula that Pollock’s first encounter with the Porroh man occurred. The women of that country are famous for their good looks—they are Gallinas with a dash of European blood that dates from...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 6120,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": true,
+        "path": "app/client/assets/temp-books/POLLOCK AND THE PORROH MAN.txt",
+        "triageCategory": "manual-review-required"
+      },
+      "rawSourceComparisonStatus": "exact/sampled-pass",
+      "rawSourceComparisonNote": "Start and end generated text samples were found in the raw source.",
+      "evidenceSnippets": {
+        "previewStart": "It was in a swampy village on the lagoon river behind the Turner Peninsula that Pollock’s first encounter with the Porroh man occurred. The women of that country are famous for their good looks—they are Gallinas with ...",
+        "generatedDefaultStart": "It was in a swampy village on the lagoon river behind the Turner Peninsula that Pollock’s first encounter with the Porroh man occurred. The women of that country are famous for their good looks—they are Gallinas with ...",
+        "rawComparisonStartPhrase": "it was in a swampy village on the lagoon river behind the turner peninsula that pollocks first encounter",
+        "rawComparisonEndPhrase": "neck for the throb of his arteries the morning was very cold the steel blade felt like ice"
+      },
+      "specialGroups": [
+        "wells"
       ],
       "warnings": [],
       "failures": [],
@@ -12810,6 +13451,79 @@
         "generatedDefaultStart": "It was the middle of winter, when the broad flakes of snow were falling around, that the queen of a country many thousand miles off sat working at her window. The frame of the window was made of fine black ebony, and ...",
         "rawComparisonStartPhrase": "it was the middle of winter when the broad flakes of snow were falling around that the queen",
         "rawComparisonEndPhrase": "a visit to the little dwarfs who had been so kind to snowdrop in her time of need"
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "some-words-with-a-mummy",
+      "generatedTitle": "Some Words with a Mummy",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "Some Words with a Mummy",
+      "firstDefaultSectionOpeningText": "The _symposium_ of the preceding evening had been a little too much for my nerves. I had a wretched headache, and was desperately drowsy. Instead of going out therefore to spend the evening as I had proposed, it occurred to me that I could not do a wiser th...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 6301,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "The _symposium_ of the preceding evening had been a little too much for my nerves. I had a wretched headache, and was desperately drowsy. Instead of going out therefore to spend the evening as I had proposed, it occur...",
+        "generatedDefaultStart": "The _symposium_ of the preceding evening had been a little too much for my nerves. I had a wretched headache, and was desperately drowsy. Instead of going out therefore to spend the evening as I had proposed, it occur...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
       },
       "specialGroups": [],
       "warnings": [],
@@ -14699,6 +15413,79 @@
       "recommendedNextAction": "no action"
     },
     {
+      "slug": "the-black-cat",
+      "generatedTitle": "The Black Cat",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Black Cat",
+      "firstDefaultSectionOpeningText": "For the most wild, yet most homely narrative which I am about to pen, I neither expect nor solicit belief. Mad indeed would I be to expect it, in a case where my very senses reject their own evidence. Yet, mad am I not—and very surely do I not dream. But to...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 3920,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "For the most wild, yet most homely narrative which I am about to pen, I neither expect nor solicit belief. Mad indeed would I be to expect it, in a case where my very senses reject their own evidence. Yet, mad am I no...",
+        "generatedDefaultStart": "For the most wild, yet most homely narrative which I am about to pen, I neither expect nor solicit belief. Mad indeed would I be to expect it, in a case where my very senses reject their own evidence. Yet, mad am I no...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
       "slug": "the-black-star-passes",
       "generatedTitle": "The Black Star Passes",
       "contributorMetadata": {
@@ -15660,6 +16447,154 @@
       "recommendedNextAction": "no action"
     },
     {
+      "slug": "the-case-of-charles-dexter-ward",
+      "generatedTitle": "The Case of Charles Dexter Ward",
+      "contributorMetadata": {
+        "author": [
+          "H. P. Lovecraft"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "Greg Weeks, Mary Meehan and the Online Distributed Proofreading Team at http://www.pgdp.net"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "A Result and a Prologue",
+      "firstDefaultSectionOpeningText": "From a private hospital for the insane near Providence, Rhode Island, there recently disappeared an exceedingly singular person. He bore the name of Charles Dexter Ward, and was placed under restraint most reluctantly by his grieving father. The patient see...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 5,
+      "defaultSectionCount": 5,
+      "totalWordCount": 44472,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": true,
+        "path": "app/client/assets/temp-books/The case of Charles Dexter Ward.txt",
+        "triageCategory": "unsafe-start-or-end-boundary-risk"
+      },
+      "rawSourceComparisonStatus": "exact/sampled-pass",
+      "rawSourceComparisonNote": "Start and end generated text samples were found in the raw source.",
+      "evidenceSnippets": {
+        "previewStart": "From a private hospital for the insane near Providence, Rhode Island, there recently disappeared an exceedingly singular person. He bore the name of Charles Dexter Ward, and was placed under restraint most reluctantly...",
+        "generatedDefaultStart": "From a private hospital for the insane near Providence, Rhode Island, there recently disappeared an exceedingly singular person. He bore the name of Charles Dexter Ward, and was placed under restraint most reluctantly...",
+        "rawComparisonStartPhrase": "from a private hospital for the insane near providence rhode island there recently disappeared an exceedingly singular person",
+        "rawComparisonEndPhrase": "before joseph curwen now lay scattered on the floor as a thin coating of fine bluish gray dust"
+      },
+      "specialGroups": [
+        "lovecraft"
+      ],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "the-cask-of-amontillado",
+      "generatedTitle": "The Cask of Amontillado",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Cask of Amontillado",
+      "firstDefaultSectionOpeningText": "The thousand injuries of Fortunato I had borne as I best could; but when he ventured upon insult, I vowed revenge. You, who so well know the nature of my soul, will not suppose, however, that I gave utterance to a threat. _At length_ I would be avenged; thi...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 2334,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "The thousand injuries of Fortunato I had borne as I best could; but when he ventured upon insult, I vowed revenge. You, who so well know the nature of my soul, will not suppose, however, that I gave utterance to a thr...",
+        "generatedDefaultStart": "The thousand injuries of Fortunato I had borne as I best could; but when he ventured upon insult, I vowed revenge. You, who so well know the nature of my soul, will not suppose, however, that I gave utterance to a thr...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
       "slug": "the-castle-of-kerglas",
       "generatedTitle": "The Castle of Kerglas",
       "contributorMetadata": {
@@ -15879,6 +16814,81 @@
         "rawComparisonEndPhrase": "on without them and she and the young king lived happily together till the end of their days"
       },
       "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "the-colour-out-of-space",
+      "generatedTitle": "The Colour Out of Space",
+      "contributorMetadata": {
+        "author": [
+          "H. P. Lovecraft"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "Greg Weeks, Mary Meehan and the Online Distributed Proofreading Team at http://www.pgdp.net"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Colour Out of Space",
+      "firstDefaultSectionOpeningText": "West of Arkham the hills rise wild, and there are valleys with deep woods that no axe has ever cut. There are dark narrow glens where the trees slope fantastically, and where thin brooklets trickle without ever having caught the glint of sunlight. On the ge...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 12330,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": true,
+        "path": "app/client/assets/temp-books/The colour out of space.txt",
+        "triageCategory": "manual-review-required"
+      },
+      "rawSourceComparisonStatus": "exact/sampled-pass",
+      "rawSourceComparisonNote": "Start and end generated text samples were found in the raw source.",
+      "evidenceSnippets": {
+        "previewStart": "West of Arkham the hills rise wild, and there are valleys with deep woods that no axe has ever cut. There are dark narrow glens where the trees slope fantastically, and where thin brooklets trickle without ever having...",
+        "generatedDefaultStart": "West of Arkham the hills rise wild, and there are valleys with deep woods that no axe has ever cut. There are dark narrow glens where the trees slope fantastically, and where thin brooklets trickle without ever having...",
+        "rawComparisonStartPhrase": "west of arkham the hills rise wild and there are valleys with deep woods that no axe has",
+        "rawComparisonEndPhrase": "think of him as the grey twisted brittle monstrosity which persists more and more in troubling my sleep"
+      },
+      "specialGroups": [
+        "lovecraft"
+      ],
       "warnings": [],
       "failures": [],
       "finalAuditStatus": "pass",
@@ -17922,6 +18932,79 @@
       "recommendedNextAction": "no action"
     },
     {
+      "slug": "the-facts-in-the-case-of-m-valdemar",
+      "generatedTitle": "The Facts in the Case of M. Valdemar",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Facts in the Case of M. Valdemar",
+      "firstDefaultSectionOpeningText": "Of course I shall not pretend to consider it any matter for wonder, that the extraordinary case of M. Valdemar has excited discussion. It would have been a miracle had it not—especially under the circumstances. Through the desire of all parties concerned, t...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 3555,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "Of course I shall not pretend to consider it any matter for wonder, that the extraordinary case of M. Valdemar has excited discussion. It would have been a miracle had it not—especially under the circumstances. Throug...",
+        "generatedDefaultStart": "Of course I shall not pretend to consider it any matter for wonder, that the extraordinary case of M. Valdemar has excited discussion. It would have been a miracle had it not—especially under the circumstances. Throug...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
       "slug": "the-fairy-nurse",
       "generatedTitle": "The Fairy Nurse",
       "contributorMetadata": {
@@ -18064,6 +19147,79 @@
         "generatedDefaultStart": "Once upon a time what should happen DID happen; and if it had not happened this tale would never have been told. There was once an emperor, very great and mighty, and he ruled over an empire so large that no one knew ...",
         "rawComparisonStartPhrase": "once upon a time what should happen did happen and if it had not happened this tale would",
         "rawComparisonEndPhrase": "went home to his father and cured his blindness and as for his brothers they never returned again"
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "the-fall-of-the-house-of-usher",
+      "generatedTitle": "The Fall of the House of Usher",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Fall of the House of Usher",
+      "firstDefaultSectionOpeningText": "During the whole of a dull, dark, and soundless day in the autumn of the year, when the clouds hung oppressively low in the heavens, I had been passing alone, on horseback, through a singularly dreary tract of country; and at length found myself, as the sha...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 7174,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "During the whole of a dull, dark, and soundless day in the autumn of the year, when the clouds hung oppressively low in the heavens, I had been passing alone, on horseback, through a singularly dreary tract of country...",
+        "generatedDefaultStart": "During the whole of a dull, dark, and soundless day in the autumn of the year, when the clouds hung oppressively low in the heavens, I had been passing alone, on horseback, through a singularly dreary tract of country...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
       },
       "specialGroups": [],
       "warnings": [],
@@ -19781,16 +20937,13 @@
         "rawComparisonStartPhrase": null,
         "rawComparisonEndPhrase": null
       },
-      "specialGroups": [
-        "unresolved-source-generated-book"
-      ],
+      "specialGroups": [],
       "warnings": [
-        "First selected/default section does not directly match generated source order.",
-        "Source remains unresolved; generated book remains accepted but source debt is tracked."
+        "First selected/default section does not directly match generated source order."
       ],
       "failures": [],
       "finalAuditStatus": "warn-accepted",
-      "recommendedNextAction": "keep accepted and track future manual source resolution"
+      "recommendedNextAction": "no generated fix now; carry warning into SEO-summary planning"
     },
     {
       "slug": "the-green-mummy",
@@ -23435,6 +24588,79 @@
       "recommendedNextAction": "no action"
     },
     {
+      "slug": "the-man-of-the-crowd",
+      "generatedTitle": "The Man of the Crowd",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Man of the Crowd",
+      "firstDefaultSectionOpeningText": "Ce grand malheur, de ne pouvoir être seul.—_La Bruyère_. It was well said of a certain German book that “_er lasst sich nicht lesen_”—it does not permit itself to be read. There are some secrets which do not permit themselves to be told. Men die nightly in ...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 3531,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "Ce grand malheur, de ne pouvoir être seul.—_La Bruyère_. It was well said of a certain German book that “_er lasst sich nicht lesen_”—it does not permit itself to be read. There are some secrets which do not permit th...",
+        "generatedDefaultStart": "Ce grand malheur, de ne pouvoir être seul.—_La Bruyère_. It was well said of a certain German book that “_er lasst sich nicht lesen_”—it does not permit itself to be read. There are some secrets which do not permit th...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
       "slug": "the-man-who-could-work-miracles",
       "generatedTitle": "The Man Who Could Work Miracles",
       "contributorMetadata": {
@@ -24318,6 +25544,79 @@
       "recommendedNextAction": "no action"
     },
     {
+      "slug": "the-murders-in-the-rue-morgue",
+      "generatedTitle": "The Murders in the Rue Morgue",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Murders in the Rue Morgue",
+      "firstDefaultSectionOpeningText": "What song the Syrens sang, or what name Achilles assumed when he hid himself among women, although puzzling questions, are not beyond _all_ conjecture. —_Sir Thomas Browne._ The mental features discoursed of as the analytical, are, in themselves, but little...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 13871,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "What song the Syrens sang, or what name Achilles assumed when he hid himself among women, although puzzling questions, are not beyond _all_ conjecture. —_Sir Thomas Browne._ The mental features discoursed of as the an...",
+        "generatedDefaultStart": "What song the Syrens sang, or what name Achilles assumed when he hid himself among women, although puzzling questions, are not beyond _all_ conjecture. —_Sir Thomas Browne._ The mental features discoursed of as the an...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
       "slug": "the-mystery-of-edwin-drood",
       "generatedTitle": "The Mystery of Edwin Drood",
       "contributorMetadata": {
@@ -24756,6 +26055,79 @@
         "generatedDefaultStart": "Once upon a time there lived a sultan who loved his garden dearly, and planted it with trees and flowers and fruits from all parts of the world. He went to see them three times every day: first at seven o’clock, when ...",
         "rawComparisonStartPhrase": "once upon a time there lived a sultan who loved his garden dearly and planted it with trees",
         "rawComparisonEndPhrase": "and loved him because he had delivered them from the bondage of fear and had slain the nunda"
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "the-oblong-box",
+      "generatedTitle": "The Oblong Box",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Oblong Box",
+      "firstDefaultSectionOpeningText": "Some years ago, I engaged passage from Charleston, S. C., to the city of New York, in the fine packet-ship “Independence,” Captain Hardy. We were to sail on the fifteenth of the month (June), weather permitting; and on the fourteenth, I went on board to arr...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 4576,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "Some years ago, I engaged passage from Charleston, S. C., to the city of New York, in the fine packet-ship “Independence,” Captain Hardy. We were to sail on the fifteenth of the month (June), weather permitting; and o...",
+        "generatedDefaultStart": "Some years ago, I engaged passage from Charleston, S. C., to the city of New York, in the fine packet-ship “Independence,” Captain Hardy. We were to sail on the fifteenth of the month (June), weather permitting; and o...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
       },
       "specialGroups": [],
       "warnings": [],
@@ -25355,6 +26727,79 @@
       "recommendedNextAction": "no action"
     },
     {
+      "slug": "the-oval-portrait",
+      "generatedTitle": "The Oval Portrait",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Oval Portrait",
+      "firstDefaultSectionOpeningText": "The château into which my valet had ventured to make forcible entrance, rather than permit me, in my desperately wounded condition, to pass a night in the open air, was one of those piles of commingled gloom and grandeur which have so long frowned among the...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 1291,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "The château into which my valet had ventured to make forcible entrance, rather than permit me, in my desperately wounded condition, to pass a night in the open air, was one of those piles of commingled gloom and grand...",
+        "generatedDefaultStart": "The château into which my valet had ventured to make forcible entrance, rather than permit me, in my desperately wounded condition, to pass a night in the open air, was one of those piles of commingled gloom and grand...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
       "slug": "the-oversight",
       "generatedTitle": "The Oversight",
       "contributorMetadata": {
@@ -25642,15 +27087,11 @@
         "rawComparisonStartPhrase": null,
         "rawComparisonEndPhrase": null
       },
-      "specialGroups": [
-        "unresolved-source-generated-book"
-      ],
-      "warnings": [
-        "Source remains unresolved; generated book remains accepted but source debt is tracked."
-      ],
+      "specialGroups": [],
+      "warnings": [],
       "failures": [],
-      "finalAuditStatus": "warn-accepted",
-      "recommendedNextAction": "keep accepted and track future manual source resolution"
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
     },
     {
       "slug": "the-pink",
@@ -25718,6 +27159,227 @@
         "generatedDefaultStart": "There was once upon a time a queen to whom God had given no children. Every morning she went into the garden and prayed to God in heaven to bestow on her a son or a daughter. Then an angel from heaven came to her and ...",
         "rawComparisonStartPhrase": "there was once upon a time a queen to whom god had given no children every morning she",
         "rawComparisonEndPhrase": "as a flower in his pocket and whether they are still alive or not is known to god"
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "the-pit-and-the-pendulum",
+      "generatedTitle": "The Pit and the Pendulum",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Pit and the Pendulum",
+      "firstDefaultSectionOpeningText": "I was sick—sick unto death with that long agony; and when they at length unbound me, and I was permitted to sit, I felt that my senses were leaving me. The sentence—the dread sentence of death—was the last of distinct accentuation which reached my ears. Aft...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 6103,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "I was sick—sick unto death with that long agony; and when they at length unbound me, and I was permitted to sit, I felt that my senses were leaving me. The sentence—the dread sentence of death—was the last of distinct...",
+        "generatedDefaultStart": "I was sick—sick unto death with that long agony; and when they at length unbound me, and I was permitted to sit, I felt that my senses were leaving me. The sentence—the dread sentence of death—was the last of distinct...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "the-plattner-story",
+      "generatedTitle": "The Plattner Story",
+      "contributorMetadata": {
+        "author": [
+          "H. G. Wells"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": null
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Plattner Story",
+      "firstDefaultSectionOpeningText": "Whether the story of Gottfried Plattner is to be credited or not, is a pretty question in the value of evidence. On the one hand, we have seven witnesses—to be perfectly exact, we have six and a half pairs of eyes, and one undeniable fact; and on the other ...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 7781,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": true,
+        "path": "app/client/assets/temp-books/THE PLATTNER STORY.txt",
+        "triageCategory": "manual-review-required"
+      },
+      "rawSourceComparisonStatus": "exact/sampled-pass",
+      "rawSourceComparisonNote": "Start and end generated text samples were found in the raw source.",
+      "evidenceSnippets": {
+        "previewStart": "Whether the story of Gottfried Plattner is to be credited or not, is a pretty question in the value of evidence. On the one hand, we have seven witnesses—to be perfectly exact, we have six and a half pairs of eyes, an...",
+        "generatedDefaultStart": "Whether the story of Gottfried Plattner is to be credited or not, is a pretty question in the value of evidence. On the one hand, we have seven witnesses—to be perfectly exact, we have six and a half pairs of eyes, an...",
+        "rawComparisonStartPhrase": "whether the story of gottfried plattner is to be credited or not is a pretty question in the",
+        "rawComparisonEndPhrase": "that even outside space hallucinations may be possible that at least the reader must bear distinctly in mind"
+      },
+      "specialGroups": [
+        "wells"
+      ],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "the-premature-burial",
+      "generatedTitle": "The Premature Burial",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Premature Burial",
+      "firstDefaultSectionOpeningText": "There are certain themes of which the interest is all-absorbing, but which are too entirely horrible for the purposes of legitimate fiction. These the mere romanticist must eschew, if he do not wish to offend or to disgust. They are with propriety handled o...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 5461,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "There are certain themes of which the interest is all-absorbing, but which are too entirely horrible for the purposes of legitimate fiction. These the mere romanticist must eschew, if he do not wish to offend or to di...",
+        "generatedDefaultStart": "There are certain themes of which the interest is all-absorbing, but which are too entirely horrible for the purposes of legitimate fiction. These the mere romanticist must eschew, if he do not wish to offend or to di...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
       },
       "specialGroups": [],
       "warnings": [],
@@ -26016,6 +27678,79 @@
         "generatedDefaultStart": "Once there was a king who had great riches, which, when he died, he divided among his three sons. The two eldest of these lived in rioting and feasting, and thus wasted and squandered their father’s wealth till nothin...",
         "rawComparisonStartPhrase": "once there was a king who had great riches which when he died he divided among his three",
         "rawComparisonEndPhrase": "but give her to the young man to wife and they lived together in great joy and happiness"
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "the-purloined-letter",
+      "generatedTitle": "The Purloined Letter",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Purloined Letter",
+      "firstDefaultSectionOpeningText": "Nil sapientiæ odiosius acumine nimio.—_Seneca_. At Paris, just after dark one gusty evening in the autumn of 18-, I was enjoying the twofold luxury of meditation and a meerschaum, in company with my friend C. Auguste Dupin, in his little back library, or bo...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 7071,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "Nil sapientiæ odiosius acumine nimio.—_Seneca_. At Paris, just after dark one gusty evening in the autumn of 18-, I was enjoying the twofold luxury of meditation and a meerschaum, in company with my friend C. Auguste ...",
+        "generatedDefaultStart": "Nil sapientiæ odiosius acumine nimio.—_Seneca_. At Paris, just after dark one gusty evening in the autumn of 18-, I was enjoying the twofold luxury of meditation and a meerschaum, in company with my friend C. Auguste ...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
       },
       "specialGroups": [],
       "warnings": [],
@@ -27209,6 +28944,81 @@
         "rawComparisonEndPhrase": "ever the roses bloomed in the sunshine on thorwaldsens grave and thus became linked with his immortal name"
       },
       "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "the-sad-story-of-a-dramatic-critic",
+      "generatedTitle": "The Sad Story of a Dramatic Critic",
+      "contributorMetadata": {
+        "author": [
+          "H. G. Wells"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": null
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Sad Story of a Dramatic Critic",
+      "firstDefaultSectionOpeningText": "Iwas—you shall hear immediately why I am not now—Egbert Craddock Cummins. The name remains. I am still (Heaven help me!) Dramatic Critic to the Fiery Cross. What I shall be in a little while I do not know. I write in great trouble and confusion of mind. I w...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 3161,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": true,
+        "path": "app/client/assets/temp-books/THE SAD STORY OF A DRAMATIC CRITIC.txt",
+        "triageCategory": "unsafe-metadata-risk"
+      },
+      "rawSourceComparisonStatus": "exact/sampled-pass",
+      "rawSourceComparisonNote": "Start and end generated text samples were found in the raw source.",
+      "evidenceSnippets": {
+        "previewStart": "Iwas—you shall hear immediately why I am not now—Egbert Craddock Cummins. The name remains. I am still (Heaven help me!) Dramatic Critic to the Fiery Cross. What I shall be in a little while I do not know. I write in ...",
+        "generatedDefaultStart": "Iwas—you shall hear immediately why I am not now—Egbert Craddock Cummins. The name remains. I am still (Heaven help me!) Dramatic Critic to the Fiery Cross. What I shall be in a little while I do not know. I write in ...",
+        "rawComparisonStartPhrase": "iwas you shall hear immediately why i am not now egbert craddock cummins the name remains i am",
+        "rawComparisonEndPhrase": "big cigar and some strong whisky and soda and then something always turns up to prevent my explanation"
+      },
+      "specialGroups": [
+        "wells"
+      ],
       "warnings": [],
       "failures": [],
       "finalAuditStatus": "pass",
@@ -28718,6 +30528,79 @@
       "recommendedNextAction": "no action"
     },
     {
+      "slug": "the-sphinx",
+      "generatedTitle": "The Sphinx",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Sphinx",
+      "firstDefaultSectionOpeningText": "During the dread reign of the cholera in New York, I had accepted the invitation of a relative to spend a fortnight with him in the retirement of his _cottage ornée_ on the banks of the Hudson. We had here around us all the ordinary means of summer amusemen...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 1848,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "During the dread reign of the cholera in New York, I had accepted the invitation of a relative to spend a fortnight with him in the retirement of his _cottage ornée_ on the banks of the Hudson. We had here around us a...",
+        "generatedDefaultStart": "During the dread reign of the cholera in New York, I had accepted the invitation of a relative to spend a fortnight with him in the retirement of his _cottage ornée_ on the banks of the Hudson. We had here around us a...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
       "slug": "the-star",
       "generatedTitle": "The Star",
       "contributorMetadata": {
@@ -29685,7 +31568,7 @@
     },
     {
       "slug": "the-story-of-the-inexperienced-ghost",
-      "generatedTitle": "Twelve Stories and a Dream",
+      "generatedTitle": "The Story of the Inexperienced Ghost",
       "contributorMetadata": {
         "author": [
           "H. G. Wells"
@@ -30340,6 +32223,152 @@
         "generatedDefaultStart": "THE SWINEHERD There was once a poor Prince, who had a kingdom. His kingdom was very small, but still quite large enough to marry upon; and he wished to marry. It was certainly rather cool of him to say to the Emperor'...",
         "rawComparisonStartPhrase": "the swineherd there was once a poor prince who had a kingdom his kingdom was very small but",
         "rawComparisonEndPhrase": "palace in her face now she might well sing ach du lieber augustin alles ist weg weg weg"
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "the-system-of-doctor-tarr-and-professor-fether",
+      "generatedTitle": "The System of Doctor Tarr and Professor Fether",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The System of Doctor Tarr and Professor Fether",
+      "firstDefaultSectionOpeningText": "During the autumn of 18—, while on a tour through the extreme southern provinces of France, my route led me within a few miles of a certain _Maison de Santé_ or private mad-house, about which I had heard much, in Paris, from my medical friends. As I had nev...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 6879,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "During the autumn of 18—, while on a tour through the extreme southern provinces of France, my route led me within a few miles of a certain _Maison de Santé_ or private mad-house, about which I had heard much, in Pari...",
+        "generatedDefaultStart": "During the autumn of 18—, while on a tour through the extreme southern provinces of France, my route led me within a few miles of a certain _Maison de Santé_ or private mad-house, about which I had heard much, in Pari...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "the-tell-tale-heart",
+      "generatedTitle": "The Tell-Tale Heart",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "The Tell-Tale Heart",
+      "firstDefaultSectionOpeningText": "True!—nervous—very, very dreadfully nervous I had been and am; but why will you say that I am mad? The disease had sharpened my senses—not destroyed—not dulled them. Above all was the sense of hearing acute. I heard all things in the heaven and in the earth...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 2154,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "True!—nervous—very, very dreadfully nervous I had been and am; but why will you say that I am mad? The disease had sharpened my senses—not destroyed—not dulled them. Above all was the sense of hearing acute. I heard a...",
+        "generatedDefaultStart": "True!—nervous—very, very dreadfully nervous I had been and am; but why will you say that I am mad? The disease had sharpened my senses—not destroyed—not dulled them. Above all was the sense of hearing acute. I heard a...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
       },
       "specialGroups": [],
       "warnings": [],
@@ -33699,6 +35728,79 @@
       "recommendedNextAction": "no action"
     },
     {
+      "slug": "the-willows",
+      "generatedTitle": "The Willows",
+      "contributorMetadata": {
+        "author": [
+          "Algernon Blackwood"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "Produced by: Suzanne Shell, David Newman and PG Distributed Proofreaders"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "I.",
+      "firstDefaultSectionOpeningText": "After leaving Vienna, and long before you come to Budapest, the Danube enters a region of singular loneliness and desolation, where its waters spread away on all sides regardless of a main channel, and the country becomes a swamp for miles upon miles, cover...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 5,
+      "defaultSectionCount": 5,
+      "totalWordCount": 19787,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": true,
+        "path": "app/client/assets/temp-books/The Willows.txt",
+        "triageCategory": "unsafe-start-or-end-boundary-risk"
+      },
+      "rawSourceComparisonStatus": "exact/sampled-pass",
+      "rawSourceComparisonNote": "Start and end generated text samples were found in the raw source.",
+      "evidenceSnippets": {
+        "previewStart": "After leaving Vienna, and long before you come to Budapest, the Danube enters a region of singular loneliness and desolation, where its waters spread away on all sides regardless of a main channel, and the country bec...",
+        "generatedDefaultStart": "After leaving Vienna, and long before you come to Budapest, the Danube enters a region of singular loneliness and desolation, where its waters spread away on all sides regardless of a main channel, and the country bec...",
+        "rawComparisonStartPhrase": "after leaving vienna and long before you come to budapest the danube enters a region of singular loneliness",
+        "rawComparisonEndPhrase": "beyond our reach and almost out of sight turning over and over on the waves like an otter"
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
       "slug": "the-winning-of-olwen",
       "generatedTitle": "The Winning of Olwen",
       "contributorMetadata": {
@@ -34131,6 +36233,79 @@
         "generatedDefaultStart": "Once upon a time there lived a youth who was never happy unless he was prying into something that other people knew nothing about. After he had learned to understand the language of birds and beasts, he discovered acc...",
         "rawComparisonStartPhrase": "once upon a time there lived a youth who was never happy unless he was prying into something",
         "rawComparisonEndPhrase": "the way he learned that the wizard had spoken truly when he said blindness is mans highest good"
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "thou-art-the-man",
+      "generatedTitle": "Thou Art the Man",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "Thou Art the Man",
+      "firstDefaultSectionOpeningText": "I will now play the Oedipus to the Rattleborough enigma. I will expound to you—as I alone can—the secret of the enginery that effected the Rattleborough miracle—the one, the true, the admitted, the undisputed, the indisputable miracle, which put a definite ...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 5834,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "I will now play the Oedipus to the Rattleborough enigma. I will expound to you—as I alone can—the secret of the enginery that effected the Rattleborough miracle—the one, the true, the admitted, the undisputed, the ind...",
+        "generatedDefaultStart": "I will now play the Oedipus to the Rattleborough enigma. I will expound to you—as I alone can—the secret of the enginery that effected the Rattleborough miracle—the one, the true, the admitted, the undisputed, the ind...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
       },
       "specialGroups": [],
       "warnings": [],
@@ -34735,6 +36910,81 @@
       "recommendedNextAction": "no action"
     },
     {
+      "slug": "under-the-knife",
+      "generatedTitle": "Under the Knife",
+      "contributorMetadata": {
+        "author": [
+          "H. G. Wells"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": null
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "Under the Knife",
+      "firstDefaultSectionOpeningText": "“What if I die under it?” The thought recurred again and again, as I walked home from Haddon’s. It was a purely personal question. I was spared the deep anxieties of a married man, and I knew there were few of my intimate friends but would find my death tro...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 5571,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": true,
+        "path": "app/client/assets/temp-books/UNDER THE KNIFE.txt",
+        "triageCategory": "unsafe-metadata-risk"
+      },
+      "rawSourceComparisonStatus": "exact/sampled-pass",
+      "rawSourceComparisonNote": "Start and end generated text samples were found in the raw source.",
+      "evidenceSnippets": {
+        "previewStart": "“What if I die under it?” The thought recurred again and again, as I walked home from Haddon’s. It was a purely personal question. I was spared the deep anxieties of a married man, and I knew there were few of my inti...",
+        "generatedDefaultStart": "“What if I die under it?” The thought recurred again and again, as I walked home from Haddon’s. It was a purely personal question. I was spared the deep anxieties of a married man, and I knew there were few of my inti...",
+        "rawComparisonStartPhrase": "what if i die under it the thought recurred again and again as i walked home from haddons",
+        "rawComparisonEndPhrase": "me and i perceived suddenly that the dull melancholy of half a year was lifted from my mind"
+      },
+      "specialGroups": [
+        "wells"
+      ],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
       "slug": "under-the-red-dragon",
       "generatedTitle": "Under the Red Dragon: A Novel",
       "contributorMetadata": {
@@ -35025,6 +37275,79 @@
         "generatedDefaultStart": "Long, long ago there was born to a Roman knight and his wife Maja a little boy called Virgilius. While he was still quite little, his father died, and the kinsmen, instead of being a help and protection to the child a...",
         "rawComparisonStartPhrase": "long long ago there was born to a roman knight and his wife maja a little boy called",
         "rawComparisonEndPhrase": "city virgilius filled full of wonders such as never were seen before and he called its name naples"
+      },
+      "specialGroups": [],
+      "warnings": [],
+      "failures": [],
+      "finalAuditStatus": "pass",
+      "recommendedNextAction": "no action"
+    },
+    {
+      "slug": "william-wilson",
+      "generatedTitle": "William Wilson",
+      "contributorMetadata": {
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "compiler": [],
+        "collector": [],
+        "translator": [],
+        "editor": [],
+        "introductionAuthor": [],
+        "rightsReportCredits": "David Widger and Carlo Traverso"
+      },
+      "generatedDirectoryExists": true,
+      "expectedGeneratedFilesExist": {
+        "manifest": true,
+        "processedBook": true,
+        "cleanedBook": true,
+        "rightsReport": true,
+        "allSectionFiles": true,
+        "missingSectionFiles": []
+      },
+      "manifestEntryExists": true,
+      "previewFileExists": true,
+      "previewManifestEntryExists": true,
+      "previewStartsWithBookSpecificReadableContent": true,
+      "previewContainsSosHelp": false,
+      "previewUsesGenericFallback": false,
+      "previewContentHashMatchesGeneratedManifest": true,
+      "firstDefaultSectionTitle": "William Wilson",
+      "firstDefaultSectionOpeningText": "What say of it? what say of CONSCIENCE grim, That spectre in my path? —_Chamberlayne’s Pharronida._ Let me call myself, for the present, William Wilson. The fair page now lying before me need not be sullied with my real appellation. This has been already to...",
+      "firstDefaultSectionLikelyRealReadableContent": true,
+      "defaultPlaybackLeakage": {
+        "sourceHeaderLicenseContributorTranscriberLeakage": false,
+        "tableOfContentsLeakage": false,
+        "titlePageOrBylineMaterial": false,
+        "evidence": []
+      },
+      "sectionCount": 1,
+      "defaultSectionCount": 1,
+      "totalWordCount": 8036,
+      "suspiciouslySmallSections": [],
+      "suspiciouslyLargeSections": [],
+      "emptyOrMalformedSections": [],
+      "firstSelectedDefaultDoesNotMatchGeneratedSourceOrder": false,
+      "sourceOrderNotes": [],
+      "duplicateNearDuplicateFlags": {
+        "duplicateTitleSlugs": [],
+        "nearDuplicateSlugSlugs": [],
+        "duplicateGutenbergIdSlugs": []
+      },
+      "metadataConfidence": "high",
+      "metadataWarnings": [],
+      "rawSourceAvailability": {
+        "available": false,
+        "path": null,
+        "triageCategory": null
+      },
+      "rawSourceComparisonStatus": "unavailable",
+      "rawSourceComparisonNote": "No matching live raw source path was available from the triage inventory.",
+      "evidenceSnippets": {
+        "previewStart": "What say of it? what say of CONSCIENCE grim, That spectre in my path? —_Chamberlayne’s Pharronida._ Let me call myself, for the present, William Wilson. The fair page now lying before me need not be sullied with my re...",
+        "generatedDefaultStart": "What say of it? what say of CONSCIENCE grim, That spectre in my path? —_Chamberlayne’s Pharronida._ Let me call myself, for the present, William Wilson. The fair page now lying before me need not be sullied with my re...",
+        "rawComparisonStartPhrase": null,
+        "rawComparisonEndPhrase": null
       },
       "specialGroups": [],
       "warnings": [],

@@ -1,18 +1,18 @@
 # Independent Second-Pass Book Audit
 
-Generated: 2026-06-21T19:30:08.818Z
+Generated: 2026-06-28T05:04:13.596Z
 
 ## Executive summary
 
 This report independently reconstructed the generated book inventory, preview inventory, library manifest, and preview manifest from disk. It did not replay write-batch decisions and did not modify generated books, preview assets, raw sources, or Cloudflare exports.
 
-- Generated book count: 465
-- Generated manifest entries: 465
-- Preview count: 465
-- Preview manifest entries: 465
+- Generated book count: 497
+- Generated manifest entries: 497
+- Preview count: 497
+- Preview manifest entries: 497
 - Manifest consistency result: pass
-- Pass: 399
-- Warn-accepted: 66
+- Pass: 432
+- Warn-accepted: 65
 - Fail-needs-fix: 0
 - Manual-review: 0
 - Recommended next phase: Proceed with SEO summaries while tracking non-blocking source-resolution debt
@@ -23,7 +23,7 @@ This report independently reconstructed the generated book inventory, preview in
 
 ## Unresolved-source generated books
 
-Count: 11
+Count: 9
 
 - a-princess-of-mars: A princess of Mars; preview valid; default start readable; Stay accepted pending future manual source resolution.
 - doctor-dolittle: The Story of Doctor Dolittle; preview valid; default start readable; Stay accepted pending future manual source resolution.
@@ -32,8 +32,6 @@ Count: 11
 - nights-with-uncle-remus: Nights With Uncle Remus; preview valid; default start readable; Stay accepted pending future manual source resolution.
 - peter-pan: Peter Pan [Peter and Wendy]; preview valid; default start readable; Stay accepted pending future manual source resolution.
 - tarzan-of-the-apes: Tarzan of the Apes; preview valid; default start readable; Stay accepted pending future manual source resolution.
-- the-great-gatsby: The Great Gatsby; preview valid; default start readable; Stay accepted pending future manual source resolution.
-- the-picture-of-dorian-gray: The Picture of Dorian Gray; preview valid; default start readable; Stay accepted pending future manual source resolution.
 - the-thirty-nine-steps: The Thirty-Nine Steps; preview valid; default start readable; Stay accepted pending future manual source resolution.
 - wood-folk-at-school: Wood folk at school; preview valid; default start readable; Stay accepted pending future manual source resolution.
 
@@ -134,9 +132,9 @@ These books remain accepted as currently generated, but source resolution is sti
 
 ## Raw-vs-generated comparison summary
 
-- exact/sampled-pass: 442
+- exact/sampled-pass: 451
 - sampled-warn: 8
-- unavailable: 15
+- unavailable: 38
 - not attempted: 0
 
 - astounding-stories-of-super-science: Raw source sample check found start=no, end=yes.
@@ -163,14 +161,14 @@ These books remain accepted as currently generated, but source resolution is sti
 
 ## Lovecraft titles
 
-- Count: 40
-- Statuses: {"pass":40,"warn-accepted":0,"fail-needs-fix":0,"manual-review":0}
+- Count: 42
+- Statuses: {"pass":42,"warn-accepted":0,"fail-needs-fix":0,"manual-review":0}
 - Author metadata warnings: none
 
 ## Wells titles
 
-- Count: 48
-- Statuses: {"pass":48,"warn-accepted":0,"fail-needs-fix":0,"manual-review":0}
+- Count: 54
+- Statuses: {"pass":54,"warn-accepted":0,"fail-needs-fix":0,"manual-review":0}
 - Author metadata warnings: none
 
 ## Known duplicate/boundary raw skips
