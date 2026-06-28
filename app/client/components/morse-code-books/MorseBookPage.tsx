@@ -113,6 +113,7 @@ import {
   morseBookPrintPath,
 } from "~/client/data/morseBooks";
 import { getMorseBookPreviewRuntimeContent } from "~/client/data/morseBookPreviews";
+import type { MorseBookPreviewRuntimeContent } from "~/client/data/morseBookPreviews";
 import {
   defaultReadableExcludedMorseBookSectionKinds,
   getDefaultMorseBookLiveSectionId,
@@ -183,6 +184,7 @@ type MorseBookPageProps = {
   book: MorseBookManifest | null;
   bookSummary: MorseBookLibrarySummary | null;
   initialSection: MorseBookSectionJson | null;
+  initialPreviewContent: MorseBookPreviewRuntimeContent | null;
   mode?: "book" | "audiobook";
   previewMode: "unpublished" | "test-published" | null;
   seoSummary: MorseBookSeoSummary | null;
@@ -639,6 +641,7 @@ export default function MorseBookPage({
   book,
   bookSummary,
   initialSection,
+  initialPreviewContent,
   mode = "book",
   previewMode,
   seoSummary,
@@ -653,6 +656,15 @@ export default function MorseBookPage({
         message: "",
       };
     }
+    if (bookSummary && initialPreviewContent) {
+      return {
+        book: initialPreviewContent.book,
+        fullBookLoading: true,
+        initialSection: initialPreviewContent.initialSection,
+        status: "preview",
+        message: "",
+      };
+    }
     return {
       book: null,
       fullBookLoading: false,
@@ -660,7 +672,7 @@ export default function MorseBookPage({
       status: "loading",
       message: "",
     };
-  }, [book, initialSection]);
+  }, [book, bookSummary, initialPreviewContent, initialSection]);
   const [runtimeState, setRuntimeState] =
     React.useState<MorseBookRuntimeState>(initialRuntimeState);
   const [retryKey, setRetryKey] = React.useState(0);
@@ -689,14 +701,6 @@ export default function MorseBookPage({
 
     let cancelled = false;
     let fullContentReady = false;
-    setRuntimeState({
-      book: null,
-      fullBookLoading: false,
-      initialSection: null,
-      status: "loading",
-      message: "",
-    });
-
     const showPreviewContent = (
       previewContent: Awaited<ReturnType<typeof getMorseBookPreviewRuntimeContent>>,
       fullBookLoading: boolean,
@@ -711,13 +715,31 @@ export default function MorseBookPage({
       });
     };
 
-    const previewContentPromise =
-      mode === "book"
-        ? getMorseBookPreviewRuntimeContent(bookSummary).catch(() => null)
-        : Promise.resolve(null);
+    if (initialPreviewContent) {
+      showPreviewContent(initialPreviewContent, true);
+    } else {
+      setRuntimeState({
+        book: null,
+        fullBookLoading: false,
+        initialSection: null,
+        status: "loading",
+        message: "",
+      });
+    }
+
+    const previewContentPromise = initialPreviewContent
+      ? Promise.resolve(initialPreviewContent)
+      : getMorseBookPreviewRuntimeContent(bookSummary).catch(() => null);
 
     previewContentPromise.then((previewContent) => {
-      if (cancelled || fullContentReady || !previewContent) return;
+      if (
+        cancelled ||
+        fullContentReady ||
+        !previewContent ||
+        initialPreviewContent
+      ) {
+        return;
+      }
       showPreviewContent(previewContent, true);
     });
 
@@ -736,7 +758,7 @@ export default function MorseBookPage({
       if (!content) {
         const previewContent = await previewContentPromise;
         if (cancelled) return;
-        if (mode === "book" && previewContent) {
+        if (previewContent) {
           showPreviewContent(previewContent, false);
           return;
         }
@@ -788,7 +810,7 @@ export default function MorseBookPage({
     return () => {
       cancelled = true;
     };
-  }, [book, bookSummary, initialSection, mode, retryKey]);
+  }, [book, bookSummary, initialPreviewContent, initialSection, mode, retryKey]);
 
   if (runtimeState.status !== "ready" && runtimeState.status !== "preview") {
     return (

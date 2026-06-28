@@ -89,6 +89,13 @@ const THE_EMERALD_CITY_OF_OZ_PREVIEW_PATH =
 const ALICE_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${ALICE_SLUG}`;
 const APPROVED_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${APPROVED_BOOK_SLUG}`;
 const NETWORK_AUDIOBOOK_PUBLIC_PATH = `/morse-code-audiobooks/${NETWORK_BOOK_SLUG}`;
+const STARTER_PREVIEW_FIRST_RENDER_PATHS = [
+  "/morse-code-books/the-jungle-book",
+  "/morse-code-books/the-willows",
+  "/morse-code-books/a-descent-into-the-maelstrom",
+  "/morse-code-books/the-great-gatsby",
+  "/morse-code-audiobooks/the-jungle-book",
+] as const;
 const ALICE_PREVIEW_PATH = `${ALICE_PUBLIC_PATH}?preview=unpublished`;
 const TEST_BOOK_PUBLIC_PATH = `/morse-code-books/${TEST_BOOK_SLUG}`;
 const TEST_BOOK_PREVIEW_PATH = `${TEST_BOOK_PUBLIC_PATH}?preview=test-published`;
@@ -1884,6 +1891,10 @@ test.describe("Morse book page foundation", () => {
       );
       await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
       await expect(page.locator("#book-live-morse-player")).toBeVisible();
+      await expect(page.getByTestId("morse-book-loading")).toHaveCount(0);
+      await expect(page.locator("body")).not.toContainText(
+        /Loading this Morse book|Loading book text|Fetching book data, preparing chapters/i,
+      );
       await expect(page.locator("body")).not.toContainText(/SOS Help!/i);
       await expect(page.locator("[data-mw-morse-book-source-preview]")).toContainText(
         "CHAPTER I",
@@ -1905,16 +1916,8 @@ test.describe("Morse book page foundation", () => {
       expect(previewSavedRuntimeSettings).toEqual([]);
 
       expect(fullBookRequests).toHaveLength(1);
-      const slugPreviewRequests = previewRequests.filter((url) =>
-        url.includes(`/book-previews/${ALICE_SLUG}.preview.json`),
-      );
-      expect(slugPreviewRequests).toHaveLength(1);
-      expect(previewAssetRouteRequests).toHaveLength(1);
-      expect(
-        previewRequests.every((url) =>
-          url.includes(`/book-previews/${ALICE_SLUG}.preview.json`),
-        ),
-      ).toBe(true);
+      expect(previewRequests).toHaveLength(0);
+      expect(previewAssetRouteRequests).toHaveLength(0);
       expect(previewRequests.some((url) => url.includes("/book-previews/manifest.json"))).toBe(
         false,
       );
@@ -2020,14 +2023,11 @@ test.describe("Morse book page foundation", () => {
       await expect(page.locator("[data-mw-morse-book-source-preview]")).not.toContainText(
         "Project Gutenberg",
       );
-      expect(
-        previewRequests.some((url) =>
-          url.includes(
-            `/book-previews/${ANNE_OF_GREEN_GABLES_SLUG}.preview.json`,
-          ),
-        ),
-      ).toBe(true);
-      expect(fullBookRequests).toHaveLength(1);
+      await expect(page.locator("[data-mw-morse-book-full-loading-status]")).toBeVisible();
+      expect(previewRequests).toHaveLength(0);
+      await expect
+        .poll(() => fullBookRequests.length, { timeout: 15_000 })
+        .toBe(1);
 
       releaseFullBook();
       await waitForApprovedBookWorkspace(page);
@@ -2239,17 +2239,24 @@ test.describe("Morse book page foundation", () => {
       waitUntil: "domcontentloaded",
     });
     expect(initialResponse?.ok()).toBe(true);
+    const pageRoot = page.locator("[data-mw-morse-book-page]");
+    await expect(pageRoot).toHaveAttribute(
+      "data-mw-morse-book-full-loading",
+      "true",
+    );
+    await expect(pageRoot).toHaveAttribute(
+      "data-mw-morse-book-preview-state",
+      "preview",
+    );
+    await expect(page.getByTestId("morse-book-loading")).toHaveCount(0);
+    await expect(page.locator("body")).not.toContainText(
+      /Loading this Morse book|Loading book text|Fetching book data, preparing chapters/i,
+    );
+    await expect(page.locator("[data-mw-morse-book-source-preview]")).toBeVisible();
     await expect(
-      page.locator(
-        "[data-testid='morse-book-loading'], [data-mw-morse-book-page][data-mw-morse-book-full-loading='true']",
-      ).first(),
-    ).toBeVisible();
-    await expect(
-      page.locator(
-        "[data-testid='morse-book-loading-status'], [data-mw-morse-book-full-loading-status]",
-      ).first(),
+      page.locator("[data-mw-morse-book-full-loading-status]"),
     ).toContainText(
-      /Loading book text|Fetching book data|Preparing chapters|Restoring saved settings|Loading full book sections/,
+      /Loading full book sections/,
     );
     await expectStarterPreviewFallback();
 
@@ -2268,6 +2275,86 @@ test.describe("Morse book page foundation", () => {
     });
     await page.goto(ERROR_BOOK_PUBLIC_PATH, { waitUntil: "domcontentloaded" });
     await expectStarterPreviewFallback();
+  });
+
+  test("renders preview-backed book and audiobook routes without the full loading shell", async ({
+    browser,
+    page,
+  }) => {
+    await blockExternalNetwork(page);
+
+    for (const pathName of STARTER_PREVIEW_FIRST_RENDER_PATHS) {
+      await gotoPublicBookPage(page, pathName);
+      const pageRoot = page.locator("[data-mw-morse-book-page]");
+      await expect(pageRoot).toBeVisible();
+      await expect(page.getByTestId("morse-book-loading")).toHaveCount(0);
+      await expect(page.locator("body")).not.toContainText(
+        /Loading this Morse book|Loading this Morse audiobook|Loading book text|Fetching book data, preparing chapters/i,
+      );
+      const starterContent = pathName.includes("/morse-code-audiobooks/")
+        ? page.getByTestId("morse-book-live-player")
+        : page.locator("[data-mw-morse-book-source-preview]");
+      await expect(starterContent).toBeVisible();
+      expect(
+        normalizedPreviewText((await starterContent.textContent()) ?? "").length,
+      ).toBeGreaterThan(200);
+      const desktopWidth = await page.evaluate(() => ({
+        innerWidth: window.innerWidth,
+        scrollWidth: document.documentElement.scrollWidth,
+      }));
+      expect(desktopWidth.scrollWidth).toBeLessThanOrEqual(
+        desktopWidth.innerWidth + 1,
+      );
+      const summaryAfterSource = await page.evaluate(() => {
+        const source = document.querySelector(
+          '[data-testid="morse-book-source-notes"]',
+        );
+        const summary = document.querySelector("#book-summary");
+        return Boolean(
+          source &&
+            summary &&
+            (source.compareDocumentPosition(summary) &
+              Node.DOCUMENT_POSITION_FOLLOWING) !==
+              0,
+        );
+      });
+      expect(summaryAfterSource).toBe(true);
+    }
+
+    const mobileContext = await browser.newContext({
+      viewport: { width: 390, height: 844 },
+      isMobile: true,
+    });
+    const mobilePage = await mobileContext.newPage();
+    try {
+      await blockExternalNetwork(mobilePage);
+      for (const pathName of STARTER_PREVIEW_FIRST_RENDER_PATHS) {
+        await gotoPublicBookPage(mobilePage, pathName);
+        await expect(mobilePage.getByTestId("morse-book-loading")).toHaveCount(0);
+        const mobileStarterContent = pathName.includes("/morse-code-audiobooks/")
+          ? mobilePage.getByTestId("morse-book-live-player")
+          : mobilePage.locator("[data-mw-morse-book-source-preview]");
+        await expect(mobileStarterContent).toBeVisible();
+        const mobileWidth = await mobilePage.evaluate(() => ({
+          innerWidth: window.innerWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+        }));
+        expect(mobileWidth.scrollWidth).toBeLessThanOrEqual(
+          mobileWidth.innerWidth + 1,
+        );
+      }
+    } finally {
+      await mobileContext.close();
+    }
+
+    for (const pathName of ["/morse-code-books", "/morse-code-audiobooks"]) {
+      const response = await page.goto(pathName, { waitUntil: "domcontentloaded" });
+      await waitForRouteReady(page);
+      expect(response?.ok()).toBe(true);
+      await expect(page.locator("body")).toContainText(
+        String(EXPECTED_GENERATED_BOOK_COUNT),
+      );
+    }
   });
 
   test("renders approved book selector labels without detector artifacts", async ({

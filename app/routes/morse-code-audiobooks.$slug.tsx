@@ -3,6 +3,10 @@ import type { Route } from "./+types/morse-code-audiobooks.$slug";
 import MorseBookPage from "~/client/components/morse-code-books/MorseBookPage";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
+  getMorseBookPreviewAssetUrl,
+  getMorseBookPreviewRuntimeContentFromUrl,
+} from "~/client/data/morseBookPreviews";
+import {
   getDiscoverableMorseBookSummary,
   isMorseBookPublishReady,
   morseAudiobookPath,
@@ -19,7 +23,18 @@ async function loadMorseBookSeoSummary(slug: string) {
   return getMorseBookSeoSummary(slug);
 }
 
-export async function loader({ params }: Route.LoaderArgs) {
+async function loadInitialPreviewContent(
+  request: Request,
+  summary: NonNullable<ReturnType<typeof getDiscoverableMorseBookSummary>>,
+) {
+  const previewUrl = new URL(
+    getMorseBookPreviewAssetUrl(summary.slug),
+    request.url,
+  ).toString();
+  return getMorseBookPreviewRuntimeContentFromUrl(summary, previewUrl);
+}
+
+export async function loader({ params, request }: Route.LoaderArgs) {
   const slug = params.slug;
   if (!slug) {
     throw new Response("Morse audiobook not found", { status: 404 });
@@ -34,6 +49,7 @@ export async function loader({ params }: Route.LoaderArgs) {
     bookSummary: summary,
     book: null,
     initialSection: null,
+    initialPreviewContent: await loadInitialPreviewContent(request, summary),
     previewMode: null,
     seoSummary: await loadMorseBookSeoSummary(slug),
   };
@@ -112,6 +128,7 @@ export default function MorseAudiobookRoute({
         book={loaderData.book}
         bookSummary={book}
         initialSection={loaderData.initialSection}
+        initialPreviewContent={loaderData.initialPreviewContent}
         mode="audiobook"
         previewMode={loaderData.previewMode}
         seoSummary={seoSummary}

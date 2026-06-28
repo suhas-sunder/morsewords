@@ -18,7 +18,9 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
-function isMorseBookPreviewAsset(value: unknown): value is MorseBookPreviewAsset {
+export function isMorseBookPreviewAsset(
+  value: unknown,
+): value is MorseBookPreviewAsset {
   if (!isPlainObject(value)) return false;
   return (
     value.version === 1 &&
@@ -171,8 +173,18 @@ export function createMorseBookPreviewRuntimeContent(
 export async function getMorseBookPreviewRuntimeContent(
   summary: MorseBookLibrarySummary,
 ) {
+  return getMorseBookPreviewRuntimeContentFromUrl(
+    summary,
+    getMorseBookPreviewAssetUrl(summary.slug),
+  );
+}
+
+export async function getMorseBookPreviewRuntimeContentFromUrl(
+  summary: MorseBookLibrarySummary,
+  previewUrl: string,
+) {
   try {
-    const response = await fetch(getMorseBookPreviewAssetUrl(summary.slug), {
+    const response = await fetch(previewUrl, {
       headers: {
         Accept: "application/json",
       },

@@ -2,6 +2,10 @@ import type { Route } from "./+types/morse-code-books.$slug";
 
 import MorseBookPage from "~/client/components/morse-code-books/MorseBookPage";
 import {
+  getMorseBookPreviewAssetUrl,
+  getMorseBookPreviewRuntimeContentFromUrl,
+} from "~/client/data/morseBookPreviews";
+import {
   TEST_PUBLISHED_BOOK_PREVIEW_VALUE,
   TEST_PUBLISHED_BOOK_SLUG,
   UNPUBLISHED_BOOK_PREVIEW_PARAM,
@@ -20,6 +24,17 @@ async function loadMorseBookSeoSummary(slug: string) {
     "~/client/data/morseBookSeoSummaries.server"
   );
   return getMorseBookSeoSummary(slug);
+}
+
+async function loadInitialPreviewContent(
+  request: Request,
+  summary: NonNullable<ReturnType<typeof getDiscoverableMorseBookSummary>>,
+) {
+  const previewUrl = new URL(
+    getMorseBookPreviewAssetUrl(summary.slug),
+    request.url,
+  ).toString();
+  return getMorseBookPreviewRuntimeContentFromUrl(summary, previewUrl);
 }
 
 function isUnpublishedPreviewRequest(request: Request) {
@@ -60,6 +75,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
       bookSummary: summary,
       book: null,
       initialSection: null,
+      initialPreviewContent: await loadInitialPreviewContent(request, summary),
       previewMode: null,
       seoSummary: await loadMorseBookSeoSummary(slug),
     };
@@ -97,6 +113,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     bookSummary: null,
     book,
     initialSection,
+    initialPreviewContent: null,
     previewMode: previewState,
     seoSummary: await loadMorseBookSeoSummary(slug),
   };
@@ -159,6 +176,7 @@ export default function MorseBookRoute({ loaderData }: Route.ComponentProps) {
       book={loaderData.book}
       bookSummary={loaderData.bookSummary}
       initialSection={loaderData.initialSection}
+      initialPreviewContent={loaderData.initialPreviewContent}
       previewMode={loaderData.previewMode}
       seoSummary={loaderData.seoSummary}
     />
