@@ -332,6 +332,11 @@ const batch12ReportPath = path.join(
 );
 
 const fallbackUnresolvedSourceSlugs = [
+  "the-great-gatsby",
+  "the-picture-of-dorian-gray",
+] as const;
+
+const sourceRiskRemovedSlugs = [
   "a-princess-of-mars",
   "doctor-dolittle",
   "heidi",
@@ -339,13 +344,11 @@ const fallbackUnresolvedSourceSlugs = [
   "nights-with-uncle-remus",
   "peter-pan",
   "tarzan-of-the-apes",
-  "the-great-gatsby",
-  "the-picture-of-dorian-gray",
   "the-thirty-nine-steps",
   "wood-folk-at-school",
 ] as const;
 
-const expectedGeneratedBookCount = 497;
+const expectedGeneratedBookCount = 488;
 
 function unresolvedSourceSlugsFromReview() {
   if (!fs.existsSync(unresolvedSourceReviewReportPath)) {
@@ -358,7 +361,8 @@ function unresolvedSourceSlugsFromReview() {
       .filter((decision) => decision.decision.startsWith("resolved-"))
       .map((decision) => decision.slug),
   );
-  return [...reviewed].filter((slug) => !resolved.has(slug));
+  const removed = new Set<string>(sourceRiskRemovedSlugs);
+  return [...reviewed].filter((slug) => !resolved.has(slug) && !removed.has(slug));
 }
 
 const knownDuplicateBoundaryRawSkipSlugs = [

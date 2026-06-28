@@ -26,17 +26,6 @@
       "truncated": true
     },
     {
-      "slug": "a-princess-of-mars",
-      "path": "/book-previews/a-princess-of-mars.preview.json",
-      "contentVersion": "964d8b5d525d0873",
-      "contentHash": "964d8b5d525d0873bd8de3498ade7ca6508238a3dac5168f3672045154fc3ec1",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11493,
-      "previewCharacterCount": 10533,
-      "estimatedRuntimeSeconds": 3739,
-      "truncated": true
-    },
-    {
       "slug": "alices-adventures-in-wonderland",
       "path": "/book-previews/alices-adventures-in-wonderland.preview.json",
       "contentVersion": "71defc6cd599c22c",
@@ -136,17 +125,6 @@
       "truncated": true
     },
     {
-      "slug": "doctor-dolittle",
-      "path": "/book-previews/doctor-dolittle.preview.json",
-      "contentVersion": "ebcbd1bd1fe0b138",
-      "contentHash": "ebcbd1bd1fe0b138e47e2e60315069cc260594499c1003f75e80a2cbc37898bd",
-      "defaultSectionId": "part-002",
-      "previewBytes": 12165,
-      "previewCharacterCount": 10832,
-      "estimatedRuntimeSeconds": 3881,
-      "truncated": true
-    },
-    {
       "slug": "don-quixote",
       "path": "/book-previews/don-quixote.preview.json",
       "contentVersion": "a7a4d22f464c8cbd",
@@ -224,28 +202,6 @@
       "truncated": true
     },
     {
-      "slug": "heidi",
-      "path": "/book-previews/heidi.preview.json",
-      "contentVersion": "e9e6b4950c7ea02d",
-      "contentHash": "e9e6b4950c7ea02d97233c120ee08245132bc1f9dded5807407c9fc4f816f36f",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11517,
-      "previewCharacterCount": 10468,
-      "estimatedRuntimeSeconds": 3746,
-      "truncated": true
-    },
-    {
-      "slug": "jabberwocky",
-      "path": "/book-previews/jabberwocky.preview.json",
-      "contentVersion": "007d258656e8e2c7",
-      "contentHash": "007d258656e8e2c7c9682c28a522611bf0302a5245ecc5cb9f42db4223e24715",
-      "defaultSectionId": "part-001",
-      "previewBytes": 4696,
-      "previewCharacterCount": 3768,
-      "estimatedRuntimeSeconds": 1440,
-      "truncated": false
-    },
-    {
       "slug": "jack-and-jill",
       "path": "/book-previews/jack-and-jill.preview.json",
       "contentVersion": "c640945de17801f6",
@@ -301,28 +257,6 @@
       "truncated": true
     },
     {
-      "slug": "nights-with-uncle-remus",
-      "path": "/book-previews/nights-with-uncle-remus.preview.json",
-      "contentVersion": "54954c1ec72e61ef",
-      "contentHash": "54954c1ec72e61ef8fdd46e6a430fd5dafe31ef522cb14cd0572cb549aa94d44",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11440,
-      "previewCharacterCount": 10441,
-      "estimatedRuntimeSeconds": 3803,
-      "truncated": true
-    },
-    {
-      "slug": "peter-pan",
-      "path": "/book-previews/peter-pan.preview.json",
-      "contentVersion": "73d23529dcdeea00",
-      "contentHash": "73d23529dcdeea008c40e601540e52d11e1aaa8b57a17fbaad651145388ec86d",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11623,
-      "previewCharacterCount": 10584,
-      "estimatedRuntimeSeconds": 3809,
-      "truncated": true
-    },
-    {
       "slug": "pride-and-prejudice",
       "path": "/book-previews/pride-and-prejudice.preview.json",
       "contentVersion": "0438f940ef0f913c",
@@ -375,17 +309,6 @@
       "previewBytes": 12246,
       "previewCharacterCount": 11106,
       "estimatedRuntimeSeconds": 3600,
-      "truncated": true
-    },
-    {
-      "slug": "tarzan-of-the-apes",
-      "path": "/book-previews/tarzan-of-the-apes.preview.json",
-      "contentVersion": "742f0b77b1fb5f62",
-      "contentHash": "742f0b77b1fb5f625a57999bc4c496e1b82950a1f47bf72631c7f16983602271",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11756,
-      "previewCharacterCount": 10745,
-      "estimatedRuntimeSeconds": 3837,
       "truncated": true
     },
     {
@@ -730,17 +653,6 @@
       "truncated": false
     },
     {
-      "slug": "the-thirty-nine-steps",
-      "path": "/book-previews/the-thirty-nine-steps.preview.json",
-      "contentVersion": "60e530443a945b25",
-      "contentHash": "60e530443a945b2581abf391d373629a5be64a4b3bae5028666d933bd37eb7a2",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 11700,
-      "previewCharacterCount": 10572,
-      "estimatedRuntimeSeconds": 3789,
-      "truncated": true
-    },
-    {
       "slug": "the-three-musketeers",
       "path": "/book-previews/the-three-musketeers.preview.json",
       "contentVersion": "117fe21e8265df4f",
@@ -804,17 +716,6 @@
       "previewBytes": 12009,
       "previewCharacterCount": 10694,
       "estimatedRuntimeSeconds": 3880,
-      "truncated": true
-    },
-    {
-      "slug": "wood-folk-at-school",
-      "path": "/book-previews/wood-folk-at-school.preview.json",
-      "contentVersion": "53459056320606b5",
-      "contentHash": "53459056320606b53faa47715e9dc78f224f944a3377a2919f8697b257fdf123",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11509,
-      "previewCharacterCount": 10569,
-      "estimatedRuntimeSeconds": 3779,
       "truncated": true
     },
     {

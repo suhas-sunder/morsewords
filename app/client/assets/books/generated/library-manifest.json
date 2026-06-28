@@ -100,55 +100,6 @@
       "manifestPath": "a-christmas-carol/manifest.json"
     },
     {
-      "slug": "a-princess-of-mars",
-      "title": "A princess of Mars",
-      "author": [
-        "Edgar Rice Burroughs"
-      ],
-      "contentVersion": "964d8b5d525d0873",
-      "contentHash": "964d8b5d525d0873bd8de3498ade7ca6508238a3dac5168f3672045154fc3ec1",
-      "language": "en",
-      "description": "",
-      "subjects": [],
-      "source": {
-        "provider": "Project Gutenberg",
-        "gutenbergId": "62",
-        "releaseDate": "April 1, 1993",
-        "sourceUrl": "https://www.gutenberg.org/ebooks/62",
-        "rawTextUrl": null,
-        "rightsBasis": "public-domain-us",
-        "rightsReviewed": true,
-        "publishReady": true,
-        "rightsStatus": "approved",
-        "processingAllowed": true,
-        "approvalSource": "external-authority",
-        "duplicateResolutionSource": "not-needed",
-        "rightsReportPath": "rights_report.json",
-        "processedBookPath": "processed_book.json",
-        "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
-      },
-      "cover": {
-        "src": null,
-        "placeholder": true,
-        "alt": "Placeholder cover for A princess of Mars"
-      },
-      "stats": {
-        "originalCharacterCount": 390215,
-        "cleanedCharacterCount": 370992,
-        "wordCount": 67570,
-        "sectionCount": 30,
-        "includedSectionCount": 28
-      },
-      "defaults": {
-        "includeKinds": [
-          "chapter"
-        ],
-        "preferredPreset": "main-narrative"
-      },
-      "manifestPath": "a-princess-of-mars/manifest.json"
-    },
-    {
       "slug": "alices-adventures-in-wonderland",
       "title": "Alice's Adventures in Wonderland",
       "author": [
@@ -594,55 +545,6 @@
       "manifestPath": "crime-and-punishment/manifest.json"
     },
     {
-      "slug": "doctor-dolittle",
-      "title": "The Story of Doctor Dolittle",
-      "author": [
-        "Hugh Lofting"
-      ],
-      "contentVersion": "ebcbd1bd1fe0b138",
-      "contentHash": "ebcbd1bd1fe0b138e47e2e60315069cc260594499c1003f75e80a2cbc37898bd",
-      "language": "en",
-      "description": "",
-      "subjects": [],
-      "source": {
-        "provider": "Project Gutenberg",
-        "gutenbergId": "501",
-        "releaseDate": "April 1, 1996",
-        "sourceUrl": "https://www.gutenberg.org/ebooks/501",
-        "rawTextUrl": null,
-        "rightsBasis": "public-domain-us",
-        "rightsReviewed": true,
-        "publishReady": true,
-        "rightsStatus": "approved",
-        "processingAllowed": true,
-        "approvalSource": "external-authority",
-        "duplicateResolutionSource": "not-needed",
-        "rightsReportPath": "rights_report.json",
-        "processedBookPath": "processed_book.json",
-        "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
-      },
-      "cover": {
-        "src": null,
-        "placeholder": true,
-        "alt": "Placeholder cover for The Story of Doctor Dolittle"
-      },
-      "stats": {
-        "originalCharacterCount": 164957,
-        "cleanedCharacterCount": 145445,
-        "wordCount": 27561,
-        "sectionCount": 6,
-        "includedSectionCount": 0
-      },
-      "defaults": {
-        "includeKinds": [
-          "chapter"
-        ],
-        "preferredPreset": "main-narrative"
-      },
-      "manifestPath": "doctor-dolittle/manifest.json"
-    },
-    {
       "slug": "don-quixote",
       "title": "Don Quixote",
       "author": [
@@ -987,104 +889,6 @@
       "manifestPath": "gulliver-s-travels/manifest.json"
     },
     {
-      "slug": "heidi",
-      "title": "Heidi",
-      "author": [
-        "Johanna Spyri"
-      ],
-      "contentVersion": "e9e6b4950c7ea02d",
-      "contentHash": "e9e6b4950c7ea02d97233c120ee08245132bc1f9dded5807407c9fc4f816f36f",
-      "language": "en",
-      "description": "",
-      "subjects": [],
-      "source": {
-        "provider": "Project Gutenberg",
-        "gutenbergId": "20781",
-        "releaseDate": "March 9, 2007",
-        "sourceUrl": "https://www.gutenberg.org/ebooks/20781",
-        "rawTextUrl": null,
-        "rightsBasis": "public-domain-us",
-        "rightsReviewed": true,
-        "publishReady": true,
-        "rightsStatus": "approved",
-        "processingAllowed": true,
-        "approvalSource": "external-authority",
-        "duplicateResolutionSource": "not-needed",
-        "rightsReportPath": "rights_report.json",
-        "processedBookPath": "processed_book.json",
-        "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
-      },
-      "cover": {
-        "src": null,
-        "placeholder": true,
-        "alt": "Placeholder cover for Heidi"
-      },
-      "stats": {
-        "originalCharacterCount": 304113,
-        "cleanedCharacterCount": 284522,
-        "wordCount": 51632,
-        "sectionCount": 11,
-        "includedSectionCount": 0
-      },
-      "defaults": {
-        "includeKinds": [
-          "chapter"
-        ],
-        "preferredPreset": "main-narrative"
-      },
-      "manifestPath": "heidi/manifest.json"
-    },
-    {
-      "slug": "jabberwocky",
-      "title": "Jabberwocky",
-      "author": [
-        "Lewis Carroll"
-      ],
-      "contentVersion": "007d258656e8e2c7",
-      "contentHash": "007d258656e8e2c7c9682c28a522611bf0302a5245ecc5cb9f42db4223e24715",
-      "language": "en",
-      "description": "",
-      "subjects": [],
-      "source": {
-        "provider": "Project Gutenberg",
-        "gutenbergId": "23717",
-        "releaseDate": "December 2007",
-        "sourceUrl": "https://www.gutenberg.org/ebooks/23717",
-        "rawTextUrl": null,
-        "rightsBasis": "public-domain-us",
-        "rightsReviewed": true,
-        "publishReady": true,
-        "rightsStatus": "approved",
-        "processingAllowed": true,
-        "approvalSource": "external-authority",
-        "duplicateResolutionSource": "not-needed",
-        "rightsReportPath": "rights_report.json",
-        "processedBookPath": "processed_book.json",
-        "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
-      },
-      "cover": {
-        "src": null,
-        "placeholder": true,
-        "alt": "Placeholder cover for Jabberwocky"
-      },
-      "stats": {
-        "originalCharacterCount": 24933,
-        "cleanedCharacterCount": 3923,
-        "wordCount": 651,
-        "sectionCount": 2,
-        "includedSectionCount": 0
-      },
-      "defaults": {
-        "includeKinds": [
-          "chapter"
-        ],
-        "preferredPreset": "main-narrative"
-      },
-      "manifestPath": "jabberwocky/manifest.json"
-    },
-    {
       "slug": "jack-and-jill",
       "title": "Jack and Jill",
       "author": [
@@ -1330,104 +1134,6 @@
       "manifestPath": "new-treasure-seekers/manifest.json"
     },
     {
-      "slug": "nights-with-uncle-remus",
-      "title": "Nights With Uncle Remus",
-      "author": [
-        "Joel Chandler Harris"
-      ],
-      "contentVersion": "54954c1ec72e61ef",
-      "contentHash": "54954c1ec72e61ef8fdd46e6a430fd5dafe31ef522cb14cd0572cb549aa94d44",
-      "language": "en",
-      "description": "",
-      "subjects": [],
-      "source": {
-        "provider": "Project Gutenberg",
-        "gutenbergId": "24430",
-        "releaseDate": "January 26, 2008",
-        "sourceUrl": "https://www.gutenberg.org/ebooks/24430",
-        "rawTextUrl": null,
-        "rightsBasis": "public-domain-us",
-        "rightsReviewed": true,
-        "publishReady": true,
-        "rightsStatus": "approved",
-        "processingAllowed": true,
-        "approvalSource": "external-authority",
-        "duplicateResolutionSource": "not-needed",
-        "rightsReportPath": "rights_report.json",
-        "processedBookPath": "processed_book.json",
-        "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
-      },
-      "cover": {
-        "src": null,
-        "placeholder": true,
-        "alt": "Placeholder cover for Nights With Uncle Remus"
-      },
-      "stats": {
-        "originalCharacterCount": 591263,
-        "cleanedCharacterCount": 571770,
-        "wordCount": 111528,
-        "sectionCount": 21,
-        "includedSectionCount": 0
-      },
-      "defaults": {
-        "includeKinds": [
-          "chapter"
-        ],
-        "preferredPreset": "main-narrative"
-      },
-      "manifestPath": "nights-with-uncle-remus/manifest.json"
-    },
-    {
-      "slug": "peter-pan",
-      "title": "Peter Pan [Peter and Wendy]",
-      "author": [
-        "J. M. Barrie"
-      ],
-      "contentVersion": "73d23529dcdeea00",
-      "contentHash": "73d23529dcdeea008c40e601540e52d11e1aaa8b57a17fbaad651145388ec86d",
-      "language": "en",
-      "description": "",
-      "subjects": [],
-      "source": {
-        "provider": "Project Gutenberg",
-        "gutenbergId": "16",
-        "releaseDate": "June 25, 2008",
-        "sourceUrl": "https://www.gutenberg.org/ebooks/16",
-        "rawTextUrl": null,
-        "rightsBasis": "public-domain-us",
-        "rightsReviewed": true,
-        "publishReady": true,
-        "rightsStatus": "approved",
-        "processingAllowed": true,
-        "approvalSource": "external-authority",
-        "duplicateResolutionSource": "not-needed",
-        "rightsReportPath": "rights_report.json",
-        "processedBookPath": "processed_book.json",
-        "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
-      },
-      "cover": {
-        "src": null,
-        "placeholder": true,
-        "alt": "Placeholder cover for Peter Pan [Peter and Wendy]"
-      },
-      "stats": {
-        "originalCharacterCount": 274781,
-        "cleanedCharacterCount": 255549,
-        "wordCount": 47862,
-        "sectionCount": 20,
-        "includedSectionCount": 18
-      },
-      "defaults": {
-        "includeKinds": [
-          "chapter"
-        ],
-        "preferredPreset": "main-narrative"
-      },
-      "manifestPath": "peter-pan/manifest.json"
-    },
-    {
       "slug": "pride-and-prejudice",
       "title": "Pride and Prejudice",
       "author": [
@@ -1671,55 +1377,6 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "sun-tzu-on-the-art-of-war/manifest.json"
-    },
-    {
-      "slug": "tarzan-of-the-apes",
-      "title": "Tarzan of the Apes",
-      "author": [
-        "Edgar Rice Burroughs"
-      ],
-      "contentVersion": "742f0b77b1fb5f62",
-      "contentHash": "742f0b77b1fb5f625a57999bc4c496e1b82950a1f47bf72631c7f16983602271",
-      "language": "en",
-      "description": "",
-      "subjects": [],
-      "source": {
-        "provider": "Project Gutenberg",
-        "gutenbergId": "78",
-        "releaseDate": "August 1, 1993",
-        "sourceUrl": "https://www.gutenberg.org/ebooks/78",
-        "rawTextUrl": null,
-        "rightsBasis": "public-domain-us",
-        "rightsReviewed": true,
-        "publishReady": true,
-        "rightsStatus": "approved",
-        "processingAllowed": true,
-        "approvalSource": "external-authority",
-        "duplicateResolutionSource": "not-needed",
-        "rightsReportPath": "rights_report.json",
-        "processedBookPath": "processed_book.json",
-        "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
-      },
-      "cover": {
-        "src": null,
-        "placeholder": true,
-        "alt": "Placeholder cover for Tarzan of the Apes"
-      },
-      "stats": {
-        "originalCharacterCount": 499663,
-        "cleanedCharacterCount": 480392,
-        "wordCount": 86814,
-        "sectionCount": 30,
-        "includedSectionCount": 28
-      },
-      "defaults": {
-        "includeKinds": [
-          "chapter"
-        ],
-        "preferredPreset": "main-narrative"
-      },
-      "manifestPath": "tarzan-of-the-apes/manifest.json"
     },
     {
       "slug": "the-arabian-nights",
@@ -3241,55 +2898,6 @@
       "manifestPath": "the-swineherd/manifest.json"
     },
     {
-      "slug": "the-thirty-nine-steps",
-      "title": "The Thirty-Nine Steps",
-      "author": [
-        "John Buchan"
-      ],
-      "contentVersion": "60e530443a945b25",
-      "contentHash": "60e530443a945b2581abf391d373629a5be64a4b3bae5028666d933bd37eb7a2",
-      "language": "en",
-      "description": "",
-      "subjects": [],
-      "source": {
-        "provider": "Project Gutenberg",
-        "gutenbergId": "558",
-        "releaseDate": "June 1, 1996",
-        "sourceUrl": "https://www.gutenberg.org/ebooks/558",
-        "rawTextUrl": null,
-        "rightsBasis": "public-domain-us",
-        "rightsReviewed": true,
-        "publishReady": true,
-        "rightsStatus": "approved",
-        "processingAllowed": true,
-        "approvalSource": "external-authority",
-        "duplicateResolutionSource": "not-needed",
-        "rightsReportPath": "rights_report.json",
-        "processedBookPath": "processed_book.json",
-        "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
-      },
-      "cover": {
-        "src": null,
-        "placeholder": true,
-        "alt": "Placeholder cover for The Thirty-Nine Steps"
-      },
-      "stats": {
-        "originalCharacterCount": 233965,
-        "cleanedCharacterCount": 214660,
-        "wordCount": 41704,
-        "sectionCount": 12,
-        "includedSectionCount": 10
-      },
-      "defaults": {
-        "includeKinds": [
-          "chapter"
-        ],
-        "preferredPreset": "main-narrative"
-      },
-      "manifestPath": "the-thirty-nine-steps/manifest.json"
-    },
-    {
       "slug": "the-three-musketeers",
       "title": "The Three Musketeers",
       "author": [
@@ -3583,55 +3191,6 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "wind-in-the-willows/manifest.json"
-    },
-    {
-      "slug": "wood-folk-at-school",
-      "title": "Wood folk at school",
-      "author": [
-        "William J. Long"
-      ],
-      "contentVersion": "53459056320606b5",
-      "contentHash": "53459056320606b53faa47715e9dc78f224f944a3377a2919f8697b257fdf123",
-      "language": "en",
-      "description": "",
-      "subjects": [],
-      "source": {
-        "provider": "Project Gutenberg",
-        "gutenbergId": "22101",
-        "releaseDate": "July 19, 2007",
-        "sourceUrl": "https://www.gutenberg.org/ebooks/22101",
-        "rawTextUrl": null,
-        "rightsBasis": "public-domain-us",
-        "rightsReviewed": true,
-        "publishReady": true,
-        "rightsStatus": "approved",
-        "processingAllowed": true,
-        "approvalSource": "external-authority",
-        "duplicateResolutionSource": "not-needed",
-        "rightsReportPath": "rights_report.json",
-        "processedBookPath": "processed_book.json",
-        "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
-      },
-      "cover": {
-        "src": null,
-        "placeholder": true,
-        "alt": "Placeholder cover for Wood folk at school"
-      },
-      "stats": {
-        "originalCharacterCount": 269688,
-        "cleanedCharacterCount": 250309,
-        "wordCount": 45340,
-        "sectionCount": 10,
-        "includedSectionCount": 0
-      },
-      "defaults": {
-        "includeKinds": [
-          "chapter"
-        ],
-        "preferredPreset": "main-narrative"
-      },
-      "manifestPath": "wood-folk-at-school/manifest.json"
     },
     {
       "slug": "a-dream-of-armageddon",

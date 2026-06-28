@@ -96,6 +96,17 @@ const STARTER_PREVIEW_FIRST_RENDER_PATHS = [
   "/morse-code-books/the-great-gatsby",
   "/morse-code-audiobooks/the-jungle-book",
 ] as const;
+const SOURCE_RISK_REMOVED_BOOK_SLUGS = [
+  "a-princess-of-mars",
+  "doctor-dolittle",
+  "heidi",
+  "nights-with-uncle-remus",
+  "peter-pan",
+  "tarzan-of-the-apes",
+  "the-thirty-nine-steps",
+  "wood-folk-at-school",
+  "jabberwocky",
+] as const;
 const ALICE_PREVIEW_PATH = `${ALICE_PUBLIC_PATH}?preview=unpublished`;
 const TEST_BOOK_PUBLIC_PATH = `/morse-code-books/${TEST_BOOK_SLUG}`;
 const TEST_BOOK_PREVIEW_PATH = `${TEST_BOOK_PUBLIC_PATH}?preview=test-published`;
@@ -1040,6 +1051,15 @@ test.describe("Morse book page foundation", () => {
     );
     expect(unknownAudiobookResponse.status()).toBe(404);
 
+    for (const slug of SOURCE_RISK_REMOVED_BOOK_SLUGS) {
+      const removedBookResponse = await request.get(`/morse-code-books/${slug}`);
+      expect(removedBookResponse.status(), `${slug} book route`).toBe(404);
+      const removedAudiobookResponse = await request.get(
+        `/morse-code-audiobooks/${slug}`,
+      );
+      expect(removedAudiobookResponse.status(), `${slug} audiobook route`).toBe(404);
+    }
+
     await openPublicBook(page, APPROVED_BOOK_PUBLIC_PATH);
     const summaryLink = page.getByTestId("morse-book-summary-link");
     await expect(summaryLink).toHaveAttribute("href", "#book-summary");
@@ -1085,6 +1105,11 @@ test.describe("Morse book page foundation", () => {
     await expect(
       bookDirectory.locator('a[data-mw-directory-slug]'),
     ).toHaveCount(EXPECTED_GENERATED_BOOK_COUNT);
+    for (const slug of SOURCE_RISK_REMOVED_BOOK_SLUGS) {
+      await expect(
+        bookDirectory.locator(`a[data-mw-directory-slug="${slug}"]`),
+      ).toHaveCount(0);
+    }
 
     await page.goto("/morse-code-audiobooks", {
       waitUntil: "load",
@@ -1111,6 +1136,11 @@ test.describe("Morse book page foundation", () => {
     await expect(
       audiobookDirectory.locator('a[data-mw-directory-slug]'),
     ).toHaveCount(EXPECTED_GENERATED_BOOK_COUNT);
+    for (const slug of SOURCE_RISK_REMOVED_BOOK_SLUGS) {
+      await expect(
+        audiobookDirectory.locator(`a[data-mw-directory-slug="${slug}"]`),
+      ).toHaveCount(0);
+    }
 
     await page.goto("/", { waitUntil: "load" });
     await waitForRouteReady(page);

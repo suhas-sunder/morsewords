@@ -175,6 +175,20 @@ function sortedDifference(expected: Set<string>, actual: Set<string>) {
   return [...expected].filter((value) => !actual.has(value)).sort();
 }
 
+const resolvedOrDeferredUnresolvedSourceSlugs = new Set([
+  "a-princess-of-mars",
+  "doctor-dolittle",
+  "heidi",
+  "jabberwocky",
+  "nights-with-uncle-remus",
+  "peter-pan",
+  "tarzan-of-the-apes",
+  "the-great-gatsby",
+  "the-picture-of-dorian-gray",
+  "the-thirty-nine-steps",
+  "wood-folk-at-school",
+]);
+
 function hasAll(source: string, needles: string[]) {
   return needles.every((needle) => source.includes(needle));
 }
@@ -384,9 +398,9 @@ function main() {
   const pilotSummariesAreSubset = [...summarySlugs].every((slug) =>
     generatedSlugs.has(slug),
   );
-  const unresolvedSlugs = rawInventory.unresolvedSourceGeneratedItems.map(
-    (item) => item.slug,
-  );
+  const unresolvedSlugs = rawInventory.unresolvedSourceGeneratedItems
+    .map((item) => item.slug)
+    .filter((slug) => !resolvedOrDeferredUnresolvedSourceSlugs.has(slug));
   const unresolvedIncluded = unresolvedSlugs.every(
     (slug) =>
       generatedSlugs.has(slug) &&
