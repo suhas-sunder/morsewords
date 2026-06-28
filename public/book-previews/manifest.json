@@ -5403,6 +5403,61 @@
       "previewCharacterCount": 1015,
       "estimatedRuntimeSeconds": 362,
       "truncated": true
+    },
+    {
+      "slug": "the-happy-prince",
+      "path": "the-happy-prince.preview.json",
+      "contentVersion": "02bab0dcae4f0262",
+      "contentHash": "02bab0dcae4f0262c1a74b6fb0899e526cc74c0ffd50266b1ff0e3d1a449b558",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1975,
+      "previewCharacterCount": 1196,
+      "estimatedRuntimeSeconds": 431,
+      "truncated": true
+    },
+    {
+      "slug": "the-nightingale-and-the-rose",
+      "path": "the-nightingale-and-the-rose.preview.json",
+      "contentVersion": "2e929a2e584e6e73",
+      "contentHash": "2e929a2e584e6e7314ad7983858abe4095e6766f0a21d07fadce53058298d6a3",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1683,
+      "previewCharacterCount": 909,
+      "estimatedRuntimeSeconds": 323,
+      "truncated": true
+    },
+    {
+      "slug": "the-selfish-giant",
+      "path": "the-selfish-giant.preview.json",
+      "contentVersion": "f6426e480619fc19",
+      "contentHash": "f6426e480619fc193cdd8e1e0c49e4e8488a393f571da611201634d9e81585c7",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1991,
+      "previewCharacterCount": 1227,
+      "estimatedRuntimeSeconds": 420,
+      "truncated": true
+    },
+    {
+      "slug": "the-devoted-friend",
+      "path": "the-devoted-friend.preview.json",
+      "contentVersion": "43f95cefd4f80327",
+      "contentHash": "43f95cefd4f8032725f2552bdcab72fa46c72434450eb4b30b5642e9c1d78c84",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1980,
+      "previewCharacterCount": 1212,
+      "estimatedRuntimeSeconds": 428,
+      "truncated": true
+    },
+    {
+      "slug": "the-remarkable-rocket",
+      "path": "the-remarkable-rocket.preview.json",
+      "contentVersion": "98f8f3adbca965bd",
+      "contentHash": "98f8f3adbca965bd8da5ea35b7d49c261dc0e5d94179278c5b55ab56c9155ceb",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1926,
+      "previewCharacterCount": 1160,
+      "estimatedRuntimeSeconds": 412,
+      "truncated": true
     }
   ],
   "missing": []

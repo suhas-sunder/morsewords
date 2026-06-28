@@ -37,6 +37,7 @@ const THE_BOOK_OF_DRAGONS_SLUG = "the-book-of-dragons";
 const THE_EMERALD_CITY_OF_OZ_SLUG = "the-emerald-city-of-oz";
 const NEWLY_SUMMARIZED_BOOK_SLUG = "the-new-accelerator";
 const BESPOKE_PASS_1_BOOK_SLUG = "five-little-friends";
+const BESPOKE_PASS_2_BOOK_SLUG = "the-happy-prince";
 const REQUIRED_STORY_TITLES = {
   "the-dream-of-little-tuk": "The Dream of Little Tuk",
   "the-false-collar": "The False Collar",
@@ -98,6 +99,8 @@ const STARTER_PREVIEW_FIRST_RENDER_PATHS = [
   "/morse-code-audiobooks/the-jungle-book",
   `/morse-code-books/${BESPOKE_PASS_1_BOOK_SLUG}`,
   `/morse-code-audiobooks/${BESPOKE_PASS_1_BOOK_SLUG}`,
+  `/morse-code-books/${BESPOKE_PASS_2_BOOK_SLUG}`,
+  `/morse-code-audiobooks/${BESPOKE_PASS_2_BOOK_SLUG}`,
 ] as const;
 const SOURCE_RISK_REMOVED_BOOK_SLUGS = [
   "a-princess-of-mars",

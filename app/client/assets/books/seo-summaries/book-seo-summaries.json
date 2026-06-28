@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "summarySet": "bespoke-raw-candidate-pass-1",
+  "summarySet": "bespoke-raw-candidate-pass-2",
   "generatedAt": "2026-06-28",
   "storageApproach": "Separate static JSON data asset imported by book routes and validation tooling. Summaries are not embedded in generated book text, preview assets, raw sources, or Cloudflare export payloads.",
   "suggestedPilotSlugs": [
@@ -79,7 +79,7 @@
       "reason": "The Odyssey is not currently generated; The Arabian Nights keeps a long classic story-collection sample in the pilot."
     }
   ],
-  "expectedSummaryCount": 491,
+  "expectedSummaryCount": 496,
   "batch1Slugs": [
     "a-childs-garden-of-verses",
     "anna-karenina",
@@ -4594,6 +4594,51 @@
       ],
       "description": "A fairy tale from The Violet Fairy Book about a cobbler's son transformed by enchantment and tested in a royal kitchen.",
       "summary": "The History of Dwarf Long Nose, presented here from Andrew Lang's The Violet Fairy Book source, is a fairy tale about Jem, a cobbler's son whose ordinary life changes after an encounter with enchantment. The story moves from a market-place and a family home into a strange magical captivity, then into the world of court service, disguise, cooking, and recognition. Its drama comes from transformation and patience: the hero has to survive a changed body, recover his sense of self, and find a way back toward justice.\n\nFor MorseWords practice, the story offers a useful middle ground between a tiny fable and a long chapter book. It has a single continuous plot, but the scenes vary enough to keep listening and typing practice lively. Learners will meet descriptive passages, quoted speech, names, food words, and fairy-tale turns of phrase, all of which create good variation for Morse timing. The story is also short enough to revisit, so a learner can first listen for the outline and later return to difficult paragraphs at a slower pace.\n\nThis summary does not replace the tale's surprises. It highlights the practice value of a clear, bounded public-domain story: a strong opening, a memorable transformation, and a steady sequence of events. The text is especially useful for learners who want character-rich prose without committing to a large novel or complicated multi-volume work.\n\nThe cooking and court scenes add practical vocabulary that is different from many adventure or ghost stories in the library. That variety matters for Morse learning because it prevents practice from becoming only familiar names and repeated action words. A short fairy tale like this can be used for one careful copy session, then replayed later at a faster setting, especially when practicing longer quoted passages and scene transitions."
+    },
+    {
+      "slug": "the-happy-prince",
+      "title": "The Happy Prince",
+      "author": [
+        "Oscar Wilde"
+      ],
+      "description": "Oscar Wilde's fairy tale about a jeweled statue, a loyal swallow, and acts of compassion across a winter city.",
+      "summary": "The Happy Prince by Oscar Wilde is a short fairy tale about a beautiful statue who stands above a city and sees the hardship that ordinary people are facing below him. A swallow, delayed on his journey to warmer lands, rests near the statue and becomes the prince's messenger. Together they give away the prince's jewels and gold to people who need help, turning a glittering public monument into a story about compassion, sacrifice, and what beauty is really for.\n\nFor MorseWords practice, this story is useful because it has a vivid central image and a steady emotional rhythm. The Happy Prince and the Swallow are named often, so learners get repeated signals that help them stay oriented while listening or copying. The city scenes also introduce varied vocabulary: streets, windows, jewels, weather, hunger, work, children, and travel. That mix gives the learner more variety than a simple drill while staying much shorter than a novel chapter.\n\nThe story is a good bridge from sentence practice into literary prose. It includes repeated requests, direct dialogue, and descriptive passages that reward careful pacing. A beginner can listen to the opening at a slower speed, then return to shorter paragraphs to practice punctuation, quotation marks, and common word spacing. More confident learners can use the whole story for a complete listening session because the plot is easy to remember and the scenes build naturally.\n\nThe emotional shape also helps with retention. The listener can follow the Swallow's choices, the prince's growing generosity, and the contrast between public admiration and private kindness. That makes the text well suited for repeat practice: first for the story, then for accuracy, and later for smoother Morse timing.\n\nBecause the tale repeats its main names and requests without becoming flat, it is also a good warm-up before longer public-domain stories. Learners can focus on clean character gaps, word gaps, and the rhythm of dialogue while still hearing a complete, memorable narrative."
+    },
+    {
+      "slug": "the-nightingale-and-the-rose",
+      "title": "The Nightingale and the Rose",
+      "author": [
+        "Oscar Wilde"
+      ],
+      "description": "Oscar Wilde's fairy tale about a nightingale, a student, and the cost of making one red rose.",
+      "summary": "The Nightingale and the Rose by Oscar Wilde is a fairy tale about a student who longs for a red rose so he can dance with the girl he admires. A nightingale hears his sorrow and believes she has found a true lover. Her search for a red rose takes her through the garden from tree to tree, and the story becomes a sharp contrast between ideal love, artistic sacrifice, and the colder practical world the student inhabits.\n\nFor MorseWords learners, the story offers rich but manageable prose. It is short enough for a focused session, yet it contains more variety than a basic reading drill. The repeated phrase of the red rose gives the ear a useful anchor, while the garden setting supplies concrete nouns such as tree, window, moon, thorn, rose, student, and nightingale. Those recurring images make it easier to follow the text in Morse audio without losing the thread.\n\nThis is also a good story for practicing quoted speech. Several voices appear: the student, the nightingale, the rose trees, and the people around the student. Their exchanges are clear, and the punctuation gives learners a chance to work on pauses, quotation marks, and sentence endings. The prose moves between short emotional statements and longer descriptive sentences, so it can be used slowly for copying or replayed later at a more confident speed.\n\nThe story's compact structure helps practice feel complete. It begins with a simple want, follows the nightingale's decision, and turns that want into a pointed contrast between feeling and practicality. Learners can listen once for the plot, then return to selected paragraphs to improve accuracy. The result is a useful short literary practice text for anyone ready to move from isolated Morse words into expressive narrative.\n\nIt is especially good for practicing careful pacing because the emotional language can tempt learners to rush. Slower playback lets the repeated rose imagery settle into a predictable signal pattern before the learner tries a faster copy pass."
+    },
+    {
+      "slug": "the-selfish-giant",
+      "title": "The Selfish Giant",
+      "author": [
+        "Oscar Wilde"
+      ],
+      "description": "Oscar Wilde's fairy tale about a giant, a garden, the return of children, and the change from winter to spring.",
+      "summary": "The Selfish Giant by Oscar Wilde is a short fairy tale about a giant who returns home and shuts children out of his garden. Once the garden is closed, spring refuses to come there. Snow, frost, hail, and the north wind take over, while the world outside moves into blossom. The story follows the giant as he learns that the joy of the garden depends on generosity, welcome, and the presence of the children he tried to exclude.\n\nFor MorseWords practice, this is one of the most approachable Wilde stories. Its central images are clear and repeated: garden, wall, children, giant, winter, spring, tree, flowers, and birds. Those repeating words make the audio easier to follow, especially for learners who are beginning to move beyond short phrases. The story also has a strong scene structure, so a listener can picture each change as it happens.\n\nThe text is useful for both listening and typing practice. It includes simple action sentences, direct dialogue, and descriptive passages that are not too dense. A beginner might copy the opening paragraphs slowly, focusing on word spacing and sentence endings. A more confident learner can listen to the whole story in one sitting, then replay later passages to work on longer sentences and emotional tone.\n\nThe tale also helps learners practice attention over a complete narrative arc. The giant's mistake, the long winter, the children's return, and the later transformation are easy to remember, so the learner can concentrate on the Morse signal instead of constantly trying to decode the plot. It is a compact, rewarding story for practicing literary prose without taking on a full book-length work.\n\nBecause the language is vivid but not crowded, this story also works well for mixed practice. A learner can listen first, then type a familiar paragraph from memory, and finally compare the rhythm against the original text."
+    },
+    {
+      "slug": "the-devoted-friend",
+      "title": "The Devoted Friend",
+      "author": [
+        "Oscar Wilde"
+      ],
+      "description": "Oscar Wilde's satirical fairy tale about little Hans, the Miller, and a one-sided idea of friendship.",
+      "summary": "The Devoted Friend by Oscar Wilde is a satirical fairy tale about little Hans, the Miller, and a very one-sided idea of friendship. The story is framed by a conversation beside a pond, where a linnet tells a moral tale to a water-rat. Inside that tale, the Miller speaks beautifully about friendship while repeatedly taking advantage of Hans, who is generous, trusting, and eager to be thought loyal.\n\nFor MorseWords practice, this story gives learners a strong mix of dialogue and narration. The word friendship appears often, and the Miller's speeches create recognizable patterns that can help listeners stay oriented. At the same time, the story is not merely repetitive. It moves through seasons, errands, requests, excuses, and consequences, so learners get varied vocabulary and a clear sequence of events.\n\nThis is a useful step after shorter fairy tales because it asks the learner to track who is speaking and what the speaker means. Much of the point comes from irony: the Miller says noble things while acting selfishly. That makes the story valuable for careful listening, since pauses, punctuation, and quotation marks help distinguish narration from speech. It is also a good typing text for practicing longer quoted passages without the scale of a novel.\n\nThe story is long enough for a meaningful session but still compact enough to revisit. Learners can copy the opening frame first, then return to Hans and the Miller once the rhythm feels comfortable. The clear moral pattern makes it memorable, while the satirical tone gives the practice more bite than a plain lesson or simple adventure.\n\nIt also helps with endurance. The learner has to follow repeated requests across several scenes, so the practice becomes less about decoding isolated words and more about keeping a steady signal rhythm through a complete argument."
+    },
+    {
+      "slug": "the-remarkable-rocket",
+      "title": "The Remarkable Rocket",
+      "author": [
+        "Oscar Wilde"
+      ],
+      "description": "Oscar Wilde's comic fairy tale about an extremely self-important rocket at a royal wedding.",
+      "summary": "The Remarkable Rocket by Oscar Wilde is a comic fairy tale about a firework who is certain that everything must revolve around him. The story begins with a royal wedding and a planned fireworks display, then turns into a sequence of conversations among fireworks, animals, and the Rocket himself. His confidence is enormous, his misunderstandings are constant, and his grand speeches become funnier as the world refuses to treat him as important.\n\nFor MorseWords practice, this story is lively and dialogue-heavy. Learners get many short exchanges, exclamations, and repeated references to the Rocket, the prince, the princess, and the fireworks. Those repetitions help with recognition, while the comedy keeps the session from feeling mechanical. The story also includes varied punctuation and changing speakers, making it a useful bridge from simple prose into more expressive listening.\n\nThis is a good choice after easier fairy tales because it asks the learner to track tone as well as plot. The Rocket often misunderstands what others say, so careful listening matters. Short replies can be copied as quick drills, while the Rocket's longer speeches are useful for practicing stamina, word spacing, and sentence rhythm. The result is a playful but still structured text for Morse practice.\n\nThe setting also gives unusual vocabulary that does not appear in many adventure or school stories: fireworks, rockets, squibs, candles, cartridges, court, wedding, display, and sensation. That variety helps learners expand beyond familiar word patterns. The final comic turn is brief, making the whole story practical for a complete listening session or a set of shorter replay drills.\n\nBecause the Rocket talks so much, the story is especially useful for dialogue pacing. Learners can practice identifying the speaker changes, then replay the longer speeches to build confidence with sustained Morse audio and cleaner copy. It also gives punctuation practice without requiring a long commitment."
     }
   ],
   "batch3Slugs": [
@@ -4995,5 +5040,12 @@
     "five-little-friends",
     "snow-white-and-rose-red",
     "the-history-of-dwarf-long-nose"
+  ],
+  "bespokeRawCandidatePass2Slugs": [
+    "the-happy-prince",
+    "the-nightingale-and-the-rose",
+    "the-selfish-giant",
+    "the-devoted-friend",
+    "the-remarkable-rocket"
   ]
 }
