@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-28T00:00:00.000-04:00",
+  "branch": "morsewords-book-source-decision-checkpoint-jun-2026",
+  "purpose": "User decision checkpoint for generated books with blocked source/rights risk and for jabberwocky, without removing or replacing any book.",
+  "sourceReportsUsed": [
+    "app/client/assets/books/audit-reports/unresolved-source-generated-review/unresolved-source-generated-review.json",
+    "app/client/assets/books/audit-reports/unresolved-source-generated-review/unresolved-source-generated-review.md",
+    "app/client/assets/books/audit-reports/remaining-raw-candidate-completion/remaining-raw-candidate-completion.json",
+    "app/client/assets/books/generated/library-manifest.json",
+    "app/client/assets/books/seo-summaries/book-seo-summaries.json",
+    "public/book-previews"
+  ],
+  "currentCounts": {
+    "generatedBooks": 497,
+    "seoSummaries": 497,
+    "missingSummaries": 0,
+    "startupPreviews": 497,
+    "remainingRawCandidates": 45,
+    "blockedSourceRightsRiskGeneratedBooks": 8,
+    "removeOrReplacementRecommendedBooks": 1,
+    "cloudflareExport": "not run"
+  },
+  "decisionItems": [
+    {
+      "slug": "a-princess-of-mars",
+      "title": "A princess of Mars",
+      "author": ["Edgar Rice Burroughs"],
+      "currentGeneratedStatus": "Generated, publish-ready in manifest, present in SEO summaries and startup previews, but unresolved-source review classified it as blocked-source-or-rights-risk.",
+      "sourceProvenanceConcern": "Project Gutenberg ebook 62 is listed in generated metadata, but rights_report remains needs_manual_review with manual-review approval source and illustration/image references detected.",
+      "currentSafeReplacementSourceInRepoEvidence": "No exact temp-books raw source or safe replacement source is present in current repo evidence.",
+      "recommendedUserDecisionOptions": [
+        "Keep temporarily and resolve source/rights review later.",
+        "Replace with a safer source if the user approves or provides one.",
+        "Remove/defer from the generated library."
+      ],
+      "downstreamEffectOfRemovalOrDefer": "Generated count, SEO summary count, startup preview count, book listing count, audiobook listing count, and sitemap book/audiobook URL counts would each decrease by 1 unless the slug is replaced in the same branch."
+    },
+    {
+      "slug": "doctor-dolittle",
+      "title": "The Story of Doctor Dolittle",
+      "author": ["Hugh Lofting"],
+      "currentGeneratedStatus": "Generated, publish-ready in manifest, present in SEO summaries and startup previews, but unresolved-source review classified it as blocked-source-or-rights-risk.",
+      "sourceProvenanceConcern": "Project Gutenberg ebook 501 is listed in generated metadata, but rights_report status is reject with manual-review approval source, later copyright notice detected, and illustration/image references detected.",
+      "currentSafeReplacementSourceInRepoEvidence": "No exact temp-books raw source or safe replacement source is present in current repo evidence.",
+      "recommendedUserDecisionOptions": [
+        "Keep temporarily and resolve source/rights review later.",
+        "Replace with a safer source if the user approves or provides one.",
+        "Remove/defer from the generated library."
+      ],
+      "downstreamEffectOfRemovalOrDefer": "Generated count, SEO summary count, startup preview count, book listing count, audiobook listing count, and sitemap book/audiobook URL counts would each decrease by 1 unless the slug is replaced in the same branch."
+    },
+    {
+      "slug": "heidi",
+      "title": "Heidi",
+      "author": ["Johanna Spyri"],
+      "currentGeneratedStatus": "Generated, publish-ready in manifest, present in SEO summaries and startup previews, but unresolved-source review classified it as blocked-source-or-rights-risk.",
+      "sourceProvenanceConcern": "Project Gutenberg ebook 20781 is listed in generated metadata, but rights_report remains needs_manual_review for translation/editorial material, transcriber notes, and illustration/image references.",
+      "currentSafeReplacementSourceInRepoEvidence": "No exact temp-books raw source or safe replacement source is present in current repo evidence.",
+      "recommendedUserDecisionOptions": [
+        "Keep temporarily and resolve source/rights review later.",
+        "Replace with a safer source if the user approves or provides one.",
+        "Remove/defer from the generated library."
+      ],
+      "downstreamEffectOfRemovalOrDefer": "Generated count, SEO summary count, startup preview count, book listing count, audiobook listing count, and sitemap book/audiobook URL counts would each decrease by 1 unless the slug is replaced in the same branch."
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "title": "Nights With Uncle Remus",
+      "author": ["Joel Chandler Harris"],
+      "currentGeneratedStatus": "Generated, publish-ready in manifest, present in SEO summaries and startup previews, but unresolved-source review classified it as blocked-source-or-rights-risk.",
+      "sourceProvenanceConcern": "Project Gutenberg ebook 24430 is listed in generated metadata, but rights_report status is reject with manual-review approval source, later copyright notice detected, transcriber notes, illustration/image references, missing original-publication metadata, and medium content brand-safety risk.",
+      "currentSafeReplacementSourceInRepoEvidence": "No exact temp-books raw source or safe replacement source is present in current repo evidence.",
+      "recommendedUserDecisionOptions": [
+        "Keep temporarily and resolve source/rights review later.",
+        "Replace with a safer source if the user approves or provides one.",
+        "Remove/defer from the generated library."
+      ],
+      "downstreamEffectOfRemovalOrDefer": "Generated count, SEO summary count, startup preview count, book listing count, audiobook listing count, and sitemap book/audiobook URL counts would each decrease by 1 unless the slug is replaced in the same branch."
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan [Peter and Wendy]",
+      "author": ["J. M. Barrie"],
+      "currentGeneratedStatus": "Generated, publish-ready in manifest, present in SEO summaries and startup previews, but unresolved-source review classified it as blocked-source-or-rights-risk.",
+      "sourceProvenanceConcern": "Project Gutenberg ebook 16 is listed in generated metadata and chapter content is readable, but rights_report remains needs_manual_review because original-publication metadata is missing in the report.",
+      "currentSafeReplacementSourceInRepoEvidence": "No exact temp-books raw source or safe replacement source is present in current repo evidence.",
+      "recommendedUserDecisionOptions": [
+        "Keep temporarily and resolve source/rights review later.",
+        "Replace with a safer source if the user approves or provides one.",
+        "Remove/defer from the generated library."
+      ],
+      "downstreamEffectOfRemovalOrDefer": "Generated count, SEO summary count, startup preview count, book listing count, audiobook listing count, and sitemap book/audiobook URL counts would each decrease by 1 unless the slug is replaced in the same branch."
+    },
+    {
+      "slug": "tarzan-of-the-apes",
+      "title": "Tarzan of the Apes",
+      "author": ["Edgar Rice Burroughs"],
+      "currentGeneratedStatus": "Generated, publish-ready in manifest, present in SEO summaries and startup previews, but unresolved-source review classified it as blocked-source-or-rights-risk.",
+      "sourceProvenanceConcern": "Project Gutenberg ebook 78 is listed in generated metadata and chapter content is readable, but rights_report remains needs_manual_review with illustration/image references, high trademark/character risk, and medium content brand-safety risk.",
+      "currentSafeReplacementSourceInRepoEvidence": "No exact temp-books raw source or safe replacement source is present in current repo evidence.",
+      "recommendedUserDecisionOptions": [
+        "Keep temporarily and resolve source/rights review later.",
+        "Replace with a safer source if the user approves or provides one.",
+        "Remove/defer from the generated library."
+      ],
+      "downstreamEffectOfRemovalOrDefer": "Generated count, SEO summary count, startup preview count, book listing count, audiobook listing count, and sitemap book/audiobook URL counts would each decrease by 1 unless the slug is replaced in the same branch."
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "title": "The Thirty-Nine Steps",
+      "author": ["John Buchan"],
+      "currentGeneratedStatus": "Generated, publish-ready in manifest, present in SEO summaries and startup previews, but unresolved-source review classified it as blocked-source-or-rights-risk.",
+      "sourceProvenanceConcern": "Project Gutenberg ebook 558 is listed in generated metadata and chapter content is readable, but rights_report remains needs_manual_review with manual-review approval source and illustration/image references detected.",
+      "currentSafeReplacementSourceInRepoEvidence": "No exact temp-books raw source or safe replacement source is present in current repo evidence.",
+      "recommendedUserDecisionOptions": [
+        "Keep temporarily and resolve source/rights review later.",
+        "Replace with a safer source if the user approves or provides one.",
+        "Remove/defer from the generated library."
+      ],
+      "downstreamEffectOfRemovalOrDefer": "Generated count, SEO summary count, startup preview count, book listing count, audiobook listing count, and sitemap book/audiobook URL counts would each decrease by 1 unless the slug is replaced in the same branch."
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "title": "Wood folk at school",
+      "author": ["William J. Long"],
+      "currentGeneratedStatus": "Generated, publish-ready in manifest, present in SEO summaries and startup previews, but unresolved-source review classified it as blocked-source-or-rights-risk.",
+      "sourceProvenanceConcern": "Project Gutenberg ebook 22101 is listed in generated metadata, but rights_report status is reject with manual-review approval source, later copyright notice detected, transcriber notes, illustration/image references, and missing original-publication metadata.",
+      "currentSafeReplacementSourceInRepoEvidence": "No exact temp-books raw source or safe replacement source is present in current repo evidence.",
+      "recommendedUserDecisionOptions": [
+        "Keep temporarily and resolve source/rights review later.",
+        "Replace with a safer source if the user approves or provides one.",
+        "Remove/defer from the generated library."
+      ],
+      "downstreamEffectOfRemovalOrDefer": "Generated count, SEO summary count, startup preview count, book listing count, audiobook listing count, and sitemap book/audiobook URL counts would each decrease by 1 unless the slug is replaced in the same branch."
+    },
+    {
+      "slug": "jabberwocky",
+      "title": "Jabberwocky",
+      "author": ["Lewis Carroll"],
+      "currentGeneratedStatus": "Generated, publish-ready in manifest, present in SEO summaries and startup previews, but unresolved-source review classified it as remove-recommended.",
+      "exactProblem": "Current generated text is not the poem text. It is an audio-reading/catalog/license page with reader names, format listings, and LibriVox certification rather than the poem.",
+      "currentSafeReplacementSourceInRepoEvidence": "No exact temp-books raw source or safe replacement source is present in current repo evidence.",
+      "recommendedUserDecisionOptions": [
+        "Replace with correct poem text if a safe source exists or is provided.",
+        "Remove/defer until a safe source is provided."
+      ],
+      "downstreamEffectOfRemovalOrDefer": "Generated count, SEO summary count, startup preview count, book listing count, audiobook listing count, and sitemap book/audiobook URL counts would each decrease by 1 unless the slug is replaced in the same branch."
+    }
+  ],
+  "decisionTable": [
+    {
+      "slug": "a-princess-of-mars",
+      "currentStatus": "blocked-source-or-rights-risk",
+      "issue": "rights_report needs_manual_review; manual-review approval source; illustration/image references",
+      "safestNextAction": "User decision: keep temporarily, replace with safer source, or remove/defer.",
+      "needsUserDecision": true
+    },
+    {
+      "slug": "doctor-dolittle",
+      "currentStatus": "blocked-source-or-rights-risk",
+      "issue": "rights_report reject; later copyright notice; illustration/image references",
+      "safestNextAction": "User decision: keep temporarily, replace with safer source, or remove/defer.",
+      "needsUserDecision": true
+    },
+    {
+      "slug": "heidi",
+      "currentStatus": "blocked-source-or-rights-risk",
+      "issue": "rights_report needs_manual_review; translation/editorial notes, transcriber notes, illustrations",
+      "safestNextAction": "User decision: keep temporarily, replace with safer source, or remove/defer.",
+      "needsUserDecision": true
+    },
+    {
+      "slug": "nights-with-uncle-remus",
+      "currentStatus": "blocked-source-or-rights-risk",
+      "issue": "rights_report reject; later copyright notice, transcriber notes, illustrations, missing publication metadata, brand-safety risk",
+      "safestNextAction": "User decision: keep temporarily, replace with safer source, or remove/defer.",
+      "needsUserDecision": true
+    },
+    {
+      "slug": "peter-pan",
+      "currentStatus": "blocked-source-or-rights-risk",
+      "issue": "rights_report needs_manual_review; missing original-publication metadata",
+      "safestNextAction": "User decision: keep temporarily, replace with safer source, or remove/defer.",
+      "needsUserDecision": true
+    },
+    {
+      "slug": "tarzan-of-the-apes",
+      "currentStatus": "blocked-source-or-rights-risk",
+      "issue": "rights_report needs_manual_review; illustration, trademark/character, and brand-safety risks",
+      "safestNextAction": "User decision: keep temporarily, replace with safer source, or remove/defer.",
+      "needsUserDecision": true
+    },
+    {
+      "slug": "the-thirty-nine-steps",
+      "currentStatus": "blocked-source-or-rights-risk",
+      "issue": "rights_report needs_manual_review; manual-review approval source; illustration/image references",
+      "safestNextAction": "User decision: keep temporarily, replace with safer source, or remove/defer.",
+      "needsUserDecision": true
+    },
+    {
+      "slug": "wood-folk-at-school",
+      "currentStatus": "blocked-source-or-rights-risk",
+      "issue": "rights_report reject; later copyright notice, transcriber notes, illustrations, missing publication metadata",
+      "safestNextAction": "User decision: keep temporarily, replace with safer source, or remove/defer.",
+      "needsUserDecision": true
+    },
+    {
+      "slug": "jabberwocky",
+      "currentStatus": "remove-recommended",
+      "issue": "generated text is an audio-reading/catalog/license page, not the poem text",
+      "safestNextAction": "User decision: replace with correct safe poem source or remove/defer.",
+      "needsUserDecision": true
+    }
+  ],
+  "countScenarios": [
+    {
+      "scenario": "If all 8 blocked books are kept temporarily and jabberwocky is replaced",
+      "likelyGeneratedCount": 497
+    },
+    {
+      "scenario": "If all 8 blocked books are kept temporarily and jabberwocky is removed/deferred",
+      "likelyGeneratedCount": 496
+    },
+    {
+      "scenario": "If all 8 blocked books and jabberwocky are removed/deferred",
+      "likelyGeneratedCount": 488
+    },
+    {
+      "scenario": "If any blocked books are replaced with safer sources",
+      "likelyGeneratedCount": "stays the same for those replaced slugs"
+    }
+  ],
+  "routeUiCheck": "Full book-page Playwright spec passed 39/39, including preview-backed route first-render checks for no full loading shell, starter content visibility, summary placement, listing count 497, and 390px mobile overflow coverage. A separate ad hoc route-check wrapper was attempted but timed out before returning output, so durable Playwright coverage is used as the route/UI verification source.",
+  "validationResults": {
+    "typecheck": "pass",
+    "seoSummaryAudit": "pass: 497/497 summaries",
+    "startupPreviewAudit": "pass: 497 valid, 0 preview updates",
+    "independentSecondPassAudit": "pass: 432 pass, 65 warn-accepted, 0 fail-needs-fix, 0 manual-review",
+    "linkingSitemapAudit": "pass: 497 book URLs and 497 audiobook URLs",
+    "testIfPresent": "pass: 23/23 smoke tests",
+    "netlifyBuild": "pass",
+    "playwrightBookPageSpec": "pass: 39/39 desktop-chromium",
+    "diffCheck": "pass"
+  },
+  "protectedFolderStatus": "clean: temp-books, generated books, SEO summaries, Cloudflare export, and public book previews were not modified",
+  "cloudflareExportStatus": "not run",
+  "recommendedNextMajorPhase": "User decision needed before the next book-library branch."
+}
