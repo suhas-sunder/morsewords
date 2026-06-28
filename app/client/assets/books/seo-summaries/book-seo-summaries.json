@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "summarySet": "remaining-raw-candidate-completion",
+  "summarySet": "bespoke-raw-candidate-pass-1",
   "generatedAt": "2026-06-28",
   "storageApproach": "Separate static JSON data asset imported by book routes and validation tooling. Summaries are not embedded in generated book text, preview assets, raw sources, or Cloudflare export payloads.",
   "suggestedPilotSlugs": [
@@ -79,7 +79,7 @@
       "reason": "The Odyssey is not currently generated; The Arabian Nights keeps a long classic story-collection sample in the pilot."
     }
   ],
-  "expectedSummaryCount": 488,
+  "expectedSummaryCount": 491,
   "batch1Slugs": [
     "a-childs-garden-of-verses",
     "anna-karenina",
@@ -4566,6 +4566,34 @@
       ],
       "description": "A Providence weird tale of antiquarian research, family history, and a mystery that reaches into the colonial past.",
       "summary": "The Case of Charles Dexter Ward by H. P. Lovecraft is a long weird tale set in Providence, Rhode Island, where antiquarian curiosity opens into a disturbing family mystery. Charles Dexter Ward is drawn into colonial records, old houses, obscure scholarship, and the history of Joseph Curwen, an ancestor whose reputation carries more than ordinary scandal. The central conflict is investigative and psychological: friends and family try to understand Ward's transformation, while the past seems to become dangerously active in the present.\n\nThe tone is archival, Gothic, and increasingly tense. Lovecraft uses letters, local history, family documents, medical concern, and antiquarian detail to make the mystery feel layered rather than immediate. The setting is one of the story's pleasures: Providence streets, old rooms, records, and hidden places create a strong sense of place. The horror involves occult research and implied danger, but the reading experience is largely about inquiry, atmosphere, and the slow assembly of clues.\n\nFor Morse practice, this is an advanced endurance selection. Its five parts give learners natural stopping points, and the prose offers names, dates, quotations, formal narration, and long historical passages. Typists should not rush it; a better method is to work one part at a time, preview names, and repeat dense paragraphs until the rhythm settles. In audio, the mystery structure helps maintain orientation even through elaborate sentences. The work is useful for serious practice because it demands attention to punctuation and proper nouns, and it is fun for readers who like weird fiction with documents, old cities, and a central question that deepens rather than resolves too quickly. It also gives a different kind of practice from the shorter tales: instead of one quick arc, learners manage a layered investigation across multiple sessions. That makes it suitable for a longer training plan where each part becomes its own measurable milestone."
+    },
+    {
+      "slug": "five-little-friends",
+      "title": "Five Little Friends",
+      "author": [
+        "Sherred Willcox Adams"
+      ],
+      "description": "A gentle early-reader book about five school friends, their classroom surprises, summer travels, pets, and small everyday adventures.",
+      "summary": "Five Little Friends by Sherred Willcox Adams is a warm children's book built around Bob, Betty, Paul, Peggy, and little Dot. The first half follows the friends at school, where ordinary classroom moments turn into small adventures with pets, lessons, surprises, and the steady kindness of Miss West. The second half moves into vacation days, giving the children room for trips, seaside plans, family visits, and the sort of practical discoveries that make early-reader stories feel friendly rather than hurried.\n\nFor MorseWords practice, this book is useful because the prose is direct, concrete, and easy to divide into manageable sections. The sentences are generally short, the vocabulary is familiar, and the repeated names give learners a steady rhythm for copying or listening. At the same time, the two-part structure gives enough variety to practice longer sessions without jumping into a dense novel. A learner can start with a few paragraphs from the school section, then return later for the vacation material once recognition and timing feel steadier.\n\nThis summary keeps the focus on reading and practice rather than retelling every episode. The book works especially well for beginners who want public-domain prose that sounds natural in Morse audio: names, dialogue, and simple action make the signal easier to follow, while the gentle pacing keeps mistakes from feeling punishing. It is also a good candidate for short typing drills because each scene has a clear setting and a small event to hold attention.\n\nBecause the book was written for young readers, it is also a useful confidence-builder after alphabet or word drills. Learners can practice common family words, classroom language, short questions, and simple responses without fighting unusually dense syntax. The result is a calm bridge between isolated Morse practice and longer narrative copying, with enough story motion to reward repeat sessions."
+    },
+    {
+      "slug": "snow-white-and-rose-red",
+      "title": "Snow-White and Rose-Red",
+      "author": [
+        "Jacob Grimm",
+        "Wilhelm Grimm"
+      ],
+      "description": "A Grimm fairy tale about two kind sisters, a winter visitor, a troublesome dwarf, and an enchanted bear.",
+      "summary": "Snow-White and Rose-Red by Jacob Grimm and Wilhelm Grimm is a compact fairy tale about two sisters whose kindness shapes the strange events around them. The story begins in a poor widow's cottage, where the girls live simply, help their mother, and move between home, garden, and forest with an easy trust in the world. Their gentleness is tested by a winter encounter with a bear and by repeated meetings with an ungrateful dwarf, and the tale gradually reveals that the ordinary forest has been hiding a spellbound royal story.\n\nFor MorseWords learners, this is a strong short-form practice text. The plot is easy to remember, the scenes are vivid, and the story can be handled in one sitting or broken into smaller listening passages. Names, dialogue, repeated forest action, and fairy-tale phrasing give learners recognizable patterns without the scale of a full novel. The prose also includes enough older diction to make typing practice more interesting, especially for punctuation, quoted speech, and hyphenated names.\n\nThis summary avoids spoiling every turn and focuses on why the story is useful for Morse practice. It is a good choice when a learner wants something more literary than random sentences but much shorter than a chapter book. The emotional shape is clear: home, kindness, danger, recognition, and reward. That makes it easy to listen once for the story, then replay shorter passages to improve character recognition, word spacing, and comfortable Morse pacing.\n\nThe tale also gives beginners a compact way to practice repeated proper names and descriptive phrases. Since the setting stays focused on the cottage, forest, bear, sisters, and dwarf, learners can recognize recurring signals while still following an actual story. It is especially handy for a short listening session where the goal is continuity rather than speed."
+    },
+    {
+      "slug": "the-history-of-dwarf-long-nose",
+      "title": "The History of Dwarf Long Nose",
+      "author": [
+        "Andrew Lang"
+      ],
+      "description": "A fairy tale from The Violet Fairy Book about a cobbler's son transformed by enchantment and tested in a royal kitchen.",
+      "summary": "The History of Dwarf Long Nose, presented here from Andrew Lang's The Violet Fairy Book source, is a fairy tale about Jem, a cobbler's son whose ordinary life changes after an encounter with enchantment. The story moves from a market-place and a family home into a strange magical captivity, then into the world of court service, disguise, cooking, and recognition. Its drama comes from transformation and patience: the hero has to survive a changed body, recover his sense of self, and find a way back toward justice.\n\nFor MorseWords practice, the story offers a useful middle ground between a tiny fable and a long chapter book. It has a single continuous plot, but the scenes vary enough to keep listening and typing practice lively. Learners will meet descriptive passages, quoted speech, names, food words, and fairy-tale turns of phrase, all of which create good variation for Morse timing. The story is also short enough to revisit, so a learner can first listen for the outline and later return to difficult paragraphs at a slower pace.\n\nThis summary does not replace the tale's surprises. It highlights the practice value of a clear, bounded public-domain story: a strong opening, a memorable transformation, and a steady sequence of events. The text is especially useful for learners who want character-rich prose without committing to a large novel or complicated multi-volume work.\n\nThe cooking and court scenes add practical vocabulary that is different from many adventure or ghost stories in the library. That variety matters for Morse learning because it prevents practice from becoming only familiar names and repeated action words. A short fairy tale like this can be used for one careful copy session, then replayed later at a faster setting, especially when practicing longer quoted passages and scene transitions."
     }
   ],
   "batch3Slugs": [
@@ -4962,5 +4990,10 @@
     "under-the-knife",
     "the-willows",
     "the-case-of-charles-dexter-ward"
+  ],
+  "bespokeRawCandidatePass1Slugs": [
+    "five-little-friends",
+    "snow-white-and-rose-red",
+    "the-history-of-dwarf-long-nose"
   ]
 }

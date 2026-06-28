@@ -42,6 +42,7 @@ type SeoSummaryData = {
   batch9Slugs?: string[];
   poeReplacementSlugs?: string[];
   remainingRawCandidateCompletionSlugs?: string[];
+  bespokeRawCandidatePass1Slugs?: string[];
   summaries: SeoSummaryRecord[];
 };
 
@@ -600,6 +601,10 @@ function isAcceptedGeneratedBook(book: GeneratedLibraryBookSummary) {
 function selectedSlugsForActiveBatch(summaryData: SeoSummaryData) {
   if (summaryData.summarySet === "remaining-raw-candidate-completion") {
     return summaryData.remainingRawCandidateCompletionSlugs ?? [];
+  }
+
+  if (summaryData.summarySet === "bespoke-raw-candidate-pass-1") {
+    return summaryData.bespokeRawCandidatePass1Slugs ?? [];
   }
 
   if (summaryData.summarySet === "poe-replacement-raw-reconciliation") {

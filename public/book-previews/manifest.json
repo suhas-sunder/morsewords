@@ -5370,6 +5370,39 @@
       "previewCharacterCount": 992,
       "estimatedRuntimeSeconds": 357,
       "truncated": true
+    },
+    {
+      "slug": "five-little-friends",
+      "path": "five-little-friends.preview.json",
+      "contentVersion": "3aada24b77b60b37",
+      "contentHash": "3aada24b77b60b3724678ddd3cff6c45887950eeb7c51867f78f06acf00f6e46",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 2021,
+      "previewCharacterCount": 1229,
+      "estimatedRuntimeSeconds": 439,
+      "truncated": true
+    },
+    {
+      "slug": "snow-white-and-rose-red",
+      "path": "snow-white-and-rose-red.preview.json",
+      "contentVersion": "7b2c3dc46652c411",
+      "contentHash": "7b2c3dc46652c4119d154a9134c7e598ee5c19c1bd5c64aaba7d39201ef8d3b4",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1690,
+      "previewCharacterCount": 942,
+      "estimatedRuntimeSeconds": 336,
+      "truncated": true
+    },
+    {
+      "slug": "the-history-of-dwarf-long-nose",
+      "path": "the-history-of-dwarf-long-nose.preview.json",
+      "contentVersion": "dde9087355dfada8",
+      "contentHash": "dde9087355dfada87e05d85fd6bfa216c94455b516c3e234e428650d4397bb8c",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1761,
+      "previewCharacterCount": 1015,
+      "estimatedRuntimeSeconds": 362,
+      "truncated": true
     }
   ],
   "missing": []

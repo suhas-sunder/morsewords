@@ -24086,6 +24086,170 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-case-of-charles-dexter-ward/manifest.json"
+    },
+    {
+      "slug": "five-little-friends",
+      "title": "Five Little Friends",
+      "author": [
+        "Sherred Willcox Adams"
+      ],
+      "contentVersion": "3aada24b77b60b37",
+      "contentHash": "3aada24b77b60b3724678ddd3cff6c45887950eeb7c51867f78f06acf00f6e46",
+      "language": "en",
+      "description": "A gentle early-reader book about five school friends, their classroom surprises, summer travels, pets, and small everyday adventures.",
+      "subjects": [
+        "Children's literature",
+        "School stories",
+        "Early readers"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25497",
+        "releaseDate": "May 17, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25497",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted bespoke raw candidate pass 1 processed this accepted candidate after manual boundary, source, and metadata review. Review generated output before any Cloudflare export."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Five Little Friends"
+      },
+      "stats": {
+        "originalCharacterCount": 83439,
+        "cleanedCharacterCount": 60269,
+        "wordCount": 11574,
+        "sectionCount": 2,
+        "includedSectionCount": 2
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "five-little-friends/manifest.json"
+    },
+    {
+      "slug": "snow-white-and-rose-red",
+      "title": "Snow-White and Rose-Red",
+      "author": [
+        "Jacob Grimm",
+        "Wilhelm Grimm"
+      ],
+      "contentVersion": "7b2c3dc46652c411",
+      "contentHash": "7b2c3dc46652c4119d154a9134c7e598ee5c19c1bd5c64aaba7d39201ef8d3b4",
+      "language": "en",
+      "description": "A Grimm fairy tale about two kind sisters, a winter visitor, a troublesome dwarf, and an enchanted bear.",
+      "subjects": [
+        "Fairy tales",
+        "Children's literature",
+        "Folklore"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2591",
+        "releaseDate": "April 1, 2001",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2591",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted bespoke raw candidate pass 1 processed this accepted candidate after manual boundary, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Snow-White and Rose-Red"
+      },
+      "stats": {
+        "originalCharacterCount": 15167,
+        "cleanedCharacterCount": 12729,
+        "wordCount": 2429,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "snow-white-and-rose-red/manifest.json"
+    },
+    {
+      "slug": "the-history-of-dwarf-long-nose",
+      "title": "The History of Dwarf Long Nose",
+      "author": [
+        "Andrew Lang"
+      ],
+      "contentVersion": "dde9087355dfada8",
+      "contentHash": "dde9087355dfada87e05d85fd6bfa216c94455b516c3e234e428650d4397bb8c",
+      "language": "en",
+      "description": "A fairy tale from The Violet Fairy Book about a cobbler's son transformed by enchantment and tested in a royal kitchen.",
+      "subjects": [
+        "Fairy tales",
+        "Children's literature",
+        "Folklore"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "641",
+        "releaseDate": "September 1, 1996",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted bespoke raw candidate pass 1 processed this accepted candidate after manual boundary, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The History of Dwarf Long Nose"
+      },
+      "stats": {
+        "originalCharacterCount": 39610,
+        "cleanedCharacterCount": 37795,
+        "wordCount": 7308,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-history-of-dwarf-long-nose/manifest.json"
     }
   ]
 }
