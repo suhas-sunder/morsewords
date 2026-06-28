@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "summarySet": "bespoke-raw-candidate-pass-2",
+  "summarySet": "sherlock-story-split-pass-1",
   "generatedAt": "2026-06-28",
   "storageApproach": "Separate static JSON data asset imported by book routes and validation tooling. Summaries are not embedded in generated book text, preview assets, raw sources, or Cloudflare export payloads.",
   "suggestedPilotSlugs": [
@@ -79,7 +79,7 @@
       "reason": "The Odyssey is not currently generated; The Arabian Nights keeps a long classic story-collection sample in the pilot."
     }
   ],
-  "expectedSummaryCount": 496,
+  "expectedSummaryCount": 502,
   "batch1Slugs": [
     "a-childs-garden-of-verses",
     "anna-karenina",
@@ -4639,6 +4639,60 @@
       ],
       "description": "Oscar Wilde's comic fairy tale about an extremely self-important rocket at a royal wedding.",
       "summary": "The Remarkable Rocket by Oscar Wilde is a comic fairy tale about a firework who is certain that everything must revolve around him. The story begins with a royal wedding and a planned fireworks display, then turns into a sequence of conversations among fireworks, animals, and the Rocket himself. His confidence is enormous, his misunderstandings are constant, and his grand speeches become funnier as the world refuses to treat him as important.\n\nFor MorseWords practice, this story is lively and dialogue-heavy. Learners get many short exchanges, exclamations, and repeated references to the Rocket, the prince, the princess, and the fireworks. Those repetitions help with recognition, while the comedy keeps the session from feeling mechanical. The story also includes varied punctuation and changing speakers, making it a useful bridge from simple prose into more expressive listening.\n\nThis is a good choice after easier fairy tales because it asks the learner to track tone as well as plot. The Rocket often misunderstands what others say, so careful listening matters. Short replies can be copied as quick drills, while the Rocket's longer speeches are useful for practicing stamina, word spacing, and sentence rhythm. The result is a playful but still structured text for Morse practice.\n\nThe setting also gives unusual vocabulary that does not appear in many adventure or school stories: fireworks, rockets, squibs, candles, cartridges, court, wedding, display, and sensation. That variety helps learners expand beyond familiar word patterns. The final comic turn is brief, making the whole story practical for a complete listening session or a set of shorter replay drills.\n\nBecause the Rocket talks so much, the story is especially useful for dialogue pacing. Learners can practice identifying the speaker changes, then replay the longer speeches to build confidence with sustained Morse audio and cleaner copy. It also gives punctuation practice without requiring a long commitment."
+    },
+    {
+      "slug": "a-scandal-in-bohemia",
+      "title": "A Scandal in Bohemia",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about Irene Adler, a royal secret, and a case that tests Holmes's assumptions.",
+      "summary": "A Scandal in Bohemia introduces one of the most famous Sherlock Holmes cases: a royal client, an incriminating photograph, and Irene Adler, whose intelligence unsettles Holmes's expectations. The story begins with Watson visiting Baker Street and quickly moves into a problem that requires disguise, observation, and careful reading of human behavior. Rather than a violent puzzle, the case turns on social strategy and the limits of Holmes's confidence.\n\nFor MorseWords practice, the story is useful because it mixes familiar narrative framing with lively dialogue and clear investigative stages. Learners hear recurring names such as Holmes, Watson, Adler, and the King, which create orientation points while the plot moves through interviews, disguises, and a staged scene. The sentences range from brisk exchanges to longer explanatory passages, giving learners a balanced practice text.\n\nThis story works well after shorter prose because it asks the listener to follow cause and effect across several scenes. A learner can begin with Watson's opening visit, then replay the client interview or the later street scene as separate practice blocks. The text also gives excellent punctuation practice: quotation marks, titles, formal address, and reported plans all appear often.\n\nBecause the mystery depends on what characters notice and infer, careful pacing matters. Slower Morse playback helps learners catch names, places, and repeated objects before increasing speed. The result is a compact detective story that feels complete while still offering enough variety for repeated listening, copying, and review sessions.\n\nIt is also a useful benchmark for recognizing proper nouns in Morse. The story repeats formal names, royal titles, street references, and ordinary objects in close succession, so learners can compare how familiar and unfamiliar words feel at the same speed. That makes it a practical text for building confidence with real literary sentences rather than isolated vocabulary drills. Short replays make progress easy to hear."
+    },
+    {
+      "slug": "the-red-headed-league",
+      "title": "The Red-Headed League",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a strange newspaper advertisement, an odd employment scheme, and a hidden crime.",
+      "summary": "The Red-Headed League is one of Arthur Conan Doyle's most playful Sherlock Holmes stories. A pawnbroker named Jabez Wilson comes to Holmes with a strange account of a well-paid job offered only to men with red hair. The oddity sounds comic at first, but Holmes sees that the ridiculous advertisement and daily copying work may be covering a much more practical scheme.\n\nFor MorseWords practice, this story gives learners strong anchors and a clear puzzle shape. The repeated phrases around the league, Wilson's red hair, the advertisement, and Holmes's questions make the opening easy to follow in Morse audio. The later investigation shifts into street observation and action, so the vocabulary changes without losing the listener.\n\nThe story is especially useful for practicing dialogue. Wilson's long explanation, Holmes's questions, and Watson's narration create a clean rhythm between quoted speech and descriptive prose. Learners can copy the client interview slowly, then use the shorter investigative scenes for faster review. The humor in the premise also makes the repeated listening less dry than a purely procedural text.\n\nBecause the mystery depends on connecting an absurd surface to a hidden plan, the story rewards careful attention to ordinary details. It is a good practice choice for learners who are ready to handle names, addresses, dates, money, and dialogue punctuation while still staying inside a compact, memorable plot.\n\nThe piece is also helpful for endurance because Wilson's statement is long but easy to visualize. A learner can replay the same explanation several times, first listening for the story, then copying the repeated business terms, and finally checking spacing around quotations and numbers. That layered approach turns a funny premise into a practical Morse review session. The comic setup keeps repetition fresh, even during careful accuracy passes. It also rewards comparing slow and normal-speed playback."
+    },
+    {
+      "slug": "a-case-of-identity",
+      "title": "A Case of Identity",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a missing bridegroom, family pressure, and a deception hidden in plain sight.",
+      "summary": "A Case of Identity follows Sherlock Holmes as he hears the story of Mary Sutherland, whose fiance vanished on the way to their wedding. The case appears emotional and domestic rather than dramatic, but Holmes treats the small details with the same seriousness he gives to larger crimes. The solution depends on letters, family motives, disguise, and the pressure placed on a young woman who wants control over her own life.\n\nFor MorseWords learners, this story is a useful listening bridge because it is driven by conversation. Mary Sutherland's account gives a sustained first-person explanation, while Holmes and Watson frame the problem through observation and inference. That structure helps learners practice long quoted passages, names, dates, and repeated family terms without the interruptions of a complicated action plot.\n\nThe story is also good for careful pacing. Several clues are ordinary words and objects: typewritten letters, spectacles, clothing, income, and a familiar household. In Morse audio, those repeated concrete details help the learner stay oriented while Holmes builds the case. A beginner can work through the client interview in smaller chunks, while a more confident listener can use the complete story for endurance practice.\n\nBecause the mystery is compact and mostly domestic, it rewards accuracy more than speed. Learners can replay the explanation to catch punctuation, speaker changes, and the formal language of letters and promises. It is a quiet but effective practice text for moving from short story listening into more nuanced detective prose.\n\nIt also makes a good contrast with the more action-heavy Sherlock stories. The listener practices attention to tone, hesitation, and reported facts instead of chase scenes. That slower texture is useful for Morse work because it highlights sentence endings, commas, and the rhythm of formal speech, all of which can disappear when learners focus only on individual letters."
+    },
+    {
+      "slug": "the-boscombe-valley-mystery",
+      "title": "The Boscombe Valley Mystery",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a murder investigation, disputed evidence, and hidden history in Boscombe Valley.",
+      "summary": "The Boscombe Valley Mystery sends Holmes and Watson away from Baker Street into a country murder case. A young man appears to have strong evidence against him after a quarrel with his father, but Holmes is not satisfied with the obvious reading of the facts. The story combines newspaper reports, local testimony, family history, and outdoor observation as Holmes looks for a pattern that explains more than the first accusation.\n\nFor MorseWords practice, this story offers a different rhythm from the drawing-room cases. It includes travel, landscape, legal suspicion, and witness statements, so learners hear a wider range of vocabulary while staying inside a single investigation. Names and places recur often enough to provide anchors, and the central question remains easy to remember.\n\nThe story is useful for practicing longer narrative passages. Watson's account includes summaries of evidence, descriptions of the countryside, and direct dialogue with people connected to the case. A learner can treat each scene as a separate practice segment, replaying the opening trip, the interview material, or Holmes's reasoning as confidence improves.\n\nBecause the mystery depends on comparing public evidence with private history, the text rewards patient listening. It is a good story for learners who want to practice sustained Morse audio without losing the thread of the case. The balance of action, explanation, and dialogue makes it suitable for both full-story listening and shorter copy drills.\n\nThe country setting also brings vocabulary that differs from the Baker Street stories: valleys, farms, roads, woods, police, evidence, and family relationships. That variety helps learners test whether they are recognizing full words or merely anticipating a familiar phrase. It is a solid choice for stepping from compact urban puzzles into a broader narrative environment. Scene-based replays work especially well here, especially for improving recall and confidence."
+    },
+    {
+      "slug": "the-five-orange-pips",
+      "title": "The Five Orange Pips",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a cryptic warning, inherited danger, and five orange pips.",
+      "summary": "The Five Orange Pips is a darker Sherlock Holmes story built around a small object that carries a frightening warning. A young client comes to Baker Street with a family history marked by strange letters, sudden deaths, and the repeated arrival of five orange pips. Holmes has to connect the symbol, the dates, and the hidden past before the danger reaches its next target.\n\nFor MorseWords learners, this story is strong practice because it combines suspense with clear recurring clues. The pips, letters, dates, family names, and places appear repeatedly, giving listeners familiar signals as the case develops. The atmosphere is more urgent than in some Holmes stories, which can help learners stay attentive through longer passages.\n\nThe text also gives useful practice with chronology. The client explains earlier events, Holmes organizes the clues, and the story moves from warning to action. In Morse audio, that sequence encourages careful listening for time words, names, and locations. A learner can replay the family-history section slowly, then use Holmes's later reasoning for a more confident copy pass.\n\nBecause the story has a compact structure and a memorable central symbol, it works well for repeat sessions. Learners can first follow the plot, then return to the same paragraphs to improve spacing, punctuation, and recognition speed. It is a good choice for anyone ready for a tense detective story that remains shorter than a full novel chapter sequence.\n\nThe repeated warning motif is especially useful for Morse review. Learners can listen for the same object and phrase as it returns in different contexts, then check whether the surrounding dates and locations were copied correctly. That makes the story good for practicing both recognition and short-term memory under a slightly more suspenseful narrative pace. The clear clue pattern supports focused review across several shorter sittings."
+    },
+    {
+      "slug": "the-man-with-the-twisted-lip",
+      "title": "The Man with the Twisted Lip",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a missing gentleman, a mysterious beggar, and an identity puzzle.",
+      "summary": "The Man with the Twisted Lip begins with Watson being drawn into a personal errand that unexpectedly leads back to Sherlock Holmes. A respectable man has vanished under strange circumstances, and the trail points toward a shabby room, an opium den, and a beggar whose appearance seems to hide more than it reveals. The case turns on identity, observation, and the difference between public appearance and private fact.\n\nFor MorseWords practice, this story is valuable because it has a strong sequence of scenes. Watson's opening errand, the surprise meeting with Holmes, the missing-person account, and the final explanation each provide natural practice blocks. Learners can work through one scene at a time or listen to the whole story for a longer detective session.\n\nThe vocabulary is varied but anchored by repeated names, places, and case details. Holmes, Watson, St. Clair, Boone, the window, the coat, and the room all return as clues, helping listeners stay oriented while the mystery develops. The story also includes sustained dialogue, descriptive passages, and formal explanation, so it supports both Morse listening and typing practice.\n\nBecause the solution depends on a hidden role rather than a complicated chain of action, the story rewards careful attention to detail. Slower playback can make the changes in speaker and setting easier to follow, while later replays can focus on cleaner word gaps, punctuation, and longer-sentence endurance.\n\nIt is also a useful story for practicing transitions between locations. The opening moves from a domestic request to a city errand and then into Holmes's investigation, so learners must follow setting changes without relying on chapter breaks. That makes the text a good intermediate step before longer mystery chapters with more characters and more frequent scene shifts. Its staged reveal rewards patient listening and deliberate replay across focused sessions."
     }
   ],
   "batch3Slugs": [
@@ -5047,5 +5101,13 @@
     "the-selfish-giant",
     "the-devoted-friend",
     "the-remarkable-rocket"
+  ],
+  "sherlockStorySplitPass1Slugs": [
+    "a-scandal-in-bohemia",
+    "the-red-headed-league",
+    "a-case-of-identity",
+    "the-boscombe-valley-mystery",
+    "the-five-orange-pips",
+    "the-man-with-the-twisted-lip"
   ]
 }

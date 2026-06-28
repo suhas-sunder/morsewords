@@ -5458,6 +5458,72 @@
       "previewCharacterCount": 1160,
       "estimatedRuntimeSeconds": 412,
       "truncated": true
+    },
+    {
+      "slug": "a-scandal-in-bohemia",
+      "path": "a-scandal-in-bohemia.preview.json",
+      "contentVersion": "7ca6d22b59cdc031",
+      "contentHash": "7ca6d22b59cdc0317daed377c59130b19523fce8572680f6534eabb114d82804",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1891,
+      "previewCharacterCount": 1151,
+      "estimatedRuntimeSeconds": 407,
+      "truncated": true
+    },
+    {
+      "slug": "the-red-headed-league",
+      "path": "the-red-headed-league.preview.json",
+      "contentVersion": "f0c2d31e1ddee4fe",
+      "contentHash": "f0c2d31e1ddee4fe93e5a4b66445764e6f28fefc703567cace5c56f581d25e63",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1614,
+      "previewCharacterCount": 854,
+      "estimatedRuntimeSeconds": 305,
+      "truncated": true
+    },
+    {
+      "slug": "a-case-of-identity",
+      "path": "a-case-of-identity.preview.json",
+      "contentVersion": "fdf08f16cfb14484",
+      "contentHash": "fdf08f16cfb14484b887b14c3f7c393dd822e77ca8bd9a61a2965ab22b8c6e05",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1747,
+      "previewCharacterCount": 992,
+      "estimatedRuntimeSeconds": 355,
+      "truncated": true
+    },
+    {
+      "slug": "the-boscombe-valley-mystery",
+      "path": "the-boscombe-valley-mystery.preview.json",
+      "contentVersion": "93de638c8c379495",
+      "contentHash": "93de638c8c379495f76ac0bf6102c0297ff462042c162b709bf1f4b3153b37e7",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1664,
+      "previewCharacterCount": 885,
+      "estimatedRuntimeSeconds": 322,
+      "truncated": true
+    },
+    {
+      "slug": "the-five-orange-pips",
+      "path": "the-five-orange-pips.preview.json",
+      "contentVersion": "a0087c65dec797cd",
+      "contentHash": "a0087c65dec797cd8338e72886991ac5d56600d54dfaa94d031428760d20d95a",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1792,
+      "previewCharacterCount": 1050,
+      "estimatedRuntimeSeconds": 375,
+      "truncated": true
+    },
+    {
+      "slug": "the-man-with-the-twisted-lip",
+      "path": "the-man-with-the-twisted-lip.preview.json",
+      "contentVersion": "fd579ee4ddd99e80",
+      "contentHash": "fd579ee4ddd99e8009305cc24bfb9abebae125246a01969b3af4047b68a7db61",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1862,
+      "previewCharacterCount": 1094,
+      "estimatedRuntimeSeconds": 394,
+      "truncated": true
     }
   ],
   "missing": []

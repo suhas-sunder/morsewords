@@ -44,6 +44,7 @@ type SeoSummaryData = {
   remainingRawCandidateCompletionSlugs?: string[];
   bespokeRawCandidatePass1Slugs?: string[];
   bespokeRawCandidatePass2Slugs?: string[];
+  sherlockStorySplitPass1Slugs?: string[];
   summaries: SeoSummaryRecord[];
 };
 
@@ -610,6 +611,10 @@ function selectedSlugsForActiveBatch(summaryData: SeoSummaryData) {
 
   if (summaryData.summarySet === "bespoke-raw-candidate-pass-2") {
     return summaryData.bespokeRawCandidatePass2Slugs ?? [];
+  }
+
+  if (summaryData.summarySet === "sherlock-story-split-pass-1") {
+    return summaryData.sherlockStorySplitPass1Slugs ?? [];
   }
 
   if (summaryData.summarySet === "poe-replacement-raw-reconciliation") {

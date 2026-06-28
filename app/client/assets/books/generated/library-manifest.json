@@ -24527,6 +24527,336 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-remarkable-rocket/manifest.json"
+    },
+    {
+      "slug": "a-scandal-in-bohemia",
+      "title": "A Scandal in Bohemia",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "7ca6d22b59cdc031",
+      "contentHash": "7ca6d22b59cdc0317daed377c59130b19523fce8572680f6534eabb114d82804",
+      "language": "en",
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about Irene Adler, a royal secret, and a case that tests Holmes's assumptions.",
+      "subjects": [
+        "Detective fiction",
+        "Short stories",
+        "Mystery fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1661",
+        "releaseDate": "March 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1661",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Sherlock story-split pass 1 processed this accepted story after manual collection-split, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Scandal in Bohemia"
+      },
+      "stats": {
+        "originalCharacterCount": 593909,
+        "cleanedCharacterCount": 46492,
+        "wordCount": 8581,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-scandal-in-bohemia/manifest.json"
+    },
+    {
+      "slug": "the-red-headed-league",
+      "title": "The Red-Headed League",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "f0c2d31e1ddee4fe",
+      "contentHash": "f0c2d31e1ddee4fe93e5a4b66445764e6f28fefc703567cace5c56f581d25e63",
+      "language": "en",
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a strange newspaper advertisement, an odd employment scheme, and a hidden crime.",
+      "subjects": [
+        "Detective fiction",
+        "Short stories",
+        "Mystery fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1661",
+        "releaseDate": "March 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1661",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Sherlock story-split pass 1 processed this accepted story after manual collection-split, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Red-Headed League"
+      },
+      "stats": {
+        "originalCharacterCount": 593909,
+        "cleanedCharacterCount": 49227,
+        "wordCount": 9197,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-red-headed-league/manifest.json"
+    },
+    {
+      "slug": "a-case-of-identity",
+      "title": "A Case of Identity",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "fdf08f16cfb14484",
+      "contentHash": "fdf08f16cfb14484b887b14c3f7c393dd822e77ca8bd9a61a2965ab22b8c6e05",
+      "language": "en",
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a missing bridegroom, family pressure, and a deception hidden in plain sight.",
+      "subjects": [
+        "Detective fiction",
+        "Short stories",
+        "Mystery fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1661",
+        "releaseDate": "March 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1661",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Sherlock story-split pass 1 processed this accepted story after manual collection-split, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Case of Identity"
+      },
+      "stats": {
+        "originalCharacterCount": 593909,
+        "cleanedCharacterCount": 37890,
+        "wordCount": 7037,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-case-of-identity/manifest.json"
+    },
+    {
+      "slug": "the-boscombe-valley-mystery",
+      "title": "The Boscombe Valley Mystery",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "93de638c8c379495",
+      "contentHash": "93de638c8c379495f76ac0bf6102c0297ff462042c162b709bf1f4b3153b37e7",
+      "language": "en",
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a murder investigation, disputed evidence, and hidden history in Boscombe Valley.",
+      "subjects": [
+        "Detective fiction",
+        "Short stories",
+        "Mystery fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1661",
+        "releaseDate": "March 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1661",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Sherlock story-split pass 1 processed this accepted story after manual collection-split, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Boscombe Valley Mystery"
+      },
+      "stats": {
+        "originalCharacterCount": 593909,
+        "cleanedCharacterCount": 51319,
+        "wordCount": 9663,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-boscombe-valley-mystery/manifest.json"
+    },
+    {
+      "slug": "the-five-orange-pips",
+      "title": "The Five Orange Pips",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "a0087c65dec797cd",
+      "contentHash": "a0087c65dec797cd8338e72886991ac5d56600d54dfaa94d031428760d20d95a",
+      "language": "en",
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a cryptic warning, inherited danger, and five orange pips.",
+      "subjects": [
+        "Detective fiction",
+        "Short stories",
+        "Mystery fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1661",
+        "releaseDate": "March 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1661",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Sherlock story-split pass 1 processed this accepted story after manual collection-split, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Five Orange Pips"
+      },
+      "stats": {
+        "originalCharacterCount": 593909,
+        "cleanedCharacterCount": 39418,
+        "wordCount": 7355,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-five-orange-pips/manifest.json"
+    },
+    {
+      "slug": "the-man-with-the-twisted-lip",
+      "title": "The Man with the Twisted Lip",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "fd579ee4ddd99e80",
+      "contentHash": "fd579ee4ddd99e8009305cc24bfb9abebae125246a01969b3af4047b68a7db61",
+      "language": "en",
+      "description": "Arthur Conan Doyle's Sherlock Holmes story about a missing gentleman, a mysterious beggar, and an identity puzzle.",
+      "subjects": [
+        "Detective fiction",
+        "Short stories",
+        "Mystery fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1661",
+        "releaseDate": "March 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1661",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Sherlock story-split pass 1 processed this accepted story after manual collection-split, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Man with the Twisted Lip"
+      },
+      "stats": {
+        "originalCharacterCount": 593909,
+        "cleanedCharacterCount": 49125,
+        "wordCount": 9271,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-man-with-the-twisted-lip/manifest.json"
     }
   ]
 }

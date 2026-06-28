@@ -38,6 +38,7 @@ const THE_EMERALD_CITY_OF_OZ_SLUG = "the-emerald-city-of-oz";
 const NEWLY_SUMMARIZED_BOOK_SLUG = "the-new-accelerator";
 const BESPOKE_PASS_1_BOOK_SLUG = "five-little-friends";
 const BESPOKE_PASS_2_BOOK_SLUG = "the-happy-prince";
+const SHERLOCK_PASS_1_BOOK_SLUG = "a-scandal-in-bohemia";
 const REQUIRED_STORY_TITLES = {
   "the-dream-of-little-tuk": "The Dream of Little Tuk",
   "the-false-collar": "The False Collar",
@@ -101,6 +102,8 @@ const STARTER_PREVIEW_FIRST_RENDER_PATHS = [
   `/morse-code-audiobooks/${BESPOKE_PASS_1_BOOK_SLUG}`,
   `/morse-code-books/${BESPOKE_PASS_2_BOOK_SLUG}`,
   `/morse-code-audiobooks/${BESPOKE_PASS_2_BOOK_SLUG}`,
+  `/morse-code-books/${SHERLOCK_PASS_1_BOOK_SLUG}`,
+  `/morse-code-audiobooks/${SHERLOCK_PASS_1_BOOK_SLUG}`,
 ] as const;
 const SOURCE_RISK_REMOVED_BOOK_SLUGS = [
   "a-princess-of-mars",
@@ -1942,6 +1945,9 @@ test.describe("Morse book page foundation", () => {
       await expect(page.locator("[data-mw-morse-book-section-skeleton]")).toHaveCount(4);
       await expect(page.getByTestId("morse-book-download-audiobook-link")).toBeVisible();
       await expect(page.locator("#book-mp3-download")).toBeVisible();
+      await expect
+        .poll(() => fullBookRequests.length, { timeout: 15_000 })
+        .toBe(1);
       const previewSavedRuntimeSettings = await page.evaluate(
         ({ prefix, slug }) =>
           Object.entries(localStorage)
