@@ -98,6 +98,7 @@ const TEST_BOOK_RUNTIME_SETTINGS_KEY =
 const BOOK_RUNTIME_SETTINGS_KEY_PREFIX =
   "morsewords:book-runtime:settings:v1:";
 const BOOK_WORKSPACE_TIMEOUT_MS = 90_000;
+const EXPECTED_GENERATED_BOOK_COUNT = 488;
 const TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY =
   "morsewords:book-live-preview-progress:v1:test-published-morse-book";
 const TEST_BOOK_DEFAULT_SECTION_IDS = ["chapter-001", "chapter-002"] as const;
@@ -843,15 +844,15 @@ test.describe("Morse book page foundation", () => {
       summaries: Array<{ slug: string; title: string }>;
     }>("app/client/assets/books/seo-summaries/book-seo-summaries.json");
 
-    expect(library.books).toHaveLength(465);
+    expect(library.books).toHaveLength(EXPECTED_GENERATED_BOOK_COUNT);
     for (const [slug, title] of Object.entries(REQUIRED_STORY_TITLES)) {
       expect(library.books.find((book) => book.slug === slug)?.title).toBe(title);
       const summary = seo.summaries.find((item) => item.slug === slug);
       if (summary) expect(summary.title).toBe(title);
     }
 
-    expect(seo.summaries).toHaveLength(465);
-    expect(seo.expectedSummaryCount).toBe(465);
+    expect(seo.summaries).toHaveLength(EXPECTED_GENERATED_BOOK_COUNT);
+    expect(seo.expectedSummaryCount).toBe(EXPECTED_GENERATED_BOOK_COUNT);
     expect(
       library.books.find((book) => book.slug === "for-the-duration-of-the-war")
         ?.title,
@@ -886,7 +887,7 @@ test.describe("Morse book page foundation", () => {
     await waitForRouteReady(page);
     await expect(page.getByTestId("morse-books-browser")).toBeVisible();
     await expect(page.getByTestId("morse-books-result-count")).toHaveText(
-      "Showing 1-12 of 465 books",
+      `Showing 1-12 of ${EXPECTED_GENERATED_BOOK_COUNT} books`,
     );
     const bookSearch = page.getByLabel(
       "Search title, author, description, or subject",
@@ -912,7 +913,7 @@ test.describe("Morse book page foundation", () => {
     await waitForRouteReady(page);
     await expect(page.getByTestId("morse-audiobooks-browser")).toBeVisible();
     await expect(page.getByTestId("morse-audiobooks-result-count")).toHaveText(
-      "Showing 1-12 of 465 audiobooks",
+      `Showing 1-12 of ${EXPECTED_GENERATED_BOOK_COUNT} audiobooks`,
     );
     const audiobookSearch = page.getByLabel(
       "Search Morse audiobooks by title, author, source, or subject",
@@ -1063,10 +1064,13 @@ test.describe("Morse book page foundation", () => {
       page.locator('a[href^="/morse-code-audiobooks/"]'),
     ).toHaveCount(0);
     const bookDirectory = page.getByTestId("morse-book-complete-directory");
-    await expect(bookDirectory).toHaveAttribute("data-mw-directory-count", "465");
+    await expect(bookDirectory).toHaveAttribute(
+      "data-mw-directory-count",
+      String(EXPECTED_GENERATED_BOOK_COUNT),
+    );
     await expect(
       bookDirectory.locator('a[data-mw-directory-slug]'),
-    ).toHaveCount(465);
+    ).toHaveCount(EXPECTED_GENERATED_BOOK_COUNT);
 
     await page.goto("/morse-code-audiobooks", {
       waitUntil: "load",
@@ -1088,11 +1092,11 @@ test.describe("Morse book page foundation", () => {
     );
     await expect(audiobookDirectory).toHaveAttribute(
       "data-mw-directory-count",
-      "465",
+      String(EXPECTED_GENERATED_BOOK_COUNT),
     );
     await expect(
       audiobookDirectory.locator('a[data-mw-directory-slug]'),
-    ).toHaveCount(465);
+    ).toHaveCount(EXPECTED_GENERATED_BOOK_COUNT);
 
     await page.goto("/", { waitUntil: "load" });
     await waitForRouteReady(page);
@@ -2184,9 +2188,31 @@ test.describe("Morse book page foundation", () => {
     expect(bookJsonRequests).toHaveLength(1);
   });
 
-  test("shows a readable retry state when book JSON fetch fails or is malformed", async ({
+  test("keeps the starter preview readable when book JSON fetch fails or is malformed", async ({
     page,
   }) => {
+    const expectStarterPreviewFallback = async () => {
+      await waitForApprovedBookWorkspace(page);
+      await expect(page.locator("[data-testid='morse-book-load-error']")).toHaveCount(
+        0,
+      );
+      await expect(page.locator("[data-mw-morse-book-page]")).toHaveAttribute(
+        "data-mw-morse-book-preview-state",
+        "ready",
+      );
+      await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
+      await expect(page.locator("[data-mw-morse-book-section-row]")).not.toHaveCount(0);
+      const sourcePreview = page.locator("[data-mw-morse-book-source-preview]");
+      await expect(sourcePreview).toBeVisible();
+      const previewText = normalizedPreviewText(
+        (await sourcePreview.textContent()) ?? "",
+      );
+      expect(previewText.length).toBeGreaterThan(200);
+      await expect(page.getByText(/approved text file|approved book JSON/i)).toHaveCount(
+        0,
+      );
+    };
+
     let fail = true;
     await blockExternalNetwork(page);
     await page.route(bookJsonPattern(ERROR_BOOK_SLUG), async (route) => {
@@ -2218,17 +2244,10 @@ test.describe("Morse book page foundation", () => {
     ).toContainText(
       /Loading book text|Fetching book data|Preparing chapters|Restoring saved settings|Loading full book sections/,
     );
-    await expect(page.locator("[data-testid='morse-book-load-error']")).toBeVisible({
-      timeout: 30_000,
-    });
-    await expect(
-      page
-        .locator("[data-testid='morse-book-load-error']")
-        .getByText("We could not load this Morse book."),
-    ).toBeVisible();
-    await expect(page.getByText(/approved text file|approved book JSON/i)).toHaveCount(0);
+    await expectStarterPreviewFallback();
+
     fail = false;
-    await page.getByRole("button", { name: "Retry" }).click();
+    await page.reload({ waitUntil: "domcontentloaded" });
     await waitForApprovedBookWorkspace(page);
 
     await page.evaluate(() => localStorage.clear());
@@ -2241,10 +2260,7 @@ test.describe("Morse book page foundation", () => {
       });
     });
     await page.goto(ERROR_BOOK_PUBLIC_PATH, { waitUntil: "domcontentloaded" });
-    await expect(page.locator("[data-testid='morse-book-load-error']")).toBeVisible({
-      timeout: 30_000,
-    });
-    await expect(page.getByRole("button", { name: "Retry" })).toBeVisible();
+    await expectStarterPreviewFallback();
   });
 
   test("renders approved book selector labels without detector artifacts", async ({

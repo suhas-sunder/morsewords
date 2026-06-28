@@ -697,65 +697,71 @@ export default function MorseBookPage({
       message: "",
     });
 
-    if (mode === "book") {
-      getMorseBookPreviewRuntimeContent(bookSummary).then((previewContent) => {
-        if (cancelled || fullContentReady || !previewContent) return;
-        setRuntimeState({
-          book: previewContent.book,
-          fullBookLoading: true,
-          initialSection: previewContent.initialSection,
-          status: "preview",
-          message: "",
-        });
+    const showPreviewContent = (
+      previewContent: Awaited<ReturnType<typeof getMorseBookPreviewRuntimeContent>>,
+      fullBookLoading: boolean,
+    ) => {
+      if (!previewContent) return;
+      setRuntimeState({
+        book: previewContent.book,
+        fullBookLoading,
+        initialSection: previewContent.initialSection,
+        status: "preview",
+        message: "",
       });
-    }
+    };
 
-    getMorseBookPublicContent(bookSummary.slug)
-      .then((content) => {
+    const previewContentPromise =
+      mode === "book"
+        ? getMorseBookPreviewRuntimeContent(bookSummary).catch(() => null)
+        : Promise.resolve(null);
+
+    previewContentPromise.then((previewContent) => {
+      if (cancelled || fullContentReady || !previewContent) return;
+      showPreviewContent(previewContent, true);
+    });
+
+    const loadPublicContent = async () => {
+      let publicContentError = false;
+      let content: Awaited<ReturnType<typeof getMorseBookPublicContent>> | null =
+        null;
+      try {
+        content = await getMorseBookPublicContent(bookSummary.slug);
+      } catch {
+        publicContentError = true;
+      }
+
+      if (cancelled) return;
+      fullContentReady = true;
+      if (!content) {
+        const previewContent = await previewContentPromise;
         if (cancelled) return;
-        fullContentReady = true;
-        if (!content) {
-          setRuntimeState({
-            book: null,
-            fullBookLoading: false,
-            initialSection: null,
-            status: "error",
-            message:
-              mode === "audiobook"
-                ? "This Morse audiobook is not available right now."
-                : "This Morse book is not available right now.",
-          });
-          return;
-        }
-        const sectionId = getDefaultMorseBookSectionId(content.manifest);
-        const firstSection =
-          content.sections.find((section) => section.sectionId === sectionId) ??
-          content.sections[0] ??
-          null;
-        if (!sectionId || !firstSection) {
-          setRuntimeState({
-            book: null,
-            fullBookLoading: false,
-            initialSection: null,
-            status: "error",
-            message:
-              mode === "audiobook"
-                ? "This Morse audiobook is missing readable sections."
-                : "This Morse book is missing readable sections.",
-          });
+        if (mode === "book" && previewContent) {
+          showPreviewContent(previewContent, false);
           return;
         }
         setRuntimeState({
-          book: content.manifest,
+          book: null,
           fullBookLoading: false,
-          initialSection: firstSection,
-          status: "ready",
-          message: "",
+          initialSection: null,
+          status: "error",
+          message: publicContentError
+            ? mode === "audiobook"
+              ? "We could not load this Morse audiobook. Check your connection and try again."
+              : "We could not load this Morse book. Check your connection and try again."
+            : mode === "audiobook"
+              ? "This Morse audiobook is not available right now."
+              : "This Morse book is not available right now.",
         });
-      })
-      .catch(() => {
-        if (cancelled) return;
-        fullContentReady = true;
+        return;
+      }
+
+      const sectionId = getDefaultMorseBookSectionId(content.manifest);
+      const firstSection =
+        content.sections.find((section) => section.sectionId === sectionId) ??
+        content.sections[0] ??
+        null;
+      if (!sectionId || !firstSection) {
         setRuntimeState({
           book: null,
           fullBookLoading: false,
@@ -763,10 +769,21 @@ export default function MorseBookPage({
           status: "error",
           message:
             mode === "audiobook"
-              ? "We could not load this Morse audiobook. Check your connection and try again."
-              : "We could not load this Morse book. Check your connection and try again.",
+              ? "This Morse audiobook is missing readable sections."
+              : "This Morse book is missing readable sections.",
         });
+        return;
+      }
+      setRuntimeState({
+        book: content.manifest,
+        fullBookLoading: false,
+        initialSection: firstSection,
+        status: "ready",
+        message: "",
       });
+    };
+
+    void loadPublicContent();
 
     return () => {
       cancelled = true;

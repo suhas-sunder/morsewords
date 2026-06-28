@@ -22797,6 +22797,1259 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-whisperer-in-darkness/manifest.json"
+    },
+    {
+      "slug": "a-descent-into-the-maelstrom",
+      "title": "A Descent into the Maelstrom",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "93a90a23a49247c2",
+      "contentHash": "93a90a23a49247c24a5e89168371b3764e68c705bbee8c580b6ab8545c5d4662",
+      "language": "en",
+      "description": "A sea adventure framed as a survivor's account of terror, observation, and a gigantic whirlpool.",
+      "subjects": [
+        "Adventure",
+        "Sea story",
+        "Gothic fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for A Descent into the Maelstrom"
+      },
+      "stats": {
+        "originalCharacterCount": 42774,
+        "cleanedCharacterCount": 41747,
+        "wordCount": 7054,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "a-descent-into-the-maelstrom/manifest.json"
+    },
+    {
+      "slug": "berenice",
+      "title": "Berenice",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "a276e2a7861bd606",
+      "contentHash": "a276e2a7861bd606fa8828dd003f0d57abd351fc0ac4dfdb295fba94ceb8b951",
+      "language": "en",
+      "description": "A dark Gothic tale of memory, illness, obsession, and a narrator whose attention narrows dangerously.",
+      "subjects": [
+        "Gothic fiction",
+        "Psychological horror"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Berenice"
+      },
+      "stats": {
+        "originalCharacterCount": 20910,
+        "cleanedCharacterCount": 20273,
+        "wordCount": 3220,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "berenice/manifest.json"
+    },
+    {
+      "slug": "hop-frog",
+      "title": "Hop-Frog",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "d7bade92d1993959",
+      "contentHash": "d7bade92d19939590f5cd5612fc1a60a3844321db5fbcc06004e3cb2888e3109",
+      "language": "en",
+      "description": "A bitter court tale about a jester, a cruel king, and a masquerade charged with revenge.",
+      "subjects": [
+        "Gothic fiction",
+        "Revenge tale",
+        "Court fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Hop-Frog"
+      },
+      "stats": {
+        "originalCharacterCount": 23677,
+        "cleanedCharacterCount": 22641,
+        "wordCount": 3621,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "hop-frog/manifest.json"
+    },
+    {
+      "slug": "ligeia",
+      "title": "Ligeia",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "8bf12ca428197ac6",
+      "contentHash": "8bf12ca428197ac6df92d1eb3bc9d7406dd336a68c2ab38fe71f641971cffe10",
+      "language": "en",
+      "description": "A lush Gothic meditation on memory, will, mourning, and an elusive woman who dominates the narrator's imagination.",
+      "subjects": [
+        "Gothic fiction",
+        "Psychological horror"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Ligeia"
+      },
+      "stats": {
+        "originalCharacterCount": 39089,
+        "cleanedCharacterCount": 38169,
+        "wordCount": 6174,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "ligeia/manifest.json"
+    },
+    {
+      "slug": "morella",
+      "title": "Morella",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "40d1d83e9a1cbbe8",
+      "contentHash": "40d1d83e9a1cbbe8af9c3efe2421d2ff978db93393a815eb71eaca3d2d317fa0",
+      "language": "en",
+      "description": "A compact Gothic story about learning, identity, dread, and a marriage shadowed by metaphysical unease.",
+      "subjects": [
+        "Gothic fiction",
+        "Philosophical fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Morella"
+      },
+      "stats": {
+        "originalCharacterCount": 13494,
+        "cleanedCharacterCount": 12967,
+        "wordCount": 2133,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "morella/manifest.json"
+    },
+    {
+      "slug": "ms-found-in-a-bottle",
+      "title": "MS. Found in a Bottle",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "f1c50fe2ba76af33",
+      "contentHash": "f1c50fe2ba76af33d5a2a508d00aacccb439509b42341d662ab9b5166721cae4",
+      "language": "en",
+      "description": "A maritime Gothic adventure told as a manuscript from a narrator drawn into uncanny seas.",
+      "subjects": [
+        "Sea story",
+        "Gothic fiction",
+        "Adventure"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for MS. Found in a Bottle"
+      },
+      "stats": {
+        "originalCharacterCount": 26617,
+        "cleanedCharacterCount": 25857,
+        "wordCount": 4191,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "ms-found-in-a-bottle/manifest.json"
+    },
+    {
+      "slug": "some-words-with-a-mummy",
+      "title": "Some Words with a Mummy",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "f6cbd7749d8d4fe6",
+      "contentHash": "f6cbd7749d8d4fe610dbc6d222daca6a69e5ec26a540ae37652890cf8696a24d",
+      "language": "en",
+      "description": "A comic speculative tale in which modern certainty meets an ancient voice with dry, deflating wit.",
+      "subjects": [
+        "Satire",
+        "Speculative fiction",
+        "Comic fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Some Words with a Mummy"
+      },
+      "stats": {
+        "originalCharacterCount": 41204,
+        "cleanedCharacterCount": 39609,
+        "wordCount": 6301,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "some-words-with-a-mummy/manifest.json"
+    },
+    {
+      "slug": "the-black-cat",
+      "title": "The Black Cat",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "4be9d809c19dc33c",
+      "contentHash": "4be9d809c19dc33c8930aadb4f654dc056f652b3533349bb8322bb8cb431aabd",
+      "language": "en",
+      "description": "A grim psychological horror story about confession, cruelty, guilt, and a narrator losing moral control.",
+      "subjects": [
+        "Psychological horror",
+        "Gothic fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Black Cat"
+      },
+      "stats": {
+        "originalCharacterCount": 24506,
+        "cleanedCharacterCount": 23800,
+        "wordCount": 3920,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-black-cat/manifest.json"
+    },
+    {
+      "slug": "the-cask-of-amontillado",
+      "title": "The Cask of Amontillado",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "1ecc1c3db102231e",
+      "contentHash": "1ecc1c3db102231eb777c6d8904b7498ed5f4fd43879256094c26f8b5d1c0005",
+      "language": "en",
+      "description": "A compact revenge tale set in carnival season and the dark passages below a noble house.",
+      "subjects": [
+        "Gothic fiction",
+        "Revenge tale"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Cask of Amontillado"
+      },
+      "stats": {
+        "originalCharacterCount": 15001,
+        "cleanedCharacterCount": 14328,
+        "wordCount": 2334,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-cask-of-amontillado/manifest.json"
+    },
+    {
+      "slug": "the-facts-in-the-case-of-m-valdemar",
+      "title": "The Facts in the Case of M. Valdemar",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "e355395b9843dff4",
+      "contentHash": "e355395b9843dff43db90554c2c951a08846811fe4adc1ac2a5705a6f7586fd1",
+      "language": "en",
+      "description": "A clinical Gothic tale about mesmerism, experiment, illness, and the limits of observation.",
+      "subjects": [
+        "Gothic fiction",
+        "Science fiction",
+        "Psychological horror"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Facts in the Case of M. Valdemar"
+      },
+      "stats": {
+        "originalCharacterCount": 23284,
+        "cleanedCharacterCount": 22515,
+        "wordCount": 3555,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-facts-in-the-case-of-m-valdemar/manifest.json"
+    },
+    {
+      "slug": "the-fall-of-the-house-of-usher",
+      "title": "The Fall of the House of Usher",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "2e995a31ddc64a4b",
+      "contentHash": "2e995a31ddc64a4b1f0757d95e56a2cbf457f5d332b2dc7b76f39ae016bfee95",
+      "language": "en",
+      "description": "A major Gothic tale of an isolated mansion, a troubled family, and a visitor drawn into dread.",
+      "subjects": [
+        "Gothic fiction",
+        "Psychological horror"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Fall of the House of Usher"
+      },
+      "stats": {
+        "originalCharacterCount": 46719,
+        "cleanedCharacterCount": 45610,
+        "wordCount": 7174,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-fall-of-the-house-of-usher/manifest.json"
+    },
+    {
+      "slug": "the-man-of-the-crowd",
+      "title": "The Man of the Crowd",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "7ef6377314642df0",
+      "contentHash": "7ef6377314642df005591cb7ef6a79ce69bdc2322efa6f0cb4dadc91aa6373e9",
+      "language": "en",
+      "description": "An urban mystery of observation, anonymity, and pursuit through crowded London streets.",
+      "subjects": [
+        "Mystery",
+        "Urban fiction",
+        "Psychological fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Man of the Crowd"
+      },
+      "stats": {
+        "originalCharacterCount": 22998,
+        "cleanedCharacterCount": 22255,
+        "wordCount": 3531,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-man-of-the-crowd/manifest.json"
+    },
+    {
+      "slug": "the-murders-in-the-rue-morgue",
+      "title": "The Murders in the Rue Morgue",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "e0e38ab159825312",
+      "contentHash": "e0e38ab1598253125e63ec14c9f86aca7981176bcce8ed6a2a46ee9350a740c4",
+      "language": "en",
+      "description": "A landmark detective story featuring C. Auguste Dupin, Paris, and an apparently impossible crime.",
+      "subjects": [
+        "Detective fiction",
+        "Mystery",
+        "Crime fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Murders in the Rue Morgue"
+      },
+      "stats": {
+        "originalCharacterCount": 88608,
+        "cleanedCharacterCount": 86826,
+        "wordCount": 13871,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-murders-in-the-rue-morgue/manifest.json"
+    },
+    {
+      "slug": "the-oblong-box",
+      "title": "The Oblong Box",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "09a8cc692f832be6",
+      "contentHash": "09a8cc692f832be6e420c424055ac760bcea40ae29f86200d511e4c9f7acdcc3",
+      "language": "en",
+      "description": "A sea-voyage mystery about secrecy, suspicion, and an oddly shaped object aboard ship.",
+      "subjects": [
+        "Mystery",
+        "Sea story",
+        "Gothic fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Oblong Box"
+      },
+      "stats": {
+        "originalCharacterCount": 28897,
+        "cleanedCharacterCount": 28094,
+        "wordCount": 4576,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-oblong-box/manifest.json"
+    },
+    {
+      "slug": "the-oval-portrait",
+      "title": "The Oval Portrait",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "c0745422e68dddaa",
+      "contentHash": "c0745422e68dddaa9142780abf3e6c1ec5b10433c9cf31fd33108bcb57f32dd7",
+      "language": "en",
+      "description": "A very short Gothic tale about art, obsession, a wounded traveler, and a haunting portrait.",
+      "subjects": [
+        "Gothic fiction",
+        "Art fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Oval Portrait"
+      },
+      "stats": {
+        "originalCharacterCount": 8276,
+        "cleanedCharacterCount": 7822,
+        "wordCount": 1291,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-oval-portrait/manifest.json"
+    },
+    {
+      "slug": "the-pit-and-the-pendulum",
+      "title": "The Pit and the Pendulum",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "763e95c778bc644a",
+      "contentHash": "763e95c778bc644a1a3293b45e88f6b6c1a1e1f40b8012faa4cb57b74e2726ed",
+      "language": "en",
+      "description": "A suspenseful Gothic tale of imprisonment, sensory fear, and a prisoner measuring danger in darkness.",
+      "subjects": [
+        "Gothic fiction",
+        "Suspense",
+        "Psychological horror"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Pit and the Pendulum"
+      },
+      "stats": {
+        "originalCharacterCount": 37900,
+        "cleanedCharacterCount": 36967,
+        "wordCount": 6103,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-pit-and-the-pendulum/manifest.json"
+    },
+    {
+      "slug": "the-premature-burial",
+      "title": "The Premature Burial",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "c7208679989858fa",
+      "contentHash": "c7208679989858fa78e7378a64a645847ad552fe8171c90d96da76df406aae69",
+      "language": "en",
+      "description": "A Gothic meditation on fear, medical uncertainty, and the terror of being mistaken for dead.",
+      "subjects": [
+        "Gothic fiction",
+        "Psychological horror"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Premature Burial"
+      },
+      "stats": {
+        "originalCharacterCount": 35856,
+        "cleanedCharacterCount": 34944,
+        "wordCount": 5461,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-premature-burial/manifest.json"
+    },
+    {
+      "slug": "the-purloined-letter",
+      "title": "The Purloined Letter",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "d92daef2707316e8",
+      "contentHash": "d92daef2707316e84423c6b8034cda0b540974413aecd2eca6e04fbc89d0f69e",
+      "language": "en",
+      "description": "A Dupin detective story about a stolen letter, political leverage, and the art of seeing what others miss.",
+      "subjects": [
+        "Detective fiction",
+        "Mystery"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Purloined Letter"
+      },
+      "stats": {
+        "originalCharacterCount": 45743,
+        "cleanedCharacterCount": 44598,
+        "wordCount": 7071,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-purloined-letter/manifest.json"
+    },
+    {
+      "slug": "the-sphinx",
+      "title": "The Sphinx",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "d5a3ef5602a2997e",
+      "contentHash": "d5a3ef5602a2997e851f115859eaa8cd59ef525bb7c55670218b3a62846928e2",
+      "language": "en",
+      "description": "A brief tale of perception, fear, and scale set during a cholera-haunted retreat outside New York.",
+      "subjects": [
+        "Psychological fiction",
+        "Gothic fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Sphinx"
+      },
+      "stats": {
+        "originalCharacterCount": 11853,
+        "cleanedCharacterCount": 11295,
+        "wordCount": 1848,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-sphinx/manifest.json"
+    },
+    {
+      "slug": "the-system-of-doctor-tarr-and-professor-fether",
+      "title": "The System of Doctor Tarr and Professor Fether",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "48afd5b2b015791b",
+      "contentHash": "48afd5b2b015791b9a44a07e1ece899b41c5d627efa078d517742e00c0c314f8",
+      "language": "en",
+      "description": "A darkly comic asylum tale about order, authority, performance, and a visitor's uneasy tour.",
+      "subjects": [
+        "Satire",
+        "Gothic fiction",
+        "Comic fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The System of Doctor Tarr and Professor Fether"
+      },
+      "stats": {
+        "originalCharacterCount": 44117,
+        "cleanedCharacterCount": 42931,
+        "wordCount": 6879,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-system-of-doctor-tarr-and-professor-fether/manifest.json"
+    },
+    {
+      "slug": "the-tell-tale-heart",
+      "title": "The Tell-Tale Heart",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "5799eb3e7d4567c5",
+      "contentHash": "5799eb3e7d4567c5e29e404e52b45bb68e674a78c01b01ffc872cdb79d7196c4",
+      "language": "en",
+      "description": "A famous psychological horror confession driven by nervous voice, guilt, and unbearable sound.",
+      "subjects": [
+        "Psychological horror",
+        "Gothic fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Tell-Tale Heart"
+      },
+      "stats": {
+        "originalCharacterCount": 12794,
+        "cleanedCharacterCount": 12256,
+        "wordCount": 2154,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-tell-tale-heart/manifest.json"
+    },
+    {
+      "slug": "thou-art-the-man",
+      "title": "Thou Art the Man",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "96b8655a3e30ff1f",
+      "contentHash": "96b8655a3e30ff1f1c1fe91cd2c22731f0b359906b5519ca7399276254f5cd9a",
+      "language": "en",
+      "description": "A mystery tale of a small town, a vanished man, suspicion, and a narrator unraveling appearances.",
+      "subjects": [
+        "Mystery",
+        "Crime fiction",
+        "Satire"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Thou Art the Man"
+      },
+      "stats": {
+        "originalCharacterCount": 37453,
+        "cleanedCharacterCount": 36406,
+        "wordCount": 5834,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "thou-art-the-man/manifest.json"
+    },
+    {
+      "slug": "william-wilson",
+      "title": "William Wilson",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "contentVersion": "6fbed0f88ac18901",
+      "contentHash": "6fbed0f88ac18901be407c1131578d01210ca1e65ef6ea86a7b28e8e4c1395b7",
+      "language": "en",
+      "description": "A Gothic double story about conscience, identity, rivalry, and a narrator pursued by his own name.",
+      "subjects": [
+        "Gothic fiction",
+        "Psychological fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "25525",
+        "releaseDate": "May 19, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted Poe replacement reconciliation processed this individual story from the audited raw text. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual Poe story extracted from the current replacement source set; multiple accepted Poe story pages share Project Gutenberg ebook #25525 by design."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for William Wilson"
+      },
+      "stats": {
+        "originalCharacterCount": 51841,
+        "cleanedCharacterCount": 50704,
+        "wordCount": 8036,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "william-wilson/manifest.json"
     }
   ]
 }

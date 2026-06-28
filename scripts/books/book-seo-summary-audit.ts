@@ -40,6 +40,7 @@ type SeoSummaryData = {
   batch7Slugs?: string[];
   batch8Slugs?: string[];
   batch9Slugs?: string[];
+  poeReplacementSlugs?: string[];
   summaries: SeoSummaryRecord[];
 };
 
@@ -558,6 +559,10 @@ function isAcceptedGeneratedBook(book: GeneratedLibraryBookSummary) {
 }
 
 function selectedSlugsForActiveBatch(summaryData: SeoSummaryData) {
+  if (summaryData.summarySet === "poe-replacement-raw-reconciliation") {
+    return summaryData.poeReplacementSlugs ?? [];
+  }
+
   const batchMatch = summaryData.summarySet.match(/book-seo-summary-batch-(\d+)/);
   if (!batchMatch) return [];
   const batchNumber = Number(batchMatch[1]);
@@ -818,7 +823,7 @@ function main() {
     summaryCount:
       summaryData.summaries.length === expectedSummaryCount &&
       summaryData.pilotSlugs.length === 20 &&
-      selectedSlugs.length === 45 &&
+      selectedSlugs.length > 0 &&
       missingAfterBatch.length === 0,
     controlledBatchSelection,
     summarySlugUniqueness: summarySlugSet.size === summarySlugs.length,

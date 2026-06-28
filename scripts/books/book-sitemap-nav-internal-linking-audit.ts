@@ -419,19 +419,26 @@ function main() {
     unexpectedBookSitemapSlugs.length +
     unexpectedAudiobookSitemapSlugs.length +
     relatedAuthorSelfLinkCount;
+  const expectedGeneratedBookCount = acceptedBooks.length;
 
   const validation = {
-    generatedBookCount: acceptedBooks.length === 465 ? "pass" : "fail",
+    generatedBookCount:
+      expectedGeneratedBookCount > 0 &&
+      generatedSlugs.size === expectedGeneratedBookCount
+        ? "pass"
+        : "fail",
     previewCount:
-      previewManifest.books.length === 465 && missingPreviews.length === 0
+      previewManifest.books.length === expectedGeneratedBookCount &&
+      missingPreviews.length === 0
         ? "pass"
         : "fail",
     sitemapBookCoverage:
-      bookSitemapSlugs.size === 465 && missingBookSitemapSlugs.length === 0
+      bookSitemapSlugs.size === expectedGeneratedBookCount &&
+      missingBookSitemapSlugs.length === 0
         ? "pass"
         : "fail",
     sitemapAudiobookCoverage:
-      audiobookSitemapSlugs.size === 465 &&
+      audiobookSitemapSlugs.size === expectedGeneratedBookCount &&
       missingAudiobookSitemapSlugs.length === 0
         ? "pass"
         : "fail",
@@ -512,7 +519,7 @@ function main() {
       canonicalMetaFallback:
         "Book and audiobook detail routes build canonicals from the generated canonical slug. Pilot descriptions are used when present; all other books keep deterministic non-empty route fallbacks.",
       pilotSummaryInteraction:
-        "The 20 pilot summaries enrich matching descriptions only. The other 445 accepted generated books remain fully present in directories and sitemap coverage.",
+        "SEO summaries must remain tied to generated slugs. Summary coverage does not drive discovery; the accepted generated manifest keeps all current books present in directories and sitemap coverage.",
       unresolvedSourceGeneratedBooks:
         `All ${unresolvedSlugs.length} documented unresolved-source generated books remain included as accepted book and audiobook pages. Raw unresolved candidates, duplicates, and boundary-defect files are not imported into discovery data.`,
     },

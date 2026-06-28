@@ -1,0 +1,1156 @@
+{
+  "schemaVersion": 1,
+  "reportName": "poe-replacement-raw-reconciliation",
+  "generatedAt": "2026-06-28T01:52:13.750Z",
+  "branch": "morsewords-poe-replacement-raw-reconciliation-jun-2026",
+  "sourcePaths": {
+    "rawInput": "app/client/assets/temp-books",
+    "generatedLibrary": "app/client/assets/books/generated",
+    "libraryManifest": "app/client/assets/books/generated/library-manifest.json",
+    "seoSummaries": "app/client/assets/books/seo-summaries/book-seo-summaries.json",
+    "previews": "public/book-previews"
+  },
+  "previousGeneratedCount": 465,
+  "broadPoeCollectionEntriesFound": [],
+  "broadPoeCollectionEntriesRemoved": [],
+  "rawPoeFilesCurrentlyPresentInTempBooks": [
+    {
+      "name": "A DESCENT INTO THE MAELSTROM.txt",
+      "title": "A DESCENT INTO THE MAELSTROM",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 43211
+    },
+    {
+      "name": "BERENICE.txt",
+      "title": "BERENICE",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 21111
+    },
+    {
+      "name": "HOP-FROG.txt",
+      "title": "HOP-FROG",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 23979
+    },
+    {
+      "name": "LIGEIA.txt",
+      "title": "LIGEIA",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 39405
+    },
+    {
+      "name": "MORELLA.txt",
+      "title": "MORELLA",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 13624
+    },
+    {
+      "name": "MS. FOUND IN A BOTTLE.txt",
+      "title": "MS. FOUND IN A BOTTLE",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 26709
+    },
+    {
+      "name": "SOME WORDS WITH A MUMMY.txt",
+      "title": "SOME WORDS WITH A MUMMY",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 41580
+    },
+    {
+      "name": "THE BLACK CAT.txt",
+      "title": "THE BLACK CAT",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 24676
+    },
+    {
+      "name": "THE CASK OF AMONTILLADO.txt",
+      "title": "THE CASK OF AMONTILLADO",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 15404
+    },
+    {
+      "name": "THE FACTS IN THE CASE OF M. VALDEMAR.txt",
+      "title": "THE FACTS IN THE CASE OF M. VALDEMAR",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 23560
+    },
+    {
+      "name": "THE FALL OF THE HOUSE OF USHER.txt",
+      "title": "THE FALL OF THE HOUSE OF USHER",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 47056
+    },
+    {
+      "name": "THE MAN OF THE CROWD.txt",
+      "title": "THE MAN OF THE CROWD",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 23133
+    },
+    {
+      "name": "The Masque of the Red Death.txt",
+      "title": "The Masque of the Red Death",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "1064",
+      "bytes": 33889
+    },
+    {
+      "name": "THE MURDERS IN THE RUE MORGUE.txt",
+      "title": "THE MURDERS IN THE RUE MORGUE",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 89581
+    },
+    {
+      "name": "THE OBLONG BOX.txt",
+      "title": "THE OBLONG BOX",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 29191
+    },
+    {
+      "name": "THE OVAL PORTRAIT.txt",
+      "title": "THE OVAL PORTRAIT",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 8302
+    },
+    {
+      "name": "THE PIT AND THE PENDULUM.txt",
+      "title": "THE PIT AND THE PENDULUM",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 38114
+    },
+    {
+      "name": "THE PREMATURE BURIAL.txt",
+      "title": "THE PREMATURE BURIAL",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 36118
+    },
+    {
+      "name": "THE PURLOINED LETTER.txt",
+      "title": "THE PURLOINED LETTER",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 46799
+    },
+    {
+      "name": "THE SPHINX.txt",
+      "title": "THE SPHINX",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 11943
+    },
+    {
+      "name": "THE SYSTEM OF DOCTOR TARR AND PROFESSOR FETHER.txt",
+      "title": "THE SYSTEM OF DOCTOR TARR AND PROFESSOR FETHER",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 45106
+    },
+    {
+      "name": "THE TELL-TALE HEART.txt",
+      "title": "THE TELL-TALE HEART",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 12970
+    },
+    {
+      "name": "THOU ART THE MAN.txt",
+      "title": "THOU ART THE MAN",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 37897
+    },
+    {
+      "name": "WILLIAM WILSON.txt",
+      "title": "WILLIAM WILSON",
+      "author": "Edgar Allan Poe",
+      "gutenbergId": "25525",
+      "bytes": 52119
+    }
+  ],
+  "rawPoeFilesRemovedSinceLastTriage": [
+    "The Works of Edgar Allan Poe.txt",
+    "The Works of Edgar Allan Poe, The Raven Edition.txt"
+  ],
+  "generatedPoeEntriesBefore": [
+    {
+      "slug": "the-masque-of-the-red-death",
+      "title": "The Masque of the Red Death",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-masque-of-the-red-death/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1064",
+      "gutenbergId": "1064"
+    }
+  ],
+  "generatedPoeEntriesAfter": [
+    {
+      "slug": "the-masque-of-the-red-death",
+      "title": "The Masque of the Red Death",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-masque-of-the-red-death/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1064",
+      "gutenbergId": "1064"
+    },
+    {
+      "slug": "a-descent-into-the-maelstrom",
+      "title": "A Descent into the Maelstrom",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "a-descent-into-the-maelstrom/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "berenice",
+      "title": "Berenice",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "berenice/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "hop-frog",
+      "title": "Hop-Frog",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "hop-frog/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "ligeia",
+      "title": "Ligeia",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "ligeia/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "morella",
+      "title": "Morella",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "morella/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "ms-found-in-a-bottle",
+      "title": "MS. Found in a Bottle",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "ms-found-in-a-bottle/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "some-words-with-a-mummy",
+      "title": "Some Words with a Mummy",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "some-words-with-a-mummy/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "the-black-cat",
+      "title": "The Black Cat",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-black-cat/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "the-cask-of-amontillado",
+      "title": "The Cask of Amontillado",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-cask-of-amontillado/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "the-facts-in-the-case-of-m-valdemar",
+      "title": "The Facts in the Case of M. Valdemar",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-facts-in-the-case-of-m-valdemar/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "the-fall-of-the-house-of-usher",
+      "title": "The Fall of the House of Usher",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-fall-of-the-house-of-usher/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "the-man-of-the-crowd",
+      "title": "The Man of the Crowd",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-man-of-the-crowd/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "the-murders-in-the-rue-morgue",
+      "title": "The Murders in the Rue Morgue",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-murders-in-the-rue-morgue/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "the-oblong-box",
+      "title": "The Oblong Box",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-oblong-box/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "the-oval-portrait",
+      "title": "The Oval Portrait",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-oval-portrait/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "the-pit-and-the-pendulum",
+      "title": "The Pit and the Pendulum",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-pit-and-the-pendulum/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "the-premature-burial",
+      "title": "The Premature Burial",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-premature-burial/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "the-purloined-letter",
+      "title": "The Purloined Letter",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-purloined-letter/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "the-sphinx",
+      "title": "The Sphinx",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-sphinx/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "the-system-of-doctor-tarr-and-professor-fether",
+      "title": "The System of Doctor Tarr and Professor Fether",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-system-of-doctor-tarr-and-professor-fether/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "the-tell-tale-heart",
+      "title": "The Tell-Tale Heart",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "the-tell-tale-heart/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "thou-art-the-man",
+      "title": "Thou Art the Man",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "thou-art-the-man/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    },
+    {
+      "slug": "william-wilson",
+      "title": "William Wilson",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "manifestPath": "william-wilson/manifest.json",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25525",
+      "gutenbergId": "25525"
+    }
+  ],
+  "individualPoeShortStoriesAlreadyGeneratedBefore": [
+    {
+      "slug": "the-masque-of-the-red-death",
+      "title": "The Masque of the Red Death"
+    }
+  ],
+  "newIndividualPoeRawFilesDetected": [
+    {
+      "fileName": "A DESCENT INTO THE MAELSTROM.txt",
+      "slug": "a-descent-into-the-maelstrom",
+      "title": "A Descent into the Maelstrom"
+    },
+    {
+      "fileName": "BERENICE.txt",
+      "slug": "berenice",
+      "title": "Berenice"
+    },
+    {
+      "fileName": "HOP-FROG.txt",
+      "slug": "hop-frog",
+      "title": "Hop-Frog"
+    },
+    {
+      "fileName": "LIGEIA.txt",
+      "slug": "ligeia",
+      "title": "Ligeia"
+    },
+    {
+      "fileName": "MORELLA.txt",
+      "slug": "morella",
+      "title": "Morella"
+    },
+    {
+      "fileName": "MS. FOUND IN A BOTTLE.txt",
+      "slug": "ms-found-in-a-bottle",
+      "title": "MS. Found in a Bottle"
+    },
+    {
+      "fileName": "SOME WORDS WITH A MUMMY.txt",
+      "slug": "some-words-with-a-mummy",
+      "title": "Some Words with a Mummy"
+    },
+    {
+      "fileName": "THE BLACK CAT.txt",
+      "slug": "the-black-cat",
+      "title": "The Black Cat"
+    },
+    {
+      "fileName": "THE CASK OF AMONTILLADO.txt",
+      "slug": "the-cask-of-amontillado",
+      "title": "The Cask of Amontillado"
+    },
+    {
+      "fileName": "THE FACTS IN THE CASE OF M. VALDEMAR.txt",
+      "slug": "the-facts-in-the-case-of-m-valdemar",
+      "title": "The Facts in the Case of M. Valdemar"
+    },
+    {
+      "fileName": "THE FALL OF THE HOUSE OF USHER.txt",
+      "slug": "the-fall-of-the-house-of-usher",
+      "title": "The Fall of the House of Usher"
+    },
+    {
+      "fileName": "THE MAN OF THE CROWD.txt",
+      "slug": "the-man-of-the-crowd",
+      "title": "The Man of the Crowd"
+    },
+    {
+      "fileName": "THE MURDERS IN THE RUE MORGUE.txt",
+      "slug": "the-murders-in-the-rue-morgue",
+      "title": "The Murders in the Rue Morgue"
+    },
+    {
+      "fileName": "THE OBLONG BOX.txt",
+      "slug": "the-oblong-box",
+      "title": "The Oblong Box"
+    },
+    {
+      "fileName": "THE OVAL PORTRAIT.txt",
+      "slug": "the-oval-portrait",
+      "title": "The Oval Portrait"
+    },
+    {
+      "fileName": "THE PIT AND THE PENDULUM.txt",
+      "slug": "the-pit-and-the-pendulum",
+      "title": "The Pit and the Pendulum"
+    },
+    {
+      "fileName": "THE PREMATURE BURIAL.txt",
+      "slug": "the-premature-burial",
+      "title": "The Premature Burial"
+    },
+    {
+      "fileName": "THE PURLOINED LETTER.txt",
+      "slug": "the-purloined-letter",
+      "title": "The Purloined Letter"
+    },
+    {
+      "fileName": "THE SPHINX.txt",
+      "slug": "the-sphinx",
+      "title": "The Sphinx"
+    },
+    {
+      "fileName": "THE SYSTEM OF DOCTOR TARR AND PROFESSOR FETHER.txt",
+      "slug": "the-system-of-doctor-tarr-and-professor-fether",
+      "title": "The System of Doctor Tarr and Professor Fether"
+    },
+    {
+      "fileName": "THE TELL-TALE HEART.txt",
+      "slug": "the-tell-tale-heart",
+      "title": "The Tell-Tale Heart"
+    },
+    {
+      "fileName": "THOU ART THE MAN.txt",
+      "slug": "thou-art-the-man",
+      "title": "Thou Art the Man"
+    },
+    {
+      "fileName": "WILLIAM WILSON.txt",
+      "slug": "william-wilson",
+      "title": "William Wilson"
+    }
+  ],
+  "newIndividualPoeStoriesAcceptedGenerated": [
+    {
+      "slug": "a-descent-into-the-maelstrom",
+      "title": "A Descent into the Maelstrom",
+      "wordCount": 7054,
+      "characterCount": 41747,
+      "previewCharacterCount": 1151,
+      "previewBytes": 1937,
+      "summaryWordCount": 334
+    },
+    {
+      "slug": "berenice",
+      "title": "Berenice",
+      "wordCount": 3220,
+      "characterCount": 20273,
+      "previewCharacterCount": 947,
+      "previewBytes": 1680,
+      "summaryWordCount": 333
+    },
+    {
+      "slug": "hop-frog",
+      "title": "Hop-Frog",
+      "wordCount": 3621,
+      "characterCount": 22641,
+      "previewCharacterCount": 1083,
+      "previewBytes": 1822,
+      "summaryWordCount": 332
+    },
+    {
+      "slug": "ligeia",
+      "title": "Ligeia",
+      "wordCount": 6174,
+      "characterCount": 38169,
+      "previewCharacterCount": 1188,
+      "previewBytes": 1915,
+      "summaryWordCount": 332
+    },
+    {
+      "slug": "morella",
+      "title": "Morella",
+      "wordCount": 2133,
+      "characterCount": 12967,
+      "previewCharacterCount": 1223,
+      "previewBytes": 1963,
+      "summaryWordCount": 328
+    },
+    {
+      "slug": "ms-found-in-a-bottle",
+      "title": "MS. Found in a Bottle",
+      "wordCount": 4191,
+      "characterCount": 25857,
+      "previewCharacterCount": 1168,
+      "previewBytes": 1947,
+      "summaryWordCount": 343
+    },
+    {
+      "slug": "some-words-with-a-mummy",
+      "title": "Some Words with a Mummy",
+      "wordCount": 6301,
+      "characterCount": 39609,
+      "previewCharacterCount": 1229,
+      "previewBytes": 1988,
+      "summaryWordCount": 334
+    },
+    {
+      "slug": "the-black-cat",
+      "title": "The Black Cat",
+      "wordCount": 3920,
+      "characterCount": 23800,
+      "previewCharacterCount": 1063,
+      "previewBytes": 1807,
+      "summaryWordCount": 326
+    },
+    {
+      "slug": "the-cask-of-amontillado",
+      "title": "The Cask of Amontillado",
+      "wordCount": 2334,
+      "characterCount": 14328,
+      "previewCharacterCount": 915,
+      "previewBytes": 1670,
+      "summaryWordCount": 327
+    },
+    {
+      "slug": "the-facts-in-the-case-of-m-valdemar",
+      "title": "The Facts in the Case of M. Valdemar",
+      "wordCount": 3555,
+      "characterCount": 22515,
+      "previewCharacterCount": 1131,
+      "previewBytes": 1925,
+      "summaryWordCount": 336
+    },
+    {
+      "slug": "the-fall-of-the-house-of-usher",
+      "title": "The Fall of the House of Usher",
+      "wordCount": 7174,
+      "characterCount": 45610,
+      "previewCharacterCount": 1200,
+      "previewBytes": 1988,
+      "summaryWordCount": 342
+    },
+    {
+      "slug": "the-man-of-the-crowd",
+      "title": "The Man of the Crowd",
+      "wordCount": 3531,
+      "characterCount": 22255,
+      "previewCharacterCount": 863,
+      "previewBytes": 1636,
+      "summaryWordCount": 343
+    },
+    {
+      "slug": "the-murders-in-the-rue-morgue",
+      "title": "The Murders in the Rue Morgue",
+      "wordCount": 13871,
+      "characterCount": 86826,
+      "previewCharacterCount": 1110,
+      "previewBytes": 1886,
+      "summaryWordCount": 336
+    },
+    {
+      "slug": "the-oblong-box",
+      "title": "The Oblong Box",
+      "wordCount": 4576,
+      "characterCount": 28094,
+      "previewCharacterCount": 954,
+      "previewBytes": 1702,
+      "summaryWordCount": 324
+    },
+    {
+      "slug": "the-oval-portrait",
+      "title": "The Oval Portrait",
+      "wordCount": 1291,
+      "characterCount": 7822,
+      "previewCharacterCount": 856,
+      "previewBytes": 1597,
+      "summaryWordCount": 324
+    },
+    {
+      "slug": "the-pit-and-the-pendulum",
+      "title": "The Pit and the Pendulum",
+      "wordCount": 6103,
+      "characterCount": 36967,
+      "previewCharacterCount": 1177,
+      "previewBytes": 1956,
+      "summaryWordCount": 328
+    },
+    {
+      "slug": "the-premature-burial",
+      "title": "The Premature Burial",
+      "wordCount": 5461,
+      "characterCount": 34944,
+      "previewCharacterCount": 1069,
+      "previewBytes": 1832,
+      "summaryWordCount": 331
+    },
+    {
+      "slug": "the-purloined-letter",
+      "title": "The Purloined Letter",
+      "wordCount": 7071,
+      "characterCount": 44598,
+      "previewCharacterCount": 1077,
+      "previewBytes": 1840,
+      "summaryWordCount": 319
+    },
+    {
+      "slug": "the-sphinx",
+      "title": "The Sphinx",
+      "wordCount": 1848,
+      "characterCount": 11295,
+      "previewCharacterCount": 1196,
+      "previewBytes": 1925,
+      "summaryWordCount": 324
+    },
+    {
+      "slug": "the-system-of-doctor-tarr-and-professor-fether",
+      "title": "The System of Doctor Tarr and Professor Fether",
+      "wordCount": 6879,
+      "characterCount": 42931,
+      "previewCharacterCount": 1143,
+      "previewBytes": 1953,
+      "summaryWordCount": 331
+    },
+    {
+      "slug": "the-tell-tale-heart",
+      "title": "The Tell-Tale Heart",
+      "wordCount": 2154,
+      "characterCount": 12256,
+      "previewCharacterCount": 1011,
+      "previewBytes": 1782,
+      "summaryWordCount": 318
+    },
+    {
+      "slug": "thou-art-the-man",
+      "title": "Thou Art the Man",
+      "wordCount": 5834,
+      "characterCount": 36406,
+      "previewCharacterCount": 1234,
+      "previewBytes": 2001,
+      "summaryWordCount": 322
+    },
+    {
+      "slug": "william-wilson",
+      "title": "William Wilson",
+      "wordCount": 8036,
+      "characterCount": 50704,
+      "previewCharacterCount": 1155,
+      "previewBytes": 1917,
+      "summaryWordCount": 323
+    }
+  ],
+  "poeStoriesAlreadyPresentLeftUntouched": [
+    {
+      "slug": "the-masque-of-the-red-death",
+      "title": "The Masque of the Red Death"
+    }
+  ],
+  "poeFilesSkippedOrManualReview": [],
+  "duplicateOrConflictingPoeSlugs": [],
+  "nonPoeRavenFileNote": "Current temp-books/THE RAVEN.txt is Grimms' Fairy Tales by Jacob Grimm and Wilhelm Grimm, not Edgar Allan Poe; existing generated the-raven remains the Grimm story.",
+  "newGeneratedCount": 488,
+  "previousSeoSummaryCount": 465,
+  "summariesRemovedWithBroadPoeEntries": 0,
+  "summariesAddedForNewPoeEntries": 23,
+  "newSeoSummaryCount": 488,
+  "missingSummaryCountAfterBranch": 0,
+  "missingSummarySlugsAfterBranch": [],
+  "previewSizePolicyResultForNewChangedEntries": {
+    "a-descent-into-the-maelstrom": {
+      "previewCharacterCount": 1151,
+      "previewBytes": 1937,
+      "previewTextWordCount": 206,
+      "truncated": true
+    },
+    "berenice": {
+      "previewCharacterCount": 947,
+      "previewBytes": 1680,
+      "previewTextWordCount": 152,
+      "truncated": true
+    },
+    "hop-frog": {
+      "previewCharacterCount": 1083,
+      "previewBytes": 1822,
+      "previewTextWordCount": 184,
+      "truncated": true
+    },
+    "ligeia": {
+      "previewCharacterCount": 1188,
+      "previewBytes": 1915,
+      "previewTextWordCount": 190,
+      "truncated": true
+    },
+    "morella": {
+      "previewCharacterCount": 1223,
+      "previewBytes": 1963,
+      "previewTextWordCount": 193,
+      "truncated": true
+    },
+    "ms-found-in-a-bottle": {
+      "previewCharacterCount": 1168,
+      "previewBytes": 1947,
+      "previewTextWordCount": 192,
+      "truncated": true
+    },
+    "some-words-with-a-mummy": {
+      "previewCharacterCount": 1229,
+      "previewBytes": 1988,
+      "previewTextWordCount": 205,
+      "truncated": true
+    },
+    "the-black-cat": {
+      "previewCharacterCount": 1063,
+      "previewBytes": 1807,
+      "previewTextWordCount": 169,
+      "truncated": true
+    },
+    "the-cask-of-amontillado": {
+      "previewCharacterCount": 915,
+      "previewBytes": 1670,
+      "previewTextWordCount": 154,
+      "truncated": true
+    },
+    "the-facts-in-the-case-of-m-valdemar": {
+      "previewCharacterCount": 1131,
+      "previewBytes": 1925,
+      "previewTextWordCount": 172,
+      "truncated": true
+    },
+    "the-fall-of-the-house-of-usher": {
+      "previewCharacterCount": 1200,
+      "previewBytes": 1988,
+      "previewTextWordCount": 194,
+      "truncated": true
+    },
+    "the-man-of-the-crowd": {
+      "previewCharacterCount": 863,
+      "previewBytes": 1636,
+      "previewTextWordCount": 149,
+      "truncated": true
+    },
+    "the-murders-in-the-rue-morgue": {
+      "previewCharacterCount": 1110,
+      "previewBytes": 1886,
+      "previewTextWordCount": 163,
+      "truncated": true
+    },
+    "the-oblong-box": {
+      "previewCharacterCount": 954,
+      "previewBytes": 1702,
+      "previewTextWordCount": 152,
+      "truncated": true
+    },
+    "the-oval-portrait": {
+      "previewCharacterCount": 856,
+      "previewBytes": 1597,
+      "previewTextWordCount": 131,
+      "truncated": true
+    },
+    "the-pit-and-the-pendulum": {
+      "previewCharacterCount": 1177,
+      "previewBytes": 1956,
+      "previewTextWordCount": 196,
+      "truncated": true
+    },
+    "the-premature-burial": {
+      "previewCharacterCount": 1069,
+      "previewBytes": 1832,
+      "previewTextWordCount": 169,
+      "truncated": true
+    },
+    "the-purloined-letter": {
+      "previewCharacterCount": 1077,
+      "previewBytes": 1840,
+      "previewTextWordCount": 167,
+      "truncated": true
+    },
+    "the-sphinx": {
+      "previewCharacterCount": 1196,
+      "previewBytes": 1925,
+      "previewTextWordCount": 192,
+      "truncated": true
+    },
+    "the-system-of-doctor-tarr-and-professor-fether": {
+      "previewCharacterCount": 1143,
+      "previewBytes": 1953,
+      "previewTextWordCount": 193,
+      "truncated": true
+    },
+    "the-tell-tale-heart": {
+      "previewCharacterCount": 1011,
+      "previewBytes": 1782,
+      "previewTextWordCount": 189,
+      "truncated": true
+    },
+    "thou-art-the-man": {
+      "previewCharacterCount": 1234,
+      "previewBytes": 2001,
+      "previewTextWordCount": 189,
+      "truncated": true
+    },
+    "william-wilson": {
+      "previewCharacterCount": 1155,
+      "previewBytes": 1917,
+      "previewTextWordCount": 182,
+      "truncated": true
+    }
+  },
+  "existingPreviewLoadingArchitectureBlockerFound": true,
+  "existingPreviewLoadingArchitectureBlockerNote": "Existing broad preview builder/audit defaults still target long local previews (3600 seconds). This branch writes small starter previews only for new Poe entries and does not rewrite the global preview/loading architecture.",
+  "remainingRawCandidateCheckpoint": "44 prior tracked raw candidates still require later review after the two broad Poe collection raw files were removed from current temp-books; newly accepted Poe individual stories are generated in this branch.",
+  "unresolvedSourceGeneratedBookCheckpoint": "11 unresolved-source generated books remain documented and were not processed in this branch.",
+  "urlPageIndexabilityBlockerCheckpoint": "URL/page/indexability/planned-page implementation remains a final-release blocker; no planned URL policy work was started.",
+  "cloudflareExportCheckpoint": "Cloudflare export was not run and app/client/assets/books/cloudflare-export remains outside this branch's changes.",
+  "mobileFinalStageCheckpoint": "Broad mobile optimization remains the very last stage and was not started.",
+  "filesChangedByScript": [
+    "app/client/assets/books/generated/a-descent-into-the-maelstrom/cleaned_book.json",
+    "app/client/assets/books/generated/a-descent-into-the-maelstrom/manifest.json",
+    "app/client/assets/books/generated/a-descent-into-the-maelstrom/processed_book.json",
+    "app/client/assets/books/generated/a-descent-into-the-maelstrom/processing_notes.md",
+    "app/client/assets/books/generated/a-descent-into-the-maelstrom/rights_report.json",
+    "app/client/assets/books/generated/a-descent-into-the-maelstrom/sections/chapter-001.json",
+    "app/client/assets/books/generated/berenice/cleaned_book.json",
+    "app/client/assets/books/generated/berenice/manifest.json",
+    "app/client/assets/books/generated/berenice/processed_book.json",
+    "app/client/assets/books/generated/berenice/processing_notes.md",
+    "app/client/assets/books/generated/berenice/rights_report.json",
+    "app/client/assets/books/generated/berenice/sections/chapter-001.json",
+    "app/client/assets/books/generated/hop-frog/cleaned_book.json",
+    "app/client/assets/books/generated/hop-frog/manifest.json",
+    "app/client/assets/books/generated/hop-frog/processed_book.json",
+    "app/client/assets/books/generated/hop-frog/processing_notes.md",
+    "app/client/assets/books/generated/hop-frog/rights_report.json",
+    "app/client/assets/books/generated/hop-frog/sections/chapter-001.json",
+    "app/client/assets/books/generated/library-manifest.json",
+    "app/client/assets/books/generated/ligeia/cleaned_book.json",
+    "app/client/assets/books/generated/ligeia/manifest.json",
+    "app/client/assets/books/generated/ligeia/processed_book.json",
+    "app/client/assets/books/generated/ligeia/processing_notes.md",
+    "app/client/assets/books/generated/ligeia/rights_report.json",
+    "app/client/assets/books/generated/ligeia/sections/chapter-001.json",
+    "app/client/assets/books/generated/morella/cleaned_book.json",
+    "app/client/assets/books/generated/morella/manifest.json",
+    "app/client/assets/books/generated/morella/processed_book.json",
+    "app/client/assets/books/generated/morella/processing_notes.md",
+    "app/client/assets/books/generated/morella/rights_report.json",
+    "app/client/assets/books/generated/morella/sections/chapter-001.json",
+    "app/client/assets/books/generated/ms-found-in-a-bottle/cleaned_book.json",
+    "app/client/assets/books/generated/ms-found-in-a-bottle/manifest.json",
+    "app/client/assets/books/generated/ms-found-in-a-bottle/processed_book.json",
+    "app/client/assets/books/generated/ms-found-in-a-bottle/processing_notes.md",
+    "app/client/assets/books/generated/ms-found-in-a-bottle/rights_report.json",
+    "app/client/assets/books/generated/ms-found-in-a-bottle/sections/chapter-001.json",
+    "app/client/assets/books/generated/some-words-with-a-mummy/cleaned_book.json",
+    "app/client/assets/books/generated/some-words-with-a-mummy/manifest.json",
+    "app/client/assets/books/generated/some-words-with-a-mummy/processed_book.json",
+    "app/client/assets/books/generated/some-words-with-a-mummy/processing_notes.md",
+    "app/client/assets/books/generated/some-words-with-a-mummy/rights_report.json",
+    "app/client/assets/books/generated/some-words-with-a-mummy/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-black-cat/cleaned_book.json",
+    "app/client/assets/books/generated/the-black-cat/manifest.json",
+    "app/client/assets/books/generated/the-black-cat/processed_book.json",
+    "app/client/assets/books/generated/the-black-cat/processing_notes.md",
+    "app/client/assets/books/generated/the-black-cat/rights_report.json",
+    "app/client/assets/books/generated/the-black-cat/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-cask-of-amontillado/cleaned_book.json",
+    "app/client/assets/books/generated/the-cask-of-amontillado/manifest.json",
+    "app/client/assets/books/generated/the-cask-of-amontillado/processed_book.json",
+    "app/client/assets/books/generated/the-cask-of-amontillado/processing_notes.md",
+    "app/client/assets/books/generated/the-cask-of-amontillado/rights_report.json",
+    "app/client/assets/books/generated/the-cask-of-amontillado/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-facts-in-the-case-of-m-valdemar/cleaned_book.json",
+    "app/client/assets/books/generated/the-facts-in-the-case-of-m-valdemar/manifest.json",
+    "app/client/assets/books/generated/the-facts-in-the-case-of-m-valdemar/processed_book.json",
+    "app/client/assets/books/generated/the-facts-in-the-case-of-m-valdemar/processing_notes.md",
+    "app/client/assets/books/generated/the-facts-in-the-case-of-m-valdemar/rights_report.json",
+    "app/client/assets/books/generated/the-facts-in-the-case-of-m-valdemar/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-fall-of-the-house-of-usher/cleaned_book.json",
+    "app/client/assets/books/generated/the-fall-of-the-house-of-usher/manifest.json",
+    "app/client/assets/books/generated/the-fall-of-the-house-of-usher/processed_book.json",
+    "app/client/assets/books/generated/the-fall-of-the-house-of-usher/processing_notes.md",
+    "app/client/assets/books/generated/the-fall-of-the-house-of-usher/rights_report.json",
+    "app/client/assets/books/generated/the-fall-of-the-house-of-usher/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-man-of-the-crowd/cleaned_book.json",
+    "app/client/assets/books/generated/the-man-of-the-crowd/manifest.json",
+    "app/client/assets/books/generated/the-man-of-the-crowd/processed_book.json",
+    "app/client/assets/books/generated/the-man-of-the-crowd/processing_notes.md",
+    "app/client/assets/books/generated/the-man-of-the-crowd/rights_report.json",
+    "app/client/assets/books/generated/the-man-of-the-crowd/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-murders-in-the-rue-morgue/cleaned_book.json",
+    "app/client/assets/books/generated/the-murders-in-the-rue-morgue/manifest.json",
+    "app/client/assets/books/generated/the-murders-in-the-rue-morgue/processed_book.json",
+    "app/client/assets/books/generated/the-murders-in-the-rue-morgue/processing_notes.md",
+    "app/client/assets/books/generated/the-murders-in-the-rue-morgue/rights_report.json",
+    "app/client/assets/books/generated/the-murders-in-the-rue-morgue/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-oblong-box/cleaned_book.json",
+    "app/client/assets/books/generated/the-oblong-box/manifest.json",
+    "app/client/assets/books/generated/the-oblong-box/processed_book.json",
+    "app/client/assets/books/generated/the-oblong-box/processing_notes.md",
+    "app/client/assets/books/generated/the-oblong-box/rights_report.json",
+    "app/client/assets/books/generated/the-oblong-box/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-oval-portrait/cleaned_book.json",
+    "app/client/assets/books/generated/the-oval-portrait/manifest.json",
+    "app/client/assets/books/generated/the-oval-portrait/processed_book.json",
+    "app/client/assets/books/generated/the-oval-portrait/processing_notes.md",
+    "app/client/assets/books/generated/the-oval-portrait/rights_report.json",
+    "app/client/assets/books/generated/the-oval-portrait/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-pit-and-the-pendulum/cleaned_book.json",
+    "app/client/assets/books/generated/the-pit-and-the-pendulum/manifest.json",
+    "app/client/assets/books/generated/the-pit-and-the-pendulum/processed_book.json",
+    "app/client/assets/books/generated/the-pit-and-the-pendulum/processing_notes.md",
+    "app/client/assets/books/generated/the-pit-and-the-pendulum/rights_report.json",
+    "app/client/assets/books/generated/the-pit-and-the-pendulum/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-premature-burial/cleaned_book.json",
+    "app/client/assets/books/generated/the-premature-burial/manifest.json",
+    "app/client/assets/books/generated/the-premature-burial/processed_book.json",
+    "app/client/assets/books/generated/the-premature-burial/processing_notes.md",
+    "app/client/assets/books/generated/the-premature-burial/rights_report.json",
+    "app/client/assets/books/generated/the-premature-burial/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-purloined-letter/cleaned_book.json",
+    "app/client/assets/books/generated/the-purloined-letter/manifest.json",
+    "app/client/assets/books/generated/the-purloined-letter/processed_book.json",
+    "app/client/assets/books/generated/the-purloined-letter/processing_notes.md",
+    "app/client/assets/books/generated/the-purloined-letter/rights_report.json",
+    "app/client/assets/books/generated/the-purloined-letter/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-sphinx/cleaned_book.json",
+    "app/client/assets/books/generated/the-sphinx/manifest.json",
+    "app/client/assets/books/generated/the-sphinx/processed_book.json",
+    "app/client/assets/books/generated/the-sphinx/processing_notes.md",
+    "app/client/assets/books/generated/the-sphinx/rights_report.json",
+    "app/client/assets/books/generated/the-sphinx/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-system-of-doctor-tarr-and-professor-fether/cleaned_book.json",
+    "app/client/assets/books/generated/the-system-of-doctor-tarr-and-professor-fether/manifest.json",
+    "app/client/assets/books/generated/the-system-of-doctor-tarr-and-professor-fether/processed_book.json",
+    "app/client/assets/books/generated/the-system-of-doctor-tarr-and-professor-fether/processing_notes.md",
+    "app/client/assets/books/generated/the-system-of-doctor-tarr-and-professor-fether/rights_report.json",
+    "app/client/assets/books/generated/the-system-of-doctor-tarr-and-professor-fether/sections/chapter-001.json",
+    "app/client/assets/books/generated/the-tell-tale-heart/cleaned_book.json",
+    "app/client/assets/books/generated/the-tell-tale-heart/manifest.json",
+    "app/client/assets/books/generated/the-tell-tale-heart/processed_book.json",
+    "app/client/assets/books/generated/the-tell-tale-heart/processing_notes.md",
+    "app/client/assets/books/generated/the-tell-tale-heart/rights_report.json",
+    "app/client/assets/books/generated/the-tell-tale-heart/sections/chapter-001.json",
+    "app/client/assets/books/generated/thou-art-the-man/cleaned_book.json",
+    "app/client/assets/books/generated/thou-art-the-man/manifest.json",
+    "app/client/assets/books/generated/thou-art-the-man/processed_book.json",
+    "app/client/assets/books/generated/thou-art-the-man/processing_notes.md",
+    "app/client/assets/books/generated/thou-art-the-man/rights_report.json",
+    "app/client/assets/books/generated/thou-art-the-man/sections/chapter-001.json",
+    "app/client/assets/books/generated/william-wilson/cleaned_book.json",
+    "app/client/assets/books/generated/william-wilson/manifest.json",
+    "app/client/assets/books/generated/william-wilson/processed_book.json",
+    "app/client/assets/books/generated/william-wilson/processing_notes.md",
+    "app/client/assets/books/generated/william-wilson/rights_report.json",
+    "app/client/assets/books/generated/william-wilson/sections/chapter-001.json",
+    "app/client/assets/books/seo-summaries/book-seo-summaries.json",
+    "public/book-previews/a-descent-into-the-maelstrom.preview.json",
+    "public/book-previews/berenice.preview.json",
+    "public/book-previews/hop-frog.preview.json",
+    "public/book-previews/ligeia.preview.json",
+    "public/book-previews/manifest.json",
+    "public/book-previews/morella.preview.json",
+    "public/book-previews/ms-found-in-a-bottle.preview.json",
+    "public/book-previews/some-words-with-a-mummy.preview.json",
+    "public/book-previews/the-black-cat.preview.json",
+    "public/book-previews/the-cask-of-amontillado.preview.json",
+    "public/book-previews/the-facts-in-the-case-of-m-valdemar.preview.json",
+    "public/book-previews/the-fall-of-the-house-of-usher.preview.json",
+    "public/book-previews/the-man-of-the-crowd.preview.json",
+    "public/book-previews/the-murders-in-the-rue-morgue.preview.json",
+    "public/book-previews/the-oblong-box.preview.json",
+    "public/book-previews/the-oval-portrait.preview.json",
+    "public/book-previews/the-pit-and-the-pendulum.preview.json",
+    "public/book-previews/the-premature-burial.preview.json",
+    "public/book-previews/the-purloined-letter.preview.json",
+    "public/book-previews/the-sphinx.preview.json",
+    "public/book-previews/the-system-of-doctor-tarr-and-professor-fether.preview.json",
+    "public/book-previews/the-tell-tale-heart.preview.json",
+    "public/book-previews/thou-art-the-man.preview.json",
+    "public/book-previews/william-wilson.preview.json"
+  ],
+  "validationResults": {
+    "status": "pass",
+    "routeUiChecks": {
+      "removedBroadPoeBookRoutesAbsentFromListing": "pass",
+      "removedBroadPoeAudiobookRoutesAbsentFromListing": "pass",
+      "newPoeBookPageRenders": "pass: /morse-code-books/the-tell-tale-heart",
+      "newPoeSummaryRendersBelowSourceNotes": "pass",
+      "newPoePreviewStartSmallAndVisible": "pass: The Tell-Tale Heart local preview text is visible, 1011 characters",
+      "newPoeAudiobookRouteBehavior": "deferred: /morse-code-audiobooks/the-tell-tale-heart settles to the expected not-available-right-now public export state until Cloudflare export is run",
+      "existingNonPoeBookStillWorks": "pass: /morse-code-books/a-bread-and-butter-miss",
+      "existingCompletedSummaryBookStillWorks": "pass: /morse-code-books/the-new-accelerator",
+      "booksIndexCount": "pass: /morse-code-books shows 488 books",
+      "audiobooksIndexCount": "pass: /morse-code-audiobooks shows 488 audiobooks",
+      "desktopSummaryWidth": "pass: new Poe and existing summary pages keep 1056px summary/source width at desktop viewport",
+      "mobileHorizontalOverflow": "pass: 390px viewport checks had no horizontal overflow"
+    },
+    "commands": {
+      "gitStatus": "pass: expected Poe branch changes only before validation",
+      "typecheck": "pass",
+      "seoSummaryAudit": "pass: 488/488 summaries",
+      "batch12ProseRestore": "pass: 20/20 compared, no blocking issue",
+      "startupPreviewAudit": "pass: 488 valid, 0 preview updates",
+      "titleStartDefaultAudit": "pass: 488 audited; 12 unrelated generated/preview corrections were produced by the audit and restored before staging",
+      "metadataSegmentationAudit": "pass: 488 audited, 0 author corrections, 1 unknown-author case remains documented",
+      "manualUiDefectFollowup": "pass: 8 checked, 8 acceptable",
+      "independentSecondPassAudit": "pass: 422 pass, 66 warn-accepted, 0 fail-needs-fix, 0 manual-review",
+      "linkingSitemapAudit": "pass: 488 book URLs, 488 audiobook URLs, 0 orphans, 0 broken internal links",
+      "testIfPresent": "pass: 23/23 after stopping the local browser-check server that occupied port 3101",
+      "buildNetlify": "pass",
+      "morseBookPagePlaywright": "pass: 38/38 after updating stale 465-count expectations and preview-fallback assertion",
+      "gitDiffCheck": "pass: line-ending warnings only"
+    },
+    "protectedFolderStatus": {
+      "tempBooks": "clean; no raw source changes staged",
+      "generated": "changed only for library-manifest.json and the 23 newly accepted Poe story directories",
+      "cloudflareExport": "clean; Cloudflare export was not run",
+      "bookPreviews": "changed only for public/book-previews/manifest.json and the 23 new small Poe starter previews"
+    },
+    "cloudflareOversizedPayloadFailure": "none; no validation or route/UI failure was attributed to an oversized Cloudflare-loaded file"
+  },
+  "recommendedNextMajorPhase": [
+    "Do not start export yet.",
+    "Next major phase should handle remaining raw-candidate review.",
+    "Next major phase should handle unresolved-source generated-book review."
+  ],
+  "invariants": {
+    "allGeneratedSlugsExistInManifest": true,
+    "allNewSummarySlugsExistInGeneratedManifest": true,
+    "allNewSummariesPresent": true,
+    "cloudflareExportNotTouched": true
+  }
+}
