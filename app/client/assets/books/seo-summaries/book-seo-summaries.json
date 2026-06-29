@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "summarySet": "sherlock-story-split-pass-2",
+  "summarySet": "bespoke-raw-candidate-pass-3",
   "generatedAt": "2026-06-28",
   "storageApproach": "Separate static JSON data asset imported by book routes and validation tooling. Summaries are not embedded in generated book text, preview assets, raw sources, or Cloudflare export payloads.",
   "suggestedPilotSlugs": [
@@ -79,7 +79,7 @@
       "reason": "The Odyssey is not currently generated; The Arabian Nights keeps a long classic story-collection sample in the pilot."
     }
   ],
-  "expectedSummaryCount": 508,
+  "expectedSummaryCount": 510,
   "batch1Slugs": [
     "a-childs-garden-of-verses",
     "anna-karenina",
@@ -4747,6 +4747,24 @@
       ],
       "description": "Arthur Conan Doyle's Sherlock Holmes story about a governess, an unusual job offer, and a house with hidden danger.",
       "summary": "The Adventure of the Copper Beeches closes the collection with a case that begins as an unsettling job offer. Violet Hunter asks Holmes whether she should accept a governess position with strange conditions about her hair, clothing, and behavior. The arrangement leads to a country house, a controlling employer, and evidence that someone is being hidden from view.\n\nFor MorseWords learners, this story is valuable because the premise is easy to remember and the clues recur clearly. The job offer, hair, blue dress, window, room, and household rules all become listening anchors. The story also gives learners a strong female client narrative, which creates a different rhythm from cases centered on police reports or male business clients.\n\nThe text works well in short practice blocks. Learners can start with Violet Hunter's interview, then replay the arrival at the house, the strange instructions, and the final investigation. Each block has concrete details and dialogue, making it useful for copying practice as well as listening comprehension.\n\nBecause the story builds unease through ordinary domestic instructions, careful pacing helps. Slower playback makes it easier to hear the conditions of the job and the relationships inside the house; later replays can focus on the more active investigation. The repeated descriptions are excellent for checking word spacing and punctuation.\n\nThis story is also a fitting final Sherlock practice piece because it combines social observation, suspense, and physical clues. It is substantial enough for endurance work but still compact compared with a novel. Learners can return to it for repeated sessions, using the memorable setup to build confidence with longer literary Morse audio.\n\nThe governess premise also makes the early dialogue easy to summarize before replaying. That helps learners test comprehension first, then return for accuracy work on names, household directions, and the shifting clues that make the house feel increasingly suspicious."
+    },
+    {
+      "slug": "the-sign-of-the-four",
+      "title": "The Sign of the Four",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "description": "Arthur Conan Doyle's Sherlock Holmes novel about Mary Morstan, a hidden treasure, and a case that stretches from Baker Street to the Thames.",
+      "summary": "The Sign of the Four is a Sherlock Holmes novel built around Mary Morstan's strange yearly pearls, a missing father, and the history of the Agra treasure. Holmes and Watson begin with a puzzling invitation and follow the case through interviews, hidden rooms, coded messages, a river chase, and a long confession that explains how private greed and imperial history have become tangled together. The book is longer than the individual Holmes stories already added to MorseWords, but it still has a clean chapter structure and a steady detective rhythm.\n\nFor MorseWords learners, the novel is useful because each chapter has a clear job. The opening returns to Holmes and Watson's method, the middle chapters collect evidence and widen the mystery, and the final chapters turn toward pursuit and explanation. That shape makes it practical to listen chapter by chapter instead of treating the whole book as one oversized exercise. Learners can start with Chapter I for familiar Baker Street dialogue, then move to the statement of the case, the pursuit sequences, or Jonathan Small's account when they want longer practice.\n\nThe text gives varied Morse practice without losing its anchors. Names such as Holmes, Watson, Morstan, Sholto, Tonga, and Small repeat often, while concrete words such as treasure, boat, river, pearls, key, letter, and box help the listener stay oriented. Dialogue, deduction, action, and backstory all appear, so the book works for both listening endurance and careful copying.\n\nBecause the story has twelve moderate chapters, it is well suited to short repeat sessions. A beginner can replay a single chapter slowly to practice spacing and punctuation. A more confident learner can compare chapters with different pacing: the calm opening, the investigative middle, and the faster river pursuit. The result is a public-domain detective novel that extends the Sherlock set while still fitting the MorseWords flow of translate, hear, practice, review, and return."
+    },
+    {
+      "slug": "the-mysterious-affair-at-styles",
+      "title": "The Mysterious Affair at Styles",
+      "author": [
+        "Agatha Christie"
+      ],
+      "description": "Agatha Christie's first Hercule Poirot mystery, set around a country-house poisoning and the careful reconstruction of evidence.",
+      "summary": "The Mysterious Affair at Styles is Agatha Christie's first Hercule Poirot mystery. The story follows Hastings as he visits Styles Court, becomes caught in the aftermath of a poisoning, and watches Poirot rebuild the case from domestic details, testimony, timing, and the behavior of people who all seem to have something to hide. The country-house setting, the legal questions, and Poirot's methodical explanations make the novel a strong bridge from short mystery stories into longer detective reading.\n\nFor MorseWords learners, the book is helpful because it has thirteen clearly titled chapters and a steady investigative structure. The early chapters establish the household and the crime, the middle chapters test suspects and evidence, and the final chapters bring the case into court-like argument and explanation. That makes the novel easy to divide into short practice sessions. Learners can work on one chapter at a time while still feeling progress through the whole mystery.\n\nThe vocabulary is especially useful for listening practice. Repeated names such as Poirot, Hastings, Inglethorp, Cavendish, Howard, and Styles become anchors, while words about medicine, keys, rooms, letters, cups, poison, evidence, and testimony add variety. The book also contains many conversations, which gives learners practice with quotation marks, speaker changes, and sentence rhythm. Slower playback is useful for scenes where clues depend on exact timing or small contradictions.\n\nThis novel also rewards review. On a first pass, learners can listen for the broad plot and main suspects. On later passes, they can focus on how Poirot handles details that seemed unimportant earlier. That makes it a good long-form Morse text for building endurance without losing comprehension. It is public-domain source material in the current repo context, and the local starter preview remains intentionally small so the page can render quickly while the full payload is deferred until export infrastructure is ready."
     }
   ],
   "batch3Slugs": [
@@ -5171,5 +5189,9 @@
     "the-adventure-of-the-noble-bachelor",
     "the-adventure-of-the-beryl-coronet",
     "the-adventure-of-the-copper-beeches"
+  ],
+  "bespokeRawCandidatePass3Slugs": [
+    "the-sign-of-the-four",
+    "the-mysterious-affair-at-styles"
   ]
 }

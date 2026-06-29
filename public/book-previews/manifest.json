@@ -5590,6 +5590,28 @@
       "previewCharacterCount": 919,
       "estimatedRuntimeSeconds": 329,
       "truncated": true
+    },
+    {
+      "slug": "the-sign-of-the-four",
+      "path": "the-sign-of-the-four.preview.json",
+      "contentVersion": "e8703b10006dae6b",
+      "contentHash": "e8703b10006dae6b21e86075d995d8f43ac9ede7eaa67cb17ff38cd3b01f50a2",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 2013,
+      "previewCharacterCount": 1246,
+      "estimatedRuntimeSeconds": 444,
+      "truncated": true
+    },
+    {
+      "slug": "the-mysterious-affair-at-styles",
+      "path": "the-mysterious-affair-at-styles.preview.json",
+      "contentVersion": "c7e67fcb7a7302a9",
+      "contentHash": "c7e67fcb7a7302a9436e55289bcc4b090d87f66de1ff916f1f41cb7755c05492",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 2021,
+      "previewCharacterCount": 1231,
+      "estimatedRuntimeSeconds": 438,
+      "truncated": true
     }
   ],
   "missing": []

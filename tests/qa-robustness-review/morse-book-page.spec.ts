@@ -38,6 +38,7 @@ const THE_EMERALD_CITY_OF_OZ_SLUG = "the-emerald-city-of-oz";
 const NEWLY_SUMMARIZED_BOOK_SLUG = "the-new-accelerator";
 const BESPOKE_PASS_1_BOOK_SLUG = "five-little-friends";
 const BESPOKE_PASS_2_BOOK_SLUG = "the-happy-prince";
+const BESPOKE_PASS_3_BOOK_SLUG = "the-sign-of-the-four";
 const SHERLOCK_PASS_1_BOOK_SLUG = "a-scandal-in-bohemia";
 const SHERLOCK_PASS_2_BOOK_SLUG = "the-adventure-of-the-blue-carbuncle";
 const REQUIRED_STORY_TITLES = {
@@ -54,6 +55,8 @@ const REQUIRED_STORY_TITLES = {
   "the-adventure-of-the-noble-bachelor": "The Adventure of the Noble Bachelor",
   "the-adventure-of-the-beryl-coronet": "The Adventure of the Beryl Coronet",
   "the-adventure-of-the-copper-beeches": "The Adventure of the Copper Beeches",
+  "the-sign-of-the-four": "The Sign of the Four",
+  "the-mysterious-affair-at-styles": "The Mysterious Affair at Styles",
   "ole-luk-oie-the-dream-god": "Ole-Luk-Oie, the Dream-God",
   "little-ida-s-flowers": "Little Ida's Flowers",
   "the-steadfast-tin-soldier": "The Steadfast Tin Soldier",
@@ -109,6 +112,8 @@ const STARTER_PREVIEW_FIRST_RENDER_PATHS = [
   `/morse-code-audiobooks/${BESPOKE_PASS_1_BOOK_SLUG}`,
   `/morse-code-books/${BESPOKE_PASS_2_BOOK_SLUG}`,
   `/morse-code-audiobooks/${BESPOKE_PASS_2_BOOK_SLUG}`,
+  `/morse-code-books/${BESPOKE_PASS_3_BOOK_SLUG}`,
+  `/morse-code-audiobooks/${BESPOKE_PASS_3_BOOK_SLUG}`,
   `/morse-code-books/${SHERLOCK_PASS_1_BOOK_SLUG}`,
   `/morse-code-audiobooks/${SHERLOCK_PASS_1_BOOK_SLUG}`,
   `/morse-code-books/${SHERLOCK_PASS_2_BOOK_SLUG}`,

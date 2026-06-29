@@ -44,6 +44,7 @@ type SeoSummaryData = {
   remainingRawCandidateCompletionSlugs?: string[];
   bespokeRawCandidatePass1Slugs?: string[];
   bespokeRawCandidatePass2Slugs?: string[];
+  bespokeRawCandidatePass3Slugs?: string[];
   sherlockStorySplitPass1Slugs?: string[];
   sherlockStorySplitPass2Slugs?: string[];
   summaries: SeoSummaryRecord[];
@@ -612,6 +613,9 @@ function selectedSlugsForActiveBatch(summaryData: SeoSummaryData) {
 
   if (summaryData.summarySet === "bespoke-raw-candidate-pass-2") {
     return summaryData.bespokeRawCandidatePass2Slugs ?? [];
+  }
+  if (summaryData.summarySet === "bespoke-raw-candidate-pass-3") {
+    return summaryData.bespokeRawCandidatePass3Slugs ?? [];
   }
 
   if (summaryData.summarySet === "sherlock-story-split-pass-1") {

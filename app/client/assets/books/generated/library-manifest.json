@@ -25187,6 +25187,118 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-adventure-of-the-copper-beeches/manifest.json"
+    },
+    {
+      "slug": "the-sign-of-the-four",
+      "title": "The Sign of the Four",
+      "author": [
+        "Arthur Conan Doyle"
+      ],
+      "contentVersion": "e8703b10006dae6b",
+      "contentHash": "e8703b10006dae6b21e86075d995d8f43ac9ede7eaa67cb17ff38cd3b01f50a2",
+      "language": "en",
+      "description": "Arthur Conan Doyle's Sherlock Holmes novel about Mary Morstan, a hidden treasure, and a case that stretches from Baker Street to the Thames.",
+      "subjects": [
+        "Detective fiction",
+        "Mystery fiction",
+        "Sherlock Holmes",
+        "Novels"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2097",
+        "releaseDate": "March 1, 2000",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2097",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted bespoke raw candidate pass 3 processed this accepted story after manual collection-split, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Sign of the Four"
+      },
+      "stats": {
+        "originalCharacterCount": 256327,
+        "cleanedCharacterCount": 231350,
+        "wordCount": 43399,
+        "sectionCount": 12,
+        "includedSectionCount": 12
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-sign-of-the-four/manifest.json"
+    },
+    {
+      "slug": "the-mysterious-affair-at-styles",
+      "title": "The Mysterious Affair at Styles",
+      "author": [
+        "Agatha Christie"
+      ],
+      "contentVersion": "c7e67fcb7a7302a9",
+      "contentHash": "c7e67fcb7a7302a9436e55289bcc4b090d87f66de1ff916f1f41cb7755c05492",
+      "language": "en",
+      "description": "Agatha Christie's first Hercule Poirot mystery, set around a country-house poisoning and the careful reconstruction of evidence.",
+      "subjects": [
+        "Detective fiction",
+        "Mystery fiction",
+        "Hercule Poirot",
+        "Novels"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "863",
+        "releaseDate": "March 1, 1997",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/863",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted bespoke raw candidate pass 3 processed this accepted story after manual collection-split, source, and metadata review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": true,
+        "duplicateReason": "Individual story extracted from a parent Project Gutenberg collection after manual review."
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Mysterious Affair at Styles"
+      },
+      "stats": {
+        "originalCharacterCount": 349120,
+        "cleanedCharacterCount": 320125,
+        "wordCount": 57832,
+        "sectionCount": 13,
+        "includedSectionCount": 13
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-mysterious-affair-at-styles/manifest.json"
     }
   ]
 }
