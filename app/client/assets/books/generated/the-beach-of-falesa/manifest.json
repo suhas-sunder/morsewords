@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-beach-of-falesa",
+  "title": "The Beach of Falesá",
+  "author": [
+    "Robert Louis Stevenson"
+  ],
+  "contentVersion": "b38b94767d2dd4fa",
+  "contentHash": "b38b94767d2dd4fa6e8f5065294033366e160bff61aae50fb4d8d232c7fc2d4f",
+  "language": "en",
+  "description": "Robert Louis Stevenson's South Seas story about Wiltshire, Uma, Case, trade, isolation, and danger on Falesá.",
+  "subjects": [
+    "Pacific Area -- Fiction",
+    "Short stories",
+    "Adventure stories",
+    "Traders -- Fiction"
+  ],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "329",
+    "releaseDate": "September 1, 1995",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/329",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "owner-reviewed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Targeted bespoke raw candidate pass 7 processed this accepted story after manual source, metadata, and story-boundary review. Review generated output before any Cloudflare export.",
+    "allowDuplicateGutenbergId": false
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Beach of Falesá"
+  },
+  "stats": {
+    "originalCharacterCount": 274538,
+    "cleanedCharacterCount": 144629,
+    "wordCount": 29148,
+    "sectionCount": 5,
+    "includedSectionCount": 5
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter I",
+      "title": "A South Sea Bridal",
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 23083,
+      "wordCount": 4580,
+      "estimatedTypingMinutes": 131,
+      "estimatedListeningMinutes": 138,
+      "morseCharacterEstimate": 123940,
+      "textPreview": "I saw that island first when it was neither night nor morning. The moon was to the west, setting, but still broad and bright. To the east, and right amidships..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter II",
+      "title": "The Ban",
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 39985,
+      "wordCount": 8089,
+      "estimatedTypingMinutes": 232,
+      "estimatedListeningMinutes": 239,
+      "morseCharacterEstimate": 214895,
+      "textPreview": "I came on the verandah just before the sun rose on the morrow. My house was the last on the east; there was a cape of woods and cliffs behind that hid the sunr..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter III",
+      "title": "The Missionary",
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 22324,
+      "wordCount": 4431,
+      "estimatedTypingMinutes": 127,
+      "estimatedListeningMinutes": 134,
+      "morseCharacterEstimate": 119915,
+      "textPreview": "As I came out on the verandah, the mission-boat was shooting for the mouth of the river. She was a long whale-boat painted white; a bit of an awning astern; a..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter IV",
+      "title": "Devil-Work",
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 33797,
+      "wordCount": 6798,
+      "estimatedTypingMinutes": 195,
+      "estimatedListeningMinutes": 202,
+      "morseCharacterEstimate": 181242,
+      "textPreview": "Near a month went by without much doing. The same night of our marriage Galoshes called round, and made himself mighty civil, and got into a habit of dropping..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter V",
+      "title": "Night In the Bush",
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 25440,
+      "wordCount": 5250,
+      "estimatedTypingMinutes": 150,
+      "estimatedListeningMinutes": 152,
+      "morseCharacterEstimate": 136023,
+      "textPreview": "Well, I was committed now; Tiapolo had to be smashed up before next day, and my hands were pretty full, not only with preparations, but with argument. My house..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 274538,
+    "cleanedCharacterCount": 144629,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": [
+      "Targeted bespoke raw candidate pass 7 used explicit manual story boundaries instead of a broad all-book rebuild.",
+      "Local startup preview intentionally stores only starter text, not the full work."
+    ]
+  },
+  "warnings": [
+    "Generated by targeted bespoke raw candidate pass 7; review before Cloudflare export.",
+    "Cloudflare export was not run.",
+    "Manual pass split Project Gutenberg #329 into standalone story units, removing the collection title page, contents, other stories, back matter, and license text while preserving this story's five chapter bodies."
+  ]
+}

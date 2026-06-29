@@ -5656,6 +5656,39 @@
       "previewCharacterCount": 1014,
       "estimatedRuntimeSeconds": 365,
       "truncated": true
+    },
+    {
+      "slug": "the-beach-of-falesa",
+      "path": "/book-previews/the-beach-of-falesa.preview.json",
+      "contentVersion": "b38b94767d2dd4fa",
+      "contentHash": "b38b94767d2dd4fa6e8f5065294033366e160bff61aae50fb4d8d232c7fc2d4f",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1926,
+      "previewCharacterCount": 1154,
+      "estimatedRuntimeSeconds": 410,
+      "truncated": true
+    },
+    {
+      "slug": "the-bottle-imp",
+      "path": "/book-previews/the-bottle-imp.preview.json",
+      "contentVersion": "aae311ebe8b5ff4d",
+      "contentHash": "aae311ebe8b5ff4d4a48cb8b8139ecfe0f200ac73f47a6e36be6b43fb3c69dd3",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1796,
+      "previewCharacterCount": 1048,
+      "estimatedRuntimeSeconds": 373,
+      "truncated": true
+    },
+    {
+      "slug": "the-isle-of-voices",
+      "path": "/book-previews/the-isle-of-voices.preview.json",
+      "contentVersion": "514c8c99d948eac3",
+      "contentHash": "514c8c99d948eac3a526a450978ea4df8fef747d40a3808eb321f40bcdc87f38",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1906,
+      "previewCharacterCount": 1158,
+      "estimatedRuntimeSeconds": 409,
+      "truncated": true
     }
   ],
   "missing": []

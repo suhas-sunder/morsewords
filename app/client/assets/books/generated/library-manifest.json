@@ -25519,6 +25519,171 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-financier/manifest.json"
+    },
+    {
+      "slug": "the-beach-of-falesa",
+      "title": "The Beach of Falesá",
+      "author": [
+        "Robert Louis Stevenson"
+      ],
+      "contentVersion": "b38b94767d2dd4fa",
+      "contentHash": "b38b94767d2dd4fa6e8f5065294033366e160bff61aae50fb4d8d232c7fc2d4f",
+      "language": "en",
+      "description": "Robert Louis Stevenson's South Seas story about Wiltshire, Uma, Case, trade, isolation, and danger on Falesá.",
+      "subjects": [
+        "Pacific Area -- Fiction",
+        "Short stories",
+        "Adventure stories",
+        "Traders -- Fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "329",
+        "releaseDate": "September 1, 1995",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/329",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted bespoke raw candidate pass 7 processed this accepted story after manual source, metadata, and story-boundary review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": false
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Beach of Falesá"
+      },
+      "stats": {
+        "originalCharacterCount": 274538,
+        "cleanedCharacterCount": 144629,
+        "wordCount": 29148,
+        "sectionCount": 5,
+        "includedSectionCount": 5
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-beach-of-falesa/manifest.json"
+    },
+    {
+      "slug": "the-bottle-imp",
+      "title": "The Bottle Imp",
+      "author": [
+        "Robert Louis Stevenson"
+      ],
+      "contentVersion": "aae311ebe8b5ff4d",
+      "contentHash": "aae311ebe8b5ff4d4a48cb8b8139ecfe0f200ac73f47a6e36be6b43fb3c69dd3",
+      "language": "en",
+      "description": "Robert Louis Stevenson's supernatural tale about Keawe, Kokua, a cursed bottle, desire, bargain, and sacrifice.",
+      "subjects": [
+        "Pacific Area -- Fiction",
+        "Short stories",
+        "Supernatural fiction",
+        "Hawaii -- Fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "329",
+        "releaseDate": "September 1, 1995",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/329",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted bespoke raw candidate pass 7 processed this accepted story after manual source, metadata, and story-boundary review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": false
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Bottle Imp"
+      },
+      "stats": {
+        "originalCharacterCount": 274538,
+        "cleanedCharacterCount": 61865,
+        "wordCount": 12211,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-bottle-imp/manifest.json"
+    },
+    {
+      "slug": "the-isle-of-voices",
+      "title": "The Isle of Voices",
+      "author": [
+        "Robert Louis Stevenson"
+      ],
+      "contentVersion": "514c8c99d948eac3",
+      "contentHash": "514c8c99d948eac3a526a450978ea4df8fef747d40a3808eb321f40bcdc87f38",
+      "language": "en",
+      "description": "Robert Louis Stevenson's fantasy story about Keola, Lehua, Kalamake, magic, voices, treasure, and escape.",
+      "subjects": [
+        "Pacific Area -- Fiction",
+        "Short stories",
+        "Fantasy fiction",
+        "Magic -- Fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "329",
+        "releaseDate": "September 1, 1995",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/329",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted bespoke raw candidate pass 7 processed this accepted story after manual source, metadata, and story-boundary review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": false
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Isle of Voices"
+      },
+      "stats": {
+        "originalCharacterCount": 274538,
+        "cleanedCharacterCount": 42471,
+        "wordCount": 8339,
+        "sectionCount": 1,
+        "includedSectionCount": 1
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-isle-of-voices/manifest.json"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "summarySet": "bespoke-raw-candidate-pass-5",
+  "summarySet": "bespoke-raw-candidate-pass-7",
   "generatedAt": "2026-06-29",
   "storageApproach": "Separate static JSON data asset imported by book routes and validation tooling. Summaries are not embedded in generated book text, preview assets, raw sources, or Cloudflare export payloads.",
   "suggestedPilotSlugs": [
@@ -79,7 +79,7 @@
       "reason": "The Odyssey is not currently generated; The Arabian Nights keeps a long classic story-collection sample in the pilot."
     }
   ],
-  "expectedSummaryCount": 514,
+  "expectedSummaryCount": 517,
   "batch1Slugs": [
     "a-childs-garden-of-verses",
     "anna-karenina",
@@ -4801,6 +4801,33 @@
       ],
       "description": "Theodore Dreiser's novel about Frank Cowperwood, finance, ambition, family pressure, and power in nineteenth-century Philadelphia.",
       "summary": "The Financier is Theodore Dreiser's novel about Frank Algernon Cowperwood, a young Philadelphian whose talent for money, risk, persuasion, and self-advancement draws him into banking, speculation, politics, family conflict, and scandal. It is a business novel, a character study, and a social portrait at once, following Cowperwood as he learns how financial systems, personal charm, ambition, and public power can reinforce one another.\n\nFor MorseWords learners, The Financier offers a vocabulary set that feels different from fairy tales, detective stories, and adventure fiction. Banks, bonds, loans, accounts, railroads, offices, investors, city officials, political arrangements, contracts, household expectations, and personal desire all appear in the same narrative world. That makes the book useful for learners who want to practice practical adult prose with recurring names and repeated financial terms.\n\nThe chapter structure is regular, so it works well for short sessions. A beginner can start with Chapter I to learn Cowperwood's setting and family background, then replay one or two paragraphs until the proper names and sentence endings are clear. A more confident learner can choose later scenes with business negotiations or dialogue and use slower playback to catch numbers, punctuation, and speaker changes.\n\nDreiser's style is direct but often detailed, which makes the book a good bridge between simple story practice and very dense literary prose. Use it when you want a longer challenge with clear chapter boundaries, repeated terminology, and a strong central character. If a financial passage feels crowded, reduce the speed, copy a shorter span, and review the recurring words before moving on.\n\nFor a focused session, make a short word bank before listening: bank, bond, loan, money, city, father, office, Cowperwood, and Philadelphia. Then listen for those anchors first, and only afterward worry about the full sentence. This keeps the session grounded while the business vocabulary becomes familiar."
+    },
+    {
+      "slug": "the-beach-of-falesa",
+      "title": "The Beach of Falesá",
+      "author": [
+        "Robert Louis Stevenson"
+      ],
+      "description": "Robert Louis Stevenson's South Seas story about Wiltshire, Uma, Case, trade, isolation, and danger on Falesá.",
+      "summary": "The Beach of Falesá is Robert Louis Stevenson's South Seas story about John Wiltshire, a trader who arrives at a new island station and is quickly drawn into a web of local custom, commercial rivalry, fear, superstition, and violence. The story follows Wiltshire's relationship with Uma, his uneasy dealings with the manipulative Case, and the slow realization that the island's business arrangements hide something darker than ordinary beach gossip.\n\nFor MorseWords practice, this story is a strong bridge between adventure fiction and more complicated adult prose. The chapters are substantial but not enormous, and the setting gives learners repeated anchors: island, beach, trader, house, captain, native, Case, Uma, Falesá, copra, boat, and mission. Those recurring words help a listener recover after a missed phrase, while the dialogue gives useful rhythm for copying speaker changes.\n\nThe first chapter works well as a starter session because it opens with a vivid arrival scene and introduces the main social pressures without requiring background from the rest of the collection. Slower WPM settings are useful at first, especially around names, nautical language, and Stevenson's longer descriptive sentences. Once the names become familiar, the story is good for practicing longer listening spans because each chapter has a clear dramatic turn.\n\nBecause the piece uses five internal chapters, it is also easy to scale the difficulty. A learner can treat Chapter I as orientation, then use later chapters for denser dialogue, conflict, and action. The island vocabulary repeats often enough to make review meaningful, but the sentences still require careful attention to punctuation and spacing.\n\nA practical routine is to listen to one chapter in short slices. Copy the first two or three paragraphs, replay them while reading, then list the names and setting words that caused trouble. On a later pass, listen without looking and see whether the repeated island vocabulary now stands out more clearly in Morse."
+    },
+    {
+      "slug": "the-bottle-imp",
+      "title": "The Bottle Imp",
+      "author": [
+        "Robert Louis Stevenson"
+      ],
+      "description": "Robert Louis Stevenson's supernatural tale about Keawe, Kokua, a cursed bottle, desire, bargain, and sacrifice.",
+      "summary": "The Bottle Imp is Robert Louis Stevenson's supernatural tale about Keawe, a Hawaiian man who buys a magical bottle that can grant wishes but carries a terrible condition. The story turns on temptation, wealth, love, illness, bargaining, and sacrifice as Keawe and Kokua try to escape a bargain that becomes more dangerous each time the bottle changes hands.\n\nFor Morse practice, The Bottle Imp is compact enough for a focused session but rich enough to reward repetition. Its repeated words are clear anchors: bottle, imp, money, house, Keawe, Kokua, cent, buy, sell, wish, fear, and love. The plot also has a strong cause-and-effect shape, which helps learners follow meaning even when a sentence is missed.\n\nThis is a useful choice for learners who want more emotion and suspense than a simple fable. Start by listening to the opening paragraphs until the central rule of the bottle is easy to copy. Then move through the story in short spans, paying special attention to numbers and prices, because the bargain depends on exact values. Slower playback can make the names and currency details much easier to catch.\n\nThe story is generated as one standalone section, so it works best when you choose a short manual range inside the text for each session instead of trying to copy everything at once. The first scene is good for setup, the middle scenes are useful for money and bargain vocabulary, and the later scenes test emotional dialogue and faster turns in action.\n\nA good drill is to write down the recurring terms before playing the audio, then mark each one as you hear it. On a second pass, copy a dialogue-heavy section and compare where punctuation and speaker changes affected your spacing. The story's clean arc makes it satisfying to revisit, and the repeated bargain language gives Morse learners a steady pattern to hear."
+    },
+    {
+      "slug": "the-isle-of-voices",
+      "title": "The Isle of Voices",
+      "author": [
+        "Robert Louis Stevenson"
+      ],
+      "description": "Robert Louis Stevenson's fantasy story about Keola, Lehua, Kalamake, magic, voices, treasure, and escape.",
+      "summary": "The Isle of Voices is Robert Louis Stevenson's fantasy story about Keola, Lehua, and Kalamake, moving through magic, greed, travel, unseen presences, treasure, fear, and escape. Compared with The Beach of Falesá, this story leans more fully into wonder and folktale logic, but it still carries Stevenson's interest in danger, bargaining, and the strange pressures of island life.\n\nFor MorseWords learners, the story is useful because it is vivid, moderately long, and filled with recurring names and concrete action. Keola, Lehua, Kalamake, canoe, island, voices, money, trees, sea, and magic appear as memory anchors. The repeated proper names may feel difficult at first, but they become good recognition practice after a few passes.\n\nStart with the opening scene and listen at a comfortable speed until Keola and Kalamake are easy to distinguish. Then use short sections for copying practice, especially where the story shifts from ordinary domestic conflict into magical travel. Because the story includes some unfamiliar Hawaiian words and brief notes, it is better to slow down than to rush through the names and lose the plot.\n\nThis story is also useful for learners who want to practice contrast. Some passages feel like ordinary household or travel scenes, while others move into magical description and suspense. Switching between those modes helps train the ear to keep word spacing steady even when the vocabulary becomes less familiar. It also rewards replay, because the unusual names become much easier after one careful pass.\n\nA practical exercise is to make two columns before listening: character names in one column and setting/action words in the other. As the audio plays, tick off each repeated item. On the next pass, copy a paragraph without looking, then replay it while reading to check spacing, vowels, and long names. The story's strong atmosphere makes the repetition feel less mechanical."
     }
   ],
   "batch3Slugs": [
@@ -5237,5 +5264,10 @@
     "an-enquiry-concerning-human-understanding",
     "middlemarch",
     "the-financier"
+  ],
+  "bespokeRawCandidatePass7Slugs": [
+    "the-beach-of-falesa",
+    "the-bottle-imp",
+    "the-isle-of-voices"
   ]
 }
