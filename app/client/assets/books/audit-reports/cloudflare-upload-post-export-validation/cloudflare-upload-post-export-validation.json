@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "reportName": "cloudflare-upload-post-export-validation",
+  "generatedAt": "2026-06-29",
+  "branch": "morsewords-cloudflare-upload-post-export-validation-jun-2026",
+  "executiveResult": "Cloudflare upload not run; manual upload required",
+  "uploadCommandOrPathUsed": {
+    "uploadRun": false,
+    "reason": "No existing repo command performs a safe sync/delete upload for app/client/assets/books/cloudflare-export. The repo has owner-managed manual upload guidance only, no wrangler config, no package upload script, and no configured remote base URL in the local environment.",
+    "localExportDirectory": "app/client/assets/books/cloudflare-export",
+    "manualUploadSource": "docs/morse-books-cloudflare-upload.md"
+  },
+  "localExportCounts": {
+    "generatedBooks": 519,
+    "seoSummaries": 519,
+    "startupPreviews": 519,
+    "bookUrls": 519,
+    "audiobookUrls": 519,
+    "exportFiles": 521,
+    "bookPayloads": 519,
+    "manifestFiles": 2
+  },
+  "remoteUploadSyncResult": {
+    "result": "not-run",
+    "uploadedFiles": 0,
+    "syncedKeys": 0,
+    "bucket": "unknown; no repo Cloudflare/R2 upload config found",
+    "prefix": "unknown; use the public base URL root that serves public-manifest.json and books/<slug>.json",
+    "notes": [
+      "Upload must preserve relative paths from app/client/assets/books/cloudflare-export.",
+      "Upload must include public-manifest.json, upload-manifest.json, and every books/*.json payload.",
+      "Upload must not include app/client/assets/temp-books, generated source directories, or public/book-previews."
+    ]
+  },
+  "staleRemoteKeyCleanupResult": {
+    "result": "not-run",
+    "required": true,
+    "requiredBehavior": "sync/delete or equivalent stale-key cleanup; append-only upload is not acceptable",
+    "notes": [
+      "Remote keys under the book export prefix that are not present in the 521-file local export must be deleted.",
+      "This prevents old removed/deferred/source-risk payloads from remaining live."
+    ]
+  },
+  "remoteManifestValidation": {
+    "result": "blocked",
+    "reason": "Remote upload was not run and no VITE_MORSE_BOOK_CONTENT_BASE_URL or PUBLIC_MORSE_BOOK_CONTENT_BASE_URL was configured for a served export.",
+    "validatorAdded": "npm run books:cloudflare-post-upload-validation"
+  },
+  "remotePayloadValidation": {
+    "result": "blocked",
+    "reason": "Remote payloads cannot be fetched until the export is uploaded and a served base URL is configured.",
+    "representativePayloadsToValidate": [
+      "middlemarch",
+      "the-bottle-imp",
+      "the-masque-of-the-red-death",
+      "the-happy-prince",
+      "the-leavenworth-case",
+      "walden"
+    ]
+  },
+  "generatedLocalExportRemoteComparison": {
+    "localGeneratedVsExport": "pass via npm run books:cloudflare-export-audit",
+    "remoteComparison": "blocked until manual upload and base URL configuration",
+    "localExportContentVersion": "69b0d7900dc2a6aa"
+  },
+  "removedDeferredBlockedSlugExclusion": {
+    "localExportResult": "pass",
+    "remoteResult": "blocked until upload",
+    "requirement": "No blocked, deferred, removed, or source-risk slug may remain live remotely."
+  },
+  "metadataSourceResult": {
+    "localExportResult": "pass",
+    "remoteResult": "blocked until upload"
+  },
+  "sectionContentResult": {
+    "localExportResult": "pass",
+    "remoteResult": "blocked until upload"
+  },
+  "badLabelScanResult": {
+    "localExportResult": "pass",
+    "remoteResult": "blocked until upload",
+    "blockedLabels": [
+      "Unknown author",
+      "Unknown source",
+      "Source unavailable",
+      "Metadata unavailable",
+      "0 sections",
+      "Sections: 0"
+    ]
+  },
+  "wordCountResult": {
+    "localExportResult": "pass",
+    "remoteResult": "blocked until upload"
+  },
+  "postExportRouteChapterNavViewWindowValidation": {
+    "result": "blocked",
+    "reason": "Final post-export route/chapter/nav/view-window validation requires the refreshed export to be uploaded and served, or an explicitly configured production-like Cloudflare base URL.",
+    "requiredChecks": [
+      "519 live book routes reachable where expected",
+      "/morse-code-books count is 519",
+      "/morse-code-audiobooks count is 519",
+      "no live book route 404s",
+      "removed/deferred/blocked source-risk slugs remain absent or 404",
+      "starter preview renders immediately before full payload hydration",
+      "full Cloudflare payload hydrates when requested",
+      "reader view uses final full payload content",
+      "chapter/section picker reflects final exported sections",
+      "selected section changes update cleaned preview and Morse preview",
+      "view-window controls reflect the selected section/content",
+      "audiobook route behavior is consistent with final exported payload availability"
+    ]
+  },
+  "manualSteps": [
+    "Run npm run books:cloudflare-export && npm run books:cloudflare-export-audit immediately before upload.",
+    "Upload/sync app/client/assets/books/cloudflare-export to the configured Cloudflare/R2/public object prefix.",
+    "Overwrite existing keys and delete stale remote keys under the export prefix.",
+    "Configure VITE_MORSE_BOOK_CONTENT_BASE_URL or PUBLIC_MORSE_BOOK_CONTENT_BASE_URL to the public base URL that serves public-manifest.json and books/<slug>.json.",
+    "Run npm run books:cloudflare-post-upload-validation after upload.",
+    "Run the deferred route/chapter/nav/view-window validation against the served export path."
+  ],
+  "laterContentQualityCheckpoints": [
+    "Sources page trust-copy update",
+    "About page E-E-A-T sentence",
+    "Repeated helper-copy reduction"
+  ],
+  "deferredFinalStages": [
+    "non-book sitemap pages",
+    "URL/indexability audit",
+    "GSC/meta review",
+    "broad mobile optimization"
+  ],
+  "readinessDecision": "Cloudflare upload not run; manual upload required"
+}

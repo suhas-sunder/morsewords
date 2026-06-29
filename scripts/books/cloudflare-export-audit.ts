@@ -171,6 +171,7 @@ const REPORT_JSON_PATH = path.join(REPORT_ROOT, "cloudflare-export-prep.json");
 const REPORT_MD_PATH = path.join(REPORT_ROOT, "cloudflare-export-prep.md");
 const EXPECTED_COUNT = 519;
 const STALE_PAYLOAD_COUNT_BEFORE_BRANCH = 74;
+const OUTPUT_NEWLINE = process.platform === "win32" ? "\r\n" : "\n";
 const BAD_LABELS = [
   "Unknown author",
   "Unknown source",
@@ -194,12 +195,14 @@ function readJson<T>(filePath: string): T {
 
 function writeJson(filePath: string, value: unknown): void {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  const json = JSON.stringify(value, null, 2).replace(/\n/g, OUTPUT_NEWLINE);
+  fs.writeFileSync(filePath, `${json}${OUTPUT_NEWLINE}`, "utf8");
 }
 
 function writeText(filePath: string, value: string): void {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, value.endsWith("\n") ? value : `${value}\n`, "utf8");
+  const text = value.endsWith("\n") ? value : `${value}\n`;
+  fs.writeFileSync(filePath, text.replace(/\n/g, OUTPUT_NEWLINE), "utf8");
 }
 
 function listFiles(root: string): string[] {

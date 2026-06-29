@@ -44,6 +44,7 @@ const EXPORT_ROOT = path.join(
   REPO_ROOT,
   "app/client/assets/books/cloudflare-export",
 );
+const OUTPUT_NEWLINE = process.platform === "win32" ? "\r\n" : "\n";
 
 function toPosixPath(input: string): string {
   return input.split(path.sep).join("/");
@@ -55,7 +56,8 @@ function readJson<T>(filePath: string): T {
 
 function writeJson(filePath: string, value: unknown): void {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  const json = JSON.stringify(value, null, 2).replace(/\n/g, OUTPUT_NEWLINE);
+  fs.writeFileSync(filePath, `${json}${OUTPUT_NEWLINE}`, "utf8");
 }
 
 function sha256Json(value: unknown): string {
