@@ -1,0 +1,1013 @@
+{
+  "schemaVersion": 1,
+  "reportName": "book-library-decision-checkpoint",
+  "generatedAt": "2026-06-29",
+  "branch": "morsewords-book-library-decision-checkpoint-jun-2026",
+  "pass8BranchMergeStatus": "morsewords-bespoke-raw-candidate-pass-8-jun-2026 was merged to main, validated, and pushed before this branch.",
+  "executiveDecision": "Do not run a normal bespoke/manual raw candidate pass 9 right now. The 519-book library is ready for a user decision checkpoint before book-section/content and metadata/source audits; remaining non-generated raws are incomplete, blocked, duplicate/title-content mismatches, future-bespoke, or require dedicated structure/metadata/source plans.",
+  "currentLibraryCounts": {
+    "rawTempBooksCount": 527,
+    "generatedCount": 519,
+    "seoSummaryCount": 519,
+    "startupPreviewCount": 519,
+    "missingSummaryCount": 0,
+    "missingSummarySlugs": [],
+    "bookUrlCount": 519,
+    "audiobookUrlCount": 519,
+    "unknownUnclassifiedCount": 0
+  },
+  "completedRecoveryPassesSummary": [
+    {
+      "pass": 1,
+      "reportPath": "app/client/assets/books/audit-reports/bespoke-raw-candidate-pass-1/bespoke-raw-candidate-pass-1.json"
+    },
+    {
+      "pass": 2,
+      "reportPath": "app/client/assets/books/audit-reports/bespoke-raw-candidate-pass-2/bespoke-raw-candidate-pass-2.json"
+    },
+    {
+      "pass": 3,
+      "reportPath": "app/client/assets/books/audit-reports/bespoke-raw-candidate-pass-3/bespoke-raw-candidate-pass-3.json"
+    },
+    {
+      "pass": 4,
+      "acceptedGenerated": [
+        "the-leavenworth-case"
+      ]
+    },
+    {
+      "pass": 5,
+      "acceptedGenerated": [
+        "an-enquiry-concerning-human-understanding",
+        "middlemarch",
+        "the-financier"
+      ]
+    },
+    {
+      "pass": 6,
+      "acceptedGenerated": [],
+      "result": "No additions; Emma, Great Expectations, and North and South were incomplete local raws."
+    },
+    {
+      "pass": 7,
+      "acceptedGenerated": [
+        "the-beach-of-falesa",
+        "the-bottle-imp",
+        "the-isle-of-voices"
+      ]
+    },
+    {
+      "pass": 8,
+      "acceptedGenerated": [
+        "walden",
+        "on-the-duty-of-civil-disobedience"
+      ]
+    }
+  ],
+  "remainingRawCandidatesByCategory": {
+    "generated-then-user-approved-removed": [],
+    "already-handled-by-replacement": [],
+    "duplicate-or-near-duplicate": [
+      {
+        "rawSourceFilename": "Japanese Fairy Tales.txt",
+        "inferredSlug": "japanese-fairy-tales",
+        "reason": "Prior triage category: known-duplicate-or-near-duplicate."
+      },
+      {
+        "rawSourceFilename": "The Two Magics - The Turn of the Screw, Covering End.txt",
+        "inferredSlug": "the-two-magics-the-turn-of-the-screw-covering-end",
+        "reason": "Prior triage category: known-duplicate-or-near-duplicate."
+      },
+      {
+        "rawSourceFilename": "The Wind in the Willows.txt",
+        "inferredSlug": "the-wind-in-the-willows",
+        "reason": "Prior triage category: known-duplicate-or-near-duplicate."
+      }
+    ],
+    "parent-collection-or-aggregate-not-used": [],
+    "unsafe-start-end-boundary-risk": [
+      {
+        "rawSourceFilename": "Emma.txt",
+        "inferredSlug": "emma",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "Erewhon; Or, Over the Range.txt",
+        "inferredSlug": "erewhon-or-over-the-range",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "Father Goriot.txt",
+        "inferredSlug": "father-goriot",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "Figures of Earth - A Comedy of Appearances.txt",
+        "inferredSlug": "figures-of-earth-a-comedy-of-appearances",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "Goblin Tales of Lancashire.txt",
+        "inferredSlug": "goblin-tales-of-lancashire",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "Great Expectations.txt",
+        "inferredSlug": "great-expectations",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "History of Tom Jones.txt",
+        "inferredSlug": "history-of-tom-jones",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "North and South.txt",
+        "inferredSlug": "north-and-south",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "Northern Lights.txt",
+        "inferredSlug": "northern-lights",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "Siddhartha.txt",
+        "inferredSlug": "siddhartha",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "The Arabian Nights Entertainments.txt",
+        "inferredSlug": "the-arabian-nights-entertainments",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "The Iliad.txt",
+        "inferredSlug": "the-iliad",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "The Moonstone.txt",
+        "inferredSlug": "the-moonstone",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "The Mysteries of Udolpho.txt",
+        "inferredSlug": "the-mysteries-of-udolpho",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "The Private Memoirs and Confessions of a Justified Sinner.txt",
+        "inferredSlug": "the-private-memoirs-and-confessions-of-a-justified-sinner",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "The Woman in White.txt",
+        "inferredSlug": "the-woman-in-white",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      },
+      {
+        "rawSourceFilename": "Travelers Five Along Life's Highway.txt",
+        "inferredSlug": "travelers-five-along-life-s-highway",
+        "reason": "Prior triage category: unsafe-start-or-end-boundary-risk."
+      }
+    ],
+    "unsafe-automation-structure": [
+      {
+        "rawSourceFilename": "The Countess of Pembroke's Arcadia.txt",
+        "inferredSlug": "the-countess-of-pembroke-s-arcadia",
+        "reason": "Prior triage category: unsafe-automation-structure."
+      },
+      {
+        "rawSourceFilename": "War and Peace.txt",
+        "inferredSlug": "war-and-peace",
+        "reason": "Prior triage category: unsafe-automation-structure."
+      },
+      {
+        "rawSourceFilename": "Yellow gentians and blue.txt",
+        "inferredSlug": "yellow-gentians-and-blue",
+        "reason": "Prior triage category: unsafe-automation-structure."
+      }
+    ],
+    "unsafe-metadata-risk": [
+      {
+        "rawSourceFilename": "Beowulf - An Anglo-Saxon Epic Poem.txt",
+        "inferredSlug": "beowulf-an-anglo-saxon-epic-poem",
+        "reason": "Prior triage category: unsafe-metadata-risk."
+      }
+    ],
+    "unsafe-title-parent-collection-risk": [
+      {
+        "rawSourceFilename": "The Little Match Girl.txt",
+        "inferredSlug": "the-little-match-girl",
+        "reason": "Prior triage category: unsafe-title-or-parent-collection-risk."
+      }
+    ],
+    "blocked-source-or-rights-risk": [
+      {
+        "rawSourceFilename": "THE APPLE.txt",
+        "inferredSlug": "the-apple",
+        "reason": "Prior triage category: blocked-source-or-rights-risk."
+      },
+      {
+        "rawSourceFilename": "The Dream-Quest of Unknown Kadath.txt",
+        "inferredSlug": "the-dream-quest-of-unknown-kadath",
+        "reason": "Prior triage category: blocked-source-or-rights-risk."
+      },
+      {
+        "rawSourceFilename": "THE STORY OF THE LATE MR. ELVESHAM.txt",
+        "inferredSlug": "the-story-of-the-late-mr-elvesham",
+        "reason": "Prior triage category: blocked-source-or-rights-risk."
+      }
+    ],
+    "future-bespoke-required": [
+      {
+        "rawSourceFilename": "Hamlet.txt",
+        "inferredSlug": "hamlet",
+        "reason": "Prior triage category: candidate-for-future-manual-processing."
+      },
+      {
+        "rawSourceFilename": "Plays of Sophocles - Oedipus the King; Oedipus at Colonus; Antigone.txt",
+        "inferredSlug": "plays-of-sophocles-oedipus-the-king-oedipus-at-colonus-antigone",
+        "reason": "Prior triage category: candidate-for-future-manual-processing."
+      },
+      {
+        "rawSourceFilename": "The Odyssey.txt",
+        "inferredSlug": "the-odyssey",
+        "reason": "Prior triage category: candidate-for-future-manual-processing."
+      },
+      {
+        "rawSourceFilename": "Twenty years after.txt",
+        "inferredSlug": "twenty-years-after",
+        "reason": "Prior triage category: candidate-for-future-manual-processing."
+      }
+    ],
+    "manual-review-required": [],
+    "non-book-or-invalid": [],
+    "removed-or-missing-from-current-raw": [],
+    "unknown-unclassified": []
+  },
+  "remainingRawCategoryCounts": {
+    "generated-then-user-approved-removed": 0,
+    "already-handled-by-replacement": 0,
+    "duplicate-or-near-duplicate": 3,
+    "parent-collection-or-aggregate-not-used": 0,
+    "unsafe-start-end-boundary-risk": 17,
+    "unsafe-automation-structure": 3,
+    "unsafe-metadata-risk": 1,
+    "unsafe-title-parent-collection-risk": 1,
+    "blocked-source-or-rights-risk": 3,
+    "future-bespoke-required": 4,
+    "manual-review-required": 0,
+    "non-book-or-invalid": 0,
+    "removed-or-missing-from-current-raw": 0,
+    "unknown-unclassified": 0
+  },
+  "perCandidateDecisionTable": [
+    {
+      "rawFile": "THE APPLE.txt",
+      "currentCategory": "blocked-source-or-rights-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "block-source-or-rights-risk",
+      "reason": "Blocked by missing repo provenance/source evidence.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Dream-Quest of Unknown Kadath.txt",
+      "currentCategory": "blocked-source-or-rights-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "block-source-or-rights-risk",
+      "reason": "Blocked/source-risk candidate; do not publish before source and rights evidence is resolved.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "THE STORY OF THE LATE MR. ELVESHAM.txt",
+      "currentCategory": "blocked-source-or-rights-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "block-source-or-rights-risk",
+      "reason": "Blocked by missing repo provenance/source evidence.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Japanese Fairy Tales.txt",
+      "currentCategory": "duplicate-or-near-duplicate",
+      "currentDecision": "defer-duplicate-or-title-content-mismatch",
+      "reason": "Previously confirmed duplicate or near-duplicate; do not add another public book without explicit replacement/merge decision.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Two Magics - The Turn of the Screw, Covering End.txt",
+      "currentCategory": "duplicate-or-near-duplicate",
+      "currentDecision": "defer-duplicate-or-title-content-mismatch",
+      "reason": "Previously confirmed duplicate or near-duplicate; do not add another public book without explicit replacement/merge decision.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Wind in the Willows.txt",
+      "currentCategory": "duplicate-or-near-duplicate",
+      "currentDecision": "defer-duplicate-or-title-content-mismatch",
+      "reason": "Previously confirmed duplicate or near-duplicate; do not add another public book without explicit replacement/merge decision.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Hamlet.txt",
+      "currentCategory": "future-bespoke-required",
+      "currentDecision": "future-bespoke",
+      "reason": "Future-bespoke candidate that should stay outside normal raw recovery until explicitly planned.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Plays of Sophocles - Oedipus the King; Oedipus at Colonus; Antigone.txt",
+      "currentCategory": "future-bespoke-required",
+      "currentDecision": "future-bespoke",
+      "reason": "Future-bespoke candidate that should stay outside normal raw recovery until explicitly planned.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Odyssey.txt",
+      "currentCategory": "future-bespoke-required",
+      "currentDecision": "future-bespoke",
+      "reason": "Future-bespoke candidate that should stay outside normal raw recovery until explicitly planned.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Twenty years after.txt",
+      "currentCategory": "future-bespoke-required",
+      "currentDecision": "future-bespoke",
+      "reason": "Future-bespoke candidate that should stay outside normal raw recovery until explicitly planned.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Countess of Pembroke's Arcadia.txt",
+      "currentCategory": "unsafe-automation-structure",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-dedicated-structure-plan",
+      "reason": "Dedicated structure plan needed for early-modern multi-division text and unsafe automation structure.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "War and Peace.txt",
+      "currentCategory": "unsafe-automation-structure",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-dedicated-structure-plan",
+      "reason": "Dedicated structure plan needed for a very large multi-volume work with hundreds of headings.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Yellow gentians and blue.txt",
+      "currentCategory": "unsafe-automation-structure",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-mixed-structure-plan",
+      "reason": "Mixed poetry/prose/play/title-list structure needs a dedicated section and title plan.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Beowulf - An Anglo-Saxon Epic Poem.txt",
+      "currentCategory": "unsafe-metadata-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-translator-or-metadata-trust-plan",
+      "reason": "Translator, metadata, notes, glossary, and epic section treatment need a dedicated trust and structure plan.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Emma.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-incomplete-local-raw",
+      "reason": "Incomplete local raw: pass 6 found the file ends mid-sentence in Volume II, Chapter VII.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": true,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Erewhon; Or, Over the Range.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-incomplete-local-raw",
+      "reason": "Unsafe/truncated local ending: pass 8 found no safe standard end marker and a tail ending mid-word or mid-sentence.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": true,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Father Goriot.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-dedicated-structure-plan",
+      "reason": "Dedicated structure/section plan needed because pass 8 found post-novel addendum material and no simple clean chapter treatment.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Figures of Earth - A Comedy of Appearances.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-incomplete-local-raw",
+      "reason": "Unsafe/truncated local ending: pass 8 found no safe standard end marker and a tail ending mid-sentence.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": true,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Goblin Tales of Lancashire.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "currentDecision": "hard-boundary-risk",
+      "reason": "No current evidence supports a safe small normal recovery pass; retain as hard boundary risk before export.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Great Expectations.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-incomplete-local-raw",
+      "reason": "Incomplete local raw: pass 6 found the file ends mid-scene in Chapter XXXIX, while the complete novel continues through Chapter LIX.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": true,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "History of Tom Jones.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "currentDecision": "hard-boundary-risk",
+      "reason": "No current evidence supports a safe small normal recovery pass; retain as hard boundary risk before export.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "North and South.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-incomplete-local-raw",
+      "reason": "Incomplete local raw: pass 6 found the file only reaches Chapter VI and ends mid-paragraph.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": true,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Northern Lights.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "currentDecision": "hard-boundary-risk",
+      "reason": "No current evidence supports a safe small normal recovery pass; retain as hard boundary risk before export.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Siddhartha.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-translator-or-metadata-trust-plan",
+      "reason": "Translator and metadata evidence need a dedicated trust plan before publication.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Arabian Nights Entertainments.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-incomplete-local-raw",
+      "reason": "Unsafe/truncated local ending or unsafe structure: pass 8 found no safe standard end marker and a tail ending mid-sentence.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": true,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Iliad.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "currentDecision": "hard-boundary-risk",
+      "reason": "No current evidence supports a safe small normal recovery pass; retain as hard boundary risk before export.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Moonstone.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "currentDecision": "hard-boundary-risk",
+      "reason": "No current evidence supports a safe small normal recovery pass; retain as hard boundary risk before export.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Mysteries of Udolpho.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "currentDecision": "hard-boundary-risk",
+      "reason": "No current evidence supports a safe small normal recovery pass; retain as hard boundary risk before export.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Private Memoirs and Confessions of a Justified Sinner.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-dedicated-structure-plan",
+      "reason": "Dedicated structure/section plan needed for its major internal divisions and editorial/private memoir/sequel structure.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Woman in White.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "currentDecision": "hard-boundary-risk",
+      "reason": "No current evidence supports a safe small normal recovery pass; retain as hard boundary risk before export.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Travelers Five Along Life's Highway.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-dedicated-structure-plan",
+      "reason": "Dedicated structure/section plan needed because pass 8 found extensive publisher catalog/front/back material.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Little Match Girl.txt",
+      "currentCategory": "unsafe-title-parent-collection-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-duplicate-or-title-content-mismatch",
+      "reason": "Duplicate/title-content mismatch: raw text is The Dream of Little Tuk, which is already generated.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    }
+  ],
+  "whetherPass9IsUseful": {
+    "recommended": false,
+    "answer": "No: no remaining candidate is clearly safe, complete, metadata-resolved, and only waiting for manual start/end boundaries."
+  },
+  "dedicatedPlanCandidates": [
+    {
+      "rawFile": "Hamlet.txt",
+      "currentCategory": "future-bespoke-required",
+      "currentDecision": "future-bespoke",
+      "reason": "Future-bespoke candidate that should stay outside normal raw recovery until explicitly planned.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Plays of Sophocles - Oedipus the King; Oedipus at Colonus; Antigone.txt",
+      "currentCategory": "future-bespoke-required",
+      "currentDecision": "future-bespoke",
+      "reason": "Future-bespoke candidate that should stay outside normal raw recovery until explicitly planned.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Odyssey.txt",
+      "currentCategory": "future-bespoke-required",
+      "currentDecision": "future-bespoke",
+      "reason": "Future-bespoke candidate that should stay outside normal raw recovery until explicitly planned.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Twenty years after.txt",
+      "currentCategory": "future-bespoke-required",
+      "currentDecision": "future-bespoke",
+      "reason": "Future-bespoke candidate that should stay outside normal raw recovery until explicitly planned.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Countess of Pembroke's Arcadia.txt",
+      "currentCategory": "unsafe-automation-structure",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-dedicated-structure-plan",
+      "reason": "Dedicated structure plan needed for early-modern multi-division text and unsafe automation structure.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "War and Peace.txt",
+      "currentCategory": "unsafe-automation-structure",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-dedicated-structure-plan",
+      "reason": "Dedicated structure plan needed for a very large multi-volume work with hundreds of headings.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Yellow gentians and blue.txt",
+      "currentCategory": "unsafe-automation-structure",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-mixed-structure-plan",
+      "reason": "Mixed poetry/prose/play/title-list structure needs a dedicated section and title plan.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Beowulf - An Anglo-Saxon Epic Poem.txt",
+      "currentCategory": "unsafe-metadata-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-translator-or-metadata-trust-plan",
+      "reason": "Translator, metadata, notes, glossary, and epic section treatment need a dedicated trust and structure plan.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Father Goriot.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-dedicated-structure-plan",
+      "reason": "Dedicated structure/section plan needed because pass 8 found post-novel addendum material and no simple clean chapter treatment.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Goblin Tales of Lancashire.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "currentDecision": "hard-boundary-risk",
+      "reason": "No current evidence supports a safe small normal recovery pass; retain as hard boundary risk before export.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "History of Tom Jones.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "currentDecision": "hard-boundary-risk",
+      "reason": "No current evidence supports a safe small normal recovery pass; retain as hard boundary risk before export.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Northern Lights.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "currentDecision": "hard-boundary-risk",
+      "reason": "No current evidence supports a safe small normal recovery pass; retain as hard boundary risk before export.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Siddhartha.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-translator-or-metadata-trust-plan",
+      "reason": "Translator and metadata evidence need a dedicated trust plan before publication.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Arabian Nights Entertainments.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-incomplete-local-raw",
+      "reason": "Unsafe/truncated local ending or unsafe structure: pass 8 found no safe standard end marker and a tail ending mid-sentence.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": true,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Iliad.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "currentDecision": "hard-boundary-risk",
+      "reason": "No current evidence supports a safe small normal recovery pass; retain as hard boundary risk before export.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Moonstone.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "currentDecision": "hard-boundary-risk",
+      "reason": "No current evidence supports a safe small normal recovery pass; retain as hard boundary risk before export.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Mysteries of Udolpho.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "currentDecision": "hard-boundary-risk",
+      "reason": "No current evidence supports a safe small normal recovery pass; retain as hard boundary risk before export.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Private Memoirs and Confessions of a Justified Sinner.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-dedicated-structure-plan",
+      "reason": "Dedicated structure/section plan needed for its major internal divisions and editorial/private memoir/sequel structure.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Woman in White.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "currentDecision": "hard-boundary-risk",
+      "reason": "No current evidence supports a safe small normal recovery pass; retain as hard boundary risk before export.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Travelers Five Along Life's Highway.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-dedicated-structure-plan",
+      "reason": "Dedicated structure/section plan needed because pass 8 found extensive publisher catalog/front/back material.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    }
+  ],
+  "replacementRawNeededCandidates": [
+    {
+      "rawFile": "Emma.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-incomplete-local-raw",
+      "reason": "Incomplete local raw: pass 6 found the file ends mid-sentence in Volume II, Chapter VII.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": true,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Erewhon; Or, Over the Range.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-incomplete-local-raw",
+      "reason": "Unsafe/truncated local ending: pass 8 found no safe standard end marker and a tail ending mid-word or mid-sentence.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": true,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Figures of Earth - A Comedy of Appearances.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-incomplete-local-raw",
+      "reason": "Unsafe/truncated local ending: pass 8 found no safe standard end marker and a tail ending mid-sentence.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": true,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Great Expectations.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-incomplete-local-raw",
+      "reason": "Incomplete local raw: pass 6 found the file ends mid-scene in Chapter XXXIX, while the complete novel continues through Chapter LIX.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": true,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "North and South.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-incomplete-local-raw",
+      "reason": "Incomplete local raw: pass 6 found the file only reaches Chapter VI and ends mid-paragraph.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": true,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Arabian Nights Entertainments.txt",
+      "currentCategory": "unsafe-start-end-boundary-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-incomplete-local-raw",
+      "reason": "Unsafe/truncated local ending or unsafe structure: pass 8 found no safe standard end marker and a tail ending mid-sentence.",
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": true,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    }
+  ],
+  "blockedSourceRiskCandidates": [
+    {
+      "rawFile": "THE APPLE.txt",
+      "currentCategory": "blocked-source-or-rights-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "block-source-or-rights-risk",
+      "reason": "Blocked by missing repo provenance/source evidence.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Dream-Quest of Unknown Kadath.txt",
+      "currentCategory": "blocked-source-or-rights-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "block-source-or-rights-risk",
+      "reason": "Blocked/source-risk candidate; do not publish before source and rights evidence is resolved.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "THE STORY OF THE LATE MR. ELVESHAM.txt",
+      "currentCategory": "blocked-source-or-rights-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "block-source-or-rights-risk",
+      "reason": "Blocked by missing repo provenance/source evidence.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    }
+  ],
+  "duplicateTitleContentMismatchCandidates": [
+    {
+      "rawFile": "Japanese Fairy Tales.txt",
+      "currentCategory": "duplicate-or-near-duplicate",
+      "currentDecision": "defer-duplicate-or-title-content-mismatch",
+      "reason": "Previously confirmed duplicate or near-duplicate; do not add another public book without explicit replacement/merge decision.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Two Magics - The Turn of the Screw, Covering End.txt",
+      "currentCategory": "duplicate-or-near-duplicate",
+      "currentDecision": "defer-duplicate-or-title-content-mismatch",
+      "reason": "Previously confirmed duplicate or near-duplicate; do not add another public book without explicit replacement/merge decision.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Wind in the Willows.txt",
+      "currentCategory": "duplicate-or-near-duplicate",
+      "currentDecision": "defer-duplicate-or-title-content-mismatch",
+      "reason": "Previously confirmed duplicate or near-duplicate; do not add another public book without explicit replacement/merge decision.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Little Match Girl.txt",
+      "currentCategory": "unsafe-title-parent-collection-risk",
+      "anotherNormalRecoverablePassUseful": false,
+      "currentDecision": "defer-duplicate-or-title-content-mismatch",
+      "reason": "Duplicate/title-content mismatch: raw text is The Dream of Little Tuk, which is already generated.",
+      "dedicatedPlanRequired": false,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    }
+  ],
+  "futureBespokeCandidates": [
+    {
+      "rawFile": "Hamlet.txt",
+      "currentCategory": "future-bespoke-required",
+      "currentDecision": "future-bespoke",
+      "reason": "Future-bespoke candidate that should stay outside normal raw recovery until explicitly planned.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Plays of Sophocles - Oedipus the King; Oedipus at Colonus; Antigone.txt",
+      "currentCategory": "future-bespoke-required",
+      "currentDecision": "future-bespoke",
+      "reason": "Future-bespoke candidate that should stay outside normal raw recovery until explicitly planned.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "The Odyssey.txt",
+      "currentCategory": "future-bespoke-required",
+      "currentDecision": "future-bespoke",
+      "reason": "Future-bespoke candidate that should stay outside normal raw recovery until explicitly planned.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    },
+    {
+      "rawFile": "Twenty years after.txt",
+      "currentCategory": "future-bespoke-required",
+      "currentDecision": "future-bespoke",
+      "reason": "Future-bespoke candidate that should stay outside normal raw recovery until explicitly planned.",
+      "anotherNormalRecoverablePassUseful": false,
+      "dedicatedPlanRequired": true,
+      "replacementCompleteRawRequired": false,
+      "remainBlockedOrDeferredBeforeCloudflareExport": true
+    }
+  ],
+  "recommendedUserDecision": "Choose whether to pause normal raw recovery and begin the book-section/content plus metadata/source audit branch, or explicitly commission dedicated branches for selected hard candidates before export.",
+  "nextRecommendedBranch": "book-section/content and metadata/source audit branch before Cloudflare export",
+  "nextPhaseRequirements": {
+    "bookSectionContentAuditBeforeCloudflareExport": [
+      "No public listing, homepage, book page, or card should show 0 sections or Sections: 0.",
+      "Every live public book must have readable starter content.",
+      "Every live public book must have at least one usable section/segment.",
+      "Any empty-looking book must be fixed or removed/deferred from public indexes."
+    ],
+    "metadataSourceConsistencyAuditBeforeCloudflareExport": [
+      "Every live public book has accurate title.",
+      "Every live public book has accurate author or intentional accurate label.",
+      "No lazy Unknown author label for live books.",
+      "Every live public book has source name.",
+      "Every live public book has source URL where available.",
+      "Every live public book has accurate section count.",
+      "Every live public book has accurate word count.",
+      "Every live public book has clear status.",
+      "Source, title, author, counts, and status are consistent across generated manifest, preview manifest, book page, audiobook page, listings, sitemap/nav data, and final export payloads after export."
+    ],
+    "cloudflareExportCheckpoint": "Cloudflare export remains after book-section/content and metadata/source audits, not before.",
+    "postExportValidationCheckpoint": [
+      "Final Cloudflare payloads are current.",
+      "No stale starter-preview-only content replaces final full book content.",
+      "Reader view, section picker, cleaned preview, Morse preview, and audiobook behavior use final exported payloads.",
+      "No intended live book route returns 404.",
+      "No deferred/blocked book appears as a live public book."
+    ],
+    "laterContentQualityCheckpoints": {
+      "sourcesPageTrustCopy": "Stronger source-selection, review, source-link, correction/takedown handling.",
+      "aboutPageEeatCopy": "Connect Electrical and Computer Engineering background to Morse code, signal systems, communication systems, encoding, timing, audio, or transmission.",
+      "repeatedHelperCopyReduction": "Reduce repeated boilerplate across tool/helper pages before final quality review."
+    },
+    "deferredFinalStages": [
+      "URL/indexability and planned non-book page implementation",
+      "GSC/meta review",
+      "Broad mobile optimization"
+    ]
+  },
+  "unresolvedSourceGeneratedReviewIncluded": true,
+  "cloudflareExportStatus": "not run"
+}
