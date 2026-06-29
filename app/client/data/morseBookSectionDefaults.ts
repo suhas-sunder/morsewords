@@ -28,7 +28,7 @@ const asideDefaultNameExclusionPattern =
   /\b(table of contents|contents|list of illustrations|illustrations?|title page|copyright|license|source|publisher|preface|introduction|footnotes?|notes?|appendix|bibliography|index|end matter)\b/;
 
 const asideDefaultEvidenceExclusionPattern =
-  /\b(project gutenberg|gutenberg|transcriber|produced by|production note|copyright|license|preface|introduction|footnotes?|notes?|appendix|bibliography|index|end matter)\b/;
+  /\b(project gutenberg|gutenberg|transcriber|produced by|production note|copyright|license|preface|introduction|footnotes?|notes|appendix|bibliography|index|end matter)\b/;
 
 function normalizedSectionText(
   ...parts: Array<string | null | undefined>

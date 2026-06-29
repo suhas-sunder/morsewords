@@ -25299,6 +25299,61 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-mysterious-affair-at-styles/manifest.json"
+    },
+    {
+      "slug": "the-leavenworth-case",
+      "title": "The Leavenworth Case",
+      "author": [
+        "Anna Katharine Green"
+      ],
+      "contentVersion": "51bd6fb8f754fa74",
+      "contentHash": "51bd6fb8f754fa746bfa0323b59405e1bb52727596b53f3df9ebcefc043bca3e",
+      "language": "en",
+      "description": "Anna Katharine Green's influential detective novel about a lawyer, a murdered client, and the layered testimony around the Leavenworth household.",
+      "subjects": [
+        "Detective fiction",
+        "Mystery fiction",
+        "Novels",
+        "Legal fiction"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "4047",
+        "releaseDate": "May 1, 2003",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4047",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted bespoke raw candidate pass 4 processed this accepted standalone novel after manual source, metadata, and chapter-boundary review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": false
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Leavenworth Case"
+      },
+      "stats": {
+        "originalCharacterCount": 665907,
+        "cleanedCharacterCount": 611756,
+        "wordCount": 110828,
+        "sectionCount": 39,
+        "includedSectionCount": 39
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-leavenworth-case/manifest.json"
     }
   ]
 }

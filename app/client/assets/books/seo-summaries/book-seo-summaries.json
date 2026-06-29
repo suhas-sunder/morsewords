@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "summarySet": "bespoke-raw-candidate-pass-3",
-  "generatedAt": "2026-06-28",
+  "summarySet": "bespoke-raw-candidate-pass-4",
+  "generatedAt": "2026-06-29",
   "storageApproach": "Separate static JSON data asset imported by book routes and validation tooling. Summaries are not embedded in generated book text, preview assets, raw sources, or Cloudflare export payloads.",
   "suggestedPilotSlugs": [
     "the-time-machine",
@@ -79,7 +79,7 @@
       "reason": "The Odyssey is not currently generated; The Arabian Nights keeps a long classic story-collection sample in the pilot."
     }
   ],
-  "expectedSummaryCount": 510,
+  "expectedSummaryCount": 511,
   "batch1Slugs": [
     "a-childs-garden-of-verses",
     "anna-karenina",
@@ -4765,6 +4765,15 @@
       ],
       "description": "Agatha Christie's first Hercule Poirot mystery, set around a country-house poisoning and the careful reconstruction of evidence.",
       "summary": "The Mysterious Affair at Styles is Agatha Christie's first Hercule Poirot mystery. The story follows Hastings as he visits Styles Court, becomes caught in the aftermath of a poisoning, and watches Poirot rebuild the case from domestic details, testimony, timing, and the behavior of people who all seem to have something to hide. The country-house setting, the legal questions, and Poirot's methodical explanations make the novel a strong bridge from short mystery stories into longer detective reading.\n\nFor MorseWords learners, the book is helpful because it has thirteen clearly titled chapters and a steady investigative structure. The early chapters establish the household and the crime, the middle chapters test suspects and evidence, and the final chapters bring the case into court-like argument and explanation. That makes the novel easy to divide into short practice sessions. Learners can work on one chapter at a time while still feeling progress through the whole mystery.\n\nThe vocabulary is especially useful for listening practice. Repeated names such as Poirot, Hastings, Inglethorp, Cavendish, Howard, and Styles become anchors, while words about medicine, keys, rooms, letters, cups, poison, evidence, and testimony add variety. The book also contains many conversations, which gives learners practice with quotation marks, speaker changes, and sentence rhythm. Slower playback is useful for scenes where clues depend on exact timing or small contradictions.\n\nThis novel also rewards review. On a first pass, learners can listen for the broad plot and main suspects. On later passes, they can focus on how Poirot handles details that seemed unimportant earlier. That makes it a good long-form Morse text for building endurance without losing comprehension. It is public-domain source material in the current repo context, and the local starter preview remains intentionally small so the page can render quickly while the full payload is deferred until export infrastructure is ready."
+    },
+    {
+      "slug": "the-leavenworth-case",
+      "title": "The Leavenworth Case",
+      "author": [
+        "Anna Katharine Green"
+      ],
+      "description": "Anna Katharine Green's influential detective novel about a lawyer, a murdered client, and the layered testimony around the Leavenworth household.",
+      "summary": "The Leavenworth Case is Anna Katharine Green's early detective novel about the murder of Horatio Leavenworth and the legal, domestic, and emotional evidence that follows. Told by a young lawyer drawn into the case, the book moves through an inquest, interviews, family tensions, hidden testimony, and Mr. Gryce's careful detective work. Although the raw file contains four internal books, they are divisions of one single novel rather than separate works, so this pass keeps the text together as one book with thirty-nine readable chapter sections.\n\nFor MorseWords learners, the novel is useful because its structure is orderly even though the mystery is complex. Each chapter has a distinct role: early chapters establish the crime and evidence, middle chapters test theories and relationships, and later chapters gather confessions and explanations. That makes it practical to listen in short sessions while still building stamina for a longer public-domain novel.\n\nThe vocabulary gives strong practice anchors. Names such as Leavenworth, Raymond, Gryce, Mary, Eleanore, Clavering, Harwell, and Hannah repeat across the investigation, while legal and household words such as inquest, testimony, office, library, witness, letter, will, key, and confession add variety. Dialogue-heavy scenes help learners practice punctuation and speaker changes, while investigative passages reward slower playback and careful copying.\n\nBecause the chapters are numerous but individually bounded, the book can support different practice goals. A newer listener can replay the first chapter until the repeated names and legal setting feel familiar. A more confident learner can choose a later investigative chapter for longer copying, then return to shorter chapters for review. The steady detective frame makes it easier to notice when spacing, missed letters, or punctuation have gone off track.\n\nThis generated edition removes source boilerplate and table material, keeps readable chapter bodies, and stores only a small local starter preview for immediate rendering. The full book payload remains export-deferred until the Cloudflare book payload stage is run later."
     }
   ],
   "batch3Slugs": [
@@ -5193,5 +5202,8 @@
   "bespokeRawCandidatePass3Slugs": [
     "the-sign-of-the-four",
     "the-mysterious-affair-at-styles"
+  ],
+  "bespokeRawCandidatePass4Slugs": [
+    "the-leavenworth-case"
   ]
 }

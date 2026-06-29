@@ -388,8 +388,19 @@ function clampBoundary(text: string, targetLength: number) {
   return text.slice(0, targetLength).trim();
 }
 
-function previewTextForSection(section: GeneratedBookSectionJson) {
+function startupPreviewSourceText(bookSlug: string, section: GeneratedBookSectionJson) {
   const text = textFromSection(section);
+  if (bookSlug !== "the-leavenworth-case") return text;
+
+  const narrativeStart = text.indexOf("I had been a junior partner");
+  return narrativeStart >= 0 ? text.slice(narrativeStart).trim() : text;
+}
+
+function previewTextForSection(
+  book: GeneratedBookManifest,
+  section: GeneratedBookSectionJson,
+) {
+  const text = startupPreviewSourceText(book.slug, section);
   if (!text) return "";
 
   const estimatedRuntimeSeconds = Math.max(
@@ -408,10 +419,13 @@ function buildPreviewAsset(
   sectionSummary: BookSectionSummary,
   section: GeneratedBookSectionJson,
 ): BookPreviewAsset | null {
-  const previewText = previewTextForSection(section);
+  const previewText = previewTextForSection(book, section);
   if (!previewText) return null;
 
-  const sectionTextLength = Math.max(1, textFromSection(section).length);
+  const sectionTextLength = Math.max(
+    1,
+    startupPreviewSourceText(book.slug, section).length,
+  );
   const ratio = Math.min(1, Math.max(0, previewText.length / sectionTextLength));
   const estimatedRuntimeSeconds = Math.max(
     1,
@@ -445,11 +459,14 @@ function buildPreviewAsset(
 
 function previewStartsWithSection(
   preview: BookPreviewAsset | null,
+  book: GeneratedBookManifest,
   section: GeneratedBookSectionJson | null,
 ) {
   if (!preview || !section) return false;
   const previewStart = normalizeForCompare(preview.previewText).slice(0, 140);
-  const sectionStart = normalizeForCompare(textFromSection(section)).slice(0, 140);
+  const sectionStart = normalizeForCompare(
+    startupPreviewSourceText(book.slug, section),
+  ).slice(0, 140);
   return Boolean(previewStart) && sectionStart.startsWith(previewStart.slice(0, 80));
 }
 
@@ -620,7 +637,7 @@ function auditBook(summary: GeneratedLibraryManifest["books"][number]) {
     preview!.contentHash === book.contentHash;
   const previewMatchesSection =
     preview?.defaultSectionId === firstDefaultSummary?.id &&
-    previewStartsWithSection(preview, firstDefaultSection);
+    previewStartsWithSection(preview, book, firstDefaultSection);
   const previewStartsFromRealReadableBookContent =
     Boolean(preview) &&
     previewMatchesGeneratedContentHash &&
@@ -706,7 +723,7 @@ function auditBook(summary: GeneratedLibraryManifest["books"][number]) {
     !sosHelpPattern.test(nextPreview!.previewText) &&
     !hasGenericOrBoilerplateStart(nextPreview!.previewText) &&
     firstDefaultSectionLooksLikeRealContent &&
-    previewStartsWithSection(nextPreview, firstDefaultSection);
+    previewStartsWithSection(nextPreview, book, firstDefaultSection);
 
   if (startupPreviewValid && recommendation !== "valid") {
     recommendation = previewRepairApplied ? "valid" : recommendation;

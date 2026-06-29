@@ -5612,6 +5612,17 @@
       "previewCharacterCount": 1231,
       "estimatedRuntimeSeconds": 438,
       "truncated": true
+    },
+    {
+      "slug": "the-leavenworth-case",
+      "path": "/book-previews/the-leavenworth-case.preview.json",
+      "contentVersion": "51bd6fb8f754fa74",
+      "contentHash": "51bd6fb8f754fa746bfa0323b59405e1bb52727596b53f3df9ebcefc043bca3e",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 2006,
+      "previewCharacterCount": 1224,
+      "estimatedRuntimeSeconds": 445,
+      "truncated": true
     }
   ],
   "missing": []
