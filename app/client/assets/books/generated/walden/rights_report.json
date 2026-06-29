@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "slug": "walden",
+  "title": "Walden",
+  "author": [
+    "Henry David Thoreau"
+  ],
+  "source": "Project Gutenberg",
+  "source_url": "https://www.gutenberg.org/ebooks/205",
+  "gutenberg_ebook_number": "205",
+  "rights_status": "approved",
+  "status": "generated-live",
+  "publish_ready": true,
+  "processing_allowed": true,
+  "approval_source": "external-authority",
+  "reasoning_summary": "Manual pass split Project Gutenberg #205 into standalone work units, removing the combined title page, contents, Civil Disobedience essay, license text, and unrelated back matter while preserving the complete Walden body."
+}

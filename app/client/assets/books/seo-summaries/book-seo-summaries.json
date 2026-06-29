@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "summarySet": "bespoke-raw-candidate-pass-7",
+  "summarySet": "bespoke-raw-candidate-pass-8",
   "generatedAt": "2026-06-29",
   "storageApproach": "Separate static JSON data asset imported by book routes and validation tooling. Summaries are not embedded in generated book text, preview assets, raw sources, or Cloudflare export payloads.",
   "suggestedPilotSlugs": [
@@ -79,7 +79,7 @@
       "reason": "The Odyssey is not currently generated; The Arabian Nights keeps a long classic story-collection sample in the pilot."
     }
   ],
-  "expectedSummaryCount": 517,
+  "expectedSummaryCount": 519,
   "batch1Slugs": [
     "a-childs-garden-of-verses",
     "anna-karenina",
@@ -4828,6 +4828,24 @@
       ],
       "description": "Robert Louis Stevenson's fantasy story about Keola, Lehua, Kalamake, magic, voices, treasure, and escape.",
       "summary": "The Isle of Voices is Robert Louis Stevenson's fantasy story about Keola, Lehua, and Kalamake, moving through magic, greed, travel, unseen presences, treasure, fear, and escape. Compared with The Beach of Falesá, this story leans more fully into wonder and folktale logic, but it still carries Stevenson's interest in danger, bargaining, and the strange pressures of island life.\n\nFor MorseWords learners, the story is useful because it is vivid, moderately long, and filled with recurring names and concrete action. Keola, Lehua, Kalamake, canoe, island, voices, money, trees, sea, and magic appear as memory anchors. The repeated proper names may feel difficult at first, but they become good recognition practice after a few passes.\n\nStart with the opening scene and listen at a comfortable speed until Keola and Kalamake are easy to distinguish. Then use short sections for copying practice, especially where the story shifts from ordinary domestic conflict into magical travel. Because the story includes some unfamiliar Hawaiian words and brief notes, it is better to slow down than to rush through the names and lose the plot.\n\nThis story is also useful for learners who want to practice contrast. Some passages feel like ordinary household or travel scenes, while others move into magical description and suspense. Switching between those modes helps train the ear to keep word spacing steady even when the vocabulary becomes less familiar. It also rewards replay, because the unusual names become much easier after one careful pass.\n\nA practical exercise is to make two columns before listening: character names in one column and setting/action words in the other. As the audio plays, tick off each repeated item. On the next pass, copy a paragraph without looking, then replay it while reading to check spacing, vowels, and long names. The story's strong atmosphere makes the repetition feel less mechanical."
+    },
+    {
+      "slug": "walden",
+      "title": "Walden",
+      "author": [
+        "Henry David Thoreau"
+      ],
+      "description": "Henry David Thoreau's account of simple living, nature, work, solitude, and reflection at Walden Pond.",
+      "summary": "Walden is Henry David Thoreau's account of living simply near Walden Pond, where practical questions about shelter, food, work, money, reading, solitude, visitors, seasons, and nature become a larger argument about attention and independence. The book moves between direct observation and reflection, so it gives MorseWords learners a steady mix of concrete nouns, repeated setting words, and longer philosophical sentences.\n\nFor Morse practice, Walden works best as a chapter-by-chapter project rather than a single long listen. The opening chapter, Economy, is long and dense, but later chapters such as Where I Lived, Reading, Sounds, Solitude, Visitors, The Ponds, Winter Animals, and Spring offer clearer session boundaries. Repeated words like pond, woods, house, morning, village, winter, sound, work, and nature give the ear anchors across the book.\n\nThe prose is rewarding but not always quick. Thoreau often builds a sentence through contrast, qualification, and example, which makes punctuation and word spacing especially important. Slowing the WPM for the first pass is useful, then increasing speed after the chapter's repeated vocabulary becomes familiar. Because the chapters are distinct, a learner can choose a practical chapter one day and a seasonal or reflective chapter the next without losing the thread of the book.\n\nA practical routine is to choose one short passage from a chapter, listen once for meaning, replay while copying, then compare the plain text and mark missed small words. Walden is also good for review because its chapters have distinct moods: practical, observational, argumentative, seasonal, and reflective. That variety keeps practice from becoming a mechanical march through one tone.\n\nThis standalone page uses only the Walden portion of the combined source file. Civil Disobedience is generated as its own page, so learners can practice the nature-writing book and the political essay separately. That split also makes the default listening experience cleaner: Walden begins with the cabin-and-pond material, while the essay page starts directly with Thoreau's argument about government."
+    },
+    {
+      "slug": "on-the-duty-of-civil-disobedience",
+      "title": "On the Duty of Civil Disobedience",
+      "author": [
+        "Henry David Thoreau"
+      ],
+      "description": "Henry David Thoreau's essay on conscience, government, law, resistance, and individual responsibility.",
+      "summary": "On the Duty of Civil Disobedience is Henry David Thoreau's essay about conscience, law, government, resistance, and the responsibility of the individual. It argues that obedience to the state is not a substitute for moral judgment, and it turns a political question into a practical question: what should a person do when law and conscience disagree?\n\nFor MorseWords learners, the essay is shorter than Walden but denser in argument. It has recurring anchor words such as government, state, law, man, majority, conscience, tax, prison, justice, and citizen. Those repetitions make it useful for focused listening practice, especially if you want to train the ear on abstract vocabulary rather than story action.\n\nThe best first pass is slow and short. Listen to one paragraph at a time, copy the main nouns and verbs, then replay while reading to catch small connecting words. The essay often depends on precise contrasts, so missing a not, if, but, or therefore can change the meaning. That makes it a strong practice text for spacing and attention. It is also a good text for practicing punctuation rhythm, because Thoreau often moves from statement to qualification to example inside a single sentence.\n\nBecause this work is generated as a standalone page, it can be used without first loading the much longer Walden chapters. A useful drill is to select the opening paragraphs, write down every repeated political term, and then replay the same span at a slightly faster speed. On a later pass, choose a passage about conscience or taxation and compare how the rhythm changes when Thoreau moves from example to argument.\n\nThis page preserves the complete essay from the combined source file while keeping Walden separate, so learners can choose either the nature-writing book or the political essay without crossing between unrelated practice modes. That separation makes the first listening session more honest: the essay opens with its argument instead of after a long book of pond, cabin, and seasonal observation."
     }
   ],
   "batch3Slugs": [
@@ -5269,5 +5287,9 @@
     "the-beach-of-falesa",
     "the-bottle-imp",
     "the-isle-of-voices"
+  ],
+  "bespokeRawCandidatePass8Slugs": [
+    "walden",
+    "on-the-duty-of-civil-disobedience"
   ]
 }

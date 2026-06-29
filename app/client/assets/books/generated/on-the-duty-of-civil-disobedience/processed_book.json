@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "slug": "on-the-duty-of-civil-disobedience",
+  "title": "On the Duty of Civil Disobedience",
+  "author": [
+    "Henry David Thoreau"
+  ],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "205",
+    "releaseDate": "January 1, 1995",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/205",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "owner-reviewed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Targeted bespoke raw candidate pass 8 processed this accepted work after manual source, metadata, and work-boundary review. Review generated output before any Cloudflare export.",
+    "allowDuplicateGutenbergId": true
+  },
+  "contentHash": "a68b88ef8c5759f7daf935958d50985949d26b7854ec6e39adf97e96f55bd238",
+  "sectionCount": 1,
+  "wordCount": 9390,
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "On the Duty of Civil Disobedience",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 51188,
+      "wordCount": 9390,
+      "estimatedTypingMinutes": 269,
+      "estimatedListeningMinutes": 303,
+      "morseCharacterEstimate": 272404,
+      "textPreview": "I heartily accept the motto,—“That government is best which governs least;” and I should like to see it acted up to more rapidly and systematically. Carried ou..."
+    }
+  ]
+}

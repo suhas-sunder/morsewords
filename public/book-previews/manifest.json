@@ -5689,6 +5689,28 @@
       "previewCharacterCount": 1158,
       "estimatedRuntimeSeconds": 409,
       "truncated": true
+    },
+    {
+      "slug": "walden",
+      "path": "walden.preview.json",
+      "contentVersion": "69929b010b329069",
+      "contentHash": "69929b010b32906907efa4639f52afa57439a6303fd18fd34b9b01472e834c6a",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1880,
+      "previewCharacterCount": 1147,
+      "estimatedRuntimeSeconds": 50100,
+      "truncated": true
+    },
+    {
+      "slug": "on-the-duty-of-civil-disobedience",
+      "path": "on-the-duty-of-civil-disobedience.preview.json",
+      "contentVersion": "a68b88ef8c5759f7",
+      "contentHash": "a68b88ef8c5759f7daf935958d50985949d26b7854ec6e39adf97e96f55bd238",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1943,
+      "previewCharacterCount": 1146,
+      "estimatedRuntimeSeconds": 18180,
+      "truncated": true
     }
   ],
   "missing": []

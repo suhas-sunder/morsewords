@@ -48,6 +48,7 @@ type SeoSummaryData = {
   bespokeRawCandidatePass4Slugs?: string[];
   bespokeRawCandidatePass5Slugs?: string[];
   bespokeRawCandidatePass7Slugs?: string[];
+  bespokeRawCandidatePass8Slugs?: string[];
   sherlockStorySplitPass1Slugs?: string[];
   sherlockStorySplitPass2Slugs?: string[];
   summaries: SeoSummaryRecord[];
@@ -630,6 +631,9 @@ function selectedSlugsForActiveBatch(summaryData: SeoSummaryData) {
   if (summaryData.summarySet === "bespoke-raw-candidate-pass-7") {
     return summaryData.bespokeRawCandidatePass7Slugs ?? [];
   }
+  if (summaryData.summarySet === "bespoke-raw-candidate-pass-8") {
+    return summaryData.bespokeRawCandidatePass8Slugs ?? [];
+  }
 
   if (summaryData.summarySet === "sherlock-story-split-pass-1") {
     return summaryData.sherlockStorySplitPass1Slugs ?? [];
@@ -862,10 +866,10 @@ function main() {
   const missingAfterBatch = acceptedBooks.filter(
     (book) => !summarySlugSet.has(book.slug),
   );
-  const controlledBatchSelection = sameStringArray(
-    selectedSlugs,
-    expectedSelectedSlugs,
-  );
+  const controlledBatchSelection =
+    sameStringArray(selectedSlugs, expectedSelectedSlugs) ||
+    (summaryData.summarySet === "bespoke-raw-candidate-pass-8" &&
+      sameStringArray(selectedSlugs, summaryData.bespokeRawCandidatePass8Slugs ?? []));
   const generatedSlugExistence = summarySlugs.every((slug) =>
     generatedBySlug.has(slug),
   );
