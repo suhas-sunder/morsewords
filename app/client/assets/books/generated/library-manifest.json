@@ -1381,7 +1381,9 @@
     {
       "slug": "the-arabian-nights",
       "title": "The Arabian Nights: Their Best-known Tales",
-      "author": [],
+      "author": [
+        "Various"
+      ],
       "contentVersion": "7fb4ff78ea8e99bc",
       "contentHash": "7fb4ff78ea8e99bc1dee2f036223c2472b4695b7dd458911db39fe37f3b027a5",
       "language": "en",
@@ -2174,10 +2176,10 @@
       "description": "",
       "subjects": [],
       "source": {
-        "provider": "Unknown",
-        "gutenbergId": null,
-        "releaseDate": null,
-        "sourceUrl": null,
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1597",
+        "releaseDate": "January 1, 1999",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1597",
         "rawTextUrl": null,
         "rightsBasis": "public-domain-us",
         "rightsReviewed": true,

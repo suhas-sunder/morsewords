@@ -1,0 +1,654 @@
+{
+  "schemaVersion": 1,
+  "reportName": "book-section-metadata-source-audit",
+  "generatedAt": "2026-06-29",
+  "branch": "morsewords-book-section-metadata-source-audit-jun-2026",
+  "sourceOfTruth": [
+    "app/client/assets/books/generated/library-manifest.json",
+    "app/client/assets/books/seo-summaries/book-seo-summaries.json",
+    "public/book-previews/manifest.json",
+    "public/sitemap.xml",
+    "app/client/assets/books/audit-reports/book-library-decision-checkpoint/book-library-decision-checkpoint.json",
+    "app/routes/morse-code-books.tsx",
+    "app/routes/morse-code-audiobooks.tsx",
+    "app/client/components/morse-code-books/MorseBookPage.tsx",
+    "app/client/components/morse-code-books/MorseBookLinkDirectory.tsx"
+  ],
+  "counts": {
+    "generatedBooks": 519,
+    "seoSummaries": 519,
+    "startupPreviews": 519,
+    "missingSummaries": 0,
+    "bookUrls": 519,
+    "audiobookUrls": 519,
+    "previewsMissingAssets": 0,
+    "previewsForMissingBooks": 0,
+    "sourceUrlsPresent": 478,
+    "sourceUrlsAbsentNoGeneratedEvidence": 41,
+    "sourceUrlsMissingDespiteKnownGeneratedId": 0,
+    "badLabelOccurrences": 0,
+    "deferredBlockedSlugLeakCount": 0
+  },
+  "result": {
+    "sectionContent": "pass",
+    "metadataSource": "pass",
+    "publicZeroSections": "pass",
+    "badLabels": "pass",
+    "sourceUrlCoverage": "warn",
+    "wordCountStatus": "pass",
+    "starterPreviewFirstRender": "pass",
+    "deferredBlockedSlugExclusion": "pass",
+    "cloudflareExportReadiness": "Ready for Cloudflare export preparation branch"
+  },
+  "blockers": [],
+  "warnings": [
+    {
+      "slug": "the-hound",
+      "title": "The Hound",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "from-beyond",
+      "title": "From Beyond",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-other-gods",
+      "title": "The Other Gods",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-statement-of-randolph-carter",
+      "title": "The Statement of Randolph Carter",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "dagon",
+      "title": "Dagon",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "pickman-s-model",
+      "title": "Pickman's Model",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-cats-of-ulthar",
+      "title": "The Cats of Ulthar",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-nameless-city",
+      "title": "The Nameless City",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "a-slip-under-the-microscope",
+      "title": "A Slip Under the Microscope",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "beyond-the-wall-of-sleep",
+      "title": "Beyond the Wall of Sleep",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "celephais",
+      "title": "Celephaïs",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "hypnos",
+      "title": "Hypnos",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "ibid",
+      "title": "Ibid",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "in-the-vault",
+      "title": "In the Vault",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "nyarlathotep",
+      "title": "Nyarlathotep",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "polaris",
+      "title": "Polaris",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-alchemist",
+      "title": "The Alchemist",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-beast-in-the-cave",
+      "title": "The Beast in the Cave",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-doom-that-came-to-sarnath",
+      "title": "The Doom That Came to Sarnath",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-moon-bog",
+      "title": "The Moon-Bog",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-outsider",
+      "title": "The Outsider",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-temple",
+      "title": "The Temple",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-tomb",
+      "title": "The Tomb",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-tree",
+      "title": "The Tree",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-unnamable",
+      "title": "The Unnamable",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-white-ship",
+      "title": "The White Ship",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "in-the-modern-vein",
+      "title": "In the Modern Vein",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-argonauts-of-the-air",
+      "title": "The Argonauts of the Air",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-dreams-in-the-witch-house",
+      "title": "The Dreams in the Witch-House",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-jilting-of-jane",
+      "title": "The Jilting of Jane",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-lost-inheritance",
+      "title": "The Lost Inheritance",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-purple-pileus",
+      "title": "The Purple Pileus",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-shadow-out-of-time",
+      "title": "The Shadow Out of Time",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-strange-high-house-in-the-mist",
+      "title": "The Strange High House in the Mist",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-whisperer-in-darkness",
+      "title": "The Whisperer in Darkness",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "a-catastrophe",
+      "title": "A Catastrophe",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "in-the-abyss",
+      "title": "In the Abyss",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "pollock-and-the-porroh-man",
+      "title": "Pollock and the Porroh Man",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-plattner-story",
+      "title": "The Plattner Story",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "the-sad-story-of-a-dramatic-critic",
+      "title": "The Sad Story of a Dramatic Critic",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    },
+    {
+      "slug": "under-the-knife",
+      "title": "Under the Knife",
+      "severity": "warning",
+      "area": "metadata-source",
+      "message": "Source URL is absent and current generated metadata has no source URL or Gutenberg ID evidence."
+    }
+  ],
+  "sourceUrlAbsentNoGeneratedEvidence": [
+    "the-hound",
+    "from-beyond",
+    "the-other-gods",
+    "the-statement-of-randolph-carter",
+    "dagon",
+    "pickman-s-model",
+    "the-cats-of-ulthar",
+    "the-nameless-city",
+    "a-slip-under-the-microscope",
+    "beyond-the-wall-of-sleep",
+    "celephais",
+    "hypnos",
+    "ibid",
+    "in-the-vault",
+    "nyarlathotep",
+    "polaris",
+    "the-alchemist",
+    "the-beast-in-the-cave",
+    "the-doom-that-came-to-sarnath",
+    "the-moon-bog",
+    "the-outsider",
+    "the-temple",
+    "the-tomb",
+    "the-tree",
+    "the-unnamable",
+    "the-white-ship",
+    "in-the-modern-vein",
+    "the-argonauts-of-the-air",
+    "the-dreams-in-the-witch-house",
+    "the-jilting-of-jane",
+    "the-lost-inheritance",
+    "the-purple-pileus",
+    "the-shadow-out-of-time",
+    "the-strange-high-house-in-the-mist",
+    "the-whisperer-in-darkness",
+    "a-catastrophe",
+    "in-the-abyss",
+    "pollock-and-the-porroh-man",
+    "the-plattner-story",
+    "the-sad-story-of-a-dramatic-critic",
+    "under-the-knife"
+  ],
+  "fixesMade": [
+    {
+      "slug": "the-arabian-nights",
+      "fields": [
+        "author"
+      ],
+      "evidence": "Generated rights report and source evidence identify this as a traditional story collection edited by Kate Douglas Wiggin and Nora A. Smith; live author label is now the intentional label Various."
+    },
+    {
+      "slug": "the-happy-family",
+      "fields": [
+        "source.provider",
+        "source.gutenbergId",
+        "source.sourceUrl",
+        "source.releaseDate"
+      ],
+      "evidence": "Local source header evidence for The Happy Family identifies Andersen's Fairy Tales, Project Gutenberg ebook 1597, released January 1, 1999."
+    }
+  ],
+  "deferredBlockedSlugChecks": [
+    {
+      "rawFile": "THE APPLE.txt",
+      "inferredSlug": "the-apple",
+      "decision": "block-source-or-rights-risk",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "The Dream-Quest of Unknown Kadath.txt",
+      "inferredSlug": "the-dream-quest-of-unknown-kadath",
+      "decision": "block-source-or-rights-risk",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "THE STORY OF THE LATE MR. ELVESHAM.txt",
+      "inferredSlug": "the-story-of-the-late-mr-elvesham",
+      "decision": "block-source-or-rights-risk",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Japanese Fairy Tales.txt",
+      "inferredSlug": "japanese-fairy-tales",
+      "decision": "defer-duplicate-or-title-content-mismatch",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "The Two Magics - The Turn of the Screw, Covering End.txt",
+      "inferredSlug": "the-two-magics-the-turn-of-the-screw-covering-end",
+      "decision": "defer-duplicate-or-title-content-mismatch",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "The Wind in the Willows.txt",
+      "inferredSlug": "the-wind-in-the-willows",
+      "decision": "defer-duplicate-or-title-content-mismatch",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Hamlet.txt",
+      "inferredSlug": "hamlet",
+      "decision": "future-bespoke",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Plays of Sophocles - Oedipus the King; Oedipus at Colonus; Antigone.txt",
+      "inferredSlug": "plays-of-sophocles-oedipus-the-king-oedipus-at-colonus-antigone",
+      "decision": "future-bespoke",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "The Odyssey.txt",
+      "inferredSlug": "the-odyssey",
+      "decision": "future-bespoke",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Twenty years after.txt",
+      "inferredSlug": "twenty-years-after",
+      "decision": "future-bespoke",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "The Countess of Pembroke's Arcadia.txt",
+      "inferredSlug": "the-countess-of-pembrokes-arcadia",
+      "decision": "defer-dedicated-structure-plan",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "War and Peace.txt",
+      "inferredSlug": "war-and-peace",
+      "decision": "defer-dedicated-structure-plan",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Yellow gentians and blue.txt",
+      "inferredSlug": "yellow-gentians-and-blue",
+      "decision": "defer-mixed-structure-plan",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Beowulf - An Anglo-Saxon Epic Poem.txt",
+      "inferredSlug": "beowulf-an-anglo-saxon-epic-poem",
+      "decision": "defer-translator-or-metadata-trust-plan",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Emma.txt",
+      "inferredSlug": "emma",
+      "decision": "defer-incomplete-local-raw",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Erewhon; Or, Over the Range.txt",
+      "inferredSlug": "erewhon-or-over-the-range",
+      "decision": "defer-incomplete-local-raw",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Father Goriot.txt",
+      "inferredSlug": "father-goriot",
+      "decision": "defer-dedicated-structure-plan",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Figures of Earth - A Comedy of Appearances.txt",
+      "inferredSlug": "figures-of-earth-a-comedy-of-appearances",
+      "decision": "defer-incomplete-local-raw",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Goblin Tales of Lancashire.txt",
+      "inferredSlug": "goblin-tales-of-lancashire",
+      "decision": "hard-boundary-risk",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Great Expectations.txt",
+      "inferredSlug": "great-expectations",
+      "decision": "defer-incomplete-local-raw",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "History of Tom Jones.txt",
+      "inferredSlug": "history-of-tom-jones",
+      "decision": "hard-boundary-risk",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "North and South.txt",
+      "inferredSlug": "north-and-south",
+      "decision": "defer-incomplete-local-raw",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Northern Lights.txt",
+      "inferredSlug": "northern-lights",
+      "decision": "hard-boundary-risk",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Siddhartha.txt",
+      "inferredSlug": "siddhartha",
+      "decision": "defer-translator-or-metadata-trust-plan",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "The Arabian Nights Entertainments.txt",
+      "inferredSlug": "the-arabian-nights-entertainments",
+      "decision": "defer-incomplete-local-raw",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "The Iliad.txt",
+      "inferredSlug": "the-iliad",
+      "decision": "hard-boundary-risk",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "The Moonstone.txt",
+      "inferredSlug": "the-moonstone",
+      "decision": "hard-boundary-risk",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "The Mysteries of Udolpho.txt",
+      "inferredSlug": "the-mysteries-of-udolpho",
+      "decision": "hard-boundary-risk",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "The Private Memoirs and Confessions of a Justified Sinner.txt",
+      "inferredSlug": "the-private-memoirs-and-confessions-of-a-justified-sinner",
+      "decision": "defer-dedicated-structure-plan",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "The Woman in White.txt",
+      "inferredSlug": "the-woman-in-white",
+      "decision": "hard-boundary-risk",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "Travelers Five Along Life's Highway.txt",
+      "inferredSlug": "travelers-five-along-lifes-highway",
+      "decision": "defer-dedicated-structure-plan",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    },
+    {
+      "rawFile": "The Little Match Girl.txt",
+      "inferredSlug": "the-little-match-girl",
+      "decision": "defer-duplicate-or-title-content-mismatch",
+      "absentFromManifest": true,
+      "absentFromSitemap": true
+    }
+  ],
+  "remainingRawCategoryCounts": {
+    "generated-then-user-approved-removed": 0,
+    "already-handled-by-replacement": 0,
+    "duplicate-or-near-duplicate": 3,
+    "parent-collection-or-aggregate-not-used": 0,
+    "unsafe-start-end-boundary-risk": 17,
+    "unsafe-automation-structure": 3,
+    "unsafe-metadata-risk": 1,
+    "unsafe-title-parent-collection-risk": 1,
+    "blocked-source-or-rights-risk": 3,
+    "future-bespoke-required": 4,
+    "manual-review-required": 0,
+    "non-book-or-invalid": 0,
+    "removed-or-missing-from-current-raw": 0,
+    "unknown-unclassified": 0
+  },
+  "postExportValidationRequirements": [
+    "Final Cloudflare payloads are current.",
+    "Starter-preview-only content does not replace final full book content.",
+    "Reader view, section picker, cleaned preview, Morse preview, and audiobook behavior use final exported payloads.",
+    "No intended live book route returns 404.",
+    "No deferred or blocked book appears as a live public book."
+  ],
+  "laterContentQualityCheckpoints": [
+    "Sources page trust-copy update for source selection, review, source links, and correction/takedown handling.",
+    "About page E-E-A-T sentence connecting Electrical and Computer Engineering background to Morse code, signal systems, communication systems, encoding, timing, audio, or transmission.",
+    "Repeated helper-copy reduction across tool/helper pages before final quality review."
+  ],
+  "deferredFinalStages": [
+    "URL/page/indexability implementation remains later.",
+    "GSC/meta review remains later.",
+    "Broad mobile optimization remains the final stage."
+  ]
+}
