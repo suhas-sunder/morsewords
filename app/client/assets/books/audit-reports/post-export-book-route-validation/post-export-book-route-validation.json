@@ -1,0 +1,150 @@
+{
+  "reportName": "post-export-book-route-validation",
+  "branch": "morsewords-post-export-book-route-validation-jun-2026",
+  "executiveResult": "Local post-export book route validation passed; remote Cloudflare validation still requires served base URL",
+  "localServedExportBaseUrl": "http://127.0.0.1:62693",
+  "remoteCloudflareValidationStatus": {
+    "name": "Remote Cloudflare validation status",
+    "status": "blocked",
+    "notes": [
+      "Blocked because no real served Cloudflare/R2 base URL is available in this branch.",
+      "No remote URL was invented and no remote validation is claimed."
+    ]
+  },
+  "localServedManifestPayloadValidation": {
+    "name": "Local served manifest/payload validation result",
+    "status": "pass",
+    "notes": [
+      "Local export exposes 521 files, 519 book payloads, and 2 root manifest files.",
+      "Representative payloads contain full readable content."
+    ]
+  },
+  "sampledRoutes": [
+    "/morse-code-books",
+    "/morse-code-audiobooks",
+    "/morse-code-books/walden",
+    "/morse-code-books/walden",
+    "/morse-code-books/the-bottle-imp",
+    "/morse-code-books/the-masque-of-the-red-death",
+    "/morse-code-books/the-happy-prince",
+    "/morse-code-books/the-leavenworth-case",
+    "/morse-code-books/the-jungle-book",
+    "/morse-code-audiobooks/walden"
+  ],
+  "representativeSectionChecks": [
+    {
+      "slug": "walden",
+      "expectedSections": 18,
+      "actualSections": 18,
+      "status": "pass"
+    },
+    {
+      "slug": "the-bottle-imp",
+      "expectedSections": 1,
+      "actualSections": 1,
+      "status": "pass"
+    },
+    {
+      "slug": "the-leavenworth-case",
+      "expectedSections": 39,
+      "actualSections": 39,
+      "status": "pass"
+    }
+  ],
+  "routeIndexCountResult": {
+    "name": "Route/index count result",
+    "status": "pass",
+    "notes": [
+      "/morse-code-books shows 519.",
+      "/morse-code-audiobooks shows 519."
+    ]
+  },
+  "removedDeferredBlockedSlugExclusionResult": {
+    "name": "Removed/deferred/blocked slug exclusion result",
+    "status": "pass",
+    "notes": [
+      "Checked 12 deferred/source-risk slugs; all returned error status."
+    ]
+  },
+  "starterPreviewFirstRenderResult": {
+    "name": "Starter preview first-render result",
+    "status": "pass",
+    "notes": [
+      "Walden rendered starter preview while the full served export payload was intentionally delayed."
+    ]
+  },
+  "fullExportPayloadHydrationResult": {
+    "name": "Full export payload hydration result",
+    "status": "pass",
+    "notes": [
+      "Sampled routes requested full JSON payloads from the local served export base URL."
+    ]
+  },
+  "readerChapterSectionPickerResult": {
+    "name": "Reader/chapter/section picker result",
+    "status": "pass",
+    "notes": [
+      "Section rows matched exported section counts for Walden, The Bottle Imp, and The Leavenworth Case."
+    ]
+  },
+  "cleanedPreviewAndMorsePreviewUpdateResult": {
+    "name": "Cleaned preview and Morse preview update result",
+    "status": "pass",
+    "notes": [
+      "Changing the selected Treasure Island section updated both cleaned text and Morse preview output."
+    ]
+  },
+  "viewWindowControlResult": {
+    "name": "View-window control result",
+    "status": "pass",
+    "notes": [
+      "Audiobook live section control exposed served-export sections and retained the selected section value."
+    ]
+  },
+  "audiobookRouteResult": {
+    "name": "Audiobook route result",
+    "status": "pass",
+    "notes": [
+      "Walden audiobook route hydrated from served export payload and exposed 18 live sections."
+    ]
+  },
+  "metadataSourceBadLabelSurfaceScan": {
+    "name": "Metadata/source/bad-label surface scan",
+    "status": "pass",
+    "notes": [
+      "Sampled listing, book, and audiobook surfaces did not expose blocked Unknown/source labels."
+    ]
+  },
+  "sectionCountSurfaceScan": {
+    "name": "Section-count surface scan",
+    "status": "pass",
+    "notes": [
+      "Sampled listing, book, and audiobook surfaces did not expose 0 sections labels."
+    ]
+  },
+  "fixesMade": [],
+  "remainingBlockers": [
+    "Real remote Cloudflare validation remains blocked until VITE_MORSE_BOOK_CONTENT_BASE_URL or PUBLIC_MORSE_BOOK_CONTENT_BASE_URL is set to the actual served book content base URL."
+  ],
+  "counts": {
+    "generatedBooks": 519,
+    "seoSummaries": 519,
+    "startupPreviews": 519,
+    "bookUrls": 519,
+    "audiobookUrls": 519,
+    "exportFiles": 521,
+    "bookPayloads": 519,
+    "manifestFiles": 2
+  },
+  "laterContentQualityCheckpoints": [
+    "Sources page trust-copy update remains a later content-quality task.",
+    "About page E-E-A-T copy remains a later content-quality task.",
+    "Repeated helper-copy reduction remains a later content-quality task."
+  ],
+  "deferredFinalStages": [
+    "Non-book sitemap/page implementation remains deferred.",
+    "URL/indexability audit remains deferred.",
+    "GSC/meta review remains deferred.",
+    "Broad mobile optimization remains the final stage."
+  ]
+}
