@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "reportName": "bespoke-raw-candidate-pass-6",
+  "generatedAt": "2026-06-29",
+  "branch": "morsewords-bespoke-raw-candidate-pass-6-jun-2026",
+  "pass5BranchMergeStatus": {
+    "mergedToMain": true,
+    "mergeType": "fast-forward",
+    "mergedCommit": "1c32cf8f9f934cb122623dbe2b35a321b43f3af8",
+    "mainPushed": true,
+    "validationSummary": "Merged main validated at 514 generated books, 514 SEO summaries, 514 startup previews, 0 independent second-pass failures, 514 book URLs, 514 audiobook URLs, Netlify build pass, Playwright book-page suite 39/39 pass."
+  },
+  "previousGeneratedCount": 514,
+  "previousSeoSummaryCount": 514,
+  "previousPreviewCount": 514,
+  "candidateCategoriesReviewed": [
+    "unsafe-start-end-boundary-risk"
+  ],
+  "selectedCandidates": [
+    {
+      "candidateRawFile": "app/client/assets/temp-books/Emma.txt",
+      "oldCategory": "unsafe-start-end-boundary-risk",
+      "whySelected": "Primary pass-6 candidate with clear Project Gutenberg metadata but missing a standard END marker.",
+      "expectedSlug": "emma",
+      "expectedTitle": "Emma",
+      "expectedAuthor": "Jane Austen",
+      "sourceName": "Project Gutenberg",
+      "sourceUrlStatus": "Resolvable from eBook #158: https://www.gutenberg.org/ebooks/158",
+      "riskBeingFixed": "Manual end-boundary selection for a missing standard END marker.",
+      "decision": "defer"
+    },
+    {
+      "candidateRawFile": "app/client/assets/temp-books/Great Expectations.txt",
+      "oldCategory": "unsafe-start-end-boundary-risk",
+      "whySelected": "Primary pass-6 candidate with clear Project Gutenberg metadata but missing a standard END marker.",
+      "expectedSlug": "great-expectations",
+      "expectedTitle": "Great Expectations",
+      "expectedAuthor": "Charles Dickens",
+      "sourceName": "Project Gutenberg",
+      "sourceUrlStatus": "Resolvable from eBook #1400: https://www.gutenberg.org/ebooks/1400",
+      "riskBeingFixed": "Manual end-boundary selection for a missing standard END marker.",
+      "decision": "defer"
+    },
+    {
+      "candidateRawFile": "app/client/assets/temp-books/North and South.txt",
+      "oldCategory": "unsafe-start-end-boundary-risk",
+      "whySelected": "Primary pass-6 candidate with clear Project Gutenberg metadata but missing a standard END marker.",
+      "expectedSlug": "north-and-south",
+      "expectedTitle": "North and South",
+      "expectedAuthor": "Elizabeth Cleghorn Gaskell",
+      "sourceName": "Project Gutenberg",
+      "sourceUrlStatus": "Resolvable from eBook #4276: https://www.gutenberg.org/ebooks/4276",
+      "riskBeingFixed": "Manual end-boundary selection for a missing standard END marker.",
+      "decision": "defer"
+    }
+  ],
+  "acceptedGeneratedCandidates": [],
+  "deferredCandidates": [
+    {
+      "rawFile": "Emma.txt",
+      "slug": "emma",
+      "reason": "Deferred: the local raw file appears truncated, not merely missing a standard END marker. It has Project Gutenberg start metadata and a table of contents, but the readable text ends mid-sentence in Volume II, Chapter VII, at about 67,962 raw words. A complete public edition of Emma should include all three volumes and 55 body chapters. No safe manual end boundary exists in this local file."
+    },
+    {
+      "rawFile": "Great Expectations.txt",
+      "slug": "great-expectations",
+      "reason": "Deferred: the local raw file appears truncated, not merely missing a standard END marker. It reaches Chapter XXXIX and ends mid-scene at about 119,084 raw words. A complete public edition of Great Expectations should continue through Chapter LIX. No safe manual end boundary exists in this local file."
+    },
+    {
+      "rawFile": "North and South.txt",
+      "slug": "north-and-south",
+      "reason": "Deferred: the local raw file appears truncated, not merely missing a standard END marker. It reaches only Chapter VI and ends mid-paragraph at about 20,580 raw words. A complete public edition of North and South should continue far beyond Chapter VI. No safe manual end boundary exists in this local file."
+    }
+  ],
+  "emmaDecisionAndEvidence": {
+    "decision": "defer",
+    "metadata": {
+      "title": "Emma",
+      "author": "Jane Austen",
+      "sourceName": "Project Gutenberg",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/158"
+    },
+    "alreadyGeneratedUnderAnotherSlug": false,
+    "safeStartBoundary": "Project Gutenberg START marker followed by table of contents and VOLUME I / CHAPTER I body start.",
+    "safeEndBoundary": null,
+    "fileAppearsCompleteDespiteMissingStandardEndMarker": false,
+    "chapterHeadingsUsableIfComplete": true,
+    "evidence": "The local file has 7,105 lines and about 67,962 raw words. It contains body chapter headings through Volume II, Chapter VII, then the file ends mid-sentence. This is incomplete for Emma, so no public generated book was created."
+  },
+  "greatExpectationsDecisionAndEvidence": {
+    "decision": "defer",
+    "metadata": {
+      "title": "Great Expectations",
+      "author": "Charles Dickens",
+      "sourceName": "Project Gutenberg",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/1400"
+    },
+    "alreadyGeneratedUnderAnotherSlug": false,
+    "safeStartBoundary": "Project Gutenberg START marker followed by front matter and Chapter I body start.",
+    "safeEndBoundary": null,
+    "fileAppearsCompleteDespiteMissingStandardEndMarker": false,
+    "chapterHeadingsUsableIfComplete": true,
+    "evidence": "The local file has 13,283 lines and about 119,084 raw words. It reaches Chapter XXXIX and ends mid-scene before the novel's later chapters. This is incomplete, so no public generated book was created."
+  },
+  "northAndSouthDecisionAndEvidence": {
+    "decision": "defer",
+    "metadata": {
+      "title": "North and South",
+      "author": "Elizabeth Cleghorn Gaskell",
+      "sourceName": "Project Gutenberg",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/4276"
+    },
+    "alreadyGeneratedUnderAnotherSlug": false,
+    "safeStartBoundary": "Project Gutenberg START marker followed by Chapter I body start.",
+    "safeEndBoundary": null,
+    "fileAppearsCompleteDespiteMissingStandardEndMarker": false,
+    "chapterHeadingsUsableIfComplete": true,
+    "evidence": "The local file has 2,166 lines and about 20,580 raw words. It contains only Chapters I-VI and ends mid-paragraph. This is incomplete, so no public generated book was created."
+  },
+  "generatedCountAfterBranch": 514,
+  "seoSummaryCountAfterBranch": 514,
+  "startupPreviewCountAfterBranch": 514,
+  "missingSummaryCountAfterBranch": 0,
+  "previewSizeRangeForNewOrChangedBooks": null,
+  "sectionContentResultForNewBooks": "No new books were generated in pass 6 because all three selected primary candidates were incomplete local raw files.",
+  "metadataCompletenessResultForNewBooks": "Not applicable: no accepted/generated pass-6 books.",
+  "rawReconciliationAfterBranch": {
+    "unknownUnclassifiedCount": 0,
+    "remainingNonGeneratedRawFilesByCategory": {
+      "unsafe-start-end-boundary-risk": 19,
+      "unsafe-automation-structure": 3,
+      "future-bespoke-required": 4,
+      "duplicate-or-near-duplicate": 3,
+      "blocked-source-or-rights-risk": 3,
+      "unsafe-title-parent-collection-risk": 1,
+      "unsafe-metadata-risk": 1,
+      "unknown-unclassified": 0
+    }
+  },
+  "unknownUnclassifiedCount": 0,
+  "remainingNonGeneratedRawFilesByCategory": {
+    "unsafe-start-end-boundary-risk": 19,
+    "unsafe-automation-structure": 3,
+    "future-bespoke-required": 4,
+    "duplicate-or-near-duplicate": 3,
+    "blocked-source-or-rights-risk": 3,
+    "unsafe-title-parent-collection-risk": 1,
+    "unsafe-metadata-risk": 1,
+    "unknown-unclassified": 0
+  },
+  "starterPreviewFirstRenderCheckpoint": "No pass-6 starter previews were added. Existing startup preview coverage remains 514/514.",
+  "cloudflareExportCheckpoint": "Cloudflare export was not run and app/client/assets/books/cloudflare-export remained untouched.",
+  "bookSectionContentAuditCheckpoint": "Not started. This belongs before Cloudflare export after the book library decision point.",
+  "metadataSourceConsistencyAuditCheckpoint": "Not started beyond pass-6 candidate metadata verification. Full metadata/source consistency audit remains before and after Cloudflare export.",
+  "postExportChapterNavViewWindowReviewCheckpoint": "Not started. This remains after Cloudflare export when final full payloads are available.",
+  "sourcesPageTrustCopyCheckpoint": "Not started. Sources page trust-copy improvements remain in the later content-quality stage.",
+  "aboutEeatCopyCheckpoint": "Not started. About/E-E-A-T copy improvements remain in the later content-quality stage.",
+  "repeatedHelperCopyContentQualityCheckpoint": "Not started. Repeated-helper-copy/content-quality work remains in the later content-quality stage.",
+  "urlPageIndexabilityBlockerCheckpoint": "Not started. URL/page/indexability and planned non-book page work remain later.",
+  "mobileFinalStageCheckpoint": "Not started. Broad mobile optimization remains the final stage.",
+  "routeUiCheckResult": {
+    "acceptedAdditions": "Not applicable: no pass-6 accepted/generated additions.",
+    "retainedBehavior": "Covered by the retained 514-book audit suite, route smoke tests, Netlify build, and Playwright book-page suite. Middlemarch, the Leavenworth Case, Sherlock/Wilde/Poe retained stories, normal preview-backed book pages, listing counts, no 0-section surfaces, request-count behavior, desktop summary width, and mobile 390px behavior remain covered by the existing book-page regression suite."
+  },
+  "validationResults": {
+    "status": "passed",
+    "commands": [
+      {
+        "command": "npm run typecheck",
+        "result": "pass"
+      },
+      {
+        "command": "npm run books:seo-summary-audit",
+        "result": "pass: 514/514 summaries"
+      },
+      {
+        "command": "npm run books:batch-12-prose-restore",
+        "result": "pass: 20/20 raw/generated exact matches"
+      },
+      {
+        "command": "npm run books:startup-preview-audit",
+        "result": "pass: 514 valid startup previews"
+      },
+      {
+        "command": "npm run books:title-start-default-audit",
+        "result": "pass: 514 audited; known unrelated generated/preview churn restored before commit"
+      },
+      {
+        "command": "npm run books:metadata-segmentation-audit",
+        "result": "pass: 514 audited, 0 accepted books revoked"
+      },
+      {
+        "command": "npm run books:manual-ui-defect-followup",
+        "result": "pass: 8 checked, 8 acceptable"
+      },
+      {
+        "command": "npm run books:independent-second-pass-audit",
+        "result": "pass: 458 pass, 56 warn-accepted, 0 fail-needs-fix"
+      },
+      {
+        "command": "npm run books:linking-sitemap-audit",
+        "result": "pass: 514 book URLs and 514 audiobook URLs"
+      },
+      {
+        "command": "npm run test --if-present",
+        "result": "pass: 23 smoke tests"
+      },
+      {
+        "command": "npm run build:netlify",
+        "result": "pass; known chunk-size warning only"
+      },
+      {
+        "command": "npx playwright test tests/qa-robustness-review/morse-book-page.spec.ts --project=desktop-chromium --reporter=line",
+        "result": "pass: 39/39"
+      },
+      {
+        "command": "git diff --check",
+        "result": "pass; line-ending warnings only before unrelated validation churn was restored"
+      }
+    ]
+  },
+  "recommendedNextMajorPhase": "bespoke/manual raw candidate pass 7"
+}
