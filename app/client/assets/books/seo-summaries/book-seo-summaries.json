@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "summarySet": "bespoke-raw-candidate-pass-4",
+  "summarySet": "bespoke-raw-candidate-pass-5",
   "generatedAt": "2026-06-29",
   "storageApproach": "Separate static JSON data asset imported by book routes and validation tooling. Summaries are not embedded in generated book text, preview assets, raw sources, or Cloudflare export payloads.",
   "suggestedPilotSlugs": [
@@ -79,7 +79,7 @@
       "reason": "The Odyssey is not currently generated; The Arabian Nights keeps a long classic story-collection sample in the pilot."
     }
   ],
-  "expectedSummaryCount": 511,
+  "expectedSummaryCount": 514,
   "batch1Slugs": [
     "a-childs-garden-of-verses",
     "anna-karenina",
@@ -4774,6 +4774,33 @@
       ],
       "description": "Anna Katharine Green's influential detective novel about a lawyer, a murdered client, and the layered testimony around the Leavenworth household.",
       "summary": "The Leavenworth Case is Anna Katharine Green's early detective novel about the murder of Horatio Leavenworth and the legal, domestic, and emotional evidence that follows. Told by a young lawyer drawn into the case, the book moves through an inquest, interviews, family tensions, hidden testimony, and Mr. Gryce's careful detective work. Although the raw file contains four internal books, they are divisions of one single novel rather than separate works, so this pass keeps the text together as one book with thirty-nine readable chapter sections.\n\nFor MorseWords learners, the novel is useful because its structure is orderly even though the mystery is complex. Each chapter has a distinct role: early chapters establish the crime and evidence, middle chapters test theories and relationships, and later chapters gather confessions and explanations. That makes it practical to listen in short sessions while still building stamina for a longer public-domain novel.\n\nThe vocabulary gives strong practice anchors. Names such as Leavenworth, Raymond, Gryce, Mary, Eleanore, Clavering, Harwell, and Hannah repeat across the investigation, while legal and household words such as inquest, testimony, office, library, witness, letter, will, key, and confession add variety. Dialogue-heavy scenes help learners practice punctuation and speaker changes, while investigative passages reward slower playback and careful copying.\n\nBecause the chapters are numerous but individually bounded, the book can support different practice goals. A newer listener can replay the first chapter until the repeated names and legal setting feel familiar. A more confident learner can choose a later investigative chapter for longer copying, then return to shorter chapters for review. The steady detective frame makes it easier to notice when spacing, missed letters, or punctuation have gone off track.\n\nThis generated edition removes source boilerplate and table material, keeps readable chapter bodies, and stores only a small local starter preview for immediate rendering. The full book payload remains export-deferred until the Cloudflare book payload stage is run later."
+    },
+    {
+      "slug": "an-enquiry-concerning-human-understanding",
+      "title": "An Enquiry Concerning Human Understanding",
+      "author": [
+        "David Hume"
+      ],
+      "description": "David Hume's philosophical enquiry into human understanding, ideas, probability, causation, liberty, miracles, providence, and scepticism.",
+      "summary": "An Enquiry Concerning Human Understanding is David Hume's compact philosophical work about ideas, experience, probability, causation, liberty, miracles, providence, and scepticism. Rather than moving through plot and character, it asks how people form beliefs, why they trust repeated experience, and where confident reasoning begins to break down. The MorseWords version is organized around the twelve main enquiry sections, so learners can approach the text one argument at a time instead of facing the whole treatise at once.\n\nFor Morse practice, this book is best for careful listening and deliberate copying. Hume's prose is formal, balanced, and often abstract, with long sentences that reward slower WPM settings and accurate word spacing. The repeated vocabulary is helpful: idea, impression, reason, evidence, probability, experience, belief, cause, effect, liberty, necessity, miracle, religion, philosophy, and scepticism come back often enough to become familiar anchors.\n\nA beginner can start with a short section such as Of the Origin of Ideas and replay a few paragraphs until the rhythm of formal prose feels less intimidating. A learner who already handles story passages can use Of Probability or Of Miracles to practice sustained attention across denser clauses and repeated logical terms. Because the section titles are descriptive, it is easy to return later and compare how different arguments sound in Morse.\n\nThis is not a casual adventure listen, but it is valuable for learners who want to build patience, punctuation awareness, and confidence with nonfiction. Use short sessions, keep the playback speed honest, and review missed terms before moving to the next section.\n\nA good next action is to translate one paragraph, listen without looking, then read it while replaying the audio. Mark the words that collapse together, especially abstract pairs such as cause and effect or liberty and necessity, and repeat that same paragraph before starting a new one."
+    },
+    {
+      "slug": "middlemarch",
+      "title": "Middlemarch",
+      "author": [
+        "George Eliot"
+      ],
+      "description": "George Eliot's realist novel about Dorothea Brooke, Tertius Lydgate, and the social, moral, and political life of Middlemarch.",
+      "summary": "Middlemarch is George Eliot's large realist novel about Dorothea Brooke, Tertius Lydgate, Rosamond Vincy, Casaubon, Ladislaw, and the social life of an English provincial town. Its drama comes from choices that look private but ripple outward: marriage, money, ambition, reform, illness, reputation, debt, disappointment, and conscience. The MorseWords version keeps the prelude, numbered chapters, and finale together as one long book, giving learners many natural stopping points without losing the shape of the novel.\n\nFor Morse practice, Middlemarch is a stamina builder. Eliot's prose moves between dialogue, description, irony, and moral reflection, so a listener gets more variety than a simple plot summary or single-scene short story. The repeated names are useful anchors: Dorothea, Celia, Brooke, Casaubon, Lydgate, Rosamond, Vincy, Bulstrode, and Ladislaw return often enough to help learners recover context after a missed word.\n\nThe book is especially good for learners who want to practice long sessions in small pieces. Start with the prelude or Chapter I, then replay the same section until character names, punctuation, and sentence endings are clear. Later, choose shorter chapters for review and longer chapters for endurance. The vocabulary also gives useful contrast: domestic words, medical terms, legal and financial language, religious references, and ordinary town life appear side by side.\n\nMiddlemarch is not the fastest choice for a first Morse reading session, but it rewards steady practice. If a passage feels dense, slow the audio, copy only a few paragraphs, and return to familiar names before continuing. Over time, the novel becomes a useful test of spacing, attention, and confidence with sophisticated prose.\n\nA practical routine is to use one chapter as the week's practice text. Listen once for character names, once for punctuation and word spacing, and once while copying. After the session, review the missed names before choosing the next chapter."
+    },
+    {
+      "slug": "the-financier",
+      "title": "The Financier",
+      "author": [
+        "Theodore Dreiser"
+      ],
+      "description": "Theodore Dreiser's novel about Frank Cowperwood, finance, ambition, family pressure, and power in nineteenth-century Philadelphia.",
+      "summary": "The Financier is Theodore Dreiser's novel about Frank Algernon Cowperwood, a young Philadelphian whose talent for money, risk, persuasion, and self-advancement draws him into banking, speculation, politics, family conflict, and scandal. It is a business novel, a character study, and a social portrait at once, following Cowperwood as he learns how financial systems, personal charm, ambition, and public power can reinforce one another.\n\nFor MorseWords learners, The Financier offers a vocabulary set that feels different from fairy tales, detective stories, and adventure fiction. Banks, bonds, loans, accounts, railroads, offices, investors, city officials, political arrangements, contracts, household expectations, and personal desire all appear in the same narrative world. That makes the book useful for learners who want to practice practical adult prose with recurring names and repeated financial terms.\n\nThe chapter structure is regular, so it works well for short sessions. A beginner can start with Chapter I to learn Cowperwood's setting and family background, then replay one or two paragraphs until the proper names and sentence endings are clear. A more confident learner can choose later scenes with business negotiations or dialogue and use slower playback to catch numbers, punctuation, and speaker changes.\n\nDreiser's style is direct but often detailed, which makes the book a good bridge between simple story practice and very dense literary prose. Use it when you want a longer challenge with clear chapter boundaries, repeated terminology, and a strong central character. If a financial passage feels crowded, reduce the speed, copy a shorter span, and review the recurring words before moving on.\n\nFor a focused session, make a short word bank before listening: bank, bond, loan, money, city, father, office, Cowperwood, and Philadelphia. Then listen for those anchors first, and only afterward worry about the full sentence. This keeps the session grounded while the business vocabulary becomes familiar."
     }
   ],
   "batch3Slugs": [
@@ -5205,5 +5232,10 @@
   ],
   "bespokeRawCandidatePass4Slugs": [
     "the-leavenworth-case"
+  ],
+  "bespokeRawCandidatePass5Slugs": [
+    "an-enquiry-concerning-human-understanding",
+    "middlemarch",
+    "the-financier"
   ]
 }

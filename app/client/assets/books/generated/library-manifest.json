@@ -25354,6 +25354,171 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-leavenworth-case/manifest.json"
+    },
+    {
+      "slug": "an-enquiry-concerning-human-understanding",
+      "title": "An Enquiry Concerning Human Understanding",
+      "author": [
+        "David Hume"
+      ],
+      "contentVersion": "0f4e7815015f871d",
+      "contentHash": "0f4e7815015f871da723647671d2d7fe61d5440ffd49b178684ea70e96113139",
+      "language": "en",
+      "description": "David Hume's philosophical enquiry into human understanding, ideas, probability, causation, liberty, miracles, providence, and scepticism.",
+      "subjects": [
+        "Philosophy",
+        "Knowledge, Theory of",
+        "Causation",
+        "Skepticism"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "9662",
+        "releaseDate": "January 1, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/9662",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted bespoke raw candidate pass 5 processed this accepted work after manual source, metadata, and section-boundary review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": false
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for An Enquiry Concerning Human Understanding"
+      },
+      "stats": {
+        "originalCharacterCount": 373366,
+        "cleanedCharacterCount": 318900,
+        "wordCount": 53644,
+        "sectionCount": 12,
+        "includedSectionCount": 12
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "an-enquiry-concerning-human-understanding/manifest.json"
+    },
+    {
+      "slug": "middlemarch",
+      "title": "Middlemarch",
+      "author": [
+        "George Eliot"
+      ],
+      "contentVersion": "173e7b65c1f44996",
+      "contentHash": "173e7b65c1f449969f0ca620c7519af65b0be94ca7cb1b29f5637e175d7cc673",
+      "language": "en",
+      "description": "George Eliot's realist novel about Dorothea Brooke, Tertius Lydgate, and the social, moral, and political life of Middlemarch.",
+      "subjects": [
+        "Domestic fiction",
+        "England -- Fiction",
+        "Married people -- Fiction",
+        "Bildungsromans"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "145",
+        "releaseDate": "July 1, 1994",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/145",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted bespoke raw candidate pass 5 processed this accepted work after manual source, metadata, and section-boundary review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": false
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for Middlemarch"
+      },
+      "stats": {
+        "originalCharacterCount": 1865682,
+        "cleanedCharacterCount": 1778964,
+        "wordCount": 318237,
+        "sectionCount": 88,
+        "includedSectionCount": 88
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "middlemarch/manifest.json"
+    },
+    {
+      "slug": "the-financier",
+      "title": "The Financier",
+      "author": [
+        "Theodore Dreiser"
+      ],
+      "contentVersion": "c876683e7d9cc226",
+      "contentHash": "c876683e7d9cc226d7613032f24a07b5f18f5a7616b8822a3361e0b72cd037d5",
+      "language": "en",
+      "description": "Theodore Dreiser's novel about Frank Cowperwood, finance, ambition, family pressure, and power in nineteenth-century Philadelphia.",
+      "subjects": [
+        "Capitalists and financiers -- Fiction",
+        "Philadelphia (Pa.) -- Fiction",
+        "Ambition -- Fiction",
+        "Novels"
+      ],
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "1840",
+        "releaseDate": "February 26, 2006",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1840",
+        "rawTextUrl": null,
+        "rightsBasis": "public-domain-us",
+        "rightsReviewed": true,
+        "publishReady": true,
+        "rightsStatus": "approved",
+        "processingAllowed": true,
+        "approvalSource": "external-authority",
+        "duplicateResolutionSource": "owner-reviewed",
+        "rightsReportPath": "rights_report.json",
+        "processedBookPath": "processed_book.json",
+        "cleanedBookPath": "cleaned_book.json",
+        "rightsNotes": "Targeted bespoke raw candidate pass 5 processed this accepted work after manual source, metadata, and section-boundary review. Review generated output before any Cloudflare export.",
+        "allowDuplicateGutenbergId": false
+      },
+      "cover": {
+        "src": null,
+        "placeholder": true,
+        "alt": "Placeholder cover for The Financier"
+      },
+      "stats": {
+        "originalCharacterCount": 1153532,
+        "cleanedCharacterCount": 1093330,
+        "wordCount": 194731,
+        "sectionCount": 59,
+        "includedSectionCount": 59
+      },
+      "defaults": {
+        "includeKinds": [
+          "chapter"
+        ],
+        "preferredPreset": "main-narrative"
+      },
+      "manifestPath": "the-financier/manifest.json"
     }
   ]
 }

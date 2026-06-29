@@ -5623,6 +5623,39 @@
       "previewCharacterCount": 1224,
       "estimatedRuntimeSeconds": 445,
       "truncated": true
+    },
+    {
+      "slug": "an-enquiry-concerning-human-understanding",
+      "path": "/book-previews/an-enquiry-concerning-human-understanding.preview.json",
+      "contentVersion": "0f4e7815015f871d",
+      "contentHash": "0f4e7815015f871da723647671d2d7fe61d5440ffd49b178684ea70e96113139",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1889,
+      "previewCharacterCount": 1094,
+      "estimatedRuntimeSeconds": 391,
+      "truncated": true
+    },
+    {
+      "slug": "middlemarch",
+      "path": "/book-previews/middlemarch.preview.json",
+      "contentVersion": "173e7b65c1f44996",
+      "contentHash": "173e7b65c1f449969f0ca620c7519af65b0be94ca7cb1b29f5637e175d7cc673",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1855,
+      "previewCharacterCount": 1128,
+      "estimatedRuntimeSeconds": 406,
+      "truncated": true
+    },
+    {
+      "slug": "the-financier",
+      "path": "/book-previews/the-financier.preview.json",
+      "contentVersion": "c876683e7d9cc226",
+      "contentHash": "c876683e7d9cc226d7613032f24a07b5f18f5a7616b8822a3361e0b72cd037d5",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 1746,
+      "previewCharacterCount": 1014,
+      "estimatedRuntimeSeconds": 365,
+      "truncated": true
     }
   ],
   "missing": []
