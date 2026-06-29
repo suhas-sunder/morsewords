@@ -1,0 +1,107 @@
+{
+  "reportName": "netlify-function-size-fix",
+  "branch": "morsewords-netlify-function-size-export-exclusion-jun-2026",
+  "executiveResult": "Ready to redeploy on Netlify",
+  "originalNetlifyError": {
+    "stage": "function upload",
+    "function": "react-router-server",
+    "message": "The function exceeds the maximum size of 250 MB"
+  },
+  "rootCauseEvidence": {
+    "classification": "cloudflare-export included in server function package",
+    "assetSizes": {
+      "app/client/assets/books/cloudflare-export": "299.22 MB",
+      "app/client/assets/books/generated": "590.78 MB",
+      "public/book-previews": "4.72 MB",
+      "app/client/assets/books/seo-summaries": "1.17 MB"
+    },
+    "evidence": [
+      "The committed Cloudflare export contains 521 files, including 519 full book payloads and 2 manifests.",
+      "Before the fix, app/routes/morse-book-content.books.$slug.tsx imported the Cloudflare export public manifest and used a static fs path rooted at app/client/assets/books/cloudflare-export.",
+      "The pre-fix production server bundle contained a static path to app/client/assets/books/cloudflare-export in the local payload fallback route.",
+      "The local React Router server bundle itself was about 4 MB, so the deploy failure aligned with Netlify function packaging/upload tracing the large local export directory rather than with a TypeScript or Vite build failure."
+    ]
+  },
+  "filesAndPackagePathsInspected": [
+    "app/client/assets/books/cloudflare-export",
+    "app/client/assets/books/generated",
+    "public/book-previews",
+    "app/client/assets/books/seo-summaries",
+    "app/routes/morse-book-content.books.$slug.tsx",
+    "app/client/data/morseBooks.ts",
+    "app/client/data/morseBookContentConfig.ts",
+    "app/client/components/morse-code-books/MorseBookPage.tsx",
+    "app/client/components/morse-code-books/bookTranslatorSource.ts",
+    "build/server/server.js",
+    ".netlify/v1/functions/react-router-server.mjs",
+    "netlify.toml",
+    "package.json"
+  ],
+  "fixesMade": [
+    "Production no longer uses the local /morse-book-content/books/:slug fallback route unless MORSEWORDS_ENABLE_LOCAL_BOOK_CONTENT_ROUTE=1 is explicitly set.",
+    "The local fallback route now reads the export manifest dynamically only after the dev/explicit-enable guard, instead of importing the Cloudflare export manifest at module scope.",
+    "Client/runtime fallback to /morse-book-content is now dev-only unless VITE_ENABLE_LOCAL_BOOK_CONTENT_ROUTE=1 is explicitly set.",
+    "Added npm run books:netlify-function-size-audit to inspect local Netlify/build artifacts after npm run build:netlify."
+  ],
+  "functionSizeResult": {
+    "localNetlifyFunctionTree": {
+      "path": ".netlify/v1/functions",
+      "size": "251 B",
+      "files": 1,
+      "bulkPayloadsFound": 0
+    },
+    "serverBundle": {
+      "path": "build/server/server.js",
+      "size": "4.00 MB",
+      "staticCloudflareExportFsPathPresent": false
+    },
+    "publishedStaticBuild": {
+      "path": "build/client",
+      "cloudflareExportPayloadsCopied": false
+    },
+    "auditCommand": "npm run books:netlify-function-size-audit",
+    "auditResult": "pass"
+  },
+  "bookExportInvariants": {
+    "generatedBooks": 519,
+    "seoSummaries": "519/519",
+    "startupPreviews": 519,
+    "bookUrls": 519,
+    "audiobookUrls": 519,
+    "cloudflareExportFiles": 521,
+    "cloudflareBookPayloads": 519,
+    "cloudflareManifestFiles": 2,
+    "cloudflareExportStatus": "valid; artifacts retained in repo"
+  },
+  "validationResults": {
+    "typecheck": "pass",
+    "seoSummaryAudit": "pass, 519/519",
+    "startupPreviewAudit": "pass, 519 valid",
+    "sectionMetadataSourceAudit": "pass, 0 blockers",
+    "cloudflareExport": "pass, 521 files and 519 book payloads",
+    "cloudflareExportAudit": "pass, 0 blockers",
+    "postExportBookRouteValidation": "pass locally; real remote Cloudflare validation still blocked until served base URL is provided",
+    "independentSecondPassAudit": "pass, 0 fail-needs-fix",
+    "linkingSitemapAudit": "pass, 519 book URLs and 519 audiobook URLs",
+    "testIfPresent": "pass, 23 smoke tests",
+    "netlifyBuild": "pass",
+    "netlifyFunctionSizeAudit": "pass",
+    "playwrightMorseBookPage": "pass, 39/39",
+    "gitDiffCheck": "pass"
+  },
+  "remainingRisks": [
+    "Local inspection exposes .netlify/v1/functions as a small shim rather than the exact zipped production upload package; the fix removes the static export fs trace that caused Netlify packaging to include the large local export directory.",
+    "Real remote Cloudflare/R2 validation remains blocked until the actual served base URL is available."
+  ],
+  "nextManualCloudflareR2UploadGate": [
+    "Do not claim remote Cloudflare validation until VITE_MORSE_BOOK_CONTENT_BASE_URL or PUBLIC_MORSE_BOOK_CONTENT_BASE_URL points to the actual served export and npm run books:cloudflare-post-upload-validation passes.",
+    "Remote upload must be sync/delete, overwrite existing keys, and remove stale keys under the book export prefix."
+  ],
+  "laterStagesPreserved": [
+    "Non-book sitemap/page work was not started.",
+    "URL/indexability audit was not started.",
+    "GSC/meta review was not started.",
+    "Sources/About/repeated-helper-copy content work was not started.",
+    "Broad mobile optimization was not started."
+  ]
+}

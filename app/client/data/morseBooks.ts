@@ -671,6 +671,9 @@ async function getRuntimePublicManifest() {
 }
 
 function getLocalPublicBookUrl(bookPath: string) {
+  if (!import.meta.env.DEV && import.meta.env.VITE_ENABLE_LOCAL_BOOK_CONTENT_ROUTE !== "1") {
+    return "";
+  }
   return `/morse-book-content/${bookPath.replace(/^\/+/, "")}`;
 }
 

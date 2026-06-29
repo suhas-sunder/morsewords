@@ -1,27 +1,39 @@
-import fs from "node:fs/promises";
-import path from "node:path";
-
-import publicManifestJson from "~/client/assets/books/cloudflare-export/public-manifest.json";
 import type { MorseBookPublicManifest } from "~/client/data/morseBookTypes";
 
 import type { Route } from "./+types/morse-book-content.books.$slug";
 
-const publicManifest =
-  publicManifestJson as unknown as MorseBookPublicManifest;
-const exportRoot = path.join(
-  process.cwd(),
+const localExportPathSegments = [
   "app",
   "client",
   "assets",
   "books",
   "cloudflare-export",
-);
+] as const;
+
+function canServeLocalBookContent() {
+  return (
+    import.meta.env.DEV ||
+    process.env.MORSEWORDS_ENABLE_LOCAL_BOOK_CONTENT_ROUTE === "1"
+  );
+}
 
 export async function loader({ params }: Route.LoaderArgs) {
+  if (!canServeLocalBookContent()) {
+    throw new Response("Morse book content not found", { status: 404 });
+  }
+
   const slugParam = params.slug;
   if (!slugParam || !slugParam.endsWith(".json")) {
     throw new Response("Morse book content not found", { status: 404 });
   }
+
+  const fs = await import("node:fs/promises");
+  const path = await import("node:path");
+  const exportRoot = path.join(process.cwd(), ...localExportPathSegments);
+  const publicManifestPath = path.join(exportRoot, "public-manifest.json");
+  const publicManifest = JSON.parse(
+    await fs.readFile(publicManifestPath, "utf8"),
+  ) as MorseBookPublicManifest;
 
   const slug = slugParam.replace(/\.json$/, "");
   const bookPath = `books/${slug}.json`;
