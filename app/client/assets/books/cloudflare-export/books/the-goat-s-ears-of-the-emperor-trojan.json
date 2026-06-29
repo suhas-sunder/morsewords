@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-goat-s-ears-of-the-emperor-trojan",
+  "title": "The Goat’s Ears of the Emperor Trojan",
+  "author": [
+    "Andrew Lang"
+  ],
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "641",
+    "releaseDate": "September 1, 1996",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Goat’s Ears of the Emperor Trojan"
+  },
+  "stats": {
+    "originalCharacterCount": 5700,
+    "cleanedCharacterCount": 4538,
+    "wordCount": 872,
+    "sectionCount": 1,
+    "includedSectionCount": 1
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "manifest": {
+    "schemaVersion": 1,
+    "slug": "the-goat-s-ears-of-the-emperor-trojan",
+    "title": "The Goat’s Ears of the Emperor Trojan",
+    "author": [
+      "Andrew Lang"
+    ],
+    "contentVersion": "9ab7d18af61fd08c",
+    "contentHash": "9ab7d18af61fd08c6566c5c52beeefc755ee59c66e2bd2bcf3985b0e05e6b0b9",
+    "language": "en",
+    "description": "",
+    "subjects": [],
+    "source": {
+      "provider": "Project Gutenberg",
+      "gutenbergId": "641",
+      "releaseDate": "September 1, 1996",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+      "rawTextUrl": null,
+      "rightsBasis": "public-domain-us",
+      "rightsReviewed": true,
+      "publishReady": true,
+      "rightsStatus": "approved",
+      "processingAllowed": true,
+      "approvalSource": "external-authority",
+      "duplicateResolutionSource": "not-needed",
+      "rightsReportPath": "rights_report.json",
+      "processedBookPath": "processed_book.json",
+      "cleanedBookPath": "cleaned_book.json",
+      "rightsNotes": "Pilot write pass 20 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+    },
+    "cover": {
+      "src": null,
+      "placeholder": true,
+      "alt": "Placeholder cover for The Goat’s Ears of the Emperor Trojan"
+    },
+    "stats": {
+      "originalCharacterCount": 5700,
+      "cleanedCharacterCount": 4538,
+      "wordCount": 872,
+      "sectionCount": 1,
+      "includedSectionCount": 1
+    },
+    "defaults": {
+      "includeKinds": [
+        "chapter"
+      ],
+      "preferredPreset": "main-narrative"
+    },
+    "sections": [
+      {
+        "id": "chapter-001",
+        "kind": "chapter",
+        "label": "The Goat’s Ears of the Emperor Trojan",
+        "title": null,
+        "order": 1,
+        "includeByDefault": true,
+        "sectionJsonPath": "sections/chapter-001.json",
+        "characterCount": 4538,
+        "wordCount": 872,
+        "estimatedTypingMinutes": 25,
+        "estimatedListeningMinutes": 27,
+        "morseCharacterEstimate": 24115,
+        "textPreview": "Once upon a time there lived an emperor whose name was Trojan, and he had ears like a goat. Every morning, when he was shaved, he asked if the man saw anything..."
+      }
+    ],
+    "cleaning": {
+      "originalCharacterCount": 5700,
+      "cleanedCharacterCount": 4538,
+      "headerStripped": true,
+      "footerStripped": true,
+      "confidence": "high",
+      "warnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ]
+    },
+    "warnings": [
+      "Generated by controlled pilot write pass 20; review before scaling to larger batches or Cloudflare export.",
+      "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+      "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+      "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+      "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+      "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+      "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+      "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+      "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+    ]
+  },
+  "sections": [
+    {
+      "schemaVersion": 1,
+      "bookSlug": "the-goat-s-ears-of-the-emperor-trojan",
+      "sectionId": "chapter-001",
+      "kind": "chapter",
+      "label": "The Goat’s Ears of the Emperor Trojan",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "displayText": "Once upon a time there lived an emperor whose name was Trojan, and he\nhad ears like a goat. Every morning, when he was shaved, he asked if the\nman saw anything odd about him, and as each fresh barber always replied\nthat the emperor had goat’s ears, he was at once ordered to be put to\ndeath.\n\nNow after this state of things had lasted a good while, there was hardly\na barber left in the town that could shave the emperor, and it came\nto be the turn of the Master of the Company of Barbers to go up to the\npalace. But, unluckily, at the very moment that he should have set out,\nthe master fell suddenly ill, and told one of his apprentices that he\nmust go in his stead.\n\nWhen the youth was taken to the emperor’s bedroom, he was asked why he\nhad come and not his master. The young man replied that the master was\nill, and there was no one but himself who could be trusted with the\nhonour. The emperor was satisfied with the answer, and sat down, and let\na sheet of fine linen be put round him. Directly the young barber began\nhis work, he, like the rest, remarked the goat’s ears of the emperor,\nbut when he had finished and the emperor asked his usual question as\nto whether the youth had noticed anything odd about him, the young man\nreplied calmly, ‘No, nothing at all.’ This pleased the emperor so much\nthat he gave him twelve ducats, and said, ‘Henceforth you shall come\nevery day to shave me.’\n\nSo when the apprentice returned home, and the master inquired how he had\ngot on with the emperor, the young man answered, ‘Oh, very well, and\nhe says I am to shave him every day, and he has given me these twelve\nducats’; but he said nothing about the goat’s ears of the emperor.\n\nFrom this time the apprentice went regularly up to the palace, receiving\neach morning twelve ducats in payment. But after a while, his secret,\nwhich he had carefully kept, burnt within him, and he longed to tell it\nto somebody. His master saw there was something on his mind, and asked\nwhat it was. The youth replied that he had been tormenting himself\nfor some months, and should never feel easy until some one shared his\nsecret.\n\n‘Well, trust me,’ said the master, ‘I will keep it to myself; or, if you\ndo not like to do that, confess it to your pastor, or go into some field\noutside the town and dig a hole, and, after you have dug it, kneel down\nand whisper your secret three times into the hole. Then put back the\nearth and come away.’\n\nThe apprentice thought that this seemed the best plan, and that very\nafternoon went to a meadow outside the town, dug a deep hole, then knelt\nand whispered to it three times over, ‘The Emperor Trojan has goat’s\nears.’ And as he said so a great burden seemed to roll off him, and he\nshovelled the earth carefully back and ran lightly home.\n\nWeeks passed away, and there sprang up in the hole an elder tree which\nhad three stems, all as straight as poplars. Some shepherds, tending\ntheir flocks near by, noticed the tree growing there, and one of them\ncut down a stem to make flutes of; but, directly he began to play, the\nflute would do nothing but sing: ‘The Emperor Trojan has goat’s ears.’\nOf course, it was not long before the whole town knew of this wonderful\nflute and what it said; and, at last, the news reached the emperor in\nhis palace. He instantly sent for the apprentice and said to him:\n\n‘What have you been saying about me to all my people?’\n\nThe culprit tried to defend himself by saying that he had never told\nanyone what he had noticed; but the emperor, instead of listening, only\ndrew his sword from its sheath, which so frightened the poor fellow\nthat he confessed exactly what he had done, and how he had whispered the\ntruth three times to the earth, and how in that very place an elder tree\nhad sprung up, and flutes had been cut from it, which would only repeat\nthe words he had said. Then the emperor commanded his coach to be made\nready, and he took the youth with him, and they drove to the spot, for\nhe wished to see for himself whether the young man’s confession was\ntrue; but when they reached the place only one stem was left. So the\nemperor desired his attendants to cut him a flute from the remaining\nstem, and, when it was ready, he ordered his chamberlain to play on it.\nBut no tune could the chamberlain play, though he was the best flute\nplayer about the court--nothing came but the words, ‘The Emperor Trojan\nhas goat’s ears.’ Then the emperor knew that even the earth gave up its\nsecrets, and he granted the young man his life, but he never allowed him\nto be his barber any more.",
+      "morseSourceText": "Once upon a time there lived an emperor whose name was Trojan, and he\nhad ears like a goat. Every morning, when he was shaved, he asked if the\nman saw anything odd about him, and as each fresh barber always replied\nthat the emperor had goat’s ears, he was at once ordered to be put to\ndeath.\n\nNow after this state of things had lasted a good while, there was hardly\na barber left in the town that could shave the emperor, and it came\nto be the turn of the Master of the Company of Barbers to go up to the\npalace. But, unluckily, at the very moment that he should have set out,\nthe master fell suddenly ill, and told one of his apprentices that he\nmust go in his stead.\n\nWhen the youth was taken to the emperor’s bedroom, he was asked why he\nhad come and not his master. The young man replied that the master was\nill, and there was no one but himself who could be trusted with the\nhonour. The emperor was satisfied with the answer, and sat down, and let\na sheet of fine linen be put round him. Directly the young barber began\nhis work, he, like the rest, remarked the goat’s ears of the emperor,\nbut when he had finished and the emperor asked his usual question as\nto whether the youth had noticed anything odd about him, the young man\nreplied calmly, ‘No, nothing at all.’ This pleased the emperor so much\nthat he gave him twelve ducats, and said, ‘Henceforth you shall come\nevery day to shave me.’\n\nSo when the apprentice returned home, and the master inquired how he had\ngot on with the emperor, the young man answered, ‘Oh, very well, and\nhe says I am to shave him every day, and he has given me these twelve\nducats’; but he said nothing about the goat’s ears of the emperor.\n\nFrom this time the apprentice went regularly up to the palace, receiving\neach morning twelve ducats in payment. But after a while, his secret,\nwhich he had carefully kept, burnt within him, and he longed to tell it\nto somebody. His master saw there was something on his mind, and asked\nwhat it was. The youth replied that he had been tormenting himself\nfor some months, and should never feel easy until some one shared his\nsecret.\n\n‘Well, trust me,’ said the master, ‘I will keep it to myself; or, if you\ndo not like to do that, confess it to your pastor, or go into some field\noutside the town and dig a hole, and, after you have dug it, kneel down\nand whisper your secret three times into the hole. Then put back the\nearth and come away.’\n\nThe apprentice thought that this seemed the best plan, and that very\nafternoon went to a meadow outside the town, dug a deep hole, then knelt\nand whispered to it three times over, ‘The Emperor Trojan has goat’s\nears.’ And as he said so a great burden seemed to roll off him, and he\nshovelled the earth carefully back and ran lightly home.\n\nWeeks passed away, and there sprang up in the hole an elder tree which\nhad three stems, all as straight as poplars. Some shepherds, tending\ntheir flocks near by, noticed the tree growing there, and one of them\ncut down a stem to make flutes of; but, directly he began to play, the\nflute would do nothing but sing: ‘The Emperor Trojan has goat’s ears.’\nOf course, it was not long before the whole town knew of this wonderful\nflute and what it said; and, at last, the news reached the emperor in\nhis palace. He instantly sent for the apprentice and said to him:\n\n‘What have you been saying about me to all my people?’\n\nThe culprit tried to defend himself by saying that he had never told\nanyone what he had noticed; but the emperor, instead of listening, only\ndrew his sword from its sheath, which so frightened the poor fellow\nthat he confessed exactly what he had done, and how he had whispered the\ntruth three times to the earth, and how in that very place an elder tree\nhad sprung up, and flutes had been cut from it, which would only repeat\nthe words he had said. Then the emperor commanded his coach to be made\nready, and he took the youth with him, and they drove to the spot, for\nhe wished to see for himself whether the young man’s confession was\ntrue; but when they reached the place only one stem was left. So the\nemperor desired his attendants to cut him a flute from the remaining\nstem, and, when it was ready, he ordered his chamberlain to play on it.\nBut no tune could the chamberlain play, though he was the best flute\nplayer about the court--nothing came but the words, ‘The Emperor Trojan\nhas goat’s ears.’ Then the emperor knew that even the earth gave up its\nsecrets, and he granted the young man his life, but he never allowed him\nto be his barber any more.",
+      "paragraphs": [
+        "Once upon a time there lived an emperor whose name was Trojan, and he had ears like a goat. Every morning, when he was shaved, he asked if the man saw anything odd about him, and as each fresh barber always replied that the emperor had goat’s ears, he was at once ordered to be put to death.",
+        "Now after this state of things had lasted a good while, there was hardly a barber left in the town that could shave the emperor, and it came to be the turn of the Master of the Company of Barbers to go up to the palace. But, unluckily, at the very moment that he should have set out, the master fell suddenly ill, and told one of his apprentices that he must go in his stead.",
+        "When the youth was taken to the emperor’s bedroom, he was asked why he had come and not his master. The young man replied that the master was ill, and there was no one but himself who could be trusted with the honour. The emperor was satisfied with the answer, and sat down, and let a sheet of fine linen be put round him. Directly the young barber began his work, he, like the rest, remarked the goat’s ears of the emperor, but when he had finished and the emperor asked his usual question as to whether the youth had noticed anything odd about him, the young man replied calmly, ‘No, nothing at all.’ This pleased the emperor so much that he gave him twelve ducats, and said, ‘Henceforth you shall come every day to shave me.’",
+        "So when the apprentice returned home, and the master inquired how he had got on with the emperor, the young man answered, ‘Oh, very well, and he says I am to shave him every day, and he has given me these twelve ducats’; but he said nothing about the goat’s ears of the emperor.",
+        "From this time the apprentice went regularly up to the palace, receiving each morning twelve ducats in payment. But after a while, his secret, which he had carefully kept, burnt within him, and he longed to tell it to somebody. His master saw there was something on his mind, and asked what it was. The youth replied that he had been tormenting himself for some months, and should never feel easy until some one shared his secret.",
+        "‘Well, trust me,’ said the master, ‘I will keep it to myself; or, if you do not like to do that, confess it to your pastor, or go into some field outside the town and dig a hole, and, after you have dug it, kneel down and whisper your secret three times into the hole. Then put back the earth and come away.’",
+        "The apprentice thought that this seemed the best plan, and that very afternoon went to a meadow outside the town, dug a deep hole, then knelt and whispered to it three times over, ‘The Emperor Trojan has goat’s ears.’ And as he said so a great burden seemed to roll off him, and he shovelled the earth carefully back and ran lightly home.",
+        "Weeks passed away, and there sprang up in the hole an elder tree which had three stems, all as straight as poplars. Some shepherds, tending their flocks near by, noticed the tree growing there, and one of them cut down a stem to make flutes of; but, directly he began to play, the flute would do nothing but sing: ‘The Emperor Trojan has goat’s ears.’ Of course, it was not long before the whole town knew of this wonderful flute and what it said; and, at last, the news reached the emperor in his palace. He instantly sent for the apprentice and said to him:",
+        "‘What have you been saying about me to all my people?’",
+        "The culprit tried to defend himself by saying that he had never told anyone what he had noticed; but the emperor, instead of listening, only drew his sword from its sheath, which so frightened the poor fellow that he confessed exactly what he had done, and how he had whispered the truth three times to the earth, and how in that very place an elder tree had sprung up, and flutes had been cut from it, which would only repeat the words he had said. Then the emperor commanded his coach to be made ready, and he took the youth with him, and they drove to the spot, for he wished to see for himself whether the young man’s confession was true; but when they reached the place only one stem was left. So the emperor desired his attendants to cut him a flute from the remaining stem, and, when it was ready, he ordered his chamberlain to play on it. But no tune could the chamberlain play, though he was the best flute player about the court--nothing came but the words, ‘The Emperor Trojan has goat’s ears.’ Then the emperor knew that even the earth gave up its secrets, and he granted the young man his life, but he never allowed him to be his barber any more."
+      ],
+      "wordCount": 872,
+      "characterCount": 4538,
+      "estimatedTypingMinutes": 25,
+      "estimatedListeningMinutes": 27,
+      "morseCharacterEstimate": 24115,
+      "unsupportedCharacterSummary": {},
+      "textPreview": "Once upon a time there lived an emperor whose name was Trojan, and he had ears like a goat. Every morning, when he was shaved, he asked if the man saw anything...",
+      "sourceOffsets": {
+        "start": 98,
+        "end": 4636
+      }
+    }
+  ],
+  "contentVersion": "f8f8aaccae7630bb",
+  "contentHash": "f8f8aaccae7630bbd3bc98fcc4e74d3a86626aba5af6c7e3cc46d547fcead18c"
+}

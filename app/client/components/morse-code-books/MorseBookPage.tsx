@@ -559,6 +559,7 @@ function createSourceSectionsForExport(
 ): BookSourceSection[] {
   let offset = 0;
   return sections
+    .filter((section) => typeof section.morseSourceText === "string")
     .map((section) => {
       const rawText = applyExportPunctuationMode(section.morseSourceText, settings);
       const startOffset = offset;
@@ -1355,7 +1356,9 @@ function MorseBookWorkspace({
     () =>
       activeLiveSection
         ? applyExportPunctuationMode(
-            activeLiveSection.morseSourceText,
+            typeof activeLiveSection.morseSourceText === "string"
+              ? activeLiveSection.morseSourceText
+              : "",
             exportSettings,
           )
         : "",

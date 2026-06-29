@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-monkey-and-the-jelly-fish",
+  "title": "The Monkey and the Jelly-Fish",
+  "author": [
+    "Andrew Lang"
+  ],
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "641",
+    "releaseDate": "September 1, 1996",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Monkey and the Jelly-Fish"
+  },
+  "stats": {
+    "originalCharacterCount": 7838,
+    "cleanedCharacterCount": 6656,
+    "wordCount": 1296,
+    "sectionCount": 1,
+    "includedSectionCount": 1
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "manifest": {
+    "schemaVersion": 1,
+    "slug": "the-monkey-and-the-jelly-fish",
+    "title": "The Monkey and the Jelly-Fish",
+    "author": [
+      "Andrew Lang"
+    ],
+    "contentVersion": "45429e288f7af232",
+    "contentHash": "45429e288f7af2327441c7a36bdee53c5347b3e9b3e52a9db739e57fb88c1c64",
+    "language": "en",
+    "description": "",
+    "subjects": [],
+    "source": {
+      "provider": "Project Gutenberg",
+      "gutenbergId": "641",
+      "releaseDate": "September 1, 1996",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/641",
+      "rawTextUrl": null,
+      "rightsBasis": "public-domain-us",
+      "rightsReviewed": true,
+      "publishReady": true,
+      "rightsStatus": "approved",
+      "processingAllowed": true,
+      "approvalSource": "external-authority",
+      "duplicateResolutionSource": "not-needed",
+      "rightsReportPath": "rights_report.json",
+      "processedBookPath": "processed_book.json",
+      "cleanedBookPath": "cleaned_book.json",
+      "rightsNotes": "Pilot write pass 19 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+    },
+    "cover": {
+      "src": null,
+      "placeholder": true,
+      "alt": "Placeholder cover for The Monkey and the Jelly-Fish"
+    },
+    "stats": {
+      "originalCharacterCount": 7838,
+      "cleanedCharacterCount": 6656,
+      "wordCount": 1296,
+      "sectionCount": 1,
+      "includedSectionCount": 1
+    },
+    "defaults": {
+      "includeKinds": [
+        "chapter"
+      ],
+      "preferredPreset": "main-narrative"
+    },
+    "sections": [
+      {
+        "id": "chapter-001",
+        "kind": "chapter",
+        "label": "The Monkey and the Jelly-Fish",
+        "title": null,
+        "order": 1,
+        "includeByDefault": true,
+        "sectionJsonPath": "sections/chapter-001.json",
+        "characterCount": 6656,
+        "wordCount": 1296,
+        "estimatedTypingMinutes": 38,
+        "estimatedListeningMinutes": 40,
+        "morseCharacterEstimate": 35466,
+        "textPreview": "Children must often have wondered why jelly-fishes have no shells, like so many of the creatures that are washed up every day on the beach. In old times this w..."
+      }
+    ],
+    "cleaning": {
+      "originalCharacterCount": 7838,
+      "cleanedCharacterCount": 6656,
+      "headerStripped": true,
+      "footerStripped": true,
+      "confidence": "high",
+      "warnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ]
+    },
+    "warnings": [
+      "Generated by controlled pilot write pass 19; review before scaling to larger batches or Cloudflare export.",
+      "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+      "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+      "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+      "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+      "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+      "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+      "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+      "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+    ]
+  },
+  "sections": [
+    {
+      "schemaVersion": 1,
+      "bookSlug": "the-monkey-and-the-jelly-fish",
+      "sectionId": "chapter-001",
+      "kind": "chapter",
+      "label": "The Monkey and the Jelly-Fish",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "displayText": "Children must often have wondered why jelly-fishes have no shells, like\nso many of the creatures that are washed up every day on the beach. In\nold times this was not so; the jelly-fish had as hard a shell as any\nof them, but he lost it through his own fault, as may be seen in this\nstory.\n\nThe sea-queen Otohime, whom you read of in the story of Uraschimatoro,\ngrew suddenly very ill. The swiftest messengers were sent hurrying to\nfetch the best doctors from every country under the sea, but it was all\nof no use; the queen grew rapidly worse instead of better. Everyone had\nalmost given up hope, when one day a doctor arrived who was cleverer\nthan the rest, and said that the only thing that would cure her was the\nliver of an ape. Now apes do not dwell under the sea, so a council of\nthe wisest heads in the nation was called to consider the question how a\nliver could be obtained. At length it was decided that the turtle, whose\nprudence was well known, should swim to land and contrive to catch a\nliving ape and bring him safely to the ocean kingdom.\n\nIt was easy enough for the council to entrust this mission to the\nturtle, but not at all so easy for him to fulfil it. However he swam to\na part of the coast that was covered with tall trees, where he thought\nthe apes were likely to be; for he was old, and had seen many things. It\nwas some time before he caught sight of any monkeys, and he often grew\ntired with watching for them, so that one hot day he fell fast asleep,\nin spite of all his efforts to keep awake. By-and-by some apes, who\nhad been peeping at him from the tops of the trees, where they had been\ncarefully hidden from the turtle’s eyes, stole noiselessly down, and\nstood round staring at him, for they had never seen a turtle before, and\ndid not know what to make of it. At last one young monkey, bolder than\nthe rest, stooped down and stroked the shining shell that the strange\nnew creature wore on its back. The movement, gentle though it was, woke\nthe turtle. With one sweep he seized the monkey’s hand in his mouth, and\nheld it tight, in spite of every effort to pull it away. The other apes,\nseeing that the turtle was not to be trifled with, ran off, leaving\ntheir young brother to his fate.\n\nThen the turtle said to the monkey, ‘If you will be quiet, and do what\nI tell you, I won’t hurt you. But you must get on my back and come with\nme.’\n\nThe monkey, seeing there was no help for it, did as he was bid; indeed\nhe could not have resisted, as his hand was still in the turtle’s mouth.\n\nDelighted at having secured his prize, the turtle hastened back to the\nshore and plunged quickly into the water. He swam faster than he had\never done before, and soon reached the royal palace. Shouts of joy broke\nforth from the attendants when he was seen approaching, and some of them\nran to tell the queen that the monkey was there, and that before long\nshe would be as well as ever she was. In fact, so great was their relief\nthat they gave the monkey such a kind welcome, and were so anxious to\nmake him happy and comfortable, that he soon forgot all the fears that\nhad beset him as to his fate, and was generally quite at his ease,\nthough every now and then a fit of home-sickness would come over him,\nand he would hide himself in some dark corner till it had passed away.\n\nIt was during one of these attacks of sadness that a jelly-fish happened\nto swim by. At that time jelly-fishes had shells. At the sight of the\ngay and lively monkey crouching under a tall rock, with his eyes closed\nand his head bent, the jelly-fish was filled with pity, and stopped,\nsaying, ‘Ah, poor fellow, no wonder you weep; a few days more, and they\nwill come and kill you and give your liver to the queen to eat.’\n\nThe monkey shrank back horrified at these words and asked the jelly-fish\nwhat crime he had committed that deserved death.\n\n‘Oh, none at all,’ replied the jelly-fish, ‘but your liver is the only\nthing that will cure our queen, and how can we get at it without killing\nyou? You had better submit to your fate, and make no noise about it, for\nthough I pity you from my heart there is no way of helping you.’ Then he\nwent away, leaving the ape cold with horror.\n\nAt first he felt as if his liver was already being taken from his body,\nbut soon he began to wonder if there was no means of escaping this\nterrible death, and at length he invented a plan which he thought would\ndo. For a few days he pretended to be gay and happy as before, but when\nthe sun went in, and rain fell in torrents, he wept and howled from dawn\nto dark, till the turtle, who was his head keeper, heard him, and came\nto see what was the matter. Then the monkey told him that before he left\nhome he had hung his liver out on a bush to dry, and if it was always\ngoing to rain like this it would become quite useless. And the rogue\nmade such a fuss and moaning that he would have melted a heart of stone,\nand nothing would content him but that somebody should carry him back to\nland and let him fetch his liver again.\n\nThe queen’s councillors were not the wisest of people, and they decided\nbetween them that the turtle should take the monkey back to his native\nland and allow him to get his liver off the bush, but desired the turtle\nnot to lose sight of his charge for a single moment. The monkey knew\nthis, but trusted to his power of beguiling the turtle when the time\ncame, and mounted on his back with feelings of joy, which he was,\nhowever, careful to conceal. They set out, and in a few hours were\nwandering about the forest where the ape had first been caught, and\nwhen the monkey saw his family peering out from the tree tops, he swung\nhimself up by the nearest branch, just managing to save his hind leg\nfrom being seized by the turtle. He told them all the dreadful things\nthat had happened to him, and gave a war cry which brought the rest of\nthe tribe from the neighbouring hills. At a word from him they rushed\nin a body to the unfortunate turtle, threw him on his back, and tore off\nthe shield that covered his body. Then with mocking words they hunted\nhim to the shore, and into the sea, which he was only too thankful to\nreach alive. Faint and exhausted he entered the queen’s palace for the\ncold of the water struck upon his naked body, and made him feel ill\nand miserable. But wretched though he was, he had to appear before the\nqueen’s advisers and tell them all that had befallen him, and how he had\nsuffered the monkey to escape. But, as sometimes happens, the turtle was\nallowed to go scot-free, and had his shell given back to him, and all\nthe punishment fell on the poor jelly-fish, who was condemned by the\nqueen to go shieldless for ever after.",
+      "morseSourceText": "Children must often have wondered why jelly-fishes have no shells, like\nso many of the creatures that are washed up every day on the beach. In\nold times this was not so; the jelly-fish had as hard a shell as any\nof them, but he lost it through his own fault, as may be seen in this\nstory.\n\nThe sea-queen Otohime, whom you read of in the story of Uraschimatoro,\ngrew suddenly very ill. The swiftest messengers were sent hurrying to\nfetch the best doctors from every country under the sea, but it was all\nof no use; the queen grew rapidly worse instead of better. Everyone had\nalmost given up hope, when one day a doctor arrived who was cleverer\nthan the rest, and said that the only thing that would cure her was the\nliver of an ape. Now apes do not dwell under the sea, so a council of\nthe wisest heads in the nation was called to consider the question how a\nliver could be obtained. At length it was decided that the turtle, whose\nprudence was well known, should swim to land and contrive to catch a\nliving ape and bring him safely to the ocean kingdom.\n\nIt was easy enough for the council to entrust this mission to the\nturtle, but not at all so easy for him to fulfil it. However he swam to\na part of the coast that was covered with tall trees, where he thought\nthe apes were likely to be; for he was old, and had seen many things. It\nwas some time before he caught sight of any monkeys, and he often grew\ntired with watching for them, so that one hot day he fell fast asleep,\nin spite of all his efforts to keep awake. By-and-by some apes, who\nhad been peeping at him from the tops of the trees, where they had been\ncarefully hidden from the turtle’s eyes, stole noiselessly down, and\nstood round staring at him, for they had never seen a turtle before, and\ndid not know what to make of it. At last one young monkey, bolder than\nthe rest, stooped down and stroked the shining shell that the strange\nnew creature wore on its back. The movement, gentle though it was, woke\nthe turtle. With one sweep he seized the monkey’s hand in his mouth, and\nheld it tight, in spite of every effort to pull it away. The other apes,\nseeing that the turtle was not to be trifled with, ran off, leaving\ntheir young brother to his fate.\n\nThen the turtle said to the monkey, ‘If you will be quiet, and do what\nI tell you, I won’t hurt you. But you must get on my back and come with\nme.’\n\nThe monkey, seeing there was no help for it, did as he was bid; indeed\nhe could not have resisted, as his hand was still in the turtle’s mouth.\n\nDelighted at having secured his prize, the turtle hastened back to the\nshore and plunged quickly into the water. He swam faster than he had\never done before, and soon reached the royal palace. Shouts of joy broke\nforth from the attendants when he was seen approaching, and some of them\nran to tell the queen that the monkey was there, and that before long\nshe would be as well as ever she was. In fact, so great was their relief\nthat they gave the monkey such a kind welcome, and were so anxious to\nmake him happy and comfortable, that he soon forgot all the fears that\nhad beset him as to his fate, and was generally quite at his ease,\nthough every now and then a fit of home-sickness would come over him,\nand he would hide himself in some dark corner till it had passed away.\n\nIt was during one of these attacks of sadness that a jelly-fish happened\nto swim by. At that time jelly-fishes had shells. At the sight of the\ngay and lively monkey crouching under a tall rock, with his eyes closed\nand his head bent, the jelly-fish was filled with pity, and stopped,\nsaying, ‘Ah, poor fellow, no wonder you weep; a few days more, and they\nwill come and kill you and give your liver to the queen to eat.’\n\nThe monkey shrank back horrified at these words and asked the jelly-fish\nwhat crime he had committed that deserved death.\n\n‘Oh, none at all,’ replied the jelly-fish, ‘but your liver is the only\nthing that will cure our queen, and how can we get at it without killing\nyou? You had better submit to your fate, and make no noise about it, for\nthough I pity you from my heart there is no way of helping you.’ Then he\nwent away, leaving the ape cold with horror.\n\nAt first he felt as if his liver was already being taken from his body,\nbut soon he began to wonder if there was no means of escaping this\nterrible death, and at length he invented a plan which he thought would\ndo. For a few days he pretended to be gay and happy as before, but when\nthe sun went in, and rain fell in torrents, he wept and howled from dawn\nto dark, till the turtle, who was his head keeper, heard him, and came\nto see what was the matter. Then the monkey told him that before he left\nhome he had hung his liver out on a bush to dry, and if it was always\ngoing to rain like this it would become quite useless. And the rogue\nmade such a fuss and moaning that he would have melted a heart of stone,\nand nothing would content him but that somebody should carry him back to\nland and let him fetch his liver again.\n\nThe queen’s councillors were not the wisest of people, and they decided\nbetween them that the turtle should take the monkey back to his native\nland and allow him to get his liver off the bush, but desired the turtle\nnot to lose sight of his charge for a single moment. The monkey knew\nthis, but trusted to his power of beguiling the turtle when the time\ncame, and mounted on his back with feelings of joy, which he was,\nhowever, careful to conceal. They set out, and in a few hours were\nwandering about the forest where the ape had first been caught, and\nwhen the monkey saw his family peering out from the tree tops, he swung\nhimself up by the nearest branch, just managing to save his hind leg\nfrom being seized by the turtle. He told them all the dreadful things\nthat had happened to him, and gave a war cry which brought the rest of\nthe tribe from the neighbouring hills. At a word from him they rushed\nin a body to the unfortunate turtle, threw him on his back, and tore off\nthe shield that covered his body. Then with mocking words they hunted\nhim to the shore, and into the sea, which he was only too thankful to\nreach alive. Faint and exhausted he entered the queen’s palace for the\ncold of the water struck upon his naked body, and made him feel ill\nand miserable. But wretched though he was, he had to appear before the\nqueen’s advisers and tell them all that had befallen him, and how he had\nsuffered the monkey to escape. But, as sometimes happens, the turtle was\nallowed to go scot-free, and had his shell given back to him, and all\nthe punishment fell on the poor jelly-fish, who was condemned by the\nqueen to go shieldless for ever after.",
+      "paragraphs": [
+        "Children must often have wondered why jelly-fishes have no shells, like so many of the creatures that are washed up every day on the beach. In old times this was not so; the jelly-fish had as hard a shell as any of them, but he lost it through his own fault, as may be seen in this story.",
+        "The sea-queen Otohime, whom you read of in the story of Uraschimatoro, grew suddenly very ill. The swiftest messengers were sent hurrying to fetch the best doctors from every country under the sea, but it was all of no use; the queen grew rapidly worse instead of better. Everyone had almost given up hope, when one day a doctor arrived who was cleverer than the rest, and said that the only thing that would cure her was the liver of an ape. Now apes do not dwell under the sea, so a council of the wisest heads in the nation was called to consider the question how a liver could be obtained. At length it was decided that the turtle, whose prudence was well known, should swim to land and contrive to catch a living ape and bring him safely to the ocean kingdom.",
+        "It was easy enough for the council to entrust this mission to the turtle, but not at all so easy for him to fulfil it. However he swam to a part of the coast that was covered with tall trees, where he thought the apes were likely to be; for he was old, and had seen many things. It was some time before he caught sight of any monkeys, and he often grew tired with watching for them, so that one hot day he fell fast asleep, in spite of all his efforts to keep awake. By-and-by some apes, who had been peeping at him from the tops of the trees, where they had been carefully hidden from the turtle’s eyes, stole noiselessly down, and stood round staring at him, for they had never seen a turtle before, and did not know what to make of it. At last one young monkey, bolder than the rest, stooped down and stroked the shining shell that the strange new creature wore on its back. The movement, gentle though it was, woke the turtle. With one sweep he seized the monkey’s hand in his mouth, and held it tight, in spite of every effort to pull it away. The other apes, seeing that the turtle was not to be trifled with, ran off, leaving their young brother to his fate.",
+        "Then the turtle said to the monkey, ‘If you will be quiet, and do what I tell you, I won’t hurt you. But you must get on my back and come with me.’",
+        "The monkey, seeing there was no help for it, did as he was bid; indeed he could not have resisted, as his hand was still in the turtle’s mouth.",
+        "Delighted at having secured his prize, the turtle hastened back to the shore and plunged quickly into the water. He swam faster than he had ever done before, and soon reached the royal palace. Shouts of joy broke forth from the attendants when he was seen approaching, and some of them ran to tell the queen that the monkey was there, and that before long she would be as well as ever she was. In fact, so great was their relief that they gave the monkey such a kind welcome, and were so anxious to make him happy and comfortable, that he soon forgot all the fears that had beset him as to his fate, and was generally quite at his ease, though every now and then a fit of home-sickness would come over him, and he would hide himself in some dark corner till it had passed away.",
+        "It was during one of these attacks of sadness that a jelly-fish happened to swim by. At that time jelly-fishes had shells. At the sight of the gay and lively monkey crouching under a tall rock, with his eyes closed and his head bent, the jelly-fish was filled with pity, and stopped, saying, ‘Ah, poor fellow, no wonder you weep; a few days more, and they will come and kill you and give your liver to the queen to eat.’",
+        "The monkey shrank back horrified at these words and asked the jelly-fish what crime he had committed that deserved death.",
+        "‘Oh, none at all,’ replied the jelly-fish, ‘but your liver is the only thing that will cure our queen, and how can we get at it without killing you? You had better submit to your fate, and make no noise about it, for though I pity you from my heart there is no way of helping you.’ Then he went away, leaving the ape cold with horror.",
+        "At first he felt as if his liver was already being taken from his body, but soon he began to wonder if there was no means of escaping this terrible death, and at length he invented a plan which he thought would do. For a few days he pretended to be gay and happy as before, but when the sun went in, and rain fell in torrents, he wept and howled from dawn to dark, till the turtle, who was his head keeper, heard him, and came to see what was the matter. Then the monkey told him that before he left home he had hung his liver out on a bush to dry, and if it was always going to rain like this it would become quite useless. And the rogue made such a fuss and moaning that he would have melted a heart of stone, and nothing would content him but that somebody should carry him back to land and let him fetch his liver again.",
+        "The queen’s councillors were not the wisest of people, and they decided between them that the turtle should take the monkey back to his native land and allow him to get his liver off the bush, but desired the turtle not to lose sight of his charge for a single moment. The monkey knew this, but trusted to his power of beguiling the turtle when the time came, and mounted on his back with feelings of joy, which he was, however, careful to conceal. They set out, and in a few hours were wandering about the forest where the ape had first been caught, and when the monkey saw his family peering out from the tree tops, he swung himself up by the nearest branch, just managing to save his hind leg from being seized by the turtle. He told them all the dreadful things that had happened to him, and gave a war cry which brought the rest of the tribe from the neighbouring hills. At a word from him they rushed in a body to the unfortunate turtle, threw him on his back, and tore off the shield that covered his body. Then with mocking words they hunted him to the shore, and into the sea, which he was only too thankful to reach alive. Faint and exhausted he entered the queen’s palace for the cold of the water struck upon his naked body, and made him feel ill and miserable. But wretched though he was, he had to appear before the queen’s advisers and tell them all that had befallen him, and how he had suffered the monkey to escape. But, as sometimes happens, the turtle was allowed to go scot-free, and had his shell given back to him, and all the punishment fell on the poor jelly-fish, who was condemned by the queen to go shieldless for ever after."
+      ],
+      "wordCount": 1296,
+      "characterCount": 6656,
+      "estimatedTypingMinutes": 38,
+      "estimatedListeningMinutes": 40,
+      "morseCharacterEstimate": 35466,
+      "unsupportedCharacterSummary": {},
+      "textPreview": "Children must often have wondered why jelly-fishes have no shells, like so many of the creatures that are washed up every day on the beach. In old times this w...",
+      "sourceOffsets": {
+        "start": 90,
+        "end": 6746
+      }
+    }
+  ],
+  "contentVersion": "b3929397af38bc85",
+  "contentHash": "b3929397af38bc859a4ca9d1b5bb4c78535c5228eae2af1192baab24ef935e9d"
+}

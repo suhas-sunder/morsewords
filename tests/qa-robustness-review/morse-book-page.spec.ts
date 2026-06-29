@@ -885,7 +885,7 @@ test.describe("Morse book page foundation", () => {
     });
   });
 
-  test("keeps canonical story titles across generated, SEO, and stale public metadata", () => {
+  test("keeps canonical story titles across generated, SEO, and public metadata", () => {
     type DisplayManifest = Parameters<typeof preserveMorseBookDisplayTitle>[0];
     type CanonicalSummary = Parameters<typeof preserveMorseBookDisplayTitle>[1];
     const library = readJson<{ books: Array<CanonicalSummary & { title: string }> }>(
@@ -918,13 +918,20 @@ test.describe("Morse book page foundation", () => {
     const elderbushSummary = library.books.find(
       (book) => book.slug === THE_ELDERBUSH_SLUG,
     );
-    const stalePublicContent = readJson<{ manifest: DisplayManifest }>(
+    const publicContent = readJson<{ manifest: DisplayManifest }>(
       "app/client/assets/books/cloudflare-export/books/the-elderbush.json",
     );
     expect(elderbushSummary).toBeTruthy();
-    expect(stalePublicContent.manifest.title).toBe("Andersen's Fairy Tales");
+    expect(publicContent.manifest.title).toBe("The Elderbush");
     const normalizedManifest = preserveMorseBookDisplayTitle(
-      stalePublicContent.manifest,
+      {
+        ...publicContent.manifest,
+        title: "Andersen's Fairy Tales",
+        cover: {
+          ...publicContent.manifest.cover,
+          alt: "Placeholder cover for Andersen's Fairy Tales",
+        },
+      },
       elderbushSummary!,
     );
     expect(normalizedManifest.title).toBe("The Elderbush");
@@ -2097,7 +2104,7 @@ test.describe("Morse book page foundation", () => {
       expect(anneDefaultSectionIds).toContain("chapter-038");
       await expect(
         page.locator("[data-mw-morse-book-section-select='title-page-001']"),
-      ).not.toBeChecked();
+      ).toHaveCount(0);
       await expect(
         page.locator("[data-mw-morse-book-translator-source-sections]"),
       ).toHaveAttribute(

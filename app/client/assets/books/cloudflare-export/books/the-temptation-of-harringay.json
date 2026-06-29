@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-temptation-of-harringay",
+  "title": "The Temptation of Harringay",
+  "author": [
+    "H. G. Wells"
+  ],
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "12750",
+    "releaseDate": "June 26, 2004",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Temptation of Harringay"
+  },
+  "stats": {
+    "originalCharacterCount": 12956,
+    "cleanedCharacterCount": 11049,
+    "wordCount": 1946,
+    "sectionCount": 1,
+    "includedSectionCount": 1
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "manifest": {
+    "schemaVersion": 1,
+    "slug": "the-temptation-of-harringay",
+    "title": "The Temptation of Harringay",
+    "author": [
+      "H. G. Wells"
+    ],
+    "contentVersion": "38322f7620d82b20",
+    "contentHash": "38322f7620d82b20efc6e009527cecc3265161655dc3707f08a2f6434f2af232",
+    "language": "en",
+    "description": "",
+    "subjects": [],
+    "source": {
+      "provider": "Project Gutenberg",
+      "gutenbergId": "12750",
+      "releaseDate": "June 26, 2004",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/12750",
+      "rawTextUrl": null,
+      "rightsBasis": "public-domain-us",
+      "rightsReviewed": true,
+      "publishReady": true,
+      "rightsStatus": "approved",
+      "processingAllowed": true,
+      "approvalSource": "external-authority",
+      "duplicateResolutionSource": "not-needed",
+      "rightsReportPath": "rights_report.json",
+      "processedBookPath": "processed_book.json",
+      "cleanedBookPath": "cleaned_book.json",
+      "rightsNotes": "Pilot write pass 21 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+    },
+    "cover": {
+      "src": null,
+      "placeholder": true,
+      "alt": "Placeholder cover for The Temptation of Harringay"
+    },
+    "stats": {
+      "originalCharacterCount": 12956,
+      "cleanedCharacterCount": 11049,
+      "wordCount": 1946,
+      "sectionCount": 1,
+      "includedSectionCount": 1
+    },
+    "defaults": {
+      "includeKinds": [
+        "chapter"
+      ],
+      "preferredPreset": "main-narrative"
+    },
+    "sections": [
+      {
+        "id": "chapter-001",
+        "kind": "chapter",
+        "label": "The Temptation of Harringay",
+        "title": null,
+        "order": 1,
+        "includeByDefault": true,
+        "sectionJsonPath": "sections/chapter-001.json",
+        "characterCount": 11049,
+        "wordCount": 1946,
+        "estimatedTypingMinutes": 56,
+        "estimatedListeningMinutes": 67,
+        "morseCharacterEstimate": 59862,
+        "textPreview": "It is quite impossible to say whether this thing really happened. It depends entirely on the word of R.M. Harringay, who is an artist. Following his version of..."
+      }
+    ],
+    "cleaning": {
+      "originalCharacterCount": 12956,
+      "cleanedCharacterCount": 11049,
+      "headerStripped": true,
+      "footerStripped": true,
+      "confidence": "high",
+      "warnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "TOC/body confusion is likely",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ]
+    },
+    "warnings": [
+      "Generated by controlled pilot write pass 21; review before scaling to larger batches or Cloudflare export.",
+      "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+      "TOC/body confusion is likely",
+      "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+      "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+      "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+      "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+      "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+      "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+    ]
+  },
+  "sections": [
+    {
+      "schemaVersion": 1,
+      "bookSlug": "the-temptation-of-harringay",
+      "sectionId": "chapter-001",
+      "kind": "chapter",
+      "label": "The Temptation of Harringay",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "displayText": "It is quite impossible to say whether this thing really happened. It\ndepends entirely on the word of R.M. Harringay, who is an artist.\n\nFollowing his version of the affair, the narrative deposes that\nHarringay went into his studio about ten o'clock to see what he could\nmake of the head that he had been working at the day before. The\nhead in question was that of an Italian organ-grinder, and Harringay\nthought--but was not quite sure--that the title would be the \"Vigil.\"\nSo far he is frank, and his narrative bears the stamp of truth. He\nhad seen the man expectant for pennies, and with a promptness that\nsuggested genius, had had him in at once.\n\n\"Kneel. Look up at that bracket,\" said Harringay. \"As if you expected\npennies.\"\n\n\"Don't _grin_!\" said Harringay. \"I don't want to paint your gums. Look\nas though you were unhappy.\"\n\nNow, after a night's rest, the picture proved decidedly\nunsatisfactory. \"It's good work,\" said Harringay. \"That little bit in\nthe neck ... But.\"\n\nHe walked about the studio and looked at the thing from this point and\nfrom that. Then he said a wicked word. In the original the word is\ngiven.\n\n\"Painting,\" he says he said. \"Just a painting of an organ-grinder--a\nmere portrait. If it was a live organ-grinder I wouldn't mind. But\nsomehow I never make things alive. I wonder if my imagination is\nwrong.\" This, too, has a truthful air. His imagination _is_ wrong.\n\n\"That creative touch! To take canvas and pigment and make a man--as\nAdam was made of red ochre! But this thing! If you met it walking\nabout the streets you would know it was only a studio production. The\nlittle boys would tell it to 'Garnome and git frimed.' Some little\ntouch ... Well--it won't do as it is.\"\n\nHe went to the blinds and began to pull them down. They were made of\nblue holland with the rollers at the bottom of the window, so that you\npull them down to get more light. He gathered his palette, brushes,\nand mahl stick from his table. Then he turned to the picture and put a\nspeck of brown in the corner of the mouth; and shifted his attention\nthence to the pupil of the eye. Then he decided that the chin was a\ntrifle too impassive for a vigil.\n\nPresently he put down his impedimenta, and lighting a pipe surveyed\nthe progress of his work. \"I'm hanged if the thing isn't sneering at\nme,\" said Harringay, and he still believes it sneered.\n\nThe animation of the figure had certainly increased, but scarcely in\nthe direction he wished. There was no mistake about the sneer. \"Vigil\nof the Unbeliever,\" said Harringay. \"Rather subtle and clever that!\nBut the left eyebrow isn't cynical enough.\"\n\nHe went and dabbed at the eyebrow, and added a little to the lobe of\nthe ear to suggest materialism. Further consideration ensued. \"Vigil's\noff, I'm afraid,\" said Harringay. \"Why not Mephistopheles? But that's\na bit _too_ common. 'A Friend of the Doge,'--not so seedy. The armour\nwon't do, though. Too Camelot. How about a scarlet robe and call him\n'One of the Sacred College'? Humour in that, and an appreciation of\nMiddle Italian History.\"\n\n\"There's always Benvenuto Cellini,\" said Harringay; \"with a clever\nsuggestion of a gold cup in one corner. But that would scarcely suit\nthe complexion.\"\n\nHe describes himself as babbling in this way in order to keep down an\nunaccountably unpleasant sensation of fear. The thing was certainly\nacquiring anything but a pleasing expression. Yet it was as certainly\nbecoming far more of a living thing than it had been--if a sinister\none--far more alive than anything he had ever painted before. \"Call it\n'Portrait of a Gentleman,'\" said Harringay;--\"A Certain Gentleman.\"\n\n\"Won't do,\" said Harringay, still keeping up his courage. \"Kind of\nthing they call Bad Taste. That sneer will have to come out. That\ngone, and a little more fire in the eye--never noticed how warm his\neye was before--and he might do for--? What price Passionate Pilgrim?\nBut that devilish face won't do--_this_ side of the Channel.\n\n\"Some little inaccuracy does it,\" he said; \"eyebrows probably too\noblique,\"--therewith pulling the blind lower to get a better light,\nand resuming palette and brushes.\n\nThe face on the canvas seemed animated by a spirit of its own. Where\nthe expression of diablerie came in he found impossible to discover.\nExperiment was necessary. The eyebrows--it could scarcely be the\neyebrows? But he altered them. No, that was no better; in fact, if\nanything, a trifle more satanic. The corner of the mouth? Pah! more\nthan ever a leer--and now, retouched, it was ominously grim. The eye,\nthen? Catastrophe! he had filled his brush with vermilion instead of\nbrown, and yet he had felt sure it was brown! The eye seemed now to\nhave rolled in its socket, and was glaring at him an eye of fire. In a\nflash of passion, possibly with something of the courage of panic, he\nstruck the brush full of bright red athwart the picture; and then a\nvery curious thing, a very strange thing indeed, occurred--if it _did_\noccur.\n\n_The diabolified Italian before him shut both his eyes, pursed his\nmouth, and wiped the colour off his face with his hand_.\n\nThen the _red eye_ opened again, with a sound like the opening of\nlips, and the face smiled. \"That was rather hasty of you,\" said the\npicture.\n\nHarringay states that, now that the worst had happened, his\nself-possession returned. He had a saving persuasion that devils were\nreasonable creatures.\n\n\"Why do you keep moving about then,\" he said, \"making faces and all\nthat--sneering and squinting, while I am painting you?\"\n\n\"I don't,\" said the picture.\n\n\"You _do_,\" said Harringay.\n\n\"It's yourself,\" said the picture.\n\n\"It's _not_ myself,\" said Harringay.\n\n\"It _is_ yourself,\" said the picture. \"No! don't go hitting me with\npaint again, because it's true. You have been trying to fluke an\nexpression on my face all the morning. Really, you haven't an idea\nwhat your picture ought to look like.\"\n\n\"I have,\" said Harringay.\n\n\"You have _not_,\" said the picture: \"You _never_ have with your\npictures. You always start with the vaguest presentiment of what you\nare going to do; it is to be something beautiful--you are sure of\nthat--and devout, perhaps, or tragic; but beyond that it is all\nexperiment and chance. My dear fellow! you don't think you can paint a\npicture like that?\"\n\nNow it must be remembered that for what follows we have only\nHarringay's word.\n\n\"I shall paint a picture exactly as I like,\" said Harringay, calmly.\n\nThis seemed to disconcert the picture a little. \"You can't paint a\npicture without an inspiration,\" it remarked.\n\n\"But I _had_ an inspiration--for this.\"\n\n\"Inspiration!\" sneered the sardonic figure; \"a fancy that came from\nyour seeing an organ-grinder looking up at a window! Vigil! Ha, ha!\nYou just started painting on the chance of something coming--that's\nwhat you did. And when I saw you at it I came. I want a talk with\nyou!\"\n\n\"Art, with you,\" said the picture,--\"it's a poor business. You potter.\nI don't know how it is, but you don't seem able to throw your soul\ninto it. You know too much. It hampers you. In the midst of your\nenthusiasms you ask yourself whether something like this has not been\ndone before. And ...\"\n\n\"Look here,\" said Harringay, who had expected something better than\ncriticism from the devil. \"Are you going to talk studio to me?\" He\nfilled his number twelve hoghair with red paint.\n\n\"The true artist,\" said the picture, \"is always an ignorant man. An\nartist who theorises about his work is no longer artist but critic.\nWagner ... I say!--What's that red paint for?\"\n\n\"I'm going to paint you out,\" said Harringay. \"I don't want to hear\nall that Tommy Rot. If you think just because I'm an artist by trade\nI'm going to talk studio to you, you make a precious mistake.\"\n\n\"One minute,\" said the picture, evidently alarmed. \"I want to make\nyou an offer--a genuine offer. It's right what I'm saying. You lack\ninspirations. Well. No doubt you've heard of the Cathedral of Cologne,\nand the Devil's Bridge, and--\"\n\n\"Rubbish,\" said Harringay. \"Do you think I want to go to perdition\nsimply for the pleasure of painting a good picture, and getting it\nslated. Take that.\"\n\nHis blood was up. His danger only nerved him to action, so he says.\nSo he planted a dab of vermilion in his creature's mouth. The Italian\nspluttered and tried to wipe it off--evidently horribly surprised. And\nthen--according to Harringay--there began a very remarkable struggle,\nHarringay splashing away with the red paint, and the picture wriggling\nabout and wiping it off as fast as he put it on. \"_Two_ masterpieces,\"\nsaid the demon. \"Two indubitable masterpieces for a Chelsea artist's\nsoul. It's a bargain?\" Harringay replied with the paint brush.\n\nFor a few minutes nothing could be heard but the brush going and the\nspluttering and ejaculations of the Italian. A lot of the strokes he\ncaught on his arm and hand, though Harringay got over his guard often\nenough. Presently the paint on the palette gave out and the two\nantagonists stood breathless, regarding each other. The picture was\nso smeared with red that it looked as if it had been rolling about\na slaughterhouse, and it was painfully out of breath and very\nuncomfortable with the wet paint trickling down its neck. Still, the\nfirst round was in its favour on the whole. \"Think,\" it said, sticking\npluckily to its point, \"two supreme masterpieces--in different styles.\nEach equivalent to the Cathedral...\"\n\n\"_I_ know,\" said Harringay, and rushed out of the studio and along the\npassage towards his wife's boudoir.\n\nIn another minute he was back with a large tin of enamel--Hedge\nSparrow's Egg Tint, it was, and a brush. At the sight of that\nthe artistic devil with the red eye began to scream. \"_Three_\nmasterpieces--culminating masterpieces.\"\n\nHarringay delivered cut two across the demon, and followed with\na thrust in the eye. There was an indistinct rumbling. \"_Four_\nmasterpieces,\" and a spitting sound.\n\nBut Harringay had the upper hand now and meant to keep it. With rapid,\nbold strokes he continued to paint over the writhing canvas, until at\nlast it was a uniform field of shining Hedge Sparrow tint. Once the\nmouth reappeared and got as far as \"Five master--\" before he filled\nit with enamel; and near the end the red eye opened and glared at him\nindignantly. But at last nothing remained save a gleaming panel of\ndrying enamel. For a little while a faint stirring beneath the surface\npuckered it slightly here and there, but presently even that died away\nand the thing was perfectly still.\n\nThen Harringay--according to Harringay's account--lit his pipe and sat\ndown and stared at the enamelled canvas, and tried to make out clearly\nwhat had happened. Then he walked round behind it, to see if the back\nof it was at all remarkable. Then it was he began to regret he had not\nphotographed the Devil before he painted him out.\n\nThis is Harringay's story--not mine. He supports it by a small canvas\n(24 by 20) enamelled a pale green, and by violent asseverations. It is\nalso true that he never has produced a masterpiece, and in the opinion\nof his intimate friends probably never will.",
+      "morseSourceText": "It is quite impossible to say whether this thing really happened. It\ndepends entirely on the word of R.M. Harringay, who is an artist.\n\nFollowing his version of the affair, the narrative deposes that\nHarringay went into his studio about ten o'clock to see what he could\nmake of the head that he had been working at the day before. The\nhead in question was that of an Italian organ-grinder, and Harringay\nthought--but was not quite sure--that the title would be the \"Vigil.\"\nSo far he is frank, and his narrative bears the stamp of truth. He\nhad seen the man expectant for pennies, and with a promptness that\nsuggested genius, had had him in at once.\n\n\"Kneel. Look up at that bracket,\" said Harringay. \"As if you expected\npennies.\"\n\n\"Don't _grin_!\" said Harringay. \"I don't want to paint your gums. Look\nas though you were unhappy.\"\n\nNow, after a night's rest, the picture proved decidedly\nunsatisfactory. \"It's good work,\" said Harringay. \"That little bit in\nthe neck ... But.\"\n\nHe walked about the studio and looked at the thing from this point and\nfrom that. Then he said a wicked word. In the original the word is\ngiven.\n\n\"Painting,\" he says he said. \"Just a painting of an organ-grinder--a\nmere portrait. If it was a live organ-grinder I wouldn't mind. But\nsomehow I never make things alive. I wonder if my imagination is\nwrong.\" This, too, has a truthful air. His imagination _is_ wrong.\n\n\"That creative touch! To take canvas and pigment and make a man--as\nAdam was made of red ochre! But this thing! If you met it walking\nabout the streets you would know it was only a studio production. The\nlittle boys would tell it to 'Garnome and git frimed.' Some little\ntouch ... Well--it won't do as it is.\"\n\nHe went to the blinds and began to pull them down. They were made of\nblue holland with the rollers at the bottom of the window, so that you\npull them down to get more light. He gathered his palette, brushes,\nand mahl stick from his table. Then he turned to the picture and put a\nspeck of brown in the corner of the mouth; and shifted his attention\nthence to the pupil of the eye. Then he decided that the chin was a\ntrifle too impassive for a vigil.\n\nPresently he put down his impedimenta, and lighting a pipe surveyed\nthe progress of his work. \"I'm hanged if the thing isn't sneering at\nme,\" said Harringay, and he still believes it sneered.\n\nThe animation of the figure had certainly increased, but scarcely in\nthe direction he wished. There was no mistake about the sneer. \"Vigil\nof the Unbeliever,\" said Harringay. \"Rather subtle and clever that!\nBut the left eyebrow isn't cynical enough.\"\n\nHe went and dabbed at the eyebrow, and added a little to the lobe of\nthe ear to suggest materialism. Further consideration ensued. \"Vigil's\noff, I'm afraid,\" said Harringay. \"Why not Mephistopheles? But that's\na bit _too_ common. 'A Friend of the Doge,'--not so seedy. The armour\nwon't do, though. Too Camelot. How about a scarlet robe and call him\n'One of the Sacred College'? Humour in that, and an appreciation of\nMiddle Italian History.\"\n\n\"There's always Benvenuto Cellini,\" said Harringay; \"with a clever\nsuggestion of a gold cup in one corner. But that would scarcely suit\nthe complexion.\"\n\nHe describes himself as babbling in this way in order to keep down an\nunaccountably unpleasant sensation of fear. The thing was certainly\nacquiring anything but a pleasing expression. Yet it was as certainly\nbecoming far more of a living thing than it had been--if a sinister\none--far more alive than anything he had ever painted before. \"Call it\n'Portrait of a Gentleman,'\" said Harringay;--\"A Certain Gentleman.\"\n\n\"Won't do,\" said Harringay, still keeping up his courage. \"Kind of\nthing they call Bad Taste. That sneer will have to come out. That\ngone, and a little more fire in the eye--never noticed how warm his\neye was before--and he might do for--? What price Passionate Pilgrim?\nBut that devilish face won't do--_this_ side of the Channel.\n\n\"Some little inaccuracy does it,\" he said; \"eyebrows probably too\noblique,\"--therewith pulling the blind lower to get a better light,\nand resuming palette and brushes.\n\nThe face on the canvas seemed animated by a spirit of its own. Where\nthe expression of diablerie came in he found impossible to discover.\nExperiment was necessary. The eyebrows--it could scarcely be the\neyebrows? But he altered them. No, that was no better; in fact, if\nanything, a trifle more satanic. The corner of the mouth? Pah! more\nthan ever a leer--and now, retouched, it was ominously grim. The eye,\nthen? Catastrophe! he had filled his brush with vermilion instead of\nbrown, and yet he had felt sure it was brown! The eye seemed now to\nhave rolled in its socket, and was glaring at him an eye of fire. In a\nflash of passion, possibly with something of the courage of panic, he\nstruck the brush full of bright red athwart the picture; and then a\nvery curious thing, a very strange thing indeed, occurred--if it _did_\noccur.\n\n_The diabolified Italian before him shut both his eyes, pursed his\nmouth, and wiped the colour off his face with his hand_.\n\nThen the _red eye_ opened again, with a sound like the opening of\nlips, and the face smiled. \"That was rather hasty of you,\" said the\npicture.\n\nHarringay states that, now that the worst had happened, his\nself-possession returned. He had a saving persuasion that devils were\nreasonable creatures.\n\n\"Why do you keep moving about then,\" he said, \"making faces and all\nthat--sneering and squinting, while I am painting you?\"\n\n\"I don't,\" said the picture.\n\n\"You _do_,\" said Harringay.\n\n\"It's yourself,\" said the picture.\n\n\"It's _not_ myself,\" said Harringay.\n\n\"It _is_ yourself,\" said the picture. \"No! don't go hitting me with\npaint again, because it's true. You have been trying to fluke an\nexpression on my face all the morning. Really, you haven't an idea\nwhat your picture ought to look like.\"\n\n\"I have,\" said Harringay.\n\n\"You have _not_,\" said the picture: \"You _never_ have with your\npictures. You always start with the vaguest presentiment of what you\nare going to do; it is to be something beautiful--you are sure of\nthat--and devout, perhaps, or tragic; but beyond that it is all\nexperiment and chance. My dear fellow! you don't think you can paint a\npicture like that?\"\n\nNow it must be remembered that for what follows we have only\nHarringay's word.\n\n\"I shall paint a picture exactly as I like,\" said Harringay, calmly.\n\nThis seemed to disconcert the picture a little. \"You can't paint a\npicture without an inspiration,\" it remarked.\n\n\"But I _had_ an inspiration--for this.\"\n\n\"Inspiration!\" sneered the sardonic figure; \"a fancy that came from\nyour seeing an organ-grinder looking up at a window! Vigil! Ha, ha!\nYou just started painting on the chance of something coming--that's\nwhat you did. And when I saw you at it I came. I want a talk with\nyou!\"\n\n\"Art, with you,\" said the picture,--\"it's a poor business. You potter.\nI don't know how it is, but you don't seem able to throw your soul\ninto it. You know too much. It hampers you. In the midst of your\nenthusiasms you ask yourself whether something like this has not been\ndone before. And ...\"\n\n\"Look here,\" said Harringay, who had expected something better than\ncriticism from the devil. \"Are you going to talk studio to me?\" He\nfilled his number twelve hoghair with red paint.\n\n\"The true artist,\" said the picture, \"is always an ignorant man. An\nartist who theorises about his work is no longer artist but critic.\nWagner ... I say!--What's that red paint for?\"\n\n\"I'm going to paint you out,\" said Harringay. \"I don't want to hear\nall that Tommy Rot. If you think just because I'm an artist by trade\nI'm going to talk studio to you, you make a precious mistake.\"\n\n\"One minute,\" said the picture, evidently alarmed. \"I want to make\nyou an offer--a genuine offer. It's right what I'm saying. You lack\ninspirations. Well. No doubt you've heard of the Cathedral of Cologne,\nand the Devil's Bridge, and--\"\n\n\"Rubbish,\" said Harringay. \"Do you think I want to go to perdition\nsimply for the pleasure of painting a good picture, and getting it\nslated. Take that.\"\n\nHis blood was up. His danger only nerved him to action, so he says.\nSo he planted a dab of vermilion in his creature's mouth. The Italian\nspluttered and tried to wipe it off--evidently horribly surprised. And\nthen--according to Harringay--there began a very remarkable struggle,\nHarringay splashing away with the red paint, and the picture wriggling\nabout and wiping it off as fast as he put it on. \"_Two_ masterpieces,\"\nsaid the demon. \"Two indubitable masterpieces for a Chelsea artist's\nsoul. It's a bargain?\" Harringay replied with the paint brush.\n\nFor a few minutes nothing could be heard but the brush going and the\nspluttering and ejaculations of the Italian. A lot of the strokes he\ncaught on his arm and hand, though Harringay got over his guard often\nenough. Presently the paint on the palette gave out and the two\nantagonists stood breathless, regarding each other. The picture was\nso smeared with red that it looked as if it had been rolling about\na slaughterhouse, and it was painfully out of breath and very\nuncomfortable with the wet paint trickling down its neck. Still, the\nfirst round was in its favour on the whole. \"Think,\" it said, sticking\npluckily to its point, \"two supreme masterpieces--in different styles.\nEach equivalent to the Cathedral...\"\n\n\"_I_ know,\" said Harringay, and rushed out of the studio and along the\npassage towards his wife's boudoir.\n\nIn another minute he was back with a large tin of enamel--Hedge\nSparrow's Egg Tint, it was, and a brush. At the sight of that\nthe artistic devil with the red eye began to scream. \"_Three_\nmasterpieces--culminating masterpieces.\"\n\nHarringay delivered cut two across the demon, and followed with\na thrust in the eye. There was an indistinct rumbling. \"_Four_\nmasterpieces,\" and a spitting sound.\n\nBut Harringay had the upper hand now and meant to keep it. With rapid,\nbold strokes he continued to paint over the writhing canvas, until at\nlast it was a uniform field of shining Hedge Sparrow tint. Once the\nmouth reappeared and got as far as \"Five master--\" before he filled\nit with enamel; and near the end the red eye opened and glared at him\nindignantly. But at last nothing remained save a gleaming panel of\ndrying enamel. For a little while a faint stirring beneath the surface\npuckered it slightly here and there, but presently even that died away\nand the thing was perfectly still.\n\nThen Harringay--according to Harringay's account--lit his pipe and sat\ndown and stared at the enamelled canvas, and tried to make out clearly\nwhat had happened. Then he walked round behind it, to see if the back\nof it was at all remarkable. Then it was he began to regret he had not\nphotographed the Devil before he painted him out.\n\nThis is Harringay's story--not mine. He supports it by a small canvas\n(24 by 20) enamelled a pale green, and by violent asseverations. It is\nalso true that he never has produced a masterpiece, and in the opinion\nof his intimate friends probably never will.",
+      "paragraphs": [
+        "It is quite impossible to say whether this thing really happened. It depends entirely on the word of R.M. Harringay, who is an artist.",
+        "Following his version of the affair, the narrative deposes that Harringay went into his studio about ten o'clock to see what he could make of the head that he had been working at the day before. The head in question was that of an Italian organ-grinder, and Harringay thought--but was not quite sure--that the title would be the \"Vigil.\" So far he is frank, and his narrative bears the stamp of truth. He had seen the man expectant for pennies, and with a promptness that suggested genius, had had him in at once.",
+        "\"Kneel. Look up at that bracket,\" said Harringay. \"As if you expected pennies.\"",
+        "\"Don't _grin_!\" said Harringay. \"I don't want to paint your gums. Look as though you were unhappy.\"",
+        "Now, after a night's rest, the picture proved decidedly unsatisfactory. \"It's good work,\" said Harringay. \"That little bit in the neck ... But.\"",
+        "He walked about the studio and looked at the thing from this point and from that. Then he said a wicked word. In the original the word is given.",
+        "\"Painting,\" he says he said. \"Just a painting of an organ-grinder--a mere portrait. If it was a live organ-grinder I wouldn't mind. But somehow I never make things alive. I wonder if my imagination is wrong.\" This, too, has a truthful air. His imagination _is_ wrong.",
+        "\"That creative touch! To take canvas and pigment and make a man--as Adam was made of red ochre! But this thing! If you met it walking about the streets you would know it was only a studio production. The little boys would tell it to 'Garnome and git frimed.' Some little touch ... Well--it won't do as it is.\"",
+        "He went to the blinds and began to pull them down. They were made of blue holland with the rollers at the bottom of the window, so that you pull them down to get more light. He gathered his palette, brushes, and mahl stick from his table. Then he turned to the picture and put a speck of brown in the corner of the mouth; and shifted his attention thence to the pupil of the eye. Then he decided that the chin was a trifle too impassive for a vigil.",
+        "Presently he put down his impedimenta, and lighting a pipe surveyed the progress of his work. \"I'm hanged if the thing isn't sneering at me,\" said Harringay, and he still believes it sneered.",
+        "The animation of the figure had certainly increased, but scarcely in the direction he wished. There was no mistake about the sneer. \"Vigil of the Unbeliever,\" said Harringay. \"Rather subtle and clever that! But the left eyebrow isn't cynical enough.\"",
+        "He went and dabbed at the eyebrow, and added a little to the lobe of the ear to suggest materialism. Further consideration ensued. \"Vigil's off, I'm afraid,\" said Harringay. \"Why not Mephistopheles? But that's a bit _too_ common. 'A Friend of the Doge,'--not so seedy. The armour won't do, though. Too Camelot. How about a scarlet robe and call him 'One of the Sacred College'? Humour in that, and an appreciation of Middle Italian History.\"",
+        "\"There's always Benvenuto Cellini,\" said Harringay; \"with a clever suggestion of a gold cup in one corner. But that would scarcely suit the complexion.\"",
+        "He describes himself as babbling in this way in order to keep down an unaccountably unpleasant sensation of fear. The thing was certainly acquiring anything but a pleasing expression. Yet it was as certainly becoming far more of a living thing than it had been--if a sinister one--far more alive than anything he had ever painted before. \"Call it 'Portrait of a Gentleman,'\" said Harringay;--\"A Certain Gentleman.\"",
+        "\"Won't do,\" said Harringay, still keeping up his courage. \"Kind of thing they call Bad Taste. That sneer will have to come out. That gone, and a little more fire in the eye--never noticed how warm his eye was before--and he might do for--? What price Passionate Pilgrim? But that devilish face won't do--_this_ side of the Channel.",
+        "\"Some little inaccuracy does it,\" he said; \"eyebrows probably too oblique,\"--therewith pulling the blind lower to get a better light, and resuming palette and brushes.",
+        "The face on the canvas seemed animated by a spirit of its own. Where the expression of diablerie came in he found impossible to discover. Experiment was necessary. The eyebrows--it could scarcely be the eyebrows? But he altered them. No, that was no better; in fact, if anything, a trifle more satanic. The corner of the mouth? Pah! more than ever a leer--and now, retouched, it was ominously grim. The eye, then? Catastrophe! he had filled his brush with vermilion instead of brown, and yet he had felt sure it was brown! The eye seemed now to have rolled in its socket, and was glaring at him an eye of fire. In a flash of passion, possibly with something of the courage of panic, he struck the brush full of bright red athwart the picture; and then a very curious thing, a very strange thing indeed, occurred--if it _did_ occur.",
+        "_The diabolified Italian before him shut both his eyes, pursed his mouth, and wiped the colour off his face with his hand_.",
+        "Then the _red eye_ opened again, with a sound like the opening of lips, and the face smiled. \"That was rather hasty of you,\" said the picture.",
+        "Harringay states that, now that the worst had happened, his self-possession returned. He had a saving persuasion that devils were reasonable creatures.",
+        "\"Why do you keep moving about then,\" he said, \"making faces and all that--sneering and squinting, while I am painting you?\"",
+        "\"I don't,\" said the picture.",
+        "\"You _do_,\" said Harringay.",
+        "\"It's yourself,\" said the picture.",
+        "\"It's _not_ myself,\" said Harringay.",
+        "\"It _is_ yourself,\" said the picture. \"No! don't go hitting me with paint again, because it's true. You have been trying to fluke an expression on my face all the morning. Really, you haven't an idea what your picture ought to look like.\"",
+        "\"I have,\" said Harringay.",
+        "\"You have _not_,\" said the picture: \"You _never_ have with your pictures. You always start with the vaguest presentiment of what you are going to do; it is to be something beautiful--you are sure of that--and devout, perhaps, or tragic; but beyond that it is all experiment and chance. My dear fellow! you don't think you can paint a picture like that?\"",
+        "Now it must be remembered that for what follows we have only Harringay's word.",
+        "\"I shall paint a picture exactly as I like,\" said Harringay, calmly.",
+        "This seemed to disconcert the picture a little. \"You can't paint a picture without an inspiration,\" it remarked.",
+        "\"But I _had_ an inspiration--for this.\"",
+        "\"Inspiration!\" sneered the sardonic figure; \"a fancy that came from your seeing an organ-grinder looking up at a window! Vigil! Ha, ha! You just started painting on the chance of something coming--that's what you did. And when I saw you at it I came. I want a talk with you!\"",
+        "\"Art, with you,\" said the picture,--\"it's a poor business. You potter. I don't know how it is, but you don't seem able to throw your soul into it. You know too much. It hampers you. In the midst of your enthusiasms you ask yourself whether something like this has not been done before. And ...\"",
+        "\"Look here,\" said Harringay, who had expected something better than criticism from the devil. \"Are you going to talk studio to me?\" He filled his number twelve hoghair with red paint.",
+        "\"The true artist,\" said the picture, \"is always an ignorant man. An artist who theorises about his work is no longer artist but critic. Wagner ... I say!--What's that red paint for?\"",
+        "\"I'm going to paint you out,\" said Harringay. \"I don't want to hear all that Tommy Rot. If you think just because I'm an artist by trade I'm going to talk studio to you, you make a precious mistake.\"",
+        "\"One minute,\" said the picture, evidently alarmed. \"I want to make you an offer--a genuine offer. It's right what I'm saying. You lack inspirations. Well. No doubt you've heard of the Cathedral of Cologne, and the Devil's Bridge, and--\"",
+        "\"Rubbish,\" said Harringay. \"Do you think I want to go to perdition simply for the pleasure of painting a good picture, and getting it slated. Take that.\"",
+        "His blood was up. His danger only nerved him to action, so he says. So he planted a dab of vermilion in his creature's mouth. The Italian spluttered and tried to wipe it off--evidently horribly surprised. And then--according to Harringay--there began a very remarkable struggle, Harringay splashing away with the red paint, and the picture wriggling about and wiping it off as fast as he put it on. \"_Two_ masterpieces,\" said the demon. \"Two indubitable masterpieces for a Chelsea artist's soul. It's a bargain?\" Harringay replied with the paint brush.",
+        "For a few minutes nothing could be heard but the brush going and the spluttering and ejaculations of the Italian. A lot of the strokes he caught on his arm and hand, though Harringay got over his guard often enough. Presently the paint on the palette gave out and the two antagonists stood breathless, regarding each other. The picture was so smeared with red that it looked as if it had been rolling about a slaughterhouse, and it was painfully out of breath and very uncomfortable with the wet paint trickling down its neck. Still, the first round was in its favour on the whole. \"Think,\" it said, sticking pluckily to its point, \"two supreme masterpieces--in different styles. Each equivalent to the Cathedral...\"",
+        "\"_I_ know,\" said Harringay, and rushed out of the studio and along the passage towards his wife's boudoir.",
+        "In another minute he was back with a large tin of enamel--Hedge Sparrow's Egg Tint, it was, and a brush. At the sight of that the artistic devil with the red eye began to scream. \"_Three_ masterpieces--culminating masterpieces.\"",
+        "Harringay delivered cut two across the demon, and followed with a thrust in the eye. There was an indistinct rumbling. \"_Four_ masterpieces,\" and a spitting sound.",
+        "But Harringay had the upper hand now and meant to keep it. With rapid, bold strokes he continued to paint over the writhing canvas, until at last it was a uniform field of shining Hedge Sparrow tint. Once the mouth reappeared and got as far as \"Five master--\" before he filled it with enamel; and near the end the red eye opened and glared at him indignantly. But at last nothing remained save a gleaming panel of drying enamel. For a little while a faint stirring beneath the surface puckered it slightly here and there, but presently even that died away and the thing was perfectly still.",
+        "Then Harringay--according to Harringay's account--lit his pipe and sat down and stared at the enamelled canvas, and tried to make out clearly what had happened. Then he walked round behind it, to see if the back of it was at all remarkable. Then it was he began to regret he had not photographed the Devil before he painted him out.",
+        "This is Harringay's story--not mine. He supports it by a small canvas (24 by 20) enamelled a pale green, and by violent asseverations. It is also true that he never has produced a masterpiece, and in the opinion of his intimate friends probably never will."
+      ],
+      "wordCount": 1946,
+      "characterCount": 11049,
+      "estimatedTypingMinutes": 56,
+      "estimatedListeningMinutes": 67,
+      "morseCharacterEstimate": 59862,
+      "unsupportedCharacterSummary": {},
+      "textPreview": "It is quite impossible to say whether this thing really happened. It depends entirely on the word of R.M. Harringay, who is an artist. Following his version of...",
+      "sourceOffsets": {
+        "start": 569,
+        "end": 11618
+      }
+    }
+  ],
+  "contentVersion": "4331ba5b482cd673",
+  "contentHash": "4331ba5b482cd67376be90b10e98642e1156ba80567af7e14b8acc0d6446dc55"
+}

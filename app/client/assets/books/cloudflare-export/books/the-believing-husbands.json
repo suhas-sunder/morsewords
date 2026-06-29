@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-believing-husbands",
+  "title": "The Believing Husbands",
+  "author": [
+    "Andrew Lang"
+  ],
+  "language": "en",
+  "description": "",
+  "subjects": [],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "3454",
+    "releaseDate": "October 1, 2002",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "external-authority",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Believing Husbands"
+  },
+  "stats": {
+    "originalCharacterCount": 6871,
+    "cleanedCharacterCount": 5650,
+    "wordCount": 1113,
+    "sectionCount": 1,
+    "includedSectionCount": 1
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "manifest": {
+    "schemaVersion": 1,
+    "slug": "the-believing-husbands",
+    "title": "The Believing Husbands",
+    "author": [
+      "Andrew Lang"
+    ],
+    "contentVersion": "78d08d92388d6789",
+    "contentHash": "78d08d92388d6789882517e035176d3caf4ab5b3523ff29de20f1c5d10d86409",
+    "language": "en",
+    "description": "",
+    "subjects": [],
+    "source": {
+      "provider": "Project Gutenberg",
+      "gutenbergId": "3454",
+      "releaseDate": "October 1, 2002",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/3454",
+      "rawTextUrl": null,
+      "rightsBasis": "public-domain-us",
+      "rightsReviewed": true,
+      "publishReady": true,
+      "rightsStatus": "approved",
+      "processingAllowed": true,
+      "approvalSource": "external-authority",
+      "duplicateResolutionSource": "not-needed",
+      "rightsReportPath": "rights_report.json",
+      "processedBookPath": "processed_book.json",
+      "cleanedBookPath": "cleaned_book.json",
+      "rightsNotes": "Pilot write pass 18 processed this source from the audited Project Gutenberg text. Review generated output before any Cloudflare export."
+    },
+    "cover": {
+      "src": null,
+      "placeholder": true,
+      "alt": "Placeholder cover for The Believing Husbands"
+    },
+    "stats": {
+      "originalCharacterCount": 6871,
+      "cleanedCharacterCount": 5650,
+      "wordCount": 1113,
+      "sectionCount": 1,
+      "includedSectionCount": 1
+    },
+    "defaults": {
+      "includeKinds": [
+        "chapter"
+      ],
+      "preferredPreset": "main-narrative"
+    },
+    "sections": [
+      {
+        "id": "chapter-001",
+        "kind": "chapter",
+        "label": "The Believing Husbands",
+        "title": null,
+        "order": 1,
+        "includeByDefault": true,
+        "sectionJsonPath": "sections/chapter-001.json",
+        "characterCount": 5650,
+        "wordCount": 1113,
+        "estimatedTypingMinutes": 32,
+        "estimatedListeningMinutes": 34,
+        "morseCharacterEstimate": 30124,
+        "textPreview": "Once upon a time there dwelt in the land of Erin a young man who was seeking a wife, and of all the maidens round about none pleased him as well as the only da..."
+      }
+    ],
+    "cleaning": {
+      "originalCharacterCount": 6871,
+      "cleanedCharacterCount": 5650,
+      "headerStripped": true,
+      "footerStripped": true,
+      "confidence": "high",
+      "warnings": [
+        "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+        "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+        "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+        "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+        "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+        "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+        "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+        "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+        "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+      ]
+    },
+    "warnings": [
+      "Generated by controlled pilot write pass 18; review before scaling to larger batches or Cloudflare export.",
+      "Missing Project Gutenberg end marker; footer text was not destructively stripped.",
+      "Write pass created one contiguous story section at the dry-run verified first readable prose phrase, excluding source, title, byline, publication, and transcriber wrapper lines.",
+      "dry-run cleanup risk: title page, byline, publication, or copyright material appears before body content",
+      "dry-run cleanup risk: Project Gutenberg/source/license material must be removed",
+      "dry-run cleanup risk: contributor or transcriber notes must be removed or preserved only as non-default",
+      "dry-run title/default-start risk: write pass must keep title/byline material out of default playback",
+      "dry-run author metadata risk: future write must preserve Andrew Lang's editor role rather than imply original authorship of the traditional tale",
+      "dry-run collection-title risk: ensure the generated title stays the individual story title and parent collection title/byline/source wrapper stays out of default playback",
+      "dry-run artifact risk: no obvious illustration/page-marker/footnote risk in snippets"
+    ]
+  },
+  "sections": [
+    {
+      "schemaVersion": 1,
+      "bookSlug": "the-believing-husbands",
+      "sectionId": "chapter-001",
+      "kind": "chapter",
+      "label": "The Believing Husbands",
+      "title": null,
+      "order": 1,
+      "includeByDefault": true,
+      "displayText": "Once upon a time there dwelt in the land of Erin a young man who was\nseeking a wife, and of all the maidens round about none pleased him\nas well as the only daughter of a farmer. The girl was willing and the\nfather was willing, and very soon they were married and went to live at\nthe farm. By and bye the season came when they must cut the peats and\npile them up to dry, so that they might have fires in the winter. So\non a fine day the girl and her husband, and the father and his wife all\nwent out upon the moor.\n\nThey worked hard for many hours, and at length grew hungry, so the young\nwoman was sent home to bring them food, and also to give the horses\ntheir dinner. When she went into the stables, she suddenly saw the heavy\npack-saddle of the speckled mare just over her head, and she jumped and\nsaid to herself:\n\n‘Suppose that pack-saddle were to fall and kill me, how dreadful it\nwould be!’ and she sat down just under the pack-saddle she was so much\nafraid of, and began to cry.\n\nNow the others out on the moor grew hungrier and hungrier.\n\n‘What can have become of her?’ asked they, and at length the mother\ndeclared that she would wait no longer, and must go and see what had\nhappened.\n\nAs the bride was nowhere in the kitchen or the dairy, the old woman went\ninto the stable, where she found her daughter weeping bitterly.\n\n‘What is the matter, my dove?’ and the girl answered, between her sobs:\n\n‘When I came in and saw the pack-saddle over my head, I thought how\ndreadful it would be if it fell and killed me,’ and she cried louder\nthan before.\n\nThe old woman struck her hands together: ‘Ah, to think of it! if that\nwere to be, what should I do?’ and she sat down by her daughter, and\nthey both wrung their hands and let their tears flow.\n\n‘Something strange must have occurred,’ exclaimed the old farmer on the\nmoor, who by this time was not only hungry, but cross. ‘I must go after\nthem.’ And he went and found them in the stable.\n\n‘What is the matter?’ asked he.\n\n‘Oh!’ replied his wife, ‘when our daughter came home, did she not see\nthe pack-saddle over her head, and she thought how dreadful it would be\nif it were to fall and kill her.’\n\n‘Ah, to think of it!’ exclaimed he, striking his hands together, and he\nsat down beside them and wept too.\n\nAs soon as night fell the young man returned full of hunger, and there\nthey were, all crying together in the stable.\n\n‘What is the matter?’ asked he.\n\n‘When thy wife came home,’ answered the farmer, ‘she saw the pack-saddle\nover her head, and she thought how dreadful it would be if it were to\nfall and kill her.’\n\n‘Well, but it didn’t fall,’ replied the young man, and he went off to\nthe kitchen to get some supper, leaving them to cry as long as they\nliked.\n\nThe next morning he got up with the sun, and said to the old man and to\nthe old woman and to his wife:\n\n‘Farewell: my foot shall not return to the house till I have found other\nthree people as silly as you,’ and he walked away till he came to the\ntown, and seeing the door of a cottage standing open wide, he entered.\nNo man was present, but only some women spinning at their wheels.\n\n‘You do not belong to this town,’ said he.\n\n‘You speak truth,’ they answered, ‘nor you either?’\n\n‘I do not,’ replied he, ‘but is it a good place to live in?’\n\nThe women looked at each other.\n\n‘The men of the town are so silly that we can make them believe anything\nwe please,’ said they.\n\n‘Well, here is a gold ring,’ replied he, ‘and I will give it to the one\namongst you who can make her husband believe the most impossible thing,’\nand he left them.\n\nAs soon as the first husband came home his wife said to him:\n\n‘Thou art sick!’\n\n‘Am I?’ asked he.\n\n‘Yes, thou art,’ she answered; ‘take off thy clothes and lie down.’\n\nSo he did, and when he was in his bed his wife went to him and said:\n\n‘Thou art dead.’\n\n‘Oh, am I?’ asked he.\n\n‘Thou art,’ said she; ‘shut thine eyes and stir neither hand nor foot.’\n\nAnd dead he felt sure he was.\n\nSoon the second man came home, and his wife said to him:\n\n‘You are not my husband!’\n\n‘Oh, am I not?’ asked he.\n\n‘No, it is not you,’ answered she, so he went away and slept in the\nwood.\n\nWhen the third man arrived his wife gave him his supper, and after that\nhe went to bed, just as usual. The next morning a boy knocked at the\ndoor, bidding him attend the burial of the man who was dead, and he was\njust going to get up when his wife stopped him.\n\n‘Time enough,’ said she, and he lay still till he heard the funeral\npassing the window.\n\n‘Now rise, and be quick,’ called the wife, and the man jumped out of bed\nin a great hurry, and began to look about him.\n\n‘Why, where are my clothes?’ asked he.\n\n‘Silly that you are, they are on your back, of course,’ answered the\nwoman.\n\n‘Are they?’ said he.\n\n‘They are,’ said she, ‘and make haste lest the burying be ended before\nyou get there.’\n\nThen off he went, running hard, and when the mourners saw a man coming\ntowards them with nothing on but his nightshirt, they forgot in their\nfright what they were there for, and fled to hide themselves. And the\nnaked man stood alone at the head of the coffin.\n\nVery soon a man came out of the wood and spoke to him.\n\n‘Do you know me?’\n\n‘Not I,’ answered the naked man. ‘I do not know you.’\n\n‘But why are you naked?’ asked the first man.\n\n‘Am I naked? My wife told me that I had all my clothes on,’ answered he.\n\n‘And my wife told me that I myself was dead,’ said the man in the\ncoffin.\n\nBut at the sound of his voice the two men were so terrified that they\nran straight home, and the man in the coffin got up and followed them,\nand it was his wife that gained the gold ring, as he had been sillier\nthan the other two.",
+      "morseSourceText": "Once upon a time there dwelt in the land of Erin a young man who was\nseeking a wife, and of all the maidens round about none pleased him\nas well as the only daughter of a farmer. The girl was willing and the\nfather was willing, and very soon they were married and went to live at\nthe farm. By and bye the season came when they must cut the peats and\npile them up to dry, so that they might have fires in the winter. So\non a fine day the girl and her husband, and the father and his wife all\nwent out upon the moor.\n\nThey worked hard for many hours, and at length grew hungry, so the young\nwoman was sent home to bring them food, and also to give the horses\ntheir dinner. When she went into the stables, she suddenly saw the heavy\npack-saddle of the speckled mare just over her head, and she jumped and\nsaid to herself:\n\n‘Suppose that pack-saddle were to fall and kill me, how dreadful it\nwould be!’ and she sat down just under the pack-saddle she was so much\nafraid of, and began to cry.\n\nNow the others out on the moor grew hungrier and hungrier.\n\n‘What can have become of her?’ asked they, and at length the mother\ndeclared that she would wait no longer, and must go and see what had\nhappened.\n\nAs the bride was nowhere in the kitchen or the dairy, the old woman went\ninto the stable, where she found her daughter weeping bitterly.\n\n‘What is the matter, my dove?’ and the girl answered, between her sobs:\n\n‘When I came in and saw the pack-saddle over my head, I thought how\ndreadful it would be if it fell and killed me,’ and she cried louder\nthan before.\n\nThe old woman struck her hands together: ‘Ah, to think of it! if that\nwere to be, what should I do?’ and she sat down by her daughter, and\nthey both wrung their hands and let their tears flow.\n\n‘Something strange must have occurred,’ exclaimed the old farmer on the\nmoor, who by this time was not only hungry, but cross. ‘I must go after\nthem.’ And he went and found them in the stable.\n\n‘What is the matter?’ asked he.\n\n‘Oh!’ replied his wife, ‘when our daughter came home, did she not see\nthe pack-saddle over her head, and she thought how dreadful it would be\nif it were to fall and kill her.’\n\n‘Ah, to think of it!’ exclaimed he, striking his hands together, and he\nsat down beside them and wept too.\n\nAs soon as night fell the young man returned full of hunger, and there\nthey were, all crying together in the stable.\n\n‘What is the matter?’ asked he.\n\n‘When thy wife came home,’ answered the farmer, ‘she saw the pack-saddle\nover her head, and she thought how dreadful it would be if it were to\nfall and kill her.’\n\n‘Well, but it didn’t fall,’ replied the young man, and he went off to\nthe kitchen to get some supper, leaving them to cry as long as they\nliked.\n\nThe next morning he got up with the sun, and said to the old man and to\nthe old woman and to his wife:\n\n‘Farewell: my foot shall not return to the house till I have found other\nthree people as silly as you,’ and he walked away till he came to the\ntown, and seeing the door of a cottage standing open wide, he entered.\nNo man was present, but only some women spinning at their wheels.\n\n‘You do not belong to this town,’ said he.\n\n‘You speak truth,’ they answered, ‘nor you either?’\n\n‘I do not,’ replied he, ‘but is it a good place to live in?’\n\nThe women looked at each other.\n\n‘The men of the town are so silly that we can make them believe anything\nwe please,’ said they.\n\n‘Well, here is a gold ring,’ replied he, ‘and I will give it to the one\namongst you who can make her husband believe the most impossible thing,’\nand he left them.\n\nAs soon as the first husband came home his wife said to him:\n\n‘Thou art sick!’\n\n‘Am I?’ asked he.\n\n‘Yes, thou art,’ she answered; ‘take off thy clothes and lie down.’\n\nSo he did, and when he was in his bed his wife went to him and said:\n\n‘Thou art dead.’\n\n‘Oh, am I?’ asked he.\n\n‘Thou art,’ said she; ‘shut thine eyes and stir neither hand nor foot.’\n\nAnd dead he felt sure he was.\n\nSoon the second man came home, and his wife said to him:\n\n‘You are not my husband!’\n\n‘Oh, am I not?’ asked he.\n\n‘No, it is not you,’ answered she, so he went away and slept in the\nwood.\n\nWhen the third man arrived his wife gave him his supper, and after that\nhe went to bed, just as usual. The next morning a boy knocked at the\ndoor, bidding him attend the burial of the man who was dead, and he was\njust going to get up when his wife stopped him.\n\n‘Time enough,’ said she, and he lay still till he heard the funeral\npassing the window.\n\n‘Now rise, and be quick,’ called the wife, and the man jumped out of bed\nin a great hurry, and began to look about him.\n\n‘Why, where are my clothes?’ asked he.\n\n‘Silly that you are, they are on your back, of course,’ answered the\nwoman.\n\n‘Are they?’ said he.\n\n‘They are,’ said she, ‘and make haste lest the burying be ended before\nyou get there.’\n\nThen off he went, running hard, and when the mourners saw a man coming\ntowards them with nothing on but his nightshirt, they forgot in their\nfright what they were there for, and fled to hide themselves. And the\nnaked man stood alone at the head of the coffin.\n\nVery soon a man came out of the wood and spoke to him.\n\n‘Do you know me?’\n\n‘Not I,’ answered the naked man. ‘I do not know you.’\n\n‘But why are you naked?’ asked the first man.\n\n‘Am I naked? My wife told me that I had all my clothes on,’ answered he.\n\n‘And my wife told me that I myself was dead,’ said the man in the\ncoffin.\n\nBut at the sound of his voice the two men were so terrified that they\nran straight home, and the man in the coffin got up and followed them,\nand it was his wife that gained the gold ring, as he had been sillier\nthan the other two.",
+      "paragraphs": [
+        "Once upon a time there dwelt in the land of Erin a young man who was seeking a wife, and of all the maidens round about none pleased him as well as the only daughter of a farmer. The girl was willing and the father was willing, and very soon they were married and went to live at the farm. By and bye the season came when they must cut the peats and pile them up to dry, so that they might have fires in the winter. So on a fine day the girl and her husband, and the father and his wife all went out upon the moor.",
+        "They worked hard for many hours, and at length grew hungry, so the young woman was sent home to bring them food, and also to give the horses their dinner. When she went into the stables, she suddenly saw the heavy pack-saddle of the speckled mare just over her head, and she jumped and said to herself:",
+        "‘Suppose that pack-saddle were to fall and kill me, how dreadful it would be!’ and she sat down just under the pack-saddle she was so much afraid of, and began to cry.",
+        "Now the others out on the moor grew hungrier and hungrier.",
+        "‘What can have become of her?’ asked they, and at length the mother declared that she would wait no longer, and must go and see what had happened.",
+        "As the bride was nowhere in the kitchen or the dairy, the old woman went into the stable, where she found her daughter weeping bitterly.",
+        "‘What is the matter, my dove?’ and the girl answered, between her sobs:",
+        "‘When I came in and saw the pack-saddle over my head, I thought how dreadful it would be if it fell and killed me,’ and she cried louder than before.",
+        "The old woman struck her hands together: ‘Ah, to think of it! if that were to be, what should I do?’ and she sat down by her daughter, and they both wrung their hands and let their tears flow.",
+        "‘Something strange must have occurred,’ exclaimed the old farmer on the moor, who by this time was not only hungry, but cross. ‘I must go after them.’ And he went and found them in the stable.",
+        "‘What is the matter?’ asked he.",
+        "‘Oh!’ replied his wife, ‘when our daughter came home, did she not see the pack-saddle over her head, and she thought how dreadful it would be if it were to fall and kill her.’",
+        "‘Ah, to think of it!’ exclaimed he, striking his hands together, and he sat down beside them and wept too.",
+        "As soon as night fell the young man returned full of hunger, and there they were, all crying together in the stable.",
+        "‘What is the matter?’ asked he.",
+        "‘When thy wife came home,’ answered the farmer, ‘she saw the pack-saddle over her head, and she thought how dreadful it would be if it were to fall and kill her.’",
+        "‘Well, but it didn’t fall,’ replied the young man, and he went off to the kitchen to get some supper, leaving them to cry as long as they liked.",
+        "The next morning he got up with the sun, and said to the old man and to the old woman and to his wife:",
+        "‘Farewell: my foot shall not return to the house till I have found other three people as silly as you,’ and he walked away till he came to the town, and seeing the door of a cottage standing open wide, he entered. No man was present, but only some women spinning at their wheels.",
+        "‘You do not belong to this town,’ said he.",
+        "‘You speak truth,’ they answered, ‘nor you either?’",
+        "‘I do not,’ replied he, ‘but is it a good place to live in?’",
+        "The women looked at each other.",
+        "‘The men of the town are so silly that we can make them believe anything we please,’ said they.",
+        "‘Well, here is a gold ring,’ replied he, ‘and I will give it to the one amongst you who can make her husband believe the most impossible thing,’ and he left them.",
+        "As soon as the first husband came home his wife said to him:",
+        "‘Thou art sick!’",
+        "‘Am I?’ asked he.",
+        "‘Yes, thou art,’ she answered; ‘take off thy clothes and lie down.’",
+        "So he did, and when he was in his bed his wife went to him and said:",
+        "‘Thou art dead.’",
+        "‘Oh, am I?’ asked he.",
+        "‘Thou art,’ said she; ‘shut thine eyes and stir neither hand nor foot.’",
+        "And dead he felt sure he was.",
+        "Soon the second man came home, and his wife said to him:",
+        "‘You are not my husband!’",
+        "‘Oh, am I not?’ asked he.",
+        "‘No, it is not you,’ answered she, so he went away and slept in the wood.",
+        "When the third man arrived his wife gave him his supper, and after that he went to bed, just as usual. The next morning a boy knocked at the door, bidding him attend the burial of the man who was dead, and he was just going to get up when his wife stopped him.",
+        "‘Time enough,’ said she, and he lay still till he heard the funeral passing the window.",
+        "‘Now rise, and be quick,’ called the wife, and the man jumped out of bed in a great hurry, and began to look about him.",
+        "‘Why, where are my clothes?’ asked he.",
+        "‘Silly that you are, they are on your back, of course,’ answered the woman.",
+        "‘Are they?’ said he.",
+        "‘They are,’ said she, ‘and make haste lest the burying be ended before you get there.’",
+        "Then off he went, running hard, and when the mourners saw a man coming towards them with nothing on but his nightshirt, they forgot in their fright what they were there for, and fled to hide themselves. And the naked man stood alone at the head of the coffin.",
+        "Very soon a man came out of the wood and spoke to him.",
+        "‘Do you know me?’",
+        "‘Not I,’ answered the naked man. ‘I do not know you.’",
+        "‘But why are you naked?’ asked the first man.",
+        "‘Am I naked? My wife told me that I had all my clothes on,’ answered he.",
+        "‘And my wife told me that I myself was dead,’ said the man in the coffin.",
+        "But at the sound of his voice the two men were so terrified that they ran straight home, and the man in the coffin got up and followed them, and it was his wife that gained the gold ring, as he had been sillier than the other two."
+      ],
+      "wordCount": 1113,
+      "characterCount": 5650,
+      "estimatedTypingMinutes": 32,
+      "estimatedListeningMinutes": 34,
+      "morseCharacterEstimate": 30124,
+      "unsupportedCharacterSummary": {},
+      "textPreview": "Once upon a time there dwelt in the land of Erin a young man who was seeking a wife, and of all the maidens round about none pleased him as well as the only da...",
+      "sourceOffsets": {
+        "start": 71,
+        "end": 5721
+      }
+    }
+  ],
+  "contentVersion": "aac4e97e1277800b",
+  "contentHash": "aac4e97e1277800b16e87d81383a566e93019de3bcc5485739b2e55c9d19c069"
+}

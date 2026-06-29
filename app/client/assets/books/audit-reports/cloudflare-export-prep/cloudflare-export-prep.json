@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "reportName": "cloudflare-export-prep",
+  "generatedAt": "2026-06-29",
+  "branch": "morsewords-cloudflare-export-prep-jun-2026",
+  "executiveResult": "The refreshed local Cloudflare export matches the finalized generated library and is ready for a sync/delete style Cloudflare upload.",
+  "sourceOfTruthCounts": {
+    "generatedBooks": 519,
+    "seoSummaries": 519,
+    "startupPreviews": 519,
+    "missingSummaries": 0,
+    "bookUrls": 519,
+    "audiobookUrls": 519
+  },
+  "exportCommandAdded": "npm run books:cloudflare-export",
+  "exportCommandUsed": "npm run books:cloudflare-export",
+  "exportOutputLocation": "app/client/assets/books/cloudflare-export",
+  "exportFilePayloadCounts": {
+    "totalFiles": 521,
+    "bookPayloads": 519,
+    "manifestFiles": 2
+  },
+  "generatedVsExportSlugComparison": {
+    "missingFromExport": [],
+    "extraInExport": [],
+    "duplicateExportSlugs": [],
+    "duplicateExportPaths": []
+  },
+  "removedDeferredBlockedSlugExclusion": {
+    "result": "pass",
+    "blockedOrSourceRiskSlugsExported": [],
+    "note": "Exported slugs are required to match the live generated manifest exactly; blocked/source-risk raw candidates from the decision checkpoint must not appear as extra live exports."
+  },
+  "metadataConsistency": {
+    "result": "pass",
+    "failures": []
+  },
+  "sectionContent": {
+    "result": "pass",
+    "failures": []
+  },
+  "badLabelScan": {
+    "result": "pass",
+    "failures": []
+  },
+  "wordCount": {
+    "result": "pass",
+    "failures": []
+  },
+  "representativePayloadChecks": [
+    {
+      "role": "Long work",
+      "slug": "middlemarch",
+      "title": "Middlemarch",
+      "sectionCount": 88,
+      "wordCount": 318237,
+      "contentCharacters": 1778964,
+      "result": "pass",
+      "notes": [
+        "Full generated section payload is present."
+      ]
+    },
+    {
+      "role": "Short story",
+      "slug": "the-bottle-imp",
+      "title": "The Bottle Imp",
+      "sectionCount": 1,
+      "wordCount": 12211,
+      "contentCharacters": 61865,
+      "result": "pass",
+      "notes": [
+        "Full generated section payload is present."
+      ]
+    },
+    {
+      "role": "Poe story",
+      "slug": "the-masque-of-the-red-death",
+      "title": "The Masque of the Red Death",
+      "sectionCount": 1,
+      "wordCount": 2422,
+      "contentCharacters": 13710,
+      "result": "pass",
+      "notes": [
+        "Full generated section payload is present."
+      ]
+    },
+    {
+      "role": "Wilde story",
+      "slug": "the-happy-prince",
+      "title": "The Happy Prince",
+      "sectionCount": 1,
+      "wordCount": 3491,
+      "contentCharacters": 18427,
+      "result": "pass",
+      "notes": [
+        "Full generated section payload is present."
+      ]
+    },
+    {
+      "role": "The Leavenworth Case section-count check",
+      "slug": "the-leavenworth-case",
+      "title": "The Leavenworth Case",
+      "sectionCount": 39,
+      "wordCount": 110828,
+      "contentCharacters": 611756,
+      "result": "pass",
+      "notes": [
+        "Full generated section payload is present."
+      ]
+    },
+    {
+      "role": "Walden section-count check",
+      "slug": "walden",
+      "title": "Walden",
+      "sectionCount": 18,
+      "wordCount": 107126,
+      "contentCharacters": 582595,
+      "result": "pass",
+      "notes": [
+        "Full generated section payload is present."
+      ]
+    }
+  ],
+  "staleExportCleanup": {
+    "result": "pass",
+    "stalePayloadCountBeforeThisBranch": 74,
+    "refreshedPayloadCount": 519,
+    "note": "The export command resets app/client/assets/books/cloudflare-export before writing, so the local export behaves like sync/delete rather than append-only."
+  },
+  "cloudflareUploadInstructions": {
+    "localExportDirectory": "app/client/assets/books/cloudflare-export",
+    "fileCountToUpload": 521,
+    "bookPayloadCountToUpload": 519,
+    "overwriteExistingKeys": true,
+    "deleteStaleRemoteKeys": true,
+    "syncDeleteRequired": true,
+    "validationCommandBeforeUpload": "npm run books:cloudflare-export && npm run books:cloudflare-export-audit",
+    "uploadCommand": "No safe local upload command was run in this branch; use the project's Cloudflare/R2 sync tooling with delete enabled after credentials and target are confirmed.",
+    "uploadCommandRun": false
+  },
+  "postUploadValidationRequirements": [
+    "Fetch the remote public-manifest.json and verify it lists exactly 519 books.",
+    "Fetch representative remote book payloads for middlemarch or walden, the-bottle-imp, a Poe story, a Wilde story, the-leavenworth-case, and walden.",
+    "Verify old removed/deferred/source-risk book keys return 404 or are absent after sync/delete.",
+    "Rerun the app route checks against the configured Cloudflare book content base URL."
+  ],
+  "postExportBookRouteChapterNavViewWindowValidationRequirements": [
+    "Confirm reader view uses final Cloudflare payloads rather than starter-preview-only text.",
+    "Confirm section picker, cleaned preview, Morse preview, and audiobook behavior use the uploaded full payloads.",
+    "Confirm no intended live book route returns 404 and no deferred/blocked route appears as live.",
+    "Perform the final chapter/nav/view-window review only after the refreshed payloads are uploaded or served through the production-like Cloudflare path."
+  ],
+  "laterContentQualityCheckpoints": [
+    "Sources page trust-copy update: stronger source-selection, review, source-link, correction, and takedown handling.",
+    "About page E-E-A-T sentence: connect Electrical and Computer Engineering background to Morse code, signal systems, communication systems, encoding, timing, audio, or transmission.",
+    "Repeated helper-copy reduction before final content quality review."
+  ],
+  "deferredFinalStages": [
+    "Non-book sitemap page implementation remains later.",
+    "URL/indexability audit remains later.",
+    "GSC/meta review remains later.",
+    "Broad mobile optimization remains the final stage."
+  ],
+  "blockers": [],
+  "readinessDecision": "Ready for Cloudflare upload"
+}
