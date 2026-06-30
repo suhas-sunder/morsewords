@@ -5,8 +5,8 @@
   "author": [
     "E. W. Hornung"
   ],
-  "contentVersion": "76a5469dd70fdc6a",
-  "contentHash": "76a5469dd70fdc6a59f602b6b01b028c7e211a98b3b9ece031b5c55b56bd77c0",
+  "contentVersion": "e4bd0077ef67fdc8",
+  "contentHash": "e4bd0077ef67fdc814541b60e653e5524d17e945789224ad12a0de3e4d602a13",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 307382,
-    "cleanedCharacterCount": 281223,
-    "wordCount": 52230,
+    "cleanedCharacterCount": 281229,
+    "wordCount": 52231,
     "sectionCount": 8,
     "includedSectionCount": 8
   },
@@ -70,11 +70,11 @@
       "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-002.json",
-      "characterCount": 34162,
-      "wordCount": 6266,
-      "estimatedTypingMinutes": 180,
+      "characterCount": 34168,
+      "wordCount": 6267,
+      "estimatedTypingMinutes": 157,
       "estimatedListeningMinutes": 204,
-      "morseCharacterEstimate": 183189,
+      "morseCharacterEstimate": 183227,
       "textPreview": "A COSTUME PIECE London was just then talking of one whose name is already a name and nothing more. Reuben Rosenthall had made his millions on the diamond field..."
     },
     {
@@ -170,7 +170,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 307382,
-    "cleanedCharacterCount": 281223,
+    "cleanedCharacterCount": 281229,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

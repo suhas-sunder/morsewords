@@ -5,8 +5,8 @@
   "author": [
     "Edgar Wallace"
   ],
-  "contentVersion": "c326ca1aac2da025",
-  "contentHash": "c326ca1aac2da0251f5691f7ac62485736301f093d2a914b6b0a05715b309af4",
+  "contentVersion": "53edcf81a9e9fe5d",
+  "contentHash": "53edcf81a9e9fe5d88b5607b6bd18c7ea2b41dc2fd075745c683a199ca060e49",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 357340,
-    "cleanedCharacterCount": 328628,
-    "wordCount": 59509,
+    "cleanedCharacterCount": 328506,
+    "wordCount": 59510,
     "sectionCount": 33,
     "includedSectionCount": 33
   },
@@ -460,11 +460,11 @@
       "order": 28,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-028.json",
-      "characterCount": 12133,
-      "wordCount": 2257,
+      "characterCount": 12139,
+      "wordCount": 2258,
       "estimatedTypingMinutes": 57,
       "estimatedListeningMinutes": 73,
-      "morseCharacterEstimate": 65289,
+      "morseCharacterEstimate": 65327,
       "textPreview": "CHAPTER XXVIII It was unnecessary to call a doctor to satisfy the police. Emanuel Legge had passed beyond the sphere of his evil activities. \"The poker came fr..."
     },
     {
@@ -545,7 +545,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 357340,
-    "cleanedCharacterCount": 328628,
+    "cleanedCharacterCount": 328506,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

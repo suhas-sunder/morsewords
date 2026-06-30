@@ -5,8 +5,8 @@
   "author": [
     "H. G. Wells"
   ],
-  "contentVersion": "1a059d7aee335369",
-  "contentHash": "1a059d7aee335369d45aa7e97841ab5da529f7626a9fc480636f2a2ac8ef408d",
+  "contentVersion": "b284376f713fff29",
+  "contentHash": "b284376f713fff292ffa836e43a0fc356ad39d450dc79620513aa1e509c118df",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 39678,
-    "cleanedCharacterCount": 38720,
-    "wordCount": 6904,
+    "cleanedCharacterCount": 38727,
+    "wordCount": 6905,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,17 +55,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 38720,
-      "wordCount": 6904,
-      "estimatedTypingMinutes": 198,
+      "characterCount": 38727,
+      "wordCount": 6905,
+      "estimatedTypingMinutes": 173,
       "estimatedListeningMinutes": 233,
-      "morseCharacterEstimate": 208813,
+      "morseCharacterEstimate": 208861,
       "textPreview": "My friend, Mr. Ledbetter, is a round-faced little man, whose natural mildness of eye is gigantically exaggerated when you catch the beam through his glasses, a..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 39678,
-    "cleanedCharacterCount": 38720,
+    "cleanedCharacterCount": 38727,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

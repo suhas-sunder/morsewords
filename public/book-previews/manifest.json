@@ -6,12 +6,12 @@
     {
       "slug": "a-childs-garden-of-verses",
       "path": "/book-previews/a-childs-garden-of-verses.preview.json",
-      "contentVersion": "767ae75b860d2a7e",
-      "contentHash": "767ae75b860d2a7e2080bb19a01b45ac99da27d50f82cf5f826116ab4da164a5",
+      "contentVersion": "76a9c166ba192131",
+      "contentHash": "76a9c166ba192131084a0f48055d53e035021016982f9176988df5535eb7d058",
       "defaultSectionId": "poem-001",
-      "previewBytes": 11643,
+      "previewBytes": 11661,
       "previewCharacterCount": 10483,
-      "estimatedRuntimeSeconds": 3610,
+      "estimatedRuntimeSeconds": 3660,
       "truncated": true
     },
     {
@@ -39,8 +39,8 @@
     {
       "slug": "anna-karenina",
       "path": "/book-previews/anna-karenina.preview.json",
-      "contentVersion": "984e381c5bbe3bfc",
-      "contentHash": "984e381c5bbe3bfcd6f3afd7cc628706c16b8f97845dcc66b0c5bec12e6e8b3b",
+      "contentVersion": "eda2ca25313820e8",
+      "contentHash": "eda2ca25313820e8c1e2efa24490a6ffec73bf6ceff6bf8ac701ad5d04826f7a",
       "defaultSectionId": "chapter-001",
       "previewBytes": 6382,
       "previewCharacterCount": 5435,
@@ -72,8 +72,8 @@
     {
       "slug": "around-the-world-in-eighty-days",
       "path": "/book-previews/around-the-world-in-eighty-days.preview.json",
-      "contentVersion": "b5730ed13022dc4d",
-      "contentHash": "b5730ed13022dc4d23c8a357dee91292bfd81ede88afcd70bd172ba3fd27fce8",
+      "contentVersion": "ff29490018281f84",
+      "contentHash": "ff29490018281f84c49c3d24a899dc06a216d75e2df40e381146756a01db79ed",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10760,
       "previewCharacterCount": 9779,
@@ -105,10 +105,10 @@
     {
       "slug": "candide",
       "path": "/book-previews/candide.preview.json",
-      "contentVersion": "26597bcb1e44241a",
-      "contentHash": "26597bcb1e44241acd52568e623ca5836e3e33f89e770d15a9bb6ab9fdf806ed",
+      "contentVersion": "cb22f2112c1873fe",
+      "contentHash": "cb22f2112c1873fe53cd7bcd24972df16cc70fa54aa154d45dde5a332de2aaa4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10549,
+      "previewBytes": 10638,
       "previewCharacterCount": 9586,
       "estimatedRuntimeSeconds": 3447,
       "truncated": true
@@ -116,10 +116,10 @@
     {
       "slug": "crime-and-punishment",
       "path": "/book-previews/crime-and-punishment.preview.json",
-      "contentVersion": "1bf45d9f3bb2d82c",
-      "contentHash": "1bf45d9f3bb2d82c5af8ef4f0d19cb8bc6668f7a79cc97bc5ee98f60c1844dfa",
+      "contentVersion": "5952660c323786ba",
+      "contentHash": "5952660c323786baa89677baccaa6d6eb51f3bce28ffbd70a7f00553493a3b8d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10869,
+      "previewBytes": 10958,
       "previewCharacterCount": 10016,
       "estimatedRuntimeSeconds": 3581,
       "truncated": true
@@ -127,8 +127,8 @@
     {
       "slug": "don-quixote",
       "path": "/book-previews/don-quixote.preview.json",
-      "contentVersion": "a7a4d22f464c8cbd",
-      "contentHash": "a7a4d22f464c8cbd34ded946ae8c019042695e39820820f5e23d81e43b6abd68",
+      "contentVersion": "0620bd600cbde7ae",
+      "contentHash": "0620bd600cbde7ae3ea82e53f546f0758861e76ee29fe21c0a332db02b7f932a",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10170,
       "previewCharacterCount": 9170,
@@ -182,8 +182,8 @@
     {
       "slug": "grimm-s-fairy-tales",
       "path": "/book-previews/grimm-s-fairy-tales.preview.json",
-      "contentVersion": "60416d45b3f04a3a",
-      "contentHash": "60416d45b3f04a3af6fb7987a14b1bfa1d8ce1b5849d3aee61f64bea3f72b822",
+      "contentVersion": "71f3d79578620412",
+      "contentHash": "71f3d79578620412c5cbbd07ac2c6d7d3fc53fb091d2c4493b505ea1d971cd14",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10923,
       "previewCharacterCount": 10005,
@@ -193,10 +193,10 @@
     {
       "slug": "gulliver-s-travels",
       "path": "/book-previews/gulliver-s-travels.preview.json",
-      "contentVersion": "25b439f2df9cad73",
-      "contentHash": "25b439f2df9cad7362a149fc104a5b6f63a5d6c45fc8efcb61a5b5d5ccda65f8",
+      "contentVersion": "823c37580c4a9e71",
+      "contentHash": "823c37580c4a9e713d3d7652bccd5225c00d5f84780306073d35b59ec61c20f1",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 3879,
+      "previewBytes": 3968,
       "previewCharacterCount": 3171,
       "estimatedRuntimeSeconds": 1128,
       "truncated": true
@@ -226,8 +226,8 @@
     {
       "slug": "les-miserables",
       "path": "/book-previews/les-miserables.preview.json",
-      "contentVersion": "88372ba662b27561",
-      "contentHash": "88372ba662b27561708403e6e10331ef01b17a84fe0e72dd3feeff57eefa5806",
+      "contentVersion": "755871bac4da7b93",
+      "contentHash": "755871bac4da7b932cbf3762c4eeb929f5f71592134b7899bcfcd39df770d7c9",
       "defaultSectionId": "chapter-001",
       "previewBytes": 6897,
       "previewCharacterCount": 5984,
@@ -248,8 +248,8 @@
     {
       "slug": "new-treasure-seekers",
       "path": "/book-previews/new-treasure-seekers.preview.json",
-      "contentVersion": "d971de0e9b28f38a",
-      "contentHash": "d971de0e9b28f38ab37d02809fd74586259794c9bcf77c8de2584a881b3f974e",
+      "contentVersion": "bd7d3bfd08d97b2f",
+      "contentHash": "bd7d3bfd08d97b2f7e56269f7e38f1fdd74913e9f5ad232bded3c83ac98ae9a6",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10995,
       "previewCharacterCount": 9978,
@@ -270,8 +270,8 @@
     {
       "slug": "rainbow-valley",
       "path": "/book-previews/rainbow-valley.preview.json",
-      "contentVersion": "e7fafa229524c955",
-      "contentHash": "e7fafa229524c95540da4188c4a94b01151545e7445a2b25b9c1f352fc22a92f",
+      "contentVersion": "e0e9fc8ef28ed9b0",
+      "contentHash": "e0e9fc8ef28ed9b0a4a30a316f5698fb8f4d516d09d3f9632007d7d10c7e6078",
       "defaultSectionId": "chapter-001",
       "previewBytes": 8554,
       "previewCharacterCount": 7542,
@@ -314,8 +314,8 @@
     {
       "slug": "the-arabian-nights",
       "path": "/book-previews/the-arabian-nights.preview.json",
-      "contentVersion": "7fb4ff78ea8e99bc",
-      "contentHash": "7fb4ff78ea8e99bc1dee2f036223c2472b4695b7dd458911db39fe37f3b027a5",
+      "contentVersion": "6d7c140f67139105",
+      "contentHash": "6d7c140f67139105d1f610aa32feeddb85c44c39d928b3330deaea0f3bc39b81",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10583,
       "previewCharacterCount": 9598,
@@ -339,7 +339,7 @@
       "contentVersion": "41168f6c6a16f1c3",
       "contentHash": "41168f6c6a16f1c3db29ddb9f09ea9c33d45dc46413d14952934a86eee6d9996",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11670,
+      "previewBytes": 11689,
       "previewCharacterCount": 10738,
       "estimatedRuntimeSeconds": 3821,
       "truncated": false
@@ -358,19 +358,19 @@
     {
       "slug": "the-call-of-cthulhu",
       "path": "/book-previews/the-call-of-cthulhu.preview.json",
-      "contentVersion": "94448859a946f4b3",
-      "contentHash": "94448859a946f4b3cb5d97cb451a244cfc4a76de565641337a8adb137a124844",
+      "contentVersion": "2a980f41f0bfa8a2",
+      "contentHash": "2a980f41f0bfa8a21b95a77cd10ddd476ac26eb1e0b0b5a65206657c9fe0ff37",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9821,
-      "previewCharacterCount": 8994,
-      "estimatedRuntimeSeconds": 3242,
+      "previewBytes": 9935,
+      "previewCharacterCount": 9001,
+      "estimatedRuntimeSeconds": 3300,
       "truncated": true
     },
     {
       "slug": "the-call-of-the-wild",
       "path": "/book-previews/the-call-of-the-wild.preview.json",
-      "contentVersion": "abadab9ef6050157",
-      "contentHash": "abadab9ef6050157af80335907ab6cee25db911a310fd4053f736da1ccb33053",
+      "contentVersion": "9b8d1935de9c67db",
+      "contentHash": "9b8d1935de9c67db477c7db4eaf67ba36c9410de11a2a2597d9ffa9086acf846",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10557,
       "previewCharacterCount": 9584,
@@ -380,8 +380,8 @@
     {
       "slug": "the-count-of-monte-cristo",
       "path": "/book-previews/the-count-of-monte-cristo.preview.json",
-      "contentVersion": "4d1525fee69ba7fa",
-      "contentHash": "4d1525fee69ba7fa08cdb4a83ba0859114bc663fd70ec75726a30fb2dc4ab0dc",
+      "contentVersion": "3ab5dcd163bfd0db",
+      "contentHash": "3ab5dcd163bfd0db73a921e765e3276d17904f3e37de2e3247783a64e78709ab",
       "defaultSectionId": "chapter-001",
       "previewBytes": 12198,
       "previewCharacterCount": 10973,
@@ -391,10 +391,10 @@
     {
       "slug": "the-count-of-monte-cristo-gutenberg-1184",
       "path": "/book-previews/the-count-of-monte-cristo-gutenberg-1184.preview.json",
-      "contentVersion": "cf28db8866481685",
-      "contentHash": "cf28db8866481685085bd7ac3d9c91e28d9670a3e36aa93aeb16ea633d9da720",
+      "contentVersion": "d24d25f4f088b65f",
+      "contentHash": "d24d25f4f088b65f4a509e7c37b60f7c49ee7c43a4061f5321b70704a6f50e4d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 12194,
+      "previewBytes": 12213,
       "previewCharacterCount": 10973,
       "estimatedRuntimeSeconds": 3600,
       "truncated": true
@@ -402,8 +402,8 @@
     {
       "slug": "the-divine-comedy",
       "path": "/book-previews/the-divine-comedy.preview.json",
-      "contentVersion": "9b6073b0eccbe686",
-      "contentHash": "9b6073b0eccbe68665322931239833ad595dffa4a0eb7fd54347512564598866",
+      "contentVersion": "abf2ced3947fd914",
+      "contentHash": "abf2ced3947fd914b6fac095a81fc62e919d56d5c9ca17ba304461cbf696d8a5",
       "defaultSectionId": "poem-001",
       "previewBytes": 10472,
       "previewCharacterCount": 9467,
@@ -416,7 +416,7 @@
       "contentVersion": "2e7b51fded5ba5cb",
       "contentHash": "2e7b51fded5ba5cb0fcf70fcf557e4895d8b671f4f82073c16eee16aaa1aa6c4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 17212,
+      "previewBytes": 17231,
       "previewCharacterCount": 16069,
       "estimatedRuntimeSeconds": 5748,
       "truncated": false
@@ -438,7 +438,7 @@
       "contentVersion": "dfd5abc8c92d18c0",
       "contentHash": "dfd5abc8c92d18c08aa9d16ab363158e787be0015ee80651e393a8f0349d2f4a",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10964,
+      "previewBytes": 11053,
       "previewCharacterCount": 9914,
       "estimatedRuntimeSeconds": 3552,
       "truncated": true
@@ -449,7 +449,7 @@
       "contentVersion": "40dfe20a297674ec",
       "contentHash": "40dfe20a297674ec1dbd18a2b26ba11029be57dc2395e75a9e797b88ddab15ac",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11506,
+      "previewBytes": 11525,
       "previewCharacterCount": 10477,
       "estimatedRuntimeSeconds": 3747,
       "truncated": false
@@ -457,8 +457,8 @@
     {
       "slug": "the-federalist-papers",
       "path": "/book-previews/the-federalist-papers.preview.json",
-      "contentVersion": "e592d3d51185c492",
-      "contentHash": "e592d3d51185c492b737390c3546befd06ca1d8aecc75d620ebdb0b7223eeb0d",
+      "contentVersion": "e93bfd0aa5a0f5b7",
+      "contentHash": "e93bfd0aa5a0f5b7a3b6f9bcbbba797296a270123f084f84f73154ac3f284138",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10866,
       "previewCharacterCount": 9936,
@@ -471,7 +471,7 @@
       "contentVersion": "38ccf7727edeb19b",
       "contentHash": "38ccf7727edeb19b4a874ef25e7014b7effe6bc48db87f6d000eef4d5cdc21a0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 18441,
+      "previewBytes": 18460,
       "previewCharacterCount": 17223,
       "estimatedRuntimeSeconds": 6154,
       "truncated": false
@@ -479,8 +479,8 @@
     {
       "slug": "the-great-gatsby",
       "path": "/book-previews/the-great-gatsby.preview.json",
-      "contentVersion": "65d394f3a00e6ef7",
-      "contentHash": "65d394f3a00e6ef763116868ba201c60f4b5ea6d8c9641541fe2fb6e0c6aee94",
+      "contentVersion": "7cd9e66cba157e14",
+      "contentHash": "7cd9e66cba157e14fa0dc3ebe9856db6f477626e44855f5ff488b4c24ba8ed8f",
       "defaultSectionId": "part-002",
       "previewBytes": 12106,
       "previewCharacterCount": 10839,
@@ -493,7 +493,7 @@
       "contentVersion": "b0acef6aa1adb63b",
       "contentHash": "b0acef6aa1adb63bd61e000e0916f0e0917733aa91add708886b83f955df0f34",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 7858,
+      "previewBytes": 7877,
       "previewCharacterCount": 6920,
       "estimatedRuntimeSeconds": 2400,
       "truncated": false
@@ -515,7 +515,7 @@
       "contentVersion": "6b0e42b8ae5a10e6",
       "contentHash": "6b0e42b8ae5a10e69eb419ab19cf681d053daa6a0f5c51c28f23946038bbdd5c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 4453,
+      "previewBytes": 4472,
       "previewCharacterCount": 3631,
       "estimatedRuntimeSeconds": 1305,
       "truncated": false
@@ -523,8 +523,8 @@
     {
       "slug": "the-legend-of-sleepy-hollow",
       "path": "/book-previews/the-legend-of-sleepy-hollow.preview.json",
-      "contentVersion": "053685b686dc878e",
-      "contentHash": "053685b686dc878e30a208631d9e409ce30e48653aed0a03d9f140c8f6b590de",
+      "contentVersion": "c4f5bc52d0db96e3",
+      "contentHash": "c4f5bc52d0db96e3228700d0d6c8343d728b2d99f09d4fa8e40867b68cf69080",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10907,
       "previewCharacterCount": 9954,
@@ -537,7 +537,7 @@
       "contentVersion": "3b38eee6fd4c1ddc",
       "contentHash": "3b38eee6fd4c1ddcfb4adc0dfa2224f463ee821c5046c9be5dfa309ef89c82b7",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 17051,
+      "previewBytes": 17070,
       "previewCharacterCount": 15915,
       "estimatedRuntimeSeconds": 5686,
       "truncated": false
@@ -545,8 +545,8 @@
     {
       "slug": "the-picture-of-dorian-gray",
       "path": "/book-previews/the-picture-of-dorian-gray.preview.json",
-      "contentVersion": "af2ab9deaa2db2a0",
-      "contentHash": "af2ab9deaa2db2a0bace9a43916984a7cf4881616bc080478b6769cf94bdef39",
+      "contentVersion": "168094d22377fe50",
+      "contentHash": "168094d22377fe50dc458a8ec1c34a27314f437ee4f78864f745504a866b3996",
       "defaultSectionId": "chapter-001",
       "previewBytes": 11194,
       "previewCharacterCount": 10033,
@@ -581,7 +581,7 @@
       "contentVersion": "e8693cc00594094a",
       "contentHash": "e8693cc00594094a47952bc9e804d0bc2b4905951b794c9e2bca02124c16d77b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 2979,
+      "previewBytes": 2998,
       "previewCharacterCount": 2197,
       "estimatedRuntimeSeconds": 779,
       "truncated": false
@@ -625,7 +625,7 @@
       "contentVersion": "750c6ea1f9e37320",
       "contentHash": "750c6ea1f9e3732068255c1f858de5504d60636d6a33571f181598efaeb2c603",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 4466,
+      "previewBytes": 4485,
       "previewCharacterCount": 3643,
       "estimatedRuntimeSeconds": 1304,
       "truncated": false
@@ -636,7 +636,7 @@
       "contentVersion": "48bd2c945d8b60ce",
       "contentHash": "48bd2c945d8b60ce4baf25f12c42f74debe3e260467bd3bc51c9fc87a4b0352e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 3671,
+      "previewBytes": 3690,
       "previewCharacterCount": 2846,
       "estimatedRuntimeSeconds": 1007,
       "truncated": false
@@ -647,7 +647,7 @@
       "contentVersion": "d4a91ec198bbdf77",
       "contentHash": "d4a91ec198bbdf77decd2bf231c64c72190bd8b89625b0717e5a78a270fcfa75",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9205,
+      "previewBytes": 9224,
       "previewCharacterCount": 8151,
       "estimatedRuntimeSeconds": 2932,
       "truncated": false
@@ -655,8 +655,8 @@
     {
       "slug": "the-three-musketeers",
       "path": "/book-previews/the-three-musketeers.preview.json",
-      "contentVersion": "117fe21e8265df4f",
-      "contentHash": "117fe21e8265df4fb95daed97a30b78ec13d64f5121758097be52b4808e8e8b6",
+      "contentVersion": "e3cdb1a8814f09ab",
+      "contentHash": "e3cdb1a8814f09abde401e4b544ff4772b9c5c4ec2ceed1d6e37e45b11d3adb2",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10163,
       "previewCharacterCount": 9214,
@@ -666,8 +666,8 @@
     {
       "slug": "the-water-babies",
       "path": "/book-previews/the-water-babies.preview.json",
-      "contentVersion": "04dfedc6a8729a59",
-      "contentHash": "04dfedc6a8729a59359d442c1c3c35cb495bb7ef4b0745141394f3bbb5aab98f",
+      "contentVersion": "7913015e7398a7d8",
+      "contentHash": "7913015e7398a7d88587c2d01884c9bd48413d5232946fb9c2ad7326fd720c03",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10965,
       "previewCharacterCount": 10046,
@@ -699,10 +699,10 @@
     {
       "slug": "treasure-island",
       "path": "/book-previews/treasure-island.preview.json",
-      "contentVersion": "fbc88f57ab49a7cc",
-      "contentHash": "fbc88f57ab49a7cc8fe983985990a77cb3af05242deb1d04adb447fd8027e4b4",
+      "contentVersion": "6f2a0bd31725bb13",
+      "contentHash": "6f2a0bd31725bb13ecc9417dfff0a375f903108d0a0d3c609a5987e63f07d5da",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10952,
+      "previewBytes": 11041,
       "previewCharacterCount": 10062,
       "estimatedRuntimeSeconds": 3583,
       "truncated": true
@@ -754,8 +754,8 @@
     {
       "slug": "the-lerouge-case",
       "path": "/book-previews/the-lerouge-case.preview.json",
-      "contentVersion": "2034c185a686accd",
-      "contentHash": "2034c185a686accdb53a68bf64d0fbbe9e2ff872b584ad7417484f7335314f1b",
+      "contentVersion": "88e83b14652ed3b2",
+      "contentHash": "88e83b14652ed3b2e5194f8442240fb435ef3d79603319a320ba2d1f032a81c4",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10938,
       "previewCharacterCount": 9949,
@@ -798,8 +798,8 @@
     {
       "slug": "the-lost-world",
       "path": "/book-previews/the-lost-world.preview.json",
-      "contentVersion": "1cc3a66a0188db38",
-      "contentHash": "1cc3a66a0188db387619d75ea2471a695e12382f5ff27577e0e0282d9ac146ed",
+      "contentVersion": "963a328d14856684",
+      "contentHash": "963a328d148566849d051eddb37f13485c91658d2f50de8c3df5261cfcf4859a",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10828,
       "previewCharacterCount": 9780,
@@ -842,8 +842,8 @@
     {
       "slug": "room-13",
       "path": "/book-previews/room-13.preview.json",
-      "contentVersion": "c326ca1aac2da025",
-      "contentHash": "c326ca1aac2da0251f5691f7ac62485736301f093d2a914b6b0a05715b309af4",
+      "contentVersion": "53edcf81a9e9fe5d",
+      "contentHash": "53edcf81a9e9fe5d88b5607b6bd18c7ea2b41dc2fd075745c683a199ca060e49",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10848,
       "previewCharacterCount": 9802,
@@ -886,8 +886,8 @@
     {
       "slug": "a-tale-of-two-cities",
       "path": "/book-previews/a-tale-of-two-cities.preview.json",
-      "contentVersion": "87f975b1a0c50cf3",
-      "contentHash": "87f975b1a0c50cf3deb7b6fc277e26012b393ed560bf44d7b795eded1b0cc886",
+      "contentVersion": "8b3798f0a1b25ed4",
+      "contentHash": "8b3798f0a1b25ed44f8984e0690ad2d42f436c5e8d1ecd933bdf4725aa7c1a05",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10656,
       "previewCharacterCount": 9710,
@@ -919,12 +919,12 @@
     {
       "slug": "macbeth",
       "path": "/book-previews/macbeth.preview.json",
-      "contentVersion": "0226abdea44f95d6",
-      "contentHash": "0226abdea44f95d61a33d6a9d5df284aa5c0ef070faf1aa39f962554a8aaed3c",
+      "contentVersion": "28a09a4b1fd9ec76",
+      "contentHash": "28a09a4b1fd9ec7604074dd8d0f581eecc2337b606a9eff62c67450152ebf0d7",
       "defaultSectionId": "part-001",
-      "previewBytes": 11112,
+      "previewBytes": 11130,
       "previewCharacterCount": 9970,
-      "estimatedRuntimeSeconds": 3605,
+      "estimatedRuntimeSeconds": 3660,
       "truncated": true
     },
     {
@@ -941,8 +941,8 @@
     {
       "slug": "pygmalion",
       "path": "/book-previews/pygmalion.preview.json",
-      "contentVersion": "09d24e1d78a97f18",
-      "contentHash": "09d24e1d78a97f1822cd1746a97397ca53976e5f6ba79ac5f99757dd21314cf8",
+      "contentVersion": "639868957a25f948",
+      "contentHash": "639868957a25f94892304ec871b6aef7b82bbdaf2933bb4390f2722de4627ba7",
       "defaultSectionId": "part-001",
       "previewBytes": 10662,
       "previewCharacterCount": 9699,
@@ -952,12 +952,12 @@
     {
       "slug": "the-adventures-of-tom-sawyer",
       "path": "/book-previews/the-adventures-of-tom-sawyer.preview.json",
-      "contentVersion": "b9d2b4d867fe9f45",
-      "contentHash": "b9d2b4d867fe9f45aca72102f7a0e535298cee93a6ddfba5844fab06cb8d595c",
+      "contentVersion": "1f3024a5ffe24d50",
+      "contentHash": "1f3024a5ffe24d502647c08f95453e9718e95dbb92ea5d2a1734319d9955373e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11049,
-      "previewCharacterCount": 9870,
-      "estimatedRuntimeSeconds": 3577,
+      "previewBytes": 11074,
+      "previewCharacterCount": 9877,
+      "estimatedRuntimeSeconds": 3600,
       "truncated": true
     },
     {
@@ -974,8 +974,8 @@
     {
       "slug": "the-hound-of-the-baskervilles",
       "path": "/book-previews/the-hound-of-the-baskervilles.preview.json",
-      "contentVersion": "c6bf7cc132c192f5",
-      "contentHash": "c6bf7cc132c192f513d502231ac1280da0cbe3235656c142c50b99f841c70066",
+      "contentVersion": "f78288919ff3930e",
+      "contentHash": "f78288919ff3930efae36c77bc6d79dca3b914c5e4d9d343551875d675d1d269",
       "defaultSectionId": "chapter-001",
       "previewBytes": 11196,
       "previewCharacterCount": 10090,
@@ -985,19 +985,19 @@
     {
       "slug": "the-king-in-yellow",
       "path": "/book-previews/the-king-in-yellow.preview.json",
-      "contentVersion": "09335206c61557c5",
-      "contentHash": "09335206c61557c5ddbe497e6339897dc6b132442c690c010489f183c9cf343a",
+      "contentVersion": "33700b50a45fc977",
+      "contentHash": "33700b50a45fc977242adead8b519e29f64bd97bd02fc30665b93d162f3252b0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10916,
+      "previewBytes": 10934,
       "previewCharacterCount": 9979,
-      "estimatedRuntimeSeconds": 3560,
+      "estimatedRuntimeSeconds": 3600,
       "truncated": true
     },
     {
       "slug": "the-life-and-adventures-of-robinson-crusoe",
       "path": "/book-previews/the-life-and-adventures-of-robinson-crusoe.preview.json",
-      "contentVersion": "fff923cbcf97efb2",
-      "contentHash": "fff923cbcf97efb242ea752c06d23f9da39fc23888d7ad62957e421cf4a658e4",
+      "contentVersion": "7526c19cfa1aa98f",
+      "contentHash": "7526c19cfa1aa98f7c8cac4f844b9af68f9e7fac066676e061f276aeb4d0aa12",
       "defaultSectionId": "chapter-001",
       "previewBytes": 9873,
       "previewCharacterCount": 8946,
@@ -1018,8 +1018,8 @@
     {
       "slug": "the-tempest",
       "path": "/book-previews/the-tempest.preview.json",
-      "contentVersion": "5e3c47b0e2a559bd",
-      "contentHash": "5e3c47b0e2a559bdc0dc45b837615032fdc18b67596f9274a6634b4c1bf12bf4",
+      "contentVersion": "9653134037b69dbf",
+      "contentHash": "9653134037b69dbfd8ce13537bb5fd74a162ff977957330a6a1bea5d13e06872",
       "defaultSectionId": "part-001",
       "previewBytes": 10881,
       "previewCharacterCount": 9830,
@@ -1051,19 +1051,19 @@
     {
       "slug": "the-wendigo",
       "path": "/book-previews/the-wendigo.preview.json",
-      "contentVersion": "55590681e7395da8",
-      "contentHash": "55590681e7395da83346c6d719dd3136bedab249dc2a3fa53e7c03c68524c093",
+      "contentVersion": "51aa2eb9b7f30daa",
+      "contentHash": "51aa2eb9b7f30daaefce01e5825811a05d9f977a9f2a997b51a0dda7887ccb25",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10628,
-      "previewCharacterCount": 9638,
-      "estimatedRuntimeSeconds": 3466,
+      "previewBytes": 10663,
+      "previewCharacterCount": 9655,
+      "estimatedRuntimeSeconds": 3480,
       "truncated": true
     },
     {
       "slug": "wuthering-heights",
       "path": "/book-previews/wuthering-heights.preview.json",
-      "contentVersion": "2950978335c7d835",
-      "contentHash": "2950978335c7d8354323ad37a4b121cff171a72e485fee21131c164d7914459e",
+      "contentVersion": "ee2c0b34546e3cc5",
+      "contentHash": "ee2c0b34546e3cc568e730b0c28c6d914b056a5edd9dcff23f8104b1aba975cc",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10799,
       "previewCharacterCount": 9840,
@@ -1073,8 +1073,8 @@
     {
       "slug": "anne-of-avonlea",
       "path": "/book-previews/anne-of-avonlea.preview.json",
-      "contentVersion": "7f02dd8b94db5b5a",
-      "contentHash": "7f02dd8b94db5b5aaa01b0ad584bdcb8e009cece2fd7bac89923f76721afb0f6",
+      "contentVersion": "8f18e8dbc9b448c0",
+      "contentHash": "8f18e8dbc9b448c01a99649239985f7d5d02fc3f9227de81f7b06215ec632a58",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10704,
       "previewCharacterCount": 9724,
@@ -1084,8 +1084,8 @@
     {
       "slug": "five-weeks-in-a-balloon",
       "path": "/book-previews/five-weeks-in-a-balloon.preview.json",
-      "contentVersion": "66e462aab228e009",
-      "contentHash": "66e462aab228e00912a782862b4d7a133f101f2dda7b7ed4639c89c6c0ad8056",
+      "contentVersion": "b79cea8de9c4bd4f",
+      "contentHash": "b79cea8de9c4bd4f53748f2b54422f035558fe6984020516d48c28715d79faae",
       "defaultSectionId": "chapter-001",
       "previewBytes": 10672,
       "previewCharacterCount": 9623,
@@ -1095,8 +1095,8 @@
     {
       "slug": "moby-dick",
       "path": "/book-previews/moby-dick.preview.json",
-      "contentVersion": "3d6b1370e7185921",
-      "contentHash": "3d6b1370e71859215a3aa1646cfd3ffba9962bf0343c726628341df467b9b7e1",
+      "contentVersion": "2df64f8e78e30b82",
+      "contentHash": "2df64f8e78e30b8253ea17ba3e85237b7d139b8d9a47b69e2de15a6c671c6ead",
       "defaultSectionId": "chapter-001",
       "previewBytes": 9998,
       "previewCharacterCount": 9110,
@@ -1120,7 +1120,7 @@
       "contentVersion": "135bdd9428d023f7",
       "contentHash": "135bdd9428d023f791fc8a04786c54cf0b42c2dd428979501c4e65a26a90cc2c",
       "defaultSectionId": "scene-001",
-      "previewBytes": 11049,
+      "previewBytes": 11068,
       "previewCharacterCount": 9980,
       "estimatedRuntimeSeconds": 3596,
       "truncated": true
@@ -1131,7 +1131,7 @@
       "contentVersion": "d64132ea776cd7e2",
       "contentHash": "d64132ea776cd7e22fa39f505a72bafda913cbf86be9214c735f909c74da2a15",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10976,
+      "previewBytes": 10995,
       "previewCharacterCount": 9904,
       "estimatedRuntimeSeconds": 3575,
       "truncated": true
@@ -1142,7 +1142,7 @@
       "contentVersion": "497d193ba32ab2b8",
       "contentHash": "497d193ba32ab2b8eae0ade22d8c6b919eb68f24af1ffcf8e20c1e1156ca71b5",
       "defaultSectionId": "scene-001",
-      "previewBytes": 10762,
+      "previewBytes": 10781,
       "previewCharacterCount": 9755,
       "estimatedRuntimeSeconds": 3507,
       "truncated": true
@@ -1153,7 +1153,7 @@
       "contentVersion": "7ff5baf3c4e85b4d",
       "contentHash": "7ff5baf3c4e85b4dafcb8df44b3b9302691ee37e811dc46f32c0ec136503ad42",
       "defaultSectionId": "scene-001",
-      "previewBytes": 10872,
+      "previewBytes": 10891,
       "previewCharacterCount": 9920,
       "estimatedRuntimeSeconds": 3618,
       "truncated": true
@@ -1164,7 +1164,7 @@
       "contentVersion": "d0d2f6651f95db6d",
       "contentHash": "d0d2f6651f95db6d444a7d612bfc472c4c73b61285c28276f0bc1c93bb400265",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10838,
+      "previewBytes": 10857,
       "previewCharacterCount": 9909,
       "estimatedRuntimeSeconds": 3537,
       "truncated": true
@@ -1175,7 +1175,7 @@
       "contentVersion": "a789b13ed39f462f",
       "contentHash": "a789b13ed39f462f0435c21e423c7eff582efa2c28347400fb09cf45942000c2",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10650,
+      "previewBytes": 10669,
       "previewCharacterCount": 9684,
       "estimatedRuntimeSeconds": 3456,
       "truncated": false
@@ -1183,10 +1183,10 @@
     {
       "slug": "romeo-and-juliet",
       "path": "/book-previews/romeo-and-juliet.preview.json",
-      "contentVersion": "6a3d7894ed75eb80",
-      "contentHash": "6a3d7894ed75eb80f99997821b8bede6d669e1c4ef657cacf06ad7e6d60ea971",
+      "contentVersion": "164c64dbbb669695",
+      "contentHash": "164c64dbbb66969517a049a0c735d4518caeb037280722a3ec4216421f12720f",
       "defaultSectionId": "prologue-001",
-      "previewBytes": 11050,
+      "previewBytes": 11069,
       "previewCharacterCount": 9907,
       "estimatedRuntimeSeconds": 3569,
       "truncated": true
@@ -1194,10 +1194,10 @@
     {
       "slug": "the-adventures-of-ferdinand-count-fathom",
       "path": "/book-previews/the-adventures-of-ferdinand-count-fathom.preview.json",
-      "contentVersion": "cc2598f1c17dfcb3",
-      "contentHash": "cc2598f1c17dfcb3b6b53c56c45ff19ef1e6c664b73bd6d4b322f5bb7105eb1b",
+      "contentVersion": "ac687235d82f8744",
+      "contentHash": "ac687235d82f87442487e25acf2ded1208eafcd1fd02231a190d6b34f1c7100d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10355,
+      "previewBytes": 10374,
       "previewCharacterCount": 9377,
       "estimatedRuntimeSeconds": 3360,
       "truncated": true
@@ -1205,10 +1205,10 @@
     {
       "slug": "the-adventures-of-roderick-random",
       "path": "/book-previews/the-adventures-of-roderick-random.preview.json",
-      "contentVersion": "85f38aae372a0ab2",
-      "contentHash": "85f38aae372a0ab254244f0d6feabfedf662f7ce514dec2ef966c2ffc54c4eb0",
+      "contentVersion": "f055b94071f58031",
+      "contentHash": "f055b94071f580310f6f928020627c5cb5d7ae34bec9951ed9ca0d85c649ff28",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9997,
+      "previewBytes": 10016,
       "previewCharacterCount": 9080,
       "estimatedRuntimeSeconds": 3246,
       "truncated": true
@@ -1216,10 +1216,10 @@
     {
       "slug": "the-expedition-of-humphry-clinker",
       "path": "/book-previews/the-expedition-of-humphry-clinker.preview.json",
-      "contentVersion": "8bbe6868252931df",
-      "contentHash": "8bbe6868252931dfbc8a062638d0007a80fbf1f587c8b9eb1dc3b597ed209d07",
+      "contentVersion": "d58cc47de3b50166",
+      "contentHash": "d58cc47de3b50166494534d805653569931ba7df6556a4582fab6afa36b874f7",
       "defaultSectionId": "letter-001",
-      "previewBytes": 9998,
+      "previewBytes": 10017,
       "previewCharacterCount": 9053,
       "estimatedRuntimeSeconds": 3261,
       "truncated": true
@@ -1230,7 +1230,7 @@
       "contentVersion": "63877d9da5d98b87",
       "contentHash": "63877d9da5d98b87034b7c44115e8d7e01460289a40fc6e49df30d91e54e1c2d",
       "defaultSectionId": "scene-001",
-      "previewBytes": 10987,
+      "previewBytes": 11006,
       "previewCharacterCount": 9887,
       "estimatedRuntimeSeconds": 3521,
       "truncated": true
@@ -1238,10 +1238,10 @@
     {
       "slug": "the-man-who-was-thursday-a-nightmare",
       "path": "/book-previews/the-man-who-was-thursday-a-nightmare.preview.json",
-      "contentVersion": "67a014193a32fc9f",
-      "contentHash": "67a014193a32fc9f823438d5dddbd0af7a0946bffa5ec38c065907172b5ad587",
+      "contentVersion": "e3775758c3ae7e0b",
+      "contentHash": "e3775758c3ae7e0b79ade5a77a5b200c48944cd6e5fcc2be049628baf5c75611",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11025,
+      "previewBytes": 11044,
       "previewCharacterCount": 10044,
       "estimatedRuntimeSeconds": 3572,
       "truncated": true
@@ -1252,7 +1252,7 @@
       "contentVersion": "40adeecb2e1e44ce",
       "contentHash": "40adeecb2e1e44ce781fa0f289a35ff71683d3db7d1c61dcc26b055156cbeefb",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5911,
+      "previewBytes": 5930,
       "previewCharacterCount": 5080,
       "estimatedRuntimeSeconds": 1805,
       "truncated": false
@@ -1263,7 +1263,7 @@
       "contentVersion": "39e9adecbc15e4b0",
       "contentHash": "39e9adecbc15e4b09029e7ba16de8e59b05182b583d66c85b4a6311dead2ad52",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10534,
+      "previewBytes": 10553,
       "previewCharacterCount": 9544,
       "estimatedRuntimeSeconds": 3436,
       "truncated": true
@@ -1274,7 +1274,7 @@
       "contentVersion": "5e7c07e6d3f7e4b3",
       "contentHash": "5e7c07e6d3f7e4b3639e3f2ac61014e1bc32096f351a10d93b91ad13665ae727",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10976,
+      "previewBytes": 10995,
       "previewCharacterCount": 10075,
       "estimatedRuntimeSeconds": 3590,
       "truncated": true
@@ -1285,7 +1285,7 @@
       "contentVersion": "a6a235a947a8d85e",
       "contentHash": "a6a235a947a8d85eb84bf4a4af8a3af8174673e7686df346438bf61c6a4b6c42",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10592,
+      "previewBytes": 10611,
       "previewCharacterCount": 9630,
       "estimatedRuntimeSeconds": 3485,
       "truncated": true
@@ -1296,7 +1296,7 @@
       "contentVersion": "4e5622e362712ea8",
       "contentHash": "4e5622e362712ea83ccccffb441ad11422e80d53749f36fd38ee0a828bdd1281",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 27429,
+      "previewBytes": 27448,
       "previewCharacterCount": 26129,
       "estimatedRuntimeSeconds": 9309,
       "truncated": false
@@ -1304,10 +1304,10 @@
     {
       "slug": "twenty-thousand-leagues-under-the-sea",
       "path": "/book-previews/twenty-thousand-leagues-under-the-sea.preview.json",
-      "contentVersion": "edfbe4d99326fd6c",
-      "contentHash": "edfbe4d99326fd6cd846e3470a87f3189e913a5871ebc42da9c6fbe10682f9ed",
+      "contentVersion": "07a861d74411306d",
+      "contentHash": "07a861d74411306d4a269a9500e2ddc6f3d973b33e37e62b38bcf017e8a9fd04",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10122,
+      "previewBytes": 10141,
       "previewCharacterCount": 9168,
       "estimatedRuntimeSeconds": 3279,
       "truncated": true
@@ -1318,7 +1318,7 @@
       "contentVersion": "fad65747bab66456",
       "contentHash": "fad65747bab66456bc743f0cef09cc1e7c02806e06666a133072da8af2616315",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11110,
+      "previewBytes": 11129,
       "previewCharacterCount": 10099,
       "estimatedRuntimeSeconds": 3581,
       "truncated": true
@@ -1326,10 +1326,10 @@
     {
       "slug": "spoon-river-anthology",
       "path": "/book-previews/spoon-river-anthology.preview.json",
-      "contentVersion": "ef0e60e0d14caf9b",
-      "contentHash": "ef0e60e0d14caf9bbe4cf80c82261b952ba558b1040400792cd6b22822c693de",
+      "contentVersion": "422ffa5f5d9a5553",
+      "contentHash": "422ffa5f5d9a55535a44a4c0cdd61c77a9755c93cc07ff586e0c53131ea6d8cb",
       "defaultSectionId": "poem-001",
-      "previewBytes": 10940,
+      "previewBytes": 10959,
       "previewCharacterCount": 9890,
       "estimatedRuntimeSeconds": 3532,
       "truncated": true
@@ -1340,7 +1340,7 @@
       "contentVersion": "66161609e307dc21",
       "contentHash": "66161609e307dc215844404146264bf0c02b73a4203199dde504b72d0fdb18de",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10957,
+      "previewBytes": 10976,
       "previewCharacterCount": 9828,
       "estimatedRuntimeSeconds": 3568,
       "truncated": true
@@ -1348,10 +1348,10 @@
     {
       "slug": "at-the-earth-s-core",
       "path": "/book-previews/at-the-earth-s-core.preview.json",
-      "contentVersion": "f547850be68b55dd",
-      "contentHash": "f547850be68b55dd760222427df8923913636748d810ae6cd50dc17505293ee8",
+      "contentVersion": "3ad8342269110cca",
+      "contentHash": "3ad8342269110cca4b46019126d6620e9c2c64c942de6b86fd4979f217010391",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10979,
+      "previewBytes": 10998,
       "previewCharacterCount": 10000,
       "estimatedRuntimeSeconds": 3524,
       "truncated": true
@@ -1362,7 +1362,7 @@
       "contentVersion": "fc084b6954439641",
       "contentHash": "fc084b6954439641f2bf00d6fbf3784bf7758ac2202bb9ca6d747cc97936f618",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9320,
+      "previewBytes": 9339,
       "previewCharacterCount": 8458,
       "estimatedRuntimeSeconds": 3017,
       "truncated": true
@@ -1370,10 +1370,10 @@
     {
       "slug": "despair-s-last-journey",
       "path": "/book-previews/despair-s-last-journey.preview.json",
-      "contentVersion": "98b30609251e054f",
-      "contentHash": "98b30609251e054f0d37ebe60b9b199fbab8a5e50e146f2fcd4c87718f69382e",
+      "contentVersion": "098bd26a1203ded8",
+      "contentHash": "098bd26a1203ded83b293e0c4ada5ef2a72e4067f2051a8ba3c420b261c78f45",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9974,
+      "previewBytes": 9993,
       "previewCharacterCount": 8941,
       "estimatedRuntimeSeconds": 3217,
       "truncated": true
@@ -1381,10 +1381,10 @@
     {
       "slug": "five-children-and-it",
       "path": "/book-previews/five-children-and-it.preview.json",
-      "contentVersion": "f0719bd1d4819791",
-      "contentHash": "f0719bd1d4819791589869ff2297242029474f118f3c1fc4c0d44379efc991ba",
+      "contentVersion": "a211007d284ab5dc",
+      "contentHash": "a211007d284ab5dc570d3bba407d06a73a0fce401086db5eb0993a4d96ed8705",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10758,
+      "previewBytes": 10777,
       "previewCharacterCount": 9809,
       "estimatedRuntimeSeconds": 3492,
       "truncated": true
@@ -1395,7 +1395,7 @@
       "contentVersion": "781baf638c429f4d",
       "contentHash": "781baf638c429f4d8bf61cfaf7eb9bcc1c8c9d751a9491b2c32997ac74a1642b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11469,
+      "previewBytes": 11488,
       "previewCharacterCount": 10451,
       "estimatedRuntimeSeconds": 3521,
       "truncated": true
@@ -1406,7 +1406,7 @@
       "contentVersion": "5b26bde6b338c01a",
       "contentHash": "5b26bde6b338c01a5f6b80a3cae288ea53fe50f174c9c3e898892c483c142d2b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11091,
+      "previewBytes": 11110,
       "previewCharacterCount": 9979,
       "estimatedRuntimeSeconds": 3577,
       "truncated": true
@@ -1417,7 +1417,7 @@
       "contentVersion": "d232e80cb0c940c3",
       "contentHash": "d232e80cb0c940c3378d6416a9b7b1158e4d2f92317681ef32114ca89e3d92d5",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9363,
+      "previewBytes": 9382,
       "previewCharacterCount": 8448,
       "estimatedRuntimeSeconds": 2971,
       "truncated": true
@@ -1428,7 +1428,7 @@
       "contentVersion": "7194dae5d91cd784",
       "contentHash": "7194dae5d91cd784894679a8e95a752156849ac32c99c78afd4646185dcfc925",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11142,
+      "previewBytes": 11161,
       "previewCharacterCount": 9988,
       "estimatedRuntimeSeconds": 3592,
       "truncated": true
@@ -1439,7 +1439,7 @@
       "contentVersion": "ef276e4da6c6aa51",
       "contentHash": "ef276e4da6c6aa51d7404ebd7112416c42c2a230d23f094cf0f080ae3d4c6351",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10539,
+      "previewBytes": 10558,
       "previewCharacterCount": 9565,
       "estimatedRuntimeSeconds": 3413,
       "truncated": true
@@ -1447,10 +1447,10 @@
     {
       "slug": "lord-jim",
       "path": "/book-previews/lord-jim.preview.json",
-      "contentVersion": "9a67af9394c2cb3b",
-      "contentHash": "9a67af9394c2cb3bd08485c6c7139d9a4325c65d420862f861cb24ea6f4e748d",
+      "contentVersion": "36dbe9f91e793a79",
+      "contentHash": "36dbe9f91e793a79ab2fbe57649eee543a4c4f4b962ea2be72c73bd24bf08f1b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9876,
+      "previewBytes": 9895,
       "previewCharacterCount": 8962,
       "estimatedRuntimeSeconds": 3220,
       "truncated": true
@@ -1461,7 +1461,7 @@
       "contentVersion": "af45109367a8c381",
       "contentHash": "af45109367a8c381095d8f636806fa1a9883c79d0e6554de4995490eefc6d0ee",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10682,
+      "previewBytes": 10701,
       "previewCharacterCount": 9698,
       "estimatedRuntimeSeconds": 3463,
       "truncated": true
@@ -1472,7 +1472,7 @@
       "contentVersion": "ff0ee29f24752978",
       "contentHash": "ff0ee29f2475297833980e375ee6cfe42cdad3c2bd68cfd08683594b3637112e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10937,
+      "previewBytes": 10956,
       "previewCharacterCount": 9997,
       "estimatedRuntimeSeconds": 3559,
       "truncated": true
@@ -1480,10 +1480,10 @@
     {
       "slug": "pollyanna",
       "path": "/book-previews/pollyanna.preview.json",
-      "contentVersion": "d9d2549538591eed",
-      "contentHash": "d9d2549538591eed3290551331bb6a076b8ffdfc0df201ab2e06cbe5be36a547",
+      "contentVersion": "47ed33f2fa09ccd2",
+      "contentHash": "47ed33f2fa09ccd2d8c1c6d06f8a81b107ab19d93308a9af156c47534868bcf1",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10878,
+      "previewBytes": 10897,
       "previewCharacterCount": 9765,
       "estimatedRuntimeSeconds": 3541,
       "truncated": true
@@ -1494,7 +1494,7 @@
       "contentVersion": "7d511f8de17957fc",
       "contentHash": "7d511f8de17957fc427c4f939b6eb37a26d8df06f180f8f856c7c3b5708a5af5",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10672,
+      "previewBytes": 10691,
       "previewCharacterCount": 9546,
       "estimatedRuntimeSeconds": 3437,
       "truncated": true
@@ -1505,7 +1505,7 @@
       "contentVersion": "a0241abb6887129f",
       "contentHash": "a0241abb6887129fbd417d23ff3c230e0e705577650330a5e625e0226c1abd47",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11350,
+      "previewBytes": 11369,
       "previewCharacterCount": 10061,
       "estimatedRuntimeSeconds": 3592,
       "truncated": true
@@ -1516,7 +1516,7 @@
       "contentVersion": "5d9eabf2fe32ec06",
       "contentHash": "5d9eabf2fe32ec0621479da57664e02e7013c95463bb72d56c259b10b3902711",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11148,
+      "previewBytes": 11167,
       "previewCharacterCount": 9977,
       "estimatedRuntimeSeconds": 3588,
       "truncated": true
@@ -1524,10 +1524,10 @@
     {
       "slug": "the-virginian-a-horseman-of-the-plains",
       "path": "/book-previews/the-virginian-a-horseman-of-the-plains.preview.json",
-      "contentVersion": "25daa9480e56fbe0",
-      "contentHash": "25daa9480e56fbe0da609b5982d247c968f0cbdb682593826bd77a3572911b56",
+      "contentVersion": "8eeef7b40332b1a6",
+      "contentHash": "8eeef7b40332b1a6e2636647abe2ae8cb1832f967bbfa3a5f56f679e81a4b3cf",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10221,
+      "previewBytes": 10240,
       "previewCharacterCount": 9000,
       "estimatedRuntimeSeconds": 3254,
       "truncated": true
@@ -1535,10 +1535,10 @@
     {
       "slug": "the-green-mummy",
       "path": "/book-previews/the-green-mummy.preview.json",
-      "contentVersion": "55f3a2cbd6994166",
-      "contentHash": "55f3a2cbd6994166ed8118c3a17da1e7b568e78cbed3494deb861f38ae31953f",
+      "contentVersion": "03766aaeadc31d21",
+      "contentHash": "03766aaeadc31d21f5d88d9f23e24cccfe5942afa950706ecfc7d53774000e9f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11068,
+      "previewBytes": 11087,
       "previewCharacterCount": 9830,
       "estimatedRuntimeSeconds": 3554,
       "truncated": true
@@ -1549,7 +1549,7 @@
       "contentVersion": "552c8a311b6f1c8a",
       "contentHash": "552c8a311b6f1c8a5c885251d00f540232c7149e01fc55644b9c828ddfe5eb93",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10993,
+      "previewBytes": 11012,
       "previewCharacterCount": 9981,
       "estimatedRuntimeSeconds": 3550,
       "truncated": true
@@ -1560,7 +1560,7 @@
       "contentVersion": "f584012ed3bd1132",
       "contentHash": "f584012ed3bd11320514886adadfbaa89579451123a105c4ee2d4d102646a75a",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10492,
+      "previewBytes": 10511,
       "previewCharacterCount": 9547,
       "estimatedRuntimeSeconds": 3443,
       "truncated": true
@@ -1571,7 +1571,7 @@
       "contentVersion": "f2302ef94f54a6cb",
       "contentHash": "f2302ef94f54a6cb3a978d8f4ce91bc1c77f9a1e103833552bb9ab34f569a35b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10872,
+      "previewBytes": 10891,
       "previewCharacterCount": 9951,
       "estimatedRuntimeSeconds": 3579,
       "truncated": true
@@ -1582,7 +1582,7 @@
       "contentVersion": "33dcda1be128685d",
       "contentHash": "33dcda1be128685d6d9ec95306ce0481d6f7787102d6c511cb083ca976137077",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10006,
+      "previewBytes": 10025,
       "previewCharacterCount": 9120,
       "estimatedRuntimeSeconds": 3259,
       "truncated": true
@@ -1593,7 +1593,7 @@
       "contentVersion": "565858ee9f8e9843",
       "contentHash": "565858ee9f8e9843b6ffa3572a2ec139abb6b76da7034a6f6201f0b6a6403e2b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10711,
+      "previewBytes": 10730,
       "previewCharacterCount": 9865,
       "estimatedRuntimeSeconds": 3521,
       "truncated": true
@@ -1604,7 +1604,7 @@
       "contentVersion": "8f3aba0c4e0f88a9",
       "contentHash": "8f3aba0c4e0f88a913cdfc9b90f8c9da1e3d0249dfad74753047afa56edcdd67",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11085,
+      "previewBytes": 11104,
       "previewCharacterCount": 10008,
       "estimatedRuntimeSeconds": 3590,
       "truncated": true
@@ -1612,10 +1612,10 @@
     {
       "slug": "unicorns",
       "path": "/book-previews/unicorns.preview.json",
-      "contentVersion": "baa947d6943eed8f",
-      "contentHash": "baa947d6943eed8f7ac5e04029bbb180ca579060fe29d8f559d70738f45cabde",
+      "contentVersion": "3d18cd9ff582481e",
+      "contentHash": "3d18cd9ff582481e3dc656883b58a70b2ea9415b8a66a14a0bf870532b1526b9",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10090,
+      "previewBytes": 10109,
       "previewCharacterCount": 9155,
       "estimatedRuntimeSeconds": 3294,
       "truncated": true
@@ -1626,7 +1626,7 @@
       "contentVersion": "b29b2d2b3845d1db",
       "contentHash": "b29b2d2b3845d1db38cd70b3b49e147af437dd923aaa58a9502944aa44c35d92",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10141,
+      "previewBytes": 10160,
       "previewCharacterCount": 9264,
       "estimatedRuntimeSeconds": 3307,
       "truncated": true
@@ -1637,7 +1637,7 @@
       "contentVersion": "61da868ce312ca98",
       "contentHash": "61da868ce312ca988ff6f7d6eda50559c44e347d6caf54fc117e52058511a715",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10740,
+      "previewBytes": 10759,
       "previewCharacterCount": 9776,
       "estimatedRuntimeSeconds": 3482,
       "truncated": true
@@ -1648,7 +1648,7 @@
       "contentVersion": "1c6243ace430289a",
       "contentHash": "1c6243ace430289a3d6932dc8f84f4986d96fa105c41b88f0d7020c13332c3a0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11031,
+      "previewBytes": 11050,
       "previewCharacterCount": 10007,
       "estimatedRuntimeSeconds": 3548,
       "truncated": true
@@ -1659,7 +1659,7 @@
       "contentVersion": "60faa9912a23f824",
       "contentHash": "60faa9912a23f824c13109e8e0561b5565e1a2e1448a3352478e4b052283c26e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11040,
+      "previewBytes": 11059,
       "previewCharacterCount": 9997,
       "estimatedRuntimeSeconds": 3587,
       "truncated": true
@@ -1670,7 +1670,7 @@
       "contentVersion": "d75d3a4cf9a54880",
       "contentHash": "d75d3a4cf9a548800802d411df9a9209c47af32a4cb76bb2ed6f63bbf5712f9b",
       "defaultSectionId": "poem-001",
-      "previewBytes": 11976,
+      "previewBytes": 11995,
       "previewCharacterCount": 10941,
       "estimatedRuntimeSeconds": 3438,
       "truncated": true
@@ -1681,7 +1681,7 @@
       "contentVersion": "bb875cbb9aeb95a5",
       "contentHash": "bb875cbb9aeb95a5a5ef04ebec1d00e93612e8ab2b39d70b595080d83983e3f5",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11019,
+      "previewBytes": 11038,
       "previewCharacterCount": 10101,
       "estimatedRuntimeSeconds": 3563,
       "truncated": true
@@ -1692,7 +1692,7 @@
       "contentVersion": "e95411b0b5d340e9",
       "contentHash": "e95411b0b5d340e93d01ea96b0666b1497459e56d2be9265a9cbeb66d09759ac",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10978,
+      "previewBytes": 10997,
       "previewCharacterCount": 9937,
       "estimatedRuntimeSeconds": 3561,
       "truncated": true
@@ -1703,7 +1703,7 @@
       "contentVersion": "a81704aaacc8ebd8",
       "contentHash": "a81704aaacc8ebd8d27905d0508cb7da25d06bec9aad36281486509c6d3cde92",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11250,
+      "previewBytes": 11269,
       "previewCharacterCount": 9888,
       "estimatedRuntimeSeconds": 3572,
       "truncated": true
@@ -1714,7 +1714,7 @@
       "contentVersion": "b337099f087a2d13",
       "contentHash": "b337099f087a2d13d495093360312445fdd79fdc61253eac6bef5c08a45661af",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9767,
+      "previewBytes": 9786,
       "previewCharacterCount": 9005,
       "estimatedRuntimeSeconds": 3205,
       "truncated": true
@@ -1725,7 +1725,7 @@
       "contentVersion": "9bd2d4c6f690bf8d",
       "contentHash": "9bd2d4c6f690bf8d89a68f79fc8f357f44d4dbe023122c9d16c84d81932d472c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10148,
+      "previewBytes": 10167,
       "previewCharacterCount": 9216,
       "estimatedRuntimeSeconds": 3286,
       "truncated": true
@@ -1736,7 +1736,7 @@
       "contentVersion": "8b9db88127ce3c37",
       "contentHash": "8b9db88127ce3c37640b0bc140a1799037e440576319a3e638271d48a15e76f8",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10740,
+      "previewBytes": 10759,
       "previewCharacterCount": 9683,
       "estimatedRuntimeSeconds": 3454,
       "truncated": true
@@ -1747,7 +1747,7 @@
       "contentVersion": "670d806c13bd29f6",
       "contentHash": "670d806c13bd29f6a2a16df1211643ee328a38a03871a4e214d86eb82518072f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10920,
+      "previewBytes": 10939,
       "previewCharacterCount": 10133,
       "estimatedRuntimeSeconds": 3593,
       "truncated": true
@@ -1758,7 +1758,7 @@
       "contentVersion": "858b836c0d8a9b53",
       "contentHash": "858b836c0d8a9b537b399499ede24107185dcd3ea7dd88c593cdb4b50e9edf06",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10958,
+      "previewBytes": 10977,
       "previewCharacterCount": 10156,
       "estimatedRuntimeSeconds": 3599,
       "truncated": true
@@ -1769,7 +1769,7 @@
       "contentVersion": "dc5506719d8c6112",
       "contentHash": "dc5506719d8c6112ba53b154e890e5f827143e322dd8996ac441bee6c5155194",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11036,
+      "previewBytes": 11055,
       "previewCharacterCount": 10172,
       "estimatedRuntimeSeconds": 3599,
       "truncated": true
@@ -1780,7 +1780,7 @@
       "contentVersion": "3b8239c5dba4629a",
       "contentHash": "3b8239c5dba4629ab75f0a4013fae54b6f78ba2db805f11dad93e70c48879c95",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10638,
+      "previewBytes": 10657,
       "previewCharacterCount": 9754,
       "estimatedRuntimeSeconds": 3448,
       "truncated": true
@@ -1791,7 +1791,7 @@
       "contentVersion": "7aa10901e500fc38",
       "contentHash": "7aa10901e500fc3859de7114aa37ca389e7f5861086a1d3d18d3b4ce6b3a0189",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11021,
+      "previewBytes": 11040,
       "previewCharacterCount": 9955,
       "estimatedRuntimeSeconds": 3582,
       "truncated": true
@@ -1802,7 +1802,7 @@
       "contentVersion": "8845bd2b573523e0",
       "contentHash": "8845bd2b573523e0439fcfe4e1377da089cf45dd016bb8e7865cc4cd4a2b9591",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10798,
+      "previewBytes": 10817,
       "previewCharacterCount": 9753,
       "estimatedRuntimeSeconds": 3517,
       "truncated": true
@@ -1813,7 +1813,7 @@
       "contentVersion": "148c3e3925d05795",
       "contentHash": "148c3e3925d057952871eab05fd36fe0a00533b161777da0a9b87ba12f979980",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11194,
+      "previewBytes": 11213,
       "previewCharacterCount": 9993,
       "estimatedRuntimeSeconds": 3579,
       "truncated": true
@@ -1821,10 +1821,10 @@
     {
       "slug": "a-study-in-scarlet",
       "path": "/book-previews/a-study-in-scarlet.preview.json",
-      "contentVersion": "d4f4f962b45c2b51",
-      "contentHash": "d4f4f962b45c2b51f972e08aac351f5f443b9791ded87c0a13eaf20d3f5d698b",
+      "contentVersion": "943a00dff044c9f8",
+      "contentHash": "943a00dff044c9f8bbd79d7a99e4c1070d3827fd2fc3cc3126727f5caba05bc2",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10877,
+      "previewBytes": 10896,
       "previewCharacterCount": 9712,
       "estimatedRuntimeSeconds": 3475,
       "truncated": true
@@ -1835,7 +1835,7 @@
       "contentVersion": "431630c68867d946",
       "contentHash": "431630c68867d9460860a21821b130aaad8259501e6550457e09c7b65169cb98",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10678,
+      "previewBytes": 10697,
       "previewCharacterCount": 9800,
       "estimatedRuntimeSeconds": 3465,
       "truncated": true
@@ -1843,10 +1843,10 @@
     {
       "slug": "deep-sea-plunderings",
       "path": "/book-previews/deep-sea-plunderings.preview.json",
-      "contentVersion": "61d790da214603b1",
-      "contentHash": "61d790da214603b1b11790c5a8635c2bc78c87f9d02f9bba3b20de8bcbc35de8",
+      "contentVersion": "748f349647db2e9d",
+      "contentHash": "748f349647db2e9da44e669860e375e8abb39d955f2de532f66a2102e3307462",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10334,
+      "previewBytes": 10353,
       "previewCharacterCount": 9387,
       "estimatedRuntimeSeconds": 3371,
       "truncated": true
@@ -1857,7 +1857,7 @@
       "contentVersion": "02be3e4b4b4ef9fb",
       "contentHash": "02be3e4b4b4ef9fbbf03d300648a81aeb918f2a529917c6b1e22b69d6b28ed33",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10984,
+      "previewBytes": 11003,
       "previewCharacterCount": 9782,
       "estimatedRuntimeSeconds": 3595,
       "truncated": true
@@ -1868,7 +1868,7 @@
       "contentVersion": "0bc9489508265c19",
       "contentHash": "0bc9489508265c19c5f173a36f26a6802822046ca590da286d69352466499e25",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10923,
+      "previewBytes": 10942,
       "previewCharacterCount": 10011,
       "estimatedRuntimeSeconds": 3576,
       "truncated": true
@@ -1876,10 +1876,10 @@
     {
       "slug": "quo-vadis",
       "path": "/book-previews/quo-vadis.preview.json",
-      "contentVersion": "b19872b1415de6f4",
-      "contentHash": "b19872b1415de6f412bd525f63c7017fd704a077d29f08f151b044deca502e2f",
+      "contentVersion": "c0f4d29a184623d2",
+      "contentHash": "c0f4d29a184623d20e776cf0cecc616889aa8ed25fd1ce88e2ef31010d5e6a1b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10899,
+      "previewBytes": 10918,
       "previewCharacterCount": 9859,
       "estimatedRuntimeSeconds": 3528,
       "truncated": true
@@ -1887,10 +1887,10 @@
     {
       "slug": "the-amateur-cracksman",
       "path": "/book-previews/the-amateur-cracksman.preview.json",
-      "contentVersion": "76a5469dd70fdc6a",
-      "contentHash": "76a5469dd70fdc6a59f602b6b01b028c7e211a98b3b9ece031b5c55b56bd77c0",
+      "contentVersion": "e4bd0077ef67fdc8",
+      "contentHash": "e4bd0077ef67fdc814541b60e653e5524d17e945789224ad12a0de3e4d602a13",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11144,
+      "previewBytes": 11163,
       "previewCharacterCount": 10070,
       "estimatedRuntimeSeconds": 3605,
       "truncated": true
@@ -1898,10 +1898,10 @@
     {
       "slug": "the-black-star-passes",
       "path": "/book-previews/the-black-star-passes.preview.json",
-      "contentVersion": "8ed6551643f1cb3e",
-      "contentHash": "8ed6551643f1cb3e883a6a36e72feef095144f562c1518c152dca530a070bd2a",
+      "contentVersion": "01527a927b9ab59e",
+      "contentHash": "01527a927b9ab59e70546b0c78a94b388c035a8fed42f5588596337c5602c443",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10453,
+      "previewBytes": 10472,
       "previewCharacterCount": 9507,
       "estimatedRuntimeSeconds": 3371,
       "truncated": true
@@ -1912,7 +1912,7 @@
       "contentVersion": "8ab0fa25e5277fc0",
       "contentHash": "8ab0fa25e5277fc05b7a90a5c824a0ed8c32e7c601738c959781254f2ae0fadf",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10131,
+      "previewBytes": 10150,
       "previewCharacterCount": 9156,
       "estimatedRuntimeSeconds": 3299,
       "truncated": true
@@ -1920,10 +1920,10 @@
     {
       "slug": "the-brothers-karamazov",
       "path": "/book-previews/the-brothers-karamazov.preview.json",
-      "contentVersion": "f62de9bc4d259f39",
-      "contentHash": "f62de9bc4d259f39497bb4e2ccfde76b85066c02ed7bff3ab2f304f1d52838aa",
+      "contentVersion": "16c6507a37d3c8c2",
+      "contentHash": "16c6507a37d3c8c24e0d3817460a5172649978c9cd1ee34470e718816d399b0a",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9359,
+      "previewBytes": 9378,
       "previewCharacterCount": 8395,
       "estimatedRuntimeSeconds": 3006,
       "truncated": true
@@ -1934,7 +1934,7 @@
       "contentVersion": "2262f36185b331fd",
       "contentHash": "2262f36185b331fdbc6377efdcc3119600e6278e54e4ec0b7281bec85496db27",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10898,
+      "previewBytes": 10917,
       "previewCharacterCount": 9967,
       "estimatedRuntimeSeconds": 3585,
       "truncated": true
@@ -1945,7 +1945,7 @@
       "contentVersion": "1634cde8b35c1c00",
       "contentHash": "1634cde8b35c1c0026db724ab8496e4b85dfce929ecffc4a9b67fe88b78cd30d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8286,
+      "previewBytes": 8305,
       "previewCharacterCount": 7423,
       "estimatedRuntimeSeconds": 2618,
       "truncated": false
@@ -1956,7 +1956,7 @@
       "contentVersion": "890c693cea62bc92",
       "contentHash": "890c693cea62bc92452bb74f3a9cfadd476d5e93680fec92f39da2805b38392b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10699,
+      "previewBytes": 10718,
       "previewCharacterCount": 9776,
       "estimatedRuntimeSeconds": 3460,
       "truncated": true
@@ -1964,10 +1964,10 @@
     {
       "slug": "the-history-of-sir-richard-calmady-a-romance",
       "path": "/book-previews/the-history-of-sir-richard-calmady-a-romance.preview.json",
-      "contentVersion": "a0e5523e832b5166",
-      "contentHash": "a0e5523e832b5166a46e8ee8dd499018c4ad0bf04428e2ce79f22094721033c8",
+      "contentVersion": "10aa7268ea975141",
+      "contentHash": "10aa7268ea9751412eb70ec104543fd6925597aebdf82e11dbad94b634ad5d99",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10806,
+      "previewBytes": 10825,
       "previewCharacterCount": 9871,
       "estimatedRuntimeSeconds": 3553,
       "truncated": true
@@ -1978,7 +1978,7 @@
       "contentVersion": "3bd25b4032f7aa65",
       "contentHash": "3bd25b4032f7aa65ca47bcf4862f7ede86551ba1271406d215aae2e6da6aea80",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11034,
+      "previewBytes": 11053,
       "previewCharacterCount": 10133,
       "estimatedRuntimeSeconds": 3527,
       "truncated": true
@@ -1989,7 +1989,7 @@
       "contentVersion": "302c71d15ebbcd76",
       "contentHash": "302c71d15ebbcd76355da1f01bcf81c190ef3e67cf9cecf36c71a4fd9442252e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10319,
+      "previewBytes": 10338,
       "previewCharacterCount": 9376,
       "estimatedRuntimeSeconds": 3346,
       "truncated": true
@@ -1997,12 +1997,12 @@
     {
       "slug": "the-turmoil",
       "path": "/book-previews/the-turmoil.preview.json",
-      "contentVersion": "45da3d99a68fd57f",
-      "contentHash": "45da3d99a68fd57ff3209bee7c3398bb5ee77cfb75d66b382a95b80604ce857b",
+      "contentVersion": "aafd11a6a0ace04a",
+      "contentHash": "aafd11a6a0ace04a0fd3a499e606814a96678adb3c6e2dcc28a42d3785b381d0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10251,
-      "previewCharacterCount": 9341,
-      "estimatedRuntimeSeconds": 3339,
+      "previewBytes": 10293,
+      "previewCharacterCount": 9346,
+      "estimatedRuntimeSeconds": 3360,
       "truncated": true
     },
     {
@@ -2011,7 +2011,7 @@
       "contentVersion": "945b53d1d7f657ff",
       "contentHash": "945b53d1d7f657ffc4e2f78db6613fe0b46b38b821bb4cdeac7df74f7421cd50",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10937,
+      "previewBytes": 10956,
       "previewCharacterCount": 9921,
       "estimatedRuntimeSeconds": 3589,
       "truncated": true
@@ -2019,10 +2019,10 @@
     {
       "slug": "the-time-machine",
       "path": "/book-previews/the-time-machine.preview.json",
-      "contentVersion": "352ea9183b7cab8a",
-      "contentHash": "352ea9183b7cab8a1e4e98a06dac1eaf1a39f631f3eea74efa5e25d843661718",
+      "contentVersion": "4d5ebe07e9f2e74d",
+      "contentHash": "4d5ebe07e9f2e74d1df1f655704a51725bff15dcc0ccf98fe64c35c89b9a42cf",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11088,
+      "previewBytes": 11107,
       "previewCharacterCount": 9838,
       "estimatedRuntimeSeconds": 3535,
       "truncated": true
@@ -2030,10 +2030,10 @@
     {
       "slug": "kidnapped",
       "path": "/book-previews/kidnapped.preview.json",
-      "contentVersion": "f96e4d6028b6fb16",
-      "contentHash": "f96e4d6028b6fb16925c4d6909172851569c94f07f521ba9578554a5ac41cdbc",
+      "contentVersion": "9b7005e042b81d84",
+      "contentHash": "9b7005e042b81d84cadc0abd25a541ef513aaeb457e2e844d93625f1b5235012",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10557,
+      "previewBytes": 10576,
       "previewCharacterCount": 9454,
       "estimatedRuntimeSeconds": 3404,
       "truncated": true
@@ -2041,10 +2041,10 @@
     {
       "slug": "oliver-twist",
       "path": "/book-previews/oliver-twist.preview.json",
-      "contentVersion": "8e5cb138252ad55d",
-      "contentHash": "8e5cb138252ad55d7cb3a95e0b7904a59ed3239786c85eb90cef42a0c608b9a3",
+      "contentVersion": "ceec787abfdac2eb",
+      "contentHash": "ceec787abfdac2eb16e2c36f3b68fd4aa8baf2a75c05231065df1ca41c94eb8c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10123,
+      "previewBytes": 10142,
       "previewCharacterCount": 9082,
       "estimatedRuntimeSeconds": 3257,
       "truncated": true
@@ -2055,7 +2055,7 @@
       "contentVersion": "6691345620a860e1",
       "contentHash": "6691345620a860e13baf3a798b165200c7a67a111589f984adfbf2a93e03b938",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10726,
+      "previewBytes": 10745,
       "previewCharacterCount": 9707,
       "estimatedRuntimeSeconds": 3462,
       "truncated": true
@@ -2066,7 +2066,7 @@
       "contentVersion": "57b11a8c73f0ae39",
       "contentHash": "57b11a8c73f0ae396ed38aba741192b18fbb93cc2b22a1bdbb60cba26b6d6175",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10867,
+      "previewBytes": 10886,
       "previewCharacterCount": 9655,
       "estimatedRuntimeSeconds": 3460,
       "truncated": true
@@ -2077,7 +2077,7 @@
       "contentVersion": "d4332002c92f500d",
       "contentHash": "d4332002c92f500db0dd775a9c498da8600dce23f3323dcf0803cb1cc28f0bdb",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11183,
+      "previewBytes": 11202,
       "previewCharacterCount": 10029,
       "estimatedRuntimeSeconds": 3585,
       "truncated": true
@@ -2088,7 +2088,7 @@
       "contentVersion": "98e41c31fb13c41a",
       "contentHash": "98e41c31fb13c41a366fc919890292bd750d79755f8fdd5d4823174ce137fdee",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10845,
+      "previewBytes": 10864,
       "previewCharacterCount": 9855,
       "estimatedRuntimeSeconds": 3528,
       "truncated": true
@@ -2099,7 +2099,7 @@
       "contentVersion": "0bc834a94cc4afe8",
       "contentHash": "0bc834a94cc4afe8a779b1fd3d27beb7b3cbeced4e3bed939c9afb8012250b3b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10601,
+      "previewBytes": 10620,
       "previewCharacterCount": 9688,
       "estimatedRuntimeSeconds": 3483,
       "truncated": true
@@ -2110,7 +2110,7 @@
       "contentVersion": "31afa95554f1172f",
       "contentHash": "31afa95554f1172f0f5cab4b493c2e5fd4384b42a30fb387a6118e490cb354cf",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10786,
+      "previewBytes": 10805,
       "previewCharacterCount": 9876,
       "estimatedRuntimeSeconds": 3530,
       "truncated": true
@@ -2121,7 +2121,7 @@
       "contentVersion": "0d49ec3cb026a8ef",
       "contentHash": "0d49ec3cb026a8efdf114e9efd728d81f4ff4cf8bbe4e285dc391a29ebcb9106",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10699,
+      "previewBytes": 10718,
       "previewCharacterCount": 9779,
       "estimatedRuntimeSeconds": 3505,
       "truncated": true
@@ -2132,7 +2132,7 @@
       "contentVersion": "197b0ae45ad70a85",
       "contentHash": "197b0ae45ad70a85716ba035112d9c1f9fa7243057936b0ba65732291a045609",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10977,
+      "previewBytes": 10996,
       "previewCharacterCount": 9897,
       "estimatedRuntimeSeconds": 3586,
       "truncated": true
@@ -2143,7 +2143,7 @@
       "contentVersion": "9a4045e18d0a6c1d",
       "contentHash": "9a4045e18d0a6c1dde54e658768490e1c3026b41ea6892ac57aca5a5957446dc",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10354,
+      "previewBytes": 10373,
       "previewCharacterCount": 9451,
       "estimatedRuntimeSeconds": 3376,
       "truncated": true
@@ -2151,10 +2151,10 @@
     {
       "slug": "the-innocence-of-father-brown",
       "path": "/book-previews/the-innocence-of-father-brown.preview.json",
-      "contentVersion": "861b02a1cda4d227",
-      "contentHash": "861b02a1cda4d227bc9ac5d357381101517a5c2834e2bae07864a9e2d6c707fb",
+      "contentVersion": "6e05305f75446361",
+      "contentHash": "6e05305f754463611af243b93160cad59e893c18fa9eb888174bfe1c365257f6",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10191,
+      "previewBytes": 10210,
       "previewCharacterCount": 9285,
       "estimatedRuntimeSeconds": 3318,
       "truncated": true
@@ -2162,10 +2162,10 @@
     {
       "slug": "astounding-stories-of-super-science",
       "path": "/book-previews/astounding-stories-of-super-science.preview.json",
-      "contentVersion": "05c85dcb8dd444a8",
-      "contentHash": "05c85dcb8dd444a8cdc7b8cb9ab84444936158811b373ef9085abfafb3f72789",
+      "contentVersion": "3e86de406d41558a",
+      "contentHash": "3e86de406d41558a824ea3083ad21891bda6eb2ee9c49d80d32a2cf14b1457d7",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10655,
+      "previewBytes": 10674,
       "previewCharacterCount": 9601,
       "estimatedRuntimeSeconds": 3424,
       "truncated": true
@@ -2176,7 +2176,7 @@
       "contentVersion": "78efad4f4bbfe950",
       "contentHash": "78efad4f4bbfe9505c6a0d9bbe80457fcf3ccb13240936d3122fe33de361a1ac",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10705,
+      "previewBytes": 10724,
       "previewCharacterCount": 9891,
       "estimatedRuntimeSeconds": 3524,
       "truncated": true
@@ -2187,7 +2187,7 @@
       "contentVersion": "1e112b6fe36288a3",
       "contentHash": "1e112b6fe36288a37dad2104c03e27fc5f36dbae66ec5484b832a19562b8de60",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11091,
+      "previewBytes": 11110,
       "previewCharacterCount": 9975,
       "estimatedRuntimeSeconds": 3618,
       "truncated": true
@@ -2198,7 +2198,7 @@
       "contentVersion": "f69cd63088a840e4",
       "contentHash": "f69cd63088a840e41a5fd1527a8efcf03ecf5d9f04ab5bb2ff987ffbda81a187",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10243,
+      "previewBytes": 10262,
       "previewCharacterCount": 9370,
       "estimatedRuntimeSeconds": 3372,
       "truncated": true
@@ -2209,7 +2209,7 @@
       "contentVersion": "9143f010cfd931c0",
       "contentHash": "9143f010cfd931c0c85976990498ed271a49988c14ea48ef3c2ed59bb292d3eb",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11194,
+      "previewBytes": 11213,
       "previewCharacterCount": 9984,
       "estimatedRuntimeSeconds": 3584,
       "truncated": true
@@ -2220,7 +2220,7 @@
       "contentVersion": "84e885d33fcf3ffc",
       "contentHash": "84e885d33fcf3ffcd16fcec6ca076c4843cc7845900fbaf7225e467dc9d4af9e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9567,
+      "previewBytes": 9586,
       "previewCharacterCount": 8764,
       "estimatedRuntimeSeconds": 3135,
       "truncated": true
@@ -2231,7 +2231,7 @@
       "contentVersion": "2933d9b73d5c9fe3",
       "contentHash": "2933d9b73d5c9fe3d838742086f00e28fffe5ef56dcdae731a1b2a5e42c3e03e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9302,
+      "previewBytes": 9321,
       "previewCharacterCount": 8147,
       "estimatedRuntimeSeconds": 2778,
       "truncated": false
@@ -2242,7 +2242,7 @@
       "contentVersion": "c3c37bada2194f9c",
       "contentHash": "c3c37bada2194f9c3424346bf88d620320890c48b786ebcc6d403a13fb4758e5",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9896,
+      "previewBytes": 9915,
       "previewCharacterCount": 9022,
       "estimatedRuntimeSeconds": 3216,
       "truncated": true
@@ -2253,7 +2253,7 @@
       "contentVersion": "4cfa6b224edb4bd9",
       "contentHash": "4cfa6b224edb4bd91c5f1b587441229a912a51d98bee96a0a46be37e7c7d8982",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11098,
+      "previewBytes": 11117,
       "previewCharacterCount": 10065,
       "estimatedRuntimeSeconds": 3595,
       "truncated": true
@@ -2264,7 +2264,7 @@
       "contentVersion": "affe1124e6382ffd",
       "contentHash": "affe1124e6382ffdeafe2c23a64780d837b1a20971fd18dd365f6ef24fd0cbd4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5574,
+      "previewBytes": 5593,
       "previewCharacterCount": 4607,
       "estimatedRuntimeSeconds": 1662,
       "truncated": false
@@ -2275,7 +2275,7 @@
       "contentVersion": "cdc8a65258f1656c",
       "contentHash": "cdc8a65258f1656ccb83db1e29dbaf59cc4fc914d17841212c6d124356b809cb",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5182,
+      "previewBytes": 5201,
       "previewCharacterCount": 4314,
       "estimatedRuntimeSeconds": 1549,
       "truncated": false
@@ -2286,7 +2286,7 @@
       "contentVersion": "7eaaa0d02d181bcd",
       "contentHash": "7eaaa0d02d181bcdebc9fbef20e88c9215283ffcfa8bcf20732ab172558e16c0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11054,
+      "previewBytes": 11073,
       "previewCharacterCount": 10052,
       "estimatedRuntimeSeconds": 3588,
       "truncated": true
@@ -2294,12 +2294,12 @@
     {
       "slug": "the-shadow",
       "path": "/book-previews/the-shadow.preview.json",
-      "contentVersion": "30dfbb9dc230bd8e",
-      "contentHash": "30dfbb9dc230bd8e01bfdf231ea46a9faba4b31a10b0f80d4003e3108ebd169b",
+      "contentVersion": "a3ed739e775e37b3",
+      "contentHash": "a3ed739e775e37b3927d37089c0952e3a338ccb04e244827b70bfa785fb411e4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11073,
-      "previewCharacterCount": 10046,
-      "estimatedRuntimeSeconds": 3598,
+      "previewBytes": 11115,
+      "previewCharacterCount": 10051,
+      "estimatedRuntimeSeconds": 3660,
       "truncated": true
     },
     {
@@ -2308,7 +2308,7 @@
       "contentVersion": "79e08e5e371f3e63",
       "contentHash": "79e08e5e371f3e63074c9a01e2453924f608dc71c59cbaf1e38e61571bca50b6",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11050,
+      "previewBytes": 11069,
       "previewCharacterCount": 9898,
       "estimatedRuntimeSeconds": 3554,
       "truncated": true
@@ -2319,7 +2319,7 @@
       "contentVersion": "4e489fa894cca7e3",
       "contentHash": "4e489fa894cca7e37b8dd3c4819e60d52f4cdc5ef7fb706035585e062130aea4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10390,
+      "previewBytes": 10409,
       "previewCharacterCount": 9394,
       "estimatedRuntimeSeconds": 3369,
       "truncated": true
@@ -2330,7 +2330,7 @@
       "contentVersion": "4000dcdbfe396d14",
       "contentHash": "4000dcdbfe396d14afae04ef4b1eb364a56ea64ed4e426f15a9c3b42f4797b95",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10704,
+      "previewBytes": 10723,
       "previewCharacterCount": 9617,
       "estimatedRuntimeSeconds": 3423,
       "truncated": false
@@ -2341,7 +2341,7 @@
       "contentVersion": "d730658e8418c6c4",
       "contentHash": "d730658e8418c6c4ef6588d0b4fada9358347aa42b8251e8ed5a293fed2c9a28",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6760,
+      "previewBytes": 6779,
       "previewCharacterCount": 5877,
       "estimatedRuntimeSeconds": 2086,
       "truncated": false
@@ -2352,7 +2352,7 @@
       "contentVersion": "3076b2db97d43d25",
       "contentHash": "3076b2db97d43d250264eb33b34604b97046d9d02b952a2c9ba25a0430681082",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 7443,
+      "previewBytes": 7462,
       "previewCharacterCount": 6516,
       "estimatedRuntimeSeconds": 2333,
       "truncated": false
@@ -2363,7 +2363,7 @@
       "contentVersion": "18db08911001ce7c",
       "contentHash": "18db08911001ce7c96d36f46706328126d1a65cba43733360505642e75746c9d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8209,
+      "previewBytes": 8228,
       "previewCharacterCount": 7266,
       "estimatedRuntimeSeconds": 2591,
       "truncated": false
@@ -2374,7 +2374,7 @@
       "contentVersion": "d35f903f87948073",
       "contentHash": "d35f903f87948073dacaf0d65be3260964a37dbfe870227736aff7c97a99a313",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11270,
+      "previewBytes": 11289,
       "previewCharacterCount": 10114,
       "estimatedRuntimeSeconds": 3597,
       "truncated": true
@@ -2385,7 +2385,7 @@
       "contentVersion": "4b32964c264fefaa",
       "contentHash": "4b32964c264fefaa37e3bf08b26edd4b92d0b3e9eed2ca3a8552faf9105ee831",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5991,
+      "previewBytes": 6010,
       "previewCharacterCount": 5114,
       "estimatedRuntimeSeconds": 1816,
       "truncated": false
@@ -2396,7 +2396,7 @@
       "contentVersion": "9dc5d6953bde5da8",
       "contentHash": "9dc5d6953bde5da8b098cd86d1acd1fb4e0e7980f618f237fecea096dc4ba451",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5054,
+      "previewBytes": 5073,
       "previewCharacterCount": 4070,
       "estimatedRuntimeSeconds": 1440,
       "truncated": false
@@ -2407,7 +2407,7 @@
       "contentVersion": "75aeb3682319fc59",
       "contentHash": "75aeb3682319fc59089512a15771c23eb8630a9a51824611673584d0dd1fe805",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11308,
+      "previewBytes": 11327,
       "previewCharacterCount": 10113,
       "estimatedRuntimeSeconds": 3601,
       "truncated": true
@@ -2418,7 +2418,7 @@
       "contentVersion": "1e873e367907c846",
       "contentHash": "1e873e367907c8463b6b9cecb517ef75ef6efb1e9bb51b20809f0b5095313699",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11129,
+      "previewBytes": 11148,
       "previewCharacterCount": 10127,
       "estimatedRuntimeSeconds": 3581,
       "truncated": true
@@ -2429,7 +2429,7 @@
       "contentVersion": "ac3bd5cf08272859",
       "contentHash": "ac3bd5cf0827285999006fe1a940ffcc30e120dc4c3e617d14207885fa860d33",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9803,
+      "previewBytes": 9822,
       "previewCharacterCount": 8764,
       "estimatedRuntimeSeconds": 3119,
       "truncated": false
@@ -2440,7 +2440,7 @@
       "contentVersion": "98c0c65328cc9e97",
       "contentHash": "98c0c65328cc9e97a0adea5dd116d56171ec1878d1e4d97d349d35de3a90dbfc",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11193,
+      "previewBytes": 11212,
       "previewCharacterCount": 9979,
       "estimatedRuntimeSeconds": 3563,
       "truncated": true
@@ -2451,7 +2451,7 @@
       "contentVersion": "60a29d060fda4bd8",
       "contentHash": "60a29d060fda4bd8ab92d7eac420167414802600b0fb4d246dee156b946465bf",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11097,
+      "previewBytes": 11116,
       "previewCharacterCount": 10084,
       "estimatedRuntimeSeconds": 3595,
       "truncated": true
@@ -2462,7 +2462,7 @@
       "contentVersion": "c9953dfa0d5fd74a",
       "contentHash": "c9953dfa0d5fd74a2732f414d7905f5055d13a35bf80cc65f976ae202e6970a1",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11067,
+      "previewBytes": 11086,
       "previewCharacterCount": 10049,
       "estimatedRuntimeSeconds": 3561,
       "truncated": true
@@ -2473,7 +2473,7 @@
       "contentVersion": "dc546628d445a2a6",
       "contentHash": "dc546628d445a2a61cc44dc8c5a118f496fe317825bc84d981bd8c568cf162ab",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6502,
+      "previewBytes": 6521,
       "previewCharacterCount": 5150,
       "estimatedRuntimeSeconds": 1934,
       "truncated": false
@@ -2484,7 +2484,7 @@
       "contentVersion": "72cc1f4e2879147b",
       "contentHash": "72cc1f4e2879147baf8504e17fb15596822b0be3e25135c0258f1f877ca25cce",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11297,
+      "previewBytes": 11316,
       "previewCharacterCount": 9942,
       "estimatedRuntimeSeconds": 3578,
       "truncated": true
@@ -2495,7 +2495,7 @@
       "contentVersion": "d23af98f1910b8d6",
       "contentHash": "d23af98f1910b8d6bed570974dd009071fe3d571b026f96d53c82be7e12580ed",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11185,
+      "previewBytes": 11204,
       "previewCharacterCount": 10101,
       "estimatedRuntimeSeconds": 3574,
       "truncated": true
@@ -2506,7 +2506,7 @@
       "contentVersion": "50e3fd8f3d427a78",
       "contentHash": "50e3fd8f3d427a784a373e3c0a699f18f728dbbeec45b3aa127736a9db9c360d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11205,
+      "previewBytes": 11224,
       "previewCharacterCount": 9999,
       "estimatedRuntimeSeconds": 3562,
       "truncated": true
@@ -2517,7 +2517,7 @@
       "contentVersion": "eaa7691e38c55eea",
       "contentHash": "eaa7691e38c55eea26d0e94fe11131a198ed4d8a460f81e517e8175856e2209c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11142,
+      "previewBytes": 11161,
       "previewCharacterCount": 10075,
       "estimatedRuntimeSeconds": 3577,
       "truncated": true
@@ -2528,7 +2528,7 @@
       "contentVersion": "a03ef404c47f587f",
       "contentHash": "a03ef404c47f587f18fa6562d46472570cfda48130d751e7dd5c34bba254c508",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11165,
+      "previewBytes": 11184,
       "previewCharacterCount": 10058,
       "estimatedRuntimeSeconds": 3599,
       "truncated": true
@@ -2539,7 +2539,7 @@
       "contentVersion": "4f9e9d400383bd1e",
       "contentHash": "4f9e9d400383bd1ea80dd445f9976e1bd7136c182a2586d3f95e15cf4633033f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8422,
+      "previewBytes": 8441,
       "previewCharacterCount": 7488,
       "estimatedRuntimeSeconds": 2683,
       "truncated": false
@@ -2550,7 +2550,7 @@
       "contentVersion": "34354795e150c8d0",
       "contentHash": "34354795e150c8d0b953e7baffeae04e5339885cb5778a8a5f10109ad83d576e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8186,
+      "previewBytes": 8205,
       "previewCharacterCount": 7213,
       "estimatedRuntimeSeconds": 2588,
       "truncated": false
@@ -2561,7 +2561,7 @@
       "contentVersion": "1f257a5ba5ff3eaf",
       "contentHash": "1f257a5ba5ff3eaf534970fee09ee5f5383ef1e8502172d8bf6547e5274f2169",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 4538,
+      "previewBytes": 4557,
       "previewCharacterCount": 3743,
       "estimatedRuntimeSeconds": 1329,
       "truncated": false
@@ -2572,7 +2572,7 @@
       "contentVersion": "d83c4c982e987cd5",
       "contentHash": "d83c4c982e987cd58a793da38323861dbefcfc4243eda0720df8a27ef434fe70",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5478,
+      "previewBytes": 5497,
       "previewCharacterCount": 4615,
       "estimatedRuntimeSeconds": 1655,
       "truncated": false
@@ -2583,7 +2583,7 @@
       "contentVersion": "b89b7291fd3df048",
       "contentHash": "b89b7291fd3df048956e7721d60a30e901ce45defd894c1aaf185f340a530536",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11075,
+      "previewBytes": 11094,
       "previewCharacterCount": 10048,
       "estimatedRuntimeSeconds": 3586,
       "truncated": true
@@ -2594,7 +2594,7 @@
       "contentVersion": "44fa06b5f4e8f582",
       "contentHash": "44fa06b5f4e8f582c528bda33e365f8406f89ab63d7168ce78499f29b7aa20c8",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10993,
+      "previewBytes": 11012,
       "previewCharacterCount": 10008,
       "estimatedRuntimeSeconds": 3572,
       "truncated": true
@@ -2605,7 +2605,7 @@
       "contentVersion": "3e91344b13c0ad48",
       "contentHash": "3e91344b13c0ad48430462357dba47fe362d886516827410ff7b1c738c053f70",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9849,
+      "previewBytes": 9868,
       "previewCharacterCount": 8897,
       "estimatedRuntimeSeconds": 3146,
       "truncated": false
@@ -2616,7 +2616,7 @@
       "contentVersion": "94a1f6ec8d9d1302",
       "contentHash": "94a1f6ec8d9d13024827e3249171345d631aed87929ad36d350dbac03e505b47",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11603,
+      "previewBytes": 11622,
       "previewCharacterCount": 10317,
       "estimatedRuntimeSeconds": 3541,
       "truncated": true
@@ -2627,7 +2627,7 @@
       "contentVersion": "c406d42ffdb4ca4c",
       "contentHash": "c406d42ffdb4ca4c38b2bb9427aa155cda5d38efde884bac40b81eb6d75daaf8",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9481,
+      "previewBytes": 9500,
       "previewCharacterCount": 8332,
       "estimatedRuntimeSeconds": 2958,
       "truncated": false
@@ -2638,7 +2638,7 @@
       "contentVersion": "2ad6d7746f2a1469",
       "contentHash": "2ad6d7746f2a146941c0e6d6a82c78a15cb37d74d7c89a79e43edf21780702d2",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10961,
+      "previewBytes": 10980,
       "previewCharacterCount": 9757,
       "estimatedRuntimeSeconds": 3491,
       "truncated": false
@@ -2649,7 +2649,7 @@
       "contentVersion": "4bb5c6325f183830",
       "contentHash": "4bb5c6325f183830bbacb5d9dac3382a2ad6ac653e0a9a9c142870c7a9c69cdc",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9901,
+      "previewBytes": 9920,
       "previewCharacterCount": 8927,
       "estimatedRuntimeSeconds": 3167,
       "truncated": true
@@ -2660,7 +2660,7 @@
       "contentVersion": "65271fb10e0fe2de",
       "contentHash": "65271fb10e0fe2de3db840e9dc65013f8792fcc4943c3f35f0db4b8b878b0285",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10661,
+      "previewBytes": 10680,
       "previewCharacterCount": 9526,
       "estimatedRuntimeSeconds": 3412,
       "truncated": false
@@ -2671,7 +2671,7 @@
       "contentVersion": "a3615df9901fb111",
       "contentHash": "a3615df9901fb1112e0a66118ebcff89bcfc358716e6e4d81e9f9d34ff57f519",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10628,
+      "previewBytes": 10647,
       "previewCharacterCount": 9502,
       "estimatedRuntimeSeconds": 3398,
       "truncated": true
@@ -2679,12 +2679,12 @@
     {
       "slug": "ashputtel",
       "path": "/book-previews/ashputtel.preview.json",
-      "contentVersion": "a28d34db615a116e",
-      "contentHash": "a28d34db615a116eacc0b2a34e6f3beb163b96d2f0c692e94acd1726ae546b97",
+      "contentVersion": "23f6937df0f254f0",
+      "contentHash": "23f6937df0f254f088e6ef7c348fb0666aae137e7d27a1f2fc67ad4e0b99154c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10930,
-      "previewCharacterCount": 9896,
-      "estimatedRuntimeSeconds": 3537,
+      "previewBytes": 10968,
+      "previewCharacterCount": 9897,
+      "estimatedRuntimeSeconds": 3540,
       "truncated": true
     },
     {
@@ -2693,7 +2693,7 @@
       "contentVersion": "dad6069fa9d92667",
       "contentHash": "dad6069fa9d926670f3a9f8c0c9d1ccef76483bd1be06410629525ca68c289d9",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6075,
+      "previewBytes": 6094,
       "previewCharacterCount": 5074,
       "estimatedRuntimeSeconds": 1831,
       "truncated": false
@@ -2704,7 +2704,7 @@
       "contentVersion": "3bee141b4371ee58",
       "contentHash": "3bee141b4371ee583e665a37e0387baeca03b60ac3adf1b339298874466c9f72",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11125,
+      "previewBytes": 11144,
       "previewCharacterCount": 10098,
       "estimatedRuntimeSeconds": 3596,
       "truncated": true
@@ -2715,7 +2715,7 @@
       "contentVersion": "a329915aa9c35fd3",
       "contentHash": "a329915aa9c35fd33e7f2915131127a469b3b9d8191e8b915fcadb692e5bac42",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 7762,
+      "previewBytes": 7781,
       "previewCharacterCount": 6762,
       "estimatedRuntimeSeconds": 2421,
       "truncated": false
@@ -2726,7 +2726,7 @@
       "contentVersion": "afad13d6f082c0e6",
       "contentHash": "afad13d6f082c0e6b6eb0eabc3cadad208c7eceb2357b511835acbe719b70221",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5725,
+      "previewBytes": 5744,
       "previewCharacterCount": 4823,
       "estimatedRuntimeSeconds": 1717,
       "truncated": false
@@ -2737,7 +2737,7 @@
       "contentVersion": "8e1b81bf37240c3b",
       "contentHash": "8e1b81bf37240c3bc1e22e477c41b0fe4913e78e3c2f387b31f748f2281c8949",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 4866,
+      "previewBytes": 4885,
       "previewCharacterCount": 4012,
       "estimatedRuntimeSeconds": 1438,
       "truncated": false
@@ -2748,7 +2748,7 @@
       "contentVersion": "fc05cfb202999818",
       "contentHash": "fc05cfb2029998188cb4365765540cfcaee6aa923d86a2a241c57ccafe9f74e0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10960,
+      "previewBytes": 10979,
       "previewCharacterCount": 9709,
       "estimatedRuntimeSeconds": 3501,
       "truncated": false
@@ -2759,7 +2759,7 @@
       "contentVersion": "3f109d07f1d0eb4a",
       "contentHash": "3f109d07f1d0eb4a0eec6b429127910d9b2259eee8fc245fc5a7f830c708b6fe",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5781,
+      "previewBytes": 5800,
       "previewCharacterCount": 4901,
       "estimatedRuntimeSeconds": 1751,
       "truncated": false
@@ -2770,7 +2770,7 @@
       "contentVersion": "b64e78f9abcfd172",
       "contentHash": "b64e78f9abcfd1724cc084f78ebfc2629b09e06aa7ec9458484895ec4bfc969e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10177,
+      "previewBytes": 10196,
       "previewCharacterCount": 9099,
       "estimatedRuntimeSeconds": 3292,
       "truncated": true
@@ -2781,7 +2781,7 @@
       "contentVersion": "8c21eca174c8b14b",
       "contentHash": "8c21eca174c8b14bb1920ed469182037028b903cd899e690b2a8cf9d2c5c912e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11001,
+      "previewBytes": 11020,
       "previewCharacterCount": 9942,
       "estimatedRuntimeSeconds": 3560,
       "truncated": true
@@ -2792,7 +2792,7 @@
       "contentVersion": "c10ab01dbcb4a57d",
       "contentHash": "c10ab01dbcb4a57d4b106e3b4f21c7256d8befb768f995a687cf73309434fb15",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10885,
+      "previewBytes": 10904,
       "previewCharacterCount": 9879,
       "estimatedRuntimeSeconds": 3527,
       "truncated": true
@@ -2803,7 +2803,7 @@
       "contentVersion": "129a1edb92671c01",
       "contentHash": "129a1edb92671c01979db0d0f3c7ed4e8e7dd8c80cee439d403935d11fe0ffff",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8582,
+      "previewBytes": 8601,
       "previewCharacterCount": 7529,
       "estimatedRuntimeSeconds": 2717,
       "truncated": false
@@ -2814,7 +2814,7 @@
       "contentVersion": "1499fa5bbae51d6f",
       "contentHash": "1499fa5bbae51d6fd045501b5ac59f606cab1806eb4bb1d703566f1de5a770d6",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10921,
+      "previewBytes": 10940,
       "previewCharacterCount": 9891,
       "estimatedRuntimeSeconds": 3534,
       "truncated": true
@@ -2825,7 +2825,7 @@
       "contentVersion": "0dd2d0e3dbe389c7",
       "contentHash": "0dd2d0e3dbe389c7ec6c88a3587b9a8da8101d585044a9d579ffdf99c833e68d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8449,
+      "previewBytes": 8468,
       "previewCharacterCount": 7375,
       "estimatedRuntimeSeconds": 2650,
       "truncated": false
@@ -2836,7 +2836,7 @@
       "contentVersion": "ccb154bb43d7bdcb",
       "contentHash": "ccb154bb43d7bdcb28d3fcc021d93022e706e071a6cc756fb892382fd7362c5a",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5219,
+      "previewBytes": 5238,
       "previewCharacterCount": 4377,
       "estimatedRuntimeSeconds": 1570,
       "truncated": false
@@ -2847,7 +2847,7 @@
       "contentVersion": "0b515310137670a2",
       "contentHash": "0b515310137670a2075a129d0bf26c2290cd69eb0770e232b8edf912d8b7d9dd",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6823,
+      "previewBytes": 6842,
       "previewCharacterCount": 5835,
       "estimatedRuntimeSeconds": 2088,
       "truncated": false
@@ -2858,7 +2858,7 @@
       "contentVersion": "d1d289934c29dbcc",
       "contentHash": "d1d289934c29dbccebe6fa7e008e166d3abae0bafd767b86b1f08a9f26be3578",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10436,
+      "previewBytes": 10455,
       "previewCharacterCount": 9373,
       "estimatedRuntimeSeconds": 3338,
       "truncated": true
@@ -2869,7 +2869,7 @@
       "contentVersion": "78dbadefff782bac",
       "contentHash": "78dbadefff782bac010151bfe2697582db9d316891262f5af875f4423fbcf5ee",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8593,
+      "previewBytes": 8612,
       "previewCharacterCount": 7636,
       "estimatedRuntimeSeconds": 2728,
       "truncated": false
@@ -2880,7 +2880,7 @@
       "contentVersion": "3c7b21cb90595eae",
       "contentHash": "3c7b21cb90595eaeaed6cb438117227d2f4c438378a216dda7d93479fc7057b4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 7867,
+      "previewBytes": 7886,
       "previewCharacterCount": 6818,
       "estimatedRuntimeSeconds": 2465,
       "truncated": false
@@ -2891,7 +2891,7 @@
       "contentVersion": "da9173fc56b56c7f",
       "contentHash": "da9173fc56b56c7f332f8e302929defaacb620a382e01291a35ec03161989e26",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9811,
+      "previewBytes": 9830,
       "previewCharacterCount": 8725,
       "estimatedRuntimeSeconds": 3117,
       "truncated": true
@@ -2902,7 +2902,7 @@
       "contentVersion": "77ecee301eea6b52",
       "contentHash": "77ecee301eea6b52f6e5a25a27a7c7022db5384af0b493026d3d5d6299675c54",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8692,
+      "previewBytes": 8711,
       "previewCharacterCount": 7800,
       "estimatedRuntimeSeconds": 2779,
       "truncated": false
@@ -2913,7 +2913,7 @@
       "contentVersion": "f5316a6f230ab25b",
       "contentHash": "f5316a6f230ab25b674328deb69c928ec39a2acd19b95681c9d1922b8a7dd341",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10102,
+      "previewBytes": 10121,
       "previewCharacterCount": 9026,
       "estimatedRuntimeSeconds": 3239,
       "truncated": false
@@ -2924,7 +2924,7 @@
       "contentVersion": "4c61e4472b6d50d3",
       "contentHash": "4c61e4472b6d50d3e6df952d811e4a2405359ef4a273c283ac98eed39a06d633",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 4629,
+      "previewBytes": 4648,
       "previewCharacterCount": 3799,
       "estimatedRuntimeSeconds": 1343,
       "truncated": false
@@ -2935,7 +2935,7 @@
       "contentVersion": "1ca2e06ec7040dbe",
       "contentHash": "1ca2e06ec7040dbe9bbd9591c5ccfb4bb378dda4995349e97aad05e50bfe51a4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9672,
+      "previewBytes": 9691,
       "previewCharacterCount": 8591,
       "estimatedRuntimeSeconds": 3064,
       "truncated": false
@@ -2946,7 +2946,7 @@
       "contentVersion": "2f55164dff415a1f",
       "contentHash": "2f55164dff415a1f40aa2872718cbe45b40b05948e81165eafe944f6f661c2fd",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 2273,
+      "previewBytes": 2292,
       "previewCharacterCount": 1472,
       "estimatedRuntimeSeconds": 536,
       "truncated": false
@@ -2957,7 +2957,7 @@
       "contentVersion": "c7ae2639e67259fd",
       "contentHash": "c7ae2639e67259fd1acb7bc448ea2f1eef49a07213f0caa8125dad5c38963a20",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 3295,
+      "previewBytes": 3314,
       "previewCharacterCount": 2461,
       "estimatedRuntimeSeconds": 885,
       "truncated": false
@@ -2968,7 +2968,7 @@
       "contentVersion": "c7668d19969378f3",
       "contentHash": "c7668d19969378f30342e748adb5f68e5a4fb4b115333eaa05e14baffe384b93",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6970,
+      "previewBytes": 6989,
       "previewCharacterCount": 6030,
       "estimatedRuntimeSeconds": 2156,
       "truncated": false
@@ -2979,7 +2979,7 @@
       "contentVersion": "99082b8a71e088ec",
       "contentHash": "99082b8a71e088ec327321b51b1394c2ed50898bd82263437583cc2ea243e11b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10991,
+      "previewBytes": 11010,
       "previewCharacterCount": 9987,
       "estimatedRuntimeSeconds": 3542,
       "truncated": true
@@ -2990,7 +2990,7 @@
       "contentVersion": "d0fa2f39ce60f905",
       "contentHash": "d0fa2f39ce60f905fb9d4c685c7aa0652e2bf5bf5a9731b7021cf9055d0d5b84",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10723,
+      "previewBytes": 10742,
       "previewCharacterCount": 9623,
       "estimatedRuntimeSeconds": 3431,
       "truncated": true
@@ -3001,7 +3001,7 @@
       "contentVersion": "7c642960547b07c8",
       "contentHash": "7c642960547b07c878f0a1b218ac8d278800e3c6d7cee50a128ae3f888aa67dd",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10860,
+      "previewBytes": 10879,
       "previewCharacterCount": 9814,
       "estimatedRuntimeSeconds": 3512,
       "truncated": true
@@ -3012,7 +3012,7 @@
       "contentVersion": "8b7bc0099b530df0",
       "contentHash": "8b7bc0099b530df0db34ee2567a5f2b89e4674e2f89cef5f45634581ca0d2c32",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10504,
+      "previewBytes": 10523,
       "previewCharacterCount": 9389,
       "estimatedRuntimeSeconds": 3349,
       "truncated": true
@@ -3023,7 +3023,7 @@
       "contentVersion": "2b0a4e02d0b15547",
       "contentHash": "2b0a4e02d0b15547c7f0ad63e551f415e779a2cf47795ee8a346f8715a72e0c2",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6949,
+      "previewBytes": 6968,
       "previewCharacterCount": 5970,
       "estimatedRuntimeSeconds": 2145,
       "truncated": false
@@ -3034,7 +3034,7 @@
       "contentVersion": "58db9af4434b969e",
       "contentHash": "58db9af4434b969e2b0629aae1f3e509dfcb65534d897c2ebc2ee156b5103d5d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 4471,
+      "previewBytes": 4490,
       "previewCharacterCount": 3641,
       "estimatedRuntimeSeconds": 1284,
       "truncated": false
@@ -3045,7 +3045,7 @@
       "contentVersion": "ac87350d881b596e",
       "contentHash": "ac87350d881b596eb0db13afec538a920392d538bf3ba5332ea8a6594802771d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 2056,
+      "previewBytes": 2075,
       "previewCharacterCount": 1271,
       "estimatedRuntimeSeconds": 454,
       "truncated": false
@@ -3056,7 +3056,7 @@
       "contentVersion": "ac51628273281d36",
       "contentHash": "ac51628273281d362d129ce2a1cb2ff61873557088029f45c161e7288ca65b42",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10052,
+      "previewBytes": 10071,
       "previewCharacterCount": 9073,
       "estimatedRuntimeSeconds": 3237,
       "truncated": false
@@ -3067,7 +3067,7 @@
       "contentVersion": "a479fb116202a88f",
       "contentHash": "a479fb116202a88f8a744765b8dbb581dbf538ac5741a798b95cb7ce1f3cf366",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5177,
+      "previewBytes": 5196,
       "previewCharacterCount": 4342,
       "estimatedRuntimeSeconds": 1533,
       "truncated": false
@@ -3078,7 +3078,7 @@
       "contentVersion": "6ee9a88c76d7c3ce",
       "contentHash": "6ee9a88c76d7c3ce43ea3a526dd024a43e77af386238648a26ae1d6811c19769",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10736,
+      "previewBytes": 10755,
       "previewCharacterCount": 9724,
       "estimatedRuntimeSeconds": 3464,
       "truncated": true
@@ -3089,7 +3089,7 @@
       "contentVersion": "285bb6badc9e780e",
       "contentHash": "285bb6badc9e780ead12e65bc294a0eea2fca48ff40465b3465d9df1087c8b74",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8672,
+      "previewBytes": 8691,
       "previewCharacterCount": 7649,
       "estimatedRuntimeSeconds": 2727,
       "truncated": false
@@ -3100,7 +3100,7 @@
       "contentVersion": "f936ffc3e7a83811",
       "contentHash": "f936ffc3e7a83811e84a0d8f361e4576ff05614a38123d7000e22f43495a5a6f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10342,
+      "previewBytes": 10361,
       "previewCharacterCount": 9284,
       "estimatedRuntimeSeconds": 3316,
       "truncated": true
@@ -3111,7 +3111,7 @@
       "contentVersion": "d2ec2b78ed30ee8e",
       "contentHash": "d2ec2b78ed30ee8eea9cafcec29a7d476457ec7c9d11ee1af82b3acb783c3c79",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11044,
+      "previewBytes": 11063,
       "previewCharacterCount": 9792,
       "estimatedRuntimeSeconds": 3521,
       "truncated": true
@@ -3122,7 +3122,7 @@
       "contentVersion": "9fa0c127d052a66a",
       "contentHash": "9fa0c127d052a66a95fdb5922a9e81cc7974dc6ffa00abd76442ddaec9d9823e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 3506,
+      "previewBytes": 3525,
       "previewCharacterCount": 2667,
       "estimatedRuntimeSeconds": 955,
       "truncated": false
@@ -3133,7 +3133,7 @@
       "contentVersion": "ea60a3717653873f",
       "contentHash": "ea60a3717653873fea9a0b5dbdf8e4084496a11656c2f807e097d92d94fd614d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5697,
+      "previewBytes": 5716,
       "previewCharacterCount": 4825,
       "estimatedRuntimeSeconds": 1723,
       "truncated": false
@@ -3144,7 +3144,7 @@
       "contentVersion": "4afcafd9ba4dcd20",
       "contentHash": "4afcafd9ba4dcd209752579efc3c9935449c8d64579c5898fad56a759635b213",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 7906,
+      "previewBytes": 7925,
       "previewCharacterCount": 6909,
       "estimatedRuntimeSeconds": 2474,
       "truncated": false
@@ -3155,7 +3155,7 @@
       "contentVersion": "cc691240e96f8acb",
       "contentHash": "cc691240e96f8acbf1d88a3bfaa79f1d5e5be383e159312d2b4dacdfafd198cb",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11063,
+      "previewBytes": 11082,
       "previewCharacterCount": 9654,
       "estimatedRuntimeSeconds": 3482,
       "truncated": false
@@ -3166,7 +3166,7 @@
       "contentVersion": "e1a7ddf755c89a96",
       "contentHash": "e1a7ddf755c89a9641e121087db407bd335f52750c2be7c237a63d15ce3cb201",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10760,
+      "previewBytes": 10779,
       "previewCharacterCount": 9645,
       "estimatedRuntimeSeconds": 3453,
       "truncated": true
@@ -3177,7 +3177,7 @@
       "contentVersion": "be118939585d2d6e",
       "contentHash": "be118939585d2d6e8902a1df87c63616258b1179eecee2df0a0452b0af371c80",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10535,
+      "previewBytes": 10554,
       "previewCharacterCount": 9462,
       "estimatedRuntimeSeconds": 3376,
       "truncated": true
@@ -3188,7 +3188,7 @@
       "contentVersion": "b538b6bd318950ee",
       "contentHash": "b538b6bd318950eee2eb7917a75937946744567adcf158da09cdf534113d6980",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11034,
+      "previewBytes": 11053,
       "previewCharacterCount": 9949,
       "estimatedRuntimeSeconds": 3557,
       "truncated": false
@@ -3199,7 +3199,7 @@
       "contentVersion": "6093d23da0523eb5",
       "contentHash": "6093d23da0523eb5fbaeacf6f3d657330e888190c929efc9214811608287a662",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10436,
+      "previewBytes": 10455,
       "previewCharacterCount": 9457,
       "estimatedRuntimeSeconds": 3372,
       "truncated": true
@@ -3210,7 +3210,7 @@
       "contentVersion": "12c0f9d8097e16be",
       "contentHash": "12c0f9d8097e16bebd078684c7c1fcdd99328de81724c84207aaaf5e8876f9be",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11002,
+      "previewBytes": 11021,
       "previewCharacterCount": 9827,
       "estimatedRuntimeSeconds": 3505,
       "truncated": true
@@ -3221,7 +3221,7 @@
       "contentVersion": "024751353a1dbe84",
       "contentHash": "024751353a1dbe84c4f5f550870f34d2fc25eebbb69466a79d282d28257e428e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11199,
+      "previewBytes": 11218,
       "previewCharacterCount": 10064,
       "estimatedRuntimeSeconds": 3573,
       "truncated": false
@@ -3232,7 +3232,7 @@
       "contentVersion": "8f13cf2a6fd98c8c",
       "contentHash": "8f13cf2a6fd98c8caf34da7ce75f344ec37a178b2a76a566f076106ffbe7f6b9",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9450,
+      "previewBytes": 9469,
       "previewCharacterCount": 8247,
       "estimatedRuntimeSeconds": 2934,
       "truncated": false
@@ -3243,7 +3243,7 @@
       "contentVersion": "7bc64113f70296f3",
       "contentHash": "7bc64113f70296f3a2a842d0b6e2627bc9b0cb16023031cfeda72d80f262a612",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10329,
+      "previewBytes": 10348,
       "previewCharacterCount": 9112,
       "estimatedRuntimeSeconds": 3261,
       "truncated": false
@@ -3254,7 +3254,7 @@
       "contentVersion": "8c3268ecf80e2568",
       "contentHash": "8c3268ecf80e2568720b9b7bccb9221ac51f31e173b0456ec5e66d63c77bf421",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10176,
+      "previewBytes": 10195,
       "previewCharacterCount": 9217,
       "estimatedRuntimeSeconds": 3273,
       "truncated": false
@@ -3265,7 +3265,7 @@
       "contentVersion": "dcaf7893ad3e2902",
       "contentHash": "dcaf7893ad3e29028d0c2b181af27fc7e6510f6265a3171972932c3367e695dd",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10497,
+      "previewBytes": 10516,
       "previewCharacterCount": 9515,
       "estimatedRuntimeSeconds": 3403,
       "truncated": false
@@ -3276,7 +3276,7 @@
       "contentVersion": "393562dc4849b609",
       "contentHash": "393562dc4849b609a27cf7837029c4fe2000a0347d943891febf9ad2ac1ddaf5",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8952,
+      "previewBytes": 8971,
       "previewCharacterCount": 7939,
       "estimatedRuntimeSeconds": 2815,
       "truncated": false
@@ -3287,7 +3287,7 @@
       "contentVersion": "cac5d4be17f33b50",
       "contentHash": "cac5d4be17f33b500819b7d78bc2d1770fa07c38e06e09129e15ef5652330eda",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11090,
+      "previewBytes": 11109,
       "previewCharacterCount": 10012,
       "estimatedRuntimeSeconds": 3559,
       "truncated": true
@@ -3298,7 +3298,7 @@
       "contentVersion": "85c66365329a2103",
       "contentHash": "85c66365329a21030421e6c49cff41ee0523ea082f8f3a9c44493ab37240078e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9550,
+      "previewBytes": 9569,
       "previewCharacterCount": 8492,
       "estimatedRuntimeSeconds": 3035,
       "truncated": false
@@ -3309,7 +3309,7 @@
       "contentVersion": "31fca5337cf166ac",
       "contentHash": "31fca5337cf166ac48f9c73371f2d9ded8fd019632663f7ed5862be084a0c3f7",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11144,
+      "previewBytes": 11163,
       "previewCharacterCount": 9906,
       "estimatedRuntimeSeconds": 3574,
       "truncated": true
@@ -3320,7 +3320,7 @@
       "contentVersion": "7001ed3c7d3f05b3",
       "contentHash": "7001ed3c7d3f05b33f68cf5fbcc70788c531d19f6ac87afdec9991b11306fe85",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5837,
+      "previewBytes": 5856,
       "previewCharacterCount": 4964,
       "estimatedRuntimeSeconds": 1755,
       "truncated": false
@@ -3331,7 +3331,7 @@
       "contentVersion": "1c53ee8605a97e5d",
       "contentHash": "1c53ee8605a97e5d3de665b1c182e2a24ec0c79cd25f28c7e2420d0cde4c30d3",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10911,
+      "previewBytes": 10930,
       "previewCharacterCount": 9906,
       "estimatedRuntimeSeconds": 3520,
       "truncated": true
@@ -3342,7 +3342,7 @@
       "contentVersion": "0169baa80c314c18",
       "contentHash": "0169baa80c314c1887d1f2b19868ac5deb505796a3b881988a99129f15b22a84",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10125,
+      "previewBytes": 10144,
       "previewCharacterCount": 9048,
       "estimatedRuntimeSeconds": 3215,
       "truncated": false
@@ -3353,7 +3353,7 @@
       "contentVersion": "661e53376c48992f",
       "contentHash": "661e53376c48992fa4f3467be3358a502a3ee3ada763cc4f71b94fa5df877555",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9782,
+      "previewBytes": 9801,
       "previewCharacterCount": 8715,
       "estimatedRuntimeSeconds": 3119,
       "truncated": false
@@ -3364,7 +3364,7 @@
       "contentVersion": "a1a4467a4dc888e6",
       "contentHash": "a1a4467a4dc888e619c521f821ae6c95e9c92df055e7821f3d30e50d4ceb1a1a",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9819,
+      "previewBytes": 9838,
       "previewCharacterCount": 8606,
       "estimatedRuntimeSeconds": 3081,
       "truncated": false
@@ -3375,7 +3375,7 @@
       "contentVersion": "c844afbc4a0feee1",
       "contentHash": "c844afbc4a0feee104a9c6ac8f1ad552bf1eeccd7a177d67fb49a66acb8fb7a9",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 7341,
+      "previewBytes": 7360,
       "previewCharacterCount": 6451,
       "estimatedRuntimeSeconds": 2293,
       "truncated": false
@@ -3386,7 +3386,7 @@
       "contentVersion": "d1e583757546c3bb",
       "contentHash": "d1e583757546c3bb8c20309c620d8a3eeb3de2066f31158b089f951c2db308f2",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11182,
+      "previewBytes": 11201,
       "previewCharacterCount": 9963,
       "estimatedRuntimeSeconds": 3573,
       "truncated": true
@@ -3397,7 +3397,7 @@
       "contentVersion": "aa73f6e0ed360ae3",
       "contentHash": "aa73f6e0ed360ae3e497c2b69304435758659b012b3661cdfb9b5240946893fa",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10650,
+      "previewBytes": 10669,
       "previewCharacterCount": 9601,
       "estimatedRuntimeSeconds": 3423,
       "truncated": true
@@ -3408,7 +3408,7 @@
       "contentVersion": "c03cada757b5e1b2",
       "contentHash": "c03cada757b5e1b26d2c51a5acf37c1d22eb332159da464694bcb71f262c93b0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10705,
+      "previewBytes": 10724,
       "previewCharacterCount": 9594,
       "estimatedRuntimeSeconds": 3394,
       "truncated": false
@@ -3419,7 +3419,7 @@
       "contentVersion": "f330fe03abb1a452",
       "contentHash": "f330fe03abb1a45214a411c3c86f29e5f8adbabbceb373495f36b4dee01780dd",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11024,
+      "previewBytes": 11043,
       "previewCharacterCount": 9770,
       "estimatedRuntimeSeconds": 3503,
       "truncated": true
@@ -3430,7 +3430,7 @@
       "contentVersion": "9294ba6566436bd4",
       "contentHash": "9294ba6566436bd403b90f19e7275dc24ed678f32f60ddb5d7290d7f0c85c55b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10523,
+      "previewBytes": 10542,
       "previewCharacterCount": 9385,
       "estimatedRuntimeSeconds": 3338,
       "truncated": false
@@ -3441,7 +3441,7 @@
       "contentVersion": "307a263810a204a1",
       "contentHash": "307a263810a204a1c6b6c7fce13a2cca6e0d537978193a1d76b63a816beaa17b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11105,
+      "previewBytes": 11124,
       "previewCharacterCount": 10024,
       "estimatedRuntimeSeconds": 3552,
       "truncated": true
@@ -3452,7 +3452,7 @@
       "contentVersion": "e8c4448e9ace7816",
       "contentHash": "e8c4448e9ace78167d4d7b2e9744cae786bc1e93791744f8a8517b43776bf94a",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10999,
+      "previewBytes": 11018,
       "previewCharacterCount": 9840,
       "estimatedRuntimeSeconds": 3493,
       "truncated": true
@@ -3463,7 +3463,7 @@
       "contentVersion": "47a2a464bf7fcd09",
       "contentHash": "47a2a464bf7fcd090a754b9a20dba8a159d454554cf9bf52e98d3726852484d6",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10969,
+      "previewBytes": 10988,
       "previewCharacterCount": 9983,
       "estimatedRuntimeSeconds": 3526,
       "truncated": true
@@ -3474,7 +3474,7 @@
       "contentVersion": "15cb4decb64121de",
       "contentHash": "15cb4decb64121de537b405371dc1a718e7d3a84502e050a9de207b8db8ca2f1",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11111,
+      "previewBytes": 11130,
       "previewCharacterCount": 10077,
       "estimatedRuntimeSeconds": 3578,
       "truncated": true
@@ -3485,7 +3485,7 @@
       "contentVersion": "33681358bf906a9d",
       "contentHash": "33681358bf906a9d481a425cf2cf0b076e83c0d2d95fd2e9f4759bf014f47001",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11226,
+      "previewBytes": 11245,
       "previewCharacterCount": 10116,
       "estimatedRuntimeSeconds": 3581,
       "truncated": true
@@ -3496,7 +3496,7 @@
       "contentVersion": "31e94d13ec9aa601",
       "contentHash": "31e94d13ec9aa601253d245538464ebc25b022cde7a4734ea317aff9da63f9ec",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11004,
+      "previewBytes": 11023,
       "previewCharacterCount": 9968,
       "estimatedRuntimeSeconds": 3539,
       "truncated": true
@@ -3507,7 +3507,7 @@
       "contentVersion": "db8eed7df6aa0e9a",
       "contentHash": "db8eed7df6aa0e9a2c3fc02d63850dff66c4abd1347a2babedae134f3eb3308d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5680,
+      "previewBytes": 5699,
       "previewCharacterCount": 4738,
       "estimatedRuntimeSeconds": 1681,
       "truncated": false
@@ -3518,7 +3518,7 @@
       "contentVersion": "bd66959c46f8d604",
       "contentHash": "bd66959c46f8d604fbe8b2537327f7df45fff471a2effd51e44f7ab307e06f70",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 7281,
+      "previewBytes": 7300,
       "previewCharacterCount": 6339,
       "estimatedRuntimeSeconds": 2225,
       "truncated": false
@@ -3529,7 +3529,7 @@
       "contentVersion": "4f750ee229c37b8d",
       "contentHash": "4f750ee229c37b8d360f41aa64154aa50298eaf766183286039d085e49a9ce7c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11231,
+      "previewBytes": 11250,
       "previewCharacterCount": 10141,
       "estimatedRuntimeSeconds": 3605,
       "truncated": true
@@ -3540,7 +3540,7 @@
       "contentVersion": "e763159a5cb80c8f",
       "contentHash": "e763159a5cb80c8fb8ac31ac857c6215aa72051d89c6eee15b864184d65e19da",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11030,
+      "previewBytes": 11049,
       "previewCharacterCount": 10006,
       "estimatedRuntimeSeconds": 3550,
       "truncated": true
@@ -3551,7 +3551,7 @@
       "contentVersion": "0d670a0fd99981ac",
       "contentHash": "0d670a0fd99981ac7498a331d1d6178f41eeeffb23f220cf2c4e18e6d8d73891",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11029,
+      "previewBytes": 11048,
       "previewCharacterCount": 10046,
       "estimatedRuntimeSeconds": 3572,
       "truncated": true
@@ -3562,7 +3562,7 @@
       "contentVersion": "1ad55749b36a538f",
       "contentHash": "1ad55749b36a538f1d2c3c9535f2b9557e51e00ad56f7c5eadc1b20b82091006",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11008,
+      "previewBytes": 11027,
       "previewCharacterCount": 9876,
       "estimatedRuntimeSeconds": 3523,
       "truncated": true
@@ -3573,7 +3573,7 @@
       "contentVersion": "cb8afe5363268524",
       "contentHash": "cb8afe5363268524fcf1eba77133d53d4d026b46349507fb588530e443193fd7",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9081,
+      "previewBytes": 9100,
       "previewCharacterCount": 8102,
       "estimatedRuntimeSeconds": 2871,
       "truncated": false
@@ -3584,7 +3584,7 @@
       "contentVersion": "3dec8bd1deadbf9d",
       "contentHash": "3dec8bd1deadbf9d9148ca92523625c1af4527ae35968212da43abf798cac580",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6810,
+      "previewBytes": 6829,
       "previewCharacterCount": 5912,
       "estimatedRuntimeSeconds": 2103,
       "truncated": false
@@ -3595,7 +3595,7 @@
       "contentVersion": "6c6b8ba16384329f",
       "contentHash": "6c6b8ba16384329fcc3f7a2f62e77299847e5de898c21420f70b46cd9b0b77fe",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9319,
+      "previewBytes": 9338,
       "previewCharacterCount": 8332,
       "estimatedRuntimeSeconds": 2955,
       "truncated": false
@@ -3606,7 +3606,7 @@
       "contentVersion": "8aee207c13d0ff96",
       "contentHash": "8aee207c13d0ff9636b2c164b7cea0c7d2191c8b4fee821522420e06a5c9b8ba",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6576,
+      "previewBytes": 6595,
       "previewCharacterCount": 5638,
       "estimatedRuntimeSeconds": 2011,
       "truncated": false
@@ -3617,7 +3617,7 @@
       "contentVersion": "8c67b7a0a18b08f5",
       "contentHash": "8c67b7a0a18b08f53a720ee016282be21283bb72369ce6cb398362976e306f98",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10253,
+      "previewBytes": 10272,
       "previewCharacterCount": 9262,
       "estimatedRuntimeSeconds": 3309,
       "truncated": true
@@ -3628,7 +3628,7 @@
       "contentVersion": "15969a517a68c2fb",
       "contentHash": "15969a517a68c2fbf01f40b5f69e3e87d98e70befecf6587316f72d2bc10305c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9303,
+      "previewBytes": 9322,
       "previewCharacterCount": 8361,
       "estimatedRuntimeSeconds": 2973,
       "truncated": false
@@ -3639,7 +3639,7 @@
       "contentVersion": "9679792268153ad5",
       "contentHash": "9679792268153ad5acab07bd1370694f91bb7067bd33b4696d060f43cbd6ba24",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5723,
+      "previewBytes": 5742,
       "previewCharacterCount": 4794,
       "estimatedRuntimeSeconds": 1723,
       "truncated": false
@@ -3650,7 +3650,7 @@
       "contentVersion": "bdd65a57bae33dbd",
       "contentHash": "bdd65a57bae33dbdfc4175b03beea663a32292c64cee2d54536fa3a5b7877fe7",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6658,
+      "previewBytes": 6677,
       "previewCharacterCount": 5717,
       "estimatedRuntimeSeconds": 2044,
       "truncated": false
@@ -3661,7 +3661,7 @@
       "contentVersion": "1d26d94bba6b53be",
       "contentHash": "1d26d94bba6b53bea699dcc6633a270decc7a84bd222ce884942bd5e3c5272d2",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10871,
+      "previewBytes": 10890,
       "previewCharacterCount": 9696,
       "estimatedRuntimeSeconds": 3500,
       "truncated": true
@@ -3672,7 +3672,7 @@
       "contentVersion": "75f490d2477757bc",
       "contentHash": "75f490d2477757bca62ef8eb02a48cc0a80874dc3831a66df2a658a793dbcac5",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10418,
+      "previewBytes": 10437,
       "previewCharacterCount": 9425,
       "estimatedRuntimeSeconds": 3352,
       "truncated": true
@@ -3683,7 +3683,7 @@
       "contentVersion": "f15ee1772739e236",
       "contentHash": "f15ee1772739e2368452d5b33c905e97a86773fa558b7e8a6103834ac02513fc",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10780,
+      "previewBytes": 10799,
       "previewCharacterCount": 9820,
       "estimatedRuntimeSeconds": 3505,
       "truncated": true
@@ -3694,7 +3694,7 @@
       "contentVersion": "6ce330d789f97a40",
       "contentHash": "6ce330d789f97a40fda17091891c0e34ee2be649ccf4a41e189716c6f059f5d2",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 7184,
+      "previewBytes": 7203,
       "previewCharacterCount": 6263,
       "estimatedRuntimeSeconds": 2245,
       "truncated": false
@@ -3705,7 +3705,7 @@
       "contentVersion": "578c675b55c6c1be",
       "contentHash": "578c675b55c6c1be79f78ab3c47c1ded7304683f0873745b06415f2f5aa21e18",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 4689,
+      "previewBytes": 4708,
       "previewCharacterCount": 3855,
       "estimatedRuntimeSeconds": 1378,
       "truncated": false
@@ -3716,7 +3716,7 @@
       "contentVersion": "e132e0a257ec0766",
       "contentHash": "e132e0a257ec076626883b86a8106899f9fa1475b88bc2ece5ae3006cb9837c2",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 4930,
+      "previewBytes": 4949,
       "previewCharacterCount": 4107,
       "estimatedRuntimeSeconds": 1469,
       "truncated": false
@@ -3727,7 +3727,7 @@
       "contentVersion": "cd4024d7b6b80642",
       "contentHash": "cd4024d7b6b80642e5fa54803d9f7ee30f23ea3ed9f37322e8115fcf4609eaf0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6673,
+      "previewBytes": 6692,
       "previewCharacterCount": 5764,
       "estimatedRuntimeSeconds": 2054,
       "truncated": false
@@ -3738,7 +3738,7 @@
       "contentVersion": "be489aadf639d247",
       "contentHash": "be489aadf639d24764170753f32554174f6a9a730c4b32bf5e5b892bc5f42f17",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8480,
+      "previewBytes": 8499,
       "previewCharacterCount": 7405,
       "estimatedRuntimeSeconds": 2650,
       "truncated": false
@@ -3749,7 +3749,7 @@
       "contentVersion": "eb528319414562f5",
       "contentHash": "eb528319414562f59f6f418c93d7778eaf1fe40330631ddc42b78942623ea8f6",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11106,
+      "previewBytes": 11125,
       "previewCharacterCount": 9931,
       "estimatedRuntimeSeconds": 3557,
       "truncated": true
@@ -3760,7 +3760,7 @@
       "contentVersion": "a2446facd0fdcdea",
       "contentHash": "a2446facd0fdcdea2187c1270df61cc018cacf68443b363cc8654cbd9f00115f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11176,
+      "previewBytes": 11195,
       "previewCharacterCount": 10065,
       "estimatedRuntimeSeconds": 3589,
       "truncated": true
@@ -3771,7 +3771,7 @@
       "contentVersion": "2d457bc1901694cb",
       "contentHash": "2d457bc1901694cbbcf1d904f54803a6782a609c760327f4c634f24899792f9e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11427,
+      "previewBytes": 11446,
       "previewCharacterCount": 10236,
       "estimatedRuntimeSeconds": 3564,
       "truncated": true
@@ -3782,7 +3782,7 @@
       "contentVersion": "130e63608da1bad2",
       "contentHash": "130e63608da1bad207ac18b6f83a424e294045127494d4372957fff7ae69214f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11110,
+      "previewBytes": 11129,
       "previewCharacterCount": 10012,
       "estimatedRuntimeSeconds": 3567,
       "truncated": true
@@ -3793,7 +3793,7 @@
       "contentVersion": "3893e45c220312ed",
       "contentHash": "3893e45c220312ed3869653c232a513a6e8b9ec816d7208250aa567616980542",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10758,
+      "previewBytes": 10777,
       "previewCharacterCount": 9658,
       "estimatedRuntimeSeconds": 3448,
       "truncated": true
@@ -3804,7 +3804,7 @@
       "contentVersion": "084e9189c4f1f3e0",
       "contentHash": "084e9189c4f1f3e0b208101026c6530b46e60923e0721cee43b56eecb5b32541",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11376,
+      "previewBytes": 11395,
       "previewCharacterCount": 10233,
       "estimatedRuntimeSeconds": 3450,
       "truncated": true
@@ -3815,7 +3815,7 @@
       "contentVersion": "0fb00b464f2c4a7a",
       "contentHash": "0fb00b464f2c4a7af688196df78518066a46ec45b6902b05299bbc1e8f294484",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10879,
+      "previewBytes": 10898,
       "previewCharacterCount": 9883,
       "estimatedRuntimeSeconds": 3524,
       "truncated": true
@@ -3826,7 +3826,7 @@
       "contentVersion": "1750acb02a843d7e",
       "contentHash": "1750acb02a843d7e89862e75ebcd99d5970c22a4b51d84b801e62c76949b1420",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10812,
+      "previewBytes": 10831,
       "previewCharacterCount": 9697,
       "estimatedRuntimeSeconds": 3456,
       "truncated": true
@@ -3837,7 +3837,7 @@
       "contentVersion": "2727f11f9405cb58",
       "contentHash": "2727f11f9405cb5851abfd0ecf7401582ddf44a8c18e68d7bb314b78e4b26837",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11068,
+      "previewBytes": 11087,
       "previewCharacterCount": 10021,
       "estimatedRuntimeSeconds": 3574,
       "truncated": true
@@ -3848,7 +3848,7 @@
       "contentVersion": "203e25c8775e4f2c",
       "contentHash": "203e25c8775e4f2c23b8357fac8926f6681eafe9201834df0c6e148dccf88930",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11205,
+      "previewBytes": 11224,
       "previewCharacterCount": 10083,
       "estimatedRuntimeSeconds": 3610,
       "truncated": true
@@ -3859,7 +3859,7 @@
       "contentVersion": "46613ef2bd303810",
       "contentHash": "46613ef2bd303810847bbc89bb18aa7ccd649a77d8e70091837d62d12e542106",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10836,
+      "previewBytes": 10855,
       "previewCharacterCount": 9793,
       "estimatedRuntimeSeconds": 3475,
       "truncated": true
@@ -3870,7 +3870,7 @@
       "contentVersion": "ab6d99ac13a087bc",
       "contentHash": "ab6d99ac13a087bc79edb5abd7eb495c8d0fdb8568f0078fdcd938e648c87c33",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10775,
+      "previewBytes": 10794,
       "previewCharacterCount": 9752,
       "estimatedRuntimeSeconds": 3472,
       "truncated": true
@@ -3881,7 +3881,7 @@
       "contentVersion": "59a63caf03899ca2",
       "contentHash": "59a63caf03899ca2fe3dc877b84689b069e66c9ed22ffead6b832cb7e4a996fa",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8466,
+      "previewBytes": 8485,
       "previewCharacterCount": 7224,
       "estimatedRuntimeSeconds": 2586,
       "truncated": false
@@ -3892,7 +3892,7 @@
       "contentVersion": "ed0466a06b38fcdd",
       "contentHash": "ed0466a06b38fcddc36abedd608edec14e914a578d80a9b89684ea7db7017833",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10912,
+      "previewBytes": 10931,
       "previewCharacterCount": 9788,
       "estimatedRuntimeSeconds": 3485,
       "truncated": true
@@ -3903,7 +3903,7 @@
       "contentVersion": "bd7343ec311c411e",
       "contentHash": "bd7343ec311c411e0bd8a80077bf59ba5333d0fdea80aaba4944257ea04edccc",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10594,
+      "previewBytes": 10613,
       "previewCharacterCount": 9542,
       "estimatedRuntimeSeconds": 3389,
       "truncated": false
@@ -3914,7 +3914,7 @@
       "contentVersion": "706c2e005d0f73f1",
       "contentHash": "706c2e005d0f73f1cd352577b0d6174170477d26d8d8857a95cfe601e4dcc3e2",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6830,
+      "previewBytes": 6849,
       "previewCharacterCount": 5970,
       "estimatedRuntimeSeconds": 2112,
       "truncated": false
@@ -3925,7 +3925,7 @@
       "contentVersion": "72988f25f8d25145",
       "contentHash": "72988f25f8d25145a6a3342d40db7b7187e12aec7cc5a1692147212e6a2a5bb4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11235,
+      "previewBytes": 11254,
       "previewCharacterCount": 10104,
       "estimatedRuntimeSeconds": 3597,
       "truncated": true
@@ -3936,7 +3936,7 @@
       "contentVersion": "a8905a82f4b8577a",
       "contentHash": "a8905a82f4b8577ac96c8c2b836f08a797f1a7787b251cbf1f81461fd8397a44",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11127,
+      "previewBytes": 11146,
       "previewCharacterCount": 9879,
       "estimatedRuntimeSeconds": 3514,
       "truncated": true
@@ -3947,7 +3947,7 @@
       "contentVersion": "78d08d92388d6789",
       "contentHash": "78d08d92388d6789882517e035176d3caf4ab5b3523ff29de20f1c5d10d86409",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6744,
+      "previewBytes": 6763,
       "previewCharacterCount": 5650,
       "estimatedRuntimeSeconds": 2009,
       "truncated": false
@@ -3958,7 +3958,7 @@
       "contentVersion": "e79bc04c6300532b",
       "contentHash": "e79bc04c6300532bc7cc41a78e1076e275a725045771f978a71e24d75088dd94",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8875,
+      "previewBytes": 8894,
       "previewCharacterCount": 7926,
       "estimatedRuntimeSeconds": 2803,
       "truncated": false
@@ -3969,7 +3969,7 @@
       "contentVersion": "4a7a095ab6499c15",
       "contentHash": "4a7a095ab6499c1567d050e38cfa16c33b4624dd4cece068ae98df162681eca4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11165,
+      "previewBytes": 11184,
       "previewCharacterCount": 10083,
       "estimatedRuntimeSeconds": 3568,
       "truncated": true
@@ -3980,7 +3980,7 @@
       "contentVersion": "d91328142f05e4d7",
       "contentHash": "d91328142f05e4d7d7ea592ce219532106f1bd154bb8723f1ceb771d8be21b47",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10525,
+      "previewBytes": 10544,
       "previewCharacterCount": 9428,
       "estimatedRuntimeSeconds": 3356,
       "truncated": true
@@ -3991,7 +3991,7 @@
       "contentVersion": "c341280c08b2f4ba",
       "contentHash": "c341280c08b2f4ba1ca98031bf8d47288d4896965c8de4eb9ad8322cad707069",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11023,
+      "previewBytes": 11042,
       "previewCharacterCount": 9942,
       "estimatedRuntimeSeconds": 3535,
       "truncated": true
@@ -4002,7 +4002,7 @@
       "contentVersion": "9e97cc3950bcbd77",
       "contentHash": "9e97cc3950bcbd772811c9dce745c373d1010c991fcd65854b8ea795dd243b97",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5283,
+      "previewBytes": 5302,
       "previewCharacterCount": 4452,
       "estimatedRuntimeSeconds": 1587,
       "truncated": false
@@ -4013,7 +4013,7 @@
       "contentVersion": "15c11e21dbf2ec9c",
       "contentHash": "15c11e21dbf2ec9c6fa526d5124be04f8ba78ff447418a3823d7632a1de5ac59",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9617,
+      "previewBytes": 9636,
       "previewCharacterCount": 8703,
       "estimatedRuntimeSeconds": 3084,
       "truncated": false
@@ -4024,7 +4024,7 @@
       "contentVersion": "184ca94859e599d1",
       "contentHash": "184ca94859e599d13c4ff399ad2d139be536b37b7b05b9b995ef8e82be36b404",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11054,
+      "previewBytes": 11073,
       "previewCharacterCount": 9991,
       "estimatedRuntimeSeconds": 3565,
       "truncated": true
@@ -4035,7 +4035,7 @@
       "contentVersion": "93a716e311709843",
       "contentHash": "93a716e31170984370dfa554117c713c2cbee72098786e886570e99037b521a5",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11058,
+      "previewBytes": 11077,
       "previewCharacterCount": 10018,
       "estimatedRuntimeSeconds": 3566,
       "truncated": true
@@ -4046,7 +4046,7 @@
       "contentVersion": "1468f8680971cb05",
       "contentHash": "1468f8680971cb051c1d03dc1456964733ec6f26702acdefab825889301316a7",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8509,
+      "previewBytes": 8528,
       "previewCharacterCount": 7532,
       "estimatedRuntimeSeconds": 2671,
       "truncated": false
@@ -4057,7 +4057,7 @@
       "contentVersion": "4fda1dbf3f8b9a35",
       "contentHash": "4fda1dbf3f8b9a35f4c64cf621f6231f1e1c96fd9fbb77bd8240872ff77eb590",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8099,
+      "previewBytes": 8118,
       "previewCharacterCount": 7168,
       "estimatedRuntimeSeconds": 2548,
       "truncated": false
@@ -4068,7 +4068,7 @@
       "contentVersion": "7371bb24cb6fdf6f",
       "contentHash": "7371bb24cb6fdf6f5369b64c7b81006623378b475eb1c99569b3f03764d3b3bc",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10850,
+      "previewBytes": 10869,
       "previewCharacterCount": 9795,
       "estimatedRuntimeSeconds": 3494,
       "truncated": true
@@ -4079,7 +4079,7 @@
       "contentVersion": "d786cdc39738e104",
       "contentHash": "d786cdc39738e10410ac5d09d936aa898d22b58a06a8d89f4e0341bac897bf10",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11044,
+      "previewBytes": 11063,
       "previewCharacterCount": 9952,
       "estimatedRuntimeSeconds": 3533,
       "truncated": true
@@ -4090,7 +4090,7 @@
       "contentVersion": "af399c81e922506e",
       "contentHash": "af399c81e922506ef4b8f3071d79fc222d2738cf0ad048cd9ce5c4d534a43abd",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8839,
+      "previewBytes": 8858,
       "previewCharacterCount": 7771,
       "estimatedRuntimeSeconds": 2660,
       "truncated": false
@@ -4101,7 +4101,7 @@
       "contentVersion": "d81b2511ee949759",
       "contentHash": "d81b2511ee949759b4e126746e5d85bddd91bb349d605cc3fa8d5b278ab5a626",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8407,
+      "previewBytes": 8426,
       "previewCharacterCount": 7507,
       "estimatedRuntimeSeconds": 2661,
       "truncated": false
@@ -4112,7 +4112,7 @@
       "contentVersion": "45429e288f7af232",
       "contentHash": "45429e288f7af2327441c7a36bdee53c5347b3e9b3e52a9db739e57fb88c1c64",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 7551,
+      "previewBytes": 7570,
       "previewCharacterCount": 6656,
       "estimatedRuntimeSeconds": 2365,
       "truncated": false
@@ -4123,7 +4123,7 @@
       "contentVersion": "d2d08420cfdea58f",
       "contentHash": "d2d08420cfdea58febdd479b4e9cf50d2b72e038f79eefcaab6d706f5cc0e780",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11212,
+      "previewBytes": 11231,
       "previewCharacterCount": 10134,
       "estimatedRuntimeSeconds": 3597,
       "truncated": true
@@ -4134,7 +4134,7 @@
       "contentVersion": "db916b9f5ae01eb2",
       "contentHash": "db916b9f5ae01eb23605fab3fc852dfb2fa851e3b1f37b1965c8cba724af012b",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11331,
+      "previewBytes": 11350,
       "previewCharacterCount": 10151,
       "estimatedRuntimeSeconds": 3596,
       "truncated": true
@@ -4145,7 +4145,7 @@
       "contentVersion": "b6cafc1678d85258",
       "contentHash": "b6cafc1678d85258f15ad8efaed7cbb819f33e4e5e9d30a401dde54a8ccba5c7",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10971,
+      "previewBytes": 10990,
       "previewCharacterCount": 9926,
       "estimatedRuntimeSeconds": 3516,
       "truncated": true
@@ -4156,7 +4156,7 @@
       "contentVersion": "e51f79b42f2939b6",
       "contentHash": "e51f79b42f2939b664979142146b35ca3f447989a2ef2aa910df5cb56df0f1e6",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 6292,
+      "previewBytes": 6311,
       "previewCharacterCount": 5308,
       "estimatedRuntimeSeconds": 1896,
       "truncated": false
@@ -4167,7 +4167,7 @@
       "contentVersion": "afe0853d8eca2952",
       "contentHash": "afe0853d8eca295265c5bceb665dc3c713cc196fdc72cd518a24282eef91dfa2",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11272,
+      "previewBytes": 11291,
       "previewCharacterCount": 10092,
       "estimatedRuntimeSeconds": 3595,
       "truncated": true
@@ -4178,7 +4178,7 @@
       "contentVersion": "67a65390eb06a0e4",
       "contentHash": "67a65390eb06a0e4fee1bb9a6007d15abca32bc002ad20f438177cef8abf2d69",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11274,
+      "previewBytes": 11293,
       "previewCharacterCount": 10008,
       "estimatedRuntimeSeconds": 3601,
       "truncated": true
@@ -4189,7 +4189,7 @@
       "contentVersion": "4e35cd06f0b3d54b",
       "contentHash": "4e35cd06f0b3d54b27e58a1b017a45e68925c7635f0e8360bb15f991972da047",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10276,
+      "previewBytes": 10295,
       "previewCharacterCount": 9170,
       "estimatedRuntimeSeconds": 3267,
       "truncated": false
@@ -4200,7 +4200,7 @@
       "contentVersion": "a3c00268bb9fdaf0",
       "contentHash": "a3c00268bb9fdaf05ca094ab93e1f985b4403bcca0645a82c6a3e08f52e179b0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11225,
+      "previewBytes": 11244,
       "previewCharacterCount": 10014,
       "estimatedRuntimeSeconds": 3567,
       "truncated": true
@@ -4211,7 +4211,7 @@
       "contentVersion": "0d196120ccffefc8",
       "contentHash": "0d196120ccffefc87cd39d95f09a59637877270b198c3ea70877807ed098d65a",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11139,
+      "previewBytes": 11158,
       "previewCharacterCount": 10067,
       "estimatedRuntimeSeconds": 3563,
       "truncated": true
@@ -4222,7 +4222,7 @@
       "contentVersion": "54bc283a5271e11f",
       "contentHash": "54bc283a5271e11fe96e4e8d3ce0b0bf7dfe95a1adddcb92a065ea85da4e6a1a",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 3817,
+      "previewBytes": 3836,
       "previewCharacterCount": 3014,
       "estimatedRuntimeSeconds": 1069,
       "truncated": false
@@ -4233,7 +4233,7 @@
       "contentVersion": "81f5f54a6010e5c4",
       "contentHash": "81f5f54a6010e5c4fac34e2a0150410f12ffcbd7bc6d3c9e36f3a316834204d0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10866,
+      "previewBytes": 10885,
       "previewCharacterCount": 9864,
       "estimatedRuntimeSeconds": 3510,
       "truncated": true
@@ -4244,7 +4244,7 @@
       "contentVersion": "e736478cf99791fc",
       "contentHash": "e736478cf99791fc725a8dd302b2c98e0b2d9067958814852736f613f1c01e9c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 7728,
+      "previewBytes": 7747,
       "previewCharacterCount": 6811,
       "estimatedRuntimeSeconds": 2421,
       "truncated": false
@@ -4255,7 +4255,7 @@
       "contentVersion": "e5ca63ec2a8020d0",
       "contentHash": "e5ca63ec2a8020d0054db1e26670fad7617a6d23df5dff52ee8d7a302170d251",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10823,
+      "previewBytes": 10842,
       "previewCharacterCount": 9816,
       "estimatedRuntimeSeconds": 3490,
       "truncated": true
@@ -4266,7 +4266,7 @@
       "contentVersion": "f85c4a64c184b871",
       "contentHash": "f85c4a64c184b87127f62d2bad129d19fd7d03efb002804c5fe33e497c9345fc",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10208,
+      "previewBytes": 10227,
       "previewCharacterCount": 9173,
       "estimatedRuntimeSeconds": 3272,
       "truncated": true
@@ -4277,7 +4277,7 @@
       "contentVersion": "8284863d2bb35abd",
       "contentHash": "8284863d2bb35abda5f49838d3baee3a5f51480a8f3dbd10c40ac67799fdbd48",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11218,
+      "previewBytes": 11237,
       "previewCharacterCount": 10077,
       "estimatedRuntimeSeconds": 3590,
       "truncated": true
@@ -4288,7 +4288,7 @@
       "contentVersion": "c4d23cefe7eb5eed",
       "contentHash": "c4d23cefe7eb5eedfc93f3809a8dae85b9f096496cec4b5e1aa38d2d044d2fda",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8762,
+      "previewBytes": 8781,
       "previewCharacterCount": 7787,
       "estimatedRuntimeSeconds": 2783,
       "truncated": false
@@ -4299,7 +4299,7 @@
       "contentVersion": "0472533cca89d53c",
       "contentHash": "0472533cca89d53c0bb63b6d14100c469d6d3ba75b77785d0f561a72fafc1f5e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11060,
+      "previewBytes": 11079,
       "previewCharacterCount": 9982,
       "estimatedRuntimeSeconds": 3556,
       "truncated": true
@@ -4310,7 +4310,7 @@
       "contentVersion": "9ab7d18af61fd08c",
       "contentHash": "9ab7d18af61fd08c6566c5c52beeefc755ee59c66e2bd2bcf3985b0e05e6b0b9",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 5442,
+      "previewBytes": 5461,
       "previewCharacterCount": 4538,
       "estimatedRuntimeSeconds": 1608,
       "truncated": false
@@ -4321,7 +4321,7 @@
       "contentVersion": "9f324b16576e7be3",
       "contentHash": "9f324b16576e7be38c575fef97e39ace5412f4eb8b37239955359318d77b1828",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11268,
+      "previewBytes": 11287,
       "previewCharacterCount": 10071,
       "estimatedRuntimeSeconds": 3596,
       "truncated": true
@@ -4332,7 +4332,7 @@
       "contentVersion": "08ebd425a8329e8f",
       "contentHash": "08ebd425a8329e8f21fa006eb7b1416e22a2a64b60d86630389aee6c22dbabe5",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11186,
+      "previewBytes": 11205,
       "previewCharacterCount": 9918,
       "estimatedRuntimeSeconds": 3550,
       "truncated": true
@@ -4343,7 +4343,7 @@
       "contentVersion": "af92cfdbef57c197",
       "contentHash": "af92cfdbef57c19735588bfc6cd05e138dc021e57e475bcdfe4f38d6dc433993",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8686,
+      "previewBytes": 8705,
       "previewCharacterCount": 7707,
       "estimatedRuntimeSeconds": 2741,
       "truncated": false
@@ -4354,7 +4354,7 @@
       "contentVersion": "3eadcb0a874c370b",
       "contentHash": "3eadcb0a874c370b234f14b728c10c6e45b03864acaf2302cb1671ef2fe08339",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11154,
+      "previewBytes": 11173,
       "previewCharacterCount": 10155,
       "estimatedRuntimeSeconds": 3603,
       "truncated": true
@@ -4365,7 +4365,7 @@
       "contentVersion": "074e9616913d2ec4",
       "contentHash": "074e9616913d2ec44266a9a4225346a5fc1709dd10097bf6e59e8be156c81e78",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11241,
+      "previewBytes": 11260,
       "previewCharacterCount": 10021,
       "estimatedRuntimeSeconds": 3588,
       "truncated": true
@@ -4376,7 +4376,7 @@
       "contentVersion": "61993eced957d2b4",
       "contentHash": "61993eced957d2b478a06689ae286fd6a44e7756217c92f673b91ae90a030e73",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11077,
+      "previewBytes": 11096,
       "previewCharacterCount": 9900,
       "estimatedRuntimeSeconds": 3530,
       "truncated": true
@@ -4387,7 +4387,7 @@
       "contentVersion": "2f8aac426c6e5553",
       "contentHash": "2f8aac426c6e5553bfb30a34c5ced91276fa0ead842decb7315d8afa0418382f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11282,
+      "previewBytes": 11301,
       "previewCharacterCount": 10051,
       "estimatedRuntimeSeconds": 3595,
       "truncated": true
@@ -4398,7 +4398,7 @@
       "contentVersion": "f6a22f656cb6b2a0",
       "contentHash": "f6a22f656cb6b2a0ee83c9fd57837a6a4bba384514ebe2f2ba75c0a995f7baf9",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10254,
+      "previewBytes": 10273,
       "previewCharacterCount": 9255,
       "estimatedRuntimeSeconds": 3296,
       "truncated": true
@@ -4406,10 +4406,10 @@
     {
       "slug": "jimmy-goggles-the-god",
       "path": "/book-previews/jimmy-goggles-the-god.preview.json",
-      "contentVersion": "2d9cb5858528338c",
-      "contentHash": "2d9cb5858528338c5d939949678c902a417db2ac6197efd5cae1fbf777b11633",
+      "contentVersion": "c32c0fc67766d26a",
+      "contentHash": "c32c0fc67766d26ac0e382548e8ee59be6783111619e2c0c0b4edac8f6606cc8",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10685,
+      "previewBytes": 10704,
       "previewCharacterCount": 9760,
       "estimatedRuntimeSeconds": 3496,
       "truncated": true
@@ -4420,7 +4420,7 @@
       "contentVersion": "3ec4623fe50169ea",
       "contentHash": "3ec4623fe50169ea4a49f436f2ad5dea9b354c976b34682dbc2f31e142f001bf",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10429,
+      "previewBytes": 10448,
       "previewCharacterCount": 9508,
       "estimatedRuntimeSeconds": 3401,
       "truncated": true
@@ -4431,7 +4431,7 @@
       "contentVersion": "d5f4c5a7c7880ac5",
       "contentHash": "d5f4c5a7c7880ac50e860e5c85ed2ad0b59fd6e21905288d7d91877ce4732bdd",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10761,
+      "previewBytes": 10780,
       "previewCharacterCount": 9560,
       "estimatedRuntimeSeconds": 3484,
       "truncated": true
@@ -4439,10 +4439,10 @@
     {
       "slug": "mr-ledbetter-s-vacation",
       "path": "/book-previews/mr-ledbetter-s-vacation.preview.json",
-      "contentVersion": "1a059d7aee335369",
-      "contentHash": "1a059d7aee335369d45aa7e97841ab5da529f7626a9fc480636f2a2ac8ef408d",
+      "contentVersion": "b284376f713fff29",
+      "contentHash": "b284376f713fff292ffa836e43a0fc356ad39d450dc79620513aa1e509c118df",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10443,
+      "previewBytes": 10462,
       "previewCharacterCount": 9561,
       "estimatedRuntimeSeconds": 3439,
       "truncated": true
@@ -4453,7 +4453,7 @@
       "contentVersion": "00e418ccfa8e9a7c",
       "contentHash": "00e418ccfa8e9a7c3d142a30837e0ad858903b295602673c410403623f5dfcc5",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10620,
+      "previewBytes": 10639,
       "previewCharacterCount": 9632,
       "estimatedRuntimeSeconds": 3450,
       "truncated": true
@@ -4464,7 +4464,7 @@
       "contentVersion": "954f5d50dea4ef56",
       "contentHash": "954f5d50dea4ef56e448f39cfaadeb50c8f3485603a8001ebd6cd3670026d3b7",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11067,
+      "previewBytes": 11086,
       "previewCharacterCount": 10035,
       "estimatedRuntimeSeconds": 3581,
       "truncated": true
@@ -4475,7 +4475,7 @@
       "contentVersion": "f8ca1a56c76b1291",
       "contentHash": "f8ca1a56c76b1291d4467787c1ec20a592b652726733809f69c381048105bbf0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10653,
+      "previewBytes": 10672,
       "previewCharacterCount": 9735,
       "estimatedRuntimeSeconds": 3475,
       "truncated": false
@@ -4486,7 +4486,7 @@
       "contentVersion": "1605294ff5da88f7",
       "contentHash": "1605294ff5da88f76ff7f9a3d1eb9a8f62d15d99cd8824ee4833e0b80f735aa3",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10097,
+      "previewBytes": 10116,
       "previewCharacterCount": 9308,
       "estimatedRuntimeSeconds": 3295,
       "truncated": false
@@ -4497,7 +4497,7 @@
       "contentVersion": "c3b0f385bcf417d5",
       "contentHash": "c3b0f385bcf417d5053115b0feb87750be533e2ddfee4277bb5f81f1bcb85404",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10761,
+      "previewBytes": 10780,
       "previewCharacterCount": 9834,
       "estimatedRuntimeSeconds": 3529,
       "truncated": true
@@ -4505,12 +4505,12 @@
     {
       "slug": "aepyornis-island",
       "path": "/book-previews/aepyornis-island.preview.json",
-      "contentVersion": "8f6185e3cfb19c73",
-      "contentHash": "8f6185e3cfb19c7378f5bb69f05875c30e28a0197dd682a7d36b872c91cdc8c2",
+      "contentVersion": "e93dd07bed6dc0a3",
+      "contentHash": "e93dd07bed6dc0a339bae5b82955550890bc20ed9c9fb5b6a5beed4cb15c83c3",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10515,
-      "previewCharacterCount": 9524,
-      "estimatedRuntimeSeconds": 3411,
+      "previewBytes": 10557,
+      "previewCharacterCount": 9529,
+      "estimatedRuntimeSeconds": 3420,
       "truncated": true
     },
     {
@@ -4519,7 +4519,7 @@
       "contentVersion": "e19ca997e58ec3d7",
       "contentHash": "e19ca997e58ec3d757a965ffab72dff2315525802fa8b19a9770dfddca947d2f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10573,
+      "previewBytes": 10592,
       "previewCharacterCount": 9654,
       "estimatedRuntimeSeconds": 3432,
       "truncated": true
@@ -4530,7 +4530,7 @@
       "contentVersion": "cf052823a89c6e85",
       "contentHash": "cf052823a89c6e858210ddc9f523ef3156ba835fb5f8eb13a25757317be03540",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10971,
+      "previewBytes": 10990,
       "previewCharacterCount": 9902,
       "estimatedRuntimeSeconds": 3574,
       "truncated": true
@@ -4541,7 +4541,7 @@
       "contentVersion": "166f2ff1d1018fda",
       "contentHash": "166f2ff1d1018fda84bda2a705576138176caefd100aa5a93107e36736b11274",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10397,
+      "previewBytes": 10416,
       "previewCharacterCount": 9608,
       "estimatedRuntimeSeconds": 3414,
       "truncated": true
@@ -4552,7 +4552,7 @@
       "contentVersion": "50732deb23f8f8ff",
       "contentHash": "50732deb23f8f8ff3e8d61950432904aecf6819e8ee80832a86911c98364a563",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10768,
+      "previewBytes": 10787,
       "previewCharacterCount": 9944,
       "estimatedRuntimeSeconds": 3576,
       "truncated": true
@@ -4563,7 +4563,7 @@
       "contentVersion": "9a471a01e8df79c5",
       "contentHash": "9a471a01e8df79c5ac1e21c68043a184050def459b9885a9cac9c29a48fa3144",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10294,
+      "previewBytes": 10313,
       "previewCharacterCount": 9322,
       "estimatedRuntimeSeconds": 3330,
       "truncated": true
@@ -4574,7 +4574,7 @@
       "contentVersion": "14f75ab8bcf959e6",
       "contentHash": "14f75ab8bcf959e6fd7a0800d98ec098d8854651deddbde13d60b7ae6ee35541",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 11125,
+      "previewBytes": 11144,
       "previewCharacterCount": 10031,
       "estimatedRuntimeSeconds": 3616,
       "truncated": true
@@ -4582,12 +4582,12 @@
     {
       "slug": "the-flying-man",
       "path": "/book-previews/the-flying-man.preview.json",
-      "contentVersion": "88c630b3948891fc",
-      "contentHash": "88c630b3948891fc362449d6fe32bc947a4a253b52a6f2b9617666b23c8aa321",
+      "contentVersion": "b801d3989345bfcf",
+      "contentHash": "b801d3989345bfcff45d48599711d153843d3a13370ea4f24d5042c0b4b0b641",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10415,
-      "previewCharacterCount": 9429,
-      "estimatedRuntimeSeconds": 3370,
+      "previewBytes": 10458,
+      "previewCharacterCount": 9435,
+      "estimatedRuntimeSeconds": 3420,
       "truncated": true
     },
     {
@@ -4596,7 +4596,7 @@
       "contentVersion": "2f1a0758bbab4f76",
       "contentHash": "2f1a0758bbab4f76c0dc3ee84918f2bcddcb68d0971eef387d901769ea7704f3",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10802,
+      "previewBytes": 10821,
       "previewCharacterCount": 9758,
       "estimatedRuntimeSeconds": 3511,
       "truncated": true
@@ -4604,23 +4604,23 @@
     {
       "slug": "the-lord-of-the-dynamos",
       "path": "/book-previews/the-lord-of-the-dynamos.preview.json",
-      "contentVersion": "61d48eb1eb73073a",
-      "contentHash": "61d48eb1eb73073a390ba6ec6eea1fcb42dd842b1e49a5f54b117c8ea7f79df6",
+      "contentVersion": "73ede4ee64d1857a",
+      "contentHash": "73ede4ee64d1857ad05fffb4123146e214bd953c839d2abb290e0de33d269d08",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10560,
-      "previewCharacterCount": 9640,
-      "estimatedRuntimeSeconds": 3456,
+      "previewBytes": 10595,
+      "previewCharacterCount": 9639,
+      "estimatedRuntimeSeconds": 3480,
       "truncated": true
     },
     {
       "slug": "the-star",
       "path": "/book-previews/the-star.preview.json",
-      "contentVersion": "a86109125af8f8f4",
-      "contentHash": "a86109125af8f8f4830c5a35c7ab508f0246b285d65e5e1a7ef429b81bc6958d",
+      "contentVersion": "315dcf4ded13780e",
+      "contentHash": "315dcf4ded13780e13bdce0a69c5795415b32a1b371a1d0b38ad34116088d70c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10848,
-      "previewCharacterCount": 9980,
-      "estimatedRuntimeSeconds": 3545,
+      "previewBytes": 10891,
+      "previewCharacterCount": 9985,
+      "estimatedRuntimeSeconds": 3600,
       "truncated": true
     },
     {
@@ -4629,7 +4629,7 @@
       "contentVersion": "9a4155e24aa97225",
       "contentHash": "9a4155e24aa972259a083dd6610a37ebe9c8a6f4ac23b4c91152a3e725e9f2fc",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9642,
+      "previewBytes": 9661,
       "previewCharacterCount": 8601,
       "estimatedRuntimeSeconds": 3113,
       "truncated": true
@@ -4640,7 +4640,7 @@
       "contentVersion": "de487ab10d69a823",
       "contentHash": "de487ab10d69a82394c6990dfc40bd722dce4c93ecc54dcc202ad67340ae7b8c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10723,
+      "previewBytes": 10742,
       "previewCharacterCount": 9880,
       "estimatedRuntimeSeconds": 3544,
       "truncated": true
@@ -4651,7 +4651,7 @@
       "contentVersion": "38322f7620d82b20",
       "contentHash": "38322f7620d82b20efc6e009527cecc3265161655dc3707f08a2f6434f2af232",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10942,
+      "previewBytes": 10961,
       "previewCharacterCount": 9865,
       "estimatedRuntimeSeconds": 3572,
       "truncated": true
@@ -4662,7 +4662,7 @@
       "contentVersion": "54d5401998d0fda3",
       "contentHash": "54d5401998d0fda34af6b6cd8ed2e69bc91dd1ee9f51d86d4e3e0801f81db08a",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10858,
+      "previewBytes": 10877,
       "previewCharacterCount": 9826,
       "estimatedRuntimeSeconds": 3509,
       "truncated": true
@@ -4670,23 +4670,23 @@
     {
       "slug": "the-triumphs-of-a-taxidermist",
       "path": "/book-previews/the-triumphs-of-a-taxidermist.preview.json",
-      "contentVersion": "e0aca7dcccade45a",
-      "contentHash": "e0aca7dcccade45a68d66b594a178520c11a215e3165ad793d0da454bee125ae",
+      "contentVersion": "d0aad70aa95236c2",
+      "contentHash": "d0aad70aa95236c2bef84749136d0ac231c695f6905d30fcc5052fb7b89bffd5",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8995,
-      "previewCharacterCount": 8056,
-      "estimatedRuntimeSeconds": 2895,
+      "previewBytes": 9031,
+      "previewCharacterCount": 8055,
+      "estimatedRuntimeSeconds": 2940,
       "truncated": false
     },
     {
       "slug": "through-a-window",
       "path": "/book-previews/through-a-window.preview.json",
-      "contentVersion": "197393ecbd25bd88",
-      "contentHash": "197393ecbd25bd88a9f9fe748e030589cc323aac3bfc41af5f7fcb37ebef070b",
+      "contentVersion": "57016e9033072b1f",
+      "contentHash": "57016e9033072b1fb1d030f701fdca41886d14bfad82e2e50e19c397b6e1d255",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10948,
-      "previewCharacterCount": 9975,
-      "estimatedRuntimeSeconds": 3579,
+      "previewBytes": 10996,
+      "previewCharacterCount": 9986,
+      "estimatedRuntimeSeconds": 3600,
       "truncated": true
     },
     {
@@ -4695,7 +4695,7 @@
       "contentVersion": "d6527eaf71a997fa",
       "contentHash": "d6527eaf71a997fa84c59d8c22421be6641876aae5aad7e797d9435416e3904e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10516,
+      "previewBytes": 10535,
       "previewCharacterCount": 9553,
       "estimatedRuntimeSeconds": 3440,
       "truncated": true
@@ -4706,7 +4706,7 @@
       "contentVersion": "99e39a718405d36f",
       "contentHash": "99e39a718405d36f1e34d495dcc20810e27d13c72bb21b58add909f143ef0e4c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10374,
+      "previewBytes": 10393,
       "previewCharacterCount": 9576,
       "estimatedRuntimeSeconds": 3408,
       "truncated": true
@@ -4717,7 +4717,7 @@
       "contentVersion": "5bffb0a276a77f49",
       "contentHash": "5bffb0a276a77f496932accbc0cd719dcc177e93d1a1483ffcd1e1d02c668bfd",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10934,
+      "previewBytes": 10953,
       "previewCharacterCount": 10133,
       "estimatedRuntimeSeconds": 3592,
       "truncated": true
@@ -4728,7 +4728,7 @@
       "contentVersion": "014f99cb03d77bbd",
       "contentHash": "014f99cb03d77bbd4decc4c21abd0571b368d466541cb8f26077034c3d0c107e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10918,
+      "previewBytes": 10937,
       "previewCharacterCount": 10181,
       "estimatedRuntimeSeconds": 3594,
       "truncated": true
@@ -4739,7 +4739,7 @@
       "contentVersion": "7b3cfbf7cd4922e9",
       "contentHash": "7b3cfbf7cd4922e952167f3a279565d5224d67652329c6406bb88a117c4f4731",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10898,
+      "previewBytes": 10917,
       "previewCharacterCount": 10126,
       "estimatedRuntimeSeconds": 3599,
       "truncated": true
@@ -4750,7 +4750,7 @@
       "contentVersion": "224d72e2e32ad705",
       "contentHash": "224d72e2e32ad7054c219e5245924b612b3313c9c1c677990c10ccf33adf0330",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10817,
+      "previewBytes": 10836,
       "previewCharacterCount": 10015,
       "estimatedRuntimeSeconds": 3588,
       "truncated": true
@@ -4761,7 +4761,7 @@
       "contentVersion": "4a2cce74c73dac59",
       "contentHash": "4a2cce74c73dac5958a9e5e23e54f7abdbe1faeb2bdb85e9a117f8279cf2f705",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10881,
+      "previewBytes": 10900,
       "previewCharacterCount": 10119,
       "estimatedRuntimeSeconds": 3594,
       "truncated": true
@@ -4772,7 +4772,7 @@
       "contentVersion": "21078dc9ab2c0cb0",
       "contentHash": "21078dc9ab2c0cb09aa5db5fd44bf8f0a4da3fd59b6b83fb1bdd133d0c3822cb",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 7480,
+      "previewBytes": 7499,
       "previewCharacterCount": 6732,
       "estimatedRuntimeSeconds": 2396,
       "truncated": false
@@ -4783,7 +4783,7 @@
       "contentVersion": "0c29858d690c6687",
       "contentHash": "0c29858d690c6687f7d87a5070ded45893202029ec7cbd3759558a113d0f15a0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 9102,
+      "previewBytes": 9121,
       "previewCharacterCount": 8338,
       "estimatedRuntimeSeconds": 2940,
       "truncated": false
@@ -4794,7 +4794,7 @@
       "contentVersion": "b03ee89c8e91eca6",
       "contentHash": "b03ee89c8e91eca65ed9632154f5bfa97e4c26687dd7bba5dd709788799730c5",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 8255,
+      "previewBytes": 8274,
       "previewCharacterCount": 7501,
       "estimatedRuntimeSeconds": 2656,
       "truncated": true
@@ -4805,7 +4805,7 @@
       "contentVersion": "e2051886decf0a6a",
       "contentHash": "e2051886decf0a6a56bbe23e1adf9965a77d1b17c65e96851a56385c77ac9a79",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10919,
+      "previewBytes": 10938,
       "previewCharacterCount": 10170,
       "estimatedRuntimeSeconds": 3606,
       "truncated": true
@@ -4816,7 +4816,7 @@
       "contentVersion": "ac9604124789dc61",
       "contentHash": "ac9604124789dc61cf880f319f0543ab4e67e5b0601412cfef9affc933785adc",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10968,
+      "previewBytes": 10987,
       "previewCharacterCount": 10199,
       "estimatedRuntimeSeconds": 3597,
       "truncated": true
@@ -4827,7 +4827,7 @@
       "contentVersion": "5c40ec3959fc5c02",
       "contentHash": "5c40ec3959fc5c02bdd141289b0600c90b526b48e7ee9fdcf7fa01745e78330e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10942,
+      "previewBytes": 10961,
       "previewCharacterCount": 10205,
       "estimatedRuntimeSeconds": 3591,
       "truncated": true
@@ -4838,7 +4838,7 @@
       "contentVersion": "96e57a916428332d",
       "contentHash": "96e57a916428332df6aef014b9dc167ea6678c8a0719fa4aad1f46c1baac6ec7",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10332,
+      "previewBytes": 10351,
       "previewCharacterCount": 9571,
       "estimatedRuntimeSeconds": 3411,
       "truncated": true
@@ -4849,7 +4849,7 @@
       "contentVersion": "d4f36690285f7db8",
       "contentHash": "d4f36690285f7db8833c81502d22b72f4224078a0ce36a7651e0ee7a3b418c0f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10891,
+      "previewBytes": 10910,
       "previewCharacterCount": 9768,
       "estimatedRuntimeSeconds": 3496,
       "truncated": true
@@ -4860,7 +4860,7 @@
       "contentVersion": "4f31b0851f95d42a",
       "contentHash": "4f31b0851f95d42a63a3f7e917751d36457ce65b5c9dbb0bc7f81db8f14b924d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10953,
+      "previewBytes": 10972,
       "previewCharacterCount": 10189,
       "estimatedRuntimeSeconds": 3603,
       "truncated": true
@@ -4871,7 +4871,7 @@
       "contentVersion": "0dcf1e2508abc75a",
       "contentHash": "0dcf1e2508abc75a46f7fe7e9653a2e8f7d47b8d63f24b8e4301eae154e8aefe",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10924,
+      "previewBytes": 10943,
       "previewCharacterCount": 10178,
       "estimatedRuntimeSeconds": 3600,
       "truncated": true
@@ -4882,7 +4882,7 @@
       "contentVersion": "3ade66e44c35c760",
       "contentHash": "3ade66e44c35c760c356c23d094e9c850026e41daf4d2480e9988b64587d2e41",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10141,
+      "previewBytes": 10160,
       "previewCharacterCount": 9357,
       "estimatedRuntimeSeconds": 3307,
       "truncated": false
@@ -4893,7 +4893,7 @@
       "contentVersion": "c671dfcf4f979d41",
       "contentHash": "c671dfcf4f979d41ac57737a07ce6c54df445492a87e4e36525b504a0604e483",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10961,
+      "previewBytes": 10980,
       "previewCharacterCount": 10158,
       "estimatedRuntimeSeconds": 3617,
       "truncated": true
@@ -4904,7 +4904,7 @@
       "contentVersion": "b73ab2a505d4d538",
       "contentHash": "b73ab2a505d4d53891d43ad8b65c85885934e925853154063b4a4342b6833f41",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10981,
+      "previewBytes": 11000,
       "previewCharacterCount": 10220,
       "estimatedRuntimeSeconds": 3601,
       "truncated": true
@@ -4915,7 +4915,7 @@
       "contentVersion": "ca9b83e42b242a0a",
       "contentHash": "ca9b83e42b242a0aa33b0d53e2bad0ca5c58a174082d9963d1cda4adad4ddcf6",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10994,
+      "previewBytes": 11013,
       "previewCharacterCount": 9903,
       "estimatedRuntimeSeconds": 3561,
       "truncated": true
@@ -4926,7 +4926,7 @@
       "contentVersion": "04cef57dd616116a",
       "contentHash": "04cef57dd616116a2c705d4144ba92b47f7ce0be1d213bc6fd3fda741b3008a6",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10799,
+      "previewBytes": 10818,
       "previewCharacterCount": 9796,
       "estimatedRuntimeSeconds": 3514,
       "truncated": true
@@ -4934,10 +4934,10 @@
     {
       "slug": "the-dreams-in-the-witch-house",
       "path": "/book-previews/the-dreams-in-the-witch-house.preview.json",
-      "contentVersion": "4504f7fba1500315",
-      "contentHash": "4504f7fba150031504e4c36e5bf25880a56bad619b7a4a35829085feeaf8aaf1",
+      "contentVersion": "bfa52f6ef4996e9f",
+      "contentHash": "bfa52f6ef4996e9f65f103353c7d3982c885a951a7de7875b1344b4cbd853782",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10695,
+      "previewBytes": 10714,
       "previewCharacterCount": 9761,
       "estimatedRuntimeSeconds": 3483,
       "truncated": true
@@ -4948,7 +4948,7 @@
       "contentVersion": "ca66cb9cbaf47919",
       "contentHash": "ca66cb9cbaf479198721d70a91e803a8ca07dcede885762bbdfa1d985018eb61",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10619,
+      "previewBytes": 10638,
       "previewCharacterCount": 9466,
       "estimatedRuntimeSeconds": 3409,
       "truncated": true
@@ -4959,7 +4959,7 @@
       "contentVersion": "9efcc00c16bec863",
       "contentHash": "9efcc00c16bec86359869114989d92ff81e0307af91db55bd9340df5ce513a9e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10945,
+      "previewBytes": 10964,
       "previewCharacterCount": 9882,
       "estimatedRuntimeSeconds": 3564,
       "truncated": true
@@ -4970,7 +4970,7 @@
       "contentVersion": "2906741661c4a3aa",
       "contentHash": "2906741661c4a3aa8b09ee55f5b6a3517d56753b1e812f5b979bb7f29dabf3da",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10954,
+      "previewBytes": 10973,
       "previewCharacterCount": 9931,
       "estimatedRuntimeSeconds": 3588,
       "truncated": true
@@ -4981,7 +4981,7 @@
       "contentVersion": "1d391266975746f9",
       "contentHash": "1d391266975746f935cbfe5941d77d9c255b51decec5599664e54204e7d69586",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10944,
+      "previewBytes": 10963,
       "previewCharacterCount": 10014,
       "estimatedRuntimeSeconds": 3587,
       "truncated": true
@@ -4992,7 +4992,7 @@
       "contentVersion": "e967e41e94947f63",
       "contentHash": "e967e41e94947f6352435668784442ef9b770bb1cda0312bff456c4167879a70",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10691,
+      "previewBytes": 10710,
       "previewCharacterCount": 9762,
       "estimatedRuntimeSeconds": 3470,
       "truncated": true
@@ -5003,7 +5003,7 @@
       "contentVersion": "642ed6b96c9150bd",
       "contentHash": "642ed6b96c9150bd7d6980c1ea54ac7c8e05328c0c247440e083a8e779ddbef9",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10863,
+      "previewBytes": 10882,
       "previewCharacterCount": 9860,
       "estimatedRuntimeSeconds": 3515,
       "truncated": true
@@ -5014,7 +5014,7 @@
       "contentVersion": "62ef46481506e4af",
       "contentHash": "62ef46481506e4af02dba73e54b6716d8b06067795b38009ae1105e7915e56b3",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 10848,
+      "previewBytes": 10867,
       "previewCharacterCount": 9935,
       "estimatedRuntimeSeconds": 3540,
       "truncated": true
@@ -5025,7 +5025,7 @@
       "contentVersion": "93a90a23a49247c2",
       "contentHash": "93a90a23a49247c24a5e89168371b3764e68c705bbee8c580b6ab8545c5d4662",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1937,
+      "previewBytes": 1956,
       "previewCharacterCount": 1151,
       "estimatedRuntimeSeconds": 380,
       "truncated": true
@@ -5036,7 +5036,7 @@
       "contentVersion": "a276e2a7861bd606",
       "contentHash": "a276e2a7861bd606fa8828dd003f0d57abd351fc0ac4dfdb295fba94ceb8b951",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1680,
+      "previewBytes": 1699,
       "previewCharacterCount": 947,
       "estimatedRuntimeSeconds": 312,
       "truncated": true
@@ -5047,7 +5047,7 @@
       "contentVersion": "d7bade92d1993959",
       "contentHash": "d7bade92d19939590f5cd5612fc1a60a3844321db5fbcc06004e3cb2888e3109",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1822,
+      "previewBytes": 1841,
       "previewCharacterCount": 1083,
       "estimatedRuntimeSeconds": 356,
       "truncated": true
@@ -5058,7 +5058,7 @@
       "contentVersion": "8bf12ca428197ac6",
       "contentHash": "8bf12ca428197ac6df92d1eb3bc9d7406dd336a68c2ab38fe71f641971cffe10",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1915,
+      "previewBytes": 1934,
       "previewCharacterCount": 1188,
       "estimatedRuntimeSeconds": 391,
       "truncated": true
@@ -5069,7 +5069,7 @@
       "contentVersion": "40d1d83e9a1cbbe8",
       "contentHash": "40d1d83e9a1cbbe8af9c3efe2421d2ff978db93393a815eb71eaca3d2d317fa0",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1963,
+      "previewBytes": 1982,
       "previewCharacterCount": 1223,
       "estimatedRuntimeSeconds": 394,
       "truncated": true
@@ -5080,7 +5080,7 @@
       "contentVersion": "f1c50fe2ba76af33",
       "contentHash": "f1c50fe2ba76af33d5a2a508d00aacccb439509b42341d662ab9b5166721cae4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1947,
+      "previewBytes": 1966,
       "previewCharacterCount": 1168,
       "estimatedRuntimeSeconds": 382,
       "truncated": true
@@ -5091,7 +5091,7 @@
       "contentVersion": "f6cbd7749d8d4fe6",
       "contentHash": "f6cbd7749d8d4fe610dbc6d222daca6a69e5ec26a540ae37652890cf8696a24d",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1988,
+      "previewBytes": 2007,
       "previewCharacterCount": 1229,
       "estimatedRuntimeSeconds": 408,
       "truncated": true
@@ -5102,7 +5102,7 @@
       "contentVersion": "4be9d809c19dc33c",
       "contentHash": "4be9d809c19dc33c8930aadb4f654dc056f652b3533349bb8322bb8cb431aabd",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1807,
+      "previewBytes": 1826,
       "previewCharacterCount": 1063,
       "estimatedRuntimeSeconds": 349,
       "truncated": true
@@ -5113,7 +5113,7 @@
       "contentVersion": "1ecc1c3db102231e",
       "contentHash": "1ecc1c3db102231eb777c6d8904b7498ed5f4fd43879256094c26f8b5d1c0005",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1670,
+      "previewBytes": 1689,
       "previewCharacterCount": 915,
       "estimatedRuntimeSeconds": 298,
       "truncated": true
@@ -5124,7 +5124,7 @@
       "contentVersion": "e355395b9843dff4",
       "contentHash": "e355395b9843dff43db90554c2c951a08846811fe4adc1ac2a5705a6f7586fd1",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1925,
+      "previewBytes": 1944,
       "previewCharacterCount": 1131,
       "estimatedRuntimeSeconds": 365,
       "truncated": true
@@ -5135,7 +5135,7 @@
       "contentVersion": "2e995a31ddc64a4b",
       "contentHash": "2e995a31ddc64a4b1f0757d95e56a2cbf457f5d332b2dc7b76f39ae016bfee95",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1988,
+      "previewBytes": 2007,
       "previewCharacterCount": 1200,
       "estimatedRuntimeSeconds": 397,
       "truncated": true
@@ -5146,7 +5146,7 @@
       "contentVersion": "7ef6377314642df0",
       "contentHash": "7ef6377314642df005591cb7ef6a79ce69bdc2322efa6f0cb4dadc91aa6373e9",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1636,
+      "previewBytes": 1655,
       "previewCharacterCount": 863,
       "estimatedRuntimeSeconds": 284,
       "truncated": true
@@ -5157,7 +5157,7 @@
       "contentVersion": "e0e38ab159825312",
       "contentHash": "e0e38ab1598253125e63ec14c9f86aca7981176bcce8ed6a2a46ee9350a740c4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1886,
+      "previewBytes": 1905,
       "previewCharacterCount": 1110,
       "estimatedRuntimeSeconds": 370,
       "truncated": true
@@ -5165,10 +5165,10 @@
     {
       "slug": "the-oblong-box",
       "path": "/book-previews/the-oblong-box.preview.json",
-      "contentVersion": "09a8cc692f832be6",
-      "contentHash": "09a8cc692f832be6e420c424055ac760bcea40ae29f86200d511e4c9f7acdcc3",
+      "contentVersion": "ea3ea28a08d45f49",
+      "contentHash": "ea3ea28a08d45f494f4cb145b3cfcf90faf82774979316121f6ad92a1e502684",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1702,
+      "previewBytes": 1721,
       "previewCharacterCount": 954,
       "estimatedRuntimeSeconds": 308,
       "truncated": true
@@ -5179,7 +5179,7 @@
       "contentVersion": "c0745422e68dddaa",
       "contentHash": "c0745422e68dddaa9142780abf3e6c1ec5b10433c9cf31fd33108bcb57f32dd7",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1597,
+      "previewBytes": 1616,
       "previewCharacterCount": 856,
       "estimatedRuntimeSeconds": 278,
       "truncated": true
@@ -5190,7 +5190,7 @@
       "contentVersion": "763e95c778bc644a",
       "contentHash": "763e95c778bc644a1a3293b45e88f6b6c1a1e1f40b8012faa4cb57b74e2726ed",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1956,
+      "previewBytes": 1975,
       "previewCharacterCount": 1177,
       "estimatedRuntimeSeconds": 382,
       "truncated": true
@@ -5201,7 +5201,7 @@
       "contentVersion": "c7208679989858fa",
       "contentHash": "c7208679989858fa78e7378a64a645847ad552fe8171c90d96da76df406aae69",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1832,
+      "previewBytes": 1851,
       "previewCharacterCount": 1069,
       "estimatedRuntimeSeconds": 346,
       "truncated": true
@@ -5212,7 +5212,7 @@
       "contentVersion": "d92daef2707316e8",
       "contentHash": "d92daef2707316e84423c6b8034cda0b540974413aecd2eca6e04fbc89d0f69e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1840,
+      "previewBytes": 1859,
       "previewCharacterCount": 1077,
       "estimatedRuntimeSeconds": 355,
       "truncated": true
@@ -5223,7 +5223,7 @@
       "contentVersion": "d5a3ef5602a2997e",
       "contentHash": "d5a3ef5602a2997e851f115859eaa8cd59ef525bb7c55670218b3a62846928e2",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1925,
+      "previewBytes": 1944,
       "previewCharacterCount": 1196,
       "estimatedRuntimeSeconds": 394,
       "truncated": true
@@ -5234,7 +5234,7 @@
       "contentVersion": "48afd5b2b015791b",
       "contentHash": "48afd5b2b015791b9a44a07e1ece899b41c5d627efa078d517742e00c0c314f8",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1953,
+      "previewBytes": 1972,
       "previewCharacterCount": 1143,
       "estimatedRuntimeSeconds": 374,
       "truncated": true
@@ -5245,7 +5245,7 @@
       "contentVersion": "5799eb3e7d4567c5",
       "contentHash": "5799eb3e7d4567c5e29e404e52b45bb68e674a78c01b01ffc872cdb79d7196c4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1782,
+      "previewBytes": 1801,
       "previewCharacterCount": 1011,
       "estimatedRuntimeSeconds": 333,
       "truncated": true
@@ -5256,7 +5256,7 @@
       "contentVersion": "96b8655a3e30ff1f",
       "contentHash": "96b8655a3e30ff1f1c1fe91cd2c22731f0b359906b5519ca7399276254f5cd9a",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 2001,
+      "previewBytes": 2020,
       "previewCharacterCount": 1234,
       "estimatedRuntimeSeconds": 410,
       "truncated": true
@@ -5267,7 +5267,7 @@
       "contentVersion": "6fbed0f88ac18901",
       "contentHash": "6fbed0f88ac18901be407c1131578d01210ca1e65ef6ea86a7b28e8e4c1395b7",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1917,
+      "previewBytes": 1936,
       "previewCharacterCount": 1155,
       "estimatedRuntimeSeconds": 373,
       "truncated": true
@@ -5278,7 +5278,7 @@
       "contentVersion": "bf00cfc593d6787c",
       "contentHash": "bf00cfc593d6787c6d7f1b34397d660e88d65e03837fe3a9fd936dcf0076b10e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1928,
+      "previewBytes": 1947,
       "previewCharacterCount": 1189,
       "estimatedRuntimeSeconds": 431,
       "truncated": true
@@ -5289,7 +5289,7 @@
       "contentVersion": "714ed9fad1c9bc80",
       "contentHash": "714ed9fad1c9bc80ce79fa116c34ce81e5c826f1e3744953e2bea593b087aa45",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1698,
+      "previewBytes": 1717,
       "previewCharacterCount": 895,
       "estimatedRuntimeSeconds": 322,
       "truncated": true
@@ -5297,10 +5297,10 @@
     {
       "slug": "pollock-and-the-porroh-man",
       "path": "/book-previews/pollock-and-the-porroh-man.preview.json",
-      "contentVersion": "c53027bb3ede3411",
-      "contentHash": "c53027bb3ede341146273de2bd8bb26b75b5300828f5c05ac343ebc5028c34b3",
+      "contentVersion": "b2c701a4e4bbfd3e",
+      "contentHash": "b2c701a4e4bbfd3e9d0f7d37c1e068e20598c2c3eafe0b86590fa7e740917b29",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 2002,
+      "previewBytes": 2021,
       "previewCharacterCount": 1246,
       "estimatedRuntimeSeconds": 445,
       "truncated": true
@@ -5311,7 +5311,7 @@
       "contentVersion": "8a32d4b3a6373cc6",
       "contentHash": "8a32d4b3a6373cc667077361e29f8e0517da3440295e5326455307033db47948",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1792,
+      "previewBytes": 1811,
       "previewCharacterCount": 1036,
       "estimatedRuntimeSeconds": 368,
       "truncated": true
@@ -5322,7 +5322,7 @@
       "contentVersion": "92f5e3a438adf978",
       "contentHash": "92f5e3a438adf9781f4cd079130edae8df3df72407abbdcb1c7c645511e6163e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1945,
+      "previewBytes": 1964,
       "previewCharacterCount": 1199,
       "estimatedRuntimeSeconds": 424,
       "truncated": true
@@ -5333,7 +5333,7 @@
       "contentVersion": "26c797fa8eb5be3f",
       "contentHash": "26c797fa8eb5be3fc514bf7874dda5ae5247f6aa78df0b02465edf3ff14fdd53",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1986,
+      "previewBytes": 2005,
       "previewCharacterCount": 1196,
       "estimatedRuntimeSeconds": 429,
       "truncated": true
@@ -5344,7 +5344,7 @@
       "contentVersion": "6218568c9d5792a9",
       "contentHash": "6218568c9d5792a9383bcf6fe8f763d3a0f8405d16acf829513b6e6e005d52d4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1961,
+      "previewBytes": 1980,
       "previewCharacterCount": 1221,
       "estimatedRuntimeSeconds": 435,
       "truncated": true
@@ -5355,7 +5355,7 @@
       "contentVersion": "c2e1fc788b46a69a",
       "contentHash": "c2e1fc788b46a69a9fceedc3a4879a5a5d85774684aa30d29a8fe00ef727e346",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1837,
+      "previewBytes": 1856,
       "previewCharacterCount": 1112,
       "estimatedRuntimeSeconds": 396,
       "truncated": true
@@ -5363,10 +5363,10 @@
     {
       "slug": "the-case-of-charles-dexter-ward",
       "path": "/book-previews/the-case-of-charles-dexter-ward.preview.json",
-      "contentVersion": "a446781e2a09cf21",
-      "contentHash": "a446781e2a09cf21359e81e3da78810385949b3a7d9a6992daf55672387a8d21",
+      "contentVersion": "b70ed3aa5f4b9a26",
+      "contentHash": "b70ed3aa5f4b9a269e78c3c46008823f5e60d125e5591fe1d48a704df3023ca2",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1754,
+      "previewBytes": 1773,
       "previewCharacterCount": 992,
       "estimatedRuntimeSeconds": 357,
       "truncated": true
@@ -5377,7 +5377,7 @@
       "contentVersion": "3aada24b77b60b37",
       "contentHash": "3aada24b77b60b3724678ddd3cff6c45887950eeb7c51867f78f06acf00f6e46",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 2021,
+      "previewBytes": 2040,
       "previewCharacterCount": 1229,
       "estimatedRuntimeSeconds": 439,
       "truncated": true
@@ -5388,7 +5388,7 @@
       "contentVersion": "7b2c3dc46652c411",
       "contentHash": "7b2c3dc46652c4119d154a9134c7e598ee5c19c1bd5c64aaba7d39201ef8d3b4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1690,
+      "previewBytes": 1709,
       "previewCharacterCount": 942,
       "estimatedRuntimeSeconds": 336,
       "truncated": true
@@ -5399,7 +5399,7 @@
       "contentVersion": "dde9087355dfada8",
       "contentHash": "dde9087355dfada87e05d85fd6bfa216c94455b516c3e234e428650d4397bb8c",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1761,
+      "previewBytes": 1780,
       "previewCharacterCount": 1015,
       "estimatedRuntimeSeconds": 362,
       "truncated": true
@@ -5410,7 +5410,7 @@
       "contentVersion": "02bab0dcae4f0262",
       "contentHash": "02bab0dcae4f0262c1a74b6fb0899e526cc74c0ffd50266b1ff0e3d1a449b558",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1975,
+      "previewBytes": 1994,
       "previewCharacterCount": 1196,
       "estimatedRuntimeSeconds": 431,
       "truncated": true
@@ -5421,7 +5421,7 @@
       "contentVersion": "2e929a2e584e6e73",
       "contentHash": "2e929a2e584e6e7314ad7983858abe4095e6766f0a21d07fadce53058298d6a3",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1683,
+      "previewBytes": 1702,
       "previewCharacterCount": 909,
       "estimatedRuntimeSeconds": 323,
       "truncated": true
@@ -5432,7 +5432,7 @@
       "contentVersion": "f6426e480619fc19",
       "contentHash": "f6426e480619fc193cdd8e1e0c49e4e8488a393f571da611201634d9e81585c7",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1991,
+      "previewBytes": 2010,
       "previewCharacterCount": 1227,
       "estimatedRuntimeSeconds": 420,
       "truncated": true
@@ -5443,7 +5443,7 @@
       "contentVersion": "43f95cefd4f80327",
       "contentHash": "43f95cefd4f8032725f2552bdcab72fa46c72434450eb4b30b5642e9c1d78c84",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1980,
+      "previewBytes": 1999,
       "previewCharacterCount": 1212,
       "estimatedRuntimeSeconds": 428,
       "truncated": true
@@ -5454,7 +5454,7 @@
       "contentVersion": "98f8f3adbca965bd",
       "contentHash": "98f8f3adbca965bd8da5ea35b7d49c261dc0e5d94179278c5b55ab56c9155ceb",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1926,
+      "previewBytes": 1945,
       "previewCharacterCount": 1160,
       "estimatedRuntimeSeconds": 412,
       "truncated": true
@@ -5465,7 +5465,7 @@
       "contentVersion": "7ca6d22b59cdc031",
       "contentHash": "7ca6d22b59cdc0317daed377c59130b19523fce8572680f6534eabb114d82804",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1891,
+      "previewBytes": 1910,
       "previewCharacterCount": 1151,
       "estimatedRuntimeSeconds": 407,
       "truncated": true
@@ -5476,7 +5476,7 @@
       "contentVersion": "f0c2d31e1ddee4fe",
       "contentHash": "f0c2d31e1ddee4fe93e5a4b66445764e6f28fefc703567cace5c56f581d25e63",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1614,
+      "previewBytes": 1633,
       "previewCharacterCount": 854,
       "estimatedRuntimeSeconds": 305,
       "truncated": true
@@ -5487,7 +5487,7 @@
       "contentVersion": "fdf08f16cfb14484",
       "contentHash": "fdf08f16cfb14484b887b14c3f7c393dd822e77ca8bd9a61a2965ab22b8c6e05",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1747,
+      "previewBytes": 1766,
       "previewCharacterCount": 992,
       "estimatedRuntimeSeconds": 355,
       "truncated": true
@@ -5495,10 +5495,10 @@
     {
       "slug": "the-boscombe-valley-mystery",
       "path": "the-boscombe-valley-mystery.preview.json",
-      "contentVersion": "93de638c8c379495",
-      "contentHash": "93de638c8c379495f76ac0bf6102c0297ff462042c162b709bf1f4b3153b37e7",
+      "contentVersion": "32ba9f997666995b",
+      "contentHash": "32ba9f997666995b4f8690e40ff2ad21e00a9bbc141908655928308e50a8ae48",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1664,
+      "previewBytes": 1683,
       "previewCharacterCount": 885,
       "estimatedRuntimeSeconds": 322,
       "truncated": true
@@ -5506,10 +5506,10 @@
     {
       "slug": "the-five-orange-pips",
       "path": "the-five-orange-pips.preview.json",
-      "contentVersion": "a0087c65dec797cd",
-      "contentHash": "a0087c65dec797cd8338e72886991ac5d56600d54dfaa94d031428760d20d95a",
+      "contentVersion": "678f59a97624da04",
+      "contentHash": "678f59a97624da043dc77080c64a83e822313c6e9b749a75092ae7e36d34b889",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1792,
+      "previewBytes": 1811,
       "previewCharacterCount": 1050,
       "estimatedRuntimeSeconds": 375,
       "truncated": true
@@ -5520,7 +5520,7 @@
       "contentVersion": "fd579ee4ddd99e80",
       "contentHash": "fd579ee4ddd99e8009305cc24bfb9abebae125246a01969b3af4047b68a7db61",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1862,
+      "previewBytes": 1881,
       "previewCharacterCount": 1094,
       "estimatedRuntimeSeconds": 394,
       "truncated": true
@@ -5531,7 +5531,7 @@
       "contentVersion": "52f860b3995c4437",
       "contentHash": "52f860b3995c44376e1cc5c6a5e3efa5edbef8b53693ea2809aadd259b7005d4",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1748,
+      "previewBytes": 1767,
       "previewCharacterCount": 979,
       "estimatedRuntimeSeconds": 350,
       "truncated": true
@@ -5542,7 +5542,7 @@
       "contentVersion": "ff7a8fc1da82f2ba",
       "contentHash": "ff7a8fc1da82f2ba08c07fdc0e4b451b29764db476e917f84b75f95a5613a815",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1979,
+      "previewBytes": 1998,
       "previewCharacterCount": 1229,
       "estimatedRuntimeSeconds": 436,
       "truncated": true
@@ -5553,7 +5553,7 @@
       "contentVersion": "c03823b5fb5cc0e2",
       "contentHash": "c03823b5fb5cc0e222c15be731ead21472911e27a72dceaa27fd1631b33fa3d1",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1873,
+      "previewBytes": 1892,
       "previewCharacterCount": 1115,
       "estimatedRuntimeSeconds": 399,
       "truncated": true
@@ -5564,7 +5564,7 @@
       "contentVersion": "446b8a8f170e3159",
       "contentHash": "446b8a8f170e31596ccae531bc28f423d489d02632cb2421df17032708fb336a",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1784,
+      "previewBytes": 1803,
       "previewCharacterCount": 1034,
       "estimatedRuntimeSeconds": 367,
       "truncated": true
@@ -5575,7 +5575,7 @@
       "contentVersion": "2998b13b2fb4e782",
       "contentHash": "2998b13b2fb4e782c75ec5bc707e93da4cc7513716a1d9626b0545fda585217e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1698,
+      "previewBytes": 1717,
       "previewCharacterCount": 938,
       "estimatedRuntimeSeconds": 335,
       "truncated": true
@@ -5586,7 +5586,7 @@
       "contentVersion": "8ebfc53b619a9759",
       "contentHash": "8ebfc53b619a97595ef8c80440cf26578b23750d0e5a314715d17a3fdee6669f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1690,
+      "previewBytes": 1709,
       "previewCharacterCount": 919,
       "estimatedRuntimeSeconds": 329,
       "truncated": true
@@ -5597,7 +5597,7 @@
       "contentVersion": "e8703b10006dae6b",
       "contentHash": "e8703b10006dae6b21e86075d995d8f43ac9ede7eaa67cb17ff38cd3b01f50a2",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 2013,
+      "previewBytes": 2032,
       "previewCharacterCount": 1246,
       "estimatedRuntimeSeconds": 444,
       "truncated": true
@@ -5605,10 +5605,10 @@
     {
       "slug": "the-mysterious-affair-at-styles",
       "path": "the-mysterious-affair-at-styles.preview.json",
-      "contentVersion": "c7e67fcb7a7302a9",
-      "contentHash": "c7e67fcb7a7302a9436e55289bcc4b090d87f66de1ff916f1f41cb7755c05492",
+      "contentVersion": "c02c125fe68c7c39",
+      "contentHash": "c02c125fe68c7c3970f8d6fed0d501aec25dbbbaee5a1ba485874d6f872fb40f",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 2021,
+      "previewBytes": 2040,
       "previewCharacterCount": 1231,
       "estimatedRuntimeSeconds": 438,
       "truncated": true
@@ -5619,7 +5619,7 @@
       "contentVersion": "51bd6fb8f754fa74",
       "contentHash": "51bd6fb8f754fa746bfa0323b59405e1bb52727596b53f3df9ebcefc043bca3e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 2006,
+      "previewBytes": 2025,
       "previewCharacterCount": 1224,
       "estimatedRuntimeSeconds": 445,
       "truncated": true
@@ -5627,10 +5627,10 @@
     {
       "slug": "an-enquiry-concerning-human-understanding",
       "path": "/book-previews/an-enquiry-concerning-human-understanding.preview.json",
-      "contentVersion": "0f4e7815015f871d",
-      "contentHash": "0f4e7815015f871da723647671d2d7fe61d5440ffd49b178684ea70e96113139",
+      "contentVersion": "15d6aae8e570ce52",
+      "contentHash": "15d6aae8e570ce5212f26e35d248a2ab4c3fb67d537071a1d6b55bbebd566526",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1889,
+      "previewBytes": 1908,
       "previewCharacterCount": 1094,
       "estimatedRuntimeSeconds": 391,
       "truncated": true
@@ -5638,10 +5638,10 @@
     {
       "slug": "middlemarch",
       "path": "/book-previews/middlemarch.preview.json",
-      "contentVersion": "173e7b65c1f44996",
-      "contentHash": "173e7b65c1f449969f0ca620c7519af65b0be94ca7cb1b29f5637e175d7cc673",
+      "contentVersion": "094cad65bf01d16b",
+      "contentHash": "094cad65bf01d16bff841e744687eb4a108c5662ef1a5e7a27a699320f894959",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1855,
+      "previewBytes": 1874,
       "previewCharacterCount": 1128,
       "estimatedRuntimeSeconds": 406,
       "truncated": true
@@ -5649,10 +5649,10 @@
     {
       "slug": "the-financier",
       "path": "/book-previews/the-financier.preview.json",
-      "contentVersion": "c876683e7d9cc226",
-      "contentHash": "c876683e7d9cc226d7613032f24a07b5f18f5a7616b8822a3361e0b72cd037d5",
+      "contentVersion": "7b104fec54c447be",
+      "contentHash": "7b104fec54c447be53a56809acd1a8c33fee0fd80ed3fa96d602c5c6b091a741",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1746,
+      "previewBytes": 1765,
       "previewCharacterCount": 1014,
       "estimatedRuntimeSeconds": 365,
       "truncated": true
@@ -5660,10 +5660,10 @@
     {
       "slug": "the-beach-of-falesa",
       "path": "/book-previews/the-beach-of-falesa.preview.json",
-      "contentVersion": "b38b94767d2dd4fa",
-      "contentHash": "b38b94767d2dd4fa6e8f5065294033366e160bff61aae50fb4d8d232c7fc2d4f",
+      "contentVersion": "d2194bc1d7c0435f",
+      "contentHash": "d2194bc1d7c0435fa57db4f0e667197ecf6a4d0e7ec03965e84209d3874df928",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1926,
+      "previewBytes": 1945,
       "previewCharacterCount": 1154,
       "estimatedRuntimeSeconds": 410,
       "truncated": true
@@ -5674,7 +5674,7 @@
       "contentVersion": "aae311ebe8b5ff4d",
       "contentHash": "aae311ebe8b5ff4d4a48cb8b8139ecfe0f200ac73f47a6e36be6b43fb3c69dd3",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1796,
+      "previewBytes": 1815,
       "previewCharacterCount": 1048,
       "estimatedRuntimeSeconds": 373,
       "truncated": true
@@ -5685,7 +5685,7 @@
       "contentVersion": "514c8c99d948eac3",
       "contentHash": "514c8c99d948eac3a526a450978ea4df8fef747d40a3808eb321f40bcdc87f38",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1906,
+      "previewBytes": 1925,
       "previewCharacterCount": 1158,
       "estimatedRuntimeSeconds": 409,
       "truncated": true
@@ -5693,23 +5693,23 @@
     {
       "slug": "walden",
       "path": "walden.preview.json",
-      "contentVersion": "69929b010b329069",
-      "contentHash": "69929b010b32906907efa4639f52afa57439a6303fd18fd34b9b01472e834c6a",
+      "contentVersion": "528bb0d1721d8b46",
+      "contentHash": "528bb0d1721d8b463ba952b4b1e8b3db2492608e41941ee67f25a60b240db857",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1880,
+      "previewBytes": 1899,
       "previewCharacterCount": 1147,
-      "estimatedRuntimeSeconds": 50100,
+      "estimatedRuntimeSeconds": 409,
       "truncated": true
     },
     {
       "slug": "on-the-duty-of-civil-disobedience",
       "path": "on-the-duty-of-civil-disobedience.preview.json",
-      "contentVersion": "a68b88ef8c5759f7",
-      "contentHash": "a68b88ef8c5759f7daf935958d50985949d26b7854ec6e39adf97e96f55bd238",
+      "contentVersion": "bc843af233ce804f",
+      "contentHash": "bc843af233ce804fbbf9b1e9d1ed6627e56a632c0affd94441c6557c6f306c0e",
       "defaultSectionId": "chapter-001",
-      "previewBytes": 1943,
+      "previewBytes": 1962,
       "previewCharacterCount": 1146,
-      "estimatedRuntimeSeconds": 18180,
+      "estimatedRuntimeSeconds": 407,
       "truncated": true
     }
   ],

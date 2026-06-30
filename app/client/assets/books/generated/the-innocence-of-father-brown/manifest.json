@@ -5,8 +5,8 @@
   "author": [
     "G. K. Chesterton"
   ],
-  "contentVersion": "861b02a1cda4d227",
-  "contentHash": "861b02a1cda4d227bc9ac5d357381101517a5c2834e2bae07864a9e2d6c707fb",
+  "contentVersion": "6e05305f75446361",
+  "contentHash": "6e05305f754463611af243b93160cad59e893c18fa9eb888174bfe1c365257f6",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 468787,
-    "cleanedCharacterCount": 438636,
-    "wordCount": 79663,
+    "cleanedCharacterCount": 438652,
+    "wordCount": 79666,
     "sectionCount": 12,
     "includedSectionCount": 12
   },
@@ -145,11 +145,11 @@
       "order": 7,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-007.json",
-      "characterCount": 38625,
-      "wordCount": 7031,
-      "estimatedTypingMinutes": 201,
+      "characterCount": 38641,
+      "wordCount": 7034,
+      "estimatedTypingMinutes": 176,
       "estimatedListeningMinutes": 230,
-      "morseCharacterEstimate": 206105,
+      "morseCharacterEstimate": 206211,
       "textPreview": "The Wrong Shape Certain of the great roads going north out of London continue far into the country a sort of attenuated and interrupted spectre of a street, wi..."
     },
     {
@@ -230,7 +230,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 468787,
-    "cleanedCharacterCount": 438636,
+    "cleanedCharacterCount": 438652,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

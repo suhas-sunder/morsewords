@@ -5,8 +5,8 @@
   "author": [
     "Jacob Grimm Wilhelm Grimm"
   ],
-  "contentVersion": "60416d45b3f04a3a",
-  "contentHash": "60416d45b3f04a3af6fb7987a14b1bfa1d8ce1b5849d3aee61f64bea3f72b822",
+  "contentVersion": "71f3d79578620412",
+  "contentHash": "71f3d79578620412c5cbbd07ac2c6d7d3fc53fb091d2c4493b505ea1d971cd14",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,7 +35,7 @@
   },
   "stats": {
     "originalCharacterCount": 549774,
-    "cleanedCharacterCount": 517107,
+    "cleanedCharacterCount": 517108,
     "wordCount": 100742,
     "sectionCount": 66,
     "includedSectionCount": 66
@@ -595,11 +595,11 @@
       "order": 37,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-037.json",
-      "characterCount": 13234,
+      "characterCount": 13235,
       "wordCount": 2568,
       "estimatedTypingMinutes": 65,
       "estimatedListeningMinutes": 79,
-      "morseCharacterEstimate": 70889,
+      "morseCharacterEstimate": 70893,
       "textPreview": "ASHPUTTEL The wife of a rich man fell sick; and when she felt that her end drew nigh, she called her only daughter to her bed-side, and said, 'Always be a good..."
     },
     {
@@ -1040,7 +1040,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 549774,
-    "cleanedCharacterCount": 517107,
+    "cleanedCharacterCount": 517108,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

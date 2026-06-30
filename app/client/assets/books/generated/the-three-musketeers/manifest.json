@@ -5,8 +5,8 @@
   "author": [
     "Alexandre Dumas Auguste Maquet"
   ],
-  "contentVersion": "117fe21e8265df4f",
-  "contentHash": "117fe21e8265df4fb95daed97a30b78ec13d64f5121758097be52b4808e8e8b6",
+  "contentVersion": "e3cdb1a8814f09ab",
+  "contentHash": "e3cdb1a8814f09abde401e4b544ff4772b9c5c4ec2ceed1d6e37e45b11d3adb2",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 1348857,
-    "cleanedCharacterCount": 1294904,
-    "wordCount": 229787,
+    "cleanedCharacterCount": 1294710,
+    "wordCount": 229788,
     "sectionCount": 68,
     "includedSectionCount": 67
   },
@@ -490,11 +490,11 @@
       "order": 30,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-029.json",
-      "characterCount": 16536,
-      "wordCount": 2872,
+      "characterCount": 16543,
+      "wordCount": 2873,
       "estimatedTypingMinutes": 72,
       "estimatedListeningMinutes": 100,
-      "morseCharacterEstimate": 89768,
+      "morseCharacterEstimate": 89821,
       "textPreview": "Chapter XXIX. HUNTING FOR THE EQUIPMENTS The most preoccupied of the four friends was certainly D'Artagnan, although he, in his quality of Guardsman, would be..."
     },
     {
@@ -1070,7 +1070,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 1348857,
-    "cleanedCharacterCount": 1294904,
+    "cleanedCharacterCount": 1294710,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

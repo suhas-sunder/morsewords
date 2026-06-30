@@ -5,8 +5,8 @@
   "author": [
     "T. Smollett"
   ],
-  "contentVersion": "cc2598f1c17dfcb3",
-  "contentHash": "cc2598f1c17dfcb3b6b53c56c45ff19ef1e6c664b73bd6d4b322f5bb7105eb1b",
+  "contentVersion": "ac687235d82f8744",
+  "contentHash": "ac687235d82f87442487e25acf2ded1208eafcd1fd02231a190d6b34f1c7100d",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 990627,
-    "cleanedCharacterCount": 926989,
-    "wordCount": 157279,
+    "cleanedCharacterCount": 926996,
+    "wordCount": 157280,
     "sectionCount": 67,
     "includedSectionCount": 67
   },
@@ -655,11 +655,11 @@
       "order": 41,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-041.json",
-      "characterCount": 12449,
-      "wordCount": 2163,
+      "characterCount": 12456,
+      "wordCount": 2164,
       "estimatedTypingMinutes": 55,
       "estimatedListeningMinutes": 75,
-      "morseCharacterEstimate": 66889,
+      "morseCharacterEstimate": 66932,
       "textPreview": "CHAPTER FORTY-ONE ONE QUARREL IS COMPROMISED, AND ANOTHER DECIDED BY UNUSUAL ARMS. Among other topics of conversation that were discussed at this genial meetin..."
     },
     {
@@ -1055,7 +1055,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 990627,
-    "cleanedCharacterCount": 926989,
+    "cleanedCharacterCount": 926996,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

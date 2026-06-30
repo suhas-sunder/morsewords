@@ -5,8 +5,8 @@
   "author": [
     "Robert Louis Stevenson"
   ],
-  "contentVersion": "fbc88f57ab49a7cc",
-  "contentHash": "fbc88f57ab49a7cc8fe983985990a77cb3af05242deb1d04adb447fd8027e4b4",
+  "contentVersion": "6f2a0bd31725bb13",
+  "contentHash": "6f2a0bd31725bb13ecc9417dfff0a375f903108d0a0d3c609a5987e63f07d5da",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 391655,
-    "cleanedCharacterCount": 360028,
-    "wordCount": 68294,
+    "cleanedCharacterCount": 360033,
+    "wordCount": 68295,
     "sectionCount": 34,
     "includedSectionCount": 34
   },
@@ -550,17 +550,17 @@
       "order": 34,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-034.json",
-      "characterCount": 10130,
-      "wordCount": 1905,
+      "characterCount": 10135,
+      "wordCount": 1906,
       "estimatedTypingMinutes": 48,
       "estimatedListeningMinutes": 61,
-      "morseCharacterEstimate": 54317,
+      "morseCharacterEstimate": 54351,
       "textPreview": "XXXIV And Last The next morning we fell early to work, for the transportation of this great mass of gold near a mile by land to the beach, and thence three mil..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 391655,
-    "cleanedCharacterCount": 360028,
+    "cleanedCharacterCount": 360033,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

@@ -5,8 +5,8 @@
   "author": [
     "L. M. Montgomery"
   ],
-  "contentVersion": "e7fafa229524c955",
-  "contentHash": "e7fafa229524c95540da4188c4a94b01151545e7445a2b25b9c1f352fc22a92f",
+  "contentVersion": "e0e9fc8ef28ed9b0",
+  "contentHash": "e0e9fc8ef28ed9b0a4a30a316f5698fb8f4d516d09d3f9632007d7d10c7e6078",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 463071,
-    "cleanedCharacterCount": 443599,
-    "wordCount": 83983,
+    "cleanedCharacterCount": 443497,
+    "wordCount": 83984,
     "sectionCount": 37,
     "includedSectionCount": 35
   },
@@ -340,11 +340,11 @@
       "order": 20,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-018.json",
-      "characterCount": 9049,
-      "wordCount": 1755,
+      "characterCount": 9055,
+      "wordCount": 1756,
       "estimatedTypingMinutes": 44,
       "estimatedListeningMinutes": 55,
-      "morseCharacterEstimate": 48816,
+      "morseCharacterEstimate": 48854,
       "textPreview": "CHAPTER XVIII. MARY BRINGS EVIL TIDINGS Mary Vance, whom Mrs. Elliott had sent up to the manse on an errand, came tripping down Rainbow Valley on her way to In..."
     },
     {
@@ -605,7 +605,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 463071,
-    "cleanedCharacterCount": 443599,
+    "cleanedCharacterCount": 443497,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

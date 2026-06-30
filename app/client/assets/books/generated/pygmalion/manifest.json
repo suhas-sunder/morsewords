@@ -5,8 +5,8 @@
   "author": [
     "Bernard Shaw"
   ],
-  "contentVersion": "09d24e1d78a97f18",
-  "contentHash": "09d24e1d78a97f1822cd1746a97397ca53976e5f6ba79ac5f99757dd21314cf8",
+  "contentVersion": "639868957a25f948",
+  "contentHash": "639868957a25f94892304ec871b6aef7b82bbdaf2933bb4390f2722de4627ba7",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,7 +35,7 @@
   },
   "stats": {
     "originalCharacterCount": 212314,
-    "cleanedCharacterCount": 187891,
+    "cleanedCharacterCount": 187877,
     "wordCount": 33577,
     "sectionCount": 6,
     "includedSectionCount": 5
@@ -131,17 +131,17 @@
       "order": 6,
       "includeByDefault": true,
       "sectionJsonPath": "sections/part-005.json",
-      "characterCount": 68655,
+      "characterCount": 68656,
       "wordCount": 12306,
       "estimatedTypingMinutes": 308,
       "estimatedListeningMinutes": 410,
-      "morseCharacterEstimate": 368222,
+      "morseCharacterEstimate": 368226,
       "textPreview": "ACT V Mrs. Higgins's drawing-room. She is at her writing-table as before. The parlor-maid comes in. THE PARLOR-MAID [at the door] Mr. Henry, mam, is downstairs..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 212314,
-    "cleanedCharacterCount": 187891,
+    "cleanedCharacterCount": 187877,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

@@ -5,8 +5,8 @@
   "author": [
     "Jules Verne"
   ],
-  "contentVersion": "b5730ed13022dc4d",
-  "contentHash": "b5730ed13022dc4d23c8a357dee91292bfd81ede88afcd70bd172ba3fd27fce8",
+  "contentVersion": "ff29490018281f84",
+  "contentHash": "ff29490018281f84c49c3d24a899dc06a216d75e2df40e381146756a01db79ed",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 396836,
-    "cleanedCharacterCount": 365693,
-    "wordCount": 62808,
+    "cleanedCharacterCount": 365590,
+    "wordCount": 62809,
     "sectionCount": 37,
     "includedSectionCount": 37
   },
@@ -415,11 +415,11 @@
       "order": 25,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-025.json",
-      "characterCount": 11735,
-      "wordCount": 2016,
+      "characterCount": 11740,
+      "wordCount": 2017,
       "estimatedTypingMinutes": 51,
       "estimatedListeningMinutes": 71,
-      "morseCharacterEstimate": 63230,
+      "morseCharacterEstimate": 63264,
       "textPreview": "CHAPTER XXV. IN WHICH A SLIGHT GLIMPSE IS HAD OF SAN FRANCISCO It was seven in the morning when Mr. Fogg, Aouda, and Passepartout set foot upon the American co..."
     },
     {
@@ -605,7 +605,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 396836,
-    "cleanedCharacterCount": 365693,
+    "cleanedCharacterCount": 365590,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

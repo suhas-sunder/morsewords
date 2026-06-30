@@ -5,8 +5,8 @@
   "author": [
     "Miguel de Cervantes Saavedra"
   ],
-  "contentVersion": "a7a4d22f464c8cbd",
-  "contentHash": "a7a4d22f464c8cbd34ded946ae8c019042695e39820820f5e23d81e43b6abd68",
+  "contentVersion": "0620bd600cbde7ae",
+  "contentHash": "0620bd600cbde7ae3ea82e53f546f0758861e76ee29fe21c0a332db02b7f932a",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 2318584,
-    "cleanedCharacterCount": 2272349,
-    "wordCount": 423484,
+    "cleanedCharacterCount": 2272350,
+    "wordCount": 423523,
     "sectionCount": 127,
     "includedSectionCount": 126
   },
@@ -910,12 +910,12 @@
       "order": 58,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-057.json",
-      "characterCount": 13676,
-      "wordCount": 2618,
-      "estimatedTypingMinutes": 66,
-      "estimatedListeningMinutes": 80,
-      "morseCharacterEstimate": 49156,
-      "textPreview": "CHAPTER V. OF THE SHREWD AND DROLL CONVERSATION THAT PASSED BETWEEN SANCHO PANZA AND HIS WIFE TERESA PANZA, AND OTHER MATTERS WORTHY OF BEING DULY RECORDED The translator of this..."
+      "characterCount": 13677,
+      "wordCount": 2657,
+      "estimatedTypingMinutes": 67,
+      "estimatedListeningMinutes": 83,
+      "morseCharacterEstimate": 73812,
+      "textPreview": "CHAPTER V. OF THE SHREWD AND DROLL CONVERSATION THAT PASSED BETWEEN SANCHO PANZA AND HIS WIFE TERESA PANZA, AND OTHER MATTERS WORTHY OF BEING DULY RECORDED The..."
     },
     {
       "id": "chapter-058",
@@ -1955,7 +1955,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 2318584,
-    "cleanedCharacterCount": 2272349,
+    "cleanedCharacterCount": 2272350,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

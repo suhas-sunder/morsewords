@@ -5,8 +5,8 @@
   "author": [
     "G. K. Chesterton"
   ],
-  "contentVersion": "67a014193a32fc9f",
-  "contentHash": "67a014193a32fc9f823438d5dddbd0af7a0946bffa5ec38c065907172b5ad587",
+  "contentVersion": "e3775758c3ae7e0b",
+  "contentHash": "e3775758c3ae7e0b79ade5a77a5b200c48944cd6e5fcc2be049628baf5c75611",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 348405,
-    "cleanedCharacterCount": 317536,
-    "wordCount": 57410,
+    "cleanedCharacterCount": 317543,
+    "wordCount": 57411,
     "sectionCount": 15,
     "includedSectionCount": 15
   },
@@ -179,7 +179,7 @@
       "wordCount": 5303,
       "estimatedTypingMinutes": 133,
       "estimatedListeningMinutes": 175,
-      "morseCharacterEstimate": 156742,
+      "morseCharacterEstimate": 156747,
       "textPreview": "CHAPTER IX. THE MAN IN SPECTACLES \"Burgundy is a jolly thing,\" said the Professor sadly, as he set his glass down. \"You don't look as if it were,\" said Syme; \"..."
     },
     {
@@ -205,11 +205,11 @@
       "order": 11,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-011.json",
-      "characterCount": 16744,
-      "wordCount": 2990,
+      "characterCount": 16751,
+      "wordCount": 2991,
       "estimatedTypingMinutes": 75,
-      "estimatedListeningMinutes": 100,
-      "morseCharacterEstimate": 89977,
+      "estimatedListeningMinutes": 101,
+      "morseCharacterEstimate": 90020,
       "textPreview": "CHAPTER XI. THE CRIMINALS CHASE THE POLICE Syme put the field-glasses from his eyes with an almost ghastly relief. \"The President is not with them, anyhow,\" he..."
     },
     {
@@ -275,7 +275,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 348405,
-    "cleanedCharacterCount": 317536,
+    "cleanedCharacterCount": 317543,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

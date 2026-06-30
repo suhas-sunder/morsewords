@@ -5,8 +5,8 @@
   "author": [
     "Arthur Conan Doyle"
   ],
-  "contentVersion": "c6bf7cc132c192f5",
-  "contentHash": "c6bf7cc132c192f513d502231ac1280da0cbe3235656c142c50b99f841c70066",
+  "contentVersion": "f78288919ff3930e",
+  "contentHash": "f78288919ff3930efae36c77bc6d79dca3b914c5e4d9d343551875d675d1d269",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 381205,
-    "cleanedCharacterCount": 323528,
-    "wordCount": 59198,
+    "cleanedCharacterCount": 323498,
+    "wordCount": 59200,
     "sectionCount": 16,
     "includedSectionCount": 15
   },
@@ -115,11 +115,11 @@
       "order": 5,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-004.json",
-      "characterCount": 22581,
-      "wordCount": 4058,
+      "characterCount": 22595,
+      "wordCount": 4060,
       "estimatedTypingMinutes": 102,
       "estimatedListeningMinutes": 133,
-      "morseCharacterEstimate": 119190,
+      "morseCharacterEstimate": 119276,
       "textPreview": "Chapter 4. Sir Henry Baskerville Our breakfast table was cleared early, and Holmes waited in his dressing-gown for the promised interview. Our clients were pun..."
     },
     {
@@ -290,7 +290,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 381205,
-    "cleanedCharacterCount": 323528,
+    "cleanedCharacterCount": 323498,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

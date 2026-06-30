@@ -5,8 +5,8 @@
   "author": [
     "Jules Verne"
   ],
-  "contentVersion": "edfbe4d99326fd6c",
-  "contentHash": "edfbe4d99326fd6cd846e3470a87f3189e913a5871ebc42da9c6fbe10682f9ed",
+  "contentVersion": "07a861d74411306d",
+  "contentHash": "07a861d74411306d4a269a9500e2ddc6f3d973b33e37e62b38bcf017e8a9fd04",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 630044,
-    "cleanedCharacterCount": 594929,
-    "wordCount": 104410,
+    "cleanedCharacterCount": 594941,
+    "wordCount": 104412,
     "sectionCount": 46,
     "includedSectionCount": 46
   },
@@ -415,11 +415,11 @@
       "order": 25,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-025.json",
-      "characterCount": 8581,
-      "wordCount": 1513,
+      "characterCount": 8593,
+      "wordCount": 1515,
       "estimatedTypingMinutes": 38,
       "estimatedListeningMinutes": 52,
-      "morseCharacterEstimate": 46453,
+      "morseCharacterEstimate": 46530,
       "textPreview": "CHAPTER II A NOVEL PROPOSAL OF CAPTAIN NEMO'S On the 28th of February, when at noon the _Nautilus_ came to the surface of the sea, in 9° 4′ N. lat., there was..."
     },
     {
@@ -740,7 +740,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 630044,
-    "cleanedCharacterCount": 594929,
+    "cleanedCharacterCount": 594941,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

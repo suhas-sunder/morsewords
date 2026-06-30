@@ -5,8 +5,8 @@
   "author": [
     "John W. Campbell, Jr."
   ],
-  "contentVersion": "8ed6551643f1cb3e",
-  "contentHash": "8ed6551643f1cb3e883a6a36e72feef095144f562c1518c152dca530a070bd2a",
+  "contentVersion": "01527a927b9ab59e",
+  "contentHash": "01527a927b9ab59e70546b0c78a94b388c035a8fed42f5588596337c5602c443",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 456477,
-    "cleanedCharacterCount": 406964,
-    "wordCount": 72422,
+    "cleanedCharacterCount": 406992,
+    "wordCount": 72426,
     "sectionCount": 18,
     "includedSectionCount": 18
   },
@@ -265,11 +265,11 @@
       "order": 15,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-015.json",
-      "characterCount": 26898,
-      "wordCount": 4722,
-      "estimatedTypingMinutes": 135,
+      "characterCount": 26905,
+      "wordCount": 4723,
+      "estimatedTypingMinutes": 119,
       "estimatedListeningMinutes": 161,
-      "morseCharacterEstimate": 144535,
+      "morseCharacterEstimate": 144578,
       "textPreview": "III Swiftly Arcot's sleek cruiser sped toward New York and the Arcot Laboratories. They had halted briefly at the headquarters ship of the Earth-Venus forces t..."
     },
     {
@@ -310,17 +310,17 @@
       "order": 18,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-018.json",
-      "characterCount": 26759,
-      "wordCount": 4703,
-      "estimatedTypingMinutes": 135,
+      "characterCount": 26780,
+      "wordCount": 4706,
+      "estimatedTypingMinutes": 118,
       "estimatedListeningMinutes": 158,
-      "morseCharacterEstimate": 141545,
+      "morseCharacterEstimate": 141674,
       "textPreview": "VI Taj Lamor gazed down at the tremendous field below him. In it lay close packed a great mass of ships, a concourse of Titans of Space, dreadnoughts that were..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 456477,
-    "cleanedCharacterCount": 406964,
+    "cleanedCharacterCount": 406992,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

@@ -1,0 +1,1224 @@
+{
+  "schemaVersion": 1,
+  "executiveResult": "Book content safety and completeness sweep passed",
+  "booksInspected": 519,
+  "generatedPayloadsInspected": 519,
+  "startupPreviewsInspected": 519,
+  "exportPayloadsInspected": 519,
+  "contentSafety": {
+    "categoriesInspected": [
+      "racial and ethnic slurs",
+      "dehumanizing identity labels",
+      "antisemitic or anti-Roma slurs",
+      "anti-Indigenous slurs",
+      "homophobic slurs",
+      "misogynistic slurs",
+      "ableist slurs",
+      "explicit sexual terms inappropriate for this public typing/Morse site",
+      "extreme profanity where unsuitable for public practice content",
+      "context-sensitive terms flagged rather than blindly changed"
+    ],
+    "humanReadableMaskingPolicy": "Reports use category labels and masked patterns only; exact offensive terms are kept out of markdown output.",
+    "findingsBeforeCleanup": [
+      {
+        "category": "racial and ethnic slurs / historical identity labels",
+        "maskedPattern": "N**** historical label before person noun",
+        "occurrences": 14,
+        "bookCount": 5,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 5,
+        "sampleSlugs": [
+          "five-weeks-in-a-balloon",
+          "the-adventures-of-tom-sawyer",
+          "the-case-of-charles-dexter-ward",
+          "the-financier",
+          "the-three-musketeers"
+        ]
+      },
+      {
+        "category": "racial and ethnic slurs / historical identity labels",
+        "maskedPattern": "N**** historical label used adjectivally",
+        "occurrences": 124,
+        "bookCount": 31,
+        "previewCount": 4,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 31,
+        "sampleSlugs": [
+          "a-childs-garden-of-verses",
+          "a-tale-of-two-cities",
+          "astounding-stories-of-super-science",
+          "candide",
+          "deep-sea-plunderings",
+          "five-weeks-in-a-balloon",
+          "les-miserables",
+          "moby-dick",
+          "mr-ledbetter-s-vacation",
+          "the-adventures-of-tom-sawyer",
+          "the-call-of-cthulhu",
+          "the-divine-comedy",
+          "the-king-in-yellow",
+          "the-lerouge-case",
+          "the-life-and-adventures-of-robinson-crusoe",
+          "the-lord-of-the-dynamos",
+          "the-lost-world",
+          "the-man-who-was-thursday-a-nightmare",
+          "the-oblong-box",
+          "the-picture-of-dorian-gray",
+          "the-star",
+          "the-three-musketeers",
+          "the-turmoil",
+          "unicorns"
+        ]
+      },
+      {
+        "category": "racial and ethnic slurs / historical identity labels",
+        "maskedPattern": "N**** historical label plural",
+        "occurrences": 148,
+        "bookCount": 29,
+        "previewCount": 3,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 29,
+        "sampleSlugs": [
+          "anna-karenina",
+          "around-the-world-in-eighty-days",
+          "astounding-stories-of-super-science",
+          "candide",
+          "deep-sea-plunderings",
+          "five-weeks-in-a-balloon",
+          "kidnapped",
+          "les-miserables",
+          "moby-dick",
+          "the-adventures-of-roderick-random",
+          "the-arabian-nights",
+          "the-call-of-cthulhu",
+          "the-expedition-of-humphry-clinker",
+          "the-federalist-papers",
+          "the-great-gatsby",
+          "the-innocence-of-father-brown",
+          "the-legend-of-sleepy-hollow",
+          "the-life-and-adventures-of-robinson-crusoe",
+          "the-picture-of-dorian-gray",
+          "the-turmoil",
+          "the-virginian-a-horseman-of-the-plains",
+          "treasure-island",
+          "twenty-thousand-leagues-under-the-sea",
+          "unicorns"
+        ]
+      },
+      {
+        "category": "racial and ethnic slurs / historical identity labels",
+        "maskedPattern": "N**** historical label singular",
+        "occurrences": 289,
+        "bookCount": 47,
+        "previewCount": 7,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 47,
+        "sampleSlugs": [
+          "a-childs-garden-of-verses",
+          "a-tale-of-two-cities",
+          "anna-karenina",
+          "candide",
+          "five-weeks-in-a-balloon",
+          "les-miserables",
+          "moby-dick",
+          "the-adventures-of-ferdinand-count-fathom",
+          "the-adventures-of-tom-sawyer",
+          "the-call-of-cthulhu",
+          "the-count-of-monte-cristo",
+          "the-count-of-monte-cristo-gutenberg-1184",
+          "the-divine-comedy",
+          "the-great-gatsby",
+          "the-hound-of-the-baskervilles",
+          "the-king-in-yellow",
+          "the-legend-of-sleepy-hollow",
+          "the-lerouge-case",
+          "the-life-and-adventures-of-robinson-crusoe",
+          "the-lost-world",
+          "the-picture-of-dorian-gray",
+          "the-three-musketeers",
+          "the-water-babies",
+          "the-wendigo"
+        ]
+      },
+      {
+        "category": "racial and ethnic slurs",
+        "maskedPattern": "severe anti-Black slur before person noun",
+        "occurrences": 2,
+        "bookCount": 1,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 1,
+        "sampleSlugs": [
+          "the-adventures-of-tom-sawyer"
+        ]
+      },
+      {
+        "category": "racial and ethnic slurs",
+        "maskedPattern": "severe anti-Black slur used adjectivally",
+        "occurrences": 29,
+        "bookCount": 10,
+        "previewCount": 3,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 10,
+        "sampleSlugs": [
+          "aepyornis-island",
+          "jimmy-goggles-the-god",
+          "new-treasure-seekers",
+          "the-adventures-of-tom-sawyer",
+          "the-beach-of-falesa",
+          "the-lord-of-the-dynamos",
+          "the-mysterious-affair-at-styles",
+          "the-triumphs-of-a-taxidermist",
+          "the-turmoil",
+          "the-wendigo"
+        ]
+      },
+      {
+        "category": "racial and ethnic slurs",
+        "maskedPattern": "severe anti-Black slur plural",
+        "occurrences": 39,
+        "bookCount": 10,
+        "previewCount": 1,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 10,
+        "sampleSlugs": [
+          "jimmy-goggles-the-god",
+          "lord-jim",
+          "oliver-twist",
+          "pollock-and-the-porroh-man",
+          "the-adventures-of-roderick-random",
+          "the-adventures-of-tom-sawyer",
+          "the-financier",
+          "the-turmoil",
+          "the-virginian-a-horseman-of-the-plains",
+          "through-a-window"
+        ]
+      },
+      {
+        "category": "racial and ethnic slurs",
+        "maskedPattern": "severe anti-Black slur singular",
+        "occurrences": 90,
+        "bookCount": 20,
+        "previewCount": 5,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 20,
+        "sampleSlugs": [
+          "aepyornis-island",
+          "crime-and-punishment",
+          "jimmy-goggles-the-god",
+          "new-treasure-seekers",
+          "rainbow-valley",
+          "room-13",
+          "the-adventures-of-tom-sawyer",
+          "the-amateur-cracksman",
+          "the-beach-of-falesa",
+          "the-black-star-passes",
+          "the-flying-man",
+          "the-green-mummy",
+          "the-innocence-of-father-brown",
+          "the-lord-of-the-dynamos",
+          "the-mysterious-affair-at-styles",
+          "the-triumphs-of-a-taxidermist",
+          "the-turmoil",
+          "the-virginian-a-horseman-of-the-plains",
+          "the-wendigo",
+          "through-a-window"
+        ]
+      },
+      {
+        "category": "anti-Indigenous slurs",
+        "maskedPattern": "anti-Indigenous slur plural",
+        "occurrences": 10,
+        "bookCount": 4,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 4,
+        "sampleSlugs": [
+          "a-study-in-scarlet",
+          "five-children-and-it",
+          "lord-jim",
+          "the-brothers-karamazov"
+        ]
+      },
+      {
+        "category": "anti-Indigenous slurs",
+        "maskedPattern": "anti-Indigenous slur singular",
+        "occurrences": 153,
+        "bookCount": 6,
+        "previewCount": 1,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 6,
+        "sampleSlugs": [
+          "anne-of-avonlea",
+          "five-children-and-it",
+          "pollyanna",
+          "the-adventures-of-tom-sawyer",
+          "the-virginian-a-horseman-of-the-plains",
+          "the-wendigo"
+        ]
+      },
+      {
+        "category": "anti-Indigenous slurs",
+        "maskedPattern": "anti-Indigenous slur for women plural",
+        "occurrences": 6,
+        "bookCount": 2,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 2,
+        "sampleSlugs": [
+          "five-children-and-it",
+          "the-virginian-a-horseman-of-the-plains"
+        ]
+      },
+      {
+        "category": "anti-Indigenous slurs",
+        "maskedPattern": "anti-Indigenous slur for woman singular",
+        "occurrences": 22,
+        "bookCount": 6,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 6,
+        "sampleSlugs": [
+          "anne-of-avonlea",
+          "moby-dick",
+          "spoon-river-anthology",
+          "the-call-of-the-wild",
+          "the-expedition-of-humphry-clinker",
+          "walden"
+        ]
+      },
+      {
+        "category": "antisemitic slurs",
+        "maskedPattern": "antisemitic slur plural",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "antisemitic slurs",
+        "maskedPattern": "antisemitic slur singular",
+        "occurrences": 2,
+        "bookCount": 1,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 1,
+        "sampleSlugs": [
+          "the-great-gatsby"
+        ]
+      },
+      {
+        "category": "misogynistic slurs",
+        "maskedPattern": "misogynistic slur plural",
+        "occurrences": 14,
+        "bookCount": 5,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 5,
+        "sampleSlugs": [
+          "gulliver-s-travels",
+          "spoon-river-anthology",
+          "the-adventures-of-roderick-random",
+          "the-brothers-karamazov",
+          "the-tempest"
+        ]
+      },
+      {
+        "category": "misogynistic slurs",
+        "maskedPattern": "misogynistic slur singular",
+        "occurrences": 58,
+        "bookCount": 18,
+        "previewCount": 2,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 18,
+        "sampleSlugs": [
+          "ashputtel",
+          "crime-and-punishment",
+          "despair-s-last-journey",
+          "don-quixote",
+          "five-children-and-it",
+          "grimm-s-fairy-tales",
+          "gulliver-s-travels",
+          "macbeth",
+          "on-the-duty-of-civil-disobedience",
+          "pygmalion",
+          "romeo-and-juliet",
+          "the-adventures-of-roderick-random",
+          "the-boscombe-valley-mystery",
+          "the-brothers-karamazov",
+          "the-divine-comedy",
+          "the-expedition-of-humphry-clinker",
+          "the-history-of-sir-richard-calmady-a-romance",
+          "wuthering-heights"
+        ]
+      }
+    ],
+    "findingsAfterCleanup": [
+      {
+        "category": "racial and ethnic slurs / historical identity labels",
+        "maskedPattern": "N**** historical label before person noun",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "racial and ethnic slurs / historical identity labels",
+        "maskedPattern": "N**** historical label used adjectivally",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "racial and ethnic slurs / historical identity labels",
+        "maskedPattern": "N**** historical label plural",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "racial and ethnic slurs / historical identity labels",
+        "maskedPattern": "N**** historical label singular",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "racial and ethnic slurs",
+        "maskedPattern": "severe anti-Black slur before person noun",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "racial and ethnic slurs",
+        "maskedPattern": "severe anti-Black slur used adjectivally",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "racial and ethnic slurs",
+        "maskedPattern": "severe anti-Black slur plural",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "racial and ethnic slurs",
+        "maskedPattern": "severe anti-Black slur singular",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "anti-Indigenous slurs",
+        "maskedPattern": "anti-Indigenous slur plural",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "anti-Indigenous slurs",
+        "maskedPattern": "anti-Indigenous slur singular",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "anti-Indigenous slurs",
+        "maskedPattern": "anti-Indigenous slur for women plural",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "anti-Indigenous slurs",
+        "maskedPattern": "anti-Indigenous slur for woman singular",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "antisemitic slurs",
+        "maskedPattern": "antisemitic slur plural",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "antisemitic slurs",
+        "maskedPattern": "antisemitic slur singular",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "misogynistic slurs",
+        "maskedPattern": "misogynistic slur plural",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      },
+      {
+        "category": "misogynistic slurs",
+        "maskedPattern": "misogynistic slur singular",
+        "occurrences": 0,
+        "bookCount": 0,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 0,
+        "sampleSlugs": []
+      }
+    ],
+    "safeReplacementsApplied": {
+      "occurrenceCount": 425,
+      "bookCount": 91,
+      "generatedBookSlugs": [
+        "a-childs-garden-of-verses",
+        "a-study-in-scarlet",
+        "a-tale-of-two-cities",
+        "aepyornis-island",
+        "an-enquiry-concerning-human-understanding",
+        "anna-karenina",
+        "anne-of-avonlea",
+        "around-the-world-in-eighty-days",
+        "ashputtel",
+        "astounding-stories-of-super-science",
+        "at-the-earth-s-core",
+        "candide",
+        "crime-and-punishment",
+        "deep-sea-plunderings",
+        "despair-s-last-journey",
+        "don-quixote",
+        "five-children-and-it",
+        "five-weeks-in-a-balloon",
+        "grimm-s-fairy-tales",
+        "gulliver-s-travels",
+        "jimmy-goggles-the-god",
+        "kidnapped",
+        "les-miserables",
+        "lord-jim",
+        "macbeth",
+        "middlemarch",
+        "moby-dick",
+        "mr-ledbetter-s-vacation",
+        "new-treasure-seekers",
+        "oliver-twist",
+        "on-the-duty-of-civil-disobedience",
+        "pollock-and-the-porroh-man",
+        "pollyanna",
+        "pygmalion",
+        "quo-vadis",
+        "rainbow-valley",
+        "romeo-and-juliet",
+        "room-13",
+        "spoon-river-anthology",
+        "the-adventures-of-ferdinand-count-fathom",
+        "the-adventures-of-roderick-random",
+        "the-adventures-of-tom-sawyer",
+        "the-amateur-cracksman",
+        "the-arabian-nights",
+        "the-beach-of-falesa",
+        "the-black-star-passes",
+        "the-boscombe-valley-mystery",
+        "the-brothers-karamazov",
+        "the-call-of-cthulhu",
+        "the-call-of-the-wild",
+        "the-case-of-charles-dexter-ward",
+        "the-count-of-monte-cristo",
+        "the-count-of-monte-cristo-gutenberg-1184",
+        "the-divine-comedy",
+        "the-dreams-in-the-witch-house",
+        "the-expedition-of-humphry-clinker",
+        "the-federalist-papers",
+        "the-financier",
+        "the-five-orange-pips",
+        "the-flying-man",
+        "the-great-gatsby",
+        "the-green-mummy",
+        "the-history-of-sir-richard-calmady-a-romance",
+        "the-hound-of-the-baskervilles",
+        "the-innocence-of-father-brown",
+        "the-king-in-yellow",
+        "the-legend-of-sleepy-hollow",
+        "the-lerouge-case",
+        "the-life-and-adventures-of-robinson-crusoe",
+        "the-lord-of-the-dynamos",
+        "the-lost-world",
+        "the-man-who-was-thursday-a-nightmare",
+        "the-mysterious-affair-at-styles",
+        "the-oblong-box",
+        "the-picture-of-dorian-gray",
+        "the-shadow",
+        "the-star",
+        "the-tempest",
+        "the-three-musketeers",
+        "the-time-machine",
+        "the-triumphs-of-a-taxidermist",
+        "the-turmoil",
+        "the-virginian-a-horseman-of-the-plains",
+        "the-water-babies",
+        "the-wendigo",
+        "through-a-window",
+        "treasure-island",
+        "twenty-thousand-leagues-under-the-sea",
+        "unicorns",
+        "walden",
+        "wuthering-heights"
+      ],
+      "generatedPayloadsChanged": 91,
+      "publicPreviewsChanged": 91,
+      "seoSummariesChanged": 0,
+      "categories": [
+        {
+          "category": "anti-Indigenous slurs",
+          "maskedPattern": "anti-Indigenous slur for woman singular",
+          "occurrenceCount": 11,
+          "bookCount": 6
+        },
+        {
+          "category": "anti-Indigenous slurs",
+          "maskedPattern": "anti-Indigenous slur for women plural",
+          "occurrenceCount": 3,
+          "bookCount": 2
+        },
+        {
+          "category": "anti-Indigenous slurs",
+          "maskedPattern": "anti-Indigenous slur plural",
+          "occurrenceCount": 5,
+          "bookCount": 4
+        },
+        {
+          "category": "anti-Indigenous slurs",
+          "maskedPattern": "anti-Indigenous slur singular",
+          "occurrenceCount": 77,
+          "bookCount": 6
+        },
+        {
+          "category": "antisemitic slurs",
+          "maskedPattern": "antisemitic slur singular",
+          "occurrenceCount": 1,
+          "bookCount": 1
+        },
+        {
+          "category": "misogynistic slurs",
+          "maskedPattern": "misogynistic slur plural",
+          "occurrenceCount": 7,
+          "bookCount": 5
+        },
+        {
+          "category": "misogynistic slurs",
+          "maskedPattern": "misogynistic slur singular",
+          "occurrenceCount": 30,
+          "bookCount": 18
+        },
+        {
+          "category": "racial and ethnic slurs",
+          "maskedPattern": "severe anti-Black slur before person noun",
+          "occurrenceCount": 1,
+          "bookCount": 1
+        },
+        {
+          "category": "racial and ethnic slurs",
+          "maskedPattern": "severe anti-Black slur plural",
+          "occurrenceCount": 20,
+          "bookCount": 10
+        },
+        {
+          "category": "racial and ethnic slurs",
+          "maskedPattern": "severe anti-Black slur singular",
+          "occurrenceCount": 32,
+          "bookCount": 16
+        },
+        {
+          "category": "racial and ethnic slurs",
+          "maskedPattern": "severe anti-Black slur used adjectivally",
+          "occurrenceCount": 15,
+          "bookCount": 9
+        },
+        {
+          "category": "racial and ethnic slurs / historical identity labels",
+          "maskedPattern": "N**** historical label before person noun",
+          "occurrenceCount": 7,
+          "bookCount": 5
+        },
+        {
+          "category": "racial and ethnic slurs / historical identity labels",
+          "maskedPattern": "N**** historical label plural",
+          "occurrenceCount": 75,
+          "bookCount": 29
+        },
+        {
+          "category": "racial and ethnic slurs / historical identity labels",
+          "maskedPattern": "N**** historical label singular",
+          "occurrenceCount": 84,
+          "bookCount": 31
+        },
+        {
+          "category": "racial and ethnic slurs / historical identity labels",
+          "maskedPattern": "N**** historical label used adjectivally",
+          "occurrenceCount": 57,
+          "bookCount": 30
+        }
+      ]
+    },
+    "ambiguousOrContextSensitiveFindings": [
+      {
+        "category": "anti-Roma slurs / context-sensitive labels",
+        "maskedPattern": "G**** / R*** context-sensitive label",
+        "occurrences": 427,
+        "bookCount": 54,
+        "previewCount": 8,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 54,
+        "sampleSlugs": [
+          "anna-karenina",
+          "anne-of-green-gables",
+          "anne-of-green-gables-gutenberg-45",
+          "black-beauty",
+          "don-quixote",
+          "dracula",
+          "jack-and-jill",
+          "jane-eyre",
+          "little-women",
+          "new-treasure-seekers",
+          "pointed-roofs",
+          "rinkitink-in-oz",
+          "the-count-of-monte-cristo",
+          "the-count-of-monte-cristo-gutenberg-1184",
+          "the-great-gatsby",
+          "the-house-without-a-key",
+          "the-jungle-book",
+          "the-lerouge-case",
+          "the-picture-of-dorian-gray",
+          "the-princess-and-the-goblin",
+          "the-railway-children",
+          "the-water-babies",
+          "treasure-island",
+          "wind-in-the-willows"
+        ]
+      },
+      {
+        "category": "homophobic slurs / context-sensitive historical words",
+        "maskedPattern": "F***/D*** context-sensitive label",
+        "occurrences": 660,
+        "bookCount": 41,
+        "previewCount": 4,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 41,
+        "sampleSlugs": [
+          "anna-karenina",
+          "anne-of-avonlea",
+          "botchan",
+          "can-you-forgive-her",
+          "catriona",
+          "don-quixote",
+          "dr-jekyll-and-mr-hyde",
+          "five-children-and-it",
+          "hero-myths-and-legends-of-the-british-race",
+          "pointed-roofs",
+          "rainbow-valley",
+          "the-adventures-of-ferdinand-count-fathom",
+          "the-arabian-nights",
+          "the-divine-comedy",
+          "the-expedition-of-humphry-clinker",
+          "the-green-mummy",
+          "the-invisible-man-a-grotesque-romance",
+          "the-laughing-cavalier-the-story-of-the-ancestor-of-the-scarlet-pimpernel",
+          "the-lost-world",
+          "the-mystery-of-edwin-drood",
+          "the-octopus-a-story-of-california",
+          "the-prince-and-the-pauper",
+          "the-three-musketeers",
+          "the-water-babies"
+        ]
+      },
+      {
+        "category": "ableist slurs / context-sensitive historical words",
+        "maskedPattern": "ableist/context-sensitive labels",
+        "occurrences": 1091,
+        "bookCount": 135,
+        "previewCount": 9,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 135,
+        "sampleSlugs": [
+          "a-christmas-carol",
+          "alices-adventures-in-wonderland",
+          "anna-karenina",
+          "around-the-world-in-eighty-days",
+          "black-beauty",
+          "botchan",
+          "candide",
+          "crime-and-punishment",
+          "don-quixote",
+          "jack-and-jill",
+          "jane-eyre",
+          "les-miserables",
+          "little-women",
+          "new-treasure-seekers",
+          "rainbow-valley",
+          "the-call-of-the-wild",
+          "the-count-of-monte-cristo",
+          "the-count-of-monte-cristo-gutenberg-1184",
+          "the-emerald-city-of-oz",
+          "the-jungle-book",
+          "the-picture-of-dorian-gray",
+          "the-railway-children",
+          "the-sea-wolf",
+          "the-secret-garden"
+        ]
+      },
+      {
+        "category": "explicit sexual terms inappropriate for practice surfaces",
+        "maskedPattern": "explicit sexual term",
+        "occurrences": 4,
+        "bookCount": 1,
+        "previewCount": 0,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 1,
+        "sampleSlugs": [
+          "unicorns"
+        ]
+      },
+      {
+        "category": "dehumanizing identity labels",
+        "maskedPattern": "dehumanizing identity label",
+        "occurrences": 1875,
+        "bookCount": 147,
+        "previewCount": 14,
+        "seoSummaryCount": 0,
+        "exportPayloadCount": 147,
+        "sampleSlugs": [
+          "a-christmas-carol",
+          "alices-adventures-in-wonderland",
+          "anna-karenina",
+          "around-the-world-in-eighty-days",
+          "candide",
+          "crime-and-punishment",
+          "don-quixote",
+          "dr-jekyll-and-mr-hyde",
+          "dracula",
+          "frankenstein",
+          "grimm-s-fairy-tales",
+          "gulliver-s-travels",
+          "jack-and-jill",
+          "jane-eyre",
+          "les-miserables",
+          "little-women",
+          "new-treasure-seekers",
+          "pride-and-prejudice",
+          "rainbow-valley",
+          "rinkitink-in-oz",
+          "the-arabian-nights",
+          "the-call-of-cthulhu",
+          "the-call-of-the-wild",
+          "the-count-of-monte-cristo"
+        ]
+      }
+    ]
+  },
+  "ownerReportedCase": {
+    "slug": "the-call-of-cthulhu",
+    "result": "owner-reported masked racial identity label was sanitized in generated text and previews",
+    "generatedPayloadSanitized": true,
+    "startupPreviewSanitized": true,
+    "updatedExportSanitized": true
+  },
+  "completeness": {
+    "result": "pass; warnings are heuristic review signals only",
+    "booksInspected": 519,
+    "findings": [
+      {
+        "slug": "alices-adventures-in-wonderland",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "anna-karenina",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "botchan",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "don-quixote",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "dracula",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "jane-eyre",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "little-women",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "rainbow-valley",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "sense-and-sensibility",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-jungle-book",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-picture-of-dorian-gray",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-sea-wolf",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-secret-garden",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-secret-garden-gutenberg-113",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-water-babies",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "through-the-looking-glass",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-house-without-a-key",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "a-journey-to-the-centre-of-the-earth",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-red-thumb-mark",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "room-13",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "macbeth",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-hound-of-the-baskervilles",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-maltese-falcon",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "a-midsummer-night-s-dream",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "agamemnon-of-aeschylus",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "an-ideal-husband",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "romeo-and-juliet",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-importance-of-being-earnest-a-trivial-comedy-for-serious-people",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-mystery-of-edwin-drood",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "a-japanese-blossom",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "five-children-and-it",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "herland",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "hero-myths-and-legends-of-the-british-race",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "howards-end",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "love-among-the-chickens",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "parnassus-on-wheels",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "pollyanna",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-adventures-of-pinocchio",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "typhoon",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-laughing-cavalier-the-story-of-the-ancestor-of-the-scarlet-pimpernel",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-dunwich-horror",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-scarlet-letter",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "a-study-in-scarlet",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "under-the-red-dragon",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "murder-in-the-maze",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "at-the-mountains-of-madness",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-innocence-of-father-brown",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-dreams-in-the-witch-house",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-shadow-out-of-time",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-whisperer-in-darkness",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-murders-in-the-rue-morgue",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-mysterious-affair-at-styles",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "the-leavenworth-case",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      },
+      {
+        "slug": "middlemarch",
+        "severity": "warning",
+        "reason": "Long generated text ending may need human review for truncation."
+      }
+    ],
+    "specificSlugResults": [
+      {
+        "slug": "five-little-friends",
+        "sectionCount": 2,
+        "wordCount": 11574,
+        "result": "pass"
+      },
+      {
+        "slug": "middlemarch",
+        "sectionCount": 88,
+        "wordCount": 318237,
+        "result": "pass"
+      },
+      {
+        "slug": "the-bottle-imp",
+        "sectionCount": 1,
+        "wordCount": 12211,
+        "result": "pass"
+      },
+      {
+        "slug": "the-call-of-cthulhu",
+        "sectionCount": 3,
+        "wordCount": 11811,
+        "result": "pass"
+      },
+      {
+        "slug": "the-jungle-book",
+        "sectionCount": 14,
+        "wordCount": 51118,
+        "result": "pass"
+      },
+      {
+        "slug": "the-leavenworth-case",
+        "sectionCount": 39,
+        "wordCount": 110828,
+        "result": "pass"
+      },
+      {
+        "slug": "walden",
+        "sectionCount": 18,
+        "wordCount": 107130,
+        "result": "pass"
+      }
+    ],
+    "booksRepairedForIncompleteExtraction": [],
+    "booksDeferredOrBlocked": []
+  },
+  "publicSurfaceSanitization": {
+    "startupPreviewsSanitized": true,
+    "seoSummariesSanitized": true,
+    "exportPayloadsSanitized": true,
+    "printRoutesUseGeneratedSections": true
+  },
+  "updatedExport": {
+    "root": "app/client/assets/books/cloudflare-updated-export",
+    "written": true,
+    "fileCount": 521,
+    "bookPayloadCount": 519,
+    "manifestFileCount": 2,
+    "trackedFileCount": 0,
+    "replacementType": "full",
+    "ignoredByGit": true
+  },
+  "filesIntentionallyNotTracked": [
+    "app/client/assets/books/cloudflare-export",
+    "app/client/assets/books/cloudflare-updated-export"
+  ],
+  "protectedFolderStatus": {
+    "tempBooksModified": false,
+    "cloudflareExportTrackedCount": 0,
+    "cloudflareUpdatedExportTrackedCount": 0
+  },
+  "remainingBlockers": [],
+  "ownerUploadInstructions": "Upload app/client/assets/books/cloudflare-updated-export as a complete replacement for the current assets.morsewords.com book payload set. Because this folder contains the full 521-file export, sync/delete is acceptable after confirming the destination prefix is correct."
+}

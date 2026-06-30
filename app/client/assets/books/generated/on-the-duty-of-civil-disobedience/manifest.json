@@ -5,8 +5,8 @@
   "author": [
     "Henry David Thoreau"
   ],
-  "contentVersion": "a68b88ef8c5759f7",
-  "contentHash": "a68b88ef8c5759f7daf935958d50985949d26b7854ec6e39adf97e96f55bd238",
+  "contentVersion": "bc843af233ce804f",
+  "contentHash": "bc843af233ce804fbbf9b1e9d1ed6627e56a632c0affd94441c6557c6f306c0e",
   "language": "en",
   "description": "Henry David Thoreau's essay on conscience, government, law, resistance, and individual responsibility.",
   "subjects": [
@@ -41,7 +41,7 @@
   },
   "stats": {
     "originalCharacterCount": 654202,
-    "cleanedCharacterCount": 51188,
+    "cleanedCharacterCount": 51189,
     "wordCount": 9390,
     "sectionCount": 1,
     "includedSectionCount": 1
@@ -62,17 +62,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 51188,
+      "characterCount": 51189,
       "wordCount": 9390,
-      "estimatedTypingMinutes": 269,
+      "estimatedTypingMinutes": 235,
       "estimatedListeningMinutes": 303,
-      "morseCharacterEstimate": 272404,
+      "morseCharacterEstimate": 272408,
       "textPreview": "I heartily accept the motto,—“That government is best which governs least;” and I should like to see it acted up to more rapidly and systematically. Carried ou..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 654202,
-    "cleanedCharacterCount": 51188,
+    "cleanedCharacterCount": 51189,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

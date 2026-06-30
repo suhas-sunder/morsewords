@@ -5,8 +5,8 @@
   "author": [
     "Charles Dickens"
   ],
-  "contentVersion": "87f975b1a0c50cf3",
-  "contentHash": "87f975b1a0c50cf3deb7b6fc277e26012b393ed560bf44d7b795eded1b0cc886",
+  "contentVersion": "8b3798f0a1b25ed4",
+  "contentHash": "8b3798f0a1b25ed44f8984e0690ad2d42f436c5e8d1ecd933bdf4725aa7c1a05",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 793193,
-    "cleanedCharacterCount": 755521,
-    "wordCount": 136387,
+    "cleanedCharacterCount": 755354,
+    "wordCount": 136381,
     "sectionCount": 45,
     "includedSectionCount": 45
   },
@@ -104,7 +104,7 @@
       "wordCount": 4415,
       "estimatedTypingMinutes": 111,
       "estimatedListeningMinutes": 147,
-      "morseCharacterEstimate": 131689,
+      "morseCharacterEstimate": 131699,
       "textPreview": "CHAPTER IV. The Preparation When the mail got successfully to Dover, in the course of the forenoon, the head drawer at the Royal George Hotel opened the coach-..."
     },
     {
@@ -725,7 +725,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 793193,
-    "cleanedCharacterCount": 755521,
+    "cleanedCharacterCount": 755354,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

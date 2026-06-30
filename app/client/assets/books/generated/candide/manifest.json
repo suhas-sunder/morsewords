@@ -5,8 +5,8 @@
   "author": [
     "Voltaire"
   ],
-  "contentVersion": "26597bcb1e44241a",
-  "contentHash": "26597bcb1e44241acd52568e623ca5836e3e33f89e770d15a9bb6ab9fdf806ed",
+  "contentVersion": "cb22f2112c1873fe",
+  "contentHash": "cb22f2112c1873fe53cd7bcd24972df16cc70fa54aa154d45dde5a332de2aaa4",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 229606,
-    "cleanedCharacterCount": 183046,
-    "wordCount": 32628,
+    "cleanedCharacterCount": 183086,
+    "wordCount": 32634,
     "sectionCount": 30,
     "includedSectionCount": 30
   },
@@ -205,11 +205,11 @@
       "order": 11,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-011.json",
-      "characterCount": 6458,
-      "wordCount": 1152,
+      "characterCount": 6465,
+      "wordCount": 1153,
       "estimatedTypingMinutes": 29,
       "estimatedListeningMinutes": 39,
-      "morseCharacterEstimate": 34711,
+      "morseCharacterEstimate": 34754,
       "textPreview": "XI HISTORY OF THE OLD WOMAN. \"I had not always bleared eyes and red eyelids; neither did my nose always touch my chin; nor was I always a servant. I am the dau..."
     },
     {
@@ -220,11 +220,11 @@
       "order": 12,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-012.json",
-      "characterCount": 7118,
-      "wordCount": 1311,
+      "characterCount": 7123,
+      "wordCount": 1312,
       "estimatedTypingMinutes": 33,
       "estimatedListeningMinutes": 43,
-      "morseCharacterEstimate": 38061,
+      "morseCharacterEstimate": 38095,
       "textPreview": "XII THE ADVENTURES OF THE OLD WOMAN CONTINUED. \"Astonished and delighted to hear my native language, and no less surprised at what this man said, I made answer..."
     },
     {
@@ -254,7 +254,7 @@
       "wordCount": 1148,
       "estimatedTypingMinutes": 29,
       "estimatedListeningMinutes": 40,
-      "morseCharacterEstimate": 35349,
+      "morseCharacterEstimate": 35354,
       "textPreview": "XIV HOW CANDIDE AND CACAMBO WERE RECEIVED BY THE JESUITS OF PARAGUAY. Candide had brought such a valet with him from Cadiz, as one often meets with on the coas..."
     },
     {
@@ -325,11 +325,11 @@
       "order": 19,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-019.json",
-      "characterCount": 9690,
-      "wordCount": 1728,
+      "characterCount": 9718,
+      "wordCount": 1732,
       "estimatedTypingMinutes": 44,
       "estimatedListeningMinutes": 58,
-      "morseCharacterEstimate": 51856,
+      "morseCharacterEstimate": 52028,
       "textPreview": "XIX WHAT HAPPENED TO THEM AT SURINAM AND HOW CANDIDE GOT ACQUAINTED WITH MARTIN. Our travellers spent the first day very agreeably. They were delighted with po..."
     },
     {
@@ -494,13 +494,13 @@
       "wordCount": 1560,
       "estimatedTypingMinutes": 39,
       "estimatedListeningMinutes": 55,
-      "morseCharacterEstimate": 48762,
+      "morseCharacterEstimate": 48767,
       "textPreview": "XXX THE CONCLUSION. At the bottom of his heart Candide had no wish to marry Cunegonde. But the extreme impertinence of the Baron determined him to conclude the..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 229606,
-    "cleanedCharacterCount": 183046,
+    "cleanedCharacterCount": 183086,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

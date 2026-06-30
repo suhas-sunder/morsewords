@@ -5,8 +5,8 @@
   "author": [
     "William Shakespeare"
   ],
-  "contentVersion": "5e3c47b0e2a559bd",
-  "contentHash": "5e3c47b0e2a559bdc0dc45b837615032fdc18b67596f9274a6634b4c1bf12bf4",
+  "contentVersion": "9653134037b69dbf",
+  "contentHash": "9653134037b69dbfd8ce13537bb5fd74a162ff977957330a6a1bea5d13e06872",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,7 +35,7 @@
   },
   "stats": {
     "originalCharacterCount": 172282,
-    "cleanedCharacterCount": 96784,
+    "cleanedCharacterCount": 96773,
     "wordCount": 17446,
     "sectionCount": 6,
     "includedSectionCount": 5
@@ -86,11 +86,11 @@
       "order": 3,
       "includeByDefault": true,
       "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 23083,
+      "characterCount": 23082,
       "wordCount": 4217,
       "estimatedTypingMinutes": 106,
       "estimatedListeningMinutes": 141,
-      "morseCharacterEstimate": 126437,
+      "morseCharacterEstimate": 126428,
       "textPreview": "ACT II. SCENE I. _Another part of the island._ _Enter ALONSO, SEBASTIAN, ANTONIO, GONZALO, ADRIAN, FRANCISCO, and others._ _Gon._ Beseech you, sir, be merry; y..."
     },
     {
@@ -141,7 +141,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 172282,
-    "cleanedCharacterCount": 121659,
+    "cleanedCharacterCount": 96773,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

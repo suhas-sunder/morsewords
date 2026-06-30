@@ -5,8 +5,8 @@
   "author": [
     "H. G. Wells"
   ],
-  "contentVersion": "2d9cb5858528338c",
-  "contentHash": "2d9cb5858528338c5d939949678c902a417db2ac6197efd5cae1fbf777b11633",
+  "contentVersion": "c32c0fc67766d26a",
+  "contentHash": "c32c0fc67766d26ac0e382548e8ee59be6783111619e2c0c0b4edac8f6606cc8",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 27954,
-    "cleanedCharacterCount": 27087,
-    "wordCount": 5190,
+    "cleanedCharacterCount": 27121,
+    "wordCount": 5197,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,17 +55,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 27087,
-      "wordCount": 5190,
-      "estimatedTypingMinutes": 149,
+      "characterCount": 27121,
+      "wordCount": 5197,
+      "estimatedTypingMinutes": 130,
       "estimatedListeningMinutes": 162,
-      "morseCharacterEstimate": 145011,
+      "morseCharacterEstimate": 145242,
       "textPreview": "“It isn't every one who's been a god,” said the sunburnt man. “But it's happened to me. Among other things.” I intimated my sense of his condescension. “It don..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 27954,
-    "cleanedCharacterCount": 27087,
+    "cleanedCharacterCount": 27121,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

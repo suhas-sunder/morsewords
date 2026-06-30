@@ -5,8 +5,8 @@
   "author": [
     "Alexander Hamilton John Jay James Madison"
   ],
-  "contentVersion": "e592d3d51185c492",
-  "contentHash": "e592d3d51185c492b737390c3546befd06ca1d8aecc75d620ebdb0b7223eeb0d",
+  "contentVersion": "e93bfd0aa5a0f5b7",
+  "contentHash": "e93bfd0aa5a0f5b7a3b6f9bcbbba797296a270123f084f84f73154ac3f284138",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 1212398,
-    "cleanedCharacterCount": 1164036,
-    "wordCount": 195246,
+    "cleanedCharacterCount": 1164051,
+    "wordCount": 195249,
     "sectionCount": 86,
     "includedSectionCount": 86
   },
@@ -850,11 +850,11 @@
       "order": 54,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-054.json",
-      "characterCount": 11963,
-      "wordCount": 2028,
+      "characterCount": 11973,
+      "wordCount": 2030,
       "estimatedTypingMinutes": 51,
       "estimatedListeningMinutes": 71,
-      "morseCharacterEstimate": 63374,
+      "morseCharacterEstimate": 63442,
       "textPreview": "THE FEDERALIST. No. LIV. The Apportionment of Members Among the States From the New York Packet. Tuesday, February 12, 1788. HAMILTON OR MADISON To the People..."
     },
     {
@@ -865,11 +865,11 @@
       "order": 55,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-055.json",
-      "characterCount": 12210,
-      "wordCount": 2068,
+      "characterCount": 12215,
+      "wordCount": 2069,
       "estimatedTypingMinutes": 52,
-      "estimatedListeningMinutes": 72,
-      "morseCharacterEstimate": 64782,
+      "estimatedListeningMinutes": 73,
+      "morseCharacterEstimate": 64816,
       "textPreview": "THE FEDERALIST. No. LV. The Total Number of the House of Representatives From the New York Packet. Friday, February 15, 1788. HAMILTON OR MADISON To the People..."
     },
     {
@@ -1340,7 +1340,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 1212398,
-    "cleanedCharacterCount": 1164036,
+    "cleanedCharacterCount": 1164051,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

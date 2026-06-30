@@ -5,8 +5,8 @@
   "author": [
     "Henryk Sienkiewicz"
   ],
-  "contentVersion": "b19872b1415de6f4",
-  "contentHash": "b19872b1415de6f412bd525f63c7017fd704a077d29f08f151b044deca502e2f",
+  "contentVersion": "c0f4d29a184623d2",
+  "contentHash": "c0f4d29a184623d20e776cf0cecc616889aa8ed25fd1ce88e2ef31010d5e6a1b",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 1204901,
-    "cleanedCharacterCount": 1160560,
-    "wordCount": 210294,
+    "cleanedCharacterCount": 1160567,
+    "wordCount": 210295,
     "sectionCount": 73,
     "includedSectionCount": 73
   },
@@ -325,11 +325,11 @@
       "order": 19,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-019.json",
-      "characterCount": 19870,
-      "wordCount": 3632,
-      "estimatedTypingMinutes": 104,
+      "characterCount": 19877,
+      "wordCount": 3633,
+      "estimatedTypingMinutes": 91,
       "estimatedListeningMinutes": 119,
-      "morseCharacterEstimate": 106916,
+      "morseCharacterEstimate": 106959,
       "textPreview": "Chapter XIX BARELY had Vinicius finished reading when Chilo pushed quietly into his library, unannounced by any one, for the servants had the order to admit hi..."
     },
     {
@@ -1145,7 +1145,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 1204901,
-    "cleanedCharacterCount": 1160560,
+    "cleanedCharacterCount": 1160567,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

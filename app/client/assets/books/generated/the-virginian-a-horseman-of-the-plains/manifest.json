@@ -5,8 +5,8 @@
   "author": [
     "Owen Wister"
   ],
-  "contentVersion": "25daa9480e56fbe0",
-  "contentHash": "25daa9480e56fbe0da609b5982d247c968f0cbdb682593826bd77a3572911b56",
+  "contentVersion": "8eeef7b40332b1a6",
+  "contentHash": "8eeef7b40332b1a6e2636647abe2ae8cb1832f967bbfa3a5f56f679e81a4b3cf",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 746465,
-    "cleanedCharacterCount": 706274,
-    "wordCount": 131631,
+    "cleanedCharacterCount": 706346,
+    "wordCount": 131640,
     "sectionCount": 36,
     "includedSectionCount": 36
   },
@@ -70,11 +70,11 @@
       "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-002.json",
-      "characterCount": 30202,
-      "wordCount": 5608,
-      "estimatedTypingMinutes": 161,
+      "characterCount": 30207,
+      "wordCount": 5609,
+      "estimatedTypingMinutes": 141,
       "estimatedListeningMinutes": 181,
-      "morseCharacterEstimate": 162284,
+      "morseCharacterEstimate": 162317,
       "textPreview": "II. “WHEN YOU CALL ME THAT, SMILE!” We cannot see ourselves as others see us, or I should know what appearance I cut at hearing this from the tall man. I said..."
     },
     {
@@ -280,11 +280,11 @@
       "order": 16,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-016.json",
-      "characterCount": 40539,
-      "wordCount": 7396,
-      "estimatedTypingMinutes": 212,
+      "characterCount": 40551,
+      "wordCount": 7397,
+      "estimatedTypingMinutes": 185,
       "estimatedListeningMinutes": 246,
-      "morseCharacterEstimate": 220694,
+      "morseCharacterEstimate": 220758,
       "textPreview": "XVI. THE GAME AND THE NATION--LAST ACT It has happened to you, has it not, to wake in the morning and wonder for a while where on earth you are? Thus I came ha..."
     },
     {
@@ -310,11 +310,11 @@
       "order": 18,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-018.json",
-      "characterCount": 15913,
-      "wordCount": 2980,
-      "estimatedTypingMinutes": 86,
+      "characterCount": 15919,
+      "wordCount": 2981,
+      "estimatedTypingMinutes": 75,
       "estimatedListeningMinutes": 95,
-      "morseCharacterEstimate": 85293,
+      "morseCharacterEstimate": 85331,
       "textPreview": "XVIII. “WOULD YOU BE A PARSON?” After this I gave up my experiments in conversation. So that by the final afternoon of our journey, with Sunk Creek actually in..."
     },
     {
@@ -415,11 +415,11 @@
       "order": 25,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-025.json",
-      "characterCount": 23559,
-      "wordCount": 4312,
-      "estimatedTypingMinutes": 124,
+      "characterCount": 23579,
+      "wordCount": 4314,
+      "estimatedTypingMinutes": 108,
       "estimatedListeningMinutes": 142,
-      "morseCharacterEstimate": 127648,
+      "morseCharacterEstimate": 127744,
       "textPreview": "XXV. PROGRESS OF THE LOST DOG It was not even an hour’s visit that the Virginian was able to pay his lady love. But neither had he come a hundred miles to see..."
     },
     {
@@ -520,11 +520,11 @@
       "order": 32,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-032.json",
-      "characterCount": 29720,
-      "wordCount": 5656,
-      "estimatedTypingMinutes": 162,
+      "characterCount": 29732,
+      "wordCount": 5657,
+      "estimatedTypingMinutes": 142,
       "estimatedListeningMinutes": 178,
-      "morseCharacterEstimate": 159598,
+      "morseCharacterEstimate": 159662,
       "textPreview": "XXXII. SUPERSTITION TRAIL We did not make thirty-five miles that day, nor yet twenty-five, for he had let me sleep. We made an early camp and tried some unsucc..."
     },
     {
@@ -535,11 +535,11 @@
       "order": 33,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-033.json",
-      "characterCount": 21400,
-      "wordCount": 3997,
-      "estimatedTypingMinutes": 115,
+      "characterCount": 21417,
+      "wordCount": 4000,
+      "estimatedTypingMinutes": 100,
       "estimatedListeningMinutes": 129,
-      "morseCharacterEstimate": 115465,
+      "morseCharacterEstimate": 115576,
       "textPreview": "XXXIII. THE SPINSTER LOSES SOME SLEEP Somewhere at the eastern base of the Tetons did those hoofprints disappear into a mountain sanctuary where many crooked p..."
     },
     {
@@ -590,7 +590,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 746465,
-    "cleanedCharacterCount": 706274,
+    "cleanedCharacterCount": 706346,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

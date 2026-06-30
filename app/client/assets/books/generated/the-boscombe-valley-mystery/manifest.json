@@ -5,8 +5,8 @@
   "author": [
     "Arthur Conan Doyle"
   ],
-  "contentVersion": "93de638c8c379495",
-  "contentHash": "93de638c8c379495f76ac0bf6102c0297ff462042c162b709bf1f4b3153b37e7",
+  "contentVersion": "32ba9f997666995b",
+  "contentHash": "32ba9f997666995b4f8690e40ff2ad21e00a9bbc141908655928308e50a8ae48",
   "language": "en",
   "description": "Arthur Conan Doyle's Sherlock Holmes story about a murder investigation, disputed evidence, and hidden history in Boscombe Valley.",
   "subjects": [
@@ -41,7 +41,7 @@
   },
   "stats": {
     "originalCharacterCount": 593909,
-    "cleanedCharacterCount": 51319,
+    "cleanedCharacterCount": 51320,
     "wordCount": 9663,
     "sectionCount": 1,
     "includedSectionCount": 1
@@ -61,17 +61,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 51319,
+      "characterCount": 51320,
       "wordCount": 9663,
-      "estimatedTypingMinutes": 277,
+      "estimatedTypingMinutes": 242,
       "estimatedListeningMinutes": 307,
-      "morseCharacterEstimate": 275468,
+      "morseCharacterEstimate": 275472,
       "textPreview": "We were seated at breakfast one morning, my wife and I, when the maid brought in a telegram. It was from Sherlock Holmes and ran in this way: “Have you a coupl..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 593909,
-    "cleanedCharacterCount": 51319,
+    "cleanedCharacterCount": 51320,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

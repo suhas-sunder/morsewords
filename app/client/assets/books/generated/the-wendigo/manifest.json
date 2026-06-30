@@ -5,8 +5,8 @@
   "author": [
     "Algernon Blackwood"
   ],
-  "contentVersion": "55590681e7395da8",
-  "contentHash": "55590681e7395da83346c6d719dd3136bedab249dc2a3fa53e7c03c68524c093",
+  "contentVersion": "51aa2eb9b7f30daa",
+  "contentHash": "51aa2eb9b7f30daaefce01e5825811a05d9f977a9f2a997b51a0dda7887ccb25",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 128175,
-    "cleanedCharacterCount": 106187,
-    "wordCount": 18645,
+    "cleanedCharacterCount": 106179,
+    "wordCount": 18647,
     "sectionCount": 9,
     "includedSectionCount": 9
   },
@@ -55,11 +55,11 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 14563,
-      "wordCount": 2574,
+      "characterCount": 14579,
+      "wordCount": 2576,
       "estimatedTypingMinutes": 65,
       "estimatedListeningMinutes": 88,
-      "morseCharacterEstimate": 78359,
+      "morseCharacterEstimate": 78456,
       "textPreview": "I A considerable number of hunting parties were out that year without finding so much as a fresh trail; for the moose were uncommonly shy, and the various Nimr..."
     },
     {
@@ -185,7 +185,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 128175,
-    "cleanedCharacterCount": 106187,
+    "cleanedCharacterCount": 106179,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

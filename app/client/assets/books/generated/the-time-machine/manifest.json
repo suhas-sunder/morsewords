@@ -5,8 +5,8 @@
   "author": [
     "H. G. Wells"
   ],
-  "contentVersion": "352ea9183b7cab8a",
-  "contentHash": "352ea9183b7cab8a1e4e98a06dac1eaf1a39f631f3eea74efa5e25d843661718",
+  "contentVersion": "4d5ebe07e9f2e74d",
+  "contentHash": "4d5ebe07e9f2e74d1df1f655704a51725bff15dcc0ccf98fe64c35c89b9a42cf",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 202494,
-    "cleanedCharacterCount": 178883,
-    "wordCount": 32616,
+    "cleanedCharacterCount": 178897,
+    "wordCount": 32618,
     "sectionCount": 17,
     "includedSectionCount": 17
   },
@@ -160,11 +160,11 @@
       "order": 8,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-008.json",
-      "characterCount": 23301,
-      "wordCount": 4199,
-      "estimatedTypingMinutes": 120,
+      "characterCount": 23315,
+      "wordCount": 4201,
+      "estimatedTypingMinutes": 106,
       "estimatedListeningMinutes": 138,
-      "morseCharacterEstimate": 124068,
+      "morseCharacterEstimate": 124154,
       "textPreview": "VIII. Explanation “So far as I could see, all the world displayed the same exuberant richness as the Thames valley. From every hill I climbed I saw the same ab..."
     },
     {
@@ -305,7 +305,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 202494,
-    "cleanedCharacterCount": 178883,
+    "cleanedCharacterCount": 178897,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

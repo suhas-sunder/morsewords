@@ -5,8 +5,8 @@
   "author": [
     "Henry David Thoreau"
   ],
-  "contentVersion": "69929b010b329069",
-  "contentHash": "69929b010b32906907efa4639f52afa57439a6303fd18fd34b9b01472e834c6a",
+  "contentVersion": "528bb0d1721d8b46",
+  "contentHash": "528bb0d1721d8b463ba952b4b1e8b3db2492608e41941ee67f25a60b240db857",
   "language": "en",
   "description": "Henry David Thoreau's account of simple living, nature, work, solitude, and reflection at Walden Pond.",
   "subjects": [
@@ -41,8 +41,8 @@
   },
   "stats": {
     "originalCharacterCount": 654202,
-    "cleanedCharacterCount": 582595,
-    "wordCount": 107126,
+    "cleanedCharacterCount": 582631,
+    "wordCount": 107130,
     "sectionCount": 18,
     "includedSectionCount": 18
   },
@@ -64,9 +64,9 @@
       "sectionJsonPath": "sections/chapter-001.json",
       "characterCount": 140851,
       "wordCount": 25760,
-      "estimatedTypingMinutes": 736,
+      "estimatedTypingMinutes": 644,
       "estimatedListeningMinutes": 835,
-      "morseCharacterEstimate": 751369,
+      "morseCharacterEstimate": 751374,
       "textPreview": "When I wrote the following pages, or rather the bulk of them, I lived alone, in the woods, a mile from any neighbor, in a house which I had built myself, on th..."
     },
     {
@@ -81,8 +81,7 @@
       "wordCount": 6119,
       "estimatedTypingMinutes": 175,
       "estimatedListeningMinutes": 194,
-      "morseCharacterEstimate": 174231,
-      "textPreview": "At a certain season of our life we are accustomed to consider every spot as the possible site of a house. I have thus surveyed the country on every side within..."
+      "morseCharacterEstimate": 174231
     },
     {
       "id": "chapter-003",
@@ -96,8 +95,7 @@
       "wordCount": 3794,
       "estimatedTypingMinutes": 109,
       "estimatedListeningMinutes": 125,
-      "morseCharacterEstimate": 111981,
-      "textPreview": "With a little more deliberation in the choice of their pursuits, all men would perhaps become essentially students and observers, for certainly their nature an..."
+      "morseCharacterEstimate": 111981
     },
     {
       "id": "chapter-004",
@@ -111,8 +109,7 @@
       "wordCount": 5757,
       "estimatedTypingMinutes": 165,
       "estimatedListeningMinutes": 189,
-      "morseCharacterEstimate": 169593,
-      "textPreview": "But while we are confined to books, though the most select and classic, and read only particular written languages, which are themselves but dialects and provi..."
+      "morseCharacterEstimate": 169593
     },
     {
       "id": "chapter-005",
@@ -126,8 +123,7 @@
       "wordCount": 3452,
       "estimatedTypingMinutes": 99,
       "estimatedListeningMinutes": 110,
-      "morseCharacterEstimate": 98235,
-      "textPreview": "This is a delicious evening, when the whole body is one sense, and imbibes delight through every pore. I go and come with a strange liberty in Nature, a part o..."
+      "morseCharacterEstimate": 98235
     },
     {
       "id": "chapter-006",
@@ -141,8 +137,7 @@
       "wordCount": 4794,
       "estimatedTypingMinutes": 137,
       "estimatedListeningMinutes": 154,
-      "morseCharacterEstimate": 137874,
-      "textPreview": "I think that I love society as much as most, and am ready enough to fasten myself like a bloodsucker for the time to any full-blooded man that comes in my way...."
+      "morseCharacterEstimate": 137874
     },
     {
       "id": "chapter-007",
@@ -156,8 +151,7 @@
       "wordCount": 3928,
       "estimatedTypingMinutes": 113,
       "estimatedListeningMinutes": 132,
-      "morseCharacterEstimate": 118079,
-      "textPreview": "Meanwhile my beans, the length of whose rows, added together, was seven miles already planted, were impatient to be hoed, for the earliest had grown considerab..."
+      "morseCharacterEstimate": 118079
     },
     {
       "id": "chapter-008",
@@ -171,8 +165,7 @@
       "wordCount": 2029,
       "estimatedTypingMinutes": 58,
       "estimatedListeningMinutes": 65,
-      "morseCharacterEstimate": 57806,
-      "textPreview": "After hoeing, or perhaps reading and writing, in the forenoon, I usually bathed again in the pond, swimming across one of its coves for a stint, and washed the..."
+      "morseCharacterEstimate": 57806
     },
     {
       "id": "chapter-009",
@@ -182,11 +175,11 @@
       "order": 9,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-009.json",
-      "characterCount": 49568,
-      "wordCount": 9199,
-      "estimatedTypingMinutes": 263,
+      "characterCount": 49579,
+      "wordCount": 9200,
+      "estimatedTypingMinutes": 230,
       "estimatedListeningMinutes": 294,
-      "morseCharacterEstimate": 264427,
+      "morseCharacterEstimate": 264482,
       "textPreview": "Sometimes, having had a surfeit of human society and gossip, and worn out all my village friends, I rambled still farther westward than I habitually dwell, int..."
     },
     {
@@ -201,8 +194,7 @@
       "wordCount": 2568,
       "estimatedTypingMinutes": 74,
       "estimatedListeningMinutes": 84,
-      "morseCharacterEstimate": 74783,
-      "textPreview": "Sometimes I rambled to pine groves, standing like temples, or like fleets at sea, full-rigged, with wavy boughs, and rippling with light, so soft and green and..."
+      "morseCharacterEstimate": 74783
     },
     {
       "id": "chapter-011",
@@ -216,8 +208,7 @@
       "wordCount": 4223,
       "estimatedTypingMinutes": 121,
       "estimatedListeningMinutes": 137,
-      "morseCharacterEstimate": 122438,
-      "textPreview": "As I came home through the woods with my string of fish, trailing my pole, it being now quite dark, I caught a glimpse of a woodchuck stealing across my path,..."
+      "morseCharacterEstimate": 122438
     },
     {
       "id": "chapter-012",
@@ -231,8 +222,7 @@
       "wordCount": 4825,
       "estimatedTypingMinutes": 138,
       "estimatedListeningMinutes": 153,
-      "morseCharacterEstimate": 137572,
-      "textPreview": "Sometimes I had a companion in my fishing, who came through the village to my house from the other side of the town, and the catching of the dinner was as much..."
+      "morseCharacterEstimate": 137572
     },
     {
       "id": "chapter-013",
@@ -246,8 +236,7 @@
       "wordCount": 5738,
       "estimatedTypingMinutes": 164,
       "estimatedListeningMinutes": 184,
-      "morseCharacterEstimate": 164767,
-      "textPreview": "In October I went a-graping to the river meadows, and loaded myself with clusters more precious for their beauty and fragrance than for food. There too I admir..."
+      "morseCharacterEstimate": 164767
     },
     {
       "id": "chapter-014",
@@ -257,11 +246,11 @@
       "order": 14,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-014.json",
-      "characterCount": 25976,
-      "wordCount": 4735,
-      "estimatedTypingMinutes": 136,
-      "estimatedListeningMinutes": 155,
-      "morseCharacterEstimate": 139496,
+      "characterCount": 25990,
+      "wordCount": 4737,
+      "estimatedTypingMinutes": 119,
+      "estimatedListeningMinutes": 156,
+      "morseCharacterEstimate": 139582,
       "textPreview": "I weathered some merry snow storms, and spent some cheerful winter evenings by my fire-side, while the snow whirled wildly without, and even the hooting of the..."
     },
     {
@@ -276,8 +265,7 @@
       "wordCount": 3662,
       "estimatedTypingMinutes": 105,
       "estimatedListeningMinutes": 118,
-      "morseCharacterEstimate": 105720,
-      "textPreview": "When the ponds were firmly frozen, they afforded not only new and shorter routes to many points, but new views from their surfaces of the familiar landscape ar..."
+      "morseCharacterEstimate": 105720
     },
     {
       "id": "chapter-016",
@@ -287,11 +275,11 @@
       "order": 16,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-016.json",
-      "characterCount": 28277,
-      "wordCount": 5222,
-      "estimatedTypingMinutes": 150,
+      "characterCount": 28288,
+      "wordCount": 5223,
+      "estimatedTypingMinutes": 131,
       "estimatedListeningMinutes": 168,
-      "morseCharacterEstimate": 150799,
+      "morseCharacterEstimate": 150854,
       "textPreview": "After a still winter night I awoke with the impression that some question had been put to me, which I had been endeavoring in vain to answer in my sleep, as wh..."
     },
     {
@@ -306,8 +294,7 @@
       "wordCount": 6669,
       "estimatedTypingMinutes": 191,
       "estimatedListeningMinutes": 218,
-      "morseCharacterEstimate": 195384,
-      "textPreview": "The opening of large tracts by the ice-cutters commonly causes a pond to break up earlier; for the water, agitated by the wind, even in cold weather, wears awa..."
+      "morseCharacterEstimate": 195384
     },
     {
       "id": "chapter-018",
@@ -321,13 +308,12 @@
       "wordCount": 4652,
       "estimatedTypingMinutes": 133,
       "estimatedListeningMinutes": 150,
-      "morseCharacterEstimate": 134324,
-      "textPreview": "To the sick the doctors wisely recommend a change of air and scenery. Thank Heaven, here is not all the world. The buck-eye does not grow in New England, and t..."
+      "morseCharacterEstimate": 134324
     }
   ],
   "cleaning": {
     "originalCharacterCount": 654202,
-    "cleanedCharacterCount": 582595,
+    "cleanedCharacterCount": 582631,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

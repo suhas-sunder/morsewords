@@ -5,8 +5,8 @@
   "author": [
     "Victor Hugo"
   ],
-  "contentVersion": "88372ba662b27561",
-  "contentHash": "88372ba662b27561708403e6e10331ef01b17a84fe0e72dd3feeff57eefa5806",
+  "contentVersion": "755871bac4da7b93",
+  "contentHash": "755871bac4da7b932cbf3762c4eeb929f5f71592134b7899bcfcd39df770d7c9",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 3250691,
-    "cleanedCharacterCount": 3208253,
-    "wordCount": 563206,
+    "cleanedCharacterCount": 3208279,
+    "wordCount": 563505,
     "sectionCount": 364,
     "includedSectionCount": 363
   },
@@ -2740,12 +2740,12 @@
       "order": 180,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-179.json",
-      "characterCount": 16129,
-      "wordCount": 2832,
-      "estimatedTypingMinutes": 71,
-      "estimatedListeningMinutes": 94,
-      "morseCharacterEstimate": 57741,
-      "textPreview": "CHAPTER IV—THE BACK ROOM OF THE CAFÉ MUSAIN One of the conversations among the young men, at which Marius was present and in which he sometimes joined, was a veritable shock to hi..."
+      "characterCount": 16136,
+      "wordCount": 2849,
+      "estimatedTypingMinutes": 72,
+      "estimatedListeningMinutes": 97,
+      "morseCharacterEstimate": 86997,
+      "textPreview": "CHAPTER IV—THE BACK ROOM OF THE CAFÉ MUSAIN One of the conversations among the young men, at which Marius was present and in which he sometimes joined, was a v..."
     },
     {
       "id": "chapter-180",
@@ -3055,12 +3055,12 @@
       "order": 201,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-200.json",
-      "characterCount": 5842,
-      "wordCount": 933,
+      "characterCount": 5849,
+      "wordCount": 946,
       "estimatedTypingMinutes": 24,
-      "estimatedListeningMinutes": 34,
-      "morseCharacterEstimate": 20604,
-      "textPreview": "CHAPTER IV—COMPOSITION OF THE TROUPE These four ruffians formed a sort of Proteus, winding like a serpent among the police, and striving to escape Vidocq’s indiscreet glances “und..."
+      "estimatedListeningMinutes": 35,
+      "morseCharacterEstimate": 31286,
+      "textPreview": "CHAPTER IV—COMPOSITION OF THE TROUPE These four ruffians formed a sort of Proteus, winding like a serpent among the police, and striving to escape Vidocq’s ind..."
     },
     {
       "id": "chapter-201",
@@ -3355,12 +3355,12 @@
       "order": 221,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-220.json",
-      "characterCount": 52039,
-      "wordCount": 9303,
-      "estimatedTypingMinutes": 233,
-      "estimatedListeningMinutes": 299,
-      "morseCharacterEstimate": 184969,
-      "textPreview": "CHAPTER XX—THE TRAP The door of the garret had just opened abruptly, and allowed a view of three men clad in blue linen blouses, and masked with masks of black paper. The first wa..."
+      "characterCount": 52044,
+      "wordCount": 9536,
+      "estimatedTypingMinutes": 239,
+      "estimatedListeningMinutes": 310,
+      "morseCharacterEstimate": 278556,
+      "textPreview": "CHAPTER XX—THE TRAP The door of the garret had just opened abruptly, and allowed a view of three men clad in blue linen blouses, and masked with masks of black..."
     },
     {
       "id": "chapter-221",
@@ -3655,12 +3655,12 @@
       "order": 241,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-240.json",
-      "characterCount": 22380,
-      "wordCount": 3906,
-      "estimatedTypingMinutes": 98,
-      "estimatedListeningMinutes": 128,
-      "morseCharacterEstimate": 79191,
-      "textPreview": "CHAPTER VIII—THE CHAIN-GANG Jean Valjean was the more unhappy of the two. Youth, even in its sorrows, always possesses its own peculiar radiance. At times, Jean Valjean suffered s..."
+      "characterCount": 22387,
+      "wordCount": 3925,
+      "estimatedTypingMinutes": 99,
+      "estimatedListeningMinutes": 134,
+      "morseCharacterEstimate": 119953,
+      "textPreview": "CHAPTER VIII—THE CHAIN-GANG Jean Valjean was the more unhappy of the two. Youth, even in its sorrows, always possesses its own peculiar radiance. At times, Jea..."
     },
     {
       "id": "chapter-241",
@@ -3686,11 +3686,11 @@
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-242.json",
       "characterCount": 17077,
-      "wordCount": 3092,
+      "wordCount": 3109,
       "estimatedTypingMinutes": 78,
-      "estimatedListeningMinutes": 99,
-      "morseCharacterEstimate": 60954,
-      "textPreview": "CHAPTER II—MOTHER PLUTARQUE FINDS NO DIFFICULTY IN EXPLAINING A PHENOMENON One evening, little Gavroche had had nothing to eat; he remembered that he had not dined on the precedin..."
+      "estimatedListeningMinutes": 102,
+      "morseCharacterEstimate": 91769,
+      "textPreview": "CHAPTER II—MOTHER PLUTARQUE FINDS NO DIFFICULTY IN EXPLAINING A PHENOMENON One evening, little Gavroche had had nothing to eat; he remembered that he had not d..."
     },
     {
       "id": "chapter-243",
@@ -5510,7 +5510,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 3250691,
-    "cleanedCharacterCount": 3208253,
+    "cleanedCharacterCount": 3208279,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

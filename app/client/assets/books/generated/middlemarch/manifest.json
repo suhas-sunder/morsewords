@@ -5,8 +5,8 @@
   "author": [
     "George Eliot"
   ],
-  "contentVersion": "173e7b65c1f44996",
-  "contentHash": "173e7b65c1f449969f0ca620c7519af65b0be94ca7cb1b29f5637e175d7cc673",
+  "contentVersion": "094cad65bf01d16b",
+  "contentHash": "094cad65bf01d16bff841e744687eb4a108c5662ef1a5e7a27a699320f894959",
   "language": "en",
   "description": "George Eliot's realist novel about Dorothea Brooke, Tertius Lydgate, and the social, moral, and political life of Middlemarch.",
   "subjects": [
@@ -753,9 +753,9 @@
       "sectionJsonPath": "sections/chapter-047.json",
       "characterCount": 20199,
       "wordCount": 3562,
-      "estimatedTypingMinutes": 102,
+      "estimatedTypingMinutes": 90,
       "estimatedListeningMinutes": 121,
-      "morseCharacterEstimate": 108796,
+      "morseCharacterEstimate": 108801,
       "textPreview": "Pues no podemos haber aquello que queremos, queramos aquello que podremos. Since we cannot get what we like, let us like what we can get.--_Spanish Proverb_. W..."
     },
     {

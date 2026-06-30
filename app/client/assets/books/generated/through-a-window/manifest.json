@@ -5,8 +5,8 @@
   "author": [
     "H. G. Wells"
   ],
-  "contentVersion": "197393ecbd25bd88",
-  "contentHash": "197393ecbd25bd88a9f9fe748e030589cc323aac3bfc41af5f7fcb37ebef070b",
+  "contentVersion": "57016e9033072b1f",
+  "contentHash": "57016e9033072b1fb1d030f701fdca41886d14bfad82e2e50e19c397b6e1d255",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 19285,
-    "cleanedCharacterCount": 17271,
-    "wordCount": 3096,
+    "cleanedCharacterCount": 17282,
+    "wordCount": 3098,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,17 +55,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 17271,
-      "wordCount": 3096,
-      "estimatedTypingMinutes": 89,
+      "characterCount": 17282,
+      "wordCount": 3098,
+      "estimatedTypingMinutes": 78,
       "estimatedListeningMinutes": 104,
-      "morseCharacterEstimate": 92790,
+      "morseCharacterEstimate": 92861,
       "textPreview": "After his legs were set, they carried Bailey into the study and put him on a couch before the open window. There he lay, a live--even a feverish man down to th..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 19285,
-    "cleanedCharacterCount": 17271,
+    "cleanedCharacterCount": 17282,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

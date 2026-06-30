@@ -5,8 +5,8 @@
   "author": [
     "Fyodor Dostoyevsky"
   ],
-  "contentVersion": "f62de9bc4d259f39",
-  "contentHash": "f62de9bc4d259f39497bb4e2ccfde76b85066c02ed7bff3ab2f304f1d52838aa",
+  "contentVersion": "16c6507a37d3c8c2",
+  "contentHash": "16c6507a37d3c8c24e0d3817460a5172649978c9cd1ee34470e718816d399b0a",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 1992167,
-    "cleanedCharacterCount": 1917770,
-    "wordCount": 356021,
+    "cleanedCharacterCount": 1917781,
+    "wordCount": 356022,
     "sectionCount": 96,
     "includedSectionCount": 96
   },
@@ -312,9 +312,9 @@
       "sectionJsonPath": "sections/chapter-018.json",
       "characterCount": 18088,
       "wordCount": 3529,
-      "estimatedTypingMinutes": 101,
+      "estimatedTypingMinutes": 89,
       "estimatedListeningMinutes": 109,
-      "morseCharacterEstimate": 98057,
+      "morseCharacterEstimate": 98054,
       "textPreview": "Chapter V. The Confession Of A Passionate Heart—“Heels Up” “Now,” said Alyosha, “I understand the first half.” “You understand the first half. That half is a d..."
     },
     {
@@ -355,11 +355,11 @@
       "order": 21,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-021.json",
-      "characterCount": 15730,
+      "characterCount": 15731,
       "wordCount": 3030,
-      "estimatedTypingMinutes": 87,
+      "estimatedTypingMinutes": 76,
       "estimatedListeningMinutes": 96,
-      "morseCharacterEstimate": 86178,
+      "morseCharacterEstimate": 86182,
       "textPreview": "Chapter VIII. Over The Brandy The controversy was over. But, strange to say, Fyodor Pavlovitch, who had been so gay, suddenly began frowning. He frowned and gu..."
     },
     {
@@ -385,11 +385,11 @@
       "order": 23,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-023.json",
-      "characterCount": 25182,
+      "characterCount": 25183,
       "wordCount": 4569,
-      "estimatedTypingMinutes": 131,
+      "estimatedTypingMinutes": 115,
       "estimatedListeningMinutes": 152,
-      "morseCharacterEstimate": 136429,
+      "morseCharacterEstimate": 136433,
       "textPreview": "Chapter X. Both Together Alyosha left his father’s house feeling even more exhausted and dejected in spirit than when he had entered it. His mind too seemed sh..."
     },
     {
@@ -1465,11 +1465,11 @@
       "order": 95,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-095.json",
-      "characterCount": 16721,
-      "wordCount": 3174,
-      "estimatedTypingMinutes": 91,
+      "characterCount": 16730,
+      "wordCount": 3175,
+      "estimatedTypingMinutes": 80,
       "estimatedListeningMinutes": 101,
-      "morseCharacterEstimate": 90666,
+      "morseCharacterEstimate": 90715,
       "textPreview": "Chapter II. For A Moment The Lie Becomes Truth He hurried to the hospital where Mitya was lying now. The day after his fate was determined, Mitya had fallen il..."
     },
     {
@@ -1490,7 +1490,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 1992167,
-    "cleanedCharacterCount": 1917770,
+    "cleanedCharacterCount": 1917781,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

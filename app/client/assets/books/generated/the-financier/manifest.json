@@ -5,8 +5,8 @@
   "author": [
     "Theodore Dreiser"
   ],
-  "contentVersion": "c876683e7d9cc226",
-  "contentHash": "c876683e7d9cc226d7613032f24a07b5f18f5a7616b8822a3361e0b72cd037d5",
+  "contentVersion": "7b104fec54c447be",
+  "contentHash": "7b104fec54c447be53a56809acd1a8c33fee0fd80ed3fa96d602c5c6b091a741",
   "language": "en",
   "description": "Theodore Dreiser's novel about Frank Cowperwood, finance, ambition, family pressure, and power in nineteenth-century Philadelphia.",
   "subjects": [
@@ -41,8 +41,8 @@
   },
   "stats": {
     "originalCharacterCount": 1153532,
-    "cleanedCharacterCount": 1093330,
-    "wordCount": 194731,
+    "cleanedCharacterCount": 1093392,
+    "wordCount": 194741,
     "sectionCount": 59,
     "includedSectionCount": 59
   },
@@ -61,11 +61,11 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 11437,
-      "wordCount": 2037,
-      "estimatedTypingMinutes": 59,
+      "characterCount": 11442,
+      "wordCount": 2038,
+      "estimatedTypingMinutes": 51,
       "estimatedListeningMinutes": 69,
-      "morseCharacterEstimate": 61751,
+      "morseCharacterEstimate": 61785,
       "textPreview": "The Philadelphia into which Frank Algernon Cowperwood was born was a city of two hundred and fifty thousand and more. It was set with handsome parks, notable b..."
     },
     {
@@ -76,11 +76,11 @@
       "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-002.json",
-      "characterCount": 15409,
-      "wordCount": 2725,
-      "estimatedTypingMinutes": 78,
+      "characterCount": 15414,
+      "wordCount": 2726,
+      "estimatedTypingMinutes": 69,
       "estimatedListeningMinutes": 93,
-      "morseCharacterEstimate": 83077,
+      "morseCharacterEstimate": 83115,
       "textPreview": "The growth of young Frank Algernon Cowperwood was through years of what might be called a comfortable and happy family existence. Buttonwood Street, where he s..."
     },
     {
@@ -123,9 +123,9 @@
       "sectionJsonPath": "sections/chapter-005.json",
       "characterCount": 9939,
       "wordCount": 1710,
-      "estimatedTypingMinutes": 49,
+      "estimatedTypingMinutes": 43,
       "estimatedListeningMinutes": 60,
-      "morseCharacterEstimate": 53556,
+      "morseCharacterEstimate": 53571,
       "textPreview": "The following October, having passed his eighteenth year by nearly six months, and feeling sure that he would never want anything to do with the grain and comm..."
     },
     {
@@ -241,11 +241,11 @@
       "order": 13,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-013.json",
-      "characterCount": 18132,
-      "wordCount": 3168,
-      "estimatedTypingMinutes": 91,
+      "characterCount": 18149,
+      "wordCount": 3171,
+      "estimatedTypingMinutes": 80,
       "estimatedListeningMinutes": 109,
-      "morseCharacterEstimate": 97550,
+      "morseCharacterEstimate": 97661,
       "textPreview": "During all the time that Cowperwood had been building himself up thus steadily the great war of the rebellion had been fought almost to its close. It was now O..."
     },
     {
@@ -588,9 +588,9 @@
       "sectionJsonPath": "sections/chapter-036.json",
       "characterCount": 26270,
       "wordCount": 4741,
-      "estimatedTypingMinutes": 136,
+      "estimatedTypingMinutes": 119,
       "estimatedListeningMinutes": 158,
-      "morseCharacterEstimate": 142094,
+      "morseCharacterEstimate": 142099,
       "textPreview": "The very next day there called at Butler's office a long, preternaturally solemn man of noticeable height and angularity, dark-haired, dark-eyed, sallow, with..."
     },
     {
@@ -783,9 +783,9 @@
       "sectionJsonPath": "sections/chapter-049.json",
       "characterCount": 15552,
       "wordCount": 2823,
-      "estimatedTypingMinutes": 81,
+      "estimatedTypingMinutes": 71,
       "estimatedListeningMinutes": 94,
-      "morseCharacterEstimate": 84369,
+      "morseCharacterEstimate": 84374,
       "textPreview": "The business of arranging Cowperwood's sentence for Monday was soon disposed of through Shannon, who had no personal objection to any reasonable delay. Steger..."
     },
     {
@@ -826,11 +826,11 @@
       "order": 52,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-052.json",
-      "characterCount": 23667,
-      "wordCount": 4206,
-      "estimatedTypingMinutes": 121,
+      "characterCount": 23702,
+      "wordCount": 4211,
+      "estimatedTypingMinutes": 106,
       "estimatedListeningMinutes": 142,
-      "morseCharacterEstimate": 127139,
+      "morseCharacterEstimate": 127364,
       "textPreview": "When Cowperwood reached the jail, Jaspers was there, glad to see him but principally relieved to feel that nothing had happened to mar his own reputation as a..."
     },
     {
@@ -933,15 +933,15 @@
       "sectionJsonPath": "sections/chapter-059.json",
       "characterCount": 24193,
       "wordCount": 4175,
-      "estimatedTypingMinutes": 120,
+      "estimatedTypingMinutes": 105,
       "estimatedListeningMinutes": 146,
-      "morseCharacterEstimate": 130554,
+      "morseCharacterEstimate": 130559,
       "textPreview": "The banking house of Jay Cooke & Co., in spite of its tremendous significance as a banking and promoting concern, was a most unpretentious affair, four stories..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 1153532,
-    "cleanedCharacterCount": 1093330,
+    "cleanedCharacterCount": 1093392,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

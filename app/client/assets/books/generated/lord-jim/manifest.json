@@ -5,8 +5,8 @@
   "author": [
     "Joseph Conrad"
   ],
-  "contentVersion": "9a67af9394c2cb3b",
-  "contentHash": "9a67af9394c2cb3bd08485c6c7139d9a4325c65d420862f861cb24ea6f4e748d",
+  "contentVersion": "36dbe9f91e793a79",
+  "contentHash": "36dbe9f91e793a79ab2fbe57649eee543a4c4f4b962ea2be72c73bd24bf08f1b",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 740850,
-    "cleanedCharacterCount": 705336,
-    "wordCount": 130831,
+    "cleanedCharacterCount": 705362,
+    "wordCount": 130835,
     "sectionCount": 45,
     "includedSectionCount": 45
   },
@@ -160,11 +160,11 @@
       "order": 8,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-008.json",
-      "characterCount": 20334,
-      "wordCount": 3793,
-      "estimatedTypingMinutes": 109,
+      "characterCount": 20339,
+      "wordCount": 3794,
+      "estimatedTypingMinutes": 95,
       "estimatedListeningMinutes": 122,
-      "morseCharacterEstimate": 109384,
+      "morseCharacterEstimate": 109417,
       "textPreview": "CHAPTER 8 ‘How long he stood stock-still by the hatch expecting every moment to feel the ship dip under his feet and the rush of water take him at the back and..."
     },
     {
@@ -310,11 +310,11 @@
       "order": 18,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-018.json",
-      "characterCount": 17006,
-      "wordCount": 3312,
-      "estimatedTypingMinutes": 95,
+      "characterCount": 17027,
+      "wordCount": 3315,
+      "estimatedTypingMinutes": 83,
       "estimatedListeningMinutes": 103,
-      "morseCharacterEstimate": 92295,
+      "morseCharacterEstimate": 92420,
       "textPreview": "CHAPTER 18 ‘Six months afterwards my friend (he was a cynical, more than middle-aged bachelor, with a reputation for eccentricity, and owned a rice-mill) wrote..."
     },
     {
@@ -725,7 +725,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 740850,
-    "cleanedCharacterCount": 705336,
+    "cleanedCharacterCount": 705362,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

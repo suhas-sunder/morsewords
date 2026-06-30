@@ -5,8 +5,8 @@
   "author": [
     "T. Smollett"
   ],
-  "contentVersion": "8bbe6868252931df",
-  "contentHash": "8bbe6868252931dfbc8a062638d0007a80fbf1f587c8b9eb1dc3b597ed209d07",
+  "contentVersion": "d58cc47de3b50166",
+  "contentHash": "d58cc47de3b50166494534d805653569931ba7df6556a4582fab6afa36b874f7",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 883592,
-    "cleanedCharacterCount": 849620,
-    "wordCount": 150515,
+    "cleanedCharacterCount": 849694,
+    "wordCount": 150524,
     "sectionCount": 87,
     "includedSectionCount": 87
   },
@@ -205,11 +205,11 @@
       "order": 11,
       "includeByDefault": true,
       "sectionJsonPath": "sections/letter-011.json",
-      "characterCount": 10216,
-      "wordCount": 1796,
+      "characterCount": 10221,
+      "wordCount": 1797,
       "estimatedTypingMinutes": 45,
       "estimatedListeningMinutes": 62,
-      "morseCharacterEstimate": 54971,
+      "morseCharacterEstimate": 55005,
       "textPreview": "To Sir WATKIN PHILLIPS, of Jesus college, Oxon. HOT WELL, April 18. DEAR PHILLIPS, I give Mansel credit for his invention, in propagating the report that I had..."
     },
     {
@@ -265,11 +265,11 @@
       "order": 15,
       "includeByDefault": true,
       "sectionJsonPath": "sections/letter-015.json",
-      "characterCount": 14998,
-      "wordCount": 2643,
+      "characterCount": 15003,
+      "wordCount": 2644,
       "estimatedTypingMinutes": 67,
       "estimatedListeningMinutes": 90,
-      "morseCharacterEstimate": 80952,
+      "morseCharacterEstimate": 80986,
       "textPreview": "To Sir WATKIN PHILLIPS, of Jesus college, Oxon. BATH, April 24. DEAR PHILLIPS, You have, indeed, reason to be surprised, that I should have concealed my corres..."
     },
     {
@@ -280,11 +280,11 @@
       "order": 16,
       "includeByDefault": true,
       "sectionJsonPath": "sections/letter-016.json",
-      "characterCount": 12632,
-      "wordCount": 2176,
+      "characterCount": 12639,
+      "wordCount": 2177,
       "estimatedTypingMinutes": 55,
       "estimatedListeningMinutes": 76,
-      "morseCharacterEstimate": 67937,
+      "morseCharacterEstimate": 67980,
       "textPreview": "To Dr LEWIS. BATH, April 23. DEAR DOCTOR, If I did not know that the exercise of your profession has habituated you to the hearing of complaints, I should make..."
     },
     {
@@ -359,7 +359,7 @@
       "wordCount": 2470,
       "estimatedTypingMinutes": 62,
       "estimatedListeningMinutes": 85,
-      "morseCharacterEstimate": 76392,
+      "morseCharacterEstimate": 76390,
       "textPreview": "To Sir WATKIN PHILLIPS, of Jesus college, Oxon. DEAR KNIGHT, I think those people are unreasonable, who complain that Bath is a contracted circle, in which the..."
     },
     {
@@ -370,11 +370,11 @@
       "order": 22,
       "includeByDefault": true,
       "sectionJsonPath": "sections/letter-022.json",
-      "characterCount": 8735,
-      "wordCount": 1537,
+      "characterCount": 8742,
+      "wordCount": 1538,
       "estimatedTypingMinutes": 39,
       "estimatedListeningMinutes": 53,
-      "morseCharacterEstimate": 46999,
+      "morseCharacterEstimate": 47042,
       "textPreview": "To Dr LEWIS. DEAR LEWIS, I received your bill upon Wiltshire, which was punctually honoured; but as I don't choose to keep so much cash by me, in a common lodg..."
     },
     {
@@ -445,11 +445,11 @@
       "order": 27,
       "includeByDefault": true,
       "sectionJsonPath": "sections/letter-027.json",
-      "characterCount": 3888,
+      "characterCount": 3889,
       "wordCount": 742,
       "estimatedTypingMinutes": 19,
       "estimatedListeningMinutes": 24,
-      "morseCharacterEstimate": 21039,
+      "morseCharacterEstimate": 21043,
       "textPreview": "To Mrs MARY JONES, at Brambleton-hall. DEAR MOLLY, We are all upon the ving--Hey for London, girl!--Fecks! we have been long enough here; for we're all turned..."
     },
     {
@@ -599,7 +599,7 @@
       "wordCount": 3287,
       "estimatedTypingMinutes": 83,
       "estimatedListeningMinutes": 111,
-      "morseCharacterEstimate": 99824,
+      "morseCharacterEstimate": 99822,
       "textPreview": "To Sir WATKIN PHILLIPS, of Jesus college, Oxon. DEAR WAT, I mentioned in my last, my uncle's design of going to the duke of N--'s levee; which design has been..."
     },
     {
@@ -689,7 +689,7 @@
       "wordCount": 2734,
       "estimatedTypingMinutes": 69,
       "estimatedListeningMinutes": 94,
-      "morseCharacterEstimate": 83722,
+      "morseCharacterEstimate": 83718,
       "textPreview": "To Sir WATKIN PHILLIPS, of Jesus college, Oxon. DEAR WAT, The farce is finished, and another piece of a graver cast brought upon the stage.--Our aunt made a de..."
     },
     {
@@ -820,11 +820,11 @@
       "order": 52,
       "includeByDefault": true,
       "sectionJsonPath": "sections/letter-052.json",
-      "characterCount": 23420,
-      "wordCount": 4019,
+      "characterCount": 23464,
+      "wordCount": 4023,
       "estimatedTypingMinutes": 101,
       "estimatedListeningMinutes": 141,
-      "morseCharacterEstimate": 126041,
+      "morseCharacterEstimate": 126261,
       "textPreview": "To Sir WATKIN PHILLIPS Bart. of Jesus college, Oxon. DEAR PHILLIPS, In my last I treated you with a high flavoured dish, in the character of the Scotch lieuten..."
     },
     {
@@ -910,11 +910,11 @@
       "order": 58,
       "includeByDefault": true,
       "sectionJsonPath": "sections/letter-058.json",
-      "characterCount": 23731,
-      "wordCount": 4198,
+      "characterCount": 23736,
+      "wordCount": 4199,
       "estimatedTypingMinutes": 105,
       "estimatedListeningMinutes": 143,
-      "morseCharacterEstimate": 127931,
+      "morseCharacterEstimate": 127965,
       "textPreview": "To Sir WATKIN PHILLIPS, Bart. of Jesus college, Oxon. DEAR PHILLIPS, If I stay much longer at Edinburgh, I shall be changed into a downright Caledonian--My unc..."
     },
     {
@@ -1355,7 +1355,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 883592,
-    "cleanedCharacterCount": 849620,
+    "cleanedCharacterCount": 849694,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

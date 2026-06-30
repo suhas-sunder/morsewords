@@ -5,8 +5,8 @@
   "author": [
     "Eleanor H. Porter"
   ],
-  "contentVersion": "d9d2549538591eed",
-  "contentHash": "d9d2549538591eed3290551331bb6a076b8ffdfc0df201ab2e06cbe5be36a547",
+  "contentVersion": "47ed33f2fa09ccd2",
+  "contentHash": "47ed33f2fa09ccd2d8c1c6d06f8a81b107ab19d93308a9af156c47534868bcf1",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 341629,
-    "cleanedCharacterCount": 313046,
-    "wordCount": 56691,
+    "cleanedCharacterCount": 313058,
+    "wordCount": 56692,
     "sectionCount": 32,
     "includedSectionCount": 32
   },
@@ -205,11 +205,11 @@
       "order": 11,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-011.json",
-      "characterCount": 15621,
-      "wordCount": 2802,
-      "estimatedTypingMinutes": 81,
+      "characterCount": 15633,
+      "wordCount": 2803,
+      "estimatedTypingMinutes": 71,
       "estimatedListeningMinutes": 96,
-      "morseCharacterEstimate": 86220,
+      "morseCharacterEstimate": 86284,
       "textPreview": "CHAPTER XI. INTRODUCING JIMMY August came. August brought several surprises and some changes--none of which, however, were really a surprise to Nancy. Nancy, s..."
     },
     {
@@ -530,7 +530,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 341629,
-    "cleanedCharacterCount": 313046,
+    "cleanedCharacterCount": 313058,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

@@ -5,8 +5,8 @@
   "author": [
     "Charles Kingsley"
   ],
-  "contentVersion": "04dfedc6a8729a59",
-  "contentHash": "04dfedc6a8729a59359d442c1c3c35cb495bb7ef4b0745141394f3bbb5aab98f",
+  "contentVersion": "7913015e7398a7d8",
+  "contentHash": "7913015e7398a7d88587c2d01884c9bd48413d5232946fb9c2ad7326fd720c03",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 396682,
-    "cleanedCharacterCount": 361430,
-    "wordCount": 68359,
+    "cleanedCharacterCount": 361437,
+    "wordCount": 68360,
     "sectionCount": 9,
     "includedSectionCount": 9
   },
@@ -101,11 +101,11 @@
       "order": 4,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-004.json",
-      "characterCount": 50265,
-      "wordCount": 9237,
+      "characterCount": 50272,
+      "wordCount": 9238,
       "estimatedTypingMinutes": 231,
       "estimatedListeningMinutes": 301,
-      "morseCharacterEstimate": 270692,
+      "morseCharacterEstimate": 270735,
       "textPreview": "CHAPTER IV SO the salmon went up, after Tom had warned them of the wicked old otter; and Tom went down, but slowly and cautiously, coasting along the shore. He..."
     },
     {
@@ -186,7 +186,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 396682,
-    "cleanedCharacterCount": 361430,
+    "cleanedCharacterCount": 361437,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

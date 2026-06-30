@@ -5,8 +5,8 @@
   "author": [
     "Herman Melville"
   ],
-  "contentVersion": "3d6b1370e7185921",
-  "contentHash": "3d6b1370e71859215a3aa1646cfd3ffba9962bf0343c726628341df467b9b7e1",
+  "contentVersion": "2df64f8e78e30b82",
+  "contentHash": "2df64f8e78e30b8253ea17ba3e85237b7d139b8d9a47b69e2de15a6c671c6ead",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 1260591,
-    "cleanedCharacterCount": 1213468,
-    "wordCount": 212919,
+    "cleanedCharacterCount": 1213209,
+    "wordCount": 212939,
     "sectionCount": 136,
     "includedSectionCount": 135
   },
@@ -89,7 +89,7 @@
       "wordCount": 1431,
       "estimatedTypingMinutes": 36,
       "estimatedListeningMinutes": 48,
-      "morseCharacterEstimate": 42685,
+      "morseCharacterEstimate": 42690,
       "textPreview": "CHAPTER 2. The Carpet-Bag. I stuffed a shirt or two into my old carpet-bag, tucked it under my arm, and started for Cape Horn and the Pacific. Quitting the goo..."
     },
     {
@@ -100,11 +100,11 @@
       "order": 4,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-003.json",
-      "characterCount": 32010,
-      "wordCount": 5809,
+      "characterCount": 32017,
+      "wordCount": 5810,
       "estimatedTypingMinutes": 146,
       "estimatedListeningMinutes": 192,
-      "morseCharacterEstimate": 172340,
+      "morseCharacterEstimate": 172383,
       "textPreview": "CHAPTER 3. The Spouter-Inn. Entering that gable-ended Spouter-Inn, you found yourself in a wide, low, straggling entry with old-fashioned wainscots, reminding..."
     },
     {
@@ -134,7 +134,7 @@
       "wordCount": 737,
       "estimatedTypingMinutes": 19,
       "estimatedListeningMinutes": 26,
-      "morseCharacterEstimate": 22645,
+      "morseCharacterEstimate": 22650,
       "textPreview": "CHAPTER 5. Breakfast. I quickly followed suit, and descending into the bar-room accosted the grinning landlord very pleasantly. I cherished no malice towards h..."
     },
     {
@@ -209,7 +209,7 @@
       "wordCount": 1553,
       "estimatedTypingMinutes": 39,
       "estimatedListeningMinutes": 52,
-      "morseCharacterEstimate": 46614,
+      "morseCharacterEstimate": 46619,
       "textPreview": "CHAPTER 10. A Bosom Friend. Returning to the Spouter-Inn from the Chapel, I found Queequeg there quite alone; he having left the Chapel before the benediction..."
     },
     {
@@ -250,11 +250,11 @@
       "order": 14,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-013.json",
-      "characterCount": 9699,
-      "wordCount": 1683,
+      "characterCount": 9706,
+      "wordCount": 1684,
       "estimatedTypingMinutes": 43,
       "estimatedListeningMinutes": 59,
-      "morseCharacterEstimate": 52402,
+      "morseCharacterEstimate": 52445,
       "textPreview": "CHAPTER 13. Wheelbarrow. Next morning, Monday, after disposing of the embalmed head to a barber, for a block, I settled my own and comrade's bill; using, howev..."
     },
     {
@@ -295,11 +295,11 @@
       "order": 17,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-016.json",
-      "characterCount": 30536,
-      "wordCount": 5442,
+      "characterCount": 30547,
+      "wordCount": 5443,
       "estimatedTypingMinutes": 137,
       "estimatedListeningMinutes": 184,
-      "morseCharacterEstimate": 165118,
+      "morseCharacterEstimate": 165173,
       "textPreview": "CHAPTER 16. The Ship. In bed we concocted our plans for the morrow. But to my surprise and no small concern, Queequeg now gave me to understand, that he had be..."
     },
     {
@@ -340,11 +340,11 @@
       "order": 20,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-019.json",
-      "characterCount": 6577,
-      "wordCount": 1210,
+      "characterCount": 6588,
+      "wordCount": 1211,
       "estimatedTypingMinutes": 31,
       "estimatedListeningMinutes": 40,
-      "morseCharacterEstimate": 35875,
+      "morseCharacterEstimate": 35930,
       "textPreview": "CHAPTER 19. The Prophet. \"Shipmates, have ye shipped in that ship?\" Queequeg and I had just left the Pequod, and were sauntering away from the water, for the m..."
     },
     {
@@ -460,11 +460,11 @@
       "order": 28,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-027.json",
-      "characterCount": 9522,
-      "wordCount": 1667,
+      "characterCount": 9536,
+      "wordCount": 1669,
       "estimatedTypingMinutes": 42,
-      "estimatedListeningMinutes": 57,
-      "morseCharacterEstimate": 51246,
+      "estimatedListeningMinutes": 58,
+      "morseCharacterEstimate": 51332,
       "textPreview": "CHAPTER 27. Knights and Squires. Stubb was the second mate. He was a native of Cape Cod; and hence, according to local usage, was called a Cape-Cod-man. A happ..."
     },
     {
@@ -565,11 +565,11 @@
       "order": 35,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-034.json",
-      "characterCount": 12695,
-      "wordCount": 2198,
+      "characterCount": 12702,
+      "wordCount": 2199,
       "estimatedTypingMinutes": 55,
       "estimatedListeningMinutes": 77,
-      "morseCharacterEstimate": 68435,
+      "morseCharacterEstimate": 68478,
       "textPreview": "CHAPTER 34. The Cabin-Table. It is noon; and Dough-Boy, the steward, thrusting his pale loaf-of-bread face from the cabin-scuttle, announces dinner to his lord..."
     },
     {
@@ -775,11 +775,11 @@
       "order": 49,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-048.json",
-      "characterCount": 22472,
-      "wordCount": 3932,
+      "characterCount": 22493,
+      "wordCount": 3935,
       "estimatedTypingMinutes": 99,
       "estimatedListeningMinutes": 136,
-      "morseCharacterEstimate": 121700,
+      "morseCharacterEstimate": 121829,
       "textPreview": "CHAPTER 48. The First Lowering. The phantoms, for so they then seemed, were flitting on the other side of the deck, and, with a noiseless celerity, were castin..."
     },
     {
@@ -940,11 +940,11 @@
       "order": 60,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-059.json",
-      "characterCount": 5350,
-      "wordCount": 923,
+      "characterCount": 5357,
+      "wordCount": 924,
       "estimatedTypingMinutes": 24,
       "estimatedListeningMinutes": 32,
-      "morseCharacterEstimate": 28592,
+      "morseCharacterEstimate": 28635,
       "textPreview": "CHAPTER 59. Squid. Slowly wading through the meadows of brit, the Pequod still held on her way north-eastward towards the island of Java; a gentle air impellin..."
     },
     {
@@ -1015,11 +1015,11 @@
       "order": 65,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-064.json",
-      "characterCount": 16531,
-      "wordCount": 2980,
+      "characterCount": 16545,
+      "wordCount": 2982,
       "estimatedTypingMinutes": 75,
       "estimatedListeningMinutes": 101,
-      "morseCharacterEstimate": 90133,
+      "morseCharacterEstimate": 90219,
       "textPreview": "CHAPTER 64. Stubb's Supper. Stubb's whale had been killed some distance from the ship. It was a calm; so, forming a tandem of three boats, we commenced the slo..."
     },
     {
@@ -1075,11 +1075,11 @@
       "order": 69,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-068.json",
-      "characterCount": 6778,
-      "wordCount": 1195,
+      "characterCount": 6785,
+      "wordCount": 1196,
       "estimatedTypingMinutes": 30,
       "estimatedListeningMinutes": 41,
-      "morseCharacterEstimate": 36332,
+      "morseCharacterEstimate": 36375,
       "textPreview": "CHAPTER 68. The Blanket. I have given no small attention to that not unvexed subject, the skin of the whale. I have had controversies about it with experienced..."
     },
     {
@@ -1225,11 +1225,11 @@
       "order": 79,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-078.json",
-      "characterCount": 9296,
-      "wordCount": 1640,
-      "estimatedTypingMinutes": 41,
+      "characterCount": 9303,
+      "wordCount": 1641,
+      "estimatedTypingMinutes": 42,
       "estimatedListeningMinutes": 56,
-      "morseCharacterEstimate": 49952,
+      "morseCharacterEstimate": 49995,
       "textPreview": "CHAPTER 78. Cistern and Buckets. Nimble as a cat, Tashtego mounts aloft; and without altering his erect posture, runs straight out upon the overhanging mainyar..."
     },
     {
@@ -1450,11 +1450,11 @@
       "order": 94,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-093.json",
-      "characterCount": 9264,
-      "wordCount": 1601,
+      "characterCount": 9285,
+      "wordCount": 1604,
       "estimatedTypingMinutes": 41,
       "estimatedListeningMinutes": 56,
-      "morseCharacterEstimate": 50138,
+      "morseCharacterEstimate": 50272,
       "textPreview": "CHAPTER 93. The Castaway. It was but some few days after encountering the Frenchman, that a most significant event befell the most insignificant of the Pequod'..."
     },
     {
@@ -1544,7 +1544,7 @@
       "wordCount": 2411,
       "estimatedTypingMinutes": 61,
       "estimatedListeningMinutes": 82,
-      "morseCharacterEstimate": 72919,
+      "morseCharacterEstimate": 72924,
       "textPreview": "CHAPTER 99. The Doubloon. Ere now it has been related how Ahab was wont to pace his quarter-deck, taking regular turns at either limit, the binnacle and mainma..."
     },
     {
@@ -1780,11 +1780,11 @@
       "order": 116,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-115.json",
-      "characterCount": 5167,
-      "wordCount": 874,
+      "characterCount": 5172,
+      "wordCount": 875,
       "estimatedTypingMinutes": 22,
       "estimatedListeningMinutes": 32,
-      "morseCharacterEstimate": 28072,
+      "morseCharacterEstimate": 28106,
       "textPreview": "CHAPTER 115. The Pequod Meets The Bachelor. And jolly enough were the sights and the sounds that came bearing down before the wind, some few weeks after Ahab's..."
     },
     {
@@ -1840,11 +1840,11 @@
       "order": 120,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-119.json",
-      "characterCount": 14034,
-      "wordCount": 2524,
+      "characterCount": 14041,
+      "wordCount": 2525,
       "estimatedTypingMinutes": 64,
       "estimatedListeningMinutes": 85,
-      "morseCharacterEstimate": 75942,
+      "morseCharacterEstimate": 75985,
       "textPreview": "CHAPTER 119. The Candles. Warmest climes but nurse the cruellest fangs: the tiger of Bengal crouches in spiced groves of ceaseless verdure. Skies the most effu..."
     },
     {
@@ -1994,7 +1994,7 @@
       "wordCount": 584,
       "estimatedTypingMinutes": 15,
       "estimatedListeningMinutes": 19,
-      "morseCharacterEstimate": 16649,
+      "morseCharacterEstimate": 16654,
       "textPreview": "CHAPTER 129. The Cabin. (_Ahab moving to go on deck; Pip catches him by the hand to follow._) \"Lad, lad, I tell thee thou must not follow Ahab now. The hour is..."
     },
     {
@@ -2090,7 +2090,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 1260591,
-    "cleanedCharacterCount": 1213468,
+    "cleanedCharacterCount": 1213209,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

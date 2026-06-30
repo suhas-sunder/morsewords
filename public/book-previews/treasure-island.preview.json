@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "treasure-island",
-  "contentVersion": "fbc88f57ab49a7cc",
-  "contentHash": "fbc88f57ab49a7cc8fe983985990a77cb3af05242deb1d04adb447fd8027e4b4",
+  "contentVersion": "6f2a0bd31725bb13",
+  "contentHash": "6f2a0bd31725bb13ecc9417dfff0a375f903108d0a0d3c609a5987e63f07d5da",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Chapter 1",

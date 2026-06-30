@@ -5,8 +5,8 @@
   "author": [
     "Fyodor Dostoyevsky"
   ],
-  "contentVersion": "1bf45d9f3bb2d82c",
-  "contentHash": "1bf45d9f3bb2d82c5af8ef4f0d19cb8bc6668f7a79cc97bc5ee98f60c1844dfa",
+  "contentVersion": "5952660c323786ba",
+  "contentHash": "5952660c323786baa89677baccaa6d6eb51f3bce28ffbd70a7f00553493a3b8d",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 1176909,
-    "cleanedCharacterCount": 1130273,
-    "wordCount": 203648,
+    "cleanedCharacterCount": 1130280,
+    "wordCount": 203649,
     "sectionCount": 40,
     "includedSectionCount": 40
   },
@@ -101,11 +101,11 @@
       "order": 4,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-004.json",
-      "characterCount": 27773,
-      "wordCount": 5101,
+      "characterCount": 27779,
+      "wordCount": 5102,
       "estimatedTypingMinutes": 128,
       "estimatedListeningMinutes": 167,
-      "morseCharacterEstimate": 149857,
+      "morseCharacterEstimate": 149895,
       "textPreview": "CHAPTER IV His mother's letter had been a torture to him, but as regards the chief fact in it, he had felt not one moment's hesitation, even whilst he was read..."
     },
     {
@@ -461,11 +461,11 @@
       "order": 28,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-028.json",
-      "characterCount": 28607,
+      "characterCount": 28608,
       "wordCount": 4934,
       "estimatedTypingMinutes": 124,
       "estimatedListeningMinutes": 172,
-      "morseCharacterEstimate": 154078,
+      "morseCharacterEstimate": 154082,
       "textPreview": "CHAPTER II It would be difficult to explain exactly what could have originated the idea of that senseless dinner in Katerina Ivanovna's disordered brain. Nearl..."
     },
     {
@@ -651,7 +651,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 1176909,
-    "cleanedCharacterCount": 1130273,
+    "cleanedCharacterCount": 1130280,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

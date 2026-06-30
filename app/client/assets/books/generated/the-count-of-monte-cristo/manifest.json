@@ -5,8 +5,8 @@
   "author": [
     "Alexandre Dumas Auguste Maquet"
   ],
-  "contentVersion": "4d1525fee69ba7fa",
-  "contentHash": "4d1525fee69ba7fa08cdb4a83ba0859114bc663fd70ec75726a30fb2dc4ab0dc",
+  "contentVersion": "3ab5dcd163bfd0db",
+  "contentHash": "3ab5dcd163bfd0db73a921e765e3276d17904f3e37de2e3247783a64e78709ab",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 2646649,
-    "cleanedCharacterCount": 2622620,
-    "wordCount": 461680,
+    "cleanedCharacterCount": 2622634,
+    "wordCount": 461790,
     "sectionCount": 117,
     "includedSectionCount": 117
   },
@@ -745,12 +745,12 @@
       "order": 47,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-047.json",
-      "characterCount": 29717,
-      "wordCount": 5165,
-      "estimatedTypingMinutes": 130,
-      "estimatedListeningMinutes": 171,
-      "morseCharacterEstimate": 105677,
-      "textPreview": "Chapter 47. The Dappled Grays The baron, followed by the count, traversed a long series of apartments, in which the prevailing characteristics were heavy magnificence and the gaud..."
+      "characterCount": 29724,
+      "wordCount": 5211,
+      "estimatedTypingMinutes": 131,
+      "estimatedListeningMinutes": 178,
+      "morseCharacterEstimate": 159668,
+      "textPreview": "Chapter 47. The Dappled Grays The baron, followed by the count, traversed a long series of apartments, in which the prevailing characteristics were heavy magni..."
     },
     {
       "id": "chapter-048",
@@ -1210,12 +1210,12 @@
       "order": 78,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-078.json",
-      "characterCount": 40532,
-      "wordCount": 7239,
-      "estimatedTypingMinutes": 181,
-      "estimatedListeningMinutes": 234,
-      "morseCharacterEstimate": 144660,
-      "textPreview": "Chapter 78. We hear From Yanina If Valentine could have seen the trembling step and agitated countenance of Franz when he quitted the chamber of M. Noirtier, even she would have b..."
+      "characterCount": 40539,
+      "wordCount": 7303,
+      "estimatedTypingMinutes": 183,
+      "estimatedListeningMinutes": 243,
+      "morseCharacterEstimate": 217850,
+      "textPreview": "Chapter 78. We hear From Yanina If Valentine could have seen the trembling step and agitated countenance of Franz when he quitted the chamber of M. Noirtier, e..."
     },
     {
       "id": "chapter-079",
@@ -1805,7 +1805,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 2646649,
-    "cleanedCharacterCount": 2622620,
+    "cleanedCharacterCount": 2622634,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

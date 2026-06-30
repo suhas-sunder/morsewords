@@ -5,8 +5,8 @@
   "author": [
     "Booth Tarkington"
   ],
-  "contentVersion": "45da3d99a68fd57f",
-  "contentHash": "45da3d99a68fd57ff3209bee7c3398bb5ee77cfb75d66b382a95b80604ce857b",
+  "contentVersion": "aafd11a6a0ace04a",
+  "contentHash": "aafd11a6a0ace04a0fd3a499e606814a96678adb3c6e2dcc28a42d3785b381d0",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 527191,
-    "cleanedCharacterCount": 497036,
-    "wordCount": 90526,
+    "cleanedCharacterCount": 497059,
+    "wordCount": 90531,
     "sectionCount": 33,
     "includedSectionCount": 33
   },
@@ -55,11 +55,11 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 6950,
-      "wordCount": 1224,
-      "estimatedTypingMinutes": 35,
+      "characterCount": 6955,
+      "wordCount": 1225,
+      "estimatedTypingMinutes": 31,
       "estimatedListeningMinutes": 42,
-      "morseCharacterEstimate": 37139,
+      "morseCharacterEstimate": 37173,
       "textPreview": "CHAPTER I There is a midland city in the heart of fair, open country, a dirty and wonderful city nesting dingily in the fog of its own smoke. The stranger must..."
     },
     {
@@ -70,11 +70,11 @@
       "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-002.json",
-      "characterCount": 10320,
-      "wordCount": 1871,
-      "estimatedTypingMinutes": 54,
+      "characterCount": 10326,
+      "wordCount": 1872,
+      "estimatedTypingMinutes": 47,
       "estimatedListeningMinutes": 63,
-      "morseCharacterEstimate": 56028,
+      "morseCharacterEstimate": 56066,
       "textPreview": "CHAPTER II The Sheridan Building was the biggest skyscraper; the Sheridan Trust Company was the biggest of its kind, and Sheridan himself had been the biggest..."
     },
     {
@@ -85,9 +85,9 @@
       "order": 3,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-003.json",
-      "characterCount": 15636,
+      "characterCount": 15635,
       "wordCount": 2826,
-      "estimatedTypingMinutes": 81,
+      "estimatedTypingMinutes": 71,
       "estimatedListeningMinutes": 95,
       "morseCharacterEstimate": 85025,
       "textPreview": "CHAPTER III Beginning at the beginning and learning from the ground up was a long course for Bibbs at the sanitarium, with milk and “zwieback” as the basis of..."
@@ -190,9 +190,9 @@
       "order": 10,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-010.json",
-      "characterCount": 23963,
+      "characterCount": 23962,
       "wordCount": 4349,
-      "estimatedTypingMinutes": 125,
+      "estimatedTypingMinutes": 109,
       "estimatedListeningMinutes": 144,
       "morseCharacterEstimate": 129464,
       "textPreview": "CHAPTER X Bibbs's room, that neat apartment for transients to which the “lamidal” George had shown him upon his return, still bore the appearance of temporary..."
@@ -205,11 +205,11 @@
       "order": 11,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-011.json",
-      "characterCount": 15161,
-      "wordCount": 2717,
-      "estimatedTypingMinutes": 78,
+      "characterCount": 15166,
+      "wordCount": 2718,
+      "estimatedTypingMinutes": 68,
       "estimatedListeningMinutes": 92,
-      "morseCharacterEstimate": 82740,
+      "morseCharacterEstimate": 82779,
       "textPreview": "CHAPTER XI Sheridan had decided to conclude his day's work early that afternoon, and at about two o'clock he left his office with a man of affairs from foreign..."
     },
     {
@@ -355,9 +355,9 @@
       "order": 21,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-021.json",
-      "characterCount": 22529,
+      "characterCount": 22528,
       "wordCount": 3986,
-      "estimatedTypingMinutes": 114,
+      "estimatedTypingMinutes": 100,
       "estimatedListeningMinutes": 137,
       "morseCharacterEstimate": 122678,
       "textPreview": "CHAPTER XXI “WHO looks a mustang in the eye? Changety, chang, chang! Bash! Crash! BANG!” So sang Bibbs, his musical gaieties inaudible to his fellow-workmen be..."
@@ -402,9 +402,9 @@
       "sectionJsonPath": "sections/chapter-024.json",
       "characterCount": 15010,
       "wordCount": 2756,
-      "estimatedTypingMinutes": 79,
+      "estimatedTypingMinutes": 69,
       "estimatedListeningMinutes": 91,
-      "morseCharacterEstimate": 81726,
+      "morseCharacterEstimate": 81731,
       "textPreview": "CHAPTER XXIV Sheridan waited until he heard the sound of the outer door closing; then he rose and pushed a tiny disk set in the wall. Jackson appeared. “Has Bi..."
     },
     {
@@ -430,11 +430,11 @@
       "order": 26,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-026.json",
-      "characterCount": 13024,
-      "wordCount": 2414,
-      "estimatedTypingMinutes": 69,
+      "characterCount": 13029,
+      "wordCount": 2415,
+      "estimatedTypingMinutes": 61,
       "estimatedListeningMinutes": 80,
-      "morseCharacterEstimate": 71103,
+      "morseCharacterEstimate": 71136,
       "textPreview": "CHAPTER XXVI George departed, and Bibbs was left gazing upon chaos and listening to thunder. He could not reach the stairway without passing the open doors of..."
     },
     {
@@ -505,11 +505,11 @@
       "order": 31,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-031.json",
-      "characterCount": 14484,
-      "wordCount": 2610,
-      "estimatedTypingMinutes": 75,
+      "characterCount": 14489,
+      "wordCount": 2611,
+      "estimatedTypingMinutes": 66,
       "estimatedListeningMinutes": 88,
-      "morseCharacterEstimate": 78739,
+      "morseCharacterEstimate": 78773,
       "textPreview": "CHAPTER XXI And so Bibbs sat in the porch of the temple with the money-changers. But no one came to scourge him forth, for this was the temple of Bigness, and..."
     },
     {
@@ -545,7 +545,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 527191,
-    "cleanedCharacterCount": 497036,
+    "cleanedCharacterCount": 497059,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

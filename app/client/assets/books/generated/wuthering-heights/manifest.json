@@ -5,8 +5,8 @@
   "author": [
     "Emily Brontë"
   ],
-  "contentVersion": "2950978335c7d835",
-  "contentHash": "2950978335c7d8354323ad37a4b121cff171a72e485fee21131c164d7914459e",
+  "contentVersion": "ee2c0b34546e3cc5",
+  "contentHash": "ee2c0b34546e3cc568e730b0c28c6d914b056a5edd9dcff23f8104b1aba975cc",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,7 +35,7 @@
   },
   "stats": {
     "originalCharacterCount": 677607,
-    "cleanedCharacterCount": 645375,
+    "cleanedCharacterCount": 645279,
     "wordCount": 116109,
     "sectionCount": 34,
     "includedSectionCount": 34
@@ -250,11 +250,11 @@
       "order": 14,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-014.json",
-      "characterCount": 18445,
+      "characterCount": 18446,
       "wordCount": 3360,
       "estimatedTypingMinutes": 84,
       "estimatedListeningMinutes": 111,
-      "morseCharacterEstimate": 99543,
+      "morseCharacterEstimate": 99547,
       "textPreview": "CHAPTER XIV As soon as I had perused this epistle I went to the master, and informed him that his sister had arrived at the Heights, and sent me a letter expre..."
     },
     {
@@ -340,11 +340,11 @@
       "order": 20,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-020.json",
-      "characterCount": 12075,
+      "characterCount": 12076,
       "wordCount": 2166,
       "estimatedTypingMinutes": 55,
       "estimatedListeningMinutes": 73,
-      "morseCharacterEstimate": 65528,
+      "morseCharacterEstimate": 65532,
       "textPreview": "CHAPTER XX To obviate the danger of this threat being fulfilled, Mr. Linton commissioned me to take the boy home early, on Catherine's pony; and, said he-\"As w..."
     },
     {
@@ -535,11 +535,11 @@
       "order": 33,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-033.json",
-      "characterCount": 17447,
+      "characterCount": 17448,
       "wordCount": 3141,
       "estimatedTypingMinutes": 79,
       "estimatedListeningMinutes": 105,
-      "morseCharacterEstimate": 93981,
+      "morseCharacterEstimate": 93985,
       "textPreview": "CHAPTER XXXIII On the morrow of that Monday, Earnshaw being still unable to follow his ordinary employments, and therefore remaining about the house, I speedil..."
     },
     {
@@ -560,7 +560,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 677607,
-    "cleanedCharacterCount": 645375,
+    "cleanedCharacterCount": 645279,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

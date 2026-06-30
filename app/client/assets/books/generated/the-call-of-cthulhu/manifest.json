@@ -5,8 +5,8 @@
   "author": [
     "H. P. Lovecraft"
   ],
-  "contentVersion": "94448859a946f4b3",
-  "contentHash": "94448859a946f4b3cb5d97cb451a244cfc4a76de565641337a8adb137a124844",
+  "contentVersion": "2a980f41f0bfa8a2",
+  "contentHash": "2a980f41f0bfa8a21b95a77cd10ddd476ac26eb1e0b0b5a65206657c9fe0ff37",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 92255,
-    "cleanedCharacterCount": 69450,
-    "wordCount": 11809,
+    "cleanedCharacterCount": 69462,
+    "wordCount": 11811,
     "sectionCount": 3,
     "includedSectionCount": 3
   },
@@ -55,11 +55,11 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 17159,
-      "wordCount": 2846,
+      "characterCount": 17166,
+      "wordCount": 2847,
       "estimatedTypingMinutes": 72,
       "estimatedListeningMinutes": 103,
-      "morseCharacterEstimate": 92574,
+      "morseCharacterEstimate": 92617,
       "textPreview": "The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents. We live on a placid island of ignorance in the..."
     },
     {
@@ -70,11 +70,11 @@
       "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-002.json",
-      "characterCount": 28298,
-      "wordCount": 4802,
+      "characterCount": 28303,
+      "wordCount": 4803,
       "estimatedTypingMinutes": 121,
       "estimatedListeningMinutes": 169,
-      "morseCharacterEstimate": 151347,
+      "morseCharacterEstimate": 151391,
       "textPreview": "The older matters which had made the sculptor's dream and bas-relief so significant to my uncle formed the subject of the second half of his long manuscript. O..."
     },
     {
@@ -95,7 +95,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 92255,
-    "cleanedCharacterCount": 69450,
+    "cleanedCharacterCount": 69462,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

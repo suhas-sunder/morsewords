@@ -5,8 +5,8 @@
   "author": [
     "Edgar Rice Burroughs"
   ],
-  "contentVersion": "f547850be68b55dd",
-  "contentHash": "f547850be68b55dd760222427df8923913636748d810ae6cd50dc17505293ee8",
+  "contentVersion": "3ad8342269110cca",
+  "contentHash": "3ad8342269110cca4b46019126d6620e9c2c64c942de6b86fd4979f217010391",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 294919,
-    "cleanedCharacterCount": 266635,
-    "wordCount": 49205,
+    "cleanedCharacterCount": 266642,
+    "wordCount": 49206,
     "sectionCount": 15,
     "includedSectionCount": 15
   },
@@ -70,11 +70,11 @@
       "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-002.json",
-      "characterCount": 18988,
-      "wordCount": 3482,
-      "estimatedTypingMinutes": 100,
+      "characterCount": 18995,
+      "wordCount": 3483,
+      "estimatedTypingMinutes": 88,
       "estimatedListeningMinutes": 112,
-      "morseCharacterEstimate": 100266,
+      "morseCharacterEstimate": 100309,
       "textPreview": "II A STRANGE WORLD I was unconscious little more than an instant, for as I lunged forward from the crossbeam to which I had been clinging, and fell with a cras..."
     },
     {
@@ -275,7 +275,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 294919,
-    "cleanedCharacterCount": 266635,
+    "cleanedCharacterCount": 266642,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

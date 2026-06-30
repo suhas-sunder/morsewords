@@ -5,8 +5,8 @@
   "author": [
     "Oscar Wilde"
   ],
-  "contentVersion": "af2ab9deaa2db2a0",
-  "contentHash": "af2ab9deaa2db2a0bace9a43916984a7cf4881616bc080478b6769cf94bdef39",
+  "contentVersion": "168094d22377fe50",
+  "contentHash": "168094d22377fe50dc458a8ec1c34a27314f437ee4f78864f745504a866b3996",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 448573,
-    "cleanedCharacterCount": 429270,
-    "wordCount": 79937,
+    "cleanedCharacterCount": 429211,
+    "wordCount": 79938,
     "sectionCount": 23,
     "includedSectionCount": 21
   },
@@ -235,11 +235,11 @@
       "order": 13,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-011.json",
-      "characterCount": 41855,
-      "wordCount": 7396,
+      "characterCount": 41860,
+      "wordCount": 7397,
       "estimatedTypingMinutes": 185,
       "estimatedListeningMinutes": 250,
-      "morseCharacterEstimate": 224175,
+      "morseCharacterEstimate": 224214,
       "textPreview": "CHAPTER XI. For years, Dorian Gray could not free himself from the influence of this book. Or perhaps it would be more accurate to say that he never sought to..."
     },
     {
@@ -395,7 +395,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 448573,
-    "cleanedCharacterCount": 429270,
+    "cleanedCharacterCount": 429211,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

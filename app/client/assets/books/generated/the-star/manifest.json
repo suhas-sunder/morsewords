@@ -5,8 +5,8 @@
   "author": [
     "H. G. Wells"
   ],
-  "contentVersion": "a86109125af8f8f4",
-  "contentHash": "a86109125af8f8f4830c5a35c7ab508f0246b285d65e5e1a7ef429b81bc6958d",
+  "contentVersion": "315dcf4ded13780e",
+  "contentHash": "315dcf4ded13780e13bdce0a69c5795415b32a1b371a1d0b38ad34116088d70c",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 26225,
-    "cleanedCharacterCount": 25219,
-    "wordCount": 4457,
+    "cleanedCharacterCount": 25224,
+    "wordCount": 4458,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,17 +55,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 25219,
-      "wordCount": 4457,
-      "estimatedTypingMinutes": 128,
+      "characterCount": 25224,
+      "wordCount": 4458,
+      "estimatedTypingMinutes": 112,
       "estimatedListeningMinutes": 150,
-      "morseCharacterEstimate": 134201,
+      "morseCharacterEstimate": 134240,
       "textPreview": "It was on the first day of the New Year that the announcement was made, almost simultaneously from three observatories, that the motion of the planet Neptune,..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 26225,
-    "cleanedCharacterCount": 25219,
+    "cleanedCharacterCount": 25224,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

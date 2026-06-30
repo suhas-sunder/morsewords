@@ -5,8 +5,8 @@
   "author": [
     "Emile Gaboriau"
   ],
-  "contentVersion": "2034c185a686accd",
-  "contentHash": "2034c185a686accdb53a68bf64d0fbbe9e2ff872b584ad7417484f7335314f1b",
+  "contentVersion": "88e83b14652ed3b2",
+  "contentHash": "88e83b14652ed3b2e5194f8442240fb435ef3d79603319a320ba2d1f032a81c4",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,7 +35,7 @@
   },
   "stats": {
     "originalCharacterCount": 728654,
-    "cleanedCharacterCount": 694607,
+    "cleanedCharacterCount": 694550,
     "wordCount": 123870,
     "sectionCount": 20,
     "includedSectionCount": 20
@@ -299,7 +299,7 @@
       "wordCount": 7427,
       "estimatedTypingMinutes": 186,
       "estimatedListeningMinutes": 243,
-      "morseCharacterEstimate": 218451,
+      "morseCharacterEstimate": 218456,
       "textPreview": "CHAPTER XVII. Greatly troubled and perplexed by Mademoiselle d'Arlange's revelations, M. Daburon was ascending the stairs that led to the offices of the invest..."
     },
     {
@@ -350,7 +350,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 728654,
-    "cleanedCharacterCount": 694607,
+    "cleanedCharacterCount": 694550,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

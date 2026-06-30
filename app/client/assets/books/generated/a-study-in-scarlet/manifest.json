@@ -5,8 +5,8 @@
   "author": [
     "Arthur Conan Doyle"
   ],
-  "contentVersion": "d4f4f962b45c2b51",
-  "contentHash": "d4f4f962b45c2b51f972e08aac351f5f443b9791ded87c0a13eaf20d3f5d698b",
+  "contentVersion": "943a00dff044c9f8",
+  "contentHash": "943a00dff044c9f8bbd79d7a99e4c1070d3827fd2fc3cc3126727f5caba05bc2",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 263854,
-    "cleanedCharacterCount": 238622,
-    "wordCount": 43790,
+    "cleanedCharacterCount": 238642,
+    "wordCount": 43792,
     "sectionCount": 14,
     "includedSectionCount": 14
   },
@@ -160,11 +160,11 @@
       "order": 8,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-008.json",
-      "characterCount": 20420,
-      "wordCount": 3685,
-      "estimatedTypingMinutes": 106,
+      "characterCount": 20440,
+      "wordCount": 3687,
+      "estimatedTypingMinutes": 93,
       "estimatedListeningMinutes": 123,
-      "morseCharacterEstimate": 109887,
+      "morseCharacterEstimate": 109995,
       "textPreview": "PART II. _The Country of the Saints._ CHAPTER I. ON THE GREAT ALKALI PLAIN. In the central portion of the great North American Continent there lies an arid and..."
     },
     {
@@ -260,7 +260,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 263854,
-    "cleanedCharacterCount": 238622,
+    "cleanedCharacterCount": 238642,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

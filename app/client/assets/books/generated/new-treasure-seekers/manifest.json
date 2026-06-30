@@ -5,8 +5,8 @@
   "author": [
     "E. Nesbit"
   ],
-  "contentVersion": "d971de0e9b28f38a",
-  "contentHash": "d971de0e9b28f38ab37d02809fd74586259794c9bcf77c8de2584a881b3f974e",
+  "contentVersion": "bd7d3bfd08d97b2f",
+  "contentHash": "bd7d3bfd08d97b2f7e56269f7e38f1fdd74913e9f5ad232bded3c83ac98ae9a6",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 395495,
-    "cleanedCharacterCount": 357270,
-    "wordCount": 67824,
+    "cleanedCharacterCount": 357274,
+    "wordCount": 67825,
     "sectionCount": 13,
     "includedSectionCount": 13
   },
@@ -70,7 +70,7 @@
       "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-002.json",
-      "characterCount": 30894,
+      "characterCount": 30892,
       "wordCount": 5803,
       "estimatedTypingMinutes": 146,
       "estimatedListeningMinutes": 186,
@@ -85,11 +85,11 @@
       "order": 3,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-003.json",
-      "characterCount": 26729,
-      "wordCount": 5131,
+      "characterCount": 26735,
+      "wordCount": 5132,
       "estimatedTypingMinutes": 129,
       "estimatedListeningMinutes": 160,
-      "morseCharacterEstimate": 143706,
+      "morseCharacterEstimate": 143744,
       "textPreview": "_ARCHIBALD THE UNPLEASANT_ THE house of Bastable was once in poor, but honest, circs. That was when it lived in a semi-detached house in the Lewisham Road, and..."
     },
     {
@@ -245,7 +245,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 395495,
-    "cleanedCharacterCount": 357270,
+    "cleanedCharacterCount": 357274,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

@@ -5,8 +5,8 @@
   "author": [
     "Jonathan Swift"
   ],
-  "contentVersion": "25b439f2df9cad73",
-  "contentHash": "25b439f2df9cad7362a149fc104a5b6f63a5d6c45fc8efcb61a5b5d5ccda65f8",
+  "contentVersion": "823c37580c4a9e71",
+  "contentHash": "823c37580c4a9e713d3d7652bccd5225c00d5f84780306073d35b59ec61c20f1",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,7 +35,7 @@
   },
   "stats": {
     "originalCharacterCount": 611779,
-    "cleanedCharacterCount": 569889,
+    "cleanedCharacterCount": 569887,
     "wordCount": 102931,
     "sectionCount": 39,
     "includedSectionCount": 39
@@ -400,11 +400,11 @@
       "order": 24,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-024.json",
-      "characterCount": 11685,
+      "characterCount": 11684,
       "wordCount": 2047,
       "estimatedTypingMinutes": 52,
       "estimatedListeningMinutes": 70,
-      "morseCharacterEstimate": 62607,
+      "morseCharacterEstimate": 62596,
       "textPreview": "CHAPTER VIII. A further account of Glubbdubdrib. Ancient and modern history corrected. Having a desire to see those ancients who were most renowned for wit and..."
     },
     {
@@ -595,11 +595,11 @@
       "order": 37,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-037.json",
-      "characterCount": 15413,
+      "characterCount": 15412,
       "wordCount": 2743,
       "estimatedTypingMinutes": 69,
       "estimatedListeningMinutes": 93,
-      "morseCharacterEstimate": 82902,
+      "morseCharacterEstimate": 82893,
       "textPreview": "CHAPTER X. The author's economy, and happy life among the Houyhnhnms. His great improvement in virtue by conversing with them. Their conversations. The author..."
     },
     {
@@ -635,7 +635,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 611779,
-    "cleanedCharacterCount": 569889,
+    "cleanedCharacterCount": 569887,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

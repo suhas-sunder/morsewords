@@ -5,8 +5,8 @@
   "author": [
     "Jacob Grimm; Wilhelm Grimm"
   ],
-  "contentVersion": "a28d34db615a116e",
-  "contentHash": "a28d34db615a116eacc0b2a34e6f3beb163b96d2f0c692e94acd1726ae546b97",
+  "contentVersion": "23f6937df0f254f0",
+  "contentHash": "23f6937df0f254f088e6ef7c348fb0666aae137e7d27a1f2fc67ad4e0b99154c",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,7 +35,7 @@
   },
   "stats": {
     "originalCharacterCount": 14499,
-    "cleanedCharacterCount": 13244,
+    "cleanedCharacterCount": 13245,
     "wordCount": 2585,
     "sectionCount": 1,
     "includedSectionCount": 1
@@ -55,17 +55,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 13244,
+      "characterCount": 13245,
       "wordCount": 2585,
-      "estimatedTypingMinutes": 74,
+      "estimatedTypingMinutes": 65,
       "estimatedListeningMinutes": 79,
-      "morseCharacterEstimate": 70835,
+      "morseCharacterEstimate": 70839,
       "textPreview": "The wife of a rich man fell sick; and when she felt that her end drew nigh, she called her only daughter to her bed-side, and said, ‘Always be a good girl, and..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 14499,
-    "cleanedCharacterCount": 13244,
+    "cleanedCharacterCount": 13245,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

@@ -5,8 +5,8 @@
   "author": [
     "Robert Louis Stevenson"
   ],
-  "contentVersion": "b38b94767d2dd4fa",
-  "contentHash": "b38b94767d2dd4fa6e8f5065294033366e160bff61aae50fb4d8d232c7fc2d4f",
+  "contentVersion": "d2194bc1d7c0435f",
+  "contentHash": "d2194bc1d7c0435fa57db4f0e667197ecf6a4d0e7ec03965e84209d3874df928",
   "language": "en",
   "description": "Robert Louis Stevenson's South Seas story about Wiltshire, Uma, Case, trade, isolation, and danger on Falesá.",
   "subjects": [
@@ -41,8 +41,8 @@
   },
   "stats": {
     "originalCharacterCount": 274538,
-    "cleanedCharacterCount": 144629,
-    "wordCount": 29148,
+    "cleanedCharacterCount": 144688,
+    "wordCount": 29157,
     "sectionCount": 5,
     "includedSectionCount": 5
   },
@@ -61,11 +61,11 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 23083,
-      "wordCount": 4580,
-      "estimatedTypingMinutes": 131,
+      "characterCount": 23118,
+      "wordCount": 4585,
+      "estimatedTypingMinutes": 115,
       "estimatedListeningMinutes": 138,
-      "morseCharacterEstimate": 123940,
+      "morseCharacterEstimate": 124155,
       "textPreview": "I saw that island first when it was neither night nor morning. The moon was to the west, setting, but still broad and bright. To the east, and right amidships..."
     },
     {
@@ -91,11 +91,11 @@
       "order": 3,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-003.json",
-      "characterCount": 22324,
-      "wordCount": 4431,
-      "estimatedTypingMinutes": 127,
+      "characterCount": 22331,
+      "wordCount": 4432,
+      "estimatedTypingMinutes": 111,
       "estimatedListeningMinutes": 134,
-      "morseCharacterEstimate": 119915,
+      "morseCharacterEstimate": 119958,
       "textPreview": "As I came out on the verandah, the mission-boat was shooting for the mouth of the river. She was a long whale-boat painted white; a bit of an awning astern; a..."
     },
     {
@@ -106,11 +106,11 @@
       "order": 4,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-004.json",
-      "characterCount": 33797,
-      "wordCount": 6798,
-      "estimatedTypingMinutes": 195,
+      "characterCount": 33808,
+      "wordCount": 6800,
+      "estimatedTypingMinutes": 170,
       "estimatedListeningMinutes": 202,
-      "morseCharacterEstimate": 181242,
+      "morseCharacterEstimate": 181323,
       "textPreview": "Near a month went by without much doing. The same night of our marriage Galoshes called round, and made himself mighty civil, and got into a habit of dropping..."
     },
     {
@@ -121,17 +121,17 @@
       "order": 5,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-005.json",
-      "characterCount": 25440,
-      "wordCount": 5250,
-      "estimatedTypingMinutes": 150,
+      "characterCount": 25446,
+      "wordCount": 5251,
+      "estimatedTypingMinutes": 132,
       "estimatedListeningMinutes": 152,
-      "morseCharacterEstimate": 136023,
+      "morseCharacterEstimate": 136061,
       "textPreview": "Well, I was committed now; Tiapolo had to be smashed up before next day, and my hands were pretty full, not only with preparations, but with argument. My house..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 274538,
-    "cleanedCharacterCount": 144629,
+    "cleanedCharacterCount": 144688,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

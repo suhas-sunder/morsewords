@@ -5,8 +5,8 @@
   "author": [
     "Charles Dickens"
   ],
-  "contentVersion": "8e5cb138252ad55d",
-  "contentHash": "8e5cb138252ad55d7cb3a95e0b7904a59ed3239786c85eb90cef42a0c608b9a3",
+  "contentVersion": "ceec787abfdac2eb",
+  "contentHash": "ceec787abfdac2eb16e2c36f3b68fd4aa8baf2a75c05231065df1ca41c94eb8c",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 931655,
-    "cleanedCharacterCount": 885911,
-    "wordCount": 160066,
+    "cleanedCharacterCount": 885916,
+    "wordCount": 160067,
     "sectionCount": 53,
     "includedSectionCount": 53
   },
@@ -625,11 +625,11 @@
       "order": 39,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-039.json",
-      "characterCount": 29548,
-      "wordCount": 5358,
-      "estimatedTypingMinutes": 154,
+      "characterCount": 29553,
+      "wordCount": 5359,
+      "estimatedTypingMinutes": 134,
       "estimatedListeningMinutes": 179,
-      "morseCharacterEstimate": 160202,
+      "morseCharacterEstimate": 160235,
       "textPreview": "CHAPTER XXXIX. INTRODUCES SOME RESPECTABLE CHARACTERS WITH WHOM THE READER IS ALREADY ACQUAINTED, AND SHOWS HOW MONKS AND THE JEW LAID THEIR WORTHY HEADS TOGET..."
     },
     {
@@ -845,7 +845,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 931655,
-    "cleanedCharacterCount": 885911,
+    "cleanedCharacterCount": 885916,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

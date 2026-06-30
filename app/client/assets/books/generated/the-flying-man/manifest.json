@@ -5,8 +5,8 @@
   "author": [
     "H. G. Wells"
   ],
-  "contentVersion": "88c630b3948891fc",
-  "contentHash": "88c630b3948891fc362449d6fe32bc947a4a253b52a6f2b9617666b23c8aa321",
+  "contentVersion": "b801d3989345bfcf",
+  "contentHash": "b801d3989345bfcff45d48599711d153843d3a13370ea4f24d5042c0b4b0b641",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 15852,
-    "cleanedCharacterCount": 13914,
-    "wordCount": 2675,
+    "cleanedCharacterCount": 13920,
+    "wordCount": 2676,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,17 +55,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 13914,
-      "wordCount": 2675,
-      "estimatedTypingMinutes": 77,
+      "characterCount": 13920,
+      "wordCount": 2676,
+      "estimatedTypingMinutes": 67,
       "estimatedListeningMinutes": 83,
-      "morseCharacterEstimate": 74252,
+      "morseCharacterEstimate": 74290,
       "textPreview": "The Ethnologist looked at the _bhimraj_ feather thoughtfully. \"They seemed loth to part with it,\" he said. \"It is sacred to the Chiefs,\" said the lieutenant; \"..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 15852,
-    "cleanedCharacterCount": 13914,
+    "cleanedCharacterCount": 13920,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

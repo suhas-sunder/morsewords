@@ -1,8 +1,8 @@
 {
   "version": 1,
   "slug": "middlemarch",
-  "contentVersion": "173e7b65c1f44996",
-  "contentHash": "173e7b65c1f449969f0ca620c7519af65b0be94ca7cb1b29f5637e175d7cc673",
+  "contentVersion": "094cad65bf01d16b",
+  "contentHash": "094cad65bf01d16bff841e744687eb4a108c5662ef1a5e7a27a699320f894959",
   "defaultSectionId": "chapter-001",
   "defaultSectionKind": "chapter",
   "defaultSectionLabel": "Prelude",

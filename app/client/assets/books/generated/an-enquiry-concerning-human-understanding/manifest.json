@@ -5,8 +5,8 @@
   "author": [
     "David Hume"
   ],
-  "contentVersion": "0f4e7815015f871d",
-  "contentHash": "0f4e7815015f871da723647671d2d7fe61d5440ffd49b178684ea70e96113139",
+  "contentVersion": "15d6aae8e570ce52",
+  "contentHash": "15d6aae8e570ce5212f26e35d248a2ab4c3fb67d537071a1d6b55bbebd566526",
   "language": "en",
   "description": "David Hume's philosophical enquiry into human understanding, ideas, probability, causation, liberty, miracles, providence, and scepticism.",
   "subjects": [
@@ -78,9 +78,9 @@
       "sectionJsonPath": "sections/chapter-002.json",
       "characterCount": 11971,
       "wordCount": 2059,
-      "estimatedTypingMinutes": 59,
+      "estimatedTypingMinutes": 52,
       "estimatedListeningMinutes": 71,
-      "morseCharacterEstimate": 63292,
+      "morseCharacterEstimate": 63297,
       "textPreview": "11. Every one will readily allow, that there is a considerable difference between the perceptions of the mind, when a man feels the pain of excessive heat, or..."
     },
     {

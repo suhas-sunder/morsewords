@@ -5,8 +5,8 @@
   "author": [
     "Lucas Malet"
   ],
-  "contentVersion": "a0e5523e832b5166",
-  "contentHash": "a0e5523e832b5166a46e8ee8dd499018c4ad0bf04428e2ce79f22094721033c8",
+  "contentVersion": "10aa7268ea975141",
+  "contentHash": "10aa7268ea9751412eb70ec104543fd6925597aebdf82e11dbad94b634ad5d99",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,7 +35,7 @@
   },
   "stats": {
     "originalCharacterCount": 1586308,
-    "cleanedCharacterCount": 1530744,
+    "cleanedCharacterCount": 1530746,
     "wordCount": 263761,
     "sectionCount": 60,
     "includedSectionCount": 60
@@ -310,11 +310,11 @@
       "order": 18,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-018.json",
-      "characterCount": 24622,
+      "characterCount": 24623,
       "wordCount": 4267,
-      "estimatedTypingMinutes": 122,
+      "estimatedTypingMinutes": 107,
       "estimatedListeningMinutes": 149,
-      "morseCharacterEstimate": 133804,
+      "morseCharacterEstimate": 133808,
       "textPreview": "CHAPTER VIII TELLING, INCIDENTALLY, OF A BROKEN-DOWN POSTBOY AND A COUNTRY FAIR The Brockhurst-mail phaeton waited, in the shade of the three large sycamores,..."
     },
     {
@@ -732,9 +732,9 @@
       "sectionJsonPath": "sections/chapter-046.json",
       "characterCount": 35564,
       "wordCount": 6206,
-      "estimatedTypingMinutes": 178,
+      "estimatedTypingMinutes": 156,
       "estimatedListeningMinutes": 215,
-      "morseCharacterEstimate": 192762,
+      "morseCharacterEstimate": 192760,
       "textPreview": "CHAPTER VIII IN WHICH HELEN DE VALLORBES LEARNS HER RIVAL'S NAME \"I hear Morabita sings, in _Ernani_, at the San Carlo on Friday night. Do you care to go, Hele..."
     },
     {
@@ -760,11 +760,11 @@
       "order": 48,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-048.json",
-      "characterCount": 35227,
+      "characterCount": 35228,
       "wordCount": 6056,
-      "estimatedTypingMinutes": 174,
+      "estimatedTypingMinutes": 152,
       "estimatedListeningMinutes": 213,
-      "morseCharacterEstimate": 190931,
+      "morseCharacterEstimate": 190935,
       "textPreview": "CHAPTER X THE ABOMINATION OF DESOLATION Sullenly, persistently, the rain came down. In the harbour the wash was just sufficient to make the raveled fruit-baske..."
     },
     {
@@ -950,7 +950,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 1586308,
-    "cleanedCharacterCount": 1530744,
+    "cleanedCharacterCount": 1530746,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

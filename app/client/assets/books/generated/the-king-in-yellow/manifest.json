@@ -5,8 +5,8 @@
   "author": [
     "Robert W. Chambers"
   ],
-  "contentVersion": "09335206c61557c5",
-  "contentHash": "09335206c61557c5ddbe497e6339897dc6b132442c690c010489f183c9cf343a",
+  "contentVersion": "33700b50a45fc977",
+  "contentHash": "33700b50a45fc977242adead8b519e29f64bd97bd02fc30665b93d162f3252b0",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 431209,
-    "cleanedCharacterCount": 398237,
-    "wordCount": 71951,
+    "cleanedCharacterCount": 398204,
+    "wordCount": 71952,
     "sectionCount": 11,
     "includedSectionCount": 10
   },
@@ -74,7 +74,7 @@
       "wordCount": 12213,
       "estimatedTypingMinutes": 306,
       "estimatedListeningMinutes": 408,
-      "morseCharacterEstimate": 366561,
+      "morseCharacterEstimate": 366566,
       "textPreview": "THE REPAIRER OF REPUTATIONS I \"Ne raillons pas les fous; leur folie dure plus longtemps que la nôtre.... Voila toute la différence.\" Toward the end of the year..."
     },
     {
@@ -190,11 +190,11 @@
       "order": 10,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-009.json",
-      "characterCount": 73859,
-      "wordCount": 13023,
+      "characterCount": 73866,
+      "wordCount": 13024,
       "estimatedTypingMinutes": 326,
       "estimatedListeningMinutes": 444,
-      "morseCharacterEstimate": 399349,
+      "morseCharacterEstimate": 399392,
       "textPreview": "THE STREET OF OUR LADY OF THE FIELDS \"Et tout les jours passés dans la tristesse Nous sont comptés comme des jours heureux!\" I The street is not fashionable, n..."
     },
     {
@@ -215,7 +215,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 431209,
-    "cleanedCharacterCount": 398237,
+    "cleanedCharacterCount": 398204,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

@@ -57,6 +57,11 @@ export default function SourcesRoute() {
             source links are provided on book or reference pages where they are
             available.
           </p>
+          <p>
+            Some public-domain texts may be lightly edited for formatting,
+            readability, or content safety. Source links are provided where
+            available, and correction or takedown concerns can be reported.
+          </p>
         </section>
 
         <section className="space-y-3">

@@ -5,8 +5,8 @@
   "author": [
     "H. P. Lovecraft"
   ],
-  "contentVersion": "a446781e2a09cf21",
-  "contentHash": "a446781e2a09cf21359e81e3da78810385949b3a7d9a6992daf55672387a8d21",
+  "contentVersion": "b70ed3aa5f4b9a26",
+  "contentHash": "b70ed3aa5f4b9a269e78c3c46008823f5e60d125e5591fe1d48a704df3023ca2",
   "language": "en",
   "description": "A Providence weird tale of antiquarian research, family history, and a mystery that reaches into the colonial past.",
   "subjects": [
@@ -39,8 +39,8 @@
   },
   "stats": {
     "originalCharacterCount": 288533,
-    "cleanedCharacterCount": 262224,
-    "wordCount": 44472,
+    "cleanedCharacterCount": 262229,
+    "wordCount": 44473,
     "sectionCount": 5,
     "includedSectionCount": 5
   },
@@ -61,9 +61,9 @@
       "sectionJsonPath": "sections/chapter-001.json",
       "characterCount": 12535,
       "wordCount": 2058,
-      "estimatedTypingMinutes": 59,
+      "estimatedTypingMinutes": 52,
       "estimatedListeningMinutes": 74,
-      "morseCharacterEstimate": 66482,
+      "morseCharacterEstimate": 66487,
       "textPreview": "From a private hospital for the insane near Providence, Rhode Island, there recently disappeared an exceedingly singular person. He bore the name of Charles De..."
     },
     {
@@ -74,11 +74,11 @@
       "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-002.json",
-      "characterCount": 55635,
-      "wordCount": 9339,
-      "estimatedTypingMinutes": 267,
+      "characterCount": 55640,
+      "wordCount": 9340,
+      "estimatedTypingMinutes": 234,
       "estimatedListeningMinutes": 327,
-      "morseCharacterEstimate": 293688,
+      "morseCharacterEstimate": 293727,
       "textPreview": "Joseph Curwen, as revealed by the rambling legends embodied in what Ward heard and unearthed, was a very astonishing, enigmatic, obscurely horrible individual...."
     },
     {
@@ -91,9 +91,9 @@
       "sectionJsonPath": "sections/chapter-003.json",
       "characterCount": 53926,
       "wordCount": 9080,
-      "estimatedTypingMinutes": 260,
+      "estimatedTypingMinutes": 227,
       "estimatedListeningMinutes": 316,
-      "morseCharacterEstimate": 284307,
+      "morseCharacterEstimate": 284317,
       "textPreview": "Charles Ward, as we have seen, first learned in 1918 of his descent from Joseph Curwen. That he at once took an intense interest in everything pertaining to th..."
     },
     {
@@ -129,7 +129,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 288533,
-    "cleanedCharacterCount": 262224,
+    "cleanedCharacterCount": 262229,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

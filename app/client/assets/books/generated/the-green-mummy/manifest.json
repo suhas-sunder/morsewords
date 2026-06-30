@@ -5,8 +5,8 @@
   "author": [
     "Fergus Hume"
   ],
-  "contentVersion": "55f3a2cbd6994166",
-  "contentHash": "55f3a2cbd6994166ed8118c3a17da1e7b568e78cbed3494deb861f38ae31953f",
+  "contentVersion": "03766aaeadc31d21",
+  "contentHash": "03766aaeadc31d21f5d88d9f23e24cccfe5942afa950706ecfc7d53774000e9f",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 521907,
-    "cleanedCharacterCount": 490572,
-    "wordCount": 88299,
+    "cleanedCharacterCount": 490590,
+    "wordCount": 88302,
     "sectionCount": 27,
     "includedSectionCount": 27
   },
@@ -265,11 +265,11 @@
       "order": 15,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-015.json",
-      "characterCount": 17351,
-      "wordCount": 3116,
-      "estimatedTypingMinutes": 90,
+      "characterCount": 17357,
+      "wordCount": 3117,
+      "estimatedTypingMinutes": 78,
       "estimatedListeningMinutes": 105,
-      "morseCharacterEstimate": 94212,
+      "morseCharacterEstimate": 94250,
       "textPreview": "CHAPTER XV. AN ACCUSATION Both Don Pedro and Professor Braddock were amazed and angry at the disappearance of the jewels, but Hope did not express much surpris..."
     },
     {
@@ -445,17 +445,17 @@
       "order": 27,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-027.json",
-      "characterCount": 18972,
-      "wordCount": 3437,
-      "estimatedTypingMinutes": 99,
+      "characterCount": 18984,
+      "wordCount": 3439,
+      "estimatedTypingMinutes": 86,
       "estimatedListeningMinutes": 114,
-      "morseCharacterEstimate": 102169,
+      "morseCharacterEstimate": 102245,
       "textPreview": "CHAPTER XXVII. BY THE RIVER As the hunt for the fugitives had continued all day, everyone, police, villagers and soldiers, were weary and disheartened. Consequ..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 521907,
-    "cleanedCharacterCount": 490572,
+    "cleanedCharacterCount": 490590,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

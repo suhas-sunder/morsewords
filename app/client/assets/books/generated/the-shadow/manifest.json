@@ -5,8 +5,8 @@
   "author": [
     "H. C. Andersen"
   ],
-  "contentVersion": "30dfbb9dc230bd8e",
-  "contentHash": "30dfbb9dc230bd8e01bfdf231ea46a9faba4b31a10b0f80d4003e3108ebd169b",
+  "contentVersion": "a3ed739e775e37b3",
+  "contentHash": "a3ed739e775e37b3927d37089c0952e3a338ccb04e244827b70bfa785fb411e4",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 46723,
-    "cleanedCharacterCount": 26239,
-    "wordCount": 5019,
+    "cleanedCharacterCount": 26244,
+    "wordCount": 5020,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,17 +55,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 26239,
-      "wordCount": 5019,
-      "estimatedTypingMinutes": 144,
+      "characterCount": 26244,
+      "wordCount": 5020,
+      "estimatedTypingMinutes": 126,
       "estimatedListeningMinutes": 157,
-      "morseCharacterEstimate": 140985,
-      "textPreview": "It is in the hot lands that the sun burns, sure enough! there the people become quite a mahogany brown, ay, and in the HOTTEST lands they are burnt to Negroes...."
+      "morseCharacterEstimate": 141019,
+      "textPreview": "It is in the hot lands that the sun burns, sure enough! there the people become quite a mahogany brown, ay, and in the HOTTEST lands they are burnt to Black pe..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 46723,
-    "cleanedCharacterCount": 26239,
+    "cleanedCharacterCount": 26244,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

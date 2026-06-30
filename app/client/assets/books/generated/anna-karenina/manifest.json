@@ -5,8 +5,8 @@
   "author": [
     "graf Leo Tolstoy"
   ],
-  "contentVersion": "984e381c5bbe3bfc",
-  "contentHash": "984e381c5bbe3bfcd6f3afd7cc628706c16b8f97845dcc66b0c5bec12e6e8b3b",
+  "contentVersion": "eda2ca25313820e8",
+  "contentHash": "eda2ca25313820e8c1e2efa24490a6ffec73bf6ceff6bf8ac701ad5d04826f7a",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 1984009,
-    "cleanedCharacterCount": 1964725,
-    "wordCount": 357188,
+    "cleanedCharacterCount": 1964031,
+    "wordCount": 357190,
     "sectionCount": 241,
     "includedSectionCount": 239
   },
@@ -1735,11 +1735,11 @@
       "order": 113,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-111.json",
-      "characterCount": 8737,
-      "wordCount": 1450,
+      "characterCount": 8742,
+      "wordCount": 1451,
       "estimatedTypingMinutes": 37,
       "estimatedListeningMinutes": 53,
-      "morseCharacterEstimate": 47249,
+      "morseCharacterEstimate": 47283,
       "textPreview": "Chapter 10 Pestsov liked thrashing an argument out to the end, and was not satisfied with Sergey Ivanovitch’s words, especially as he felt the injustice of his..."
     },
     {
@@ -3460,11 +3460,11 @@
       "order": 228,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-226.json",
-      "characterCount": 5382,
-      "wordCount": 991,
+      "characterCount": 5389,
+      "wordCount": 992,
       "estimatedTypingMinutes": 25,
       "estimatedListeningMinutes": 33,
-      "morseCharacterEstimate": 29227,
+      "morseCharacterEstimate": 29270,
       "textPreview": "Chapter 6 Sergey Ivanovitch had not telegraphed to his brother to send to meet him, as he did not know when he should be able to leave Moscow. Levin was not at..."
     },
     {
@@ -3665,7 +3665,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 1984009,
-    "cleanedCharacterCount": 1964725,
+    "cleanedCharacterCount": 1964031,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

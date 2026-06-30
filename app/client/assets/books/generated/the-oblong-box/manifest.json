@@ -5,8 +5,8 @@
   "author": [
     "Edgar Allan Poe"
   ],
-  "contentVersion": "09a8cc692f832be6",
-  "contentHash": "09a8cc692f832be6e420c424055ac760bcea40ae29f86200d511e4c9f7acdcc3",
+  "contentVersion": "ea3ea28a08d45f49",
+  "contentHash": "ea3ea28a08d45f494f4cb145b3cfcf90faf82774979316121f6ad92a1e502684",
   "language": "en",
   "description": "A sea-voyage mystery about secrecy, suspicion, and an oddly shaped object aboard ship.",
   "subjects": [
@@ -63,9 +63,9 @@
       "sectionJsonPath": "sections/chapter-001.json",
       "characterCount": 28094,
       "wordCount": 4576,
-      "estimatedTypingMinutes": 131,
+      "estimatedTypingMinutes": 115,
       "estimatedListeningMinutes": 153,
-      "morseCharacterEstimate": 137207,
+      "morseCharacterEstimate": 137212,
       "textPreview": "Some years ago, I engaged passage from Charleston, S. C., to the city of New York, in the fine packet-ship “Independence,” Captain Hardy. We were to sail on th..."
     }
   ],

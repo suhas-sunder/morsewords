@@ -5,8 +5,8 @@
   "author": [
     "Agatha Christie"
   ],
-  "contentVersion": "c7e67fcb7a7302a9",
-  "contentHash": "c7e67fcb7a7302a9436e55289bcc4b090d87f66de1ff916f1f41cb7755c05492",
+  "contentVersion": "c02c125fe68c7c39",
+  "contentHash": "c02c125fe68c7c3970f8d6fed0d501aec25dbbbaee5a1ba485874d6f872fb40f",
   "language": "en",
   "description": "Agatha Christie's first Hercule Poirot mystery, set around a country-house poisoning and the careful reconstruction of evidence.",
   "subjects": [
@@ -42,7 +42,7 @@
   },
   "stats": {
     "originalCharacterCount": 349120,
-    "cleanedCharacterCount": 320125,
+    "cleanedCharacterCount": 320124,
     "wordCount": 57832,
     "sectionCount": 13,
     "includedSectionCount": 13
@@ -167,9 +167,9 @@
       "order": 8,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-008.json",
-      "characterCount": 28027,
+      "characterCount": 28026,
       "wordCount": 5126,
-      "estimatedTypingMinutes": 147,
+      "estimatedTypingMinutes": 129,
       "estimatedListeningMinutes": 170,
       "morseCharacterEstimate": 152342,
       "textPreview": "FRESH SUSPICIONS There was a moment’s stupefied silence. Japp, who was the least surprised of any of us, was the first to speak. “My word,” he cried, “you’re t..."
@@ -252,7 +252,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 349120,
-    "cleanedCharacterCount": 320125,
+    "cleanedCharacterCount": 320124,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

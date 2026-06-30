@@ -5,8 +5,8 @@
   "author": [
     "Mark Twain"
   ],
-  "contentVersion": "b9d2b4d867fe9f45",
-  "contentHash": "b9d2b4d867fe9f45aca72102f7a0e535298cee93a6ddfba5844fab06cb8d595c",
+  "contentVersion": "1f3024a5ffe24d50",
+  "contentHash": "1f3024a5ffe24d502647c08f95453e9718e95dbb92ea5d2a1734319d9955373e",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 421358,
-    "cleanedCharacterCount": 386698,
-    "wordCount": 70216,
+    "cleanedCharacterCount": 387474,
+    "wordCount": 70294,
     "sectionCount": 36,
     "includedSectionCount": 35
   },
@@ -70,11 +70,11 @@
       "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 12877,
-      "wordCount": 2394,
+      "characterCount": 12884,
+      "wordCount": 2395,
       "estimatedTypingMinutes": 60,
       "estimatedListeningMinutes": 78,
-      "morseCharacterEstimate": 69853,
+      "morseCharacterEstimate": 69896,
       "textPreview": "CHAPTER I \"Tom!\" No answer. \"TOM!\" No answer. \"What's gone with that boy, I wonder? You TOM!\" No answer. The old lady pulled her spectacles down and looked ove..."
     },
     {
@@ -85,11 +85,11 @@
       "order": 3,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-002.json",
-      "characterCount": 10478,
-      "wordCount": 1868,
+      "characterCount": 10490,
+      "wordCount": 1869,
       "estimatedTypingMinutes": 47,
       "estimatedListeningMinutes": 64,
-      "morseCharacterEstimate": 57130,
+      "morseCharacterEstimate": 57199,
       "textPreview": "CHAPTER II Saturday morning was come, and all the summer world was bright and fresh, and brimming with life. There was a song in every heart; and if the heart..."
     },
     {
@@ -145,11 +145,11 @@
       "order": 7,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-006.json",
-      "characterCount": 19170,
-      "wordCount": 3500,
+      "characterCount": 19206,
+      "wordCount": 3505,
       "estimatedTypingMinutes": 88,
-      "estimatedListeningMinutes": 116,
-      "morseCharacterEstimate": 104203,
+      "estimatedListeningMinutes": 117,
+      "morseCharacterEstimate": 104419,
       "textPreview": "CHAPTER VI Monday morning found Tom Sawyer miserable. Monday morning always found him so-because it began another week's slow suffering in school. He generally..."
     },
     {
@@ -190,11 +190,11 @@
       "order": 10,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-009.json",
-      "characterCount": 11751,
-      "wordCount": 2138,
+      "characterCount": 11835,
+      "wordCount": 2145,
       "estimatedTypingMinutes": 54,
-      "estimatedListeningMinutes": 71,
-      "morseCharacterEstimate": 63683,
+      "estimatedListeningMinutes": 72,
+      "morseCharacterEstimate": 64131,
       "textPreview": "CHAPTER IX At half-past nine, that night, Tom and Sid were sent to bed, as usual. They said their prayers, and Sid was soon asleep. Tom lay awake and waited, i..."
     },
     {
@@ -205,11 +205,11 @@
       "order": 11,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-010.json",
-      "characterCount": 11288,
-      "wordCount": 2039,
-      "estimatedTypingMinutes": 51,
+      "characterCount": 11341,
+      "wordCount": 2044,
+      "estimatedTypingMinutes": 52,
       "estimatedListeningMinutes": 69,
-      "morseCharacterEstimate": 61575,
+      "morseCharacterEstimate": 61864,
       "textPreview": "CHAPTER X The two boys flew on and on, toward the village, speechless with horror. They glanced backward over their shoulders from time to time, apprehensively..."
     },
     {
@@ -220,11 +220,11 @@
       "order": 12,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-011.json",
-      "characterCount": 8293,
-      "wordCount": 1474,
+      "characterCount": 8365,
+      "wordCount": 1480,
       "estimatedTypingMinutes": 37,
-      "estimatedListeningMinutes": 50,
-      "morseCharacterEstimate": 44632,
+      "estimatedListeningMinutes": 51,
+      "morseCharacterEstimate": 45016,
       "textPreview": "CHAPTER XI Close upon the hour of noon the whole village was suddenly electrified with the ghastly news. No need of the as yet un-dreamed-of telegraph; the tal..."
     },
     {
@@ -389,7 +389,7 @@
       "wordCount": 1008,
       "estimatedTypingMinutes": 26,
       "estimatedListeningMinutes": 34,
-      "morseCharacterEstimate": 29920,
+      "morseCharacterEstimate": 29925,
       "textPreview": "CHAPTER XXII Tom joined the new order of Cadets of Temperance, being attracted by the showy character of their \"regalia.\" He promised to abstain from smoking,..."
     },
     {
@@ -400,11 +400,11 @@
       "order": 24,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-023.json",
-      "characterCount": 10905,
-      "wordCount": 1924,
+      "characterCount": 10977,
+      "wordCount": 1930,
       "estimatedTypingMinutes": 49,
       "estimatedListeningMinutes": 66,
-      "morseCharacterEstimate": 58826,
+      "morseCharacterEstimate": 59210,
       "textPreview": "CHAPTER XXIII At last the sleepy atmosphere was stirred-and vigorously: the murder trial came on in the court. It became the absorbing topic of village talk im..."
     },
     {
@@ -415,11 +415,11 @@
       "order": 25,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-024.json",
-      "characterCount": 2263,
-      "wordCount": 410,
+      "characterCount": 2311,
+      "wordCount": 414,
       "estimatedTypingMinutes": 11,
       "estimatedListeningMinutes": 14,
-      "morseCharacterEstimate": 12104,
+      "morseCharacterEstimate": 12360,
       "textPreview": "CHAPTER XXIV Tom was a glittering hero once more-the pet of the old, the envy of the young. His name even went into immortal print, for the village paper magni..."
     },
     {
@@ -430,11 +430,11 @@
       "order": 26,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-025.json",
-      "characterCount": 11252,
-      "wordCount": 2060,
+      "characterCount": 11258,
+      "wordCount": 2061,
       "estimatedTypingMinutes": 52,
       "estimatedListeningMinutes": 69,
-      "morseCharacterEstimate": 61478,
+      "morseCharacterEstimate": 61516,
       "textPreview": "CHAPTER XXV There comes a time in every rightly-constructed boy's life when he has a raging desire to go somewhere and dig for hidden treasure. This desire sud..."
     },
     {
@@ -445,11 +445,11 @@
       "order": 27,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-026.json",
-      "characterCount": 14468,
-      "wordCount": 2588,
+      "characterCount": 14612,
+      "wordCount": 2600,
       "estimatedTypingMinutes": 65,
-      "estimatedListeningMinutes": 87,
-      "morseCharacterEstimate": 78242,
+      "estimatedListeningMinutes": 88,
+      "morseCharacterEstimate": 79010,
       "textPreview": "CHAPTER XXVI About noon the next day the boys arrived at the dead tree; they had come for their tools. Tom was impatient to go to the haunted house; Huck was m..."
     },
     {
@@ -460,11 +460,11 @@
       "order": 28,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-027.json",
-      "characterCount": 5090,
-      "wordCount": 958,
+      "characterCount": 5102,
+      "wordCount": 959,
       "estimatedTypingMinutes": 24,
       "estimatedListeningMinutes": 31,
-      "morseCharacterEstimate": 27607,
+      "morseCharacterEstimate": 27671,
       "textPreview": "CHAPTER XXVII The adventure of the day mightily tormented Tom's dreams that night. Four times he had his hands on that rich treasure and four times it wasted t..."
     },
     {
@@ -475,11 +475,11 @@
       "order": 29,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-028.json",
-      "characterCount": 5796,
-      "wordCount": 1086,
+      "characterCount": 5861,
+      "wordCount": 1092,
       "estimatedTypingMinutes": 28,
-      "estimatedListeningMinutes": 35,
-      "morseCharacterEstimate": 31339,
+      "estimatedListeningMinutes": 36,
+      "morseCharacterEstimate": 31697,
       "textPreview": "CHAPTER XXVIII That night Tom and Huck were ready for their adventure. They hung about the neighborhood of the tavern until after nine, one watching the alley..."
     },
     {
@@ -490,12 +490,12 @@
       "order": 30,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-029.json",
-      "characterCount": 14145,
-      "wordCount": 2556,
+      "characterCount": 14187,
+      "wordCount": 2560,
       "estimatedTypingMinutes": 64,
-      "estimatedListeningMinutes": 85,
-      "morseCharacterEstimate": 76381,
-      "textPreview": "CHAPTER XXIX The first thing Tom heard on Friday morning was a glad piece of news-Judge Thatcher's family had come back to town the night before. Both Injun Jo..."
+      "estimatedListeningMinutes": 86,
+      "morseCharacterEstimate": 76611,
+      "textPreview": "CHAPTER XXIX The first thing Tom heard on Friday morning was a glad piece of news-Judge Thatcher's family had come back to town the night before. Both Indigeno..."
     },
     {
       "id": "chapter-030",
@@ -505,11 +505,11 @@
       "order": 31,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-030.json",
-      "characterCount": 16602,
-      "wordCount": 3013,
+      "characterCount": 16626,
+      "wordCount": 3015,
       "estimatedTypingMinutes": 76,
       "estimatedListeningMinutes": 100,
-      "morseCharacterEstimate": 89568,
+      "morseCharacterEstimate": 89701,
       "textPreview": "CHAPTER XXX As the earliest suspicion of dawn appeared on Sunday morning, Huck came groping up the hill and rapped gently at the old Welshman's door. The inmat..."
     },
     {
@@ -520,11 +520,11 @@
       "order": 32,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-031.json",
-      "characterCount": 16379,
-      "wordCount": 3001,
+      "characterCount": 16415,
+      "wordCount": 3004,
       "estimatedTypingMinutes": 76,
       "estimatedListeningMinutes": 98,
-      "morseCharacterEstimate": 87842,
+      "morseCharacterEstimate": 88034,
       "textPreview": "CHAPTER XXXI Now to return to Tom and Becky's share in the picnic. They tripped along the murky aisles with the rest of the company, visiting the familiar wond..."
     },
     {
@@ -535,11 +535,11 @@
       "order": 33,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-032.json",
-      "characterCount": 5605,
-      "wordCount": 1024,
+      "characterCount": 5617,
+      "wordCount": 1025,
       "estimatedTypingMinutes": 26,
       "estimatedListeningMinutes": 34,
-      "morseCharacterEstimate": 30030,
+      "morseCharacterEstimate": 30094,
       "textPreview": "CHAPTER XXXII Tuesday afternoon came, and waned to the twilight. The village of St. Petersburg still mourned. The lost children had not been found. Public pray..."
     },
     {
@@ -550,11 +550,11 @@
       "order": 34,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-033.json",
-      "characterCount": 18116,
-      "wordCount": 3327,
+      "characterCount": 18272,
+      "wordCount": 3340,
       "estimatedTypingMinutes": 84,
-      "estimatedListeningMinutes": 110,
-      "morseCharacterEstimate": 98305,
+      "estimatedListeningMinutes": 111,
+      "morseCharacterEstimate": 99137,
       "textPreview": "CHAPTER XXXIII Within a few minutes the news had spread, and a dozen skiff-loads of men were on their way to McDougal's cave, and the ferryboat, well filled wi..."
     },
     {
@@ -590,7 +590,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 421358,
-    "cleanedCharacterCount": 386698,
+    "cleanedCharacterCount": 387474,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

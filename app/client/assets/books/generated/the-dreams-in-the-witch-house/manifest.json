@@ -5,8 +5,8 @@
   "author": [
     "H. P. Lovecraft"
   ],
-  "contentVersion": "4504f7fba1500315",
-  "contentHash": "4504f7fba150031504e4c36e5bf25880a56bad619b7a4a35829085feeaf8aaf1",
+  "contentVersion": "bfa52f6ef4996e9f",
+  "contentHash": "bfa52f6ef4996e9f65f103353c7d3982c885a951a7de7875b1344b4cbd853782",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 90346,
-    "cleanedCharacterCount": 67045,
-    "wordCount": 11527,
+    "cleanedCharacterCount": 67059,
+    "wordCount": 11529,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,17 +55,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 67045,
-      "wordCount": 11527,
-      "estimatedTypingMinutes": 330,
+      "characterCount": 67059,
+      "wordCount": 11529,
+      "estimatedTypingMinutes": 289,
       "estimatedListeningMinutes": 400,
-      "morseCharacterEstimate": 359439,
+      "morseCharacterEstimate": 359525,
       "textPreview": "Whether the dreams brought on the fever or the fever brought on the dreams Walter Gilman did not know. Behind everything crouched the brooding, festering horro..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 90346,
-    "cleanedCharacterCount": 67045,
+    "cleanedCharacterCount": 67059,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

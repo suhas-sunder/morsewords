@@ -5,8 +5,8 @@
   "author": [
     "Various"
   ],
-  "contentVersion": "7fb4ff78ea8e99bc",
-  "contentHash": "7fb4ff78ea8e99bc1dee2f036223c2472b4695b7dd458911db39fe37f3b027a5",
+  "contentVersion": "6d7c140f67139105",
+  "contentHash": "6d7c140f67139105d1f610aa32feeddb85c44c39d928b3330deaea0f3bc39b81",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 656421,
-    "cleanedCharacterCount": 614955,
-    "wordCount": 113214,
+    "cleanedCharacterCount": 614985,
+    "wordCount": 113220,
     "sectionCount": 17,
     "includedSectionCount": 17
   },
@@ -250,11 +250,11 @@
       "order": 14,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-014.json",
-      "characterCount": 15619,
-      "wordCount": 2917,
-      "estimatedTypingMinutes": 73,
+      "characterCount": 15644,
+      "wordCount": 2922,
+      "estimatedTypingMinutes": 74,
       "estimatedListeningMinutes": 93,
-      "morseCharacterEstimate": 83293,
+      "morseCharacterEstimate": 83463,
       "textPreview": "THE FOURTH VOYAGE \"The pleasures which I enjoyed after my third voyage had not charms sufficient to divert me from another. My passion for trade, and my love o..."
     },
     {
@@ -280,11 +280,11 @@
       "order": 16,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-016.json",
-      "characterCount": 14281,
-      "wordCount": 2662,
+      "characterCount": 14286,
+      "wordCount": 2663,
       "estimatedTypingMinutes": 67,
       "estimatedListeningMinutes": 85,
-      "morseCharacterEstimate": 76342,
+      "morseCharacterEstimate": 76376,
       "textPreview": "THE SIXTH VOYAGE \"You long without doubt to know,\" said he, \"how, after having been shipwrecked five times, and escaped so many dangers, I could resolve again..."
     },
     {
@@ -305,7 +305,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 656421,
-    "cleanedCharacterCount": 614955,
+    "cleanedCharacterCount": 614985,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

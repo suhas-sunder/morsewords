@@ -5,8 +5,8 @@
   "author": [
     "T. Smollett"
   ],
-  "contentVersion": "85f38aae372a0ab2",
-  "contentHash": "85f38aae372a0ab254244f0d6feabfedf662f7ce514dec2ef966c2ffc54c4eb0",
+  "contentVersion": "f055b94071f58031",
+  "contentHash": "f055b94071f580310f6f928020627c5cb5d7ae34bec9951ed9ca0d85c649ff28",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 1110549,
-    "cleanedCharacterCount": 1061253,
-    "wordCount": 188889,
+    "cleanedCharacterCount": 1061281,
+    "wordCount": 188895,
     "sectionCount": 69,
     "includedSectionCount": 69
   },
@@ -404,7 +404,7 @@
       "wordCount": 3339,
       "estimatedTypingMinutes": 84,
       "estimatedListeningMinutes": 108,
-      "morseCharacterEstimate": 97186,
+      "morseCharacterEstimate": 97184,
       "textPreview": "CHAPTER XXIV I am reduced to a great misery-assaulted on Tower Hill by a press-gang, who put me on board a tender-my usage there-my arrival on board at a man-o..."
     },
     {
@@ -580,11 +580,11 @@
       "order": 36,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-036.json",
-      "characterCount": 13020,
-      "wordCount": 2348,
+      "characterCount": 13025,
+      "wordCount": 2349,
       "estimatedTypingMinutes": 59,
       "estimatedListeningMinutes": 78,
-      "morseCharacterEstimate": 69737,
+      "morseCharacterEstimate": 69771,
       "textPreview": "CHAPTER XXXVI A strange adventure-in consequence of which I am extremely happy-Crampley does me in offices with the Captain; but his malice is defeated by the..."
     },
     {
@@ -730,11 +730,11 @@
       "order": 46,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-046.json",
-      "characterCount": 23031,
+      "characterCount": 23030,
       "wordCount": 4031,
       "estimatedTypingMinutes": 101,
       "estimatedListeningMinutes": 138,
-      "morseCharacterEstimate": 124044,
+      "morseCharacterEstimate": 124035,
       "textPreview": "CHAPTER XLVI Wagtail introduces me to a set of fine Gentlemen with whom I spend the Evening at a Tavern-our Conversation-the Characters of my new Companions-th..."
     },
     {
@@ -760,11 +760,11 @@
       "order": 48,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-048.json",
-      "characterCount": 8971,
+      "characterCount": 8970,
       "wordCount": 1574,
       "estimatedTypingMinutes": 40,
       "estimatedListeningMinutes": 54,
-      "morseCharacterEstimate": 48217,
+      "morseCharacterEstimate": 48208,
       "textPreview": "CHAPTER XLVIII We repair to the coffee-house, where we overhear a curious dispute between Wagtail and Medlar, which is referred to our decision-the Doctor give..."
     },
     {
@@ -824,7 +824,7 @@
       "wordCount": 3545,
       "estimatedTypingMinutes": 89,
       "estimatedListeningMinutes": 119,
-      "morseCharacterEstimate": 106320,
+      "morseCharacterEstimate": 106318,
       "textPreview": "CHAPTER LII I attempt to recover my Watch and Jewel, but to no Purpose-resolve to revenge myself on Strutwell by my Importunity-am reduced to my last Guinea-ob..."
     },
     {
@@ -880,11 +880,11 @@
       "order": 56,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-056.json",
-      "characterCount": 19916,
-      "wordCount": 3502,
+      "characterCount": 19921,
+      "wordCount": 3503,
       "estimatedTypingMinutes": 88,
       "estimatedListeningMinutes": 119,
-      "morseCharacterEstimate": 106816,
+      "morseCharacterEstimate": 106849,
       "textPreview": "CHAPTER LVI I become acquainted with Narcissa's brother, who invites me to his House, where I am introduced to that adorable Creature-after dinner, the Squire..."
     },
     {
@@ -1015,11 +1015,11 @@
       "order": 65,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-065.json",
-      "characterCount": 18736,
-      "wordCount": 3380,
+      "characterCount": 18751,
+      "wordCount": 3383,
       "estimatedTypingMinutes": 85,
       "estimatedListeningMinutes": 112,
-      "morseCharacterEstimate": 100465,
+      "morseCharacterEstimate": 100567,
       "textPreview": "CHAPTER LXV I set out for Sussex-consult Mrs. Sagely-achieve an Interview with Narcissa-return to the Ship-we get clear of the Channel-I learn our Destination-..."
     },
     {
@@ -1030,11 +1030,11 @@
       "order": 66,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-066.json",
-      "characterCount": 19162,
-      "wordCount": 3374,
+      "characterCount": 19167,
+      "wordCount": 3375,
       "estimatedTypingMinutes": 85,
       "estimatedListeningMinutes": 115,
-      "morseCharacterEstimate": 102826,
+      "morseCharacterEstimate": 102860,
       "textPreview": "CHAPTER LXVI I am invited to the Villa of a Spanish Don, where we went with an English Gentleman, and make a very interesting discovery-we leave Buenos Ayres,..."
     },
     {
@@ -1085,7 +1085,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 1110549,
-    "cleanedCharacterCount": 1061253,
+    "cleanedCharacterCount": 1061281,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

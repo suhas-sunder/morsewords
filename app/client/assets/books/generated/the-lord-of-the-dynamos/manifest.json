@@ -5,8 +5,8 @@
   "author": [
     "H. G. Wells"
   ],
-  "contentVersion": "61d48eb1eb73073a",
-  "contentHash": "61d48eb1eb73073a390ba6ec6eea1fcb42dd842b1e49a5f54b117c8ea7f79df6",
+  "contentVersion": "73ede4ee64d1857a",
+  "contentHash": "73ede4ee64d1857ad05fffb4123146e214bd953c839d2abb290e0de33d269d08",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 21213,
-    "cleanedCharacterCount": 19194,
-    "wordCount": 3401,
+    "cleanedCharacterCount": 19199,
+    "wordCount": 3402,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,17 +55,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 19194,
-      "wordCount": 3401,
-      "estimatedTypingMinutes": 98,
+      "characterCount": 19199,
+      "wordCount": 3402,
+      "estimatedTypingMinutes": 86,
       "estimatedListeningMinutes": 115,
-      "morseCharacterEstimate": 102914,
+      "morseCharacterEstimate": 102957,
       "textPreview": "The chief attendant of the three dynamos that buzzed and rattled at Camberwell, and kept the electric railway going, came out of Yorkshire, and his name was Ja..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 21213,
-    "cleanedCharacterCount": 19194,
+    "cleanedCharacterCount": 19199,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

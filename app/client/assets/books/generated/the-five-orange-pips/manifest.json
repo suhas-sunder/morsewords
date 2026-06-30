@@ -5,8 +5,8 @@
   "author": [
     "Arthur Conan Doyle"
   ],
-  "contentVersion": "a0087c65dec797cd",
-  "contentHash": "a0087c65dec797cd8338e72886991ac5d56600d54dfaa94d031428760d20d95a",
+  "contentVersion": "678f59a97624da04",
+  "contentHash": "678f59a97624da043dc77080c64a83e822313c6e9b749a75092ae7e36d34b889",
   "language": "en",
   "description": "Arthur Conan Doyle's Sherlock Holmes story about a cryptic warning, inherited danger, and five orange pips.",
   "subjects": [
@@ -41,8 +41,8 @@
   },
   "stats": {
     "originalCharacterCount": 593909,
-    "cleanedCharacterCount": 39418,
-    "wordCount": 7355,
+    "cleanedCharacterCount": 39423,
+    "wordCount": 7356,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -61,17 +61,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 39418,
-      "wordCount": 7355,
-      "estimatedTypingMinutes": 211,
+      "characterCount": 39423,
+      "wordCount": 7356,
+      "estimatedTypingMinutes": 184,
       "estimatedListeningMinutes": 236,
-      "morseCharacterEstimate": 211605,
+      "morseCharacterEstimate": 211644,
       "textPreview": "When I glance over my notes and records of the Sherlock Holmes cases between the years ’82 and ’90, I am faced by so many which present strange and interesting..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 593909,
-    "cleanedCharacterCount": 39418,
+    "cleanedCharacterCount": 39423,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

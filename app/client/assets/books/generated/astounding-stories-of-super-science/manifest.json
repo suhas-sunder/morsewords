@@ -5,8 +5,8 @@
   "author": [
     "Various"
   ],
-  "contentVersion": "05c85dcb8dd444a8",
-  "contentHash": "05c85dcb8dd444a8cdc7b8cb9ab84444936158811b373ef9085abfafb3f72789",
+  "contentVersion": "3e86de406d41558a",
+  "contentHash": "3e86de406d41558a824ea3083ad21891bda6eb2ee9c49d80d32a2cf14b1457d7",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 492094,
-    "cleanedCharacterCount": 446933,
-    "wordCount": 78020,
+    "cleanedCharacterCount": 446938,
+    "wordCount": 78021,
     "sectionCount": 6,
     "includedSectionCount": 6
   },
@@ -70,11 +70,11 @@
       "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-002.json",
-      "characterCount": 173839,
-      "wordCount": 30170,
-      "estimatedTypingMinutes": 862,
+      "characterCount": 173844,
+      "wordCount": 30171,
+      "estimatedTypingMinutes": 755,
       "estimatedListeningMinutes": 1037,
-      "morseCharacterEstimate": 932812,
+      "morseCharacterEstimate": 932851,
       "textPreview": "The Invisible Death CHAPTER I _Out of the Hangman's Hands_ \"You speak,\" said Von Kettler, jeering, \"as if you really believed that you had the power of life an..."
     },
     {
@@ -140,7 +140,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 492094,
-    "cleanedCharacterCount": 446933,
+    "cleanedCharacterCount": 446938,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

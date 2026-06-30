@@ -5,8 +5,8 @@
   "author": [
     "Frank Thomas Bullen"
   ],
-  "contentVersion": "61d790da214603b1",
-  "contentHash": "61d790da214603b1b11790c5a8635c2bc78c87f9d02f9bba3b20de8bcbc35de8",
+  "contentVersion": "748f349647db2e9d",
+  "contentHash": "748f349647db2e9da44e669860e375e8abb39d955f2de532f66a2102e3307462",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 576659,
-    "cleanedCharacterCount": 524875,
-    "wordCount": 94896,
+    "cleanedCharacterCount": 524887,
+    "wordCount": 94898,
     "sectionCount": 24,
     "includedSectionCount": 24
   },
@@ -57,9 +57,9 @@
       "sectionJsonPath": "sections/chapter-001.json",
       "characterCount": 22323,
       "wordCount": 3885,
-      "estimatedTypingMinutes": 111,
+      "estimatedTypingMinutes": 98,
       "estimatedListeningMinutes": 134,
-      "morseCharacterEstimate": 120238,
+      "morseCharacterEstimate": 120243,
       "textPreview": "THROUGH FIRE AND WATER “What a clumsy, barrel-bellied old hooker she is, Field!” Thus, closing his telescope with a bang, the elegant chief officer of the Mirz..."
     },
     {
@@ -250,11 +250,11 @@
       "order": 14,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-014.json",
-      "characterCount": 36036,
-      "wordCount": 6791,
-      "estimatedTypingMinutes": 195,
+      "characterCount": 36041,
+      "wordCount": 6792,
+      "estimatedTypingMinutes": 170,
       "estimatedListeningMinutes": 214,
-      "morseCharacterEstimate": 192414,
+      "morseCharacterEstimate": 192448,
       "textPreview": "THE SIAMESE LOCK Even in these prosaic days of palatial passenger steamers, running upon lines from port to port almost as definite as railway metals, and keep..."
     },
     {
@@ -400,17 +400,17 @@
       "order": 24,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-024.json",
-      "characterCount": 24097,
-      "wordCount": 4359,
-      "estimatedTypingMinutes": 125,
+      "characterCount": 24104,
+      "wordCount": 4360,
+      "estimatedTypingMinutes": 109,
       "estimatedListeningMinutes": 144,
-      "morseCharacterEstimate": 129368,
+      "morseCharacterEstimate": 129411,
       "textPreview": "LOST AND FOUND A SEA AMENDMENT He stood alone on the little pier, a pathetic figure in his loneliness--a boy without a home or a friend in the world. There was..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 576659,
-    "cleanedCharacterCount": 524875,
+    "cleanedCharacterCount": 524887,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

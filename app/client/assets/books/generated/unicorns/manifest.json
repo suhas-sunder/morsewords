@@ -5,8 +5,8 @@
   "author": [
     "James Huneker"
   ],
-  "contentVersion": "baa947d6943eed8f",
-  "contentHash": "baa947d6943eed8f7ac5e04029bbb180ca579060fe29d8f559d70738f45cabde",
+  "contentVersion": "3d18cd9ff582481e",
+  "contentHash": "3d18cd9ff582481e3dc656883b58a70b2ea9415b8a66a14a0bf870532b1526b9",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 519320,
-    "cleanedCharacterCount": 472911,
-    "wordCount": 80298,
+    "cleanedCharacterCount": 472916,
+    "wordCount": 80299,
     "sectionCount": 30,
     "includedSectionCount": 30
   },
@@ -205,11 +205,11 @@
       "order": 11,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-011.json",
-      "characterCount": 24263,
-      "wordCount": 4039,
-      "estimatedTypingMinutes": 116,
-      "estimatedListeningMinutes": 146,
-      "morseCharacterEstimate": 131382,
+      "characterCount": 24268,
+      "wordCount": 4040,
+      "estimatedTypingMinutes": 101,
+      "estimatedListeningMinutes": 147,
+      "morseCharacterEstimate": 131416,
       "textPreview": "CHAPTER XI STYLE AND RHYTHM IN ENGLISH PROSE I Stylists in prose are privileged persons. They may write nonsense and escape the castigation of prudish pedants;..."
     },
     {
@@ -267,9 +267,9 @@
       "sectionJsonPath": "sections/chapter-015.json",
       "characterCount": 21145,
       "wordCount": 3484,
-      "estimatedTypingMinutes": 100,
+      "estimatedTypingMinutes": 88,
       "estimatedListeningMinutes": 128,
-      "morseCharacterEstimate": 114888,
+      "morseCharacterEstimate": 114893,
       "textPreview": "CHAPTER XV THE GRAND MANNER IN PIANOFORTE PLAYING Here lies one whose name is writ on ivory! might be the epigraph of every great pianist's life, and the ivory..."
     },
     {
@@ -342,9 +342,9 @@
       "sectionJsonPath": "sections/chapter-020.json",
       "characterCount": 12830,
       "wordCount": 2206,
-      "estimatedTypingMinutes": 64,
+      "estimatedTypingMinutes": 56,
       "estimatedListeningMinutes": 78,
-      "morseCharacterEstimate": 69354,
+      "morseCharacterEstimate": 69359,
       "textPreview": "CHAPTER XX A SYNTHESIS OF THE SEVEN ARTS Nothing new in all this talk about a fusion of the Seven Arts; it has been tried for centuries. Richard Wagner's attem..."
     },
     {
@@ -500,7 +500,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 519320,
-    "cleanedCharacterCount": 472911,
+    "cleanedCharacterCount": 472916,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

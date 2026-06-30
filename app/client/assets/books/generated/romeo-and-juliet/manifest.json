@@ -5,8 +5,8 @@
   "author": [
     "William Shakespeare"
   ],
-  "contentVersion": "6a3d7894ed75eb80",
-  "contentHash": "6a3d7894ed75eb80f99997821b8bede6d669e1c4ef657cacf06ad7e6d60ea971",
+  "contentVersion": "164c64dbbb669695",
+  "contentHash": "164c64dbbb66969517a049a0c735d4518caeb037280722a3ec4216421f12720f",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -90,7 +90,7 @@
       "wordCount": 5686,
       "estimatedTypingMinutes": 143,
       "estimatedListeningMinutes": 184,
-      "morseCharacterEstimate": 165050,
+      "morseCharacterEstimate": 165048,
       "textPreview": "ACT II Enter Chorus. CHORUS. Now old desire doth in his deathbed lie, And young affection gapes to be his heir; That fair for which love groan'd for and would..."
     },
     {

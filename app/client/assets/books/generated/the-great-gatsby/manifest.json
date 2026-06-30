@@ -5,8 +5,8 @@
   "author": [
     "F. Scott Fitzgerald"
   ],
-  "contentVersion": "65d394f3a00e6ef7",
-  "contentHash": "65d394f3a00e6ef763116868ba201c60f4b5ea6d8c9641541fe2fb6e0c6aee94",
+  "contentVersion": "7cd9e66cba157e14",
+  "contentHash": "7cd9e66cba157e14fa0dc3ebe9856db6f477626e44855f5ff488b4c24ba8ed8f",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 290074,
-    "cleanedCharacterCount": 270690,
-    "wordCount": 49787,
+    "cleanedCharacterCount": 270698,
+    "wordCount": 49791,
     "sectionCount": 11,
     "includedSectionCount": 0
   },
@@ -70,11 +70,11 @@
       "order": 2,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-002.json",
-      "characterCount": 29852,
-      "wordCount": 5550,
+      "characterCount": 29861,
+      "wordCount": 5551,
       "estimatedTypingMinutes": 139,
       "estimatedListeningMinutes": 178,
-      "morseCharacterEstimate": 160026,
+      "morseCharacterEstimate": 160078,
       "textPreview": "“Her family is one aunt about a thousand years old. Besides, Nick’s going to look after her, aren’t you, Nick? She’s going to spend lots of weekends out here t..."
     },
     {
@@ -100,11 +100,11 @@
       "order": 4,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-004.json",
-      "characterCount": 29710,
-      "wordCount": 5442,
+      "characterCount": 29715,
+      "wordCount": 5443,
       "estimatedTypingMinutes": 137,
       "estimatedListeningMinutes": 179,
-      "morseCharacterEstimate": 160697,
+      "morseCharacterEstimate": 160731,
       "textPreview": "Everyone suspects himself of at least one of the cardinal virtues, and this is mine: I am one of the few honest people that I have ever known. IV On Sunday mor..."
     },
     {
@@ -145,11 +145,11 @@
       "order": 7,
       "includeByDefault": false,
       "sectionJsonPath": "sections/part-007.json",
-      "characterCount": 29915,
-      "wordCount": 5515,
+      "characterCount": 29929,
+      "wordCount": 5517,
       "estimatedTypingMinutes": 138,
       "estimatedListeningMinutes": 182,
-      "morseCharacterEstimate": 162911,
+      "morseCharacterEstimate": 162997,
       "textPreview": "She walked close to Gatsby, touching his coat with her hand. Jordan and Tom and I got into the front seat of Gatsby’s car, Tom pushed the unfamiliar gears tent..."
     },
     {
@@ -215,7 +215,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 290074,
-    "cleanedCharacterCount": 270690,
+    "cleanedCharacterCount": 270698,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

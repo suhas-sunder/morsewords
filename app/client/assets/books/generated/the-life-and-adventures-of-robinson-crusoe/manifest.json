@@ -5,8 +5,8 @@
   "author": [
     "Daniel Defoe"
   ],
-  "contentVersion": "fff923cbcf97efb2",
-  "contentHash": "fff923cbcf97efb242ea752c06d23f9da39fc23888d7ad62957e421cf4a658e4",
+  "contentVersion": "7526c19cfa1aa98f",
+  "contentHash": "7526c19cfa1aa98f7c8cac4f844b9af68f9e7fac066676e061f276aeb4d0aa12",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 651447,
-    "cleanedCharacterCount": 620608,
-    "wordCount": 120957,
+    "cleanedCharacterCount": 620656,
+    "wordCount": 120978,
     "sectionCount": 20,
     "includedSectionCount": 20
   },
@@ -70,11 +70,11 @@
       "order": 2,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-002.json",
-      "characterCount": 26484,
-      "wordCount": 5180,
+      "characterCount": 26499,
+      "wordCount": 5183,
       "estimatedTypingMinutes": 130,
       "estimatedListeningMinutes": 158,
-      "morseCharacterEstimate": 141523,
+      "morseCharacterEstimate": 141625,
       "textPreview": "CHAPTER II. SLAVERY AND ESCAPE That evil influence which carried me first away from my father's house-which hurried me into the wild and indigested notion of r..."
     },
     {
@@ -85,11 +85,11 @@
       "order": 3,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-003.json",
-      "characterCount": 39284,
-      "wordCount": 7610,
+      "characterCount": 39359,
+      "wordCount": 7625,
       "estimatedTypingMinutes": 191,
-      "estimatedListeningMinutes": 233,
-      "morseCharacterEstimate": 209412,
+      "estimatedListeningMinutes": 234,
+      "morseCharacterEstimate": 209927,
       "textPreview": "CHAPTER III. WRECKED ON A DESERT ISLAND After this stop, we made on to the southward continually for ten or twelve days, living very sparingly on our provision..."
     },
     {
@@ -175,11 +175,11 @@
       "order": 9,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-009.json",
-      "characterCount": 34942,
-      "wordCount": 6976,
+      "characterCount": 34947,
+      "wordCount": 6977,
       "estimatedTypingMinutes": 175,
       "estimatedListeningMinutes": 207,
-      "morseCharacterEstimate": 185619,
+      "morseCharacterEstimate": 185653,
       "textPreview": "CHAPTER IX. A BOAT But first I was to prepare more land, for I had now seed enough to sow above an acre of ground. Before I did this, I had a week's work at le..."
     },
     {
@@ -250,11 +250,11 @@
       "order": 14,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-014.json",
-      "characterCount": 35208,
-      "wordCount": 6800,
-      "estimatedTypingMinutes": 170,
+      "characterCount": 35218,
+      "wordCount": 6802,
+      "estimatedTypingMinutes": 171,
       "estimatedListeningMinutes": 209,
-      "morseCharacterEstimate": 187470,
+      "morseCharacterEstimate": 187538,
       "textPreview": "CHAPTER XIV. A DREAM REALISED Having now brought all my things on shore and secured them, I went back to my boat, and rowed or paddled her along the shore to h..."
     },
     {
@@ -350,7 +350,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 651447,
-    "cleanedCharacterCount": 620608,
+    "cleanedCharacterCount": 620656,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

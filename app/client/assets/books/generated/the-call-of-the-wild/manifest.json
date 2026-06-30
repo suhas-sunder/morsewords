@@ -5,8 +5,8 @@
   "author": [
     "Jack London"
   ],
-  "contentVersion": "abadab9ef6050157",
-  "contentHash": "abadab9ef6050157af80335907ab6cee25db911a310fd4053f736da1ccb33053",
+  "contentVersion": "9b8d1935de9c67db",
+  "contentHash": "9b8d1935de9c67db477c7db4eaf67ba36c9410de11a2a2597d9ffa9086acf846",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 198367,
-    "cleanedCharacterCount": 175246,
-    "wordCount": 31857,
+    "cleanedCharacterCount": 175239,
+    "wordCount": 31858,
     "sectionCount": 7,
     "includedSectionCount": 7
   },
@@ -115,11 +115,11 @@
       "order": 5,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-005.json",
-      "characterCount": 29627,
-      "wordCount": 5352,
+      "characterCount": 29638,
+      "wordCount": 5353,
       "estimatedTypingMinutes": 134,
       "estimatedListeningMinutes": 177,
-      "morseCharacterEstimate": 158874,
+      "morseCharacterEstimate": 158929,
       "textPreview": "Chapter V. The Toil of Trace and Trail Thirty days from the time it left Dawson, the Salt Water Mail, with Buck and his mates at the fore, arrived at Skaguay...."
     },
     {
@@ -155,7 +155,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 198367,
-    "cleanedCharacterCount": 175246,
+    "cleanedCharacterCount": 175239,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

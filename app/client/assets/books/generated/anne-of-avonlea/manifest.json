@@ -5,8 +5,8 @@
   "author": [
     "L. M. Montgomery"
   ],
-  "contentVersion": "7f02dd8b94db5b5a",
-  "contentHash": "7f02dd8b94db5b5aaa01b0ad584bdcb8e009cece2fd7bac89923f76721afb0f6",
+  "contentVersion": "8f18e8dbc9b448c0",
+  "contentHash": "8f18e8dbc9b448c01a99649239985f7d5d02fc3f9227de81f7b06215ec632a58",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 517536,
-    "cleanedCharacterCount": 486802,
-    "wordCount": 88680,
+    "cleanedCharacterCount": 486706,
+    "wordCount": 88682,
     "sectionCount": 31,
     "includedSectionCount": 30
   },
@@ -385,11 +385,11 @@
       "order": 23,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-022.json",
-      "characterCount": 8692,
-      "wordCount": 1607,
+      "characterCount": 8704,
+      "wordCount": 1608,
       "estimatedTypingMinutes": 41,
       "estimatedListeningMinutes": 53,
-      "morseCharacterEstimate": 46912,
+      "morseCharacterEstimate": 46976,
       "textPreview": "XXII Odds and Ends \"So you had tea at the stone house with Lavendar Lewis?\" said Marilla at the breakfast table next morning. \"What is she like now? It's over..."
     },
     {
@@ -490,11 +490,11 @@
       "order": 30,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-029.json",
-      "characterCount": 12773,
-      "wordCount": 2273,
+      "characterCount": 12784,
+      "wordCount": 2274,
       "estimatedTypingMinutes": 57,
       "estimatedListeningMinutes": 77,
-      "morseCharacterEstimate": 68834,
+      "morseCharacterEstimate": 68889,
       "textPreview": "XXIX Poetry and Prose For the next month Anne lived in what, for Avonlea, might be called a whirl of excitement. The preparation of her own modest outfit for R..."
     },
     {
@@ -515,7 +515,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 517536,
-    "cleanedCharacterCount": 486802,
+    "cleanedCharacterCount": 486706,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

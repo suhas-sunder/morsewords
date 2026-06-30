@@ -5,8 +5,8 @@
   "author": [
     "H. G. Wells"
   ],
-  "contentVersion": "8f6185e3cfb19c73",
-  "contentHash": "8f6185e3cfb19c7378f5bb69f05875c30e28a0197dd682a7d36b872c91cdc8c2",
+  "contentVersion": "e93dd07bed6dc0a3",
+  "contentHash": "e93dd07bed6dc0a339bae5b82955550890bc20ed9c9fb5b6a5beed4cb15c83c3",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 27699,
-    "cleanedCharacterCount": 25576,
-    "wordCount": 5004,
+    "cleanedCharacterCount": 25581,
+    "wordCount": 5005,
     "sectionCount": 1,
     "includedSectionCount": 1
   },
@@ -55,17 +55,17 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 25576,
-      "wordCount": 5004,
-      "estimatedTypingMinutes": 143,
+      "characterCount": 25581,
+      "wordCount": 5005,
+      "estimatedTypingMinutes": 126,
       "estimatedListeningMinutes": 153,
-      "morseCharacterEstimate": 136868,
+      "morseCharacterEstimate": 136906,
       "textPreview": "The man with the scarred face leant over the table and looked at my bundle. \"Orchids?\" he asked. \"A few,\" I said. \"Cypripediums,\" he said. \"Chiefly,\" said I. \"..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 27699,
-    "cleanedCharacterCount": 25576,
+    "cleanedCharacterCount": 25581,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

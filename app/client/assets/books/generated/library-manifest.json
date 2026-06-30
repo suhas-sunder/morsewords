@@ -7,8 +7,8 @@
       "author": [
         "Robert Louis Stevenson"
       ],
-      "contentVersion": "767ae75b860d2a7e",
-      "contentHash": "767ae75b860d2a7e2080bb19a01b45ac99da27d50f82cf5f826116ab4da164a5",
+      "contentVersion": "76a9c166ba192131",
+      "contentHash": "76a9c166ba192131084a0f48055d53e035021016982f9176988df5535eb7d058",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -157,8 +157,8 @@
       "author": [
         "graf Leo Tolstoy"
       ],
-      "contentVersion": "984e381c5bbe3bfc",
-      "contentHash": "984e381c5bbe3bfcd6f3afd7cc628706c16b8f97845dcc66b0c5bec12e6e8b3b",
+      "contentVersion": "eda2ca25313820e8",
+      "contentHash": "eda2ca25313820e8c1e2efa24490a6ffec73bf6ceff6bf8ac701ad5d04826f7a",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -187,8 +187,8 @@
       },
       "stats": {
         "originalCharacterCount": 1984009,
-        "cleanedCharacterCount": 1964725,
-        "wordCount": 357188,
+        "cleanedCharacterCount": 1964031,
+        "wordCount": 357190,
         "sectionCount": 241,
         "includedSectionCount": 239
       },
@@ -304,8 +304,8 @@
       "author": [
         "Jules Verne"
       ],
-      "contentVersion": "b5730ed13022dc4d",
-      "contentHash": "b5730ed13022dc4d23c8a357dee91292bfd81ede88afcd70bd172ba3fd27fce8",
+      "contentVersion": "ff29490018281f84",
+      "contentHash": "ff29490018281f84c49c3d24a899dc06a216d75e2df40e381146756a01db79ed",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -334,8 +334,8 @@
       },
       "stats": {
         "originalCharacterCount": 396836,
-        "cleanedCharacterCount": 365693,
-        "wordCount": 62808,
+        "cleanedCharacterCount": 365590,
+        "wordCount": 62809,
         "sectionCount": 37,
         "includedSectionCount": 37
       },
@@ -451,8 +451,8 @@
       "author": [
         "Voltaire"
       ],
-      "contentVersion": "26597bcb1e44241a",
-      "contentHash": "26597bcb1e44241acd52568e623ca5836e3e33f89e770d15a9bb6ab9fdf806ed",
+      "contentVersion": "cb22f2112c1873fe",
+      "contentHash": "cb22f2112c1873fe53cd7bcd24972df16cc70fa54aa154d45dde5a332de2aaa4",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -481,8 +481,8 @@
       },
       "stats": {
         "originalCharacterCount": 229606,
-        "cleanedCharacterCount": 183046,
-        "wordCount": 32628,
+        "cleanedCharacterCount": 183086,
+        "wordCount": 32634,
         "sectionCount": 30,
         "includedSectionCount": 30
       },
@@ -500,8 +500,8 @@
       "author": [
         "Fyodor Dostoyevsky"
       ],
-      "contentVersion": "1bf45d9f3bb2d82c",
-      "contentHash": "1bf45d9f3bb2d82c5af8ef4f0d19cb8bc6668f7a79cc97bc5ee98f60c1844dfa",
+      "contentVersion": "5952660c323786ba",
+      "contentHash": "5952660c323786baa89677baccaa6d6eb51f3bce28ffbd70a7f00553493a3b8d",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -530,8 +530,8 @@
       },
       "stats": {
         "originalCharacterCount": 1176909,
-        "cleanedCharacterCount": 1130273,
-        "wordCount": 203648,
+        "cleanedCharacterCount": 1130280,
+        "wordCount": 203649,
         "sectionCount": 40,
         "includedSectionCount": 40
       },
@@ -550,8 +550,8 @@
       "author": [
         "Miguel de Cervantes Saavedra"
       ],
-      "contentVersion": "a7a4d22f464c8cbd",
-      "contentHash": "a7a4d22f464c8cbd34ded946ae8c019042695e39820820f5e23d81e43b6abd68",
+      "contentVersion": "0620bd600cbde7ae",
+      "contentHash": "0620bd600cbde7ae3ea82e53f546f0758861e76ee29fe21c0a332db02b7f932a",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -580,8 +580,8 @@
       },
       "stats": {
         "originalCharacterCount": 2318584,
-        "cleanedCharacterCount": 2272349,
-        "wordCount": 423484,
+        "cleanedCharacterCount": 2272350,
+        "wordCount": 423523,
         "sectionCount": 127,
         "includedSectionCount": 126
       },
@@ -796,8 +796,8 @@
       "author": [
         "Jacob Grimm Wilhelm Grimm"
       ],
-      "contentVersion": "60416d45b3f04a3a",
-      "contentHash": "60416d45b3f04a3af6fb7987a14b1bfa1d8ce1b5849d3aee61f64bea3f72b822",
+      "contentVersion": "71f3d79578620412",
+      "contentHash": "71f3d79578620412c5cbbd07ac2c6d7d3fc53fb091d2c4493b505ea1d971cd14",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -826,7 +826,7 @@
       },
       "stats": {
         "originalCharacterCount": 549774,
-        "cleanedCharacterCount": 517107,
+        "cleanedCharacterCount": 517108,
         "wordCount": 100742,
         "sectionCount": 66,
         "includedSectionCount": 66
@@ -845,8 +845,8 @@
       "author": [
         "Jonathan Swift"
       ],
-      "contentVersion": "25b439f2df9cad73",
-      "contentHash": "25b439f2df9cad7362a149fc104a5b6f63a5d6c45fc8efcb61a5b5d5ccda65f8",
+      "contentVersion": "823c37580c4a9e71",
+      "contentHash": "823c37580c4a9e713d3d7652bccd5225c00d5f84780306073d35b59ec61c20f1",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -875,7 +875,7 @@
       },
       "stats": {
         "originalCharacterCount": 611779,
-        "cleanedCharacterCount": 569889,
+        "cleanedCharacterCount": 569887,
         "wordCount": 102931,
         "sectionCount": 39,
         "includedSectionCount": 39
@@ -992,8 +992,8 @@
       "author": [
         "Victor Hugo"
       ],
-      "contentVersion": "88372ba662b27561",
-      "contentHash": "88372ba662b27561708403e6e10331ef01b17a84fe0e72dd3feeff57eefa5806",
+      "contentVersion": "755871bac4da7b93",
+      "contentHash": "755871bac4da7b932cbf3762c4eeb929f5f71592134b7899bcfcd39df770d7c9",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1022,8 +1022,8 @@
       },
       "stats": {
         "originalCharacterCount": 3250691,
-        "cleanedCharacterCount": 3208253,
-        "wordCount": 563206,
+        "cleanedCharacterCount": 3208279,
+        "wordCount": 563505,
         "sectionCount": 364,
         "includedSectionCount": 363
       },
@@ -1090,8 +1090,8 @@
       "author": [
         "E. Nesbit"
       ],
-      "contentVersion": "d971de0e9b28f38a",
-      "contentHash": "d971de0e9b28f38ab37d02809fd74586259794c9bcf77c8de2584a881b3f974e",
+      "contentVersion": "bd7d3bfd08d97b2f",
+      "contentHash": "bd7d3bfd08d97b2f7e56269f7e38f1fdd74913e9f5ad232bded3c83ac98ae9a6",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1120,8 +1120,8 @@
       },
       "stats": {
         "originalCharacterCount": 395495,
-        "cleanedCharacterCount": 357270,
-        "wordCount": 67824,
+        "cleanedCharacterCount": 357274,
+        "wordCount": 67825,
         "sectionCount": 13,
         "includedSectionCount": 13
       },
@@ -1188,8 +1188,8 @@
       "author": [
         "L. M. Montgomery"
       ],
-      "contentVersion": "e7fafa229524c955",
-      "contentHash": "e7fafa229524c95540da4188c4a94b01151545e7445a2b25b9c1f352fc22a92f",
+      "contentVersion": "e0e9fc8ef28ed9b0",
+      "contentHash": "e0e9fc8ef28ed9b0a4a30a316f5698fb8f4d516d09d3f9632007d7d10c7e6078",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1218,8 +1218,8 @@
       },
       "stats": {
         "originalCharacterCount": 463071,
-        "cleanedCharacterCount": 443599,
-        "wordCount": 83983,
+        "cleanedCharacterCount": 443497,
+        "wordCount": 83984,
         "sectionCount": 37,
         "includedSectionCount": 35
       },
@@ -1384,8 +1384,8 @@
       "author": [
         "Various"
       ],
-      "contentVersion": "7fb4ff78ea8e99bc",
-      "contentHash": "7fb4ff78ea8e99bc1dee2f036223c2472b4695b7dd458911db39fe37f3b027a5",
+      "contentVersion": "6d7c140f67139105",
+      "contentHash": "6d7c140f67139105d1f610aa32feeddb85c44c39d928b3330deaea0f3bc39b81",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1414,8 +1414,8 @@
       },
       "stats": {
         "originalCharacterCount": 656421,
-        "cleanedCharacterCount": 614955,
-        "wordCount": 113214,
+        "cleanedCharacterCount": 614985,
+        "wordCount": 113220,
         "sectionCount": 17,
         "includedSectionCount": 17
       },
@@ -1580,8 +1580,8 @@
       "author": [
         "H. P. Lovecraft"
       ],
-      "contentVersion": "94448859a946f4b3",
-      "contentHash": "94448859a946f4b3cb5d97cb451a244cfc4a76de565641337a8adb137a124844",
+      "contentVersion": "2a980f41f0bfa8a2",
+      "contentHash": "2a980f41f0bfa8a21b95a77cd10ddd476ac26eb1e0b0b5a65206657c9fe0ff37",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1610,8 +1610,8 @@
       },
       "stats": {
         "originalCharacterCount": 92255,
-        "cleanedCharacterCount": 69450,
-        "wordCount": 11809,
+        "cleanedCharacterCount": 69462,
+        "wordCount": 11811,
         "sectionCount": 3,
         "includedSectionCount": 3
       },
@@ -1629,8 +1629,8 @@
       "author": [
         "Jack London"
       ],
-      "contentVersion": "abadab9ef6050157",
-      "contentHash": "abadab9ef6050157af80335907ab6cee25db911a310fd4053f736da1ccb33053",
+      "contentVersion": "9b8d1935de9c67db",
+      "contentHash": "9b8d1935de9c67db477c7db4eaf67ba36c9410de11a2a2597d9ffa9086acf846",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1659,8 +1659,8 @@
       },
       "stats": {
         "originalCharacterCount": 198367,
-        "cleanedCharacterCount": 175246,
-        "wordCount": 31857,
+        "cleanedCharacterCount": 175239,
+        "wordCount": 31858,
         "sectionCount": 7,
         "includedSectionCount": 7
       },
@@ -1678,8 +1678,8 @@
       "author": [
         "Alexandre Dumas Auguste Maquet"
       ],
-      "contentVersion": "4d1525fee69ba7fa",
-      "contentHash": "4d1525fee69ba7fa08cdb4a83ba0859114bc663fd70ec75726a30fb2dc4ab0dc",
+      "contentVersion": "3ab5dcd163bfd0db",
+      "contentHash": "3ab5dcd163bfd0db73a921e765e3276d17904f3e37de2e3247783a64e78709ab",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -1708,8 +1708,8 @@
       },
       "stats": {
         "originalCharacterCount": 2646649,
-        "cleanedCharacterCount": 2622620,
-        "wordCount": 461680,
+        "cleanedCharacterCount": 2622634,
+        "wordCount": 461790,
         "sectionCount": 117,
         "includedSectionCount": 117
       },
@@ -1728,8 +1728,8 @@
         "Alexandre Dumas",
         "Auguste Maquet"
       ],
-      "contentVersion": "cf28db8866481685",
-      "contentHash": "cf28db8866481685085bd7ac3d9c91e28d9670a3e36aa93aeb16ea633d9da720",
+      "contentVersion": "d24d25f4f088b65f",
+      "contentHash": "d24d25f4f088b65f4a509e7c37b60f7c49ee7c43a4061f5321b70704a6f50e4d",
       "language": "und",
       "description": "",
       "subjects": [],
@@ -1758,8 +1758,8 @@
       },
       "stats": {
         "originalCharacterCount": 2646649,
-        "cleanedCharacterCount": 2622620,
-        "wordCount": 461680,
+        "cleanedCharacterCount": 2622634,
+        "wordCount": 461790,
         "sectionCount": 117,
         "includedSectionCount": 117
       },
@@ -1777,8 +1777,8 @@
       "author": [
         "Dante Alighieri"
       ],
-      "contentVersion": "9b6073b0eccbe686",
-      "contentHash": "9b6073b0eccbe68665322931239833ad595dffa4a0eb7fd54347512564598866",
+      "contentVersion": "abf2ced3947fd914",
+      "contentHash": "abf2ced3947fd914b6fac095a81fc62e919d56d5c9ca17ba304461cbf696d8a5",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2023,8 +2023,8 @@
       "author": [
         "Alexander Hamilton John Jay James Madison"
       ],
-      "contentVersion": "e592d3d51185c492",
-      "contentHash": "e592d3d51185c492b737390c3546befd06ca1d8aecc75d620ebdb0b7223eeb0d",
+      "contentVersion": "e93bfd0aa5a0f5b7",
+      "contentHash": "e93bfd0aa5a0f5b7a3b6f9bcbbba797296a270123f084f84f73154ac3f284138",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2053,8 +2053,8 @@
       },
       "stats": {
         "originalCharacterCount": 1212398,
-        "cleanedCharacterCount": 1164036,
-        "wordCount": 195246,
+        "cleanedCharacterCount": 1164051,
+        "wordCount": 195249,
         "sectionCount": 86,
         "includedSectionCount": 86
       },
@@ -2121,8 +2121,8 @@
       "author": [
         "F. Scott Fitzgerald"
       ],
-      "contentVersion": "65d394f3a00e6ef7",
-      "contentHash": "65d394f3a00e6ef763116868ba201c60f4b5ea6d8c9641541fe2fb6e0c6aee94",
+      "contentVersion": "7cd9e66cba157e14",
+      "contentHash": "7cd9e66cba157e14fa0dc3ebe9856db6f477626e44855f5ff488b4c24ba8ed8f",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2151,8 +2151,8 @@
       },
       "stats": {
         "originalCharacterCount": 290074,
-        "cleanedCharacterCount": 270690,
-        "wordCount": 49787,
+        "cleanedCharacterCount": 270698,
+        "wordCount": 49791,
         "sectionCount": 11,
         "includedSectionCount": 0
       },
@@ -2317,8 +2317,8 @@
       "author": [
         "Washington Irving"
       ],
-      "contentVersion": "053685b686dc878e",
-      "contentHash": "053685b686dc878e30a208631d9e409ce30e48653aed0a03d9f140c8f6b590de",
+      "contentVersion": "c4f5bc52d0db96e3",
+      "contentHash": "c4f5bc52d0db96e3228700d0d6c8343d728b2d99f09d4fa8e40867b68cf69080",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2347,8 +2347,8 @@
       },
       "stats": {
         "originalCharacterCount": 90621,
-        "cleanedCharacterCount": 69568,
-        "wordCount": 12228,
+        "cleanedCharacterCount": 69591,
+        "wordCount": 12232,
         "sectionCount": 2,
         "includedSectionCount": 2
       },
@@ -2415,8 +2415,8 @@
       "author": [
         "Oscar Wilde"
       ],
-      "contentVersion": "af2ab9deaa2db2a0",
-      "contentHash": "af2ab9deaa2db2a0bace9a43916984a7cf4881616bc080478b6769cf94bdef39",
+      "contentVersion": "168094d22377fe50",
+      "contentHash": "168094d22377fe50dc458a8ec1c34a27314f437ee4f78864f745504a866b3996",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2445,8 +2445,8 @@
       },
       "stats": {
         "originalCharacterCount": 448573,
-        "cleanedCharacterCount": 429270,
-        "wordCount": 79937,
+        "cleanedCharacterCount": 429211,
+        "wordCount": 79938,
         "sectionCount": 23,
         "includedSectionCount": 21
       },
@@ -2905,8 +2905,8 @@
       "author": [
         "Alexandre Dumas Auguste Maquet"
       ],
-      "contentVersion": "117fe21e8265df4f",
-      "contentHash": "117fe21e8265df4fb95daed97a30b78ec13d64f5121758097be52b4808e8e8b6",
+      "contentVersion": "e3cdb1a8814f09ab",
+      "contentHash": "e3cdb1a8814f09abde401e4b544ff4772b9c5c4ec2ceed1d6e37e45b11d3adb2",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2935,8 +2935,8 @@
       },
       "stats": {
         "originalCharacterCount": 1348857,
-        "cleanedCharacterCount": 1294904,
-        "wordCount": 229787,
+        "cleanedCharacterCount": 1294710,
+        "wordCount": 229788,
         "sectionCount": 68,
         "includedSectionCount": 67
       },
@@ -2954,8 +2954,8 @@
       "author": [
         "Charles Kingsley"
       ],
-      "contentVersion": "04dfedc6a8729a59",
-      "contentHash": "04dfedc6a8729a59359d442c1c3c35cb495bb7ef4b0745141394f3bbb5aab98f",
+      "contentVersion": "7913015e7398a7d8",
+      "contentHash": "7913015e7398a7d88587c2d01884c9bd48413d5232946fb9c2ad7326fd720c03",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2984,8 +2984,8 @@
       },
       "stats": {
         "originalCharacterCount": 396682,
-        "cleanedCharacterCount": 361430,
-        "wordCount": 68359,
+        "cleanedCharacterCount": 361437,
+        "wordCount": 68360,
         "sectionCount": 9,
         "includedSectionCount": 9
       },
@@ -3102,8 +3102,8 @@
       "author": [
         "Robert Louis Stevenson"
       ],
-      "contentVersion": "fbc88f57ab49a7cc",
-      "contentHash": "fbc88f57ab49a7cc8fe983985990a77cb3af05242deb1d04adb447fd8027e4b4",
+      "contentVersion": "6f2a0bd31725bb13",
+      "contentHash": "6f2a0bd31725bb13ecc9417dfff0a375f903108d0a0d3c609a5987e63f07d5da",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3132,8 +3132,8 @@
       },
       "stats": {
         "originalCharacterCount": 391655,
-        "cleanedCharacterCount": 360028,
-        "wordCount": 68294,
+        "cleanedCharacterCount": 360033,
+        "wordCount": 68295,
         "sectionCount": 34,
         "includedSectionCount": 34
       },
@@ -3347,8 +3347,8 @@
       "author": [
         "Emile Gaboriau"
       ],
-      "contentVersion": "2034c185a686accd",
-      "contentHash": "2034c185a686accdb53a68bf64d0fbbe9e2ff872b584ad7417484f7335314f1b",
+      "contentVersion": "88e83b14652ed3b2",
+      "contentHash": "88e83b14652ed3b2e5194f8442240fb435ef3d79603319a320ba2d1f032a81c4",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3377,7 +3377,7 @@
       },
       "stats": {
         "originalCharacterCount": 728654,
-        "cleanedCharacterCount": 694607,
+        "cleanedCharacterCount": 694550,
         "wordCount": 123870,
         "sectionCount": 20,
         "includedSectionCount": 20
@@ -3543,8 +3543,8 @@
       "author": [
         "Arthur Conan Doyle"
       ],
-      "contentVersion": "1cc3a66a0188db38",
-      "contentHash": "1cc3a66a0188db387619d75ea2471a695e12382f5ff27577e0e0282d9ac146ed",
+      "contentVersion": "963a328d14856684",
+      "contentHash": "963a328d148566849d051eddb37f13485c91658d2f50de8c3df5261cfcf4859a",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3573,8 +3573,8 @@
       },
       "stats": {
         "originalCharacterCount": 451718,
-        "cleanedCharacterCount": 419619,
-        "wordCount": 76065,
+        "cleanedCharacterCount": 419612,
+        "wordCount": 76073,
         "sectionCount": 17,
         "includedSectionCount": 16
       },
@@ -3739,8 +3739,8 @@
       "author": [
         "Edgar Wallace"
       ],
-      "contentVersion": "c326ca1aac2da025",
-      "contentHash": "c326ca1aac2da0251f5691f7ac62485736301f093d2a914b6b0a05715b309af4",
+      "contentVersion": "53edcf81a9e9fe5d",
+      "contentHash": "53edcf81a9e9fe5d88b5607b6bd18c7ea2b41dc2fd075745c683a199ca060e49",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3769,8 +3769,8 @@
       },
       "stats": {
         "originalCharacterCount": 357340,
-        "cleanedCharacterCount": 328628,
-        "wordCount": 59509,
+        "cleanedCharacterCount": 328506,
+        "wordCount": 59510,
         "sectionCount": 33,
         "includedSectionCount": 33
       },
@@ -3935,8 +3935,8 @@
       "author": [
         "Charles Dickens"
       ],
-      "contentVersion": "87f975b1a0c50cf3",
-      "contentHash": "87f975b1a0c50cf3deb7b6fc277e26012b393ed560bf44d7b795eded1b0cc886",
+      "contentVersion": "8b3798f0a1b25ed4",
+      "contentHash": "8b3798f0a1b25ed44f8984e0690ad2d42f436c5e8d1ecd933bdf4725aa7c1a05",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -3965,8 +3965,8 @@
       },
       "stats": {
         "originalCharacterCount": 793193,
-        "cleanedCharacterCount": 755521,
-        "wordCount": 136387,
+        "cleanedCharacterCount": 755354,
+        "wordCount": 136381,
         "sectionCount": 45,
         "includedSectionCount": 45
       },
@@ -4082,8 +4082,8 @@
       "author": [
         "William Shakespeare"
       ],
-      "contentVersion": "0226abdea44f95d6",
-      "contentHash": "0226abdea44f95d61a33d6a9d5df284aa5c0ef070faf1aa39f962554a8aaed3c",
+      "contentVersion": "28a09a4b1fd9ec76",
+      "contentHash": "28a09a4b1fd9ec7604074dd8d0f581eecc2337b606a9eff62c67450152ebf0d7",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -4112,7 +4112,7 @@
       },
       "stats": {
         "originalCharacterCount": 128338,
-        "cleanedCharacterCount": 103226,
+        "cleanedCharacterCount": 103211,
         "wordCount": 18268,
         "sectionCount": 6,
         "includedSectionCount": 5
@@ -4181,8 +4181,8 @@
       "author": [
         "Bernard Shaw"
       ],
-      "contentVersion": "09d24e1d78a97f18",
-      "contentHash": "09d24e1d78a97f1822cd1746a97397ca53976e5f6ba79ac5f99757dd21314cf8",
+      "contentVersion": "639868957a25f948",
+      "contentHash": "639868957a25f94892304ec871b6aef7b82bbdaf2933bb4390f2722de4627ba7",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -4211,7 +4211,7 @@
       },
       "stats": {
         "originalCharacterCount": 212314,
-        "cleanedCharacterCount": 187891,
+        "cleanedCharacterCount": 187877,
         "wordCount": 33577,
         "sectionCount": 6,
         "includedSectionCount": 5
@@ -4231,8 +4231,8 @@
       "author": [
         "Mark Twain"
       ],
-      "contentVersion": "b9d2b4d867fe9f45",
-      "contentHash": "b9d2b4d867fe9f45aca72102f7a0e535298cee93a6ddfba5844fab06cb8d595c",
+      "contentVersion": "1f3024a5ffe24d50",
+      "contentHash": "1f3024a5ffe24d502647c08f95453e9718e95dbb92ea5d2a1734319d9955373e",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -4261,8 +4261,8 @@
       },
       "stats": {
         "originalCharacterCount": 421358,
-        "cleanedCharacterCount": 386698,
-        "wordCount": 70216,
+        "cleanedCharacterCount": 387474,
+        "wordCount": 70294,
         "sectionCount": 36,
         "includedSectionCount": 35
       },
@@ -4329,8 +4329,8 @@
       "author": [
         "Arthur Conan Doyle"
       ],
-      "contentVersion": "c6bf7cc132c192f5",
-      "contentHash": "c6bf7cc132c192f513d502231ac1280da0cbe3235656c142c50b99f841c70066",
+      "contentVersion": "f78288919ff3930e",
+      "contentHash": "f78288919ff3930efae36c77bc6d79dca3b914c5e4d9d343551875d675d1d269",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -4359,8 +4359,8 @@
       },
       "stats": {
         "originalCharacterCount": 381205,
-        "cleanedCharacterCount": 323528,
-        "wordCount": 59198,
+        "cleanedCharacterCount": 323498,
+        "wordCount": 59200,
         "sectionCount": 16,
         "includedSectionCount": 15
       },
@@ -4378,8 +4378,8 @@
       "author": [
         "Robert W. Chambers"
       ],
-      "contentVersion": "09335206c61557c5",
-      "contentHash": "09335206c61557c5ddbe497e6339897dc6b132442c690c010489f183c9cf343a",
+      "contentVersion": "33700b50a45fc977",
+      "contentHash": "33700b50a45fc977242adead8b519e29f64bd97bd02fc30665b93d162f3252b0",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -4408,8 +4408,8 @@
       },
       "stats": {
         "originalCharacterCount": 431209,
-        "cleanedCharacterCount": 398237,
-        "wordCount": 71951,
+        "cleanedCharacterCount": 398204,
+        "wordCount": 71952,
         "sectionCount": 11,
         "includedSectionCount": 10
       },
@@ -4427,8 +4427,8 @@
       "author": [
         "Daniel Defoe"
       ],
-      "contentVersion": "fff923cbcf97efb2",
-      "contentHash": "fff923cbcf97efb242ea752c06d23f9da39fc23888d7ad62957e421cf4a658e4",
+      "contentVersion": "7526c19cfa1aa98f",
+      "contentHash": "7526c19cfa1aa98f7c8cac4f844b9af68f9e7fac066676e061f276aeb4d0aa12",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -4457,8 +4457,8 @@
       },
       "stats": {
         "originalCharacterCount": 651447,
-        "cleanedCharacterCount": 620608,
-        "wordCount": 120957,
+        "cleanedCharacterCount": 620656,
+        "wordCount": 120978,
         "sectionCount": 20,
         "includedSectionCount": 20
       },
@@ -4525,8 +4525,8 @@
       "author": [
         "William Shakespeare"
       ],
-      "contentVersion": "5e3c47b0e2a559bd",
-      "contentHash": "5e3c47b0e2a559bdc0dc45b837615032fdc18b67596f9274a6634b4c1bf12bf4",
+      "contentVersion": "9653134037b69dbf",
+      "contentHash": "9653134037b69dbfd8ce13537bb5fd74a162ff977957330a6a1bea5d13e06872",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -4555,7 +4555,7 @@
       },
       "stats": {
         "originalCharacterCount": 172282,
-        "cleanedCharacterCount": 96784,
+        "cleanedCharacterCount": 96773,
         "wordCount": 17446,
         "sectionCount": 6,
         "includedSectionCount": 5
@@ -4675,8 +4675,8 @@
       "author": [
         "Algernon Blackwood"
       ],
-      "contentVersion": "55590681e7395da8",
-      "contentHash": "55590681e7395da83346c6d719dd3136bedab249dc2a3fa53e7c03c68524c093",
+      "contentVersion": "51aa2eb9b7f30daa",
+      "contentHash": "51aa2eb9b7f30daaefce01e5825811a05d9f977a9f2a997b51a0dda7887ccb25",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -4705,8 +4705,8 @@
       },
       "stats": {
         "originalCharacterCount": 128175,
-        "cleanedCharacterCount": 106187,
-        "wordCount": 18645,
+        "cleanedCharacterCount": 106179,
+        "wordCount": 18647,
         "sectionCount": 9,
         "includedSectionCount": 9
       },
@@ -4724,8 +4724,8 @@
       "author": [
         "Emily Brontë"
       ],
-      "contentVersion": "2950978335c7d835",
-      "contentHash": "2950978335c7d8354323ad37a4b121cff171a72e485fee21131c164d7914459e",
+      "contentVersion": "ee2c0b34546e3cc5",
+      "contentHash": "ee2c0b34546e3cc568e730b0c28c6d914b056a5edd9dcff23f8104b1aba975cc",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -4754,7 +4754,7 @@
       },
       "stats": {
         "originalCharacterCount": 677607,
-        "cleanedCharacterCount": 645375,
+        "cleanedCharacterCount": 645279,
         "wordCount": 116109,
         "sectionCount": 34,
         "includedSectionCount": 34
@@ -4773,8 +4773,8 @@
       "author": [
         "L. M. Montgomery"
       ],
-      "contentVersion": "7f02dd8b94db5b5a",
-      "contentHash": "7f02dd8b94db5b5aaa01b0ad584bdcb8e009cece2fd7bac89923f76721afb0f6",
+      "contentVersion": "8f18e8dbc9b448c0",
+      "contentHash": "8f18e8dbc9b448c01a99649239985f7d5d02fc3f9227de81f7b06215ec632a58",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -4803,8 +4803,8 @@
       },
       "stats": {
         "originalCharacterCount": 517536,
-        "cleanedCharacterCount": 486802,
-        "wordCount": 88680,
+        "cleanedCharacterCount": 486706,
+        "wordCount": 88682,
         "sectionCount": 31,
         "includedSectionCount": 30
       },
@@ -4822,8 +4822,8 @@
       "author": [
         "Jules Verne"
       ],
-      "contentVersion": "66e462aab228e009",
-      "contentHash": "66e462aab228e00912a782862b4d7a133f101f2dda7b7ed4639c89c6c0ad8056",
+      "contentVersion": "b79cea8de9c4bd4f",
+      "contentHash": "b79cea8de9c4bd4f53748f2b54422f035558fe6984020516d48c28715d79faae",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -4852,8 +4852,8 @@
       },
       "stats": {
         "originalCharacterCount": 567579,
-        "cleanedCharacterCount": 524001,
-        "wordCount": 90956,
+        "cleanedCharacterCount": 523908,
+        "wordCount": 90963,
         "sectionCount": 45,
         "includedSectionCount": 44
       },
@@ -4871,8 +4871,8 @@
       "author": [
         "Herman Melville"
       ],
-      "contentVersion": "3d6b1370e7185921",
-      "contentHash": "3d6b1370e71859215a3aa1646cfd3ffba9962bf0343c726628341df467b9b7e1",
+      "contentVersion": "2df64f8e78e30b82",
+      "contentHash": "2df64f8e78e30b8253ea17ba3e85237b7d139b8d9a47b69e2de15a6c671c6ead",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -4901,8 +4901,8 @@
       },
       "stats": {
         "originalCharacterCount": 1260591,
-        "cleanedCharacterCount": 1213468,
-        "wordCount": 212919,
+        "cleanedCharacterCount": 1213209,
+        "wordCount": 212939,
         "sectionCount": 136,
         "includedSectionCount": 135
       },
@@ -5263,8 +5263,8 @@
       "author": [
         "William Shakespeare"
       ],
-      "contentVersion": "6a3d7894ed75eb80",
-      "contentHash": "6a3d7894ed75eb80f99997821b8bede6d669e1c4ef657cacf06ad7e6d60ea971",
+      "contentVersion": "164c64dbbb669695",
+      "contentHash": "164c64dbbb66969517a049a0c735d4518caeb037280722a3ec4216421f12720f",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -5313,8 +5313,8 @@
       "author": [
         "T. Smollett"
       ],
-      "contentVersion": "cc2598f1c17dfcb3",
-      "contentHash": "cc2598f1c17dfcb3b6b53c56c45ff19ef1e6c664b73bd6d4b322f5bb7105eb1b",
+      "contentVersion": "ac687235d82f8744",
+      "contentHash": "ac687235d82f87442487e25acf2ded1208eafcd1fd02231a190d6b34f1c7100d",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -5343,8 +5343,8 @@
       },
       "stats": {
         "originalCharacterCount": 990627,
-        "cleanedCharacterCount": 926989,
-        "wordCount": 157279,
+        "cleanedCharacterCount": 926996,
+        "wordCount": 157280,
         "sectionCount": 67,
         "includedSectionCount": 67
       },
@@ -5362,8 +5362,8 @@
       "author": [
         "T. Smollett"
       ],
-      "contentVersion": "85f38aae372a0ab2",
-      "contentHash": "85f38aae372a0ab254244f0d6feabfedf662f7ce514dec2ef966c2ffc54c4eb0",
+      "contentVersion": "f055b94071f58031",
+      "contentHash": "f055b94071f580310f6f928020627c5cb5d7ae34bec9951ed9ca0d85c649ff28",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -5392,8 +5392,8 @@
       },
       "stats": {
         "originalCharacterCount": 1110549,
-        "cleanedCharacterCount": 1061253,
-        "wordCount": 188889,
+        "cleanedCharacterCount": 1061281,
+        "wordCount": 188895,
         "sectionCount": 69,
         "includedSectionCount": 69
       },
@@ -5411,8 +5411,8 @@
       "author": [
         "T. Smollett"
       ],
-      "contentVersion": "8bbe6868252931df",
-      "contentHash": "8bbe6868252931dfbc8a062638d0007a80fbf1f587c8b9eb1dc3b597ed209d07",
+      "contentVersion": "d58cc47de3b50166",
+      "contentHash": "d58cc47de3b50166494534d805653569931ba7df6556a4582fab6afa36b874f7",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -5441,8 +5441,8 @@
       },
       "stats": {
         "originalCharacterCount": 883592,
-        "cleanedCharacterCount": 849620,
-        "wordCount": 150515,
+        "cleanedCharacterCount": 849694,
+        "wordCount": 150524,
         "sectionCount": 87,
         "includedSectionCount": 87
       },
@@ -5509,8 +5509,8 @@
       "author": [
         "G. K. Chesterton"
       ],
-      "contentVersion": "67a014193a32fc9f",
-      "contentHash": "67a014193a32fc9f823438d5dddbd0af7a0946bffa5ec38c065907172b5ad587",
+      "contentVersion": "e3775758c3ae7e0b",
+      "contentHash": "e3775758c3ae7e0b79ade5a77a5b200c48944cd6e5fcc2be049628baf5c75611",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -5539,8 +5539,8 @@
       },
       "stats": {
         "originalCharacterCount": 348405,
-        "cleanedCharacterCount": 317536,
-        "wordCount": 57410,
+        "cleanedCharacterCount": 317543,
+        "wordCount": 57411,
         "sectionCount": 15,
         "includedSectionCount": 15
       },
@@ -5803,8 +5803,8 @@
       "author": [
         "Jules Verne"
       ],
-      "contentVersion": "edfbe4d99326fd6c",
-      "contentHash": "edfbe4d99326fd6cd846e3470a87f3189e913a5871ebc42da9c6fbe10682f9ed",
+      "contentVersion": "07a861d74411306d",
+      "contentHash": "07a861d74411306d4a269a9500e2ddc6f3d973b33e37e62b38bcf017e8a9fd04",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -5833,8 +5833,8 @@
       },
       "stats": {
         "originalCharacterCount": 630044,
-        "cleanedCharacterCount": 594929,
-        "wordCount": 104410,
+        "cleanedCharacterCount": 594941,
+        "wordCount": 104412,
         "sectionCount": 46,
         "includedSectionCount": 46
       },
@@ -5901,8 +5901,8 @@
       "author": [
         "Edgar Lee Masters"
       ],
-      "contentVersion": "ef0e60e0d14caf9b",
-      "contentHash": "ef0e60e0d14caf9bbe4cf80c82261b952ba558b1040400792cd6b22822c693de",
+      "contentVersion": "422ffa5f5d9a5553",
+      "contentHash": "422ffa5f5d9a55535a44a4c0cdd61c77a9755c93cc07ff586e0c53131ea6d8cb",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -5931,8 +5931,8 @@
       },
       "stats": {
         "originalCharacterCount": 237809,
-        "cleanedCharacterCount": 205179,
-        "wordCount": 38205,
+        "cleanedCharacterCount": 205189,
+        "wordCount": 38206,
         "sectionCount": 245,
         "includedSectionCount": 245
       },
@@ -5999,8 +5999,8 @@
       "author": [
         "Edgar Rice Burroughs"
       ],
-      "contentVersion": "f547850be68b55dd",
-      "contentHash": "f547850be68b55dd760222427df8923913636748d810ae6cd50dc17505293ee8",
+      "contentVersion": "3ad8342269110cca",
+      "contentHash": "3ad8342269110cca4b46019126d6620e9c2c64c942de6b86fd4979f217010391",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6029,8 +6029,8 @@
       },
       "stats": {
         "originalCharacterCount": 294919,
-        "cleanedCharacterCount": 266635,
-        "wordCount": 49205,
+        "cleanedCharacterCount": 266642,
+        "wordCount": 49206,
         "sectionCount": 15,
         "includedSectionCount": 15
       },
@@ -6097,8 +6097,8 @@
       "author": [
         "David Christie Murray"
       ],
-      "contentVersion": "98b30609251e054f",
-      "contentHash": "98b30609251e054f0d37ebe60b9b199fbab8a5e50e146f2fcd4c87718f69382e",
+      "contentVersion": "098bd26a1203ded8",
+      "contentHash": "098bd26a1203ded83b293e0c4ada5ef2a72e4067f2051a8ba3c420b261c78f45",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6127,7 +6127,7 @@
       },
       "stats": {
         "originalCharacterCount": 860804,
-        "cleanedCharacterCount": 773543,
+        "cleanedCharacterCount": 773544,
         "wordCount": 144112,
         "sectionCount": 29,
         "includedSectionCount": 29
@@ -6146,8 +6146,8 @@
       "author": [
         "E. Nesbit"
       ],
-      "contentVersion": "f0719bd1d4819791",
-      "contentHash": "f0719bd1d4819791589869ff2297242029474f118f3c1fc4c0d44379efc991ba",
+      "contentVersion": "a211007d284ab5dc",
+      "contentHash": "a211007d284ab5dc570d3bba407d06a73a0fce401086db5eb0993a4d96ed8705",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6176,8 +6176,8 @@
       },
       "stats": {
         "originalCharacterCount": 323930,
-        "cleanedCharacterCount": 288455,
-        "wordCount": 53072,
+        "cleanedCharacterCount": 288495,
+        "wordCount": 53076,
         "sectionCount": 10,
         "includedSectionCount": 10
       },
@@ -6440,8 +6440,8 @@
       "author": [
         "Joseph Conrad"
       ],
-      "contentVersion": "9a67af9394c2cb3b",
-      "contentHash": "9a67af9394c2cb3bd08485c6c7139d9a4325c65d420862f861cb24ea6f4e748d",
+      "contentVersion": "36dbe9f91e793a79",
+      "contentHash": "36dbe9f91e793a79ab2fbe57649eee543a4c4f4b962ea2be72c73bd24bf08f1b",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6470,8 +6470,8 @@
       },
       "stats": {
         "originalCharacterCount": 740850,
-        "cleanedCharacterCount": 705336,
-        "wordCount": 130831,
+        "cleanedCharacterCount": 705362,
+        "wordCount": 130835,
         "sectionCount": 45,
         "includedSectionCount": 45
       },
@@ -6587,8 +6587,8 @@
       "author": [
         "Eleanor H. Porter"
       ],
-      "contentVersion": "d9d2549538591eed",
-      "contentHash": "d9d2549538591eed3290551331bb6a076b8ffdfc0df201ab2e06cbe5be36a547",
+      "contentVersion": "47ed33f2fa09ccd2",
+      "contentHash": "47ed33f2fa09ccd2d8c1c6d06f8a81b107ab19d93308a9af156c47534868bcf1",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6617,8 +6617,8 @@
       },
       "stats": {
         "originalCharacterCount": 341629,
-        "cleanedCharacterCount": 313046,
-        "wordCount": 56691,
+        "cleanedCharacterCount": 313058,
+        "wordCount": 56692,
         "sectionCount": 32,
         "includedSectionCount": 32
       },
@@ -6783,8 +6783,8 @@
       "author": [
         "Owen Wister"
       ],
-      "contentVersion": "25daa9480e56fbe0",
-      "contentHash": "25daa9480e56fbe0da609b5982d247c968f0cbdb682593826bd77a3572911b56",
+      "contentVersion": "8eeef7b40332b1a6",
+      "contentHash": "8eeef7b40332b1a6e2636647abe2ae8cb1832f967bbfa3a5f56f679e81a4b3cf",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6813,8 +6813,8 @@
       },
       "stats": {
         "originalCharacterCount": 746465,
-        "cleanedCharacterCount": 706274,
-        "wordCount": 131631,
+        "cleanedCharacterCount": 706346,
+        "wordCount": 131640,
         "sectionCount": 36,
         "includedSectionCount": 36
       },
@@ -6832,8 +6832,8 @@
       "author": [
         "Fergus Hume"
       ],
-      "contentVersion": "55f3a2cbd6994166",
-      "contentHash": "55f3a2cbd6994166ed8118c3a17da1e7b568e78cbed3494deb861f38ae31953f",
+      "contentVersion": "03766aaeadc31d21",
+      "contentHash": "03766aaeadc31d21f5d88d9f23e24cccfe5942afa950706ecfc7d53774000e9f",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -6862,8 +6862,8 @@
       },
       "stats": {
         "originalCharacterCount": 521907,
-        "cleanedCharacterCount": 490572,
-        "wordCount": 88299,
+        "cleanedCharacterCount": 490590,
+        "wordCount": 88302,
         "sectionCount": 27,
         "includedSectionCount": 27
       },
@@ -7175,8 +7175,8 @@
       "author": [
         "James Huneker"
       ],
-      "contentVersion": "baa947d6943eed8f",
-      "contentHash": "baa947d6943eed8f7ac5e04029bbb180ca579060fe29d8f559d70738f45cabde",
+      "contentVersion": "3d18cd9ff582481e",
+      "contentHash": "3d18cd9ff582481e3dc656883b58a70b2ea9415b8a66a14a0bf870532b1526b9",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -7205,8 +7205,8 @@
       },
       "stats": {
         "originalCharacterCount": 519320,
-        "cleanedCharacterCount": 472911,
-        "wordCount": 80298,
+        "cleanedCharacterCount": 472916,
+        "wordCount": 80299,
         "sectionCount": 30,
         "includedSectionCount": 30
       },
@@ -8106,8 +8106,8 @@
       "author": [
         "Arthur Conan Doyle"
       ],
-      "contentVersion": "d4f4f962b45c2b51",
-      "contentHash": "d4f4f962b45c2b51f972e08aac351f5f443b9791ded87c0a13eaf20d3f5d698b",
+      "contentVersion": "943a00dff044c9f8",
+      "contentHash": "943a00dff044c9f8bbd79d7a99e4c1070d3827fd2fc3cc3126727f5caba05bc2",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -8136,8 +8136,8 @@
       },
       "stats": {
         "originalCharacterCount": 263854,
-        "cleanedCharacterCount": 238622,
-        "wordCount": 43790,
+        "cleanedCharacterCount": 238642,
+        "wordCount": 43792,
         "sectionCount": 14,
         "includedSectionCount": 14
       },
@@ -8204,8 +8204,8 @@
       "author": [
         "Frank Thomas Bullen"
       ],
-      "contentVersion": "61d790da214603b1",
-      "contentHash": "61d790da214603b1b11790c5a8635c2bc78c87f9d02f9bba3b20de8bcbc35de8",
+      "contentVersion": "748f349647db2e9d",
+      "contentHash": "748f349647db2e9da44e669860e375e8abb39d955f2de532f66a2102e3307462",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -8234,8 +8234,8 @@
       },
       "stats": {
         "originalCharacterCount": 576659,
-        "cleanedCharacterCount": 524875,
-        "wordCount": 94896,
+        "cleanedCharacterCount": 524887,
+        "wordCount": 94898,
         "sectionCount": 24,
         "includedSectionCount": 24
       },
@@ -8351,8 +8351,8 @@
       "author": [
         "Henryk Sienkiewicz"
       ],
-      "contentVersion": "b19872b1415de6f4",
-      "contentHash": "b19872b1415de6f412bd525f63c7017fd704a077d29f08f151b044deca502e2f",
+      "contentVersion": "c0f4d29a184623d2",
+      "contentHash": "c0f4d29a184623d20e776cf0cecc616889aa8ed25fd1ce88e2ef31010d5e6a1b",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -8381,8 +8381,8 @@
       },
       "stats": {
         "originalCharacterCount": 1204901,
-        "cleanedCharacterCount": 1160560,
-        "wordCount": 210294,
+        "cleanedCharacterCount": 1160567,
+        "wordCount": 210295,
         "sectionCount": 73,
         "includedSectionCount": 73
       },
@@ -8400,8 +8400,8 @@
       "author": [
         "E. W. Hornung"
       ],
-      "contentVersion": "76a5469dd70fdc6a",
-      "contentHash": "76a5469dd70fdc6a59f602b6b01b028c7e211a98b3b9ece031b5c55b56bd77c0",
+      "contentVersion": "e4bd0077ef67fdc8",
+      "contentHash": "e4bd0077ef67fdc814541b60e653e5524d17e945789224ad12a0de3e4d602a13",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -8430,8 +8430,8 @@
       },
       "stats": {
         "originalCharacterCount": 307382,
-        "cleanedCharacterCount": 281223,
-        "wordCount": 52230,
+        "cleanedCharacterCount": 281229,
+        "wordCount": 52231,
         "sectionCount": 8,
         "includedSectionCount": 8
       },
@@ -8449,8 +8449,8 @@
       "author": [
         "John W. Campbell, Jr."
       ],
-      "contentVersion": "8ed6551643f1cb3e",
-      "contentHash": "8ed6551643f1cb3e883a6a36e72feef095144f562c1518c152dca530a070bd2a",
+      "contentVersion": "01527a927b9ab59e",
+      "contentHash": "01527a927b9ab59e70546b0c78a94b388c035a8fed42f5588596337c5602c443",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -8479,8 +8479,8 @@
       },
       "stats": {
         "originalCharacterCount": 456477,
-        "cleanedCharacterCount": 406964,
-        "wordCount": 72422,
+        "cleanedCharacterCount": 406992,
+        "wordCount": 72426,
         "sectionCount": 18,
         "includedSectionCount": 18
       },
@@ -8547,8 +8547,8 @@
       "author": [
         "Fyodor Dostoyevsky"
       ],
-      "contentVersion": "f62de9bc4d259f39",
-      "contentHash": "f62de9bc4d259f39497bb4e2ccfde76b85066c02ed7bff3ab2f304f1d52838aa",
+      "contentVersion": "16c6507a37d3c8c2",
+      "contentHash": "16c6507a37d3c8c24e0d3817460a5172649978c9cd1ee34470e718816d399b0a",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -8577,8 +8577,8 @@
       },
       "stats": {
         "originalCharacterCount": 1992167,
-        "cleanedCharacterCount": 1917770,
-        "wordCount": 356021,
+        "cleanedCharacterCount": 1917781,
+        "wordCount": 356022,
         "sectionCount": 96,
         "includedSectionCount": 96
       },
@@ -8743,8 +8743,8 @@
       "author": [
         "Lucas Malet"
       ],
-      "contentVersion": "a0e5523e832b5166",
-      "contentHash": "a0e5523e832b5166a46e8ee8dd499018c4ad0bf04428e2ce79f22094721033c8",
+      "contentVersion": "10aa7268ea975141",
+      "contentHash": "10aa7268ea9751412eb70ec104543fd6925597aebdf82e11dbad94b634ad5d99",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -8773,7 +8773,7 @@
       },
       "stats": {
         "originalCharacterCount": 1586308,
-        "cleanedCharacterCount": 1530744,
+        "cleanedCharacterCount": 1530746,
         "wordCount": 263761,
         "sectionCount": 60,
         "includedSectionCount": 60
@@ -8890,8 +8890,8 @@
       "author": [
         "Booth Tarkington"
       ],
-      "contentVersion": "45da3d99a68fd57f",
-      "contentHash": "45da3d99a68fd57ff3209bee7c3398bb5ee77cfb75d66b382a95b80604ce857b",
+      "contentVersion": "aafd11a6a0ace04a",
+      "contentHash": "aafd11a6a0ace04a0fd3a499e606814a96678adb3c6e2dcc28a42d3785b381d0",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -8920,8 +8920,8 @@
       },
       "stats": {
         "originalCharacterCount": 527191,
-        "cleanedCharacterCount": 497036,
-        "wordCount": 90526,
+        "cleanedCharacterCount": 497059,
+        "wordCount": 90531,
         "sectionCount": 33,
         "includedSectionCount": 33
       },
@@ -8988,8 +8988,8 @@
       "author": [
         "H. G. Wells"
       ],
-      "contentVersion": "352ea9183b7cab8a",
-      "contentHash": "352ea9183b7cab8a1e4e98a06dac1eaf1a39f631f3eea74efa5e25d843661718",
+      "contentVersion": "4d5ebe07e9f2e74d",
+      "contentHash": "4d5ebe07e9f2e74d1df1f655704a51725bff15dcc0ccf98fe64c35c89b9a42cf",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -9018,8 +9018,8 @@
       },
       "stats": {
         "originalCharacterCount": 202494,
-        "cleanedCharacterCount": 178883,
-        "wordCount": 32616,
+        "cleanedCharacterCount": 178897,
+        "wordCount": 32618,
         "sectionCount": 17,
         "includedSectionCount": 17
       },
@@ -9037,8 +9037,8 @@
       "author": [
         "Robert Louis Stevenson"
       ],
-      "contentVersion": "f96e4d6028b6fb16",
-      "contentHash": "f96e4d6028b6fb16925c4d6909172851569c94f07f521ba9578554a5ac41cdbc",
+      "contentVersion": "9b7005e042b81d84",
+      "contentHash": "9b7005e042b81d84cadc0abd25a541ef513aaeb457e2e844d93625f1b5235012",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -9067,8 +9067,8 @@
       },
       "stats": {
         "originalCharacterCount": 451252,
-        "cleanedCharacterCount": 409343,
-        "wordCount": 80562,
+        "cleanedCharacterCount": 409348,
+        "wordCount": 80563,
         "sectionCount": 30,
         "includedSectionCount": 30
       },
@@ -9086,8 +9086,8 @@
       "author": [
         "Charles Dickens"
       ],
-      "contentVersion": "8e5cb138252ad55d",
-      "contentHash": "8e5cb138252ad55d7cb3a95e0b7904a59ed3239786c85eb90cef42a0c608b9a3",
+      "contentVersion": "ceec787abfdac2eb",
+      "contentHash": "ceec787abfdac2eb16e2c36f3b68fd4aa8baf2a75c05231065df1ca41c94eb8c",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -9116,8 +9116,8 @@
       },
       "stats": {
         "originalCharacterCount": 931655,
-        "cleanedCharacterCount": 885911,
-        "wordCount": 160066,
+        "cleanedCharacterCount": 885916,
+        "wordCount": 160067,
         "sectionCount": 53,
         "includedSectionCount": 53
       },
@@ -9576,8 +9576,8 @@
       "author": [
         "G. K. Chesterton"
       ],
-      "contentVersion": "861b02a1cda4d227",
-      "contentHash": "861b02a1cda4d227bc9ac5d357381101517a5c2834e2bae07864a9e2d6c707fb",
+      "contentVersion": "6e05305f75446361",
+      "contentHash": "6e05305f754463611af243b93160cad59e893c18fa9eb888174bfe1c365257f6",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -9606,8 +9606,8 @@
       },
       "stats": {
         "originalCharacterCount": 468787,
-        "cleanedCharacterCount": 438636,
-        "wordCount": 79663,
+        "cleanedCharacterCount": 438652,
+        "wordCount": 79666,
         "sectionCount": 12,
         "includedSectionCount": 12
       },
@@ -9625,8 +9625,8 @@
       "author": [
         "Various"
       ],
-      "contentVersion": "05c85dcb8dd444a8",
-      "contentHash": "05c85dcb8dd444a8cdc7b8cb9ab84444936158811b373ef9085abfafb3f72789",
+      "contentVersion": "3e86de406d41558a",
+      "contentHash": "3e86de406d41558a824ea3083ad21891bda6eb2ee9c49d80d32a2cf14b1457d7",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -9655,8 +9655,8 @@
       },
       "stats": {
         "originalCharacterCount": 492094,
-        "cleanedCharacterCount": 446933,
-        "wordCount": 78020,
+        "cleanedCharacterCount": 446938,
+        "wordCount": 78021,
         "sectionCount": 6,
         "includedSectionCount": 6
       },
@@ -10213,8 +10213,8 @@
       "author": [
         "H. C. Andersen"
       ],
-      "contentVersion": "30dfbb9dc230bd8e",
-      "contentHash": "30dfbb9dc230bd8e01bfdf231ea46a9faba4b31a10b0f80d4003e3108ebd169b",
+      "contentVersion": "a3ed739e775e37b3",
+      "contentHash": "a3ed739e775e37b3927d37089c0952e3a338ccb04e244827b70bfa785fb411e4",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -10243,8 +10243,8 @@
       },
       "stats": {
         "originalCharacterCount": 46723,
-        "cleanedCharacterCount": 26239,
-        "wordCount": 5019,
+        "cleanedCharacterCount": 26244,
+        "wordCount": 5020,
         "sectionCount": 1,
         "includedSectionCount": 1
       },
@@ -11928,8 +11928,8 @@
       "author": [
         "Jacob Grimm; Wilhelm Grimm"
       ],
-      "contentVersion": "a28d34db615a116e",
-      "contentHash": "a28d34db615a116eacc0b2a34e6f3beb163b96d2f0c692e94acd1726ae546b97",
+      "contentVersion": "23f6937df0f254f0",
+      "contentHash": "23f6937df0f254f088e6ef7c348fb0666aae137e7d27a1f2fc67ad4e0b99154c",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -11958,7 +11958,7 @@
       },
       "stats": {
         "originalCharacterCount": 14499,
-        "cleanedCharacterCount": 13244,
+        "cleanedCharacterCount": 13245,
         "wordCount": 2585,
         "sectionCount": 1,
         "includedSectionCount": 1
@@ -19621,8 +19621,8 @@
       "author": [
         "H. G. Wells"
       ],
-      "contentVersion": "2d9cb5858528338c",
-      "contentHash": "2d9cb5858528338c5d939949678c902a417db2ac6197efd5cae1fbf777b11633",
+      "contentVersion": "c32c0fc67766d26a",
+      "contentHash": "c32c0fc67766d26ac0e382548e8ee59be6783111619e2c0c0b4edac8f6606cc8",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -19651,8 +19651,8 @@
       },
       "stats": {
         "originalCharacterCount": 27954,
-        "cleanedCharacterCount": 27087,
-        "wordCount": 5190,
+        "cleanedCharacterCount": 27121,
+        "wordCount": 5197,
         "sectionCount": 1,
         "includedSectionCount": 1
       },
@@ -19768,8 +19768,8 @@
       "author": [
         "H. G. Wells"
       ],
-      "contentVersion": "1a059d7aee335369",
-      "contentHash": "1a059d7aee335369d45aa7e97841ab5da529f7626a9fc480636f2a2ac8ef408d",
+      "contentVersion": "b284376f713fff29",
+      "contentHash": "b284376f713fff292ffa836e43a0fc356ad39d450dc79620513aa1e509c118df",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -19798,8 +19798,8 @@
       },
       "stats": {
         "originalCharacterCount": 39678,
-        "cleanedCharacterCount": 38720,
-        "wordCount": 6904,
+        "cleanedCharacterCount": 38727,
+        "wordCount": 6905,
         "sectionCount": 1,
         "includedSectionCount": 1
       },
@@ -20062,8 +20062,8 @@
       "author": [
         "H. G. Wells"
       ],
-      "contentVersion": "8f6185e3cfb19c73",
-      "contentHash": "8f6185e3cfb19c7378f5bb69f05875c30e28a0197dd682a7d36b872c91cdc8c2",
+      "contentVersion": "e93dd07bed6dc0a3",
+      "contentHash": "e93dd07bed6dc0a339bae5b82955550890bc20ed9c9fb5b6a5beed4cb15c83c3",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -20092,8 +20092,8 @@
       },
       "stats": {
         "originalCharacterCount": 27699,
-        "cleanedCharacterCount": 25576,
-        "wordCount": 5004,
+        "cleanedCharacterCount": 25581,
+        "wordCount": 5005,
         "sectionCount": 1,
         "includedSectionCount": 1
       },
@@ -20405,8 +20405,8 @@
       "author": [
         "H. G. Wells"
       ],
-      "contentVersion": "88c630b3948891fc",
-      "contentHash": "88c630b3948891fc362449d6fe32bc947a4a253b52a6f2b9617666b23c8aa321",
+      "contentVersion": "b801d3989345bfcf",
+      "contentHash": "b801d3989345bfcff45d48599711d153843d3a13370ea4f24d5042c0b4b0b641",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -20435,8 +20435,8 @@
       },
       "stats": {
         "originalCharacterCount": 15852,
-        "cleanedCharacterCount": 13914,
-        "wordCount": 2675,
+        "cleanedCharacterCount": 13920,
+        "wordCount": 2676,
         "sectionCount": 1,
         "includedSectionCount": 1
       },
@@ -20503,8 +20503,8 @@
       "author": [
         "H. G. Wells"
       ],
-      "contentVersion": "61d48eb1eb73073a",
-      "contentHash": "61d48eb1eb73073a390ba6ec6eea1fcb42dd842b1e49a5f54b117c8ea7f79df6",
+      "contentVersion": "73ede4ee64d1857a",
+      "contentHash": "73ede4ee64d1857ad05fffb4123146e214bd953c839d2abb290e0de33d269d08",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -20533,8 +20533,8 @@
       },
       "stats": {
         "originalCharacterCount": 21213,
-        "cleanedCharacterCount": 19194,
-        "wordCount": 3401,
+        "cleanedCharacterCount": 19199,
+        "wordCount": 3402,
         "sectionCount": 1,
         "includedSectionCount": 1
       },
@@ -20552,8 +20552,8 @@
       "author": [
         "H. G. Wells"
       ],
-      "contentVersion": "a86109125af8f8f4",
-      "contentHash": "a86109125af8f8f4830c5a35c7ab508f0246b285d65e5e1a7ef429b81bc6958d",
+      "contentVersion": "315dcf4ded13780e",
+      "contentHash": "315dcf4ded13780e13bdce0a69c5795415b32a1b371a1d0b38ad34116088d70c",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -20582,8 +20582,8 @@
       },
       "stats": {
         "originalCharacterCount": 26225,
-        "cleanedCharacterCount": 25219,
-        "wordCount": 4457,
+        "cleanedCharacterCount": 25224,
+        "wordCount": 4458,
         "sectionCount": 1,
         "includedSectionCount": 1
       },
@@ -20797,8 +20797,8 @@
       "author": [
         "H. G. Wells"
       ],
-      "contentVersion": "e0aca7dcccade45a",
-      "contentHash": "e0aca7dcccade45a68d66b594a178520c11a215e3165ad793d0da454bee125ae",
+      "contentVersion": "d0aad70aa95236c2",
+      "contentHash": "d0aad70aa95236c2bef84749136d0ac231c695f6905d30fcc5052fb7b89bffd5",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -20827,7 +20827,7 @@
       },
       "stats": {
         "originalCharacterCount": 9888,
-        "cleanedCharacterCount": 8056,
+        "cleanedCharacterCount": 8055,
         "wordCount": 1485,
         "sectionCount": 1,
         "includedSectionCount": 1
@@ -20846,8 +20846,8 @@
       "author": [
         "H. G. Wells"
       ],
-      "contentVersion": "197393ecbd25bd88",
-      "contentHash": "197393ecbd25bd88a9f9fe748e030589cc323aac3bfc41af5f7fcb37ebef070b",
+      "contentVersion": "57016e9033072b1f",
+      "contentHash": "57016e9033072b1fb1d030f701fdca41886d14bfad82e2e50e19c397b6e1d255",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -20876,8 +20876,8 @@
       },
       "stats": {
         "originalCharacterCount": 19285,
-        "cleanedCharacterCount": 17271,
-        "wordCount": 3096,
+        "cleanedCharacterCount": 17282,
+        "wordCount": 3098,
         "sectionCount": 1,
         "includedSectionCount": 1
       },
@@ -21973,8 +21973,8 @@
       "author": [
         "H. P. Lovecraft"
       ],
-      "contentVersion": "4504f7fba1500315",
-      "contentHash": "4504f7fba150031504e4c36e5bf25880a56bad619b7a4a35829085feeaf8aaf1",
+      "contentVersion": "bfa52f6ef4996e9f",
+      "contentHash": "bfa52f6ef4996e9f65f103353c7d3982c885a951a7de7875b1344b4cbd853782",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -22003,8 +22003,8 @@
       },
       "stats": {
         "originalCharacterCount": 90346,
-        "cleanedCharacterCount": 67045,
-        "wordCount": 11527,
+        "cleanedCharacterCount": 67059,
+        "wordCount": 11529,
         "sectionCount": 1,
         "includedSectionCount": 1
       },
@@ -23074,8 +23074,8 @@
       "author": [
         "Edgar Allan Poe"
       ],
-      "contentVersion": "09a8cc692f832be6",
-      "contentHash": "09a8cc692f832be6e420c424055ac760bcea40ae29f86200d511e4c9f7acdcc3",
+      "contentVersion": "ea3ea28a08d45f49",
+      "contentHash": "ea3ea28a08d45f494f4cb145b3cfcf90faf82774979316121f6ad92a1e502684",
       "language": "en",
       "description": "A sea-voyage mystery about secrecy, suspicion, and an oddly shaped object aboard ship.",
       "subjects": [
@@ -23724,8 +23724,8 @@
       "author": [
         "H. G. Wells"
       ],
-      "contentVersion": "c53027bb3ede3411",
-      "contentHash": "c53027bb3ede341146273de2bd8bb26b75b5300828f5c05ac343ebc5028c34b3",
+      "contentVersion": "b2c701a4e4bbfd3e",
+      "contentHash": "b2c701a4e4bbfd3e9d0f7d37c1e068e20598c2c3eafe0b86590fa7e740917b29",
       "language": "en",
       "description": "A dark colonial Gothic story about fear, guilt, and a hostile presence that follows a reckless traveler.",
       "subjects": [
@@ -23758,8 +23758,8 @@
       },
       "stats": {
         "originalCharacterCount": 34067,
-        "cleanedCharacterCount": 33505,
-        "wordCount": 6120,
+        "cleanedCharacterCount": 33515,
+        "wordCount": 6122,
         "sectionCount": 1,
         "includedSectionCount": 1
       },
@@ -24042,8 +24042,8 @@
       "author": [
         "H. P. Lovecraft"
       ],
-      "contentVersion": "a446781e2a09cf21",
-      "contentHash": "a446781e2a09cf21359e81e3da78810385949b3a7d9a6992daf55672387a8d21",
+      "contentVersion": "b70ed3aa5f4b9a26",
+      "contentHash": "b70ed3aa5f4b9a269e78c3c46008823f5e60d125e5591fe1d48a704df3023ca2",
       "language": "en",
       "description": "A Providence weird tale of antiquarian research, family history, and a mystery that reaches into the colonial past.",
       "subjects": [
@@ -24076,8 +24076,8 @@
       },
       "stats": {
         "originalCharacterCount": 288533,
-        "cleanedCharacterCount": 262224,
-        "wordCount": 44472,
+        "cleanedCharacterCount": 262229,
+        "wordCount": 44473,
         "sectionCount": 5,
         "includedSectionCount": 5
       },
@@ -24701,8 +24701,8 @@
       "author": [
         "Arthur Conan Doyle"
       ],
-      "contentVersion": "93de638c8c379495",
-      "contentHash": "93de638c8c379495f76ac0bf6102c0297ff462042c162b709bf1f4b3153b37e7",
+      "contentVersion": "32ba9f997666995b",
+      "contentHash": "32ba9f997666995b4f8690e40ff2ad21e00a9bbc141908655928308e50a8ae48",
       "language": "en",
       "description": "Arthur Conan Doyle's Sherlock Holmes story about a murder investigation, disputed evidence, and hidden history in Boscombe Valley.",
       "subjects": [
@@ -24737,7 +24737,7 @@
       },
       "stats": {
         "originalCharacterCount": 593909,
-        "cleanedCharacterCount": 51319,
+        "cleanedCharacterCount": 51320,
         "wordCount": 9663,
         "sectionCount": 1,
         "includedSectionCount": 1
@@ -24756,8 +24756,8 @@
       "author": [
         "Arthur Conan Doyle"
       ],
-      "contentVersion": "a0087c65dec797cd",
-      "contentHash": "a0087c65dec797cd8338e72886991ac5d56600d54dfaa94d031428760d20d95a",
+      "contentVersion": "678f59a97624da04",
+      "contentHash": "678f59a97624da043dc77080c64a83e822313c6e9b749a75092ae7e36d34b889",
       "language": "en",
       "description": "Arthur Conan Doyle's Sherlock Holmes story about a cryptic warning, inherited danger, and five orange pips.",
       "subjects": [
@@ -24792,8 +24792,8 @@
       },
       "stats": {
         "originalCharacterCount": 593909,
-        "cleanedCharacterCount": 39418,
-        "wordCount": 7355,
+        "cleanedCharacterCount": 39423,
+        "wordCount": 7356,
         "sectionCount": 1,
         "includedSectionCount": 1
       },
@@ -25252,8 +25252,8 @@
       "author": [
         "Agatha Christie"
       ],
-      "contentVersion": "c7e67fcb7a7302a9",
-      "contentHash": "c7e67fcb7a7302a9436e55289bcc4b090d87f66de1ff916f1f41cb7755c05492",
+      "contentVersion": "c02c125fe68c7c39",
+      "contentHash": "c02c125fe68c7c3970f8d6fed0d501aec25dbbbaee5a1ba485874d6f872fb40f",
       "language": "en",
       "description": "Agatha Christie's first Hercule Poirot mystery, set around a country-house poisoning and the careful reconstruction of evidence.",
       "subjects": [
@@ -25289,7 +25289,7 @@
       },
       "stats": {
         "originalCharacterCount": 349120,
-        "cleanedCharacterCount": 320125,
+        "cleanedCharacterCount": 320124,
         "wordCount": 57832,
         "sectionCount": 13,
         "includedSectionCount": 13
@@ -25363,8 +25363,8 @@
       "author": [
         "David Hume"
       ],
-      "contentVersion": "0f4e7815015f871d",
-      "contentHash": "0f4e7815015f871da723647671d2d7fe61d5440ffd49b178684ea70e96113139",
+      "contentVersion": "15d6aae8e570ce52",
+      "contentHash": "15d6aae8e570ce5212f26e35d248a2ab4c3fb67d537071a1d6b55bbebd566526",
       "language": "en",
       "description": "David Hume's philosophical enquiry into human understanding, ideas, probability, causation, liberty, miracles, providence, and scepticism.",
       "subjects": [
@@ -25418,8 +25418,8 @@
       "author": [
         "George Eliot"
       ],
-      "contentVersion": "173e7b65c1f44996",
-      "contentHash": "173e7b65c1f449969f0ca620c7519af65b0be94ca7cb1b29f5637e175d7cc673",
+      "contentVersion": "094cad65bf01d16b",
+      "contentHash": "094cad65bf01d16bff841e744687eb4a108c5662ef1a5e7a27a699320f894959",
       "language": "en",
       "description": "George Eliot's realist novel about Dorothea Brooke, Tertius Lydgate, and the social, moral, and political life of Middlemarch.",
       "subjects": [
@@ -25473,8 +25473,8 @@
       "author": [
         "Theodore Dreiser"
       ],
-      "contentVersion": "c876683e7d9cc226",
-      "contentHash": "c876683e7d9cc226d7613032f24a07b5f18f5a7616b8822a3361e0b72cd037d5",
+      "contentVersion": "7b104fec54c447be",
+      "contentHash": "7b104fec54c447be53a56809acd1a8c33fee0fd80ed3fa96d602c5c6b091a741",
       "language": "en",
       "description": "Theodore Dreiser's novel about Frank Cowperwood, finance, ambition, family pressure, and power in nineteenth-century Philadelphia.",
       "subjects": [
@@ -25509,8 +25509,8 @@
       },
       "stats": {
         "originalCharacterCount": 1153532,
-        "cleanedCharacterCount": 1093330,
-        "wordCount": 194731,
+        "cleanedCharacterCount": 1093392,
+        "wordCount": 194741,
         "sectionCount": 59,
         "includedSectionCount": 59
       },
@@ -25528,8 +25528,8 @@
       "author": [
         "Robert Louis Stevenson"
       ],
-      "contentVersion": "b38b94767d2dd4fa",
-      "contentHash": "b38b94767d2dd4fa6e8f5065294033366e160bff61aae50fb4d8d232c7fc2d4f",
+      "contentVersion": "d2194bc1d7c0435f",
+      "contentHash": "d2194bc1d7c0435fa57db4f0e667197ecf6a4d0e7ec03965e84209d3874df928",
       "language": "en",
       "description": "Robert Louis Stevenson's South Seas story about Wiltshire, Uma, Case, trade, isolation, and danger on Falesá.",
       "subjects": [
@@ -25564,8 +25564,8 @@
       },
       "stats": {
         "originalCharacterCount": 274538,
-        "cleanedCharacterCount": 144629,
-        "wordCount": 29148,
+        "cleanedCharacterCount": 144688,
+        "wordCount": 29157,
         "sectionCount": 5,
         "includedSectionCount": 5
       },
@@ -25694,8 +25694,8 @@
       "author": [
         "Henry David Thoreau"
       ],
-      "contentVersion": "69929b010b329069",
-      "contentHash": "69929b010b32906907efa4639f52afa57439a6303fd18fd34b9b01472e834c6a",
+      "contentVersion": "528bb0d1721d8b46",
+      "contentHash": "528bb0d1721d8b463ba952b4b1e8b3db2492608e41941ee67f25a60b240db857",
       "language": "en",
       "description": "Henry David Thoreau's account of simple living, nature, work, solitude, and reflection at Walden Pond.",
       "subjects": [
@@ -25730,8 +25730,8 @@
       },
       "stats": {
         "originalCharacterCount": 654202,
-        "cleanedCharacterCount": 582595,
-        "wordCount": 107126,
+        "cleanedCharacterCount": 582631,
+        "wordCount": 107130,
         "sectionCount": 18,
         "includedSectionCount": 18
       },
@@ -26038,8 +26038,8 @@
       "author": [
         "Henry David Thoreau"
       ],
-      "contentVersion": "a68b88ef8c5759f7",
-      "contentHash": "a68b88ef8c5759f7daf935958d50985949d26b7854ec6e39adf97e96f55bd238",
+      "contentVersion": "bc843af233ce804f",
+      "contentHash": "bc843af233ce804fbbf9b1e9d1ed6627e56a632c0affd94441c6557c6f306c0e",
       "language": "en",
       "description": "Henry David Thoreau's essay on conscience, government, law, resistance, and individual responsibility.",
       "subjects": [
@@ -26074,7 +26074,7 @@
       },
       "stats": {
         "originalCharacterCount": 654202,
-        "cleanedCharacterCount": 51188,
+        "cleanedCharacterCount": 51189,
         "wordCount": 9390,
         "sectionCount": 1,
         "includedSectionCount": 1

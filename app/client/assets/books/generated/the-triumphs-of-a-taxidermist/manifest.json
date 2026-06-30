@@ -5,8 +5,8 @@
   "author": [
     "H. G. Wells"
   ],
-  "contentVersion": "e0aca7dcccade45a",
-  "contentHash": "e0aca7dcccade45a68d66b594a178520c11a215e3165ad793d0da454bee125ae",
+  "contentVersion": "d0aad70aa95236c2",
+  "contentHash": "d0aad70aa95236c2bef84749136d0ac231c695f6905d30fcc5052fb7b89bffd5",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,7 +35,7 @@
   },
   "stats": {
     "originalCharacterCount": 9888,
-    "cleanedCharacterCount": 8056,
+    "cleanedCharacterCount": 8055,
     "wordCount": 1485,
     "sectionCount": 1,
     "includedSectionCount": 1
@@ -55,9 +55,9 @@
       "order": 1,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-001.json",
-      "characterCount": 8056,
+      "characterCount": 8055,
       "wordCount": 1485,
-      "estimatedTypingMinutes": 43,
+      "estimatedTypingMinutes": 38,
       "estimatedListeningMinutes": 49,
       "morseCharacterEstimate": 43413,
       "textPreview": "Here are some of the secrets of taxidermy. They were told me by the taxidermist in a mood of elation. He told me them in the time between the first glass of wh..."
@@ -65,7 +65,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 9888,
-    "cleanedCharacterCount": 8056,
+    "cleanedCharacterCount": 8055,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

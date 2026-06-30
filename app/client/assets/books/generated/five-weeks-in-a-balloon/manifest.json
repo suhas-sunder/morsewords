@@ -5,8 +5,8 @@
   "author": [
     "Jules Verne"
   ],
-  "contentVersion": "66e462aab228e009",
-  "contentHash": "66e462aab228e00912a782862b4d7a133f101f2dda7b7ed4639c89c6c0ad8056",
+  "contentVersion": "b79cea8de9c4bd4f",
+  "contentHash": "b79cea8de9c4bd4f53748f2b54422f035558fe6984020516d48c28715d79faae",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 567579,
-    "cleanedCharacterCount": 524001,
-    "wordCount": 90956,
+    "cleanedCharacterCount": 523908,
+    "wordCount": 90963,
     "sectionCount": 45,
     "includedSectionCount": 44
   },
@@ -119,7 +119,7 @@
       "wordCount": 1613,
       "estimatedTypingMinutes": 41,
       "estimatedListeningMinutes": 57,
-      "morseCharacterEstimate": 51253,
+      "morseCharacterEstimate": 51258,
       "textPreview": "CHAPTER FOURTH. African Explorations.-Barth, Richardson, Overweg, Werne, Brun-Rollet, Penney, Andrea, Debono, Miani, Guillaume Lejean, Bruce, Krapf and Rebmann..."
     },
     {
@@ -220,11 +220,11 @@
       "order": 12,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-011.json",
-      "characterCount": 11516,
-      "wordCount": 1969,
+      "characterCount": 11521,
+      "wordCount": 1970,
       "estimatedTypingMinutes": 50,
       "estimatedListeningMinutes": 69,
-      "morseCharacterEstimate": 61836,
+      "morseCharacterEstimate": 61870,
       "textPreview": "CHAPTER ELEVENTH. The Arrival at Zanzibar.-The English Consul.-Ill-will of the Inhabitants.-The Island of Koumbeni.-The Rain-Makers.-Inflation of the Balloon.-..."
     },
     {
@@ -280,11 +280,11 @@
       "order": 16,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-015.json",
-      "characterCount": 19423,
-      "wordCount": 3337,
+      "characterCount": 19428,
+      "wordCount": 3338,
       "estimatedTypingMinutes": 84,
       "estimatedListeningMinutes": 117,
-      "morseCharacterEstimate": 104875,
+      "morseCharacterEstimate": 104914,
       "textPreview": "CHAPTER FIFTEENTH. Kazeh.-The Noisy Market-place.-The Appearance of the Balloon.-The Wangaga.-The Sons of the Moon.-The Doctor's Walk.-The Population of the Pl..."
     },
     {
@@ -355,11 +355,11 @@
       "order": 21,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-020.json",
-      "characterCount": 10660,
-      "wordCount": 1847,
+      "characterCount": 10677,
+      "wordCount": 1850,
       "estimatedTypingMinutes": 47,
-      "estimatedListeningMinutes": 64,
-      "morseCharacterEstimate": 57574,
+      "estimatedListeningMinutes": 65,
+      "morseCharacterEstimate": 57685,
       "textPreview": "CHAPTER TWENTIETH. The Celestial Bottle.-The Fig-Palms.-The Mammoth Trees.-The Tree of War.-The Winged Team.-Two Native Tribes in Battle.-A Massacre.-An Interv..."
     },
     {
@@ -400,11 +400,11 @@
       "order": 24,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-023.json",
-      "characterCount": 13213,
-      "wordCount": 2378,
+      "characterCount": 13220,
+      "wordCount": 2379,
       "estimatedTypingMinutes": 60,
       "estimatedListeningMinutes": 80,
-      "morseCharacterEstimate": 71275,
+      "morseCharacterEstimate": 71318,
       "textPreview": "CHAPTER TWENTY-THIRD. Joe in a Fit of Rage.-The Death of a Good Man.-The Night of watching by the Body.-Barrenness and Drought.-The Burial.-The Quartz Rocks.-J..."
     },
     {
@@ -494,7 +494,7 @@
       "wordCount": 2043,
       "estimatedTypingMinutes": 52,
       "estimatedListeningMinutes": 71,
-      "morseCharacterEstimate": 63189,
+      "morseCharacterEstimate": 63194,
       "textPreview": "CHAPTER TWENTY-NINTH. Signs of Vegetation.-The Fantastic Notion of a French Author.-A Magnificent Country.-The Kingdom of Adamova.-The Explorations of Speke an..."
     },
     {
@@ -509,7 +509,7 @@
       "wordCount": 2590,
       "estimatedTypingMinutes": 65,
       "estimatedListeningMinutes": 90,
-      "morseCharacterEstimate": 80844,
+      "morseCharacterEstimate": 80849,
       "textPreview": "CHAPTER THIRTIETH. Mosfeia.-The Sheik.-Denham, Clapperton, and Oudney.-Vogel.-The Capital of Loggoum.-Toole.-Becalmed above Kernak.-The Governor and his Court...."
     },
     {
@@ -580,11 +580,11 @@
       "order": 36,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-035.json",
-      "characterCount": 17959,
-      "wordCount": 3239,
+      "characterCount": 17964,
+      "wordCount": 3240,
       "estimatedTypingMinutes": 81,
-      "estimatedListeningMinutes": 107,
-      "morseCharacterEstimate": 96264,
+      "estimatedListeningMinutes": 108,
+      "morseCharacterEstimate": 96303,
       "textPreview": "CHAPTER THIRTY-FIFTH. What happened to Joe.-The Island of the Biddiomahs.-The Adoration shown him.-The Island that sank.-The Shores of the Lake.-The Tree of th..."
     },
     {
@@ -674,7 +674,7 @@
       "wordCount": 2314,
       "estimatedTypingMinutes": 58,
       "estimatedListeningMinutes": 80,
-      "morseCharacterEstimate": 71324,
+      "morseCharacterEstimate": 71329,
       "textPreview": "CHAPTER FORTY-FIRST. The Approaches to Senegal.-The Balloon sinks lower and lower.-They keep throwing out, throwing out.-The Marabout Al-Hadji.-Messrs. Pascal,..."
     },
     {
@@ -725,7 +725,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 567579,
-    "cleanedCharacterCount": 524001,
+    "cleanedCharacterCount": 523908,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",

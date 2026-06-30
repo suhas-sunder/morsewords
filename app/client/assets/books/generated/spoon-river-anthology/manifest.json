@@ -5,8 +5,8 @@
   "author": [
     "Edgar Lee Masters"
   ],
-  "contentVersion": "ef0e60e0d14caf9b",
-  "contentHash": "ef0e60e0d14caf9bbe4cf80c82261b952ba558b1040400792cd6b22822c693de",
+  "contentVersion": "422ffa5f5d9a5553",
+  "contentHash": "422ffa5f5d9a55535a44a4c0cdd61c77a9755c93cc07ff586e0c53131ea6d8cb",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 237809,
-    "cleanedCharacterCount": 205179,
-    "wordCount": 38205,
+    "cleanedCharacterCount": 205189,
+    "wordCount": 38206,
     "sectionCount": 245,
     "includedSectionCount": 245
   },
@@ -1570,12 +1570,12 @@
       "order": 102,
       "includeByDefault": true,
       "sectionJsonPath": "sections/poem-102.json",
-      "characterCount": 1168,
-      "wordCount": 216,
+      "characterCount": 1179,
+      "wordCount": 217,
       "estimatedTypingMinutes": 6,
       "estimatedListeningMinutes": 7,
-      "morseCharacterEstimate": 6232,
-      "textPreview": "Georgine Sand Miner A stepmother drove me from home, embittering me. A squaw-man, a flaneur and dilettante took my virtue. For years I was his mistress-no one..."
+      "morseCharacterEstimate": 6287,
+      "textPreview": "Georgine Sand Miner A stepmother drove me from home, embittering me. A Indigenous woman-man, a flaneur and dilettante took my virtue. For years I was his mistr..."
     },
     {
       "id": "poem-103",
@@ -2935,11 +2935,11 @@
       "order": 193,
       "includeByDefault": true,
       "sectionJsonPath": "sections/poem-193.json",
-      "characterCount": 1113,
+      "characterCount": 1112,
       "wordCount": 206,
       "estimatedTypingMinutes": 6,
       "estimatedListeningMinutes": 7,
-      "morseCharacterEstimate": 5992,
+      "morseCharacterEstimate": 5983,
       "textPreview": "Harry Wilmans I was just turned twenty-one, And Henry Phipps, the Sunday-school superintendent, Made a speech in Bindle's Opera House. \"The honor of the flag m..."
     },
     {
@@ -3725,7 +3725,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 237809,
-    "cleanedCharacterCount": 205179,
+    "cleanedCharacterCount": 205189,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

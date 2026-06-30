@@ -5,8 +5,8 @@
   "author": [
     "E. Nesbit"
   ],
-  "contentVersion": "f0719bd1d4819791",
-  "contentHash": "f0719bd1d4819791589869ff2297242029474f118f3c1fc4c0d44379efc991ba",
+  "contentVersion": "a211007d284ab5dc",
+  "contentHash": "a211007d284ab5dc570d3bba407d06a73a0fce401086db5eb0993a4d96ed8705",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 323930,
-    "cleanedCharacterCount": 288455,
-    "wordCount": 53072,
+    "cleanedCharacterCount": 288495,
+    "wordCount": 53076,
     "sectionCount": 10,
     "includedSectionCount": 10
   },
@@ -190,17 +190,17 @@
       "order": 10,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-010.json",
-      "characterCount": 46611,
-      "wordCount": 8434,
-      "estimatedTypingMinutes": 241,
+      "characterCount": 46651,
+      "wordCount": 8438,
+      "estimatedTypingMinutes": 211,
       "estimatedListeningMinutes": 281,
-      "morseCharacterEstimate": 252456,
+      "morseCharacterEstimate": 252665,
       "textPreview": "CHAPTER X SCALPS Probably the day would have been a greater success if Cyril had not been reading _The Last of the Mohicans_. The story was running in his head..."
     }
   ],
   "cleaning": {
     "originalCharacterCount": 323930,
-    "cleanedCharacterCount": 288455,
+    "cleanedCharacterCount": 288495,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

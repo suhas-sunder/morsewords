@@ -5,8 +5,8 @@
   "author": [
     "Robert Louis Stevenson"
   ],
-  "contentVersion": "f96e4d6028b6fb16",
-  "contentHash": "f96e4d6028b6fb16925c4d6909172851569c94f07f521ba9578554a5ac41cdbc",
+  "contentVersion": "9b7005e042b81d84",
+  "contentHash": "9b7005e042b81d84cadc0abd25a541ef513aaeb457e2e844d93625f1b5235012",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,8 +35,8 @@
   },
   "stats": {
     "originalCharacterCount": 451252,
-    "cleanedCharacterCount": 409343,
-    "wordCount": 80562,
+    "cleanedCharacterCount": 409348,
+    "wordCount": 80563,
     "sectionCount": 30,
     "includedSectionCount": 30
   },
@@ -160,11 +160,11 @@
       "order": 8,
       "includeByDefault": true,
       "sectionJsonPath": "sections/chapter-008.json",
-      "characterCount": 9842,
-      "wordCount": 1948,
-      "estimatedTypingMinutes": 56,
+      "characterCount": 9847,
+      "wordCount": 1949,
+      "estimatedTypingMinutes": 49,
       "estimatedListeningMinutes": 59,
-      "morseCharacterEstimate": 52618,
+      "morseCharacterEstimate": 52652,
       "textPreview": "CHAPTER VIII THE ROUND-HOUSE One night, about eleven o’clock, a man of Mr. Riach’s watch (which was on deck) came below for his jacket; and instantly there beg..."
     },
     {
@@ -500,7 +500,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 451252,
-    "cleanedCharacterCount": 409343,
+    "cleanedCharacterCount": 409348,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "high",

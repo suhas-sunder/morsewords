@@ -5,8 +5,8 @@
   "author": [
     "William Shakespeare"
   ],
-  "contentVersion": "0226abdea44f95d6",
-  "contentHash": "0226abdea44f95d61a33d6a9d5df284aa5c0ef070faf1aa39f962554a8aaed3c",
+  "contentVersion": "28a09a4b1fd9ec76",
+  "contentHash": "28a09a4b1fd9ec7604074dd8d0f581eecc2337b606a9eff62c67450152ebf0d7",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -35,7 +35,7 @@
   },
   "stats": {
     "originalCharacterCount": 128338,
-    "cleanedCharacterCount": 103226,
+    "cleanedCharacterCount": 103211,
     "wordCount": 18268,
     "sectionCount": 6,
     "includedSectionCount": 5
@@ -75,7 +75,7 @@
       "wordCount": 4038,
       "estimatedTypingMinutes": 101,
       "estimatedListeningMinutes": 138,
-      "morseCharacterEstimate": 123731,
+      "morseCharacterEstimate": 123729,
       "textPreview": "ACT I SCENE I. An open Place. Thunder and Lightning. Enter three Witches. FIRST WITCH. When shall we three meet again? In thunder, lightning, or in rain? SECON..."
     },
     {
@@ -141,7 +141,7 @@
   ],
   "cleaning": {
     "originalCharacterCount": 128338,
-    "cleanedCharacterCount": 103226,
+    "cleanedCharacterCount": 103211,
     "headerStripped": true,
     "footerStripped": true,
     "confidence": "medium",
