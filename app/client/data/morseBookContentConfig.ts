@@ -1,3 +1,5 @@
+export const MORSE_BOOK_CONTENT_BASE_URL = "https://assets.morsewords.com";
+
 export function normalizeMorseBookContentBaseUrl(value: unknown) {
   return typeof value === "string" && value.trim()
     ? value.trim().replace(/\/+$/, "")
@@ -6,7 +8,7 @@ export function normalizeMorseBookContentBaseUrl(value: unknown) {
 
 export function getMorseBookPublicContentUrls(
   bookPath = "books/example.json",
-  baseUrl = "",
+  baseUrl = MORSE_BOOK_CONTENT_BASE_URL,
 ) {
   const normalizedBaseUrl = normalizeMorseBookContentBaseUrl(baseUrl);
   const normalizedPath = bookPath.replace(/^\/+/, "");

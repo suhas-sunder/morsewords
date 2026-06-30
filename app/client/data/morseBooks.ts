@@ -24,6 +24,7 @@ import type {
 import { getDefaultMorseBookLiveSectionId } from "./morseBookSectionDefaults";
 import { preserveMorseBookDisplayTitle } from "./morseBookDisplay";
 import {
+  MORSE_BOOK_CONTENT_BASE_URL,
   getMorseBookPublicContentUrls as getConfiguredMorseBookPublicContentUrls,
   normalizeMorseBookContentBaseUrl,
 } from "./morseBookContentConfig";
@@ -540,10 +541,13 @@ function normalizeContentBaseUrl(value: unknown) {
 }
 
 export function getMorseBookContentBaseUrl() {
-  return normalizeContentBaseUrl(
+  const configuredBaseUrl = normalizeContentBaseUrl(
     import.meta.env.VITE_MORSE_BOOK_CONTENT_BASE_URL ||
       import.meta.env.PUBLIC_MORSE_BOOK_CONTENT_BASE_URL,
   );
+  if (configuredBaseUrl) return configuredBaseUrl;
+  if (import.meta.env.DEV) return "";
+  return MORSE_BOOK_CONTENT_BASE_URL;
 }
 
 function cloudflareContentUrl(path: string) {

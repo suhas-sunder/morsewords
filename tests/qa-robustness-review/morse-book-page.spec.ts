@@ -166,7 +166,7 @@ const LIVE_PREVIEW_AUDIO_CONTROL_LABELS = [
   "Volume",
 ] as const;
 function bookJsonPattern(slug: string) {
-  return `**/morse-book-content/books/${slug}.json*`;
+  return `**/books/${slug}.json*`;
 }
 
 function bookPreviewPattern(slug: string) {
@@ -860,6 +860,12 @@ test.describe("Morse book page foundation", () => {
   test("builds local fallback and configured Cloudflare content URLs", () => {
     expect(
       getMorseBookPublicContentUrls("books/treasure-island.json"),
+    ).toEqual({
+      publicManifestUrl: "https://assets.morsewords.com/public-manifest.json",
+      bookUrl: "https://assets.morsewords.com/books/treasure-island.json",
+    });
+    expect(
+      getMorseBookPublicContentUrls("books/treasure-island.json", ""),
     ).toEqual({
       publicManifestUrl:
         "local:app/client/assets/books/cloudflare-export/public-manifest.json",

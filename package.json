@@ -92,6 +92,7 @@
     "books:cloudflare-export-audit": "node --experimental-strip-types scripts/books/cloudflare-export-audit.ts",
     "books:cloudflare-post-upload-validation": "node --experimental-strip-types scripts/books/cloudflare-post-upload-validation.ts",
     "books:post-export-book-route-validation": "node --experimental-strip-types scripts/books/post-export-book-route-validation.ts",
+    "books:payload-hydration-completeness-audit": "node --experimental-strip-types scripts/books/book-payload-hydration-completeness-audit.ts",
     "books:netlify-function-size-audit": "node --experimental-strip-types scripts/books/netlify-function-size-audit.ts",
     "books:no-cloudflare-export-app-imports": "node --experimental-strip-types scripts/books/assert-no-app-cloudflare-export-imports.ts",
     "books:story-title-display-audit": "node --experimental-strip-types scripts/books/story-title-display-integrity-audit.ts",

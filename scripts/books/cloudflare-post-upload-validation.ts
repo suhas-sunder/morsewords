@@ -47,6 +47,7 @@ const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
 const EXPORT_ROOT = path.join(REPO_ROOT, "app/client/assets/books/cloudflare-export");
 const EXPECTED_COUNT = 519;
+const DEFAULT_REMOTE_BASE_URL = "https://assets.morsewords.com";
 const BAD_LABELS = [
   "Unknown author",
   "Unknown source",
@@ -128,16 +129,7 @@ function compareBook(
 }
 
 async function main() {
-  const baseUrl = normalizeBaseUrl(
-    process.env.VITE_MORSE_BOOK_CONTENT_BASE_URL ||
-      process.env.PUBLIC_MORSE_BOOK_CONTENT_BASE_URL,
-  );
-
-  if (!baseUrl) {
-    throw new Error(
-      "Set VITE_MORSE_BOOK_CONTENT_BASE_URL or PUBLIC_MORSE_BOOK_CONTENT_BASE_URL to the served Cloudflare/R2 book export base URL before running post-upload validation.",
-    );
-  }
+  const baseUrl = normalizeBaseUrl(DEFAULT_REMOTE_BASE_URL);
 
   const localManifest = readJson<ExportPublicManifest>(
     path.join(EXPORT_ROOT, "public-manifest.json"),

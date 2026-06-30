@@ -1,0 +1,566 @@
+{
+  "schemaVersion": 1,
+  "reportName": "book-payload-hydration-completeness-blocker",
+  "generatedAt": "2026-06-30T03:40:45.183Z",
+  "branch": "morsewords-book-payload-hydration-completeness-blocker-jun-2026",
+  "executiveResult": "Book payload hydration/completeness validation passed locally; real remote Cloudflare validation still requires served base URL.",
+  "ownerObservedFailures": [
+    "The Call of Cthulhu appeared live but showed unavailable text.",
+    "Some pages appeared to render only starter/default text instead of full Cloudflare/export content.",
+    "Some pages appeared to expose only Chapter 1 or partial section pickers.",
+    "The desired behavior is immediate starter preview followed by full served export payload hydration."
+  ],
+  "localServedExportSetup": {
+    "exportDirectory": "app/client/assets/books/cloudflare-export",
+    "baseUrlUsedForLocalRouteValidation": "Local route validation starts a static server for app/client/assets/books/cloudflare-export.",
+    "note": "The export directory remains ignored/untracked; the app must fetch it over HTTP, not import it."
+  },
+  "fullPayloadHydrationResult": {
+    "result": "pass",
+    "generatedLiveBooks": 519,
+    "exportPayloads": 519,
+    "missingExportPayloads": [],
+    "extraExportPayloads": [],
+    "starterOnlyPayloads": []
+  },
+  "starterPreviewFallbackResult": {
+    "result": "pass",
+    "startupPreviews": 519,
+    "missingPreviewSlugs": [],
+    "note": "Every live generated slug must keep readable startup preview data so failed full hydration cannot collapse into a dead page."
+  },
+  "bookTextUnavailableStateResult": {
+    "result": "pass",
+    "liveSlugsThatWouldRouteUnavailable": [],
+    "note": "Live generated books with startup preview and export payload coverage should not route to the full unavailable state."
+  },
+  "sectionPickerHydrationResult": {
+    "result": "pass",
+    "sectionMismatches": [],
+    "note": "Section picker data should hydrate from the full export payload and match generated section counts."
+  },
+  "suspiciousTruncationChapterOneOnlyAuditResult": {
+    "result": "warning",
+    "suspiciousBooks": [
+      {
+        "slug": "a-japanese-blossom",
+        "title": "A Japanese Blossom",
+        "sectionCount": 29,
+        "wordCount": 32330,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "a-journey-to-the-centre-of-the-earth",
+        "title": "A Journey to the Centre of the Earth",
+        "sectionCount": 44,
+        "wordCount": 85953,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "a-midsummer-night-s-dream",
+        "title": "A Midsummer Night's Dream",
+        "sectionCount": 5,
+        "wordCount": 17128,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "agamemnon-of-aeschylus",
+        "title": "The Agamemnon of Aeschylus",
+        "sectionCount": 1,
+        "wordCount": 15029,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "an-ideal-husband",
+        "title": "An Ideal Husband",
+        "sectionCount": 4,
+        "wordCount": 30606,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "at-the-mountains-of-madness",
+        "title": "At the Mountains of Madness",
+        "sectionCount": 12,
+        "wordCount": 39952,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "botchan",
+        "title": "Botchan (Master Darling)",
+        "sectionCount": 13,
+        "wordCount": 48340,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "dagon",
+        "title": "Dagon",
+        "sectionCount": 1,
+        "wordCount": 2096,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "five-children-and-it",
+        "title": "Five Children and It",
+        "sectionCount": 10,
+        "wordCount": 53072,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "herland",
+        "title": "Herland",
+        "sectionCount": 12,
+        "wordCount": 53303,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "hero-myths-and-legends-of-the-british-race",
+        "title": "Hero-Myths & Legends of the British Race",
+        "sectionCount": 16,
+        "wordCount": 113816,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "howards-end",
+        "title": "Howards End",
+        "sectionCount": 40,
+        "wordCount": 102245,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "little-women",
+        "title": "Little Women; Or, Meg, Jo, Beth, and Amy",
+        "sectionCount": 47,
+        "wordCount": 186597,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "love-among-the-chickens",
+        "title": "Love Among the Chickens",
+        "sectionCount": 23,
+        "wordCount": 49169,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "macbeth",
+        "title": "Macbeth",
+        "sectionCount": 6,
+        "wordCount": 18268,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "murder-in-the-maze",
+        "title": "Murder in the Maze",
+        "sectionCount": 18,
+        "wordCount": 75608,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "parnassus-on-wheels",
+        "title": "Parnassus on Wheels",
+        "sectionCount": 6,
+        "wordCount": 12740,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "pickman-s-model",
+        "title": "Pickman's Model",
+        "sectionCount": 1,
+        "wordCount": 5278,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "romeo-and-juliet",
+        "title": "Romeo and Juliet",
+        "sectionCount": 6,
+        "wordCount": 25690,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "room-13",
+        "title": "Room 13",
+        "sectionCount": 33,
+        "wordCount": 59509,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-cask-of-amontillado",
+        "title": "The Cask of Amontillado",
+        "sectionCount": 1,
+        "wordCount": 2334,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-cats-of-ulthar",
+        "title": "The Cats of Ulthar",
+        "sectionCount": 1,
+        "wordCount": 1350,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-dreams-in-the-witch-house",
+        "title": "The Dreams in the Witch-House",
+        "sectionCount": 1,
+        "wordCount": 11527,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-dunwich-horror",
+        "title": "The Dunwich horror",
+        "sectionCount": 10,
+        "wordCount": 17250,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-importance-of-being-earnest-a-trivial-comedy-for-serious-people",
+        "title": "The Importance of Being Earnest: A Trivial Comedy for Serious People",
+        "sectionCount": 3,
+        "wordCount": 20485,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-jungle-book",
+        "title": "The Jungle Book",
+        "sectionCount": 14,
+        "wordCount": 51118,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-laughing-cavalier-the-story-of-the-ancestor-of-the-scarlet-pimpernel",
+        "title": "The Laughing Cavalier: The Story of the Ancestor of the Scarlet Pimpernel",
+        "sectionCount": 45,
+        "wordCount": 121908,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-murders-in-the-rue-morgue",
+        "title": "The Murders in the Rue Morgue",
+        "sectionCount": 1,
+        "wordCount": 13871,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-mystery-of-edwin-drood",
+        "title": "The Mystery of Edwin Drood",
+        "sectionCount": 23,
+        "wordCount": 95723,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-nameless-city",
+        "title": "The Nameless City",
+        "sectionCount": 1,
+        "wordCount": 5032,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-sea-wolf",
+        "title": "The Sea-Wolf",
+        "sectionCount": 40,
+        "wordCount": 107100,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-secret-garden",
+        "title": "The Secret Garden",
+        "sectionCount": 29,
+        "wordCount": 81317,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-shadow-out-of-time",
+        "title": "The Shadow Out of Time",
+        "sectionCount": 1,
+        "wordCount": 25412,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-strange-high-house-in-the-mist",
+        "title": "The Strange High House in the Mist",
+        "sectionCount": 1,
+        "wordCount": 3789,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "the-whisperer-in-darkness",
+        "title": "The Whisperer in Darkness",
+        "sectionCount": 1,
+        "wordCount": 26501,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      },
+      {
+        "slug": "under-the-red-dragon",
+        "title": "Under the Red Dragon: A Novel",
+        "sectionCount": 61,
+        "wordCount": 152397,
+        "warnings": [
+          "export content appears to end mid-sentence"
+        ]
+      }
+    ],
+    "note": "Warnings are reported for manual review; no generated content was changed by this audit."
+  },
+  "specificSlugResults": [
+    {
+      "slug": "the-call-of-cthulhu",
+      "live": true,
+      "generatedTitle": "The call of Cthulhu",
+      "generatedSections": 3,
+      "generatedWords": 11809,
+      "previewPresent": true,
+      "previewCharacters": 8994,
+      "exportPresent": true,
+      "exportSections": 3,
+      "exportWords": 11809,
+      "exportCharacters": 138910,
+      "fullPayloadLongerThanPreview": true,
+      "routeShouldShowUnavailable": false,
+      "notes": [
+        "Live generated book with starter preview and full export payload; unavailable state is not expected after deployment."
+      ]
+    },
+    {
+      "slug": "five-little-friends",
+      "live": true,
+      "generatedTitle": "Five Little Friends",
+      "generatedSections": 2,
+      "generatedWords": 11574,
+      "previewPresent": true,
+      "previewCharacters": 1229,
+      "exportPresent": true,
+      "exportSections": 2,
+      "exportWords": 11574,
+      "exportCharacters": 120544,
+      "fullPayloadLongerThanPreview": true,
+      "routeShouldShowUnavailable": false,
+      "notes": []
+    },
+    {
+      "slug": "the-leavenworth-case",
+      "live": true,
+      "generatedTitle": "The Leavenworth Case",
+      "generatedSections": 39,
+      "generatedWords": 110828,
+      "previewPresent": true,
+      "previewCharacters": 1224,
+      "exportPresent": true,
+      "exportSections": 39,
+      "exportWords": 110828,
+      "exportCharacters": 1223666,
+      "fullPayloadLongerThanPreview": true,
+      "routeShouldShowUnavailable": false,
+      "notes": []
+    },
+    {
+      "slug": "walden",
+      "live": true,
+      "generatedTitle": "Walden",
+      "generatedSections": 18,
+      "generatedWords": 107126,
+      "previewPresent": true,
+      "previewCharacters": 1147,
+      "exportPresent": true,
+      "exportSections": 18,
+      "exportWords": 107126,
+      "exportCharacters": 582629,
+      "fullPayloadLongerThanPreview": true,
+      "routeShouldShowUnavailable": false,
+      "notes": []
+    },
+    {
+      "slug": "the-bottle-imp",
+      "live": true,
+      "generatedTitle": "The Bottle Imp",
+      "generatedSections": 1,
+      "generatedWords": 12211,
+      "previewPresent": true,
+      "previewCharacters": 1048,
+      "exportPresent": true,
+      "exportSections": 1,
+      "exportWords": 12211,
+      "exportCharacters": 123732,
+      "fullPayloadLongerThanPreview": true,
+      "routeShouldShowUnavailable": false,
+      "notes": []
+    },
+    {
+      "slug": "middlemarch",
+      "live": true,
+      "generatedTitle": "Middlemarch",
+      "generatedSections": 88,
+      "generatedWords": 318237,
+      "previewPresent": true,
+      "previewCharacters": 1128,
+      "exportPresent": true,
+      "exportSections": 88,
+      "exportWords": 318237,
+      "exportCharacters": 3558278,
+      "fullPayloadLongerThanPreview": true,
+      "routeShouldShowUnavailable": false,
+      "notes": []
+    },
+    {
+      "slug": "the-happy-prince",
+      "live": true,
+      "generatedTitle": "The Happy Prince",
+      "generatedSections": 1,
+      "generatedWords": 3491,
+      "previewPresent": true,
+      "previewCharacters": 1196,
+      "exportPresent": true,
+      "exportSections": 1,
+      "exportWords": 3491,
+      "exportCharacters": 36856,
+      "fullPayloadLongerThanPreview": true,
+      "routeShouldShowUnavailable": false,
+      "notes": []
+    },
+    {
+      "slug": "the-masque-of-the-red-death",
+      "live": true,
+      "generatedTitle": "The Masque of the Red Death",
+      "generatedSections": 1,
+      "generatedWords": 2422,
+      "previewPresent": true,
+      "previewCharacters": 9216,
+      "exportPresent": true,
+      "exportSections": 1,
+      "exportWords": 2422,
+      "exportCharacters": 27422,
+      "fullPayloadLongerThanPreview": true,
+      "routeShouldShowUnavailable": false,
+      "notes": []
+    },
+    {
+      "slug": "the-jungle-book",
+      "live": true,
+      "generatedTitle": "The Jungle Book",
+      "generatedSections": 14,
+      "generatedWords": 51118,
+      "previewPresent": true,
+      "previewCharacters": 10001,
+      "exportPresent": true,
+      "exportSections": 14,
+      "exportWords": 51118,
+      "exportCharacters": 542554,
+      "fullPayloadLongerThanPreview": true,
+      "routeShouldShowUnavailable": false,
+      "notes": []
+    },
+    {
+      "slug": "the-adventures-of-roderick-random",
+      "live": true,
+      "generatedTitle": "The Adventures of Roderick Random",
+      "generatedSections": 69,
+      "generatedWords": 188889,
+      "previewPresent": true,
+      "previewCharacters": 9080,
+      "exportPresent": true,
+      "exportSections": 69,
+      "exportWords": 188889,
+      "exportCharacters": 2122780,
+      "fullPayloadLongerThanPreview": true,
+      "routeShouldShowUnavailable": false,
+      "notes": [
+        "Owner-observed Chapter 1 label belongs to this live book; export has 69 sections, so a one-section picker would indicate hydration/display failure."
+      ]
+    }
+  ],
+  "fixesMade": [
+    "Production book full-payload URLs now default to https://assets.morsewords.com without requiring a Netlify env var.",
+    "Local dev keeps the /morse-book-content fallback unless a content base URL override is explicitly provided.",
+    "Post-upload validation now validates the known assets.morsewords.com export host by default.",
+    "Existing book-page request assertions now accept any configured /books/<slug>.json content base instead of only the dev fallback route.",
+    "Book translator source building now treats export-section display text as the Morse source fallback when public export sections do not include a separate morseSourceText field."
+  ],
+  "remainingBlockers": [],
+  "netlifyEnvVarRequired": {
+    "required": false,
+    "note": "No Netlify env var is required for the default production book content host; VITE_MORSE_BOOK_CONTENT_BASE_URL/PUBLIC_MORSE_BOOK_CONTENT_BASE_URL remain optional local overrides."
+  },
+  "realRemoteCloudflareValidationStatus": {
+    "status": "not-claimed",
+    "note": "This branch does not claim a separate owner-provided R2 base URL validation. The app default is the observed assets.morsewords.com URL pattern."
+  },
+  "laterContentQualityCheckpoints": [
+    "Sources page trust-copy update",
+    "About page E-E-A-T sentence",
+    "Repeated helper-copy reduction"
+  ],
+  "deferredFinalStages": [
+    "Non-book sitemap page implementation",
+    "URL/indexability audit",
+    "GSC/meta review",
+    "Image alt text audit",
+    "Broad mobile optimization"
+  ]
+}
