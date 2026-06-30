@@ -374,7 +374,7 @@ const FLAG_RULES: FlagRule[] = [
 
 const FLAGGED_SPECIFIC_SLUGS = [
   "the-call-of-cthulhu",
-  "roderick-random",
+  "the-adventures-of-roderick-random",
   "walden",
   "the-leavenworth-case",
   "middlemarch",

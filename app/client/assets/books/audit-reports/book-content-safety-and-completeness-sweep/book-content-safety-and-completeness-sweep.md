@@ -88,6 +88,7 @@ Result: pass; warnings are heuristic review signals only
 | --- | --- | --- | --- |
 | five-little-friends | 2 | 11574 | pass |
 | middlemarch | 88 | 318237 | pass |
+| the-adventures-of-roderick-random | 69 | 188895 | pass |
 | the-bottle-imp | 1 | 12211 | pass |
 | the-call-of-cthulhu | 3 | 11811 | pass |
 | the-jungle-book | 14 | 51118 | pass |
