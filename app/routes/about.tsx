@@ -327,6 +327,12 @@ export default function About() {
               Remix, Node.js, and responsive interface work.
             </p>
             <p>
+              My Electrical and Computer Engineering background, including a
+              Master's completed in December 2025, also shapes how I approach
+              Morse code as a practical system of encoding, timing, audio, and
+              signal transmission.
+            </p>
+            <p>
               MorseWords exists because many Morse code sites are either very
               sparse converters or dense training resources. This site is meant
               to sit between those extremes: practical enough for repeated use,

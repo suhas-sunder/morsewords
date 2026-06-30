@@ -1,0 +1,89 @@
+{
+  "executiveResult": "GSC/meta/content-quality review passed",
+  "gscSearchConsoleInputAvailability": {
+    "available": false,
+    "note": "No local Search Console export was available; this was a static metadata and content-quality pass."
+  },
+  "pagesInspected": {
+    "sitemapUrls": 1651,
+    "staticRouteMetadataRecords": 125,
+    "contentDataMetadataRecords": 6,
+    "totalMetadataRecords": 1688,
+    "titlesInspected": 1616,
+    "metaDescriptionsInspected": 1616
+  },
+  "metadataAuditResult": {
+    "missingTitles": 0,
+    "missingMetaDescriptions": 0,
+    "missingH1Markers": 0,
+    "placeholderOrComingSoonIssues": 0,
+    "result": "pass"
+  },
+  "duplicateTitleMetaResult": {
+    "duplicateTitleBlockers": 0,
+    "duplicateMetaDescriptions": 0,
+    "note": "Dynamic book and audiobook route metadata now distinguishes retained duplicate public titles by source variant where needed."
+  },
+  "weakGenericMetaResult": {
+    "weakOrGenericMetaDescriptions": 0,
+    "titleLengthWarnings": 34,
+    "note": "Title length findings are tracked as review warnings because the remaining cases are mostly legitimate long book titles rather than duplicate or missing metadata blockers."
+  },
+  "repeatedHelperCopyScanResult": {
+    "blockers": 0,
+    "phraseCounts": [
+      { "phrase": "Quick answers for spacing", "count": 1 },
+      { "phrase": "Move into drills", "count": 1 },
+      { "phrase": "Jump between translator", "count": 0 },
+      { "phrase": "Use the translator", "count": 4 },
+      { "phrase": "Practice with words", "count": 0 },
+      { "phrase": "Copy and paste", "count": 14 }
+    ],
+    "note": "The scanned repeated helper phrases did not appear as broad duplicated helper blocks requiring route copy rewrites in this pass."
+  },
+  "sourcesPageTrustCopyUpdate": {
+    "status": "updated",
+    "changes": [
+      "Clarified that book and source material is selected from public-domain collections or other permitted sources.",
+      "Clarified that entries are reviewed before inclusion.",
+      "Clarified that source links are provided where available.",
+      "Clarified that metadata and source details are corrected when better information is found.",
+      "Clarified that concerns, corrections, attribution updates, and takedown requests can be reported."
+    ]
+  },
+  "aboutPageEeAtUpdate": {
+    "status": "updated",
+    "change": "Added a concise sentence connecting the owner's Electrical and Computer Engineering background, including a Master's completed in December 2025, to Morse code as encoding, timing, audio, and signal transmission work."
+  },
+  "pagesChanged": [
+    "/sources",
+    "/about",
+    "/morse-code-books/:slug metadata",
+    "/morse-code-audiobooks/:slug metadata"
+  ],
+  "pagesIntentionallyLeftUnchanged": [
+    "Most static indexable routes because the audit found no missing title, description, H1, placeholder, or weak/generic metadata blockers.",
+    "Generated book payloads, SEO summaries, and starter previews because the book subsystem is protected and already validated.",
+    "Sitemap and canonical rules because the prior full URL/indexability/canonical audit passed and no content-quality bug required changing them."
+  ],
+  "bookSubsystemRegressionCheck": {
+    "generatedBooks": 519,
+    "seoSummaries": 519,
+    "startupPreviews": 519,
+    "bookUrls": 519,
+    "audiobookUrls": 519,
+    "printableBookUrls": 488,
+    "cloudflareExportTrackedFiles": 0,
+    "status": "unchanged"
+  },
+  "sitemapCanonicalPreservationCheck": {
+    "status": "preserved",
+    "note": "No sitemap membership, canonical, redirect, noindex, or Cloudflare export tracking changes were made in this branch."
+  },
+  "remainingContentQualityFollowUps": [
+    "Use real Search Console exports later if the owner provides them.",
+    "Review title-length warnings during future manual SERP/meta tuning rather than forcing automated title truncation.",
+    "Keep broad mobile optimization deferred to the final mobile stage."
+  ],
+  "deferredFinalMobileOptimizationStage": "Broad mobile optimization was not started."
+}

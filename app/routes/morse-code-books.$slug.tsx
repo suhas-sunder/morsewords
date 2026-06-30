@@ -11,6 +11,7 @@ import {
   UNPUBLISHED_BOOK_PREVIEW_PARAM,
   UNPUBLISHED_BOOK_PREVIEW_VALUE,
   getDefaultMorseBookSectionId,
+  getDiscoverableMorseBookSummaries,
   getDiscoverableMorseBookSummary,
   getMorseBookManifest,
   getMorseBookSection,
@@ -18,6 +19,29 @@ import {
   morseBookPath,
 } from "~/client/data/morseBooks";
 import { absoluteUrl } from "~/client/data/routes";
+
+const DUPLICATE_DISCOVERABLE_BOOK_TITLES = new Set(
+  [...getDiscoverableMorseBookSummaries().reduce((counts, book) => {
+    const key = book.title.trim().toLowerCase();
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+    return counts;
+  }, new Map<string, number>())]
+    .filter(([, count]) => count > 1)
+    .map(([title]) => title),
+);
+
+function duplicateTitleVariant(book: { slug: string; title: string }) {
+  if (!DUPLICATE_DISCOVERABLE_BOOK_TITLES.has(book.title.trim().toLowerCase())) {
+    return "";
+  }
+  return book.slug.includes("-gutenberg-")
+    ? " (Gutenberg source)"
+    : " (MorseWords source)";
+}
+
+function bookMetaTitle(book: { slug: string; title: string }) {
+  return `${book.title}${duplicateTitleVariant(book)} in Morse Code | MorseWords`;
+}
 
 async function loadMorseBookSeoSummary(slug: string) {
   const { getMorseBookSeoSummary } = await import(
@@ -157,7 +181,7 @@ export const meta: Route.MetaFunction = ({ data }) => {
   const canonical = absoluteUrl(path);
   const seoSummary = data.seoSummary;
   return [
-    { title: `${book.title} in Morse Code | MorseWords` },
+    { title: bookMetaTitle(book) },
     {
       name: "description",
       content:

@@ -101,6 +101,7 @@
     "books:linking-sitemap-audit": "node --experimental-strip-types scripts/books/book-sitemap-nav-internal-linking-audit.ts",
     "pages:planned-non-book-audit": "node --experimental-strip-types scripts/audit-planned-non-book-pages.ts",
     "pages:url-indexability-canonical-audit": "node --experimental-strip-types scripts/audit-url-indexability-canonical.ts",
+    "pages:gsc-meta-content-quality-audit": "node --experimental-strip-types scripts/audit-gsc-meta-content-quality.ts",
     "books:build-previews": "node --experimental-strip-types scripts/books/build-book-previews.ts",
     "books:candidate-report": "node --experimental-strip-types scripts/books/generate-first-publication-candidate-report.ts",
     "books:enrich-metadata": "node --experimental-strip-types scripts/books/enrich-book-metadata.ts",

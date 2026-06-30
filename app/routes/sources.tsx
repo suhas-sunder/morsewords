@@ -47,15 +47,15 @@ export default function SourcesRoute() {
             Public-domain book texts
           </h2>
           <p>
-            MorseWords may include book texts and related source material that
-            are believed to be public domain or otherwise permitted for the
-            intended use. These texts can be used as longer Morse reading,
-            listening, print, and MP3 practice sources.
+            MorseWords selects book texts and related source material from
+            public-domain collections or other sources that are permitted for
+            the intended reading, listening, print, and MP3 practice workflows.
           </p>
           <p>
             Project Gutenberg and other public-domain or source-based
-            collections may be used. Source links are provided where available
-            on book or reference pages.
+            collections may be used. Entries are reviewed before inclusion, and
+            source links are provided on book or reference pages where they are
+            available.
           </p>
         </section>
 
@@ -64,9 +64,9 @@ export default function SourcesRoute() {
             Source metadata
           </h2>
           <p>
-            Source metadata may be incomplete for some items and can be
-            improved over time. A source link or source note is meant to help
-            users inspect the material; it is not a guarantee that a text is
+            Metadata and source details are corrected when better information
+            is found. A source link or source note is meant to help users
+            inspect the material; it is not a guarantee that a text is
             available for every use in every jurisdiction.
           </p>
         </section>
@@ -90,8 +90,9 @@ export default function SourcesRoute() {
           </h2>
           <p>
             If you believe a source note is incomplete, a public-domain
-            assumption should be reviewed, or a book/source page needs a better
-            attribution link, email{" "}
+            source status should be reviewed, a book/source page needs a better
+            attribution link, or a takedown request should be considered,
+            email{" "}
             <a
               href={MORSEWORDS_SUPPORT_EMAIL_HREF}
               className="font-semibold text-sky-900 underline-offset-4 hover:underline"

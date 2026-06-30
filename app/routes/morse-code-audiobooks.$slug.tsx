@@ -7,6 +7,7 @@ import {
   getMorseBookPreviewRuntimeContentFromUrl,
 } from "~/client/data/morseBookPreviews";
 import {
+  getDiscoverableMorseBookSummaries,
   getDiscoverableMorseBookSummary,
   isMorseBookPublishReady,
   morseAudiobookPath,
@@ -15,6 +16,35 @@ import {
 import { morseBookAuthorSchemaPeople } from "~/client/data/morseBookDisplay";
 import { absoluteUrl } from "~/client/data/routes";
 import { SITE_URL } from "~/client/seo";
+
+const DUPLICATE_DISCOVERABLE_BOOK_TITLES = new Set(
+  [...getDiscoverableMorseBookSummaries().reduce((counts, book) => {
+    const key = book.title.trim().toLowerCase();
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+    return counts;
+  }, new Map<string, number>())]
+    .filter(([, count]) => count > 1)
+    .map(([title]) => title),
+);
+
+function duplicateTitleVariant(book: { slug: string; title: string }) {
+  if (!DUPLICATE_DISCOVERABLE_BOOK_TITLES.has(book.title.trim().toLowerCase())) {
+    return "";
+  }
+  return book.slug.includes("-gutenberg-")
+    ? " (Gutenberg source)"
+    : " (MorseWords source)";
+}
+
+function audiobookMetaTitle(book: { slug: string; title: string }) {
+  return `${book.title}${duplicateTitleVariant(book)} Live Morse Player | MorseWords`;
+}
+
+function audiobookMetaDescription(book: { slug: string; title: string }) {
+  const variant = duplicateTitleVariant(book).replace(/[()]/g, "").trim();
+  const title = variant ? `${book.title} ${variant}` : book.title;
+  return `Listen to ${title} as a live Morse audiobook with chapter selection, playback controls, and MP3 download.`;
+}
 
 async function loadMorseBookSeoSummary(slug: string) {
   const { getMorseBookSeoSummary } = await import(
@@ -67,13 +97,15 @@ export const meta: Route.MetaFunction = ({ data }) => {
   const path = morseAudiobookPath(book.slug);
   const canonical = absoluteUrl(path);
   const seoSummary = data.seoSummary;
+  const fallbackDescription =
+    seoSummary?.description ??
+    `Live browser-generated Morse player controls for ${book.title}.`;
+  const description = audiobookMetaDescription(book) || fallbackDescription;
   return [
-    { title: `${book.title} Live Morse Player | MorseWords` },
+    { title: audiobookMetaTitle(book) },
     {
       name: "description",
-      content:
-        seoSummary?.description ??
-        `Watch and listen to ${book.title} as live browser-generated Morse code with chapter selection, scrubbing, and saved progress.`,
+      content: description,
     },
     { tagName: "link", rel: "canonical", href: canonical },
     { property: "og:url", content: canonical },
@@ -90,15 +122,17 @@ export default function MorseAudiobookRoute({
   const bookUrl = absoluteUrl(morseBookPath(book.slug));
   const author = morseBookAuthorSchemaPeople(book.author);
   const seoSummary = loaderData.seoSummary;
+  const fallbackDescription =
+    seoSummary?.description ??
+    `Live browser-generated Morse player controls for ${book.title}.`;
+  const description = audiobookMetaDescription(book) || fallbackDescription;
   const detailJsonLd = [
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
       name: `${book.title} live Morse player`,
       url: audiobookUrl,
-      description:
-        seoSummary?.description ??
-        `Live browser-generated Morse player controls for ${book.title}.`,
+      description,
       isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
       about: {
         "@type": "Book",
