@@ -1,5 +1,4 @@
 import libraryManifestJson from "~/client/assets/books/generated/library-manifest.json";
-import publicManifestJson from "~/client/assets/books/cloudflare-export/public-manifest.json";
 import {
   safeReadStorage,
   safeRemoveStorage,
@@ -38,7 +37,6 @@ export const TEST_COLLECTION_BOOK_PREVIEW_VALUE = "test-collection";
 export const TEST_PUBLISHED_BOOK_SLUG = "test-published-morse-book";
 
 const libraryManifest = libraryManifestJson as MorseBookLibraryManifest;
-const publicManifest = publicManifestJson as unknown as MorseBookPublicManifest;
 const BOOK_CACHE_TOTAL_MAX = 4_800_000;
 const BOOK_CACHE_ENTRY_MAX = 3;
 
@@ -367,7 +365,7 @@ function isCacheablePublicBook(content: MorseBookPublicContentJson) {
 }
 
 function readCachedPublicBook(
-  summary: Pick<MorseBookPublicSummary, "slug" | "contentVersion" | "contentHash">,
+  summary: MorseBookPublicSummary,
 ): MorseBookPublicContentJson | null {
   const key = bookCacheKey(summary);
   const raw = safeReadStorage(key);
@@ -376,12 +374,7 @@ function readCachedPublicBook(
     const parsed = normalizePublicBookContent(
       JSON.parse(raw) as MorseBookPublicContentJson,
     );
-    if (
-      parsed.slug !== summary.slug ||
-      parsed.contentVersion !== summary.contentVersion ||
-      parsed.contentHash !== summary.contentHash ||
-      !isCacheablePublicBook(parsed)
-    ) {
+    if (!validatePublicContentForSummary(parsed, summary)) {
       safeRemoveStorage(key);
       return null;
     }
@@ -401,9 +394,12 @@ function readCachedPublicBook(
   }
 }
 
-function writeCachedPublicBook(content: MorseBookPublicContentJson) {
+function writeCachedPublicBook(
+  content: MorseBookPublicContentJson,
+  cacheSummary: Pick<MorseBookPublicSummary, "slug" | "contentVersion" | "contentHash"> = content,
+) {
   if (!isCacheablePublicBook(content)) return;
-  const key = bookCacheKey(content);
+  const key = bookCacheKey(cacheSummary);
   const value = JSON.stringify(content);
   if (value.length > STORAGE_LIMITS.bookCacheItemMaxLength) return;
   const writeResult = safeWriteStorageResult(key, value);
@@ -420,8 +416,8 @@ function writeCachedPublicBook(content: MorseBookPublicContentJson) {
     {
       key,
       slug: content.slug,
-      contentVersion: content.contentVersion,
-      contentHash: content.contentHash,
+      contentVersion: cacheSummary.contentVersion,
+      contentHash: cacheSummary.contentHash,
       bytes: value.length,
       rank: current.nextRank,
     },
@@ -599,6 +595,47 @@ function publicSummaryToLibrarySummary(
     manifestPath: book.bookPath,
   };
 }
+
+function librarySummaryToPublicSummary(
+  book: MorseBookLibrarySummary,
+): MorseBookPublicSummary {
+  return {
+    slug: book.slug,
+    title: book.title,
+    author: book.author,
+    language: book.language,
+    description: book.description,
+    subjects: book.subjects,
+    source: {
+      provider: book.source.provider,
+      gutenbergId: book.source.gutenbergId,
+      sourceUrl: book.source.sourceUrl,
+      rightsBasis: book.source.rightsBasis,
+      rightsStatus: book.source.rightsStatus,
+      publishReady: book.source.publishReady,
+      processingAllowed: book.source.processingAllowed,
+      approvalSource: book.source.approvalSource,
+      duplicateResolutionSource: book.source.duplicateResolutionSource,
+    },
+    stats: book.stats,
+    contentVersion: book.contentVersion,
+    contentHash: book.contentHash,
+    bookPath: `books/${book.slug}.json`,
+  };
+}
+
+function createLocalPublicManifest(
+  manifest: MorseBookLibraryManifest,
+): MorseBookPublicManifest {
+  return {
+    schemaVersion: 1,
+    contentVersion: `generated-library-${manifest.books.length}`,
+    contentHash: "derived-from-generated-library-manifest",
+    books: manifest.books.map(librarySummaryToPublicSummary),
+  };
+}
+
+const publicManifest = createLocalPublicManifest(libraryManifest);
 
 function getLocalPublicSummaries() {
   return publicManifest.books
@@ -808,11 +845,21 @@ function validatePublicContentForSummary(
   content: MorseBookPublicContentJson,
   summary: MorseBookPublicSummary,
 ) {
+  const canonicalSummary = discoverableMorseBooksBySlug.get(summary.slug);
+  const matchesExportManifest =
+    content.contentVersion === summary.contentVersion &&
+    content.contentHash === summary.contentHash;
+  const matchesLocalGeneratedManifestFallback =
+    Boolean(canonicalSummary) &&
+    summary.contentVersion === canonicalSummary?.contentVersion &&
+    summary.contentHash === canonicalSummary?.contentHash &&
+    content.manifest.contentVersion === canonicalSummary?.contentVersion &&
+    content.manifest.contentHash === canonicalSummary?.contentHash;
+
   return (
     content.slug === summary.slug &&
-    content.contentVersion === summary.contentVersion &&
-    content.contentHash === summary.contentHash &&
     content.manifest.slug === summary.slug &&
+    (matchesExportManifest || matchesLocalGeneratedManifestFallback) &&
     isCacheablePublicBook(content)
   );
 }
@@ -845,7 +892,7 @@ export async function getMorseBookPublicContent(slug: string) {
   }
 
   publicBookContentCache.set(memoryKey, content);
-  writeCachedPublicBook(content);
+  writeCachedPublicBook(content, summary);
   return content;
 }
 
