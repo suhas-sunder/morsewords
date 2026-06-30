@@ -1,0 +1,119 @@
+{
+  "reportName": "planned-non-book-sitemap-pages",
+  "branch": "morsewords-planned-non-book-sitemap-pages-jun-2026",
+  "createdAt": "2026-06-30",
+  "executiveResult": "Planned non-book sitemap page pass complete",
+  "sourceInputsInspected": [
+    "public/sitemap.xml",
+    "app/routes.ts",
+    "app/client/data/routes.ts",
+    "app/routes/sitemap.tsx",
+    "app/routes",
+    "scripts/books/book-sitemap-nav-internal-linking-audit.ts",
+    "tests/qa-robustness-review/route-registry.spec.ts",
+    "tests/qa-robustness-review/final-seo-schema-sitemap-audit.spec.ts"
+  ],
+  "plannedNonBookUrlInventory": {
+    "totalSitemapUrls": 1651,
+    "plannedNonBookSitemapUrls": 125,
+    "implementedPlannedNonBookUrls": 125,
+    "missingPlannedNonBookRoutes": 0,
+    "redirectAliasesInXmlSitemap": 0,
+    "placeholderOrComingSoonRoutes": 0,
+    "missingMetadataRoutes": 0,
+    "missingCanonicalRoutes": 0,
+    "groups": {
+      "coreTools": 13,
+      "letterReferencePages": 26,
+      "numberReferencePages": 10,
+      "phraseAndSymbolReferencePages": 34,
+      "languageReferencePages": 4,
+      "siteInformationPages": 6,
+      "bookIndexAndTranslatorPages": 4,
+      "learningAndReferencePages": 28
+    }
+  },
+  "implementedPages": [],
+  "deferredPages": [
+    {
+      "path": "/misc",
+      "reason": "Existing noindex support hub, not an XML sitemap target and not intended as an indexable search landing page."
+    },
+    {
+      "path": "/misc/privacy-policy",
+      "reason": "Existing noindex legacy/support privacy duplicate; canonical public privacy page is /privacy."
+    },
+    {
+      "path": "/misc/terms-of-service",
+      "reason": "Existing noindex legacy/support terms duplicate; canonical public terms page is /terms."
+    },
+    {
+      "path": "/misc/cookies-policy",
+      "reason": "Existing noindex legacy/support cookies duplicate; canonical public cookies page is /cookies."
+    },
+    {
+      "path": "/misc/socials",
+      "reason": "Existing noindex support links page; not an XML sitemap target."
+    },
+    {
+      "path": "/sitemap",
+      "reason": "Existing HTML sitemap is intentionally noindex,follow and should not be listed as an indexable XML sitemap URL."
+    }
+  ],
+  "pagesNotChanged": [
+    {
+      "scope": "125 non-book XML sitemap URLs",
+      "reason": "Every current non-book XML sitemap URL already has a route, metadata, canonical link, and no placeholder/coming-soon marker."
+    },
+    {
+      "scope": "book subsystem",
+      "reason": "Books are protected in this branch; generated payloads, previews, SEO summaries, and export tracking were not changed."
+    }
+  ],
+  "sitemapLinkingResult": {
+    "result": "pass",
+    "bookUrls": 519,
+    "audiobookUrls": 519,
+    "printableBookUrlsInXml": 488,
+    "note": "Printable book URLs are tracked separately from the protected 519 book and 519 audiobook URL counts."
+  },
+  "metadataCanonicalResult": {
+    "result": "pass",
+    "plannedNonBookRoutesWithMetadata": 125,
+    "plannedNonBookRoutesWithCanonical": 125
+  },
+  "placeholderThinContentScanResult": {
+    "result": "pass",
+    "patternsChecked": [
+      "coming soon",
+      "under construction",
+      "not implemented",
+      "lorem ipsum",
+      "placeholder-only"
+    ]
+  },
+  "routeUiCheckResult": {
+    "result": "no new page UI required",
+    "reason": "This pass found no missing non-book XML sitemap route to implement. Existing route smoke, SEO/schema, and final validation cover the unchanged route surfaces."
+  },
+  "bookSubsystemRegressionCheck": {
+    "generatedBooks": 519,
+    "seoSummaries": "519/519",
+    "startupPreviews": 519,
+    "bookUrls": 519,
+    "audiobookUrls": 519,
+    "cloudflareExportTracking": "ignored/untracked"
+  },
+  "remainingPlannedNonBookPageWork": [],
+  "laterContentQualityCheckpoints": [
+    "Sources page trust-copy update",
+    "About page E-E-A-T sentence",
+    "Repeated helper-copy reduction"
+  ],
+  "deferredFinalStages": [
+    "full URL/indexability/canonical audit",
+    "GSC/meta review",
+    "mobile optimization"
+  ],
+  "recommendedNextBranch": "morsewords-full-url-indexability-canonical-audit-jun-2026"
+}
