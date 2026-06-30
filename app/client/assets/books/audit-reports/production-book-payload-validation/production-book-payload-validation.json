@@ -1,0 +1,213 @@
+{
+  "reportName": "production-book-payload-validation",
+  "branch": "morsewords-production-book-payload-validation-jun-2026",
+  "executiveResult": "Production book payload validation passed",
+  "generatedAt": "2026-06-30T19:25:38.363Z",
+  "netlifyDeployedCommitChecked": {
+    "expectedCommit": "d3e3a851d65907a517d6ed5cba13a795d4e3aee8",
+    "currentLocalCommit": "d3e3a851d65907a517d6ed5cba13a795d4e3aee8",
+    "productionAsset": "/assets/morseBooks-Ck8zbUf2.js",
+    "localAssetHash": "a0b33705104912438729224686d8c438a2b40c24602b1d19113a8f271c466baf",
+    "productionAssetHash": "a0b33705104912438729224686d8c438a2b40c24602b1d19113a8f271c466baf",
+    "fingerprintMatched": true,
+    "notes": [
+      "Production HTML does not expose a commit header/string; deploy was checked by hashed bundle fingerprint.",
+      "Production morseBooks bundle hash matches the local build artifact from current main.",
+      "Production bundle contains the https://assets.morsewords.com default."
+    ]
+  },
+  "productionAssetBaseUrl": "https://assets.morsewords.com",
+  "remoteAssetManifestPayloadValidation": {
+    "name": "Remote asset manifest/payload validation",
+    "status": "pass",
+    "notes": [
+      "Remote manifest is reachable and references 519 live books.",
+      "No expected live slugs are missing and no extra slugs are present.",
+      "Sampled remote payloads contain full readable content and expected section counts."
+    ]
+  },
+  "productionRouteIndexCountResult": {
+    "name": "Production route/index count result",
+    "status": "pass",
+    "notes": [
+      "/morse-code-books shows 519.",
+      "/morse-code-audiobooks shows 519."
+    ]
+  },
+  "starterPreviewFirstRenderResult": {
+    "name": "Starter preview first-render result",
+    "status": "pass",
+    "notes": [
+      "Walden starter preview rendered while the production asset-host full payload request was intentionally delayed."
+    ]
+  },
+  "fullPayloadHydrationResult": {
+    "name": "Full payload hydration result",
+    "status": "pass",
+    "notes": [
+      "All sampled live book pages requested full payloads from https://assets.morsewords.com and hydrated successfully."
+    ]
+  },
+  "sectionPickerResult": {
+    "name": "Section picker result",
+    "status": "pass",
+    "notes": [
+      "Sampled section pickers reflected exported section counts, including The Leavenworth Case 39, Walden 18, and The Bottle Imp 1."
+    ]
+  },
+  "cleanedPreviewAndMorsePreviewUpdateResult": {
+    "name": "Cleaned preview and Morse preview update result",
+    "status": "pass",
+    "notes": [
+      "Selecting Walden chapter 002 updated the cleaned preview and Morse preview."
+    ]
+  },
+  "viewWindowControlResult": {
+    "name": "View-window control result",
+    "status": "pass",
+    "notes": [
+      "Selected section state followed the hydrated exported section selection."
+    ]
+  },
+  "audiobookRouteResult": {
+    "name": "Audiobook route result",
+    "status": "pass",
+    "notes": [
+      "Walden audiobook route requested the production asset-host full payload and exposed 18 exported sections."
+    ]
+  },
+  "unavailableStateScanResult": {
+    "name": "Unavailable-state scan result",
+    "status": "pass",
+    "notes": [
+      "No sampled live route showed false unavailable or book-text-unavailable states."
+    ]
+  },
+  "metadataSourceBadLabelScanResult": {
+    "name": "Metadata/source/bad-label surface scan",
+    "status": "pass",
+    "notes": [
+      "Sampled production listing, book, and audiobook surfaces did not expose Unknown/source placeholder labels."
+    ]
+  },
+  "sectionCountSurfaceScanResult": {
+    "name": "Section-count surface scan",
+    "status": "pass",
+    "notes": [
+      "Sampled production listing, book, and audiobook surfaces did not expose 0 sections labels."
+    ]
+  },
+  "specificSampledSlugResults": [
+    {
+      "slug": "the-call-of-cthulhu",
+      "route": "/morse-code-books/the-call-of-cthulhu",
+      "status": "pass",
+      "expectedSections": 3,
+      "actualSections": 3,
+      "payloadRequestedFromAssetsHost": true,
+      "notes": []
+    },
+    {
+      "slug": "the-adventures-of-roderick-random",
+      "route": "/morse-code-books/the-adventures-of-roderick-random",
+      "status": "pass",
+      "expectedSections": 69,
+      "actualSections": 69,
+      "payloadRequestedFromAssetsHost": true,
+      "notes": []
+    },
+    {
+      "slug": "five-little-friends",
+      "route": "/morse-code-books/five-little-friends",
+      "status": "pass",
+      "expectedSections": 2,
+      "actualSections": 2,
+      "payloadRequestedFromAssetsHost": true,
+      "notes": []
+    },
+    {
+      "slug": "the-leavenworth-case",
+      "route": "/morse-code-books/the-leavenworth-case",
+      "status": "pass",
+      "expectedSections": 39,
+      "actualSections": 39,
+      "payloadRequestedFromAssetsHost": true,
+      "notes": []
+    },
+    {
+      "slug": "walden",
+      "route": "/morse-code-books/walden",
+      "status": "pass",
+      "expectedSections": 18,
+      "actualSections": 18,
+      "payloadRequestedFromAssetsHost": true,
+      "notes": []
+    },
+    {
+      "slug": "the-bottle-imp",
+      "route": "/morse-code-books/the-bottle-imp",
+      "status": "pass",
+      "expectedSections": 1,
+      "actualSections": 1,
+      "payloadRequestedFromAssetsHost": true,
+      "notes": []
+    },
+    {
+      "slug": "middlemarch",
+      "route": "/morse-code-books/middlemarch",
+      "status": "pass",
+      "expectedSections": 88,
+      "actualSections": 88,
+      "payloadRequestedFromAssetsHost": true,
+      "notes": []
+    },
+    {
+      "slug": "the-happy-prince",
+      "route": "/morse-code-books/the-happy-prince",
+      "status": "pass",
+      "expectedSections": 1,
+      "actualSections": 1,
+      "payloadRequestedFromAssetsHost": true,
+      "notes": []
+    },
+    {
+      "slug": "the-masque-of-the-red-death",
+      "route": "/morse-code-books/the-masque-of-the-red-death",
+      "status": "pass",
+      "expectedSections": 1,
+      "actualSections": 1,
+      "payloadRequestedFromAssetsHost": true,
+      "notes": []
+    },
+    {
+      "slug": "the-jungle-book",
+      "route": "/morse-code-books/the-jungle-book",
+      "status": "pass",
+      "expectedSections": 14,
+      "actualSections": 14,
+      "payloadRequestedFromAssetsHost": true,
+      "notes": []
+    }
+  ],
+  "fixesMade": [],
+  "remainingBlockers": [],
+  "counts": {
+    "generatedBooks": 519,
+    "seoSummaries": 519,
+    "startupPreviews": 519,
+    "bookUrls": 519,
+    "audiobookUrls": 519,
+    "remoteManifestBooks": 519
+  },
+  "laterContentQualityCheckpoints": [
+    "Sources page trust-copy update remains queued for the later content-quality phase.",
+    "About page E-E-A-T copy remains queued for the later content-quality phase.",
+    "Repeated helper-copy reduction remains queued for the later content-quality phase."
+  ],
+  "deferredFinalStages": [
+    "Non-book sitemap/page implementation remains deferred.",
+    "URL/indexability audit remains deferred.",
+    "GSC/meta review remains deferred.",
+    "Broad mobile optimization remains the final stage."
+  ]
+}
