@@ -1,0 +1,134 @@
+{
+  "executiveResult": "Full URL/indexability/canonical audit passed",
+  "branch": "morsewords-full-url-indexability-canonical-audit-jun-2026",
+  "sourceInputs": [
+    "public/sitemap.xml",
+    "public/robots.txt",
+    "netlify.toml",
+    "app/routes.ts",
+    "app/root.tsx",
+    "app/routes",
+    "app/client",
+    "app/client/data/routes.ts",
+    "app/client/assets/books/generated/library-manifest.json",
+    "app/client/assets/books/seo-summaries/book-seo-summaries.json",
+    "public/book-previews",
+    "app/client/assets/books/audit-reports/book-library-decision-checkpoint/book-library-decision-checkpoint.json"
+  ],
+  "inventorySummary": {
+    "routesInspected": 174,
+    "xmlSitemapUrls": 1651,
+    "indexablePageUrls": 1651,
+    "noindexSupportRoutes": 6,
+    "redirectOnlyRoutes": 37,
+    "internalOnlyContentRoutes": 3,
+    "dynamicBookUrlCount": 519,
+    "dynamicAudiobookUrlCount": 519,
+    "printableBookUrlCount": 488
+  },
+  "xmlSitemapResult": {
+    "status": "pass",
+    "missingRouteCount": 0,
+    "noindexInSitemapCount": 0,
+    "redirectOnlyInSitemapCount": 0,
+    "sitemapHostMismatchCount": 0,
+    "canonicalHost": "https://www.morsewords.com"
+  },
+  "routeCoverageResult": {
+    "status": "pass",
+    "missingRouteCount": 0,
+    "dynamicBookRoutesResolvedFromGeneratedManifest": true,
+    "dynamicAudiobookRoutesResolvedFromGeneratedManifest": true,
+    "internalOnlyRoutesExcludedFromSitemap": true
+  },
+  "canonicalResult": {
+    "status": "pass",
+    "canonicalMismatchCount": 0,
+    "duplicateCanonicalCount": 0,
+    "canonicalMatchesSitemapWhereApplicable": true
+  },
+  "noindexRobotsResult": {
+    "status": "pass",
+    "robotsSitemapResult": "pass",
+    "supportNoindexRoutesExcludedFromXmlSitemap": true,
+    "conflictingCanonicalNoindexSignals": 0
+  },
+  "redirectTrailingSlashResult": {
+    "status": "pass",
+    "redirectOnlyRoutes": 37,
+    "trailingSlashRedirectResult": "pass",
+    "redirectOnlyInternalLinkCount": 0,
+    "trailingSlashInternalLinkCount": 0
+  },
+  "internalLinkResult": {
+    "status": "pass",
+    "brokenInternalLinkCount": 0,
+    "redirectOnlyInternalLinkCount": 0,
+    "trailingSlashInternalLinkCount": 0
+  },
+  "bookAudiobookUrlResult": {
+    "status": "pass",
+    "generatedBooks": 519,
+    "seoSummaries": 519,
+    "startupPreviews": 519,
+    "bookUrls": 519,
+    "audiobookUrls": 519,
+    "printableBookUrls": 488
+  },
+  "deferredBlockedSlugExposureResult": {
+    "status": "pass",
+    "exposureCount": 0
+  },
+  "metadataPresenceResult": {
+    "status": "pass",
+    "missingMetadataCount": 0
+  },
+  "fixesMade": [
+    "Added scripts/audit-url-indexability-canonical.ts.",
+    "Added npm script pages:url-indexability-canonical-audit."
+  ],
+  "remainingBlockers": [],
+  "pagesIntentionallyExcludedOrDeferred": [
+    {
+      "path": "/misc",
+      "reason": "Support/noindex route, intentionally excluded from XML sitemap."
+    },
+    {
+      "path": "/misc/privacy-policy",
+      "reason": "Support/noindex duplicate policy route, intentionally excluded from XML sitemap."
+    },
+    {
+      "path": "/misc/terms-of-service",
+      "reason": "Support/noindex duplicate policy route, intentionally excluded from XML sitemap."
+    },
+    {
+      "path": "/misc/cookies-policy",
+      "reason": "Support/noindex duplicate policy route, intentionally excluded from XML sitemap."
+    },
+    {
+      "path": "/misc/socials",
+      "reason": "Support/noindex duplicate social route, intentionally excluded from XML sitemap."
+    },
+    {
+      "path": "/sitemap",
+      "reason": "Human support sitemap route, intentionally noindex and excluded from XML sitemap."
+    }
+  ],
+  "bookSubsystemRegressionCheck": {
+    "status": "pass",
+    "generatedBooks": 519,
+    "seoSummaries": "519/519",
+    "startupPreviews": 519,
+    "bookUrls": 519,
+    "audiobookUrls": 519,
+    "cloudflareExportTrackedFileCount": 0,
+    "productionPayloadBaseUrl": "https://assets.morsewords.com"
+  },
+  "laterGscMetaContentQualityCheckpoints": [
+    "GSC-informed metadata review remains queued.",
+    "Sources page trust-copy update remains queued.",
+    "About page E-E-A-T sentence remains queued.",
+    "Repeated helper-copy reduction remains queued."
+  ],
+  "deferredFinalMobileOptimizationStage": "Broad mobile optimization remains deferred until after URL/indexability, GSC/meta, and content-quality work."
+}
