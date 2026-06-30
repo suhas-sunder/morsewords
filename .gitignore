@@ -3,6 +3,9 @@
 *.tsbuildinfo
 *.log
 *.tmp
+.env
+.env.*
+!.env.example
 
 # React Router
 /.react-router/
@@ -31,6 +34,7 @@ app/client/assets/text/*.txt
 app/client/assets/temp-books - Copy
 # Keep committed Morse book JSON/metadata for local fallback builds, but ignore
 # accidental binary/media exports or scratch folders under the book asset tree.
+/app/client/assets/books/cloudflare-export/
 app/client/assets/books/**/*.mp3
 app/client/assets/books/**/*.wav
 app/client/assets/books/**/*.webm

@@ -1,0 +1,54 @@
+{
+  "report": "local-artifact-gitignore-hygiene",
+  "branch": "morsewords-local-artifact-gitignore-hygiene-jun-2026",
+  "executiveResult": "Cloudflare export artifacts are now treated as local generated upload artifacts: ignored by git, removed from tracking, and still regenerable/auditable locally.",
+  "branchPurpose": "Ensure local/generated upload artifacts are ignored and not tracked by git, especially app/client/assets/books/cloudflare-export.",
+  "ignoredLocalArtifactPaths": [
+    "/app/client/assets/books/cloudflare-export/",
+    "/.netlify/",
+    "/build/",
+    "/dist/",
+    "/coverage/",
+    ".env",
+    ".env.*"
+  ],
+  "cloudflareExport": {
+    "path": "app/client/assets/books/cloudflare-export",
+    "previouslyTracked": true,
+    "filesUntrackedFromGit": 521,
+    "gitLsFilesCountAfter": 0,
+    "localDirectoryPreserved": true,
+    "localGenerationCommand": "npm run books:cloudflare-export",
+    "localGenerationResult": "pass",
+    "auditCommand": "npm run books:cloudflare-export-audit",
+    "auditResult": "pass",
+    "localExportFiles": 521,
+    "bookPayloads": 519,
+    "manifestFiles": 2
+  },
+  "trackedSourceOfTruth": {
+    "generatedBooksRemainTracked": true,
+    "seoSummariesRemainTracked": true,
+    "startupPreviewsRemainTracked": true,
+    "rawTempBooksModified": false
+  },
+  "counts": {
+    "generatedBooks": 519,
+    "seoSummaries": 519,
+    "startupPreviews": 519,
+    "bookUrls": 519,
+    "audiobookUrls": 519
+  },
+  "netlifyDeployReadiness": "Ready to redeploy on Netlify after the deploy-blocker function-size fix and local artifact untracking.",
+  "remoteCloudflareValidation": {
+    "status": "blocked",
+    "reason": "A real served Cloudflare/R2 base URL is still required before remote validation can be claimed."
+  },
+  "constraintsObserved": [
+    "npm run books:build was not run",
+    "No new books were generated",
+    "No raw files were modified",
+    "No remote Cloudflare/R2 validation was claimed",
+    "No non-book sitemap, URL/indexability, GSC/meta, Sources/About/repeated-copy, or mobile optimization work was started"
+  ]
+}
