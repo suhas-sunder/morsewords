@@ -44,5 +44,5 @@ export function morseBookSuitabilityLabel(
 
 export function shouldShowInLowerRiskBookFilter(slug: string) {
   const profile = getMorseBookSuitability(slug);
-  return profile.contentSuitability === "low" && !profile.strictReviewCandidate;
+  return profile.contentSuitability !== "elevated" && !profile.strictReviewCandidate;
 }
