@@ -1,0 +1,440 @@
+{
+  "generatedAt": "2026-07-01T18:38:17.808Z",
+  "compatibilityMode": "site:production-deploy-staleness-diagnosis",
+  "executiveResult": "Production deploy staleness diagnosis blocked because production sitemap has 1651 URLs and 488 print URLs; expected 1682 URLs and 519 print URLs",
+  "status": "production-stale-against-latest-main",
+  "currentLocalGitBranch": "morsewords-production-deploy-staleness-diagnosis-jun-2026",
+  "currentLocalHead": "91d26bcccca43d1e0fbbe5c5bb318355d68e704e",
+  "originMainHead": "91d26bcccca43d1e0fbbe5c5bb318355d68e704e",
+  "expectedMainHead": "91d26bcccca43d1e0fbbe5c5bb318355d68e704e",
+  "remote": "origin\thttps://github.com/suhas-sunder/morsewords.git (fetch)\norigin\thttps://github.com/suhas-sunder/morsewords.git (push)",
+  "localMainHeadResult": {
+    "branch": "morsewords-production-deploy-staleness-diagnosis-jun-2026",
+    "head": "91d26bcccca43d1e0fbbe5c5bb318355d68e704e",
+    "headMatchesOriginMain": true,
+    "localHeadContainsExpectedMain": true,
+    "printRouteLightweightSsrFix": true,
+    "printRouteFixCommitPresent": true,
+    "sitemapCountCorrectionTo1682": true,
+    "sitemapCorrectionCommitPresent": true,
+    "supportEmailReadinessChanges": true,
+    "supportEmailCommitPresent": true,
+    "packageScripts": {
+      "productionDeployStalenessDiagnosis": "tsx scripts/production-deploy-staleness-diagnosis.ts",
+      "finalProductionSanityCheck": null
+    }
+  },
+  "expectedLatestMainProductionBehavior": {
+    "sitemapUrlCount": 1682,
+    "printUrlCount": 519,
+    "bookUrlCount": 519,
+    "audiobookUrlCount": 519,
+    "printRoutes": [
+      {
+        "pathname": "/morse-code-books/walden/print",
+        "expectedStatus": 200,
+        "expectedSuitabilityNotes": true
+      },
+      {
+        "pathname": "/morse-code-books/the-call-of-cthulhu/print",
+        "expectedStatus": 200,
+        "expectedSuitabilityNotes": true
+      },
+      {
+        "pathname": "/morse-code-books/the-adventures-of-roderick-random/print",
+        "expectedStatus": 200,
+        "expectedSuitabilityNotes": true
+      }
+    ],
+    "contactSupportEmail": "support@morsewords.com"
+  },
+  "localSitemapResult": {
+    "exists": true,
+    "snapshot": {
+      "total": 1682,
+      "book": 519,
+      "audiobook": 519,
+      "print": 519,
+      "nonBook": 125
+    },
+    "malformed": [],
+    "matchesExpected": true
+  },
+  "currentLiveProductionBehavior": {
+    "productionHost": "https://www.morsewords.com",
+    "home": {
+      "url": "https://www.morsewords.com/",
+      "finalUrl": "https://www.morsewords.com/",
+      "ok": true,
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "age": "0",
+        "cache-control": "no-cache",
+        "cf-cache-status": "DYNAMIC",
+        "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+        "server": "cloudflare",
+        "x-nf-request-id": "01KWFFK5BAEZ428A08WVPZGQRA"
+      },
+      "bodyLength": 198064
+    },
+    "sitemap": {
+      "url": "https://www.morsewords.com/sitemap.xml",
+      "finalUrl": "https://www.morsewords.com/sitemap.xml",
+      "ok": true,
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "age": "4106",
+        "cache-control": "public,max-age=0,must-revalidate",
+        "cf-cache-status": "DYNAMIC",
+        "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+        "etag": "\"66579809185d8c0bbd174defa97c3712-ssl-df\"",
+        "server": "cloudflare",
+        "x-nf-request-id": "01KWFFK5BPPJT569807120PXQ8"
+      },
+      "bodyLength": 154963,
+      "snapshot": {
+        "total": 1651,
+        "book": 519,
+        "audiobook": 519,
+        "print": 488,
+        "nonBook": 125
+      },
+      "malformed": []
+    },
+    "printRoutes": [
+      {
+        "url": "https://www.morsewords.com/morse-code-books/walden/print",
+        "finalUrl": "https://www.morsewords.com/morse-code-books/walden/print",
+        "ok": false,
+        "status": 500,
+        "statusText": "Internal Server Error",
+        "headers": {
+          "age": "0",
+          "cache-control": "no-cache",
+          "cf-cache-status": "DYNAMIC",
+          "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+          "server": "cloudflare",
+          "x-nf-request-id": "01KWFFK5B7KASCSAV40VBP4K1Q"
+        },
+        "bodyLength": 140530,
+        "pathname": "/morse-code-books/walden/print",
+        "showsSuitabilityNote": false,
+        "showsBookTextUnavailable": false
+      },
+      {
+        "url": "https://www.morsewords.com/morse-code-books/the-call-of-cthulhu/print",
+        "finalUrl": "https://www.morsewords.com/morse-code-books/the-call-of-cthulhu/print",
+        "ok": false,
+        "status": 500,
+        "statusText": "Internal Server Error",
+        "headers": {
+          "age": "0",
+          "cache-control": "no-cache",
+          "cf-cache-status": "DYNAMIC",
+          "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+          "server": "cloudflare",
+          "x-nf-request-id": "01KWFFK5B5ACD0E48A31D4YNMS"
+        },
+        "bodyLength": 140530,
+        "pathname": "/morse-code-books/the-call-of-cthulhu/print",
+        "showsSuitabilityNote": false,
+        "showsBookTextUnavailable": false
+      },
+      {
+        "url": "https://www.morsewords.com/morse-code-books/the-adventures-of-roderick-random/print",
+        "finalUrl": "https://www.morsewords.com/morse-code-books/the-adventures-of-roderick-random/print",
+        "ok": false,
+        "status": 500,
+        "statusText": "Internal Server Error",
+        "headers": {
+          "age": "0",
+          "cache-control": "no-cache",
+          "cf-cache-status": "DYNAMIC",
+          "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+          "server": "cloudflare",
+          "x-nf-request-id": "01KWFFK5BAZJ8BXJEQADK09HZQ"
+        },
+        "bodyLength": 140530,
+        "pathname": "/morse-code-books/the-adventures-of-roderick-random/print",
+        "showsSuitabilityNote": false,
+        "showsBookTextUnavailable": false
+      }
+    ],
+    "contact": {
+      "url": "https://www.morsewords.com/contact",
+      "finalUrl": "https://www.morsewords.com/contact",
+      "ok": true,
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "age": "0",
+        "cache-control": "no-cache",
+        "cf-cache-status": "DYNAMIC",
+        "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+        "server": "cloudflare",
+        "x-nf-request-id": "01KWFFK5BC099X99MMNDHBTHMG"
+      },
+      "bodyLength": 141294,
+      "exposesSupportEmail": true,
+      "exposesMailto": true
+    },
+    "sources": {
+      "url": "https://www.morsewords.com/sources",
+      "finalUrl": "https://www.morsewords.com/sources",
+      "ok": true,
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "age": "0",
+        "cache-control": "no-cache",
+        "cf-cache-status": "DYNAMIC",
+        "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+        "server": "cloudflare",
+        "x-nf-request-id": "01KWFFK5B7WN9T3JH3TGYM9A0H"
+      },
+      "bodyLength": 141457,
+      "exposesSupportEmail": true,
+      "exposesCorrectionPath": true,
+      "exposesTakedownPath": true,
+      "exposesReportConcernPath": true
+    },
+    "staleCountMatchesPreviouslyObserved": true
+  },
+  "sitemapFreshnessResult": {
+    "liveSitemapLatest": false,
+    "localSitemap": {
+      "total": 1682,
+      "book": 519,
+      "audiobook": 519,
+      "print": 519,
+      "nonBook": 125
+    },
+    "liveSitemap": {
+      "total": 1651,
+      "book": 519,
+      "audiobook": 519,
+      "print": 488,
+      "nonBook": 125
+    },
+    "expectedSitemap": {
+      "total": 1682,
+      "book": 519,
+      "audiobook": 519,
+      "print": 519,
+      "nonBook": 125
+    }
+  },
+  "printRouteFreshnessResult": {
+    "livePrintLatest": false,
+    "printRoutes": [
+      {
+        "url": "https://www.morsewords.com/morse-code-books/walden/print",
+        "finalUrl": "https://www.morsewords.com/morse-code-books/walden/print",
+        "ok": false,
+        "status": 500,
+        "statusText": "Internal Server Error",
+        "headers": {
+          "age": "0",
+          "cache-control": "no-cache",
+          "cf-cache-status": "DYNAMIC",
+          "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+          "server": "cloudflare",
+          "x-nf-request-id": "01KWFFK5B7KASCSAV40VBP4K1Q"
+        },
+        "bodyLength": 140530,
+        "pathname": "/morse-code-books/walden/print",
+        "showsSuitabilityNote": false,
+        "showsBookTextUnavailable": false
+      },
+      {
+        "url": "https://www.morsewords.com/morse-code-books/the-call-of-cthulhu/print",
+        "finalUrl": "https://www.morsewords.com/morse-code-books/the-call-of-cthulhu/print",
+        "ok": false,
+        "status": 500,
+        "statusText": "Internal Server Error",
+        "headers": {
+          "age": "0",
+          "cache-control": "no-cache",
+          "cf-cache-status": "DYNAMIC",
+          "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+          "server": "cloudflare",
+          "x-nf-request-id": "01KWFFK5B5ACD0E48A31D4YNMS"
+        },
+        "bodyLength": 140530,
+        "pathname": "/morse-code-books/the-call-of-cthulhu/print",
+        "showsSuitabilityNote": false,
+        "showsBookTextUnavailable": false
+      },
+      {
+        "url": "https://www.morsewords.com/morse-code-books/the-adventures-of-roderick-random/print",
+        "finalUrl": "https://www.morsewords.com/morse-code-books/the-adventures-of-roderick-random/print",
+        "ok": false,
+        "status": 500,
+        "statusText": "Internal Server Error",
+        "headers": {
+          "age": "0",
+          "cache-control": "no-cache",
+          "cf-cache-status": "DYNAMIC",
+          "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+          "server": "cloudflare",
+          "x-nf-request-id": "01KWFFK5BAZJ8BXJEQADK09HZQ"
+        },
+        "bodyLength": 140530,
+        "pathname": "/morse-code-books/the-adventures-of-roderick-random/print",
+        "showsSuitabilityNote": false,
+        "showsBookTextUnavailable": false
+      }
+    ]
+  },
+  "contactPolicyFreshnessResult": {
+    "liveContactFresh": true,
+    "contact": {
+      "url": "https://www.morsewords.com/contact",
+      "finalUrl": "https://www.morsewords.com/contact",
+      "ok": true,
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "age": "0",
+        "cache-control": "no-cache",
+        "cf-cache-status": "DYNAMIC",
+        "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+        "server": "cloudflare",
+        "x-nf-request-id": "01KWFFK5BC099X99MMNDHBTHMG"
+      },
+      "bodyLength": 141294,
+      "exposesSupportEmail": true,
+      "exposesMailto": true
+    },
+    "sources": {
+      "url": "https://www.morsewords.com/sources",
+      "finalUrl": "https://www.morsewords.com/sources",
+      "ok": true,
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "age": "0",
+        "cache-control": "no-cache",
+        "cf-cache-status": "DYNAMIC",
+        "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+        "server": "cloudflare",
+        "x-nf-request-id": "01KWFFK5B7WN9T3JH3TGYM9A0H"
+      },
+      "bodyLength": 141457,
+      "exposesSupportEmail": true,
+      "exposesCorrectionPath": true,
+      "exposesTakedownPath": true,
+      "exposesReportConcernPath": true
+    }
+  },
+  "assetHostResult": {
+    "assetHost": "https://assets.morsewords.com",
+    "liveAssetHostOk": true,
+    "publicManifest": {
+      "url": "https://assets.morsewords.com/public-manifest.json",
+      "finalUrl": "https://assets.morsewords.com/public-manifest.json",
+      "ok": true,
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "cf-cache-status": "DYNAMIC",
+        "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+        "etag": "W/\"6921b74d82b4d228440940cc7cb6ed37\"",
+        "last-modified": "Wed, 01 Jul 2026 03:40:59 GMT",
+        "server": "cloudflare"
+      },
+      "bodyLength": 666162,
+      "parsed": true,
+      "bookCount": 519,
+      "uploadCount": null
+    },
+    "uploadManifest": {
+      "url": "https://assets.morsewords.com/upload-manifest.json",
+      "finalUrl": "https://assets.morsewords.com/upload-manifest.json",
+      "ok": true,
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "cf-cache-status": "DYNAMIC",
+        "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+        "etag": "W/\"0bff5d4715466c7ec55560be84b483e2\"",
+        "last-modified": "Wed, 01 Jul 2026 03:40:59 GMT",
+        "server": "cloudflare"
+      },
+      "bodyLength": 65026,
+      "parsed": true,
+      "bookCount": null,
+      "uploadCount": 521
+    }
+  },
+  "netlifyConfigInspectionResult": {
+    "buildCommand": "npm run build:netlify",
+    "publishDirectory": "build/client",
+    "functionsIncludedFiles": "[\"app/client/assets/books/seo-summaries/book-seo-summaries.json\"]",
+    "contextProductionConfiguredLocally": false,
+    "productionBranchHint": null,
+    "publicSitemapExists": true,
+    "buildClientSitemap": {
+      "total": 1682,
+      "book": 519,
+      "audiobook": 519,
+      "print": 519,
+      "nonBook": 125
+    },
+    "publicSitemapExpectedToBePublished": true,
+    "githubWorkflowFiles": [],
+    "npmrcPresent": false,
+    "reactRouterNetlifyFunctionPresent": true,
+    "reactRouterNetlifyFunctionPreferStatic": true,
+    "deploysFromMainLocallyProven": null,
+    "deploysFromMainLocallyProvenNote": "Production branch selection is a Netlify site setting and is not declared in this repo's netlify.toml."
+  },
+  "netlifyCliDashboardAvailability": {
+    "cliAvailable": false,
+    "cliVersion": null,
+    "cliUnavailableReason": "netlify is not available",
+    "dashboardRequired": true
+  },
+  "liveHttpHeadersUsefulForDeployState": {
+    "home": {
+      "age": "0",
+      "cache-control": "no-cache",
+      "cf-cache-status": "DYNAMIC",
+      "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+      "server": "cloudflare",
+      "x-nf-request-id": "01KWFFK5BAEZ428A08WVPZGQRA"
+    },
+    "sitemap": {
+      "age": "4106",
+      "cache-control": "public,max-age=0,must-revalidate",
+      "cf-cache-status": "DYNAMIC",
+      "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+      "etag": "\"66579809185d8c0bbd174defa97c3712-ssl-df\"",
+      "server": "cloudflare",
+      "x-nf-request-id": "01KWFFK5BPPJT569807120PXQ8"
+    },
+    "firstPrintRoute": {
+      "age": "0",
+      "cache-control": "no-cache",
+      "cf-cache-status": "DYNAMIC",
+      "date": "Wed, 01 Jul 2026 18:38:21 GMT",
+      "server": "cloudflare",
+      "x-nf-request-id": "01KWFFK5B7KASCSAV40VBP4K1Q"
+    }
+  },
+  "exactLikelyCause": "Production is still serving deploy behavior older than origin/main 91d26bcccca43d1e0fbbe5c5bb318355d68e704e. Local code and public/sitemap.xml contain the expected fixes. Netlify CLI is unavailable locally, so the Netlify dashboard must be used to confirm whether a production deploy from origin/main has completed.",
+  "fixesMade": [
+    "Added deploy staleness diagnosis automation and report.",
+    "No app code, sitemap policy, book content, generated book payload, public preview, or Cloudflare export change was made."
+  ],
+  "remainingBlockers": [
+    "production sitemap has 1651 URLs and 488 print URLs; expected 1682 URLs and 519 print URLs",
+    "/morse-code-books/walden/print returns HTTP 500",
+    "/morse-code-books/the-call-of-cthulhu/print returns HTTP 500",
+    "/morse-code-books/the-adventures-of-roderick-random/print returns HTTP 500"
+  ],
+  "requiredOwnerAction": "Trigger or wait for a Netlify production deploy from origin/main at 91d26bcccca43d1e0fbbe5c5bb318355d68e704e or newer, then rerun npm run site:final-production-sanity-check from the final production sanity branch.",
+  "recommendedNextStep": "Verify the latest Netlify production deploy in the dashboard, then rerun the final production sanity check branch after production serves latest main behavior."
+}

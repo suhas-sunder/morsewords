@@ -1,0 +1,125 @@
+{
+  "executiveResult": "PostHog behavior-friction review passed",
+  "reviewDate": "2026-07-01",
+  "branch": "morsewords-posthog-behavior-friction-review-jun-2026",
+  "dataSourceSummary": {
+    "bounceExport": {
+      "rows": 304,
+      "primaryVisitors": 7049,
+      "primaryViews": 10522,
+      "primaryWeightedBounceRateApprox": "32.7%",
+      "secondaryVisitors": 3811,
+      "secondaryViews": 7268,
+      "secondaryWeightedBounceRateApprox": "38.1%"
+    },
+    "rageDeadErrorExport": {
+      "rows": 45,
+      "primaryRageClicks": 1419,
+      "secondaryRageClicks": 822,
+      "deadClicks": 0,
+      "errors": 0
+    },
+    "interpretationNote": "The CSV identifies where to inspect; it does not prove the exact clicked element."
+  },
+  "pagesInspected": [
+    {
+      "path": "/audio",
+      "classification": "confirmed UX issue",
+      "finding": "The standalone audio page had playback/copy states, but WAV export did not expose a busy, success, or error message and did not guard duplicate export clicks while rendering."
+    },
+    {
+      "path": "/",
+      "classification": "likely expected repeated interaction",
+      "finding": "The home tool is a high-traffic interactive translator with sample, copy, play, and tool-navigation controls. No dead-click or error evidence was present in the export."
+    },
+    {
+      "path": "/practice",
+      "classification": "likely expected repeated interaction",
+      "finding": "The practice page uses repeated check, skip, next, retry, and share interactions with visible correctness feedback."
+    },
+    {
+      "path": "/morse-code-sound-generator",
+      "classification": "likely expected repeated interaction",
+      "finding": "The sound generator already exposes export working/success/error status for WAV and MP3 and disables export when invalid."
+    },
+    {
+      "path": "/morse-code-sentence-practice",
+      "classification": "likely expected repeated interaction",
+      "finding": "Sentence practice gives check/next/skip feedback and round completion states; repeated clicks are expected drill behavior."
+    },
+    {
+      "path": "/morse-code-mp3-generator",
+      "classification": "likely expected repeated interaction",
+      "finding": "The MP3 generator already shows MP3/WAV working/success/error status and keeps preview/export controls visible."
+    },
+    {
+      "path": "/morse-code-audio-decoder",
+      "classification": "likely expected repeated interaction",
+      "finding": "The decoder uses processing state, disabled decode behavior during analysis, file validation messages, and visible output/error panels."
+    },
+    {
+      "path": "/morse-code-audio-practice",
+      "classification": "likely expected repeated interaction",
+      "finding": "Audio practice is an intentional repeated-listen and answer flow. No local evidence supported a broad UI change."
+    },
+    {
+      "path": "/typing",
+      "classification": "likely expected repeated interaction",
+      "finding": "Typing practice is an intentional rapid-input route with session state, pause/resume/reset behavior, and a completion dialog."
+    },
+    {
+      "path": "/morse-code-encoder",
+      "classification": "high-bounce route intentionally left unchanged",
+      "finding": "The route places the encoder workspace above support sections and includes contextual links into decoder, chart, word separator, audio, and practice paths."
+    },
+    {
+      "path": "/morse-code-decoder",
+      "classification": "high-bounce route intentionally left unchanged",
+      "finding": "The route places the decoder workspace above support sections and includes contextual links into reader, audio decoder, dictionary, and spacing tools."
+    },
+    {
+      "path": "/morse-code-visual-quiz",
+      "classification": "needs owner/session-replay review before more changes",
+      "finding": "The route already has a Start quiz link, clear Flash prompt button, flashing safety messaging, answer/check/skip/next states, and result actions. The 23-visitor 100% bounce sample is too small to justify a redesign without session-level evidence."
+    },
+    {
+      "path": "/morse-code-alphabet, /morse-code-chart, /dictionary, /how-to-use, /morse-code-practice-plan, /how-to-separate-words-in-morse-code, /morse-code-timing",
+      "classification": "high-bounce reference routes intentionally left unchanged",
+      "finding": "These are narrow-answer or reference routes where bounce can be normal. Existing pages include direct explanatory content and related next-step links; no confirmed broken or unclear click target was found during code inspection."
+    }
+  ],
+  "confirmedUxIssues": [
+    {
+      "path": "/audio",
+      "issue": "WAV export could feel unresponsive because the top-level audio page did not announce export progress, success, or failure.",
+      "fix": "Added WAV export working, success, and error status; disabled duplicate export while rendering; changed the export labels to Preparing WAV during work."
+    }
+  ],
+  "expectedRepeatedInteractionFindings": [
+    "/",
+    "/practice",
+    "/morse-code-sound-generator",
+    "/morse-code-sentence-practice",
+    "/morse-code-mp3-generator",
+    "/morse-code-audio-decoder",
+    "/morse-code-audio-practice",
+    "/typing"
+  ],
+  "fixesMade": [
+    "Added visible /audio WAV export feedback: Preparing WAV file..., WAV download started., and clean failure messages.",
+    "Prevented duplicate /audio WAV export clicks while a render is already in progress.",
+    "Added a Playwright regression that waits for /audio hydration, exports a short WAV, verifies completion feedback, and verifies a real audio/wav blob was created."
+  ],
+  "pagesIntentionallyLeftUnchanged": [
+    "Home, practice, sound generator, sentence practice, MP3 generator, audio decoder, audio practice, typing, encoder, decoder, visual quiz, and reference pages without a confirmed UX blocker."
+  ],
+  "analyticsInstrumentationGaps": [
+    "The provided export aggregates by URL only. It does not identify the clicked element, rage-click cluster, device class, or session replay context.",
+    "No targeted PostHog event changes were added because this branch did not find an existing local analytics wrapper appropriate for narrow event naming."
+  ],
+  "testsAddedOrUpdated": [
+    "tests/qa-robustness-review/morse-posthog-friction.spec.ts"
+  ],
+  "remainingBlockers": [],
+  "recommendedNextStep": "Merge behavior-friction branch to main, then rerun production deploy/final sanity only after Netlify is serving the latest main."
+}

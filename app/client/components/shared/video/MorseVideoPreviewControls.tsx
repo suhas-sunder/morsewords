@@ -13,6 +13,7 @@ import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace
 
 import {
   getMorseVideoFrameTextState,
+  getMorseVideoPreviewWordWindowLimit,
   type MorseVideoTimeline,
 } from "./morseVideoRenderer";
 import {
@@ -86,8 +87,6 @@ const FULLSCREEN_CONTROLS_HIDE_DELAY_MS = 2_600;
 const FULLSCREEN_PLAY_SUPPRESSION_MS = 2_600;
 const TIMELINE_DENSE_EVENT_LIMIT = 260;
 const TIMELINE_DENSE_BUCKET_COUNT = 180;
-const INLINE_PREVIEW_WORD_WINDOW_LIMIT = 168;
-const FULLSCREEN_PREVIEW_WORD_WINDOW_LIMIT = 190;
 
 type TimelineDisplayEvent = MorseVideoTimeline["events"][number] & {
   compressed?: boolean;
@@ -181,24 +180,6 @@ function buildTimingStripDisplayEvents(
   };
 }
 
-function getPreviewWordWindowLimit({
-  fullscreen,
-  signalVisible,
-  textLayerCount,
-}: {
-  fullscreen: boolean;
-  signalVisible: boolean;
-  textLayerCount: number;
-}) {
-  const base = fullscreen
-    ? FULLSCREEN_PREVIEW_WORD_WINDOW_LIMIT
-    : INLINE_PREVIEW_WORD_WINDOW_LIMIT;
-  if (textLayerCount === 0) return base;
-  const freedSignalSpace = signalVisible ? 0 : fullscreen ? 96 : 48;
-  const freedTextLayerSpace = textLayerCount === 1 ? (fullscreen ? 96 : 54) : 0;
-  return base + freedSignalSpace + freedTextLayerSpace;
-}
-
 export function MorseVideoPreviewPanel({
   className = "",
   headingId,
@@ -220,7 +201,7 @@ export function MorseVideoPreviewPanel({
   const textLayerCount =
     (settings.showMorseSymbols ? 1 : 0) + (settings.showPlainText ? 1 : 0);
   const signalVisible = settings.showVisualSignal;
-  const previewWordWindowLimit = getPreviewWordWindowLimit({
+  const previewWordWindowLimit = getMorseVideoPreviewWordWindowLimit({
     fullscreen,
     signalVisible,
     textLayerCount,

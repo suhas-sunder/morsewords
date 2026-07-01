@@ -111,6 +111,7 @@
     "pages:adsense-contact-readiness-audit": "tsx scripts/audit-adsense-contact-readiness.ts",
     "site:local-final-validation": "tsx scripts/local-final-validation.ts",
     "site:final-production-sanity-check": "tsx scripts/final-production-sanity-check.ts",
+    "site:production-deploy-staleness-diagnosis": "tsx scripts/production-deploy-staleness-diagnosis.ts",
     "books:build-previews": "node --experimental-strip-types scripts/books/build-book-previews.ts",
     "books:candidate-report": "node --experimental-strip-types scripts/books/generate-first-publication-candidate-report.ts",
     "books:enrich-metadata": "node --experimental-strip-types scripts/books/enrich-book-metadata.ts",

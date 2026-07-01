@@ -33,8 +33,8 @@ export const MORSE_VIDEO_RESOLUTION_LABELS: Record<
   MorseVideoResolution,
   string
 > = {
-  "720p": "720p",
-  "1080p": "1080p",
+  "720p": "720p (1280 x 720)",
+  "1080p": "1080p (1920 x 1080)",
 };
 
 export const MORSE_VIDEO_BACKGROUND_LABELS: Record<

@@ -19,6 +19,7 @@ import {
   ToolTextarea,
 } from "~/client/components/shared/ToolWorkspace";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
+import StatusMessage from "~/client/components/shared/ui/StatusMessage";
 import TogglePill from "~/client/components/shared/ui/TogglePill";
 import { AudioPresetOptions } from "~/client/components/shared/AudioPresetPicker";
 import { getAudioPresetDefaults } from "~/client/components/shared/audioPresetRegistry";
@@ -132,6 +133,10 @@ export default function MorseAudioTranslator({
     React.useState<22050 | 44100 | 48000>(44100);
   const [tailMs, setTailMs] = React.useState<number>(120);
   const [sourceSaveNotice, setSourceSaveNotice] = React.useState("");
+  const [exportStatus, setExportStatus] = React.useState<null | {
+    kind: "working" | "success" | "error";
+    message: string;
+  }>(null);
 
   const [hydrated, setHydrated] = React.useState(false);
   const flashLamp = useFlashLampState(hydrated && flash);
@@ -341,6 +346,26 @@ export default function MorseAudioTranslator({
   const renderedRepeat = hydrated ? repeat : false;
   const renderedFlash = hydrated ? effectiveFlash : false;
   const showStrobeWarning = flashLamp.shouldShowWholePageFlashWarning;
+  const isExportingWav = exportStatus?.kind === "working";
+
+  React.useEffect(() => {
+    if (!hydrated) return;
+    setExportStatus(null);
+  }, [
+    hydrated,
+    activeCode,
+    charWpm,
+    farnsworthWpm,
+    toneHz,
+    volume,
+    preset,
+    attackMs,
+    releaseMs,
+    sampleRate,
+    tailMs,
+    fileName,
+    soundOn,
+  ]);
 
   const handleCharWpmChange = React.useCallback((value: number) => {
     const next = Math.round(
@@ -439,11 +464,25 @@ export default function MorseAudioTranslator({
   };
 
   const handleExportWav = async () => {
-    if (!canPlay) return;
-    if (!soundOn) return;
+    if (isExportingWav) return;
+    if (!canPlay) {
+      setExportStatus({
+        kind: "error",
+        message: "Enter text or valid dots and dashes before exporting audio.",
+      });
+      return;
+    }
+    if (!soundOn) {
+      setExportStatus({
+        kind: "error",
+        message: "Turn sound back on before exporting audio.",
+      });
+      return;
+    }
     player.stop();
 
     const safeBase = sanitizeFileBase(fileName || "morse-audio");
+    setExportStatus({ kind: "working", message: "Preparing WAV file..." });
     try {
       const blob = await player.renderWav({
         code: activeCode,
@@ -459,12 +498,20 @@ export default function MorseAudioTranslator({
         tailMs,
       });
 
-      downloadBlobFile({
+      const download = downloadBlobFile({
         blob,
         filename: sanitizeDownloadFilename(`${safeBase}.wav`, "morse-audio.wav"),
       });
+      if (!download.ok) {
+        setExportStatus({ kind: "error", message: download.message });
+        return;
+      }
+      setExportStatus({ kind: "success", message: "WAV download started." });
     } catch {
-      // ignore
+      setExportStatus({
+        kind: "error",
+        message: "WAV export failed. Try a shorter message or a lower sample rate.",
+      });
     }
   };
 
@@ -681,14 +728,20 @@ export default function MorseAudioTranslator({
 
                 <ToolButton
                   onClick={handleExportWav}
-                  disabled={!canPlay || !renderedSoundOn}
+                  disabled={!canPlay || !renderedSoundOn || isExportingWav}
                   tone="light"
                   className="flex justify-center items-center gap-2 rounded-xl py-2.5"
                 >
                   <DownloadIcon size={22} title={undefined} aria-hidden="true" />
-                  <span>Export WAV</span>
+                  <span>{isExportingWav ? "Preparing WAV" : "Export WAV"}</span>
                 </ToolButton>
               </div>
+
+              {exportStatus ? (
+                <StatusMessage className="mt-3" kind={exportStatus.kind} live>
+                  {exportStatus.message}
+                </StatusMessage>
+              ) : null}
             </div>
 
             <div className="mt-6">
@@ -894,9 +947,9 @@ export default function MorseAudioTranslator({
                     <ActionButton
                       unstyled
                       onClick={handleExportWav}
-                      disabled={!canPlay || !renderedSoundOn}
+                      disabled={!canPlay || !renderedSoundOn || isExportingWav}
                       className={`inline-flex items-center gap-2 px-3 py-2 rounded-xl font-semibold cursor-pointer active:scale-95 transition ${
-                        canPlay && renderedSoundOn
+                        canPlay && renderedSoundOn && !isExportingWav
                           ? "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100"
                           : "cursor-not-allowed bg-[#fffaf2] text-slate-400"
                       }`}
@@ -904,7 +957,7 @@ export default function MorseAudioTranslator({
                         <DownloadIcon size={18} title={undefined} aria-hidden="true" />
                       }
                     >
-                      <span>Download WAV</span>
+                      <span>{isExportingWav ? "Preparing WAV" : "Download WAV"}</span>
                     </ActionButton>
                   </div>
                 </div>
