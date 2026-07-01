@@ -1196,7 +1196,7 @@ function renderMorsePreviewWords(
           className={
             word.active
               ? activePreviewWordClass(darkFrame, fullFrameActive)
-              : "mx-1 inline-block whitespace-nowrap"
+              : "mx-1 inline-block max-w-full break-words whitespace-normal sm:whitespace-nowrap"
           }
         >
           {morseCharacters.map((morse, morseIndex) => (
@@ -1242,7 +1242,7 @@ function renderTextPreviewWords(
         className={
           word.active
             ? activePreviewWordClass(darkFrame, fullFrameActive)
-            : "mx-1 inline-block whitespace-nowrap"
+            : "mx-1 inline-block max-w-full break-words whitespace-normal sm:whitespace-nowrap"
         }
       >
         {word.active
@@ -1288,7 +1288,7 @@ function activePreviewHighlightClass(
 ) {
   const baseClass = [
     marginClass,
-    "inline-block whitespace-nowrap rounded-lg px-1.5 py-0.5",
+    "inline-block max-w-full break-words whitespace-normal rounded-lg px-1.5 py-0.5 sm:whitespace-nowrap",
   ]
     .filter(Boolean)
     .join(" ");

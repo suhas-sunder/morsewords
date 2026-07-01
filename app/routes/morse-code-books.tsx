@@ -591,26 +591,26 @@ export default function MorseCodeBooksHubRoute({
             data-testid="morse-books-toolbar"
             onSubmit={(event) => event.preventDefault()}
           >
-            <div className="grid gap-2.5 md:grid-cols-2 lg:grid-cols-[minmax(280px,1.25fr)_minmax(190px,0.78fr)_minmax(190px,0.72fr)] lg:items-end">
-              <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.08em] text-slate-600">
+            <div className="grid min-w-0 gap-2.5 md:grid-cols-2 lg:grid-cols-[minmax(280px,1.25fr)_minmax(190px,0.78fr)_minmax(190px,0.72fr)] lg:items-end">
+              <label className="grid min-w-0 gap-1 text-xs font-bold uppercase tracking-[0.08em] text-slate-600">
                 Search
                 <input
                   type="search"
                   value={query}
                   onChange={(event) => handleQueryChange(event.currentTarget.value)}
-                  className="mw-input-text mw-input-placeholder min-h-10 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  className="mw-input-text mw-input-placeholder min-h-10 w-full min-w-0 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                   placeholder="Title, author, description, or subject"
                   aria-label="Search title, author, description, or subject"
                 />
               </label>
-              <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.08em] text-slate-600">
+              <label className="grid min-w-0 gap-1 text-xs font-bold uppercase tracking-[0.08em] text-slate-600">
                 Subject / genre
                 <select
                   value={subjectFilter}
                   onChange={(event) =>
                     handleSubjectChange(event.currentTarget.value)
                   }
-                  className="mw-input-text min-h-10 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  className="mw-input-text min-h-10 w-full min-w-0 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                   disabled={subjectOptions.length === 0}
                   aria-label="Filter Morse books by subject"
                 >
@@ -622,14 +622,14 @@ export default function MorseCodeBooksHubRoute({
                   ))}
                 </select>
               </label>
-              <label className="grid gap-1 text-xs font-bold uppercase tracking-[0.08em] text-slate-600">
+              <label className="grid min-w-0 gap-1 text-xs font-bold uppercase tracking-[0.08em] text-slate-600">
                 Sort
                 <select
                   value={sortMode}
                   onChange={(event) =>
                     handleSortChange(event.currentTarget.value as SortMode)
                   }
-                  className="mw-input-text min-h-10 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  className="mw-input-text min-h-10 w-full min-w-0 rounded-lg bg-white px-3 py-1.5 text-sm text-slate-950 outline-none disabled:cursor-not-allowed disabled:bg-white/55 disabled:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                   aria-label="Sort Morse books"
                 >
                   <option value="title-az">Title A-Z</option>

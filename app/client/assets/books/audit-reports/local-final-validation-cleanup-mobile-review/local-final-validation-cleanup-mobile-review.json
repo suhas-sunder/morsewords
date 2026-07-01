@@ -1,0 +1,292 @@
+{
+  "schemaVersion": 1,
+  "reportName": "local-final-validation-cleanup-mobile-review",
+  "generatedAt": "2026-07-01T06:49:28.114Z",
+  "executiveResult": "Local final validation, cleanup, and mobile review passed",
+  "branchName": "morsewords-local-final-validation-cleanup-mobile-review-jun-2026",
+  "currentMainCommitChecked": "66bb75e63863775c1f9e4f52118170c35ea35ace",
+  "expectedMainCommit": "66bb75e63863775c1f9e4f52118170c35ea35ace",
+  "localOnlyScopeStatement": "This branch completed repo-local readiness checks using local files, local app serving, and the ignored local Cloudflare updated export folder. It did not wait for or validate Netlify production route deployment.",
+  "productionNetlifyValidationDeferredStatement": "Production Netlify route validation is deferred and was not used as a blocker in this local completion branch.",
+  "assetHostPolicy": {
+    "productionAssetHost": "https://assets.morsewords.com",
+    "productionPageHost": "https://www.morsewords.com",
+    "localValidationAssetHost": "http://127.0.0.1:49857",
+    "note": "Production uses https://assets.morsewords.com; local validation serves app/client/assets/books/cloudflare-updated-export over a temporary localhost HTTP server."
+  },
+  "bookSubsystem": {
+    "generatedBookCount": 519,
+    "seoSummaryCount": 519,
+    "seoExpectedSummaryCount": 519,
+    "startupPreviewCount": 519,
+    "bookUrlCount": 519,
+    "audiobookUrlCount": 519,
+    "printUrlCount": 488,
+    "xmlSitemapUrlCount": 1651,
+    "routeInventoryCount": 174
+  },
+  "contentSafetySuitability": {
+    "suitabilityCounts": {
+      "low": 98,
+      "moderate": 311,
+      "elevated": 110,
+      "owner-review": 0
+    },
+    "strictReviewCandidateCount": 429,
+    "deterministicUnsafeFindingsRemaining": 0,
+    "normalContentPolicySupported": "sanitized historical public-domain library",
+    "allAudienceSafetySupported": false,
+    "classroomYouthSafeByDefaultSupported": false,
+    "normalOwnerReviewBlockers": 0,
+    "normalDeferralRemovalRecommendations": 0,
+    "safeReplacementOccurrences": 425,
+    "changedSafetySweepBookCount": 91,
+    "completenessRepairs": null,
+    "deferredOrBlockedBooks": null
+  },
+  "updatedCloudflareExportReadiness": {
+    "sourceFolder": "app/client/assets/books/cloudflare-updated-export",
+    "fileCount": 521,
+    "bookPayloadCount": 519,
+    "manifestCount": 2,
+    "trackedFileCount": 0,
+    "localServedBaseUrl": "http://127.0.0.1:49857",
+    "requiredFiles": [
+      {
+        "sourcePath": "public-manifest.json",
+        "destinationPath": "public-manifest.json"
+      },
+      {
+        "sourcePath": "upload-manifest.json",
+        "destinationPath": "upload-manifest.json"
+      },
+      {
+        "sourcePath": "books/*.json",
+        "destinationPath": "books/*.json"
+      }
+    ],
+    "replacementType": "full",
+    "payloadIssues": []
+  },
+  "localPrintRouteResult": {
+    "summary": "Local print routes returned 200, showed suitability notes, avoided unavailable text, and did not serialize full book sections in SSR.",
+    "routesChecked": [
+      {
+        "path": "/morse-code-books/walden/print",
+        "status": 200,
+        "htmlBytes": 417833,
+        "passed": true,
+        "checks": [
+          "status=200",
+          "htmlBytes=417833",
+          "suitability-note-present",
+          "no-full-section-serialization"
+        ]
+      },
+      {
+        "path": "/morse-code-books/the-call-of-cthulhu/print",
+        "status": 200,
+        "htmlBytes": 409050,
+        "passed": true,
+        "checks": [
+          "status=200",
+          "htmlBytes=409050",
+          "suitability-note-present",
+          "no-full-section-serialization"
+        ]
+      },
+      {
+        "path": "/morse-code-books/the-adventures-of-roderick-random/print",
+        "status": 200,
+        "htmlBytes": 409387,
+        "passed": true,
+        "checks": [
+          "status=200",
+          "htmlBytes=409387",
+          "suitability-note-present",
+          "no-full-section-serialization"
+        ]
+      }
+    ],
+    "fullPayloadSerializedInSsr": false
+  },
+  "localSitemapIndexabilityCanonicalResult": {
+    "xmlSitemapUrlCount": 1651,
+    "routeInventoryCount": 174,
+    "bookUrlCount": 519,
+    "audiobookUrlCount": 519,
+    "printUrlCount": 488,
+    "expectedProductionHost": "https://www.morsewords.com",
+    "productionAssetHost": "https://assets.morsewords.com",
+    "localValidationAssetHost": "http://127.0.0.1:49857"
+  },
+  "localMetadataContentQualityResult": {
+    "seoSummaryResult": "519/519",
+    "startupPreviewResult": "519/519",
+    "noAppCloudflareExportImports": true,
+    "appCloudflareExportImportFiles": []
+  },
+  "localMobileSmokeResult": {
+    "summary": "passed: npx playwright test tests/qa-robustness-review/morse-mobile-smoke.spec.ts --project=desktop-chromium --reporter=line (3 passed)",
+    "testFile": "tests/qa-robustness-review/morse-mobile-smoke.spec.ts",
+    "requiredCommand": "npx playwright test tests/qa-robustness-review/morse-mobile-smoke.spec.ts --project=desktop-chromium --reporter=line"
+  },
+  "cleanupPerformed": {
+    "summary": "No safe local cleanup was needed; no obsolete tracked temporary files or unreferenced workflow helpers were removed.",
+    "filesRemoved": []
+  },
+  "protectedFolderExportTrackingStatus": {
+    "tempBooksStatus": "clean",
+    "generatedStatus": "clean",
+    "publicBookPreviewsStatus": "clean",
+    "cloudflareExportStatus": "ignored/untracked or clean",
+    "cloudflareUpdatedExportStatus": "ignored/untracked or clean",
+    "cloudflareExportTrackedFileCount": 0,
+    "cloudflareUpdatedExportTrackedFileCount": 0
+  },
+  "remainingBlockers": [],
+  "finalLocalReadiness": "Local repo readiness passed. Production Netlify route validation remains deferred.",
+  "requiredFutureProductionCheck": "After Netlify is known to be serving the latest main, run the separate production-only route and remote content-safety/suitability validation. Do not treat that deferred production check as a blocker for this local completion branch.",
+  "checks": [
+    {
+      "name": "current main commit",
+      "status": "pass",
+      "details": "66bb75e63863775c1f9e4f52118170c35ea35ace checked"
+    },
+    {
+      "name": "generated book count",
+      "status": "pass",
+      "details": "519/519"
+    },
+    {
+      "name": "SEO summary count",
+      "status": "pass",
+      "details": "519/519"
+    },
+    {
+      "name": "startup preview count",
+      "status": "pass",
+      "details": "519/519"
+    },
+    {
+      "name": "XML sitemap URL count",
+      "status": "pass",
+      "details": "1651/1651"
+    },
+    {
+      "name": "book URL count",
+      "status": "pass",
+      "details": "519/519"
+    },
+    {
+      "name": "audiobook URL count",
+      "status": "pass",
+      "details": "519/519"
+    },
+    {
+      "name": "print URL count",
+      "status": "pass",
+      "details": "488/488"
+    },
+    {
+      "name": "route inventory count",
+      "status": "pass",
+      "details": "174/174"
+    },
+    {
+      "name": "ignored export app imports",
+      "status": "pass",
+      "details": "0 imports found"
+    },
+    {
+      "name": "cloudflare-export tracked-file count",
+      "status": "pass",
+      "details": "0"
+    },
+    {
+      "name": "cloudflare-updated-export tracked-file count",
+      "status": "pass",
+      "details": "0"
+    },
+    {
+      "name": "cloudflare-updated-export file count",
+      "status": "pass",
+      "details": "521/521"
+    },
+    {
+      "name": "suitability counts",
+      "status": "pass",
+      "details": "{\"low\":98,\"moderate\":311,\"elevated\":110,\"owner-review\":0}"
+    },
+    {
+      "name": "strict review candidate count",
+      "status": "pass",
+      "details": "429/429"
+    },
+    {
+      "name": "deterministic unsafe findings",
+      "status": "pass",
+      "details": "0 remaining"
+    },
+    {
+      "name": "sanitized historical-library policy",
+      "status": "pass",
+      "details": "Option B selected"
+    },
+    {
+      "name": "all-audience policy",
+      "status": "pass",
+      "details": "not supported"
+    },
+    {
+      "name": "classroom/youth-safe-by-default policy",
+      "status": "pass",
+      "details": "not supported"
+    },
+    {
+      "name": "local export public manifest book count",
+      "status": "pass",
+      "details": "519/519"
+    },
+    {
+      "name": "local export upload manifest book count",
+      "status": "pass",
+      "details": "519/519"
+    },
+    {
+      "name": "local export upload manifest file count",
+      "status": "pass",
+      "details": "521/521"
+    },
+    {
+      "name": "local export payload reachability",
+      "status": "pass",
+      "details": "519/519"
+    },
+    {
+      "name": "local export payload suitability metadata",
+      "status": "pass",
+      "details": "519/519"
+    },
+    {
+      "name": "local export suitability counts",
+      "status": "pass",
+      "details": "{\"low\":98,\"moderate\":311,\"elevated\":110}"
+    },
+    {
+      "name": "local export payload integrity",
+      "status": "pass",
+      "details": "0 issues"
+    },
+    {
+      "name": "local export manifest/path structure",
+      "status": "pass",
+      "details": "0 missing manifest book files"
+    },
+    {
+      "name": "local print route checks",
+      "status": "pass",
+      "details": "/morse-code-books/walden/print:200:417833, /morse-code-books/the-call-of-cthulhu/print:200:409050, /morse-code-books/the-adventures-of-roderick-random/print:200:409387"
+    }
+  ]
+}
