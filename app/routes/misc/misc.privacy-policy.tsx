@@ -6,6 +6,7 @@ import {
   UtilityPageHeader,
   UtilityPageShell,
 } from "~/client/components/shared/UtilityPageLayout";
+import { MORSEWORDS_SUPPORT_EMAIL } from "~/client/data/siteTrust";
 import { canonicalUrl, SITE_URL } from "~/client/seo";
 import type { Route } from "./+types/misc.privacy-policy";
 export const meta: Route.MetaFunction = () => {
@@ -87,7 +88,9 @@ export default function PrivacyPolicy() {
             personal information is processed for the purposes described in this
             privacy notice.
           </span>
-          <span>Contact: admin@morsewords.com (Toronto, Ontario, Canada).</span>
+          <span>
+            Contact: {MORSEWORDS_SUPPORT_EMAIL} (Toronto, Ontario, Canada).
+          </span>
         </p>
       </UtilityPageHeader>
 
@@ -600,8 +603,8 @@ export default function PrivacyPolicy() {
             directed to children under 13. We do not knowingly collect personal
             information from children under 13. If you believe a child has
             provided personal information to us, please contact us at
-            admin@morsewords.com and we will take appropriate steps to delete
-            the information.
+            {MORSEWORDS_SUPPORT_EMAIL} and we will take appropriate steps to
+            delete the information.
           </p>
         </section>
 
@@ -615,8 +618,8 @@ export default function PrivacyPolicy() {
           </p>
           <p>
             You can request access to, correction of, or deletion of your
-            personal information by contacting us at admin@morsewords.com. We
-            may need to verify your identity before responding. Where
+            personal information by contacting us at {MORSEWORDS_SUPPORT_EMAIL}.
+            We may need to verify your identity before responding. Where
             applicable, you may also have the right to object to certain
             processing or request portability of your information.
           </p>
@@ -641,7 +644,7 @@ export default function PrivacyPolicy() {
           <h2 className="flex py-2 text-2xl">11. CONTACT US</h2>
           <p>
             If you have questions or comments about this notice, you may email
-            us at admin@morsewords.com or contact us by post at:
+            us at {MORSEWORDS_SUPPORT_EMAIL} or contact us by post at:
           </p>
           <p>https://www.morsewords.com/</p>
           <p>Toronto, Ontario</p>

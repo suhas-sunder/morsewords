@@ -7,6 +7,7 @@ import {
   UtilityPageHeader,
   UtilityPageShell,
 } from "~/client/components/shared/UtilityPageLayout";
+import { MORSEWORDS_SUPPORT_EMAIL } from "~/client/data/siteTrust";
 import { canonicalUrl, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
@@ -268,7 +269,7 @@ export default function CookiesPolicy() {
           </h2>
           <p>
             If you have any questions about our use of cookies or other
-            technologies, please contact us at: admin@morsewords.com.
+            technologies, please contact us at: {MORSEWORDS_SUPPORT_EMAIL}.
           </p>
         </section>
       </UtilityContentPanel>

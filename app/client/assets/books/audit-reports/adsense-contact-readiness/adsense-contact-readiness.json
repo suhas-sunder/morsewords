@@ -1,0 +1,170 @@
+{
+  "executiveResult": "AdSense/contact readiness passed",
+  "contactEmail": "support@morsewords.com",
+  "contactEmailsFound": [
+    "support@morsewords.com"
+  ],
+  "sitemap": {
+    "total": 1682,
+    "nonBook": 125,
+    "book": 519,
+    "audiobook": 519,
+    "print": 519
+  },
+  "generatedBookCount": 519,
+  "requiredPages": [
+    {
+      "key": "privacy",
+      "routePath": "/privacy",
+      "filePath": "app/routes/privacy.tsx",
+      "routeRegistered": true,
+      "fileExists": true,
+      "inSitemap": true,
+      "hasMetadata": true,
+      "hasCanonical": true,
+      "hasNoindex": false,
+      "hasExpectedHeading": true,
+      "hasSubstantialContent": true
+    },
+    {
+      "key": "terms",
+      "routePath": "/terms",
+      "filePath": "app/routes/terms.tsx",
+      "routeRegistered": true,
+      "fileExists": true,
+      "inSitemap": true,
+      "hasMetadata": true,
+      "hasCanonical": true,
+      "hasNoindex": false,
+      "hasExpectedHeading": true,
+      "hasSubstantialContent": true
+    },
+    {
+      "key": "cookies",
+      "routePath": "/cookies",
+      "filePath": "app/routes/cookies.tsx",
+      "routeRegistered": true,
+      "fileExists": true,
+      "inSitemap": true,
+      "hasMetadata": true,
+      "hasCanonical": true,
+      "hasNoindex": false,
+      "hasExpectedHeading": true,
+      "hasSubstantialContent": true
+    },
+    {
+      "key": "sources",
+      "routePath": "/sources",
+      "filePath": "app/routes/sources.tsx",
+      "routeRegistered": true,
+      "fileExists": true,
+      "inSitemap": true,
+      "hasMetadata": true,
+      "hasCanonical": true,
+      "hasNoindex": false,
+      "hasExpectedHeading": true,
+      "hasSubstantialContent": true
+    },
+    {
+      "key": "about",
+      "routePath": "/about",
+      "filePath": "app/routes/about.tsx",
+      "routeRegistered": true,
+      "fileExists": true,
+      "inSitemap": true,
+      "hasMetadata": true,
+      "hasCanonical": true,
+      "hasNoindex": false,
+      "hasExpectedHeading": true,
+      "hasSubstantialContent": true
+    },
+    {
+      "key": "contact",
+      "routePath": "/contact",
+      "filePath": "app/routes/contact.tsx",
+      "routeRegistered": true,
+      "fileExists": true,
+      "inSitemap": true,
+      "hasMetadata": true,
+      "hasCanonical": true,
+      "hasNoindex": false,
+      "hasExpectedHeading": true,
+      "hasSubstantialContent": true
+    }
+  ],
+  "footerLinks": {
+    "about": true,
+    "contact": true,
+    "sources": true,
+    "privacy": true,
+    "terms": true,
+    "cookies": true
+  },
+  "navLinks": {
+    "about": true,
+    "contact": true,
+    "sources": true,
+    "privacy": true,
+    "terms": true,
+    "cookies": true
+  },
+  "contactPath": {
+    "contactRouteHasEmail": true,
+    "contactRouteHasMailto": true,
+    "sourcesRouteHasEmail": true,
+    "aboutRouteHasOwnershipSignal": true,
+    "aboutRouteNamesMaintainer": true
+  },
+  "correctionTakedownPath": {
+    "sourcesHasCorrectionLanguage": true,
+    "sourcesHasTakedownLanguage": true,
+    "sourcesHasSourceConcernLanguage": true,
+    "contactHasReportTopics": true,
+    "contactHasAccessibilityConcernPath": true
+  },
+  "policyIndexability": {
+    "canonicalPolicyPagesInSitemap": [
+      "/privacy",
+      "/terms",
+      "/cookies"
+    ],
+    "canonicalPolicyPagesNoindex": [],
+    "intentionalNoindexPolicyPagesExcluded": [
+      "/misc/privacy-policy",
+      "/misc/terms-of-service",
+      "/misc/cookies-policy"
+    ],
+    "noindexPolicyPagesInSitemap": []
+  },
+  "adsenseSensitive": {
+    "ownershipSignal": true,
+    "accessiblePrivacyPolicy": true,
+    "accessibleTermsPolicy": true,
+    "accessibleCookiesPolicy": true,
+    "visibleSourceCorrectionTakedownProcess": true,
+    "noUnsupportedSafetyClaims": true,
+    "noPlaceholderSupportPages": true,
+    "noBrokenSupportLinks": true,
+    "noThinSupportPages": true
+  },
+  "placeholderScan": [],
+  "unsupportedSafetyClaims": [],
+  "brokenSupportLinks": [],
+  "redirectOnlyUrlsInSitemap": [],
+  "noindexUrlsInSitemap": [],
+  "sitemapHostMismatches": [],
+  "malformedSitemapUrls": [],
+  "bookSuitabilityPolicy": {
+    "sourcesPolicyVisible": true,
+    "bookHubNoticeVisible": true,
+    "audiobookHubNoticeVisible": true,
+    "bookDetailSuitabilityVisible": true,
+    "printSuitabilityVisible": true
+  },
+  "fixesMade": [
+    "Standardized legacy noindex /misc policy pages from the legacy admin contact address to the shared support email.",
+    "Added a deterministic AdSense/contact readiness audit and report artifact.",
+    "Preserved sitemap counts, book counts, print inclusion policy, generated books, previews, and Cloudflare export tracking."
+  ],
+  "blockers": []
+}

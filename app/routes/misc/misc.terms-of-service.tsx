@@ -4,6 +4,7 @@ import {
   UtilityPageHeader,
   UtilityPageShell,
 } from "~/client/components/shared/UtilityPageLayout";
+import { MORSEWORDS_SUPPORT_EMAIL } from "~/client/data/siteTrust";
 import { canonicalUrl, SITE_URL } from "~/client/seo";
 import type { Route } from "./+types/misc.terms-of-service";
 
@@ -69,7 +70,7 @@ export default function TermsOfService() {
         </p>
 
         <p>
-          You can contact us by email at admin@morsewords.com or by mail to
+          You can contact us by email at {MORSEWORDS_SUPPORT_EMAIL} or by mail to
           https://www.morsewords.com, Toronto, Ontario, Canada.
         </p>
 
@@ -184,8 +185,8 @@ export default function TermsOfService() {
           <p>
             If you wish to make any use of the Services, Content, or Marks other
             than as set out in this section or elsewhere in our Legal Terms,
-            please address your request to: admin@morsewords.com. If we ever
-            grant you the permission to post, reproduce, or publicly display any
+            please address your request to: {MORSEWORDS_SUPPORT_EMAIL}. If we
+            ever grant you the permission to post, reproduce, or publicly display any
             part of our Services or Content, you must identify us as the owners
             or licensors of the Services, Content, or Marks and ensure that any
             copyright or proprietary notice appears or is visible on posting,
@@ -364,8 +365,8 @@ export default function TermsOfService() {
             allowed. Doing so may result in the username being changed by the
             MorseWords team or, in extreme cases, may lead to account
             suspension or termination. If you notice any users abusing this
-            policy please contact us at admin@morsewords.com and we will address
-            the issue as soon as possible.
+            policy please contact us at {MORSEWORDS_SUPPORT_EMAIL} and we will
+            address the issue as soon as possible.
           </p>
         </section>
 
@@ -1191,7 +1192,7 @@ export default function TermsOfService() {
           <p>https://www.morsewords.com</p>
           <p>Toronto, Ontario</p>
           <p>Canada</p>
-          <p>admin@morsewords.com</p>
+          <p>{MORSEWORDS_SUPPORT_EMAIL}</p>
         </section>
       </UtilityContentPanel>
     </UtilityPageShell>
