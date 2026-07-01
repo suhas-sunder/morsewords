@@ -107,6 +107,7 @@
     "pages:planned-non-book-audit": "node --experimental-strip-types scripts/audit-planned-non-book-pages.ts",
     "pages:url-indexability-canonical-audit": "node --experimental-strip-types scripts/audit-url-indexability-canonical.ts",
     "pages:gsc-meta-content-quality-audit": "node --experimental-strip-types scripts/audit-gsc-meta-content-quality.ts",
+    "pages:sitemap-count-print-indexability-audit": "tsx scripts/audit-sitemap-count-print-indexability.ts",
     "site:local-final-validation": "tsx scripts/local-final-validation.ts",
     "books:build-previews": "node --experimental-strip-types scripts/books/build-book-previews.ts",
     "books:candidate-report": "node --experimental-strip-types scripts/books/generate-first-publication-candidate-report.ts",

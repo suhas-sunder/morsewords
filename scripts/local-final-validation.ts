@@ -59,7 +59,7 @@ type StaticServer = {
 };
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const expectedBaseCommit = "66bb75e63863775c1f9e4f52118170c35ea35ace";
+const requiredCompletionCommit = "c3084755f79583499b51ee6d38b808c3c211d007";
 const expectedBookCount = 519;
 const expectedManifestCount = 2;
 const expectedExportFileCount = 521;
@@ -69,9 +69,9 @@ const expectedSuitabilityCounts = {
   elevated: 110,
 };
 const expectedStrictReviewCandidates = 429;
-const expectedSitemapUrlCount = 1651;
+const expectedSitemapUrlCount = 1682;
 const expectedRouteInventoryCount = 174;
-const expectedPrintUrlCount = 488;
+const expectedPrintUrlCount = 519;
 const localDeferredStatement =
   "Production Netlify route validation is deferred and was not used as a blocker in this local completion branch.";
 
@@ -158,6 +158,11 @@ function runGit(args: string[]) {
     throw new Error(`git ${args.join(" ")} failed: ${result.stderr || result.stdout}`);
   }
   return result.stdout.trim();
+}
+
+function hasAncestorCommit(commit: string) {
+  const result = spawnSyncText("git", ["merge-base", "--is-ancestor", commit, "HEAD"]);
+  return result.exitCode === 0;
 }
 
 function spawnSyncText(command: string, args: string[]) {
@@ -589,7 +594,7 @@ function buildMarkdown(report: Record<string, unknown>) {
     ),
     section(
       "2. Current main commit checked",
-      `Current branch base/main commit checked: \`${String(report.currentMainCommitChecked)}\`.\n\nExpected current main: \`${expectedBaseCommit}\`.`,
+      `Current branch commit checked: \`${String(report.currentMainCommitChecked)}\`.\n\nRequired merged completion commit: \`${requiredCompletionCommit}\`.\n\nCompletion commit present: ${String(report.requiredCompletionCommitPresent)}.`,
     ),
     section(
       "3. Local-only scope statement",
@@ -758,7 +763,14 @@ async function main() {
   const cloudflareExportStatus = readStatusShort("app/client/assets/books/cloudflare-export");
   const cloudflareUpdatedExportStatus = readStatusShort("app/client/assets/books/cloudflare-updated-export");
 
-  check(currentCommit === expectedBaseCommit, "current main commit", `${currentCommit} checked`, blockers, checks);
+  const requiredCompletionCommitPresent = hasAncestorCommit(requiredCompletionCommit);
+  check(
+    requiredCompletionCommitPresent,
+    "required completion commit",
+    `${requiredCompletionCommit} ancestor of HEAD: ${requiredCompletionCommitPresent}`,
+    blockers,
+    checks,
+  );
   check(generatedManifest.books.length === expectedBookCount, "generated book count", `${generatedManifest.books.length}/${expectedBookCount}`, blockers, checks);
   check((seoSummary.summaries ?? []).length === expectedBookCount, "SEO summary count", `${(seoSummary.summaries ?? []).length}/${expectedBookCount}`, blockers, checks);
   check((previewManifest.books ?? []).length === expectedBookCount, "startup preview count", `${(previewManifest.books ?? []).length}/${expectedBookCount}`, blockers, checks);
@@ -854,7 +866,8 @@ async function main() {
     executiveResult,
     branchName,
     currentMainCommitChecked: currentCommit,
-    expectedMainCommit: expectedBaseCommit,
+    requiredCompletionCommit,
+    requiredCompletionCommitPresent,
     localOnlyScopeStatement:
       "This branch completed repo-local readiness checks using local files, local app serving, and the ignored local Cloudflare updated export folder. It did not wait for or validate Netlify production route deployment.",
     productionNetlifyValidationDeferredStatement: localDeferredStatement,
