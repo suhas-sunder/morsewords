@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "reportName": "remote-content-safety-suitability-validation",
+  "generatedAt": "2026-07-01T05:02:38.647Z",
+  "branchName": "morsewords-remote-content-safety-suitability-validation-jun-2026",
+  "mainCommitChecked": "caff234d8e0a472bb1c33f6b3f750e9ed1117d1a",
+  "assetHostChecked": "https://assets.morsewords.com",
+  "productionHostChecked": "https://www.morsewords.com",
+  "executiveResult": "Remote content-safety and suitability validation blocked because /morse-code-books/walden/print returned HTTP 500",
+  "remoteManifestResult": {
+    "status": "pass",
+    "notes": [
+      "Remote public-manifest.json and upload-manifest.json are reachable.",
+      "Both remote manifests match the uploaded export content hash."
+    ],
+    "publicManifestUrl": "https://assets.morsewords.com/public-manifest.json",
+    "uploadManifestUrl": "https://assets.morsewords.com/upload-manifest.json",
+    "publicManifestBooks": 519,
+    "uploadManifestFiles": 521
+  },
+  "remotePayloadCountResult": {
+    "status": "pass",
+    "notes": [
+      "All 519 remote book payloads are reachable and match the uploaded export metadata."
+    ],
+    "expectedBookPayloads": 519,
+    "reachableBookPayloads": 519,
+    "missingExpectedSlugs": [],
+    "extraRemoteSlugs": []
+  },
+  "remoteSuitabilityMetadataResult": {
+    "status": "pass",
+    "notes": [
+      "Remote manifests and payloads include suitability metadata.",
+      "Suitability counts match expected low/moderate/elevated totals.",
+      "Strict-review candidate metadata is present and matches expected count."
+    ],
+    "counts": {
+      "low": 98,
+      "moderate": 311,
+      "elevated": 110
+    },
+    "strictReviewCandidateCount": 429
+  },
+  "remoteContentSafetyResult": {
+    "status": "pass",
+    "notes": [
+      "Deterministic unsafe findings remaining are 0 by sanitized-export parity.",
+      "All safety-sweep changed payloads match the uploaded sanitized export and do not match the prior export hash."
+    ],
+    "deterministicUnsafeFindingsRemaining": 0,
+    "changedBooksChecked": 91,
+    "safeReplacementOccurrences": 425,
+    "staleChangedPayloadsRemaining": 0
+  },
+  "cthulhuOwnerReportedCaseResult": {
+    "status": "pass",
+    "notes": [
+      "The Call of Cthulhu remote payload matches the sanitized uploaded export.",
+      "owner-reported masked racial identity label was sanitized in generated text and previews"
+    ],
+    "slug": "the-call-of-cthulhu",
+    "remoteUrl": "https://assets.morsewords.com/books/the-call-of-cthulhu.json"
+  },
+  "changedBooksRemoteVerificationResult": {
+    "status": "pass",
+    "notes": [
+      "All changed books from the safety sweep resolve to the uploaded sanitized export remotely.",
+      "No changed-book payload still matches the prior export hash."
+    ],
+    "changedBooksChecked": 91,
+    "changedPayloadsMatchingUpdatedExport": 91,
+    "changedPayloadsStillMatchingPriorExport": 0
+  },
+  "productionUiSuitabilityLabelFilterResult": {
+    "status": "blocked",
+    "notes": [
+      "/morse-code-books/walden/print returned HTTP 500"
+    ],
+    "sampledRoutes": [
+      {
+        "route": "/morse-code-books",
+        "status": "pass",
+        "payloadRequests": [],
+        "notes": []
+      },
+      {
+        "route": "/morse-code-audiobooks",
+        "status": "pass",
+        "payloadRequests": [],
+        "notes": []
+      },
+      {
+        "route": "/morse-code-books/the-call-of-cthulhu",
+        "status": "pass",
+        "payloadRequests": [
+          "https://assets.morsewords.com/books/the-call-of-cthulhu.json"
+        ],
+        "notes": []
+      },
+      {
+        "route": "/morse-code-books/walden",
+        "status": "pass",
+        "payloadRequests": [
+          "https://assets.morsewords.com/books/walden.json"
+        ],
+        "notes": []
+      },
+      {
+        "route": "/morse-code-books/the-adventures-of-roderick-random",
+        "status": "pass",
+        "payloadRequests": [
+          "https://assets.morsewords.com/books/the-adventures-of-roderick-random.json"
+        ],
+        "notes": []
+      },
+      {
+        "route": "/morse-code-books/middlemarch",
+        "status": "pass",
+        "payloadRequests": [
+          "https://assets.morsewords.com/books/middlemarch.json"
+        ],
+        "notes": []
+      },
+      {
+        "route": "/morse-code-audiobooks/walden",
+        "status": "pass",
+        "payloadRequests": [
+          "https://assets.morsewords.com/books/walden.json"
+        ],
+        "notes": []
+      },
+      {
+        "route": "/morse-code-books/walden/print",
+        "status": "blocked",
+        "payloadRequests": [],
+        "notes": [
+          "/morse-code-books/walden/print returned HTTP 500"
+        ]
+      }
+    ]
+  },
+  "productionFullPayloadHydrationResult": {
+    "status": "pass",
+    "notes": [
+      "Sampled production detail and audiobook pages requested full payloads from https://assets.morsewords.com.",
+      "Full payload hydration completed and no sampled live page showed unavailable-book text."
+    ],
+    "sampledRoutes": [
+      {
+        "route": "/morse-code-books/the-call-of-cthulhu",
+        "status": "pass",
+        "payloadRequests": [
+          "https://assets.morsewords.com/books/the-call-of-cthulhu.json"
+        ],
+        "notes": []
+      },
+      {
+        "route": "/morse-code-books/walden",
+        "status": "pass",
+        "payloadRequests": [
+          "https://assets.morsewords.com/books/walden.json"
+        ],
+        "notes": []
+      },
+      {
+        "route": "/morse-code-books/the-adventures-of-roderick-random",
+        "status": "pass",
+        "payloadRequests": [
+          "https://assets.morsewords.com/books/the-adventures-of-roderick-random.json"
+        ],
+        "notes": []
+      },
+      {
+        "route": "/morse-code-books/middlemarch",
+        "status": "pass",
+        "payloadRequests": [
+          "https://assets.morsewords.com/books/middlemarch.json"
+        ],
+        "notes": []
+      },
+      {
+        "route": "/morse-code-audiobooks/walden",
+        "status": "pass",
+        "payloadRequests": [
+          "https://assets.morsewords.com/books/walden.json"
+        ],
+        "notes": []
+      }
+    ]
+  },
+  "policyStatementVerification": {
+    "status": "blocked",
+    "notes": [
+      "/morse-code-books/walden/print returned HTTP 500",
+      "Option B: keep the sanitized historical public-domain library, show suitability notes on book/audiobook/print surfaces, provide a lower-risk filter on library listings, and avoid all-audience/classroom-safe claims.",
+      "All-audience safety is not supported by this validation.",
+      "Classroom/youth-safe-by-default status is not supported by this validation."
+    ]
+  },
+  "filesIntentionallyNotTracked": [
+    "app/client/assets/books/cloudflare-export",
+    "app/client/assets/books/cloudflare-updated-export",
+    "app/client/assets/temp-books",
+    "public/book-previews",
+    "app/client/assets/books/generated"
+  ],
+  "remainingBlockers": [
+    "/morse-code-books/walden/print returned HTTP 500"
+  ],
+  "nextStep": "Remote asset validation passed. Production print-route validation was blocked by a live 500 on /morse-code-books/walden/print. A targeted print-route fix and local regression coverage were added. Production revalidation is required after this branch is merged and deployed."
+}

@@ -25,10 +25,13 @@ import {
   morseBookSuitabilityLabel,
 } from "~/client/data/morseBookSuitability";
 import type {
+  MorseBookLibrarySummary,
   MorseBookManifest,
+  MorseBookPublicContentJson,
   MorseBookSectionJson,
 } from "~/client/data/morseBookTypes";
 import {
+  getMorseBookPublicContent,
   morseAudiobookPath,
   morseBookPath,
   morseBookPrintPath,
@@ -51,9 +54,11 @@ type PrintablePage = {
   pageNumber: number;
 };
 
+type PrintableBookMetadata = MorseBookLibrarySummary | MorseBookManifest;
+
 type PrintableBookSource = {
-  book: MorseBookManifest;
-  sections: MorseBookSectionJson[];
+  book: PrintableBookMetadata;
+  sections?: MorseBookSectionJson[];
 };
 
 type PrintableMorsePagesProps =
@@ -75,6 +80,7 @@ const SITE_LABEL = "MorseWords.com";
 const CUSTOM_QR_URL = absoluteUrl(ROUTES.printablePages);
 const LINES_PER_PAGE = 9;
 const MAX_PRINT_LINE_LENGTH = 96;
+const INITIAL_BOOK_PRINT_SECTION_LIMIT = 1;
 const QR_SIZE = 148;
 
 let qrCodeModulePromise: Promise<typeof import("qrcode")> | null = null;
@@ -83,7 +89,7 @@ function formatNumber(value: number) {
   return new Intl.NumberFormat("en-US").format(value);
 }
 
-function authorText(book: MorseBookManifest) {
+function authorText(book: PrintableBookMetadata) {
   return formatMorseBookAuthors(book.author);
 }
 
@@ -152,13 +158,22 @@ function chunkLines(lines: PrintableLine[]) {
   return pages.length > 0 ? pages : [{ lines: [], pageNumber: 1 }];
 }
 
-function defaultSectionIds(book: MorseBookManifest) {
-  const defaults = book.sections
+function bookSectionSummaries(book: PrintableBookMetadata) {
+  return "sections" in book ? book.sections : [];
+}
+
+function defaultSectionIds(book: PrintableBookMetadata) {
+  const sections = bookSectionSummaries(book);
+  const defaults = sections
     .filter((section) => section.includeByDefault)
     .map((section) => section.id);
   return defaults.length > 0
     ? defaults
-    : book.sections.slice(0, 1).map((section) => section.id);
+    : sections.slice(0, 1).map((section) => section.id);
+}
+
+function initialPrintableSectionIds(book: PrintableBookMetadata) {
+  return defaultSectionIds(book).slice(0, INITIAL_BOOK_PRINT_SECTION_LIMIT);
 }
 
 function useQrCode(url: string) {
@@ -244,26 +259,69 @@ function PrintStyles() {
 export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
   const isBook = props.kind === "book";
   const bookSource = isBook ? props.bookSource : null;
-  const book = bookSource?.book ?? null;
-  const allSections = bookSource?.sections ?? [];
+  const initialBook = bookSource?.book ?? null;
+  const [bookContent, setBookContent] =
+    React.useState<MorseBookPublicContentJson | null>(null);
+  const [bookContentStatus, setBookContentStatus] = React.useState<
+    "idle" | "loading" | "loaded" | "unavailable"
+  >(() => (isBook && !bookSource?.sections?.length ? "loading" : "loaded"));
+  const book = bookContent?.manifest ?? initialBook;
+  const allSections = bookContent?.sections ?? bookSource?.sections ?? [];
   const suitabilityProfile = book ? getMorseBookSuitability(book.slug) : null;
   const [customText, setCustomText] = React.useState(CUSTOM_SAMPLE);
   const [layout, setLayout] = React.useState<PrintableLayout>("study-sheet");
   const [outputMode, setOutputMode] = React.useState<OutputMode>("pairs");
-  const [scope, setScope] = React.useState<SectionScope>("default");
-  const [selectedSectionIds, setSelectedSectionIds] = React.useState<string[]>(
-    () => (book ? defaultSectionIds(book) : []),
+  const [scope, setScope] = React.useState<SectionScope>(() =>
+    book ? "selected" : "default",
   );
+  const [selectedSectionIds, setSelectedSectionIds] = React.useState<string[]>(
+    () => (book ? initialPrintableSectionIds(book) : []),
+  );
+  const [printPreviewReady, setPrintPreviewReady] = React.useState(!isBook);
   const qrTargetUrl = isBook && book ? absoluteUrl(morseBookPrintPath(book.slug)) : CUSTOM_QR_URL;
   const { failed: qrFailed, qrCodeUrl } = useQrCode(qrTargetUrl);
 
   React.useEffect(() => {
+    if (!isBook || !initialBook) return;
+    if (bookSource?.sections?.length) {
+      setBookContentStatus("loaded");
+      return;
+    }
+
+    let cancelled = false;
+    setBookContentStatus("loading");
+    getMorseBookPublicContent(initialBook.slug)
+      .then((content) => {
+        if (cancelled) return;
+        if (content?.manifest.slug === initialBook.slug) {
+          setBookContent(content);
+          setBookContentStatus("loaded");
+        } else {
+          setBookContentStatus("unavailable");
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setBookContentStatus("unavailable");
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [bookSource?.sections?.length, initialBook, isBook]);
+
+  React.useEffect(() => {
+    setPrintPreviewReady(true);
+  }, []);
+
+  React.useEffect(() => {
     if (!book) return;
-    setSelectedSectionIds(defaultSectionIds(book));
+    setScope("selected");
+    setSelectedSectionIds(initialPrintableSectionIds(book));
   }, [book]);
 
   const selectedSections = React.useMemo(() => {
     if (!book) return [];
+    if (!printPreviewReady) return [];
     if (scope === "full") return allSections;
     if (scope === "default") {
       const defaults = new Set(defaultSectionIds(book));
@@ -271,7 +329,7 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
     }
     const selected = new Set(selectedSectionIds);
     return allSections.filter((section) => selected.has(section.sectionId));
-  }, [allSections, book, scope, selectedSectionIds]);
+  }, [allSections, book, printPreviewReady, scope, selectedSectionIds]);
 
   const printableLines = React.useMemo(
     () =>
@@ -394,6 +452,16 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
                   role="region"
                   aria-label="Printable book section choices"
                 >
+                  {allSections.length === 0 ? (
+                    <p
+                      className="px-3 py-2 text-sm leading-relaxed text-slate-700"
+                      data-testid="printable-book-content-status"
+                    >
+                      {bookContentStatus === "unavailable"
+                        ? "Printable book text could not load. Refresh to try again."
+                        : "Loading printable book text from the approved library..."}
+                    </p>
+                  ) : null}
                   {allSections.map((section) => {
                     const checked =
                       scope === "full" ||
@@ -611,7 +679,7 @@ function PrintablePagePreview({
   qrFailed,
   qrTargetUrl,
 }: {
-  book: MorseBookManifest | null;
+  book: PrintableBookMetadata | null;
   layout: PrintableLayout;
   outputMode: OutputMode;
   page: PrintablePage;

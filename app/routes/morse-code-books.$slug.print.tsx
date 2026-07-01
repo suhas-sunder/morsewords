@@ -2,8 +2,7 @@ import type { Route } from "./+types/morse-code-books.$slug.print";
 
 import PrintableMorsePages from "~/client/components/morse-code-books/PrintableMorsePages";
 import {
-  getMorseBookPublicContentUrls,
-  getPublishedMorseBookSummariesRuntime,
+  getDiscoverableMorseBookSummary,
   isMorseBookPublishReady,
   morseBookPath,
   morseBookPrintPath,
@@ -12,63 +11,21 @@ import {
   formatMorseBookAuthors,
   morseBookAuthorSchemaPeople,
 } from "~/client/data/morseBookDisplay";
-import type { MorseBookPublicContentJson } from "~/client/data/morseBookTypes";
 import { absoluteUrl } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
-function isPublicBookContent(value: unknown): value is MorseBookPublicContentJson {
-  const candidate = value as Partial<MorseBookPublicContentJson>;
-  return (
-    Boolean(candidate) &&
-    typeof candidate === "object" &&
-    candidate.schemaVersion === 1 &&
-    typeof candidate.slug === "string" &&
-    Boolean(candidate.manifest) &&
-    Array.isArray(candidate.sections)
-  );
-}
-
-async function fetchApprovedPublicBookContent({
-  bookPath,
-  request,
-}: {
-  bookPath: string;
-  request: Request;
-}) {
-  const configured = getMorseBookPublicContentUrls(bookPath).bookUrl;
-  const url = configured.startsWith("http")
-    ? configured
-    : new URL(`/morse-book-content/${bookPath.replace(/^\/+/, "")}`, request.url)
-        .href;
-  const response = await fetch(url);
-  if (!response.ok) return null;
-  const value: unknown = await response.json();
-  return isPublicBookContent(value) ? value : null;
-}
-
-export async function loader({ params, request }: Route.LoaderArgs) {
+export async function loader({ params }: Route.LoaderArgs) {
   const slug = params.slug;
   if (!slug) {
     throw new Response("Morse book print page not found", { status: 404 });
   }
 
-  const summary =
-    (await getPublishedMorseBookSummariesRuntime()).find(
-      (book) => book.slug === slug,
-    ) ?? null;
+  const summary = getDiscoverableMorseBookSummary(slug);
   if (!summary || !isMorseBookPublishReady(summary)) {
     throw new Response("Morse book print page not found", { status: 404 });
   }
 
-  const content = await fetchApprovedPublicBookContent({
-    bookPath: summary.manifestPath,
-    request,
-  });
-  if (!content || !isMorseBookPublishReady(content.manifest)) {
-    throw new Response("Morse book print page not found", { status: 404 });
-  }
-
-  return { content };
+  return { bookSummary: summary };
 }
 
 export const meta: Route.MetaFunction = ({ data }) => {
@@ -79,7 +36,7 @@ export const meta: Route.MetaFunction = ({ data }) => {
     ];
   }
 
-  const book = data.content.manifest;
+  const book = data.bookSummary;
   const author = formatMorseBookAuthors(book.author);
   const path = morseBookPrintPath(book.slug);
   return [
@@ -96,8 +53,7 @@ export const meta: Route.MetaFunction = ({ data }) => {
 export default function MorseBookPrintRoute({
   loaderData,
 }: Route.ComponentProps) {
-  const { content } = loaderData;
-  const book = content.manifest;
+  const book = loaderData.bookSummary;
   const canonicalPath = morseBookPrintPath(book.slug);
   const canonical = canonicalUrl(canonicalPath);
   const bookUrl = absoluteUrl(morseBookPath(book.slug));
@@ -138,7 +94,7 @@ export default function MorseBookPrintRoute({
   return (
     <PrintableMorsePages
       kind="book"
-      bookSource={{ book, sections: content.sections }}
+      bookSource={{ book }}
       canonicalPath={canonicalPath}
       schema={[webpageJsonLd, breadcrumbJsonLd]}
     />

@@ -5,10 +5,12 @@ import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 const ELEVATED_BOOK_SLUG = "a-christmas-carol";
 const LOW_RISK_BOOK_SLUG = "a-catastrophe";
 const MODERATE_BOOK_SLUG = "the-threat";
+const MODERATE_STRICT_BOOK_SLUG = "walden";
 
 const ELEVATED_LABEL = "Elevated suitability review";
 const LOWER_RISK_LABEL = "Lower-risk profile";
 const MODERATE_LABEL = "Historical content note";
+const REVIEW_FOR_YOUNGER_READERS_LABEL = "Review for younger readers";
 
 const ELEVATED_NOTE =
   "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use.";
@@ -16,6 +18,8 @@ const LOWER_RISK_NOTE =
   "Historical public-domain text reviewed in the current content-safety sweep.";
 const MODERATE_NOTE =
   "Historical public-domain text. May include period language, mature themes, or intense scenes.";
+const MODERATE_STRICT_NOTE =
+  "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use.";
 
 type ListingSurface = {
   path: string;
@@ -189,6 +193,34 @@ test.describe("Morse book suitability labels and filters", () => {
     await expect(
       page.getByTestId("printable-book-content-suitability"),
     ).toContainText(LOWER_RISK_NOTE);
+    await expectNoUnsupportedSafetyClaims(page);
+  });
+
+  test("print routes load with suitability notes and no unavailable-book state", async ({
+    page,
+  }) => {
+    await gotoPublicPage(page, `/morse-code-books/${MODERATE_STRICT_BOOK_SLUG}/print`);
+    await expect(page.getByText("Book text unavailable")).toHaveCount(0);
+    await expect(page.getByText("This Morse book is not available right now")).toHaveCount(0);
+    await expect(
+      page.getByTestId("printable-book-content-suitability"),
+    ).toContainText(REVIEW_FOR_YOUNGER_READERS_LABEL);
+    await expect(
+      page.getByTestId("printable-book-content-suitability"),
+    ).toContainText(MODERATE_STRICT_NOTE);
+    await expect(page.getByTestId("printable-preview")).toBeVisible();
+    await expectNoUnsupportedSafetyClaims(page);
+
+    await gotoPublicPage(page, `/morse-code-books/${ELEVATED_BOOK_SLUG}/print`);
+    await expect(page.getByText("Book text unavailable")).toHaveCount(0);
+    await expect(page.getByText("This Morse book is not available right now")).toHaveCount(0);
+    await expect(
+      page.getByTestId("printable-book-content-suitability"),
+    ).toContainText(ELEVATED_LABEL);
+    await expect(
+      page.getByTestId("printable-book-content-suitability"),
+    ).toContainText(ELEVATED_NOTE);
+    await expect(page.getByTestId("printable-preview")).toBeVisible();
     await expectNoUnsupportedSafetyClaims(page);
   });
 });
