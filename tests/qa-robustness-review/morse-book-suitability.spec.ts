@@ -20,6 +20,23 @@ const MODERATE_NOTE =
   "Historical public-domain text. May include period language, mature themes, or intense scenes.";
 const MODERATE_STRICT_NOTE =
   "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use.";
+const FINAL_SANITY_PRINT_ROUTES = [
+  {
+    slug: "walden",
+    label: REVIEW_FOR_YOUNGER_READERS_LABEL,
+    note: MODERATE_STRICT_NOTE,
+  },
+  {
+    slug: "the-call-of-cthulhu",
+    label: ELEVATED_LABEL,
+    note: ELEVATED_NOTE,
+  },
+  {
+    slug: "the-adventures-of-roderick-random",
+    label: ELEVATED_LABEL,
+    note: ELEVATED_NOTE,
+  },
+] as const;
 
 type ListingSurface = {
   path: string;
@@ -96,6 +113,25 @@ async function expectNoUnsupportedSafetyClaims(page: Page) {
       pattern,
     );
   }
+}
+
+async function expectPrintableSuitabilityNote(
+  page: Page,
+  slug: string,
+  expectedLabel: string,
+  expectedNote: string,
+) {
+  await gotoPublicPage(page, `/morse-code-books/${slug}/print`);
+  await expect(page.getByText("Book text unavailable")).toHaveCount(0);
+  await expect(page.getByText("This Morse book is not available right now")).toHaveCount(0);
+  await expect(
+    page.getByTestId("printable-book-content-suitability"),
+  ).toContainText(expectedLabel);
+  await expect(
+    page.getByTestId("printable-book-content-suitability"),
+  ).toContainText(expectedNote);
+  await expect(page.getByTestId("printable-preview")).toBeVisible();
+  await expectNoUnsupportedSafetyClaims(page);
 }
 
 test.describe("Morse book suitability labels and filters", () => {
@@ -199,28 +235,31 @@ test.describe("Morse book suitability labels and filters", () => {
   test("print routes load with suitability notes and no unavailable-book state", async ({
     page,
   }) => {
-    await gotoPublicPage(page, `/morse-code-books/${MODERATE_STRICT_BOOK_SLUG}/print`);
-    await expect(page.getByText("Book text unavailable")).toHaveCount(0);
-    await expect(page.getByText("This Morse book is not available right now")).toHaveCount(0);
-    await expect(
-      page.getByTestId("printable-book-content-suitability"),
-    ).toContainText(REVIEW_FOR_YOUNGER_READERS_LABEL);
-    await expect(
-      page.getByTestId("printable-book-content-suitability"),
-    ).toContainText(MODERATE_STRICT_NOTE);
-    await expect(page.getByTestId("printable-preview")).toBeVisible();
-    await expectNoUnsupportedSafetyClaims(page);
+    await expectPrintableSuitabilityNote(
+      page,
+      MODERATE_STRICT_BOOK_SLUG,
+      REVIEW_FOR_YOUNGER_READERS_LABEL,
+      MODERATE_STRICT_NOTE,
+    );
 
-    await gotoPublicPage(page, `/morse-code-books/${ELEVATED_BOOK_SLUG}/print`);
-    await expect(page.getByText("Book text unavailable")).toHaveCount(0);
-    await expect(page.getByText("This Morse book is not available right now")).toHaveCount(0);
-    await expect(
-      page.getByTestId("printable-book-content-suitability"),
-    ).toContainText(ELEVATED_LABEL);
-    await expect(
-      page.getByTestId("printable-book-content-suitability"),
-    ).toContainText(ELEVATED_NOTE);
-    await expect(page.getByTestId("printable-preview")).toBeVisible();
-    await expectNoUnsupportedSafetyClaims(page);
+    await expectPrintableSuitabilityNote(
+      page,
+      ELEVATED_BOOK_SLUG,
+      ELEVATED_LABEL,
+      ELEVATED_NOTE,
+    );
+  });
+
+  test("final sanity sampled print routes expose suitability notes", async ({
+    page,
+  }) => {
+    for (const route of FINAL_SANITY_PRINT_ROUTES) {
+      await expectPrintableSuitabilityNote(
+        page,
+        route.slug,
+        route.label,
+        route.note,
+      );
+    }
   });
 });

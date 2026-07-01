@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "reportName": "print-suitability-note-production-fix",
+  "generatedAt": "2026-07-01T17:18:10-04:00",
+  "branchName": "morsewords-print-suitability-note-production-fix-jun-2026",
+  "executiveResult": "Print suitability note production fix passed",
+  "finalSanityBlocker": {
+    "status": "resolved-by-checker-fix",
+    "details": [
+      "Final production sanity previously blocked on /morse-code-books/walden/print, /morse-code-books/the-call-of-cthulhu/print, and /morse-code-books/the-adventures-of-roderick-random/print.",
+      "Raw local production HTML and live production HTML already exposed data-testid=\"printable-book-content-suitability\" and the expected content notes for all three sampled print routes."
+    ]
+  },
+  "rootCause": {
+    "classification": "C",
+    "details": "The note rendered visibly, but the final sanity script compared a title-case suitability label against Playwright innerText. The label is styled with CSS text-transform uppercase, so innerText returned uppercase label text even though the content note matched."
+  },
+  "fixMade": [
+    "Added the final production sanity script to the mainline package scripts.",
+    "Updated the print-route suitability label comparison to be case-insensitive while preserving exact content-note matching.",
+    "Extended the existing Morse book suitability Playwright coverage for the three final-sanity sampled print routes."
+  ],
+  "sampledPrintPagesChecked": [
+    {
+      "route": "/morse-code-books/walden/print",
+      "expectedLabel": "Review for younger readers",
+      "expectedNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    {
+      "route": "/morse-code-books/the-call-of-cthulhu/print",
+      "expectedLabel": "Elevated suitability review",
+      "expectedNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    {
+      "route": "/morse-code-books/the-adventures-of-roderick-random/print",
+      "expectedLabel": "Elevated suitability review",
+      "expectedNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    }
+  ],
+  "suitabilityPolicyPreservation": [
+    "No generated book payloads, public previews, Cloudflare export folders, suitability counts, suitability notes, or book text were modified.",
+    "The historical public-domain suitability wording remains unchanged.",
+    "The branch does not add all-audience, classroom-safe, youth-safe-by-default, or equivalent claims."
+  ],
+  "testsAddedOrUpdated": [
+    "tests/qa-robustness-review/morse-book-suitability.spec.ts now covers the three final-sanity sampled print routes."
+  ],
+  "validationResult": {
+    "status": "pass",
+    "commands": [
+      "npm run typecheck",
+      "npm run test --if-present",
+      "npm run build:netlify",
+      "npm run site:final-production-sanity-check",
+      "npx playwright test tests/qa-robustness-review/morse-book-suitability.spec.ts --project=desktop-chromium --reporter=line",
+      "npx playwright test tests/qa-robustness-review/morse-mobile-smoke.spec.ts --project=desktop-chromium --reporter=line",
+      "npm run pages:adsense-contact-readiness-audit",
+      "npm run pages:sitemap-count-print-indexability-audit",
+      "npm run pages:url-indexability-canonical-audit",
+      "npm run site:local-final-validation",
+      "npm run books:no-cloudflare-export-app-imports",
+      "git diff --check"
+    ],
+    "notes": [
+      "The suitability spec passed 5/5 after adding final-sanity print-route coverage.",
+      "The mobile smoke suite passed 3/3.",
+      "The corrected final production sanity checker passed against current production with blockers=0.",
+      "build:netlify passed with existing chunk-size warnings only."
+    ]
+  },
+  "protectedFolderStatus": {
+    "tempBooksClean": true,
+    "generatedBooksClean": true,
+    "publicBookPreviewsClean": true,
+    "cloudflareExportIgnoredOrUntracked": true,
+    "cloudflareUpdatedExportIgnoredOrUntracked": true,
+    "cloudflareExportTrackedFiles": 0,
+    "cloudflareUpdatedExportTrackedFiles": 0
+  },
+  "remainingBlockers": [],
+  "recommendedNextStep": "Merge this branch to main, wait for production deploy, then rerun morsewords-final-production-sanity-check-jun-2026. After final sanity passes, create a separate live-player segment-advance bugfix branch."
+}
