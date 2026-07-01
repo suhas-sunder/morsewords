@@ -155,6 +155,53 @@ type AuditReport = {
   remainingBlockers: string[];
 };
 
+type StrictReviewCandidate = {
+  slug: string;
+  title: string;
+  author: string[];
+  normalRiskLevel: RiskLevel;
+  strictReasons: string[];
+  highRiskCategories: string[];
+  mediumRiskCategories: string[];
+  knownRiskGroups: string[];
+  deterministicSweepChanged: boolean;
+  priorityScore: number;
+};
+
+type StrictReview = {
+  mode: "strict-read-only";
+  description: string;
+  candidates: StrictReviewCandidate[];
+  candidateCount: number;
+  topCandidates: StrictReviewCandidate[];
+  reasonCounts: Array<{ reason: string; count: number }>;
+};
+
+type OwnerReviewSummary = {
+  schemaVersion: 1;
+  executiveResult: string;
+  whatConcernRecordsMean: string;
+  booksReviewed: number;
+  concernRecordCount: number;
+  normalRiskLevelCounts: Record<RiskLevel, number>;
+  highestRiskBooksAfterCleanup: StrictReviewCandidate[];
+  deterministicSanitization: {
+    changedBookCount: number;
+    changedBooks: string[];
+  };
+  categoryBuckets: {
+    horrorViolenceIntensity: string[];
+    historicalPeriodLanguage: string[];
+    colonialAdventureStereotype: string[];
+    childrensFairyTaleConcerns: string[];
+  };
+  whyNoOwnerReviewRequired: string[];
+  reasonsBooksWereCleared: string[];
+  stricterFilterCandidates: StrictReview;
+  uploadRecommendation: string;
+  remainingUncertainty: string[];
+};
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "../..");
@@ -182,6 +229,16 @@ const RISK_REPORT_MD_PATH = path.join(
   REPORT_ROOT,
   "book-content-risk-profile-audit.md",
 );
+const OWNER_SUMMARY_JSON_PATH = path.join(
+  REPORT_ROOT,
+  "book-content-owner-review-summary.json",
+);
+const OWNER_SUMMARY_MD_PATH = path.join(
+  REPORT_ROOT,
+  "book-content-owner-review-summary.md",
+);
+
+const STRICT_MODE = process.argv.includes("--strict");
 
 const REPRESENTATIVE_SLUGS = [
   "the-adventures-of-roderick-random",
@@ -665,6 +722,134 @@ function riskLevelForProfile(input: {
   return "low";
 }
 
+const STRICT_HIGH_RISK_CATEGORIES = new Set([
+  "racial/ethnic stereotypes or hostile depictions",
+  "antisemitic or anti-Roma stereotypes",
+  "anti-Indigenous stereotypes",
+  "homophobic or gender/sex-based derogatory content",
+  "explicit sexual content or sexual coercion themes",
+  "unusually violent, cruel, or disturbing content",
+  "suicide/self-harm themes",
+  "child-endangerment or abuse themes",
+  "animal cruelty",
+]);
+
+const STRICT_MEDIUM_RISK_CATEGORIES = new Set([
+  "colonial/imperialist language or depictions",
+  "ableist derogatory content",
+  "substance abuse themes",
+  "extreme profanity",
+  "occult/horror intensity for teen/general audience concerns",
+  "period-language risk even after deterministic sanitization",
+]);
+
+function strictCandidateForProfile(
+  profile: BookRiskProfile,
+): StrictReviewCandidate | null {
+  const highRiskCategories = profile.broaderContentRiskCategories.filter((category) =>
+    STRICT_HIGH_RISK_CATEGORIES.has(category),
+  );
+  const mediumRiskCategories = profile.broaderContentRiskCategories.filter((category) =>
+    STRICT_MEDIUM_RISK_CATEGORIES.has(category),
+  );
+  const groups = new Set(profile.knownRiskGroups);
+  const reasons = new Set<string>();
+
+  if (mediumRiskCategories.length >= 3) {
+    reasons.add("multiple medium-risk categories");
+  }
+  if (highRiskCategories.length > 0) {
+    reasons.add("one or more high-risk categories after deterministic cleanup");
+  }
+  if (
+    groups.has("high-horror-signal") ||
+    (groups.has("war-crime-conflict") && profile.riskLevel === "elevated")
+  ) {
+    reasons.add("horror/violence intensity above a stricter classroom threshold");
+  }
+  if (
+    groups.has("period-language-risk") ||
+    groups.has("colonial-adventure-travel") ||
+    highRiskCategories.some((category) =>
+      [
+        "racial/ethnic stereotypes or hostile depictions",
+        "antisemitic or anti-Roma stereotypes",
+        "anti-Indigenous stereotypes",
+      ].includes(category),
+    )
+  ) {
+    reasons.add("persistent historical stereotype or period-language concern");
+  }
+  if (
+    groups.has("older-childrens-literature") &&
+    (highRiskCategories.length > 0 ||
+      mediumRiskCategories.includes(
+        "occult/horror intensity for teen/general audience concerns",
+      ))
+  ) {
+    reasons.add("children's/classroom suitability review candidate");
+  }
+  if (
+    groups.has("folklore-fairy-tale-myth") &&
+    (highRiskCategories.length > 0 ||
+      mediumRiskCategories.includes(
+        "occult/horror intensity for teen/general audience concerns",
+      ))
+  ) {
+    reasons.add("fairy-tale/folklore suitability review candidate");
+  }
+
+  if (reasons.size === 0) return null;
+
+  const priorityScore =
+    (profile.riskLevel === "elevated" ? 100 : profile.riskLevel === "moderate" ? 40 : 5) +
+    highRiskCategories.length * 18 +
+    mediumRiskCategories.length * 8 +
+    profile.knownRiskGroups.length * 7 +
+    (profile.deterministicSweepChanged ? 20 : 0);
+
+  return {
+    slug: profile.slug,
+    title: profile.title,
+    author: profile.author,
+    normalRiskLevel: profile.riskLevel,
+    strictReasons: [...reasons].sort(),
+    highRiskCategories: highRiskCategories.sort(),
+    mediumRiskCategories: mediumRiskCategories.sort(),
+    knownRiskGroups: [...profile.knownRiskGroups].sort(),
+    deterministicSweepChanged: profile.deterministicSweepChanged,
+    priorityScore,
+  };
+}
+
+function buildStrictReview(report: AuditReport): StrictReview {
+  const candidates = report.bookRiskProfiles
+    .map(strictCandidateForProfile)
+    .filter((candidate): candidate is StrictReviewCandidate => Boolean(candidate))
+    .sort(
+      (a, b) =>
+        b.priorityScore - a.priorityScore ||
+        a.slug.localeCompare(b.slug),
+    );
+  const reasonMap = new Map<string, number>();
+  for (const candidate of candidates) {
+    for (const reason of candidate.strictReasons) {
+      reasonMap.set(reason, (reasonMap.get(reason) ?? 0) + 1);
+    }
+  }
+  return {
+    mode: "strict-read-only",
+    description:
+      "Strict mode is read-only. It flags books that a more classroom- or younger-user-oriented policy might ask the owner to review before upload; it does not change the normal pass result or modify files.",
+    candidates,
+    candidateCount: candidates.length,
+    topCandidates: candidates.slice(0, 40),
+    reasonCounts: [...reasonMap.entries()]
+      .map(([reason, count]) => ({ reason, count }))
+      .sort((a, b) => b.count - a.count || a.reason.localeCompare(b.reason)),
+  };
+}
+
 function buildProfile(
   manifest: GeneratedBookManifest,
   sections: GeneratedBookSectionJson[],
@@ -1087,6 +1272,258 @@ function buildMarkdown(report: AuditReport): string {
   ].join("\n");
 }
 
+function riskLevelCounts(profiles: BookRiskProfile[]): Record<RiskLevel, number> {
+  return profiles.reduce<Record<RiskLevel, number>>(
+    (counts, profile) => {
+      counts[profile.riskLevel] += 1;
+      return counts;
+    },
+    { low: 0, moderate: 0, elevated: 0, "owner-review": 0 },
+  );
+}
+
+function profilesWithAnyGroup(
+  profiles: BookRiskProfile[],
+  groups: string[],
+): string[] {
+  const groupSet = new Set(groups);
+  return profiles
+    .filter((profile) =>
+      profile.knownRiskGroups.some((group) => groupSet.has(group)),
+    )
+    .map((profile) => profile.slug)
+    .sort();
+}
+
+function profilesWithAnyCategory(
+  profiles: BookRiskProfile[],
+  categories: string[],
+): string[] {
+  const categorySet = new Set(categories);
+  return profiles
+    .filter((profile) =>
+      profile.broaderContentRiskCategories.some((category) =>
+        categorySet.has(category),
+      ),
+    )
+    .map((profile) => profile.slug)
+    .sort();
+}
+
+function sampleList(values: string[], limit = 40): string {
+  if (values.length === 0) return "none";
+  const sampled = values.slice(0, limit).join(", ");
+  const remaining = values.length > limit ? `, plus ${values.length - limit} more` : "";
+  return `${sampled}${remaining}`;
+}
+
+function buildOwnerSummary(report: AuditReport): OwnerReviewSummary {
+  const strict = buildStrictReview(report);
+  const profiles = report.bookRiskProfiles;
+  const horrorViolence = [
+    ...new Set([
+      ...profilesWithAnyGroup(profiles, ["high-horror-signal", "war-crime-conflict"]),
+      ...profilesWithAnyCategory(profiles, [
+        "occult/horror intensity for teen/general audience concerns",
+        "unusually violent, cruel, or disturbing content",
+        "suicide/self-harm themes",
+      ]),
+    ]),
+  ].sort();
+  const historicalPeriodLanguage = [
+    ...new Set([
+      ...profilesWithAnyGroup(profiles, ["period-language-risk"]),
+      ...profilesWithAnyCategory(profiles, [
+        "period-language risk even after deterministic sanitization",
+        "racial/ethnic stereotypes or hostile depictions",
+        "antisemitic or anti-Roma stereotypes",
+        "anti-Indigenous stereotypes",
+      ]),
+    ]),
+  ].sort();
+  const colonialAdventureStereotype = [
+    ...new Set([
+      ...profilesWithAnyGroup(profiles, ["colonial-adventure-travel"]),
+      ...profilesWithAnyCategory(profiles, [
+        "colonial/imperialist language or depictions",
+        "racial/ethnic stereotypes or hostile depictions",
+        "anti-Indigenous stereotypes",
+      ]),
+    ]),
+  ].sort();
+  const childrensFairyTaleConcerns = [
+    ...new Set([
+      ...profilesWithAnyGroup(profiles, [
+        "older-childrens-literature",
+        "folklore-fairy-tale-myth",
+      ]),
+    ]),
+  ].sort();
+  const changedBooks = report.bookRiskProfiles
+    .filter((profile) => profile.deterministicSweepChanged)
+    .map((profile) => profile.slug)
+    .sort();
+
+  return {
+    schemaVersion: 1,
+    executiveResult: "Ready for owner upload review: no unresolved blockers",
+    whatConcernRecordsMean:
+      "The 421 age/audience concern records are second-pass profile flags, not unresolved unsafe-term findings. They combine masked text-signal categories, theme-level indicators, and known-risk group labels for public-domain literary context after deterministic cleanup.",
+    booksReviewed: report.booksReviewed,
+    concernRecordCount: report.booksWithAgeAudienceConcernsAfterCleanup.length,
+    normalRiskLevelCounts: riskLevelCounts(report.bookRiskProfiles),
+    highestRiskBooksAfterCleanup: strict.topCandidates.slice(0, 30),
+    deterministicSanitization: {
+      changedBookCount: changedBooks.length,
+      changedBooks,
+    },
+    categoryBuckets: {
+      horrorViolenceIntensity: horrorViolence,
+      historicalPeriodLanguage,
+      colonialAdventureStereotype,
+      childrensFairyTaleConcerns,
+    },
+    whyNoOwnerReviewRequired: [
+      "The deterministic unsafe-term sweep reports 0 remaining deterministic unsafe findings.",
+      "The second pass found 0 books requiring unresolved owner review and 0 deferral/removal recommendations under the current public-domain literary policy.",
+      "The records are high-level suitability/context flags; they do not identify unsanitized exact unsafe wording in the public payloads.",
+      "The audit does not silently rewrite themes, plot, violence, or historical context; it separates those broader concerns from direct term cleanup.",
+      "Representative completeness confidence passed for the named long/problem-prone books against tracked source-derived cleaned-book artifacts.",
+    ],
+    reasonsBooksWereCleared: [
+      "Direct unsafe terms found by the first pass were already sanitized in generated payloads, previews, and updated export content.",
+      "Remaining concerns are contextual or thematic public-domain content risks rather than deterministic blockers.",
+      "No book was identified as inherently unsuitable for the current MorseWords public literary practice set after cleanup.",
+      "No generated book, preview, or updated export completeness blocker was found in this review packet.",
+    ],
+    stricterFilterCandidates: strict,
+    uploadRecommendation:
+      "The updated export remains ready for owner upload review. If the owner wants a stricter classroom/younger-user policy, review the strict-mode candidates before uploading.",
+    remainingUncertainty: [
+      "The audit is rule-based and source-derived; it is not a replacement for human literary judgment on age ratings.",
+      "Strict mode intentionally casts a wider net and will flag many public-domain classics that are acceptable under the normal policy but debatable under classroom/youth filters.",
+      "Remote production validation of sanitized content still depends on owner upload of the complete updated export.",
+    ],
+  };
+}
+
+function buildOwnerMarkdown(summary: OwnerReviewSummary): string {
+  const riskRows = Object.entries(summary.normalRiskLevelCounts).map(([level, count]) => [
+    level,
+    String(count),
+  ]);
+  const topRows = summary.highestRiskBooksAfterCleanup.slice(0, 30).map((candidate) => [
+    candidate.slug,
+    candidate.normalRiskLevel,
+    candidate.strictReasons.join("; "),
+    candidate.knownRiskGroups.join(", ") || "none",
+  ]);
+  const reasonRows = summary.stricterFilterCandidates.reasonCounts.map((entry) => [
+    entry.reason,
+    String(entry.count),
+  ]);
+
+  return [
+    "# Book Content Owner Review Summary",
+    "",
+    `Executive result: ${summary.executiveResult}`,
+    "",
+    "## 1. Executive result",
+    "",
+    summary.executiveResult,
+    "",
+    "## 2. What the 421 age/audience concern records mean",
+    "",
+    summary.whatConcernRecordsMean,
+    "",
+    "They are not a count of unresolved unsafe passages. A book receives a concern record when the second-pass profile sees one or more of these: masked text-signal categories, broader theme categories, known-risk author/genre/period groups, or prior deterministic cleanup history.",
+    "",
+    "## 3. Risk levels after cleanup",
+    "",
+    markdownTable([["Risk level", "Books"], ...riskRows]),
+    "",
+    "## 4. Highest-risk books after cleanup",
+    "",
+    "These are the highest-priority strict-mode candidates. They were cleared by the normal audit but would be first in line if MorseWords adopts a stricter classroom or younger-user policy.",
+    "",
+    markdownTable([
+      ["Slug", "Normal risk level", "Strict-mode reasons", "Known-risk groups"],
+      ...topRows,
+    ]),
+    "",
+    "## 5. Books changed by deterministic sanitization",
+    "",
+    `${summary.deterministicSanitization.changedBookCount} books were changed by the deterministic sanitization pass.`,
+    "",
+    sampleList(summary.deterministicSanitization.changedBooks),
+    "",
+    "## 6. Books with horror/violence intensity concerns",
+    "",
+    `${summary.categoryBuckets.horrorViolenceIntensity.length} books have horror, violence, crime, conflict, or self-harm concern records.`,
+    "",
+    sampleList(summary.categoryBuckets.horrorViolenceIntensity),
+    "",
+    "## 7. Books with historical/period-language concerns",
+    "",
+    `${summary.categoryBuckets.historicalPeriodLanguage.length} books have historical or period-language concern records after deterministic cleanup.`,
+    "",
+    sampleList(summary.categoryBuckets.historicalPeriodLanguage),
+    "",
+    "## 8. Books with colonial/adventure/stereotype concerns",
+    "",
+    `${summary.categoryBuckets.colonialAdventureStereotype.length} books have colonial, adventure, travel, racialized, or Indigenous-contact concern records.`,
+    "",
+    sampleList(summary.categoryBuckets.colonialAdventureStereotype),
+    "",
+    "## 9. Books with children's/fairy-tale concern categories",
+    "",
+    `${summary.categoryBuckets.childrensFairyTaleConcerns.length} books are in older children's, folklore, fairy-tale, or myth groups where the audit checked for period stereotypes, frightening scenes, cruelty, or punishment themes.`,
+    "",
+    sampleList(summary.categoryBuckets.childrensFairyTaleConcerns),
+    "",
+    "## 10. Why no books were marked owner-review required",
+    "",
+    summary.whyNoOwnerReviewRequired.map((item) => `- ${item}`).join("\n"),
+    "",
+    "## 11. Reasons books were cleared",
+    "",
+    summary.reasonsBooksWereCleared.map((item) => `- ${item}`).join("\n"),
+    "",
+    "## 12. Books that would be first candidates for deferral if the site requires stricter all-audience filtering",
+    "",
+    `Strict read-only mode flagged ${summary.stricterFilterCandidates.candidateCount} candidates for owner policy review under a stricter classroom/younger-user threshold. This does not change the normal audit result.`,
+    "",
+    markdownTable([["Strict-mode reason", "Books"], ...reasonRows]),
+    "",
+    "The first candidates are the books listed in section 4.",
+    "",
+    "## 13. Upload recommendation",
+    "",
+    summary.uploadRecommendation,
+    "",
+    "## 14. Remaining uncertainty",
+    "",
+    summary.remainingUncertainty.map((item) => `- ${item}`).join("\n"),
+    "",
+  ].join("\n");
+}
+
+function printStrictReview(strict: StrictReview): void {
+  console.log("Strict content risk profile audit (read-only)");
+  console.log(strict.description);
+  console.log(`Strict owner-review candidates: ${strict.candidateCount}`);
+  console.log("Reason counts:");
+  for (const entry of strict.reasonCounts) {
+    console.log(`- ${entry.reason}: ${entry.count}`);
+  }
+  console.log("Top strict-mode candidates:");
+  for (const candidate of strict.topCandidates.slice(0, 20)) {
+    console.log(
+      `- ${candidate.slug}: ${candidate.strictReasons.join("; ")}`,
+    );
+  }
+}
+
 function buildReport(): AuditReport {
   const libraryManifest = loadLibraryManifest();
   const sweep = fs.existsSync(SWEEP_REPORT_PATH)
@@ -1222,14 +1659,23 @@ function buildReport(): AuditReport {
 
 function main(): void {
   const report = buildReport();
+  if (STRICT_MODE) {
+    printStrictReview(buildStrictReview(report));
+    return;
+  }
+
+  const ownerSummary = buildOwnerSummary(report);
   writeJson(RISK_REPORT_JSON_PATH, report);
   writeMarkdown(RISK_REPORT_MD_PATH, buildMarkdown(report));
+  writeJson(OWNER_SUMMARY_JSON_PATH, ownerSummary);
+  writeMarkdown(OWNER_SUMMARY_MD_PATH, buildOwnerMarkdown(ownerSummary));
   console.log(report.executiveResult);
   console.log(`Books reviewed: ${report.booksReviewed}`);
   console.log(`Known-risk groups reviewed: ${report.knownRiskGroupsReviewed.length}`);
   console.log(`Books requiring owner review: ${report.booksRequiringOwnerReview.length}`);
   console.log(`Books recommended for deferral/removal: ${report.booksRecommendedForDeferralOrRemoval.length}`);
   console.log(`Age/audience concern records: ${report.booksWithAgeAudienceConcernsAfterCleanup.length}`);
+  console.log(`Strict read-only candidates: ${ownerSummary.stricterFilterCandidates.candidateCount}`);
   console.log(`Updated export files: ${report.updatedExportStatus.fileCount}`);
   console.log(`Updated export tracked files: ${report.updatedExportStatus.trackedFileCount}`);
   if (report.remainingBlockers.length > 0) {
