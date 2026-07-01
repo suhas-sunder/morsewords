@@ -62,6 +62,13 @@ export default function SourcesRoute() {
             readability, or content safety. Source links are provided where
             available, and correction or takedown concerns can be reported.
           </p>
+          <p>
+            MorseWords includes historical public-domain texts. Some may
+            include period language, mature themes, or content that is not
+            appropriate for every classroom or younger reader. We review and
+            sanitize selected wording for content safety, but older works may
+            still need reader discretion.
+          </p>
         </section>
 
         <section className="space-y-3">

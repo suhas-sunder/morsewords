@@ -20,6 +20,10 @@ import {
   formatMorseBookAuthors,
   getMorseBookAuthorDisplay,
 } from "~/client/data/morseBookDisplay";
+import {
+  getMorseBookSuitability,
+  morseBookSuitabilityLabel,
+} from "~/client/data/morseBookSuitability";
 import type {
   MorseBookManifest,
   MorseBookSectionJson,
@@ -242,6 +246,7 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
   const bookSource = isBook ? props.bookSource : null;
   const book = bookSource?.book ?? null;
   const allSections = bookSource?.sections ?? [];
+  const suitabilityProfile = book ? getMorseBookSuitability(book.slug) : null;
   const [customText, setCustomText] = React.useState(CUSTOM_SAMPLE);
   const [layout, setLayout] = React.useState<PrintableLayout>("study-sheet");
   const [outputMode, setOutputMode] = React.useState<OutputMode>("pairs");
@@ -337,6 +342,20 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
           ]}
         />
       </PageHero>
+
+      {suitabilityProfile ? (
+        <section
+          className="mt-5 rounded-xl bg-[#fffdf8]/76 p-4 text-sm text-slate-700"
+          data-testid="printable-book-content-suitability"
+        >
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+            {morseBookSuitabilityLabel(suitabilityProfile)}
+          </p>
+          <p className="mt-2 max-w-[68ch] leading-relaxed">
+            {suitabilityProfile.contentNote}
+          </p>
+        </section>
+      ) : null}
 
       <section
         className="mw-print-actions mt-6 grid gap-5 lg:grid-cols-[minmax(0,0.92fr)_minmax(280px,0.48fr)]"

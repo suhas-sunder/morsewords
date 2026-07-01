@@ -202,6 +202,44 @@ type OwnerReviewSummary = {
   remainingUncertainty: string[];
 };
 
+type ContentSuitability = "low" | "moderate" | "elevated";
+
+type ContentSuitabilityProfile = {
+  contentSuitability: ContentSuitability;
+  strictReviewCandidate: boolean;
+  contentNote: string;
+};
+
+type SuitabilityDataFile = {
+  schemaVersion: 1;
+  generatedFrom: string;
+  booksReviewed: number;
+  normalRiskLevelCounts: Record<RiskLevel, number>;
+  strictReviewCandidateCount: number;
+  profiles: Record<string, ContentSuitabilityProfile>;
+};
+
+type SuitabilityPolicyDecision = {
+  schemaVersion: 1;
+  executiveResult: string;
+  normalPolicyResult: string;
+  strictClassroomYouthPolicyResult: string;
+  whyNotAllAudienceSafeByDefault: string[];
+  optionsConsidered: Array<{
+    option: string;
+    summary: string;
+    status: string;
+  }>;
+  recommendedProductPolicy: string;
+  booksAffectedByStrictModeReview: {
+    count: number;
+    topCandidates: StrictReviewCandidate[];
+  };
+  productChangesNeededBeforeUpload: string[];
+  uploadRecommendation: string;
+  remainingOwnerDecisionPoints: string[];
+};
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "../..");
@@ -236,6 +274,18 @@ const OWNER_SUMMARY_JSON_PATH = path.join(
 const OWNER_SUMMARY_MD_PATH = path.join(
   REPORT_ROOT,
   "book-content-owner-review-summary.md",
+);
+const SUITABILITY_DATA_PATH = path.join(
+  REPO_ROOT,
+  "app/client/data/morseBookSuitability.generated.json",
+);
+const POLICY_DECISION_JSON_PATH = path.join(
+  REPORT_ROOT,
+  "book-content-suitability-policy-decision.json",
+);
+const POLICY_DECISION_MD_PATH = path.join(
+  REPORT_ROOT,
+  "book-content-suitability-policy-decision.md",
 );
 
 const STRICT_MODE = process.argv.includes("--strict");
@@ -1508,6 +1558,191 @@ function buildOwnerMarkdown(summary: OwnerReviewSummary): string {
   ].join("\n");
 }
 
+function suitabilityForProfile(profile: BookRiskProfile): ContentSuitability {
+  return profile.riskLevel === "owner-review" ? "elevated" : profile.riskLevel;
+}
+
+function noteForSuitability(
+  suitability: ContentSuitability,
+  strictReviewCandidate: boolean,
+): string {
+  if (suitability === "elevated") {
+    return "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use.";
+  }
+  if (strictReviewCandidate) {
+    return "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use.";
+  }
+  if (suitability === "moderate") {
+    return "Historical public-domain text. May include period language, mature themes, or intense scenes.";
+  }
+  return "Historical public-domain text reviewed in the current content-safety sweep.";
+}
+
+function buildSuitabilityData(report: AuditReport): SuitabilityDataFile {
+  const strict = buildStrictReview(report);
+  const strictSlugs = new Set(strict.candidates.map((candidate) => candidate.slug));
+  const profiles: Record<string, ContentSuitabilityProfile> = {};
+  for (const profile of report.bookRiskProfiles) {
+    const contentSuitability = suitabilityForProfile(profile);
+    const strictReviewCandidate = strictSlugs.has(profile.slug);
+    profiles[profile.slug] = {
+      contentSuitability,
+      strictReviewCandidate,
+      contentNote: noteForSuitability(contentSuitability, strictReviewCandidate),
+    };
+  }
+  return {
+    schemaVersion: 1,
+    generatedFrom: "scripts/books/book-content-risk-profile-audit.ts",
+    booksReviewed: report.booksReviewed,
+    normalRiskLevelCounts: riskLevelCounts(report.bookRiskProfiles),
+    strictReviewCandidateCount: strict.candidateCount,
+    profiles: Object.fromEntries(
+      Object.entries(profiles).sort(([a], [b]) => a.localeCompare(b)),
+    ),
+  };
+}
+
+function buildPolicyDecision(
+  report: AuditReport,
+  ownerSummary: OwnerReviewSummary,
+): SuitabilityPolicyDecision {
+  const strict = ownerSummary.stricterFilterCandidates;
+  const strictCount = strict.candidateCount;
+  return {
+    schemaVersion: 1,
+    executiveResult:
+      "Ready for owner upload review under a sanitized historical-library policy; not approved as all-audience/classroom-safe by default.",
+    normalPolicyResult:
+      "The normal policy keeps all 519 sanitized public-domain books live. Deterministic unsafe-term findings are 0, owner-review blockers are 0, and deferral/removal recommendations are 0.",
+    strictClassroomYouthPolicyResult:
+      `Strict classroom/younger-user mode flagged ${strictCount} books for owner review. That mode is intentionally broader than the normal public-domain library policy and does not support presenting all 519 books as youth-safe by default.`,
+    whyNotAllAudienceSafeByDefault: [
+      "The second-pass audit found 421 age/audience concern records after deterministic cleanup.",
+      "Normal post-cleanup risk levels include 110 elevated books and 311 moderate books.",
+      "Strict mode flagged 429 books for classroom/younger-user review, including many public-domain classics with violence, period language, stereotypes, horror intensity, or mature themes.",
+      "The audit cleared the books under a sanitized historical-library policy, not under a classroom/youth-safe content policy.",
+      "The audit is rule-based and source-derived; it is not a substitute for a human age-rating review.",
+    ],
+    optionsConsidered: [
+      {
+        option: "Option A",
+        summary:
+          "Keep all 519 books, but label the library as public-domain/historical and not guaranteed youth/classroom-safe.",
+        status:
+          "Acceptable as a minimal policy if the owner wants all books live without filtering, but it gives users less control than Option B.",
+      },
+      {
+        option: "Option B",
+        summary:
+          "Keep all 519 books, add content suitability labels/notes and a lower-risk listing filter.",
+        status:
+          "Recommended and implemented in this branch as the safest minimal product behavior.",
+      },
+      {
+        option: "Option C",
+        summary:
+          "Defer strict-mode candidates from the public index, leaving only lower-risk books live.",
+        status:
+          `Not implemented. It would remove or hide ${strictCount} books and needs explicit owner policy approval.`,
+      },
+      {
+        option: "Option D",
+        summary: "Manually review strict-mode candidates before upload.",
+        status:
+          "Valid for a stricter classroom/youth-safe policy, but not completed in this branch.",
+      },
+    ],
+    recommendedProductPolicy:
+      "Option B: keep the sanitized historical public-domain library, show suitability notes on book/audiobook/print surfaces, provide a lower-risk filter on library listings, and avoid all-audience/classroom-safe claims.",
+    booksAffectedByStrictModeReview: {
+      count: strictCount,
+      topCandidates: strict.topCandidates.slice(0, 30),
+    },
+    productChangesNeededBeforeUpload: [
+      "Implemented in this branch: show content-suitability notes on book detail, audiobook detail, and printable book pages.",
+      "Implemented in this branch: show compact suitability labels on book and audiobook listing cards.",
+      "Implemented in this branch: provide a lower-risk listing filter that hides elevated/strict-review books.",
+      "Implemented in this branch: include suitability fields in the regenerated full replacement Cloudflare updated export.",
+      "Implemented in this branch: update Sources copy so the library is described as historical public-domain content, not all-audience safe by default.",
+    ],
+    uploadRecommendation:
+      "Upload can proceed only under the sanitized historical-library policy after owner review of this decision packet. Do not describe the 519-book set as classroom/youth-safe by default. A stricter classroom policy would require owner review or deferral of strict-mode candidates before upload.",
+    remainingOwnerDecisionPoints: [
+      "Decide whether the site policy is sanitized historical-library (implemented here) or stricter classroom/youth-safe.",
+      "If the owner wants classroom/youth-safe by default, choose between manually reviewing strict-mode candidates or deferring them from public index/export.",
+      "After upload, rerun production content-safety and payload validation against https://assets.morsewords.com.",
+    ],
+  };
+}
+
+function buildPolicyDecisionMarkdown(decision: SuitabilityPolicyDecision): string {
+  const optionRows = decision.optionsConsidered.map((option) => [
+    option.option,
+    option.summary,
+    option.status,
+  ]);
+  const topRows = decision.booksAffectedByStrictModeReview.topCandidates.map(
+    (candidate) => [
+      candidate.slug,
+      candidate.normalRiskLevel,
+      candidate.strictReasons.join("; "),
+      candidate.knownRiskGroups.join(", ") || "none",
+    ],
+  );
+  return [
+    "# Book Content Suitability Policy Decision",
+    "",
+    `Executive result: ${decision.executiveResult}`,
+    "",
+    "## 1. Executive result",
+    "",
+    decision.executiveResult,
+    "",
+    "## 2. Normal policy result",
+    "",
+    decision.normalPolicyResult,
+    "",
+    "## 3. Strict classroom/youth policy result",
+    "",
+    decision.strictClassroomYouthPolicyResult,
+    "",
+    "## 4. Why the current 519-book set is not all-audience safe by default",
+    "",
+    decision.whyNotAllAudienceSafeByDefault.map((item) => `- ${item}`).join("\n"),
+    "",
+    "## 5. Options considered",
+    "",
+    markdownTable([["Option", "Summary", "Status"], ...optionRows]),
+    "",
+    "## 6. Recommended product policy",
+    "",
+    decision.recommendedProductPolicy,
+    "",
+    "## 7. Books affected by strict-mode review",
+    "",
+    `Strict mode flagged ${decision.booksAffectedByStrictModeReview.count} books. The table lists the highest-priority candidates without graphic excerpts or uncensored offensive terms.`,
+    "",
+    markdownTable([
+      ["Slug", "Normal risk", "Strict-mode reasons", "Known-risk groups"],
+      ...topRows,
+    ]),
+    "",
+    "## 8. Product changes needed before upload",
+    "",
+    decision.productChangesNeededBeforeUpload.map((item) => `- ${item}`).join("\n"),
+    "",
+    "## 9. Upload recommendation",
+    "",
+    decision.uploadRecommendation,
+    "",
+    "## 10. Remaining owner decision points",
+    "",
+    decision.remainingOwnerDecisionPoints.map((item) => `- ${item}`).join("\n"),
+    "",
+  ].join("\n");
+}
+
 function printStrictReview(strict: StrictReview): void {
   console.log("Strict content risk profile audit (read-only)");
   console.log(strict.description);
@@ -1665,10 +1900,15 @@ function main(): void {
   }
 
   const ownerSummary = buildOwnerSummary(report);
+  const suitabilityData = buildSuitabilityData(report);
+  const policyDecision = buildPolicyDecision(report, ownerSummary);
   writeJson(RISK_REPORT_JSON_PATH, report);
   writeMarkdown(RISK_REPORT_MD_PATH, buildMarkdown(report));
   writeJson(OWNER_SUMMARY_JSON_PATH, ownerSummary);
   writeMarkdown(OWNER_SUMMARY_MD_PATH, buildOwnerMarkdown(ownerSummary));
+  writeJson(SUITABILITY_DATA_PATH, suitabilityData);
+  writeJson(POLICY_DECISION_JSON_PATH, policyDecision);
+  writeMarkdown(POLICY_DECISION_MD_PATH, buildPolicyDecisionMarkdown(policyDecision));
   console.log(report.executiveResult);
   console.log(`Books reviewed: ${report.booksReviewed}`);
   console.log(`Known-risk groups reviewed: ${report.knownRiskGroupsReviewed.length}`);
@@ -1676,6 +1916,7 @@ function main(): void {
   console.log(`Books recommended for deferral/removal: ${report.booksRecommendedForDeferralOrRemoval.length}`);
   console.log(`Age/audience concern records: ${report.booksWithAgeAudienceConcernsAfterCleanup.length}`);
   console.log(`Strict read-only candidates: ${ownerSummary.stricterFilterCandidates.candidateCount}`);
+  console.log(`Suitability profiles written: ${Object.keys(suitabilityData.profiles).length}`);
   console.log(`Updated export files: ${report.updatedExportStatus.fileCount}`);
   console.log(`Updated export tracked files: ${report.updatedExportStatus.trackedFileCount}`);
   if (report.remainingBlockers.length > 0) {

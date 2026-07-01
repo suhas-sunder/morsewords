@@ -82,6 +82,14 @@ export type MorseBookDefaults = {
   preferredPreset: string;
 };
 
+export type MorseBookContentSuitability = "low" | "moderate" | "elevated";
+
+export type MorseBookContentSuitabilityProfile = {
+  contentSuitability: MorseBookContentSuitability;
+  strictReviewCandidate: boolean;
+  contentNote: string;
+};
+
 export type MorseBookSectionSummary = {
   id: string;
   kind: MorseBookSectionKind;
@@ -112,6 +120,9 @@ export type MorseBookLibrarySummary = {
   stats: MorseBookStats;
   defaults: MorseBookDefaults;
   manifestPath: string;
+  contentSuitability?: MorseBookContentSuitability;
+  strictReviewCandidate?: boolean;
+  contentNote?: string;
 };
 
 export type MorseBookLibraryManifest = {
@@ -144,6 +155,9 @@ export type MorseBookPublicSummary = Pick<
     | "duplicateResolutionSource"
   >;
   bookPath: string;
+  contentSuitability?: MorseBookContentSuitability;
+  strictReviewCandidate?: boolean;
+  contentNote?: string;
 };
 
 export type MorseBookPublicManifest = {
@@ -202,6 +216,9 @@ export type MorseBookPublicContentJson = {
   contentHash: string;
   manifest: MorseBookManifest;
   sections: MorseBookSectionJson[];
+  contentSuitability?: MorseBookContentSuitability;
+  strictReviewCandidate?: boolean;
+  contentNote?: string;
 };
 
 export type MorseBookPreviewAsset = {

@@ -1,0 +1,1194 @@
+{
+  "schemaVersion": 1,
+  "executiveResult": "Ready for owner upload review under a sanitized historical-library policy; not approved as all-audience/classroom-safe by default.",
+  "normalPolicyResult": "The normal policy keeps all 519 sanitized public-domain books live. Deterministic unsafe-term findings are 0, owner-review blockers are 0, and deferral/removal recommendations are 0.",
+  "strictClassroomYouthPolicyResult": "Strict classroom/younger-user mode flagged 429 books for owner review. That mode is intentionally broader than the normal public-domain library policy and does not support presenting all 519 books as youth-safe by default.",
+  "whyNotAllAudienceSafeByDefault": [
+    "The second-pass audit found 421 age/audience concern records after deterministic cleanup.",
+    "Normal post-cleanup risk levels include 110 elevated books and 311 moderate books.",
+    "Strict mode flagged 429 books for classroom/younger-user review, including many public-domain classics with violence, period language, stereotypes, horror intensity, or mature themes.",
+    "The audit cleared the books under a sanitized historical-library policy, not under a classroom/youth-safe content policy.",
+    "The audit is rule-based and source-derived; it is not a substitute for a human age-rating review."
+  ],
+  "optionsConsidered": [
+    {
+      "option": "Option A",
+      "summary": "Keep all 519 books, but label the library as public-domain/historical and not guaranteed youth/classroom-safe.",
+      "status": "Acceptable as a minimal policy if the owner wants all books live without filtering, but it gives users less control than Option B."
+    },
+    {
+      "option": "Option B",
+      "summary": "Keep all 519 books, add content suitability labels/notes and a lower-risk listing filter.",
+      "status": "Recommended and implemented in this branch as the safest minimal product behavior."
+    },
+    {
+      "option": "Option C",
+      "summary": "Defer strict-mode candidates from the public index, leaving only lower-risk books live.",
+      "status": "Not implemented. It would remove or hide 429 books and needs explicit owner policy approval."
+    },
+    {
+      "option": "Option D",
+      "summary": "Manually review strict-mode candidates before upload.",
+      "status": "Valid for a stricter classroom/youth-safe policy, but not completed in this branch."
+    }
+  ],
+  "recommendedProductPolicy": "Option B: keep the sanitized historical public-domain library, show suitability notes on book/audiobook/print surfaces, provide a lower-risk filter on library listings, and avoid all-audience/classroom-safe claims.",
+  "booksAffectedByStrictModeReview": {
+    "count": 429,
+    "topCandidates": [
+      {
+        "slug": "don-quixote",
+        "title": "Don Quixote",
+        "author": [
+          "Miguel de Cervantes Saavedra"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "antisemitic or anti-Roma stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "period-language-risk",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 329
+      },
+      {
+        "slug": "les-miserables",
+        "title": "Les Misérables",
+        "author": [
+          "Victor Hugo"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "child-endangerment or abuse themes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 322
+      },
+      {
+        "slug": "middlemarch",
+        "title": "Middlemarch",
+        "author": [
+          "George Eliot"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "antisemitic or anti-Roma stereotypes",
+          "child-endangerment or abuse themes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "period-language-risk",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 322
+      },
+      {
+        "slug": "the-count-of-monte-cristo",
+        "title": "The Count of Monte Cristo",
+        "author": [
+          "Alexandre Dumas Auguste Maquet"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "antisemitic or anti-Roma stereotypes",
+          "child-endangerment or abuse themes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "period-language-risk",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 322
+      },
+      {
+        "slug": "candide",
+        "title": "Candide",
+        "author": [
+          "Voltaire"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "period-language-risk",
+          "satire-political-philosophical",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 318
+      },
+      {
+        "slug": "gulliver-s-travels",
+        "title": "Gulliver's Travels into Several Remote Nations of the World",
+        "author": [
+          "Jonathan Swift"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "period-language-risk",
+          "satire-political-philosophical",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 318
+      },
+      {
+        "slug": "the-brothers-karamazov",
+        "title": "The Brothers Karamazov",
+        "author": [
+          "Fyodor Dostoyevsky"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "antisemitic or anti-Roma stereotypes",
+          "child-endangerment or abuse themes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 315
+      },
+      {
+        "slug": "the-count-of-monte-cristo-gutenberg-1184",
+        "title": "The Count of Monte Cristo",
+        "author": [
+          "Alexandre Dumas",
+          "Auguste Maquet"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "antisemitic or anti-Roma stereotypes",
+          "child-endangerment or abuse themes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 315
+      },
+      {
+        "slug": "moby-dick",
+        "title": "Moby-Dick; or, The Whale",
+        "author": [
+          "Herman Melville"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "period-language-risk",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 304
+      },
+      {
+        "slug": "the-king-in-yellow",
+        "title": "The King in Yellow",
+        "author": [
+          "Robert W. Chambers"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "lovecraft-and-early-horror",
+          "period-language-risk",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 300
+      },
+      {
+        "slug": "jane-eyre",
+        "title": "Jane Eyre: An Autobiography",
+        "author": [
+          "Charlotte Brontë"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "antisemitic or anti-Roma stereotypes",
+          "child-endangerment or abuse themes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "high-horror-signal",
+          "period-language-risk",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": false,
+        "priorityScore": 295
+      },
+      {
+        "slug": "grimm-s-fairy-tales",
+        "title": "Grimm's Fairy Tales",
+        "author": [
+          "Jacob Grimm Wilhelm Grimm"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "children's/classroom suitability review candidate",
+          "fairy-tale/folklore suitability review candidate",
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "child-endangerment or abuse themes",
+          "explicit sexual content or sexual coercion themes",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "deterministic-sweep-changed",
+          "folklore-fairy-tale-myth",
+          "high-horror-signal",
+          "older-childrens-literature",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 293
+      },
+      {
+        "slug": "the-arabian-nights",
+        "title": "The Arabian Nights: Their Best-known Tales",
+        "author": [
+          "Various"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "fairy-tale/folklore suitability review candidate",
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "deterministic-sweep-changed",
+          "folklore-fairy-tale-myth",
+          "high-horror-signal",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 293
+      },
+      {
+        "slug": "the-case-of-charles-dexter-ward",
+        "title": "The Case of Charles Dexter Ward",
+        "author": [
+          "H. P. Lovecraft"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "lovecraft-and-early-horror",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 293
+      },
+      {
+        "slug": "treasure-island",
+        "title": "Treasure Island",
+        "author": [
+          "Robert Louis Stevenson"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "antisemitic or anti-Roma stereotypes",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "period-language-risk",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 293
+      },
+      {
+        "slug": "romeo-and-juliet",
+        "title": "Romeo and Juliet",
+        "author": [
+          "William Shakespeare"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "antisemitic or anti-Roma stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "deterministic-sweep-changed",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 290
+      },
+      {
+        "slug": "the-three-musketeers",
+        "title": "The Three Musketeers",
+        "author": [
+          "Alexandre Dumas Auguste Maquet"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "period-language-risk",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 286
+      },
+      {
+        "slug": "wuthering-heights",
+        "title": "Wuthering Heights",
+        "author": [
+          "Emily Brontë"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "antisemitic or anti-Roma stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "period-language-risk",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 286
+      },
+      {
+        "slug": "the-water-babies",
+        "title": "The Water-Babies: A Fairy Tale for a Land-Baby",
+        "author": [
+          "Charles Kingsley"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "children's/classroom suitability review candidate",
+          "fairy-tale/folklore suitability review candidate",
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "antisemitic or anti-Roma stereotypes",
+          "child-endangerment or abuse themes",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "deterministic-sweep-changed",
+          "folklore-fairy-tale-myth",
+          "older-childrens-literature",
+          "period-language-risk",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 285
+      },
+      {
+        "slug": "hero-myths-and-legends-of-the-british-race",
+        "title": "Hero-Myths & Legends of the British Race",
+        "author": [
+          "M. I. Ebbutt"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "fairy-tale/folklore suitability review candidate",
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "folklore-fairy-tale-myth",
+          "high-horror-signal",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": false,
+        "priorityScore": 284
+      },
+      {
+        "slug": "violet-fairy-book",
+        "title": "The Violet Fairy Book",
+        "author": [
+          "Andrew Lang"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "children's/classroom suitability review candidate",
+          "fairy-tale/folklore suitability review candidate",
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "antisemitic or anti-Roma stereotypes",
+          "child-endangerment or abuse themes",
+          "explicit sexual content or sexual coercion themes",
+          "racial/ethnic stereotypes or hostile depictions",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "folklore-fairy-tale-myth",
+          "high-horror-signal",
+          "older-childrens-literature",
+          "period-language-risk"
+        ],
+        "deterministicSweepChanged": false,
+        "priorityScore": 283
+      },
+      {
+        "slug": "the-adventures-of-roderick-random",
+        "title": "The Adventures of Roderick Random",
+        "author": [
+          "T. Smollett"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 279
+      },
+      {
+        "slug": "the-federalist-papers",
+        "title": "The Federalist Papers",
+        "author": [
+          "Alexander Hamilton John Jay James Madison"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "deterministic-sweep-changed",
+          "period-language-risk",
+          "satire-political-philosophical",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 277
+      },
+      {
+        "slug": "the-oblong-box",
+        "title": "The Oblong Box",
+        "author": [
+          "Edgar Allan Poe"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "deterministic-sweep-changed",
+          "lovecraft-and-early-horror",
+          "period-language-risk",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 277
+      },
+      {
+        "slug": "five-weeks-in-a-balloon",
+        "title": "Five Weeks in a Balloon",
+        "author": [
+          "Jules Verne"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "period-language-risk",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 275
+      },
+      {
+        "slug": "the-life-and-adventures-of-robinson-crusoe",
+        "title": "The Life and Adventures of Robinson Crusoe",
+        "author": [
+          "Daniel Defoe"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "period-language-risk",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 275
+      },
+      {
+        "slug": "the-scarlet-letter",
+        "title": "The Scarlet Letter",
+        "author": [
+          "Nathaniel Hawthorne"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "high-horror-signal",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": false,
+        "priorityScore": 269
+      },
+      {
+        "slug": "macbeth",
+        "title": "Macbeth",
+        "author": [
+          "William Shakespeare"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "explicit sexual content or sexual coercion themes",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "period-language-risk",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 268
+      },
+      {
+        "slug": "the-buccaneer",
+        "title": "The Buccaneer: A Tale",
+        "author": [
+          "Mrs. S. C. Hall"
+        ],
+        "normalRiskLevel": "elevated",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "antisemitic or anti-Roma stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "high-horror-signal",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": false,
+        "priorityScore": 262
+      },
+      {
+        "slug": "the-history-of-sir-richard-calmady-a-romance",
+        "title": "The History of Sir Richard Calmady: A Romance",
+        "author": [
+          "Lucas Malet"
+        ],
+        "normalRiskLevel": "moderate",
+        "strictReasons": [
+          "horror/violence intensity above a stricter classroom threshold",
+          "multiple medium-risk categories",
+          "one or more high-risk categories after deterministic cleanup",
+          "persistent historical stereotype or period-language concern"
+        ],
+        "highRiskCategories": [
+          "anti-Indigenous stereotypes",
+          "antisemitic or anti-Roma stereotypes",
+          "explicit sexual content or sexual coercion themes",
+          "homophobic or gender/sex-based derogatory content",
+          "racial/ethnic stereotypes or hostile depictions",
+          "suicide/self-harm themes",
+          "unusually violent, cruel, or disturbing content"
+        ],
+        "mediumRiskCategories": [
+          "ableist derogatory content",
+          "colonial/imperialist language or depictions",
+          "extreme profanity",
+          "occult/horror intensity for teen/general audience concerns",
+          "period-language risk even after deterministic sanitization",
+          "substance abuse themes"
+        ],
+        "knownRiskGroups": [
+          "colonial-adventure-travel",
+          "deterministic-sweep-changed",
+          "high-horror-signal",
+          "war-crime-conflict"
+        ],
+        "deterministicSweepChanged": true,
+        "priorityScore": 262
+      }
+    ]
+  },
+  "productChangesNeededBeforeUpload": [
+    "Implemented in this branch: show content-suitability notes on book detail, audiobook detail, and printable book pages.",
+    "Implemented in this branch: show compact suitability labels on book and audiobook listing cards.",
+    "Implemented in this branch: provide a lower-risk listing filter that hides elevated/strict-review books.",
+    "Implemented in this branch: include suitability fields in the regenerated full replacement Cloudflare updated export.",
+    "Implemented in this branch: update Sources copy so the library is described as historical public-domain content, not all-audience safe by default."
+  ],
+  "uploadRecommendation": "Upload can proceed only under the sanitized historical-library policy after owner review of this decision packet. Do not describe the 519-book set as classroom/youth-safe by default. A stricter classroom policy would require owner review or deferral of strict-mode candidates before upload.",
+  "remainingOwnerDecisionPoints": [
+    "Decide whether the site policy is sanitized historical-library (implemented here) or stricter classroom/youth-safe.",
+    "If the owner wants classroom/youth-safe by default, choose between manually reviewing strict-mode candidates or deferring them from public index/export.",
+    "After upload, rerun production content-safety and payload validation against https://assets.morsewords.com."
+  ]
+}

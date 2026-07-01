@@ -129,6 +129,11 @@ import {
   formatMorseBookAuthors,
   getMorseBookAuthorDisplay,
 } from "~/client/data/morseBookDisplay";
+import {
+  getMorseBookSuitability,
+  morseBookSuitabilityLabel,
+  type MorseBookSuitabilityProfile,
+} from "~/client/data/morseBookSuitability";
 import type {
   MorseBookLibrarySummary,
   MorseBookManifest,
@@ -585,6 +590,26 @@ function buildBookMetadata(book: MorseBookManifest): BookBundleMetadata {
   };
 }
 
+function ContentSuitabilityNotice({
+  profile,
+}: {
+  profile: MorseBookSuitabilityProfile;
+}) {
+  return (
+    <div
+      className="mw-static-panel rounded-xl p-4"
+      data-testid="morse-book-content-suitability"
+    >
+      <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+        {morseBookSuitabilityLabel(profile)}
+      </p>
+      <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+        {profile.contentNote}
+      </p>
+    </div>
+  );
+}
+
 function buildDownloadLabel({
   batchNumber,
   downloadKind,
@@ -965,6 +990,10 @@ function MorseBookWorkspace({
   );
   const sourceMetadataLabel = bookSourceMetadataLabel(book.source);
   const sourceMetadataHref = bookSourceMetadataHref(book.source);
+  const suitabilityProfile = React.useMemo(
+    () => getMorseBookSuitability(book.slug),
+    [book.slug],
+  );
   const themeMode = useAppliedThemeMode();
   const resolvedVideoBackgroundStyle =
     resolveBookVideoBackgroundStyle(themeMode);
@@ -2604,6 +2633,8 @@ function MorseBookWorkspace({
               </p>
             ) : null}
           </div>
+
+          <ContentSuitabilityNotice profile={suitabilityProfile} />
 
           {isAudiobook ? (
             <div

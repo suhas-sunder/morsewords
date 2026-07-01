@@ -19,6 +19,11 @@ import {
   morseAudiobookPath,
 } from "~/client/data/morseBooks";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
+import {
+  getMorseBookSuitability,
+  morseBookSuitabilityLabel,
+  shouldShowInLowerRiskBookFilter,
+} from "~/client/data/morseBookSuitability";
 import type { MorseBookLibrarySummary } from "~/client/data/morseBookTypes";
 import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -201,6 +206,7 @@ export default function MorseCodeAudiobooksRoute({
   const { books, seoDescriptionsBySlug } = loaderData;
   const [query, setQuery] = React.useState("");
   const [subjectFilter, setSubjectFilter] = React.useState("all");
+  const [lowerRiskOnly, setLowerRiskOnly] = React.useState(false);
   const [sortMode, setSortMode] = React.useState<SortMode>(DEFAULT_SORT_MODE);
   const [currentPage, setCurrentPage] = React.useState(1);
   const collectionHeadingRef = React.useRef<HTMLHeadingElement | null>(null);
@@ -230,10 +236,13 @@ export default function MorseCodeAudiobooksRoute({
       ) {
         return false;
       }
+      if (lowerRiskOnly && !shouldShowInLowerRiskBookFilter(book.slug)) {
+        return false;
+      }
       return true;
     });
     return sortAudiobooks(candidates, sortMode);
-  }, [audiobookBooks, query, sortMode, subjectFilter]);
+  }, [audiobookBooks, lowerRiskOnly, query, sortMode, subjectFilter]);
 
   function returnToCollectionTop(options: { focusHeading?: boolean } = {}) {
     if (typeof window === "undefined") return;
@@ -263,6 +272,7 @@ export default function MorseCodeAudiobooksRoute({
   const hasActiveFilters =
     query.trim().length > 0 ||
     subjectFilter !== "all" ||
+    lowerRiskOnly ||
     sortMode !== DEFAULT_SORT_MODE;
   const resultText = resultCountText({
     filteredCount: filteredBooks.length,
@@ -274,6 +284,7 @@ export default function MorseCodeAudiobooksRoute({
   function clearFilters() {
     setQuery("");
     setSubjectFilter("all");
+    setLowerRiskOnly(false);
     setSortMode(DEFAULT_SORT_MODE);
     resetToFirstPageAndReturn();
   }
@@ -359,7 +370,9 @@ export default function MorseCodeAudiobooksRoute({
           <p className="mw-text-muted mt-3 max-w-[64ch] text-base leading-relaxed text-slate-700 sm:text-lg">
             Search processed public books by title, author, source, and subject.
             Opening a result loads that one whole-book JSON file, then chapter
-            switching works from the loaded book data.
+            switching works from the loaded book data. These are historical
+            public-domain works, not a youth-safe list by default; use the
+            lower-risk filter for classroom or younger-reader review.
           </p>
         </div>
 
@@ -430,6 +443,24 @@ export default function MorseCodeAudiobooksRoute({
                 </select>
               </label>
             </div>
+            <label className="flex cursor-pointer items-start gap-3 rounded-lg bg-[#fffdf8]/82 px-3 py-2 text-sm font-semibold text-slate-700">
+              <input
+                type="checkbox"
+                checked={lowerRiskOnly}
+                onChange={(event) => {
+                  setLowerRiskOnly(event.currentTarget.checked);
+                  resetToFirstPageAndReturn();
+                }}
+                className="mt-0.5 h-4 w-4 accent-sky-500"
+                data-testid="morse-audiobooks-lower-risk-filter"
+              />
+              <span className="grid min-w-0 gap-1">
+                <span className="text-sky-950">Show lower-risk books only</span>
+                <span className="text-xs font-medium leading-relaxed text-slate-600">
+                  Hides audiobooks the strict audit flagged for classroom or younger-reader review.
+                </span>
+              </span>
+            </label>
           </form>
 
           <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
@@ -520,6 +551,7 @@ export default function MorseCodeAudiobooksRoute({
 }
 
 function AudiobookCard({ book }: { book: AudiobookSummary }) {
+  const suitability = getMorseBookSuitability(book.slug);
   const metadata = [
     "Morse audiobook",
     book.stats.sectionCount > 0
@@ -578,6 +610,12 @@ function AudiobookCard({ book }: { book: AudiobookSummary }) {
           data-testid="morse-audiobook-card-meta"
         >
           {metadata.join(" / ")}
+        </p>
+        <p
+          className="break-words rounded-lg bg-[#fffaf2]/80 px-2 py-1.5 text-xs font-semibold leading-relaxed text-slate-700"
+          data-testid="morse-audiobook-card-content-suitability"
+        >
+          {morseBookSuitabilityLabel(suitability)}
         </p>
         <span
           className={toolControlButtonClass({

@@ -26,6 +26,19 @@ type CloudflareExportBookJson = {
   contentHash: string;
   manifest: GeneratedBookManifest;
   sections: GeneratedBookSectionJson[];
+  contentSuitability?: "low" | "moderate" | "elevated";
+  strictReviewCandidate?: boolean;
+  contentNote?: string;
+};
+
+type ContentSuitabilityProfile = {
+  contentSuitability: "low" | "moderate" | "elevated";
+  strictReviewCandidate: boolean;
+  contentNote: string;
+};
+
+type SuitabilityDataFile = {
+  profiles?: Record<string, ContentSuitabilityProfile>;
 };
 
 type ExportResult = {
@@ -43,6 +56,10 @@ const GENERATED_ROOT = path.join(REPO_ROOT, "app/client/assets/books/generated")
 const EXPORT_ROOT = path.join(
   REPO_ROOT,
   "app/client/assets/books/cloudflare-export",
+);
+const SUITABILITY_DATA_PATH = path.join(
+  REPO_ROOT,
+  "app/client/data/morseBookSuitability.generated.json",
 );
 const OUTPUT_NEWLINE = process.platform === "win32" ? "\r\n" : "\n";
 
@@ -73,6 +90,27 @@ function isPublishReadyManifest(manifest: GeneratedBookManifest): boolean {
     manifest.source.rightsStatus === "approved" &&
     manifest.source.processingAllowed === true
   );
+}
+
+function defaultSuitabilityProfile(): ContentSuitabilityProfile {
+  return {
+    contentSuitability: "moderate",
+    strictReviewCandidate: true,
+    contentNote:
+      "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use.",
+  };
+}
+
+function loadSuitabilityProfiles(): Record<string, ContentSuitabilityProfile> {
+  if (!fs.existsSync(SUITABILITY_DATA_PATH)) return {};
+  return readJson<SuitabilityDataFile>(SUITABILITY_DATA_PATH).profiles ?? {};
+}
+
+function suitabilityForSlug(
+  profiles: Record<string, ContentSuitabilityProfile>,
+  slug: string,
+): ContentSuitabilityProfile {
+  return profiles[slug] ?? defaultSuitabilityProfile();
 }
 
 function safeResetExportRoot(exportRoot: string): void {
@@ -111,7 +149,14 @@ function loadBookSections(manifest: GeneratedBookManifest): GeneratedBookSection
 function makeExportBook(
   manifest: GeneratedBookManifest,
   sections: GeneratedBookSectionJson[],
+  suitability: ContentSuitabilityProfile,
 ): CloudflareExportBookJson {
+  const manifestWithSuitability = {
+    ...manifest,
+    contentSuitability: suitability.contentSuitability,
+    strictReviewCandidate: suitability.strictReviewCandidate,
+    contentNote: suitability.contentNote,
+  };
   const bookWithoutExportHash = {
     schemaVersion: BOOK_SCHEMA_VERSION as 1,
     slug: manifest.slug,
@@ -124,7 +169,10 @@ function makeExportBook(
     cover: manifest.cover,
     stats: manifest.stats,
     defaults: manifest.defaults,
-    manifest,
+    contentSuitability: suitability.contentSuitability,
+    strictReviewCandidate: suitability.strictReviewCandidate,
+    contentNote: suitability.contentNote,
+    manifest: manifestWithSuitability,
     sections,
   };
   const contentHash = sha256Json(bookWithoutExportHash);
@@ -150,8 +198,9 @@ export function exportGeneratedBooksToCloudflare(): ExportResult {
     .filter(({ manifest }) => isPublishReadyManifest(manifest))
     .sort((a, b) => a.manifest.title.localeCompare(b.manifest.title));
 
+  const suitabilityProfiles = loadSuitabilityProfiles();
   const exportBooks = books.map(({ manifest, sections }) =>
-    makeExportBook(manifest, sections),
+    makeExportBook(manifest, sections, suitabilityForSlug(suitabilityProfiles, manifest.slug)),
   );
   const manifestBooks = exportBooks.map((book) => ({
     slug: book.slug,
@@ -175,6 +224,9 @@ export function exportGeneratedBooksToCloudflare(): ExportResult {
     contentVersion: book.contentVersion,
     contentHash: book.contentHash,
     bookPath: `books/${book.slug}.json`,
+    contentSuitability: book.contentSuitability,
+    strictReviewCandidate: book.strictReviewCandidate,
+    contentNote: book.contentNote,
   }));
   const contentHash = sha256Json(manifestBooks);
   const contentVersion = contentHash.slice(0, 16);

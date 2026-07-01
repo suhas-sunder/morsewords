@@ -28,6 +28,7 @@ import {
   getMorseBookPublicContentUrls as getConfiguredMorseBookPublicContentUrls,
   normalizeMorseBookContentBaseUrl,
 } from "./morseBookContentConfig";
+import { getMorseBookSuitability } from "./morseBookSuitability";
 
 export const MORSE_BOOKS_BASE_PATH = "/morse-code-books";
 export const MORSE_AUDIOBOOKS_BASE_PATH = "/morse-code-audiobooks";
@@ -561,6 +562,7 @@ function publicSummaryToLibrarySummary(
 ): MorseBookLibrarySummary {
   const canonicalSummary = discoverableMorseBooksBySlug.get(book.slug);
   const displayTitle = canonicalSummary?.title ?? book.title;
+  const suitability = getMorseBookSuitability(book.slug);
   return {
     slug: book.slug,
     title: displayTitle,
@@ -597,12 +599,17 @@ function publicSummaryToLibrarySummary(
       preferredPreset: "main-narrative",
     },
     manifestPath: book.bookPath,
+    contentSuitability: book.contentSuitability ?? suitability.contentSuitability,
+    strictReviewCandidate:
+      book.strictReviewCandidate ?? suitability.strictReviewCandidate,
+    contentNote: book.contentNote ?? suitability.contentNote,
   };
 }
 
 function librarySummaryToPublicSummary(
   book: MorseBookLibrarySummary,
 ): MorseBookPublicSummary {
+  const suitability = getMorseBookSuitability(book.slug);
   return {
     slug: book.slug,
     title: book.title,
@@ -625,6 +632,10 @@ function librarySummaryToPublicSummary(
     contentVersion: book.contentVersion,
     contentHash: book.contentHash,
     bookPath: `books/${book.slug}.json`,
+    contentSuitability: book.contentSuitability ?? suitability.contentSuitability,
+    strictReviewCandidate:
+      book.strictReviewCandidate ?? suitability.strictReviewCandidate,
+    contentNote: book.contentNote ?? suitability.contentNote,
   };
 }
 
@@ -675,13 +686,26 @@ function normalizePublicBookContent(
   content: MorseBookPublicContentJson,
 ): MorseBookPublicContentJson {
   const canonicalSummary = discoverableMorseBooksBySlug.get(content.slug);
+  const suitability = getMorseBookSuitability(content.slug);
+  const normalizedManifest = canonicalSummary
+    ? preserveMorseBookDisplayTitle(content.manifest, canonicalSummary)
+    : content.manifest;
   return {
     ...content,
     contentVersion: content.contentVersion ?? content.manifest.contentVersion,
     contentHash: content.contentHash ?? content.manifest.contentHash,
-    manifest: canonicalSummary
-      ? preserveMorseBookDisplayTitle(content.manifest, canonicalSummary)
-      : content.manifest,
+    contentSuitability: content.contentSuitability ?? suitability.contentSuitability,
+    strictReviewCandidate:
+      content.strictReviewCandidate ?? suitability.strictReviewCandidate,
+    contentNote: content.contentNote ?? suitability.contentNote,
+    manifest: {
+      ...normalizedManifest,
+      contentSuitability:
+        normalizedManifest.contentSuitability ?? suitability.contentSuitability,
+      strictReviewCandidate:
+        normalizedManifest.strictReviewCandidate ?? suitability.strictReviewCandidate,
+      contentNote: normalizedManifest.contentNote ?? suitability.contentNote,
+    },
   };
 }
 

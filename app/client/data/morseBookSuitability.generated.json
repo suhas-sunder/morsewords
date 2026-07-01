@@ -1,0 +1,2609 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "scripts/books/book-content-risk-profile-audit.ts",
+  "booksReviewed": 519,
+  "normalRiskLevelCounts": {
+    "low": 98,
+    "moderate": 311,
+    "elevated": 110,
+    "owner-review": 0
+  },
+  "strictReviewCandidateCount": 429,
+  "profiles": {
+    "a-bread-and-butter-miss": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-case-of-identity": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-catastrophe": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "a-childs-garden-of-verses": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-christmas-carol": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "a-deal-in-ostriches": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-descent-into-the-maelstrom": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-dream-of-armageddon": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-fish-story": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-french-puck": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "a-japanese-blossom": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-journal-of-the-plague-year": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-journey-to-the-centre-of-the-earth": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-lost-paradise": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "a-midsummer-night-s-dream": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-moonlight-fable": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "a-moth-genus-novo": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "a-room-with-a-view": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-scandal-in-bohemia": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-slip-under-the-microscope": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-story-of-the-days-to-come": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-story-of-the-stone-age": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-study-in-scarlet": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-tale-of-the-tontlawald": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "a-tale-of-two-cities": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "aepyornis-island": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "agamemnon-of-aeschylus": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "alices-adventures-in-wonderland": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "almayer-s-folly-a-story-of-an-eastern-river": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "an-enquiry-concerning-human-understanding": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "an-ideal-husband": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "anna-karenina": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "anne-of-avonlea": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "anne-of-green-gables": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "anne-of-green-gables-gutenberg-45": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "around-the-world-in-eighty-days": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "ashputtel": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "astounding-stories-of-super-science": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "at-the-earth-s-core": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "at-the-mountains-of-madness": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "berenice": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "bertie-s-christmas-eve": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "beyond-the-wall-of-sleep": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "black-beauty": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "botchan": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "briar-rose": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "can-you-forgive-her": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "candide": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "canossa": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "cat-and-mouse-in-partnership": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "cat-skin": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "catriona": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "celephais": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "clever-elsie": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "clever-gretel": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "clever-hans": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "cool-air": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "cranford": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "crime-and-punishment": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "dagon": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "deep-sea-plunderings": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "despair-s-last-journey": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "doctor-knowall": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "don-quixote": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "dr-jekyll-and-mr-hyde": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "dracula": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "elder-tree-mother": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "excepting-mrs-pentherby": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "fate": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "filmer": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "five-children-and-it": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "five-little-friends": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "five-little-peppers-and-how-they-grew": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "five-little-peppers-at-school": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "five-weeks-in-a-balloon": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "flatland-a-romance-of-many-dimensions": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "for-the-duration-of-the-war": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "forewarned": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "four-day-planet": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "frankenstein": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "frederick-and-catherine": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "from-beyond": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "fundevogel": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "grimm-s-fairy-tales": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "gulliver-s-travels": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "hans-in-luck": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "hansel-and-gretel": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "herland": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "hero-myths-and-legends-of-the-british-race": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "hop-frog": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "how-a-fish-swam-in-the-air-and-a-hare-in-the-water": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "how-an-old-man-lost-his-wen": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "how-brave-walter-hunted-wolves": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "howards-end": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "hyacinth": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "hypnos": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "ibid": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "in-the-abyss": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "in-the-avu-observatory": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "in-the-modern-vein": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "in-the-vault": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "iron-hans": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "jack-and-jill": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "jane-eyre": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "jesper-who-herded-the-hares": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "jimmy-goggles-the-god": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "jorinda-and-jorindel": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "kidnapped": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "king-arthur-and-the-knights-of-the-round-table": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "king-grisly-beard": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "les-miserables": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "ligeia": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "lily-and-the-lion": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "little-fuzzy": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "little-ida-s-flowers": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "little-lasse": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "little-red-riding-hood": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "little-thumbelina": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "little-women": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "lord-jim": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "louis": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "louise": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "love-among-the-chickens": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "macbeth": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "mark": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "metamorphosis": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "middlemarch": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "miss-winchelsea-s-heart": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "moby-dick": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "mogarzea-and-his-son": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "momotaro-or-the-story-of-the-son-of-a-peach": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "morella": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "morlvera": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "mother-holle": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "moti": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "mr-brisher-s-treasure": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "mr-ledbetter-s-vacation": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "mr-skelmersdale-in-fairyland": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "ms-found-in-a-bottle": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "murder-in-the-maze": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "my-lord-bag-of-rice": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "new-treasure-seekers": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "nyarlathotep": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "old-sultan": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "ole-luk-oie-the-dream-god": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "oliver-twist": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "on-the-duty-of-civil-disobedience": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "parnassus-on-wheels": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "persuasion": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "pickman-s-model": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "pointed-roofs": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "polaris": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "pollock-and-the-porroh-man": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "pollyanna": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "pride-and-prejudice": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "pygmalion": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "quail-seed": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "quo-vadis": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "rainbow-valley": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "rapunzel": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "rinkitink-in-oz": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "robert-orange": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "romeo-and-juliet": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "room-13": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "rumpelstiltskin": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "schippeitaro": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "sense-and-sensibility": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "shen-of-the-sea-a-book-for-children": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "shock-tactics": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "six-girls-a-home-story": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "snow-white-and-rose-red": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "snowdrop": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "some-words-with-a-mummy": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "spoon-river-anthology": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "stan-bolovan": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "sun-tzu-on-the-art-of-war": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "sunshine-stories": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "sweetheart-roland": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "tales-of-war": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "tea": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-adventure-of-the-beryl-coronet": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-adventure-of-the-blue-carbuncle": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-adventure-of-the-copper-beeches": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-adventure-of-the-engineer-s-thumb": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-adventure-of-the-noble-bachelor": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-adventure-of-the-speckled-band": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-adventures-of-chanticleer-and-partlet": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-adventures-of-ferdinand-count-fathom": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-adventures-of-kintaro-the-golden-boy": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-adventures-of-pinocchio": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-adventures-of-roderick-random": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-adventures-of-tom-sawyer": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-alchemist": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-amateur-cracksman": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-arabian-nights": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-argonauts-of-the-air": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-art-of-war": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-bamboo-cutter-and-the-moon-child": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-battle-of-the-birds": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-beach-of-falesa": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-beast-in-the-cave": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-believing-husbands": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-bell": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-benson-murder-case": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-black-cat": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-black-star-passes": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-blue-castle": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-blue-light": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-bones-of-djulung": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-book-of-dragons": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-boscombe-valley-mystery": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-bottle-imp": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-boys-with-the-golden-stars": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-brothers-karamazov": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-brown-bear-of-norway": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-brownie-of-the-lake": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-buccaneer": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-bull": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-call-of-cthulhu": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-call-of-the-wild": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-case-of-charles-dexter-ward": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-cask-of-amontillado": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-castle-of-kerglas": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-cats-of-ulthar": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-child-who-came-from-an-egg": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-colour-out-of-space": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-conceited-apple-branch": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-cone": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-count-of-monte-cristo": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-count-of-monte-cristo-gutenberg-1184": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-country-of-the-blind": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-crystal-egg": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-cupboard-of-the-yesterdays": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-darning-needle": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-devoted-friend": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-diamond-maker": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-disappearance-of-crispina-umberleigh": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-divine-comedy": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-dog-and-the-sparrow": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-doom-that-came-to-sarnath": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-door-in-the-wall": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-dream-of-little-tuk": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-dreams-in-the-witch-house": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-dunwich-horror": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-elderbush": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-elements-of-style": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-elves-and-the-shoemaker": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-emerald-city-of-oz": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-emperor-s-new-clothes": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-enchanted-deer": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-enchanted-knife": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-envious-neighbour": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-escape-of-the-mouse": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-expedition-of-humphry-clinker": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-facts-in-the-case-of-m-valdemar": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-fairy-nurse": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-fairy-of-the-dawn": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-fall-of-the-house-of-usher": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-false-collar": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-false-prince-and-the-true": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-federalist-papers": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-festival": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-financier": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-finest-liar-in-the-world": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-fir-tree": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-fisherman-and-his-wife": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-five-orange-pips": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-flowering-of-the-strange-orchid": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-flying-man": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-four-clever-brothers": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-four-gifts": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-fox-and-the-cat": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-fox-and-the-horse": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-frog": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-frog-prince": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-girl-who-pretended-to-be-a-boy": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-goat-s-ears-of-the-emperor-trojan": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-goblin-of-adachigahara": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-golden-bird": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-golden-goose": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-goose-girl": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-grateful-prince": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-great-gatsby": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-green-mummy": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-greenies": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-groac-h-of-the-isle-of-lok": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-guests": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-hammerpond-park-burglary": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-happy-family": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-happy-hunter-and-the-skillful-fisher": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-happy-prince": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-haunter-of-the-dark": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-headless-dwarfs": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-heart-of-a-monkey": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-hedgehog": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-history-of-dwarf-long-nose": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-history-of-sir-richard-calmady-a-romance": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-hoodie-crow": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-hound": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-hound-of-the-baskervilles": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-house-of-arden-a-story-for-children": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-house-without-a-key": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-image-of-the-lost-soul": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-importance-of-being-earnest-a-trivial-comedy-for-serious-people": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-innocence-of-father-brown": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-inspector-french-s-greatest-case": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-interlopers": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-invisible-man-a-grotesque-romance": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-isle-of-voices": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-jelly-fish-and-the-monkey": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-jilting-of-jane": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-jogi-s-punishment": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-jungle-book": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-juniper-tree": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-king-in-yellow": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-king-of-the-golden-mountain": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-king-of-the-waterfalls": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-lady-of-the-fountain": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-lady-of-the-lake": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-laughing-cavalier-the-story-of-the-ancestor-of-the-scarlet-pimpernel": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-leap-frog": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-leaping-match": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-leavenworth-case": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-legend-of-sleepy-hollow": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-lerouge-case": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-life-and-adventures-of-robinson-crusoe": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-little-peasant": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-lord-of-the-dynamos": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-lost-inheritance": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-lost-world": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-loving-pair": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-lurking-fear": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-lute-player": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-magic-shop": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-maiden-with-the-wooden-helmet": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-maltese-falcon": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-man-of-the-crowd": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-man-who-could-work-miracles": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-man-who-was-thursday-a-nightmare": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-man-with-the-twisted-lip": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-mappined-life": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-mark-of-zorro": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-masque-of-the-red-death": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-mirror-of-matsuyama": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-miser-in-the-bush": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-money-box": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-monkey-and-the-jelly-fish": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-monkey-s-paw": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-moon-bog": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-mouse-the-bird-and-the-sausage": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-murders-in-the-rue-morgue": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-mysterious-affair-at-styles": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-mystery-of-edwin-drood": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-nameless-city": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-naughty-boy": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-new-accelerator": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-nightingale-and-the-rose": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-nine-pea-hens-and-the-golden-apples": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-nunda-eater-of-people": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-oblong-box": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-occasional-garden": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-octopus-a-story-of-california": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-ogre-of-rashomon": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-old-house": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-old-man-and-his-grandson": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-one-handed-girl": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-other-gods": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-outsider": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-oval-portrait": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-oversight": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-penance": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-phantom-luncheon": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-picture-of-dorian-gray": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-pink": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-pit-and-the-pendulum": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-plattner-story": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-premature-burial": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-prince-and-the-pauper": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-prince-who-wanted-to-see-the-world": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-princess-and-the-goblin": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-princess-who-was-hidden-underground": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-purloined-letter": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-purple-of-the-balkan-kings": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-purple-pileus": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-quarrel-of-the-monkey-and-the-crab": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-queen-bee": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-railway-children": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-raspberry-worm": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-raven": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-real-princess": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-red-headed-league": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-red-room": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-red-shoes": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-red-thumb-mark": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-regent-s-daughter": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-remarkable-case-of-davidson-s-eyes": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-remarkable-rocket": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-rich-brother-and-the-poor-brother": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-robber-bridegroom": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-roses-and-the-sparrows": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-sad-story-of-a-dramatic-critic": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-sagacious-monkey-and-the-boar": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-salad": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-scarlet-letter": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-sea-king-s-gift": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-sea-lady": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-sea-wolf": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-secret-garden": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-secret-garden-gutenberg-113": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-selfish-giant": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-seven-cream-jugs": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-seven-ravens": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-shadow": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-shadow-out-of-time": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-shadow-over-innsmouth": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-sheep": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-shifty-lad": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-shinansha-or-the-south-pointing-carriage": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-shoes-of-fortune": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-shunned-house": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-sign-of-the-four": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-silver-key": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-snow-queen": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-sphinx": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-star": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-statement-of-randolph-carter": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-steadfast-tin-soldier": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-stolen-bacillus": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-stolen-body": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-stones-of-five-colors-and-the-empress-jokwa": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-story-of-a-gazelle": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-story-of-a-mother": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-story-of-a-very-bad-boy": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-story-of-halfman": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-story-of-hassebu": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-story-of-prince-yamato-take": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-story-of-princess-hase": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-story-of-the-inexperienced-ghost": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-story-of-the-man-who-did-not-wish-to-die": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-story-of-the-old-man-who-made-withered-trees-to-flower": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-story-of-the-youth-who-went-forth-to-learn-what-fear-was": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-story-of-three-wonderful-beggars": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-story-of-urashima-taro-the-fisher-lad": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-strange-high-house-in-the-mist": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-straw-the-coal-and-the-bean": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-swineherd": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-system-of-doctor-tarr-and-professor-fether": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-tell-tale-heart": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-tempest": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-temple": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-temptation-of-harringay": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-thing-on-the-door-step": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-threat": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-three-crowns": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-three-languages": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-three-musketeers": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-three-princes-and-their-beasts": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-three-taps-a-detective-story-without-a-moral": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-time-machine": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-tomb": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-tongue-cut-sparrow": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-tower-treasure": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-toys-of-peace": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-travelling-musicians": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-treasure-in-the-forest": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-tree": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-triumphs-of-a-taxidermist": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-truth-about-pyecraft": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-turmoil": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-turn-of-the-screw": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-turnip": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-twelve-dancing-princesses": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-twelve-huntsmen": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-two-frogs": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-ugly-duckling": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-underground-workers": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-unnamable": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-valiant-little-tailor": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-valley-of-spiders": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-virginian-a-horseman-of-the-plains": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-wailing-octopus-a-rick-brant-science-adventure-story": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-war-of-the-worlds": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-warden": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-water-babies": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-water-of-life": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-wedding-of-mrs-fox": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-wendigo": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-whisperer-in-darkness": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-white-hare-and-the-crocodiles": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-white-ship": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-white-snake": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-willow-wren-and-the-bear": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-willows": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-winning-of-olwen": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-wolf-and-the-seven-little-kids": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "the-wolves-of-cernogratz": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "the-wonderful-tune": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "the-wonderful-wizard-of-oz": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "the-young-man-who-would-have-his-eyes-opened": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "thou-art-the-man": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "through-a-window": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "through-the-looking-glass": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "tom-thumb": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "treasure-island": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "triplanetary": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "twenty-thousand-leagues-under-the-sea": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "two-in-a-sack": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "typhoon": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "under-the-knife": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes."
+    },
+    "under-the-red-dragon": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "unicorns": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "violet-fairy-book": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    },
+    "virgilius-the-sorcerer": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "walden": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "william-wilson": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "wind-in-the-willows": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "winnie-the-pooh": {
+      "contentSuitability": "low",
+      "strictReviewCandidate": false,
+      "contentNote": "Historical public-domain text reviewed in the current content-safety sweep."
+    },
+    "with-fire-and-sword": {
+      "contentSuitability": "moderate",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+    },
+    "wuthering-heights": {
+      "contentSuitability": "elevated",
+      "strictReviewCandidate": true,
+      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
+    }
+  }
+}
