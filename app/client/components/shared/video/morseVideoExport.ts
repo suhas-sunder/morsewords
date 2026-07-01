@@ -46,6 +46,7 @@ export async function createMorseVideoBlob({
   canvas.height = frame.height;
 
   const timeline = buildMorseVideoTimelineFromMorse(morse, audioSettings, text);
+  await waitForMorseVideoFonts();
   const blob = await recordMorseVideoCanvas({
     audioSettings,
     canvas,
@@ -58,4 +59,18 @@ export async function createMorseVideoBlob({
   });
 
   return { blob, durationMs: timeline.durationMs };
+}
+
+async function waitForMorseVideoFonts() {
+  if (typeof document === "undefined" || !("fonts" in document)) return;
+  const fonts = document.fonts;
+  try {
+    await Promise.all([
+      fonts.load('700 64px "Space Mono"'),
+      fonts.load('800 64px "Space Grotesk"'),
+      fonts.ready,
+    ]);
+  } catch {
+    // Browser font loading failures should not block an otherwise valid export.
+  }
 }

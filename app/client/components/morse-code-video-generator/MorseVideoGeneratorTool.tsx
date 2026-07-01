@@ -757,6 +757,10 @@ export default function MorseVideoGeneratorTool() {
               <span aria-hidden="true">
                 Format: {selectedFormatSupport.label}
               </span>
+              <span aria-hidden="true">
+                Quality:{" "}
+                {MORSE_VIDEO_RESOLUTION_LABELS[effectiveVideoSettings.resolution]}
+              </span>
             </div>
           }
         >
@@ -940,7 +944,12 @@ export default function MorseVideoGeneratorTool() {
             </p>
           ) : (
             <p className="text-sm leading-relaxed text-slate-600">
-              {selectedFormatSupport.label} export starts only when you click download.
+              {selectedFormatSupport.label} export starts only when you click
+              download. Export quality:{" "}
+              <span className="font-semibold text-sky-950">
+                {MORSE_VIDEO_RESOLUTION_LABELS[effectiveVideoSettings.resolution]}
+              </span>
+              .
             </p>
           )}
 
@@ -1095,12 +1104,12 @@ function VideoSettingsEditor({
         <div className="grid gap-5 lg:grid-cols-3">
           <fieldset>
             <legend className="text-sm font-semibold text-slate-700">
-              Video resolution
+              Export quality / resolution
             </legend>
             <div
               className="mt-2 flex flex-wrap gap-2"
               role="radiogroup"
-              aria-label="Video resolution"
+              aria-label="Export quality / resolution"
             >
               {MORSE_VIDEO_RESOLUTIONS.map((resolution) => (
                 <VideoSettingButton

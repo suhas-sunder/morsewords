@@ -33,6 +33,16 @@ async function installFastVideoRecorder(
       value: [] as string[],
       writable: true,
     });
+    Object.defineProperty(window, "__morseVideoCaptureSizes", {
+      configurable: true,
+      value: [] as Array<{ height: number; width: number }>,
+      writable: true,
+    });
+    Object.defineProperty(window, "__morseVideoRecorderOptions", {
+      configurable: true,
+      value: [] as MediaRecorderOptions[],
+      writable: true,
+    });
 
     class FakeMediaRecorder {
       static isTypeSupported(type: string) {
@@ -53,6 +63,11 @@ async function installFastVideoRecorder(
         (
           window as typeof window & { __morseVideoRecorderMimeTypes: string[] }
         ).__morseVideoRecorderMimeTypes.push(this.mimeType);
+        (
+          window as typeof window & {
+            __morseVideoRecorderOptions: MediaRecorderOptions[];
+          }
+        ).__morseVideoRecorderOptions.push({ ...(options ?? {}) });
       }
 
       start() {
@@ -84,6 +99,14 @@ async function installFastVideoRecorder(
       value: FakeMediaRecorder,
     });
     HTMLCanvasElement.prototype.captureStream = function captureStream() {
+      (
+        window as typeof window & {
+          __morseVideoCaptureSizes: Array<{ height: number; width: number }>;
+        }
+      ).__morseVideoCaptureSizes.push({
+        height: this.height,
+        width: this.width,
+      });
       return new MediaStream();
     };
   }, Boolean(options.mp4));
@@ -196,6 +219,28 @@ async function readRecordedVideoMimeTypes(page: Page) {
     () =>
       (window as typeof window & { __morseVideoRecorderMimeTypes?: string[] })
         .__morseVideoRecorderMimeTypes ?? [],
+  );
+}
+
+async function readCapturedVideoSizes(page: Page) {
+  return page.evaluate(
+    () =>
+      (
+        window as typeof window & {
+          __morseVideoCaptureSizes?: Array<{ height: number; width: number }>;
+        }
+      ).__morseVideoCaptureSizes ?? [],
+  );
+}
+
+async function readRecordedVideoOptions(page: Page) {
+  return page.evaluate(
+    () =>
+      (
+        window as typeof window & {
+          __morseVideoRecorderOptions?: MediaRecorderOptions[];
+        }
+      ).__morseVideoRecorderOptions ?? [],
   );
 }
 
@@ -394,6 +439,55 @@ test.describe("Morse code video generator", () => {
       );
     expect(jsonLd).toContain(CANONICAL_URL);
     expect(jsonLd).toContain("WebApplication");
+  });
+
+  test("exports with native 720p and 1080p canvas quality settings", async ({
+    page,
+  }, testInfo) => {
+    await installFastVideoRecorder(page);
+    await openVideoGenerator(page);
+    await page
+      .getByLabel("Message to turn into a Morse code video")
+      .fill("SOS VIDEO QUALITY");
+    await page.getByLabel("File name").fill("video-quality-check");
+
+    await expect(
+      page.getByRole("radio", { name: "720p (1280 x 720)" }),
+    ).toHaveAttribute("aria-checked", "true");
+    await expect(
+      page.getByRole("radio", { name: "1080p (1920 x 1080)" }),
+    ).toHaveAttribute("aria-checked", "false");
+    await expect(
+      page.getByText("Export quality: 720p (1280 x 720)."),
+    ).toBeVisible();
+
+    await downloadVideoFile(page, testInfo);
+    expect((await readCapturedVideoSizes(page)).at(-1)).toEqual({
+      height: 720,
+      width: 1280,
+    });
+    expect((await readRecordedVideoOptions(page)).at(-1)).toEqual(
+      expect.objectContaining({
+        mimeType: expect.stringMatching(/^video\/webm/),
+        videoBitsPerSecond: expect.any(Number),
+      }),
+    );
+    expect(
+      ((await readRecordedVideoOptions(page)).at(-1)?.videoBitsPerSecond ?? 0),
+    ).toBeGreaterThanOrEqual(5_000_000);
+
+    await page.getByRole("radio", { name: "1080p (1920 x 1080)" }).click();
+    await expect(
+      page.getByText("Export quality: 1080p (1920 x 1080)."),
+    ).toBeVisible();
+    await downloadVideoFile(page, testInfo);
+    expect((await readCapturedVideoSizes(page)).at(-1)).toEqual({
+      height: 1080,
+      width: 1920,
+    });
+    expect(
+      ((await readRecordedVideoOptions(page)).at(-1)?.videoBitsPerSecond ?? 0),
+    ).toBeGreaterThanOrEqual(9_000_000);
   });
 
   test("alias and sitemaps use the canonical video generator URL", async ({
