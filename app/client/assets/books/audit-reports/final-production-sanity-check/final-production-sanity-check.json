@@ -1,0 +1,433 @@
+{
+  "schemaVersion": 1,
+  "reportName": "final-production-sanity-check",
+  "generatedAt": "2026-07-01T17:50:39.084Z",
+  "branchName": "morsewords-final-production-sanity-check-jun-2026",
+  "headCommitChecked": "91d26bcccca43d1e0fbbe5c5bb318355d68e704e",
+  "mainCommitChecked": "91d26bcccca43d1e0fbbe5c5bb318355d68e704e",
+  "productionHostChecked": "https://www.morsewords.com",
+  "assetHostChecked": "https://assets.morsewords.com",
+  "executiveResult": "Final production sanity check blocked because /morse-code-books/walden/print returned HTTP 500.",
+  "productionHostResult": {
+    "status": "blocked",
+    "notes": [
+      "/morse-code-books/walden/print returned HTTP 500.",
+      "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500.",
+      "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
+    ]
+  },
+  "assetHostResult": {
+    "status": "pass",
+    "notes": [
+      "Asset host manifests and payloads are reachable and match expected release evidence."
+    ]
+  },
+  "productionRouteChecks": {
+    "routeChecks": [
+      {
+        "route": "/",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/morse-code-books",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/morse-code-audiobooks",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/morse-code-books/walden",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/morse-code-audiobooks/walden",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/contact",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/sources",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/privacy",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/terms",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/cookies",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      }
+    ],
+    "printRouteChecks": [
+      {
+        "route": "/morse-code-books/walden/print",
+        "status": "blocked",
+        "httpStatus": 500,
+        "notes": [
+          "/morse-code-books/walden/print returned HTTP 500."
+        ],
+        "suitabilityVisible": false
+      },
+      {
+        "route": "/morse-code-books/the-call-of-cthulhu/print",
+        "status": "blocked",
+        "httpStatus": 500,
+        "notes": [
+          "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500."
+        ],
+        "suitabilityVisible": false
+      },
+      {
+        "route": "/morse-code-books/the-adventures-of-roderick-random/print",
+        "status": "blocked",
+        "httpStatus": 500,
+        "notes": [
+          "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
+        ],
+        "suitabilityVisible": false
+      }
+    ],
+    "listingFilterChecks": [
+      {
+        "route": "/morse-code-books",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": [],
+        "suitabilityLabelsVisible": true,
+        "lowerRiskFilterVisible": true,
+        "lowerRiskFilterWorks": true
+      },
+      {
+        "route": "/morse-code-audiobooks",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": [],
+        "suitabilityLabelsVisible": true,
+        "lowerRiskFilterVisible": true,
+        "lowerRiskFilterWorks": true
+      }
+    ],
+    "payloadRequestChecks": [
+      {
+        "route": "/morse-code-books/walden",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": [],
+        "slug": "walden",
+        "payloadRequests": [
+          "https://assets.morsewords.com/books/walden.json"
+        ]
+      },
+      {
+        "route": "/morse-code-audiobooks/walden",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": [],
+        "slug": "walden",
+        "payloadRequests": [
+          "https://assets.morsewords.com/books/walden.json"
+        ]
+      }
+    ],
+    "contactPolicyChecks": [
+      {
+        "route": "/contact",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/sources",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      }
+    ],
+    "unsupportedPolicyClaimChecks": [
+      {
+        "route": "/",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/morse-code-books",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/morse-code-audiobooks",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/morse-code-books/walden",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/morse-code-audiobooks/walden",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/contact",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/sources",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/privacy",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/terms",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/cookies",
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
+      },
+      {
+        "route": "/morse-code-books/walden/print",
+        "status": "blocked",
+        "httpStatus": 500,
+        "notes": [
+          "/morse-code-books/walden/print returned HTTP 500."
+        ]
+      },
+      {
+        "route": "/morse-code-books/the-call-of-cthulhu/print",
+        "status": "blocked",
+        "httpStatus": 500,
+        "notes": [
+          "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500."
+        ]
+      },
+      {
+        "route": "/morse-code-books/the-adventures-of-roderick-random/print",
+        "status": "blocked",
+        "httpStatus": 500,
+        "notes": [
+          "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
+        ]
+      }
+    ],
+    "productionHostResult": {
+      "status": "blocked",
+      "notes": [
+        "/morse-code-books/walden/print returned HTTP 500.",
+        "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500.",
+        "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
+      ]
+    },
+    "productionRouteResult": {
+      "status": "pass",
+      "notes": [
+        "Home, book hubs, Walden book/audiobook, contact, sources, privacy, terms, and cookies load."
+      ]
+    },
+    "printRouteResult": {
+      "status": "blocked",
+      "notes": [
+        "/morse-code-books/walden/print returned HTTP 500.",
+        "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500.",
+        "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
+      ]
+    },
+    "listingFilterResult": {
+      "status": "pass",
+      "notes": [
+        "Book and audiobook listings show suitability labels and the lower-risk filter works."
+      ]
+    },
+    "payloadRequestResult": {
+      "status": "pass",
+      "notes": [
+        "Sampled book and audiobook pages request full payloads from https://assets.morsewords.com."
+      ]
+    },
+    "contactPolicyResult": {
+      "status": "pass",
+      "notes": [
+        "/contact and /sources expose support@morsewords.com plus correction/takedown/report paths."
+      ]
+    },
+    "policyStatementVerification": {
+      "status": "blocked",
+      "notes": [
+        "/morse-code-books/walden/print returned HTTP 500.",
+        "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500.",
+        "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
+      ]
+    }
+  },
+  "remoteAssetPayloadChecks": {
+    "remotePublicManifest": null,
+    "remoteUploadManifest": null,
+    "manifestResult": {
+      "status": "pass",
+      "notes": [
+        "Remote public-manifest.json and upload-manifest.json are reachable.",
+        "Remote manifests match the sanitized upload content hash."
+      ],
+      "publicManifestUrl": "https://assets.morsewords.com/public-manifest.json",
+      "uploadManifestUrl": "https://assets.morsewords.com/upload-manifest.json",
+      "publicManifestBooks": 519,
+      "uploadManifestFiles": 521
+    },
+    "payloadResult": {
+      "status": "pass",
+      "notes": [
+        "All 519 remote book payloads are reachable and match sanitized upload metadata."
+      ],
+      "expectedBookPayloads": 519,
+      "reachableBookPayloads": 519
+    },
+    "suitabilityResult": {
+      "status": "pass",
+      "notes": [
+        "Remote manifests and payloads include suitability metadata.",
+        "Suitability counts match expected low/moderate/elevated totals.",
+        "Strict-review candidate metadata matches expected count."
+      ],
+      "counts": {
+        "low": 98,
+        "moderate": 311,
+        "elevated": 110
+      },
+      "strictReviewCandidateCount": 429
+    },
+    "contentSafetyResult": {
+      "status": "pass",
+      "notes": [
+        "Deterministic unsafe findings remaining are 0.",
+        "Safety-sweep changed payloads match the sanitized updated export."
+      ],
+      "deterministicUnsafeFindingsRemaining": 0,
+      "changedBooksChecked": 91,
+      "changedPayloadsMatchingUpdatedExport": 91,
+      "changedPayloadsStillMatchingPriorExport": 0,
+      "safeReplacementOccurrences": 425
+    },
+    "cthulhuResult": {
+      "status": "pass",
+      "notes": [
+        "The Call of Cthulhu remote payload matches the sanitized upload.",
+        "owner-reported masked racial identity label was sanitized in generated text and previews"
+      ],
+      "slug": "the-call-of-cthulhu",
+      "remoteUrl": "https://assets.morsewords.com/books/the-call-of-cthulhu.json"
+    },
+    "changedBooksResult": {
+      "status": "pass",
+      "notes": [
+        "91/91 changed safety-sweep books match the sanitized updated export."
+      ],
+      "changedBooksChecked": 91,
+      "changedPayloadsMatchingUpdatedExport": 91,
+      "changedPayloadsStillMatchingPriorExport": 0
+    }
+  },
+  "sitemapProductionResult": {
+    "status": "blocked",
+    "notes": [
+      "Production sitemap has 1651 URLs, expected 1682.",
+      "Production sitemap has 488 print URLs, expected 519."
+    ],
+    "sitemapUrl": "https://www.morsewords.com/sitemap.xml",
+    "urlCount": 1651,
+    "bookUrlCount": 519,
+    "audiobookUrlCount": 519,
+    "printUrlCount": 488
+  },
+  "contentSafetySuitabilityProductionResult": {
+    "status": "blocked",
+    "notes": [
+      "/morse-code-books/walden/print returned HTTP 500.",
+      "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500.",
+      "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
+    ],
+    "suitabilityCounts": {
+      "low": 98,
+      "moderate": 311,
+      "elevated": 110
+    },
+    "strictReviewCandidateCount": 429,
+    "deterministicUnsafeFindingsRemaining": 0
+  },
+  "adsenseContactProductionResult": {
+    "status": "pass",
+    "notes": [
+      "/contact and /sources expose support@morsewords.com plus correction/takedown/report paths."
+    ]
+  },
+  "policyStatementVerification": {
+    "status": "blocked",
+    "notes": [
+      "/morse-code-books/walden/print returned HTTP 500.",
+      "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500.",
+      "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
+    ]
+  },
+  "protectedExportTrackingResult": {
+    "status": "pass",
+    "notes": [
+      "Cloudflare export folders remain ignored/untracked by git."
+    ],
+    "cloudflareExportTrackedFiles": 0,
+    "cloudflareUpdatedExportTrackedFiles": 0
+  },
+  "remainingBlockers": [
+    "/morse-code-books/walden/print returned HTTP 500.",
+    "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500.",
+    "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500.",
+    "Production sitemap has 1651 URLs, expected 1682.",
+    "Production sitemap has 488 print URLs, expected 519."
+  ],
+  "releaseReadiness": "Release is not complete until the blockers above are cleared on production.",
+  "recommendedNextStep": "Resolve or wait for the exact production blockers, then rerun site:final-production-sanity-check."
+}
