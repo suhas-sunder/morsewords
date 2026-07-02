@@ -41,6 +41,7 @@ import { ROUTES, absoluteUrl } from "~/client/data/routes";
 type PrintableLayout = "study-sheet" | "morse-only" | "side-by-side";
 type OutputMode = "pairs" | "both" | "morse" | "text";
 type SectionScope = "default" | "full" | "selected";
+type PrintMode = "idle" | "full-book" | "single-page";
 
 type PrintableLine = {
   id: string;
@@ -251,6 +252,22 @@ function PrintStyles() {
           break-after: auto;
           page-break-after: auto;
         }
+        .mw-print-main[data-mw-print-mode="single-page"] .mw-print-page-preview:not([data-mw-single-page-printable="true"]) {
+          display: none !important;
+        }
+        .mw-print-main[data-mw-print-mode="single-page"] .mw-print-page[data-mw-single-page-printable="true"] {
+          break-after: auto;
+          page-break-after: auto;
+        }
+        .mw-print-main[data-mw-print-source="approved-book-json"]:not([data-mw-print-mode="single-page"]) .mw-print-page:not([data-mw-print-page-number="1"]) .mw-print-full-book-first-only {
+          display: none !important;
+        }
+        .mw-print-main[data-mw-print-source="approved-book-json"]:not([data-mw-print-mode="single-page"]) .mw-print-page:not([data-mw-print-page-number="1"]) {
+          padding-top: 0.2in !important;
+        }
+        .mw-print-main[data-mw-print-source="approved-book-json"]:not([data-mw-print-mode="single-page"]) .mw-print-page:not([data-mw-print-page-number="1"]) .mw-print-line-list {
+          margin-top: 0 !important;
+        }
       }
     `}</style>
   );
@@ -274,9 +291,16 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
   const [scope, setScope] = React.useState<SectionScope>(() =>
     book ? "selected" : "default",
   );
+  const [printMode, setPrintMode] = React.useState<PrintMode>("idle");
+  const [singlePagePrintNumber, setSinglePagePrintNumber] =
+    React.useState<number | null>(null);
+  const [pendingPrintRequestId, setPendingPrintRequestId] = React.useState(0);
+  const completedPrintRequestIdRef = React.useRef(0);
+  const printCleanupTimerRef = React.useRef<number | null>(null);
   const [selectedSectionIds, setSelectedSectionIds] = React.useState<string[]>(
     () => (book ? initialPrintableSectionIds(book) : []),
   );
+  const [clientReady, setClientReady] = React.useState(false);
   const [printPreviewReady, setPrintPreviewReady] = React.useState(!isBook);
   const qrTargetUrl = isBook && book ? absoluteUrl(morseBookPrintPath(book.slug)) : CUSTOM_QR_URL;
   const { failed: qrFailed, qrCodeUrl } = useQrCode(qrTargetUrl);
@@ -310,6 +334,7 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
   }, [bookSource?.sections?.length, initialBook, isBook]);
 
   React.useEffect(() => {
+    setClientReady(true);
     setPrintPreviewReady(true);
   }, []);
 
@@ -318,6 +343,27 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
     setScope("selected");
     setSelectedSectionIds(initialPrintableSectionIds(book));
   }, [book]);
+
+  const clearPrintMode = React.useCallback(() => {
+    if (typeof window !== "undefined" && printCleanupTimerRef.current !== null) {
+      window.clearTimeout(printCleanupTimerRef.current);
+      printCleanupTimerRef.current = null;
+    }
+    setPrintMode("idle");
+    setSinglePagePrintNumber(null);
+  }, []);
+
+  React.useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+    window.addEventListener("afterprint", clearPrintMode);
+    return () => {
+      window.removeEventListener("afterprint", clearPrintMode);
+      if (printCleanupTimerRef.current !== null) {
+        window.clearTimeout(printCleanupTimerRef.current);
+        printCleanupTimerRef.current = null;
+      }
+    };
+  }, [clearPrintMode]);
 
   const selectedSections = React.useMemo(() => {
     if (!book) return [];
@@ -342,6 +388,34 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
     () => chunkLines(printableLines),
     [printableLines],
   );
+
+  React.useEffect(() => {
+    if (singlePagePrintNumber === null) return;
+    if (printablePages.some((page) => page.pageNumber === singlePagePrintNumber)) {
+      return;
+    }
+    clearPrintMode();
+  }, [clearPrintMode, printablePages, singlePagePrintNumber]);
+
+  React.useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+    if (pendingPrintRequestId === 0) return undefined;
+    if (completedPrintRequestIdRef.current === pendingPrintRequestId) {
+      return undefined;
+    }
+    if (printMode === "idle") return undefined;
+
+    const frameId = window.requestAnimationFrame(() => {
+      completedPrintRequestIdRef.current = pendingPrintRequestId;
+      window.print();
+      if (printCleanupTimerRef.current !== null) {
+        window.clearTimeout(printCleanupTimerRef.current);
+      }
+      printCleanupTimerRef.current = window.setTimeout(clearPrintMode, 1500);
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [clearPrintMode, pendingPrintRequestId, printMode]);
   const selectedWordCount = React.useMemo(
     () =>
       selectedSections.reduce((total, section) => total + section.wordCount, 0),
@@ -362,8 +436,20 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
     );
   }
 
+  function requestPrint(mode: PrintMode, pageNumber: number | null = null) {
+    if (typeof window === "undefined") return;
+    if (mode === "single-page" && pageNumber === null) return;
+    setPrintMode(mode);
+    setSinglePagePrintNumber(mode === "single-page" ? pageNumber : null);
+    setPendingPrintRequestId((current) => current + 1);
+  }
+
   function printPage() {
-    if (typeof window !== "undefined") window.print();
+    requestPrint("full-book");
+  }
+
+  function printSinglePage(pageNumber: number) {
+    requestPrint("single-page", pageNumber);
   }
 
   return (
@@ -373,6 +459,9 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
       data-mw-print-source={isBook ? "approved-book-json" : "custom-text"}
       data-mw-print-book-slug={book?.slug ?? ""}
       data-mw-print-section-count={isBook ? String(allSections.length) : ""}
+      data-mw-print-mode={printMode}
+      data-mw-print-single-page={singlePagePrintNumber ?? ""}
+      data-mw-print-client-ready={clientReady ? "true" : "false"}
     >
       <PrintStyles />
       <JsonLdScript jsonLd={props.schema} />
@@ -500,6 +589,7 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
               <textarea
                 value={customText}
                 onChange={(event) => setCustomText(event.currentTarget.value)}
+                onInput={(event) => setCustomText(event.currentTarget.value)}
                 className="min-h-48 w-full resize-y border-0 bg-transparent p-4 font-mono text-sm leading-relaxed text-slate-950 outline-none focus:ring-0 focus-visible:outline-none"
                 aria-label="Paste custom text for printable Morse pages"
                 data-testid="printable-custom-text"
@@ -639,6 +729,9 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
               qrCodeUrl={qrCodeUrl}
               qrFailed={qrFailed}
               qrTargetUrl={qrTargetUrl}
+              singlePagePrintNumber={singlePagePrintNumber}
+              isSinglePagePrintMode={printMode === "single-page"}
+              onPrintSinglePage={printSinglePage}
             />
           ))}
         </div>
@@ -678,6 +771,9 @@ function PrintablePagePreview({
   qrCodeUrl,
   qrFailed,
   qrTargetUrl,
+  singlePagePrintNumber,
+  isSinglePagePrintMode,
+  onPrintSinglePage,
 }: {
   book: PrintableBookMetadata | null;
   layout: PrintableLayout;
@@ -687,17 +783,50 @@ function PrintablePagePreview({
   qrCodeUrl: string;
   qrFailed: boolean;
   qrTargetUrl: string;
+  singlePagePrintNumber: number | null;
+  isSinglePagePrintMode: boolean;
+  onPrintSinglePage: (pageNumber: number) => void;
 }) {
   const title = book ? book.title : "Custom Morse practice";
   const authorDisplay = book ? getMorseBookAuthorDisplay(book.author) : null;
   const author = authorDisplay?.text ?? "MorseWords printable page";
   const sourceUrl = book?.source.sourceUrl ?? "";
+  const isSinglePagePrintable =
+    isSinglePagePrintMode && singlePagePrintNumber === page.pageNumber;
+  const fullBookChromePrintable = page.pageNumber === 1 ? "true" : "false";
   return (
-    <article
-      className="mw-print-page mx-auto w-full max-w-[8.5in] rounded-xl bg-white p-5 text-slate-950 shadow-sm sm:p-8"
-      data-testid="printable-page"
+    <div
+      className="mw-print-page-preview"
+      data-testid="printable-page-preview"
+      data-mw-print-page-number={page.pageNumber}
+      data-mw-single-page-printable={isSinglePagePrintable ? "true" : "false"}
     >
-      <header className="flex flex-wrap items-start justify-between gap-4 border-b border-slate-200 pb-4">
+      <div className="mw-print-actions mx-auto mb-2 flex w-full max-w-[8.5in] justify-end">
+        <button
+          type="button"
+          onClick={() => onPrintSinglePage(page.pageNumber)}
+          className={toolControlButtonClass({ size: "sm" })}
+          data-testid="printable-print-this-page-button"
+        >
+          <DownloadIcon aria-hidden="true" />
+          Print this page
+        </button>
+      </div>
+      <article
+        id={`printable-page-${page.pageNumber}`}
+        className="mw-print-page mx-auto w-full max-w-[8.5in] rounded-xl bg-white p-5 text-slate-950 shadow-sm sm:p-8"
+        data-testid="printable-page"
+        data-mw-print-page-number={page.pageNumber}
+        data-mw-single-page-printable={isSinglePagePrintable ? "true" : "false"}
+        data-mw-full-book-page-context={
+          page.pageNumber === 1 ? "opening-context" : "content-only"
+        }
+      >
+      <header
+        className="mw-print-full-book-first-only flex flex-wrap items-start justify-between gap-4 border-b border-slate-200 pb-4"
+        data-testid="printable-page-context"
+        data-mw-full-book-printable-chrome={fullBookChromePrintable}
+      >
         <div className="min-w-0">
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-slate-500">
             MorseWords printable
@@ -718,10 +847,11 @@ function PrintablePagePreview({
           qrCodeUrl={qrCodeUrl}
           qrFailed={qrFailed}
           qrTargetUrl={qrTargetUrl}
+          fullBookChromePrintable={fullBookChromePrintable}
         />
       </header>
 
-      <div className="mt-5 grid gap-4">
+      <div className="mw-print-line-list mt-5 grid gap-4">
         {page.lines.length > 0 ? (
           page.lines.map((line) => (
             <PrintableLineRow
@@ -738,7 +868,11 @@ function PrintablePagePreview({
         )}
       </div>
 
-      <footer className="mt-6 flex flex-wrap items-end justify-between gap-3 border-t border-slate-200 pt-3 text-[11px] leading-relaxed text-slate-600">
+      <footer
+        className="mw-print-full-book-first-only mt-6 flex flex-wrap items-end justify-between gap-3 border-t border-slate-200 pt-3 text-[11px] leading-relaxed text-slate-600"
+        data-testid="printable-page-footer"
+        data-mw-full-book-printable-chrome={fullBookChromePrintable}
+      >
         <div className="min-w-0">
           <p className="font-bold">{SITE_LABEL}</p>
           {sourceUrl ? (
@@ -755,6 +889,7 @@ function PrintablePagePreview({
         </p>
       </footer>
     </article>
+    </div>
   );
 }
 
@@ -762,13 +897,19 @@ function QrBlock({
   qrCodeUrl,
   qrFailed,
   qrTargetUrl,
+  fullBookChromePrintable,
 }: {
   qrCodeUrl: string;
   qrFailed: boolean;
   qrTargetUrl: string;
+  fullBookChromePrintable: string;
 }) {
   return (
-    <div className="w-32 shrink-0 text-right" data-testid="printable-qr">
+    <div
+      className="w-32 shrink-0 text-right"
+      data-testid="printable-qr"
+      data-mw-full-book-printable-chrome={fullBookChromePrintable}
+    >
       {qrCodeUrl ? (
         <img
           src={qrCodeUrl}

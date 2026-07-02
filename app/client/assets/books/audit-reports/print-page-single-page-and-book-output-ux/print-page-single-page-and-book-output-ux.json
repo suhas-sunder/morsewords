@@ -1,0 +1,97 @@
+{
+  "result": "Print page single-page and full-book output UX passed",
+  "generatedAt": "2026-07-02",
+  "branch": "morsewords-print-page-single-page-and-book-output-ux-jun-2026",
+  "mainBaseCommit": "e6958444e636f77934b8e1a8f74a6763e76531a5",
+  "executiveResult": {
+    "status": "passed",
+    "summary": "Printable book pages now expose a per-preview-page print action and full-book print output keeps repeated QR/source/footer chrome limited to the opening page."
+  },
+  "userReportedIssue": [
+    "Individual preview pages could be viewed but not printed one page at a time.",
+    "Full-book print output repeated QR, source, and footer chrome on every preview page, creating whitespace and repeated context."
+  ],
+  "printPageArchitectureInspected": {
+    "route": "app/routes/morse-code-books.$slug.print.tsx",
+    "renderer": "app/client/components/morse-code-books/PrintableMorsePages.tsx",
+    "routeBehavior": "The print route loads a lightweight discoverable book summary during SSR and the printable component loads approved book content on the client.",
+    "previewRepresentation": "Printable pages are chunked line groups rendered as preview articles with stable page numbers.",
+    "printTriggerBeforeChange": "The existing full-output action called window.print from PrintableMorsePages.",
+    "printCss": "PrintStyles in PrintableMorsePages controls screen controls, print page breaks, and print-only visibility.",
+    "chromeLocation": "QR, title context, source, site footer, and page count were rendered inside every PrintablePagePreview."
+  },
+  "singlePagePrintAction": {
+    "status": "passed",
+    "implementation": [
+      "Added Print this page action to each preview page.",
+      "Added print mode state and stable data attributes for selected page number.",
+      "Print is scheduled after React commits the print mode, so the DOM is marked before window.print runs.",
+      "afterprint and a short fallback cleanup return the route to idle mode."
+    ],
+    "testCoverage": "morse-book-print-ux.spec.ts stubs window.print and verifies only the selected page is marked printable in single-page mode."
+  },
+  "fullBookPrintCleanup": {
+    "status": "passed",
+    "implementation": [
+      "Marked opening-page QR/context/footer chrome as full-book printable.",
+      "Marked repeated QR/context/footer chrome on later pages as content-only for full-book print.",
+      "Added print-only CSS that hides repeated full-book chrome outside single-page print mode.",
+      "Reduced later-page top whitespace by removing the line-list top margin and using a smaller top pad in print."
+    ],
+    "screenPreview": "On-screen previews keep their context, QR, and source/footer details for inspection."
+  },
+  "suitabilityIndexabilityPreservation": {
+    "status": "passed",
+    "details": [
+      "Suitability note remains visible on print routes and visible under print media.",
+      "No book text, generated payload, sitemap count, canonical, indexability, or suitability policy changed.",
+      "Print URL count remains 519 and print pages remain self-canonical/indexable."
+    ]
+  },
+  "routesTested": [
+    "/morse-code-books/walden/print",
+    "/morse-code-books/the-call-of-cthulhu/print",
+    "/morse-code-books/the-adventures-of-roderick-random/print",
+    "/morse-code-printable-pages"
+  ],
+  "testsAddedOrUpdated": [
+    {
+      "path": "tests/qa-robustness-review/morse-book-print-ux.spec.ts",
+      "purpose": "Covers sampled book print routes, single-page print mode, full-book chrome flags, suitability visibility, and full-book print action availability."
+    },
+    {
+      "path": "tests/qa-robustness-review/printable-morse-pages.spec.ts",
+      "purpose": "Waits for the printable component client-ready marker before simulating custom textarea input."
+    }
+  ],
+  "validationResult": {
+    "status": "passed",
+    "commands": [
+      "npm run typecheck",
+      "npm run test --if-present",
+      "npm run build:netlify",
+      "npx playwright test tests/qa-robustness-review/morse-book-print-ux.spec.ts --project=desktop-chromium --reporter=line",
+      "npx playwright test tests/qa-robustness-review/morse-book-suitability.spec.ts --project=desktop-chromium --reporter=line",
+      "npx playwright test tests/qa-robustness-review/morse-mobile-smoke.spec.ts --project=desktop-chromium --reporter=line",
+      "npx playwright test tests/qa-robustness-review/printable-morse-pages.spec.ts tests/qa-robustness-review/morse-book-print-ux.spec.ts --project=desktop-chromium --reporter=line",
+      "npm run site:final-production-sanity-check",
+      "npm run site:production-deploy-staleness-diagnosis",
+      "npm run pages:adsense-contact-readiness-audit",
+      "npm run pages:sitemap-count-print-indexability-audit",
+      "npm run pages:url-indexability-canonical-audit",
+      "npm run site:local-final-validation",
+      "npm run books:no-cloudflare-export-app-imports",
+      "git diff --check"
+    ],
+    "browserCheck": "In-app browser check on /morse-code-books/walden/print confirmed route identity, nonblank render, suitability visibility, 236 preview pages, Print this page actions, and first-page-only QR chrome flags. Console contained only expected Vite websocket warnings from the temporary HMR-disabled dev server."
+  },
+  "protectedFolderStatus": {
+    "app/client/assets/temp-books": "clean",
+    "app/client/assets/books/generated": "clean",
+    "public/book-previews": "clean",
+    "app/client/assets/books/cloudflare-export": "ignored or untracked, zero tracked files",
+    "app/client/assets/books/cloudflare-updated-export": "ignored or untracked, zero tracked files"
+  },
+  "remainingBlockers": [],
+  "recommendedNextStep": "Manually test /morse-code-books/walden/print: Print this page prints one selected page only, and full book print output keeps context on the first page while later pages focus on text and Morse. Then merge to main if acceptable."
+}

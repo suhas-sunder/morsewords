@@ -19,6 +19,12 @@ async function gotoPrintable(page: Page, route: string) {
   await blockExternalNetwork(page);
   const response = await page.goto(route, { waitUntil: "domcontentloaded" });
   await waitForRouteReady(page);
+  if (response?.ok() && (route === PRINTABLE_PATH || route.endsWith("/print"))) {
+    await expect(page.getByTestId("printable-morse-pages")).toHaveAttribute(
+      "data-mw-print-client-ready",
+      "true",
+    );
+  }
   return response;
 }
 
