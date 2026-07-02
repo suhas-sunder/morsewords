@@ -228,6 +228,40 @@ type SavedMorseBookRuntimeSettings = {
   };
 };
 
+type LivePlaybackCompletionToken = {
+  sessionId: number;
+  sectionId: string;
+  segmentIndex: number;
+  durationMs: number;
+};
+
+type BookLivePlayerTestHook = {
+  getState: () => {
+    bookSlug: string;
+    sectionId: string;
+    sectionIndex: number;
+    sectionCount: number;
+    segmentIndex: number;
+    segmentCount: number;
+    sessionId: number;
+    completedSessionId: number | null;
+    playing: boolean;
+    progressRestored: boolean;
+  };
+  captureCompletion: () => LivePlaybackCompletionToken;
+  completeCapturedSegment: (token: LivePlaybackCompletionToken) => boolean;
+  completeCurrentSegment: () => boolean;
+  completeCurrentSegmentTwice: () => { first: boolean; second: boolean };
+  selectSegment: (segmentIndex: number) => void;
+  nextSection: () => void;
+};
+
+declare global {
+  interface Window {
+    __MORSEWORDS_BOOK_LIVE_PLAYER_TEST__?: BookLivePlayerTestHook;
+  }
+}
+
 const BOOK_RUNTIME_SETTINGS_KEY_PREFIX =
   "morsewords:book-runtime:settings:v1:";
 const BOOK_LIVE_PREVIEW_PROGRESS_KEY_PREFIX =
@@ -1062,6 +1096,9 @@ function MorseBookWorkspace({
   const videoPreviewBaseElapsedRef = React.useRef(0);
   const videoPreviewStartedAtRef = React.useRef(0);
   const videoPreviewSessionRef = React.useRef(0);
+  const videoPreviewCompletedSessionRef = React.useRef<number | null>(null);
+  const activeLiveSectionIdRef = React.useRef(activeLiveSectionId);
+  const activeLiveSegmentIndexRef = React.useRef(activeLiveSegmentIndex);
   const exportAbortRef = React.useRef<AbortController | null>(null);
   const restoredRuntimeSignatureRef = React.useRef<string | null>(null);
   const restoredBookLivePreviewProgressHashRef = React.useRef<string | null>(
@@ -1074,6 +1111,14 @@ function MorseBookWorkspace({
   React.useEffect(() => {
     previewAudioPlayerRef.current = previewAudioPlayer;
   }, [previewAudioPlayer]);
+
+  React.useEffect(() => {
+    activeLiveSectionIdRef.current = activeLiveSectionId;
+  }, [activeLiveSectionId]);
+
+  React.useEffect(() => {
+    activeLiveSegmentIndexRef.current = activeLiveSegmentIndex;
+  }, [activeLiveSegmentIndex]);
 
   const bookRuntimeSignature = `${book.slug}:${book.contentVersion}:${book.contentHash}:${
     fullBookLoading ? "preview" : "full"
@@ -1776,6 +1821,7 @@ function MorseBookWorkspace({
   const stopVideoPreview = React.useCallback(
     (reset = false) => {
       videoPreviewSessionRef.current += 1;
+      videoPreviewCompletedSessionRef.current = null;
       clearVideoPreviewTimer();
       previewAudioPlayerRef.current.stop();
       setVideoPreviewPlaying(false);
@@ -1803,6 +1849,8 @@ function MorseBookWorkspace({
     (sectionId: string) => {
       pendingRestoredLiveElapsedRef.current = null;
       stopVideoPreview(true);
+      activeLiveSectionIdRef.current = sectionId;
+      activeLiveSegmentIndexRef.current = 0;
       setActiveLiveSectionId(sectionId);
       setSelectedSectionIds(new Set([sectionId]));
       setActiveLiveSegmentIndex(0);
@@ -1836,22 +1884,68 @@ function MorseBookWorkspace({
     book.sections,
   ]);
 
-  const advanceLivePlayback = React.useCallback(() => {
-    if (activeLiveSegmentIndex + 1 < liveSegments.length) {
-      stopVideoPreview(true);
-      setActiveLiveSegmentIndex((index) => index + 1);
-      setVideoPreviewElapsedMs(0);
-      videoPreviewBaseElapsedRef.current = 0;
-      return;
-    }
-    if (isAudiobook) goToNextLiveSection();
-  }, [
-    activeLiveSegmentIndex,
-    goToNextLiveSection,
-    isAudiobook,
-    liveSegments.length,
-    stopVideoPreview,
-  ]);
+  const advanceLivePlayback = React.useCallback(
+    (expected?: Pick<LivePlaybackCompletionToken, "sectionId" | "segmentIndex">) => {
+      if (
+        expected &&
+        (activeLiveSectionIdRef.current !== expected.sectionId ||
+          activeLiveSegmentIndexRef.current !== expected.segmentIndex)
+      ) {
+        return false;
+      }
+      const currentSegmentIndex =
+        expected?.segmentIndex ?? activeLiveSegmentIndexRef.current;
+      if (currentSegmentIndex + 1 < liveSegments.length) {
+        const nextSegmentIndex = currentSegmentIndex + 1;
+        stopVideoPreview(true);
+        activeLiveSegmentIndexRef.current = nextSegmentIndex;
+        setActiveLiveSegmentIndex((index) => {
+          if (expected && index !== expected.segmentIndex) return index;
+          return Math.min(nextSegmentIndex, Math.max(0, liveSegments.length - 1));
+        });
+        setVideoPreviewElapsedMs(0);
+        videoPreviewBaseElapsedRef.current = 0;
+        return true;
+      }
+      if (isAudiobook) {
+        goToNextLiveSection();
+        return true;
+      }
+      return false;
+    },
+    [
+      goToNextLiveSection,
+      isAudiobook,
+      liveSegments.length,
+      stopVideoPreview,
+    ],
+  );
+
+  const finishVideoPreviewRun = React.useCallback(
+    (completion: LivePlaybackCompletionToken) => {
+      if (videoPreviewSessionRef.current !== completion.sessionId) {
+        return false;
+      }
+      if (videoPreviewCompletedSessionRef.current === completion.sessionId) {
+        return false;
+      }
+      if (
+        activeLiveSectionIdRef.current !== completion.sectionId ||
+        activeLiveSegmentIndexRef.current !== completion.segmentIndex
+      ) {
+        return false;
+      }
+      videoPreviewCompletedSessionRef.current = completion.sessionId;
+      clearVideoPreviewTimer();
+      setVideoPreviewElapsedMs(completion.durationMs);
+      setVideoPreviewPlaying(false);
+      return advanceLivePlayback({
+        sectionId: completion.sectionId,
+        segmentIndex: completion.segmentIndex,
+      });
+    },
+    [advanceLivePlayback, clearVideoPreviewTimer],
+  );
 
   const handleLiveSegmentChange = React.useCallback(
     (segmentIndex: number) => {
@@ -1861,6 +1955,7 @@ function MorseBookWorkspace({
       );
       pendingRestoredLiveElapsedRef.current = null;
       stopVideoPreview(true);
+      activeLiveSegmentIndexRef.current = safeIndex;
       setActiveLiveSegmentIndex(safeIndex);
       setVideoPreviewElapsedMs(0);
       videoPreviewBaseElapsedRef.current = 0;
@@ -1879,6 +1974,8 @@ function MorseBookWorkspace({
     const nextLiveSectionId = scopeSectionIds[0];
     pendingRestoredLiveElapsedRef.current = null;
     stopVideoPreview(true);
+    activeLiveSectionIdRef.current = nextLiveSectionId;
+    activeLiveSegmentIndexRef.current = 0;
     setActiveLiveSectionId(nextLiveSectionId);
     setActiveLiveSegmentIndex(0);
   }, [activeLiveSectionId, isAudiobook, scopeSectionIds, stopVideoPreview]);
@@ -1953,6 +2050,8 @@ function MorseBookWorkspace({
     const resetLiveSectionId = isAudiobook
       ? initialSection.sectionId
       : defaultLiveSectionId;
+    activeLiveSectionIdRef.current = resetLiveSectionId;
+    activeLiveSegmentIndexRef.current = 0;
     setSelectedSectionIds(new Set(isAudiobook ? [resetLiveSectionId] : defaultSectionIds));
     setExportSettings(sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS));
     setVideoSettings(sanitizeMorseLivePlayerSettings(DEFAULT_MORSE_VIDEO_SETTINGS));
@@ -2101,6 +2200,13 @@ function MorseBookWorkspace({
         : currentElapsed;
     const timerSession = videoPreviewSessionRef.current + 1;
     videoPreviewSessionRef.current = timerSession;
+    videoPreviewCompletedSessionRef.current = null;
+    const playbackCompletion: LivePlaybackCompletionToken = {
+      sessionId: timerSession,
+      sectionId: activeLiveSectionId,
+      segmentIndex: activeLiveSegmentIndex,
+      durationMs: activeVisualPreview.durationMs,
+    };
     videoPreviewBaseElapsedRef.current = startElapsed;
     setVideoPreviewElapsedMs(startElapsed);
     setVideoPreviewPlaying(true);
@@ -2122,10 +2228,7 @@ function MorseBookWorkspace({
             videoPreviewBaseElapsedRef.current +
             Math.max(0, performance.now() - videoPreviewStartedAtRef.current);
           if (nextElapsed >= activeVisualPreview.durationMs) {
-            setVideoPreviewElapsedMs(activeVisualPreview.durationMs);
-            setVideoPreviewPlaying(false);
-            clearVideoPreviewTimer();
-            window.setTimeout(advanceLivePlayback, 0);
+            finishVideoPreviewRun(playbackCompletion);
             return;
           }
           setVideoPreviewElapsedMs(nextElapsed);
@@ -2169,11 +2272,7 @@ function MorseBookWorkspace({
           onPlaybackProgress: syncVideoClock,
         })
         .then(() => {
-          if (videoPreviewSessionRef.current !== timerSession) return;
-          clearVideoPreviewTimer();
-          setVideoPreviewElapsedMs(activeVisualPreview.durationMs);
-          setVideoPreviewPlaying(false);
-          advanceLivePlayback();
+          finishVideoPreviewRun(playbackCompletion);
         })
         .catch(() => {
           if (videoPreviewSessionRef.current !== timerSession) return;
@@ -2197,13 +2296,15 @@ function MorseBookWorkspace({
     beginPlayback();
   }, [
     activeVisualPreview,
+    activeLiveSectionId,
+    activeLiveSegmentIndex,
     clearVideoPreviewTimer,
     exportSettings.charWpm,
     exportSettings.farnsworthWpm,
     exportSettings.pitch,
     exportSettings.tonePreset,
     exportSettings.volume,
-    advanceLivePlayback,
+    finishVideoPreviewRun,
     stopAudioPreview,
     videoPreviewElapsedMs,
     videoSettings.includeAudioTrack,
@@ -2235,6 +2336,67 @@ function MorseBookWorkspace({
     },
     [activeVisualPreview.durationMs, startVideoPreview, videoPreviewPlaying],
   );
+
+  React.useEffect(() => {
+    if (!import.meta.env.DEV || typeof window === "undefined") {
+      return undefined;
+    }
+
+    const captureCompletion = (): LivePlaybackCompletionToken => ({
+      sessionId: videoPreviewSessionRef.current,
+      sectionId: activeLiveSectionIdRef.current,
+      segmentIndex: activeLiveSegmentIndexRef.current,
+      durationMs: activeVisualPreview.durationMs,
+    });
+    const hook: BookLivePlayerTestHook = {
+      getState: () => ({
+        bookSlug: book.slug,
+        sectionId: activeLiveSectionIdRef.current,
+        sectionIndex: activeLiveSectionListIndex,
+        sectionCount: book.sections.length,
+        segmentIndex: activeLiveSegmentIndexRef.current,
+        segmentCount: liveSegments.length,
+        sessionId: videoPreviewSessionRef.current,
+        completedSessionId: videoPreviewCompletedSessionRef.current,
+        playing: videoPreviewPlaying,
+        progressRestored:
+          isAudiobook ||
+          restoredBookLivePreviewProgressHashRef.current ===
+            livePreviewProgressContentHash,
+      }),
+      captureCompletion,
+      completeCapturedSegment: (token) => finishVideoPreviewRun(token),
+      completeCurrentSegment: () => finishVideoPreviewRun(captureCompletion()),
+      completeCurrentSegmentTwice: () => {
+        const token = captureCompletion();
+        return {
+          first: finishVideoPreviewRun(token),
+          second: finishVideoPreviewRun(token),
+        };
+      },
+      selectSegment: handleLiveSegmentChange,
+      nextSection: goToNextLiveSection,
+    };
+
+    window.__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__ = hook;
+    return () => {
+      if (window.__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__ === hook) {
+        delete window.__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__;
+      }
+    };
+  }, [
+    activeLiveSectionListIndex,
+    activeVisualPreview.durationMs,
+    book.sections.length,
+    book.slug,
+    finishVideoPreviewRun,
+    goToNextLiveSection,
+    handleLiveSegmentChange,
+    isAudiobook,
+    liveSegments.length,
+    livePreviewProgressContentHash,
+    videoPreviewPlaying,
+  ]);
 
   const cancelDownload = React.useCallback(() => {
     exportAbortRef.current?.abort();

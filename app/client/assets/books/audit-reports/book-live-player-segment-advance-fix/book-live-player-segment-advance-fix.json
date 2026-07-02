@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "reportName": "book-live-player-segment-advance-fix",
+  "executiveResult": "Book live-player segment advance fix passed",
+  "branchName": "morsewords-book-live-player-segment-advance-fix-jun-2026",
+  "mainCommitChecked": "320f85e2ef80ac808c6caac44ea9b391a8819b52",
+  "userReportedBug": {
+    "summary": "Finishing one Morse book live-player segment could skip the next segment.",
+    "observedExamples": [
+      "The Call of Cthulhu segment 1 skipped to segment 3",
+      "The Call of Cthulhu segment 2 skipped to segment 4"
+    ],
+    "expectedBehavior": "Segment N advances to segment N+1 exactly once."
+  },
+  "rootCause": "The live-player visual timer and audio playback promise could both report the same segment completion. The old completion path called advanceLivePlayback from both sources, and the segment state update could increment again when the same completion was observed twice.",
+  "fixMade": [
+    "Added a live playback completion token with playback session id, section id, segment index, and duration.",
+    "Centralized completion handling in finishVideoPreviewRun.",
+    "Consumed each playback session completion at most once.",
+    "Ignored completions whose section or segment no longer matches the visible live-player state.",
+    "Removed the unguarded zero-delay advance from timer completion.",
+    "Added a development-only test hook so Playwright can exercise completion and stale-completion races without waiting through long audio."
+  ],
+  "booksRoutesTested": [
+    "/morse-code-books/the-call-of-cthulhu",
+    "/morse-code-audiobooks/the-call-of-cthulhu",
+    "/morse-code-books/the-adventures-of-roderick-random"
+  ],
+  "doubleAdvancePrevention": "The timer and audio promise now share the same consumed-session guard. A second completion for the same playback session returns false and cannot advance the segment again.",
+  "staleCompletionPrevention": "Completion tokens are accepted only when the current live section and segment still match the token. Manual segment changes, section changes, stops, and restarts invalidate older completion tokens.",
+  "testsAddedOrUpdated": [
+    {
+      "file": "tests/qa-robustness-review/morse-book-live-player-segment-advance.spec.ts",
+      "coverage": [
+        "The Call of Cthulhu segment 1 completion advances to segment 2, not 3.",
+        "The Call of Cthulhu segment 2 completion advances to segment 3, not 4.",
+        "Another long book advances exactly one segment.",
+        "Stale completion after manual segment change is ignored.",
+        "Stale completion after audiobook next-section action is ignored."
+      ]
+    }
+  ],
+  "validationResult": {
+    "typecheck": "pass",
+    "testIfPresent": "pass: 23/23",
+    "netlifyBuild": "pass with existing large chunk warning",
+    "livePlayerSegmentAdvanceSpec": "pass: 4/4",
+    "bookSuitabilitySpec": "pass: 5/5",
+    "mobileSmokeSpec": "pass: 12/12",
+    "finalProductionSanity": "pass",
+    "productionDeployStalenessDiagnosis": "pass",
+    "adsenseContactAudit": "pass",
+    "sitemapPrintIndexabilityAudit": "pass",
+    "urlIndexabilityCanonicalAudit": "pass",
+    "localFinalValidation": "pass",
+    "cloudflareExportImportGuard": "pass"
+  },
+  "protectedFolderStatus": {
+    "app/client/assets/temp-books": "clean",
+    "app/client/assets/books/generated": "clean",
+    "public/book-previews": "clean",
+    "app/client/assets/books/cloudflare-export": "ignored/untracked; tracked file count 0",
+    "app/client/assets/books/cloudflare-updated-export": "ignored/untracked; tracked file count 0"
+  },
+  "remainingBlockers": [],
+  "recommendedNextStep": "Manually verify The Call of Cthulhu live player advances 1 -> 2 -> 3 without skipping, then merge to main. After that, create a separate print-page UX branch for individual-page print buttons and full-book whitespace cleanup."
+}
