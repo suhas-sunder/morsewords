@@ -1,19 +1,17 @@
 {
   "schemaVersion": 1,
   "reportName": "final-production-sanity-check",
-  "generatedAt": "2026-07-01T17:50:39.084Z",
+  "generatedAt": "2026-07-02T02:29:32.859Z",
   "branchName": "morsewords-final-production-sanity-check-jun-2026",
-  "headCommitChecked": "91d26bcccca43d1e0fbbe5c5bb318355d68e704e",
-  "mainCommitChecked": "91d26bcccca43d1e0fbbe5c5bb318355d68e704e",
+  "headCommitChecked": "8e2d0cd8f34a71a222e2197f7750684bf1dc6501",
+  "mainCommitChecked": "dbf8b2f7739de4d1c941a954f516397bbb922559",
   "productionHostChecked": "https://www.morsewords.com",
   "assetHostChecked": "https://assets.morsewords.com",
-  "executiveResult": "Final production sanity check blocked because /morse-code-books/walden/print returned HTTP 500.",
+  "executiveResult": "Final production sanity check passed",
   "productionHostResult": {
-    "status": "blocked",
+    "status": "pass",
     "notes": [
-      "/morse-code-books/walden/print returned HTTP 500.",
-      "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500.",
-      "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
+      "Production host responded to required route, listing, contact, policy, and print checks."
     ]
   },
   "assetHostResult": {
@@ -88,30 +86,24 @@
     "printRouteChecks": [
       {
         "route": "/morse-code-books/walden/print",
-        "status": "blocked",
-        "httpStatus": 500,
-        "notes": [
-          "/morse-code-books/walden/print returned HTTP 500."
-        ],
-        "suitabilityVisible": false
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": [],
+        "suitabilityVisible": true
       },
       {
         "route": "/morse-code-books/the-call-of-cthulhu/print",
-        "status": "blocked",
-        "httpStatus": 500,
-        "notes": [
-          "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500."
-        ],
-        "suitabilityVisible": false
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": [],
+        "suitabilityVisible": true
       },
       {
         "route": "/morse-code-books/the-adventures-of-roderick-random/print",
-        "status": "blocked",
-        "httpStatus": 500,
-        "notes": [
-          "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
-        ],
-        "suitabilityVisible": false
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": [],
+        "suitabilityVisible": true
       }
     ],
     "listingFilterChecks": [
@@ -233,35 +225,27 @@
       },
       {
         "route": "/morse-code-books/walden/print",
-        "status": "blocked",
-        "httpStatus": 500,
-        "notes": [
-          "/morse-code-books/walden/print returned HTTP 500."
-        ]
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
       },
       {
         "route": "/morse-code-books/the-call-of-cthulhu/print",
-        "status": "blocked",
-        "httpStatus": 500,
-        "notes": [
-          "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500."
-        ]
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
       },
       {
         "route": "/morse-code-books/the-adventures-of-roderick-random/print",
-        "status": "blocked",
-        "httpStatus": 500,
-        "notes": [
-          "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
-        ]
+        "status": "pass",
+        "httpStatus": 200,
+        "notes": []
       }
     ],
     "productionHostResult": {
-      "status": "blocked",
+      "status": "pass",
       "notes": [
-        "/morse-code-books/walden/print returned HTTP 500.",
-        "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500.",
-        "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
+        "Production host responded to required route, listing, contact, policy, and print checks."
       ]
     },
     "productionRouteResult": {
@@ -271,11 +255,9 @@
       ]
     },
     "printRouteResult": {
-      "status": "blocked",
+      "status": "pass",
       "notes": [
-        "/morse-code-books/walden/print returned HTTP 500.",
-        "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500.",
-        "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
+        "Walden, The Call of Cthulhu, and Roderick Random print routes return 200 and show suitability notes."
       ]
     },
     "listingFilterResult": {
@@ -297,11 +279,10 @@
       ]
     },
     "policyStatementVerification": {
-      "status": "blocked",
+      "status": "pass",
       "notes": [
-        "/morse-code-books/walden/print returned HTTP 500.",
-        "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500.",
-        "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
+        "No sampled production page claimed all-audience safety.",
+        "No sampled production page claimed classroom/youth-safe-by-default status."
       ]
     }
   },
@@ -373,23 +354,21 @@
     }
   },
   "sitemapProductionResult": {
-    "status": "blocked",
+    "status": "pass",
     "notes": [
-      "Production sitemap has 1651 URLs, expected 1682.",
-      "Production sitemap has 488 print URLs, expected 519."
+      "Production sitemap is reachable and has the expected URL count."
     ],
     "sitemapUrl": "https://www.morsewords.com/sitemap.xml",
-    "urlCount": 1651,
+    "urlCount": 1682,
     "bookUrlCount": 519,
     "audiobookUrlCount": 519,
-    "printUrlCount": 488
+    "printUrlCount": 519
   },
   "contentSafetySuitabilityProductionResult": {
-    "status": "blocked",
+    "status": "pass",
     "notes": [
-      "/morse-code-books/walden/print returned HTTP 500.",
-      "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500.",
-      "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
+      "Remote suitability metadata and production UI suitability surfaces passed.",
+      "Book content suitability policy remains visible where book content is involved."
     ],
     "suitabilityCounts": {
       "low": 98,
@@ -405,12 +384,64 @@
       "/contact and /sources expose support@morsewords.com plus correction/takedown/report paths."
     ]
   },
-  "policyStatementVerification": {
-    "status": "blocked",
+  "videoExportInclusionResult": {
+    "status": "pass",
     "notes": [
-      "/morse-code-books/walden/print returned HTTP 500.",
-      "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500.",
-      "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500."
+      "Video export branch commit c3084755f79583499b51ee6d38b808c3c211d007 is included in HEAD.",
+      "Evidence present: app/client/assets/books/audit-reports/video-export-preview-parity/video-export-preview-parity.json",
+      "Evidence present: app/client/assets/books/audit-reports/video-export-preview-parity/video-export-preview-parity.md",
+      "Evidence present: tests/qa-robustness-review/morse-video-export.spec.ts",
+      "Evidence present: tests/qa-robustness-review/morse-video-generator.spec.ts"
+    ],
+    "expectedCommit": "c3084755f79583499b51ee6d38b808c3c211d007",
+    "includedInHead": true,
+    "evidencePaths": [
+      "app/client/assets/books/audit-reports/video-export-preview-parity/video-export-preview-parity.json",
+      "app/client/assets/books/audit-reports/video-export-preview-parity/video-export-preview-parity.md",
+      "tests/qa-robustness-review/morse-video-export.spec.ts",
+      "tests/qa-robustness-review/morse-video-generator.spec.ts"
+    ]
+  },
+  "posthogBehaviorFrictionInclusionResult": {
+    "status": "pass",
+    "notes": [
+      "PostHog behavior-friction branch commit abc071847336e068dd7cab739f06d5d41be346ce is included in HEAD.",
+      "Evidence present: app/client/assets/books/audit-reports/posthog-behavior-friction-review/posthog-behavior-friction-review.json",
+      "Evidence present: app/client/assets/books/audit-reports/posthog-behavior-friction-review/posthog-behavior-friction-review.md",
+      "Evidence present: tests/qa-robustness-review/morse-posthog-friction.spec.ts"
+    ],
+    "expectedCommit": "abc071847336e068dd7cab739f06d5d41be346ce",
+    "includedInHead": true,
+    "evidencePaths": [
+      "app/client/assets/books/audit-reports/posthog-behavior-friction-review/posthog-behavior-friction-review.json",
+      "app/client/assets/books/audit-reports/posthog-behavior-friction-review/posthog-behavior-friction-review.md",
+      "tests/qa-robustness-review/morse-posthog-friction.spec.ts"
+    ]
+  },
+  "printSuitabilityNoteFixInclusionResult": {
+    "status": "pass",
+    "notes": [
+      "Print suitability note fix branch commit dbf8b2f7739de4d1c941a954f516397bbb922559 is included in HEAD.",
+      "Evidence present: app/client/assets/books/audit-reports/print-suitability-note-production-fix/print-suitability-note-production-fix.json",
+      "Evidence present: app/client/assets/books/audit-reports/print-suitability-note-production-fix/print-suitability-note-production-fix.md",
+      "Evidence present: tests/qa-robustness-review/morse-book-suitability.spec.ts"
+    ],
+    "expectedCommit": "dbf8b2f7739de4d1c941a954f516397bbb922559",
+    "includedInHead": true,
+    "evidencePaths": [
+      "app/client/assets/books/audit-reports/print-suitability-note-production-fix/print-suitability-note-production-fix.json",
+      "app/client/assets/books/audit-reports/print-suitability-note-production-fix/print-suitability-note-production-fix.md",
+      "tests/qa-robustness-review/morse-book-suitability.spec.ts"
+    ]
+  },
+  "policyStatementVerification": {
+    "status": "pass",
+    "notes": [
+      "No sampled production page claimed all-audience safety.",
+      "No sampled production page claimed classroom/youth-safe-by-default status.",
+      "Option B: keep the sanitized historical public-domain library, show suitability notes on book/audiobook/print surfaces, provide a lower-risk filter on library listings, and avoid all-audience/classroom-safe claims.",
+      "All-audience safety is not claimed by this validation.",
+      "Classroom/youth-safe-by-default status is not claimed by this validation."
     ]
   },
   "protectedExportTrackingResult": {
@@ -421,13 +452,7 @@
     "cloudflareExportTrackedFiles": 0,
     "cloudflareUpdatedExportTrackedFiles": 0
   },
-  "remainingBlockers": [
-    "/morse-code-books/walden/print returned HTTP 500.",
-    "/morse-code-books/the-call-of-cthulhu/print returned HTTP 500.",
-    "/morse-code-books/the-adventures-of-roderick-random/print returned HTTP 500.",
-    "Production sitemap has 1651 URLs, expected 1682.",
-    "Production sitemap has 488 print URLs, expected 519."
-  ],
-  "releaseReadiness": "Release is not complete until the blockers above are cleared on production.",
-  "recommendedNextStep": "Resolve or wait for the exact production blockers, then rerun site:final-production-sanity-check."
+  "remainingBlockers": [],
+  "releaseReadiness": "Release readiness: complete",
+  "recommendedNextStep": "Merge final production sanity branch to main. Release cycle complete."
 }
