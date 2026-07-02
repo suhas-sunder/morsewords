@@ -140,8 +140,8 @@ async function expectLowerRiskFilterUsable(page: Page, kind: "books" | "audioboo
   await expect(lowerRiskCard.getByTestId(isBooks ? "morse-book-card-content-suitability" : "morse-audiobook-card-content-suitability")).toBeVisible();
 }
 
-test("core local routes load cleanly at 390px", async ({ page }) => {
-  for (const route of MOBILE_ROUTES) {
+for (const route of MOBILE_ROUTES) {
+  test(`core local route ${route} loads cleanly at 390px`, async ({ page }) => {
     await gotoRoute(page, route);
     await waitForRouteReady(page);
     await expectMainVisible(page);
@@ -154,8 +154,8 @@ test("core local routes load cleanly at 390px", async ({ page }) => {
     }
 
     await expectNoHorizontalOverflow(page, route);
-  }
-});
+  });
+}
 
 test("lower-risk listing filters remain usable on mobile", async ({ page }) => {
   await gotoRoute(page, "/morse-code-books");
