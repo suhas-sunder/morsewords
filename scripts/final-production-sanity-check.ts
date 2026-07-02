@@ -214,6 +214,12 @@ type SitemapResult = CheckResult & {
   printUrlCount: number;
 };
 
+type InclusionResult = CheckResult & {
+  expectedCommit: string;
+  includedInHead: boolean;
+  evidencePaths: string[];
+};
+
 type FinalReport = {
   schemaVersion: 1;
   reportName: "final-production-sanity-check";
@@ -235,6 +241,9 @@ type FinalReport = {
     deterministicUnsafeFindingsRemaining: number | null;
   };
   adsenseContactProductionResult: CheckResult;
+  videoExportInclusionResult: InclusionResult;
+  posthogBehaviorFrictionInclusionResult: InclusionResult;
+  printSuitabilityNoteFixInclusionResult: InclusionResult;
   policyStatementVerification: CheckResult;
   protectedExportTrackingResult: CheckResult & {
     cloudflareExportTrackedFiles: number;
@@ -279,6 +288,9 @@ const EXPECTED_BOOK_COUNT = 519;
 const EXPECTED_UPLOAD_MANIFEST_FILE_COUNT = 521;
 const EXPECTED_CHANGED_SAFETY_SWEEP_BOOKS = 91;
 const EXPECTED_STRICT_REVIEW_CANDIDATES = 429;
+const VIDEO_EXPORT_COMPLETION_COMMIT = "c3084755f79583499b51ee6d38b808c3c211d007";
+const POSTHOG_BEHAVIOR_FRICTION_COMMIT = "abc071847336e068dd7cab739f06d5d41be346ce";
+const PRINT_SUITABILITY_NOTE_FIX_COMMIT = "dbf8b2f7739de4d1c941a954f516397bbb922559";
 const EXPECTED_SUITABILITY_COUNTS: Record<SuitabilityLevel, number> = {
   low: 98,
   moderate: 311,
@@ -338,6 +350,22 @@ function runGit(args: string[]) {
   return execFileSync("git", args, { cwd: REPO_ROOT, encoding: "utf8" }).trim();
 }
 
+function isCommitAncestor(commit: string, ref: string) {
+  try {
+    execFileSync("git", ["merge-base", "--is-ancestor", commit, ref], {
+      cwd: REPO_ROOT,
+      stdio: "ignore",
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function relativePathExists(relativePath: string) {
+  return fs.existsSync(path.join(REPO_ROOT, relativePath));
+}
+
 function pass(notes: string[]): CheckResult {
   return { status: "pass", notes };
 }
@@ -388,6 +416,10 @@ function suitabilityLabel(value: SuitabilityFields) {
   if (value.strictReviewCandidate) return "Review for younger readers";
   if (value.contentSuitability === "moderate") return "Historical content note";
   return "Lower-risk profile";
+}
+
+function includesSuitabilityLabel(text: string, expectedLabel: string) {
+  return text.toLocaleLowerCase().includes(expectedLabel.toLocaleLowerCase());
 }
 
 function contentText(book: ExportBook) {
@@ -969,7 +1001,8 @@ async function validateProductionPages(manifest: PublicManifest | null): Promise
                 .getByTestId("printable-book-content-suitability")
                 .innerText({ timeout: 30_000 });
               suitabilityVisible =
-                text.includes(suitabilityLabel(expected)) && text.includes(expected.contentNote);
+                includesSuitabilityLabel(text, suitabilityLabel(expected)) &&
+                text.includes(expected.contentNote);
               if (!suitabilityVisible) {
                 notes.push(`${entry.route} did not show the expected suitability note.`);
               }
@@ -1201,11 +1234,46 @@ function validateProtectedExportTracking() {
   };
 }
 
+function validateBranchInclusion(
+  label: string,
+  expectedCommit: string,
+  evidencePaths: string[],
+): InclusionResult {
+  const includedInHead = isCommitAncestor(expectedCommit, "HEAD");
+  const missingEvidence = evidencePaths.filter((relativePath) => !relativePathExists(relativePath));
+  const notes: string[] = [];
+
+  if (!includedInHead) {
+    notes.push(`${label} commit ${expectedCommit} is not an ancestor of HEAD.`);
+  }
+  if (missingEvidence.length > 0) {
+    notes.push(`${label} evidence missing: ${missingEvidence.join(", ")}.`);
+  }
+
+  return {
+    ...(notes.length
+      ? blocked(notes)
+      : pass([
+          `${label} commit ${expectedCommit} is included in HEAD.`,
+          ...evidencePaths.map((relativePath) => `Evidence present: ${relativePath}`),
+        ])),
+    expectedCommit,
+    includedInHead,
+    evidencePaths,
+  };
+}
+
 function buildMarkdown(report: FinalReport) {
   const section = (title: string, lines: string[]) => [`## ${title}`, "", ...lines, ""];
   const formatCheck = (check: CheckResult) => [
     `- Status: ${check.status}`,
     ...check.notes.map((note) => `- ${note}`),
+  ];
+  const formatInclusion = (check: InclusionResult) => [
+    ...formatCheck(check),
+    `- Expected commit: ${check.expectedCommit}`,
+    `- Included in HEAD: ${check.includedInHead ? "yes" : "no"}`,
+    ...check.evidencePaths.map((relativePath) => `- Evidence path: ${relativePath}`),
   ];
   const routeLine = (check: RouteCheck) =>
     `- ${check.route}: ${check.status} (HTTP ${check.httpStatus ?? "n/a"})${check.notes.length ? ` - ${check.notes.join("; ")}` : ""}`;
@@ -1263,14 +1331,23 @@ function buildMarkdown(report: FinalReport) {
       `- Total URLs: ${report.sitemapProductionResult.urlCount}`,
       `- Book/audiobook/print URLs: ${report.sitemapProductionResult.bookUrlCount}/${report.sitemapProductionResult.audiobookUrlCount}/${report.sitemapProductionResult.printUrlCount}`,
     ]),
-    ...section("11. Policy statement verification", formatCheck(report.policyStatementVerification)),
+    ...section("11. Video export inclusion result", formatInclusion(report.videoExportInclusionResult)),
     ...section(
-      "12. Remaining blockers",
+      "12. PostHog behavior-friction inclusion result",
+      formatInclusion(report.posthogBehaviorFrictionInclusionResult),
+    ),
+    ...section(
+      "13. Print suitability note fix inclusion result",
+      formatInclusion(report.printSuitabilityNoteFixInclusionResult),
+    ),
+    ...section("14. Policy statement verification", formatCheck(report.policyStatementVerification)),
+    ...section(
+      "15. Remaining blockers",
       report.remainingBlockers.length
         ? report.remainingBlockers.map((blocker) => `- ${blocker}`)
-        : ["- None."],
+        : ["- Remaining blockers: none."],
     ),
-    ...section("13. Release readiness", [
+    ...section("16. Release readiness", [
       report.releaseReadiness,
       `Recommended next step: ${report.recommendedNextStep}`,
     ]),
@@ -1324,6 +1401,34 @@ async function main() {
     remoteAssets.payloadResult.status === "blocked"
       ? blocked(notesFromBlocked([remoteAssets.manifestResult, remoteAssets.payloadResult]))
       : pass(["Asset host manifests and payloads are reachable and match expected release evidence."]);
+  const videoExportInclusionResult = validateBranchInclusion(
+    "Video export branch",
+    VIDEO_EXPORT_COMPLETION_COMMIT,
+    [
+      "app/client/assets/books/audit-reports/video-export-preview-parity/video-export-preview-parity.json",
+      "app/client/assets/books/audit-reports/video-export-preview-parity/video-export-preview-parity.md",
+      "tests/qa-robustness-review/morse-video-export.spec.ts",
+      "tests/qa-robustness-review/morse-video-generator.spec.ts",
+    ],
+  );
+  const posthogBehaviorFrictionInclusionResult = validateBranchInclusion(
+    "PostHog behavior-friction branch",
+    POSTHOG_BEHAVIOR_FRICTION_COMMIT,
+    [
+      "app/client/assets/books/audit-reports/posthog-behavior-friction-review/posthog-behavior-friction-review.json",
+      "app/client/assets/books/audit-reports/posthog-behavior-friction-review/posthog-behavior-friction-review.md",
+      "tests/qa-robustness-review/morse-posthog-friction.spec.ts",
+    ],
+  );
+  const printSuitabilityNoteFixInclusionResult = validateBranchInclusion(
+    "Print suitability note fix branch",
+    PRINT_SUITABILITY_NOTE_FIX_COMMIT,
+    [
+      "app/client/assets/books/audit-reports/print-suitability-note-production-fix/print-suitability-note-production-fix.json",
+      "app/client/assets/books/audit-reports/print-suitability-note-production-fix/print-suitability-note-production-fix.md",
+      "tests/qa-robustness-review/morse-book-suitability.spec.ts",
+    ],
+  );
 
   const policyNotes = [...productionPages.policyStatementVerification.notes];
   if (productionPages.policyStatementVerification.status === "pass") {
@@ -1354,6 +1459,9 @@ async function main() {
     remoteAssets.cthulhuResult,
     remoteAssets.changedBooksResult,
     contentSafetySuitabilityProductionResult,
+    videoExportInclusionResult,
+    posthogBehaviorFrictionInclusionResult,
+    printSuitabilityNoteFixInclusionResult,
     policyStatementVerification,
     protectedExportTracking,
   ]);
@@ -1382,12 +1490,15 @@ async function main() {
     sitemapProductionResult: sitemap,
     contentSafetySuitabilityProductionResult,
     adsenseContactProductionResult,
+    videoExportInclusionResult,
+    posthogBehaviorFrictionInclusionResult,
+    printSuitabilityNoteFixInclusionResult,
     policyStatementVerification,
     protectedExportTrackingResult: protectedExportTracking,
     remainingBlockers,
     releaseReadiness: remainingBlockers.length
       ? "Release is not complete until the blockers above are cleared on production."
-      : "Production sanity passed. Release is ready for final merge.",
+      : "Release readiness: complete",
     recommendedNextStep: remainingBlockers.length
       ? "Resolve or wait for the exact production blockers, then rerun site:final-production-sanity-check."
       : "Merge final production sanity branch to main. Release cycle complete.",
