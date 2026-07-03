@@ -76,6 +76,12 @@ export default [
   route("morse-code-sos", "routes/morse-code-sos.tsx"),
   route("morse-code-sentence-practice", "routes/morse-code-sentence-practice.tsx"),
   route("learn-morse-code", "routes/learn-morse-code.tsx"),
+  route("morse-code-history", "routes/morse-code-history.tsx"),
+  route(
+    "international-vs-american-morse-code",
+    "routes/international-vs-american-morse-code.tsx",
+  ),
+  route("morse-code-emergency-signals", "routes/morse-code-emergency-signals.tsx"),
   route("morse-code-timing", "routes/morse-code-timing.tsx"),
   route("farnsworth-timing", "routes/farnsworth-timing.tsx"),
   route("morse-code-word-trainer", "routes/morse-code-word-trainer.tsx"),

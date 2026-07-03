@@ -1,500 +1,612 @@
+import type { ReactNode } from "react";
 import type { Route } from "./+types/morse-code-practice-plan";
 
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
+import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
- ActionLinks,
- DarkNote,
- PageHero,
- SectionCard,
+  ActionLinks,
+  DarkNote,
+  PageHero,
+  SectionCard,
+  SimpleGrid,
+  StaticTile,
 } from "~/client/components/shared/MorseLearningLayout";
-import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
-import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import styles from "~/client/components/shared/pageStyles";
+import { SOURCE_LINKS } from "~/client/data/morseLearning";
+import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
-import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
-const CANONICAL_PATH ="/morse-code-practice-plan";
+const CANONICAL_PATH = ROUTES.practicePlan;
+const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 
 const faqItems = [
- {
- q:"How often should this practice plan repeat drills?",
- a:"Repeat the core drill mix most days, then rotate the focus when accuracy stays steady. Ten focused minutes is enough for the plan to work better than occasional long catch-up sessions.",
- },
- {
- q:"Should I practice letters, words, or audio first?",
- a:"Begin with letters and a few short words, then add audio once the basic patterns are familiar. Audio should enter early, but it is easier when you already recognize the simplest shapes.",
- },
- {
- q:"What should I do if I keep missing the same characters?",
- a:"Pull those characters into a smaller drill instead of repeating the full set. Review the pattern, run focused practice, then test it again in words or audio.",
- },
- {
- q:"Is speed more important than accuracy?",
- a:"No. Accuracy comes first. Increase speed only after you can copy a short set cleanly, because rushing usually hides spacing and recognition problems.",
- },
- {
- q:"Which tool should I use for a short practice session?",
- a:"Use quick practice when you want immediate recall drills, word trainer when weak words are the problem, and audio practice when listening recognition needs work.",
- },
+  {
+    q: "How long should a Morse code practice session be?",
+    a: "A short, focused session is enough for a useful practice block. This plan uses 15 minutes because it gives room for review, new work, mixed copying, and mistake notes without making the session hard to repeat.",
+  },
+  {
+    q: "Should I practice letters, words, or audio first?",
+    a: "Start with character recognition, move into short groups and words, then add listening practice early. If a word keeps failing, use a smaller word-trainer round before testing again.",
+  },
+  {
+    q: "When should I use Farnsworth timing?",
+    a: "Use Farnsworth timing when the character sounds are recognizable but the next character arrives too soon. It keeps the character rhythm crisp while widening the gaps between characters and words.",
+  },
+  {
+    q: "How do I know when to move on?",
+    a: "Move on when you recognize the small set without counting marks, copy short groups with cleaner spacing, and recover after a missed character instead of restarting the whole prompt.",
+  },
+  {
+    q: "Should I test every day?",
+    a: "Use tests lightly. Practice should take most of the session; a short quiz or review task at the end is usually enough to show what tomorrow should target.",
+  },
 ];
 
+const weeklyPracticeRows = [
+  {
+    day: "Days 1-2",
+    focus: "Character recognition",
+    action:
+      "Review a small character set by sound. Keep the set narrow enough that repeated mistakes are easy to spot.",
+    href: ROUTES.audioPractice,
+  },
+  {
+    day: "Days 3-4",
+    focus: "Short groups and words",
+    action:
+      "Move known characters into tiny words or groups. Do not jump into long sentences before recognition is steady.",
+    href: ROUTES.wordTrainer,
+  },
+  {
+    day: "Day 5",
+    focus: "Mixed review",
+    action:
+      "Mix old and new characters. Pull repeated misses into a short focused drill instead of repeating everything.",
+    href: ROUTES.practice,
+  },
+  {
+    day: "Day 6",
+    focus: "Audio practice",
+    action:
+      "Listen with comfortable spacing. Use Farnsworth spacing if the characters sound clear but the gaps feel rushed.",
+    href: ROUTES.audioPractice,
+  },
+  {
+    day: "Day 7",
+    focus: "Light test and review",
+    action:
+      "Run one short check, then write down the two or three items that should start the next week.",
+    href: ROUTES.test,
+  },
+] as const;
+
+const dailyRoutineRows = [
+  {
+    time: "3 min",
+    focus: "Warm up with known characters",
+    action:
+      "Start with characters you already know so the session begins with clean recognition instead of guessing.",
+  },
+  {
+    time: "5 min",
+    focus: "Learn or review one small group",
+    action:
+      "Use a small set: one pair, one word list, or one repeated mistake pattern.",
+  },
+  {
+    time: "5 min",
+    focus: "Mixed listening or copying",
+    action:
+      "Add variation with audio practice, word training, or short groups. Keep the settings stable for the session.",
+  },
+  {
+    time: "2 min",
+    focus: "Note mistakes",
+    action:
+      "Write down the miss, not just the score. That note becomes the first drill tomorrow.",
+  },
+] as const;
+
+const progressCriteria = [
+  {
+    title: "You recognize without counting",
+    text: "The character arrives as a sound shape, not a dot-by-dot count.",
+  },
+  {
+    title: "Mistakes repeat less often",
+    text: "A weak character may still miss, but it no longer breaks every round.",
+  },
+  {
+    title: "Short groups stay readable",
+    text: "Two- and three-letter groups keep their spacing instead of turning into one run-on signal.",
+  },
+  {
+    title: "You recover after a miss",
+    text: "A missed character does not force you to abandon the whole prompt.",
+  },
+] as const;
+
+const practiceMistakes = [
+  {
+    title: "Only reading charts",
+    text: "Charts are useful references, but a practice plan needs listening time so characters become recognizable by rhythm.",
+  },
+  {
+    title: "Practicing too long while tired",
+    text: "Long sessions when you are tired can turn into guessing. Stop while the set is still clear and repeat the next day.",
+  },
+  {
+    title: "Changing settings constantly",
+    text: "If speed, spacing, pitch, and prompt type all change at once, it is hard to tell what improved.",
+  },
+  {
+    title: "Ignoring spacing",
+    text: "Correct symbols can still be hard to read when letter and word gaps are crowded.",
+  },
+  {
+    title: "Testing more than practicing",
+    text: "A quiz shows what happened. Practice is where the repeated misses get fixed.",
+  },
+  {
+    title: "Full sentences too early",
+    text: "Sentences are better after basic recognition is steady. Start with small groups first.",
+  },
+] as const;
+
+const toolFlowItems = [
+  {
+    title: "Reference",
+    text: "Use the alphabet or chart when you need to check a character before practicing it.",
+    href: ROUTES.chart,
+    badge: "Chart",
+  },
+  {
+    title: "Listen",
+    text: "Use audio practice for sound recognition with WPM and Farnsworth controls.",
+    href: ROUTES.audioPractice,
+    badge: "Audio",
+  },
+  {
+    title: "Short words",
+    text: "Use the word trainer when characters are familiar but words still break your flow.",
+    href: ROUTES.wordTrainer,
+    badge: "Words",
+  },
+  {
+    title: "Longer prompts",
+    text: "Use sentence practice after short groups feel readable and spacing is steadier.",
+    href: ROUTES.sentencePractice,
+    badge: "Sentences",
+  },
+  {
+    title: "Check accuracy",
+    text: "Use the test hub when you want a light check, then turn misses back into drills.",
+    href: ROUTES.test,
+    badge: "Test",
+  },
+] satisfies Array<{ title: string; text: string; href: string; badge: string }>;
+
+const sourceTitles = new Set([
+  "ARRL Learning Morse Code",
+  "ARRL Tips for Learning Morse Code",
+  "ARRL Morse timing standard",
+  "ITU-R Recommendation M.1677-1",
+]);
+
+const practiceSourceLinks = [
+  ...SOURCE_LINKS.filter((source) => sourceTitles.has(source.title)),
+  {
+    title: "ARRL W1AW Code Practice MP3 Files",
+    href: "https://www.arrl.org/code-practice-files",
+    description:
+      "W1AW practice transmissions in MP3 format, useful as outside listening material once beginner copy is steadier.",
+  },
+] as const;
+
 export function links() {
- return [{ rel:"canonical", href: canonicalUrl(CANONICAL_PATH) }];
+  return [{ rel: "canonical", href: CANONICAL_URL }];
 }
 
 export function meta({}: Route.MetaArgs) {
- return seoMeta({
- title:"Morse Code Practice Plan | Daily Drills and Learning Routine | MorseWords",
- description:"Follow a Morse code practice plan with short drills, learning sequences, mistake fixes, and links to audio, typing, and quiz tools.",
- path: CANONICAL_PATH,
- keywords:"morse code practice plan, learn morse code schedule, morse code drills, morse code audio practice",
- });
+  return seoMeta({
+    title: "Morse Code Practice Plan | Daily Routine and Weekly Guide | MorseWords",
+    description:
+      "Use a practical Morse code practice plan for character recognition, spacing, short words, listening drills, and mistake review.",
+    path: CANONICAL_PATH,
+    keywords:
+      "morse code practice plan, morse code routine, morse code drills, morse code audio practice",
+  });
 }
 
-const toolMap = [
- {
- href:"/morse-code-alphabet",
- title:"Alphabet chart",
- text:"Use when you need a focused A-Z letter reference before a beginner drill.",
- },
- {
- href:"/practice",
- title:"Quick drills",
- text:"Use for short recall sessions, weak-symbol review, and fast feedback.",
- },
- {
- href:"/morse-code-word-trainer",
- title:"Word trainer",
- text:"Use after alphabet drills so letters become words and repeated chunks.",
- },
- {
- href:"/morse-code-audio-practice",
- title:"Audio practice",
- text:"Use for listening copy with WPM, Farnsworth spacing, tone, and repeat controls.",
- },
- {
- href:"/morse-code-visual-practice",
- title:"Visual practice",
- text:"Use for flash-based recognition when you want a light signal instead of tones.",
- },
- {
- href:"/morse-code-sentence-practice",
- title:"Sentence practice",
- text:"Use when words feel easy and you are ready for longer message copy.",
- },
- {
- href:"/typing",
- title:"Typing practice",
- text:"Use for manual dot-dash entry and real-time typed recall.",
- },
- {
- href:"/morse-code-audio-quiz",
- title:"Audio quiz",
- text:"Use when you want scored listening tests and shareable results.",
- },
- {
- href:"/morse-code-test",
- title:"Test hub",
- text:"Use when you need to choose between listening, typing, visual, practice, word, and plan-based assessments.",
- },
- {
- href:"/morse-code-visual-quiz",
- title:"Visual quiz",
- text:"Use when you want scored flash-signal tests and shareable results.",
- },
- {
- href:"/morse-code-printable-chart",
- title:"Worksheet builder",
- text:"Use for printable review sheets, answer keys, reference charts, and classroom packets.",
- },
- {
- href:"/morse-code-word-search-builder",
- title:"Word search builder",
- text:"Use for low-prep Morse clue puzzles where students translate first, then find the word.",
- },
-];
-
-function PlanList({
- title,
- items,
+function InlineTextLink({
+  href,
+  children,
 }: {
- title: string;
- items: Array<{ week: string; task: string; href: string }>;
+  href: string;
+  children: ReactNode;
 }) {
- return (
- <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
- <h3 className="text-2xl font-extrabold text-sky-950">{title}</h3>
- <ol className="mt-4 space-y-3">
- {items.map((item) => (
- <li key={item.week} className="grid gap-2 rounded-lg bg-white px-3 py-2 sm:grid-cols-[120px_1fr]">
- <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
- {item.week}
- </span>
- <a href={item.href} className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline">
- {item.task}
- </a>
- </li>
- ))}
- </ol>
- </div>
- );
+  return (
+    <a
+      href={href}
+      className="cursor-pointer font-semibold text-sky-900 underline underline-offset-4 hover:no-underline"
+    >
+      {children}
+    </a>
+  );
+}
+
+function WeeklyPracticeTable() {
+  return (
+    <div
+      className="mw-static-panel overflow-hidden rounded-xl bg-[#fffdf8]"
+      aria-label="Simple weekly Morse practice structure"
+    >
+      <div className="mw-static-surface-soft hidden grid-cols-[120px_220px_1fr] gap-4 bg-[#fffaf2] px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500 md:grid">
+        <span>When</span>
+        <span>Focus</span>
+        <span>What to do</span>
+      </div>
+      {weeklyPracticeRows.map((row) => (
+        <div
+          key={row.day}
+          className="grid gap-3 px-4 py-4 even:bg-[#fffaf2] md:grid-cols-[120px_220px_1fr] md:gap-4"
+        >
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+            {row.day}
+          </p>
+          <h3 className="mw-heading text-lg font-extrabold text-sky-950">
+            <a
+              href={row.href}
+              className="cursor-pointer text-sky-900 underline decoration-sky-900/40 underline-offset-4 hover:decoration-sky-950"
+            >
+              {row.focus}
+            </a>
+          </h3>
+          <p className="mw-text-muted text-base leading-relaxed text-slate-700">
+            {row.action}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function DailyRoutineTable() {
+  return (
+    <div
+      className="mw-static-panel overflow-hidden rounded-xl bg-[#fffdf8]"
+      aria-label="Daily 15 minute Morse practice routine"
+    >
+      <div className="mw-static-surface-soft hidden grid-cols-[90px_230px_1fr] gap-4 bg-[#fffaf2] px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500 md:grid">
+        <span>Time</span>
+        <span>Block</span>
+        <span>Practice note</span>
+      </div>
+      {dailyRoutineRows.map((row) => (
+        <div
+          key={row.focus}
+          className="grid gap-3 px-4 py-4 even:bg-[#fffaf2] md:grid-cols-[90px_230px_1fr] md:gap-4"
+        >
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+            {row.time}
+          </p>
+          <h3 className="mw-heading text-lg font-extrabold text-sky-950">
+            {row.focus}
+          </h3>
+          <p className="mw-text-muted text-base leading-relaxed text-slate-700">
+            {row.action}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default function MorseCodePracticePlan() {
- const breadcrumbJsonLd = {"@context":"https://schema.org","@type":"BreadcrumbList",
- itemListElement: [
- {"@type":"ListItem", position:1, name:"Home", item: SITE_URL + "/"},
- {"@type":"ListItem", position:2, name:"Morse Code Practice Plan", item: canonicalUrl(CANONICAL_PATH)},
- ],
- };
- const howToJsonLd = {"@context":"https://schema.org","@type":"HowTo",
- name:"Morse Code Practice Plan",
- url: canonicalUrl(CANONICAL_PATH),
- description:"A short Morse code practice routine that combines review, recall drills, listening practice, and a small proof task.",
- isPartOf: {"@type":"WebSite", name:"MorseWords", url: SITE_URL },
- step: [
- {"@type":"HowToStep", name:"Review weak symbols", text:"Start with a short review of letters, numbers, or words that slowed you down in the previous session."},
- {"@type":"HowToStep", name:"Run focused recall", text:"Use quick practice or the word trainer for a few minutes of immediate feedback."},
- {"@type":"HowToStep", name:"Add listening practice", text:"Use audio practice with comfortable timing so Morse becomes a sound pattern, not only a visual pattern."},
- {"@type":"HowToStep", name:"Finish with proof", text:"End with one quiz, sentence prompt, worksheet, or printed review task."},
- ],
- };
- const faqJsonLd = {"@context":"https://schema.org","@type":"FAQPage",
- mainEntity: faqItems.map((item) => ({"@type":"Question",
- name: item.q,
- acceptedAnswer: {"@type":"Answer", text: item.a },
- })),
- };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Morse Code Practice Plan",
+        item: CANONICAL_URL,
+      },
+    ],
+  };
+  const howToJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Morse Code Practice Plan",
+    url: CANONICAL_URL,
+    description:
+      "A practical Morse code practice routine for recognition, spacing, short words, listening, and mistake review.",
+    isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
+    step: [
+      {
+        "@type": "HowToStep",
+        name: "Warm up with known characters",
+        text: "Start with a few characters you already recognize so the session begins cleanly.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Review one small group",
+        text: "Focus on one small character group, word list, or repeated mistake pattern.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Mix listening or copying",
+        text: "Use audio practice, word training, or short groups without changing settings constantly.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Record the misses",
+        text: "End by noting the misses that should start the next practice session.",
+      },
+    ],
+  };
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+  const jsonLd = [breadcrumbJsonLd, howToJsonLd, faqJsonLd];
 
- return (
- <div className="mw-non-home-page" style={styles.page}>
- <main style={styles.wrap}>
- <PageHero
- eyebrow="Practice routine" title="Morse code practice plan" description="Use this page when you want to know what to practice today, how long to practice, and how to move from alphabet recall into listening, typing, and quiz work." aside={
- <DarkNote label="Best habit" value="10 MINUTES">
- Short daily sessions beat rare marathon sessions. Review weak
- symbols, then end with one small success.
- </DarkNote>
- }
- >
- <ActionLinks
- links={[
- { href:"/practice", label:"Start practice", primary: true },
- { href:"/morse-code-audio-practice", label:"Audio practice"},
- { href:"/morse-code-printable-chart", label:"Print review"},
- ]}
- />
- </PageHero>
+  return (
+    <div className="mw-non-home-page" style={styles.page}>
+      <main style={styles.wrap}>
+        <PageHero
+          eyebrow="Practice routine"
+          title="Morse code practice plan"
+          description="Use this page to build a repeatable Morse practice routine for sound recognition, cleaner spacing, and short-word copy. It gives you a useful next session without claiming a fixed timeline."
+          aside={
+            <DarkNote label="Best habit" value="SMALL + OFTEN">
+              Short, consistent sessions are easier to repeat than occasional
+              long sessions. Keep the target narrow enough that mistakes point
+              to tomorrow's warm-up.
+            </DarkNote>
+          }
+        >
+          <ActionLinks
+            links={[
+              { href: ROUTES.audioPractice, label: "Start audio practice", primary: true },
+              { href: ROUTES.wordTrainer, label: "Train short words" },
+              { href: ROUTES.timing, label: "Check timing" },
+            ]}
+          />
+        </PageHero>
 
- <SectionCard
- eyebrow="Two paths" title="Choose a 2-week reset or 6-week build" description="Both plans reuse the same pages, but the 6-week path gives more room for listening and sentence work.">
- <div className="grid gap-5 lg:grid-cols-2">
- <PlanList
- title="2-week reset" items={[
- { week:"Days 1-2", task:"Review alphabet and digits", href:"/morse-code-alphabet"},
- { week:"Days 3-5", task:"Run quick recognition drills", href:"/practice"},
- { week:"Days 6-8", task:"Practice common words", href:"/morse-code-word-trainer"},
- { week:"Days 9-11", task:"Copy short audio prompts", href:"/morse-code-audio-practice"},
- { week:"Days 12-14", task:"Test sentences and print weak-word sheets", href:"/morse-code-sentence-practice"},
- ]}
- />
- <PlanList
- title="6-week build" items={[
- { week:"Week 1", task:"Alphabet, numbers, and spacing rules", href:"/morse-code-timing"},
- { week:"Week 2", task:"Daily practice drills with weak-symbol review", href:"/practice"},
- { week:"Week 3", task:"Word trainer and printable word sheets", href:"/morse-code-word-trainer"},
- { week:"Week 4", task:"Audio practice with Farnsworth spacing", href:"/farnsworth-timing"},
- { week:"Week 5", task:"Sentence practice and typing recall", href:"/morse-code-sentence-practice"},
- { week:"Week 6", task:"Audio quiz, visual quiz, and review worksheets", href:"/morse-code-audio-quiz"},
- ]}
- />
- </div>
- </SectionCard>
+        <SectionCard
+          eyebrow="Practice goal"
+          title="The goal of practice"
+          description="A beginner is not training one skill. A useful routine separates recognition, spacing, and short copy so each session has a clear job."
+        >
+          <div className="grid gap-5 md:grid-cols-3">
+            <StaticTile>
+              <h2 className="mw-heading text-xl font-extrabold text-sky-950">
+                Recognize by sound
+              </h2>
+              <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
+                Learn characters as sound shapes instead of counting every dot
+                and dash. Use the{" "}
+                <InlineTextLink href={ROUTES.learn}>learning guide</InlineTextLink>{" "}
+                if the basics still feel new.
+              </p>
+            </StaticTile>
+            <StaticTile>
+              <h2 className="mw-heading text-xl font-extrabold text-sky-950">
+                Keep spacing clean
+              </h2>
+              <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
+                Letter and word gaps carry meaning. When copied Morse starts
+                running together, review the{" "}
+                <InlineTextLink href={ROUTES.timing}>timing guide</InlineTextLink>
+                .
+              </p>
+            </StaticTile>
+            <StaticTile>
+              <h2 className="mw-heading text-xl font-extrabold text-sky-950">
+                Copy short words
+              </h2>
+              <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
+                Move from single characters into small groups so you do not
+                pause after every symbol. Short words reveal weak letters
+                quickly.
+              </p>
+            </StaticTile>
+          </div>
+        </SectionCard>
 
- <SectionCard
- eyebrow="Practice strategy" title="How to use this Morse code practice plan" description="A good practice plan should match how people actually learn Morse: short sessions, clear spacing, frequent recall, and enough listening work to make the symbols feel like sound instead of memorized marks." aside={
- <DarkNote label="Routine" value="LISTEN + RECALL">
- Start each session with one review block, then finish with a
- small test or worksheet so weak symbols do not disappear.
- </DarkNote>
- }
- >
- <div className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)]">
- <div className="space-y-4 text-base leading-relaxed text-slate-700 sm:text-lg">
- <p>
- This routine is built for adults, students, radio learners,
- puzzle makers, and teachers in English-speaking audiences who
- want practical progress without turning Morse into a full-time
- course. Use the{" "}
- <a
- href="/practice" className="font-semibold text-sky-900 underline hover:no-underline">
- quick practice drills
- </a>{" "}
- for symbol recall, then move into the{" "}
- <a
- href="/morse-code-word-trainer" className="font-semibold text-sky-900 underline hover:no-underline">
- word trainer
- </a>{" "}
- so letters become useful chunks.
- </p>
- <p>
- For listening practice, start with a comfortable character
- speed and slower spacing. The{" "}
- <a
- href="/farnsworth-timing" className="font-semibold text-sky-900 underline hover:no-underline">
- Farnsworth timing guide
- </a>{" "}
- explains why slowing gaps can help without ruining the shape of
- each character, while the{" "}
- <a
- href="/morse-code-timing" className="font-semibold text-sky-900 underline hover:no-underline">
- Morse timing guide
- </a>{" "}
- covers dots, dashes, letter gaps, word gaps, and WPM.
- </p>
- <p>
- Once a list feels familiar, switch to{" "}
- <a
- href="/morse-code-audio-practice" className="font-semibold text-sky-900 underline hover:no-underline">
- audio practice
- </a>{" "}
- or the{" "}
- <a
- href="/morse-code-audio-quiz" className="font-semibold text-sky-900 underline hover:no-underline">
- audio quiz
- </a>
- . End the week by printing review with the{" "}
- <a
- href="/morse-code-printable-chart" className="font-semibold text-sky-900 underline hover:no-underline">
- worksheet builder
- </a>{" "}
- or by using{" "}
- <a
- href="/morse-code-sentence-practice" className="font-semibold text-sky-900 underline hover:no-underline">
- sentence practice
- </a>{" "}
- to copy longer phrases.
- </p>
- </div>
+        <SectionCard
+          eyebrow="Weekly structure"
+          title="A simple weekly practice structure"
+          description="Use this as a flexible loop. Repeat any day that still feels shaky; the schedule is a way to organize practice, not a promise about speed."
+          layout="stacked"
+        >
+          <WeeklyPracticeTable />
+        </SectionCard>
 
- <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
- <h3 className="text-xl font-extrabold text-sky-950">
- Weekly rhythm
- </h3>
- <ul className="mt-4 space-y-3 text-base leading-relaxed text-slate-700">
- <li>
- <strong className="text-sky-950">Review:</strong> 2 minutes
- of weak letters, numbers, or words.
- </li>
- <li>
- <strong className="text-sky-950">Recall:</strong> 5 minutes
- with practice drills or the word trainer.
- </li>
- <li>
- <strong className="text-sky-950">Listen:</strong> 3 minutes
- of audio practice with Farnsworth spacing.
- </li>
- <li>
- <strong className="text-sky-950">Prove it:</strong> one quiz,
- worksheet, or sentence set at the end of the block.
- </li>
- </ul>
- </div>
- </div>
- </SectionCard>
+        <SectionCard
+          eyebrow="Daily routine"
+          title="Daily 15-minute routine"
+          description="A short routine works best when each block has one job and the settings stay stable enough for mistakes to be meaningful."
+          layout="stacked"
+        >
+          <DailyRoutineTable />
+          <p className="mw-text-muted mt-5 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+            Use{" "}
+            <InlineTextLink href={ROUTES.audioPractice}>
+              Morse code audio practice
+            </InlineTextLink>{" "}
+            for the listening block and the{" "}
+            <InlineTextLink href={ROUTES.wordTrainer}>
+              Morse code word trainer
+            </InlineTextLink>{" "}
+            when the same short words or letter groups keep slowing you down.
+          </p>
+        </SectionCard>
 
- <SectionCard
- eyebrow="Daily structure" title="A practical 10-minute Morse routine" description="The plan works best when each session has a clear job. Keep the blocks short enough that you can repeat them most days without turning practice into a chore." aside={
- <DarkNote label="Session shape" value="2 + 3 + 3 + 2">
- Review, recall, listen, then prove it with one small test or
- printable review task.
- </DarkNote>
- }
- >
- <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
- {[
- {
- time:"2 min",
- title:"Alphabet or weak-symbol review",
- text:"Scan the alphabet chart, then drill only the letters, numbers, or punctuation marks that still slow you down.",
- href:"/morse-code-alphabet",
- },
- {
- time:"3 min",
- title:"Quick recall drills",
- text:"Use focused practice for immediate feedback. Keep misses visible so the next block has a real target.",
- href:"/practice",
- },
- {
- time:"3 min",
- title:"Word or audio practice",
- text:"Move from symbols into words, or listen with Farnsworth spacing so the gaps are forgiving while the character rhythm stays clean.",
- href:"/morse-code-audio-practice",
- },
- {
- time:"2 min",
- title:"Quiz, sentence, or worksheet proof",
- text:"End with one scored quiz, sentence set, or printed review sheet so progress turns into something concrete.",
- href:"/morse-code-audio-quiz",
- },
- ].map((item) => (
- <a
- key={item.title}
- href={item.href}
- className="mw-button-outline mw-related-tool-link cursor-pointer rounded-xl bg-[#f7f4ee] p-5 text-slate-700 hover:bg-[#fffaf2] hover:text-sky-950 focus:outline-none">
- <p className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
- {item.time}
- </p>
- <h3 className="mt-2 text-xl font-extrabold text-sky-950">
- {item.title}
- </h3>
- <p className="mt-3 text-base leading-relaxed">{item.text}</p>
- </a>
- ))}
- </div>
- </SectionCard>
+        <SectionCard
+          eyebrow="Methods"
+          title="When to use Koch and Farnsworth"
+          description="Both are useful learning ideas, but they solve different problems. Use one method at a time so you can tell what helped."
+        >
+          <div className="grid gap-5 md:grid-cols-2">
+            <StaticTile>
+              <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                Character set
+              </p>
+              <h2 className="mw-heading mt-2 text-xl font-extrabold text-sky-950">
+                Koch-style practice
+              </h2>
+              <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
+                Add characters gradually instead of practicing the whole chart
+                at once. If a new pair causes misses, keep the set small before
+                adding more.
+              </p>
+            </StaticTile>
+            <StaticTile>
+              <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                Spacing
+              </p>
+              <h2 className="mw-heading mt-2 text-xl font-extrabold text-sky-950">
+                Farnsworth spacing
+              </h2>
+              <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
+                Keep the character rhythm recognizable while giving more room
+                between letters and words. Use the{" "}
+                <InlineTextLink href={ROUTES.farnsworth}>
+                  Farnsworth timing guide
+                </InlineTextLink>{" "}
+                when character speed and message speed feel confusing.
+              </p>
+            </StaticTile>
+          </div>
+        </SectionCard>
 
- <ReferenceSupportSections
- guide={{
- eyebrow:"Practice guide",
- title:"What this practice plan helps you do",
- description:"The plan gives each short session a job so practice does not become random repetition. Use it after the learning guide when you are ready for a routine.",
- items:[
- { title:"Choose today\'s focus", text:"Pick one target for the session: weak letters, short words, listening copy, typing recall, or a small quiz.", href:"/practice", badge:"DRILL" },
- { title:"Keep the session short", text:"Use 10-minute blocks so review stays repeatable. Add more time only when accuracy and attention are still good." },
- { title:"Move across modes", text:"Rotate from visual recall into audio practice and typing so Morse becomes readable, hearable, and writable.", href:"/typing", badge:"TYPE" },
- { title:"End with proof", text:"Close the session with one quiz, sentence prompt, or printable worksheet so weak spots are visible for tomorrow.", href:"/morse-code-audio-quiz", badge:"QUIZ" },
- ],
- }}
- examples={{
- title:"Three practical practice scenarios",
- description:"Use these scenarios as templates rather than rules. The goal is to make the next session obvious.",
- items:[
- { title:"10-minute beginner session", morse:"E T A N", children:<>Spend 3 minutes reviewing the simplest letters, 4 minutes in <a href="/practice" className="font-semibold text-sky-900 underline hover:no-underline">quick practice</a>, and 3 minutes hearing or typing only those characters.</> },
- { title:"Weak-letter review", morse:"B D G Q", children:<>When the same letters keep failing, remove everything else for one focused block, then test them again in the <a href="/morse-code-word-trainer" className="font-semibold text-sky-900 underline hover:no-underline">word trainer</a>.</> },
- { title:"Listening progression", morse:"CQ CQ TEST", children:<>After visual recall feels stable, use <a href="/morse-code-audio-practice" className="font-semibold text-sky-900 underline hover:no-underline">audio practice</a> with comfortable spacing, then tighten timing only after accuracy stays clean.</> },
- ],
- }}
- mistakes={{
- title:"Common practice mistakes and fixes",
- description:"Most practice stalls come from doing too much at once. Keep the set small enough that mistakes can be diagnosed.",
- items:[
- { title:"Practicing the full alphabet every time", children:<>Full review is useful occasionally, but daily sessions should isolate weak symbols so improvement is measurable.</> },
- { title:"Chasing speed too early", children:<>Raise WPM only after you can copy a short set accurately. Use the <a href="/morse-code-timing" className="font-semibold text-sky-900 underline hover:no-underline">timing guide</a> when spacing starts causing misses.</> },
- { title:"Avoiding audio practice", children:<>Visual charts help with early memory, but real recognition depends on sound. Add short listening blocks before the symbols feel perfect.</> },
- ],
- }}
- comparison={{
- eyebrow:"Choose a guide",
- title:"Practice plan vs learning guide vs timing pages",
- description:"Use this page for the routine itself. Use nearby guides when you need a broader path or a specific timing explanation.",
- items:[
- { title:"Learn Morse Code", text:"Use the learning guide when you need the bigger beginner sequence before choosing a daily routine.", href:"/learn-morse-code", badge:"LEARN" },
- { title:"Practice Plan", text:"Use this page when you already know the next skill area and need a repeatable session structure." },
- { title:"Morse Code Timing", text:"Use the timing guide when dot length, dash length, WPM, or spacing is causing confusion.", href:"/morse-code-timing", badge:"TIMING" },
- { title:"Farnsworth Timing", text:"Use Farnsworth timing when you want clear character rhythm with wider gaps for learning.", href:"/farnsworth-timing", badge:"SPACING" },
- ],
- }}
- nextStep={{
- title:"Choose your next practice page",
- description:"Start with a short recall drill, then add typing or audio once the day\'s target is clear.",
- links:[
- { href:"/practice", label:"Start quick practice", primary:true },
- { href:"/morse-code-test", label:"Choose a test" },
- { href:"/morse-code-word-trainer", label:"Train words" },
- { href:"/morse-code-audio-practice", label:"Practice audio" },
- { href:"/morse-code-visual-practice", label:"Practice visual" },
- ],
- }}
- />
+        <SectionCard
+          eyebrow="Progress"
+          title="How to know when to move on"
+          description="Do not move forward because the calendar says so. Move forward when the small set is becoming more reliable."
+          layout="stacked"
+        >
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {progressCriteria.map((item) => (
+              <StaticTile key={item.title}>
+                <h3 className="mw-heading text-lg font-extrabold text-sky-950">
+                  {item.title}
+                </h3>
+                <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
+                  {item.text}
+                </p>
+              </StaticTile>
+            ))}
+          </div>
+        </SectionCard>
 
- <SectionCard
- eyebrow="Tool map" title="When to use each MorseWords tool" description="A practice plan is easier to follow when every tool has a job. Use this map to pick the next page instead of repeating the same drill until it gets stale.">
- <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
- {toolMap.map((tool) => (
- <a
- key={tool.href}
- href={tool.href}
- className="mw-button-outline mw-related-tool-link cursor-pointer rounded-xl bg-[#f7f4ee] p-5 text-slate-700 hover:bg-[#fffaf2] hover:text-sky-950 focus:outline-none">
- <h3 className="text-xl font-extrabold text-sky-950">
- {tool.title}
- </h3>
- <p className="mt-2 text-base leading-relaxed text-slate-700">
- {tool.text}
- </p>
- </a>
- ))}
- </div>
- </SectionCard>
+        <SectionCard
+          eyebrow="Mistakes"
+          title="Common practice mistakes"
+          description="These are the habits that make practice hard to read, hard to repeat, or hard to learn from."
+          layout="stacked"
+        >
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {practiceMistakes.map((mistake) => (
+              <StaticTile key={mistake.title}>
+                <h3 className="mw-heading text-lg font-extrabold text-sky-950">
+                  {mistake.title}
+                </h3>
+                <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
+                  {mistake.text}
+                </p>
+              </StaticTile>
+            ))}
+          </div>
+        </SectionCard>
 
- <SectionCard
- eyebrow="Use cases" title="How beginners, radio learners, and teachers can adapt the plan" description="The same routine can support a self-study learner, a classroom, a homeschool lesson, a radio club, or a puzzle workflow. The key is changing the final proof task.">
- <div className="grid gap-6 lg:grid-cols-3">
- <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
- <h3 className="text-xl font-extrabold text-sky-950">
- Beginners and students
- </h3>
- <p className="mt-3 text-base leading-relaxed text-slate-700">
- Keep the first week small. Work from the alphabet into short
- words, then use the word trainer to repeat missed words before
- moving into sentences.
- </p>
- </div>
- <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
- <h3 className="text-xl font-extrabold text-sky-950">
- Radio learners
- </h3>
- <p className="mt-3 text-base leading-relaxed text-slate-700">
- Add audio early. Use Farnsworth spacing for copy practice, then
- test Q-codes, signal reports, and short radio phrases with the
- audio quiz and sentence practice pages.
- </p>
- </div>
- <div className="mw-static-tile rounded-xl bg-[#f7f4ee] p-5">
- <h3 className="text-xl font-extrabold text-sky-950">
- Teachers and homeschoolers
- </h3>
- <p className="mt-3 text-base leading-relaxed text-slate-700">
- Use quick drills as warm-ups, audio or visual practice as
- stations, and printable charts or word searches for homework,
- substitute plans, review sheets, and low-prep classroom games.
- </p>
- </div>
- </div>
+        <SectionCard
+          eyebrow="Tool order"
+          title="Use the tools in order"
+          description="Pick one next action. A practice plan is easier to follow when each page has a clear role."
+          layout="stacked"
+        >
+          <SimpleGrid items={toolFlowItems} />
+        </SectionCard>
 
- <div className="mw-static-tile mt-6 rounded-xl bg-[#f7f4ee] p-5">
- <h3 className="text-xl font-extrabold text-sky-950">
- Handling weak symbols and weak words
- </h3>
- <p className="mt-3 text-base leading-relaxed text-slate-700 sm:text-lg">
- Do not hide mistakes. Move weak letters back into{" "}
- <a
- href="/practice" className="font-semibold text-sky-900 underline hover:no-underline">
- quick practice
- </a>
- , move weak words into the{" "}
- <a
- href="/morse-code-word-trainer" className="font-semibold text-sky-900 underline hover:no-underline">
- word trainer
- </a>
- , and print stubborn lists with the{" "}
- <a
- href="/morse-code-printable-chart" className="font-semibold text-sky-900 underline hover:no-underline">
- worksheet builder
- </a>
- . If listening feels too fast, keep character speed steady and
- lower the Farnsworth spacing speed so only the gaps slow down.
- </p>
- </div>
- </SectionCard>
+        <SectionCard
+          eyebrow="Offline practice"
+          title="Printable or offline practice"
+          description="Paper is useful when you want a quiet review block, a classroom handout, or a short list of weak spots away from the screen."
+        >
+          <SimpleGrid
+            linkedItemStyle="inline"
+            items={[
+              {
+                title: "Printable chart",
+                text: "Use this for a compact reference sheet when you are checking letters, numbers, punctuation, or spacing.",
+                href: ROUTES.printableChart,
+                badge: "Reference",
+              },
+              {
+                title: "Printable pages",
+                text: "Use this for practice sheets, short review pages, or a small worksheet packet built around the current weak set.",
+                href: ROUTES.printablePages,
+                badge: "Sheets",
+              },
+            ]}
+          />
+        </SectionCard>
 
- <FaqSectionGeneric
- title="Practice plan FAQ" items={faqItems}
- />
+        <SectionCard
+          eyebrow="Sources"
+          title="Sources and further reading"
+          description="These references support the learning, timing, and audio-practice notes on this page."
+          layout="stacked"
+        >
+          <div className="grid gap-4 md:grid-cols-2">
+            {practiceSourceLinks.map((source) => (
+              <StaticTile key={source.href}>
+                <h3 className="mw-heading text-lg font-extrabold text-sky-950">
+                  <a
+                    href={source.href}
+                    target="_blank"
+                    rel="nofollow noreferrer noopener"
+                    className="cursor-pointer text-sky-900 underline decoration-sky-900/40 underline-offset-4 hover:decoration-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  >
+                    {source.title}
+                  </a>
+                </h3>
+                <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
+                  {source.description}
+                </p>
+              </StaticTile>
+            ))}
+          </div>
+          <StaticTile className="mt-5">
+            <h3 className="mw-heading text-lg font-extrabold text-sky-950">
+              Source and correction notes
+            </h3>
+            <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
+              MorseWords uses International Morse for its learning and practice
+              tools. For source corrections or attribution concerns, see the{" "}
+              <InlineTextLink href={ROUTES.sources}>sources page</InlineTextLink>
+              .
+            </p>
+          </StaticTile>
+        </SectionCard>
 
- <JsonLdScript jsonLd={[breadcrumbJsonLd, howToJsonLd, faqJsonLd]} />
- </main>
- <BreadcrumbTrail current="Morse Code Practice Plan" />
- </div>
- );
+        <FaqSectionGeneric title="Practice plan FAQ" items={faqItems} />
+
+        <JsonLdScript jsonLd={jsonLd} />
+      </main>
+      <BreadcrumbTrail current="Morse Code Practice Plan" />
+    </div>
+  );
 }

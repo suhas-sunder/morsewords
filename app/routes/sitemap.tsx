@@ -236,6 +236,24 @@ const GROUPS: SitemapGroup[] = [
           "Follow a practical path through alphabet, practice, audio, words, sentences, and worksheets.",
       },
       {
+        label: "Morse Code History",
+        to: ROUTES.history,
+        description:
+          "Read how Morse code grew from electric telegraphy into International Morse, radio practice, and modern learning.",
+      },
+      {
+        label: "International vs American Morse Code",
+        to: ROUTES.internationalVsAmerican,
+        description:
+          "Compare International Morse Code with earlier American Morse Code and choose the right reference for learning.",
+      },
+      {
+        label: "Morse Code Emergency Signals",
+        to: ROUTES.emergencySignals,
+        description:
+          "Learn how SOS and simple Morse signals can work as backup communication, plus their limits and safe practice steps.",
+      },
+      {
         label: "Morse Code Practice Plan",
         to: ROUTES.practicePlan,
         description:
