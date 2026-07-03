@@ -51,8 +51,8 @@ const ROUTES = [
   },
   {
     path: "/morse-code-typing-test",
-    h1: "Morse Code Test",
-    finalPath: "/morse-code-test",
+    h1: "Morse Code Typing Practice",
+    finalPath: "/typing",
   },
   {
     path: "/morse-code-word-game",

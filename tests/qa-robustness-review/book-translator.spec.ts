@@ -55,6 +55,7 @@ import {
 import {
   blockExternalNetwork,
   collectConsoleErrors,
+  sitemapLocs,
   waitForRouteReady,
 } from "./helpers";
 
@@ -942,8 +943,9 @@ test("book translator route metadata, alias, and sitemap use canonical URL", asy
   expect(aliasResponse.headers().location).toBe(CANONICAL_PATH);
 
   const sitemap = await (await request.get("/sitemap.xml")).text();
+  const locs = sitemapLocs(sitemap);
   expect(sitemap).toContain(absoluteUrl(CANONICAL_PATH));
-  expect(sitemap).not.toContain(absoluteUrl(ALIAS_PATH));
+  expect(locs).not.toContain(absoluteUrl(ALIAS_PATH));
 });
 
 test("expanded SEO guide covers long-form workflows and dark-mode copy", async ({

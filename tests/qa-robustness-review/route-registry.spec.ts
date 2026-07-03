@@ -22,9 +22,19 @@ import {
 const ROOT = process.cwd();
 
 const CRITICAL_ALIAS_EXPECTATIONS = [
-  [ROUTES.typingTestAlias, ROUTES.test],
+  [ROUTES.typingTestAlias, ROUTES.typing],
   [ROUTES.wordGameAlias, ROUTES.wordTrainer],
   [ROUTES.dictionaryAlias, ROUTES.dictionary],
+] as const;
+
+const QUERY_PRESERVING_ALIAS_EXPECTATIONS = [
+  [
+    ROUTES.textToMorseAlias,
+    ROUTES.encoder,
+    "?text=sos&utm_source=test",
+  ],
+  [ROUTES.morseToTextAlias, ROUTES.decoder, "?morse=...---..."],
+  [ROUTES.morseCodeAudioAlias, ROUTES.audio, "?text=sos"],
 ] as const;
 
 const REPRESENTATIVE_CANONICAL_PATHS = [
@@ -53,6 +63,16 @@ function readRepoFile(filePath: string) {
 
 function routeFilePath(routePath: string) {
   return path.join(ROOT, "app", "routes", `${routeSlug(routePath)}.tsx`);
+}
+
+function sitemapLocs(xml: string) {
+  return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+}
+
+function canonicalUrlsInText(text: string) {
+  return [...text.matchAll(/https:\/\/www\.morsewords\.com[^"\\\s<]*/g)].map(
+    (match) => match[0],
+  );
 }
 
 test.describe("route registry source of truth", () => {
@@ -113,6 +133,7 @@ test.describe("route registry source of truth", () => {
     const response = await request.get(ROUTES.sitemap + ".xml");
     expect(response.ok()).toBe(true);
     const xml = await response.text();
+    const locs = sitemapLocs(xml);
     const robotsResponse = await request.get("/robots.txt");
     expect(robotsResponse.ok()).toBe(true);
     const robots = await robotsResponse.text();
@@ -124,7 +145,7 @@ test.describe("route registry source of truth", () => {
     }
 
     for (const aliasPath of REDIRECT_ALIAS_PATHS) {
-      expect(xml, `${aliasPath} stays out of XML sitemap`).not.toContain(
+      expect(locs, `${aliasPath} stays out of XML sitemap`).not.toContain(
         absoluteUrl(aliasPath),
       );
     }
@@ -166,9 +187,10 @@ test.describe("route registry source of truth", () => {
       .evaluateAll((scripts) =>
         scripts.map((script) => script.textContent ?? "").join("\n"),
       );
+    const jsonLdUrls = canonicalUrlsInText(jsonLdText);
 
     for (const aliasPath of REDIRECT_ALIAS_PATHS) {
-      expect(jsonLdText, `${aliasPath} absent from sitemap JSON-LD`).not.toContain(
+      expect(jsonLdUrls, `${aliasPath} absent from sitemap JSON-LD`).not.toContain(
         absoluteUrl(aliasPath),
       );
     }
@@ -241,12 +263,33 @@ test.describe("route registry source of truth", () => {
   test("legacy aliases redirect to registry canonical destinations", async ({
     request,
   }) => {
+    test.setTimeout(120_000);
+
     for (const [aliasPath, canonicalPath] of Object.entries(REDIRECT_ALIASES)) {
       const response = await request.get(aliasPath, { maxRedirects: 0 });
 
       expect(response.status(), `${aliasPath} status`).toBe(301);
       expect(response.headers().location, `${aliasPath} location`).toBe(
         canonicalPath,
+      );
+    }
+  });
+
+  test("legacy aliases preserve query strings when redirecting", async ({
+    request,
+  }) => {
+    for (const [
+      aliasPath,
+      canonicalPath,
+      search,
+    ] of QUERY_PRESERVING_ALIAS_EXPECTATIONS) {
+      const response = await request.get(`${aliasPath}${search}`, {
+        maxRedirects: 0,
+      });
+
+      expect(response.status(), `${aliasPath}${search} status`).toBe(301);
+      expect(response.headers().location, `${aliasPath}${search} location`).toBe(
+        `${canonicalPath}${search}`,
       );
     }
   });

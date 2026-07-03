@@ -6,6 +6,7 @@ import { VIDEO_GENERATOR_PREFERENCES_KEY } from "../../app/client/components/mor
 import {
   blockExternalNetwork,
   collectConsoleErrors,
+  sitemapLocs,
   waitForRouteReady,
 } from "./helpers";
 
@@ -505,8 +506,9 @@ test.describe("Morse code video generator", () => {
     const xmlResponse = await request.get("/sitemap.xml");
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
+    const locs = sitemapLocs(xml);
     expect(xml).toContain(CANONICAL_URL);
-    expect(xml).not.toContain(absoluteUrl(ALIAS_PATH));
+    expect(locs).not.toContain(absoluteUrl(ALIAS_PATH));
   });
 
   test("text and Morse modes report issues, disable blank export, and avoid raw storage", async ({

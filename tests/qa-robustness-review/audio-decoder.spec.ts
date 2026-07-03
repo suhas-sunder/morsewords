@@ -15,6 +15,8 @@ import {
   REDIRECT_PATHS,
   blockExternalNetwork,
   collectConsoleErrors,
+  sameHostPathnamesInText,
+  sitemapLocs,
   waitForRouteReady,
 } from "./helpers";
 
@@ -845,10 +847,11 @@ test.describe("Morse code audio decoder route", () => {
     }
 
     const schemaText = JSON.stringify(parsedJsonLd);
+    const schemaPaths = sameHostPathnamesInText(schemaText);
     expect(schemaText).toContain(CANONICAL_URL);
     expect(schemaText).not.toContain(`${CANONICAL_URL}?`);
     for (const alias of AUDIO_DECODER_ALIAS_PATHS) {
-      expect(schemaText).not.toContain(`${SITE_URL}${alias}`);
+      expect(schemaPaths).not.toContain(alias);
     }
   });
 
@@ -894,13 +897,14 @@ test.describe("Morse code audio decoder route", () => {
     const sitemapResponse = await request.get("/sitemap.xml");
     expect(sitemapResponse.ok()).toBe(true);
     const sitemapXml = await sitemapResponse.text();
+    const locs = sitemapLocs(sitemapXml);
     expect(sitemapXml).toContain(CANONICAL_URL);
 
     for (const alias of AUDIO_DECODER_ALIAS_PATHS) {
       const response = await request.get(alias, { maxRedirects: 0 });
       expect(response.status(), `${alias} status`).toBe(301);
       expect(response.headers().location, `${alias} location`).toBe(CANONICAL_PATH);
-      expect(sitemapXml, `sitemap excludes ${alias}`).not.toContain(`${SITE_URL}${alias}`);
+      expect(locs, `sitemap excludes ${alias}`).not.toContain(`${SITE_URL}${alias}`);
       expect(await response.text(), `${alias} has no JSON-LD`).not.toContain(
         "application/ld+json",
       );

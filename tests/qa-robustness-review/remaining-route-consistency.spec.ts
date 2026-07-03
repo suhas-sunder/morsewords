@@ -196,7 +196,7 @@ test.describe("remaining route consistency pass", () => {
       maxRedirects: 0,
     });
     expect(redirect.status()).toBe(301);
-    expect(redirect.headers().location).toBe("/morse-code-test");
+    expect(redirect.headers().location).toBe("/typing");
 
     await page.addInitScript(() => {
       window.localStorage.setItem("mw_typing_input_mode", "vim");

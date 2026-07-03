@@ -4,6 +4,7 @@ import {
   blockExternalNetwork,
   REDIRECT_ROUTE_EXPECTATIONS,
   ROUTE_EXCLUSIONS,
+  sitemapLocs,
   waitForRouteReady,
 } from "./helpers";
 
@@ -1404,6 +1405,7 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
     const xmlResponse = await request.get("/sitemap.xml");
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
+    const locs = sitemapLocs(xml);
     const xmlUrls = [...xml.matchAll(/<loc>[^<]+<\/loc>/g)];
     expect(xmlUrls).toHaveLength(114);
 
@@ -1411,7 +1413,7 @@ test.describe("final supporting routes and duplicate-safe handling", () => {
       expect(xml).toContain(`https://www.morsewords.com${route.path}`);
     }
     for (const route of REDIRECT_ROUTE_EXPECTATIONS) {
-      expect(xml).not.toContain(`https://www.morsewords.com${route.from}`);
+      expect(locs).not.toContain(`https://www.morsewords.com${route.from}`);
     }
   });
 

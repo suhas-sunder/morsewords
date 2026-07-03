@@ -4,6 +4,7 @@ import { ROUTES, absoluteUrl } from "../../app/client/data/routes";
 import {
   blockExternalNetwork,
   collectConsoleErrors,
+  sameHostPathnamesInText,
   waitForRouteReady,
 } from "./helpers";
 
@@ -70,8 +71,9 @@ async function expectRouteSchemaAndFaq({
   expect(records.map(schemaType)).toContain("BreadcrumbList");
 
   const allSchemaText = JSON.stringify(records);
+  const schemaPaths = sameHostPathnamesInText(allSchemaText);
   expect(allSchemaText).toContain(canonical);
-  expect(allSchemaText).not.toContain(alias);
+  expect(schemaPaths).not.toContain(aliasPath);
 
   const webApplication = records.find(
     (record) => schemaType(record) === "WebApplication",

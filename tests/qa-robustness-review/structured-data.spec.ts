@@ -1,5 +1,9 @@
 import { expect, test, type Page } from "@playwright/test";
-import { blockExternalNetwork } from "./helpers";
+import {
+  blockExternalNetwork,
+  sameHostPathnamesInText,
+  sitemapLocs as parseSitemapLocs,
+} from "./helpers";
 import {
   REDIRECT_PATHS,
   REDIRECT_ROUTE_EXPECTATIONS,
@@ -139,6 +143,7 @@ async function visibleFaqQuestions(page: Page) {
 
 function assertSchemaDoesNotReferenceRedirects(records: JsonLdRecord[], routePath: string) {
   const schemaText = JSON.stringify(records);
+  const schemaPaths = sameHostPathnamesInText(schemaText);
 
   expect(
     schemaText,
@@ -147,9 +152,9 @@ function assertSchemaDoesNotReferenceRedirects(records: JsonLdRecord[], routePat
 
   for (const aliasPath of REDIRECT_PATHS) {
     expect(
-      schemaText,
+      schemaPaths,
       `${routePath} schema should not reference redirect alias ${aliasPath}`,
-    ).not.toContain(`${SITE_URL}${aliasPath}`);
+    ).not.toContain(aliasPath);
   }
 }
 
@@ -179,10 +184,11 @@ function assertBreadcrumbList(record: JsonLdRecord, routePath: string) {
         `${routePath} breadcrumb item uses canonical host`,
       ).toBe(true);
       for (const aliasPath of REDIRECT_PATHS) {
+        const itemPath = new URL(listItem.item).pathname.replace(/\/$/, "") || "/";
         expect(
-          listItem.item,
+          itemPath,
           `${routePath} breadcrumb item avoids redirect alias ${aliasPath}`,
-        ).not.toContain(aliasPath);
+        ).not.toBe(aliasPath);
       }
     } else {
       expect(index, `${routePath} only final breadcrumb may omit item`).toBe(
@@ -263,6 +269,7 @@ test.describe("structured data output", () => {
     expect(sitemapXml, "XML sitemap avoids non-www canonical host").not.toContain(
       NON_WWW_SITE_URL,
     );
+    const exactSitemapLocs = parseSitemapLocs(sitemapXml);
     for (const loc of sitemapLocs) {
       expect(loc, `XML sitemap loc uses canonical host: ${loc}`).toMatch(
         new RegExp(`^${SITE_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/`),
@@ -270,7 +277,7 @@ test.describe("structured data output", () => {
     }
 
     for (const aliasPath of REDIRECT_PATHS) {
-      expect(sitemapXml, `sitemap excludes redirect alias ${aliasPath}`).not.toContain(
+      expect(exactSitemapLocs, `sitemap excludes redirect alias ${aliasPath}`).not.toContain(
         `${SITE_URL}${aliasPath}`,
       );
     }
@@ -367,6 +374,7 @@ test.describe("structured data output", () => {
     const sitemapResponse = await request.get("/sitemap.xml");
     expect(sitemapResponse.ok()).toBe(true);
     const sitemapXml = await sitemapResponse.text();
+    const exactSitemapLocs = parseSitemapLocs(sitemapXml);
 
     for (const route of REDIRECT_ROUTE_EXPECTATIONS) {
       const response = await request.get(route.from, { maxRedirects: 0 });
@@ -382,7 +390,7 @@ test.describe("structured data output", () => {
       expect(await response.text(), `${route.from} has no JSON-LD script`).not.toContain(
         "application/ld+json",
       );
-      expect(sitemapXml, `sitemap excludes ${route.from}`).not.toContain(
+      expect(exactSitemapLocs, `sitemap excludes ${route.from}`).not.toContain(
         `${SITE_URL}${route.from}`,
       );
     }

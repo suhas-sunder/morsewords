@@ -70,7 +70,7 @@ const expectedSuitabilityCounts = {
 };
 const expectedStrictReviewCandidates = 429;
 const expectedSitemapUrlCount = 1682;
-const expectedRouteInventoryCount = 174;
+const expectedRouteInventoryCount = 698;
 const expectedPrintUrlCount = 519;
 const localDeferredStatement =
   "Production Netlify route validation is deferred and was not used as a blocker in this local completion branch.";

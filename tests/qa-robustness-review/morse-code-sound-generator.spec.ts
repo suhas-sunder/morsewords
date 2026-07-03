@@ -6,6 +6,7 @@ import {
   blockExternalNetwork,
   collectConsoleErrors,
   isExpectedHarnessConsoleEntry,
+  sameHostPathnamesInText,
   waitForRouteReady,
 } from "./helpers";
 
@@ -369,11 +370,10 @@ test.describe("Morse code sound generator", () => {
     }
 
     const schemaText = JSON.stringify(parsedJsonLd);
+    const schemaPaths = sameHostPathnamesInText(schemaText);
     expect(schemaText).toContain(CANONICAL_URL);
     expect(schemaText).not.toContain(`${CANONICAL_URL}?`);
-    expect(schemaText).not.toContain(
-      `https://www.morsewords.com${AUDIO_GENERATOR_ALIAS}`,
-    );
+    expect(schemaPaths).not.toContain(AUDIO_GENERATOR_ALIAS);
   });
 
   test("accepts text input, updates Morse output, and keeps flash dormant", async ({

@@ -8,7 +8,12 @@ import {
   ROUTES,
   absoluteUrl,
 } from "../../app/client/data/routes";
-import { blockExternalNetwork, waitForRouteReady } from "./helpers";
+import {
+  blockExternalNetwork,
+  sameHostPathnamesInText,
+  sitemapLocs,
+  waitForRouteReady,
+} from "./helpers";
 
 const ROOT = process.cwd();
 const THEME_STORAGE_KEY = "morsewords-theme";
@@ -232,6 +237,7 @@ test.describe("book and video route sitemap and interlinking", () => {
     const xmlResponse = await request.get("/sitemap.xml");
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
+    const locs = sitemapLocs(xml);
 
     for (const routePath of NEW_CANONICAL_ROUTES) {
       expect(xml, `${routePath} XML sitemap entry`).toContain(
@@ -240,7 +246,7 @@ test.describe("book and video route sitemap and interlinking", () => {
     }
 
     for (const aliasPath of NEW_ALIAS_ROUTES) {
-      expect(xml, `${aliasPath} absent from XML sitemap`).not.toContain(
+      expect(locs, `${aliasPath} absent from XML sitemap`).not.toContain(
         absoluteUrl(aliasPath),
       );
     }
@@ -277,14 +283,15 @@ test.describe("book and video route sitemap and interlinking", () => {
     );
 
     const sitemapSchema = await jsonLdText(page);
+    const sitemapSchemaPaths = sameHostPathnamesInText(sitemapSchema);
     for (const routePath of NEW_CANONICAL_ROUTES) {
       expect(sitemapSchema, `${routePath} sitemap schema URL`).toContain(
         absoluteUrl(routePath),
       );
     }
     for (const aliasPath of NEW_ALIAS_ROUTES) {
-      expect(sitemapSchema, `${aliasPath} absent from sitemap schema`).not.toContain(
-        absoluteUrl(aliasPath),
+      expect(sitemapSchemaPaths, `${aliasPath} absent from sitemap schema`).not.toContain(
+        aliasPath,
       );
     }
   });
@@ -427,11 +434,12 @@ test.describe("book and video route sitemap and interlinking", () => {
       );
 
       const schema = await jsonLdText(page);
+      const schemaPaths = sameHostPathnamesInText(schema);
       expect(schema, `${routePath} schema canonical URL`).toContain(
         absoluteUrl(routePath),
       );
-      expect(schema, `${routePath} schema excludes alias`).not.toContain(
-        absoluteUrl(aliasPath),
+      expect(schemaPaths, `${routePath} schema excludes alias`).not.toContain(
+        aliasPath,
       );
       expect(schema.match(/"@type":"FAQPage"/g) ?? []).toHaveLength(1);
     }

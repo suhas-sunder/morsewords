@@ -6,6 +6,7 @@ import {
   collectConsoleErrors,
   isExpectedHarnessConsoleEntry,
   READER_ALIAS_PATHS,
+  sitemapLocs,
   waitForRouteReady,
 } from "./helpers";
 
@@ -249,13 +250,14 @@ test.describe("Morse code reader", () => {
     const xmlResponse = await request.get("/sitemap.xml");
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
+    const locs = sitemapLocs(xml);
     expect(xml).toContain(CANONICAL_URL);
 
     for (const alias of READER_ALIAS_PATHS) {
       const response = await request.get(alias, { maxRedirects: 0 });
       expect(response.status(), `${alias} status`).toBe(301);
       expect(response.headers().location, `${alias} target`).toBe(CANONICAL_PATH);
-      expect(xml, `XML sitemap excludes ${alias}`).not.toContain(`${SITE_URL}${alias}`);
+      expect(locs, `XML sitemap excludes ${alias}`).not.toContain(`${SITE_URL}${alias}`);
       expect(await response.text(), `${alias} has no JSON-LD`).not.toContain(
         "application/ld+json",
       );

@@ -7,6 +7,8 @@ import {
   collectConsoleErrors,
   isExpectedHarnessConsoleEntry,
   MP3_ALIAS_PATHS,
+  sameHostPathnamesInText,
+  sitemapLocs,
   waitForRouteReady,
 } from "./helpers";
 
@@ -329,9 +331,10 @@ test.describe("Morse code MP3 generator", () => {
     const xmlResponse = await request.get("/sitemap.xml");
     expect(xmlResponse.ok()).toBe(true);
     const xml = await xmlResponse.text();
+    const locs = sitemapLocs(xml);
     expect(xml).toContain(CANONICAL_URL);
     for (const alias of MP3_ALIAS_PATHS) {
-      expect(xml).not.toContain(`https://www.morsewords.com${alias}`);
+      expect(locs).not.toContain(`https://www.morsewords.com${alias}`);
     }
 
     for (const alias of MP3_ALIAS_PATHS) {
@@ -389,10 +392,11 @@ test.describe("Morse code MP3 generator", () => {
     }
 
     const schemaText = JSON.stringify(parsedJsonLd);
+    const schemaPaths = sameHostPathnamesInText(schemaText);
     expect(schemaText).toContain(CANONICAL_URL);
     expect(schemaText).not.toContain(`${CANONICAL_URL}?`);
     for (const alias of MP3_ALIAS_PATHS) {
-      expect(schemaText).not.toContain(`https://www.morsewords.com${alias}`);
+      expect(schemaPaths).not.toContain(alias);
     }
   });
 

@@ -12,7 +12,11 @@ import {
   getCanonicalRoutePath,
   routeSlug,
 } from "../../app/client/data/routes";
-import { blockExternalNetwork, waitForRouteReady } from "./helpers";
+import {
+  blockExternalNetwork,
+  sameHostPathnamesInText,
+  waitForRouteReady,
+} from "./helpers";
 
 const ROOT = process.cwd();
 const THEME_STORAGE_KEY = "morsewords-theme";
@@ -271,10 +275,11 @@ function itemName(value: unknown) {
 
 function assertNoAliasReferences(records: JsonLdRecord[], routePath: string) {
   const schemaText = JSON.stringify(records);
+  const schemaPaths = sameHostPathnamesInText(schemaText);
 
   for (const aliasPath of REDIRECT_ALIAS_PATHS) {
     expect(
-      schemaText,
+      schemaPaths,
       `${routePath} JSON-LD should not reference redirect alias ${aliasPath}`,
     ).not.toContain(aliasPath);
   }

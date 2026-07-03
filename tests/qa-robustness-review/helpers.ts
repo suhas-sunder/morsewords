@@ -70,6 +70,28 @@ export function collectConsoleErrors(page: Page) {
   return entries;
 }
 
+export function normalizePathname(pathname: string) {
+  return pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+}
+
+export function sitemapLocs(xml: string) {
+  return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+}
+
+export function sameHostPathnamesInText(
+  text: string,
+  origin = "https://www.morsewords.com",
+) {
+  const escapedOrigin = origin.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const urls = [
+    ...text.matchAll(
+      new RegExp(`${escapedOrigin}(?:/[^"'<>\\s\\\\]*)?`, "g"),
+    ),
+  ].map((match) => match[0]);
+
+  return urls.map((url) => normalizePathname(new URL(url).pathname));
+}
+
 export async function waitForRouteReady(page: Page) {
   await page.waitForLoadState("domcontentloaded", { timeout: 30_000 });
   await page.evaluate(
