@@ -37,6 +37,7 @@ export const CANONICAL_ROUTES = {
   history: "/morse-code-history",
   internationalVsAmerican: "/international-vs-american-morse-code",
   emergencySignals: "/morse-code-emergency-signals",
+  amateurRadioCw: "/morse-code-amateur-radio-cw",
   timing: "/morse-code-timing",
   farnsworth: "/farnsworth-timing",
   wordTrainer: "/morse-code-word-trainer",

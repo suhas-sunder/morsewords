@@ -52,11 +52,11 @@ const productionHost = "https://www.morsewords.com";
 const assetHost = "https://assets.morsewords.com";
 const expectedMainHead = "91d26bcccca43d1e0fbbe5c5bb318355d68e704e";
 const expectedSitemap: SitemapSnapshot = {
-  total: 1685,
+  total: 1686,
   book: 519,
   audiobook: 519,
   print: 519,
-  nonBook: 128,
+  nonBook: 129,
 };
 const expectedStaleSitemap = {
   total: 1651,
@@ -479,7 +479,7 @@ function classifyDiagnosis({
     localMissing.push("local HEAD does not show the lightweight print-route SSR fix");
   }
   if (!localFixes.sitemapCountCorrection) {
-    localMissing.push("local public/sitemap.xml is not corrected to 1,685 URLs and 519 print URLs");
+    localMissing.push("local public/sitemap.xml is not corrected to 1,686 URLs and 519 print URLs");
   }
   if (!localFixes.supportEmailReadiness) {
     localMissing.push(`local HEAD does not show ${supportEmail} contact/source readiness`);
@@ -721,7 +721,7 @@ async function main() {
       localHeadContainsExpectedMain: hasAncestor(expectedMainHead),
       printRouteLightweightSsrFix: localFixes.printRouteLightweightSsrFix,
       printRouteFixCommitPresent: localFixes.printRouteFixCommitPresent,
-      sitemapCountCorrectionTo1685: localFixes.sitemapCountCorrection,
+      sitemapCountCorrectionTo1686: localFixes.sitemapCountCorrection,
       sitemapCorrectionCommitPresent: localFixes.sitemapCorrectionCommitPresent,
       supportEmailReadinessChanges: localFixes.supportEmailReadiness,
       supportEmailCommitPresent: localFixes.supportEmailCommitPresent,
@@ -810,7 +810,7 @@ ${executive}
 - Local HEAD matches origin/main: ${formatBoolean(localHead === originMainHead)}
 - Local HEAD contains expected main ${expectedMainHead}: ${formatBoolean(hasAncestor(expectedMainHead))}
 - Print-route lightweight SSR fix: ${formatBoolean(localFixes.printRouteLightweightSsrFix)}
-- Sitemap 1,685 correction: ${formatBoolean(localFixes.sitemapCountCorrection)}
+- Sitemap 1,686 correction: ${formatBoolean(localFixes.sitemapCountCorrection)}
 - ${supportEmail} readiness changes: ${formatBoolean(localFixes.supportEmailReadiness)}
 
 ## 3. Origin main result

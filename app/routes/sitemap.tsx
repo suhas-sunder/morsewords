@@ -254,6 +254,12 @@ const GROUPS: SitemapGroup[] = [
           "Learn how SOS and simple Morse signals can work as backup communication, plus their limits and safe practice steps.",
       },
       {
+        label: "Morse Code, CW, and Amateur Radio",
+        to: ROUTES.amateurRadioCw,
+        description:
+          "Understand CW as Morse-related listening practice without treating it as licensing or operating advice.",
+      },
+      {
         label: "Morse Code Practice Plan",
         to: ROUTES.practicePlan,
         description:

@@ -82,6 +82,7 @@ export default [
     "routes/international-vs-american-morse-code.tsx",
   ),
   route("morse-code-emergency-signals", "routes/morse-code-emergency-signals.tsx"),
+  route("morse-code-amateur-radio-cw", "routes/morse-code-amateur-radio-cw.tsx"),
   route("morse-code-timing", "routes/morse-code-timing.tsx"),
   route("farnsworth-timing", "routes/farnsworth-timing.tsx"),
   route("morse-code-word-trainer", "routes/morse-code-word-trainer.tsx"),
