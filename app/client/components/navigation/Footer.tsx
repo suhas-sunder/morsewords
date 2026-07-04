@@ -66,7 +66,16 @@ export default function Footer() {
               &copy; 2025-{year}{" "}
               <span className="mw-footer-brand font-semibold text-white">MorseWords</span>
               <span className=""> ~</span>
-              <span className=""> By Suhas Sunder</span>
+              <span className=""> By </span>
+              <a
+                href="https://www.suhassunder.com"
+                target="_blank"
+                rel="nofollow noreferrer noopener"
+                aria-label="Suhas Sunder portfolio"
+                className="mw-footer-brand font-semibold text-white transition hover:text-sky-200"
+              >
+                Suhas Sunder
+              </a>
             </div>
 
             <div className="mw-nav-muted text-sky-200">
