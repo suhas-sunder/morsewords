@@ -1,5 +1,7 @@
 import type { Route } from "./+types/sources";
 
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
   UtilityContentPanel,
   UtilityPageHeader,
@@ -13,6 +15,15 @@ import { canonicalUrl, seoMeta } from "~/client/seo";
 
 const CANONICAL_PATH = "/sources";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: canonicalUrl("/") },
+    { "@type": "ListItem", position: 2, name: "Sources", item: CANONICAL_URL },
+  ],
+};
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
@@ -29,20 +40,21 @@ export function meta({}: Route.MetaArgs) {
 
 export default function SourcesRoute() {
   return (
-    <UtilityPageShell>
-      <UtilityPageHeader
-        eyebrow="Sources"
-        title="Sources and public domain notes"
-      >
-        <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-          MorseWords includes source-based reference content and public-domain
-          book texts for Morse reading, listening, and learning workflows.
-          This page explains the current source approach at a high level.
-        </p>
-      </UtilityPageHeader>
+    <>
+      <UtilityPageShell>
+        <UtilityPageHeader
+          eyebrow="Sources"
+          title="Sources and public domain notes"
+        >
+          <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+            MorseWords includes source-based reference content and public-domain
+            book texts for Morse reading, listening, and learning workflows.
+            This page explains the current source approach at a high level.
+          </p>
+        </UtilityPageHeader>
 
-      <UtilityContentPanel>
-        <section className="space-y-3">
+        <UtilityContentPanel>
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Public-domain book texts
           </h2>
@@ -69,9 +81,9 @@ export default function SourcesRoute() {
             sanitize selected wording for content safety, but older works may
             still need reader discretion.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Source metadata
           </h2>
@@ -81,9 +93,9 @@ export default function SourcesRoute() {
             inspect the material; it is not a guarantee that a text is
             available for every use in every jurisdiction.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Morse reference content
           </h2>
@@ -94,9 +106,9 @@ export default function SourcesRoute() {
             should be checked against the relevant reference page when accuracy
             matters.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Copyright or source concerns
           </h2>
@@ -113,8 +125,11 @@ export default function SourcesRoute() {
             </a>{" "}
             with the page URL and a short explanation.
           </p>
-        </section>
-      </UtilityContentPanel>
-    </UtilityPageShell>
+          </section>
+        </UtilityContentPanel>
+      </UtilityPageShell>
+      <BreadcrumbTrail current="Sources" placement="pageBottom" />
+      <JsonLdScript jsonLd={breadcrumbJsonLd} />
+    </>
   );
 }

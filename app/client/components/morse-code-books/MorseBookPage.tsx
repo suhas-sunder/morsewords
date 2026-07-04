@@ -9,6 +9,7 @@ import {
   RefreshIcon,
   StopIcon,
 } from "~/client/assets/svg/Icons";
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import {
   downloadBlobFile,
 } from "~/client/components/shared/actionOutputUtils";
@@ -178,6 +179,26 @@ const intensityLabels: Record<MorseVideoIntensity, string> = {
 
 const metadataLinkClass =
   "font-semibold text-sky-900 underline decoration-sky-900/45 underline-offset-4 hover:decoration-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
+
+function MorseBookBreadcrumb({
+  mode,
+  title,
+}: {
+  mode: "book" | "audiobook";
+  title: string;
+}) {
+  const isAudiobook = mode === "audiobook";
+  return (
+    <BreadcrumbTrail
+      current={title}
+      parent={{
+        href: isAudiobook ? ROUTES.morseAudiobooks : ROUTES.morseBooks,
+        label: isAudiobook ? "Morse Audiobook Library" : "Morse Book Library",
+      }}
+      placement="contentFooter"
+    />
+  );
+}
 
 type DownloadStatus =
   | { kind: "idle"; message: string }
@@ -989,6 +1010,7 @@ function MorseBookRuntimeState({
           </div>
         ) : null}
       </section>
+      <MorseBookBreadcrumb mode={mode} title={title} />
     </main>
   );
 }
@@ -3724,6 +3746,7 @@ function MorseBookWorkspace({
           translatorSource.sourceText.length,
         )}
       />
+      <MorseBookBreadcrumb mode={mode} title={book.title} />
     </main>
   );
 }

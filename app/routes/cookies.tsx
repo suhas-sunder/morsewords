@@ -1,5 +1,7 @@
 import type { Route } from "./+types/cookies";
 
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
   UtilityContentPanel,
   UtilityPageHeader,
@@ -13,6 +15,15 @@ import { canonicalUrl, seoMeta } from "~/client/seo";
 
 const CANONICAL_PATH = "/cookies";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: canonicalUrl("/") },
+    { "@type": "ListItem", position: 2, name: "Cookies", item: CANONICAL_URL },
+  ],
+};
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
@@ -29,21 +40,22 @@ export function meta({}: Route.MetaArgs) {
 
 export default function CookiePolicyRoute() {
   return (
-    <UtilityPageShell>
-      <UtilityPageHeader
-        eyebrow="MorseWords cookies"
-        title="Cookie Policy"
-        updated="Last updated June 14, 2026"
-      >
-        <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-          This page explains how MorseWords may use cookies, localStorage, and
-          similar browser technologies. It does not add a cookie banner or
-          consent workflow.
-        </p>
-      </UtilityPageHeader>
+    <>
+      <UtilityPageShell>
+        <UtilityPageHeader
+          eyebrow="MorseWords cookies"
+          title="Cookie Policy"
+          updated="Last updated June 14, 2026"
+        >
+          <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+            This page explains how MorseWords may use cookies, localStorage, and
+            similar browser technologies. It does not add a cookie banner or
+            consent workflow.
+          </p>
+        </UtilityPageHeader>
 
-      <UtilityContentPanel>
-        <section className="space-y-3">
+        <UtilityContentPanel>
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Cookies and similar technologies
           </h2>
@@ -52,9 +64,9 @@ export default function CookiePolicyRoute() {
             use localStorage, sessionStorage, IndexedDB, or similar technologies
             that store data in your browser.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Preferences, settings, and progress
           </h2>
@@ -67,9 +79,9 @@ export default function CookiePolicyRoute() {
             Clearing browser storage may reset these preferences, settings, and
             progress.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Analytics and ads
           </h2>
@@ -79,9 +91,9 @@ export default function CookiePolicyRoute() {
             limit repeated ads. Those providers may process information under
             their own policies.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Managing cookies
           </h2>
@@ -91,9 +103,9 @@ export default function CookiePolicyRoute() {
             site data. Some MorseWords features may lose saved preferences or
             progress if storage is disabled or cleared.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">Contact</h2>
           <p>
             Questions about this policy can be sent to{" "}
@@ -105,8 +117,11 @@ export default function CookiePolicyRoute() {
             </a>
             .
           </p>
-        </section>
-      </UtilityContentPanel>
-    </UtilityPageShell>
+          </section>
+        </UtilityContentPanel>
+      </UtilityPageShell>
+      <BreadcrumbTrail current="Cookies" placement="pageBottom" />
+      <JsonLdScript jsonLd={breadcrumbJsonLd} />
+    </>
   );
 }

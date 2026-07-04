@@ -650,9 +650,9 @@ export default function MorseCodeChartRoute() {
           </div>
         </section>
 
-        <section id="faq" className="mt-10 sm:mt-12">
+        <div id="faq">
           <FaqSectionGeneric title="Morse code chart FAQ" items={faqItems} />
-        </section>
+        </div>
 
         <JsonLdScript jsonLd={jsonLd} />
         <BreadcrumbTrail current="Morse Code Chart" placement="contentFooter" />

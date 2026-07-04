@@ -1,5 +1,7 @@
 import type { Route } from "./+types/privacy";
 
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
   UtilityContentPanel,
   UtilityPageHeader,
@@ -13,6 +15,15 @@ import { canonicalUrl, seoMeta } from "~/client/seo";
 
 const CANONICAL_PATH = "/privacy";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: canonicalUrl("/") },
+    { "@type": "ListItem", position: 2, name: "Privacy", item: CANONICAL_URL },
+  ],
+};
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
@@ -29,21 +40,22 @@ export function meta({}: Route.MetaArgs) {
 
 export default function PrivacyPolicyRoute() {
   return (
-    <UtilityPageShell>
-      <UtilityPageHeader
-        eyebrow="MorseWords privacy"
-        title="Privacy Policy"
-        updated="Last updated June 14, 2026"
-      >
-        <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-          MorseWords provides Morse code tools, book and audio tools, and
-          learning/practice experiences. This policy describes the current app
-          in plain language and may be updated as features change.
-        </p>
-      </UtilityPageHeader>
+    <>
+      <UtilityPageShell>
+        <UtilityPageHeader
+          eyebrow="MorseWords privacy"
+          title="Privacy Policy"
+          updated="Last updated June 14, 2026"
+        >
+          <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+            MorseWords provides Morse code tools, book and audio tools, and
+            learning/practice experiences. This policy describes the current app
+            in plain language and may be updated as features change.
+          </p>
+        </UtilityPageHeader>
 
-      <UtilityContentPanel>
-        <section className="space-y-3">
+        <UtilityContentPanel>
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             What MorseWords does
           </h2>
@@ -57,9 +69,9 @@ export default function PrivacyPolicyRoute() {
             MorseWords does not currently provide user accounts, login, or a
             user profile database.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Information you provide
           </h2>
@@ -72,9 +84,9 @@ export default function PrivacyPolicyRoute() {
             If you email MorseWords, we may receive your email address and the
             information you choose to include in the message.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Browser storage, preferences, and progress
           </h2>
@@ -84,9 +96,9 @@ export default function PrivacyPolicyRoute() {
             playback/progress state, and tool behavior. Clearing browser storage
             may reset those preferences or progress.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Analytics, ads, and third-party services
           </h2>
@@ -101,9 +113,9 @@ export default function PrivacyPolicyRoute() {
             security, and email/contact handling later. This policy does not
             replace the terms or privacy policies of those third parties.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Your choices
           </h2>
@@ -113,9 +125,9 @@ export default function PrivacyPolicyRoute() {
             Some preferences or progress may stop working or reset if storage
             is blocked or cleared.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">Contact</h2>
           <p>
             Questions about this policy can be sent to{" "}
@@ -127,8 +139,11 @@ export default function PrivacyPolicyRoute() {
             </a>
             .
           </p>
-        </section>
-      </UtilityContentPanel>
-    </UtilityPageShell>
+          </section>
+        </UtilityContentPanel>
+      </UtilityPageShell>
+      <BreadcrumbTrail current="Privacy" placement="pageBottom" />
+      <JsonLdScript jsonLd={breadcrumbJsonLd} />
+    </>
   );
 }

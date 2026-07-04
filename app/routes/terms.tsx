@@ -1,5 +1,7 @@
 import type { Route } from "./+types/terms";
 
+import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
   UtilityContentPanel,
   UtilityPageHeader,
@@ -13,6 +15,15 @@ import { canonicalUrl, seoMeta } from "~/client/seo";
 
 const CANONICAL_PATH = "/terms";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: canonicalUrl("/") },
+    { "@type": "ListItem", position: 2, name: "Terms", item: CANONICAL_URL },
+  ],
+};
 
 export function links() {
   return [{ rel: "canonical", href: CANONICAL_URL }];
@@ -29,20 +40,21 @@ export function meta({}: Route.MetaArgs) {
 
 export default function TermsRoute() {
   return (
-    <UtilityPageShell>
-      <UtilityPageHeader
-        eyebrow="MorseWords terms"
-        title="Terms of Use"
-        updated="Last updated June 14, 2026"
-      >
-        <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-          These terms apply when you use MorseWords tools, learning pages,
-          book/audio features, printable pages, and reference content.
-        </p>
-      </UtilityPageHeader>
+    <>
+      <UtilityPageShell>
+        <UtilityPageHeader
+          eyebrow="MorseWords terms"
+          title="Terms of Use"
+          updated="Last updated June 14, 2026"
+        >
+          <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+            These terms apply when you use MorseWords tools, learning pages,
+            book/audio features, printable pages, and reference content.
+          </p>
+        </UtilityPageHeader>
 
-      <UtilityContentPanel>
-        <section className="space-y-3">
+        <UtilityContentPanel>
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Educational and tooling purpose
           </h2>
@@ -51,9 +63,9 @@ export default function TermsRoute() {
             toolkit. It is not an official standards body, emergency
             communication service, certification provider, or legal authority.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Acceptable use
           </h2>
@@ -63,9 +75,9 @@ export default function TermsRoute() {
             or use the tools in a way that harms others or violates applicable
             law.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Your text and uploads
           </h2>
@@ -75,9 +87,9 @@ export default function TermsRoute() {
             right to use, and avoid entering sensitive personal information if
             the tool does not require it.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Accuracy and public-domain limits
           </h2>
@@ -93,9 +105,9 @@ export default function TermsRoute() {
             domain status can vary by jurisdiction. Review source links and
             use your own judgment for your intended use.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             No warranties
           </h2>
@@ -104,9 +116,9 @@ export default function TermsRoute() {
             break, be unavailable, or contain mistakes. We do not make promises
             that the service will always be available or fit every use case.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">
             Limitation of liability
           </h2>
@@ -116,9 +128,9 @@ export default function TermsRoute() {
             punitive damages that may result from using or being unable to use
             the site.
           </p>
-        </section>
+          </section>
 
-        <section className="space-y-3">
+          <section className="space-y-3">
           <h2 className="text-2xl font-extrabold text-sky-950">Contact</h2>
           <p>
             Concerns about these terms can be sent to{" "}
@@ -130,8 +142,11 @@ export default function TermsRoute() {
             </a>
             .
           </p>
-        </section>
-      </UtilityContentPanel>
-    </UtilityPageShell>
+          </section>
+        </UtilityContentPanel>
+      </UtilityPageShell>
+      <BreadcrumbTrail current="Terms" placement="pageBottom" />
+      <JsonLdScript jsonLd={breadcrumbJsonLd} />
+    </>
   );
 }

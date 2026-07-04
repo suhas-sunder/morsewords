@@ -1,6 +1,7 @@
 import type { Route } from "./+types/morse-code-books.$slug";
 
 import MorseBookPage from "~/client/components/morse-code-books/MorseBookPage";
+import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
   getMorseBookPreviewAssetUrl,
   getMorseBookPreviewRuntimeContentFromUrl,
@@ -19,6 +20,7 @@ import {
   morseBookPath,
 } from "~/client/data/morseBooks";
 import { absoluteUrl } from "~/client/data/routes";
+import { SITE_URL } from "~/client/seo";
 
 const DUPLICATE_DISCOVERABLE_BOOK_TITLES = new Set(
   [...getDiscoverableMorseBookSummaries().reduce((counts, book) => {
@@ -195,14 +197,41 @@ export const meta: Route.MetaFunction = ({ data }) => {
 };
 
 export default function MorseBookRoute({ loaderData }: Route.ComponentProps) {
+  const book = loaderData.bookSummary ?? loaderData.book;
+  const detailJsonLd =
+    book && loaderData.previewMode === null
+      ? {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Morse Book Library",
+              item: absoluteUrl("/morse-code-books"),
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: book.title,
+              item: absoluteUrl(morseBookPath(book.slug)),
+            },
+          ],
+        }
+      : null;
+
   return (
-    <MorseBookPage
-      book={loaderData.book}
-      bookSummary={loaderData.bookSummary}
-      initialSection={loaderData.initialSection}
-      initialPreviewContent={loaderData.initialPreviewContent}
-      previewMode={loaderData.previewMode}
-      seoSummary={loaderData.seoSummary}
-    />
+    <>
+      {detailJsonLd ? <JsonLdScript jsonLd={detailJsonLd} /> : null}
+      <MorseBookPage
+        book={loaderData.book}
+        bookSummary={loaderData.bookSummary}
+        initialSection={loaderData.initialSection}
+        initialPreviewContent={loaderData.initialPreviewContent}
+        previewMode={loaderData.previewMode}
+        seoSummary={loaderData.seoSummary}
+      />
+    </>
   );
 }

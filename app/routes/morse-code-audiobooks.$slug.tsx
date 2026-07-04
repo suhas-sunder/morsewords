@@ -153,6 +153,25 @@ export default function MorseAudiobookRoute({
         ...(book.source.sourceUrl ? { sameAs: book.source.sourceUrl } : {}),
       },
     },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Morse Audiobook Library",
+          item: absoluteUrl("/morse-code-audiobooks"),
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: book.title,
+          item: audiobookUrl,
+        },
+      ],
+    },
   ];
 
   return (
