@@ -25,6 +25,29 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const contactPageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact MorseWords",
+  url: CANONICAL_URL,
+  inLanguage: "en",
+  description:
+    "Contact MorseWords for bug reports, feature requests, accessibility issues, source concerns, and general site questions.",
+  isPartOf: {
+    "@type": "WebSite",
+    name: "MorseWords",
+    url: canonicalUrl("/"),
+  },
+  about: {
+    "@type": "WebApplication",
+    name: "MorseWords",
+    applicationCategory: "EducationalApplication",
+    operatingSystem: "All",
+    url: canonicalUrl("/"),
+  },
+  email: MORSEWORDS_SUPPORT_EMAIL,
+};
+
 const supportTopics = [
   "Bug reports with the page URL, browser or device, and steps to reproduce.",
   "Feature requests that explain the learning or tool workflow you need.",
@@ -98,18 +121,24 @@ export default function ContactRoute() {
 
           <section className="space-y-3">
             <h2 className="text-2xl font-extrabold text-sky-950">
-              No contact form yet
+              What happens next
             </h2>
             <p>
-              This page is intentionally static. MorseWords has not added a
-              contact form, email-sending integration, backend submission endpoint,
-              account system, authentication, or database-backed support queue.
+              Email is the clearest way to reach MorseWords right now. Messages
+              are reviewed as time allows, so include enough detail to make the
+              first reply useful.
+            </p>
+            <p>
+              For bug reports, include the page URL, what you expected, what
+              happened, and the browser or device you used. For source or
+              public-domain concerns, include the book or reference page and the
+              source note you want reviewed.
             </p>
           </section>
         </UtilityContentPanel>
       </UtilityPageShell>
       <BreadcrumbTrail current="Contact" placement="pageBottom" />
-      <JsonLdScript jsonLd={breadcrumbJsonLd} />
+      <JsonLdScript jsonLd={[contactPageJsonLd, breadcrumbJsonLd]} />
     </>
   );
 }

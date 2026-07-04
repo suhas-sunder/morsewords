@@ -3,6 +3,7 @@ import type { Route } from "./+types/about";
 import FaqSectionGeneric, {
   type FaqItem,
 } from "~/client/components/shared/FaqSectionGeneric";
+import { ActionLinkButton } from "~/client/components/shared/ActionControls";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
@@ -18,6 +19,7 @@ const CANONICAL_PATH = "/about";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
 const CREATOR_URL = "https://www.suhassunder.com";
 const CREATOR_LINKEDIN = "https://www.linkedin.com/in/s-sunder/";
+const CREATOR_IMAGE_URL = "https://assets.morsewords.com/suhas.jpg";
 
 const aboutFaqItems: FaqItem[] = [
   {
@@ -98,6 +100,7 @@ export default function About() {
       name: "Suhas Sunder",
       jobTitle: "Software Developer",
       url: CREATOR_URL,
+      image: CREATOR_IMAGE_URL,
       sameAs: [CREATOR_URL, CREATOR_LINKEDIN],
       knowsAbout: [
         "React",
@@ -320,30 +323,55 @@ export default function About() {
           title="Built and maintained by Suhas Sunder"
           description="MorseWords is maintained as a focused web utility with a real person behind the product direction."
         >
-          <div className="space-y-4 text-base leading-relaxed text-slate-700 sm:text-lg">
-            <p>
-              Suhas Sunder is a software developer who builds production web
-              applications and focused browser utilities with React, TypeScript,
-              Remix, Node.js, and responsive interface work.
-            </p>
-            <p>
-              My Electrical and Computer Engineering background, including a
-              Master's completed in December 2025, also shapes how I approach
-              Morse code as a practical system of encoding, timing, audio, and
-              signal transmission.
-            </p>
-            <p>
-              MorseWords exists because many Morse code sites are either very
-              sparse converters or dense training resources. This site is meant
-              to sit between those extremes: practical enough for repeated use,
-              but approachable enough for a beginner's first session.
-            </p>
-            <ActionLinks
-              links={[
-                { href: CREATOR_URL, label: "Developer portfolio" },
-                { href: CREATOR_LINKEDIN, label: "LinkedIn" },
-              ]}
+          <div className="grid gap-5 sm:grid-cols-[auto_minmax(0,1fr)] sm:items-start">
+            <img
+              src={CREATOR_IMAGE_URL}
+              alt="Suhas Sunder, creator of MorseWords"
+              width={160}
+              height={160}
+              loading="lazy"
+              decoding="async"
+              className="mx-auto h-32 w-32 rounded-xl object-cover sm:mx-0 sm:h-40 sm:w-40"
             />
+            <div className="space-y-4 text-base leading-relaxed text-slate-700 sm:text-lg">
+              <p>
+                Suhas Sunder is a software developer who builds production web
+                applications and focused browser utilities with React,
+                TypeScript, Remix, Node.js, and responsive interface work.
+              </p>
+              <p>
+                My Electrical and Computer Engineering background, including a
+                Master's completed in December 2025, also shapes how I approach
+                Morse code as a practical system of encoding, timing, audio, and
+                signal transmission.
+              </p>
+              <p>
+                MorseWords exists because many Morse code sites are either very
+                sparse converters or dense training resources. This site is meant
+                to sit between those extremes: practical enough for repeated use,
+                but approachable enough for a beginner's first session.
+              </p>
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                <ActionLinkButton
+                  href={CREATOR_URL}
+                  target="_blank"
+                  rel="nofollow noreferrer noopener"
+                  size="md"
+                  tone="light"
+                >
+                  Developer portfolio
+                </ActionLinkButton>
+                <ActionLinkButton
+                  href={CREATOR_LINKEDIN}
+                  target="_blank"
+                  rel="nofollow noreferrer noopener"
+                  size="md"
+                  tone="light"
+                >
+                  LinkedIn
+                </ActionLinkButton>
+              </div>
+            </div>
           </div>
         </SectionCard>
 
