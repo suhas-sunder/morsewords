@@ -27,6 +27,10 @@ import {
 import type { MorseBookLibrarySummary } from "~/client/data/morseBookTypes";
 import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import {
+  matchesNormalizedSearch,
+  normalizeSearchText,
+} from "~/client/utils/searchNormalization";
 
 const CANONICAL_PATH = ROUTES.morseAudiobooks;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
@@ -103,16 +107,14 @@ function enrichAudiobook(
   const subjectsForHub = uniqueSorted(book.subjects.map(cleanSubject));
   const hubSubjects = subjectsForHub.length > 0 ? subjectsForHub : ["Classics"];
   const hubDescription = audiobookDescription(book, seoDescriptionsBySlug);
-  const searchText = [
+  const searchText = normalizeSearchText([
     book.title,
     bookAuthor(book),
     hubDescription,
     book.language,
     book.source.provider,
     ...hubSubjects,
-  ]
-    .join(" ")
-    .toLowerCase();
+  ].join(" "));
 
   return {
     ...book,
@@ -225,9 +227,12 @@ export default function MorseCodeAudiobooksRoute({
   );
 
   const filteredBooks = React.useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
+    const normalizedQuery = normalizeSearchText(query);
     const candidates = audiobookBooks.filter((book) => {
-      if (normalizedQuery && !book.searchText.includes(normalizedQuery)) {
+      if (
+        normalizedQuery &&
+        !matchesNormalizedSearch(book.searchText, normalizedQuery)
+      ) {
         return false;
       }
       if (

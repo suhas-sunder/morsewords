@@ -10,6 +10,10 @@ import {
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import { ROUTES } from "~/client/data/routes";
 import type { ThemeMode } from "~/client/theme/themeStorage";
+import {
+  matchesNormalizedSearch,
+  normalizeSearchText,
+} from "~/client/utils/searchNormalization";
 import DisplaySettingsToggle from "./DisplaySettingsToggle";
 import ThemeToggle from "./ThemeToggle";
 
@@ -17,6 +21,7 @@ type NavItem = {
   label: string;
   href: string;
   description?: string;
+  searchKeywords?: string;
 };
 
 type NavGroup = {
@@ -144,6 +149,8 @@ const MORE_GROUPS: NavGroup[] = [
         label: "Morse code alphabet",
         href: ROUTES.alphabet,
         description: "View A-Z Morse patterns in one place.",
+        searchKeywords:
+          "Morse code chart alphabet chart letter chart A-Z chart",
       },
       {
         label: "Morse code numbers",
@@ -239,6 +246,8 @@ const MORE_GROUPS: NavGroup[] = [
         label: "Morse code decoder",
         href: ROUTES.decoder,
         description: "Decode dots, dashes, spaces, and separators.",
+        searchKeywords:
+          "Audio decoder Morse code audio decoder audio to text sound decoder MP3 decoder WAV decoder",
       },
       {
         label: "Word separator",
@@ -513,7 +522,7 @@ export default function NavBar(props: {
 
   const moreActive = anyActive(pathname, MORE_ITEMS);
   function filterGroups(rawQuery: string, groups = MORE_GROUPS) {
-    const normalizedQuery = rawQuery.trim().toLowerCase();
+    const normalizedQuery = normalizeSearchText(rawQuery);
 
     return groups.map((group) => ({
       ...group,
@@ -523,8 +532,8 @@ export default function NavBar(props: {
 
         const haystack = `${group.title} ${item.label} ${
           item.description ?? ""
-        } ${item.href}`.toLowerCase();
-        return haystack.includes(normalizedQuery);
+        } ${item.searchKeywords ?? ""} ${item.href}`;
+        return matchesNormalizedSearch(haystack, normalizedQuery);
       }),
     })).filter((group) => group.items.length > 0);
   }

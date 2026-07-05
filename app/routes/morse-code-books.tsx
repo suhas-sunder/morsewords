@@ -32,6 +32,10 @@ import {
 import type { MorseBookLibrarySummary } from "~/client/data/morseBookTypes";
 import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
+import {
+  matchesNormalizedSearch,
+  normalizeSearchText,
+} from "~/client/utils/searchNormalization";
 
 const CANONICAL_PATH = ROUTES.morseBooks;
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
@@ -200,16 +204,14 @@ function bookAuthor(book: MorseBookLibrarySummary) {
 }
 
 function searchableBookText(book: HubBook) {
-  return [
+  return normalizeSearchText([
     book.title,
     bookAuthor(book),
     book.hubDescription,
     book.source.provider,
     book.language,
     ...book.hubSubjects,
-  ]
-    .join(" ")
-    .toLowerCase();
+  ].join(" "));
 }
 
 function sortBooks(books: HubBook[], sortMode: SortMode) {
@@ -407,11 +409,11 @@ export default function MorseCodeBooksHubRoute({
   );
 
   const filteredBooks = React.useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
+    const normalizedQuery = normalizeSearchText(query);
     const candidates = hubBooks.filter((book) => {
       if (
         normalizedQuery &&
-        !book.hubSearchText.includes(normalizedQuery)
+        !matchesNormalizedSearch(book.hubSearchText, normalizedQuery)
       ) {
         return false;
       }

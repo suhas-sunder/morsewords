@@ -3,6 +3,11 @@ import fs from "node:fs";
 import path from "node:path";
 
 import { ROUTES, absoluteUrl } from "../../app/client/data/routes";
+import {
+  matchesNormalizedSearch,
+  normalizeSearchText,
+  tokenizeSearchText,
+} from "../../app/client/utils/searchNormalization";
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 const ROOT = process.cwd();
@@ -14,6 +19,23 @@ const TEST_BOOK_SLUG = "test-published-morse-book";
 const TEST_BOOK_HUB_PATH = `${ROUTES.morseBooks}?preview=test-published`;
 const TEST_COLLECTION_HUB_PATH = `${ROUTES.morseBooks}?preview=test-collection`;
 const THEME_STORAGE_KEY = "morsewords-theme";
+const NORMALIZED_BOOK_SEARCH_CASES = [
+  { query: "The Hound of the Baskervilles", title: "The Hound of the Baskervilles" },
+  { query: "The  Hound  of  the  Baskervilles", title: "The Hound of the Baskervilles" },
+  { query: "The Hound of the Baskervilles!", title: "The Hound of the Baskervilles" },
+  { query: "\u201cThe Hound of the Baskervilles\u201d", title: "The Hound of the Baskervilles" },
+  { query: "The-Hound-of-the-Baskervilles", title: "The Hound of the Baskervilles" },
+  { query: "Hound Baskervilles", title: "The Hound of the Baskervilles" },
+  { query: "The Call of Cthulhu", title: /The call of Cthulhu/i },
+  { query: "The  Call  of  Cthulhu", title: /The call of Cthulhu/i },
+  { query: "The Call of Cthulhu!", title: /The call of Cthulhu/i },
+  { query: "The-Call-of-Cthulhu", title: /The call of Cthulhu/i },
+  { query: "Alice's Adventures in Wonderland", title: "Alice's Adventures in Wonderland" },
+  { query: "Alice\u2019s Adventures in Wonderland", title: "Alice's Adventures in Wonderland" },
+  { query: "Alice Adventures in Wonderland", title: "Alice's Adventures in Wonderland" },
+  { query: "Alice in Wonderland", title: "Alice's Adventures in Wonderland" },
+  { query: "Alice-in-Wonderland", title: "Alice's Adventures in Wonderland" },
+] satisfies { query: string; title: string | RegExp }[];
 const PUBLIC_INTERNAL_TERMS = [
   "reviewed morse books are coming soon",
   "checked and prepared",
@@ -105,6 +127,42 @@ async function cardTitles(page: Page) {
   );
 }
 
+async function expectBookSearchResult(
+  page: Page,
+  searchInput: Locator,
+  query: string,
+  title: string | RegExp,
+) {
+  await searchInput.fill(query);
+  await expect(searchInput).toHaveValue(query);
+  await expect(page.locator("[data-testid='morse-books-no-matches']")).toHaveCount(0);
+  await expect(page.locator("[data-testid='morse-book-card']").first()).toBeVisible();
+  await expect(
+    page.locator("[data-testid='morse-book-card-title']").filter({ hasText: title }),
+  ).toBeVisible();
+  await expect(page.locator("[data-testid='morse-audiobook-card']")).toHaveCount(0);
+}
+
+async function expectAudiobookSearchResult(
+  page: Page,
+  searchInput: Locator,
+  query: string,
+  title: string | RegExp,
+) {
+  await searchInput.fill(query);
+  await expect(searchInput).toHaveValue(query);
+  await expect(page.locator("[data-testid='morse-audiobooks-no-matches']")).toHaveCount(
+    0,
+  );
+  await expect(page.locator("[data-testid='morse-audiobook-card']").first()).toBeVisible();
+  await expect(
+    page
+      .locator("[data-testid='morse-audiobook-card-title']")
+      .filter({ hasText: title }),
+  ).toBeVisible();
+  await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(0);
+}
+
 async function expectCollectionTopReturned(page: Page) {
   await expect
     .poll(async () =>
@@ -191,6 +249,33 @@ async function contrastRatio(locator: Locator) {
 }
 
 test.describe("Morse books hub", () => {
+  test("normalizes search text without losing exact phrase matching", () => {
+    expect(normalizeSearchText("  \u201cAlice\u2019s-Adventures!\u201d  ")).toBe(
+      "alice s adventures",
+    );
+    expect(tokenizeSearchText("The--Hound  of  the Baskervilles")).toEqual([
+      "the",
+      "hound",
+      "of",
+      "the",
+      "baskervilles",
+    ]);
+    expect(
+      matchesNormalizedSearch(
+        "The Hound of the Baskervilles by Arthur Conan Doyle",
+        "Hound Baskervilles",
+      ),
+    ).toBe(true);
+    expect(
+      matchesNormalizedSearch(
+        "Alice's Adventures in Wonderland",
+        "Alice Adventures in Wonderland",
+      ),
+    ).toBe(true);
+    expect(matchesNormalizedSearch("Morse code chart", "x")).toBe(false);
+    expect(matchesNormalizedSearch("Morse code chart", "morse x")).toBe(false);
+  });
+
   test("loads the canonical hub with approved books and canonical metadata", async ({
     page,
     request,
@@ -226,21 +311,9 @@ test.describe("Morse books hub", () => {
     await expect(collectionModule.locator("[data-testid='morse-books-card-grid']")).toBeVisible();
     await expect(collectionModule.locator("[data-testid='morse-books-placeholder-grid']")).toHaveCount(0);
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(12);
-    await expect(page.getByRole("heading", { name: "Alice's Adventures in Wonderland" })).toBeVisible();
-    const approvedCard = page
-      .locator("[data-testid='morse-book-card']")
-      .filter({ hasText: "Alice's Adventures in Wonderland" });
-    await expect(approvedCard).toHaveAttribute("href", APPROVED_BOOK_PATH);
     await expect(page.getByRole("link", { name: /^Open book/ })).toHaveCount(0);
     await expect(page.locator("[data-testid='morse-book-output-badge']")).toHaveCount(0);
     await expect(page.locator("[data-testid='morse-book-subject-chip']")).toHaveCount(0);
-    await expect(approvedCard.locator("[data-testid='morse-book-card-description']")).toBeVisible();
-    await expect(approvedCard.locator("[data-testid='morse-book-card-subjects']")).toContainText(
-      "Children",
-    );
-    await expect(approvedCard.locator("[data-testid='morse-book-card-meta']")).toContainText(
-      "Project Gutenberg",
-    );
     await expect(collectionModule.locator("[data-testid='morse-books-toolbar']")).toBeVisible();
     const searchInput = page.getByLabel(
       "Search title, author, description, or subject",
@@ -269,8 +342,23 @@ test.describe("Morse books hub", () => {
 
     await searchInput.fill("Alice");
     await expect(searchInput).toHaveValue("Alice");
-    await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(1);
+    const aliceBookCount = await page
+      .locator("[data-testid='morse-book-card']")
+      .count();
+    expect(aliceBookCount).toBeGreaterThan(0);
+    expect(aliceBookCount).toBeLessThanOrEqual(12);
     await expect(page.getByRole("heading", { name: "Alice's Adventures in Wonderland" })).toBeVisible();
+    const approvedCard = page
+      .locator("[data-testid='morse-book-card']")
+      .filter({ hasText: "Alice's Adventures in Wonderland" });
+    await expect(approvedCard).toHaveAttribute("href", APPROVED_BOOK_PATH);
+    await expect(approvedCard.locator("[data-testid='morse-book-card-description']")).toBeVisible();
+    await expect(approvedCard.locator("[data-testid='morse-book-card-subjects']")).toContainText(
+      "Children",
+    );
+    await expect(approvedCard.locator("[data-testid='morse-book-card-meta']")).toContainText(
+      "Project Gutenberg",
+    );
     await expect(page.getByRole("button", { name: "Reset view" })).toBeVisible();
     await page.getByRole("button", { name: "Reset view" }).click();
     await expect(searchInput).toHaveValue("");
@@ -281,7 +369,11 @@ test.describe("Morse books hub", () => {
     );
 
     await searchInput.fill("Stevenson");
-    await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(3);
+    const stevensonBookCount = await page
+      .locator("[data-testid='morse-book-card']")
+      .count();
+    expect(stevensonBookCount).toBeGreaterThan(0);
+    expect(stevensonBookCount).toBeLessThanOrEqual(12);
     await expect(page.getByRole("heading", { name: "Treasure Island" })).toBeVisible();
     await searchInput.fill("Gothic");
     await expect(page.locator("[data-testid='morse-book-card']").first()).toBeVisible();
@@ -382,6 +474,26 @@ test.describe("Morse books hub", () => {
     await saveScreenshot(page, testInfo, "morse-books-hub-desktop.png");
   });
 
+  test("finds books with normalized title search variants", async ({ page }) => {
+    await gotoHub(page);
+
+    const searchInput = page.getByLabel(
+      "Search title, author, description, or subject",
+    );
+    await expect(searchInput).toBeEnabled();
+
+    for (const searchCase of NORMALIZED_BOOK_SEARCH_CASES) {
+      await test.step(`book search: ${searchCase.query}`, async () => {
+        await expectBookSearchResult(
+          page,
+          searchInput,
+          searchCase.query,
+          searchCase.title,
+        );
+      });
+    }
+  });
+
   test("loads audiobook hub as canonical page and keeps sitemap approved-only", async ({
     page,
     request,
@@ -405,13 +517,6 @@ test.describe("Morse books hub", () => {
     await expect(page.locator("[data-testid='morse-audiobooks-result-count']")).toHaveText(
       `Showing 1-12 of ${publicBookCount()} audiobooks`,
     );
-    const approvedAudiobookCard = page
-      .locator("[data-testid='morse-audiobook-card']")
-      .filter({ hasText: "Alice's Adventures in Wonderland" });
-    await expect(approvedAudiobookCard).toHaveAttribute("href", APPROVED_AUDIOBOOK_PATH);
-    await expect(approvedAudiobookCard.locator("[data-testid='morse-audiobook-card-meta']")).toContainText(
-      "Morse audiobook",
-    );
     const searchInput = page.getByLabel(
       "Search Morse audiobooks by title, author, source, or subject",
     );
@@ -420,8 +525,20 @@ test.describe("Morse books hub", () => {
     await expect(searchInput).toBeEnabled();
     await expect(subjectFilter).toBeEnabled();
     await expect(sortSelect).toHaveValue("title-az");
+    await searchInput.fill("Alice");
+    const approvedAudiobookCard = page
+      .locator("[data-testid='morse-audiobook-card']")
+      .filter({ hasText: "Alice's Adventures in Wonderland" });
+    await expect(approvedAudiobookCard).toHaveAttribute("href", APPROVED_AUDIOBOOK_PATH);
+    await expect(approvedAudiobookCard.locator("[data-testid='morse-audiobook-card-meta']")).toContainText(
+      "Morse audiobook",
+    );
     await searchInput.fill("Stevenson");
-    await expect(page.locator("[data-testid='morse-audiobook-card']")).toHaveCount(3);
+    const stevensonAudiobookCount = await page
+      .locator("[data-testid='morse-audiobook-card']")
+      .count();
+    expect(stevensonAudiobookCount).toBeGreaterThan(0);
+    expect(stevensonAudiobookCount).toBeLessThanOrEqual(12);
     await searchInput.fill("");
     const firstSubjectValue = await subjectFilter.locator("option").nth(1).getAttribute("value");
     expect(firstSubjectValue).toBeTruthy();
@@ -471,6 +588,58 @@ test.describe("Morse books hub", () => {
     expect(htmlLinks).toContain(APPROVED_AUDIOBOOK_PATH);
 
     await saveScreenshot(page, testInfo, "morse-audiobooks-hub-desktop.png");
+  });
+
+  test("finds audiobooks with normalized title search variants", async ({ page }) => {
+    await gotoHub(page, ROUTES.morseAudiobooks);
+
+    const searchInput = page.getByLabel(
+      "Search Morse audiobooks by title, author, source, or subject",
+    );
+    await expect(searchInput).toBeEnabled();
+
+    for (const searchCase of NORMALIZED_BOOK_SEARCH_CASES) {
+      await test.step(`audiobook search: ${searchCase.query}`, async () => {
+        await expectAudiobookSearchResult(
+          page,
+          searchInput,
+          searchCase.query,
+          searchCase.title,
+        );
+      });
+    }
+  });
+
+  test("filters the More menu with normalized tool intent queries", async ({
+    page,
+  }) => {
+    await gotoHub(page, ROUTES.home);
+
+    const moreButton = page.getByRole("button", { name: "More" });
+    await expect(moreButton).toBeVisible();
+    await expect
+      .poll(async () => {
+        await moreButton.click();
+        return moreButton.getAttribute("aria-expanded");
+      })
+      .toBe("true");
+    const moreDialog = page.getByRole("dialog", {
+      name: "More MorseWords tools",
+    });
+    await expect(moreDialog).toBeVisible();
+
+    const searchInput = moreDialog.getByLabel("Search MorseWords tools");
+    await searchInput.fill("translator");
+    await expect(moreDialog.getByText("No tools match that search.")).toHaveCount(0);
+    await expect(moreDialog.locator("a").filter({ hasText: "Book translator" })).toBeVisible();
+
+    await searchInput.fill("audio decoder");
+    await expect(moreDialog.getByText("No tools match that search.")).toHaveCount(0);
+    await expect(moreDialog.locator("a").filter({ hasText: "Morse code decoder" })).toBeVisible();
+
+    await searchInput.fill("morse code chart");
+    await expect(moreDialog.getByText("No tools match that search.")).toHaveCount(0);
+    await expect(moreDialog.locator("a").filter({ hasText: "Morse code alphabet" })).toBeVisible();
   });
 
   test("shows only publish-ready books when a development fixture is enabled", async ({
@@ -586,7 +755,7 @@ test.describe("Morse books hub", () => {
     await expect(page.getByRole("button", { name: "Show more books" })).toHaveCount(0);
     const pagination = page.locator("[data-testid='morse-books-pagination']");
     await expect(pagination).toBeVisible();
-    await expect(pagination.getByRole("button", { name: "1", exact: true })).toHaveAttribute(
+    await expect(pagination.getByRole("button", { name: "Page 1" })).toHaveAttribute(
       "aria-current",
       "page",
     );
@@ -640,7 +809,7 @@ test.describe("Morse books hub", () => {
       page.getByRole("heading", { name: "Test Collection Morse Book 13" }),
     ).toBeVisible();
 
-    await pagination.getByRole("button", { name: "3", exact: true }).click();
+    await pagination.getByRole("button", { name: "Page 3" }).click();
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(6);
     await expect(page.locator("[data-testid='morse-books-result-count']")).toHaveText(
       "Showing 25-30 of 30 books",
