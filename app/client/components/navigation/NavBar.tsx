@@ -535,7 +535,7 @@ export default function NavBar(props: {
         <div className="flex items-center justify-between gap-3 py-3">
           <a
             href={ROUTES.home}
-            className="mw-nav-link flex min-w-0 cursor-pointer items-center gap-3 text-white transition hover:text-sky-200 2xl:shrink-0"
+            className="mw-nav-link flex min-w-0 flex-1 cursor-pointer items-center gap-3 text-white transition hover:text-sky-200 min-[1180px]:flex-none 2xl:shrink-0"
           >
             <img
               src={logoUrl}
@@ -698,16 +698,25 @@ export default function NavBar(props: {
             <ThemeToggle initialTheme={props.initialTheme} />
           </nav>
 
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="mw-nav-link inline-flex shrink-0 cursor-pointer items-center justify-center px-3 py-2 text-sm font-semibold text-white transition hover:text-sky-200 min-[1180px]:hidden"
-            aria-label={open ? "Close navigation" : "Open navigation"}
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-          >
-            <BurgerIcon open={open} />
-          </button>
+          <div className="flex shrink-0 items-center gap-2 min-[1180px]:hidden">
+            {!open ? (
+              <div className="hidden items-center gap-2 min-[640px]:flex">
+                <DisplaySettingsToggle onOpen={() => setMoreOpen(false)} />
+                <ThemeToggle initialTheme={props.initialTheme} />
+              </div>
+            ) : null}
+
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              className="mw-nav-link inline-flex shrink-0 cursor-pointer items-center justify-center px-3 py-2 text-sm font-semibold text-white transition hover:text-sky-200 min-[1180px]:hidden"
+              aria-label={open ? "Close navigation" : "Open navigation"}
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+            >
+              <BurgerIcon open={open} />
+            </button>
+          </div>
         </div>
 
         {open && typeof document !== "undefined" ? (
