@@ -141,9 +141,14 @@ export default function Socials() {
               subtitle="Short, focused finance quizzes designed to test real-world money concepts quickly."
             />
             <ExternalCard
-              to="https://www.ilovesvg.com"
+              to="https://www.ilovesvg.com/"
               title="iLoveSVG.com"
               subtitle="Tools for viewing, converting, optimizing, and working with SVG files."
+            />
+            <ExternalCard
+              to="http://doodlegarden.com"
+              title="DoodleGarden"
+              subtitle="Art and animation projects from the MorseWords maintainer."
             />
             <ExternalCard
               to="https://www.ilovetimers.com"

@@ -282,7 +282,7 @@ test("print-style exports invoke print once per click", async ({ page }) => {
   await expectSinglePrintForButton(page, "Print selected output");
 });
 
-test("social links use the updated LinkedIn profile and developer portfolio", async ({
+test("social links include maintainer and related project links", async ({
   page,
 }) => {
   await page.goto("/misc/socials", { waitUntil: "domcontentloaded" });
@@ -294,10 +294,22 @@ test("social links use the updated LinkedIn profile and developer portfolio", as
   await expect(
     page.locator('a[href="https://www.suhassunder.com"]').first(),
   ).toBeVisible();
+  await expect(
+    page.locator('a[href="https://www.ilovesvg.com/"]').first(),
+  ).toBeVisible();
+  await expect(
+    page.locator('a[href="http://doodlegarden.com"]').first(),
+  ).toBeVisible();
 
   await page.goto("/", { waitUntil: "domcontentloaded" });
   await waitForHydration(page);
   await expect(
     page.locator('a[href="https://www.suhassunder.com"]').first(),
   ).toHaveAttribute("aria-label", /Developer portfolio|Suhas Sunder/);
+  await expect(
+    page.locator('a[href="https://www.ilovesvg.com/"]').first(),
+  ).toHaveText(/iLoveSVG[\s\S]*Image utility/);
+  await expect(
+    page.locator('a[href="http://doodlegarden.com"]').first(),
+  ).toHaveText(/DoodleGarden[\s\S]*Art & Animation/);
 });

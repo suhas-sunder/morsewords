@@ -22,6 +22,8 @@ import dev_png from "../../assets/images/dev_icon.png";
 import dev_webp from "../../assets/images/dev_icon.webp";
 import github_png from "../../assets/images/github_icon.png";
 import github_webp from "../../assets/images/github_icon.webp";
+import ilovesvg_png from "../../assets/images/ilovesvg.png";
+import doodlegarden_png from "../../assets/images/doodlegarden.png";
 import { PortfolioIcon } from "../../assets/svg/Icons";
 
 type SocialLink = {
@@ -120,6 +122,13 @@ function SocialLinks() {
  },
  {
  id: 11,
+ name:"iLoveSVG",
+ label:"Image utility",
+ url:"https://www.ilovesvg.com/",
+ pngImg: ilovesvg_png,
+ },
+ {
+ id: 12,
  name:"Instagram",
  label:"Posts",
  url:"https://www.instagram.com/doodlegardenanimations",
@@ -127,7 +136,14 @@ function SocialLinks() {
  webpImg: insta_webp,
  },
  {
- id: 12,
+ id: 13,
+ name:"DoodleGarden",
+ label:"Art & Animation",
+ url:"http://doodlegarden.com",
+ pngImg: doodlegarden_png,
+ },
+ {
+ id: 14,
  name:"Suhas Sunder",
  label:"Developer portfolio",
  url:"https://www.suhassunder.com",
@@ -135,7 +151,7 @@ function SocialLinks() {
  ariaLabel: "Open Suhas Sunder developer portfolio",
  },
  {
- id: 13,
+ id: 15,
  name:"Spotify",
  label:"Podcast",
  url:"https://open.spotify.com/show/033FlUwtDKeFcouN4jvcTx",
