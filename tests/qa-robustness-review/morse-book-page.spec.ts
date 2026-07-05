@@ -84,6 +84,13 @@ const ERROR_BOOK_PUBLIC_PATH = `/morse-code-books/${ERROR_BOOK_SLUG}`;
 const ART_OF_WAR_PUBLIC_PATH = `/morse-code-books/${ART_OF_WAR_SLUG}`;
 const ANNE_OF_GREEN_GABLES_PUBLIC_PATH =
   `/morse-code-books/${ANNE_OF_GREEN_GABLES_SLUG}`;
+const THE_WAR_OF_THE_WORLDS_PUBLIC_PATH =
+  `/morse-code-books/${THE_WAR_OF_THE_WORLDS_SLUG}`;
+const THE_WAR_OF_THE_WORLDS_AUDIOBOOK_PUBLIC_PATH =
+  `/morse-code-audiobooks/${THE_WAR_OF_THE_WORLDS_SLUG}`;
+const THE_DUNWICH_HORROR_PUBLIC_PATH = "/morse-code-books/the-dunwich-horror";
+const BESPOKE_PASS_2_BOOK_PUBLIC_PATH =
+  `/morse-code-books/${BESPOKE_PASS_2_BOOK_SLUG}`;
 const VIOLET_FAIRY_BOOK_PREVIEW_PATH =
   `/morse-code-books/${VIOLET_FAIRY_BOOK_SLUG}?preview=unpublished`;
 const THE_WAR_OF_THE_WORLDS_PREVIEW_PATH =
@@ -388,6 +395,16 @@ type PreviewLayerMetrics = {
   windowLimit: number;
 };
 
+type PreviewFitMetrics = {
+  content: PreviewLayerRect | null;
+  contentScrollDeltaY: number;
+  frame: PreviewLayerRect;
+  frameScrollDeltaY: number;
+  morse: PreviewLayerMetric | null;
+  text: PreviewLayerMetric | null;
+  visual: PreviewLayerRect | null;
+};
+
 type PreviewFrameVisualState = {
   backgroundColor: string;
   boxShadow: string;
@@ -450,6 +467,71 @@ async function readPreviewLayerMetrics(
   }, testIdPrefix);
 }
 
+async function readPreviewFitMetrics(
+  root: Locator,
+  testIdPrefix = "book-video-preview",
+): Promise<PreviewFitMetrics> {
+  return root.evaluate((scope, prefix) => {
+    const frame = scope.querySelector<HTMLElement>(
+      `[data-testid="${prefix}-frame"]`,
+    );
+    if (!frame) throw new Error(`Missing preview frame for ${prefix}`);
+
+    function rectFor(element: Element): PreviewLayerRect {
+      const rect = element.getBoundingClientRect();
+      return {
+        bottom: rect.bottom,
+        height: rect.height,
+        left: rect.left,
+        right: rect.right,
+        top: rect.top,
+        width: rect.width,
+      };
+    }
+
+    function metricFor(testId: string): PreviewLayerMetric | null {
+      const element = scope.querySelector<HTMLElement>(
+        `[data-testid="${testId}"]`,
+      );
+      if (!element) return null;
+      const style = window.getComputedStyle(element);
+      return {
+        fontSize: Number.parseFloat(style.fontSize),
+        letterSpacing: style.letterSpacing,
+        rect: rectFor(element),
+        text: element.textContent ?? "",
+      };
+    }
+
+    const content =
+      Array.from(frame.children).find(
+        (element): element is HTMLElement =>
+          element instanceof HTMLElement &&
+          element.tagName.toLowerCase() === "div",
+      ) ?? null;
+    const visual = scope.querySelector<HTMLElement>(
+      [
+        `[data-testid="${prefix}-lightbulb"]`,
+        `[data-testid="${prefix}-dot"]`,
+        `[data-testid="${prefix}-full-frame"]`,
+        `[data-testid="${prefix}-morse-text"]`,
+      ].join(","),
+    );
+
+    return {
+      content: content ? rectFor(content) : null,
+      contentScrollDeltaY: content
+        ? Math.max(0, content.scrollHeight - content.clientHeight)
+        : 0,
+      frame: rectFor(frame),
+      frameScrollDeltaY: Math.max(0, frame.scrollHeight - frame.clientHeight),
+      morse: metricFor(`${prefix}-morse-overlay`),
+      text: metricFor(`${prefix}-text-overlay`),
+      visual: visual ? rectFor(visual) : null,
+    };
+  }, testIdPrefix);
+}
+
 async function readPreviewFrameVisualState(
   frame: Locator,
   testIdPrefix = "book-video-preview",
@@ -495,10 +577,30 @@ function expectLayerInsideFrame(
   expect(layer).not.toBeNull();
   expect(layer!.rect.width).toBeGreaterThan(0);
   expect(layer!.rect.height).toBeGreaterThan(0);
-  expect(layer!.rect.left).toBeGreaterThanOrEqual(metrics.frame.left - 1);
-  expect(layer!.rect.top).toBeGreaterThanOrEqual(metrics.frame.top - 1);
-  expect(layer!.rect.right).toBeLessThanOrEqual(metrics.frame.right + 1);
-  expect(layer!.rect.bottom).toBeLessThanOrEqual(metrics.frame.bottom + 1);
+  expectRectInsideFrame(metrics.frame, layer!.rect);
+}
+
+function expectRectInsideFrame(
+  frame: PreviewLayerRect,
+  rect: PreviewLayerRect | null,
+  tolerance = 1,
+) {
+  expect(rect).not.toBeNull();
+  expect(rect!.width).toBeGreaterThan(0);
+  expect(rect!.height).toBeGreaterThan(0);
+  expect(rect!.left).toBeGreaterThanOrEqual(frame.left - tolerance);
+  expect(rect!.top).toBeGreaterThanOrEqual(frame.top - tolerance);
+  expect(rect!.right).toBeLessThanOrEqual(frame.right + tolerance);
+  expect(rect!.bottom).toBeLessThanOrEqual(frame.bottom + tolerance);
+}
+
+function expectPreviewFitsFrame(metrics: PreviewFitMetrics) {
+  expect(metrics.frameScrollDeltaY).toBeLessThanOrEqual(2);
+  expect(metrics.contentScrollDeltaY).toBeLessThanOrEqual(2);
+  expectRectInsideFrame(metrics.frame, metrics.content, 2);
+  expectRectInsideFrame(metrics.frame, metrics.visual, 2);
+  if (metrics.morse) expectRectInsideFrame(metrics.frame, metrics.morse.rect, 2);
+  if (metrics.text) expectRectInsideFrame(metrics.frame, metrics.text.rect, 2);
 }
 
 function expectNormalPlainTextSpacing(layer: PreviewLayerMetric | null) {
@@ -889,6 +991,19 @@ test.describe("Morse book page foundation", () => {
       publicManifestUrl: "https://cdn.example.test/morse-books/public-manifest.json",
       bookUrl: "https://cdn.example.test/morse-books/books/treasure-island.json",
     });
+  });
+
+  test("reserves a no-snippet player-sized fallback loading shell", () => {
+    const source = fs.readFileSync(
+      path.join(ROOT, "app/client/components/morse-code-books/MorseBookPage.tsx"),
+      "utf8",
+    );
+
+    expect(source).toContain('data-nosnippet=""');
+    expect(source).toContain('data-testid="morse-book-loading-player-placeholder"');
+    expect(source).toContain("min-h-[16rem]");
+    expect(source).toContain("sm:min-h-[28rem]");
+    expect(source).toContain("lg:aspect-video");
   });
 
   test("keeps canonical story titles across generated, SEO, and public metadata", () => {
@@ -2197,6 +2312,84 @@ test.describe("Morse book page foundation", () => {
     expect(schemaText).not.toContain("aggregateRating");
     expect(schemaText).not.toContain("reviewRating");
     expect(schemaText).not.toContain('"price"');
+  });
+
+  test("keeps live player preview content inside the frame on mobile and tablet widths", async ({
+    browser,
+  }) => {
+    const viewports = [
+      { height: 844, pathName: THE_WAR_OF_THE_WORLDS_PUBLIC_PATH, width: 390 },
+      {
+        height: 844,
+        pathName: THE_WAR_OF_THE_WORLDS_AUDIOBOOK_PUBLIC_PATH,
+        width: 430,
+      },
+      { height: 844, pathName: THE_DUNWICH_HORROR_PUBLIC_PATH, width: 480 },
+      { height: 900, pathName: ALICE_AUDIOBOOK_PUBLIC_PATH, width: 640 },
+      { height: 900, pathName: BESPOKE_PASS_2_BOOK_PUBLIC_PATH, width: 768 },
+      { height: 900, pathName: THE_WAR_OF_THE_WORLDS_PUBLIC_PATH, width: 1024 },
+      {
+        desktop: true,
+        height: 900,
+        pathName: THE_WAR_OF_THE_WORLDS_AUDIOBOOK_PUBLIC_PATH,
+        width: 1280,
+      },
+      {
+        desktop: true,
+        height: 1000,
+        pathName: THE_DUNWICH_HORROR_PUBLIC_PATH,
+        width: 1440,
+      },
+    ];
+
+    for (const viewport of viewports) {
+      const context = await browser.newContext({
+        viewport: { width: viewport.width, height: viewport.height },
+      });
+      const viewportPage = await context.newPage();
+      try {
+        await blockExternalNetwork(viewportPage);
+        await gotoPublicBookPage(viewportPage, viewport.pathName);
+        await waitForApprovedBookWorkspace(viewportPage);
+
+        const livePlayer = viewportPage.getByTestId("morse-book-live-player");
+        await expect(livePlayer).toBeVisible();
+        await expect(
+          livePlayer.getByTestId("book-video-preview-frame"),
+        ).toBeVisible();
+        await expect(
+          livePlayer.getByRole("button", { name: "Play live player" }),
+        ).toBeVisible();
+        await expect(
+          livePlayer.getByTestId("book-video-preview-timing-strip"),
+        ).toBeVisible();
+        const sectionSelect = viewportPage.getByTestId(
+          "morse-book-live-section-select",
+        );
+        if (await sectionSelect.count()) {
+          await expect(sectionSelect).toBeVisible();
+        }
+
+        const metrics = await readPreviewFitMetrics(livePlayer);
+        expectPreviewFitsFrame(metrics);
+
+        const widthState = await viewportPage.evaluate(() => ({
+          innerWidth: window.innerWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+        }));
+        expect(widthState.scrollWidth).toBeLessThanOrEqual(
+          widthState.innerWidth + 1,
+        );
+
+        if (viewport.desktop) {
+          const ratio = metrics.frame.width / metrics.frame.height;
+          expect(ratio).toBeGreaterThan(1.65);
+          expect(ratio).toBeLessThan(1.9);
+        }
+      } finally {
+        await context.close();
+      }
+    }
   });
 
   test("caches opened approved book JSON and serves a valid cache hit offline", async ({

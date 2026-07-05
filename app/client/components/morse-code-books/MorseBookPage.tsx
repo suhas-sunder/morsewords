@@ -960,6 +960,7 @@ function MorseBookRuntimeState({
       <section
         className="mw-static-surface mt-6 rounded-xl p-5"
         aria-live="polite"
+        data-nosnippet=""
         data-testid={
           status === "loading" ? "morse-book-loading" : "morse-book-load-error"
         }
@@ -989,6 +990,29 @@ function MorseBookRuntimeState({
               aria-hidden="true"
             />
             <span>{loadingMessage}</span>
+          </div>
+        ) : null}
+        {status === "loading" ? (
+          <div
+            className="mt-5 space-y-3"
+            aria-hidden="true"
+            data-testid="morse-book-loading-player-placeholder"
+          >
+            <div className="relative flex min-h-[16rem] w-full flex-col overflow-hidden rounded-xl bg-[#fffdf8] p-3 sm:min-h-[28rem] sm:p-6 lg:aspect-video lg:min-h-[20rem]">
+              <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-3 text-center sm:gap-5">
+                <div className="h-16 w-16 rounded-full bg-slate-200/80 sm:h-28 sm:w-28" />
+                <div className="w-full max-w-[34rem] space-y-2">
+                  <div className="mx-auto h-4 w-3/4 rounded-full bg-slate-200/80 sm:h-6" />
+                  <div className="mx-auto h-3 w-1/2 rounded-full bg-slate-200/70 sm:h-5" />
+                </div>
+              </div>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-3">
+              <div className="h-11 rounded-lg bg-slate-200/70" />
+              <div className="h-11 rounded-lg bg-slate-200/70" />
+              <div className="h-11 rounded-lg bg-slate-200/70" />
+            </div>
+            <div className="h-14 rounded-lg bg-[#fffdf8]/80" />
           </div>
         ) : null}
         {status === "error" ? (

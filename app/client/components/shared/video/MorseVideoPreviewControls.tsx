@@ -257,7 +257,7 @@ export function MorseVideoPreviewPanel({
     : ["space-y-3", className].filter(Boolean).join(" ");
   const frameClass = fullscreen
     ? "relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-none p-1 sm:p-3"
-    : "relative flex aspect-video min-h-[12rem] w-full flex-col overflow-hidden rounded-xl p-3 sm:min-h-[20rem] sm:p-6";
+    : "relative flex min-h-[16rem] w-full flex-col overflow-hidden rounded-xl p-3 sm:min-h-[28rem] sm:p-6 lg:aspect-video lg:min-h-[20rem]";
   const playbackToggleEnabled =
     Boolean(onTogglePlayback) && !playbackToggleDisabled;
   const interactiveFrameClass = playbackToggleEnabled
