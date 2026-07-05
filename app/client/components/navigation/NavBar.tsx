@@ -22,6 +22,8 @@ type NavItem = {
 type NavGroup = {
   title: string;
   items: NavItem[];
+  itemGridClassName?: string;
+  sectionClassName?: string;
 };
 
 const MAIN_ITEMS: NavItem[] = [
@@ -292,6 +294,8 @@ const MORE_GROUPS: NavGroup[] = [
   },
   {
     title: "Books and audiobooks",
+    sectionClassName: "lg:col-span-3 xl:col-span-5",
+    itemGridClassName: "mt-2 grid gap-1.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5",
     items: [
       {
         label: "Morse book library",
@@ -619,23 +623,16 @@ export default function NavBar(props: {
                   <div className="mw-nav-menu-scroll max-h-[70vh] overflow-y-auto px-5 pb-5 pt-2">
                     {filteredMoreGroups.length > 0 ? (
                       <div className="grid gap-x-8 gap-y-6 lg:grid-cols-3 xl:grid-cols-5">
-                        {filteredMoreGroups.map((group) => {
-                          const isBookGroup = group.title === "Books and audiobooks";
-
-                          return (
+                        {filteredMoreGroups.map((group) => (
                             <section
                               key={group.title}
-                              className={isBookGroup ? "xl:col-span-5" : undefined}
+                              className={group.sectionClassName}
                             >
                               <h2 className="mw-nav-muted font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-sky-200/70">
                                 {group.title}
                               </h2>
                               <div
-                                className={
-                                  isBookGroup
-                                    ? "mt-2 grid gap-1.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
-                                    : "mt-2 grid gap-1.5"
-                                }
+                                className={group.itemGridClassName ?? "mt-2 grid gap-1.5"}
                               >
                                 {group.items.map((item) => {
                                   const active = isActive(pathname, item.href);
@@ -683,8 +680,7 @@ export default function NavBar(props: {
                                 })}
                               </div>
                             </section>
-                          );
-                        })}
+                        ))}
                       </div>
                     ) : (
                       <p className="mw-nav-item-description py-6 text-sm font-semibold text-sky-100/70">
