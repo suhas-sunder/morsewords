@@ -172,6 +172,43 @@ const LIVE_PREVIEW_AUDIO_CONTROL_LABELS = [
   "Pitch",
   "Volume",
 ] as const;
+
+type LivePlayerHookState = {
+  bookSlug: string;
+  completedSessionId: number | null;
+  elapsedMs: number;
+  playing: boolean;
+  progressRestored: boolean;
+  sectionCount: number;
+  sectionId: string;
+  sectionIndex: number;
+  segmentCount: number;
+  segmentIndex: number;
+  sessionId: number;
+};
+
+type LivePlayerCompletionToken = {
+  durationMs: number;
+  sectionId: string;
+  segmentIndex: number;
+  sessionId: number;
+};
+
+type LivePlayerTestHook = {
+  captureCompletion: () => LivePlayerCompletionToken;
+  completeCapturedSegment: (token: LivePlayerCompletionToken) => boolean;
+  completeCurrentSegmentTwice: () => { first: boolean; second: boolean };
+  getState: () => LivePlayerHookState;
+  restartCurrentSegment: () => void;
+  selectSegment: (segmentIndex: number) => void;
+  startCurrentSegment: (elapsedMs?: number) => void;
+  stopCurrentSegment: (reset?: boolean) => void;
+};
+
+type LivePlayerTestWindow = typeof window & {
+  __MORSEWORDS_BOOK_LIVE_PLAYER_TEST__?: LivePlayerTestHook;
+};
+
 function bookJsonPattern(slug: string) {
   return `**/books/${slug}.json*`;
 }
@@ -328,6 +365,48 @@ async function readBookLivePreviewProgress(page: Page) {
     const raw = localStorage.getItem(key);
     return raw ? JSON.parse(raw) : null;
   }, TEST_BOOK_LIVE_PREVIEW_PROGRESS_KEY);
+}
+
+async function waitForLivePlayerTestHook(page: Page) {
+  await expect
+    .poll(() =>
+      page.evaluate(() =>
+        Boolean(
+          (window as LivePlayerTestWindow).__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__,
+        ),
+      ),
+    )
+    .toBe(true);
+}
+
+async function readLivePlayerHookState(page: Page) {
+  return page.evaluate(() => {
+    const hook = (window as LivePlayerTestWindow)
+      .__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__;
+    if (!hook) throw new Error("Missing live player test hook.");
+    return hook.getState();
+  });
+}
+
+async function captureLivePlayerCompletion(page: Page) {
+  return page.evaluate(() => {
+    const hook = (window as LivePlayerTestWindow)
+      .__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__;
+    if (!hook) throw new Error("Missing live player test hook.");
+    return hook.captureCompletion();
+  });
+}
+
+async function completeCapturedLivePlayerSegment(
+  page: Page,
+  token: LivePlayerCompletionToken,
+) {
+  return page.evaluate((capturedToken) => {
+    const hook = (window as LivePlayerTestWindow)
+      .__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__;
+    if (!hook) throw new Error("Missing live player test hook.");
+    return hook.completeCapturedSegment(capturedToken);
+  }, token);
 }
 
 async function setRangeInputValue(locator: Locator, value: number) {
@@ -2390,6 +2469,192 @@ test.describe("Morse book page foundation", () => {
         await context.close();
       }
     }
+  });
+
+  test("guards book live player completion against duplicate and stale segment advances", async ({
+    page,
+  }) => {
+    await removeBookRuntimeSettings(page, THE_WAR_OF_THE_WORLDS_SLUG);
+    await openPublicBook(page, THE_WAR_OF_THE_WORLDS_PUBLIC_PATH);
+    await waitForLivePlayerTestHook(page);
+
+    await expect
+      .poll(async () => (await readLivePlayerHookState(page)).segmentCount)
+      .toBeGreaterThan(1);
+    const initialState = await readLivePlayerHookState(page);
+    expect(initialState.segmentIndex).toBe(0);
+    const staleToken = await captureLivePlayerCompletion(page);
+    await page.evaluate(() => {
+      const hook = (window as LivePlayerTestWindow)
+        .__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__;
+      if (!hook) throw new Error("Missing live player test hook.");
+      hook.startCurrentSegment();
+    });
+    await expect
+      .poll(async () => (await readLivePlayerHookState(page)).playing)
+      .toBe(true);
+    await expect
+      .poll(async () => (await readLivePlayerHookState(page)).sessionId)
+      .toBeGreaterThan(staleToken.sessionId);
+
+    const duplicateResult = await page.evaluate(() => {
+      const hook = (window as LivePlayerTestWindow)
+        .__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__;
+      if (!hook) throw new Error("Missing live player test hook.");
+      return hook.completeCurrentSegmentTwice();
+    });
+    expect(duplicateResult).toEqual({ first: true, second: false });
+    await expect
+      .poll(async () => (await readLivePlayerHookState(page)).segmentIndex)
+      .toBe(1);
+
+    await expect(
+      completeCapturedLivePlayerSegment(page, staleToken),
+    ).resolves.toBe(false);
+    const afterStaleCompletion = await readLivePlayerHookState(page);
+    expect(afterStaleCompletion.segmentIndex).toBe(1);
+    expect(afterStaleCompletion.sessionId).toBeGreaterThan(
+      initialState.sessionId,
+    );
+  });
+
+  test("invalidates book live player completions on restart and manual segment change", async ({
+    page,
+  }) => {
+    await removeBookRuntimeSettings(page, THE_WAR_OF_THE_WORLDS_SLUG);
+    await openPublicBook(page, THE_WAR_OF_THE_WORLDS_PUBLIC_PATH);
+    await waitForLivePlayerTestHook(page);
+    await expect
+      .poll(async () => (await readLivePlayerHookState(page)).segmentCount)
+      .toBeGreaterThan(1);
+
+    await page.evaluate(() => {
+      const hook = (window as LivePlayerTestWindow)
+        .__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__;
+      if (!hook) throw new Error("Missing live player test hook.");
+      hook.startCurrentSegment();
+    });
+    await expect
+      .poll(async () => (await readLivePlayerHookState(page)).playing)
+      .toBe(true);
+
+    const runningToken = await captureLivePlayerCompletion(page);
+    await page.evaluate(() => {
+      const hook = (window as LivePlayerTestWindow)
+        .__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__;
+      if (!hook) throw new Error("Missing live player test hook.");
+      hook.restartCurrentSegment();
+    });
+    await expect
+      .poll(async () => (await readLivePlayerHookState(page)).sessionId)
+      .toBeGreaterThan(runningToken.sessionId);
+
+    await expect(
+      completeCapturedLivePlayerSegment(page, runningToken),
+    ).resolves.toBe(false);
+    const afterRestartStaleCompletion = await readLivePlayerHookState(page);
+    expect(afterRestartStaleCompletion.segmentIndex).toBe(0);
+    expect(afterRestartStaleCompletion.playing).toBe(true);
+
+    const currentToken = await captureLivePlayerCompletion(page);
+    await page.evaluate(() => {
+      const hook = (window as LivePlayerTestWindow)
+        .__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__;
+      if (!hook) throw new Error("Missing live player test hook.");
+      hook.selectSegment(1);
+    });
+    await expect
+      .poll(async () => (await readLivePlayerHookState(page)).segmentIndex)
+      .toBe(1);
+    await expect(
+      completeCapturedLivePlayerSegment(page, currentToken),
+    ).resolves.toBe(false);
+    expect((await readLivePlayerHookState(page)).segmentIndex).toBe(1);
+  });
+
+  test("keeps near-end restart on the current book segment", async ({ page }) => {
+    await openTestBook(page);
+    await waitForLivePlayerTestHook(page);
+
+    const completionToken = await captureLivePlayerCompletion(page);
+    await page.evaluate((nearEndElapsedMs) => {
+      const hook = (window as LivePlayerTestWindow)
+        .__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__;
+      if (!hook) throw new Error("Missing live player test hook.");
+      hook.startCurrentSegment(nearEndElapsedMs);
+    }, completionToken.durationMs - 100);
+
+    await expect
+      .poll(async () => {
+        const state = await readLivePlayerHookState(page);
+        return {
+          elapsedUnderRestartThreshold: state.elapsedMs < 1_000,
+          playing: state.playing,
+          segmentIndex: state.segmentIndex,
+        };
+      })
+      .toEqual({
+        elapsedUnderRestartThreshold: true,
+        playing: true,
+        segmentIndex: 0,
+      });
+    await expect(
+      completeCapturedLivePlayerSegment(page, completionToken),
+    ).resolves.toBe(false);
+    expect((await readLivePlayerHookState(page)).segmentIndex).toBe(0);
+  });
+
+  test("guards audiobook live player completion against duplicate section advances", async ({
+    page,
+  }) => {
+    await openPublicBook(page, NETWORK_AUDIOBOOK_PUBLIC_PATH);
+    await waitForLivePlayerTestHook(page);
+
+    const initialState = await readLivePlayerHookState(page);
+    expect(initialState.sectionIndex).toBeGreaterThanOrEqual(0);
+    expect(initialState.sectionIndex).toBeLessThan(
+      initialState.sectionCount - 1,
+    );
+    const staleToken = await captureLivePlayerCompletion(page);
+    const duplicateResult = await page.evaluate(() => {
+      const hook = (window as LivePlayerTestWindow)
+        .__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__;
+      if (!hook) throw new Error("Missing live player test hook.");
+      return hook.completeCurrentSegmentTwice();
+    });
+    expect(duplicateResult).toEqual({ first: true, second: false });
+
+    const expectedNext =
+      initialState.segmentIndex + 1 < initialState.segmentCount
+        ? {
+            sectionIndex: initialState.sectionIndex,
+            segmentIndex: initialState.segmentIndex + 1,
+          }
+        : {
+            sectionIndex: initialState.sectionIndex + 1,
+            segmentIndex: 0,
+          };
+    await expect
+      .poll(async () => {
+        const state = await readLivePlayerHookState(page);
+        return {
+          sectionIndex: state.sectionIndex,
+          segmentIndex: state.segmentIndex,
+        };
+      })
+      .toEqual(expectedNext);
+    await expect(
+      completeCapturedLivePlayerSegment(page, staleToken),
+    ).resolves.toBe(false);
+    await expect
+      .poll(async () => {
+        const state = await readLivePlayerHookState(page);
+        return {
+          sectionIndex: state.sectionIndex,
+          segmentIndex: state.segmentIndex,
+        };
+      })
+      .toEqual(expectedNext);
   });
 
   test("caches opened approved book JSON and serves a valid cache hit offline", async ({
