@@ -13,6 +13,7 @@ import {
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import { playMorsePattern } from "~/client/components/shared/playMorsePattern";
 import { DIGITS, LETTERS, PROSIGNS, PUNCTUATION, Q_CODES } from "~/client/data/morseLearning";
+import { ROUTES } from "~/client/data/routes";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
@@ -114,6 +115,7 @@ export default function InternationalMorseCodeReference() {
               { href: "/morse-code-punctuation", label: "Punctuation" },
               { href: "/morse-code-prosigns", label: "Prosigns" },
               { href: "/morse-code-timing", label: "Timing guide" },
+              { href: ROUTES.internationalVsAmerican, label: "International vs American" },
               { href: "/practice", label: "Practice" },
             ]}
           />

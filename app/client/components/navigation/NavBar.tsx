@@ -78,6 +78,31 @@ const MORE_GROUPS: NavGroup[] = [
     ],
   },
   {
+    title: "Morse Guides",
+    items: [
+      {
+        label: "Morse Code History",
+        href: ROUTES.history,
+        description: "Trace Morse from telegraphy into radio and modern practice.",
+      },
+      {
+        label: "International vs American Morse Code",
+        href: ROUTES.internationalVsAmerican,
+        description: "Compare the modern learner code with early landline Morse.",
+      },
+      {
+        label: "Morse Code Emergency Signals",
+        href: ROUTES.emergencySignals,
+        description: "Use SOS and backup signals calmly and responsibly.",
+      },
+      {
+        label: "Morse Code and Amateur Radio CW",
+        href: ROUTES.amateurRadioCw,
+        description: "Understand CW context without treating it as legal advice.",
+      },
+    ],
+  },
+  {
     title: "Practice and drills",
     items: [
       {

@@ -8,6 +8,7 @@ import styles from "~/client/components/shared/pageStyles";
 import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
+import { ROUTES } from "~/client/data/routes";
 
 const CANONICAL_PATH = "/morse-code-sos";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
@@ -243,6 +244,17 @@ export default function MorseCodeSos() {
               <li>By tapping: three quick taps, three longer taps, three quick taps.</li>
               <li>By writing: use SOS or the Morse pattern ... --- ... .</li>
             </ul>
+            <p className="mt-4">
+              For broader context on backup signals and what Morse can and
+              cannot do, read{" "}
+              <a
+                href={ROUTES.emergencySignals}
+                className="cursor-pointer font-semibold text-sky-900 underline hover:no-underline"
+              >
+                Morse code emergency signals
+              </a>
+              .
+            </p>
           </Section>
 
           <ReferenceSupportSections

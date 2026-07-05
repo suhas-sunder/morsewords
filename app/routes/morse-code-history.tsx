@@ -339,7 +339,12 @@ export default function MorseCodeHistory() {
                 International Morse Code reference
               </InlineTextLink>
               . It is the practical map for the translator, decoder, audio
-              tools, practice pages, and printable references here.
+              tools, practice pages, and printable references here. For the
+              learner-focused comparison, see{" "}
+              <InlineTextLink href={ROUTES.internationalVsAmerican}>
+                International vs American Morse Code
+              </InlineTextLink>
+              .
             </p>
           </div>
         </SectionCard>
@@ -366,7 +371,12 @@ export default function MorseCodeHistory() {
               <InlineTextLink href={ROUTES.audioPractice}>
                 Morse code audio practice
               </InlineTextLink>{" "}
-              after you know the first few letters.
+              after you know the first few letters. If you are curious about
+              the radio context, read{" "}
+              <InlineTextLink href={ROUTES.amateurRadioCw}>
+                Morse Code and Amateur Radio CW
+              </InlineTextLink>
+              .
             </p>
           </div>
         </SectionCard>
