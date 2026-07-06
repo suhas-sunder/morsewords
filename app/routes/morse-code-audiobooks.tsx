@@ -18,6 +18,11 @@ import {
   getDiscoverableMorseBookSummaries,
   morseAudiobookPath,
 } from "~/client/data/morseBooks";
+import {
+  getMorseBookCollectionSearchText,
+  getMorseBookContextSortTitle,
+  getMorseBookContextTitle,
+} from "~/client/data/morseBookCollectionContext";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import {
   getMorseBookSuitability,
@@ -50,9 +55,11 @@ type SortMode =
   | "word-count-desc";
 
 type AudiobookSummary = MorseBookLibrarySummary & {
+  hubDisplayTitle: string;
   hubDescription: string;
   searchText: string;
   sortIndex: number;
+  sortTitle: string;
   subjectsForHub: string[];
 };
 
@@ -107,10 +114,13 @@ function enrichAudiobook(
   const subjectsForHub = uniqueSorted(book.subjects.map(cleanSubject));
   const hubSubjects = subjectsForHub.length > 0 ? subjectsForHub : ["Classics"];
   const hubDescription = audiobookDescription(book, seoDescriptionsBySlug);
+  const hubDisplayTitle = getMorseBookContextTitle(book);
   const searchText = normalizeSearchText([
     book.title,
+    hubDisplayTitle,
     bookAuthor(book),
     hubDescription,
+    getMorseBookCollectionSearchText(book),
     book.language,
     book.source.provider,
     ...hubSubjects,
@@ -118,9 +128,11 @@ function enrichAudiobook(
 
   return {
     ...book,
+    hubDisplayTitle,
     hubDescription,
     searchText,
     sortIndex,
+    sortTitle: getMorseBookContextSortTitle(book),
     subjectsForHub: hubSubjects,
   };
 }
@@ -133,7 +145,7 @@ function sortAudiobooks(books: AudiobookSummary[], sortMode: SortMode) {
       if (sortMode === "author-za") result *= -1;
     }
     if (sortMode === "title-az" || sortMode === "title-za") {
-      result = a.title.localeCompare(b.title);
+      result = a.sortTitle.localeCompare(b.sortTitle);
       if (sortMode === "title-za") result *= -1;
     }
     if (sortMode === "word-count-asc" || sortMode === "word-count-desc") {
@@ -141,7 +153,7 @@ function sortAudiobooks(books: AudiobookSummary[], sortMode: SortMode) {
       if (sortMode === "word-count-desc") result *= -1;
     }
     if (result !== 0) return result;
-    const titleResult = a.title.localeCompare(b.title);
+    const titleResult = a.sortTitle.localeCompare(b.sortTitle);
     return titleResult !== 0 ? titleResult : a.sortIndex - b.sortIndex;
   });
 }
@@ -314,7 +326,7 @@ export default function MorseCodeAudiobooksRoute({
             itemListElement: books.map((book, index) => ({
               "@type": "ListItem",
               position: index + 1,
-              name: `${book.title} Morse audiobook`,
+              name: `${getMorseBookContextTitle(book)} Morse audiobook`,
               url: canonicalUrl(morseAudiobookPath(book.slug)),
             })),
           },
@@ -572,7 +584,7 @@ function AudiobookCard({ book }: { book: AudiobookSummary }) {
       className="mw-static-surface group flex h-full min-w-0 cursor-pointer flex-col rounded-xl bg-[#fffdf8]/90 p-3 text-left no-underline hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:p-4"
       data-testid="morse-audiobook-card"
       data-mw-morse-audiobook-card-slug={book.slug}
-      aria-label={`${book.title} Morse audiobook by ${bookAuthor(book)}`}
+      aria-label={`${book.hubDisplayTitle} Morse audiobook by ${bookAuthor(book)}`}
     >
       <div className="mw-static-tile rounded-lg p-3">
         <div className="mx-auto flex aspect-[3/4] w-full max-w-[8.5rem] flex-col justify-between rounded-lg bg-[#fffdf8]/72 p-3">
@@ -590,7 +602,7 @@ function AudiobookCard({ book }: { book: AudiobookSummary }) {
           className="mw-heading break-words text-lg font-extrabold leading-tight text-sky-950 underline-offset-4 group-hover:underline"
           data-testid="morse-audiobook-card-title"
         >
-          {book.title}
+          {book.hubDisplayTitle}
         </h3>
         <p
           className="break-words text-sm font-semibold leading-snug text-slate-600"

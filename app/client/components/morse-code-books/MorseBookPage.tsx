@@ -113,6 +113,13 @@ import {
   morseBookPath,
   morseBookPrintPath,
 } from "~/client/data/morseBooks";
+import {
+  getMorseBookCollectionContext,
+  getMorseBookCollectionLabel,
+  getMorseBookCollectionPositionText,
+  getMorseBookContextTitle,
+  type MorseBookCollectionContext,
+} from "~/client/data/morseBookCollectionContext";
 import { getMorseBookPreviewRuntimeContent } from "~/client/data/morseBookPreviews";
 import type { MorseBookPreviewRuntimeContent } from "~/client/data/morseBookPreviews";
 import {
@@ -935,7 +942,11 @@ function MorseBookRuntimeState({
   summary: MorseBookLibrarySummary | null;
 }) {
   const isAudiobook = mode === "audiobook";
-  const title = summary?.title ?? (isAudiobook ? "Morse audiobook" : "Morse book");
+  const title = summary
+    ? getMorseBookContextTitle(summary)
+    : isAudiobook
+      ? "Morse audiobook"
+      : "Morse book";
   const [loadingStep, setLoadingStep] = React.useState(0);
 
   React.useEffect(() => {
@@ -1059,6 +1070,11 @@ function MorseBookWorkspace({
   seoSummary: MorseBookSeoSummary | null;
 }) {
   const isAudiobook = mode === "audiobook";
+  const collectionContext = getMorseBookCollectionContext(book.slug);
+  const collectionLabel = collectionContext
+    ? getMorseBookCollectionLabel(collectionContext)
+    : "";
+  const displayTitle = getMorseBookContextTitle(book);
   const authorDisplay = React.useMemo(
     () => getMorseBookAuthorDisplay(book.author),
     [book.author],
@@ -2724,6 +2740,15 @@ function MorseBookWorkspace({
         }
       />
 
+      {collectionContext ? (
+        <p
+          className="mt-2 max-w-[68ch] font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500"
+          data-testid="morse-book-collection-context"
+        >
+          {collectionLabel}
+        </p>
+      ) : null}
+
       <nav
         className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm"
         aria-label={isAudiobook ? "Audiobook library navigation" : "Book library navigation"}
@@ -3715,6 +3740,10 @@ function MorseBookWorkspace({
         </section>
       ) : null}
 
+      {collectionContext ? (
+        <MorseBookCollectionNav context={collectionContext} mode={mode} />
+      ) : null}
+
       {relatedAuthorBooks.length > 0 ? (
         <section
           className="mt-8"
@@ -3739,7 +3768,7 @@ function MorseBookWorkspace({
                   className={metadataLinkClass}
                   data-mw-related-author-slug={relatedBook.slug}
                 >
-                  {relatedBook.title}
+                  {getMorseBookContextTitle(relatedBook)}
                 </Link>
               </li>
             ))}
@@ -3757,8 +3786,62 @@ function MorseBookWorkspace({
           translatorSource.sourceText.length,
         )}
       />
-      <MorseBookBreadcrumb mode={mode} title={book.title} />
+      <MorseBookBreadcrumb mode={mode} title={displayTitle} />
     </main>
+  );
+}
+
+function MorseBookCollectionNav({
+  context,
+  mode,
+}: {
+  context: MorseBookCollectionContext;
+  mode: "book" | "audiobook";
+}) {
+  const isAudiobook = mode === "audiobook";
+  const routeForSlug = isAudiobook ? morseAudiobookPath : morseBookPath;
+  const previous = context.previousInCollection;
+  const next = context.nextInCollection;
+
+  return (
+    <section
+      className="mt-8 border-t border-slate-300/60 pt-5"
+      aria-labelledby="morse-book-collection-nav-heading"
+      data-testid="morse-book-collection-nav"
+    >
+      <h2
+        id="morse-book-collection-nav-heading"
+        className="mw-heading text-xl font-extrabold text-sky-950"
+      >
+        In this collection
+      </h2>
+      <p
+        className="mt-2 text-sm font-semibold leading-relaxed text-slate-600"
+        data-testid="morse-book-collection-position"
+      >
+        {getMorseBookCollectionPositionText(context)}
+      </p>
+      <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+        {previous ? (
+          <Link
+            to={routeForSlug(previous.slug)}
+            className={metadataLinkClass}
+            data-testid="morse-book-collection-previous"
+          >
+            Previous story: {previous.title}
+          </Link>
+        ) : null}
+        {next ? (
+          <Link
+            to={routeForSlug(next.slug)}
+            className={metadataLinkClass}
+            data-testid="morse-book-collection-next"
+          >
+            Next story: {next.title}
+          </Link>
+        ) : null}
+      </div>
+    </section>
   );
 }
 

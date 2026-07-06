@@ -18,8 +18,31 @@ const APPROVED_AUDIOBOOK_PATH = `${ROUTES.morseAudiobooks}/${APPROVED_BOOK_SLUG}
 const TEST_BOOK_SLUG = "test-published-morse-book";
 const TEST_BOOK_HUB_PATH = `${ROUTES.morseBooks}?preview=test-published`;
 const TEST_COLLECTION_HUB_PATH = `${ROUTES.morseBooks}?preview=test-collection`;
+const SHERLOCK_ADVENTURES_FIRST_DISPLAY_TITLE =
+  "The Adventures of Sherlock Holmes - Chapter 1: A Scandal in Bohemia";
+const SHERLOCK_ADVENTURES_PARENT_BOOK_PATH =
+  "/morse-code-books/the-adventures-of-sherlock-holmes";
+const SHERLOCK_ADVENTURES_PARENT_AUDIOBOOK_PATH =
+  "/morse-code-audiobooks/the-adventures-of-sherlock-holmes";
 const THEME_STORAGE_KEY = "morsewords-theme";
 const NORMALIZED_BOOK_SEARCH_CASES = [
+  { query: "sherlock holmes", title: SHERLOCK_ADVENTURES_FIRST_DISPLAY_TITLE },
+  {
+    query: "adventures of sherlock holmes",
+    title: SHERLOCK_ADVENTURES_FIRST_DISPLAY_TITLE,
+  },
+  { query: "a scandal in bohemia", title: SHERLOCK_ADVENTURES_FIRST_DISPLAY_TITLE },
+  { query: "scandal", title: SHERLOCK_ADVENTURES_FIRST_DISPLAY_TITLE },
+  { query: "arthur conan doyle", title: SHERLOCK_ADVENTURES_FIRST_DISPLAY_TITLE },
+  {
+    query: "red headed league",
+    title: "The Adventures of Sherlock Holmes - Chapter 2: The Red-Headed League",
+  },
+  {
+    query: "copper beeches",
+    title:
+      "The Adventures of Sherlock Holmes - Chapter 12: The Adventure of the Copper Beeches",
+  },
   { query: "The Hound of the Baskervilles", title: "The Hound of the Baskervilles" },
   { query: "The  Hound  of  the  Baskervilles", title: "The Hound of the Baskervilles" },
   { query: "The Hound of the Baskervilles!", title: "The Hound of the Baskervilles" },
@@ -141,6 +164,7 @@ async function expectBookSearchResult(
     page.locator("[data-testid='morse-book-card-title']").filter({ hasText: title }),
   ).toBeVisible();
   await expect(page.locator("[data-testid='morse-audiobook-card']")).toHaveCount(0);
+  await expect(page.locator(`a[href="${SHERLOCK_ADVENTURES_PARENT_BOOK_PATH}"]`)).toHaveCount(0);
 }
 
 async function expectAudiobookSearchResult(
@@ -161,6 +185,34 @@ async function expectAudiobookSearchResult(
       .filter({ hasText: title }),
   ).toBeVisible();
   await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(0);
+  await expect(
+    page.locator(`a[href="${SHERLOCK_ADVENTURES_PARENT_AUDIOBOOK_PATH}"]`),
+  ).toHaveCount(0);
+}
+
+async function openNavigationSearchSurface(page: Page) {
+  const moreButton = page.getByRole("button", { name: "More" });
+  if (await moreButton.isVisible().catch(() => false)) {
+    await expect
+      .poll(async () => {
+        await moreButton.click();
+        return moreButton.getAttribute("aria-expanded");
+      })
+      .toBe("true");
+    const moreDialog = page.getByRole("dialog", {
+      name: "More MorseWords tools",
+    });
+    await expect(moreDialog).toBeVisible();
+    return moreDialog;
+  }
+
+  const mobileButton = page.getByRole("button", { name: "Open navigation" });
+  const mobileDialog = page.getByRole("dialog", { name: "Mobile navigation" });
+  await expect(async () => {
+    await mobileButton.click();
+    await expect(mobileDialog).toBeVisible({ timeout: 1_000 });
+  }).toPass({ timeout: 10_000 });
+  return mobileDialog;
 }
 
 async function expectCollectionTopReturned(page: Page) {
@@ -615,31 +667,44 @@ test.describe("Morse books hub", () => {
   }) => {
     await gotoHub(page, ROUTES.home);
 
-    const moreButton = page.getByRole("button", { name: "More" });
-    await expect(moreButton).toBeVisible();
-    await expect
-      .poll(async () => {
-        await moreButton.click();
-        return moreButton.getAttribute("aria-expanded");
-      })
-      .toBe("true");
-    const moreDialog = page.getByRole("dialog", {
-      name: "More MorseWords tools",
-    });
-    await expect(moreDialog).toBeVisible();
-
-    const searchInput = moreDialog.getByLabel("Search MorseWords tools");
+    const navSearchSurface = await openNavigationSearchSurface(page);
+    const searchInput = navSearchSurface.getByLabel("Search MorseWords tools");
     await searchInput.fill("translator");
-    await expect(moreDialog.getByText("No tools match that search.")).toHaveCount(0);
-    await expect(moreDialog.locator("a").filter({ hasText: "Book translator" })).toBeVisible();
+    await expect(
+      navSearchSurface.getByText("No tools match that search."),
+    ).toHaveCount(0);
+    await expect(
+      navSearchSurface.locator("a").filter({ hasText: "Book translator" }),
+    ).toBeVisible();
 
     await searchInput.fill("audio decoder");
-    await expect(moreDialog.getByText("No tools match that search.")).toHaveCount(0);
-    await expect(moreDialog.locator("a").filter({ hasText: "Morse code decoder" })).toBeVisible();
+    await expect(
+      navSearchSurface.getByText("No tools match that search."),
+    ).toHaveCount(0);
+    await expect(
+      navSearchSurface.locator("a").filter({ hasText: "Morse code decoder" }),
+    ).toBeVisible();
 
     await searchInput.fill("morse code chart");
-    await expect(moreDialog.getByText("No tools match that search.")).toHaveCount(0);
-    await expect(moreDialog.locator("a").filter({ hasText: "Morse code alphabet" })).toBeVisible();
+    await expect(
+      navSearchSurface.getByText("No tools match that search."),
+    ).toHaveCount(0);
+    await expect(
+      navSearchSurface.locator("a").filter({ hasText: "Morse code alphabet" }),
+    ).toBeVisible();
+
+    await searchInput.fill("sherlock holmes");
+    await expect(
+      navSearchSurface.getByText("No tools match that search."),
+    ).toHaveCount(0);
+    await expect(
+      navSearchSurface.locator("a").filter({
+        hasText: SHERLOCK_ADVENTURES_FIRST_DISPLAY_TITLE,
+      }),
+    ).toBeVisible();
+    await expect(
+      navSearchSurface.locator(`a[href="${SHERLOCK_ADVENTURES_PARENT_BOOK_PATH}"]`),
+    ).toHaveCount(0);
   });
 
   test("shows only publish-ready books when a development fixture is enabled", async ({

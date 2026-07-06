@@ -7,6 +7,11 @@ import {
   getPublishedMorseBookSummaries,
   morseBookPath,
 } from "~/client/data/morseBooks";
+import {
+  getMorseBookCollectionSearchText,
+  getMorseBookContextSortTitle,
+  getMorseBookContextTitle,
+} from "~/client/data/morseBookCollectionContext";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import { ROUTES } from "~/client/data/routes";
 import type { ThemeMode } from "~/client/theme/themeStorage";
@@ -40,11 +45,18 @@ const MAIN_ITEMS: NavItem[] = [
   { label: "How to use", href: ROUTES.howToUse },
 ];
 
-const PUBLIC_BOOK_ITEMS: NavItem[] = getPublishedMorseBookSummaries().map((book) => ({
-  label: book.title,
-  href: morseBookPath(book.slug),
-  description: formatMorseBookAuthors(book.author),
-}));
+const PUBLIC_BOOK_ITEMS: NavItem[] = [...getPublishedMorseBookSummaries()]
+  .sort((left, right) =>
+    getMorseBookContextSortTitle(left).localeCompare(
+      getMorseBookContextSortTitle(right),
+    ),
+  )
+  .map((book) => ({
+    label: getMorseBookContextTitle(book),
+    href: morseBookPath(book.slug),
+    description: formatMorseBookAuthors(book.author),
+    searchKeywords: getMorseBookCollectionSearchText(book),
+  }));
 
 const MORE_GROUPS: NavGroup[] = [
   {

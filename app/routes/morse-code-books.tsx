@@ -23,6 +23,11 @@ import {
   getPublishedMorseBookSummariesRuntime,
   morseBookPath,
 } from "~/client/data/morseBooks";
+import {
+  getMorseBookCollectionSearchText,
+  getMorseBookContextSortTitle,
+  getMorseBookContextTitle,
+} from "~/client/data/morseBookCollectionContext";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import {
   getMorseBookSuitability,
@@ -83,9 +88,11 @@ type SortMode =
   | "word-count-desc";
 
 type HubBook = MorseBookLibrarySummary & {
+  hubDisplayTitle: string;
   hubDescription: string;
   hubSearchText: string;
   hubSortIndex: number;
+  hubSortTitle: string;
   hubSubjects: string[];
 };
 
@@ -206,8 +213,10 @@ function bookAuthor(book: MorseBookLibrarySummary) {
 function searchableBookText(book: HubBook) {
   return normalizeSearchText([
     book.title,
+    book.hubDisplayTitle,
     bookAuthor(book),
     book.hubDescription,
+    getMorseBookCollectionSearchText(book),
     book.source.provider,
     book.language,
     ...book.hubSubjects,
@@ -222,7 +231,7 @@ function sortBooks(books: HubBook[], sortMode: SortMode) {
       if (sortMode === "author-za") result *= -1;
     }
     if (sortMode === "title-az" || sortMode === "title-za") {
-      result = a.title.localeCompare(b.title);
+      result = a.hubSortTitle.localeCompare(b.hubSortTitle);
       if (sortMode === "title-za") result *= -1;
     }
     if (sortMode === "word-count-asc" || sortMode === "word-count-desc") {
@@ -230,7 +239,7 @@ function sortBooks(books: HubBook[], sortMode: SortMode) {
       if (sortMode === "word-count-desc") result *= -1;
     }
     if (result !== 0) return result;
-    const titleResult = a.title.localeCompare(b.title);
+    const titleResult = a.hubSortTitle.localeCompare(b.hubSortTitle);
     if (titleResult !== 0) return titleResult;
     return a.hubSortIndex - b.hubSortIndex;
   });
@@ -318,9 +327,11 @@ function enrichBookForHub(
   const hubDescription = hubDescriptionForBook(book, seoDescriptionsBySlug);
   const hubBook = {
     ...book,
+    hubDisplayTitle: getMorseBookContextTitle(book),
     hubDescription,
     hubSearchText: "",
     hubSortIndex,
+    hubSortTitle: getMorseBookContextSortTitle(book),
     hubSubjects,
   };
   return {
@@ -515,7 +526,7 @@ export default function MorseCodeBooksHubRoute({
             itemListElement: books.map((book, index) => ({
               "@type": "ListItem",
               position: index + 1,
-              name: book.title,
+              name: getMorseBookContextTitle(book),
               url: canonicalUrl(morseBookPath(book.slug)),
             })),
           },
@@ -900,15 +911,15 @@ function BookCard({
       className="mw-static-surface group flex h-full min-w-0 cursor-pointer flex-col rounded-xl bg-[#fffdf8]/90 p-3 text-left no-underline hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:p-4"
       data-testid="morse-book-card"
       data-mw-morse-book-card-slug={book.slug}
-      aria-label={`${book.title} by ${bookAuthor(book)}`}
+      aria-label={`${book.hubDisplayTitle} by ${bookAuthor(book)}`}
     >
-      <BookCover book={book} />
+      <BookCover book={book} displayTitle={book.hubDisplayTitle} />
       <div className="mt-4 grid min-w-0 gap-2">
         <h3
           className="mw-heading break-words text-lg font-extrabold leading-tight text-sky-950 underline-offset-4 group-hover:underline"
           data-testid="morse-book-card-title"
         >
-          {book.title}
+          {book.hubDisplayTitle}
         </h3>
         <p
           className="break-words text-sm font-semibold leading-snug text-slate-600"
@@ -947,7 +958,13 @@ function BookCard({
   );
 }
 
-function BookCover({ book }: { book: MorseBookLibrarySummary }) {
+function BookCover({
+  book,
+  displayTitle,
+}: {
+  book: MorseBookLibrarySummary;
+  displayTitle: string;
+}) {
   if (book.cover.src) {
     return (
       <img
@@ -969,6 +986,7 @@ function BookCover({ book }: { book: MorseBookLibrarySummary }) {
     >
       <div className="mx-auto flex aspect-[3/4] w-full max-w-[8.5rem] flex-col justify-between rounded-lg bg-[#fffdf8]/72 p-3">
         <span className="block h-2 w-16 rounded-full bg-slate-300/45" />
+        <span className="sr-only">{displayTitle}</span>
         <span className="block h-16 w-full rounded-md bg-[#f2eee6]" />
         <div className="grid gap-1.5">
           <span className="block h-1.5 w-20 rounded-full bg-slate-300/45" />

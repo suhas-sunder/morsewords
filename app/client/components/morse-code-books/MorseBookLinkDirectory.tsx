@@ -5,6 +5,10 @@ import {
   morseAudiobookPath,
   morseBookPath,
 } from "~/client/data/morseBooks";
+import {
+  getMorseBookContextSortTitle,
+  getMorseBookContextTitle,
+} from "~/client/data/morseBookCollectionContext";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import type { MorseBookLibrarySummary } from "~/client/data/morseBookTypes";
 
@@ -29,11 +33,13 @@ function groupedBooks(books: readonly MorseBookLibrarySummary[]) {
   const groups = new Map<string, MorseBookLibrarySummary[]>();
   [...books]
     .sort((left, right) => {
-      const titleResult = left.title.localeCompare(right.title);
+      const titleResult = getMorseBookContextSortTitle(left).localeCompare(
+        getMorseBookContextSortTitle(right),
+      );
       return titleResult !== 0 ? titleResult : left.slug.localeCompare(right.slug);
     })
     .forEach((book) => {
-      const key = directoryKey(book.title);
+      const key = directoryKey(getMorseBookContextTitle(book));
       const group = groups.get(key) ?? [];
       group.push(book);
       groups.set(key, group);
@@ -120,7 +126,7 @@ export default function MorseBookLinkDirectory({
                     className="block break-words font-semibold leading-snug text-sky-900 underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                     data-mw-directory-slug={book.slug}
                   >
-                    {book.title}
+                    {getMorseBookContextTitle(book)}
                   </Link>
                   <span className="mt-0.5 block break-words text-xs leading-relaxed text-slate-600">
                     {formatMorseBookAuthors(book.author)}

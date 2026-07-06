@@ -7,6 +7,7 @@ import {
   morseBookPath,
   morseBookPrintPath,
 } from "~/client/data/morseBooks";
+import { getMorseBookContextTitle } from "~/client/data/morseBookCollectionContext";
 import {
   formatMorseBookAuthors,
   morseBookAuthorSchemaPeople,
@@ -39,12 +40,13 @@ export const meta: Route.MetaFunction = ({ data }) => {
   const book = data.bookSummary;
   const author = formatMorseBookAuthors(book.author);
   const path = morseBookPrintPath(book.slug);
+  const contextTitle = getMorseBookContextTitle(book);
   return [
     ...seoMeta({
-    title: `${book.title} Printable Morse Pages | MorseWords`,
-    description: `Print ${book.title} by ${author} as Morse code study pages with original text, Morse code, site URL, QR code, and browser PDF support.`,
-    path,
-    keywords: `${book.title} Morse code print, printable Morse book pages, Morse code study sheet`,
+      title: `${contextTitle} Printable Morse Pages | MorseWords`,
+      description: `Print ${contextTitle} by ${author} as Morse code study pages with original text, Morse code, site URL, QR code, and browser PDF support.`,
+      path,
+      keywords: `${contextTitle} Morse code print, printable Morse book pages, Morse code study sheet`,
     }),
     { tagName: "link", rel: "canonical", href: canonicalUrl(path) },
   ];
@@ -59,16 +61,17 @@ export default function MorseBookPrintRoute({
   const bookUrl = absoluteUrl(morseBookPath(book.slug));
   const author = formatMorseBookAuthors(book.author);
   const schemaAuthors = morseBookAuthorSchemaPeople(book.author);
+  const contextTitle = getMorseBookContextTitle(book);
   const webpageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: `${book.title} Printable Morse Pages`,
+    name: `${contextTitle} Printable Morse Pages`,
     url: canonical,
-    description: `Printable Morse code pages for ${book.title} by ${author}.`,
+    description: `Printable Morse code pages for ${contextTitle} by ${author}.`,
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
     about: {
       "@type": "Book",
-      name: book.title,
+      name: contextTitle,
       ...(schemaAuthors.length > 0 ? { author: schemaAuthors } : {}),
       url: bookUrl,
       isAccessibleForFree: true,
@@ -86,7 +89,7 @@ export default function MorseBookPrintRoute({
         name: "Morse Code Books",
         item: absoluteUrl("/morse-code-books"),
       },
-      { "@type": "ListItem", position: 3, name: book.title, item: bookUrl },
+      { "@type": "ListItem", position: 3, name: contextTitle, item: bookUrl },
       { "@type": "ListItem", position: 4, name: "Print", item: canonical },
     ],
   };

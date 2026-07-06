@@ -19,6 +19,7 @@ import {
   isMorseBookPublishReady,
   morseBookPath,
 } from "~/client/data/morseBooks";
+import { getMorseBookContextTitle } from "~/client/data/morseBookCollectionContext";
 import { absoluteUrl } from "~/client/data/routes";
 import { SITE_URL } from "~/client/seo";
 
@@ -42,7 +43,7 @@ function duplicateTitleVariant(book: { slug: string; title: string }) {
 }
 
 function bookMetaTitle(book: { slug: string; title: string }) {
-  return `${book.title}${duplicateTitleVariant(book)} in Morse Code | MorseWords`;
+  return `${getMorseBookContextTitle(book)}${duplicateTitleVariant(book)} in Morse Code | MorseWords`;
 }
 
 async function loadMorseBookSeoSummary(slug: string) {
@@ -188,7 +189,7 @@ export const meta: Route.MetaFunction = ({ data }) => {
       name: "description",
       content:
         seoSummary?.description ??
-        `Read ${book.title} as cleaned book text, preview Morse code, download MP3, or open the live Morse player.`,
+        `Read ${getMorseBookContextTitle(book)} as cleaned book text, preview Morse code, download MP3, or open the live Morse player.`,
     },
     { tagName: "link", rel: "canonical", href: canonical },
     { property: "og:url", content: canonical },
@@ -214,7 +215,7 @@ export default function MorseBookRoute({ loaderData }: Route.ComponentProps) {
             {
               "@type": "ListItem",
               position: 3,
-              name: book.title,
+              name: getMorseBookContextTitle(book),
               item: absoluteUrl(morseBookPath(book.slug)),
             },
           ],

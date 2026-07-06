@@ -15,6 +15,10 @@ import {
 import { BOOK_LONG_EXPORT_MESSAGE } from "../../app/client/components/morse-code-book-translator/bookExportSafety";
 import { BOOK_CACHE_KEY_PREFIX } from "../../app/client/components/shared/storageRegistry";
 import { getMorseBookPublicContentUrls } from "../../app/client/data/morseBookContentConfig";
+import {
+  getMorseBookCollectionContext,
+  getMorseBookContextTitle,
+} from "../../app/client/data/morseBookCollectionContext";
 import { preserveMorseBookDisplayTitle } from "../../app/client/data/morseBookDisplay";
 
 const ROOT = process.cwd();
@@ -42,6 +46,14 @@ const BESPOKE_PASS_3_BOOK_SLUG = "the-sign-of-the-four";
 const BESPOKE_PASS_4_BOOK_SLUG = "the-leavenworth-case";
 const SHERLOCK_PASS_1_BOOK_SLUG = "a-scandal-in-bohemia";
 const SHERLOCK_PASS_2_BOOK_SLUG = "the-adventure-of-the-blue-carbuncle";
+const SHERLOCK_ADVENTURES_COLLECTION_TITLE =
+  "The Adventures of Sherlock Holmes";
+const SHERLOCK_ADVENTURES_FIRST_DISPLAY_TITLE =
+  "The Adventures of Sherlock Holmes - Chapter 1: A Scandal in Bohemia";
+const SHERLOCK_ADVENTURES_PARENT_ROUTE_FRAGMENT =
+  "the-adventures-of-sherlock-holmes";
+const SHERLOCK_MIDDLE_BOOK_SLUG = "the-man-with-the-twisted-lip";
+const SHERLOCK_LAST_BOOK_SLUG = "the-adventure-of-the-copper-beeches";
 const REQUIRED_STORY_TITLES = {
   "the-dream-of-little-tuk": "The Dream of Little Tuk",
   "the-false-collar": "The False Collar",
@@ -1007,6 +1019,43 @@ async function openGeneratedBookPreview(page: Page, pathName: string) {
   await waitForApprovedBookWorkspace(page);
 }
 
+async function expectSherlockCollectionNav(
+  page: Page,
+  expected: {
+    nextHref?: string;
+    nextText?: string;
+    position: string;
+    previousHref?: string;
+    previousText?: string;
+  },
+) {
+  const nav = page.getByTestId("morse-book-collection-nav");
+  await expect(nav).toBeVisible();
+  await expect(nav.getByRole("heading", { name: "In this collection" })).toBeVisible();
+  await expect(nav.getByTestId("morse-book-collection-position")).toHaveText(
+    expected.position,
+  );
+  await expect(
+    nav.locator(`a[href*="${SHERLOCK_ADVENTURES_PARENT_ROUTE_FRAGMENT}"]`),
+  ).toHaveCount(0);
+
+  const previous = nav.getByTestId("morse-book-collection-previous");
+  if (expected.previousHref && expected.previousText) {
+    await expect(previous).toHaveText(expected.previousText);
+    await expect(previous).toHaveAttribute("href", expected.previousHref);
+  } else {
+    await expect(previous).toHaveCount(0);
+  }
+
+  const next = nav.getByTestId("morse-book-collection-next");
+  if (expected.nextHref && expected.nextText) {
+    await expect(next).toHaveText(expected.nextText);
+    await expect(next).toHaveAttribute("href", expected.nextHref);
+  } else {
+    await expect(next).toHaveCount(0);
+  }
+}
+
 async function saveScreenshot(page: Page, testInfo: TestInfo, name: string) {
   const screenshotPath = testInfo.outputPath(name);
   await page.screenshot({ path: screenshotPath, fullPage: true });
@@ -1189,6 +1238,113 @@ test.describe("Morse book page foundation", () => {
     );
     expect(normalizedManifest.title).toBe("The Elderbush");
     expect(normalizedManifest.cover.alt).toContain("The Elderbush");
+  });
+
+  test("defines Sherlock Adventures collection context without a parent route", () => {
+    const firstContext = getMorseBookCollectionContext(SHERLOCK_PASS_1_BOOK_SLUG);
+    const middleContext = getMorseBookCollectionContext(SHERLOCK_MIDDLE_BOOK_SLUG);
+    const lastContext = getMorseBookCollectionContext(SHERLOCK_LAST_BOOK_SLUG);
+
+    expect(firstContext?.collectionTitle).toBe(
+      SHERLOCK_ADVENTURES_COLLECTION_TITLE,
+    );
+    expect(firstContext?.collectionOrder).toBe(1);
+    expect(firstContext?.collectionSize).toBe(12);
+    expect(firstContext?.previousInCollection).toBeNull();
+    expect(firstContext?.nextInCollection).toEqual({
+      slug: "the-red-headed-league",
+      title: "The Red-Headed League",
+    });
+    expect(
+      getMorseBookContextTitle({
+        slug: SHERLOCK_PASS_1_BOOK_SLUG,
+        title: "A Scandal in Bohemia",
+      }),
+    ).toBe(SHERLOCK_ADVENTURES_FIRST_DISPLAY_TITLE);
+
+    expect(middleContext?.collectionOrder).toBe(6);
+    expect(middleContext?.previousInCollection?.slug).toBe(
+      "the-five-orange-pips",
+    );
+    expect(middleContext?.nextInCollection?.slug).toBe(
+      "the-adventure-of-the-blue-carbuncle",
+    );
+    expect(lastContext?.collectionOrder).toBe(12);
+    expect(lastContext?.previousInCollection?.slug).toBe(
+      "the-adventure-of-the-beryl-coronet",
+    );
+    expect(lastContext?.nextInCollection).toBeNull();
+    expect(getMorseBookCollectionContext("the-ugly-duckling")).toBeNull();
+  });
+
+  test("shows Sherlock collection context and same-surface story navigation", async ({
+    page,
+  }) => {
+    await openPublicBook(page, `/morse-code-books/${SHERLOCK_PASS_1_BOOK_SLUG}`);
+    await expect(page.locator("h1")).toHaveText("A Scandal in Bohemia");
+    await expect(page.getByTestId("morse-book-collection-context")).toHaveText(
+      "The Adventures of Sherlock Holmes - Chapter 1",
+    );
+    await expect(page).toHaveTitle(
+      /The Adventures of Sherlock Holmes - Chapter 1: A Scandal in Bohemia/,
+    );
+    await expectSherlockCollectionNav(page, {
+      position: "Chapter 1 of 12 in The Adventures of Sherlock Holmes",
+      nextHref: "/morse-code-books/the-red-headed-league",
+      nextText: "Next story: The Red-Headed League",
+    });
+
+    await openPublicBook(page, `/morse-code-books/${SHERLOCK_MIDDLE_BOOK_SLUG}`);
+    await expect(page.getByTestId("morse-book-collection-context")).toHaveText(
+      "The Adventures of Sherlock Holmes - Chapter 6",
+    );
+    await expectSherlockCollectionNav(page, {
+      position: "Chapter 6 of 12 in The Adventures of Sherlock Holmes",
+      previousHref: "/morse-code-books/the-five-orange-pips",
+      previousText: "Previous story: The Five Orange Pips",
+      nextHref: "/morse-code-books/the-adventure-of-the-blue-carbuncle",
+      nextText: "Next story: The Adventure of the Blue Carbuncle",
+    });
+
+    await openPublicBook(page, `/morse-code-books/${SHERLOCK_LAST_BOOK_SLUG}`);
+    await expect(page.getByTestId("morse-book-collection-context")).toHaveText(
+      "The Adventures of Sherlock Holmes - Chapter 12",
+    );
+    await expectSherlockCollectionNav(page, {
+      position: "Chapter 12 of 12 in The Adventures of Sherlock Holmes",
+      previousHref: "/morse-code-books/the-adventure-of-the-beryl-coronet",
+      previousText: "Previous story: The Adventure of the Beryl Coronet",
+    });
+
+    await openPublicBook(page, `/morse-code-audiobooks/${SHERLOCK_PASS_1_BOOK_SLUG}`);
+    await expect(page.locator("h1")).toHaveText("A Scandal in Bohemia");
+    await expect(page.getByTestId("morse-book-collection-context")).toHaveText(
+      "The Adventures of Sherlock Holmes - Chapter 1",
+    );
+    await expectSherlockCollectionNav(page, {
+      position: "Chapter 1 of 12 in The Adventures of Sherlock Holmes",
+      nextHref: "/morse-code-audiobooks/the-red-headed-league",
+      nextText: "Next story: The Red-Headed League",
+    });
+
+    await openPublicBook(page, `/morse-code-audiobooks/${SHERLOCK_MIDDLE_BOOK_SLUG}`);
+    await expectSherlockCollectionNav(page, {
+      position: "Chapter 6 of 12 in The Adventures of Sherlock Holmes",
+      previousHref: "/morse-code-audiobooks/the-five-orange-pips",
+      previousText: "Previous story: The Five Orange Pips",
+      nextHref: "/morse-code-audiobooks/the-adventure-of-the-blue-carbuncle",
+      nextText: "Next story: The Adventure of the Blue Carbuncle",
+    });
+
+    await openPublicBook(page, `/morse-code-audiobooks/${SHERLOCK_LAST_BOOK_SLUG}`);
+    await expect(page.getByTestId("morse-book-collection-context")).toHaveText(
+      "The Adventures of Sherlock Holmes - Chapter 12",
+    );
+    await expectSherlockCollectionNav(page, {
+      position: "Chapter 12 of 12 in The Adventures of Sherlock Holmes",
+      previousHref: "/morse-code-audiobooks/the-adventure-of-the-beryl-coronet",
+      previousText: "Previous story: The Adventure of the Beryl Coronet",
+    });
   });
 
   test("renders individual story titles on book and audiobook surfaces", async ({

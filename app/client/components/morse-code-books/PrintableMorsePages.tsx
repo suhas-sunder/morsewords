@@ -20,6 +20,7 @@ import {
   formatMorseBookAuthors,
   getMorseBookAuthorDisplay,
 } from "~/client/data/morseBookDisplay";
+import { getMorseBookContextTitle } from "~/client/data/morseBookCollectionContext";
 import {
   getMorseBookSuitability,
   morseBookSuitabilityLabel,
@@ -421,10 +422,14 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
       selectedSections.reduce((total, section) => total + section.wordCount, 0),
     [selectedSections],
   );
-  const heading = isBook && book ? `${book.title} printable Morse pages` : "Printable Morse pages";
+  const bookDisplayTitle = book ? getMorseBookContextTitle(book) : "";
+  const heading =
+    isBook && book
+      ? `${bookDisplayTitle} printable Morse pages`
+      : "Printable Morse pages";
   const description =
     isBook && book
-      ? `Print ${book.title} by ${authorText(book)} as Morse study sheets, Morse-only pages, or side-by-side text and Morse.`
+      ? `Print ${bookDisplayTitle} by ${authorText(book)} as Morse study sheets, Morse-only pages, or side-by-side text and Morse.`
       : "Paste custom text, choose a practical print layout, include a site URL and QR code, then use your browser print dialog to print or save as PDF.";
 
   function toggleSelectedSection(sectionId: string) {
@@ -755,7 +760,9 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
       </section>
 
       <BreadcrumbTrail
-        current={isBook && book ? `${book.title} Print` : "Printable Morse Pages"}
+        current={
+          isBook && book ? `${bookDisplayTitle} Print` : "Printable Morse Pages"
+        }
         placement="contentFooter"
       />
     </main>
@@ -787,7 +794,7 @@ function PrintablePagePreview({
   isSinglePagePrintMode: boolean;
   onPrintSinglePage: (pageNumber: number) => void;
 }) {
-  const title = book ? book.title : "Custom Morse practice";
+  const title = book ? getMorseBookContextTitle(book) : "Custom Morse practice";
   const authorDisplay = book ? getMorseBookAuthorDisplay(book.author) : null;
   const author = authorDisplay?.text ?? "MorseWords printable page";
   const sourceUrl = book?.source.sourceUrl ?? "";
