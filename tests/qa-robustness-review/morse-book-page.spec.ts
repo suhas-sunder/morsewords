@@ -275,6 +275,59 @@ function readPublicBookRuntimeSettingsKey(slug: string) {
   return `${BOOK_RUNTIME_SETTINGS_KEY_PREFIX}${slug}:${content.manifest.contentVersion}:${content.manifest.contentHash}`;
 }
 
+function readPublicBookContentFixture(slug: string) {
+  return readJson<TestBookContentFixture>(
+    `app/client/assets/books/cloudflare-export/books/${slug}.json`,
+  );
+}
+
+async function seedAudiobookRuntimeProgress(
+  page: Page,
+  {
+    elapsedMs,
+    sectionId,
+    slug,
+  }: {
+    elapsedMs: number;
+    sectionId: string;
+    slug: string;
+  },
+) {
+  const content = readPublicBookContentFixture(slug);
+  const key = readPublicBookRuntimeSettingsKey(slug);
+  await page.addInitScript(
+    ({ contentHash, contentVersion, elapsedMs, key, sectionId, slug }) => {
+      localStorage.setItem(
+        key,
+        JSON.stringify({
+          schemaVersion: 1,
+          slug,
+          contentVersion,
+          contentHash,
+          selectionMode: "custom",
+          selectedSectionIds: [sectionId],
+          exportSettings: {},
+          videoSettings: {},
+          livePlayer: {
+            activeSectionId: sectionId,
+            activeSegmentIndex: 0,
+            elapsedMs,
+            completedSectionIds: [],
+          },
+        }),
+      );
+    },
+    {
+      contentHash: content.manifest.contentHash,
+      contentVersion: content.manifest.contentVersion,
+      elapsedMs,
+      key,
+      sectionId,
+      slug,
+    },
+  );
+}
+
 function testPublishedLivePreviewProgressContentHash() {
   const exportSettings = sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS);
   const cleanedExportText = applyExportPunctuationMode(
@@ -2655,6 +2708,117 @@ test.describe("Morse book page foundation", () => {
         };
       })
       .toEqual(expectedNext);
+  });
+
+  test("restores audiobook progress once without overriding near-end restart", async ({
+    page,
+  }) => {
+    const content = readPublicBookContentFixture(NETWORK_BOOK_SLUG);
+    const firstReadableSection =
+      content.manifest.sections.find((section) => section.includeByDefault) ??
+      content.manifest.sections[0];
+    expect(firstReadableSection).toBeTruthy();
+    await seedAudiobookRuntimeProgress(page, {
+      elapsedMs: 20_000,
+      sectionId: firstReadableSection!.id,
+      slug: NETWORK_BOOK_SLUG,
+    });
+    await openPublicBook(page, NETWORK_AUDIOBOOK_PUBLIC_PATH);
+    await waitForLivePlayerTestHook(page);
+
+    await expect
+      .poll(async () => {
+        const state = await readLivePlayerHookState(page);
+        return {
+          elapsedRestored: state.elapsedMs >= 20_000,
+          sectionId: state.sectionId,
+        };
+      })
+      .toEqual({
+        elapsedRestored: true,
+        sectionId: firstReadableSection!.id,
+      });
+
+    const staleToken = await captureLivePlayerCompletion(page);
+    await page.evaluate((nearEndElapsedMs) => {
+      const hook = (window as LivePlayerTestWindow)
+        .__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__;
+      if (!hook) throw new Error("Missing live player test hook.");
+      hook.startCurrentSegment(nearEndElapsedMs);
+    }, staleToken.durationMs - 100);
+
+    await expect
+      .poll(async () => {
+        const state = await readLivePlayerHookState(page);
+        return {
+          elapsedUnderRestartThreshold: state.elapsedMs < 1_000,
+          playing: state.playing,
+          sectionId: state.sectionId,
+          segmentIndex: state.segmentIndex,
+        };
+      })
+      .toEqual({
+        elapsedUnderRestartThreshold: true,
+        playing: true,
+        sectionId: firstReadableSection!.id,
+        segmentIndex: 0,
+      });
+    await expect(
+      completeCapturedLivePlayerSegment(page, staleToken),
+    ).resolves.toBe(false);
+    const afterStaleCompletion = await readLivePlayerHookState(page);
+    expect(afterStaleCompletion.sectionId).toBe(firstReadableSection!.id);
+    expect(afterStaleCompletion.segmentIndex).toBe(0);
+  });
+
+  test("invalidates audiobook live player completion on manual section change", async ({
+    page,
+  }) => {
+    await openPublicBook(page, NETWORK_AUDIOBOOK_PUBLIC_PATH);
+    await waitForLivePlayerTestHook(page);
+
+    const initialState = await readLivePlayerHookState(page);
+    expect(initialState.sectionIndex).toBeLessThan(
+      initialState.sectionCount - 1,
+    );
+    await page.evaluate(() => {
+      const hook = (window as LivePlayerTestWindow)
+        .__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__;
+      if (!hook) throw new Error("Missing live player test hook.");
+      hook.startCurrentSegment();
+    });
+    await expect
+      .poll(async () => (await readLivePlayerHookState(page)).playing)
+      .toBe(true);
+    const runningToken = await captureLivePlayerCompletion(page);
+
+    const nextSectionIndex = initialState.sectionIndex + 1;
+    await page
+      .getByTestId("morse-book-live-section-select")
+      .selectOption({ index: nextSectionIndex });
+    await expect
+      .poll(async () => {
+        const state = await readLivePlayerHookState(page);
+        return {
+          elapsedUnderRestartThreshold: state.elapsedMs < 1_000,
+          playing: state.playing,
+          sectionIndex: state.sectionIndex,
+          segmentIndex: state.segmentIndex,
+        };
+      })
+      .toEqual({
+        elapsedUnderRestartThreshold: true,
+        playing: false,
+        sectionIndex: nextSectionIndex,
+        segmentIndex: 0,
+      });
+
+    await expect(
+      completeCapturedLivePlayerSegment(page, runningToken),
+    ).resolves.toBe(false);
+    const afterStaleCompletion = await readLivePlayerHookState(page);
+    expect(afterStaleCompletion.sectionIndex).toBe(nextSectionIndex);
+    expect(afterStaleCompletion.segmentIndex).toBe(0);
   });
 
   test("caches opened approved book JSON and serves a valid cache hit offline", async ({

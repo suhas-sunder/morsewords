@@ -1703,39 +1703,6 @@ function MorseBookWorkspace({
     setVideoPreviewElapsedMs(clampedElapsedMs);
     pendingRestoredLiveElapsedRef.current = null;
   }, [activeLiveSectionId, isAudiobook, livePreview.durationMs, liveSegments.length]);
-  React.useEffect(() => {
-    if (
-      !settingsRestored ||
-      !isAudiobook ||
-      liveSegments.length === 0 ||
-      videoPreviewElapsedMs > 0
-    ) {
-      return;
-    }
-    const saved = loadSavedMorseBookRuntimeSettings(book, defaultSectionIds)?.livePlayer;
-    if (
-      saved?.activeSectionId !== activeLiveSectionId ||
-      !saved.elapsedMs ||
-      saved.elapsedMs <= 0
-    ) {
-      return;
-    }
-    const restoredElapsedMs = Math.max(
-      0,
-      Math.min(saved.elapsedMs, Math.max(1, livePreview.durationMs)),
-    );
-    videoPreviewBaseElapsedRef.current = restoredElapsedMs;
-    setVideoPreviewElapsedMs(restoredElapsedMs);
-  }, [
-    activeLiveSectionId,
-    book,
-    defaultSectionIds,
-    isAudiobook,
-    livePreview.durationMs,
-    liveSegments.length,
-    settingsRestored,
-    videoPreviewElapsedMs,
-  ]);
   const activeVisualPreview = livePreview;
   const visibleLayerCount =
     (videoSettings.showVisualSignal ? 1 : 0) +
