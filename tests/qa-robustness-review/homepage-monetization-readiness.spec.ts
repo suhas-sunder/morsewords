@@ -89,18 +89,21 @@ async function readFeaturedBookCards(page: Page) {
         const author = card.querySelector<HTMLElement>(
           '[data-testid="home-featured-book-author"]',
         );
-        const description = card.querySelector<HTMLElement>(
-          '[data-testid="home-featured-book-description"]',
+        const valueLine = card.querySelector<HTMLElement>(
+          '[data-testid="home-featured-book-value-line"]',
         );
         const primaryLink = card.querySelector<HTMLAnchorElement>(
           '[data-testid="home-featured-book-primary-link"]',
         );
-        const mp3Link = card.querySelector<HTMLAnchorElement>(
-          '[data-testid="home-featured-book-mp3-link"]',
+        const cta = card.querySelector<HTMLElement>(
+          '[data-testid="home-featured-book-cta"]',
         );
         const links = Array.from(
           card.querySelectorAll<HTMLAnchorElement>("a"),
-        ).map((link) => link.getAttribute("href") ?? "");
+        ).map((link) => ({
+          href: link.getAttribute("href") ?? "",
+          text: link.textContent?.trim().replace(/\s+/g, " ") ?? "",
+        }));
 
         return {
           slug: card.getAttribute("data-mw-home-book-slug") ?? "",
@@ -112,9 +115,11 @@ async function readFeaturedBookCards(page: Page) {
           author: author?.textContent?.trim() ?? "",
           authorAttr: author?.getAttribute("title") ?? "",
           authorClass: author?.className ?? "",
-          descriptionClass: description?.className ?? "",
+          valueLine: valueLine?.textContent?.trim() ?? "",
           primaryHref: primaryLink?.getAttribute("href") ?? "",
-          mp3Href: mp3Link?.getAttribute("href") ?? "",
+          primaryLabel: primaryLink?.getAttribute("aria-label") ?? "",
+          primaryTitle: primaryLink?.getAttribute("title") ?? "",
+          ctaText: cta?.textContent?.trim() ?? "",
           links,
         };
       }),
@@ -139,15 +144,20 @@ function expectFeaturedBookCardsToMatchApprovedRecords(
 
     const bookPath = `/morse-code-books/${card.slug}`;
     expect(card.primaryHref).toBe(bookPath);
-    expect(card.mp3Href).toBe(bookPath);
-    expect(card.links).toEqual(expect.arrayContaining([bookPath]));
+    expect(card.primaryLabel).toBe(`Open ${book!.title} by ${authorText}`);
+    expect(card.primaryTitle).toBe(`Open ${book!.title}`);
+    expect(card.ctaText).toBe("Open book");
+    expect(card.valueLine).toMatch(/^\d[\d,]* sections? \/ \d[\d,]* words?$/);
+    expect(card.links).toEqual([expect.objectContaining({ href: bookPath })]);
     expect(
-      card.links.some((href) => href.startsWith("/morse-code-audiobooks/")),
+      card.links.some((link) => link.href.startsWith("/morse-code-audiobooks/")),
     ).toBe(false);
+    expect(card.links.some((link) => /Download MP3/i.test(link.text))).toBe(
+      false,
+    );
 
-    expect(card.titleClass).toContain("line-clamp-2");
-    expect(card.authorClass).toContain("truncate");
-    expect(card.descriptionClass).toContain("line-clamp-3");
+    expect(card.titleClass).toContain("line-clamp-3");
+    expect(card.authorClass).toContain("line-clamp-2");
   }
 }
 
@@ -204,6 +214,48 @@ function contrastRatio(foreground: string, background: string) {
 test.describe("homepage monetization readiness", () => {
   test.beforeEach(async ({ page }) => {
     await blockExternalNetwork(page);
+  });
+
+  test("keeps homepage and audio metadata stable", async ({ page }) => {
+    await gotoHome(page);
+
+    await expect(page).toHaveTitle(
+      "Morse Code Translator, Audio, Practice, Books, and Printables | MorseWords",
+    );
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+      "content",
+      "Translate Morse code, hear audio, create MP3 and video exports, practice, read Morse books and audiobooks, and print study pages with browser-based tools.",
+    );
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      "https://www.morsewords.com/",
+    );
+    await expect(
+      page.getByRole("heading", {
+        name: "Morse Code Translator",
+        exact: true,
+      }),
+    ).toBeVisible();
+
+    await page.goto(ROUTES.audio, { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await expect(page).toHaveTitle(
+      "Morse Code Audio Translator & Generator | WAV, MP3, Decoder Tools | MorseWords",
+    );
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+      "content",
+      "Translate text or Morse into playable audio, tune WPM and Farnsworth spacing, export WAV, and find Morse MP3, decoder, book, video, and listening tools.",
+    );
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      "https://www.morsewords.com/audio",
+    );
+    await expect(
+      page.getByRole("heading", {
+        name: "Morse Code Audio Generator",
+        exact: true,
+      }),
+    ).toBeVisible();
   });
 
   test("keeps the translator as the hero tool while framing the broader ecosystem", async ({
@@ -307,7 +359,21 @@ test.describe("homepage monetization readiness", () => {
     await page.setViewportSize({ width: 1600, height: 1000 });
     await gotoHome(page);
 
-    await page.getByRole("button", { name: /More/i }).click();
+    const moreButton = page.getByRole("button", {
+      name: "More",
+      exact: true,
+    });
+    await expect(moreButton).toBeVisible();
+    await expect(moreButton).toBeEnabled();
+    await expect(async () => {
+      if ((await moreButton.getAttribute("aria-expanded")) !== "true") {
+        await moreButton.click();
+      }
+      await expect(moreButton).toHaveAttribute("aria-expanded", "true", {
+        timeout: 1_000,
+      });
+    }).toPass({ timeout: 10_000 });
+
     const dialog = page.getByRole("dialog", { name: "More MorseWords tools" });
     await expect(dialog).toBeVisible();
 
@@ -339,7 +405,7 @@ test.describe("homepage monetization readiness", () => {
     expect(bookLinkColumns).toBeGreaterThanOrEqual(3);
   });
 
-  test("highlights approved public books and audiobook links only", async ({
+  test("highlights approved public books with focused book links", async ({
     page,
   }) => {
     expect(approvedBookSlugs.size).toBeGreaterThan(16);
@@ -364,20 +430,24 @@ test.describe("homepage monetization readiness", () => {
     expectFeaturedBookCardsToMatchApprovedRecords(
       await readFeaturedBookCards(page),
     );
+    await expect(section.getByText("Download MP3")).toHaveCount(0);
+    await expect(
+      section.locator('[data-testid="home-featured-book-mp3-link"]'),
+    ).toHaveCount(0);
     await expect(section).not.toContainText("Test Published Morse Book");
   });
 
-  test("randomizes featured book cards without mixing book data", async ({
+  test("keeps featured book cards deterministic without hydration swapping", async ({
     page,
     context,
   }) => {
     expect(approvedBooks.length).toBeGreaterThan(4);
     await page.addInitScript(() => {
-      Math.random = () => 0;
+      Math.random = () => 0.999999;
     });
     await gotoHome(page);
 
-    const firstExpectedSlugs = approvedBooks
+    const expectedSlugs = approvedBooks
       .slice(0, 4)
       .map((book) => book.slug)
       .join("|");
@@ -385,35 +455,29 @@ test.describe("homepage monetization readiness", () => {
       .poll(async () =>
         (await readFeaturedBookCards(page)).map((card) => card.slug).join("|"),
       )
-      .toBe(firstExpectedSlugs);
+      .toBe(expectedSlugs);
     expectFeaturedBookCardsToMatchApprovedRecords(
       await readFeaturedBookCards(page),
     );
 
-    const lastPage = await context.newPage();
-    await blockExternalNetwork(lastPage);
-    await lastPage.addInitScript(() => {
-      Math.random = () => 0.999999;
+    const secondPage = await context.newPage();
+    await blockExternalNetwork(secondPage);
+    await secondPage.addInitScript(() => {
+      Math.random = () => 0;
     });
-    await gotoHome(lastPage);
+    await gotoHome(secondPage);
 
-    const lastExpectedSlugs = [...approvedBooks]
-      .reverse()
-      .slice(0, 4)
-      .map((book) => book.slug)
-      .join("|");
     await expect
       .poll(async () =>
-        (await readFeaturedBookCards(lastPage))
+        (await readFeaturedBookCards(secondPage))
           .map((card) => card.slug)
           .join("|"),
       )
-      .toBe(lastExpectedSlugs);
-    expect(lastExpectedSlugs).not.toBe(firstExpectedSlugs);
+      .toBe(expectedSlugs);
     expectFeaturedBookCardsToMatchApprovedRecords(
-      await readFeaturedBookCards(lastPage),
+      await readFeaturedBookCards(secondPage),
     );
-    await lastPage.close();
+    await secondPage.close();
   });
 
   test("links printables, explains browser print, and keeps schema conservative", async ({

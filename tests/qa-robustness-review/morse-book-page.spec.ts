@@ -1592,11 +1592,17 @@ test.describe("Morse book page foundation", () => {
     );
     await expect(featuredBooks).toBeVisible();
     await expect(
-      featuredBooks.getByRole("link", { name: "Open live player" }).first(),
+      featuredBooks
+        .locator('[data-testid="home-featured-book-primary-link"]')
+        .first(),
     ).toHaveAttribute("href", /^\/morse-code-books\/[^/?#]+$/);
     await expect(
-      featuredBooks.getByRole("link", { name: "Download MP3" }).first(),
-    ).toHaveAttribute("href", /^\/morse-code-books\/[^/?#]+$/);
+      featuredBooks.locator('[data-testid="home-featured-book-cta"]').first(),
+    ).toHaveText("Open book");
+    await expect(featuredBooks.getByText("Download MP3")).toHaveCount(0);
+    await expect(
+      featuredBooks.locator('[data-testid="home-featured-book-mp3-link"]'),
+    ).toHaveCount(0);
     await expect(
       featuredBooks.locator('a[href^="/morse-code-audiobooks/"]'),
     ).toHaveCount(0);

@@ -118,19 +118,20 @@ function formatCount(value: number, label: string) {
 
 const FEATURED_BOOK_LIMIT = 4;
 
-function selectRandomFeaturedBooks<T>(books: readonly T[], limit: number) {
-  if (books.length <= limit) return [...books];
+function formatUnitCount(
+  value: number,
+  singular: string,
+  plural = `${singular}s`,
+) {
+  const label = value === 1 ? singular : plural;
+  return `${value.toLocaleString("en-US")} ${label}`;
+}
 
-  const pool = [...books];
-  const selected: T[] = [];
-
-  while (selected.length < limit && pool.length > 0) {
-    const index = Math.floor(Math.random() * pool.length);
-    const [book] = pool.splice(index, 1);
-    if (book) selected.push(book);
-  }
-
-  return selected;
+function formatFeaturedBookValueLine(sectionCount: number, wordCount: number) {
+  return `${formatUnitCount(sectionCount, "section")} / ${formatUnitCount(
+    wordCount,
+    "word",
+  )}`;
 }
 
 function SectionEyebrow({ children }: { children: React.ReactNode }) {
@@ -199,16 +200,10 @@ function OfferingsSection() {
 }
 
 function FeaturedBooksSection() {
-  const availableBooks = React.useMemo(() => getPublishedMorseBookSummaries(), []);
-  const [featuredBooks, setFeaturedBooks] = React.useState(() =>
-    availableBooks.slice(0, FEATURED_BOOK_LIMIT),
+  const featuredBooks = React.useMemo(
+    () => getPublishedMorseBookSummaries().slice(0, FEATURED_BOOK_LIMIT),
+    [],
   );
-
-  React.useEffect(() => {
-    setFeaturedBooks(
-      selectRandomFeaturedBooks(availableBooks, FEATURED_BOOK_LIMIT),
-    );
-  }, [availableBooks]);
 
   if (featuredBooks.length === 0) return null;
 
@@ -254,88 +249,63 @@ function FeaturedBooksSection() {
           {featuredBooks.map((book) => {
             const bookPath = morseBookPath(book.slug);
             const authorText = formatMorseBookAuthors(book.author);
-            const description =
-              book.description ||
-              "Open cleaned public book text for Morse reading, listening, and MP3 download practice.";
+            const valueLine = formatFeaturedBookValueLine(
+              book.stats.includedSectionCount,
+              book.stats.wordCount,
+            );
 
             return (
               <article
                 key={book.slug}
-                className="mw-static-surface flex h-full min-w-0 flex-col rounded-xl bg-[#fffdf8] p-4"
+                className="h-full min-w-0"
                 data-testid="home-featured-book-card"
                 data-mw-home-book-slug={book.slug}
                 data-mw-home-book-title={book.title}
                 data-mw-home-book-author={authorText}
               >
-                <div
-                  className="mw-static-tile flex min-h-44 flex-col justify-between rounded-xl bg-[#f2eee6] p-4"
+                <Link
+                  to={bookPath}
+                  className="mw-static-surface group flex h-full min-w-0 cursor-pointer flex-col rounded-xl bg-[#fffdf8] p-4 text-slate-900 no-underline hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  aria-label={`Open ${book.title} by ${authorText}`}
+                  title={`Open ${book.title}`}
+                  data-testid="home-featured-book-primary-link"
                 >
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
-                    MorseWords book
+                  <div className="mw-static-tile flex min-h-52 flex-col justify-between rounded-lg bg-[#f2eee6] p-4">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                      MorseWords book
+                    </span>
+                    <div className="min-w-0 pt-10">
+                      <h3
+                        className="mw-heading line-clamp-3 break-words text-xl font-extrabold leading-tight text-sky-950"
+                        title={book.title}
+                        data-testid="home-featured-book-title"
+                      >
+                        {book.title}
+                      </h3>
+                      <p
+                        className="mt-3 line-clamp-2 text-sm font-semibold leading-snug text-slate-600"
+                        title={authorText}
+                        data-testid="home-featured-book-author"
+                      >
+                        {authorText}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p
+                    className="mw-muted-label mt-4 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500"
+                    data-testid="home-featured-book-value-line"
+                  >
+                    {valueLine}
+                  </p>
+
+                  <span
+                    className="mt-auto inline-flex min-h-10 w-fit items-center rounded-lg bg-slate-950 px-3 py-1.5 text-sm font-bold text-sky-100 group-hover:bg-slate-900 group-hover:text-white"
+                    data-testid="home-featured-book-cta"
+                  >
+                    Open book
                   </span>
-                  <div className="min-w-0 pt-8">
-                    <h3
-                      className="mw-heading line-clamp-2 break-words text-xl font-extrabold leading-tight text-sky-950"
-                      title={book.title}
-                      data-testid="home-featured-book-title"
-                    >
-                      {book.title}
-                    </h3>
-                    <p
-                      className="mt-3 truncate text-sm font-semibold text-slate-600"
-                      title={authorText}
-                      data-testid="home-featured-book-author"
-                    >
-                      {authorText}
-                    </p>
-                  </div>
-                </div>
-
-                <p
-                  className="mw-text-muted mt-4 line-clamp-3 text-sm leading-relaxed text-slate-700"
-                  title={description}
-                  data-testid="home-featured-book-description"
-                >
-                  {description}
-                </p>
-
-                <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                  <div className="min-w-0">
-                    <dt className="mw-muted-label font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
-                      Sections
-                    </dt>
-                    <dd className="mw-text-muted mt-1 truncate text-slate-700">
-                      {formatCount(book.stats.includedSectionCount, "sections")}
-                    </dd>
-                  </div>
-                  <div className="min-w-0">
-                    <dt className="mw-muted-label font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
-                      Words
-                    </dt>
-                    <dd className="mw-text-muted mt-1 truncate text-slate-700">
-                      {formatCount(book.stats.wordCount, "words")}
-                    </dd>
-                  </div>
-                </dl>
-
-                <div className="mt-auto flex flex-wrap gap-2 pt-4 text-sm">
-                  <Link
-                    to={bookPath}
-                    className="mw-button-outline mw-button-secondary-dark-hover inline-flex min-h-10 items-center rounded-lg bg-[#fffdf8] px-3 py-1.5 font-bold text-slate-900 hover:text-sky-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-                    title={`Open ${book.title}`}
-                    data-testid="home-featured-book-primary-link"
-                  >
-                    Open live player
-                  </Link>
-                  <Link
-                    to={bookPath}
-                    className="mw-link inline-flex min-h-10 items-center font-semibold text-sky-900 underline-offset-4 hover:underline"
-                    title={`Open MP3 download controls for ${book.title}`}
-                    data-testid="home-featured-book-mp3-link"
-                  >
-                    Download MP3
-                  </Link>
-                </div>
+                </Link>
               </article>
             );
           })}
