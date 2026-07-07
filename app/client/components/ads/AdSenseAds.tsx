@@ -43,6 +43,7 @@ type AdSlotProps = ViewportRule & {
 };
 
 const TABLET_MIN_WIDTH = 768;
+const DESKTOP_MIN_WIDTH = 1280;
 const SIDEBAR_MIN_WIDTH = 1536;
 
 const canUseDOM = typeof window !== "undefined";
@@ -148,6 +149,23 @@ export function isInContentAdEligiblePath(pathname: string) {
   return !isAdsExcludedPath(pathname);
 }
 
+const SEO_SECTION_RAIL_ELIGIBLE_PATHS = new Set<string>([
+  ROUTES.alphabet,
+  ROUTES.numbers,
+  ROUTES.punctuation,
+  ROUTES.reader,
+  ROUTES.separateWords,
+  ROUTES.wordSeparator,
+]);
+
+export function isSeoSectionRailAdEligiblePath(pathname: string) {
+  const normalizedPathname = normalizePathname(pathname);
+  return (
+    isInContentAdEligiblePath(normalizedPathname) &&
+    SEO_SECTION_RAIL_ELIGIBLE_PATHS.has(normalizedPathname)
+  );
+}
+
 function isViewportEligible({ minWidth = 0, maxWidth }: ViewportRule) {
   if (!canUseDOM) return false;
   const width = window.innerWidth;
@@ -188,6 +206,7 @@ function adFormatForKind(kind: AdKind) {
 
 function adViewportClassName(minWidth: number) {
   if (minWidth >= SIDEBAR_MIN_WIDTH) return "mw-ad-min-wide";
+  if (minWidth >= DESKTOP_MIN_WIDTH) return "mw-ad-min-desktop";
   if (minWidth >= TABLET_MIN_WIDTH) return "mw-ad-min-tablet";
   return "mw-ad-min-any";
 }
@@ -326,8 +345,8 @@ export function AdSlot({
       {placeholder ? (
         <div
           aria-hidden="true"
-          className="mw-ad-placeholder"
-          data-mw-ad-placeholder-hidden={placeholderVisible ? "false" : "true"}
+          className="mw-placement-label"
+          data-mw-placement-label-hidden={placeholderVisible ? "false" : "true"}
           data-testid={`${placementTestId}-placeholder`}
           hidden={!placeholderVisible}
         >
@@ -421,6 +440,24 @@ export function InContentAd({
       minWidth={0}
       placement="in-content"
       reservedSize={{ width: 728, height: 90 }}
+      slot={ADSENSE_SLOTS.inContent}
+    />
+  );
+}
+
+export function SeoSectionRailAd({
+  className = "",
+}: {
+  className?: string;
+}) {
+  return (
+    <AdSlot
+      className={["mw-ad-seo-rail", className].filter(Boolean).join(" ")}
+      isPathEligible={isSeoSectionRailAdEligiblePath}
+      kind="vertical"
+      minWidth={DESKTOP_MIN_WIDTH}
+      placement="seo-section-vertical"
+      reservedSize={{ width: 120, height: 600 }}
       slot={ADSENSE_SLOTS.inContent}
     />
   );

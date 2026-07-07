@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { InContentAd } from "~/client/components/ads/AdSenseAds";
+import { SeoSectionRailAd } from "~/client/components/ads/AdSenseAds";
 import {
   ActionLinks,
   SectionCard,
@@ -101,28 +101,29 @@ export default function ReferenceSupportSections({
         </div>
       </SectionCard>
 
-      <InContentAd />
-
       <SectionCard
         eyebrow="Use it well"
         title={mistakes.title}
         description={mistakes.description}
         layout="stacked"
       >
-        <div className="grid gap-4 md:grid-cols-3">
-          {mistakes.items.map((mistake) => (
-            <StaticPanel
-              as="article"
-              key={mistake.title}
-            >
-              <h3 className="mw-heading text-lg font-extrabold leading-snug text-sky-950">
-                {mistake.title}
-              </h3>
-              <div className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
-                {mistake.children}
-              </div>
-            </StaticPanel>
-          ))}
+        <div className="mw-seo-section-with-rail">
+          <div className="grid gap-4 md:grid-cols-3">
+            {mistakes.items.map((mistake) => (
+              <StaticPanel
+                as="article"
+                key={mistake.title}
+              >
+                <h3 className="mw-heading text-lg font-extrabold leading-snug text-sky-950">
+                  {mistake.title}
+                </h3>
+                <div className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
+                  {mistake.children}
+                </div>
+              </StaticPanel>
+            ))}
+          </div>
+          <SeoSectionRailAd />
         </div>
       </SectionCard>
 

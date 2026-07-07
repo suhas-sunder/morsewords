@@ -14,6 +14,8 @@ const SLOTS = {
   optionalSquare: "6390114680",
 } as const;
 
+const PLACEMENT_LABEL_SELECTOR = ".mw-placement-label";
+
 const googleAdHosts =
   /(?:googlesyndication|doubleclick|googleadservices|googletagservices)\.com/i;
 
@@ -33,6 +35,43 @@ async function expectNoHorizontalOverflow(page: Page) {
     scrollWidth: document.documentElement.scrollWidth,
   }));
   expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.clientWidth + 1);
+}
+
+function adPlacement(page: Page, placement: string) {
+  return page.locator(`[data-mw-ad-placement="${placement}"]`);
+}
+
+async function setAdStatus(
+  page: Page,
+  placement: string,
+  status: "filled" | "unfilled",
+) {
+  const shell = adPlacement(page, placement);
+  await shell.locator("ins").evaluate((element, nextStatus) => {
+    element.setAttribute("data-ad-status", nextStatus);
+  }, status);
+  await expect(shell).toHaveAttribute("data-mw-ad-status", status);
+}
+
+async function expectPlaceholderVisible(page: Page, placement: string) {
+  const shell = adPlacement(page, placement);
+  const label = shell.locator(PLACEMENT_LABEL_SELECTOR);
+  await expect(label).toBeVisible();
+  await expect(label).toHaveText("Advertisements");
+  await expect(shell).toHaveCSS("border-top-style", "dashed");
+  const labelOutsideIns = await shell.evaluate((element, selector) => {
+    const labelElement = element.querySelector(selector);
+    const insElement = element.querySelector("ins.adsbygoogle");
+    return Boolean(labelElement && insElement && !insElement.contains(labelElement));
+  }, PLACEMENT_LABEL_SELECTOR);
+  expect(labelOutsideIns).toBe(true);
+}
+
+async function expectFilledChromeHidden(page: Page, placement: string) {
+  const shell = adPlacement(page, placement);
+  await expect(shell.locator(PLACEMENT_LABEL_SELECTOR)).toBeHidden();
+  await expect(shell).not.toHaveCSS("border-top-style", "dashed");
+  await expect(shell).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
 }
 
 test.beforeEach(async ({ page }) => {
@@ -132,7 +171,7 @@ test("sidebar rails only display and request ads on wide desktop", async ({
   await expect(leftSidebar).toHaveAttribute("data-mw-ad-has-placeholder", "true");
   await expect(rightSidebar).toHaveAttribute("data-mw-ad-has-placeholder", "true");
   await expect(
-    page.locator('[data-mw-ad-placement$="sidebar"] .mw-ad-placeholder'),
+    page.locator(`[data-mw-ad-placement$="sidebar"] ${PLACEMENT_LABEL_SELECTOR}`),
   ).toHaveText(["Advertisements", "Advertisements"]);
   const sidebarGeometry = await page.evaluate(() => {
     const left = document
@@ -172,10 +211,10 @@ test("sidebar rails only display and request ads on wide desktop", async ({
     };
     return {
       left: labelStyle(
-        '[data-mw-ad-placement="left-sidebar"] .mw-ad-placeholder',
+        '[data-mw-ad-placement="left-sidebar"] .mw-placement-label',
       ),
       right: labelStyle(
-        '[data-mw-ad-placement="right-sidebar"] .mw-ad-placeholder',
+        '[data-mw-ad-placement="right-sidebar"] .mw-placement-label',
       ),
     };
   });
@@ -190,15 +229,48 @@ test("non-sidebar placeholders follow filled and unfilled AdSense states", async
   await page.setViewportSize({ width: 1024, height: 1000 });
   await gotoRoute(page, "/");
 
-  const postHero = page.locator('[data-mw-ad-placement="post-hero"]');
-  const placeholder = postHero.locator(".mw-ad-placeholder");
-  const ins = postHero.locator("ins");
+  await expectPlaceholderVisible(page, "post-hero");
+  await setAdStatus(page, "post-hero", "filled");
+  await expectFilledChromeHidden(page, "post-hero");
+  await setAdStatus(page, "post-hero", "unfilled");
+  await expectPlaceholderVisible(page, "post-hero");
+});
 
-  await expect(placeholder).toBeVisible();
-  await ins.evaluate((element) => element.setAttribute("data-ad-status", "filled"));
-  await expect(placeholder).toBeHidden();
-  await ins.evaluate((element) => element.setAttribute("data-ad-status", "unfilled"));
-  await expect(placeholder).toBeVisible();
+test("filled ads hide placeholder chrome for banners, toolkit, SEO rail, and sidebars", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1536, height: 1100 });
+  await gotoRoute(page, "/");
+
+  for (const placement of [
+    "top-banner",
+    "post-hero",
+    "toolkit-banner",
+    "left-sidebar",
+    "right-sidebar",
+  ]) {
+    await setAdStatus(page, placement, "filled");
+    await expectFilledChromeHidden(page, placement);
+  }
+
+  await gotoRoute(page, "/morse-code-alphabet");
+  await setAdStatus(page, "seo-section-vertical", "filled");
+  await expectFilledChromeHidden(page, "seo-section-vertical");
+});
+
+test("blocked ad shell still shows a visible MorseWords placeholder label", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1024, height: 1000 });
+  await gotoRoute(page, "/");
+
+  await expectPlaceholderVisible(page, "post-hero");
+  await adPlacement(page, "post-hero").locator("ins").evaluate((element) => {
+    element.remove();
+  });
+  const label = adPlacement(page, "post-hero").locator(PLACEMENT_LABEL_SELECTOR);
+  await expect(label).toBeVisible();
+  await expect(label).toHaveText("Advertisements");
 });
 
 test("ad labels are policy-safe wherever placeholders are shown", async ({
@@ -215,7 +287,7 @@ test("ad labels are policy-safe wherever placeholders are shown", async ({
       ads.map((ad) => ({
         ariaLabel: ad.getAttribute("aria-label")?.trim() ?? "",
         text:
-          ad.querySelector(".mw-ad-placeholder")?.textContent?.trim() ?? "",
+          ad.querySelector(".mw-placement-label")?.textContent?.trim() ?? "",
       })),
     );
   expect(placeholderLabels.length).toBeGreaterThan(0);
@@ -246,8 +318,41 @@ test("ad labels are policy-safe wherever placeholders are shown", async ({
   expect(new Set(placeholderBorders.map((border) => border.color)).size).toBe(1);
 
   await expect(
-    page.locator('[data-mw-ad-placement$="sidebar"] .mw-ad-placeholder'),
+    page.locator(`[data-mw-ad-placement$="sidebar"] ${PLACEMENT_LABEL_SELECTOR}`),
   ).toHaveText(["Advertisements", "Advertisements"]);
+});
+
+test("SEO-section vertical rail uses the in-content slot on suitable guide pages", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1536, height: 1200 });
+  await gotoRoute(page, "/morse-code-alphabet");
+
+  const seoRail = adPlacement(page, "seo-section-vertical");
+  await expect(seoRail).toBeVisible();
+  await expect(seoRail).toHaveAttribute("data-mw-ad-kind", "vertical");
+  await expect(seoRail).toHaveAttribute("data-mw-ad-request-eligible", "true");
+  await expect(seoRail.locator("ins")).toHaveAttribute(
+    "data-ad-slot",
+    SLOTS.inContent,
+  );
+  const railBox = await seoRail.boundingBox();
+  expect(railBox?.width).toBe(120);
+  expect(railBox?.height).toBe(600);
+  await expectNoHorizontalOverflow(page);
+
+  await page.setViewportSize({ width: 1024, height: 1000 });
+  await gotoRoute(page, "/morse-code-alphabet");
+  const hiddenRail = adPlacement(page, "seo-section-vertical");
+  await expect(hiddenRail).toBeHidden();
+  await expect(hiddenRail).toHaveAttribute("data-mw-ad-request-eligible", "false");
+  expect(await hiddenRail.boundingBox()).toBeNull();
+
+  await page.setViewportSize({ width: 1536, height: 1000 });
+  for (const route of ["/contact", "/privacy", "/terms", "/cookies"]) {
+    await gotoRoute(page, route);
+    await expect(adPlacement(page, "seo-section-vertical")).toHaveCount(0);
+  }
 });
 
 test("reference pages do not force early post-hero banners above side rails", async ({
@@ -334,6 +439,7 @@ test("printable chart uses a square ad in the settings flow", async ({
   await gotoRoute(page, "/morse-code-printable-chart");
 
   await expect(page.locator('[data-mw-ad-placement="post-hero"]')).toHaveCount(0);
+  await expect(page.locator('[data-mw-ad-placement="seo-section-vertical"]')).toHaveCount(0);
   const squareAd = page.locator('[data-mw-ad-placement="printable-chart-square"]');
   await expect(squareAd).toBeVisible();
   await expect(squareAd.locator("ins")).toHaveAttribute(
