@@ -11,6 +11,7 @@ const ELEVATED_LABEL = "Elevated suitability review";
 const LOWER_RISK_LABEL = "Lower-risk profile";
 const MODERATE_LABEL = "Historical content note";
 const REVIEW_FOR_YOUNGER_READERS_LABEL = "Review for younger readers";
+const PUBLIC_YOUNG_READER_LABEL = "Suitable for young readers";
 
 const ELEVATED_NOTE =
   "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use.";
@@ -45,6 +46,7 @@ type ListingSurface = {
   cardSlugAttribute: string;
   cardSuitabilityTestId: string;
   filterTestId: string;
+  youngReaderOnlyListingLabels: boolean;
 };
 
 const LISTING_SURFACES: ListingSurface[] = [
@@ -55,6 +57,7 @@ const LISTING_SURFACES: ListingSurface[] = [
     cardSlugAttribute: "data-mw-morse-book-card-slug",
     cardSuitabilityTestId: "morse-book-card-content-suitability",
     filterTestId: "morse-books-lower-risk-filter",
+    youngReaderOnlyListingLabels: true,
   },
   {
     path: "/morse-code-audiobooks",
@@ -63,6 +66,7 @@ const LISTING_SURFACES: ListingSurface[] = [
     cardSlugAttribute: "data-mw-morse-audiobook-card-slug",
     cardSuitabilityTestId: "morse-audiobook-card-content-suitability",
     filterTestId: "morse-audiobooks-lower-risk-filter",
+    youngReaderOnlyListingLabels: false,
   },
 ];
 
@@ -90,10 +94,14 @@ async function expectListingCardSuitability(
   page: Page,
   surface: ListingSurface,
   slug: string,
-  expectedLabel: string,
+  expectedLabel: string | null,
 ) {
   const card = cardBySlug(page, surface, slug);
   await expect(card).toBeVisible();
+  if (expectedLabel === null) {
+    await expect(card.getByTestId(surface.cardSuitabilityTestId)).toHaveCount(0);
+    return;
+  }
   await expect(card.getByTestId(surface.cardSuitabilityTestId)).toHaveText(
     expectedLabel,
   );
@@ -152,13 +160,15 @@ test.describe("Morse book suitability labels and filters", () => {
         page,
         surface,
         ELEVATED_BOOK_SLUG,
-        ELEVATED_LABEL,
+        surface.youngReaderOnlyListingLabels ? null : ELEVATED_LABEL,
       );
       await expectListingCardSuitability(
         page,
         surface,
         LOW_RISK_BOOK_SLUG,
-        LOWER_RISK_LABEL,
+        surface.youngReaderOnlyListingLabels
+          ? PUBLIC_YOUNG_READER_LABEL
+          : LOWER_RISK_LABEL,
       );
 
       await searchListing(page, surface, "A Christmas Carol");
@@ -166,7 +176,7 @@ test.describe("Morse book suitability labels and filters", () => {
         page,
         surface,
         ELEVATED_BOOK_SLUG,
-        ELEVATED_LABEL,
+        surface.youngReaderOnlyListingLabels ? null : ELEVATED_LABEL,
       );
       await page.getByTestId(surface.filterTestId).check();
       await expect(page.getByTestId(surface.filterTestId)).toBeChecked();
@@ -177,7 +187,9 @@ test.describe("Morse book suitability labels and filters", () => {
         page,
         surface,
         LOW_RISK_BOOK_SLUG,
-        LOWER_RISK_LABEL,
+        surface.youngReaderOnlyListingLabels
+          ? PUBLIC_YOUNG_READER_LABEL
+          : LOWER_RISK_LABEL,
       );
 
       await searchListing(page, surface, "The Threat");
@@ -185,7 +197,7 @@ test.describe("Morse book suitability labels and filters", () => {
         page,
         surface,
         MODERATE_BOOK_SLUG,
-        MODERATE_LABEL,
+        surface.youngReaderOnlyListingLabels ? null : MODERATE_LABEL,
       );
 
       await expectNoUnsupportedSafetyClaims(page);

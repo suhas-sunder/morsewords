@@ -31,7 +31,6 @@ import {
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import {
   getMorseBookSuitability,
-  morseBookSuitabilityLabel,
   shouldShowInLowerRiskBookFilter,
 } from "~/client/data/morseBookSuitability";
 import type { MorseBookLibrarySummary } from "~/client/data/morseBookTypes";
@@ -50,6 +49,7 @@ const DESCRIPTION =
   "Browse processed Morse book pages with cleaned text, chapter selection, and browser-local practice tools.";
 const PAGE_SIZE = 12;
 const DEFAULT_SORT_MODE: SortMode = "title-az";
+const YOUNG_READER_SUITABILITY_LABEL = "Suitable for young readers";
 
 const processSteps = [
   {
@@ -287,6 +287,18 @@ function displayBookProvider(provider: string) {
 
 function displaySubjectLabel(subject: string) {
   return subject.trim().replace(/\s+/g, " ");
+}
+
+function publicYoungReaderSuitabilityLabel(
+  profile: ReturnType<typeof getMorseBookSuitability>,
+) {
+  if (
+    profile.contentSuitability === "low" &&
+    !profile.strictReviewCandidate
+  ) {
+    return YOUNG_READER_SUITABILITY_LABEL;
+  }
+  return "";
 }
 
 function hubSubjectsForBook(book: MorseBookLibrarySummary) {
@@ -700,7 +712,7 @@ export default function MorseCodeBooksHubRoute({
             ) : filteredBooks.length > 0 ? (
               <>
                 <div
-                  className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4"
+                  className="grid gap-4 lg:grid-cols-2"
                   data-testid="morse-books-card-grid"
                 >
                   {visibleBooks.map((book) => (
@@ -897,24 +909,33 @@ function BookCard({
 }) {
   const description = book.hubDescription;
   const suitability = getMorseBookSuitability(book.slug);
+  const suitabilityLabel = publicYoungReaderSuitabilityLabel(suitability);
   const metadata = [
-    book.stats.sectionCount > 0
-      ? `${formatNumber(book.stats.sectionCount)} sections`
-      : "",
-    `${formatNumber(book.stats.wordCount)} words`,
-    displayBookProvider(book.source.provider),
-  ].filter(Boolean);
+    {
+      label: "Sections",
+      value:
+        book.stats.sectionCount > 0
+          ? `${formatNumber(book.stats.sectionCount)} sections`
+          : "",
+    },
+    { label: "Words", value: `${formatNumber(book.stats.wordCount)} words` },
+    { label: "Source", value: displayBookProvider(book.source.provider) },
+  ].filter((item) => item.value);
 
   return (
     <Link
       to={href}
-      className="mw-static-surface group flex h-full min-w-0 cursor-pointer flex-col rounded-xl bg-[#fffdf8]/90 p-3 text-left no-underline hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:p-4"
+      className="mw-static-surface group grid h-full min-w-0 cursor-pointer grid-cols-[5.75rem_minmax(0,1fr)] gap-3 rounded-xl bg-[#fffdf8] p-3 text-left text-slate-900 no-underline shadow-[var(--mw-shadow-soft)] ring-1 ring-slate-950/10 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:grid-cols-[7.25rem_minmax(0,1fr)] sm:gap-4 sm:p-4"
       data-testid="morse-book-card"
       data-mw-morse-book-card-slug={book.slug}
       aria-label={`${book.hubDisplayTitle} by ${bookAuthor(book)}`}
     >
-      <BookCover book={book} displayTitle={book.hubDisplayTitle} />
-      <div className="mt-4 grid min-w-0 gap-2">
+      <BookCover
+        book={book}
+        displayTitle={book.hubDisplayTitle}
+        authorText={bookAuthor(book)}
+      />
+      <div className="grid min-w-0 content-start gap-2">
         <h3
           className="mw-heading break-words text-lg font-extrabold leading-tight text-sky-950 underline-offset-4 group-hover:underline"
           data-testid="morse-book-card-title"
@@ -935,62 +956,94 @@ function BookCard({
             {description}
           </p>
         ) : null}
-        <p
-          className="break-words font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500"
+        <div
+          className="flex min-w-0 flex-wrap gap-1.5"
           data-testid="morse-book-card-subjects"
+          aria-label="Genre and subject labels"
         >
-          {book.hubSubjects.join(" / ")}
-        </p>
-        <p
-          className="break-words text-xs font-semibold leading-relaxed text-slate-600"
+          {book.hubSubjects.map((subject) => (
+            <span
+              key={subject}
+              className="rounded-full bg-[#f2eee6] px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-slate-500"
+            >
+              {subject}
+            </span>
+          ))}
+        </div>
+        <dl
+          className="grid min-w-0 gap-x-3 gap-y-1.5 text-xs text-slate-600 sm:grid-cols-3"
           data-testid="morse-book-card-meta"
         >
-          {metadata.join(" / ")}
-        </p>
-        <p
-          className="break-words rounded-lg bg-[#fffaf2]/80 px-2 py-1.5 text-xs font-semibold leading-relaxed text-slate-700"
-          data-testid="morse-book-card-content-suitability"
-        >
-          {morseBookSuitabilityLabel(suitability)}
-        </p>
+          {metadata.map((item) => (
+            <div key={item.label} className="min-w-0">
+              <dt className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-slate-500">
+                {item.label}
+              </dt>
+              <dd className="mt-0.5 break-words font-semibold leading-snug">
+                {item.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+        {suitabilityLabel ? (
+          <p
+            className="w-fit break-words rounded-lg bg-[#fffaf2]/80 px-2 py-1.5 text-xs font-semibold leading-relaxed text-slate-700"
+            data-testid="morse-book-card-content-suitability"
+          >
+            {suitabilityLabel}
+          </p>
+        ) : null}
       </div>
     </Link>
   );
 }
 
 function BookCover({
+  authorText,
   book,
   displayTitle,
 }: {
+  authorText: string;
   book: MorseBookLibrarySummary;
   displayTitle: string;
 }) {
-  if (book.cover.src) {
-    return (
-      <img
-        src={book.cover.src}
-        alt={book.cover.alt}
-        className="aspect-[4/3] w-full rounded-lg object-cover"
-        data-testid="morse-book-cover"
-      />
-    );
-  }
-
   return (
     <div
       role="img"
-      aria-label={book.cover.alt}
+      aria-label={book.cover.alt || `${displayTitle} book cover`}
       data-testid="morse-book-cover-placeholder"
       data-mw-morse-books-cover-placeholder="true"
-      className="mw-static-tile rounded-lg p-3"
+      className="mw-static-tile relative aspect-[2/3] min-h-[8.5rem] w-full overflow-hidden rounded-lg bg-[#f2eee6] px-3 py-4 sm:min-h-[10.5rem] sm:px-4"
     >
-      <div className="mx-auto flex aspect-[3/4] w-full max-w-[8.5rem] flex-col justify-between rounded-lg bg-[#fffdf8]/72 p-3">
-        <span className="block h-2 w-16 rounded-full bg-slate-300/45" />
-        <span className="sr-only">{displayTitle}</span>
-        <span className="block h-16 w-full rounded-md bg-[#f2eee6]" />
-        <div className="grid gap-1.5">
-          <span className="block h-1.5 w-20 rounded-full bg-slate-300/45" />
-          <span className="block h-1.5 w-12 rounded-full bg-slate-300/45" />
+      <span
+        className="absolute inset-y-0 left-0 w-2.5 bg-slate-950/10"
+        aria-hidden="true"
+      />
+      <span
+        className="absolute inset-y-0 left-2.5 w-px bg-white/70"
+        aria-hidden="true"
+      />
+      <div
+        className="relative z-10 flex h-full min-w-0 flex-col pl-2"
+        aria-hidden="true"
+      >
+        <span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-slate-500 sm:text-[10px]">
+          MorseWords book
+        </span>
+        <div className="min-w-0 pt-4 sm:pt-6">
+          <p
+            className="mw-heading line-clamp-4 break-words text-sm font-extrabold leading-tight text-sky-950 sm:text-base"
+            data-testid="morse-book-cover-title"
+          >
+            {displayTitle}
+          </p>
+          <p className="mt-2 line-clamp-2 break-words text-[11px] font-semibold leading-snug text-slate-600 sm:text-xs">
+            {authorText}
+          </p>
+        </div>
+        <div className="mt-auto grid gap-1.5 pt-4">
+          <span className="block h-1.5 w-16 rounded-full bg-slate-300/45" />
+          <span className="block h-1.5 w-10 rounded-full bg-slate-300/45" />
         </div>
       </div>
     </div>

@@ -104,6 +104,14 @@ const FAKE_PUBLIC_SIGNALS = [
   "favorites",
   "popularity",
 ];
+const INTERNAL_SUITABILITY_LABELS = [
+  "Review for younger readers",
+  "Low-risk profile",
+  "Lower-risk profile",
+  "Elevated suitability review",
+  "Historical content note",
+];
+const PUBLIC_YOUNG_READER_LABEL = "Suitable for young readers";
 
 async function gotoHub(page: Page, pathName = ROUTES.morseBooks) {
   await blockExternalNetwork(page);
@@ -363,7 +371,34 @@ test.describe("Morse books hub", () => {
     await expect(collectionModule.locator("[data-testid='morse-books-card-grid']")).toBeVisible();
     await expect(collectionModule.locator("[data-testid='morse-books-placeholder-grid']")).toHaveCount(0);
     await expect(page.locator("[data-testid='morse-book-card']")).toHaveCount(12);
+    const firstCatalogCard = page.locator("[data-testid='morse-book-card']").first();
+    await expect(firstCatalogCard).toHaveAttribute(
+      "href",
+      /^\/morse-code-books\/[^/?#]+$/,
+    );
+    await expect(firstCatalogCard.locator("a")).toHaveCount(0);
+    await expect(firstCatalogCard.locator("button")).toHaveCount(0);
     await expect(page.getByRole("link", { name: /^Open book/ })).toHaveCount(0);
+    await expect(page.getByRole("link", { name: /Download MP3/i })).toHaveCount(0);
+    await expect(firstCatalogCard).not.toContainText("Download MP3");
+    await expect(
+      firstCatalogCard.locator("[data-testid='morse-book-cover-placeholder']"),
+    ).toBeVisible();
+    await expect(
+      firstCatalogCard.locator("[data-testid='morse-book-cover-title']"),
+    ).toBeVisible();
+    await expect(
+      firstCatalogCard.locator("[data-testid='morse-book-cover-placeholder'] img"),
+    ).toHaveCount(0);
+    await expect(firstCatalogCard.locator("[data-testid='morse-book-card-author']")).toBeVisible();
+    await expect(firstCatalogCard.locator("[data-testid='morse-book-card-description']")).toBeVisible();
+    await expect(firstCatalogCard.locator("[data-testid='morse-book-card-subjects'] span").first()).toBeVisible();
+    await expect(firstCatalogCard.locator("[data-testid='morse-book-card-meta']")).toContainText(
+      /Sections|Words|Source/,
+    );
+    await expect(
+      page.locator('[data-testid="morse-book-card"][href^="/morse-code-audiobooks"]'),
+    ).toHaveCount(0);
     await expect(page.locator("[data-testid='morse-book-output-badge']")).toHaveCount(0);
     await expect(page.locator("[data-testid='morse-book-subject-chip']")).toHaveCount(0);
     await expect(collectionModule.locator("[data-testid='morse-books-toolbar']")).toBeVisible();
@@ -409,6 +444,15 @@ test.describe("Morse books hub", () => {
       "Children",
     );
     await expect(approvedCard.locator("[data-testid='morse-book-card-meta']")).toContainText(
+      "Sections",
+    );
+    await expect(approvedCard.locator("[data-testid='morse-book-card-meta']")).toContainText(
+      "Words",
+    );
+    await expect(approvedCard.locator("[data-testid='morse-book-card-meta']")).toContainText(
+      "Source",
+    );
+    await expect(approvedCard.locator("[data-testid='morse-book-card-meta']")).toContainText(
       "Project Gutenberg",
     );
     await expect(page.getByRole("button", { name: "Reset view" })).toBeVisible();
@@ -438,6 +482,34 @@ test.describe("Morse books hub", () => {
       /Showing 1-\d+ of \d+ books/,
     );
     await page.getByRole("button", { name: "Reset view" }).click();
+
+    await searchInput.fill("A Christmas Carol");
+    const elevatedCard = page.locator(
+      '[data-testid="morse-book-card"][data-mw-morse-book-card-slug="a-christmas-carol"]',
+    );
+    await expect(elevatedCard).toBeVisible();
+    await expect(
+      elevatedCard.locator("[data-testid='morse-book-card-content-suitability']"),
+    ).toHaveCount(0);
+    for (const label of INTERNAL_SUITABILITY_LABELS) {
+      await expect(elevatedCard).not.toContainText(label);
+    }
+
+    await searchInput.fill("A Catastrophe");
+    const youngReaderCard = page.locator(
+      '[data-testid="morse-book-card"][data-mw-morse-book-card-slug="a-catastrophe"]',
+    );
+    await expect(youngReaderCard).toBeVisible();
+    await expect(
+      youngReaderCard.locator("[data-testid='morse-book-card-content-suitability']"),
+    ).toHaveText(PUBLIC_YOUNG_READER_LABEL);
+    await page.getByRole("button", { name: "Reset view" }).click();
+    const suitabilityTexts = await page
+      .locator("[data-testid='morse-book-card-content-suitability']")
+      .allTextContents();
+    expect(
+      suitabilityTexts.every((text) => text.trim() === PUBLIC_YOUNG_READER_LABEL),
+    ).toBe(true);
     expect(bookJsonRequests).toEqual([]);
 
     const collectionOrder = await page.evaluate(() => {
@@ -484,6 +556,12 @@ test.describe("Morse books hub", () => {
       expect(publicMainText, `public hub hides fake signal: ${term}`).not.toContain(
         term,
       );
+    }
+    for (const label of INTERNAL_SUITABILITY_LABELS) {
+      expect(
+        publicMainText,
+        `public hub hides internal suitability label: ${label}`,
+      ).not.toContain(label.toLowerCase());
     }
     expect(publicMainText, "public hub lists processed Alice").toContain("alice");
 
