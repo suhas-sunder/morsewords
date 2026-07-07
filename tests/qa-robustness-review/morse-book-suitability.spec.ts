@@ -148,6 +148,25 @@ test.describe("Morse book suitability labels and filters", () => {
     await blockExternalNetwork(page);
   });
 
+  test("/morse-code-books server HTML hides internal listing labels", async ({
+    request,
+  }) => {
+    const response = await request.get("/morse-code-books");
+    expect(response.ok()).toBe(true);
+    const html = await response.text();
+
+    expect(html).toContain('data-testid="morse-book-card"');
+    expect(html).toContain(PUBLIC_YOUNG_READER_LABEL);
+    for (const label of [
+      ELEVATED_LABEL,
+      LOWER_RISK_LABEL,
+      MODERATE_LABEL,
+      REVIEW_FOR_YOUNGER_READERS_LABEL,
+    ]) {
+      expect(html, `raw books hub HTML hides ${label}`).not.toContain(label);
+    }
+  });
+
   for (const surface of LISTING_SURFACES) {
     test(`${surface.path} renders suitability labels and filters lower-risk results`, async ({
       page,

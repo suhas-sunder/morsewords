@@ -122,7 +122,7 @@ async function gotoHub(page: Page, pathName = ROUTES.morseBooks) {
 
 async function saveScreenshot(page: Page, testInfo: TestInfo, name: string) {
   const screenshotPath = testInfo.outputPath(name);
-  await page.screenshot({ path: screenshotPath, fullPage: true });
+  await page.screenshot({ path: screenshotPath, fullPage: true, timeout: 20_000 });
   await testInfo.attach(name, {
     path: screenshotPath,
     contentType: "image/png",
@@ -334,6 +334,27 @@ test.describe("Morse books hub", () => {
     ).toBe(true);
     expect(matchesNormalizedSearch("Morse code chart", "x")).toBe(false);
     expect(matchesNormalizedSearch("Morse code chart", "morse x")).toBe(false);
+  });
+
+  test("server-rendered hub HTML keeps public-only suitability labels", async ({
+    request,
+  }) => {
+    const response = await request.get(ROUTES.morseBooks);
+    expect(response.ok()).toBe(true);
+    const html = await response.text();
+
+    expect(html).toContain('data-testid="morse-book-card"');
+    expect(html).toContain('data-testid="morse-book-cover-placeholder"');
+    expect(html).toContain('data-testid="morse-book-card-description"');
+    expect(html).toContain('data-testid="morse-book-card-subjects"');
+    expect(html).toContain('data-testid="morse-book-card-meta"');
+    expect(html).toContain("Project Gutenberg");
+    expect(html).toContain(PUBLIC_YOUNG_READER_LABEL);
+    for (const label of INTERNAL_SUITABILITY_LABELS) {
+      expect(html, `raw hub HTML hides internal label: ${label}`).not.toContain(
+        label,
+      );
+    }
   });
 
   test("loads the canonical hub with approved books and canonical metadata", async ({
