@@ -1,6 +1,7 @@
 import * as React from "react";
 import type { Route } from "./+types/audio";
 
+import { PostHeroBannerAd } from "~/client/components/ads/AdSenseAds";
 import styles from "~/client/components/shared/audioStyles";
 import MorseAudioTranslator from "~/client/components/audio/MorseAudioTranslator";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
@@ -198,6 +199,7 @@ export default function AudioRoute() {
     <main className="mw-non-home-page" style={styles.page}>
       <div style={{ ...styles.wrap, paddingTop: 16 }}>
         <MorseAudioTranslator enableQueryPrefill />
+        <PostHeroBannerAd />
         <HowItWorksAudio />
         <SectionCard
           eyebrow="Audio tools path"

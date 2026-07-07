@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import type { Route } from "./+types/home";
 
 import styles from "~/client/components/shared/pageStyles";
+import { PostHeroBannerAd } from "~/client/components/ads/AdSenseAds";
 import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
@@ -513,6 +514,8 @@ export default function Home() {
           }
         />
       </div>
+
+      <PostHeroBannerAd />
 
       <OfferingsSection />
       <FeaturedBooksSection />

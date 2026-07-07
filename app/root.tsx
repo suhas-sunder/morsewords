@@ -21,6 +21,11 @@ import "@fontsource/space-mono/latin-400.css";
 import "@fontsource/space-mono/latin-700.css";
 import "./app.css";
 import { PHogProvider } from "./client/providers/PHogProvider";
+import {
+  AdSenseScriptLoader,
+  SidebarRailAds,
+  TopBannerAd,
+} from "./client/components/ads/AdSenseAds";
 import Footer from "./client/components/navigation/Footer";
 import NavBar from "./client/components/navigation/NavBar";
 import RelatedTools from "./client/components/navigation/RelatedTools";
@@ -154,6 +159,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        <AdSenseScriptLoader />
         <Meta />
         <Links />
       </head>
@@ -166,7 +172,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
             style={paperBackground}
           >
             <PageBackdrop />
+            <SidebarRailAds />
             <div className="mw-page-content relative z-10">
+              <TopBannerAd />
               {children}
               <div data-nosnippet>
                 <RelatedTools />

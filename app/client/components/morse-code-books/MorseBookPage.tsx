@@ -2,6 +2,10 @@ import * as React from "react";
 import { Link } from "react-router";
 
 import {
+  BookPlayerBannerAd,
+  InContentAd,
+} from "~/client/components/ads/AdSenseAds";
+import {
   DownloadIcon,
   EqualizerIcon,
   PauseIcon,
@@ -1083,6 +1087,13 @@ function MorseBookWorkspace({
     () => getMorseBookSeoSummaryParagraphs(seoSummary),
     [seoSummary],
   );
+  const shouldShowSeoSummaryAd = seoSummaryParagraphs.length >= 3;
+  const seoSummaryParagraphsBeforeAd = shouldShowSeoSummaryAd
+    ? seoSummaryParagraphs.slice(0, 2)
+    : seoSummaryParagraphs;
+  const seoSummaryParagraphsAfterAd = shouldShowSeoSummaryAd
+    ? seoSummaryParagraphs.slice(2)
+    : [];
   const relatedAuthorKey = book.author.join("\u0000");
   const relatedAuthorBooks = React.useMemo(
     () => getRelatedMorseBooksByAuthor(book.slug, book.author),
@@ -2660,6 +2671,8 @@ function MorseBookWorkspace({
         </div>
       </ToolPanel>
 
+      <BookPlayerBannerAd />
+
       <details className="mt-1">
         <summary className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
           <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
@@ -3260,6 +3273,8 @@ function MorseBookWorkspace({
             </div>
           </ToolPanel>
 
+          <BookPlayerBannerAd />
+
           <ToolPanel label="Player settings" badge="Saved locally">
             <div className="space-y-6 px-4 pb-4">
               <BookLiveProgressSettingsSummary
@@ -3725,17 +3740,32 @@ function MorseBookWorkspace({
             About this Morse book
           </h2>
           <div
-            className="mt-3 max-w-none columns-1 gap-7 space-y-3 text-base leading-relaxed text-slate-700 lg:columns-2 lg:gap-8"
+            className="text-base leading-relaxed text-slate-700"
             data-testid="morse-book-seo-summary-body"
           >
-            {seoSummaryParagraphs.map((paragraph, index) => (
-              <p
-                className="break-inside-avoid"
-                key={`${book.slug}-seo-summary-${index}`}
-              >
-                {paragraph}
-              </p>
-            ))}
+            <div className="mt-3 max-w-none columns-1 gap-7 space-y-3 lg:columns-2 lg:gap-8">
+              {seoSummaryParagraphsBeforeAd.map((paragraph, index) => (
+                <p
+                  className="break-inside-avoid"
+                  key={`${book.slug}-seo-summary-${index}`}
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+            {shouldShowSeoSummaryAd ? <InContentAd /> : null}
+            {seoSummaryParagraphsAfterAd.length > 0 ? (
+              <div className="max-w-none columns-1 gap-7 space-y-3 lg:columns-2 lg:gap-8">
+                {seoSummaryParagraphsAfterAd.map((paragraph, index) => (
+                  <p
+                    className="break-inside-avoid"
+                    key={`${book.slug}-seo-summary-${index + 2}`}
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            ) : null}
           </div>
         </section>
       ) : null}

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { InContentAd } from "~/client/components/ads/AdSenseAds";
 import {
   ActionLinks,
   SectionCard,
@@ -99,6 +100,8 @@ export default function ReferenceSupportSections({
           ))}
         </div>
       </SectionCard>
+
+      <InContentAd />
 
       <SectionCard
         eyebrow="Use it well"

@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { DownloadIcon, ShareIcon, WarningIcon } from "~/client/assets/svg/Icons";
+import { PrintableChartSquareAd } from "~/client/components/ads/AdSenseAds";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
@@ -3145,6 +3146,8 @@ export default function MorseCodePrintableChart() {
                 />
               </FormField>
             </SettingsSection>
+
+            <PrintableChartSquareAd />
 
             <SettingsSection
               title="2. Classroom details"

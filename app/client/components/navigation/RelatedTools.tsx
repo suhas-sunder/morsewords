@@ -1,4 +1,5 @@
 import { useLocation } from "react-router";
+import { ToolkitBannerAd } from "~/client/components/ads/AdSenseAds";
 import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
 import { ROUTES } from "~/client/data/routes";
 
@@ -513,7 +514,9 @@ function ToolkitNavigation({ variant }: { variant: ToolkitVariant }) {
           </p>
         </div>
 
-        <div className="mt-8 grid gap-8 lg:grid-cols-3">
+        <ToolkitBannerAd />
+
+        <div className="mw-toolkit-groups mt-8 grid gap-8 lg:grid-cols-3">
           {HOME_GROUPS.map((group) => (
             <ToolkitGroupColumn
               key={group.title}
