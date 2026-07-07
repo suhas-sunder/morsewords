@@ -549,6 +549,7 @@ function runAudit() {
   const printableBookUrlCount = sitemapPaths.filter((pathname) => PRINTABLE_BOOK_PATTERN.test(pathname)).length;
   const seoSummaryCount = seoDescriptions.size;
   const startupPreviewCount = countStartupPreviews();
+  const expectedBookCount = books.length;
 
   const blockers = [
     ...missingTitle.map((record) => `missing title: ${record.path}`),
@@ -559,11 +560,18 @@ function runAudit() {
     ...weakMeta.map((record) => `weak/generic meta description: ${record.path}`),
     ...placeholderIssues.map((issue) => `placeholder copy: ${issue.path} (${issue.pattern})`),
     ...repeatedCopyBlockers.map((item) => `repeated helper copy: "${item.phrase}" appears ${item.count} times`),
-    ...(bookUrlCount === 519 ? [] : [`book URL count is ${bookUrlCount}, expected 519`]),
-    ...(audiobookUrlCount === 519 ? [] : [`audiobook URL count is ${audiobookUrlCount}, expected 519`]),
-    ...(books.length === 519 ? [] : [`generated book count is ${books.length}, expected 519`]),
-    ...(seoSummaryCount === 519 ? [] : [`SEO summary count is ${seoSummaryCount}, expected 519`]),
-    ...(startupPreviewCount === 519 ? [] : [`startup preview count is ${startupPreviewCount}, expected 519`]),
+    ...(bookUrlCount === expectedBookCount
+      ? []
+      : [`book URL count is ${bookUrlCount}, expected generated book count ${expectedBookCount}`]),
+    ...(audiobookUrlCount === expectedBookCount
+      ? []
+      : [`audiobook URL count is ${audiobookUrlCount}, expected generated book count ${expectedBookCount}`]),
+    ...(seoSummaryCount === expectedBookCount
+      ? []
+      : [`SEO summary count is ${seoSummaryCount}, expected generated book count ${expectedBookCount}`]),
+    ...(startupPreviewCount === expectedBookCount
+      ? []
+      : [`startup preview count is ${startupPreviewCount}, expected generated book count ${expectedBookCount}`]),
   ];
 
   return {

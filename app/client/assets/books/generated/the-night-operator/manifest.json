@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-night-operator",
+  "title": "The Night Operator",
+  "author": [
+    "Frank L. Packard"
+  ],
+  "contentVersion": "00984a0863326ec9",
+  "contentHash": "00984a0863326ec9b6ac4218fcbfe828a771f72aa819e0d183e2baa07c68498c",
+  "language": "en",
+  "description": "Frank L. Packard's linked railroad stories of operators, dispatchers, wrecking crews, night wires, and hard duty on the Hill Division.",
+  "subjects": [
+    "Railroad stories",
+    "Short stories",
+    "Telegraph operators -- Fiction"
+  ],
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "33634",
+    "releaseDate": "September 4, 2010",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/33634",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "file-evidence",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Targeted MorseWords new book-candidate pass processed this source after local metadata, public-domain, boundary, and playback-text review. Review generated output before manual Cloudflare upload."
+  },
+  "cover": {
+    "src": null,
+    "placeholder": true,
+    "alt": "Placeholder cover for The Night Operator"
+  },
+  "stats": {
+    "originalCharacterCount": 545669,
+    "cleanedCharacterCount": 511384,
+    "wordCount": 91538,
+    "sectionCount": 10,
+    "includedSectionCount": 10
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter I",
+      "title": "The Night Operator",
+      "order": 1,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-001.json",
+      "characterCount": 53669,
+      "wordCount": 9567,
+      "estimatedTypingMinutes": 274,
+      "estimatedListeningMinutes": 322,
+      "morseCharacterEstimate": 289583,
+      "textPreview": "I THE NIGHT OPERATOR Toddles, in the beginning, wasn't exactly a railroad man--for several reasons. First, he wasn't a man at all; second, he wasn't, strictly..."
+    },
+    {
+      "id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter II",
+      "title": "Owsley and the 1601",
+      "order": 2,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-002.json",
+      "characterCount": 49552,
+      "wordCount": 8989,
+      "estimatedTypingMinutes": 257,
+      "estimatedListeningMinutes": 297,
+      "morseCharacterEstimate": 266827,
+      "textPreview": "II OWSLEY AND THE 1601 His name was Owsley--Jake Owsley--and he was a railroad man before ever he came to Big Cloud and the Hill Division--before ever the Hill..."
+    },
+    {
+      "id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter III",
+      "title": "The Apotheosis of Sammy Durgan",
+      "order": 3,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-003.json",
+      "characterCount": 61120,
+      "wordCount": 10859,
+      "estimatedTypingMinutes": 311,
+      "estimatedListeningMinutes": 366,
+      "morseCharacterEstimate": 328891,
+      "textPreview": "III THE APOTHEOSIS OF SAMMY DURGAN The only point the Hill Division, from Carleton, the super, to the last car tink, would admit it was at all hazy on as far a..."
+    },
+    {
+      "id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter IV",
+      "title": "The Wrecking Boss",
+      "order": 4,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-004.json",
+      "characterCount": 36186,
+      "wordCount": 6306,
+      "estimatedTypingMinutes": 181,
+      "estimatedListeningMinutes": 218,
+      "morseCharacterEstimate": 195425,
+      "textPreview": "IV THE WRECKING BOSS Opinions, right or wrong, on any subject are a matter of individuality--there have been different opinions about Flannagan on the Hill Div..."
+    },
+    {
+      "id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter V",
+      "title": "The Man Who Squealed",
+      "order": 5,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-005.json",
+      "characterCount": 57224,
+      "wordCount": 10241,
+      "estimatedTypingMinutes": 293,
+      "estimatedListeningMinutes": 346,
+      "morseCharacterEstimate": 311245,
+      "textPreview": "V THE MAN WHO SQUEALED Back in the early days the payroll of the Hill Division was full of J. Smiths, T. Browns and H. Something-or-others--just as it is to-da..."
+    },
+    {
+      "id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter VI",
+      "title": "The Age Limit",
+      "order": 6,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-006.json",
+      "characterCount": 57986,
+      "wordCount": 10528,
+      "estimatedTypingMinutes": 301,
+      "estimatedListeningMinutes": 347,
+      "morseCharacterEstimate": 312053,
+      "textPreview": "VI THE AGE LIMIT As its scarred and battle-torn colors are the glory of a regiment, brave testimony of hard-fought fields where men were men, so to the Hill Di..."
+    },
+    {
+      "id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter VII",
+      "title": "\"The Devil and All His Works\"",
+      "order": 7,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-007.json",
+      "characterCount": 49635,
+      "wordCount": 8801,
+      "estimatedTypingMinutes": 252,
+      "estimatedListeningMinutes": 298,
+      "morseCharacterEstimate": 267322,
+      "textPreview": "VII \"THE DEVIL AND ALL HIS WORKS\" Maguire was a little, washed-out, kind of toil-bent hostler in the roundhouse--and he married old. How old? Nobody knew--not..."
+    },
+    {
+      "id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter VIII",
+      "title": "On the Night Wire",
+      "order": 8,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-008.json",
+      "characterCount": 45610,
+      "wordCount": 8206,
+      "estimatedTypingMinutes": 235,
+      "estimatedListeningMinutes": 273,
+      "morseCharacterEstimate": 245456,
+      "textPreview": "VIII ON THE NIGHT WIRE Tommy Regan speaks of it yet; so does Carleton; and so, for the matter of that, does the Hill Division generally--and there's a bit of a..."
+    },
+    {
+      "id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter IX",
+      "title": "The Other Fellow's Job",
+      "order": 9,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-009.json",
+      "characterCount": 45015,
+      "wordCount": 8105,
+      "estimatedTypingMinutes": 232,
+      "estimatedListeningMinutes": 269,
+      "morseCharacterEstimate": 241378,
+      "textPreview": "IX THE OTHER FELLOW'S JOB There is a page in Hill Division history that belongs to Jimmy Beezer. This is Beezer's story, and it goes back to the days of the bu..."
+    },
+    {
+      "id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter X",
+      "title": "The Rat River Special",
+      "order": 10,
+      "includeByDefault": true,
+      "sectionJsonPath": "sections/chapter-010.json",
+      "characterCount": 55387,
+      "wordCount": 9936,
+      "estimatedTypingMinutes": 284,
+      "estimatedListeningMinutes": 333,
+      "morseCharacterEstimate": 299185,
+      "textPreview": "X THE RAT RIVER SPECIAL This is Martin Bradley's story; an excerpt, if you will, from the pages of railroading where strange and grim things are, where death a..."
+    }
+  ],
+  "cleaning": {
+    "originalCharacterCount": 545669,
+    "cleanedCharacterCount": 511384,
+    "headerStripped": true,
+    "footerStripped": true,
+    "confidence": "high",
+    "warnings": [
+      "Targeted new book-candidate pass used explicit reviewed boundaries instead of a broad all-book rebuild.",
+      "Project Gutenberg/source wrappers and contents blocks were excluded from playable sections."
+    ]
+  },
+  "warnings": [
+    "Generated by targeted new book-candidate processing; review before manual Cloudflare upload.",
+    "Cloudflare upload was not performed."
+  ],
+  "contentSuitability": "moderate",
+  "strictReviewCandidate": true,
+  "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
+}

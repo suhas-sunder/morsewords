@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-story-of-the-atlantic-cable",
+  "title": "The Story of the Atlantic Cable",
+  "author": [
+    "Sir Charles Bright"
+  ],
+  "contentVersion": "d2b05a411be86f5d",
+  "contentHash": "d2b05a411be86f5d79ec6b2d5ec92acca9875a39dc7e462b4937ae1b61af2b7b",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "46105",
+    "releaseDate": "June 26, 2014",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/46105",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "file-evidence",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Targeted MorseWords new book-candidate pass processed this source after local metadata, public-domain, boundary, and playback-text review. Review generated output before manual Cloudflare upload."
+  },
+  "stats": {
+    "originalCharacterCount": 338130,
+    "cleanedCharacterCount": 300981,
+    "wordCount": 49482,
+    "sectionCount": 20,
+    "includedSectionCount": 19
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "section_id": "introduction-001",
+      "kind": "introduction",
+      "label": "Introductory",
+      "title": "The Electric Telegraph",
+      "order": 1,
+      "include_by_default": false,
+      "character_count": 15226,
+      "word_count": 2462,
+      "estimated_listening_minutes": 92,
+      "morse_character_estimate": 82248
+    },
+    {
+      "section_id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter I",
+      "title": "Evolution of Atlantic Telegraphy in America and England",
+      "order": 2,
+      "include_by_default": true,
+      "character_count": 22494,
+      "word_count": 3681,
+      "estimated_listening_minutes": 135,
+      "morse_character_estimate": 121141
+    },
+    {
+      "section_id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter II",
+      "title": "The Manufacture of the Line",
+      "order": 3,
+      "include_by_default": true,
+      "character_count": 14646,
+      "word_count": 2453,
+      "estimated_listening_minutes": 88,
+      "morse_character_estimate": 78734
+    },
+    {
+      "section_id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter III",
+      "title": "The First Start",
+      "order": 4,
+      "include_by_default": true,
+      "character_count": 21360,
+      "word_count": 3651,
+      "estimated_listening_minutes": 122,
+      "morse_character_estimate": 109089
+    },
+    {
+      "section_id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter IV",
+      "title": "Preparations for Another Attempt",
+      "order": 5,
+      "include_by_default": true,
+      "character_count": 10111,
+      "word_count": 1709,
+      "estimated_listening_minutes": 61,
+      "morse_character_estimate": 54283
+    },
+    {
+      "section_id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter V",
+      "title": "The Trial Trip",
+      "order": 6,
+      "include_by_default": true,
+      "character_count": 5032,
+      "word_count": 840,
+      "estimated_listening_minutes": 30,
+      "morse_character_estimate": 26478
+    },
+    {
+      "section_id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter VI",
+      "title": "The Storm",
+      "order": 7,
+      "include_by_default": true,
+      "character_count": 32657,
+      "word_count": 5474,
+      "estimated_listening_minutes": 182,
+      "morse_character_estimate": 163058
+    },
+    {
+      "section_id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter VII",
+      "title": "The Renewed Effort",
+      "order": 8,
+      "include_by_default": true,
+      "character_count": 20156,
+      "word_count": 3333,
+      "estimated_listening_minutes": 112,
+      "morse_character_estimate": 100654
+    },
+    {
+      "section_id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter VIII",
+      "title": "\"Finis Coronat Opus\"",
+      "order": 9,
+      "include_by_default": true,
+      "character_count": 39722,
+      "word_count": 6471,
+      "estimated_listening_minutes": 221,
+      "morse_character_estimate": 198111
+    },
+    {
+      "section_id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter IX",
+      "title": "The Celebration",
+      "order": 10,
+      "include_by_default": true,
+      "character_count": 13205,
+      "word_count": 2088,
+      "estimated_listening_minutes": 75,
+      "morse_character_estimate": 66756
+    },
+    {
+      "section_id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter X",
+      "title": "Working the Line",
+      "order": 11,
+      "include_by_default": true,
+      "character_count": 14527,
+      "word_count": 2290,
+      "estimated_listening_minutes": 85,
+      "morse_character_estimate": 75913
+    },
+    {
+      "section_id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter XI",
+      "title": "The Inquest",
+      "order": 12,
+      "include_by_default": true,
+      "character_count": 6110,
+      "word_count": 981,
+      "estimated_listening_minutes": 36,
+      "morse_character_estimate": 32250
+    },
+    {
+      "section_id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter XII",
+      "title": "Other Proposed Routes",
+      "order": 13,
+      "include_by_default": true,
+      "character_count": 9208,
+      "word_count": 1488,
+      "estimated_listening_minutes": 54,
+      "morse_character_estimate": 48290
+    },
+    {
+      "section_id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter XIII",
+      "title": "Experience, Investigation, and Progress",
+      "order": 14,
+      "include_by_default": true,
+      "character_count": 6844,
+      "word_count": 1053,
+      "estimated_listening_minutes": 41,
+      "morse_character_estimate": 36771
+    },
+    {
+      "section_id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter XIV",
+      "title": "The 1865 Cable and Expedition",
+      "order": 15,
+      "include_by_default": true,
+      "character_count": 12859,
+      "word_count": 2185,
+      "estimated_listening_minutes": 77,
+      "morse_character_estimate": 68766
+    },
+    {
+      "section_id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter XV",
+      "title": "Second and Successful Attempt",
+      "order": 16,
+      "include_by_default": true,
+      "character_count": 10607,
+      "word_count": 1752,
+      "estimated_listening_minutes": 64,
+      "morse_character_estimate": 57411
+    },
+    {
+      "section_id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter XVI",
+      "title": "Recovery and Completion of the 1865 Cable",
+      "order": 17,
+      "include_by_default": true,
+      "character_count": 12472,
+      "word_count": 2149,
+      "estimated_listening_minutes": 75,
+      "morse_character_estimate": 66917
+    },
+    {
+      "section_id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter XVII",
+      "title": "Jubilations",
+      "order": 18,
+      "include_by_default": true,
+      "character_count": 9196,
+      "word_count": 1405,
+      "estimated_listening_minutes": 52,
+      "morse_character_estimate": 46408
+    },
+    {
+      "section_id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter XVIII",
+      "title": "Subsequent Atlantic Lines",
+      "order": 19,
+      "include_by_default": true,
+      "character_count": 8831,
+      "word_count": 1432,
+      "estimated_listening_minutes": 53,
+      "morse_character_estimate": 47378
+    },
+    {
+      "section_id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter XIX",
+      "title": "Atlantic Cable Systems of To-Day",
+      "order": 20,
+      "include_by_default": true,
+      "character_count": 15718,
+      "word_count": 2585,
+      "estimated_listening_minutes": 93,
+      "morse_character_estimate": 83016
+    }
+  ]
+}

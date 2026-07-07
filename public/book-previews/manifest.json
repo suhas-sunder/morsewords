@@ -5711,6 +5711,83 @@
       "previewCharacterCount": 1146,
       "estimatedRuntimeSeconds": 407,
       "truncated": true
+    },
+    {
+      "slug": "wired-love-a-romance-of-dots-and-dashes",
+      "path": "/book-previews/wired-love-a-romance-of-dots-and-dashes.preview.json",
+      "contentVersion": "efbeaa0ed2d16489",
+      "contentHash": "efbeaa0ed2d16489b9a68037a50bb19e831c6f951dc5095e31a1a83c5338a4bd",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 13026,
+      "previewCharacterCount": 11733,
+      "estimatedRuntimeSeconds": 4217,
+      "truncated": true
+    },
+    {
+      "slug": "the-night-operator",
+      "path": "/book-previews/the-night-operator.preview.json",
+      "contentVersion": "00984a0863326ec9",
+      "contentHash": "00984a0863326ec9b6ac4218fcbfe828a771f72aa819e0d183e2baa07c68498c",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11770,
+      "previewCharacterCount": 10786,
+      "estimatedRuntimeSeconds": 3883,
+      "truncated": true
+    },
+    {
+      "slug": "the-wire-devils",
+      "path": "/book-previews/the-wire-devils.preview.json",
+      "contentVersion": "da069a585e0a4bce",
+      "contentHash": "da069a585e0a4bcedc74614f581dc95da478baecfa846668b5f4198706126c89",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11629,
+      "previewCharacterCount": 10536,
+      "estimatedRuntimeSeconds": 3804,
+      "truncated": true
+    },
+    {
+      "slug": "the-story-of-the-atlantic-cable",
+      "path": "/book-previews/the-story-of-the-atlantic-cable.preview.json",
+      "contentVersion": "d2b05a411be86f5d",
+      "contentHash": "d2b05a411be86f5d79ec6b2d5ec92acca9875a39dc7e462b4937ae1b61af2b7b",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 12911,
+      "previewCharacterCount": 11898,
+      "estimatedRuntimeSeconds": 4272,
+      "truncated": true
+    },
+    {
+      "slug": "the-gold-bug",
+      "path": "/book-previews/the-gold-bug.preview.json",
+      "contentVersion": "6fbdcae8dc8ac470",
+      "contentHash": "6fbdcae8dc8ac470f4df74bf18528c921289e49cfa8f3ee32ae33b9f052e2112",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 12828,
+      "previewCharacterCount": 11609,
+      "estimatedRuntimeSeconds": 3883,
+      "truncated": true
+    },
+    {
+      "slug": "the-cable-game",
+      "path": "/book-previews/the-cable-game.preview.json",
+      "contentVersion": "9337329aed27d0ba",
+      "contentHash": "9337329aed27d0ba6244ddcbb839d5d2e811dbcb4a87b1cde703f43cc18672c6",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 11828,
+      "previewCharacterCount": 10739,
+      "estimatedRuntimeSeconds": 3825,
+      "truncated": true
+    },
+    {
+      "slug": "the-mystery-of-the-sycamore",
+      "path": "/book-previews/the-mystery-of-the-sycamore.preview.json",
+      "contentVersion": "0a28d69113d01fd3",
+      "contentHash": "0a28d69113d01fd301fae5bda7a5121d605d1c3640c6097380550b300a363196",
+      "defaultSectionId": "chapter-001",
+      "previewBytes": 13391,
+      "previewCharacterCount": 11935,
+      "estimatedRuntimeSeconds": 4299,
+      "truncated": true
     }
   ],
   "missing": []

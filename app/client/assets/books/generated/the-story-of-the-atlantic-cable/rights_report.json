@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-story-of-the-atlantic-cable",
+  "title": "The Story of the Atlantic Cable",
+  "author": [
+    "Sir Charles Bright"
+  ],
+  "publicRestrictedStatus": "public-domain-us / publish-ready",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "46105",
+    "releaseDate": "June 26, 2014",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/46105",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "file-evidence",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Targeted MorseWords new book-candidate pass processed this source after local metadata, public-domain, boundary, and playback-text review. Review generated output before manual Cloudflare upload."
+  },
+  "contentSuitability": "moderate",
+  "strictReviewCandidate": true,
+  "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use.",
+  "cloudflarePath": "app/client/assets/books/cloudflare-updated-export/books/the-story-of-the-atlantic-cable.json",
+  "notes": [
+    "Reconstructed from the batch Cloudflare payload after local generated-artifact cleanup.",
+    "No Cloudflare upload was performed in this pass."
+  ]
+}

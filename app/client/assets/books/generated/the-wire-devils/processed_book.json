@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-wire-devils",
+  "title": "The Wire Devils",
+  "author": [
+    "Frank L. Packard"
+  ],
+  "contentVersion": "da069a585e0a4bce",
+  "contentHash": "da069a585e0a4bcedc74614f581dc95da478baecfa846668b5f4198706126c89",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "52084",
+    "releaseDate": "May 16, 2016",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/52084",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "file-evidence",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Targeted MorseWords new book-candidate pass processed this source after local metadata, public-domain, boundary, and playback-text review. Review generated output before manual Cloudflare upload."
+  },
+  "stats": {
+    "originalCharacterCount": 446232,
+    "cleanedCharacterCount": 417381,
+    "wordCount": 74789,
+    "sectionCount": 20,
+    "includedSectionCount": 20
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "section_id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter I",
+      "title": "The Secret Code",
+      "order": 1,
+      "include_by_default": true,
+      "character_count": 13296,
+      "word_count": 2305,
+      "estimated_listening_minutes": 80,
+      "morse_character_estimate": 71324
+    },
+    {
+      "section_id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter II",
+      "title": "The Ten-Dollar Counterfeit Note",
+      "order": 2,
+      "include_by_default": true,
+      "character_count": 11935,
+      "word_count": 2084,
+      "estimated_listening_minutes": 72,
+      "morse_character_estimate": 64642
+    },
+    {
+      "section_id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter III",
+      "title": "The Paymaster's Safe",
+      "order": 3,
+      "include_by_default": true,
+      "character_count": 36110,
+      "word_count": 6494,
+      "estimated_listening_minutes": 219,
+      "morse_character_estimate": 196326
+    },
+    {
+      "section_id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter IV",
+      "title": "At Bald Creek Station",
+      "order": 4,
+      "include_by_default": true,
+      "character_count": 24132,
+      "word_count": 4150,
+      "estimated_listening_minutes": 146,
+      "morse_character_estimate": 130938
+    },
+    {
+      "section_id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter V",
+      "title": "In Which a Cash Box Disappears",
+      "order": 5,
+      "include_by_default": true,
+      "character_count": 17717,
+      "word_count": 3157,
+      "estimated_listening_minutes": 108,
+      "morse_character_estimate": 96613
+    },
+    {
+      "section_id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter VI",
+      "title": "Some of the Little Spiders",
+      "order": 6,
+      "include_by_default": true,
+      "character_count": 23150,
+      "word_count": 4232,
+      "estimated_listening_minutes": 141,
+      "morse_character_estimate": 126149
+    },
+    {
+      "section_id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter VII",
+      "title": "Wanted—the Hawk—Dead or Alive",
+      "order": 7,
+      "include_by_default": true,
+      "character_count": 13263,
+      "word_count": 2382,
+      "estimated_listening_minutes": 80,
+      "morse_character_estimate": 71456
+    },
+    {
+      "section_id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter VIII",
+      "title": "Threads in the Web",
+      "order": 8,
+      "include_by_default": true,
+      "character_count": 19274,
+      "word_count": 3491,
+      "estimated_listening_minutes": 115,
+      "morse_character_estimate": 103089
+    },
+    {
+      "section_id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter IX",
+      "title": "The Looting of the Fast Mail",
+      "order": 9,
+      "include_by_default": true,
+      "character_count": 18636,
+      "word_count": 3415,
+      "estimated_listening_minutes": 111,
+      "morse_character_estimate": 99844
+    },
+    {
+      "section_id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter X",
+      "title": "The Third Party",
+      "order": 10,
+      "include_by_default": true,
+      "character_count": 16141,
+      "word_count": 3013,
+      "estimated_listening_minutes": 98,
+      "morse_character_estimate": 87368
+    },
+    {
+      "section_id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter XI",
+      "title": "The Lead Capsule",
+      "order": 11,
+      "include_by_default": true,
+      "character_count": 23582,
+      "word_count": 4120,
+      "estimated_listening_minutes": 142,
+      "morse_character_estimate": 127120
+    },
+    {
+      "section_id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter XII",
+      "title": "Blindman's-Buff",
+      "order": 12,
+      "include_by_default": true,
+      "character_count": 19505,
+      "word_count": 3462,
+      "estimated_listening_minutes": 117,
+      "morse_character_estimate": 104825
+    },
+    {
+      "section_id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter XIII",
+      "title": "The Man with the Scar",
+      "order": 13,
+      "include_by_default": true,
+      "character_count": 27103,
+      "word_count": 4896,
+      "estimated_listening_minutes": 164,
+      "morse_character_estimate": 147001
+    },
+    {
+      "section_id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter XIV",
+      "title": "The Clue",
+      "order": 14,
+      "include_by_default": true,
+      "character_count": 17543,
+      "word_count": 3127,
+      "estimated_listening_minutes": 105,
+      "morse_character_estimate": 93791
+    },
+    {
+      "section_id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter XV",
+      "title": "The Ladybird",
+      "order": 15,
+      "include_by_default": true,
+      "character_count": 24005,
+      "word_count": 4273,
+      "estimated_listening_minutes": 144,
+      "morse_character_estimate": 129279
+    },
+    {
+      "section_id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter XVI",
+      "title": "An Even Break",
+      "order": 16,
+      "include_by_default": true,
+      "character_count": 34821,
+      "word_count": 6350,
+      "estimated_listening_minutes": 209,
+      "morse_character_estimate": 187205
+    },
+    {
+      "section_id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter XVII",
+      "title": "A Hole in the Wall",
+      "order": 17,
+      "include_by_default": true,
+      "character_count": 31187,
+      "word_count": 5536,
+      "estimated_listening_minutes": 186,
+      "morse_character_estimate": 167311
+    },
+    {
+      "section_id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter XVIII",
+      "title": "The Hawk Packs His Valise",
+      "order": 18,
+      "include_by_default": true,
+      "character_count": 14977,
+      "word_count": 2698,
+      "estimated_listening_minutes": 89,
+      "morse_character_estimate": 80092
+    },
+    {
+      "section_id": "chapter-019",
+      "kind": "chapter",
+      "label": "Chapter XIX",
+      "title": "Birds of a Feather",
+      "order": 19,
+      "include_by_default": true,
+      "character_count": 25662,
+      "word_count": 4646,
+      "estimated_listening_minutes": 155,
+      "morse_character_estimate": 138639
+    },
+    {
+      "section_id": "chapter-020",
+      "kind": "chapter",
+      "label": "Chapter XX",
+      "title": "“Confidential” Correspondence",
+      "order": 20,
+      "include_by_default": true,
+      "character_count": 5342,
+      "word_count": 958,
+      "estimated_listening_minutes": 32,
+      "morse_character_estimate": 28549
+    }
+  ]
+}

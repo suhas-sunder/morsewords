@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-night-operator",
+  "title": "The Night Operator",
+  "author": [
+    "Frank L. Packard"
+  ],
+  "contentVersion": "00984a0863326ec9",
+  "contentHash": "00984a0863326ec9b6ac4218fcbfe828a771f72aa819e0d183e2baa07c68498c",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "33634",
+    "releaseDate": "September 4, 2010",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/33634",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "file-evidence",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Targeted MorseWords new book-candidate pass processed this source after local metadata, public-domain, boundary, and playback-text review. Review generated output before manual Cloudflare upload."
+  },
+  "stats": {
+    "originalCharacterCount": 545669,
+    "cleanedCharacterCount": 511384,
+    "wordCount": 91538,
+    "sectionCount": 10,
+    "includedSectionCount": 10
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "section_id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter I",
+      "title": "The Night Operator",
+      "order": 1,
+      "include_by_default": true,
+      "character_count": 53669,
+      "word_count": 9567,
+      "estimated_listening_minutes": 322,
+      "morse_character_estimate": 289583
+    },
+    {
+      "section_id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter II",
+      "title": "Owsley and the 1601",
+      "order": 2,
+      "include_by_default": true,
+      "character_count": 49552,
+      "word_count": 8989,
+      "estimated_listening_minutes": 297,
+      "morse_character_estimate": 266827
+    },
+    {
+      "section_id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter III",
+      "title": "The Apotheosis of Sammy Durgan",
+      "order": 3,
+      "include_by_default": true,
+      "character_count": 61120,
+      "word_count": 10859,
+      "estimated_listening_minutes": 366,
+      "morse_character_estimate": 328891
+    },
+    {
+      "section_id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter IV",
+      "title": "The Wrecking Boss",
+      "order": 4,
+      "include_by_default": true,
+      "character_count": 36186,
+      "word_count": 6306,
+      "estimated_listening_minutes": 218,
+      "morse_character_estimate": 195425
+    },
+    {
+      "section_id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter V",
+      "title": "The Man Who Squealed",
+      "order": 5,
+      "include_by_default": true,
+      "character_count": 57224,
+      "word_count": 10241,
+      "estimated_listening_minutes": 346,
+      "morse_character_estimate": 311245
+    },
+    {
+      "section_id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter VI",
+      "title": "The Age Limit",
+      "order": 6,
+      "include_by_default": true,
+      "character_count": 57986,
+      "word_count": 10528,
+      "estimated_listening_minutes": 347,
+      "morse_character_estimate": 312053
+    },
+    {
+      "section_id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter VII",
+      "title": "\"The Devil and All His Works\"",
+      "order": 7,
+      "include_by_default": true,
+      "character_count": 49635,
+      "word_count": 8801,
+      "estimated_listening_minutes": 298,
+      "morse_character_estimate": 267322
+    },
+    {
+      "section_id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter VIII",
+      "title": "On the Night Wire",
+      "order": 8,
+      "include_by_default": true,
+      "character_count": 45610,
+      "word_count": 8206,
+      "estimated_listening_minutes": 273,
+      "morse_character_estimate": 245456
+    },
+    {
+      "section_id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter IX",
+      "title": "The Other Fellow's Job",
+      "order": 9,
+      "include_by_default": true,
+      "character_count": 45015,
+      "word_count": 8105,
+      "estimated_listening_minutes": 269,
+      "morse_character_estimate": 241378
+    },
+    {
+      "section_id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter X",
+      "title": "The Rat River Special",
+      "order": 10,
+      "include_by_default": true,
+      "character_count": 55387,
+      "word_count": 9936,
+      "estimated_listening_minutes": 333,
+      "morse_character_estimate": 299185
+    }
+  ]
+}

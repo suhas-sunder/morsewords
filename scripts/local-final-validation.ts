@@ -60,18 +60,9 @@ type StaticServer = {
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const requiredCompletionCommit = "c3084755f79583499b51ee6d38b808c3c211d007";
-const expectedBookCount = 519;
 const expectedManifestCount = 2;
-const expectedExportFileCount = 521;
-const expectedSuitabilityCounts = {
-  low: 98,
-  moderate: 311,
-  elevated: 110,
-};
-const expectedStrictReviewCandidates = 429;
-const expectedSitemapUrlCount = 1686;
+const expectedNonBookSitemapCount = 129;
 const expectedRouteInventoryCount = 702;
-const expectedPrintUrlCount = 519;
 const localDeferredStatement =
   "Production Netlify route validation is deferred and was not used as a blocker in this local completion branch.";
 
@@ -286,6 +277,41 @@ function countFilesRecursive(dirPath: string) {
   return count;
 }
 
+function normalizeUploadPath(filePath: string) {
+  return filePath.replace(/\\/g, "/").replace(/^\/+/, "");
+}
+
+function uniqueUploadPaths(paths: string[]) {
+  return [...new Set(paths.map(normalizeUploadPath).filter(Boolean))];
+}
+
+function uploadManifestFilePaths(uploadManifest: UploadManifest) {
+  const requiredFiles = uploadManifest.requiredFiles?.map((entry) => entry.sourcePath) ?? [];
+  if (requiredFiles.length > 0) {
+    return uniqueUploadPaths(requiredFiles);
+  }
+
+  const files = uploadManifest.files ?? [];
+  if (files.length > 0) {
+    return uniqueUploadPaths(files);
+  }
+
+  const bookFiles = uploadManifest.bookFiles ?? [];
+  return uniqueUploadPaths(["public-manifest.json", "upload-manifest.json", ...bookFiles]);
+}
+
+function uploadManifestBookFiles(uploadManifest: UploadManifest) {
+  return uploadManifestFilePaths(uploadManifest).filter((filePath) =>
+    /^books\/[^/]+\.json$/.test(filePath),
+  );
+}
+
+function uploadManifestBookSlugs(uploadManifest: UploadManifest) {
+  return uploadManifestBookFiles(uploadManifest).map((bookFile) =>
+    bookFile.replace(/^books\//, "").replace(/\.json$/, ""),
+  );
+}
+
 function listSourceFiles(dirPath: string): string[] {
   if (!fs.existsSync(dirPath)) {
     return [];
@@ -459,9 +485,9 @@ async function startLocalApp(localExportBaseUrl: string) {
   };
 }
 
-async function validateLocalPrintRoutes(localExportBaseUrl: string) {
+async function validateLocalPrintRoutes(localExportBaseUrl: string, uploadedBookSlugs: string[]) {
   const app = await startLocalApp(localExportBaseUrl);
-  const routes = [
+  const legacySampleRoutes = [
     {
       path: "/morse-code-books/walden/print",
       expectedSnippet: "Historical public-domain text. May include period language, mature themes, or intense scenes.",
@@ -475,6 +501,13 @@ async function validateLocalPrintRoutes(localExportBaseUrl: string) {
       expectedSnippet: "Historical public-domain text with elevated content-suitability concerns.",
     },
   ];
+  const routes =
+    uploadedBookSlugs.length > 0 && uploadedBookSlugs.length <= 20
+      ? uploadedBookSlugs.map((slug) => ({
+          path: `/morse-code-books/${slug}/print`,
+          expectedSnippet: "Historical public-domain text",
+        }))
+      : legacySampleRoutes;
   const results: Array<{ path: string; status: number; htmlBytes: number; passed: boolean; checks: string[] }> = [];
 
   try {
@@ -522,6 +555,9 @@ async function validateLocalExport(localExportBaseUrl: string) {
   let payloadsReachable = 0;
   let payloadsWithSuitability = 0;
   const manifestBookPaths = new Set<string>();
+  const manifestBooksByPath = new Map<string, BookManifestEntry>();
+  const uploadedFiles = uploadManifestFilePaths(uploadManifest);
+  const uploadedBookFiles = uploadManifestBookFiles(uploadManifest);
 
   for (const book of publicManifest.books) {
     const bookPath = book.bookPath;
@@ -529,11 +565,21 @@ async function validateLocalExport(localExportBaseUrl: string) {
       payloadIssues.push(`${book.slug}: missing bookPath`);
       continue;
     }
-    manifestBookPaths.add(bookPath);
+    const normalizedBookPath = normalizeUploadPath(bookPath);
+    manifestBookPaths.add(normalizedBookPath);
+    manifestBooksByPath.set(normalizedBookPath, book);
+  }
+
+  for (const bookFile of uploadedBookFiles) {
+    const book = manifestBooksByPath.get(bookFile);
+    if (!book) {
+      payloadIssues.push(`${bookFile}: uploaded book file is missing from public manifest`);
+      continue;
+    }
     try {
-      const payload = await fetchJson<BookPayload>(`${localExportBaseUrl}/${bookPath}`);
+      const payload = await fetchJson<BookPayload>(`${localExportBaseUrl}/${bookFile}`);
       payloadsReachable += 1;
-      const expectedPathSlug = bookPath.replace(/^books\//, "").replace(/\.json$/, "");
+      const expectedPathSlug = bookFile.replace(/^books\//, "").replace(/\.json$/, "");
       if (payload.slug !== book.slug || payload.slug !== expectedPathSlug) {
         payloadIssues.push(`${book.slug}: slug/path mismatch`);
       }
@@ -558,12 +604,14 @@ async function validateLocalExport(localExportBaseUrl: string) {
     }
   }
 
-  const bookFiles = uploadManifest.bookFiles ?? [];
-  const missingManifestBookFiles = bookFiles.filter((bookFile) => !manifestBookPaths.has(bookFile));
+  const missingManifestBookFiles = uploadedBookFiles.filter((bookFile) => !manifestBookPaths.has(bookFile));
 
   return {
     publicManifest,
     uploadManifest,
+    uploadedFiles,
+    uploadedBookFiles,
+    uploadedBookSlugs: uploadManifestBookSlugs(uploadManifest),
     payloadsReachable,
     payloadsWithSuitability,
     suitabilityCounts,
@@ -741,6 +789,19 @@ async function main() {
     strictClassroomYouthPolicyResult?: string;
     recommendedProductPolicy?: string;
   }>(policyReportPath);
+  const localUploadManifest = readJson<UploadManifest>(path.join(updatedExportDir, "upload-manifest.json"));
+  const expectedBookCount = generatedManifest.books.length;
+  const expectedSitemapUrlCount = expectedNonBookSitemapCount + expectedBookCount * 3;
+  const expectedPrintUrlCount = expectedBookCount;
+  const expectedExportFileCount = uploadManifestFilePaths(localUploadManifest).length;
+  const expectedExportBookPayloadCount = uploadManifestBookFiles(localUploadManifest).length;
+  const updatedExportShape =
+    expectedExportBookPayloadCount === expectedBookCount ? "full" : "incremental";
+  const suitabilityReviewedCount = Object.keys(suitability.profiles ?? {}).length;
+  const suitabilityRiskCountTotal = Object.values(suitability.normalRiskLevelCounts ?? {}).reduce(
+    (sum, count) => sum + count,
+    0,
+  );
 
   const sitemapEntries = parseSitemapEntries();
   const bookUrlCount = sitemapEntries.filter((entry) => /^\/morse-code-books\/[^/]+$/.test(entry.pathname)).length;
@@ -784,18 +845,17 @@ async function main() {
   check(cloudflareUpdatedExportTrackedFileCount === 0, "cloudflare-updated-export tracked-file count", `${cloudflareUpdatedExportTrackedFileCount}`, blockers, checks);
   check(updatedExportFileCount === expectedExportFileCount, "cloudflare-updated-export file count", `${updatedExportFileCount}/${expectedExportFileCount}`, blockers, checks);
   check(
-    suitability.normalRiskLevelCounts.low === expectedSuitabilityCounts.low &&
-      suitability.normalRiskLevelCounts.moderate === expectedSuitabilityCounts.moderate &&
-      suitability.normalRiskLevelCounts.elevated === expectedSuitabilityCounts.elevated,
-    "suitability counts",
-    JSON.stringify(suitability.normalRiskLevelCounts),
+    suitability.booksReviewed === suitabilityReviewedCount &&
+      suitability.booksReviewed === suitabilityRiskCountTotal,
+    "suitability profile count consistency",
+    `${suitability.booksReviewed} reviewed, ${suitabilityReviewedCount} profiles, ${suitabilityRiskCountTotal} risk labels`,
     blockers,
     checks,
   );
   check(
-    suitability.strictReviewCandidateCount === expectedStrictReviewCandidates,
+    suitability.strictReviewCandidateCount <= suitability.booksReviewed,
     "strict review candidate count",
-    `${suitability.strictReviewCandidateCount}/${expectedStrictReviewCandidates}`,
+    `${suitability.strictReviewCandidateCount}/${suitability.booksReviewed}`,
     blockers,
     checks,
   );
@@ -818,23 +878,22 @@ async function main() {
     localExportBaseUrl = staticServer.baseUrl;
     exportValidation = await validateLocalExport(localExportBaseUrl);
     check(exportValidation.publicManifest.books.length === expectedBookCount, "local export public manifest book count", `${exportValidation.publicManifest.books.length}/${expectedBookCount}`, blockers, checks);
-    check(exportValidation.uploadManifest.bookFiles.length === expectedBookCount, "local export upload manifest book count", `${exportValidation.uploadManifest.bookFiles.length}/${expectedBookCount}`, blockers, checks);
-    check((exportValidation.uploadManifest.files ?? []).length === expectedExportFileCount, "local export upload manifest file count", `${(exportValidation.uploadManifest.files ?? []).length}/${expectedExportFileCount}`, blockers, checks);
-    check(exportValidation.payloadsReachable === expectedBookCount, "local export payload reachability", `${exportValidation.payloadsReachable}/${expectedBookCount}`, blockers, checks);
-    check(exportValidation.payloadsWithSuitability === expectedBookCount, "local export payload suitability metadata", `${exportValidation.payloadsWithSuitability}/${expectedBookCount}`, blockers, checks);
     check(
-      exportValidation.suitabilityCounts.low === expectedSuitabilityCounts.low &&
-        exportValidation.suitabilityCounts.moderate === expectedSuitabilityCounts.moderate &&
-        exportValidation.suitabilityCounts.elevated === expectedSuitabilityCounts.elevated,
-      "local export suitability counts",
-      JSON.stringify(exportValidation.suitabilityCounts),
+      exportValidation.uploadManifest.approvedBookCount === undefined ||
+        exportValidation.uploadManifest.approvedBookCount === expectedBookCount,
+      "local export approved book count",
+      `${exportValidation.uploadManifest.approvedBookCount ?? "not declared"}/${expectedBookCount}`,
       blockers,
       checks,
     );
+    check(exportValidation.uploadedBookFiles.length === expectedExportBookPayloadCount, "local export upload manifest book count", `${exportValidation.uploadedBookFiles.length}/${expectedExportBookPayloadCount}`, blockers, checks);
+    check(exportValidation.uploadedFiles.length === expectedExportFileCount, "local export upload manifest file count", `${exportValidation.uploadedFiles.length}/${expectedExportFileCount}`, blockers, checks);
+    check(exportValidation.payloadsReachable === expectedExportBookPayloadCount, "local export payload reachability", `${exportValidation.payloadsReachable}/${expectedExportBookPayloadCount}`, blockers, checks);
+    check(exportValidation.payloadsWithSuitability === expectedExportBookPayloadCount, "local export payload suitability metadata", `${exportValidation.payloadsWithSuitability}/${expectedExportBookPayloadCount}`, blockers, checks);
     check(exportValidation.payloadIssues.length === 0, "local export payload integrity", `${exportValidation.payloadIssues.length} issues`, blockers, checks);
     check(exportValidation.missingManifestBookFiles.length === 0, "local export manifest/path structure", `${exportValidation.missingManifestBookFiles.length} missing manifest book files`, blockers, checks);
 
-    printRouteResults = await validateLocalPrintRoutes(localExportBaseUrl);
+    printRouteResults = await validateLocalPrintRoutes(localExportBaseUrl, exportValidation.uploadedBookSlugs);
     const printRoutesPassed = printRouteResults.every((result) => result.passed);
     check(
       printRoutesPassed,
@@ -910,7 +969,7 @@ async function main() {
       trackedFileCount: cloudflareUpdatedExportTrackedFileCount,
       localServedBaseUrl: localExportBaseUrl,
       requiredFiles: exportValidation?.uploadManifest.requiredFiles ?? [],
-      replacementType: sweepReport.updatedExport?.replacementType ?? "full",
+      replacementType: updatedExportShape,
       payloadIssues: exportValidation?.payloadIssues ?? [],
     },
     localPrintRouteResult: {

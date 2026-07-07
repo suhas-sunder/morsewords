@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "slug": "wired-love-a-romance-of-dots-and-dashes",
+  "title": "Wired Love: A Romance of Dots and Dashes",
+  "author": [
+    "Ella Cheever Thayer"
+  ],
+  "contentVersion": "efbeaa0ed2d16489",
+  "contentHash": "efbeaa0ed2d16489b9a68037a50bb19e831c6f951dc5095e31a1a83c5338a4bd",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "24353",
+    "releaseDate": "January 18, 2008",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/24353",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "file-evidence",
+    "duplicateResolutionSource": "deterministic-file-match",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Targeted MorseWords new book-candidate pass processed this source after local metadata, public-domain, boundary, and playback-text review. Review generated output before manual Cloudflare upload."
+  },
+  "stats": {
+    "originalCharacterCount": 313892,
+    "cleanedCharacterCount": 286445,
+    "wordCount": 50922,
+    "sectionCount": 16,
+    "includedSectionCount": 16
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "section_id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter I",
+      "title": "Sounds from a Distant \"C.\"",
+      "order": 1,
+      "include_by_default": true,
+      "character_count": 17457,
+      "word_count": 3079,
+      "estimated_listening_minutes": 106,
+      "morse_character_estimate": 94502
+    },
+    {
+      "section_id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter II",
+      "title": "At the Hotel Norman.",
+      "order": 2,
+      "include_by_default": true,
+      "character_count": 18066,
+      "word_count": 3116,
+      "estimated_listening_minutes": 109,
+      "morse_character_estimate": 98037
+    },
+    {
+      "section_id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter III",
+      "title": "Visible and Invisible Friends.",
+      "order": 3,
+      "include_by_default": true,
+      "character_count": 26786,
+      "word_count": 4729,
+      "estimated_listening_minutes": 162,
+      "morse_character_estimate": 145353
+    },
+    {
+      "section_id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter IV",
+      "title": "Neighborly Calls.",
+      "order": 4,
+      "include_by_default": true,
+      "character_count": 15316,
+      "word_count": 2673,
+      "estimated_listening_minutes": 92,
+      "morse_character_estimate": 82793
+    },
+    {
+      "section_id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter V",
+      "title": "Quimby Bursts Forth in Eloquence.",
+      "order": 5,
+      "include_by_default": true,
+      "character_count": 15677,
+      "word_count": 2796,
+      "estimated_listening_minutes": 95,
+      "morse_character_estimate": 85120
+    },
+    {
+      "section_id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter VI",
+      "title": "Collapse of the Romance.",
+      "order": 6,
+      "include_by_default": true,
+      "character_count": 15629,
+      "word_count": 2765,
+      "estimated_listening_minutes": 95,
+      "morse_character_estimate": 84702
+    },
+    {
+      "section_id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter VII",
+      "title": "\"Good-By.\"",
+      "order": 7,
+      "include_by_default": true,
+      "character_count": 15795,
+      "word_count": 2784,
+      "estimated_listening_minutes": 95,
+      "morse_character_estimate": 85400
+    },
+    {
+      "section_id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter VIII",
+      "title": "The Feast.",
+      "order": 8,
+      "include_by_default": true,
+      "character_count": 15177,
+      "word_count": 2656,
+      "estimated_listening_minutes": 92,
+      "morse_character_estimate": 82281
+    },
+    {
+      "section_id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter IX",
+      "title": "Unexpected Visitors.",
+      "order": 9,
+      "include_by_default": true,
+      "character_count": 20677,
+      "word_count": 3666,
+      "estimated_listening_minutes": 126,
+      "morse_character_estimate": 112613
+    },
+    {
+      "section_id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter X",
+      "title": "The Broken Circuit Re-United.",
+      "order": 10,
+      "include_by_default": true,
+      "character_count": 21490,
+      "word_count": 3817,
+      "estimated_listening_minutes": 130,
+      "morse_character_estimate": 116811
+    },
+    {
+      "section_id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter XI",
+      "title": "Miss Kling Telegraphically Baffled.",
+      "order": 11,
+      "include_by_default": true,
+      "character_count": 22621,
+      "word_count": 4054,
+      "estimated_listening_minutes": 136,
+      "morse_character_estimate": 122119
+    },
+    {
+      "section_id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter XII",
+      "title": "Crosses on the Line.",
+      "order": 12,
+      "include_by_default": true,
+      "character_count": 15026,
+      "word_count": 2716,
+      "estimated_listening_minutes": 91,
+      "morse_character_estimate": 81154
+    },
+    {
+      "section_id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter XIII",
+      "title": "The Wrong Woman.",
+      "order": 13,
+      "include_by_default": true,
+      "character_count": 10870,
+      "word_count": 1987,
+      "estimated_listening_minutes": 67,
+      "morse_character_estimate": 59418
+    },
+    {
+      "section_id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter XIV",
+      "title": "Quimby Accepts the Situation.",
+      "order": 14,
+      "include_by_default": true,
+      "character_count": 8417,
+      "word_count": 1527,
+      "estimated_listening_minutes": 52,
+      "morse_character_estimate": 46148
+    },
+    {
+      "section_id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter XV",
+      "title": "One Summer Day.",
+      "order": 15,
+      "include_by_default": true,
+      "character_count": 26761,
+      "word_count": 4843,
+      "estimated_listening_minutes": 162,
+      "morse_character_estimate": 145487
+    },
+    {
+      "section_id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter XVI",
+      "title": "O. K.",
+      "order": 16,
+      "include_by_default": true,
+      "character_count": 20680,
+      "word_count": 3714,
+      "estimated_listening_minutes": 125,
+      "morse_character_estimate": 112095
+    }
+  ]
+}

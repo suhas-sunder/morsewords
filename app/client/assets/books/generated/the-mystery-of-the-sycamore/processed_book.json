@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-mystery-of-the-sycamore",
+  "title": "The Mystery of the Sycamore",
+  "author": [
+    "Carolyn Wells"
+  ],
+  "contentVersion": "0a28d69113d01fd3",
+  "contentHash": "0a28d69113d01fd301fae5bda7a5121d605d1c3640c6097380550b300a363196",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "50209",
+    "releaseDate": "October 14, 2015",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/50209",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "file-evidence",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Targeted MorseWords new book-candidate pass processed this source after local metadata, public-domain, boundary, and playback-text review. Review generated output before manual Cloudflare upload."
+  },
+  "stats": {
+    "originalCharacterCount": 372619,
+    "cleanedCharacterCount": 340792,
+    "wordCount": 64179,
+    "sectionCount": 18,
+    "includedSectionCount": 18
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "section_id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter I",
+      "title": "The Letter That Said Come",
+      "order": 1,
+      "include_by_default": true,
+      "character_count": 19777,
+      "word_count": 3639,
+      "estimated_listening_minutes": 120,
+      "morse_character_estimate": 107283
+    },
+    {
+      "section_id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter II",
+      "title": "North Door and South Door",
+      "order": 2,
+      "include_by_default": true,
+      "character_count": 19731,
+      "word_count": 3587,
+      "estimated_listening_minutes": 119,
+      "morse_character_estimate": 106213
+    },
+    {
+      "section_id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter III",
+      "title": "One Last Argument",
+      "order": 3,
+      "include_by_default": true,
+      "character_count": 18877,
+      "word_count": 3542,
+      "estimated_listening_minutes": 114,
+      "morse_character_estimate": 102296
+    },
+    {
+      "section_id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter IV",
+      "title": "The Big Sycamore Tree",
+      "order": 4,
+      "include_by_default": true,
+      "character_count": 18772,
+      "word_count": 3554,
+      "estimated_listening_minutes": 114,
+      "morse_character_estimate": 102246
+    },
+    {
+      "section_id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter V",
+      "title": "The Bugle Sounded Taps",
+      "order": 5,
+      "include_by_default": true,
+      "character_count": 19340,
+      "word_count": 3638,
+      "estimated_listening_minutes": 117,
+      "morse_character_estimate": 104727
+    },
+    {
+      "section_id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter VI",
+      "title": "The Other Heir",
+      "order": 6,
+      "include_by_default": true,
+      "character_count": 19302,
+      "word_count": 3748,
+      "estimated_listening_minutes": 117,
+      "morse_character_estimate": 104883
+    },
+    {
+      "section_id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter VII",
+      "title": "Inquiries",
+      "order": 7,
+      "include_by_default": true,
+      "character_count": 19147,
+      "word_count": 3583,
+      "estimated_listening_minutes": 116,
+      "morse_character_estimate": 103733
+    },
+    {
+      "section_id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter VIII",
+      "title": "Confession",
+      "order": 8,
+      "include_by_default": true,
+      "character_count": 18258,
+      "word_count": 3405,
+      "estimated_listening_minutes": 111,
+      "morse_character_estimate": 99397
+    },
+    {
+      "section_id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter IX",
+      "title": "Counter-Confessions",
+      "order": 9,
+      "include_by_default": true,
+      "character_count": 18427,
+      "word_count": 3536,
+      "estimated_listening_minutes": 112,
+      "morse_character_estimate": 100088
+    },
+    {
+      "section_id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter X",
+      "title": "The Phantom Bugler",
+      "order": 10,
+      "include_by_default": true,
+      "character_count": 18213,
+      "word_count": 3499,
+      "estimated_listening_minutes": 110,
+      "morse_character_estimate": 98764
+    },
+    {
+      "section_id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter XI",
+      "title": "Fleming Stone",
+      "order": 11,
+      "include_by_default": true,
+      "character_count": 18848,
+      "word_count": 3463,
+      "estimated_listening_minutes": 114,
+      "morse_character_estimate": 102049
+    },
+    {
+      "section_id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter XII",
+      "title": "The Garage Fire",
+      "order": 12,
+      "include_by_default": true,
+      "character_count": 19139,
+      "word_count": 3565,
+      "estimated_listening_minutes": 115,
+      "morse_character_estimate": 103357
+    },
+    {
+      "section_id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter XIII",
+      "title": "Sara Wheeler",
+      "order": 13,
+      "include_by_default": true,
+      "character_count": 18091,
+      "word_count": 3453,
+      "estimated_listening_minutes": 109,
+      "morse_character_estimate": 97779
+    },
+    {
+      "section_id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter XIV",
+      "title": "Rachel’S Story",
+      "order": 14,
+      "include_by_default": true,
+      "character_count": 17763,
+      "word_count": 3389,
+      "estimated_listening_minutes": 108,
+      "morse_character_estimate": 96671
+    },
+    {
+      "section_id": "chapter-015",
+      "kind": "chapter",
+      "label": "Chapter XV",
+      "title": "The Awful Truth",
+      "order": 15,
+      "include_by_default": true,
+      "character_count": 19307,
+      "word_count": 3717,
+      "estimated_listening_minutes": 117,
+      "morse_character_estimate": 104881
+    },
+    {
+      "section_id": "chapter-016",
+      "kind": "chapter",
+      "label": "Chapter XVI",
+      "title": "Maida’S Decision",
+      "order": 16,
+      "include_by_default": true,
+      "character_count": 18023,
+      "word_count": 3507,
+      "estimated_listening_minutes": 109,
+      "morse_character_estimate": 97958
+    },
+    {
+      "section_id": "chapter-017",
+      "kind": "chapter",
+      "label": "Chapter XVII",
+      "title": "Maida and Her Father",
+      "order": 17,
+      "include_by_default": true,
+      "character_count": 18131,
+      "word_count": 3424,
+      "estimated_listening_minutes": 110,
+      "morse_character_estimate": 98698
+    },
+    {
+      "section_id": "chapter-018",
+      "kind": "chapter",
+      "label": "Chapter XVIII",
+      "title": "A Final Confession",
+      "order": 18,
+      "include_by_default": true,
+      "character_count": 21646,
+      "word_count": 3930,
+      "estimated_listening_minutes": 130,
+      "morse_character_estimate": 116945
+    }
+  ]
+}

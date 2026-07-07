@@ -127,8 +127,6 @@ const reportDir = path.join(
 const reportJsonPath = path.join(reportDir, "adsense-contact-readiness.json");
 const reportMdPath = path.join(reportDir, "adsense-contact-readiness.md");
 
-const EXPECTED_SITEMAP_TOTAL = 1686;
-const EXPECTED_BOOK_COUNT = 519;
 const EXPECTED_NON_BOOK_COUNT = 129;
 
 const BOOK_PATTERN = /^\/morse-code-books\/([^/]+)$/;
@@ -715,6 +713,7 @@ function runAudit(): AuditResult {
   const sitemapPaths = entries.map((entry) => entry.pathname);
   const sitemap = snapshotFromPaths(sitemapPaths);
   const generatedBookCount = readGeneratedBookCount();
+  const expectedSitemapTotal = EXPECTED_NON_BOOK_COUNT + generatedBookCount * 3;
   const requiredPages = checkRequiredPages({ routeSources, sitemapPaths });
   const footerSource = readText(
     path.join(repoRoot, "app", "client", "components", "navigation", "Footer.tsx"),
@@ -837,23 +836,20 @@ function runAudit(): AuditResult {
   if (unsupportedSafetyClaims.length > 0) {
     blockers.push("unsupported all-audience/classroom-safe claim found");
   }
-  if (sitemap.total !== EXPECTED_SITEMAP_TOTAL) {
-    blockers.push(`sitemap count ${sitemap.total} does not match ${EXPECTED_SITEMAP_TOTAL}`);
+  if (sitemap.total !== expectedSitemapTotal) {
+    blockers.push(`sitemap count ${sitemap.total} does not match ${expectedSitemapTotal}`);
   }
   if (sitemap.nonBook !== EXPECTED_NON_BOOK_COUNT) {
     blockers.push(`non-book URL count ${sitemap.nonBook} does not match ${EXPECTED_NON_BOOK_COUNT}`);
   }
-  if (sitemap.book !== EXPECTED_BOOK_COUNT) {
-    blockers.push(`book URL count ${sitemap.book} does not match ${EXPECTED_BOOK_COUNT}`);
+  if (sitemap.book !== generatedBookCount) {
+    blockers.push(`book URL count ${sitemap.book} does not match generated book count ${generatedBookCount}`);
   }
-  if (sitemap.audiobook !== EXPECTED_BOOK_COUNT) {
-    blockers.push(`audiobook URL count ${sitemap.audiobook} does not match ${EXPECTED_BOOK_COUNT}`);
+  if (sitemap.audiobook !== generatedBookCount) {
+    blockers.push(`audiobook URL count ${sitemap.audiobook} does not match generated book count ${generatedBookCount}`);
   }
-  if (sitemap.print !== EXPECTED_BOOK_COUNT) {
-    blockers.push(`print URL count ${sitemap.print} does not match ${EXPECTED_BOOK_COUNT}`);
-  }
-  if (generatedBookCount !== EXPECTED_BOOK_COUNT) {
-    blockers.push(`generated book manifest count ${generatedBookCount} does not match ${EXPECTED_BOOK_COUNT}`);
+  if (sitemap.print !== generatedBookCount) {
+    blockers.push(`print URL count ${sitemap.print} does not match generated book count ${generatedBookCount}`);
   }
   if (redirectOnlyUrlsInSitemap.length > 0) blockers.push("redirect-only URL found in XML sitemap");
   if (noindexUrlsInSitemap.length > 0) blockers.push("noindex URL found in XML sitemap");

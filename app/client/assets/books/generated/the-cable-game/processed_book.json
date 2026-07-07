@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "slug": "the-cable-game",
+  "title": "The Cable Game",
+  "author": [
+    "Stanley Washburn"
+  ],
+  "contentVersion": "9337329aed27d0ba",
+  "contentHash": "9337329aed27d0ba6244ddcbb839d5d2e811dbcb4a87b1cde703f43cc18672c6",
+  "source": {
+    "provider": "Project Gutenberg",
+    "gutenbergId": "61903",
+    "releaseDate": "April 23, 2020",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/61903",
+    "rawTextUrl": null,
+    "rightsBasis": "public-domain-us",
+    "rightsReviewed": true,
+    "publishReady": true,
+    "rightsStatus": "approved",
+    "processingAllowed": true,
+    "approvalSource": "file-evidence",
+    "duplicateResolutionSource": "not-needed",
+    "rightsReportPath": "rights_report.json",
+    "processedBookPath": "processed_book.json",
+    "cleanedBookPath": "cleaned_book.json",
+    "rightsNotes": "Targeted MorseWords new book-candidate pass processed this source after local metadata, public-domain, boundary, and playback-text review. Review generated output before manual Cloudflare upload."
+  },
+  "stats": {
+    "originalCharacterCount": 334562,
+    "cleanedCharacterCount": 303612,
+    "wordCount": 56039,
+    "sectionCount": 15,
+    "includedSectionCount": 14
+  },
+  "defaults": {
+    "includeKinds": [
+      "chapter"
+    ],
+    "preferredPreset": "main-narrative"
+  },
+  "sections": [
+    {
+      "section_id": "introduction-001",
+      "kind": "introduction",
+      "label": "Introduction",
+      "title": null,
+      "order": 1,
+      "include_by_default": false,
+      "character_count": 1054,
+      "word_count": 192,
+      "estimated_listening_minutes": 7,
+      "morse_character_estimate": 5474
+    },
+    {
+      "section_id": "chapter-001",
+      "kind": "chapter",
+      "label": "Chapter I",
+      "title": "From War to Peace in Manchuria—Peking—a New Assignment, “Russia Direct”—Shanghai.",
+      "order": 2,
+      "include_by_default": true,
+      "character_count": 26784,
+      "word_count": 4910,
+      "estimated_listening_minutes": 159,
+      "morse_character_estimate": 142685
+    },
+    {
+      "section_id": "chapter-002",
+      "kind": "chapter",
+      "label": "Chapter II",
+      "title": "The Race for the Situation—Ceylon—Across India—Stalled in Bombay—Russia Via the Suez Canal",
+      "order": 3,
+      "include_by_default": true,
+      "character_count": 21599,
+      "word_count": 3915,
+      "estimated_listening_minutes": 128,
+      "morse_character_estimate": 115035
+    },
+    {
+      "section_id": "chapter-003",
+      "kind": "chapter",
+      "label": "Chapter III",
+      "title": "Constantinople at Last!—the Threshold of the Russian Assignment—a Nation in Convulsion",
+      "order": 4,
+      "include_by_default": true,
+      "character_count": 26010,
+      "word_count": 4718,
+      "estimated_listening_minutes": 155,
+      "morse_character_estimate": 138697
+    },
+    {
+      "section_id": "chapter-004",
+      "kind": "chapter",
+      "label": "Chapter IV",
+      "title": "We Charter a Tug and Become Dispatch Bearer of His Britannic Majesty and Learn of Winter Risks in the Black Sea Too Late to Retreat",
+      "order": 5,
+      "include_by_default": true,
+      "character_count": 26141,
+      "word_count": 4950,
+      "estimated_listening_minutes": 155,
+      "morse_character_estimate": 138923
+    },
+    {
+      "section_id": "chapter-005",
+      "kind": "chapter",
+      "label": "Chapter V",
+      "title": "We Sail Out Into the Black Sea in the Salvage Steamer France and for Sixty-Five Hours Shake Dice with Death",
+      "order": 6,
+      "include_by_default": true,
+      "character_count": 29757,
+      "word_count": 5537,
+      "estimated_listening_minutes": 176,
+      "morse_character_estimate": 158265
+    },
+    {
+      "section_id": "chapter-006",
+      "kind": "chapter",
+      "label": "Chapter VI",
+      "title": "We Land in Odessa on the Day Set by the Revolutionists for a General Massacre, But Because of Effective Martial Law, Secure Only a “General Situation” Story",
+      "order": 7,
+      "include_by_default": true,
+      "character_count": 26154,
+      "word_count": 4646,
+      "estimated_listening_minutes": 155,
+      "morse_character_estimate": 139135
+    },
+    {
+      "section_id": "chapter-007",
+      "kind": "chapter",
+      "label": "Chapter VII",
+      "title": "The France Does Her Best in the Run for the Uncensored Cable, Sticks in the Mud, But Gets Away and Arrives at Sulina Mouth with an Hour to Spare",
+      "order": 8,
+      "include_by_default": true,
+      "character_count": 27891,
+      "word_count": 5319,
+      "estimated_listening_minutes": 166,
+      "morse_character_estimate": 148859
+    },
+    {
+      "section_id": "chapter-008",
+      "kind": "chapter",
+      "label": "Chapter VIII",
+      "title": "We Send Our Cable and Find Ourselves with Five Francs and Expenses of $200 a Day, But Make a Financial Coup D’Etat and Sail for the Crimean Peninsula",
+      "order": 9,
+      "include_by_default": true,
+      "character_count": 20505,
+      "word_count": 3853,
+      "estimated_listening_minutes": 122,
+      "morse_character_estimate": 108955
+    },
+    {
+      "section_id": "chapter-009",
+      "kind": "chapter",
+      "label": "Chapter IX",
+      "title": "We Reach Sevastopol and Land in Spite of Harbor Regulations, Get a Story and Sail Away with It to the Coast of Asia Minor",
+      "order": 10,
+      "include_by_default": true,
+      "character_count": 23000,
+      "word_count": 4237,
+      "estimated_listening_minutes": 136,
+      "morse_character_estimate": 122269
+    },
+    {
+      "section_id": "chapter-010",
+      "kind": "chapter",
+      "label": "Chapter X",
+      "title": "We Send Our Cable from Sinope and Then Sail for the Caucasus, Where Rumor States Revolution and Anarchy to Be Reigning Unmolested",
+      "order": 11,
+      "include_by_default": true,
+      "character_count": 17598,
+      "word_count": 3217,
+      "estimated_listening_minutes": 104,
+      "morse_character_estimate": 92914
+    },
+    {
+      "section_id": "chapter-011",
+      "kind": "chapter",
+      "label": "Chapter XI",
+      "title": "Christmas Morning on the Black Sea.",
+      "order": 12,
+      "include_by_default": true,
+      "character_count": 12936,
+      "word_count": 2384,
+      "estimated_listening_minutes": 77,
+      "morse_character_estimate": 68625
+    },
+    {
+      "section_id": "chapter-012",
+      "kind": "chapter",
+      "label": "Chapter XII",
+      "title": "We Find Turmoil in the Caucasus But Celebrate Christmas in Spite of Storm and Stress",
+      "order": 13,
+      "include_by_default": true,
+      "character_count": 13996,
+      "word_count": 2500,
+      "estimated_listening_minutes": 83,
+      "morse_character_estimate": 74053
+    },
+    {
+      "section_id": "chapter-013",
+      "kind": "chapter",
+      "label": "Chapter XIII",
+      "title": "We Sail Away from Batuum with a Beat, Official Dispatches, Foreign Mails and a Boatload of Refugees That Keep Us Awake Nights",
+      "order": 14,
+      "include_by_default": true,
+      "character_count": 22800,
+      "word_count": 4298,
+      "estimated_listening_minutes": 135,
+      "morse_character_estimate": 120750
+    },
+    {
+      "section_id": "chapter-014",
+      "kind": "chapter",
+      "label": "Chapter XIV",
+      "title": "The Return to the Golden Horn and the End of the Assignment",
+      "order": 15,
+      "include_by_default": true,
+      "character_count": 7387,
+      "word_count": 1363,
+      "estimated_listening_minutes": 44,
+      "morse_character_estimate": 39060
+    }
+  ]
+}

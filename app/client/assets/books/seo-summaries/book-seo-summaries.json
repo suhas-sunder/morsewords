@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "summarySet": "bespoke-raw-candidate-pass-8",
-  "generatedAt": "2026-06-29",
+  "summarySet": "remaining-raw-candidate-completion",
+  "generatedAt": "2026-07-07",
   "storageApproach": "Separate static JSON data asset imported by book routes and validation tooling. Summaries are not embedded in generated book text, preview assets, raw sources, or Cloudflare export payloads.",
   "suggestedPilotSlugs": [
     "the-time-machine",
@@ -79,7 +79,7 @@
       "reason": "The Odyssey is not currently generated; The Arabian Nights keeps a long classic story-collection sample in the pilot."
     }
   ],
-  "expectedSummaryCount": 519,
+  "expectedSummaryCount": 526,
   "batch1Slugs": [
     "a-childs-garden-of-verses",
     "anna-karenina",
@@ -4848,6 +4848,69 @@
       ],
       "description": "Henry David Thoreau's essay on conscience, government, law, resistance, and individual responsibility.",
       "summary": "On the Duty of Civil Disobedience is Henry David Thoreau's essay about conscience, law, government, resistance, and the responsibility of the individual. It argues that obedience to the state is not a substitute for moral judgment, and it turns a political question into a practical question: what should a person do when law and conscience disagree?\n\nFor MorseWords learners, the essay is shorter than Walden but denser in argument. It has recurring anchor words such as government, state, law, man, majority, conscience, tax, prison, justice, and citizen. Those repetitions make it useful for focused listening practice, especially if you want to train the ear on abstract vocabulary rather than story action.\n\nThe best first pass is slow and short. Listen to one paragraph at a time, copy the main nouns and verbs, then replay while reading to catch small connecting words. The essay often depends on precise contrasts, so missing a not, if, but, or therefore can change the meaning. That makes it a strong practice text for spacing and attention. It is also a good text for practicing punctuation rhythm, because Thoreau often moves from statement to qualification to example inside a single sentence.\n\nBecause this work is generated as a standalone page, it can be used without first loading the much longer Walden chapters. A useful drill is to select the opening paragraphs, write down every repeated political term, and then replay the same span at a slightly faster speed. On a later pass, choose a passage about conscience or taxation and compare how the rhythm changes when Thoreau moves from example to argument.\n\nThis page preserves the complete essay from the combined source file while keeping Walden separate, so learners can choose either the nature-writing book or the political essay without crossing between unrelated practice modes. That separation makes the first listening session more honest: the essay opens with its argument instead of after a long book of pond, cabin, and seasonal observation."
+    },
+    {
+      "slug": "wired-love-a-romance-of-dots-and-dashes",
+      "title": "Wired Love: A Romance of Dots and Dashes",
+      "author": [
+        "Ella Cheever Thayer"
+      ],
+      "description": "Ella Cheever Thayer's telegraph romance about two operators whose long-distance messages turn into friendship, wit, and courtship.",
+      "summary": "Wired Love: A Romance of Dots and Dashes is Ella Cheever Thayer's lively telegraph romance about Nathalie Rogers, a skilled operator whose working day is full of clicks, interruptions, office habits, and messages from distant stations. The story turns the telegraph wire into a social space. What begins as business signaling becomes banter, curiosity, mistaken identity, jealousy, friendship, and courtship. The result is a rare nineteenth-century novel where communications technology is not merely background decoration but the engine of the plot.\n\nFor MorseWords learners, this book is a natural fit. The text repeatedly returns to calls, sounders, dots, dashes, offices, wire etiquette, abbreviations, and operator culture, so it reinforces the idea that Morse is both a code and a human conversation. The chapters also give practice with dialogue, quick emotional shifts, technical vocabulary, and period comic manners. Learners can start with the opening chapter, where the sound of the instrument and the first distant call are easy anchors, then continue chapter by chapter as the relationship grows.\n\nThe Morse practice value is strongest when the text is used slowly. Many scenes move through repartee, interruptions, and names, so accurate spacing matters. Replaying a short exchange helps distinguish where one speaker ends and another begins. The novel is also useful for building confidence with punctuation, because messages, quoted speech, and telegraph references appear often.\n\nThis processed version keeps the sixteen main chapters and excludes catalog header material and the contents list from default playback. That makes it suitable for a focused listening plan: choose one chapter, preview the title, copy a few paragraphs, then replay the same passage until the clicks feel like part of the story rather than a separate exercise. A useful drill is to collect the telegraph terms from each chapter before listening, then compare how they sound when they appear inside ordinary conversation. The romance gives practice with emotional tone while the office setting keeps the Morse theme close at hand."
+    },
+    {
+      "slug": "the-night-operator",
+      "title": "The Night Operator",
+      "author": [
+        "Frank L. Packard"
+      ],
+      "description": "Frank L. Packard's linked railroad stories of operators, dispatchers, wrecking crews, night wires, and hard duty on the Hill Division.",
+      "summary": "The Night Operator is Frank L. Packard's collection of railroad stories set around the Hill Division, where telegraph operators, dispatchers, conductors, wrecking crews, engineers, and small-town railroad workers face danger, pressure, practical jokes, and hard-earned loyalty. The book is not a single linear novel. It is a sequence of ten stories, each using the railroad world as a stage for character, suspense, and the everyday heroics of people who keep trains moving.\n\nFor MorseWords, the collection is valuable because the telegraph is part of the working environment. Dispatching, night wires, messages, station duty, and railway communication all appear as living tools rather than classroom abstractions. Learners get repeated exposure to railroad vocabulary such as division, dispatch, operator, wire, station, wreck, special, run, crew, engine, and trainmaster. Those repeated words become useful anchors during audio playback.\n\nThe text is best practiced story by story. The opening piece introduces Toddles and the Hill Division with a strong narrative voice, while later stories shift the focus to other workers and emergencies. A learner can copy a few paragraphs of description, then replay a dialogue-heavy section at a slower speed to check speaker changes and punctuation. Because Packard's prose often moves quickly from setup to action, the collection rewards steady WPM rather than rushing.\n\nThis processed version preserves the ten titled story chapters and excludes the introductory and contents material from default playback. It is a strong practice choice for readers who like railroads, work stories, period slang, and communication under pressure. For a weekly routine, pick one story, note the recurring railway terms, and listen once for setting before copying. The separate story structure also makes progress easy to measure: each completed chapter is a full narrative exercise rather than a fragment from a longer plot. That shape is especially helpful for learners who want satisfying sessions that still end cleanly."
+    },
+    {
+      "slug": "the-wire-devils",
+      "title": "The Wire Devils",
+      "author": [
+        "Frank L. Packard"
+      ],
+      "description": "Frank L. Packard's railroad crime novel about secret codes, forged notes, missing cash boxes, and a network of thieves along the wire.",
+      "summary": "The Wire Devils is Frank L. Packard's railroad crime novel about secret codes, counterfeit money, paymaster safes, missing cash boxes, hidden identities, and an organized criminal network that uses the railway environment as cover. The story moves through stations, yards, wires, mountain towns, and night operations, following clues as railroad workers and investigators try to understand who is behind the thefts and how messages, aliases, and timing connect the crimes.\n\nFor MorseWords learners, the book has an appealing communications angle. Its title is not accidental: wires, codes, correspondence, dispatches, and railroad signaling matter to the mystery. The chapter headings themselves make good practice prompts, with phrases such as The Secret Code, Threads in the Web, The Lead Capsule, Blindman's-Buff, and Confidential Correspondence. Readers can use those headings to preview vocabulary before listening.\n\nThe prose is energetic and action-forward, so it is useful for intermediate Morse practice. Names, chapter titles, dialogue, technical railroad language, and crime vocabulary appear in quick succession. A good routine is to choose one chapter, write down recurring terms before playback, and then listen once for those anchors before attempting a full copy. The chapters are numerous enough to make a longer training plan, but most are manageable as individual sessions.\n\nThis processed version preserves the twenty main chapters from the body text. The contents list and catalog header/footer material are excluded from playback, and the chapter boundaries follow the body headings rather than fallback chunks. That makes the book usable as a route, audiobook, and printable text without duplicating table-of-contents material as listening content. The crime plot also supports review: learners can replay clue-heavy passages after finishing a chapter and listen for how names, places, and objects recur as evidence. It is a lively option when plain drills feel too detached from story momentum."
+    },
+    {
+      "slug": "the-story-of-the-atlantic-cable",
+      "title": "The Story of the Atlantic Cable",
+      "author": [
+        "Sir Charles Bright"
+      ],
+      "description": "Sir Charles Bright's nonfiction history of submarine telegraphy and the Atlantic cable, from early experiments to later cable systems.",
+      "summary": "The Story of the Atlantic Cable is Sir Charles Bright's nonfiction account of one of the great communications projects of the nineteenth century: connecting continents by submarine telegraph cable. The book begins with introductory material on electric telegraphy and early submarine lines, then follows the projectors, cable manufacture, attempted expeditions, failures, storms, recoveries, public celebrations, investigations, and later Atlantic cable systems. It is a technical history, but it is also a story of persistence under practical difficulty.\n\nFor MorseWords learners, this book connects Morse practice to the infrastructure that made long-distance electrical communication feel world-changing. The vocabulary is different from fiction practice. It includes telegraph, conductor, insulation, cable, submarine, Atlantic, expedition, dynamometer, shore-end, grapnel, company, engineer, electrician, ship, signal, fault, and circuit. Those terms can be challenging, but they also make excellent repeated anchors.\n\nThe best way to practice this title is in short nonfiction sessions. Start with the first main chapter for default listening, then return to the optional introductory section when you want more background. The prose includes measurements, names, dates, technical descriptions, and quoted commentary, so slower playback is helpful. Copying a paragraph about cable manufacture or recovery can train patience with specialized vocabulary and punctuation.\n\nThis processed version keeps the optional introductory section plus nineteen main chapters. It excludes the title page, contents, illustration list, and catalog header/footer material from playback. Standalone part markers are removed from playable section text so that sections do not end with stray structural labels. The result is a coherent nonfiction book route, audiobook route, and print route for learners who want historical communications material rather than only story practice. A useful drill is to make a small word bank of cable terms before listening, then replay one paragraph until the technical nouns stay distinct. The book rewards careful pacing because many sentences carry several technical steps."
+    },
+    {
+      "slug": "the-gold-bug",
+      "title": "The Gold-Bug",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "description": "Edgar Allan Poe's cryptographic adventure about William Legrand, Jupiter, a golden scarab, and a hidden message leading to buried treasure.",
+      "summary": "The Gold-Bug is Edgar Allan Poe's famous cryptographic adventure about William Legrand, his servant Jupiter, a curious golden beetle, a mysterious parchment, and a hidden message that leads toward buried treasure. The story blends seaside atmosphere, eccentric behavior, deduction, cipher-solving, and adventure. It is especially valuable for MorseWords because the plot turns on encoded communication: a message must be noticed, preserved, interpreted, and tested before the mystery can be solved.\n\nFor Morse practice, The Gold-Bug offers a compact but demanding session. The prose contains names, dialect, quoted speech, punctuation-heavy explanation, and a central cipher discussion. Learners can use the opening paragraphs to practice descriptive narration, then replay the sections where Legrand explains the cryptogram more slowly. Because the story itself is about decoding, it pairs naturally with Morse listening and copying drills.\n\nA good routine is to practice in three passes. First, listen for the main names: Legrand, Jupiter, Sullivan's Island, Kidd, and the bug. Second, copy a short descriptive passage and check punctuation. Third, use the explanation of the cipher as an endurance exercise, slowing the WPM when numbers, symbols, or unusual phrasing appear. The goal is not only speed but clarity: the listener should know when a clue is being described, when a character is speaking, and when the narrator is interpreting evidence.\n\nThis processed version uses the visible title boundary, keeps the complete story body, and divides the long tale into three readable parts for playback. That segmentation makes the text easier to use in practice without pretending the story has formal chapters. Use Part 1 for setting and character voice, Part 2 for the search and rising puzzle, and Part 3 for the explanation of the code. The story is a natural bridge between literary reading and code practice because its drama depends on careful attention to signs."
+    },
+    {
+      "slug": "the-cable-game",
+      "title": "The Cable Game",
+      "author": [
+        "Stanley Washburn"
+      ],
+      "description": "Stanley Washburn's firsthand nonfiction account of foreign correspondence, dispatch boats, cables, deadlines, and reporting under pressure.",
+      "summary": "The Cable Game is Stanley Washburn's firsthand account of foreign correspondence, news gathering, dispatch boats, censorship, deadlines, travel, and the effort to get a world story onto the wire. The book follows the practical work of journalism across Manchuria, China, Russia, the Black Sea, Odessa, Sevastopol, the Caucasus, and Constantinople. It is a communications book in a broader sense: the drama comes from distance, transport, official obstruction, news value, cable access, and the race to send information before another paper does.\n\nFor MorseWords learners, the title is useful because it treats communication as urgent fieldwork. Telegraph and cable systems are not abstract; they are the means by which a correspondent turns observation into news. The vocabulary includes cable, dispatch, correspondent, assignment, story, situation, harbor, steamer, consul, censor, revolution, mail, and beat. These repeated terms help learners stay oriented during long nonfiction passages.\n\nThe book works best chapter by chapter. The first chapter establishes the movement from war reporting to a new assignment. Later chapters add travel pressure, weather, risk, money trouble, and the problem of reaching an uncensored cable. A learner can copy one paragraph from a scene of travel, then replay a news-gathering passage at a slower speed to catch proper nouns and punctuation.\n\nThis processed version keeps the author's short introduction as optional front matter and the fourteen main chapters as default playback content. The contents list, table of illustrations, and catalog header/footer material are excluded. That gives the route a fuller catalog-quality text while keeping default audiobook selection focused on the readable narrative chapters. For practice, it helps to choose a place name from a chapter title, listen for it in context, and then copy the surrounding paragraph. The travel structure makes each chapter feel like a distinct assignment. It is especially useful for learners who want nonfiction action without losing the thread of practical communication."
+    },
+    {
+      "slug": "the-mystery-of-the-sycamore",
+      "title": "The Mystery of the Sycamore",
+      "author": [
+        "Carolyn Wells"
+      ],
+      "description": "Carolyn Wells's mystery novel of letters, doors, inheritance, confessions, a phantom bugler, and a final investigation by Fleming Stone.",
+      "summary": "The Mystery of the Sycamore is Carolyn Wells's detective novel about invitations, family pressure, inheritance, hidden motives, confessions, and the strange atmosphere around Sycamore Ridge. The story opens with a letter that says simply to come, then builds through doors, arguments, a large sycamore tree, a bugle call, competing explanations, and the eventual involvement of Fleming Stone. It is a classic puzzle-driven mystery with social conversation, suspicion, and staged revelations.\n\nFor MorseWords learners, the book is useful because the chapter structure is clear and the mystery vocabulary repeats. Words such as letter, door, heir, confession, bugler, garage, father, truth, and decision appear in memorable contexts. The chapters also provide varied practice: office conversation, travel setup, emotional dispute, investigation, and final explanation. That variety keeps long-form listening from becoming monotonous.\n\nA practical routine is to begin with Chapter I, copy the first few paragraphs, and then replay the dialogue at a slower speed to catch speaker shifts. Later, learners can use chapter titles as prediction prompts before playback. Because the book includes proper names and formal conversation, it is good for practicing capitalization mentally, punctuation, and sentence endings even when the Morse signal itself does not carry typography.\n\nThis processed version preserves the eighteen body chapters and removes the title page, contents, and catalog header/footer material from playable text. The resulting book, audiobook, and print routes are intended for learners who want a full mystery novel with clean chapter boundaries and no table-of-contents duplication in default playback. A good review habit is to keep a small list of suspects, locations, and clue words beside the player, then replay the chapter once to confirm which details were missed on the first pass. The mystery format makes missed words easier to notice because each clue changes the reader's understanding."
     }
   ],
   "batch3Slugs": [
@@ -5235,15 +5298,13 @@
     "william-wilson"
   ],
   "remainingRawCandidateCompletionSlugs": [
-    "a-catastrophe",
-    "in-the-abyss",
-    "pollock-and-the-porroh-man",
-    "the-colour-out-of-space",
-    "the-plattner-story",
-    "the-sad-story-of-a-dramatic-critic",
-    "under-the-knife",
-    "the-willows",
-    "the-case-of-charles-dexter-ward"
+    "wired-love-a-romance-of-dots-and-dashes",
+    "the-night-operator",
+    "the-wire-devils",
+    "the-story-of-the-atlantic-cable",
+    "the-gold-bug",
+    "the-cable-game",
+    "the-mystery-of-the-sycamore"
   ],
   "bespokeRawCandidatePass1Slugs": [
     "five-little-friends",
@@ -5293,5 +5354,14 @@
   "bespokeRawCandidatePass8Slugs": [
     "walden",
     "on-the-duty-of-civil-disobedience"
+  ],
+  "newTelegraphCandidateProcessingSlugs": [
+    "wired-love-a-romance-of-dots-and-dashes",
+    "the-night-operator",
+    "the-wire-devils",
+    "the-story-of-the-atlantic-cable",
+    "the-gold-bug",
+    "the-cable-game",
+    "the-mystery-of-the-sycamore"
   ]
 }

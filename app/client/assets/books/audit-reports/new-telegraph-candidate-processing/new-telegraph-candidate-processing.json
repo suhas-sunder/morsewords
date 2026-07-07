@@ -1,0 +1,1634 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-07",
+  "baselineCommit": "beb88df7 test: guard books hub suitability labels",
+  "countsBefore": {
+    "generatedBooks": 519,
+    "seoSummaries": 519,
+    "previewBooks": 519,
+    "sitemapUrls": 1686
+  },
+  "countsAfter": {
+    "generatedBooks": 526,
+    "seoSummaries": 526,
+    "previewBooks": 526,
+    "sitemapUrls": 1707
+  },
+  "expectedRouteIncrease": 21,
+  "candidateStatus": [
+    {
+      "title": "Wired Love: A Romance of Dots and Dashes",
+      "slug": "wired-love-a-romance-of-dots-and-dashes",
+      "status": "processed",
+      "rawSourceFile": "app/client/assets/temp-books/Wired Love - A Romance of Dots and Dashes.txt",
+      "duplicateRawSourceFilesIgnored": [
+        "app/client/assets/temp-books/Wired Love-A Romance of Dots and Dashes.txt"
+      ],
+      "reason": "Raw source present, no existing generated slug or sitemap route was found, and local source metadata supported US public-domain processing."
+    },
+    {
+      "title": "The Night Operator",
+      "slug": "the-night-operator",
+      "status": "processed",
+      "rawSourceFile": "app/client/assets/temp-books/The Night Operator.txt",
+      "duplicateRawSourceFilesIgnored": [],
+      "reason": "Raw source present, no existing generated slug or sitemap route was found, and local source metadata supported US public-domain processing."
+    },
+    {
+      "title": "The Wire Devils",
+      "slug": "the-wire-devils",
+      "status": "processed",
+      "rawSourceFile": "app/client/assets/temp-books/The Wire Devils.txt",
+      "duplicateRawSourceFilesIgnored": [],
+      "reason": "Raw source present, no existing generated slug or sitemap route was found, and local source metadata supported US public-domain processing."
+    },
+    {
+      "title": "The Story of the Atlantic Cable",
+      "slug": "the-story-of-the-atlantic-cable",
+      "status": "processed",
+      "rawSourceFile": "app/client/assets/temp-books/The Story of the Atlantic Cable.txt",
+      "duplicateRawSourceFilesIgnored": [],
+      "reason": "Raw source present, no existing generated slug or sitemap route was found, and local source metadata supported US public-domain processing."
+    },
+    {
+      "title": "The Gold-Bug",
+      "slug": "the-gold-bug",
+      "status": "processed",
+      "rawSourceFile": "app/client/assets/temp-books/THE GOLD-BUG.txt",
+      "duplicateRawSourceFilesIgnored": [],
+      "reason": "Raw source present, no existing generated slug or sitemap route was found, and local source metadata supported US public-domain processing."
+    },
+    {
+      "title": "The Cable Game",
+      "slug": "the-cable-game",
+      "status": "processed",
+      "rawSourceFile": "app/client/assets/temp-books/The Cable Game.txt",
+      "duplicateRawSourceFilesIgnored": [],
+      "reason": "Raw source present, no existing generated slug or sitemap route was found, and local source metadata supported US public-domain processing."
+    },
+    {
+      "title": "The Mystery of the Sycamore",
+      "slug": "the-mystery-of-the-sycamore",
+      "status": "processed",
+      "rawSourceFile": "app/client/assets/temp-books/The Mystery of the Sycamore.txt",
+      "duplicateRawSourceFilesIgnored": [],
+      "reason": "Raw source present, no existing generated slug or sitemap route was found, and local source metadata supported US public-domain processing."
+    }
+  ],
+  "processedBooks": [
+    {
+      "title": "Wired Love: A Romance of Dots and Dashes",
+      "author": [
+        "Ella Cheever Thayer"
+      ],
+      "slug": "wired-love-a-romance-of-dots-and-dashes",
+      "sourceFile": "app/client/assets/temp-books/Wired Love - A Romance of Dots and Dashes.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "public-domain-us / publish-ready",
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "24353",
+        "releaseDate": "January 18, 2008",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/24353",
+        "originalPublication": "1880"
+      },
+      "suitabilityEvidence": {
+        "gutenbergHeaderPresent": true,
+        "gutenbergLicensePresent": true,
+        "usReuseLanguageFound": true,
+        "nonUsWarningFound": true,
+        "reasoning": "Accepted as a Project Gutenberg source with US reuse language and pre-1930 source/title-page evidence in the local text.",
+        "evidence": [
+          "Project Gutenberg ebook #24353 is present in the local source metadata.",
+          "Release date: January 18, 2008.",
+          "Original publication metadata used for this pass: 1880.",
+          "The source text includes Project Gutenberg US reuse language."
+        ]
+      },
+      "detectedTopLevelStructure": "numbered chapters",
+      "nestedBooksVolumesPartsSections": "No genuine nested books or volumes requiring separate public URLs were found.",
+      "routes": {
+        "book": "/morse-code-books/wired-love-a-romance-of-dots-and-dashes",
+        "audiobook": "/morse-code-audiobooks/wired-love-a-romance-of-dots-and-dashes",
+        "print": "/morse-code-books/wired-love-a-romance-of-dots-and-dashes/print"
+      },
+      "cloudflarePath": "app/client/assets/books/cloudflare-updated-export/books/wired-love-a-romance-of-dots-and-dashes.json",
+      "sections": [
+        {
+          "sectionId": "chapter-001",
+          "label": "Chapter I",
+          "title": "Sounds from a Distant \"C.\"",
+          "kind": "chapter",
+          "characterLength": 17457,
+          "wordCount": 3079,
+          "estimatedMorseRuntimeMinutes": 106,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-002",
+          "label": "Chapter II",
+          "title": "At the Hotel Norman.",
+          "kind": "chapter",
+          "characterLength": 18066,
+          "wordCount": 3116,
+          "estimatedMorseRuntimeMinutes": 109,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-003",
+          "label": "Chapter III",
+          "title": "Visible and Invisible Friends.",
+          "kind": "chapter",
+          "characterLength": 26786,
+          "wordCount": 4729,
+          "estimatedMorseRuntimeMinutes": 162,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-004",
+          "label": "Chapter IV",
+          "title": "Neighborly Calls.",
+          "kind": "chapter",
+          "characterLength": 15316,
+          "wordCount": 2673,
+          "estimatedMorseRuntimeMinutes": 92,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-005",
+          "label": "Chapter V",
+          "title": "Quimby Bursts Forth in Eloquence.",
+          "kind": "chapter",
+          "characterLength": 15677,
+          "wordCount": 2796,
+          "estimatedMorseRuntimeMinutes": 95,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-006",
+          "label": "Chapter VI",
+          "title": "Collapse of the Romance.",
+          "kind": "chapter",
+          "characterLength": 15629,
+          "wordCount": 2765,
+          "estimatedMorseRuntimeMinutes": 95,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-007",
+          "label": "Chapter VII",
+          "title": "\"Good-By.\"",
+          "kind": "chapter",
+          "characterLength": 15795,
+          "wordCount": 2784,
+          "estimatedMorseRuntimeMinutes": 95,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-008",
+          "label": "Chapter VIII",
+          "title": "The Feast.",
+          "kind": "chapter",
+          "characterLength": 15177,
+          "wordCount": 2656,
+          "estimatedMorseRuntimeMinutes": 92,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-009",
+          "label": "Chapter IX",
+          "title": "Unexpected Visitors.",
+          "kind": "chapter",
+          "characterLength": 20677,
+          "wordCount": 3666,
+          "estimatedMorseRuntimeMinutes": 126,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-010",
+          "label": "Chapter X",
+          "title": "The Broken Circuit Re-United.",
+          "kind": "chapter",
+          "characterLength": 21490,
+          "wordCount": 3817,
+          "estimatedMorseRuntimeMinutes": 130,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-011",
+          "label": "Chapter XI",
+          "title": "Miss Kling Telegraphically Baffled.",
+          "kind": "chapter",
+          "characterLength": 22621,
+          "wordCount": 4054,
+          "estimatedMorseRuntimeMinutes": 136,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-012",
+          "label": "Chapter XII",
+          "title": "Crosses on the Line.",
+          "kind": "chapter",
+          "characterLength": 15026,
+          "wordCount": 2716,
+          "estimatedMorseRuntimeMinutes": 91,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-013",
+          "label": "Chapter XIII",
+          "title": "The Wrong Woman.",
+          "kind": "chapter",
+          "characterLength": 10870,
+          "wordCount": 1987,
+          "estimatedMorseRuntimeMinutes": 67,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-014",
+          "label": "Chapter XIV",
+          "title": "Quimby Accepts the Situation.",
+          "kind": "chapter",
+          "characterLength": 8417,
+          "wordCount": 1527,
+          "estimatedMorseRuntimeMinutes": 52,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-015",
+          "label": "Chapter XV",
+          "title": "One Summer Day.",
+          "kind": "chapter",
+          "characterLength": 26761,
+          "wordCount": 4843,
+          "estimatedMorseRuntimeMinutes": 162,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-016",
+          "label": "Chapter XVI",
+          "title": "O. K.",
+          "kind": "chapter",
+          "characterLength": 20680,
+          "wordCount": 3714,
+          "estimatedMorseRuntimeMinutes": 125,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        }
+      ],
+      "warnings": [
+        "Duplicate raw source filename was present and intentionally ignored to avoid duplicate routes."
+      ]
+    },
+    {
+      "title": "The Night Operator",
+      "author": [
+        "Frank L. Packard"
+      ],
+      "slug": "the-night-operator",
+      "sourceFile": "app/client/assets/temp-books/The Night Operator.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "public-domain-us / publish-ready",
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "33634",
+        "releaseDate": "September 4, 2010",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/33634",
+        "originalPublication": "1919"
+      },
+      "suitabilityEvidence": {
+        "gutenbergHeaderPresent": true,
+        "gutenbergLicensePresent": true,
+        "usReuseLanguageFound": true,
+        "nonUsWarningFound": true,
+        "reasoning": "Accepted as a Project Gutenberg source with US reuse language and pre-1930 source/title-page evidence in the local text.",
+        "evidence": [
+          "Project Gutenberg ebook #33634 is present in the local source metadata.",
+          "Release date: September 4, 2010.",
+          "Visible source/title-page year evidence includes 1919.",
+          "The source text includes Project Gutenberg US reuse language."
+        ]
+      },
+      "detectedTopLevelStructure": "story collection with roman-numeral chapters",
+      "nestedBooksVolumesPartsSections": "No genuine nested books or volumes requiring separate public URLs were found.",
+      "routes": {
+        "book": "/morse-code-books/the-night-operator",
+        "audiobook": "/morse-code-audiobooks/the-night-operator",
+        "print": "/morse-code-books/the-night-operator/print"
+      },
+      "cloudflarePath": "app/client/assets/books/cloudflare-updated-export/books/the-night-operator.json",
+      "sections": [
+        {
+          "sectionId": "chapter-001",
+          "label": "Chapter I",
+          "title": "The Night Operator",
+          "kind": "chapter",
+          "characterLength": 53669,
+          "wordCount": 9567,
+          "estimatedMorseRuntimeMinutes": 322,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-002",
+          "label": "Chapter II",
+          "title": "Owsley and the 1601",
+          "kind": "chapter",
+          "characterLength": 49552,
+          "wordCount": 8989,
+          "estimatedMorseRuntimeMinutes": 297,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-003",
+          "label": "Chapter III",
+          "title": "The Apotheosis of Sammy Durgan",
+          "kind": "chapter",
+          "characterLength": 61120,
+          "wordCount": 10859,
+          "estimatedMorseRuntimeMinutes": 366,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-004",
+          "label": "Chapter IV",
+          "title": "The Wrecking Boss",
+          "kind": "chapter",
+          "characterLength": 36186,
+          "wordCount": 6306,
+          "estimatedMorseRuntimeMinutes": 218,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-005",
+          "label": "Chapter V",
+          "title": "The Man Who Squealed",
+          "kind": "chapter",
+          "characterLength": 57224,
+          "wordCount": 10241,
+          "estimatedMorseRuntimeMinutes": 346,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-006",
+          "label": "Chapter VI",
+          "title": "The Age Limit",
+          "kind": "chapter",
+          "characterLength": 57986,
+          "wordCount": 10528,
+          "estimatedMorseRuntimeMinutes": 347,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-007",
+          "label": "Chapter VII",
+          "title": "\"The Devil and All His Works\"",
+          "kind": "chapter",
+          "characterLength": 49635,
+          "wordCount": 8801,
+          "estimatedMorseRuntimeMinutes": 298,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-008",
+          "label": "Chapter VIII",
+          "title": "On the Night Wire",
+          "kind": "chapter",
+          "characterLength": 45610,
+          "wordCount": 8206,
+          "estimatedMorseRuntimeMinutes": 273,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-009",
+          "label": "Chapter IX",
+          "title": "The Other Fellow's Job",
+          "kind": "chapter",
+          "characterLength": 45015,
+          "wordCount": 8105,
+          "estimatedMorseRuntimeMinutes": 269,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-010",
+          "label": "Chapter X",
+          "title": "The Rat River Special",
+          "kind": "chapter",
+          "characterLength": 55387,
+          "wordCount": 9936,
+          "estimatedMorseRuntimeMinutes": 333,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "title": "The Wire Devils",
+      "author": [
+        "Frank L. Packard"
+      ],
+      "slug": "the-wire-devils",
+      "sourceFile": "app/client/assets/temp-books/The Wire Devils.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "public-domain-us / publish-ready",
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "52084",
+        "releaseDate": "May 16, 2016",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/52084",
+        "originalPublication": "1918"
+      },
+      "suitabilityEvidence": {
+        "gutenbergHeaderPresent": true,
+        "gutenbergLicensePresent": true,
+        "usReuseLanguageFound": true,
+        "nonUsWarningFound": true,
+        "reasoning": "Accepted as a Project Gutenberg source with US reuse language and pre-1930 source/title-page evidence in the local text.",
+        "evidence": [
+          "Project Gutenberg ebook #52084 is present in the local source metadata.",
+          "Release date: May 16, 2016.",
+          "Visible source/title-page year evidence includes 1918.",
+          "The source text includes Project Gutenberg US reuse language."
+        ]
+      },
+      "detectedTopLevelStructure": "novel with roman-numeral dash chapter headings",
+      "nestedBooksVolumesPartsSections": "No genuine nested books or volumes requiring separate public URLs were found.",
+      "routes": {
+        "book": "/morse-code-books/the-wire-devils",
+        "audiobook": "/morse-code-audiobooks/the-wire-devils",
+        "print": "/morse-code-books/the-wire-devils/print"
+      },
+      "cloudflarePath": "app/client/assets/books/cloudflare-updated-export/books/the-wire-devils.json",
+      "sections": [
+        {
+          "sectionId": "chapter-001",
+          "label": "Chapter I",
+          "title": "The Secret Code",
+          "kind": "chapter",
+          "characterLength": 13296,
+          "wordCount": 2305,
+          "estimatedMorseRuntimeMinutes": 80,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-002",
+          "label": "Chapter II",
+          "title": "The Ten-Dollar Counterfeit Note",
+          "kind": "chapter",
+          "characterLength": 11935,
+          "wordCount": 2084,
+          "estimatedMorseRuntimeMinutes": 72,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-003",
+          "label": "Chapter III",
+          "title": "The Paymaster's Safe",
+          "kind": "chapter",
+          "characterLength": 36110,
+          "wordCount": 6494,
+          "estimatedMorseRuntimeMinutes": 219,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-004",
+          "label": "Chapter IV",
+          "title": "At Bald Creek Station",
+          "kind": "chapter",
+          "characterLength": 24132,
+          "wordCount": 4150,
+          "estimatedMorseRuntimeMinutes": 146,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-005",
+          "label": "Chapter V",
+          "title": "In Which a Cash Box Disappears",
+          "kind": "chapter",
+          "characterLength": 17717,
+          "wordCount": 3157,
+          "estimatedMorseRuntimeMinutes": 108,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-006",
+          "label": "Chapter VI",
+          "title": "Some of the Little Spiders",
+          "kind": "chapter",
+          "characterLength": 23150,
+          "wordCount": 4232,
+          "estimatedMorseRuntimeMinutes": 141,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-007",
+          "label": "Chapter VII",
+          "title": "Wanted—the Hawk—Dead or Alive",
+          "kind": "chapter",
+          "characterLength": 13263,
+          "wordCount": 2382,
+          "estimatedMorseRuntimeMinutes": 80,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-008",
+          "label": "Chapter VIII",
+          "title": "Threads in the Web",
+          "kind": "chapter",
+          "characterLength": 19274,
+          "wordCount": 3491,
+          "estimatedMorseRuntimeMinutes": 115,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-009",
+          "label": "Chapter IX",
+          "title": "The Looting of the Fast Mail",
+          "kind": "chapter",
+          "characterLength": 18636,
+          "wordCount": 3415,
+          "estimatedMorseRuntimeMinutes": 111,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-010",
+          "label": "Chapter X",
+          "title": "The Third Party",
+          "kind": "chapter",
+          "characterLength": 16141,
+          "wordCount": 3013,
+          "estimatedMorseRuntimeMinutes": 98,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-011",
+          "label": "Chapter XI",
+          "title": "The Lead Capsule",
+          "kind": "chapter",
+          "characterLength": 23582,
+          "wordCount": 4120,
+          "estimatedMorseRuntimeMinutes": 142,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-012",
+          "label": "Chapter XII",
+          "title": "Blindman's-Buff",
+          "kind": "chapter",
+          "characterLength": 19505,
+          "wordCount": 3462,
+          "estimatedMorseRuntimeMinutes": 117,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-013",
+          "label": "Chapter XIII",
+          "title": "The Man with the Scar",
+          "kind": "chapter",
+          "characterLength": 27103,
+          "wordCount": 4896,
+          "estimatedMorseRuntimeMinutes": 164,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-014",
+          "label": "Chapter XIV",
+          "title": "The Clue",
+          "kind": "chapter",
+          "characterLength": 17543,
+          "wordCount": 3127,
+          "estimatedMorseRuntimeMinutes": 105,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-015",
+          "label": "Chapter XV",
+          "title": "The Ladybird",
+          "kind": "chapter",
+          "characterLength": 24005,
+          "wordCount": 4273,
+          "estimatedMorseRuntimeMinutes": 144,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-016",
+          "label": "Chapter XVI",
+          "title": "An Even Break",
+          "kind": "chapter",
+          "characterLength": 34821,
+          "wordCount": 6350,
+          "estimatedMorseRuntimeMinutes": 209,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-017",
+          "label": "Chapter XVII",
+          "title": "A Hole in the Wall",
+          "kind": "chapter",
+          "characterLength": 31187,
+          "wordCount": 5536,
+          "estimatedMorseRuntimeMinutes": 186,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-018",
+          "label": "Chapter XVIII",
+          "title": "The Hawk Packs His Valise",
+          "kind": "chapter",
+          "characterLength": 14977,
+          "wordCount": 2698,
+          "estimatedMorseRuntimeMinutes": 89,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-019",
+          "label": "Chapter XIX",
+          "title": "Birds of a Feather",
+          "kind": "chapter",
+          "characterLength": 25662,
+          "wordCount": 4646,
+          "estimatedMorseRuntimeMinutes": 155,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-020",
+          "label": "Chapter XX",
+          "title": "“Confidential” Correspondence",
+          "kind": "chapter",
+          "characterLength": 5342,
+          "wordCount": 958,
+          "estimatedMorseRuntimeMinutes": 32,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "title": "The Story of the Atlantic Cable",
+      "author": [
+        "Sir Charles Bright"
+      ],
+      "slug": "the-story-of-the-atlantic-cable",
+      "sourceFile": "app/client/assets/temp-books/The Story of the Atlantic Cable.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "public-domain-us / publish-ready",
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "46105",
+        "releaseDate": "June 26, 2014",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/46105",
+        "originalPublication": "1903"
+      },
+      "suitabilityEvidence": {
+        "gutenbergHeaderPresent": true,
+        "gutenbergLicensePresent": true,
+        "usReuseLanguageFound": true,
+        "nonUsWarningFound": true,
+        "reasoning": "Accepted as a Project Gutenberg source with US reuse language and pre-1930 source/title-page evidence in the local text.",
+        "evidence": [
+          "Project Gutenberg ebook #46105 is present in the local source metadata.",
+          "Release date: June 26, 2014.",
+          "Visible source/title-page year evidence includes 1903.",
+          "The source text includes Project Gutenberg US reuse language."
+        ]
+      },
+      "detectedTopLevelStructure": "nonfiction with body introduction, parts, and numbered chapters",
+      "nestedBooksVolumesPartsSections": "Part markers are present but serve as internal divisions of one work; no separate public parent/child routes were created.",
+      "routes": {
+        "book": "/morse-code-books/the-story-of-the-atlantic-cable",
+        "audiobook": "/morse-code-audiobooks/the-story-of-the-atlantic-cable",
+        "print": "/morse-code-books/the-story-of-the-atlantic-cable/print"
+      },
+      "cloudflarePath": "app/client/assets/books/cloudflare-updated-export/books/the-story-of-the-atlantic-cable.json",
+      "sections": [
+        {
+          "sectionId": "introduction-001",
+          "label": "Introductory",
+          "title": "The Electric Telegraph",
+          "kind": "introduction",
+          "characterLength": 15226,
+          "wordCount": 2462,
+          "estimatedMorseRuntimeMinutes": 92,
+          "defaultAudioVideoSelection": false,
+          "sectionRole": "front matter",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-001",
+          "label": "Chapter I",
+          "title": "Evolution of Atlantic Telegraphy in America and England",
+          "kind": "chapter",
+          "characterLength": 22494,
+          "wordCount": 3681,
+          "estimatedMorseRuntimeMinutes": 135,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-002",
+          "label": "Chapter II",
+          "title": "The Manufacture of the Line",
+          "kind": "chapter",
+          "characterLength": 14646,
+          "wordCount": 2453,
+          "estimatedMorseRuntimeMinutes": 88,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-003",
+          "label": "Chapter III",
+          "title": "The First Start",
+          "kind": "chapter",
+          "characterLength": 21360,
+          "wordCount": 3651,
+          "estimatedMorseRuntimeMinutes": 122,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-004",
+          "label": "Chapter IV",
+          "title": "Preparations for Another Attempt",
+          "kind": "chapter",
+          "characterLength": 10111,
+          "wordCount": 1709,
+          "estimatedMorseRuntimeMinutes": 61,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-005",
+          "label": "Chapter V",
+          "title": "The Trial Trip",
+          "kind": "chapter",
+          "characterLength": 5032,
+          "wordCount": 840,
+          "estimatedMorseRuntimeMinutes": 30,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-006",
+          "label": "Chapter VI",
+          "title": "The Storm",
+          "kind": "chapter",
+          "characterLength": 32657,
+          "wordCount": 5474,
+          "estimatedMorseRuntimeMinutes": 182,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-007",
+          "label": "Chapter VII",
+          "title": "The Renewed Effort",
+          "kind": "chapter",
+          "characterLength": 20156,
+          "wordCount": 3333,
+          "estimatedMorseRuntimeMinutes": 112,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-008",
+          "label": "Chapter VIII",
+          "title": "\"Finis Coronat Opus\"",
+          "kind": "chapter",
+          "characterLength": 39722,
+          "wordCount": 6471,
+          "estimatedMorseRuntimeMinutes": 221,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-009",
+          "label": "Chapter IX",
+          "title": "The Celebration",
+          "kind": "chapter",
+          "characterLength": 13205,
+          "wordCount": 2088,
+          "estimatedMorseRuntimeMinutes": 75,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-010",
+          "label": "Chapter X",
+          "title": "Working the Line",
+          "kind": "chapter",
+          "characterLength": 14527,
+          "wordCount": 2290,
+          "estimatedMorseRuntimeMinutes": 85,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-011",
+          "label": "Chapter XI",
+          "title": "The Inquest",
+          "kind": "chapter",
+          "characterLength": 6110,
+          "wordCount": 981,
+          "estimatedMorseRuntimeMinutes": 36,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-012",
+          "label": "Chapter XII",
+          "title": "Other Proposed Routes",
+          "kind": "chapter",
+          "characterLength": 9208,
+          "wordCount": 1488,
+          "estimatedMorseRuntimeMinutes": 54,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-013",
+          "label": "Chapter XIII",
+          "title": "Experience, Investigation, and Progress",
+          "kind": "chapter",
+          "characterLength": 6844,
+          "wordCount": 1053,
+          "estimatedMorseRuntimeMinutes": 41,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-014",
+          "label": "Chapter XIV",
+          "title": "The 1865 Cable and Expedition",
+          "kind": "chapter",
+          "characterLength": 12859,
+          "wordCount": 2185,
+          "estimatedMorseRuntimeMinutes": 77,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-015",
+          "label": "Chapter XV",
+          "title": "Second and Successful Attempt",
+          "kind": "chapter",
+          "characterLength": 10607,
+          "wordCount": 1752,
+          "estimatedMorseRuntimeMinutes": 64,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-016",
+          "label": "Chapter XVI",
+          "title": "Recovery and Completion of the 1865 Cable",
+          "kind": "chapter",
+          "characterLength": 12472,
+          "wordCount": 2149,
+          "estimatedMorseRuntimeMinutes": 75,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-017",
+          "label": "Chapter XVII",
+          "title": "Jubilations",
+          "kind": "chapter",
+          "characterLength": 9196,
+          "wordCount": 1405,
+          "estimatedMorseRuntimeMinutes": 52,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-018",
+          "label": "Chapter XVIII",
+          "title": "Subsequent Atlantic Lines",
+          "kind": "chapter",
+          "characterLength": 8831,
+          "wordCount": 1432,
+          "estimatedMorseRuntimeMinutes": 53,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-019",
+          "label": "Chapter XIX",
+          "title": "Atlantic Cable Systems of To-Day",
+          "kind": "chapter",
+          "characterLength": 15718,
+          "wordCount": 2585,
+          "estimatedMorseRuntimeMinutes": 93,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "title": "The Gold-Bug",
+      "author": [
+        "Edgar Allan Poe"
+      ],
+      "slug": "the-gold-bug",
+      "sourceFile": "app/client/assets/temp-books/THE GOLD-BUG.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "public-domain-us / publish-ready",
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "2147",
+        "releaseDate": "April 1, 2000",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2147",
+        "originalPublication": "1843"
+      },
+      "suitabilityEvidence": {
+        "gutenbergHeaderPresent": false,
+        "gutenbergLicensePresent": false,
+        "usReuseLanguageFound": false,
+        "nonUsWarningFound": false,
+        "reasoning": "Accepted as US public-domain/public Project Gutenberg source metadata with a complete single Poe story body and no standard wrapper to strip.",
+        "evidence": [
+          "Project Gutenberg ebook #2147 is present in the local source metadata.",
+          "Release date: April 1, 2000.",
+          "Original publication metadata used for this pass: 1843.",
+          "The source is an older Project Gutenberg text extract without START/END markers; the visible title boundary was used and no license/footer text is present in the file."
+        ]
+      },
+      "detectedTopLevelStructure": "single story",
+      "nestedBooksVolumesPartsSections": "No genuine nested books or volumes requiring separate public URLs were found.",
+      "routes": {
+        "book": "/morse-code-books/the-gold-bug",
+        "audiobook": "/morse-code-audiobooks/the-gold-bug",
+        "print": "/morse-code-books/the-gold-bug/print"
+      },
+      "cloudflarePath": "app/client/assets/books/cloudflare-updated-export/books/the-gold-bug.json",
+      "sections": [
+        {
+          "sectionId": "chapter-001",
+          "label": "Part 1",
+          "title": "The Gold-Bug",
+          "kind": "chapter",
+          "characterLength": 29057,
+          "wordCount": 4994,
+          "estimatedMorseRuntimeMinutes": 162,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-002",
+          "label": "Part 2",
+          "title": "The Gold-Bug",
+          "kind": "chapter",
+          "characterLength": 29738,
+          "wordCount": 4955,
+          "estimatedMorseRuntimeMinutes": 164,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-003",
+          "label": "Part 3",
+          "title": "The Gold-Bug",
+          "kind": "chapter",
+          "characterLength": 23826,
+          "wordCount": 3834,
+          "estimatedMorseRuntimeMinutes": 128,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        }
+      ],
+      "warnings": [
+        "Older Project Gutenberg source extract lacks standard START/END markers; explicit visible title boundary was used."
+      ]
+    },
+    {
+      "title": "The Cable Game",
+      "author": [
+        "Stanley Washburn"
+      ],
+      "slug": "the-cable-game",
+      "sourceFile": "app/client/assets/temp-books/The Cable Game.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "public-domain-us / publish-ready",
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "61903",
+        "releaseDate": "April 23, 2020",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/61903",
+        "originalPublication": "1912"
+      },
+      "suitabilityEvidence": {
+        "gutenbergHeaderPresent": true,
+        "gutenbergLicensePresent": true,
+        "usReuseLanguageFound": true,
+        "nonUsWarningFound": true,
+        "reasoning": "Accepted as a Project Gutenberg source with US reuse language and pre-1930 source/title-page evidence in the local text.",
+        "evidence": [
+          "Project Gutenberg ebook #61903 is present in the local source metadata.",
+          "Release date: April 23, 2020.",
+          "Visible source/title-page year evidence includes 1911.",
+          "The source text includes Project Gutenberg US reuse language."
+        ]
+      },
+      "detectedTopLevelStructure": "nonfiction with optional introduction and numbered chapters",
+      "nestedBooksVolumesPartsSections": "No genuine nested books or volumes requiring separate public URLs were found.",
+      "routes": {
+        "book": "/morse-code-books/the-cable-game",
+        "audiobook": "/morse-code-audiobooks/the-cable-game",
+        "print": "/morse-code-books/the-cable-game/print"
+      },
+      "cloudflarePath": "app/client/assets/books/cloudflare-updated-export/books/the-cable-game.json",
+      "sections": [
+        {
+          "sectionId": "introduction-001",
+          "label": "Introduction",
+          "title": null,
+          "kind": "introduction",
+          "characterLength": 1054,
+          "wordCount": 192,
+          "estimatedMorseRuntimeMinutes": 7,
+          "defaultAudioVideoSelection": false,
+          "sectionRole": "front matter",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-001",
+          "label": "Chapter I",
+          "title": "From War to Peace in Manchuria—Peking—a New Assignment, “Russia Direct”—Shanghai.",
+          "kind": "chapter",
+          "characterLength": 26784,
+          "wordCount": 4910,
+          "estimatedMorseRuntimeMinutes": 159,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-002",
+          "label": "Chapter II",
+          "title": "The Race for the Situation—Ceylon—Across India—Stalled in Bombay—Russia Via the Suez Canal",
+          "kind": "chapter",
+          "characterLength": 21599,
+          "wordCount": 3915,
+          "estimatedMorseRuntimeMinutes": 128,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-003",
+          "label": "Chapter III",
+          "title": "Constantinople at Last!—the Threshold of the Russian Assignment—a Nation in Convulsion",
+          "kind": "chapter",
+          "characterLength": 26010,
+          "wordCount": 4718,
+          "estimatedMorseRuntimeMinutes": 155,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-004",
+          "label": "Chapter IV",
+          "title": "We Charter a Tug and Become Dispatch Bearer of His Britannic Majesty and Learn of Winter Risks in the Black Sea Too Late to Retreat",
+          "kind": "chapter",
+          "characterLength": 26141,
+          "wordCount": 4950,
+          "estimatedMorseRuntimeMinutes": 155,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-005",
+          "label": "Chapter V",
+          "title": "We Sail Out Into the Black Sea in the Salvage Steamer France and for Sixty-Five Hours Shake Dice with Death",
+          "kind": "chapter",
+          "characterLength": 29757,
+          "wordCount": 5537,
+          "estimatedMorseRuntimeMinutes": 176,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-006",
+          "label": "Chapter VI",
+          "title": "We Land in Odessa on the Day Set by the Revolutionists for a General Massacre, But Because of Effective Martial Law, Secure Only a “General Situation” Story",
+          "kind": "chapter",
+          "characterLength": 26154,
+          "wordCount": 4646,
+          "estimatedMorseRuntimeMinutes": 155,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-007",
+          "label": "Chapter VII",
+          "title": "The France Does Her Best in the Run for the Uncensored Cable, Sticks in the Mud, But Gets Away and Arrives at Sulina Mouth with an Hour to Spare",
+          "kind": "chapter",
+          "characterLength": 27891,
+          "wordCount": 5319,
+          "estimatedMorseRuntimeMinutes": 166,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-008",
+          "label": "Chapter VIII",
+          "title": "We Send Our Cable and Find Ourselves with Five Francs and Expenses of $200 a Day, But Make a Financial Coup D’Etat and Sail for the Crimean Peninsula",
+          "kind": "chapter",
+          "characterLength": 20505,
+          "wordCount": 3853,
+          "estimatedMorseRuntimeMinutes": 122,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-009",
+          "label": "Chapter IX",
+          "title": "We Reach Sevastopol and Land in Spite of Harbor Regulations, Get a Story and Sail Away with It to the Coast of Asia Minor",
+          "kind": "chapter",
+          "characterLength": 23000,
+          "wordCount": 4237,
+          "estimatedMorseRuntimeMinutes": 136,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-010",
+          "label": "Chapter X",
+          "title": "We Send Our Cable from Sinope and Then Sail for the Caucasus, Where Rumor States Revolution and Anarchy to Be Reigning Unmolested",
+          "kind": "chapter",
+          "characterLength": 17598,
+          "wordCount": 3217,
+          "estimatedMorseRuntimeMinutes": 104,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-011",
+          "label": "Chapter XI",
+          "title": "Christmas Morning on the Black Sea.",
+          "kind": "chapter",
+          "characterLength": 12936,
+          "wordCount": 2384,
+          "estimatedMorseRuntimeMinutes": 77,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-012",
+          "label": "Chapter XII",
+          "title": "We Find Turmoil in the Caucasus But Celebrate Christmas in Spite of Storm and Stress",
+          "kind": "chapter",
+          "characterLength": 13996,
+          "wordCount": 2500,
+          "estimatedMorseRuntimeMinutes": 83,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-013",
+          "label": "Chapter XIII",
+          "title": "We Sail Away from Batuum with a Beat, Official Dispatches, Foreign Mails and a Boatload of Refugees That Keep Us Awake Nights",
+          "kind": "chapter",
+          "characterLength": 22800,
+          "wordCount": 4298,
+          "estimatedMorseRuntimeMinutes": 135,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-014",
+          "label": "Chapter XIV",
+          "title": "The Return to the Golden Horn and the End of the Assignment",
+          "kind": "chapter",
+          "characterLength": 7387,
+          "wordCount": 1363,
+          "estimatedMorseRuntimeMinutes": 44,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "title": "The Mystery of the Sycamore",
+      "author": [
+        "Carolyn Wells"
+      ],
+      "slug": "the-mystery-of-the-sycamore",
+      "sourceFile": "app/client/assets/temp-books/The Mystery of the Sycamore.txt",
+      "sourceFolder": "app/client/assets/temp-books",
+      "publicRestrictedStatus": "public-domain-us / publish-ready",
+      "source": {
+        "provider": "Project Gutenberg",
+        "gutenbergId": "50209",
+        "releaseDate": "October 14, 2015",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/50209",
+        "originalPublication": "1920-1921"
+      },
+      "suitabilityEvidence": {
+        "gutenbergHeaderPresent": true,
+        "gutenbergLicensePresent": true,
+        "usReuseLanguageFound": true,
+        "nonUsWarningFound": true,
+        "reasoning": "Accepted as a Project Gutenberg source with US reuse language and pre-1930 source/title-page evidence in the local text.",
+        "evidence": [
+          "Project Gutenberg ebook #50209 is present in the local source metadata.",
+          "Release date: October 14, 2015.",
+          "Visible source/title-page year evidence includes 1920.",
+          "The source text includes Project Gutenberg US reuse language."
+        ]
+      },
+      "detectedTopLevelStructure": "numbered chapters",
+      "nestedBooksVolumesPartsSections": "No genuine nested books or volumes requiring separate public URLs were found.",
+      "routes": {
+        "book": "/morse-code-books/the-mystery-of-the-sycamore",
+        "audiobook": "/morse-code-audiobooks/the-mystery-of-the-sycamore",
+        "print": "/morse-code-books/the-mystery-of-the-sycamore/print"
+      },
+      "cloudflarePath": "app/client/assets/books/cloudflare-updated-export/books/the-mystery-of-the-sycamore.json",
+      "sections": [
+        {
+          "sectionId": "chapter-001",
+          "label": "Chapter I",
+          "title": "The Letter That Said Come",
+          "kind": "chapter",
+          "characterLength": 19777,
+          "wordCount": 3639,
+          "estimatedMorseRuntimeMinutes": 120,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-002",
+          "label": "Chapter II",
+          "title": "North Door and South Door",
+          "kind": "chapter",
+          "characterLength": 19731,
+          "wordCount": 3587,
+          "estimatedMorseRuntimeMinutes": 119,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-003",
+          "label": "Chapter III",
+          "title": "One Last Argument",
+          "kind": "chapter",
+          "characterLength": 18877,
+          "wordCount": 3542,
+          "estimatedMorseRuntimeMinutes": 114,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-004",
+          "label": "Chapter IV",
+          "title": "The Big Sycamore Tree",
+          "kind": "chapter",
+          "characterLength": 18772,
+          "wordCount": 3554,
+          "estimatedMorseRuntimeMinutes": 114,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-005",
+          "label": "Chapter V",
+          "title": "The Bugle Sounded Taps",
+          "kind": "chapter",
+          "characterLength": 19340,
+          "wordCount": 3638,
+          "estimatedMorseRuntimeMinutes": 117,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-006",
+          "label": "Chapter VI",
+          "title": "The Other Heir",
+          "kind": "chapter",
+          "characterLength": 19302,
+          "wordCount": 3748,
+          "estimatedMorseRuntimeMinutes": 117,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-007",
+          "label": "Chapter VII",
+          "title": "Inquiries",
+          "kind": "chapter",
+          "characterLength": 19147,
+          "wordCount": 3583,
+          "estimatedMorseRuntimeMinutes": 116,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-008",
+          "label": "Chapter VIII",
+          "title": "Confession",
+          "kind": "chapter",
+          "characterLength": 18258,
+          "wordCount": 3405,
+          "estimatedMorseRuntimeMinutes": 111,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-009",
+          "label": "Chapter IX",
+          "title": "Counter-Confessions",
+          "kind": "chapter",
+          "characterLength": 18427,
+          "wordCount": 3536,
+          "estimatedMorseRuntimeMinutes": 112,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-010",
+          "label": "Chapter X",
+          "title": "The Phantom Bugler",
+          "kind": "chapter",
+          "characterLength": 18213,
+          "wordCount": 3499,
+          "estimatedMorseRuntimeMinutes": 110,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-011",
+          "label": "Chapter XI",
+          "title": "Fleming Stone",
+          "kind": "chapter",
+          "characterLength": 18848,
+          "wordCount": 3463,
+          "estimatedMorseRuntimeMinutes": 114,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-012",
+          "label": "Chapter XII",
+          "title": "The Garage Fire",
+          "kind": "chapter",
+          "characterLength": 19139,
+          "wordCount": 3565,
+          "estimatedMorseRuntimeMinutes": 115,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-013",
+          "label": "Chapter XIII",
+          "title": "Sara Wheeler",
+          "kind": "chapter",
+          "characterLength": 18091,
+          "wordCount": 3453,
+          "estimatedMorseRuntimeMinutes": 109,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-014",
+          "label": "Chapter XIV",
+          "title": "Rachel’S Story",
+          "kind": "chapter",
+          "characterLength": 17763,
+          "wordCount": 3389,
+          "estimatedMorseRuntimeMinutes": 108,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-015",
+          "label": "Chapter XV",
+          "title": "The Awful Truth",
+          "kind": "chapter",
+          "characterLength": 19307,
+          "wordCount": 3717,
+          "estimatedMorseRuntimeMinutes": 117,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-016",
+          "label": "Chapter XVI",
+          "title": "Maida’S Decision",
+          "kind": "chapter",
+          "characterLength": 18023,
+          "wordCount": 3507,
+          "estimatedMorseRuntimeMinutes": 109,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-017",
+          "label": "Chapter XVII",
+          "title": "Maida and Her Father",
+          "kind": "chapter",
+          "characterLength": 18131,
+          "wordCount": 3424,
+          "estimatedMorseRuntimeMinutes": 110,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        },
+        {
+          "sectionId": "chapter-018",
+          "label": "Chapter XVIII",
+          "title": "A Final Confession",
+          "kind": "chapter",
+          "characterLength": 21646,
+          "wordCount": 3930,
+          "estimatedMorseRuntimeMinutes": 130,
+          "defaultAudioVideoSelection": true,
+          "sectionRole": "body content",
+          "suspiciousParsingWarnings": []
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "sitemap": {
+    "acceptedBookCount": 526,
+    "sitemapUrlCount": 1707,
+    "bookDetailCount": 526,
+    "audiobookDetailCount": 526,
+    "printCount": 526
+  },
+  "cloudflareUpdatedExport": {
+    "approvedBookCount": 526,
+    "files": [
+      "public-manifest.json",
+      "upload-manifest.json",
+      "books/the-cable-game.json",
+      "books/the-gold-bug.json",
+      "books/the-mystery-of-the-sycamore.json",
+      "books/the-night-operator.json",
+      "books/the-story-of-the-atlantic-cable.json",
+      "books/the-wire-devils.json",
+      "books/wired-love-a-romance-of-dots-and-dashes.json"
+    ],
+    "newBookFiles": [
+      "books/the-cable-game.json",
+      "books/the-gold-bug.json",
+      "books/the-mystery-of-the-sycamore.json",
+      "books/the-night-operator.json",
+      "books/the-story-of-the-atlantic-cable.json",
+      "books/the-wire-devils.json",
+      "books/wired-love-a-romance-of-dots-and-dashes.json"
+    ],
+    "contentVersion": "cd130bc923f83f34",
+    "contentHash": "cd130bc923f83f345b44955d4ce63f95b0a7666b3bd37a5de30b59200c545096"
+  },
+  "checks": {
+    "boilerplateExcludedFromPlayableContent": true,
+    "tableOfContentsExcludedFromPlayableContent": true,
+    "sourceLicenseExcludedFromPlayableContent": true,
+    "canonicalRouteFamilies": true,
+    "cloudflareUploadPerformed": false
+  }
+}
