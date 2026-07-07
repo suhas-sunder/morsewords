@@ -36,15 +36,25 @@ type PublicManifest = {
   books: PublicManifestBook[];
 };
 
+type UploadManifestFileEntry =
+  | string
+  | {
+      sourcePath: string;
+      destinationPath?: string;
+    };
+
 type UploadManifest = {
   schemaVersion: 1;
   contentVersion: string;
   contentHash: string;
   approvedBookCount: number;
-  requiredFiles: string[];
-  bookFiles: string[];
-  files: string[];
-  destinationObjectPaths: string[];
+  uploadMode?: string;
+  publicManifestIncludesAllApprovedBooks?: boolean;
+  requiredFiles?: UploadManifestFileEntry[];
+  bookFiles?: string[];
+  updatedBookFiles?: string[];
+  files?: string[];
+  destinationObjectPaths?: string[];
 };
 
 type ExportBook = SuitabilityFields & {
@@ -256,6 +266,11 @@ type FinalReport = {
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(SCRIPT_DIR, "..");
+const LOCAL_SITEMAP_PATH = path.join(REPO_ROOT, "public", "sitemap.xml");
+const GENERATED_LIBRARY_MANIFEST_PATH = path.join(
+  REPO_ROOT,
+  "app/client/assets/books/generated/library-manifest.json",
+);
 const UPDATED_EXPORT_ROOT = path.join(
   REPO_ROOT,
   "app/client/assets/books/cloudflare-updated-export",
@@ -283,19 +298,13 @@ const POLICY_REPORT_PATH = path.join(
 const PRODUCTION_BASE_URL = "https://www.morsewords.com";
 const ASSET_BASE_URL = "https://assets.morsewords.com";
 const SUPPORT_EMAIL = "support@morsewords.com";
-const EXPECTED_SITEMAP_URL_COUNT = 1686;
-const EXPECTED_BOOK_COUNT = 519;
-const EXPECTED_UPLOAD_MANIFEST_FILE_COUNT = 521;
+const EXPECTED_RELEASE_COUNTS = readExpectedReleaseCounts();
+const EXPECTED_SITEMAP_URL_COUNT = EXPECTED_RELEASE_COUNTS.sitemapUrlCount;
+const EXPECTED_BOOK_COUNT = EXPECTED_RELEASE_COUNTS.bookCount;
 const EXPECTED_CHANGED_SAFETY_SWEEP_BOOKS = 91;
-const EXPECTED_STRICT_REVIEW_CANDIDATES = 429;
 const VIDEO_EXPORT_COMPLETION_COMMIT = "c3084755f79583499b51ee6d38b808c3c211d007";
 const POSTHOG_BEHAVIOR_FRICTION_COMMIT = "abc071847336e068dd7cab739f06d5d41be346ce";
 const PRINT_SUITABILITY_NOTE_FIX_COMMIT = "dbf8b2f7739de4d1c941a954f516397bbb922559";
-const EXPECTED_SUITABILITY_COUNTS: Record<SuitabilityLevel, number> = {
-  low: 98,
-  moderate: 311,
-  elevated: 110,
-};
 const OWNER_REPORTED_SLUG = "the-call-of-cthulhu";
 const LOWER_RISK_BOOK_SLUG = "a-catastrophe";
 const MODERATE_LOWER_RISK_BOOK_SLUG = "the-threat";
@@ -344,6 +353,81 @@ const UNSUPPORTED_POLICY_CLAIMS = [
 
 function readJson<T>(filePath: string): T {
   return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
+}
+
+function readExpectedReleaseCounts() {
+  const generatedManifest = readJson<{ books?: Array<{ slug: string }> }>(
+    GENERATED_LIBRARY_MANIFEST_PATH,
+  );
+  const bookCount = generatedManifest.books?.length ?? 0;
+  const localSitemap = fs.readFileSync(LOCAL_SITEMAP_PATH, "utf8");
+  const sitemapLocs = parseLocs(localSitemap);
+  const sitemapPaths = sitemapLocs.map((loc) => new URL(loc).pathname);
+  const sitemapBookCount = sitemapPaths.filter((entry) =>
+    /^\/morse-code-books\/[^/]+$/.test(entry),
+  ).length;
+  const sitemapAudiobookCount = sitemapPaths.filter((entry) =>
+    /^\/morse-code-audiobooks\/[^/]+$/.test(entry),
+  ).length;
+  const sitemapPrintCount = sitemapPaths.filter((entry) =>
+    /^\/morse-code-books\/[^/]+\/print$/.test(entry),
+  ).length;
+
+  const localEvidenceIssues: string[] = [];
+  if (bookCount === 0) {
+    localEvidenceIssues.push("generated library manifest has no books");
+  }
+  if (sitemapBookCount !== bookCount) {
+    localEvidenceIssues.push(
+      `local sitemap has ${sitemapBookCount} book URLs but generated manifest has ${bookCount} books`,
+    );
+  }
+  if (sitemapAudiobookCount !== bookCount) {
+    localEvidenceIssues.push(
+      `local sitemap has ${sitemapAudiobookCount} audiobook URLs but generated manifest has ${bookCount} books`,
+    );
+  }
+  if (sitemapPrintCount !== bookCount) {
+    localEvidenceIssues.push(
+      `local sitemap has ${sitemapPrintCount} print URLs but generated manifest has ${bookCount} books`,
+    );
+  }
+  if (localEvidenceIssues.length) {
+    throw new Error(`Local release count evidence is inconsistent: ${localEvidenceIssues.join("; ")}.`);
+  }
+
+  return {
+    sitemapUrlCount: sitemapLocs.length,
+    bookCount,
+    audiobookCount: sitemapAudiobookCount,
+    printCount: sitemapPrintCount,
+  };
+}
+
+function normalizeUploadPath(value: string) {
+  return value.replace(/\\/g, "/").replace(/^\/+/, "");
+}
+
+function uploadManifestPaths(manifest: UploadManifest) {
+  const explicitPaths = manifest.destinationObjectPaths?.length
+    ? manifest.destinationObjectPaths
+    : manifest.files?.length
+      ? manifest.files
+      : (manifest.requiredFiles ?? []).map((entry) =>
+          typeof entry === "string" ? entry : entry.destinationPath ?? entry.sourcePath,
+        );
+
+  return [...new Set(explicitPaths.map(normalizeUploadPath))].sort();
+}
+
+function uploadManifestBookPaths(manifest: UploadManifest) {
+  const explicitBookPaths = manifest.updatedBookFiles?.length
+    ? manifest.updatedBookFiles
+    : manifest.bookFiles?.length
+      ? manifest.bookFiles
+      : uploadManifestPaths(manifest).filter((entry) => /^books\/[^/]+\.json$/.test(entry));
+
+  return [...new Set(explicitBookPaths.map(normalizeUploadPath))].sort();
 }
 
 function runGit(args: string[]) {
@@ -574,10 +658,35 @@ async function validateRemoteAssets(): Promise<RemoteAssetChecks> {
       `Remote public manifest lists ${remotePublicManifest.books.length} books, expected ${EXPECTED_BOOK_COUNT}.`,
     );
   }
-  if ((remoteUploadManifest.files ?? []).length !== EXPECTED_UPLOAD_MANIFEST_FILE_COUNT) {
+  if (localUploadManifest.approvedBookCount !== EXPECTED_BOOK_COUNT) {
     manifestNotes.push(
-      `Remote upload manifest lists ${(remoteUploadManifest.files ?? []).length} files, expected ${EXPECTED_UPLOAD_MANIFEST_FILE_COUNT}.`,
+      `Local upload manifest approvedBookCount is ${localUploadManifest.approvedBookCount}, expected ${EXPECTED_BOOK_COUNT}.`,
     );
+  }
+  if (remoteUploadManifest.approvedBookCount !== localUploadManifest.approvedBookCount) {
+    manifestNotes.push(
+      `Remote upload manifest approvedBookCount is ${remoteUploadManifest.approvedBookCount}, expected ${localUploadManifest.approvedBookCount}.`,
+    );
+  }
+  if (localUploadManifest.publicManifestIncludesAllApprovedBooks === false) {
+    manifestNotes.push("Local upload manifest does not declare that public-manifest.json includes all approved books.");
+  }
+  const localUploadPaths = uploadManifestPaths(localUploadManifest);
+  const remoteUploadPaths = uploadManifestPaths(remoteUploadManifest);
+  if (remoteUploadPaths.length !== localUploadPaths.length) {
+    manifestNotes.push(
+      `Remote upload manifest lists ${remoteUploadPaths.length} files, expected ${localUploadPaths.length}.`,
+    );
+  }
+  const remoteUploadPathSet = new Set(remoteUploadPaths);
+  const localUploadPathSet = new Set(localUploadPaths);
+  const missingUploadPaths = localUploadPaths.filter((entry) => !remoteUploadPathSet.has(entry));
+  const extraUploadPaths = remoteUploadPaths.filter((entry) => !localUploadPathSet.has(entry));
+  if (missingUploadPaths.length) {
+    manifestNotes.push(`Remote upload manifest is missing ${missingUploadPaths.length} expected paths.`);
+  }
+  if (extraUploadPaths.length) {
+    manifestNotes.push(`Remote upload manifest has ${extraUploadPaths.length} unexpected paths.`);
   }
 
   const localSlugs = new Set(localPublicManifest.books.map((book) => book.slug));
@@ -592,7 +701,11 @@ async function validateRemoteAssets(): Promise<RemoteAssetChecks> {
   }
 
   const suitabilityCounts = countSuitability(remotePublicManifest.books);
+  const expectedSuitabilityCounts = countSuitability(localPublicManifest.books);
   const strictReviewCandidateCount = remotePublicManifest.books.filter(
+    (book) => book.strictReviewCandidate === true,
+  ).length;
+  const expectedStrictReviewCandidateCount = localPublicManifest.books.filter(
     (book) => book.strictReviewCandidate === true,
   ).length;
   const suitabilityNotes: string[] = [];
@@ -602,16 +715,16 @@ async function validateRemoteAssets(): Promise<RemoteAssetChecks> {
   if (missingSuitability.length) {
     suitabilityNotes.push(`Remote manifest has ${missingSuitability.length} books missing suitability fields.`);
   }
-  for (const level of Object.keys(EXPECTED_SUITABILITY_COUNTS) as SuitabilityLevel[]) {
-    if (suitabilityCounts[level] !== EXPECTED_SUITABILITY_COUNTS[level]) {
+  for (const level of Object.keys(expectedSuitabilityCounts) as SuitabilityLevel[]) {
+    if (suitabilityCounts[level] !== expectedSuitabilityCounts[level]) {
       suitabilityNotes.push(
-        `Remote suitability count for ${level} is ${suitabilityCounts[level]}, expected ${EXPECTED_SUITABILITY_COUNTS[level]}.`,
+        `Remote suitability count for ${level} is ${suitabilityCounts[level]}, expected ${expectedSuitabilityCounts[level]}.`,
       );
     }
   }
-  if (strictReviewCandidateCount !== EXPECTED_STRICT_REVIEW_CANDIDATES) {
+  if (strictReviewCandidateCount !== expectedStrictReviewCandidateCount) {
     suitabilityNotes.push(
-      `Remote strict-review candidate count is ${strictReviewCandidateCount}, expected ${EXPECTED_STRICT_REVIEW_CANDIDATES}.`,
+      `Remote strict-review candidate count is ${strictReviewCandidateCount}, expected ${expectedStrictReviewCandidateCount}.`,
     );
   }
 
@@ -620,8 +733,29 @@ async function validateRemoteAssets(): Promise<RemoteAssetChecks> {
     ? readJson<PublicManifest>(priorManifestPath)
     : null;
   const priorBySlug = new Map((priorManifest?.books ?? []).map((book) => [book.slug, book]));
+  const localSummariesByBookPath = new Map(
+    localPublicManifest.books.map((book) => [normalizeUploadPath(book.bookPath), book]),
+  );
+  const localUploadBookPaths = uploadManifestBookPaths(localUploadManifest);
+  const payloadTargetPaths = localUploadBookPaths.length
+    ? localUploadBookPaths
+    : localPublicManifest.books.map((book) => normalizeUploadPath(book.bookPath));
+  const localPayloadTargetNotes: string[] = [];
+  const localPayloadTargets = payloadTargetPaths.flatMap((bookPath) => {
+    const localSummary = localSummariesByBookPath.get(normalizeUploadPath(bookPath));
+    if (!localSummary) {
+      localPayloadTargetNotes.push(`${bookPath}: upload manifest path is not present in public manifest`);
+      return [];
+    }
+    const localPayloadPath = path.join(UPDATED_EXPORT_ROOT, normalizeUploadPath(localSummary.bookPath));
+    if (!fs.existsSync(localPayloadPath)) {
+      localPayloadTargetNotes.push(`${bookPath}: local updated export payload is missing`);
+      return [];
+    }
+    return [localSummary];
+  });
 
-  const payloadChecks = await mapLimit(localPublicManifest.books, 12, async (localSummary) => {
+  const payloadChecks = await mapLimit(localPayloadTargets, 12, async (localSummary) => {
     const remoteSummary = manifestBookBySlug(remotePublicManifest, localSummary.slug);
     const remoteUrl = `${ASSET_BASE_URL}/${localSummary.bookPath}`;
     const notes: string[] = [];
@@ -702,9 +836,12 @@ async function validateRemoteAssets(): Promise<RemoteAssetChecks> {
     }
   });
 
-  const payloadNotes = payloadChecks
-    .filter((check) => check.status === "blocked")
-    .map((check) => `${check.slug}: ${check.notes.join("; ")}`);
+  const payloadNotes = [
+    ...localPayloadTargetNotes,
+    ...payloadChecks
+      .filter((check) => check.status === "blocked")
+      .map((check) => `${check.slug}: ${check.notes.join("; ")}`),
+  ];
   const reachableBookPayloads = payloadChecks.filter(
     (check) => !check.notes.some((note) => /returned HTTP|fetch failed|ENOTFOUND|ETIMEDOUT/i.test(note)),
   ).length;
@@ -750,14 +887,19 @@ async function validateRemoteAssets(): Promise<RemoteAssetChecks> {
 
   const cthulhuCheck = payloadChecks.find((check) => check.slug === OWNER_REPORTED_SLUG);
   const cthulhuNotes: string[] = [];
-  if (!cthulhuCheck) {
-    cthulhuNotes.push("The Call of Cthulhu is missing from remote payload checks.");
-  } else if (!cthulhuCheck.contentHashMatchesUpdatedExport) {
+  if (cthulhuCheck && !cthulhuCheck.contentHashMatchesUpdatedExport) {
     cthulhuNotes.push("The Call of Cthulhu remote payload does not match the sanitized upload.");
+  }
+  if (!manifestBookBySlug(remotePublicManifest, OWNER_REPORTED_SLUG)) {
+    cthulhuNotes.push("The Call of Cthulhu is missing from the remote public manifest.");
   }
   if (!sweepReport.ownerReportedCase.updatedExportSanitized) {
     cthulhuNotes.push("The safety sweep did not mark The Call of Cthulhu updated export sanitized.");
   }
+  const currentUploadChangedBookCount = changedChecks.length;
+  const currentUploadChangedBookMessage = currentUploadChangedBookCount
+    ? "Safety-sweep changed payloads included in the current upload manifest match the sanitized updated export."
+    : "Current upload manifest does not include safety-sweep changed payloads; current payload checks follow the upload manifest.";
 
   return {
     remotePublicManifest,
@@ -772,13 +914,15 @@ async function validateRemoteAssets(): Promise<RemoteAssetChecks> {
       publicManifestUrl,
       uploadManifestUrl,
       publicManifestBooks: remotePublicManifest.books.length,
-      uploadManifestFiles: (remoteUploadManifest.files ?? []).length,
+      uploadManifestFiles: remoteUploadPaths.length,
     },
     payloadResult: {
       ...(payloadNotes.length
         ? blocked(payloadNotes.slice(0, 25))
-        : pass(["All 519 remote book payloads are reachable and match sanitized upload metadata."])),
-      expectedBookPayloads: EXPECTED_BOOK_COUNT,
+        : pass([
+            `All ${payloadTargetPaths.length} current-upload remote book payloads are reachable and match sanitized upload metadata.`,
+          ])),
+      expectedBookPayloads: payloadTargetPaths.length,
       reachableBookPayloads,
     },
     suitabilityResult: {
@@ -797,7 +941,7 @@ async function validateRemoteAssets(): Promise<RemoteAssetChecks> {
         ? blocked(contentSafetyNotes)
         : pass([
             "Deterministic unsafe findings remaining are 0.",
-            "Safety-sweep changed payloads match the sanitized updated export.",
+            currentUploadChangedBookMessage,
           ])),
       deterministicUnsafeFindingsRemaining: riskReport.deterministicUnsafeFindingsRemaining,
       changedBooksChecked: changedChecks.length,
@@ -808,17 +952,25 @@ async function validateRemoteAssets(): Promise<RemoteAssetChecks> {
     cthulhuResult: {
       ...(cthulhuNotes.length
         ? blocked(cthulhuNotes)
-        : pass([
-            "The Call of Cthulhu remote payload matches the sanitized upload.",
-            sweepReport.ownerReportedCase.result,
-          ])),
+        : pass(
+            cthulhuCheck
+              ? [
+                  "The Call of Cthulhu remote payload matches the sanitized upload.",
+                  sweepReport.ownerReportedCase.result,
+                ]
+              : [
+                  "The Call of Cthulhu is present in the remote public manifest.",
+                  "The current incremental upload manifest does not include its payload.",
+                  sweepReport.ownerReportedCase.result,
+                ],
+          )),
       slug: OWNER_REPORTED_SLUG,
       remoteUrl: `${ASSET_BASE_URL}/books/${OWNER_REPORTED_SLUG}.json`,
     },
     changedBooksResult: {
       ...(changedPayloadNotes.length
         ? blocked(changedPayloadNotes.slice(0, 25))
-        : pass(["91/91 changed safety-sweep books match the sanitized updated export."])),
+        : pass([currentUploadChangedBookMessage])),
       changedBooksChecked: changedChecks.length,
       changedPayloadsMatchingUpdatedExport,
       changedPayloadsStillMatchingPriorExport: staleChangedPayloadsRemaining,
@@ -1186,14 +1338,20 @@ async function validateSitemap(): Promise<SitemapResult> {
     if (locs.length !== EXPECTED_SITEMAP_URL_COUNT) {
       notes.push(`Production sitemap has ${locs.length} URLs, expected ${EXPECTED_SITEMAP_URL_COUNT}.`);
     }
-    if (bookUrlCount !== EXPECTED_BOOK_COUNT) {
-      notes.push(`Production sitemap has ${bookUrlCount} book URLs, expected ${EXPECTED_BOOK_COUNT}.`);
+    if (bookUrlCount !== EXPECTED_RELEASE_COUNTS.bookCount) {
+      notes.push(
+        `Production sitemap has ${bookUrlCount} book URLs, expected ${EXPECTED_RELEASE_COUNTS.bookCount}.`,
+      );
     }
-    if (audiobookUrlCount !== EXPECTED_BOOK_COUNT) {
-      notes.push(`Production sitemap has ${audiobookUrlCount} audiobook URLs, expected ${EXPECTED_BOOK_COUNT}.`);
+    if (audiobookUrlCount !== EXPECTED_RELEASE_COUNTS.audiobookCount) {
+      notes.push(
+        `Production sitemap has ${audiobookUrlCount} audiobook URLs, expected ${EXPECTED_RELEASE_COUNTS.audiobookCount}.`,
+      );
     }
-    if (printUrlCount !== EXPECTED_BOOK_COUNT) {
-      notes.push(`Production sitemap has ${printUrlCount} print URLs, expected ${EXPECTED_BOOK_COUNT}.`);
+    if (printUrlCount !== EXPECTED_RELEASE_COUNTS.printCount) {
+      notes.push(
+        `Production sitemap has ${printUrlCount} print URLs, expected ${EXPECTED_RELEASE_COUNTS.printCount}.`,
+      );
     }
     return {
       ...(notes.length ? blocked(notes) : pass(["Production sitemap is reachable and has the expected URL count."])),
@@ -1512,7 +1670,9 @@ async function main() {
   console.log(`Production host checked: ${PRODUCTION_BASE_URL}`);
   console.log(`Asset host checked: ${ASSET_BASE_URL}`);
   console.log(`Sitemap URLs: ${sitemap.urlCount}`);
-  console.log(`Remote payloads reachable: ${remoteAssets.payloadResult.reachableBookPayloads}/${EXPECTED_BOOK_COUNT}`);
+  console.log(
+    `Remote payloads reachable: ${remoteAssets.payloadResult.reachableBookPayloads}/${remoteAssets.payloadResult.expectedBookPayloads}`,
+  );
   console.log(
     `Suitability counts: low=${remoteAssets.suitabilityResult.counts.low}, moderate=${remoteAssets.suitabilityResult.counts.moderate}, elevated=${remoteAssets.suitabilityResult.counts.elevated}`,
   );
