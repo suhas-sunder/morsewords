@@ -63,6 +63,10 @@ const approvedBookSlugs = new Set(approvedBooks.map((book) => book.slug));
 const approvedBooksBySlug = new Map(
   approvedBooks.map((book) => [book.slug, book]),
 );
+const FEATURED_BOOK_COUNT = 8;
+const PRIMARY_VISIBLE_FEATURED_BOOK_COUNT = 4;
+const FEATURED_BOOK_FALLBACK_DESCRIPTION =
+  "A Morse-friendly classic with readable sections, live playback, and audio options for short practice sessions.";
 
 async function gotoHome(page: Page) {
   await page.goto("/", { waitUntil: "domcontentloaded" });
@@ -92,34 +96,44 @@ async function readFeaturedBookCards(page: Page) {
         const valueLine = card.querySelector<HTMLElement>(
           '[data-testid="home-featured-book-value-line"]',
         );
+        const description = card.querySelector<HTMLElement>(
+          '[data-testid="home-featured-book-description"]',
+        );
+        const affordance = card.querySelector<HTMLElement>(
+          '[data-testid="home-featured-book-affordance"]',
+        );
         const primaryLink = card.querySelector<HTMLAnchorElement>(
           '[data-testid="home-featured-book-primary-link"]',
-        );
-        const cta = card.querySelector<HTMLElement>(
-          '[data-testid="home-featured-book-cta"]',
         );
         const links = Array.from(
           card.querySelectorAll<HTMLAnchorElement>("a"),
         ).map((link) => ({
           href: link.getAttribute("href") ?? "",
           text: link.textContent?.trim().replace(/\s+/g, " ") ?? "",
+          label: link.getAttribute("aria-label") ?? "",
         }));
 
         return {
           slug: card.getAttribute("data-mw-home-book-slug") ?? "",
           dataTitle: card.getAttribute("data-mw-home-book-title") ?? "",
           dataAuthor: card.getAttribute("data-mw-home-book-author") ?? "",
+          priority: card.getAttribute("data-mw-home-book-priority") ?? "",
+          visible:
+            card.getClientRects().length > 0 &&
+            window.getComputedStyle(card).display !== "none",
           title: title?.textContent?.trim() ?? "",
           titleAttr: title?.getAttribute("title") ?? "",
           titleClass: title?.className ?? "",
           author: author?.textContent?.trim() ?? "",
           authorAttr: author?.getAttribute("title") ?? "",
           authorClass: author?.className ?? "",
+          description: description?.textContent?.trim() ?? "",
+          descriptionClass: description?.className ?? "",
           valueLine: valueLine?.textContent?.trim() ?? "",
+          affordanceText: affordance?.textContent?.trim() ?? "",
           primaryHref: primaryLink?.getAttribute("href") ?? "",
           primaryLabel: primaryLink?.getAttribute("aria-label") ?? "",
           primaryTitle: primaryLink?.getAttribute("title") ?? "",
-          ctaText: cta?.textContent?.trim() ?? "",
           links,
         };
       }),
@@ -129,10 +143,13 @@ async function readFeaturedBookCards(page: Page) {
 function expectFeaturedBookCardsToMatchApprovedRecords(
   cards: Awaited<ReturnType<typeof readFeaturedBookCards>>,
 ) {
-  expect(cards).toHaveLength(4);
-  for (const card of cards) {
+  expect(cards).toHaveLength(FEATURED_BOOK_COUNT);
+  cards.forEach((card, index) => {
     const book = approvedBooksBySlug.get(card.slug);
     expect(book, `${card.slug} is an approved public book`).toBeDefined();
+    expect(card.priority).toBe(
+      index < PRIMARY_VISIBLE_FEATURED_BOOK_COUNT ? "primary" : "wide-screen",
+    );
     expect(card.dataTitle).toBe(book!.title);
     expect(card.title).toBe(book!.title);
     expect(card.titleAttr).toBe(book!.title);
@@ -146,19 +163,35 @@ function expectFeaturedBookCardsToMatchApprovedRecords(
     expect(card.primaryHref).toBe(bookPath);
     expect(card.primaryLabel).toBe(`Open ${book!.title} by ${authorText}`);
     expect(card.primaryTitle).toBe(`Open ${book!.title}`);
-    expect(card.ctaText).toBe("Open book");
-    expect(card.valueLine).toMatch(/^\d[\d,]* sections? \/ \d[\d,]* words?$/);
-    expect(card.links).toEqual([expect.objectContaining({ href: bookPath })]);
+    expect(card.affordanceText).toBe("Read and listen ->");
+
+    const expectedDescription =
+      book!.description.trim() || FEATURED_BOOK_FALLBACK_DESCRIPTION;
+    expect(card.description).toBe(expectedDescription);
+    expect(card.description).not.toMatch(
+      /processed public books|cleaned chapter sources|source content|text-first study/i,
+    );
+    expect(card.valueLine).toMatch(
+      /^\d[\d,]* sections? \/ (?:\d[\d,]*|\d+(?:\.\d)?k) words$/,
+    );
+    expect(card.links).toHaveLength(1);
+    expect(card.links[0]).toEqual(
+      expect.objectContaining({
+        href: bookPath,
+        label: `Open ${book!.title} by ${authorText}`,
+      }),
+    );
     expect(
       card.links.some((link) => link.href.startsWith("/morse-code-audiobooks/")),
     ).toBe(false);
-    expect(card.links.some((link) => /Download MP3/i.test(link.text))).toBe(
-      false,
-    );
+    expect(
+      card.links.some((link) => /Open book|Download MP3/i.test(link.text)),
+    ).toBe(false);
 
-    expect(card.titleClass).toContain("line-clamp-3");
+    expect(card.titleClass).toContain("line-clamp-4");
     expect(card.authorClass).toContain("line-clamp-2");
-  }
+    expect(card.descriptionClass).toContain("line-clamp-4");
+  });
 }
 
 function flattenJsonLd(value: unknown): Record<string, unknown>[] {
@@ -269,9 +302,15 @@ test.describe("homepage monetization readiness", () => {
         exact: true,
       }),
     ).toBeVisible();
-    await expect(page.getByLabel("Input (Text)")).toBeVisible();
-    await page.getByLabel("Input (Text)").fill("HELLO");
-    await expect(page.locator("#mw_output")).toHaveValue("....   .   .-..   .-..   ---");
+    const textInput = page.locator("#plainA");
+    const morseOutput = page.locator("#mw_output");
+    await expect(textInput).toBeVisible();
+    await expect(textInput).toHaveValue("sos help");
+    await expect(morseOutput).toHaveValue(
+      "...   ---   ...       ....   .   .-..   .--.",
+    );
+    await textInput.fill("HELLO");
+    await expect(morseOutput).toHaveValue("....   .   .-..   .-..   ---");
 
     const hero = page.locator("main").first();
     await expect(hero).toContainText("audio");
@@ -306,7 +345,7 @@ test.describe("homepage monetization readiness", () => {
     }
     await expect(
       page.getByRole("heading", {
-        name: /Read and listen with processed public books/i,
+        name: "Classic stories for Morse reading and listening",
       }),
     ).toBeVisible();
     await expect(
@@ -416,12 +455,12 @@ test.describe("homepage monetization readiness", () => {
     await expect(section.getByText("Books and audiobooks")).toBeVisible();
     await expect(
       page.getByRole("heading", {
-        name: "Read and listen with processed public books",
+        name: "Classic stories for Morse reading and listening",
       }),
     ).toBeVisible();
     await expect(
       section.locator('[data-testid="home-featured-book-card"]'),
-    ).toHaveCount(4);
+    ).toHaveCount(FEATURED_BOOK_COUNT);
     await expect(section.locator(`a[href="${ROUTES.morseBooks}"]`)).toBeVisible();
     await expect(
       section.locator(`a[href="${ROUTES.morseAudiobooks}"]`),
@@ -430,7 +469,14 @@ test.describe("homepage monetization readiness", () => {
     expectFeaturedBookCardsToMatchApprovedRecords(
       await readFeaturedBookCards(page),
     );
+    expect(
+      (await readFeaturedBookCards(page)).filter((card) => card.visible),
+    ).toHaveLength(FEATURED_BOOK_COUNT);
+    await expect(section.getByText("Open book")).toHaveCount(0);
     await expect(section.getByText("Download MP3")).toHaveCount(0);
+    await expect(
+      section.locator('[data-testid="home-featured-book-cta"]'),
+    ).toHaveCount(0);
     await expect(
       section.locator('[data-testid="home-featured-book-mp3-link"]'),
     ).toHaveCount(0);
@@ -441,14 +487,14 @@ test.describe("homepage monetization readiness", () => {
     page,
     context,
   }) => {
-    expect(approvedBooks.length).toBeGreaterThan(4);
+    expect(approvedBooks.length).toBeGreaterThan(FEATURED_BOOK_COUNT);
     await page.addInitScript(() => {
       Math.random = () => 0.999999;
     });
     await gotoHome(page);
 
     const expectedSlugs = approvedBooks
-      .slice(0, 4)
+      .slice(0, FEATURED_BOOK_COUNT)
       .map((book) => book.slug)
       .join("|");
     await expect
@@ -530,9 +576,12 @@ test.describe("homepage monetization readiness", () => {
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
     await expect(
       page.getByRole("heading", {
-        name: /Read and listen with processed public books/i,
+        name: /Classic stories for Morse reading and listening/i,
       }),
     ).toBeVisible();
+    expect(
+      (await readFeaturedBookCards(page)).filter((card) => card.visible),
+    ).toHaveLength(PRIMARY_VISIBLE_FEATURED_BOOK_COUNT);
     await expect(
       page.getByRole("link", { name: /Create printable pages/i }),
     ).toBeVisible();

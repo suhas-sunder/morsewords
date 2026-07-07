@@ -1592,13 +1592,36 @@ test.describe("Morse book page foundation", () => {
     );
     await expect(featuredBooks).toBeVisible();
     await expect(
+      featuredBooks.locator('[data-testid="home-featured-book-card"]'),
+    ).toHaveCount(8);
+    await expect(
+      featuredBooks.locator('[data-testid="home-featured-book-primary-link"]'),
+    ).toHaveCount(8);
+    await expect(
       featuredBooks
         .locator('[data-testid="home-featured-book-primary-link"]')
         .first(),
     ).toHaveAttribute("href", /^\/morse-code-books\/[^/?#]+$/);
     await expect(
-      featuredBooks.locator('[data-testid="home-featured-book-cta"]').first(),
-    ).toHaveText("Open book");
+      featuredBooks
+        .locator('[data-testid="home-featured-book-card"]')
+        .first()
+        .locator("a"),
+    ).toHaveCount(1);
+    await expect(
+      featuredBooks
+        .locator('[data-testid="home-featured-book-description"]')
+        .first(),
+    ).not.toHaveText("");
+    await expect(
+      featuredBooks
+        .locator('[data-testid="home-featured-book-affordance"]')
+        .first(),
+    ).toHaveText("Read and listen ->");
+    await expect(featuredBooks.getByText("Open book")).toHaveCount(0);
+    await expect(
+      featuredBooks.locator('[data-testid="home-featured-book-cta"]'),
+    ).toHaveCount(0);
     await expect(featuredBooks.getByText("Download MP3")).toHaveCount(0);
     await expect(
       featuredBooks.locator('[data-testid="home-featured-book-mp3-link"]'),

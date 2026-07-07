@@ -116,7 +116,7 @@ function formatCount(value: number, label: string) {
   return `${value.toLocaleString("en-US")} ${label}`;
 }
 
-const FEATURED_BOOK_LIMIT = 4;
+const FEATURED_BOOK_LIMIT = 8;
 
 function formatUnitCount(
   value: number,
@@ -127,11 +127,25 @@ function formatUnitCount(
   return `${value.toLocaleString("en-US")} ${label}`;
 }
 
+function formatCompactWordCount(value: number) {
+  if (value < 1000) return value.toLocaleString("en-US");
+  const precision = value < 10000 ? 1 : 0;
+  return `${Number((value / 1000).toFixed(precision)).toLocaleString(
+    "en-US",
+  )}k`;
+}
+
 function formatFeaturedBookValueLine(sectionCount: number, wordCount: number) {
-  return `${formatUnitCount(sectionCount, "section")} / ${formatUnitCount(
-    wordCount,
-    "word",
-  )}`;
+  return `${formatUnitCount(
+    sectionCount,
+    "section",
+  )} / ${formatCompactWordCount(wordCount)} words`;
+}
+
+function getFeaturedBookDescription(description: string | undefined) {
+  const trimmed = description?.trim();
+  if (trimmed) return trimmed;
+  return "A Morse-friendly classic with readable sections, live playback, and audio options for short practice sessions.";
 }
 
 function SectionEyebrow({ children }: { children: React.ReactNode }) {
@@ -220,12 +234,12 @@ function FeaturedBooksSection() {
               id="featured-morse-books-title"
               className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
             >
-              Read and listen with processed public books
+              Classic stories for Morse reading and listening
             </h2>
             <p className="mw-text-muted mt-4 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-              MorseWords includes processed book content as cleaned chapter
-              sources. Open a book for text-first study, or open the audiobook
-              page when you want Morse audio controls first.
+              Explore classic stories converted into Morse code practice. Each
+              title opens to a readable book page with live Morse playback,
+              sections, and audio options.
             </p>
           </div>
 
@@ -246,65 +260,93 @@ function FeaturedBooksSection() {
         </div>
 
         <div className="mt-8 grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {featuredBooks.map((book) => {
+          {featuredBooks.map((book, index) => {
             const bookPath = morseBookPath(book.slug);
             const authorText = formatMorseBookAuthors(book.author);
             const valueLine = formatFeaturedBookValueLine(
               book.stats.includedSectionCount,
               book.stats.wordCount,
             );
+            const description = getFeaturedBookDescription(book.description);
+            const wideScreenOnly = index >= 4;
 
             return (
               <article
                 key={book.slug}
-                className="h-full min-w-0"
+                className={`h-full min-w-0 ${wideScreenOnly ? "hidden xl:block" : ""}`}
                 data-testid="home-featured-book-card"
                 data-mw-home-book-slug={book.slug}
                 data-mw-home-book-title={book.title}
                 data-mw-home-book-author={authorText}
+                data-mw-home-book-priority={
+                  wideScreenOnly ? "wide-screen" : "primary"
+                }
               >
                 <Link
                   to={bookPath}
-                  className="mw-static-surface group flex h-full min-w-0 cursor-pointer flex-col rounded-xl bg-[#fffdf8] p-4 text-slate-900 no-underline hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  className="mw-static-surface group block h-full min-w-0 cursor-pointer rounded-xl bg-[#fffdf8] p-3 text-slate-900 no-underline shadow-[var(--mw-shadow-soft)] ring-1 ring-slate-950/10 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
                   aria-label={`Open ${book.title} by ${authorText}`}
                   title={`Open ${book.title}`}
                   data-testid="home-featured-book-primary-link"
                 >
-                  <div className="mw-static-tile flex min-h-52 flex-col justify-between rounded-lg bg-[#f2eee6] p-4">
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
-                      MorseWords book
-                    </span>
-                    <div className="min-w-0 pt-10">
-                      <h3
-                        className="mw-heading line-clamp-3 break-words text-xl font-extrabold leading-tight text-sky-950"
-                        title={book.title}
-                        data-testid="home-featured-book-title"
-                      >
-                        {book.title}
-                      </h3>
-                      <p
-                        className="mt-3 line-clamp-2 text-sm font-semibold leading-snug text-slate-600"
-                        title={authorText}
-                        data-testid="home-featured-book-author"
-                      >
-                        {authorText}
-                      </p>
+                  <div
+                    className="mw-static-tile relative flex aspect-[2/3] min-h-0 w-full overflow-hidden rounded-lg bg-[#f2eee6] px-5 py-5 xl:aspect-[3/5]"
+                    data-testid="home-featured-book-cover"
+                  >
+                    <span
+                      className="absolute inset-y-0 left-0 w-3 bg-slate-950/10"
+                      aria-hidden="true"
+                    />
+                    <span
+                      className="absolute inset-y-0 left-3 w-px bg-white/70"
+                      aria-hidden="true"
+                    />
+                    <div className="relative z-10 flex min-w-0 flex-1 flex-col pl-3">
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                        MorseWords book
+                      </span>
+
+                      <div className="min-w-0 pt-8">
+                        <h3
+                          className="mw-heading line-clamp-4 break-words text-xl font-extrabold leading-tight text-sky-950"
+                          title={book.title}
+                          data-testid="home-featured-book-title"
+                        >
+                          {book.title}
+                        </h3>
+                        <p
+                          className="mt-3 line-clamp-2 text-sm font-semibold leading-snug text-slate-600"
+                          title={authorText}
+                          data-testid="home-featured-book-author"
+                        >
+                          {authorText}
+                        </p>
+                      </div>
+
+                      <div className="mt-auto min-w-0 pt-5">
+                        <p
+                          className="line-clamp-4 text-sm leading-relaxed text-slate-700"
+                          data-testid="home-featured-book-description"
+                        >
+                          {description}
+                        </p>
+                        <div className="mt-3 min-w-0 space-y-2">
+                          <p
+                            className="mw-muted-label font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500 xl:whitespace-nowrap xl:text-[10px] xl:tracking-normal"
+                            data-testid="home-featured-book-value-line"
+                          >
+                            {valueLine}
+                          </p>
+                          <span
+                            className="block text-sm font-bold text-sky-900"
+                            data-testid="home-featured-book-affordance"
+                          >
+                            Read and listen -&gt;
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  <p
-                    className="mw-muted-label mt-4 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500"
-                    data-testid="home-featured-book-value-line"
-                  >
-                    {valueLine}
-                  </p>
-
-                  <span
-                    className="mt-auto inline-flex min-h-10 w-fit items-center rounded-lg bg-slate-950 px-3 py-1.5 text-sm font-bold text-sky-100 group-hover:bg-slate-900 group-hover:text-white"
-                    data-testid="home-featured-book-cta"
-                  >
-                    Open book
-                  </span>
                 </Link>
               </article>
             );
