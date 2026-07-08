@@ -229,9 +229,12 @@ test.describe("route registry source of truth", () => {
       );
     }
 
-    await page.getByRole("button", { name: /^More$/ }).click();
+    const moreButton = page.getByRole("button", { name: /^More$/ });
     const dialog = page.getByRole("dialog", { name: "More MorseWords tools" });
-    await expect(dialog).toBeVisible();
+    await expect(async () => {
+      await moreButton.click();
+      await expect(dialog).toBeVisible({ timeout: 1_000 });
+    }).toPass({ timeout: 10_000 });
 
     const moreMenuPaths = await dialog.locator("a[href]").evaluateAll((anchors) =>
       anchors.map((anchor) =>

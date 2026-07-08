@@ -16,7 +16,8 @@ const SLOTS = {
   optionalVertical: "9213764742",
 } as const;
 
-const PLACEMENT_LABEL_SELECTOR = ".mw-placement-label";
+const PLACEMENT_LABEL_SELECTOR = ".mw-signal-caption";
+const FALLBACK_CLASS_BLOCKLIST = /(ad|ads|adsense|advert|sponsor|placeholder)/i;
 
 const googleAdHosts =
   /(?:googlesyndication|doubleclick|googleadservices|googletagservices)\.com/i;
@@ -69,9 +70,18 @@ async function expectPlaceholderVisible(page: Page, placement: string) {
   const labelOutsideIns = await shell.evaluate((element, selector) => {
     const labelElement = element.querySelector(selector);
     const insElement = element.querySelector("ins.adsbygoogle");
-    return Boolean(labelElement && insElement && !insElement.contains(labelElement));
+    return Boolean(labelElement && (!insElement || !insElement.contains(labelElement)));
   }, PLACEMENT_LABEL_SELECTOR);
   expect(labelOutsideIns).toBe(true);
+  const classNames = await shell.evaluate((element, selector) => {
+    const labelElement = element.querySelector<HTMLElement>(selector);
+    return {
+      label: labelElement?.className ?? "",
+      shell: element.className,
+    };
+  }, PLACEMENT_LABEL_SELECTOR);
+  expect(classNames.shell).not.toMatch(FALLBACK_CLASS_BLOCKLIST);
+  expect(classNames.label).not.toMatch(FALLBACK_CLASS_BLOCKLIST);
 }
 
 async function expectFilledChromeHidden(page: Page, placement: string) {
@@ -238,6 +248,96 @@ test("sidebar rails request only on wide desktop and hide empty towers", async (
   await expectNoHorizontalOverflow(page);
 });
 
+test("script-blocked state keeps normal fallbacks visible and sidebars collapsed", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1536, height: 1000 });
+  await gotoRoute(page, "/");
+
+  for (const placement of ["top-banner", "post-hero", "toolkit-banner"]) {
+    await expect(adPlacement(page, placement)).toHaveAttribute(
+      "data-mw-ad-status",
+      "pending",
+    );
+    await expectPlaceholderVisible(page, placement);
+  }
+
+  await expect(adPlacement(page, "left-sidebar")).toHaveCSS("opacity", "0");
+  await expect(adPlacement(page, "right-sidebar")).toHaveCSS("opacity", "0");
+  await expect(
+    page.locator(`[data-mw-ad-placement$="sidebar"] ${PLACEMENT_LABEL_SELECTOR}`),
+  ).toHaveCount(0);
+
+  await gotoRoute(page, "/morse-code-alphabet");
+  await expect(adPlacement(page, "seo-section-vertical")).toHaveAttribute(
+    "data-mw-ad-status",
+    "pending",
+  );
+  await expectPlaceholderVisible(page, "seo-section-vertical");
+
+  await gotoRoute(page, "/morse-code-printable-chart");
+  await expectPlaceholderVisible(page, "printable-chart-square");
+  await expectNoHorizontalOverflow(page);
+});
+
+test("hidden ad elements keep normal fallbacks visible and sidebars collapsed", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1536, height: 1000 });
+  await gotoRoute(page, "/");
+
+  await page.addStyleTag({
+    content: `
+      ins.adsbygoogle,
+      .mw-ad-shell,
+      .mw-ad-post-hero,
+      .mw-ad-in-content,
+      .mw-ad-toolkit,
+      .mw-ad-sidebar,
+      .mw-placement-label {
+        display: none !important;
+        visibility: hidden !important;
+      }
+    `,
+  });
+
+  for (const placement of ["top-banner", "post-hero", "toolkit-banner"]) {
+    await expect(adPlacement(page, placement).locator("ins")).toBeHidden();
+    await expectPlaceholderVisible(page, placement);
+  }
+
+  await expect(adPlacement(page, "left-sidebar")).toHaveCSS("opacity", "0");
+  await expect(adPlacement(page, "right-sidebar")).toHaveCSS("opacity", "0");
+  await expect(
+    page.locator(`[data-mw-ad-placement$="sidebar"] ${PLACEMENT_LABEL_SELECTOR}`),
+  ).toHaveCount(0);
+  await expectNoHorizontalOverflow(page);
+});
+
+test("removed ad elements keep normal fallbacks visible and sidebars collapsed", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1536, height: 1000 });
+  await gotoRoute(page, "/");
+
+  for (const placement of ["top-banner", "post-hero", "toolkit-banner"]) {
+    await adPlacement(page, placement).locator("ins").evaluate((element) => {
+      element.remove();
+    });
+    await expect(adPlacement(page, placement).locator("ins")).toHaveCount(0);
+    await expectPlaceholderVisible(page, placement);
+  }
+
+  for (const placement of ["left-sidebar", "right-sidebar"]) {
+    await adPlacement(page, placement).locator("ins").evaluate((element) => {
+      element.remove();
+    });
+    await expect(adPlacement(page, placement).locator("ins")).toHaveCount(0);
+    await expect(adPlacement(page, placement)).toHaveCSS("opacity", "0");
+  }
+  await expectNoHorizontalOverflow(page);
+});
+
 test("non-sidebar placeholders follow filled and unfilled AdSense states", async ({
   page,
 }) => {
@@ -300,7 +400,7 @@ test("placeholder labels are policy-safe and use one shared dashed style", async
   await gotoRoute(page, "/");
 
   const visiblePlaceholderLabels = page.locator(
-    '[data-mw-ad-placeholder-visible="true"] .mw-placement-label',
+    '[data-mw-ad-placeholder-visible="true"] .mw-signal-caption',
   );
   await expect(visiblePlaceholderLabels.first()).toBeVisible();
   const placeholderLabels = await visiblePlaceholderLabels.evaluateAll((labels) =>
@@ -500,6 +600,7 @@ test("printable chart uses a viewport-safe square ad in the settings flow", asyn
       "data-ad-slot",
       SLOTS.optionalSquare,
     );
+    await expectPlaceholderVisible(page, "printable-chart-square");
     await expectPlacementWidthWithinViewport(page, "printable-chart-square");
     await expectNoHorizontalOverflow(page);
   }

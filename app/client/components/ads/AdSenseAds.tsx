@@ -194,10 +194,10 @@ function adFormatForKind(kind: AdKind) {
 }
 
 function adViewportClassName(minWidth: number) {
-  if (minWidth >= SIDEBAR_MIN_WIDTH) return "mw-ad-min-wide";
-  if (minWidth >= DESKTOP_MIN_WIDTH) return "mw-ad-min-desktop";
-  if (minWidth >= TABLET_MIN_WIDTH) return "mw-ad-min-tablet";
-  return "mw-ad-min-any";
+  if (minWidth >= SIDEBAR_MIN_WIDTH) return "mw-signal-min-wide";
+  if (minWidth >= DESKTOP_MIN_WIDTH) return "mw-signal-min-desktop";
+  if (minWidth >= TABLET_MIN_WIDTH) return "mw-signal-min-tablet";
+  return "mw-signal-min-any";
 }
 
 function readAdStatus(element: HTMLElement | null): AdStatus {
@@ -308,7 +308,7 @@ export function AdSlot({
     <aside
       aria-label={label}
       className={[
-        "mw-ad-shell",
+        "mw-signal-slot",
         adViewportClassName(minWidth),
         className,
       ].filter(Boolean).join(" ")}
@@ -328,7 +328,7 @@ export function AdSlot({
     >
       <ins
         ref={adRef}
-        className="adsbygoogle mw-ad-ins"
+        className="adsbygoogle mw-signal-unit"
         data-ad-client={ADSENSE_CLIENT_ID}
         data-ad-format={adFormatForKind(kind)}
         data-ad-slot={slot}
@@ -338,7 +338,7 @@ export function AdSlot({
       {placeholder ? (
         <div
           aria-hidden="true"
-          className="mw-placement-label"
+          className="mw-signal-caption"
           data-mw-placement-label-hidden={placeholderVisible ? "false" : "true"}
           data-testid={`${placementTestId}-placeholder`}
           hidden={!placeholderVisible}
@@ -353,7 +353,7 @@ export function AdSlot({
 export function TopBannerAd() {
   return (
     <AdSlot
-      className="mw-ad-top-banner"
+      className="mw-signal-top"
       isPathEligible={isTopBannerAdEligiblePath}
       kind="banner"
       placement="top-banner"
@@ -370,7 +370,7 @@ export function PostHeroBannerAd({
 }) {
   return (
     <AdSlot
-      className={["mw-ad-post-hero", className].filter(Boolean).join(" ")}
+      className={["mw-signal-post", className].filter(Boolean).join(" ")}
       isPathEligible={isPostHeroAdEligiblePath}
       kind="banner"
       minWidth={TABLET_MIN_WIDTH}
@@ -384,7 +384,7 @@ export function PostHeroBannerAd({
 export function BookPlayerBannerAd() {
   return (
     <AdSlot
-      className="mw-ad-book-player"
+      className="mw-signal-runtime-gap"
       isPathEligible={isBookPlayerAdEligiblePath}
       kind="banner"
       minWidth={TABLET_MIN_WIDTH}
@@ -399,7 +399,7 @@ export function SidebarRailAds() {
   return (
     <>
       <AdSlot
-        className="mw-ad-sidebar mw-ad-sidebar-left"
+        className="mw-side-rail mw-side-rail-left"
         collapseWhenUnfilled
         isPathEligible={isSidebarAdEligiblePath}
         kind="vertical"
@@ -410,7 +410,7 @@ export function SidebarRailAds() {
         slot={ADSENSE_SLOTS.leftSidebar}
       />
       <AdSlot
-        className="mw-ad-sidebar mw-ad-sidebar-right"
+        className="mw-side-rail mw-side-rail-right"
         collapseWhenUnfilled
         isPathEligible={isSidebarAdEligiblePath}
         kind="vertical"
@@ -431,7 +431,7 @@ export function InContentAd({
 }) {
   return (
     <AdSlot
-      className={["mw-ad-in-content", className].filter(Boolean).join(" ")}
+      className={["mw-signal-inline", className].filter(Boolean).join(" ")}
       isPathEligible={isInContentAdEligiblePath}
       kind="banner"
       minWidth={TABLET_MIN_WIDTH}
@@ -449,7 +449,7 @@ export function SeoSectionRailAd({
 }) {
   return (
     <AdSlot
-      className={["mw-ad-seo-rail", className].filter(Boolean).join(" ")}
+      className={["mw-signal-seo-rail", className].filter(Boolean).join(" ")}
       isPathEligible={isSeoSectionRailAdEligiblePath}
       kind="vertical"
       minWidth={DESKTOP_MIN_WIDTH}
@@ -463,7 +463,7 @@ export function SeoSectionRailAd({
 export function ToolkitBannerAd() {
   return (
     <AdSlot
-      className="mw-ad-toolkit"
+      className="mw-signal-toolkit"
       kind="banner"
       minWidth={TABLET_MIN_WIDTH}
       placement="toolkit-banner"
@@ -476,7 +476,7 @@ export function ToolkitBannerAd() {
 export function PrintableChartSquareAd() {
   return (
     <AdSlot
-      className="mw-ad-printable-chart-square"
+      className="mw-signal-print-square"
       isPathEligible={isPrintableChartSquareAdEligiblePath}
       kind="square"
       minWidth={0}
@@ -509,7 +509,7 @@ export function OptionalLongPageAd({
 
   return (
     <AdSlot
-      className={["mw-ad-optional-long-page", className]
+      className={["mw-signal-optional-long-page", className]
         .filter(Boolean)
         .join(" ")}
       isPathEligible={isInContentAdEligiblePath}
