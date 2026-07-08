@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { PlayIcon } from "~/client/assets/svg/Icons";
-import { SeoSectionRailAd } from "~/client/components/ads/AdSenseAds";
+import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
 import MorseAnswerCard from "~/client/components/content/MorseAnswerCard";
 import {
   ActionButton,
@@ -995,30 +995,29 @@ export function MorseNumbersPage({
           title="How Morse code numbers work"
           description="The digit set is easier to memorize when you notice the direction of the dots and dashes."
         >
-          <div className="mw-seo-section-with-rail">
-            <SimpleGrid
-              items={[
-                {
-                  title: "1-5 build dots",
-                  text: "1 starts with one dot, 2 starts with two dots, and 5 is five dots.",
-                },
-                {
-                  title: "6-9 build dashes",
-                  text: "6 starts with one dash, 7 with two dashes, 8 with three, and 9 with four.",
-                },
-                {
-                  title: "0 is five dashes",
-                  text: "0 completes the number family with five dashes.",
-                },
-                {
-                  title: "Every digit has five marks",
-                  text: "That shared length helps you spot missing dots or dashes in copied Morse.",
-                },
-              ]}
-            />
-            <SeoSectionRailAd />
-          </div>
+          <SimpleGrid
+            items={[
+              {
+                title: "1-5 build dots",
+                text: "1 starts with one dot, 2 starts with two dots, and 5 is five dots.",
+              },
+              {
+                title: "6-9 build dashes",
+                text: "6 starts with one dash, 7 with two dashes, 8 with three, and 9 with four.",
+              },
+              {
+                title: "0 is five dashes",
+                text: "0 completes the number family with five dashes.",
+              },
+              {
+                title: "Every digit has five marks",
+                text: "That shared length helps you spot missing dots or dashes in copied Morse.",
+              },
+            ]}
+          />
         </SectionCard>
+
+        <SeoSectionInlineAd />
 
         <SectionCard
           eyebrow="Worked examples"

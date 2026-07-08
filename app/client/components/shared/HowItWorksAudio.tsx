@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SeoSectionRailAd } from "~/client/components/ads/AdSenseAds";
+import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
 import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
 import { ROUTES } from "~/client/data/routes";
 
@@ -288,7 +288,7 @@ export default function HowItWorksAudio() {
                 Common audio mistakes and fixes
               </h3>
             </div>
-            <div className="mw-seo-section-with-rail">
+            <div>
               <ul className="grid max-w-[58rem] list-disc gap-x-10 gap-y-4 pl-6 text-base leading-relaxed sm:text-lg md:grid-cols-2">
                 <li>
                   <strong>Audio sounds cramped:</strong> increase Farnsworth
@@ -307,9 +307,10 @@ export default function HowItWorksAudio() {
                   so the final release has room to finish.
                 </li>
               </ul>
-              <SeoSectionRailAd />
             </div>
           </section>
+
+          <SeoSectionInlineAd />
 
           <section className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)]">
             <div>

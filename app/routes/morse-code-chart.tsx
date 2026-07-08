@@ -8,7 +8,7 @@ import {
   PrintIcon,
   RulerIcon,
 } from "~/client/assets/svg/Icons";
-import { SeoSectionRailAd } from "~/client/components/ads/AdSenseAds";
+import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
 import {
   ActionButton,
   ActionLinkButton,
@@ -281,13 +281,13 @@ function ChartTable({
 
 function TimingReference() {
   return (
-    <SectionCard
-      eyebrow="Spacing"
-      title="Timing and spacing mini-reference"
-      description="Morse is made from marks and gaps. The chart helps with patterns, but spacing is what keeps characters and words readable."
-      layout="stacked"
-    >
-      <div className="mw-seo-section-with-rail">
+    <>
+      <SectionCard
+        eyebrow="Spacing"
+        title="Timing and spacing mini-reference"
+        description="Morse is made from marks and gaps. The chart helps with patterns, but spacing is what keeps characters and words readable."
+        layout="stacked"
+      >
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {[
             {
@@ -325,27 +325,27 @@ function TimingReference() {
             </StaticPanel>
           ))}
         </div>
-        <SeoSectionRailAd />
-      </div>
-      <div className="mt-5">
-        <ActionLinks
-          links={[
-            {
-              href: "/morse-code-word-separator",
-              label: "Word separator",
-              primary: true,
-              icon: <RulerIcon size={16} title={undefined} aria-hidden="true" />,
-            },
-            { href: "/space-in-morse-code", label: "Space guide" },
-            { href: "/slash-in-morse-code", label: "Slash guide" },
-            {
-              href: "/how-to-separate-words-in-morse-code",
-              label: "How to separate words",
-            },
-          ]}
-        />
-      </div>
-    </SectionCard>
+        <div className="mt-5">
+          <ActionLinks
+            links={[
+              {
+                href: "/morse-code-word-separator",
+                label: "Word separator",
+                primary: true,
+                icon: <RulerIcon size={16} title={undefined} aria-hidden="true" />,
+              },
+              { href: "/space-in-morse-code", label: "Space guide" },
+              { href: "/slash-in-morse-code", label: "Slash guide" },
+              {
+                href: "/how-to-separate-words-in-morse-code",
+                label: "How to separate words",
+              },
+            ]}
+          />
+        </div>
+      </SectionCard>
+      <SeoSectionInlineAd />
+    </>
   );
 }
 

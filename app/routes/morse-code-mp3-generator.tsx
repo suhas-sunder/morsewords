@@ -1,6 +1,6 @@
 import type { Route } from "./+types/morse-code-mp3-generator";
 
-import { SeoSectionRailAd } from "~/client/components/ads/AdSenseAds";
+import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
 import MorseMp3GeneratorTool from "~/client/components/morse-code-mp3-generator/MorseMp3GeneratorTool";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
@@ -344,11 +344,10 @@ export default function MorseCodeMp3GeneratorRoute() {
           title="Practical download notes"
           description="Most export questions come from long messages, blocked downloads, browser limits, or using the wrong input direction."
         >
-          <div className="mw-seo-section-with-rail">
-            <SimpleGrid items={troubleshootingItems} linkedItemStyle="inline" />
-            <SeoSectionRailAd />
-          </div>
+          <SimpleGrid items={troubleshootingItems} linkedItemStyle="inline" />
         </SectionCard>
+
+        <SeoSectionInlineAd />
 
         <SectionCard
           eyebrow="Direction"

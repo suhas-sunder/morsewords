@@ -2,6 +2,7 @@ import * as React from "react";
 import type { Route } from "./+types/morse-code-decoder";
 
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
+import { UpperContentBannerAd } from "~/client/components/ads/AdSenseAds";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
@@ -120,6 +121,8 @@ export default function MorseCodeDecoder() {
           preferredDirection="decode"
           quietInputFocus
         />
+
+        <UpperContentBannerAd />
 
         <ReferenceSupportSections
           guide={{

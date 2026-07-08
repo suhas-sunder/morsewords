@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { PlayIcon } from "~/client/assets/svg/Icons";
+import { MobileUpperContentBannerAd } from "~/client/components/ads/AdSenseAds";
 import { ActionLinkButton } from "./ActionControls";
 import {
   HERO_EYEBROW_LINE_CLASS,
@@ -56,6 +57,7 @@ export function PageHero({
               {description}
             </p>
             {children ? <div className="mt-4 sm:mt-5">{children}</div> : null}
+            <MobileUpperContentBannerAd />
           </div>
           {aside ? <div>{aside}</div> : null}
         </div>

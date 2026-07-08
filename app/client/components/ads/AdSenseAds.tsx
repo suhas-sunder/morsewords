@@ -373,9 +373,55 @@ export function PostHeroBannerAd({
       className={["mw-signal-post", className].filter(Boolean).join(" ")}
       isPathEligible={isPostHeroAdEligiblePath}
       kind="banner"
-      minWidth={TABLET_MIN_WIDTH}
+      minWidth={0}
       placement="post-hero"
       reservedSize={{ width: 970, height: 90 }}
+      slot={ADSENSE_SLOTS.postHeroBanner}
+    />
+  );
+}
+
+export function MobileUpperContentBannerAd({
+  className = "",
+}: {
+  className?: string;
+}) {
+  return (
+    <AdSlot
+      className={["mw-signal-mobile-upper", className]
+        .filter(Boolean)
+        .join(" ")}
+      isPathEligible={isInContentAdEligiblePath}
+      kind="banner"
+      maxWidth={TABLET_MIN_WIDTH - 1}
+      minWidth={0}
+      placement="upper-content-mobile"
+      reservedSize={{ width: "100%", height: 100 }}
+      slot={ADSENSE_SLOTS.postHeroBanner}
+    />
+  );
+}
+
+export function UpperContentBannerAd({
+  className = "",
+  minWidth = 0,
+  maxWidth,
+}: {
+  className?: string;
+  minWidth?: number;
+  maxWidth?: number;
+}) {
+  return (
+    <AdSlot
+      className={["mw-signal-upper-content", className]
+        .filter(Boolean)
+        .join(" ")}
+      isPathEligible={isInContentAdEligiblePath}
+      kind="banner"
+      maxWidth={maxWidth}
+      minWidth={minWidth}
+      placement="upper-content"
+      reservedSize={{ width: 728, height: 90 }}
       slot={ADSENSE_SLOTS.postHeroBanner}
     />
   );
@@ -387,7 +433,7 @@ export function BookPlayerBannerAd() {
       className="mw-signal-runtime-gap"
       isPathEligible={isBookPlayerAdEligiblePath}
       kind="banner"
-      minWidth={TABLET_MIN_WIDTH}
+      minWidth={0}
       placement="book-player-banner"
       reservedSize={{ width: 728, height: 90 }}
       slot={ADSENSE_SLOTS.postHeroBanner}
@@ -434,7 +480,7 @@ export function InContentAd({
       className={["mw-signal-inline", className].filter(Boolean).join(" ")}
       isPathEligible={isInContentAdEligiblePath}
       kind="banner"
-      minWidth={TABLET_MIN_WIDTH}
+      minWidth={0}
       placement="in-content"
       reservedSize={{ width: 728, height: 90 }}
       slot={ADSENSE_SLOTS.inContent}
@@ -460,12 +506,32 @@ export function SeoSectionRailAd({
   );
 }
 
+export function SeoSectionInlineAd({
+  className = "",
+}: {
+  className?: string;
+}) {
+  return (
+    <AdSlot
+      className={["mw-signal-inline", "mw-signal-seo-break", className]
+        .filter(Boolean)
+        .join(" ")}
+      isPathEligible={isSeoSectionRailAdEligiblePath}
+      kind="banner"
+      minWidth={0}
+      placement="seo-section-inline"
+      reservedSize={{ width: 728, height: 90 }}
+      slot={ADSENSE_SLOTS.inContent}
+    />
+  );
+}
+
 export function ToolkitBannerAd() {
   return (
     <AdSlot
       className="mw-signal-toolkit"
       kind="banner"
-      minWidth={TABLET_MIN_WIDTH}
+      minWidth={0}
       placement="toolkit-banner"
       reservedSize={{ width: 728, height: 90 }}
       slot={ADSENSE_SLOTS.toolkitBanner}

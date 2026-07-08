@@ -199,7 +199,7 @@ export default function AudioRoute() {
     <main className="mw-non-home-page" style={styles.page}>
       <div style={{ ...styles.wrap, paddingTop: 16 }}>
         <MorseAudioTranslator enableQueryPrefill />
-        <PostHeroBannerAd />
+        <PostHeroBannerAd className="mw-signal-post-audio" />
         <HowItWorksAudio />
         <SectionCard
           eyebrow="Audio tools path"

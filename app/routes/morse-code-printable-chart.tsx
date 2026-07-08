@@ -1,7 +1,11 @@
 import * as React from "react";
 
 import { DownloadIcon, ShareIcon, WarningIcon } from "~/client/assets/svg/Icons";
-import { PrintableChartSquareAd } from "~/client/components/ads/AdSenseAds";
+import {
+  OptionalLongPageAd,
+  PrintableChartSquareAd,
+  UpperContentBannerAd,
+} from "~/client/components/ads/AdSenseAds";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
@@ -3040,6 +3044,8 @@ export default function MorseCodePrintableChart() {
           />
         </PageHero>
 
+        <UpperContentBannerAd minWidth={768} />
+
         <section className="hidden">
           <div className="mw-static-panel min-w-0 rounded-xl bg-[#fffdf8]/85 p-4">
             <div className="flex min-w-0 flex-wrap items-center justify-between gap-4">
@@ -3515,6 +3521,11 @@ export default function MorseCodePrintableChart() {
           title="Punctuation and characters"
           description="Common punctuation and symbol entries supported by MorseWords."
           rows={PUNCTUATION}
+        />
+
+        <OptionalLongPageAd
+          className="mw-signal-optional-section-break"
+          kind="banner"
         />
 
         <section className="pb-8">

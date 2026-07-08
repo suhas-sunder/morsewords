@@ -1,7 +1,7 @@
 import type { Route } from "./+types/morse-code-reader";
 
 import MorseCodeReaderTool from "~/client/components/morse-code-reader/MorseCodeReaderTool";
-import { SeoSectionRailAd } from "~/client/components/ads/AdSenseAds";
+import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
@@ -323,11 +323,10 @@ export default function MorseCodeReaderRoute() {
           title="Common Morse reader mistakes"
           description="Most reader problems come from spacing changes, copied symbols, or using a text reader for audio input."
         >
-          <div className="mw-seo-section-with-rail">
-            <SimpleGrid items={mistakeItems} linkedItemStyle="inline" />
-            <SeoSectionRailAd />
-          </div>
+          <SimpleGrid items={mistakeItems} linkedItemStyle="inline" />
         </SectionCard>
+
+        <SeoSectionInlineAd />
 
         <SectionCard
           eyebrow="Reference"

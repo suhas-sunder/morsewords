@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-import { SeoSectionRailAd } from "~/client/components/ads/AdSenseAds";
+import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
 
 const summaryPoints = [
   {
@@ -300,7 +300,7 @@ S O S`}
                 </h3>
               </header>
 
-              <div className="mw-seo-section-with-rail">
+              <div className="max-w-none">
                 <ul className="grid max-w-none list-disc gap-x-8 gap-y-2 pl-6 text-base leading-relaxed sm:text-lg lg:grid-cols-2">
                   <li>
                     <strong>Decoded text looks wrong:</strong> check boundaries.
@@ -323,10 +323,11 @@ S O S`}
                     volume, and make sure your device is not muted.
                   </li>
                 </ul>
-                <SeoSectionRailAd />
               </div>
             </div>
           </section>
+
+          <SeoSectionInlineAd />
 
           <section id="learning-flow">
             <div className="grid gap-6 lg:grid-cols-[235px_minmax(0,1fr)]">

@@ -274,6 +274,8 @@ input[type="range"]:focus-visible {
   --mw-ad-border-color: color-mix(in srgb, var(--mw-text-faint) 30%, transparent);
   position: relative;
   display: none;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   width: min(100%, var(--mw-ad-reserved-width));
   min-height: var(--mw-ad-reserved-height);
@@ -294,24 +296,24 @@ input[type="range"]:focus-visible {
 }
 
 .mw-signal-min-any {
-  display: block;
+  display: flex;
 }
 
 @media (min-width: 768px) {
   .mw-signal-min-tablet {
-    display: block;
+    display: flex;
   }
 }
 
 @media (min-width: 1280px) {
   .mw-signal-min-desktop {
-    display: block;
+    display: flex;
   }
 }
 
 @media (min-width: 1536px) {
   .mw-signal-min-wide {
-    display: block;
+    display: flex;
   }
 }
 
@@ -319,7 +321,10 @@ input[type="range"]:focus-visible {
   position: relative;
   z-index: 1;
   display: block !important;
+  flex: 0 1 100%;
   width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   min-height: 0 !important;
   max-width: 100% !important;
   overflow: visible !important;
@@ -394,18 +399,38 @@ input[type="range"]:focus-visible {
 }
 
 .mw-signal-top {
-  margin-top: 0.75rem;
-  margin-bottom: 1.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
 }
 
 .mw-signal-post {
-  margin-top: 0.75rem;
-  margin-bottom: 2.25rem;
+  margin-top: 0.25rem;
+  margin-bottom: 2.75rem;
+}
+
+.mw-signal-post-audio {
+  margin-top: 3rem;
+  margin-bottom: 0;
+}
+
+.mw-signal-mobile-upper {
+  margin-top: 6rem;
+  margin-bottom: 5rem;
+}
+
+.mw-signal-upper-content {
+  margin-top: 4.5rem;
+  margin-bottom: 4rem;
 }
 
 .mw-signal-inline {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+.mw-signal-seo-break {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .mw-signal-toolkit {
@@ -416,6 +441,16 @@ input[type="range"]:focus-visible {
 .mw-signal-runtime-gap {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+.mw-signal-optional-long-page {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mw-signal-optional-section-break {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 
 .mw-signal-print-square {
@@ -445,7 +480,7 @@ input[type="range"]:focus-visible {
 
 .mw-side-rail {
   position: absolute;
-  top: 8rem;
+  top: 9rem;
   z-index: 2;
   width: var(--mw-ad-reserved-width);
   min-height: var(--mw-ad-reserved-height);
