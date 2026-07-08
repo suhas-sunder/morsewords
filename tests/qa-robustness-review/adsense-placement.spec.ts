@@ -12,6 +12,8 @@ const SLOTS = {
   inContent: "7431733612",
   toolkitBanner: "8224152097",
   optionalSquare: "6390114680",
+  optionalBanner: "3766032339",
+  optionalVertical: "9213764742",
 } as const;
 
 const PLACEMENT_LABEL_SELECTOR = ".mw-placement-label";
@@ -47,6 +49,8 @@ async function setAdStatus(
   status: "filled" | "unfilled",
 ) {
   const shell = adPlacement(page, placement);
+  await expect(shell).toHaveCount(1);
+  await expect(shell.locator("ins")).toHaveCount(1);
   await shell.locator("ins").evaluate((element, nextStatus) => {
     element.setAttribute("data-ad-status", nextStatus);
   }, status);
@@ -56,9 +60,12 @@ async function setAdStatus(
 async function expectPlaceholderVisible(page: Page, placement: string) {
   const shell = adPlacement(page, placement);
   const label = shell.locator(PLACEMENT_LABEL_SELECTOR);
+  await expect(shell).toHaveAttribute("data-mw-ad-placeholder-visible", "true");
   await expect(label).toBeVisible();
   await expect(label).toHaveText("Advertisements");
-  await expect(shell).toHaveCSS("border-top-style", "dashed");
+  await expect(label).toHaveCSS("border-top-style", "dashed");
+  await expect(label).toHaveCSS("border-top-width", "2px");
+  await expect(shell).toHaveCSS("border-top-style", "none");
   const labelOutsideIns = await shell.evaluate((element, selector) => {
     const labelElement = element.querySelector(selector);
     const insElement = element.querySelector("ins.adsbygoogle");
@@ -69,9 +76,35 @@ async function expectPlaceholderVisible(page: Page, placement: string) {
 
 async function expectFilledChromeHidden(page: Page, placement: string) {
   const shell = adPlacement(page, placement);
+  await expect(shell).toHaveAttribute("data-mw-ad-status", "filled");
+  await expect(shell).toHaveAttribute("data-mw-ad-placeholder-visible", "false");
   await expect(shell.locator(PLACEMENT_LABEL_SELECTOR)).toBeHidden();
-  await expect(shell).not.toHaveCSS("border-top-style", "dashed");
+  await expect(shell).toHaveCSS("border-top-style", "none");
   await expect(shell).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  const metrics = await shell.evaluate((element) => {
+    const style = getComputedStyle(element);
+    const ins = element.querySelector<HTMLElement>("ins.adsbygoogle");
+    const insStyle = ins ? getComputedStyle(ins) : null;
+    return {
+      maxHeight: style.maxHeight,
+      overflow: style.overflow,
+      insMaxHeight: insStyle?.maxHeight ?? "",
+      insOverflow: insStyle?.overflow ?? "",
+    };
+  });
+  expect(metrics.maxHeight).toBe("none");
+  expect(metrics.overflow).toBe("visible");
+  expect(metrics.insMaxHeight).toBe("none");
+  expect(metrics.insOverflow).toBe("visible");
+}
+
+async function expectPlacementWidthWithinViewport(page: Page, placement: string) {
+  const box = await adPlacement(page, placement).boundingBox();
+  const viewport = page.viewportSize();
+  expect(box).not.toBeNull();
+  expect(box!.width).toBeLessThanOrEqual((viewport?.width ?? 0) + 1);
+  expect(box!.x).toBeGreaterThanOrEqual(-1);
+  expect(box!.x + box!.width).toBeLessThanOrEqual((viewport?.width ?? 0) + 1);
 }
 
 test.beforeEach(async ({ page }) => {
@@ -84,7 +117,7 @@ test("loads one AdSense script and the expected eligible homepage slots", async 
   await page.setViewportSize({ width: 1440, height: 1000 });
   await gotoRoute(page, "/");
 
-  const script = page.locator("script[data-mw-adsense-script]");
+  const script = page.locator("script#mw-adsense-script");
   await expect(script).toHaveCount(1);
   await expect(script).toHaveAttribute("src", new RegExp(ADSENSE_CLIENT_ID));
 
@@ -92,87 +125,79 @@ test("loads one AdSense script and the expected eligible homepage slots", async 
     page.locator(
       `[data-mw-ad-request-eligible="true"] ins[data-ad-client="${ADSENSE_CLIENT_ID}"]`,
     ),
-  ).toHaveCount(3);
+  ).toHaveCount(4);
   await expect(page.locator(`ins[data-ad-slot="${SLOTS.topBanner}"]`)).toHaveCount(1);
   await expect(page.locator(`ins[data-ad-slot="${SLOTS.postHeroBanner}"]`)).toHaveCount(1);
+  await expect(page.locator(`ins[data-ad-slot="${SLOTS.inContent}"]`)).toHaveCount(1);
   await expect(page.locator(`ins[data-ad-slot="${SLOTS.toolkitBanner}"]`)).toHaveCount(1);
-  await expect(page.locator(`ins[data-ad-slot="${SLOTS.leftSidebar}"]`)).toHaveCount(1);
-  await expect(page.locator(`ins[data-ad-slot="${SLOTS.rightSidebar}"]`)).toHaveCount(1);
-  await expect(page.locator('[data-mw-ad-placement="left-sidebar"]')).toBeHidden();
-  await expect(page.locator('[data-mw-ad-placement="right-sidebar"]')).toBeHidden();
+  await expect(page.locator(`ins[data-ad-slot="${SLOTS.leftSidebar}"]`)).toHaveCount(0);
+  await expect(page.locator(`ins[data-ad-slot="${SLOTS.rightSidebar}"]`)).toHaveCount(0);
 });
 
 for (const width of [390, 430, 767]) {
-  test(`top banner renders no visible box or space at ${width}px`, async ({
+  test(`mobile-width banner gates render no box or space at ${width}px`, async ({
     page,
   }) => {
     await page.setViewportSize({ width, height: 900 });
     await gotoRoute(page, "/");
 
-    const topBanner = page.locator('[data-mw-ad-placement="top-banner"]');
-    await expect(topBanner).toBeHidden();
-    await expect(topBanner).toHaveAttribute("data-mw-ad-request-eligible", "false");
-    expect(await topBanner.boundingBox()).toBeNull();
-    for (const placement of ["post-hero", "toolkit-banner"]) {
-      const inPageBanner = page.locator(`[data-mw-ad-placement="${placement}"]`);
-      await expect(inPageBanner).toHaveAttribute(
-        "data-mw-ad-request-eligible",
-        "true",
-      );
-      expect(await inPageBanner.boundingBox()).not.toBeNull();
+    for (const placement of ["top-banner", "post-hero", "toolkit-banner"]) {
+      await expect(adPlacement(page, placement)).toHaveCount(0);
     }
+    await expect(page.locator('[data-mw-ad-kind="banner"]')).toHaveCount(0);
 
     const navBox = await page.locator("header.mw-nav-shell").boundingBox();
     expect(navBox?.y ?? 0).toBeLessThanOrEqual(1);
+    await expectNoHorizontalOverflow(page);
   });
 }
 
-test("top banner becomes eligible at tablet width", async ({ page }) => {
+test("top and content banners become eligible at tablet width", async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 768, height: 900 });
   await gotoRoute(page, "/");
 
-  const topBanner = page.locator('[data-mw-ad-placement="top-banner"]');
-  await expect(topBanner).toBeVisible();
-  const box = await topBanner.boundingBox();
+  for (const placement of ["top-banner", "post-hero", "toolkit-banner"]) {
+    const banner = adPlacement(page, placement);
+    await expect(banner).toBeVisible();
+    await expect(banner).toHaveAttribute("data-mw-ad-request-eligible", "true");
+    await expectPlacementWidthWithinViewport(page, placement);
+    await expectPlaceholderVisible(page, placement);
+  }
+
+  const topBox = await adPlacement(page, "top-banner").boundingBox();
   const navBox = await page.locator("header.mw-nav-shell").boundingBox();
-  expect(box?.y ?? 0).toBeGreaterThanOrEqual((navBox?.height ?? 0) - 1);
-  expect(box?.height ?? 0).toBeGreaterThanOrEqual(90);
-  expect(box?.height ?? 0).toBeLessThanOrEqual(100);
-  await expect(topBanner).toHaveCSS("border-top-style", "dashed");
+  expect(topBox?.y ?? 0).toBeGreaterThanOrEqual((navBox?.height ?? 0) - 1);
+  expect(topBox?.height ?? 0).toBeGreaterThanOrEqual(90);
+  expect(topBox?.height ?? 0).toBeLessThanOrEqual(100);
 });
 
-test("sidebar rails only display and request ads on wide desktop", async ({
+test("sidebar rails request only on wide desktop and hide empty towers", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1280, height: 1000 });
   await gotoRoute(page, "/");
-  const leftHiddenSidebar = page.locator('[data-mw-ad-placement="left-sidebar"]');
-  const rightHiddenSidebar = page.locator('[data-mw-ad-placement="right-sidebar"]');
-  await expect(leftHiddenSidebar).toBeHidden();
-  await expect(rightHiddenSidebar).toBeHidden();
-  await expect(leftHiddenSidebar).toHaveAttribute(
-    "data-mw-ad-request-eligible",
-    "false",
-  );
-  await expect(rightHiddenSidebar).toHaveAttribute(
-    "data-mw-ad-request-eligible",
-    "false",
-  );
-  expect(await leftHiddenSidebar.boundingBox()).toBeNull();
-  expect(await rightHiddenSidebar.boundingBox()).toBeNull();
+  await expect(adPlacement(page, "left-sidebar")).toHaveCount(0);
+  await expect(adPlacement(page, "right-sidebar")).toHaveCount(0);
 
   await page.setViewportSize({ width: 1536, height: 1000 });
   await gotoRoute(page, "/");
 
-  const leftSidebar = page.locator('[data-mw-ad-placement="left-sidebar"]');
-  const rightSidebar = page.locator('[data-mw-ad-placement="right-sidebar"]');
-  await expect(leftSidebar).toBeVisible();
-  await expect(rightSidebar).toBeVisible();
-  await expect(leftSidebar).toHaveAttribute("data-mw-ad-has-placeholder", "true");
-  await expect(rightSidebar).toHaveAttribute("data-mw-ad-has-placeholder", "true");
+  const leftSidebar = adPlacement(page, "left-sidebar");
+  const rightSidebar = adPlacement(page, "right-sidebar");
+  await expect(leftSidebar).toHaveCount(1);
+  await expect(rightSidebar).toHaveCount(1);
+  await expect(leftSidebar).toHaveAttribute("data-mw-ad-request-eligible", "true");
+  await expect(rightSidebar).toHaveAttribute("data-mw-ad-request-eligible", "true");
+  await expect(leftSidebar).toHaveAttribute("data-mw-ad-has-placeholder", "false");
+  await expect(rightSidebar).toHaveAttribute("data-mw-ad-has-placeholder", "false");
   await expect(
     page.locator(`[data-mw-ad-placement$="sidebar"] ${PLACEMENT_LABEL_SELECTOR}`),
-  ).toHaveText(["Advertisements", "Advertisements"]);
+  ).toHaveCount(0);
+  await expect(leftSidebar).toHaveCSS("opacity", "0");
+  await expect(rightSidebar).toHaveCSS("opacity", "0");
+
   const sidebarGeometry = await page.evaluate(() => {
     const left = document
       .querySelector('[data-mw-ad-placement="left-sidebar"]')
@@ -204,22 +229,12 @@ test("sidebar rails only display and request ads on wide desktop", async ({
     sidebarGeometry.headingY ?? 999,
   );
 
-  const sidebarLabelTransforms = await page.evaluate(() => {
-    const labelStyle = (selector: string) => {
-      const element = document.querySelector(selector);
-      return element ? getComputedStyle(element).transform : "";
-    };
-    return {
-      left: labelStyle(
-        '[data-mw-ad-placement="left-sidebar"] .mw-placement-label',
-      ),
-      right: labelStyle(
-        '[data-mw-ad-placement="right-sidebar"] .mw-placement-label',
-      ),
-    };
-  });
-  expect(sidebarLabelTransforms.left).not.toBe(sidebarLabelTransforms.right);
-  expect(sidebarLabelTransforms.right).toBe("none");
+  await setAdStatus(page, "left-sidebar", "filled");
+  await setAdStatus(page, "right-sidebar", "filled");
+  await expect(leftSidebar).toHaveCSS("opacity", "1");
+  await expect(rightSidebar).toHaveCSS("opacity", "1");
+  await expectFilledChromeHidden(page, "left-sidebar");
+  await expectFilledChromeHidden(page, "right-sidebar");
   await expectNoHorizontalOverflow(page);
 });
 
@@ -258,7 +273,7 @@ test("filled ads hide placeholder chrome for banners, toolkit, SEO rail, and sid
   await expectFilledChromeHidden(page, "seo-section-vertical");
 });
 
-test("blocked ad shell still shows a visible MorseWords placeholder label", async ({
+test("blocked or removed ad elements keep visible fallback labels outside ins", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1024, height: 1000 });
@@ -271,85 +286,106 @@ test("blocked ad shell still shows a visible MorseWords placeholder label", asyn
   const label = adPlacement(page, "post-hero").locator(PLACEMENT_LABEL_SELECTOR);
   await expect(label).toBeVisible();
   await expect(label).toHaveText("Advertisements");
+  const labelStillPresent = await adPlacement(page, "post-hero").evaluate(
+    (element, selector) => Boolean(element.querySelector(selector)),
+    PLACEMENT_LABEL_SELECTOR,
+  );
+  expect(labelStillPresent).toBe(true);
 });
 
-test("ad labels are policy-safe wherever placeholders are shown", async ({
+test("placeholder labels are policy-safe and use one shared dashed style", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1536, height: 1000 });
   await gotoRoute(page, "/");
 
-  const placeholderAds = page.locator('[data-mw-ad-has-placeholder="true"]');
-  await expect(placeholderAds.first()).toBeVisible();
-  const placeholderLabels = await page
-    .locator('[data-mw-ad-has-placeholder="true"]')
-    .evaluateAll((ads) =>
-      ads.map((ad) => ({
-        ariaLabel: ad.getAttribute("aria-label")?.trim() ?? "",
-        text:
-          ad.querySelector(".mw-placement-label")?.textContent?.trim() ?? "",
-      })),
-    );
+  const visiblePlaceholderLabels = page.locator(
+    '[data-mw-ad-placeholder-visible="true"] .mw-placement-label',
+  );
+  await expect(visiblePlaceholderLabels.first()).toBeVisible();
+  const placeholderLabels = await visiblePlaceholderLabels.evaluateAll((labels) =>
+    labels.map((label) => {
+      const style = getComputedStyle(label);
+      return {
+        borderColor: style.borderTopColor,
+        borderStyle: style.borderTopStyle,
+        borderWidth: style.borderTopWidth,
+        text: label.textContent?.trim() ?? "",
+      };
+    }),
+  );
   expect(placeholderLabels.length).toBeGreaterThan(0);
   for (const label of placeholderLabels) {
-    expect(["Advertisements", "Sponsored Links"]).toContain(label.ariaLabel);
     expect(["Advertisements", "Sponsored Links"]).toContain(label.text);
+    expect(label.borderStyle).toBe("dashed");
+    expect(label.borderWidth).toBe("2px");
   }
+  expect(new Set(placeholderLabels.map((label) => label.borderColor)).size).toBe(1);
 
-  const placeholderBorders = await page.evaluate(() =>
+  const shellBorders = await page.evaluate(() =>
     [...document.querySelectorAll<HTMLElement>("[data-mw-ad-placement]")]
-      .filter((ad) => getComputedStyle(ad).display !== "none")
-      .map((ad) => {
-        const style = getComputedStyle(ad);
-        return {
-          color: style.borderTopColor,
-          style: style.borderTopStyle,
-          width: style.borderTopWidth,
-        };
-      }),
+      .map((ad) => getComputedStyle(ad).borderTopStyle),
   );
-  expect(placeholderBorders.length).toBeGreaterThan(0);
-  expect(new Set(placeholderBorders.map((border) => border.style))).toEqual(
-    new Set(["dashed"]),
-  );
-  expect(new Set(placeholderBorders.map((border) => border.width))).toEqual(
-    new Set(["2px"]),
-  );
-  expect(new Set(placeholderBorders.map((border) => border.color)).size).toBe(1);
-
+  expect(new Set(shellBorders)).toEqual(new Set(["none"]));
   await expect(
     page.locator(`[data-mw-ad-placement$="sidebar"] ${PLACEMENT_LABEL_SELECTOR}`),
-  ).toHaveText(["Advertisements", "Advertisements"]);
+  ).toHaveCount(0);
 });
 
-test("SEO-section vertical rail uses the in-content slot on suitable guide pages", async ({
+for (const route of [
+  "/",
+  "/audio",
+  "/morse-code-books",
+  "/morse-code-audiobooks",
+  "/morse-code-printable-chart",
+  "/morse-code-chart",
+  "/morse-code-alphabet",
+  "/morse-code-numbers",
+  "/morse-code-punctuation",
+  "/morse-code-word-separator",
+  "/how-to-separate-words-in-morse-code",
+  "/morse-code-reader",
+  "/morse-code-mp3-generator",
+  "/morse-code-decoder",
+  "/morse-code-encoder",
+  "/morse-code-word-search-builder",
+  "/learn-morse-code",
+]) {
+  test(`SEO-section vertical rail uses the in-content slot on ${route}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1536, height: 1200 });
+    await gotoRoute(page, route);
+
+    const seoRail = adPlacement(page, "seo-section-vertical");
+    await expect(seoRail).toBeVisible();
+    await expect(seoRail).toHaveAttribute("data-mw-ad-kind", "vertical");
+    await expect(seoRail).toHaveAttribute("data-mw-ad-request-eligible", "true");
+    await expect(seoRail.locator("ins")).toHaveAttribute(
+      "data-ad-slot",
+      SLOTS.inContent,
+    );
+    const railBox = await seoRail.boundingBox();
+    expect(railBox?.width).toBe(120);
+    expect(railBox?.height).toBe(600);
+    await expectNoHorizontalOverflow(page);
+  });
+}
+
+test("SEO-section vertical rail is gated on smaller and excluded pages", async ({
   page,
 }) => {
-  await page.setViewportSize({ width: 1536, height: 1200 });
-  await gotoRoute(page, "/morse-code-alphabet");
-
-  const seoRail = adPlacement(page, "seo-section-vertical");
-  await expect(seoRail).toBeVisible();
-  await expect(seoRail).toHaveAttribute("data-mw-ad-kind", "vertical");
-  await expect(seoRail).toHaveAttribute("data-mw-ad-request-eligible", "true");
-  await expect(seoRail.locator("ins")).toHaveAttribute(
-    "data-ad-slot",
-    SLOTS.inContent,
-  );
-  const railBox = await seoRail.boundingBox();
-  expect(railBox?.width).toBe(120);
-  expect(railBox?.height).toBe(600);
-  await expectNoHorizontalOverflow(page);
-
   await page.setViewportSize({ width: 1024, height: 1000 });
   await gotoRoute(page, "/morse-code-alphabet");
-  const hiddenRail = adPlacement(page, "seo-section-vertical");
-  await expect(hiddenRail).toBeHidden();
-  await expect(hiddenRail).toHaveAttribute("data-mw-ad-request-eligible", "false");
-  expect(await hiddenRail.boundingBox()).toBeNull();
+  await expect(adPlacement(page, "seo-section-vertical")).toHaveCount(0);
 
   await page.setViewportSize({ width: 1536, height: 1000 });
-  for (const route of ["/contact", "/privacy", "/terms", "/cookies"]) {
+  for (const route of [
+    "/contact",
+    "/privacy",
+    "/terms",
+    "/cookies",
+  ]) {
     await gotoRoute(page, route);
     await expect(adPlacement(page, "seo-section-vertical")).toHaveCount(0);
   }
@@ -361,7 +397,8 @@ test("reference pages do not force early post-hero banners above side rails", as
   await page.setViewportSize({ width: 1536, height: 1000 });
   await gotoRoute(page, "/morse-code-alphabet");
 
-  await expect(page.locator('[data-mw-ad-placement="post-hero"]')).toHaveCount(0);
+  await expect(adPlacement(page, "post-hero")).toHaveCount(0);
+  await expect(adPlacement(page, "seo-section-vertical")).toBeVisible();
 
   const placementMetrics = await page.evaluate(() => {
     const left = document
@@ -395,16 +432,27 @@ for (const route of [
   "/morse-code-books/the-gold-bug",
   "/morse-code-audiobooks/the-gold-bug",
 ]) {
-  test(`book runtime route ${route} uses player-gap banner placement`, async ({
+  test(`book runtime route ${route} uses responsive player-gap banner placement`, async ({
     page,
   }) => {
+    for (const width of [390, 430]) {
+      await page.setViewportSize({ width, height: 1000 });
+      await gotoRoute(page, route);
+      await expect(adPlacement(page, "book-player-banner")).toHaveCount(0);
+      await expectNoHorizontalOverflow(page);
+    }
+
     await page.setViewportSize({ width: 1536, height: 1000 });
     await gotoRoute(page, route);
 
-    await expect(page.locator('[data-mw-ad-placement="top-banner"]')).toHaveCount(0);
-    const playerAd = page.locator('[data-mw-ad-placement="book-player-banner"]');
+    await expect(adPlacement(page, "top-banner")).toHaveCount(0);
+    const playerAd = adPlacement(page, "book-player-banner");
     await expect(playerAd).toBeVisible();
     await expect(playerAd).toHaveAttribute("data-mw-ad-request-eligible", "true");
+    await expect(playerAd.locator("ins")).toHaveAttribute(
+      "data-ad-slot",
+      SLOTS.postHeroBanner,
+    );
 
     const placement = await page.evaluate(() => {
       const ad = document.querySelector<HTMLElement>(
@@ -429,24 +477,36 @@ for (const route of [
     expect(placement.y ?? 0).toBeGreaterThan(placement.railBottom ?? 0);
     expect(Math.abs((placement.beforeGap ?? 0) - (placement.afterGap ?? 0))).toBeLessThanOrEqual(8);
     expect(placement.beforeGap ?? 0).toBeGreaterThanOrEqual(16);
+    await expectNoHorizontalOverflow(page);
   });
 }
 
-test("printable chart uses a square ad in the settings flow", async ({
+test("printable chart uses a viewport-safe square ad in the settings flow", async ({
   page,
 }) => {
+  for (const width of [390, 1536]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await gotoRoute(page, "/morse-code-printable-chart");
+
+    await expect(adPlacement(page, "post-hero")).toHaveCount(0);
+    if (width < 1280) {
+      await expect(adPlacement(page, "seo-section-vertical")).toHaveCount(0);
+    } else {
+      await expect(adPlacement(page, "seo-section-vertical")).toBeVisible();
+    }
+    const squareAd = adPlacement(page, "printable-chart-square");
+    await expect(squareAd).toBeVisible();
+    await expect(squareAd.locator("ins")).toHaveAttribute(
+      "data-ad-slot",
+      SLOTS.optionalSquare,
+    );
+    await expectPlacementWidthWithinViewport(page, "printable-chart-square");
+    await expectNoHorizontalOverflow(page);
+  }
+
   await page.setViewportSize({ width: 1536, height: 1000 });
   await gotoRoute(page, "/morse-code-printable-chart");
-
-  await expect(page.locator('[data-mw-ad-placement="post-hero"]')).toHaveCount(0);
-  await expect(page.locator('[data-mw-ad-placement="seo-section-vertical"]')).toHaveCount(0);
-  const squareAd = page.locator('[data-mw-ad-placement="printable-chart-square"]');
-  await expect(squareAd).toBeVisible();
-  await expect(squareAd.locator("ins")).toHaveAttribute(
-    "data-ad-slot",
-    SLOTS.optionalSquare,
-  );
-
+  await expect(adPlacement(page, "printable-chart-square")).toBeVisible();
   const placement = await page.evaluate(() => {
     const ad = document.querySelector<HTMLElement>(
       '[data-mw-ad-placement="printable-chart-square"]',
@@ -471,6 +531,23 @@ test("printable chart uses a square ad in the settings flow", async ({
   expect(placement.height).toBe(250);
   expect(placement.y ?? 0).toBeGreaterThan(placement.railBottom ?? 0);
   expect(Math.abs((placement.beforeGap ?? 0) - (placement.afterGap ?? 0))).toBeLessThanOrEqual(8);
+});
+
+test("optional long-page slots are limited to evaluated safe placements", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1536, height: 1000 });
+  await gotoRoute(page, "/morse-code-printable-chart");
+  await expect(page.locator(`ins[data-ad-slot="${SLOTS.optionalSquare}"]`)).toHaveCount(1);
+  await expect(page.locator(`ins[data-ad-slot="${SLOTS.optionalBanner}"]`)).toHaveCount(0);
+  await expect(page.locator(`ins[data-ad-slot="${SLOTS.optionalVertical}"]`)).toHaveCount(0);
+
+  for (const route of ["/", "/morse-code-alphabet", "/morse-code-reader"]) {
+    await gotoRoute(page, route);
+    await expect(page.locator(`ins[data-ad-slot="${SLOTS.optionalSquare}"]`)).toHaveCount(0);
+    await expect(page.locator(`ins[data-ad-slot="${SLOTS.optionalBanner}"]`)).toHaveCount(0);
+    await expect(page.locator(`ins[data-ad-slot="${SLOTS.optionalVertical}"]`)).toHaveCount(0);
+  }
 });
 
 for (const route of [
@@ -528,21 +605,27 @@ test("ads stay outside forms, players, and action-control clusters", async ({
   }
 });
 
-test("representative routes avoid horizontal overflow with ad gates", async ({
-  page,
-}) => {
-  for (const width of [390, 768, 1536]) {
+for (const width of [390, 430, 768, 1024, 1280, 1536]) {
+  test(`representative routes avoid horizontal overflow with ad gates at ${width}px`, async ({
+    page,
+  }) => {
+    test.setTimeout(120_000);
     await page.setViewportSize({ width, height: 1000 });
     for (const route of [
       "/",
       "/audio",
       "/dictionary",
+      "/morse-code-books",
+      "/morse-code-audiobooks",
       "/morse-code-books/the-gold-bug",
+      "/morse-code-audiobooks/the-gold-bug",
+      "/morse-code-printable-chart",
       "/morse-code-alphabet",
+      "/morse-code-reader",
       "/contact",
     ]) {
       await gotoRoute(page, route);
       await expectNoHorizontalOverflow(page);
     }
-  }
-});
+  });
+}

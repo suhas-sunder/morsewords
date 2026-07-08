@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Route } from "./+types/learn-morse-code";
 
+import { SeoSectionRailAd } from "~/client/components/ads/AdSenseAds";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
@@ -439,27 +440,30 @@ export default function LearnMorseCode() {
           title="Listen first, read second"
           description="Printed dots and dashes help you check a pattern. Listening helps you recognize the pattern without translating it piece by piece."
         >
-          <div className="grid gap-5 md:grid-cols-2">
-            <StaticTile>
-              <h3 className="mw-heading text-xl font-extrabold text-sky-950">
-                What charts do well
-              </h3>
-              <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
-                A chart is good for checking a letter, comparing pairs, and
-                seeing the whole system at once. Keep one nearby, especially
-                when you are learning new characters.
-              </p>
-            </StaticTile>
-            <StaticTile>
-              <h3 className="mw-heading text-xl font-extrabold text-sky-950">
-                What listening does better
-              </h3>
-              <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
-                Listening makes each character feel like a rhythm. That matters
-                because real practice is about hearing the shape quickly, not
-                stopping to count every mark on a page.
-              </p>
-            </StaticTile>
+          <div className="mw-seo-section-with-rail">
+            <div className="grid gap-5 md:grid-cols-2">
+              <StaticTile>
+                <h3 className="mw-heading text-xl font-extrabold text-sky-950">
+                  What charts do well
+                </h3>
+                <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
+                  A chart is good for checking a letter, comparing pairs, and
+                  seeing the whole system at once. Keep one nearby, especially
+                  when you are learning new characters.
+                </p>
+              </StaticTile>
+              <StaticTile>
+                <h3 className="mw-heading text-xl font-extrabold text-sky-950">
+                  What listening does better
+                </h3>
+                <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
+                  Listening makes each character feel like a rhythm. That matters
+                  because real practice is about hearing the shape quickly, not
+                  stopping to count every mark on a page.
+                </p>
+              </StaticTile>
+            </div>
+            <SeoSectionRailAd />
           </div>
         </SectionCard>
 

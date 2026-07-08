@@ -276,14 +276,13 @@ input[type="range"]:focus-visible {
   display: none;
   box-sizing: border-box;
   width: min(100%, var(--mw-ad-reserved-width));
-  height: var(--mw-ad-reserved-height);
-  max-height: var(--mw-ad-reserved-height);
+  min-height: var(--mw-ad-reserved-height);
   margin-left: auto;
   margin-right: auto;
-  overflow: hidden;
-  border: 2px dashed var(--mw-ad-border-color);
+  overflow: visible;
+  border: 0;
   border-radius: 0.75rem;
-  background: var(--mw-static-panel-soft-bg);
+  background: transparent;
   color: var(--mw-text-faint);
   isolation: isolate;
 }
@@ -321,14 +320,26 @@ input[type="range"]:focus-visible {
   z-index: 1;
   display: block !important;
   width: 100% !important;
+  min-height: 0 !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+}
+
+.mw-ad-shell[data-mw-ad-placeholder-visible="true"] {
+  height: var(--mw-ad-reserved-height);
+  min-height: var(--mw-ad-reserved-height);
+  overflow: hidden;
+}
+
+.mw-ad-shell[data-mw-ad-placeholder-visible="true"] .mw-ad-ins {
   height: 100% !important;
   min-height: 0 !important;
   max-height: 100% !important;
 }
 
 .mw-ad-ins iframe {
+  display: block;
   max-width: 100%;
-  max-height: 100%;
 }
 
 .mw-placement-label {
@@ -338,6 +349,8 @@ input[type="range"]:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  border: 2px dashed var(--mw-ad-border-color);
   border-radius: inherit;
   background: var(--mw-static-panel-soft-bg);
   color: var(--mw-text-faint);
@@ -358,10 +371,20 @@ input[type="range"]:focus-visible {
 .mw-ad-shell[data-mw-ad-filled="true"],
 .mw-ad-shell[data-mw-ad-status="filled"],
 .mw-ad-shell:has(.mw-ad-ins[data-ad-status="filled"]) {
+  height: auto;
+  min-height: 0;
+  max-height: none;
   overflow: visible;
-  border-color: transparent;
-  border-style: solid;
+  border: 0;
   background: transparent;
+}
+
+.mw-ad-shell[data-mw-ad-filled="true"] .mw-ad-ins,
+.mw-ad-shell[data-mw-ad-status="filled"] .mw-ad-ins,
+.mw-ad-shell:has(.mw-ad-ins[data-ad-status="filled"]) .mw-ad-ins {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
 }
 
 .mw-ad-shell[data-mw-ad-filled="true"] .mw-placement-label,
@@ -372,27 +395,27 @@ input[type="range"]:focus-visible {
 
 .mw-ad-top-banner {
   margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
 }
 
 .mw-ad-post-hero {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 0.75rem;
+  margin-bottom: 2.25rem;
 }
 
 .mw-ad-in-content {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .mw-ad-toolkit {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .mw-ad-book-player {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .mw-ad-printable-chart-square {
@@ -427,7 +450,16 @@ input[type="range"]:focus-visible {
   width: var(--mw-ad-reserved-width);
   min-height: var(--mw-ad-reserved-height);
   margin: 0;
+  opacity: 0;
+  pointer-events: none;
   border-radius: 0.75rem;
+}
+
+.mw-ad-sidebar[data-mw-ad-filled="true"],
+.mw-ad-sidebar[data-mw-ad-status="filled"],
+.mw-ad-sidebar:has(.mw-ad-ins[data-ad-status="filled"]) {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .mw-ad-sidebar .mw-ad-ins {
@@ -435,7 +467,7 @@ input[type="range"]:focus-visible {
   min-height: var(--mw-ad-reserved-height);
 }
 
-.mw-ad-sidebar .mw-placement-label {
+.mw-ad-shell[data-mw-ad-kind="vertical"] .mw-placement-label {
   font-size: 0.625rem;
   letter-spacing: 0.14em;
   writing-mode: vertical-rl;
@@ -1004,6 +1036,12 @@ main *::after {
 .relative.z-10 .mw-ad-shell,
 main .mw-ad-shell,
 .mw-ad-shell {
+  border: 0 !important;
+}
+
+.relative.z-10 .mw-ad-shell[data-mw-ad-placeholder-visible="true"] .mw-placement-label,
+main .mw-ad-shell[data-mw-ad-placeholder-visible="true"] .mw-placement-label,
+.mw-ad-shell[data-mw-ad-placeholder-visible="true"] .mw-placement-label {
   border: 2px dashed var(--mw-ad-border-color) !important;
 }
 
@@ -1016,8 +1054,7 @@ main .mw-ad-shell:has(.mw-ad-ins[data-ad-status="filled"]),
 .mw-ad-shell[data-mw-ad-filled="true"],
 .mw-ad-shell[data-mw-ad-status="filled"],
 .mw-ad-shell:has(.mw-ad-ins[data-ad-status="filled"]) {
-  border-color: transparent !important;
-  border-style: solid !important;
+  border: 0 !important;
   background: transparent !important;
 }
 

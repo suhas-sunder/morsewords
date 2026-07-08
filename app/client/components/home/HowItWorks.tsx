@@ -1,5 +1,7 @@
 import { Link } from "react-router";
 
+import { SeoSectionRailAd } from "~/client/components/ads/AdSenseAds";
+
 const summaryPoints = [
   {
     title: "Spacing legend",
@@ -298,28 +300,31 @@ S O S`}
                 </h3>
               </header>
 
-              <ul className="grid max-w-none list-disc gap-x-8 gap-y-2 pl-6 text-base leading-relaxed sm:text-lg lg:grid-cols-2">
-                <li>
-                  <strong>Decoded text looks wrong:</strong> check boundaries.
-                  Add 3 spaces between letters and 7 spaces between words.
-                </li>
-                <li>
-                  <strong>You see ? characters:</strong> at least one Morse
-                  chunk was not recognized.
-                </li>
-                <li>
-                  <strong>Encoding skipped characters:</strong> replace those
-                  characters with supported punctuation or plain letters.
-                </li>
-                <li>
-                  <strong>Pasted Morse has odd symbols:</strong> PDFs often
-                  replace hyphens with long dashes and dots with bullets.
-                </li>
-                <li>
-                  <strong>Audio is silent:</strong> confirm Sound is on, raise
-                  volume, and make sure your device is not muted.
-                </li>
-              </ul>
+              <div className="mw-seo-section-with-rail">
+                <ul className="grid max-w-none list-disc gap-x-8 gap-y-2 pl-6 text-base leading-relaxed sm:text-lg lg:grid-cols-2">
+                  <li>
+                    <strong>Decoded text looks wrong:</strong> check boundaries.
+                    Add 3 spaces between letters and 7 spaces between words.
+                  </li>
+                  <li>
+                    <strong>You see ? characters:</strong> at least one Morse
+                    chunk was not recognized.
+                  </li>
+                  <li>
+                    <strong>Encoding skipped characters:</strong> replace those
+                    characters with supported punctuation or plain letters.
+                  </li>
+                  <li>
+                    <strong>Pasted Morse has odd symbols:</strong> PDFs often
+                    replace hyphens with long dashes and dots with bullets.
+                  </li>
+                  <li>
+                    <strong>Audio is silent:</strong> confirm Sound is on, raise
+                    volume, and make sure your device is not muted.
+                  </li>
+                </ul>
+                <SeoSectionRailAd />
+              </div>
             </div>
           </section>
 

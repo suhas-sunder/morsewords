@@ -5,6 +5,7 @@ import type { Route } from "./+types/morse-code-audiobooks";
 
 import MorseBookLinkDirectory from "~/client/components/morse-code-books/MorseBookLinkDirectory";
 import MorseBookPagination from "~/client/components/morse-code-books/MorseBookPagination";
+import { SeoSectionRailAd } from "~/client/components/ads/AdSenseAds";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
@@ -542,25 +543,28 @@ export default function MorseCodeAudiobooksRoute({
         </div>
       </section>
 
-      <MorseBookLinkDirectory books={books} mode="audiobook" />
-
       <section className="mt-9 sm:mt-11" aria-labelledby="morse-audiobooks-flow">
-        <div className="max-w-[68ch]">
-          <Eyebrow>Listening flow</Eyebrow>
-          <h2
-            id="morse-audiobooks-flow"
-            className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
-          >
-            Browser-generated audio, not hosted files
-          </h2>
-          <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700 sm:text-lg">
-            These pages do not point to pre-made audio files. Choose the full
-            book or selected chapters, adjust speed, tone, Farnsworth timing,
-            player settings, and visual layers, then listen or watch from your
-            browser.
-          </p>
+        <div className="mw-seo-section-with-rail">
+          <div className="max-w-[68ch]">
+            <Eyebrow>Listening flow</Eyebrow>
+            <h2
+              id="morse-audiobooks-flow"
+              className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
+            >
+              Browser-generated audio, not hosted files
+            </h2>
+            <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700 sm:text-lg">
+              These pages do not point to pre-made audio files. Choose the full
+              book or selected chapters, adjust speed, tone, Farnsworth timing,
+              player settings, and visual layers, then listen or watch from your
+              browser.
+            </p>
+          </div>
+          <SeoSectionRailAd />
         </div>
       </section>
+
+      <MorseBookLinkDirectory books={books} mode="audiobook" />
 
       <BreadcrumbTrail current="Morse Code Audiobooks" placement="contentFooter" />
     </main>

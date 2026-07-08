@@ -8,6 +8,7 @@ import {
   PrintIcon,
   RulerIcon,
 } from "~/client/assets/svg/Icons";
+import { SeoSectionRailAd } from "~/client/components/ads/AdSenseAds";
 import {
   ActionButton,
   ActionLinkButton,
@@ -286,42 +287,45 @@ function TimingReference() {
       description="Morse is made from marks and gaps. The chart helps with patterns, but spacing is what keeps characters and words readable."
       layout="stacked"
     >
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {[
-          {
-            title: "Dot / dit",
-            text: "The shortest sounded mark. It is one timing unit in standard explanations.",
-          },
-          {
-            title: "Dash / dah",
-            text: "A longer sounded mark, usually three dot units.",
-          },
-          {
-            title: "Inside a character",
-            text: "Dots and dashes inside one character are separated by a short one-unit gap.",
-          },
-          {
-            title: "Between letters",
-            text: "Letters need a longer gap so patterns do not merge into a different character.",
-          },
-          {
-            title: "Between words",
-            text: "Word gaps are longer again. In typed Morse, a slash often marks that word break.",
-          },
-          {
-            title: "Slash convention",
-            text: "Use / as a visible word separator when repeated spaces may be trimmed by apps.",
-          },
-        ].map((item) => (
-          <StaticPanel as="article" key={item.title}>
-            <h3 className="mw-heading text-lg font-extrabold text-sky-950">
-              {item.title}
-            </h3>
-            <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
-              {item.text}
-            </p>
-          </StaticPanel>
-        ))}
+      <div className="mw-seo-section-with-rail">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              title: "Dot / dit",
+              text: "The shortest sounded mark. It is one timing unit in standard explanations.",
+            },
+            {
+              title: "Dash / dah",
+              text: "A longer sounded mark, usually three dot units.",
+            },
+            {
+              title: "Inside a character",
+              text: "Dots and dashes inside one character are separated by a short one-unit gap.",
+            },
+            {
+              title: "Between letters",
+              text: "Letters need a longer gap so patterns do not merge into a different character.",
+            },
+            {
+              title: "Between words",
+              text: "Word gaps are longer again. In typed Morse, a slash often marks that word break.",
+            },
+            {
+              title: "Slash convention",
+              text: "Use / as a visible word separator when repeated spaces may be trimmed by apps.",
+            },
+          ].map((item) => (
+            <StaticPanel as="article" key={item.title}>
+              <h3 className="mw-heading text-lg font-extrabold text-sky-950">
+                {item.title}
+              </h3>
+              <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
+                {item.text}
+              </p>
+            </StaticPanel>
+          ))}
+        </div>
+        <SeoSectionRailAd />
       </div>
       <div className="mt-5">
         <ActionLinks

@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 import {
   BookPlayerBannerAd,
-  InContentAd,
+  SeoSectionRailAd,
 } from "~/client/components/ads/AdSenseAds";
 import {
   DownloadIcon,
@@ -1088,12 +1088,6 @@ function MorseBookWorkspace({
     [seoSummary],
   );
   const shouldShowSeoSummaryAd = seoSummaryParagraphs.length >= 3;
-  const seoSummaryParagraphsBeforeAd = shouldShowSeoSummaryAd
-    ? seoSummaryParagraphs.slice(0, 2)
-    : seoSummaryParagraphs;
-  const seoSummaryParagraphsAfterAd = shouldShowSeoSummaryAd
-    ? seoSummaryParagraphs.slice(2)
-    : [];
   const relatedAuthorKey = book.author.join("\u0000");
   const relatedAuthorBooks = React.useMemo(
     () => getRelatedMorseBooksByAuthor(book.slug, book.author),
@@ -3743,29 +3737,26 @@ function MorseBookWorkspace({
             className="text-base leading-relaxed text-slate-700"
             data-testid="morse-book-seo-summary-body"
           >
-            <div className="mt-3 max-w-none columns-1 gap-7 space-y-3 lg:columns-2 lg:gap-8">
-              {seoSummaryParagraphsBeforeAd.map((paragraph, index) => (
-                <p
-                  className="break-inside-avoid"
-                  key={`${book.slug}-seo-summary-${index}`}
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-            {shouldShowSeoSummaryAd ? <InContentAd /> : null}
-            {seoSummaryParagraphsAfterAd.length > 0 ? (
+            <div
+              className={[
+                "mt-3",
+                shouldShowSeoSummaryAd ? "mw-seo-section-with-rail" : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+            >
               <div className="max-w-none columns-1 gap-7 space-y-3 lg:columns-2 lg:gap-8">
-                {seoSummaryParagraphsAfterAd.map((paragraph, index) => (
+                {seoSummaryParagraphs.map((paragraph, index) => (
                   <p
                     className="break-inside-avoid"
-                    key={`${book.slug}-seo-summary-${index + 2}`}
+                    key={`${book.slug}-seo-summary-${index}`}
                   >
                     {paragraph}
                   </p>
                 ))}
               </div>
-            ) : null}
+              {shouldShowSeoSummaryAd ? <SeoSectionRailAd /> : null}
+            </div>
           </div>
         </section>
       ) : null}

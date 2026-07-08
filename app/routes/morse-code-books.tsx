@@ -5,6 +5,7 @@ import type { Route } from "./+types/morse-code-books";
 
 import MorseBookLinkDirectory from "~/client/components/morse-code-books/MorseBookLinkDirectory";
 import MorseBookPagination from "~/client/components/morse-code-books/MorseBookPagination";
+import { SeoSectionRailAd } from "~/client/components/ads/AdSenseAds";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
@@ -740,10 +741,6 @@ export default function MorseCodeBooksHubRoute({
         </div>
       </section>
 
-      {!includeTestFixture ? (
-        <MorseBookLinkDirectory books={books} mode="book" />
-      ) : null}
-
       <section className="mt-9 sm:mt-11" aria-labelledby="morse-books-workflow">
         <div className="max-w-[68ch]">
           <Eyebrow>Chapter workflow</Eyebrow>
@@ -759,22 +756,29 @@ export default function MorseCodeBooksHubRoute({
             feels right.
           </p>
         </div>
-        <ol className="mt-6 grid gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-5">
-          {processSteps.map((step, index) => (
-            <li key={step.title} className="min-w-0">
-              <p className="mw-muted-label font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                Step {index + 1}
-              </p>
-              <h3 className="mw-heading mt-2 text-lg font-extrabold leading-snug text-sky-950">
-                {step.title}
-              </h3>
-              <p className="mw-text-muted mt-2 text-sm leading-relaxed text-slate-700">
-                {step.text}
-              </p>
-            </li>
-          ))}
-        </ol>
+        <div className="mw-seo-section-with-rail mt-6">
+          <ol className="grid gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-5">
+            {processSteps.map((step, index) => (
+              <li key={step.title} className="min-w-0">
+                <p className="mw-muted-label font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                  Step {index + 1}
+                </p>
+                <h3 className="mw-heading mt-2 text-lg font-extrabold leading-snug text-sky-950">
+                  {step.title}
+                </h3>
+                <p className="mw-text-muted mt-2 text-sm leading-relaxed text-slate-700">
+                  {step.text}
+                </p>
+              </li>
+            ))}
+          </ol>
+          <SeoSectionRailAd />
+        </div>
       </section>
+
+      {!includeTestFixture ? (
+        <MorseBookLinkDirectory books={books} mode="book" />
+      ) : null}
 
       <section className="mt-9 sm:mt-11" aria-labelledby="morse-books-own-text">
         <div className="grid gap-5 lg:grid-cols-[minmax(0,0.68fr)_minmax(240px,0.32fr)] lg:items-start">

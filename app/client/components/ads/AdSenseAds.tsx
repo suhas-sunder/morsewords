@@ -36,6 +36,7 @@ type AdSlotProps = ViewportRule & {
   placement: string;
   kind: AdKind;
   reservedSize: ReservedSize;
+  collapseWhenUnfilled?: boolean;
   placeholder?: boolean;
   label?: AdLabel;
   className?: string;
@@ -149,21 +150,9 @@ export function isInContentAdEligiblePath(pathname: string) {
   return !isAdsExcludedPath(pathname);
 }
 
-const SEO_SECTION_RAIL_ELIGIBLE_PATHS = new Set<string>([
-  ROUTES.alphabet,
-  ROUTES.numbers,
-  ROUTES.punctuation,
-  ROUTES.reader,
-  ROUTES.separateWords,
-  ROUTES.wordSeparator,
-]);
-
 export function isSeoSectionRailAdEligiblePath(pathname: string) {
   const normalizedPathname = normalizePathname(pathname);
-  return (
-    isInContentAdEligiblePath(normalizedPathname) &&
-    SEO_SECTION_RAIL_ELIGIBLE_PATHS.has(normalizedPathname)
-  );
+  return isInContentAdEligiblePath(normalizedPathname);
 }
 
 function isViewportEligible({ minWidth = 0, maxWidth }: ViewportRule) {
@@ -270,7 +259,7 @@ export function AdSenseScriptLoader() {
     <script
       async
       crossOrigin="anonymous"
-      data-mw-adsense-script="true"
+      id="mw-adsense-script"
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`}
     />
   );
@@ -281,6 +270,7 @@ export function AdSlot({
   placement,
   kind,
   reservedSize,
+  collapseWhenUnfilled = false,
   minWidth = TABLET_MIN_WIDTH,
   maxWidth,
   placeholder = true,
@@ -294,11 +284,12 @@ export function AdSlot({
     !isAdsExcludedPath(normalizedPathname) &&
     (isPathEligible ? isPathEligible(normalizedPathname) : true);
   const viewportEligible = useViewportEligibility({ minWidth, maxWidth });
-  const shouldRender = pathEligible;
+  const shouldRender = pathEligible && viewportEligible;
   const shouldRequestAd = pathEligible && viewportEligible;
   const adRef = React.useRef<HTMLModElement | null>(null);
   const status = useAdStatus(adRef, shouldRender);
-  const placeholderVisible = placeholder && status !== "filled";
+  const isFilled = status === "filled";
+  const placeholderVisible = placeholder && !collapseWhenUnfilled && !isFilled;
 
   React.useEffect(() => {
     if (!shouldRequestAd || !adRef.current) return;
@@ -322,9 +313,11 @@ export function AdSlot({
         className,
       ].filter(Boolean).join(" ")}
       data-mw-ad-filled={status === "filled" ? "true" : "false"}
+      data-mw-ad-fallback={collapseWhenUnfilled ? "collapse" : "placeholder"}
       data-mw-ad-has-placeholder={placeholder ? "true" : "false"}
       data-mw-ad-kind={kind}
       data-mw-ad-placement={placement}
+      data-mw-ad-placeholder-visible={placeholderVisible ? "true" : "false"}
       data-mw-ad-request-eligible={shouldRequestAd ? "true" : "false"}
       data-mw-ad-slot={slot}
       data-mw-ad-status={status}
@@ -380,7 +373,7 @@ export function PostHeroBannerAd({
       className={["mw-ad-post-hero", className].filter(Boolean).join(" ")}
       isPathEligible={isPostHeroAdEligiblePath}
       kind="banner"
-      minWidth={0}
+      minWidth={TABLET_MIN_WIDTH}
       placement="post-hero"
       reservedSize={{ width: 970, height: 90 }}
       slot={ADSENSE_SLOTS.postHeroBanner}
@@ -394,7 +387,7 @@ export function BookPlayerBannerAd() {
       className="mw-ad-book-player"
       isPathEligible={isBookPlayerAdEligiblePath}
       kind="banner"
-      minWidth={0}
+      minWidth={TABLET_MIN_WIDTH}
       placement="book-player-banner"
       reservedSize={{ width: 728, height: 90 }}
       slot={ADSENSE_SLOTS.postHeroBanner}
@@ -407,18 +400,22 @@ export function SidebarRailAds() {
     <>
       <AdSlot
         className="mw-ad-sidebar mw-ad-sidebar-left"
+        collapseWhenUnfilled
         isPathEligible={isSidebarAdEligiblePath}
         kind="vertical"
         minWidth={SIDEBAR_MIN_WIDTH}
+        placeholder={false}
         placement="left-sidebar"
         reservedSize={{ width: 120, height: 600 }}
         slot={ADSENSE_SLOTS.leftSidebar}
       />
       <AdSlot
         className="mw-ad-sidebar mw-ad-sidebar-right"
+        collapseWhenUnfilled
         isPathEligible={isSidebarAdEligiblePath}
         kind="vertical"
         minWidth={SIDEBAR_MIN_WIDTH}
+        placeholder={false}
         placement="right-sidebar"
         reservedSize={{ width: 120, height: 600 }}
         slot={ADSENSE_SLOTS.rightSidebar}
@@ -437,7 +434,7 @@ export function InContentAd({
       className={["mw-ad-in-content", className].filter(Boolean).join(" ")}
       isPathEligible={isInContentAdEligiblePath}
       kind="banner"
-      minWidth={0}
+      minWidth={TABLET_MIN_WIDTH}
       placement="in-content"
       reservedSize={{ width: 728, height: 90 }}
       slot={ADSENSE_SLOTS.inContent}
@@ -468,7 +465,7 @@ export function ToolkitBannerAd() {
     <AdSlot
       className="mw-ad-toolkit"
       kind="banner"
-      minWidth={0}
+      minWidth={TABLET_MIN_WIDTH}
       placement="toolkit-banner"
       reservedSize={{ width: 728, height: 90 }}
       slot={ADSENSE_SLOTS.toolkitBanner}
@@ -517,6 +514,7 @@ export function OptionalLongPageAd({
         .join(" ")}
       isPathEligible={isInContentAdEligiblePath}
       kind={kind}
+      minWidth={kind === "square" ? 0 : TABLET_MIN_WIDTH}
       placement={`optional-${kind}`}
       reservedSize={reservedSize}
       slot={slot}
