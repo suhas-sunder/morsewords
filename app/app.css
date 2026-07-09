@@ -1,15 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-heading: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --font-sans:
+    "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-heading:
+    "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-mono:
+    "Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
+    monospace;
 }
 
 :root {
   --font-body: var(--font-sans);
-  --font-heading: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --font-heading:
+    "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-mono:
+    "Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
+    monospace;
   --mw-page-bg: #f5f2eb;
   --mw-page-bg-soft: rgba(255, 250, 242, 0.35);
   --mw-surface: #fffdf8;
@@ -82,12 +92,18 @@
   --mw-focus-ring-muted: rgba(11, 36, 71, 0.34);
   --mw-range-focus-ring: rgba(11, 36, 71, 0.38);
   --mw-focus-control-tint: color-mix(in srgb, var(--mw-accent) 8%, transparent);
-  --mw-focus-field-bg: color-mix(in srgb, var(--mw-accent) 6%, var(--mw-input-hover-bg));
+  --mw-focus-field-bg: color-mix(
+    in srgb,
+    var(--mw-accent) 6%,
+    var(--mw-input-hover-bg)
+  );
   --mw-focus-link-bg: color-mix(in srgb, var(--mw-accent) 12%, transparent);
   --mw-focus-range-bg: color-mix(in srgb, var(--mw-accent) 16%, transparent);
   --mw-focus-control-inset: inset 0 0 0 999px var(--mw-focus-control-tint);
-  --mw-shadow-soft: 0 1px 1px rgba(15, 23, 42, 0.14), 0 2px 3px rgba(11, 36, 71, 0.13);
-  --mw-shadow-soft-disabled: 0 1px 1px rgba(15, 23, 42, 0.08), 0 2px 3px rgba(11, 36, 71, 0.07);
+  --mw-shadow-soft:
+    0 1px 1px rgba(15, 23, 42, 0.14), 0 2px 3px rgba(11, 36, 71, 0.13);
+  --mw-shadow-soft-disabled:
+    0 1px 1px rgba(15, 23, 42, 0.08), 0 2px 3px rgba(11, 36, 71, 0.07);
   --mw-shadow-panel: none;
   --mw-shadow-card: none;
   --mw-overlay: rgba(15, 23, 42, 0.4);
@@ -193,7 +209,8 @@
   --mw-focus-ring: #7dd3fc;
   --mw-focus-ring-muted: rgba(125, 211, 252, 0.48);
   --mw-range-focus-ring: rgba(125, 211, 252, 0.46);
-  --mw-shadow-soft: 0 1px 1px rgba(2, 8, 23, 0.68), 0 2px 4px rgba(3, 12, 24, 0.5);
+  --mw-shadow-soft:
+    0 1px 1px rgba(2, 8, 23, 0.68), 0 2px 4px rgba(3, 12, 24, 0.5);
   --mw-shadow-soft-disabled: 0 1px 1px rgba(2, 8, 23, 0.34);
   --mw-shadow-panel: none;
   --mw-shadow-card: none;
@@ -271,7 +288,11 @@ input[type="range"]:focus-visible {
   --mw-ad-reserved-width: 728px;
   --mw-ad-reserved-height: 90px;
   --mw-ad-sidebar-gap: 40px;
-  --mw-ad-border-color: color-mix(in srgb, var(--mw-text-faint) 30%, transparent);
+  --mw-ad-border-color: color-mix(
+    in srgb,
+    var(--mw-text-faint) 30%,
+    transparent
+  );
   position: relative;
   display: none;
   align-items: center;
@@ -290,7 +311,9 @@ input[type="range"]:focus-visible {
 }
 
 @media (max-width: 767.98px) {
-  .mw-signal-slot[data-mw-ad-kind="banner"]:not([data-mw-ad-placement="top-banner"]) {
+  .mw-signal-slot[data-mw-ad-kind="banner"]:not(
+      [data-mw-ad-placement="top-banner"]
+    ) {
     --mw-ad-reserved-height: 100px !important;
   }
 }
@@ -343,16 +366,31 @@ input[type="range"]:focus-visible {
   max-height: 100% !important;
 }
 
+.mw-signal-slot > .adsbygoogle,
+.mw-signal-slot ins.adsbygoogle {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.mw-signal-slot iframe,
 .mw-signal-unit iframe {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   max-width: 100%;
 }
 
 .mw-signal-unit > * {
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+.mw-signal-unit iframe[style*="position: absolute"],
+.mw-signal-unit iframe[style*="position:absolute"] {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
 }
 
 .mw-signal-caption {
@@ -402,7 +440,8 @@ input[type="range"]:focus-visible {
 
 .mw-signal-slot[data-mw-ad-filled="true"] .mw-signal-caption,
 .mw-signal-slot[data-mw-ad-status="filled"] .mw-signal-caption,
-.mw-signal-slot:has(.mw-signal-unit[data-ad-status="filled"]) .mw-signal-caption {
+.mw-signal-slot:has(.mw-signal-unit[data-ad-status="filled"])
+  .mw-signal-caption {
   display: none !important;
 }
 
@@ -624,11 +663,17 @@ input[type="range"]:focus-visible {
 }
 
 .mw-side-rail-left {
-  left: calc((100vw - 1160px) / 2 - var(--mw-ad-reserved-width) - var(--mw-ad-sidebar-gap));
+  left: calc(
+    (100vw - 1160px) / 2 - var(--mw-ad-reserved-width) -
+      var(--mw-ad-sidebar-gap)
+  );
 }
 
 .mw-side-rail-right {
-  right: calc((100vw - 1160px) / 2 - var(--mw-ad-reserved-width) - var(--mw-ad-sidebar-gap));
+  right: calc(
+    (100vw - 1160px) / 2 - var(--mw-ad-reserved-width) -
+      var(--mw-ad-sidebar-gap)
+  );
 }
 
 .mw-bg-page {
@@ -796,7 +841,9 @@ input[type="range"]:focus-visible {
   color: var(--mw-text-inverse) !important;
 }
 
-.mw-button-primary-global-hover:not(:disabled):not([aria-disabled="true"]):hover {
+.mw-button-primary-global-hover:not(:disabled):not(
+    [aria-disabled="true"]
+  ):hover {
   background: var(--mw-button-global-hover-bg) !important;
   color: var(--mw-text-inverse) !important;
 }
@@ -816,7 +863,9 @@ input[type="range"]:focus-visible {
   color: var(--mw-button-secondary-text) !important;
 }
 
-.mw-button-secondary-dark-hover:not(:disabled):not([aria-disabled="true"]):hover {
+.mw-button-secondary-dark-hover:not(:disabled):not(
+    [aria-disabled="true"]
+  ):hover {
   background: var(--mw-button-global-hover-bg) !important;
   color: var(--mw-button-global-hover-text) !important;
 }
@@ -884,7 +933,11 @@ input[type="range"]:focus-visible {
 }
 
 .mw-nav-input::placeholder {
-  color: color-mix(in srgb, var(--mw-nav-panel-text) 55%, transparent) !important;
+  color: color-mix(
+    in srgb,
+    var(--mw-nav-panel-text) 55%,
+    transparent
+  ) !important;
 }
 
 .mw-nav-link {
@@ -913,7 +966,11 @@ input[type="range"]:focus-visible {
 
 .mw-nav-item:hover .mw-nav-item-description,
 .mw-nav-item:focus-visible .mw-nav-item-description {
-  color: color-mix(in srgb, var(--mw-nav-panel-text) 78%, transparent) !important;
+  color: color-mix(
+    in srgb,
+    var(--mw-nav-panel-text) 78%,
+    transparent
+  ) !important;
 }
 
 .mw-nav-menu-scroll {
@@ -945,7 +1002,11 @@ input[type="range"]:focus-visible {
 }
 
 .mw-nav-item-description {
-  color: color-mix(in srgb, var(--mw-nav-panel-text) 65%, transparent) !important;
+  color: color-mix(
+    in srgb,
+    var(--mw-nav-panel-text) 65%,
+    transparent
+  ) !important;
 }
 
 .mw-nav-item-arrow {
@@ -958,7 +1019,11 @@ input[type="range"]:focus-visible {
 
 .mw-theme-toggle,
 .mw-nav-icon-button {
-  background: color-mix(in srgb, var(--mw-nav-bg-muted) 58%, transparent) !important;
+  background: color-mix(
+    in srgb,
+    var(--mw-nav-bg-muted) 58%,
+    transparent
+  ) !important;
   color: var(--mw-nav-text) !important;
   transition: none !important;
 }
@@ -1014,7 +1079,11 @@ input[type="range"]:focus-visible {
 }
 
 .mw-display-settings-switch {
-  background: color-mix(in srgb, var(--mw-nav-bg-muted) 48%, transparent) !important;
+  background: color-mix(
+    in srgb,
+    var(--mw-nav-bg-muted) 48%,
+    transparent
+  ) !important;
   color: var(--mw-nav-panel-text) !important;
 }
 
@@ -1028,12 +1097,20 @@ input[type="range"]:focus-visible {
 }
 
 .mw-display-settings-action:hover {
-  background: color-mix(in srgb, var(--mw-nav-panel-text) 14%, var(--mw-nav-bg-muted)) !important;
+  background: color-mix(
+    in srgb,
+    var(--mw-nav-panel-text) 14%,
+    var(--mw-nav-bg-muted)
+  ) !important;
   color: var(--mw-nav-muted) !important;
 }
 
 .mw-display-settings-track {
-  background: color-mix(in srgb, var(--mw-nav-panel-text) 28%, transparent) !important;
+  background: color-mix(
+    in srgb,
+    var(--mw-nav-panel-text) 28%,
+    transparent
+  ) !important;
 }
 
 .mw-display-settings-switch[aria-checked="true"] .mw-display-settings-track {
@@ -1169,7 +1246,9 @@ main .mw-signal-slot,
   border: 0 !important;
 }
 
-.relative.z-10 .mw-signal-slot[data-mw-ad-placeholder-visible="true"] .mw-signal-caption,
+.relative.z-10
+  .mw-signal-slot[data-mw-ad-placeholder-visible="true"]
+  .mw-signal-caption,
 main .mw-signal-slot[data-mw-ad-placeholder-visible="true"] .mw-signal-caption,
 .mw-signal-slot[data-mw-ad-placeholder-visible="true"] .mw-signal-caption {
   border: 2px dashed var(--mw-ad-border-color) !important;
@@ -1213,16 +1292,14 @@ main .mw-signal-slot:has(.mw-signal-unit[data-ad-status="filled"]),
   --mw-button-shadow-disabled: var(--mw-shadow-soft-disabled);
 }
 
-.mw-page-content
-  :where(button, [role="button"], summary, .mw-button-outline) {
+.mw-page-content :where(button, [role="button"], summary, .mw-button-outline) {
   border: 0 !important;
   box-shadow: var(--mw-button-shadow) !important;
   outline: none !important;
   outline-offset: 0;
 }
 
-.mw-page-content
-  :where(button, [role="button"], summary, .mw-button-outline),
+.mw-page-content :where(button, [role="button"], summary, .mw-button-outline),
 .mw-page-content
   :where(button, [role="button"], summary, .mw-button-outline)
   :where(*) {
@@ -1240,12 +1317,7 @@ main .mw-signal-slot:has(.mw-signal-unit[data-ad-status="filled"]),
 }
 
 .mw-page-content
-  :where(
-    button,
-    [role="button"],
-    summary,
-    .mw-button-outline
-  ):focus-visible {
+  :where(button, [role="button"], summary, .mw-button-outline):focus-visible {
   box-shadow: var(--mw-button-shadow), var(--mw-focus-control-inset) !important;
   outline: none !important;
   outline-offset: 0 !important;
@@ -1330,7 +1402,9 @@ body
 
 .mw-page-content
   :where(
-    button:not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]),
+    button:not(:disabled):not([aria-disabled="true"]):not(
+        [aria-pressed="true"]
+      ),
     [role="button"]:not([aria-disabled="true"]):not([aria-pressed="true"])
   ):hover {
   background-color: var(--mw-button-global-hover-bg) !important;
@@ -1355,20 +1429,23 @@ body
 }
 
 .mw-page-content :where(button, [role="button"]):disabled,
-.mw-page-content :where(button[aria-disabled="true"], [role="button"][aria-disabled="true"], .mw-button-outline[aria-disabled="true"]) {
+.mw-page-content
+  :where(
+    button[aria-disabled="true"],
+    [role="button"][aria-disabled="true"],
+    .mw-button-outline[aria-disabled="true"]
+  ) {
   box-shadow: var(--mw-button-shadow-disabled) !important;
   cursor: not-allowed;
 }
 
-@supports not (outline-color: color-mix(in srgb, currentColor 28%, transparent)) {
+@supports not (
+  outline-color: color-mix(in srgb, currentColor 28%, transparent)
+) {
   .mw-page-content
-    :where(
-      button,
-      [role="button"],
-      summary,
-      .mw-button-outline
-    ):focus-visible {
-    box-shadow: var(--mw-button-shadow), var(--mw-focus-control-inset) !important;
+    :where(button, [role="button"], summary, .mw-button-outline):focus-visible {
+    box-shadow:
+      var(--mw-button-shadow), var(--mw-focus-control-inset) !important;
     outline: none !important;
     outline-offset: 0 !important;
   }
@@ -1382,12 +1459,7 @@ body
 
 .mw-page-content
   .mw-non-home-page
-  :where(
-    button,
-    [role="button"],
-    summary,
-    .mw-button-outline
-  ):focus-visible {
+  :where(button, [role="button"], summary, .mw-button-outline):focus-visible {
   box-shadow: var(--mw-button-shadow), var(--mw-focus-control-inset) !important;
   outline: none !important;
   outline-offset: 0 !important;
@@ -1428,10 +1500,7 @@ body
 }
 
 .mw-page-content
-  :where(
-    .mw-non-home-page,
-    .mw-non-home-page ~ #morse-code-navigation
-  )
+  :where(.mw-non-home-page, .mw-non-home-page ~ #morse-code-navigation)
   :where(.mw-related-tool-link, .mw-related-quick-link, .mw-related-summary) {
   box-shadow: none !important;
   transition: none !important;
@@ -1464,10 +1533,7 @@ body
 }
 
 .mw-page-content
-  :where(
-    .mw-non-home-page,
-    .mw-non-home-page ~ #morse-code-navigation
-  )
+  :where(.mw-non-home-page, .mw-non-home-page ~ #morse-code-navigation)
   :where(
     .mw-related-tool-link,
     .mw-related-quick-link,
@@ -1493,11 +1559,12 @@ body
 }
 
 .mw-page-content
+  :where(.mw-non-home-page, .mw-non-home-page ~ #morse-code-navigation)
   :where(
-    .mw-non-home-page,
-    .mw-non-home-page ~ #morse-code-navigation
-  )
-  :where(.mw-related-tool-link, .mw-related-quick-link, .mw-related-summary):focus-visible {
+    .mw-related-tool-link,
+    .mw-related-quick-link,
+    .mw-related-summary
+  ):focus-visible {
   box-shadow: none !important;
   outline: none !important;
   outline-offset: 0 !important;
@@ -1507,83 +1574,82 @@ body
 }
 
 .mw-page-content
-  :where(
-    .mw-non-home-page,
-    .mw-non-home-page ~ #morse-code-navigation
-  )
+  :where(.mw-non-home-page, .mw-non-home-page ~ #morse-code-navigation)
   .mw-related-badge {
   background-color: transparent !important;
 }
 
-.mw-page-content #morse-code-navigation :where(.mw-toolkit-badge, .mw-related-badge) {
+.mw-page-content
+  #morse-code-navigation
+  :where(.mw-toolkit-badge, .mw-related-badge) {
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
 }
 
-.mw-page-content #morse-code-navigation .mw-toolkit-card-light:not([aria-disabled="true"]):hover,
-.mw-page-content #morse-code-navigation .mw-toolkit-card-light:not([aria-disabled="true"]):focus-visible {
+.mw-page-content
+  #morse-code-navigation
+  .mw-toolkit-card-light:not([aria-disabled="true"]):hover,
+.mw-page-content
+  #morse-code-navigation
+  .mw-toolkit-card-light:not([aria-disabled="true"]):focus-visible {
   background-color: var(--mw-button-secondary-hover) !important;
   color: var(--mw-link-hover) !important;
 }
 
-.mw-page-content #morse-code-navigation .mw-toolkit-summary:not([aria-disabled="true"]):hover,
-.mw-page-content #morse-code-navigation .mw-toolkit-summary:not([aria-disabled="true"]):focus-visible {
+.mw-page-content
+  #morse-code-navigation
+  .mw-toolkit-summary:not([aria-disabled="true"]):hover,
+.mw-page-content
+  #morse-code-navigation
+  .mw-toolkit-summary:not([aria-disabled="true"]):focus-visible {
   background-color: var(--mw-button-global-hover-bg) !important;
   color: var(--mw-button-global-hover-text) !important;
 }
 
-.mw-page-content #morse-code-navigation .mw-toolkit-card-light:hover .mw-toolkit-badge,
-.mw-page-content #morse-code-navigation .mw-toolkit-card-light:focus-visible .mw-toolkit-badge {
+.mw-page-content
+  #morse-code-navigation
+  .mw-toolkit-card-light:hover
+  .mw-toolkit-badge,
+.mw-page-content
+  #morse-code-navigation
+  .mw-toolkit-card-light:focus-visible
+  .mw-toolkit-badge {
   background: transparent !important;
   color: currentColor !important;
 }
 
 .mw-page-content
-  :where(
-    .mw-non-home-page,
-    .mw-non-home-page ~ #morse-code-navigation
-  )
-  :where(.mw-related-tool-link, .mw-related-summary):not([aria-disabled="true"]):hover,
+  :where(.mw-non-home-page, .mw-non-home-page ~ #morse-code-navigation)
+  :where(.mw-related-tool-link, .mw-related-summary):not(
+    [aria-disabled="true"]
+  ):hover,
 .mw-page-content
-  :where(
-    .mw-non-home-page,
-    .mw-non-home-page ~ #morse-code-navigation
-  )
-  :where(.mw-related-tool-link, .mw-related-summary):not([aria-disabled="true"]):focus-visible {
+  :where(.mw-non-home-page, .mw-non-home-page ~ #morse-code-navigation)
+  :where(.mw-related-tool-link, .mw-related-summary):not(
+    [aria-disabled="true"]
+  ):focus-visible {
   background-color: var(--mw-button-secondary-hover) !important;
   color: var(--mw-link-hover) !important;
 }
 
 .mw-page-content
-  :where(
-    .mw-non-home-page,
-    .mw-non-home-page ~ #morse-code-navigation
-  )
+  :where(.mw-non-home-page, .mw-non-home-page ~ #morse-code-navigation)
   :where(.mw-related-tool-link, .mw-related-summary):hover
   :where(*),
 .mw-page-content
-  :where(
-    .mw-non-home-page,
-    .mw-non-home-page ~ #morse-code-navigation
-  )
+  :where(.mw-non-home-page, .mw-non-home-page ~ #morse-code-navigation)
   :where(.mw-related-tool-link, .mw-related-summary):focus-visible
   :where(*) {
   color: currentColor !important;
 }
 
 .mw-page-content
-  :where(
-    .mw-non-home-page,
-    .mw-non-home-page ~ #morse-code-navigation
-  )
+  :where(.mw-non-home-page, .mw-non-home-page ~ #morse-code-navigation)
   :where(.mw-related-tool-link, .mw-related-summary):hover
   .mw-related-badge,
 .mw-page-content
-  :where(
-    .mw-non-home-page,
-    .mw-non-home-page ~ #morse-code-navigation
-  )
+  :where(.mw-non-home-page, .mw-non-home-page ~ #morse-code-navigation)
   :where(.mw-related-tool-link, .mw-related-summary):focus-visible
   .mw-related-badge {
   background-color: transparent !important;
@@ -1601,7 +1667,10 @@ body
 }
 
 .mw-page-content .mw-non-home-page .mw-light-interactive-link:hover :where(*),
-.mw-page-content .mw-non-home-page .mw-light-interactive-link:focus-visible :where(*) {
+.mw-page-content
+  .mw-non-home-page
+  .mw-light-interactive-link:focus-visible
+  :where(*) {
   color: currentColor !important;
 }
 
@@ -1631,7 +1700,8 @@ body
 }
 
 .mw-page-content :where(input:not([type="range"]), textarea, select):focus,
-.mw-page-content :where(input:not([type="range"]), textarea, select):focus-within {
+.mw-page-content
+  :where(input:not([type="range"]), textarea, select):focus-within {
   border-color: transparent !important;
   outline: none !important;
   outline-offset: 0 !important;
@@ -1641,7 +1711,8 @@ body
   --tw-ring-shadow: 0 0 #0000 !important;
 }
 
-.mw-page-content :where(input:not([type="range"]), textarea, select):focus-visible {
+.mw-page-content
+  :where(input:not([type="range"]), textarea, select):focus-visible {
   background-color: var(--mw-focus-field-bg) !important;
   border-color: transparent !important;
   caret-color: var(--mw-accent);
@@ -1653,14 +1724,19 @@ body
   --tw-ring-shadow: 0 0 #0000 !important;
 }
 
-.mw-page-content :where(.mw-panel-dark, .mw-output-panel):where(:hover, :focus-within) {
+.mw-page-content
+  :where(.mw-panel-dark, .mw-output-panel):where(:hover, :focus-within) {
   background: var(--mw-panel-dark) !important;
   color: var(--mw-output-text) !important;
 }
 
 .mw-page-content
   :where(.mw-panel-dark, .mw-output-panel)
-  :where(textarea[readonly], textarea[readonly]:focus, textarea[readonly]:focus-visible) {
+  :where(
+    textarea[readonly],
+    textarea[readonly]:focus,
+    textarea[readonly]:focus-visible
+  ) {
   background-color: transparent !important;
   color: var(--mw-output-text) !important;
   caret-color: var(--mw-accent);
@@ -1696,7 +1772,11 @@ body
 }
 
 .mw-page-content
-  a:not(.mw-button-outline):not(.mw-related-tool-link):not(.mw-related-quick-link):not(.mw-related-summary):not(.mw-toolkit-card):not(.mw-toolkit-subcard):not(.mw-toolkit-summary):focus-visible {
+  a:not(.mw-button-outline):not(.mw-related-tool-link):not(
+    .mw-related-quick-link
+  ):not(.mw-related-summary):not(.mw-toolkit-card):not(.mw-toolkit-subcard):not(
+    .mw-toolkit-summary
+  ):focus-visible {
   background-color: var(--mw-focus-link-bg) !important;
   color: var(--mw-link-hover) !important;
   outline: none !important;
@@ -1708,7 +1788,16 @@ body
 }
 
 .mw-page-content
-  :where(button, [role="button"], summary, .mw-button-outline, input, textarea, select, a):where(:focus, :focus-visible),
+  :where(
+    button,
+    [role="button"],
+    summary,
+    .mw-button-outline,
+    input,
+    textarea,
+    select,
+    a
+  ):where(:focus, :focus-visible),
 .mw-page-content :where([class*="focus-within:outline"]):focus-within,
 .mw-nav-link:focus-visible,
 .mw-nav-item:focus-visible,
@@ -1735,19 +1824,44 @@ body
   padding: 0;
 }
 
-:root[data-theme="dark"] .mw-page-content :where(.mw-static-surface, .mw-static-surface-soft, .mw-static-panel, .mw-static-tile, .mw-static-code, .mw-surface-card, .mw-surface-card-soft, .mw-surface-card-quiet, .mw-utility-panel) {
+:root[data-theme="dark"]
+  .mw-page-content
+  :where(
+    .mw-static-surface,
+    .mw-static-surface-soft,
+    .mw-static-panel,
+    .mw-static-tile,
+    .mw-static-code,
+    .mw-surface-card,
+    .mw-surface-card-soft,
+    .mw-surface-card-quiet,
+    .mw-utility-panel
+  ) {
   box-shadow: var(--mw-shadow-card) !important;
 }
 
-:root[data-theme="dark"] .mw-page-content :where(.mw-panel-dark, .mw-output-bg, .mw-output-panel) {
+:root[data-theme="dark"]
+  .mw-page-content
+  :where(.mw-panel-dark, .mw-output-bg, .mw-output-panel) {
   box-shadow: var(--mw-shadow-panel) !important;
 }
 
-:root[data-theme="dark"] .mw-page-content :where([class*="bg-[#fffdf8]"], [class*="bg-[#fffaf2]"], [class*="bg-[#f7f4ee]"], [class*="bg-white/"], .bg-white, .bg-sky-50) {
+:root[data-theme="dark"]
+  .mw-page-content
+  :where(
+    [class*="bg-[#fffdf8]"],
+    [class*="bg-[#fffaf2]"],
+    [class*="bg-[#f7f4ee]"],
+    [class*="bg-white/"],
+    .bg-white,
+    .bg-sky-50
+  ) {
   background-color: var(--mw-surface-card) !important;
 }
 
-:root[data-theme="dark"] .mw-page-content :where([class*="bg-[#f2eee6]"], [class*="bg-[#f7f4ee]"], .bg-slate-100) {
+:root[data-theme="dark"]
+  .mw-page-content
+  :where([class*="bg-[#f2eee6]"], [class*="bg-[#f7f4ee]"], .bg-slate-100) {
   background-color: var(--mw-code-bg) !important;
 }
 
@@ -1763,31 +1877,56 @@ body
   background-color: var(--mw-accent-soft) !important;
 }
 
-:root[data-theme="dark"] .mw-page-content :where([class*="text-[#0b2447]"], [class*="text-[#08324f]"], .text-slate-950, .text-slate-900, .text-slate-800) {
+:root[data-theme="dark"]
+  .mw-page-content
+  :where(
+    [class*="text-[#0b2447]"],
+    [class*="text-[#08324f]"],
+    .text-slate-950,
+    .text-slate-900,
+    .text-slate-800
+  ) {
   color: var(--mw-text) !important;
 }
 
-:root[data-theme="dark"] .mw-page-content :where(.text-slate-700, .text-slate-600) {
+:root[data-theme="dark"]
+  .mw-page-content
+  :where(.text-slate-700, .text-slate-600) {
   color: var(--mw-text-muted) !important;
 }
 
-:root[data-theme="dark"] .mw-page-content :where(.text-slate-500, .text-slate-400) {
+:root[data-theme="dark"]
+  .mw-page-content
+  :where(.text-slate-500, .text-slate-400) {
   color: var(--mw-text-faint) !important;
 }
 
-:root[data-theme="dark"] .mw-page-content :where(.text-sky-950, .text-sky-900, .text-sky-800) {
+:root[data-theme="dark"]
+  .mw-page-content
+  :where(.text-sky-950, .text-sky-900, .text-sky-800) {
   color: var(--mw-heading) !important;
 }
 
-:root[data-theme="dark"] .mw-page-content :where(a.text-sky-950, a.text-sky-900, a.text-sky-800) {
+:root[data-theme="dark"]
+  .mw-page-content
+  :where(a.text-sky-950, a.text-sky-900, a.text-sky-800) {
   color: var(--mw-link) !important;
 }
 
-:root[data-theme="dark"] .mw-page-content :where(.text-sky-100, .text-sky-50, .text-slate-100, .text-slate-200, .text-slate-300) {
+:root[data-theme="dark"]
+  .mw-page-content
+  :where(
+    .text-sky-100,
+    .text-sky-50,
+    .text-slate-100,
+    .text-slate-200,
+    .text-slate-300
+  ) {
   color: var(--mw-output-text) !important;
 }
 
-:root[data-theme="dark"] .mw-page-content
+:root[data-theme="dark"]
+  .mw-page-content
   :where(
     button,
     [role="button"]:not(.mw-live-preview-toggle-frame),
@@ -1806,7 +1945,9 @@ body
   color: var(--mw-input-text) !important;
 }
 
-:root[data-theme="dark"] .mw-page-content :where(input, textarea, select)::placeholder {
+:root[data-theme="dark"]
+  .mw-page-content
+  :where(input, textarea, select)::placeholder {
   color: var(--mw-input-placeholder) !important;
   opacity: 1;
 }
@@ -1816,7 +1957,8 @@ body
   color: var(--mw-button-secondary-text) !important;
 }
 
-:root[data-theme="dark"] .mw-page-content
+:root[data-theme="dark"]
+  .mw-page-content
   :where(
     button[class*="bg-[#fffdf8]"],
     button[class*="bg-[#fffaf2]"],
@@ -1830,7 +1972,8 @@ body
   color: var(--mw-button-secondary-text) !important;
 }
 
-:root[data-theme="dark"] .mw-page-content
+:root[data-theme="dark"]
+  .mw-page-content
   :where(
     button[class*="bg-[#fffdf8]"],
     button[class*="bg-[#fffaf2]"],
@@ -1843,15 +1986,20 @@ body
 }
 
 .mw-page-content .mw-live-preview-toggle-frame[role="button"],
-.mw-page-content .mw-live-preview-toggle-frame[role="button"]:where(:hover, :active),
-:root[data-theme="dark"] .mw-page-content .mw-live-preview-toggle-frame[role="button"]:where(:hover, :active) {
+.mw-page-content
+  .mw-live-preview-toggle-frame[role="button"]:where(:hover, :active),
+:root[data-theme="dark"]
+  .mw-page-content
+  .mw-live-preview-toggle-frame[role="button"]:where(:hover, :active) {
   background-color: var(--mw-live-preview-frame-bg) !important;
   box-shadow: none !important;
   color: var(--mw-live-preview-frame-color) !important;
 }
 
 .mw-page-content .mw-live-preview-toggle-frame[role="button"]:focus-visible,
-:root[data-theme="dark"] .mw-page-content .mw-live-preview-toggle-frame[role="button"]:focus-visible {
+:root[data-theme="dark"]
+  .mw-page-content
+  .mw-live-preview-toggle-frame[role="button"]:focus-visible {
   background-color: var(--mw-live-preview-frame-bg) !important;
   box-shadow: none !important;
   color: var(--mw-live-preview-frame-color) !important;
