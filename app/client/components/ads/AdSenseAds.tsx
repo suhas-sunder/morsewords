@@ -4,6 +4,7 @@ import { useLocation } from "react-router";
 import { ROUTES } from "~/client/data/routes";
 
 export const ADSENSE_CLIENT_ID = "ca-pub-4810616735714570";
+const ADSENSE_AD_FORMAT = "auto";
 
 export const ADSENSE_SLOTS = {
   topBanner: "3254861050",
