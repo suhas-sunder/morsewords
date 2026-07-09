@@ -4,7 +4,6 @@ import { useLocation } from "react-router";
 import { ROUTES } from "~/client/data/routes";
 
 export const ADSENSE_CLIENT_ID = "ca-pub-4810616735714570";
-const ADSENSE_AD_FORMAT = "auto";
 
 export const ADSENSE_SLOTS = {
   topBanner: "3254861050",
@@ -50,11 +49,6 @@ const SIDEBAR_MIN_WIDTH = 1536;
 
 function canAccessDOM() {
   return typeof window !== "undefined" && typeof document !== "undefined";
-}
-
-function adFormatForSlot(slot: string) {
-  if (slot === ADSENSE_SLOTS.topBanner) return "horizontal";
-  return "auto";
 }
 
 const useIsomorphicLayoutEffect =
@@ -342,6 +336,31 @@ export function AdSlot({
   } as React.CSSProperties;
   const placementTestId = `mw-ad-slot-${placement}`;
 
+  function adFormatForSlot(slot: string) {
+    if (slot === ADSENSE_SLOTS.topBanner) return "horizontal";
+    return "auto";
+  }
+
+  function adStyleForSlot(slot: string): React.CSSProperties {
+    if (slot === ADSENSE_SLOTS.topBanner) {
+      return {
+        display: "block",
+        margin: "0 auto",
+      };
+    }
+
+    return {
+      display: "block",
+      margin: "0 auto",
+      width: "100%",
+    };
+  }
+
+  function fullWidthResponsiveForSlot(slot: string) {
+    if (slot === ADSENSE_SLOTS.topBanner) return undefined;
+    return "true";
+  }
+
   return (
     <aside
       aria-label={label}
@@ -365,16 +384,12 @@ export function AdSlot({
       <ins
         ref={adRef}
         className="adsbygoogle mw-signal-unit"
-        style={{
-          display: "block",
-          margin: "0 auto",
-          width: "100%",
-        }}
+        style={adStyleForSlot(slot)}
         data-ad-client={ADSENSE_CLIENT_ID}
-        data-ad-format={ADSENSE_AD_FORMAT}
+        data-ad-format={adFormatForSlot(slot)}
         data-ad-slot={slot}
         data-adtest={import.meta.env.DEV ? "on" : undefined}
-        data-full-width-responsive="true"
+        data-full-width-responsive={fullWidthResponsiveForSlot(slot)}
       />
       {placeholder ? (
         <div
