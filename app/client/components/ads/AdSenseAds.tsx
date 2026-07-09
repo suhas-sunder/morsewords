@@ -326,7 +326,7 @@ export function AdSlot({
   const viewportEligible = useViewportEligibility({ minWidth, maxWidth });
   const shouldRequestAd = pathEligible && viewportEligible;
   const adRef = React.useRef<HTMLModElement | null>(null);
-  const status = useAdStatus(adRef, pathEligible);
+  const status = useAdStatus(adRef, shouldRequestAd);
   const isFilled = status === "filled";
   const placeholderVisible = placeholder && !isFilled;
 
@@ -388,16 +388,18 @@ export function AdSlot({
       data-testid={placementTestId}
       style={customProperties}
     >
-      <ins
-        ref={adRef}
-        className="adsbygoogle mw-signal-unit"
-        style={adStyleForSlot(slot)}
-        data-ad-client={ADSENSE_CLIENT_ID}
-        data-ad-format={adFormatForSlot(slot)}
-        data-ad-slot={slot}
-        data-adtest={import.meta.env.DEV ? "on" : undefined}
-        data-full-width-responsive={fullWidthResponsiveForSlot(slot)}
-      />
+      {shouldRequestAd ? (
+        <ins
+          ref={adRef}
+          className="adsbygoogle mw-signal-unit"
+          style={adStyleForSlot(slot)}
+          data-ad-client={ADSENSE_CLIENT_ID}
+          data-ad-format={adFormatForSlot(slot)}
+          data-ad-slot={slot}
+          data-adtest={import.meta.env.DEV ? "on" : undefined}
+          data-full-width-responsive={fullWidthResponsiveForSlot(slot)}
+        />
+      ) : null}
       {placeholder ? (
         <div
           aria-hidden="true"
