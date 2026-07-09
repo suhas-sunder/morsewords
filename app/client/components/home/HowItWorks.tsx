@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 
-import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
+import {
+  OptionalSquareAd,
+} from "~/client/components/ads/AdSenseAds";
 
 const summaryPoints = [
   {
@@ -209,37 +211,43 @@ S O S`}
               </header>
 
               <div className="max-w-none">
-                <div className="grid gap-6 sm:grid-cols-2">
+                <div className="mw-support-ad-grid-tight">
                   <div>
-                    <p className="mw-heading text-base font-extrabold text-sky-950">
-                      For best decoding
+                    <div className="grid gap-6 sm:grid-cols-2">
+                      <div>
+                        <p className="mw-heading text-base font-extrabold text-sky-950">
+                          For best decoding
+                        </p>
+                        <ul className="mt-3 list-disc space-y-2 pl-6 text-base leading-relaxed">
+                          <li>3 spaces between letters</li>
+                          <li>7 spaces between words</li>
+                          <li>/ can replace a word gap</li>
+                          <li>New lines count as word gaps</li>
+                        </ul>
+                      </div>
+
+                      <div>
+                        <p className="mw-heading text-base font-extrabold text-sky-950">
+                          Common paste problems
+                        </p>
+                        <ul className="mt-3 list-disc space-y-2 pl-6 text-base leading-relaxed">
+                          <li>Fancy dashes from PDFs</li>
+                          <li>Dots rendered as bullets</li>
+                          <li>Mixed separators</li>
+                          <li>Extra punctuation mixed into Morse</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <p className="mw-text-soft mt-6 max-w-[58ch] text-base leading-relaxed text-slate-600 sm:text-lg">
+                      If you need to preserve exact spacing inside a single word,
+                      this tool favors predictable normalization and consistent
+                      separators instead.
                     </p>
-                    <ul className="mt-3 list-disc space-y-2 pl-6 text-base leading-relaxed">
-                      <li>3 spaces between letters</li>
-                      <li>7 spaces between words</li>
-                      <li>/ can replace a word gap</li>
-                      <li>New lines count as word gaps</li>
-                    </ul>
                   </div>
 
-                  <div>
-                    <p className="mw-heading text-base font-extrabold text-sky-950">
-                      Common paste problems
-                    </p>
-                    <ul className="mt-3 list-disc space-y-2 pl-6 text-base leading-relaxed">
-                      <li>Fancy dashes from PDFs</li>
-                      <li>Dots rendered as bullets</li>
-                      <li>Mixed separators</li>
-                      <li>Extra punctuation mixed into Morse</li>
-                    </ul>
-                  </div>
+                  <OptionalSquareAd className="mw-signal-home-seo" />
                 </div>
-
-                <p className="mw-text-soft mt-6 max-w-[58ch] text-base leading-relaxed text-slate-600 sm:text-lg">
-                  If you need to preserve exact spacing inside a single word,
-                  this tool favors predictable normalization and consistent
-                  separators instead.
-                </p>
               </div>
             </div>
           </section>
@@ -327,8 +335,6 @@ S O S`}
             </div>
           </section>
 
-          <SeoSectionInlineAd />
-
           <section id="learning-flow">
             <div className="grid gap-6 lg:grid-cols-[235px_minmax(0,1fr)]">
               <header>
@@ -380,7 +386,7 @@ S O S`}
                   ))}
                 </div>
 
-                <p className="mw-text-soft mt-5 max-w-[58ch] text-base leading-relaxed text-slate-600 sm:text-lg">
+                <p className="mw-text-soft mt-6 max-w-[58ch] text-base leading-relaxed text-slate-600 sm:text-lg">
                   For the next step, open{" "}
                   <Link
                     to="/audio"

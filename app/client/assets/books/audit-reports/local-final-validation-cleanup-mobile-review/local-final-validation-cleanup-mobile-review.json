@@ -1,29 +1,30 @@
 {
   "schemaVersion": 1,
   "reportName": "local-final-validation-cleanup-mobile-review",
-  "generatedAt": "2026-07-01T06:49:28.114Z",
+  "generatedAt": "2026-07-09T04:39:29.320Z",
   "executiveResult": "Local final validation, cleanup, and mobile review passed",
-  "branchName": "morsewords-local-final-validation-cleanup-mobile-review-jun-2026",
-  "currentMainCommitChecked": "66bb75e63863775c1f9e4f52118170c35ea35ace",
-  "expectedMainCommit": "66bb75e63863775c1f9e4f52118170c35ea35ace",
+  "branchName": "main",
+  "currentMainCommitChecked": "b7adc81ddeb8fa71a75ed91aa8deb48bc0f9e81a",
+  "requiredCompletionCommit": "c3084755f79583499b51ee6d38b808c3c211d007",
+  "requiredCompletionCommitPresent": true,
   "localOnlyScopeStatement": "This branch completed repo-local readiness checks using local files, local app serving, and the ignored local Cloudflare updated export folder. It did not wait for or validate Netlify production route deployment.",
   "productionNetlifyValidationDeferredStatement": "Production Netlify route validation is deferred and was not used as a blocker in this local completion branch.",
   "assetHostPolicy": {
     "productionAssetHost": "https://assets.morsewords.com",
     "productionPageHost": "https://www.morsewords.com",
-    "localValidationAssetHost": "http://127.0.0.1:49857",
+    "localValidationAssetHost": "http://127.0.0.1:54547",
     "note": "Production uses https://assets.morsewords.com; local validation serves app/client/assets/books/cloudflare-updated-export over a temporary localhost HTTP server."
   },
   "bookSubsystem": {
-    "generatedBookCount": 519,
-    "seoSummaryCount": 519,
-    "seoExpectedSummaryCount": 519,
-    "startupPreviewCount": 519,
-    "bookUrlCount": 519,
-    "audiobookUrlCount": 519,
-    "printUrlCount": 488,
-    "xmlSitemapUrlCount": 1651,
-    "routeInventoryCount": 174
+    "generatedBookCount": 526,
+    "seoSummaryCount": 526,
+    "seoExpectedSummaryCount": 526,
+    "startupPreviewCount": 526,
+    "bookUrlCount": 526,
+    "audiobookUrlCount": 526,
+    "printUrlCount": 526,
+    "xmlSitemapUrlCount": 1707,
+    "routeInventoryCount": 702
   },
   "contentSafetySuitability": {
     "suitabilityCounts": {
@@ -46,11 +47,11 @@
   },
   "updatedCloudflareExportReadiness": {
     "sourceFolder": "app/client/assets/books/cloudflare-updated-export",
-    "fileCount": 521,
-    "bookPayloadCount": 519,
+    "fileCount": 9,
+    "bookPayloadCount": 7,
     "manifestCount": 2,
     "trackedFileCount": 0,
-    "localServedBaseUrl": "http://127.0.0.1:49857",
+    "localServedBaseUrl": "http://127.0.0.1:54547",
     "requiredFiles": [
       {
         "sourcePath": "public-manifest.json",
@@ -61,48 +62,120 @@
         "destinationPath": "upload-manifest.json"
       },
       {
-        "sourcePath": "books/*.json",
-        "destinationPath": "books/*.json"
+        "sourcePath": "books/the-cable-game.json",
+        "destinationPath": "books/the-cable-game.json"
+      },
+      {
+        "sourcePath": "books/the-gold-bug.json",
+        "destinationPath": "books/the-gold-bug.json"
+      },
+      {
+        "sourcePath": "books/the-mystery-of-the-sycamore.json",
+        "destinationPath": "books/the-mystery-of-the-sycamore.json"
+      },
+      {
+        "sourcePath": "books/the-night-operator.json",
+        "destinationPath": "books/the-night-operator.json"
+      },
+      {
+        "sourcePath": "books/the-story-of-the-atlantic-cable.json",
+        "destinationPath": "books/the-story-of-the-atlantic-cable.json"
+      },
+      {
+        "sourcePath": "books/the-wire-devils.json",
+        "destinationPath": "books/the-wire-devils.json"
+      },
+      {
+        "sourcePath": "books/wired-love-a-romance-of-dots-and-dashes.json",
+        "destinationPath": "books/wired-love-a-romance-of-dots-and-dashes.json"
       }
     ],
-    "replacementType": "full",
+    "replacementType": "incremental",
     "payloadIssues": []
   },
   "localPrintRouteResult": {
     "summary": "Local print routes returned 200, showed suitability notes, avoided unavailable text, and did not serialize full book sections in SSR.",
     "routesChecked": [
       {
-        "path": "/morse-code-books/walden/print",
+        "path": "/morse-code-books/the-cable-game/print",
         "status": 200,
-        "htmlBytes": 417833,
+        "htmlBytes": 453449,
         "passed": true,
         "checks": [
           "status=200",
-          "htmlBytes=417833",
+          "htmlBytes=453449",
           "suitability-note-present",
           "no-full-section-serialization"
         ]
       },
       {
-        "path": "/morse-code-books/the-call-of-cthulhu/print",
+        "path": "/morse-code-books/the-gold-bug/print",
         "status": 200,
-        "htmlBytes": 409050,
+        "htmlBytes": 453409,
         "passed": true,
         "checks": [
           "status=200",
-          "htmlBytes=409050",
+          "htmlBytes=453409",
           "suitability-note-present",
           "no-full-section-serialization"
         ]
       },
       {
-        "path": "/morse-code-books/the-adventures-of-roderick-random/print",
+        "path": "/morse-code-books/the-mystery-of-the-sycamore/print",
         "status": 200,
-        "htmlBytes": 409387,
+        "htmlBytes": 453841,
         "passed": true,
         "checks": [
           "status=200",
-          "htmlBytes=409387",
+          "htmlBytes=453841",
+          "suitability-note-present",
+          "no-full-section-serialization"
+        ]
+      },
+      {
+        "path": "/morse-code-books/the-night-operator/print",
+        "status": 200,
+        "htmlBytes": 453584,
+        "passed": true,
+        "checks": [
+          "status=200",
+          "htmlBytes=453584",
+          "suitability-note-present",
+          "no-full-section-serialization"
+        ]
+      },
+      {
+        "path": "/morse-code-books/the-story-of-the-atlantic-cable/print",
+        "status": 200,
+        "htmlBytes": 453982,
+        "passed": true,
+        "checks": [
+          "status=200",
+          "htmlBytes=453982",
+          "suitability-note-present",
+          "no-full-section-serialization"
+        ]
+      },
+      {
+        "path": "/morse-code-books/the-wire-devils/print",
+        "status": 200,
+        "htmlBytes": 453480,
+        "passed": true,
+        "checks": [
+          "status=200",
+          "htmlBytes=453480",
+          "suitability-note-present",
+          "no-full-section-serialization"
+        ]
+      },
+      {
+        "path": "/morse-code-books/wired-love-a-romance-of-dots-and-dashes/print",
+        "status": 200,
+        "htmlBytes": 454271,
+        "passed": true,
+        "checks": [
+          "status=200",
+          "htmlBytes=454271",
           "suitability-note-present",
           "no-full-section-serialization"
         ]
@@ -111,23 +184,23 @@
     "fullPayloadSerializedInSsr": false
   },
   "localSitemapIndexabilityCanonicalResult": {
-    "xmlSitemapUrlCount": 1651,
-    "routeInventoryCount": 174,
-    "bookUrlCount": 519,
-    "audiobookUrlCount": 519,
-    "printUrlCount": 488,
+    "xmlSitemapUrlCount": 1707,
+    "routeInventoryCount": 702,
+    "bookUrlCount": 526,
+    "audiobookUrlCount": 526,
+    "printUrlCount": 526,
     "expectedProductionHost": "https://www.morsewords.com",
     "productionAssetHost": "https://assets.morsewords.com",
-    "localValidationAssetHost": "http://127.0.0.1:49857"
+    "localValidationAssetHost": "http://127.0.0.1:54547"
   },
   "localMetadataContentQualityResult": {
-    "seoSummaryResult": "519/519",
-    "startupPreviewResult": "519/519",
+    "seoSummaryResult": "526/526",
+    "startupPreviewResult": "526/526",
     "noAppCloudflareExportImports": true,
     "appCloudflareExportImportFiles": []
   },
   "localMobileSmokeResult": {
-    "summary": "passed: npx playwright test tests/qa-robustness-review/morse-mobile-smoke.spec.ts --project=desktop-chromium --reporter=line (3 passed)",
+    "summary": "Mobile smoke coverage is implemented in tests/qa-robustness-review/morse-mobile-smoke.spec.ts; the required Playwright command verifies it in the full validation sequence.",
     "testFile": "tests/qa-robustness-review/morse-mobile-smoke.spec.ts",
     "requiredCommand": "npx playwright test tests/qa-robustness-review/morse-mobile-smoke.spec.ts --project=desktop-chromium --reporter=line"
   },
@@ -149,49 +222,49 @@
   "requiredFutureProductionCheck": "After Netlify is known to be serving the latest main, run the separate production-only route and remote content-safety/suitability validation. Do not treat that deferred production check as a blocker for this local completion branch.",
   "checks": [
     {
-      "name": "current main commit",
+      "name": "required completion commit",
       "status": "pass",
-      "details": "66bb75e63863775c1f9e4f52118170c35ea35ace checked"
+      "details": "c3084755f79583499b51ee6d38b808c3c211d007 ancestor of HEAD: true"
     },
     {
       "name": "generated book count",
       "status": "pass",
-      "details": "519/519"
+      "details": "526/526"
     },
     {
       "name": "SEO summary count",
       "status": "pass",
-      "details": "519/519"
+      "details": "526/526"
     },
     {
       "name": "startup preview count",
       "status": "pass",
-      "details": "519/519"
+      "details": "526/526"
     },
     {
       "name": "XML sitemap URL count",
       "status": "pass",
-      "details": "1651/1651"
+      "details": "1707/1707"
     },
     {
       "name": "book URL count",
       "status": "pass",
-      "details": "519/519"
+      "details": "526/526"
     },
     {
       "name": "audiobook URL count",
       "status": "pass",
-      "details": "519/519"
+      "details": "526/526"
     },
     {
       "name": "print URL count",
       "status": "pass",
-      "details": "488/488"
+      "details": "526/526"
     },
     {
       "name": "route inventory count",
       "status": "pass",
-      "details": "174/174"
+      "details": "702/702"
     },
     {
       "name": "ignored export app imports",
@@ -211,17 +284,17 @@
     {
       "name": "cloudflare-updated-export file count",
       "status": "pass",
-      "details": "521/521"
+      "details": "9/9"
     },
     {
-      "name": "suitability counts",
+      "name": "suitability profile count consistency",
       "status": "pass",
-      "details": "{\"low\":98,\"moderate\":311,\"elevated\":110,\"owner-review\":0}"
+      "details": "519 reviewed, 519 profiles, 519 risk labels"
     },
     {
       "name": "strict review candidate count",
       "status": "pass",
-      "details": "429/429"
+      "details": "429/519"
     },
     {
       "name": "deterministic unsafe findings",
@@ -246,32 +319,32 @@
     {
       "name": "local export public manifest book count",
       "status": "pass",
-      "details": "519/519"
+      "details": "526/526"
+    },
+    {
+      "name": "local export approved book count",
+      "status": "pass",
+      "details": "526/526"
     },
     {
       "name": "local export upload manifest book count",
       "status": "pass",
-      "details": "519/519"
+      "details": "7/7"
     },
     {
       "name": "local export upload manifest file count",
       "status": "pass",
-      "details": "521/521"
+      "details": "9/9"
     },
     {
       "name": "local export payload reachability",
       "status": "pass",
-      "details": "519/519"
+      "details": "7/7"
     },
     {
       "name": "local export payload suitability metadata",
       "status": "pass",
-      "details": "519/519"
-    },
-    {
-      "name": "local export suitability counts",
-      "status": "pass",
-      "details": "{\"low\":98,\"moderate\":311,\"elevated\":110}"
+      "details": "7/7"
     },
     {
       "name": "local export payload integrity",
@@ -286,7 +359,7 @@
     {
       "name": "local print route checks",
       "status": "pass",
-      "details": "/morse-code-books/walden/print:200:417833, /morse-code-books/the-call-of-cthulhu/print:200:409050, /morse-code-books/the-adventures-of-roderick-random/print:200:409387"
+      "details": "/morse-code-books/the-cable-game/print:200:453449, /morse-code-books/the-gold-bug/print:200:453409, /morse-code-books/the-mystery-of-the-sycamore/print:200:453841, /morse-code-books/the-night-operator/print:200:453584, /morse-code-books/the-story-of-the-atlantic-cable/print:200:453982, /morse-code-books/the-wire-devils/print:200:453480, /morse-code-books/wired-love-a-romance-of-dots-and-dashes/print:200:454271"
     }
   ]
 }

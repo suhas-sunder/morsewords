@@ -3,9 +3,11 @@ import { Link } from "react-router";
 
 import type { Route } from "./+types/morse-code-audiobooks";
 
+import {
+  OptionalSquareAd,
+} from "~/client/components/ads/AdSenseAds";
 import MorseBookLinkDirectory from "~/client/components/morse-code-books/MorseBookLinkDirectory";
 import MorseBookPagination from "~/client/components/morse-code-books/MorseBookPagination";
-import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
@@ -544,26 +546,54 @@ export default function MorseCodeAudiobooksRoute({
       </section>
 
       <section className="mt-9 sm:mt-11" aria-labelledby="morse-audiobooks-flow">
-        <div className="max-w-[68ch]">
-          <Eyebrow>Listening flow</Eyebrow>
-          <h2
-            id="morse-audiobooks-flow"
-            className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
-          >
-            Browser-generated audio, not hosted files
-          </h2>
-          <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700 sm:text-lg">
-            These pages do not point to pre-made audio files. Choose the full
-            book or selected chapters, adjust speed, tone, Farnsworth timing,
-            player settings, and visual layers, then listen or watch from your
-            browser.
-          </p>
+        <div className="mw-support-ad-grid">
+          <div className="max-w-[68ch]">
+            <Eyebrow>Listening flow</Eyebrow>
+            <h2
+              id="morse-audiobooks-flow"
+              className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
+            >
+              Browser-generated audio, not hosted files
+            </h2>
+            <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700 sm:text-lg">
+              These pages do not point to pre-made audio files. Choose the full
+              book or selected chapters, adjust speed, tone, Farnsworth timing,
+              player settings, and visual layers, then listen or watch from your
+              browser.
+            </p>
+          </div>
+          <OptionalSquareAd className="mw-signal-audiobooks-seo" />
         </div>
       </section>
 
-      <SeoSectionInlineAd />
-
       <MorseBookLinkDirectory books={books} mode="audiobook" />
+
+      <section className="mt-9 sm:mt-11" aria-labelledby="morse-audiobooks-own-text">
+        <div className="grid gap-5 lg:grid-cols-[minmax(0,0.68fr)_minmax(240px,0.32fr)] lg:items-start">
+          <div className="min-w-0">
+            <Eyebrow>Use your own text</Eyebrow>
+            <h2
+              id="morse-audiobooks-own-text"
+              className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
+            >
+              Build a Morse audiobook from your own text
+            </h2>
+            <p className="mw-text-muted mt-3 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
+              Use the book translator when you want chapter selection,
+              browser-local MP3 generation, or a live visual player from a
+              public-domain source, class text, or personal practice passage.
+            </p>
+          </div>
+          <div className="lg:justify-self-end">
+            <Link
+              to={ROUTES.bookTranslator}
+              className={toolControlButtonClass({ tone: "dark", rounded: "xl" })}
+            >
+              Convert your own text
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <BreadcrumbTrail current="Morse Code Audiobooks" placement="contentFooter" />
     </main>

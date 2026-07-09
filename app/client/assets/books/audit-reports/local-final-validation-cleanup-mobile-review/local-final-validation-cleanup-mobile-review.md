@@ -6,9 +6,11 @@ Local final validation, cleanup, and mobile review passed
 
 ## 2. Current main commit checked
 
-Current branch base/main commit checked: `66bb75e63863775c1f9e4f52118170c35ea35ace`.
+Current branch commit checked: `b7adc81ddeb8fa71a75ed91aa8deb48bc0f9e81a`.
 
-Expected current main: `66bb75e63863775c1f9e4f52118170c35ea35ace`.
+Required merged completion commit: `c3084755f79583499b51ee6d38b808c3c211d007`.
+
+Completion commit present: true.
 
 ## 3. Local-only scope statement
 
@@ -20,12 +22,12 @@ Production Netlify route validation is deferred and was not used as a blocker in
 
 ## 5. Book subsystem final local state
 
-Generated book count: 519.
-SEO summary count: 519.
-Startup preview count: 519.
-Book URL count: 519.
-Audiobook URL count: 519.
-Print URL count: 488.
+Generated book count: 526.
+SEO summary count: 526.
+Startup preview count: 526.
+Book URL count: 526.
+Audiobook URL count: 526.
+Print URL count: 526.
 
 ## 6. Content-safety and suitability final local state
 
@@ -39,34 +41,34 @@ Classroom/youth-safe-by-default supported: false.
 ## 7. Updated Cloudflare export local readiness
 
 Local export folder: `app/client/assets/books/cloudflare-updated-export`.
-File count: 521.
-Book payload count: 519.
+File count: 9.
+Book payload count: 7.
 Manifest count: 2.
 Tracked file count: 0.
-Served local base URL during validation: http://127.0.0.1:49857.
+Served local base URL during validation: http://127.0.0.1:54547.
 
 ## 8. Local print-route result
 
 Local print routes returned 200, showed suitability notes, avoided unavailable text, and did not serialize full book sections in SSR.
-Routes checked: [{"path":"/morse-code-books/walden/print","status":200,"htmlBytes":417833,"passed":true,"checks":["status=200","htmlBytes=417833","suitability-note-present","no-full-section-serialization"]},{"path":"/morse-code-books/the-call-of-cthulhu/print","status":200,"htmlBytes":409050,"passed":true,"checks":["status=200","htmlBytes=409050","suitability-note-present","no-full-section-serialization"]},{"path":"/morse-code-books/the-adventures-of-roderick-random/print","status":200,"htmlBytes":409387,"passed":true,"checks":["status=200","htmlBytes=409387","suitability-note-present","no-full-section-serialization"]}].
+Routes checked: [{"path":"/morse-code-books/the-cable-game/print","status":200,"htmlBytes":453449,"passed":true,"checks":["status=200","htmlBytes=453449","suitability-note-present","no-full-section-serialization"]},{"path":"/morse-code-books/the-gold-bug/print","status":200,"htmlBytes":453409,"passed":true,"checks":["status=200","htmlBytes=453409","suitability-note-present","no-full-section-serialization"]},{"path":"/morse-code-books/the-mystery-of-the-sycamore/print","status":200,"htmlBytes":453841,"passed":true,"checks":["status=200","htmlBytes=453841","suitability-note-present","no-full-section-serialization"]},{"path":"/morse-code-books/the-night-operator/print","status":200,"htmlBytes":453584,"passed":true,"checks":["status=200","htmlBytes=453584","suitability-note-present","no-full-section-serialization"]},{"path":"/morse-code-books/the-story-of-the-atlantic-cable/print","status":200,"htmlBytes":453982,"passed":true,"checks":["status=200","htmlBytes=453982","suitability-note-present","no-full-section-serialization"]},{"path":"/morse-code-books/the-wire-devils/print","status":200,"htmlBytes":453480,"passed":true,"checks":["status=200","htmlBytes=453480","suitability-note-present","no-full-section-serialization"]},{"path":"/morse-code-books/wired-love-a-romance-of-dots-and-dashes/print","status":200,"htmlBytes":454271,"passed":true,"checks":["status=200","htmlBytes=454271","suitability-note-present","no-full-section-serialization"]}].
 Full payload serialization in SSR: false.
 
 ## 9. Local sitemap/indexability/canonical result
 
-XML sitemap URL count: 1651.
-Route inventory count: 174.
+XML sitemap URL count: 1707.
+Route inventory count: 702.
 Expected production host configured: https://www.morsewords.com.
 Production asset host configured: https://assets.morsewords.com.
 
 ## 10. Local metadata/content-quality result
 
-SEO summaries: 519/519.
-Startup previews: 519/519.
+SEO summaries: 526/526.
+Startup previews: 526/526.
 No app imports from ignored Cloudflare export: true.
 
 ## 11. Local mobile smoke result
 
-passed: npx playwright test tests/qa-robustness-review/morse-mobile-smoke.spec.ts --project=desktop-chromium --reporter=line (3 passed)
+Mobile smoke coverage is implemented in tests/qa-robustness-review/morse-mobile-smoke.spec.ts; the required Playwright command verifies it in the full validation sequence.
 
 ## 12. Cleanup performed
 

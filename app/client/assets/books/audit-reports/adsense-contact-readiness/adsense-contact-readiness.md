@@ -93,17 +93,17 @@ None.
 
 ## 10. Sitemap/indexability preservation
 
-Sitemap URLs: 1682.
+Sitemap URLs: 1707.
 
-Non-book URLs: 125.
+Non-book URLs: 129.
 
-Book URLs: 519.
+Book URLs: 526.
 
-Audiobook URLs: 519.
+Audiobook URLs: 526.
 
-Print URLs: 519.
+Print URLs: 526.
 
-Generated book count: 519.
+Generated book count: 526.
 
 Redirect-only URLs in sitemap: 0.
 

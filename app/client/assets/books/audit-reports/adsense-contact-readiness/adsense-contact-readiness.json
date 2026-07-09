@@ -5,13 +5,13 @@
     "support@morsewords.com"
   ],
   "sitemap": {
-    "total": 1682,
-    "nonBook": 125,
-    "book": 519,
-    "audiobook": 519,
-    "print": 519
+    "total": 1707,
+    "nonBook": 129,
+    "book": 526,
+    "audiobook": 526,
+    "print": 526
   },
-  "generatedBookCount": 519,
+  "generatedBookCount": 526,
   "requiredPages": [
     {
       "key": "privacy",

@@ -1,7 +1,9 @@
 import * as React from "react";
 
 import { PlayIcon } from "~/client/assets/svg/Icons";
-import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
+import {
+  OptionalSquareAd,
+} from "~/client/components/ads/AdSenseAds";
 import MorseAnswerCard from "~/client/components/content/MorseAnswerCard";
 import {
   ActionButton,
@@ -995,29 +997,30 @@ export function MorseNumbersPage({
           title="How Morse code numbers work"
           description="The digit set is easier to memorize when you notice the direction of the dots and dashes."
         >
-          <SimpleGrid
-            items={[
-              {
-                title: "1-5 build dots",
-                text: "1 starts with one dot, 2 starts with two dots, and 5 is five dots.",
-              },
-              {
-                title: "6-9 build dashes",
-                text: "6 starts with one dash, 7 with two dashes, 8 with three, and 9 with four.",
-              },
-              {
-                title: "0 is five dashes",
-                text: "0 completes the number family with five dashes.",
-              },
-              {
-                title: "Every digit has five marks",
-                text: "That shared length helps you spot missing dots or dashes in copied Morse.",
-              },
-            ]}
-          />
+          <div className="mw-support-ad-grid">
+            <SimpleGrid
+              items={[
+                {
+                  title: "1-5 build dots",
+                  text: "1 starts with one dot, 2 starts with two dots, and 5 is five dots.",
+                },
+                {
+                  title: "6-9 build dashes",
+                  text: "6 starts with one dash, 7 with two dashes, 8 with three, and 9 with four.",
+                },
+                {
+                  title: "0 is five dashes",
+                  text: "0 completes the number family with five dashes.",
+                },
+                {
+                  title: "Every digit has five marks",
+                  text: "That shared length helps you spot missing dots or dashes in copied Morse.",
+                },
+              ]}
+            />
+            <OptionalSquareAd className="mw-signal-numbers-seo" />
+          </div>
         </SectionCard>
-
-        <SeoSectionInlineAd />
 
         <SectionCard
           eyebrow="Worked examples"
@@ -1026,46 +1029,46 @@ export function MorseNumbersPage({
           layout="stacked"
         >
           <div className="grid gap-3 md:grid-cols-3">
-            {[
-              {
-                title: "Date",
-                text: "MAY 9 2026",
-                morse: morseForText("MAY 9 2026").replace(/\s{7,}/g, " / "),
-                note: "Dates mix letters and digits, so keep the word and number boundaries visible.",
-              },
-              {
-                title: "Count",
-                text: "COUNT 5",
-                morse: morseForText("COUNT 5").replace(/\s{7,}/g, " / "),
-                note: "Counts are useful short practice prompts because the digit is easy to check.",
-              },
-              {
-                title: "Code",
-                text: "CODE 73",
-                morse: morseForText("CODE 73").replace(/\s{7,}/g, " / "),
-                note: "Radio-style examples often mix short words, digits, and shorthand.",
-              },
-            ].map((example) => {
-              return (
-                <StaticPanel
-                  as="article"
-                  key={example.title}
-                >
-                  <h3 className="mw-heading text-lg font-extrabold text-sky-950">
-                    {example.title}
-                  </h3>
-                  <p className="mw-muted-label mt-2 font-mono text-sm font-bold uppercase tracking-[0.12em] text-slate-500">
-                    {example.text}
-                  </p>
-                  <p className="mw-input-text mt-3 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
-                    {example.morse}
-                  </p>
-                  <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
-                    {example.note}
-                  </p>
-                </StaticPanel>
-              );
-            })}
+              {[
+                {
+                  title: "Date",
+                  text: "MAY 9 2026",
+                  morse: morseForText("MAY 9 2026").replace(/\s{7,}/g, " / "),
+                  note: "Dates mix letters and digits, so keep the word and number boundaries visible.",
+                },
+                {
+                  title: "Count",
+                  text: "COUNT 5",
+                  morse: morseForText("COUNT 5").replace(/\s{7,}/g, " / "),
+                  note: "Counts are useful short practice prompts because the digit is easy to check.",
+                },
+                {
+                  title: "Code",
+                  text: "CODE 73",
+                  morse: morseForText("CODE 73").replace(/\s{7,}/g, " / "),
+                  note: "Radio-style examples often mix short words, digits, and shorthand.",
+                },
+              ].map((example) => {
+                return (
+                  <StaticPanel
+                    as="article"
+                    key={example.title}
+                  >
+                    <h3 className="mw-heading text-lg font-extrabold text-sky-950">
+                      {example.title}
+                    </h3>
+                    <p className="mw-muted-label mt-2 font-mono text-sm font-bold uppercase tracking-[0.12em] text-slate-500">
+                      {example.text}
+                    </p>
+                    <p className="mw-input-text mt-3 break-words font-mono text-base font-bold tracking-[0.12em] text-slate-950">
+                      {example.morse}
+                    </p>
+                    <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700">
+                      {example.note}
+                    </p>
+                  </StaticPanel>
+                );
+              })}
           </div>
         </SectionCard>
 

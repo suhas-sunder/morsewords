@@ -2,11 +2,11 @@
   "executiveResult": "Sitemap count and print-page indexability reconciliation passed",
   "gscReportedSubmittedUrlCount": 1650,
   "currentLocalSitemap": {
-    "total": 1682,
-    "nonBook": 125,
-    "book": 519,
-    "audiobook": 519,
-    "print": 519
+    "total": 1707,
+    "nonBook": 129,
+    "book": 526,
+    "audiobook": 526,
+    "print": 526
   },
   "priorLocalSitemap": {
     "total": 1651,
@@ -15,7 +15,7 @@
     "audiobook": 519,
     "print": 488
   },
-  "expectedAcceptedBookCount": 519,
+  "expectedAcceptedBookCount": 526,
   "supportNoindexUrlsInSitemap": [],
   "redirectOnlyUrlsInSitemap": [],
   "duplicateUrls": [],
@@ -81,11 +81,11 @@
     "walden"
   ],
   "gscReconciliation": {
-    "currentLocalMinusGsc": 32,
+    "currentLocalMinusGsc": 57,
     "priorLocalMinusGsc": 1,
     "exactOneUrlReasonIdentified": false,
     "likelyReason": "GSC count stale or based on a different submitted sitemap snapshot; the local sitemap has no duplicate, malformed, noindex, or redirect-only URL that explains a one-URL drop.",
-    "explanation": "The owner-reported GSC count is 1650. The prior local sitemap count was 1651, exactly 125 non-book + 519 book + 519 audiobook + 488 print. That prior local state had no duplicate or malformed URLs, but it was missing 31 print URLs for accepted publish-ready books. This branch corrected the local sitemap to 1682, exactly 125 non-book + 519 book + 519 audiobook + 519 print. Because the local XML has no noindex, redirect-only, duplicate, malformed, or host-mismatched URL, the exact one-URL GSC delta is not identifiable from the local repository alone. GSC count stale or based on a different submitted sitemap snapshot; the local sitemap has no duplicate, malformed, noindex, or redirect-only URL that explains a one-URL drop."
+    "explanation": "The owner-reported GSC count is 1650. The prior local sitemap count was 1651, exactly 125 non-book + 519 book + 519 audiobook + 488 print. That prior local state had no duplicate or malformed URLs, but it was missing 31 print URLs for accepted publish-ready books. This branch corrected the local sitemap to 1707, exactly 129 non-book + 526 book + 526 audiobook + 526 print. Because the local XML has no noindex, redirect-only, duplicate, malformed, or host-mismatched URL, the exact one-URL GSC delta is not identifiable from the local repository alone. GSC count stale or based on a different submitted sitemap snapshot; the local sitemap has no duplicate, malformed, noindex, or redirect-only URL that explains a one-URL drop."
   },
   "fixesMade": [
     "Rewrote public/sitemap.xml from the accepted generated-book manifest using books:sitemap-sync.",

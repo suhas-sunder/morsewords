@@ -1,7 +1,9 @@
 import type { Route } from "./+types/morse-code-reader";
 
+import {
+  OptionalSquareAd,
+} from "~/client/components/ads/AdSenseAds";
 import MorseCodeReaderTool from "~/client/components/morse-code-reader/MorseCodeReaderTool";
-import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
@@ -273,7 +275,10 @@ export default function MorseCodeReaderRoute() {
           title="How to read Morse code with this tool"
           description="Keep the typed Morse simple, preserve the boundaries, and use the decoded text as a quick reading check."
         >
-          <SimpleGrid items={howToItems} linkedItemStyle="inline" />
+          <div className="mw-support-ad-grid">
+            <SimpleGrid items={howToItems} linkedItemStyle="inline" />
+            <OptionalSquareAd className="mw-signal-reader-seo" />
+          </div>
         </SectionCard>
 
         <SectionCard
@@ -325,8 +330,6 @@ export default function MorseCodeReaderRoute() {
         >
           <SimpleGrid items={mistakeItems} linkedItemStyle="inline" />
         </SectionCard>
-
-        <SeoSectionInlineAd />
 
         <SectionCard
           eyebrow="Reference"

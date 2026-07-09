@@ -1,6 +1,8 @@
 import type { Route } from "./+types/morse-code-mp3-generator";
 
-import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
+import {
+  OptionalSquareAd,
+} from "~/client/components/ads/AdSenseAds";
 import MorseMp3GeneratorTool from "~/client/components/morse-code-mp3-generator/MorseMp3GeneratorTool";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
@@ -312,7 +314,10 @@ export default function MorseCodeMp3GeneratorRoute() {
           title="How the MP3 generator works"
           description="The tool keeps the main flow simple: write the message, check the Morse, preview the sound, and export."
         >
-          <SimpleGrid items={howItWorksItems} linkedItemStyle="inline" />
+          <div className="mw-support-ad-grid">
+            <SimpleGrid items={howItWorksItems} linkedItemStyle="inline" />
+            <OptionalSquareAd className="mw-signal-mp3-seo" />
+          </div>
         </SectionCard>
 
         <SectionCard
@@ -346,8 +351,6 @@ export default function MorseCodeMp3GeneratorRoute() {
         >
           <SimpleGrid items={troubleshootingItems} linkedItemStyle="inline" />
         </SectionCard>
-
-        <SeoSectionInlineAd />
 
         <SectionCard
           eyebrow="Direction"

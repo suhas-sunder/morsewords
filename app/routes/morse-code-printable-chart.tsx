@@ -1,11 +1,7 @@
 import * as React from "react";
 
 import { DownloadIcon, ShareIcon, WarningIcon } from "~/client/assets/svg/Icons";
-import {
-  OptionalLongPageAd,
-  PrintableChartSquareAd,
-  UpperContentBannerAd,
-} from "~/client/components/ads/AdSenseAds";
+import { PrintableChartSquareAd } from "~/client/components/ads/AdSenseAds";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
@@ -3044,8 +3040,6 @@ export default function MorseCodePrintableChart() {
           />
         </PageHero>
 
-        <UpperContentBannerAd minWidth={768} />
-
         <section className="hidden">
           <div className="mw-static-panel min-w-0 rounded-xl bg-[#fffdf8]/85 p-4">
             <div className="flex min-w-0 flex-wrap items-center justify-between gap-4">
@@ -3152,8 +3146,6 @@ export default function MorseCodePrintableChart() {
                 />
               </FormField>
             </SettingsSection>
-
-            <PrintableChartSquareAd />
 
             <SettingsSection
               title="2. Classroom details"
@@ -3523,52 +3515,54 @@ export default function MorseCodePrintableChart() {
           rows={PUNCTUATION}
         />
 
-        <OptionalLongPageAd
-          className="mw-signal-optional-section-break"
-          kind="banner"
-        />
-
         <section className="pb-8">
-          <div className="mw-static-surface-soft min-w-0 rounded-xl bg-[#fffaf2]/45 p-5">
-            <h2 className="m-0 break-words text-2xl font-bold text-sky-800">
-              How this printable works
-            </h2>
+          <div className="mw-static-surface-soft grid min-w-0 gap-5 rounded-xl bg-[#fffaf2]/45 p-5 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-start">
+            <div className="min-w-0">
+              <h2 className="m-0 break-words text-2xl font-bold text-sky-800">
+                How this printable works
+              </h2>
 
-            <div className="mt-4 grid min-w-0 gap-4 md:grid-cols-3">
-              <div className="min-w-0">
-                <h3 className="m-0 break-words text-base font-bold text-slate-900">
-                  Add comma-separated content
-                </h3>
-                <p className="mt-2 break-words text-sm leading-relaxed text-slate-600">
-                  Enter words and full sentences with commas between each item.
-                  Sentences stay intact in the worksheet.
-                </p>
-              </div>
+              <div className="mt-4 grid min-w-0 gap-4 md:grid-cols-3">
+                <div className="min-w-0">
+                  <h3 className="m-0 break-words text-base font-bold text-slate-900">
+                    Add comma-separated content
+                  </h3>
+                  <p className="mt-2 break-words text-sm leading-relaxed text-slate-600">
+                    Enter words and full sentences with commas between each item.
+                    Sentences stay intact in the worksheet.
+                  </p>
+                </div>
 
-              <div className="min-w-0">
-                <h3 className="m-0 break-words text-base font-bold text-slate-900">
-                  Choose PDF or image
-                </h3>
-                <p className="mt-2 break-words text-sm leading-relaxed text-slate-600">
-                  PDF is the default. Switch the format selector when an image
-                  export is better for sharing or saving.
-                </p>
-              </div>
+                <div className="min-w-0">
+                  <h3 className="m-0 break-words text-base font-bold text-slate-900">
+                    Choose PDF or image
+                  </h3>
+                  <p className="mt-2 break-words text-sm leading-relaxed text-slate-600">
+                    PDF is the default. Switch the format selector when an image
+                    export is better for sharing or saving.
+                  </p>
+                </div>
 
-              <div className="min-w-0">
-                <h3 className="m-0 break-words text-base font-bold text-slate-900">
-                  Return later
-                </h3>
-                <p className="mt-2 break-words text-sm leading-relaxed text-slate-600">
-                  The browser can save worksheet settings and preset snapshots
-                  for future visits. Uploaded logo file data stays session-only.
-                </p>
+                <div className="min-w-0">
+                  <h3 className="m-0 break-words text-base font-bold text-slate-900">
+                    Return later
+                  </h3>
+                  <p className="mt-2 break-words text-sm leading-relaxed text-slate-600">
+                    The browser can save worksheet settings and preset snapshots
+                    for future visits. Uploaded logo file data stays session-only.
+                  </p>
+                </div>
               </div>
+            </div>
+
+            <div className="flex min-w-0 justify-center">
+              <PrintableChartSquareAd />
             </div>
           </div>
         </section>
 
         <ReferenceSupportSections
+          showSupportAd={false}
           guide={{
             eyebrow: "Teaching export",
             title: "How to use the printable Morse chart",

@@ -19,7 +19,7 @@ export const ADSENSE_SLOTS = {
 
 type AdKind = "banner" | "vertical" | "square";
 type AdLabel = "Advertisements" | "Sponsored Links";
-type AdStatus = "pending" | "filled" | "unfilled";
+type AdStatus = "pending" | "filled" | "unfilled" | "blocked";
 
 type ViewportRule = {
   minWidth?: number;
@@ -36,7 +36,7 @@ type AdSlotProps = ViewportRule & {
   placement: string;
   kind: AdKind;
   reservedSize: ReservedSize;
-  collapseWhenUnfilled?: boolean;
+  allowExcludedPaths?: boolean;
   placeholder?: boolean;
   label?: AdLabel;
   className?: string;
@@ -47,10 +47,12 @@ const TABLET_MIN_WIDTH = 768;
 const DESKTOP_MIN_WIDTH = 1280;
 const SIDEBAR_MIN_WIDTH = 1536;
 
-const canUseDOM = typeof window !== "undefined";
-const useIsomorphicLayoutEffect = canUseDOM
-  ? React.useLayoutEffect
-  : React.useEffect;
+function canAccessDOM() {
+  return typeof window !== "undefined" && typeof document !== "undefined";
+}
+
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
 
 const TRUST_AND_UTILITY_EXCLUDED_PATHS = new Set<string>([
   ROUTES.about,
@@ -66,6 +68,12 @@ const TRUST_AND_UTILITY_EXCLUDED_PATHS = new Set<string>([
   ROUTES.terms,
   ROUTES.cookies,
 ]);
+
+declare global {
+  interface Window {
+    __mwAdsenseScriptStatus?: "pending" | "loaded" | "blocked";
+  }
+}
 
 const DENSE_POST_HERO_EXCLUDED_PATHS = new Set<string>([
   ROUTES.audioDecoder,
@@ -122,11 +130,7 @@ export function isPostHeroAdEligiblePath(pathname: string) {
 }
 
 export function isTopBannerAdEligiblePath(pathname: string) {
-  const normalizedPathname = normalizePathname(pathname);
-  return (
-    !isAdsExcludedPath(normalizedPathname) &&
-    !isMorseBookRuntimePath(normalizedPathname)
-  );
+  return Boolean(pathname);
 }
 
 export function isBookPlayerAdEligiblePath(pathname: string) {
@@ -141,9 +145,16 @@ export function isPrintableChartSquareAdEligiblePath(pathname: string) {
   return normalizePathname(pathname) === ROUTES.printableChart;
 }
 
-export function isSidebarAdEligiblePath(pathname: string) {
+export function isOptionalSquareAdEligiblePath(pathname: string) {
   const normalizedPathname = normalizePathname(pathname);
-  return !isAdsExcludedPath(normalizedPathname);
+  return (
+    normalizedPathname !== ROUTES.printableChart &&
+    isInContentAdEligiblePath(normalizedPathname)
+  );
+}
+
+export function isSidebarAdEligiblePath(pathname: string) {
+  return Boolean(pathname);
 }
 
 export function isInContentAdEligiblePath(pathname: string) {
@@ -156,7 +167,7 @@ export function isSeoSectionRailAdEligiblePath(pathname: string) {
 }
 
 function isViewportEligible({ minWidth = 0, maxWidth }: ViewportRule) {
-  if (!canUseDOM) return false;
+  if (!canAccessDOM()) return false;
   const width = window.innerWidth;
   return width >= minWidth && (maxWidth === undefined || width <= maxWidth);
 }
@@ -165,7 +176,7 @@ function useViewportEligibility(rule: ViewportRule) {
   const [eligible, setEligible] = React.useState(false);
 
   useIsomorphicLayoutEffect(() => {
-    if (!canUseDOM) return;
+    if (!canAccessDOM()) return;
 
     const update = () => {
       const nextEligible = isViewportEligible(rule);
@@ -188,9 +199,10 @@ function cssSize(value: number | string | undefined) {
 }
 
 function adFormatForKind(kind: AdKind) {
+  // Keep responsive units in the shape their placement was designed to hold.
+  if (kind === "banner") return "horizontal";
   if (kind === "vertical") return "vertical";
-  if (kind === "square") return "rectangle";
-  return "horizontal";
+  return "rectangle";
 }
 
 function adViewportClassName(minWidth: number) {
@@ -201,9 +213,13 @@ function adViewportClassName(minWidth: number) {
 }
 
 function readAdStatus(element: HTMLElement | null): AdStatus {
+  if (!element || !element.isConnected) return "blocked";
   const status = element?.getAttribute("data-ad-status");
   if (status === "filled") return "filled";
   if (status === "unfilled") return "unfilled";
+  const style = getComputedStyle(element);
+  if (style.display === "none" || style.visibility === "hidden") return "blocked";
+  if (window.__mwAdsenseScriptStatus === "blocked") return "blocked";
   return "pending";
 }
 
@@ -220,20 +236,37 @@ function useAdStatus(
     }
 
     const element = ref.current;
-    setStatus(readAdStatus(element));
+    const syncStatus = () => {
+      setStatus(readAdStatus(ref.current));
+    };
+    syncStatus();
     if (!element || typeof MutationObserver === "undefined") return;
 
-    const observer = new MutationObserver(() => {
-      setStatus(readAdStatus(element));
-    });
+    const observer = new MutationObserver(syncStatus);
     observer.observe(element, {
       attributes: true,
-      attributeFilter: ["data-ad-status"],
+      attributeFilter: ["class", "data-ad-status", "hidden", "style"],
     });
-    return () => observer.disconnect();
+    const parent = element.parentElement;
+    if (parent) {
+      observer.observe(parent, {
+        childList: true,
+      });
+    }
+    window.addEventListener("mw:adsense-script-status", syncStatus);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("mw:adsense-script-status", syncStatus);
+    };
   }, [ref, shouldRender]);
 
   return status;
+}
+
+function setAdSenseScriptStatus(status: "loaded" | "blocked") {
+  if (!canAccessDOM()) return;
+  window.__mwAdsenseScriptStatus = status;
+  window.dispatchEvent(new CustomEvent("mw:adsense-script-status"));
 }
 
 function pushAdSenseRequest(element: HTMLElement) {
@@ -252,14 +285,13 @@ function pushAdSenseRequest(element: HTMLElement) {
 }
 
 export function AdSenseScriptLoader() {
-  const location = useLocation();
-  if (isAdsExcludedPath(location.pathname)) return null;
-
   return (
     <script
       async
       crossOrigin="anonymous"
       id="mw-adsense-script"
+      onError={() => setAdSenseScriptStatus("blocked")}
+      onLoad={() => setAdSenseScriptStatus("loaded")}
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`}
     />
   );
@@ -270,7 +302,7 @@ export function AdSlot({
   placement,
   kind,
   reservedSize,
-  collapseWhenUnfilled = false,
+  allowExcludedPaths = false,
   minWidth = TABLET_MIN_WIDTH,
   maxWidth,
   placeholder = true,
@@ -281,22 +313,21 @@ export function AdSlot({
   const location = useLocation();
   const normalizedPathname = normalizePathname(location.pathname);
   const pathEligible =
-    !isAdsExcludedPath(normalizedPathname) &&
+    (allowExcludedPaths || !isAdsExcludedPath(normalizedPathname)) &&
     (isPathEligible ? isPathEligible(normalizedPathname) : true);
   const viewportEligible = useViewportEligibility({ minWidth, maxWidth });
-  const shouldRender = pathEligible && viewportEligible;
   const shouldRequestAd = pathEligible && viewportEligible;
   const adRef = React.useRef<HTMLModElement | null>(null);
-  const status = useAdStatus(adRef, shouldRender);
+  const status = useAdStatus(adRef, pathEligible);
   const isFilled = status === "filled";
-  const placeholderVisible = placeholder && !collapseWhenUnfilled && !isFilled;
+  const placeholderVisible = placeholder && !isFilled;
 
   React.useEffect(() => {
     if (!shouldRequestAd || !adRef.current) return;
     pushAdSenseRequest(adRef.current);
   }, [shouldRequestAd, slot]);
 
-  if (!shouldRender) return null;
+  if (!pathEligible) return null;
 
   const customProperties = {
     "--mw-ad-reserved-width": cssSize(reservedSize.width),
@@ -313,7 +344,7 @@ export function AdSlot({
         className,
       ].filter(Boolean).join(" ")}
       data-mw-ad-filled={status === "filled" ? "true" : "false"}
-      data-mw-ad-fallback={collapseWhenUnfilled ? "collapse" : "placeholder"}
+      data-mw-ad-fallback="placeholder"
       data-mw-ad-has-placeholder={placeholder ? "true" : "false"}
       data-mw-ad-kind={kind}
       data-mw-ad-placement={placement}
@@ -333,7 +364,7 @@ export function AdSlot({
         data-ad-format={adFormatForKind(kind)}
         data-ad-slot={slot}
         data-adtest={import.meta.env.DEV ? "on" : undefined}
-        data-full-width-responsive="false"
+        data-full-width-responsive="true"
       />
       {placeholder ? (
         <div
@@ -353,6 +384,7 @@ export function AdSlot({
 export function TopBannerAd() {
   return (
     <AdSlot
+      allowExcludedPaths
       className="mw-signal-top"
       isPathEligible={isTopBannerAdEligiblePath}
       kind="banner"
@@ -445,23 +477,21 @@ export function SidebarRailAds() {
   return (
     <>
       <AdSlot
+        allowExcludedPaths
         className="mw-side-rail mw-side-rail-left"
-        collapseWhenUnfilled
         isPathEligible={isSidebarAdEligiblePath}
         kind="vertical"
         minWidth={SIDEBAR_MIN_WIDTH}
-        placeholder={false}
         placement="left-sidebar"
         reservedSize={{ width: 120, height: 600 }}
         slot={ADSENSE_SLOTS.leftSidebar}
       />
       <AdSlot
+        allowExcludedPaths
         className="mw-side-rail mw-side-rail-right"
-        collapseWhenUnfilled
         isPathEligible={isSidebarAdEligiblePath}
         kind="vertical"
         minWidth={SIDEBAR_MIN_WIDTH}
-        placeholder={false}
         placement="right-sidebar"
         reservedSize={{ width: 120, height: 600 }}
         slot={ADSENSE_SLOTS.rightSidebar}
@@ -506,21 +536,22 @@ export function SeoSectionRailAd({
   );
 }
 
-export function SeoSectionInlineAd({
+export function SeoSectionContentAd({
   className = "",
+  maxWidth,
 }: {
   className?: string;
+  maxWidth?: number;
 }) {
   return (
     <AdSlot
-      className={["mw-signal-inline", "mw-signal-seo-break", className]
-        .filter(Boolean)
-        .join(" ")}
+      className={["mw-signal-seo-content", className].filter(Boolean).join(" ")}
       isPathEligible={isSeoSectionRailAdEligiblePath}
-      kind="banner"
+      kind="square"
+      maxWidth={maxWidth}
       minWidth={0}
-      placement="seo-section-inline"
-      reservedSize={{ width: 728, height: 90 }}
+      placement="seo-section-content"
+      reservedSize={{ width: 300, height: 250 }}
       slot={ADSENSE_SLOTS.inContent}
     />
   );
@@ -529,6 +560,7 @@ export function SeoSectionInlineAd({
 export function ToolkitBannerAd() {
   return (
     <AdSlot
+      allowExcludedPaths
       className="mw-signal-toolkit"
       kind="banner"
       minWidth={0}
@@ -549,6 +581,71 @@ export function PrintableChartSquareAd() {
       placement="printable-chart-square"
       reservedSize={{ width: 300, height: 250 }}
       slot={ADSENSE_SLOTS.optionalSquare}
+    />
+  );
+}
+
+export function OptionalSquareAd({
+  className = "",
+}: {
+  className?: string;
+}) {
+  return (
+    <AdSlot
+      className={["mw-signal-optional-square", className]
+        .filter(Boolean)
+        .join(" ")}
+      isPathEligible={isOptionalSquareAdEligiblePath}
+      kind="square"
+      minWidth={0}
+      placement="optional-square"
+      reservedSize={{ width: 300, height: 250 }}
+      slot={ADSENSE_SLOTS.optionalSquare}
+    />
+  );
+}
+
+export function OptionalBannerAd({
+  className = "",
+}: {
+  className?: string;
+}) {
+  return (
+    <AdSlot
+      className={["mw-signal-optional-banner", className]
+        .filter(Boolean)
+        .join(" ")}
+      isPathEligible={isInContentAdEligiblePath}
+      kind="banner"
+      minWidth={0}
+      placement="optional-banner"
+      reservedSize={{ width: 728, height: 90 }}
+      slot={ADSENSE_SLOTS.optionalBanner}
+    />
+  );
+}
+
+export function OptionalVerticalRailAd({
+  className = "",
+  maxWidth,
+  minWidth = DESKTOP_MIN_WIDTH,
+}: {
+  className?: string;
+  maxWidth?: number;
+  minWidth?: number;
+}) {
+  return (
+    <AdSlot
+      className={["mw-signal-optional-vertical", className]
+        .filter(Boolean)
+        .join(" ")}
+      isPathEligible={isInContentAdEligiblePath}
+      kind="vertical"
+      maxWidth={maxWidth}
+      minWidth={minWidth}
+      placement="optional-vertical"
+      reservedSize={{ width: 120, height: 600 }}
+      slot={ADSENSE_SLOTS.optionalVertical}
     />
   );
 }

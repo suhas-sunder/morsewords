@@ -1,7 +1,9 @@
 import type { ReactNode } from "react";
 import type { Route } from "./+types/learn-morse-code";
 
-import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
+import {
+  OptionalSquareAd,
+} from "~/client/components/ads/AdSenseAds";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
@@ -357,30 +359,34 @@ export default function LearnMorseCode() {
           title="What you actually need to learn first"
           description="Start with the sound and spacing of Morse before trying to memorize the whole chart."
         >
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.9fr)]">
-            <div className="mw-text-muted space-y-4 text-base leading-relaxed text-slate-700 sm:text-lg">
-              <p>
-                Morse code can look like punctuation on the page, but it is a
-                signal system. The written dot and dash are useful labels, but
-                the practice goal is to recognize the rhythm of a whole
-                character.
-              </p>
-              <p>
-                A dot is usually called a dit. A dash is usually called a dah.
-                The dash lasts longer, and the spaces matter because they tell
-                you when one character or word has ended.
-              </p>
-              <p>
-                Keep this page simple: learn the short and long sounds, learn a
-                few letters, then practice tiny groups. For the full rules about
-                dot length, dash length, WPM, and word spacing, use the{" "}
-                <InlineTextLink href="/morse-code-timing">
-                  Morse code timing guide
-                </InlineTextLink>
-                .
-              </p>
+          <div className="mw-support-ad-grid">
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.9fr)]">
+              <div className="mw-text-muted space-y-4 text-base leading-relaxed text-slate-700 sm:text-lg">
+                <p>
+                  Morse code can look like punctuation on the page, but it is a
+                  signal system. The written dot and dash are useful labels, but
+                  the practice goal is to recognize the rhythm of a whole
+                  character.
+                </p>
+                <p>
+                  A dot is usually called a dit. A dash is usually called a dah.
+                  The dash lasts longer, and the spaces matter because they tell
+                  you when one character or word has ended.
+                </p>
+                <p>
+                  Keep this page simple: learn the short and long sounds, learn a
+                  few letters, then practice tiny groups. For the full rules about
+                  dot length, dash length, WPM, and word spacing, use the{" "}
+                  <InlineTextLink href="/morse-code-timing">
+                    Morse code timing guide
+                  </InlineTextLink>
+                  .
+                </p>
+              </div>
+              <TimingStrip />
             </div>
-            <TimingStrip />
+
+            <OptionalSquareAd className="mw-signal-learn-seo" />
           </div>
         </SectionCard>
 
@@ -463,8 +469,6 @@ export default function LearnMorseCode() {
             </StaticTile>
           </div>
         </SectionCard>
-
-        <SeoSectionInlineAd />
 
         <SectionCard
           eyebrow="Use it well"

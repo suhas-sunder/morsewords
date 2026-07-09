@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router";
+import { OptionalSquareAd } from "~/client/components/ads/AdSenseAds";
 import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
 
 const summaryPoints = [
@@ -248,7 +249,7 @@ export default function HowItWorksPractice() {
           </section>
 
           <section id="practice-next">
-            <div className="grid gap-6 lg:grid-cols-[235px_minmax(0,1fr)]">
+            <div className="grid gap-6 lg:grid-cols-[235px_minmax(0,1fr)_minmax(280px,300px)]">
               <header>
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
                   Next step
@@ -282,6 +283,8 @@ export default function HowItWorksPractice() {
                   and come back here for short check-ins.
                 </p>
               </div>
+
+              <OptionalSquareAd className="mw-signal-practice-seo" />
             </div>
           </section>
         </div>

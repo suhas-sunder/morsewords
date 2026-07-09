@@ -1,5 +1,7 @@
 import * as React from "react";
-import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
+import {
+  OptionalSquareAd,
+} from "~/client/components/ads/AdSenseAds";
 import SectionEyebrow from "~/client/components/shared/SectionEyebrow";
 import { ROUTES } from "~/client/data/routes";
 
@@ -152,12 +154,16 @@ export default function HowItWorksAudio() {
                 How to generate Morse audio
               </h3>
             </div>
-            <ol className="max-w-[58ch] list-decimal space-y-3 pl-6 text-base leading-relaxed sm:text-lg">
-              <li>Choose text input or Morse input.</li>
-              <li>Enter the message and verify the generated Morse preview.</li>
-              <li>Set speed, Farnsworth spacing, pitch, waveform, and volume.</li>
-              <li>Play the audio, then export WAV when the timing sounds right.</li>
-            </ol>
+            <div className="mw-support-ad-grid-tight">
+              <ol className="max-w-[58ch] list-decimal space-y-3 pl-6 text-base leading-relaxed sm:text-lg">
+                <li>Choose text input or Morse input.</li>
+                <li>Enter the message and verify the generated Morse preview.</li>
+                <li>Set speed, Farnsworth spacing, pitch, waveform, and volume.</li>
+                <li>Play the audio, then export WAV when the timing sounds right.</li>
+              </ol>
+
+              <OptionalSquareAd className="mw-signal-audio-seo" />
+            </div>
           </section>
 
           <section className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)]">
@@ -309,8 +315,6 @@ export default function HowItWorksAudio() {
               </ul>
             </div>
           </section>
-
-          <SeoSectionInlineAd />
 
           <section className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)]">
             <div>

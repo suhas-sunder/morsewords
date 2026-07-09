@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 
-import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
+import {
+  OptionalSquareAd,
+} from "~/client/components/ads/AdSenseAds";
 import {
   ActionLinks,
   SectionCard,
@@ -55,6 +57,7 @@ type ReferenceSupportSectionsProps = {
     links: Array<{ href: string; label: string; primary?: boolean }>;
   };
   linkedItemStyle?: "card" | "inline";
+  showSupportAd?: boolean;
 };
 
 export default function ReferenceSupportSections({
@@ -64,6 +67,7 @@ export default function ReferenceSupportSections({
   comparison,
   nextStep,
   linkedItemStyle = "card",
+  showSupportAd = true,
 }: ReferenceSupportSectionsProps) {
   return (
     <>
@@ -72,7 +76,12 @@ export default function ReferenceSupportSections({
         title={guide.title}
         description={guide.description}
       >
-        <SimpleGrid items={guide.items} linkedItemStyle={linkedItemStyle} />
+        <div className={showSupportAd ? "mw-support-ad-grid" : ""}>
+          <SimpleGrid items={guide.items} linkedItemStyle={linkedItemStyle} />
+          {showSupportAd ? (
+            <OptionalSquareAd className="mw-signal-reference-seo" />
+          ) : null}
+        </div>
       </SectionCard>
 
       <SectionCard
@@ -123,8 +132,6 @@ export default function ReferenceSupportSections({
           ))}
         </div>
       </SectionCard>
-
-      <SeoSectionInlineAd />
 
       <SectionCard
         eyebrow={comparison.eyebrow ?? "Choose a reference"}

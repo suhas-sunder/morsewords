@@ -492,8 +492,34 @@ Approved button treatment is centralized by `app/app.css` and
 - Component refactors must preserve existing logic, layout, and styling unless
   the task explicitly allows visual changes.
 
+## 19. AdSense placement and placeholder lifecycle rules
 
-## 19. Audio/video export pipeline rules
+Ad placements are a protected revenue surface. Do not reintroduce disappearing
+desktop sidebars or filled ads wrapped in fallback chrome.
+
+- The above-header ad, left sidebar, right sidebar, and Explore toolkit ad are
+  protected placements. They should not be route-excluded unless the user
+  explicitly changes the ad architecture.
+- Desktop sidebars must remain mounted and visibly labeled with
+  `Advertisements` while pending, blocked, or unfilled. They should disappear
+  only when the viewport is below the sidebar breakpoint or when a filled ad is
+  shown and the fallback chrome is hidden.
+- A filled ad must never render at the same time as fallback UI: no dashed
+  border, no placeholder background, and no `Advertisements` label above,
+  below, behind, or around the creative.
+- Normal eligible placements should show the fallback immediately on initial
+  render, reserve stable space, and then either keep that fallback when blocked
+  or unfilled or hide it completely when filled.
+- Do not use placeholder dimensions as a max-height or clipping box for filled
+  creatives. Keeping a stable minimum reserved height is acceptable; clipping
+  filled ads is not.
+- Do not add collapse-on-unfilled behavior to the protected sidebars. This has
+  repeatedly caused side rail placeholders to flash and disappear.
+- Visual QA for AdSense changes must include simulated filled creatives and
+  blocked/unfilled states at mobile and desktop widths. DOM assertions alone are
+  not enough.
+
+## 20. Audio/video export pipeline rules
 
 MorseWords audio/video export is a core product feature. Do not treat it as a secondary convenience feature.
 
@@ -604,7 +630,7 @@ Unexpected failures must be clean and recoverable.
 * Preserve already completed parts where browser constraints allow.
 * Do not leave buttons stuck in `Rendering...`.
 
-## 20. Book processing pipeline rules
+## 21. Book processing pipeline rules
 
 Book processing must be done in small reviewable batches. Do not process the full library in one large Codex pass.
 

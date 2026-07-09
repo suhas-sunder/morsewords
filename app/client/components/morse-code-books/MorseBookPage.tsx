@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 import {
   BookPlayerBannerAd,
-  SeoSectionRailAd,
+  OptionalSquareAd,
 } from "~/client/components/ads/AdSenseAds";
 import {
   DownloadIcon,
@@ -3740,12 +3740,18 @@ function MorseBookWorkspace({
             <div
               className={[
                 "mt-3",
-                shouldShowSeoSummaryAd ? "mw-seo-section-with-rail" : "",
+                shouldShowSeoSummaryAd ? "mw-book-summary-support" : "",
               ]
                 .filter(Boolean)
                 .join(" ")}
             >
-              <div className="max-w-none columns-1 gap-7 space-y-3 lg:columns-2 lg:gap-8">
+              <div
+                className={
+                  shouldShowSeoSummaryAd
+                    ? "max-w-[68ch] space-y-3"
+                    : "max-w-none columns-1 gap-7 space-y-3 lg:columns-2 lg:gap-8"
+                }
+              >
                 {seoSummaryParagraphs.map((paragraph, index) => (
                   <p
                     className="break-inside-avoid"
@@ -3755,7 +3761,9 @@ function MorseBookWorkspace({
                   </p>
                 ))}
               </div>
-              {shouldShowSeoSummaryAd ? <SeoSectionRailAd /> : null}
+              {shouldShowSeoSummaryAd ? (
+                <OptionalSquareAd className="mw-signal-book-summary-square" />
+              ) : null}
             </div>
           </div>
         </section>

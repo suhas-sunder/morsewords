@@ -8,7 +8,9 @@ import {
   PrintIcon,
   RulerIcon,
 } from "~/client/assets/svg/Icons";
-import { SeoSectionInlineAd } from "~/client/components/ads/AdSenseAds";
+import {
+  OptionalSquareAd,
+} from "~/client/components/ads/AdSenseAds";
 import {
   ActionButton,
   ActionLinkButton,
@@ -344,7 +346,6 @@ function TimingReference() {
           />
         </div>
       </SectionCard>
-      <SeoSectionInlineAd />
     </>
   );
 }
@@ -556,47 +557,50 @@ export default function MorseCodeChartRoute() {
           description="The chart is for fast lookup, but Morse becomes useful when you copy carefully, listen to rhythm, then practice recall."
           layout="stacked"
         >
-          <SimpleGrid
-            linkedItemStyle="inline"
-            items={[
-              {
-                title: "Quick lookup",
-                text: "Use the A-Z, 0-9, and punctuation sections when you need one broad chart instead of a focused letter, number, or symbol page.",
-                href: "/morse-code-alphabet",
-                badge: "Letters",
-              },
-              {
-                title: "Learn by rhythm",
-                text: "Dots and dashes are easier to remember when you also hear dit and dah rhythm, so use the hear actions before memorizing visually.",
-                href: "/audio",
-                badge: "Audio",
-              },
-              {
-                title: "Copy safely",
-                text: "Use plain periods, hyphens, spaces, and slashes when copying Morse into messages, worksheets, or puzzle tools.",
-                href: "/copy-and-paste-morse-code",
-                badge: "Copy",
-              },
-              {
-                title: "Print when the chart leaves the screen",
-                text: "Use the printable chart for class handouts, PDFs, worksheets, and offline study instead of copying this page manually.",
-                href: "/morse-code-printable-chart",
-                badge: "Print",
-              },
-              {
-                title: "Check complete messages",
-                text: "Use the encoder for normal text, the decoder for separated Morse, and the chart when you need to verify one character at a time.",
-                href: "/morse-code-encoder",
-                badge: "Tools",
-              },
-              {
-                title: "Move into practice",
-                text: "After lookup, use practice or typing mode so the chart becomes short-session recall rather than a passive table.",
-                href: "/practice",
-                badge: "Recall",
-              },
-            ]}
-          />
+          <div className="mw-support-ad-grid">
+            <SimpleGrid
+              linkedItemStyle="inline"
+              items={[
+                {
+                  title: "Quick lookup",
+                  text: "Use the A-Z, 0-9, and punctuation sections when you need one broad chart instead of a focused letter, number, or symbol page.",
+                  href: "/morse-code-alphabet",
+                  badge: "Letters",
+                },
+                {
+                  title: "Learn by rhythm",
+                  text: "Dots and dashes are easier to remember when you also hear dit and dah rhythm, so use the hear actions before memorizing visually.",
+                  href: "/audio",
+                  badge: "Audio",
+                },
+                {
+                  title: "Copy safely",
+                  text: "Use plain periods, hyphens, spaces, and slashes when copying Morse into messages, worksheets, or puzzle tools.",
+                  href: "/copy-and-paste-morse-code",
+                  badge: "Copy",
+                },
+                {
+                  title: "Print when the chart leaves the screen",
+                  text: "Use the printable chart for class handouts, PDFs, worksheets, and offline study instead of copying this page manually.",
+                  href: "/morse-code-printable-chart",
+                  badge: "Print",
+                },
+                {
+                  title: "Check complete messages",
+                  text: "Use the encoder for normal text, the decoder for separated Morse, and the chart when you need to verify one character at a time.",
+                  href: "/morse-code-encoder",
+                  badge: "Tools",
+                },
+                {
+                  title: "Move into practice",
+                  text: "After lookup, use practice or typing mode so the chart becomes short-session recall rather than a passive table.",
+                  href: "/practice",
+                  badge: "Recall",
+                },
+              ]}
+            />
+            <OptionalSquareAd className="mw-signal-chart-seo" />
+          </div>
           <div className="mt-5">
             <ActionLinks
               links={[
