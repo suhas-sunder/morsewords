@@ -51,6 +51,11 @@ function canAccessDOM() {
   return typeof window !== "undefined" && typeof document !== "undefined";
 }
 
+function adFormatForSlot(slot: string) {
+  if (slot === ADSENSE_SLOTS.topBanner) return "horizontal";
+  return "auto";
+}
+
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
 
@@ -218,7 +223,8 @@ function readAdStatus(element: HTMLElement | null): AdStatus {
   if (status === "filled") return "filled";
   if (status === "unfilled") return "unfilled";
   const style = getComputedStyle(element);
-  if (style.display === "none" || style.visibility === "hidden") return "blocked";
+  if (style.display === "none" || style.visibility === "hidden")
+    return "blocked";
   if (window.__mwAdsenseScriptStatus === "blocked") return "blocked";
   return "pending";
 }
@@ -338,11 +344,9 @@ export function AdSlot({
   return (
     <aside
       aria-label={label}
-      className={[
-        "mw-signal-slot",
-        adViewportClassName(minWidth),
-        className,
-      ].filter(Boolean).join(" ")}
+      className={["mw-signal-slot", adViewportClassName(minWidth), className]
+        .filter(Boolean)
+        .join(" ")}
       data-mw-ad-filled={status === "filled" ? "true" : "false"}
       data-mw-ad-fallback="placeholder"
       data-mw-ad-has-placeholder={placeholder ? "true" : "false"}
@@ -360,8 +364,13 @@ export function AdSlot({
       <ins
         ref={adRef}
         className="adsbygoogle mw-signal-unit"
+        style={{
+          display: "block",
+          margin: "0 auto",
+          width: "100%",
+        }}
         data-ad-client={ADSENSE_CLIENT_ID}
-        data-ad-format={adFormatForKind(kind)}
+        data-ad-format={ADSENSE_AD_FORMAT}
         data-ad-slot={slot}
         data-adtest={import.meta.env.DEV ? "on" : undefined}
         data-full-width-responsive="true"
@@ -395,11 +404,7 @@ export function TopBannerAd() {
   );
 }
 
-export function PostHeroBannerAd({
-  className = "",
-}: {
-  className?: string;
-}) {
+export function PostHeroBannerAd({ className = "" }: { className?: string }) {
   return (
     <AdSlot
       className={["mw-signal-post", className].filter(Boolean).join(" ")}
@@ -500,11 +505,7 @@ export function SidebarRailAds() {
   );
 }
 
-export function InContentAd({
-  className = "",
-}: {
-  className?: string;
-}) {
+export function InContentAd({ className = "" }: { className?: string }) {
   return (
     <AdSlot
       className={["mw-signal-inline", className].filter(Boolean).join(" ")}
@@ -518,11 +519,7 @@ export function InContentAd({
   );
 }
 
-export function SeoSectionRailAd({
-  className = "",
-}: {
-  className?: string;
-}) {
+export function SeoSectionRailAd({ className = "" }: { className?: string }) {
   return (
     <AdSlot
       className={["mw-signal-seo-rail", className].filter(Boolean).join(" ")}
@@ -585,11 +582,7 @@ export function PrintableChartSquareAd() {
   );
 }
 
-export function OptionalSquareAd({
-  className = "",
-}: {
-  className?: string;
-}) {
+export function OptionalSquareAd({ className = "" }: { className?: string }) {
   return (
     <AdSlot
       className={["mw-signal-optional-square", className]
@@ -605,11 +598,7 @@ export function OptionalSquareAd({
   );
 }
 
-export function OptionalBannerAd({
-  className = "",
-}: {
-  className?: string;
-}) {
+export function OptionalBannerAd({ className = "" }: { className?: string }) {
   return (
     <AdSlot
       className={["mw-signal-optional-banner", className]
