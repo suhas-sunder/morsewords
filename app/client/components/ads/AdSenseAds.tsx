@@ -217,16 +217,35 @@ function adViewportClassName(minWidth: number) {
   return "mw-signal-min-any";
 }
 
+function hasRenderedAdContent(element: HTMLElement) {
+  const iframe = element.querySelector("iframe");
+  if (!iframe) return false;
+
+  const iframeRect = iframe.getBoundingClientRect();
+  const iframeStyle = getComputedStyle(iframe);
+
+  return (
+    iframeRect.width > 0 &&
+    iframeRect.height > 0 &&
+    iframeStyle.display !== "none" &&
+    iframeStyle.visibility !== "hidden"
+  );
+}
+
 function readAdStatus(element: HTMLElement | null): AdStatus {
   if (!element || !element.isConnected) return "blocked";
-  const status = element?.getAttribute("data-ad-status");
+
+  const status = element.getAttribute("data-ad-status");
   if (status === "filled") return "filled";
   if (status === "unfilled") return "unfilled";
   if (status === "unfill-optimized") return "unfill-optimized";
+
   const style = getComputedStyle(element);
   if (style.display === "none" || style.visibility === "hidden")
     return "blocked";
   if (window.__mwAdsenseScriptStatus === "blocked") return "blocked";
+  if (hasRenderedAdContent(element)) return "filled";
+
   return "pending";
 }
 
@@ -252,7 +271,15 @@ function useAdStatus(
     const observer = new MutationObserver(syncStatus);
     observer.observe(element, {
       attributes: true,
-      attributeFilter: ["class", "data-ad-status", "hidden", "style"],
+      childList: true,
+      subtree: true,
+      attributeFilter: [
+        "class",
+        "data-ad-status",
+        "data-adsbygoogle-status",
+        "hidden",
+        "style",
+      ],
     });
     const parent = element.parentElement;
     if (parent) {
