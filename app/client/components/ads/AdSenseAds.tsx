@@ -77,8 +77,11 @@ const TRUST_AND_UTILITY_EXCLUDED_PATHS = new Set<string>([
 declare global {
   interface Window {
     __mwAdsenseScriptStatus?: "pending" | "loaded" | "blocked";
+    __mwAdsenseAnyAdRendered?: boolean;
   }
 }
+
+const ADSENSE_RENDERED_CONTENT_EVENT = "mw:adsense-rendered-content";
 
 const DENSE_POST_HERO_EXCLUDED_PATHS = new Set<string>([
   ROUTES.audioDecoder,
@@ -217,19 +220,61 @@ function adViewportClassName(minWidth: number) {
   return "mw-signal-min-any";
 }
 
-function hasRenderedAdContent(element: HTMLElement) {
-  const iframe = element.querySelector("iframe");
-  if (!iframe) return false;
+function isDisplayedAdElement(element: Element) {
+  if (!(element instanceof HTMLElement)) return false;
 
-  const iframeRect = iframe.getBoundingClientRect();
-  const iframeStyle = getComputedStyle(iframe);
+  const rect = element.getBoundingClientRect();
+  const style = getComputedStyle(element);
 
   return (
-    iframeRect.width > 0 &&
-    iframeRect.height > 0 &&
-    iframeStyle.display !== "none" &&
-    iframeStyle.visibility !== "hidden"
+    rect.width > 0 &&
+    rect.height > 0 &&
+    style.display !== "none" &&
+    style.visibility !== "hidden" &&
+    style.opacity !== "0"
   );
+}
+
+function hasRenderedAdContent(element: HTMLElement) {
+  const renderedChildren = element.querySelectorAll(
+    "iframe, [id^='aswift_'], [id^='google_ads_iframe']",
+  );
+
+  if (Array.from(renderedChildren).some(isDisplayedAdElement)) return true;
+
+  return Array.from(element.children).some((child) => {
+    if (child.classList.contains("mw-signal-caption")) return false;
+    if (child.tagName.toLowerCase() === "script") return false;
+    return isDisplayedAdElement(child);
+  });
+}
+
+function hasAnyRenderedAdContent() {
+  if (!canAccessDOM()) return false;
+
+  const adUnits = document.querySelectorAll<HTMLElement>("ins.adsbygoogle");
+  return Array.from(adUnits).some(hasRenderedAdContent);
+}
+
+function markAnyAdRendered() {
+  if (!canAccessDOM()) return;
+  if (window.__mwAdsenseAnyAdRendered) return;
+
+  window.__mwAdsenseAnyAdRendered = true;
+  document.documentElement.dataset.mwAdsenseRendered = "true";
+  window.dispatchEvent(new CustomEvent(ADSENSE_RENDERED_CONTENT_EVENT));
+}
+
+function syncAnyRenderedAdContent() {
+  if (!canAccessDOM()) return false;
+  if (window.__mwAdsenseAnyAdRendered) return true;
+
+  if (hasAnyRenderedAdContent()) {
+    markAnyAdRendered();
+    return true;
+  }
+
+  return false;
 }
 
 function readAdStatus(element: HTMLElement | null): AdStatus {
@@ -244,7 +289,11 @@ function readAdStatus(element: HTMLElement | null): AdStatus {
   if (style.display === "none" || style.visibility === "hidden")
     return "blocked";
   if (window.__mwAdsenseScriptStatus === "blocked") return "blocked";
-  if (hasRenderedAdContent(element)) return "filled";
+
+  if (hasRenderedAdContent(element)) {
+    markAnyAdRendered();
+    return "filled";
+  }
 
   return "pending";
 }
@@ -263,7 +312,9 @@ function useAdStatus(
 
     const element = ref.current;
     const syncStatus = () => {
-      setStatus(readAdStatus(ref.current));
+      const nextStatus = readAdStatus(ref.current);
+      setStatus(nextStatus);
+      if (nextStatus === "filled") markAnyAdRendered();
     };
     syncStatus();
     if (!element || typeof MutationObserver === "undefined") return;
@@ -297,6 +348,77 @@ function useAdStatus(
   return status;
 }
 
+function useAnyRenderedAdContent() {
+  const [anyAdRendered, setAnyAdRendered] = React.useState(() => {
+    if (!canAccessDOM()) return false;
+    return Boolean(window.__mwAdsenseAnyAdRendered);
+  });
+
+  React.useEffect(() => {
+    if (!canAccessDOM()) return;
+
+    const sync = () => {
+      setAnyAdRendered(Boolean(window.__mwAdsenseAnyAdRendered));
+    };
+
+    sync();
+    window.addEventListener(ADSENSE_RENDERED_CONTENT_EVENT, sync);
+    return () => {
+      window.removeEventListener(ADSENSE_RENDERED_CONTENT_EVENT, sync);
+    };
+  }, []);
+
+  return anyAdRendered;
+}
+
+function useRenderedAdContentDetector() {
+  React.useEffect(() => {
+    if (!canAccessDOM()) return;
+
+    let observer: MutationObserver | undefined;
+    let intervalId: number | undefined;
+
+    const stopDetector = () => {
+      observer?.disconnect();
+      observer = undefined;
+
+      if (intervalId !== undefined) {
+        window.clearInterval(intervalId);
+        intervalId = undefined;
+      }
+    };
+
+    const sync = () => {
+      if (syncAnyRenderedAdContent()) stopDetector();
+    };
+
+    if (typeof MutationObserver !== "undefined" && document.body) {
+      observer = new MutationObserver(sync);
+      observer.observe(document.body, {
+        attributes: true,
+        childList: true,
+        subtree: true,
+        attributeFilter: [
+          "class",
+          "data-ad-status",
+          "data-adsbygoogle-status",
+          "hidden",
+          "style",
+        ],
+      });
+    }
+
+    intervalId = window.setInterval(sync, 500);
+    window.addEventListener("mw:adsense-script-status", sync);
+    sync();
+
+    return () => {
+      window.removeEventListener("mw:adsense-script-status", sync);
+      stopDetector();
+    };
+  }, []);
+}
+
 function setAdSenseScriptStatus(status: "loaded" | "blocked") {
   if (!canAccessDOM()) return;
   window.__mwAdsenseScriptStatus = status;
@@ -320,6 +442,8 @@ function pushAdSenseRequest(element: HTMLElement) {
 }
 
 export function AdSenseScriptLoader() {
+  useRenderedAdContentDetector();
+
   return (
     <script
       async
@@ -354,8 +478,9 @@ export function AdSlot({
   const shouldRequestAd = pathEligible && viewportEligible;
   const adRef = React.useRef<HTMLModElement | null>(null);
   const status = useAdStatus(adRef, shouldRequestAd);
+  const anyAdRendered = useAnyRenderedAdContent();
   const isFilled = status === "filled";
-  const placeholderVisible = placeholder && !isFilled;
+  const placeholderVisible = placeholder && !isFilled && !anyAdRendered;
 
   React.useEffect(() => {
     if (!shouldRequestAd || !adRef.current) return;
@@ -404,6 +529,7 @@ export function AdSlot({
       data-mw-ad-filled={status === "filled" ? "true" : "false"}
       data-mw-ad-fallback="placeholder"
       data-mw-ad-has-placeholder={placeholder ? "true" : "false"}
+      data-mw-ad-any-rendered={anyAdRendered ? "true" : "false"}
       data-mw-ad-kind={kind}
       data-mw-ad-placement={placement}
       data-mw-ad-placeholder-visible={placeholderVisible ? "true" : "false"}
