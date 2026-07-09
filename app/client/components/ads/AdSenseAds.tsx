@@ -19,7 +19,12 @@ export const ADSENSE_SLOTS = {
 
 type AdKind = "banner" | "vertical" | "square";
 type AdLabel = "Advertisements" | "Sponsored Links";
-type AdStatus = "pending" | "filled" | "unfilled" | "blocked";
+type AdStatus =
+  | "pending"
+  | "filled"
+  | "unfilled"
+  | "unfill-optimized"
+  | "blocked";
 
 type ViewportRule = {
   minWidth?: number;
@@ -217,6 +222,7 @@ function readAdStatus(element: HTMLElement | null): AdStatus {
   const status = element?.getAttribute("data-ad-status");
   if (status === "filled") return "filled";
   if (status === "unfilled") return "unfilled";
+  if (status === "unfill-optimized") return "unfill-optimized";
   const style = getComputedStyle(element);
   if (style.display === "none" || style.visibility === "hidden")
     return "blocked";
@@ -272,7 +278,6 @@ function setAdSenseScriptStatus(status: "loaded" | "blocked") {
 
 function pushAdSenseRequest(element: HTMLElement) {
   if (element.dataset.mwAdsensePushed === "true") return;
-  element.dataset.mwAdsensePushed = "true";
 
   const adWindow = window as Window & {
     adsbygoogle?: Array<Record<string, never>>;
@@ -280,8 +285,10 @@ function pushAdSenseRequest(element: HTMLElement) {
   const queue = (adWindow.adsbygoogle = adWindow.adsbygoogle ?? []);
   try {
     queue.push({});
+    element.dataset.mwAdsensePushed = "true";
   } catch {
-    // AdSense can throw during rapid SPA transitions; one guarded push is enough.
+    delete element.dataset.mwAdsensePushed;
+    // AdSense can throw during rapid SPA transitions; retry on the next eligible render.
   }
 }
 

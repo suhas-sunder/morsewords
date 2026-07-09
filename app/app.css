@@ -328,6 +328,7 @@ input[type="range"]:focus-visible {
   min-height: 0 !important;
   max-width: 100% !important;
   overflow: visible !important;
+  text-align: center;
 }
 
 .mw-signal-slot[data-mw-ad-placeholder-visible="true"] {
@@ -344,7 +345,14 @@ input[type="range"]:focus-visible {
 
 .mw-signal-unit iframe {
   display: block;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 100%;
+}
+
+.mw-signal-unit > * {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .mw-signal-caption {
