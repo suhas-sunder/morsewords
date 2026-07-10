@@ -1,3 +1,5 @@
+import { TEXT_TO_MORSE } from "~/client/components/shared/morseUtils";
+
 export type ReferenceItem = {
   label: string;
   morse: string;
@@ -5,64 +7,63 @@ export type ReferenceItem = {
   example?: string;
 };
 
-export const LETTERS: ReferenceItem[] = [
-  ["A", ".-", "Letter A"],
-  ["B", "-...", "Letter B"],
-  ["C", "-.-.", "Letter C"],
-  ["D", "-..", "Letter D"],
-  ["E", ".", "Letter E"],
-  ["F", "..-.", "Letter F"],
-  ["G", "--.", "Letter G"],
-  ["H", "....", "Letter H"],
-  ["I", "..", "Letter I"],
-  ["J", ".---", "Letter J"],
-  ["K", "-.-", "Letter K"],
-  ["L", ".-..", "Letter L"],
-  ["M", "--", "Letter M"],
-  ["N", "-.", "Letter N"],
-  ["O", "---", "Letter O"],
-  ["P", ".--.", "Letter P"],
-  ["Q", "--.-", "Letter Q"],
-  ["R", ".-.", "Letter R"],
-  ["S", "...", "Letter S"],
-  ["T", "-", "Letter T"],
-  ["U", "..-", "Letter U"],
-  ["V", "...-", "Letter V"],
-  ["W", ".--", "Letter W"],
-  ["X", "-..-", "Letter X"],
-  ["Y", "-.--", "Letter Y"],
-  ["Z", "--..", "Letter Z"],
-].map(([label, morse, description]) => ({ label, morse, description }));
+export const LETTERS: ReferenceItem[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  .split("")
+  .map((label) => ({
+    label,
+    morse: TEXT_TO_MORSE[label],
+    description: `Letter ${label}`,
+  }));
 
-export const DIGITS: ReferenceItem[] = [
-  ["0", "-----", "Number zero"],
-  ["1", ".----", "Number one"],
-  ["2", "..---", "Number two"],
-  ["3", "...--", "Number three"],
-  ["4", "....-", "Number four"],
-  ["5", ".....", "Number five"],
-  ["6", "-....", "Number six"],
-  ["7", "--...", "Number seven"],
-  ["8", "---..", "Number eight"],
-  ["9", "----.", "Number nine"],
-].map(([label, morse, description]) => ({ label, morse, description }));
-
-export const PUNCTUATION: ReferenceItem[] = [
-  { label: "Period", morse: ".-.-.-", description: "Full stop used at the end of a sentence.", example: "END." },
-  { label: "Comma", morse: "--..--", description: "Comma separator inside a sentence.", example: "YES, COPY" },
-  { label: "Question mark", morse: "..--..", description: "Used for questions and uncertain copy.", example: "QTH?" },
-  { label: "Slash", morse: "-..-.", description: "Commonly used as a word separator in written Morse.", example: "TEXT / MORSE" },
-  { label: "Hyphen", morse: "-....-", description: "Dash or hyphen inside a word or call sign.", example: "X-RAY" },
-  { label: "Apostrophe", morse: ".----.", description: "Apostrophe in contractions and names.", example: "DON'T" },
-  { label: "Open parenthesis", morse: "-.--.", description: "Opening parenthesis.", example: "(NOTE" },
-  { label: "Close parenthesis", morse: "-.--.-", description: "Closing parenthesis.", example: "NOTE)" },
-  { label: "Colon", morse: "---...", description: "Colon punctuation.", example: "TIME:" },
-  { label: "Semicolon", morse: "-.-.-.", description: "Semicolon punctuation.", example: "COPY; WAIT" },
-  { label: "Equals", morse: "-...-", description: "Equals sign and a common break separator.", example: "A=B" },
-  { label: "Plus", morse: ".-.-.", description: "Plus sign; also overlaps with the AR prosign pattern.", example: "A+B" },
-  { label: "At sign", morse: ".--.-.", description: "At sign used in email-like text.", example: "NAME@SITE" },
-  { label: "Quotation mark", morse: ".-..-.", description: "Quotation mark punctuation.", example: "\"SOS\"" },
+const DIGIT_NAMES = [
+  "zero",
+  "one",
+  "two",
+  "three",
+  "four",
+  "five",
+  "six",
+  "seven",
+  "eight",
+  "nine",
 ];
+
+export const DIGITS: ReferenceItem[] = "0123456789"
+  .split("")
+  .map((label) => ({
+    label,
+    morse: TEXT_TO_MORSE[label],
+    description: `Number ${DIGIT_NAMES[Number(label)]}`,
+  }));
+
+const punctuationDefinitions = [
+  ["Period", ".", "Full stop used at the end of a sentence.", "END."],
+  ["Comma", ",", "Comma separator inside a sentence.", "YES, COPY"],
+  ["Question mark", "?", "Used for questions and uncertain copy.", "QTH?"],
+  ["Exclamation mark", "!", "Used for emphasis in written text.", "STOP!"],
+  ["Slash", "/", "Slash punctuation. This is different from / used as written word-separator notation.", "A/B"],
+  ["Hyphen", "-", "Dash or hyphen inside a word or call sign.", "X-RAY"],
+  ["Apostrophe", "'", "Apostrophe in contractions and names.", "DON'T"],
+  ["Open parenthesis", "(", "Opening parenthesis.", "(NOTE"],
+  ["Close parenthesis", ")", "Closing parenthesis.", "NOTE)"],
+  ["Colon", ":", "Colon punctuation.", "TIME:"],
+  ["Semicolon", ";", "Semicolon punctuation.", "COPY; WAIT"],
+  ["Equals", "=", "Equals sign and a common break separator.", "A=B"],
+  ["Plus", "+", "Plus sign; also overlaps with the AR prosign pattern.", "A+B"],
+  ["At sign", "@", "At sign used in email-like text.", "NAME@SITE"],
+  ["Ampersand", "&", "Ampersand punctuation.", "R&D"],
+  ["Underscore", "_", "Underscore in code-like text.", "CALL_SIGN"],
+  ["Quotation mark", '"', "Quotation mark punctuation.", '"SOS"'],
+] as const;
+
+export const PUNCTUATION: ReferenceItem[] = punctuationDefinitions.map(
+  ([label, character, description, example]) => ({
+    label,
+    morse: TEXT_TO_MORSE[character],
+    description,
+    example,
+  }),
+);
 
 export const PROSIGNS: ReferenceItem[] = [
   { label: "SOS", morse: "...---...", description: "Distress signal sent as one continuous pattern.", example: "Emergency distress" },
@@ -122,4 +123,3 @@ export const WORD_LISTS = {
   classroom: ["teacher", "student", "signal", "listen", "answer", "practice", "worksheet", "puzzle"],
   radio: ["qth", "qsl", "qso", "rst", "name", "rig", "ant", "pwr", "qrp", "qrz"],
 };
-

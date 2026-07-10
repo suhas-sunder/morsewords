@@ -1,7 +1,7 @@
 export const MORSE_LETTER_GAP = "   ";
 export const MORSE_WORD_GAP = "       ";
 
-// ITU-ish core map used by every text/Morse conversion path.
+// Canonical character map used by every text/Morse conversion path.
 export const TEXT_TO_MORSE: Record<string, string> = {
   A: ".-",
   B: "-...",

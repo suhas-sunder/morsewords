@@ -2,6 +2,7 @@ import type { Route } from "./+types/morse-code-punctuation";
 
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import InternationalMorseSourceNote from "~/client/components/shared/InternationalMorseSourceNote";
 import {
   ActionLinks,
   DarkNote,
@@ -37,7 +38,7 @@ export function meta({}: Route.MetaArgs) {
 const faqItems = [
   {
     q: "Does Morse code include punctuation?",
-    a: "Yes. International Morse includes common punctuation marks such as period, comma, question mark, slash, apostrophe, parentheses, colon, semicolon, equals, plus, at sign, ampersand, underscore, and quotation mark.",
+    a: "Yes. MorseWords supports common punctuation marks such as period, comma, question mark, slash, apostrophe, parentheses, colon, semicolon, equals, plus, at sign, ampersand, underscore, and quotation mark. Usage of less-common marks can vary by operating context or local convention.",
   },
   {
     q: "Why are punctuation patterns longer than letters?",
@@ -120,10 +121,12 @@ export default function MorseCodePunctuation() {
           />
         </PageHero>
 
+        <InternationalMorseSourceNote />
+
         <SectionCard
           eyebrow="Lookup table"
           title="Morse punctuation chart"
-          description="MorseWords supports these punctuation marks in the translator, decoder, audio generator, and worksheet tools."
+          description="MorseWords supports these punctuation marks in the translator, decoder, audio generator, and worksheet tools. Specialized or local variants may differ, so check the context before treating an uncommon symbol as universal."
         >
           <ReferenceTable
             items={PUNCTUATION}

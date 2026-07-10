@@ -815,6 +815,35 @@ test("desktop sidebars request at wide width and remove fallback chrome globally
   }
 });
 
+test("desktop sidebar fallback frames begin at the top of their existing rails", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1536, height: 1100 });
+  await gotoRouteForLayoutCheck(page, "/");
+
+  for (const placement of ["left-sidebar", "right-sidebar"]) {
+    await expect(adPlacement(page, placement)).toHaveAttribute(
+      "data-mw-ad-request-eligible",
+      "true",
+    );
+    await expect(adPlacement(page, placement).locator(placementLabelSelector)).toBeVisible();
+    const geometry = await adPlacement(page, placement).evaluate((shell) => {
+      const rail = shell.getBoundingClientRect();
+      const caption = shell.querySelector<HTMLElement>(".mw-signal-caption");
+      const captionRect = caption?.getBoundingClientRect();
+      return {
+        captionTop: captionRect?.top ?? Number.POSITIVE_INFINITY,
+        railTop: rail.top,
+      };
+    });
+
+    expect(
+      Math.abs(geometry.captionTop - geometry.railTop),
+      `${placement} placeholder begins at the rail top instead of vertically centered`,
+    ).toBeLessThanOrEqual(1);
+  }
+});
+
 test("desktop sidebars keep stable fallback through pending, blocked, and unfilled states", async ({
   page,
 }) => {

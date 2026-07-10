@@ -7,6 +7,7 @@ import {
 } from "~/client/components/ads/AdSenseAds";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import InternationalMorseSourceNote from "~/client/components/shared/InternationalMorseSourceNote";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
   ActionButton,
@@ -128,7 +129,7 @@ const CHALLENGE_SENTENCES = [
 ];
 
 const DEFAULT_DIRECTIONS =
-  "Use the chart to complete each section. Write neatly, keep spaces between Morse letters, and use a slash between words.";
+  "Use the chart to complete each section. Write neatly, keep spaces between Morse letters, and use a slash between written Morse words.";
 
 const LETTERS: CharacterRow[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   .split("")
@@ -3042,6 +3043,8 @@ export default function MorseCodePrintableChart() {
             ]}
           />
         </PageHero>
+
+        <InternationalMorseSourceNote />
 
         <section className="hidden">
           <div className="mw-static-panel min-w-0 rounded-xl bg-[#fffdf8]/85 p-4">

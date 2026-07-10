@@ -2,6 +2,7 @@ import type { Route } from "./+types/international-morse-code-reference";
 
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import InternationalMorseSourceNote from "~/client/components/shared/InternationalMorseSourceNote";
 import {
   ActionLinks,
   DarkNote,
@@ -113,6 +114,7 @@ export default function InternationalMorseCodeReference() {
               { href: "/morse-code-alphabet", label: "Alphabet chart" },
               { href: "/morse-code-numbers", label: "Number chart" },
               { href: "/morse-code-punctuation", label: "Punctuation" },
+              { href: ROUTES.morseCodeByLanguage, label: "Morse by language" },
               { href: "/morse-code-prosigns", label: "Prosigns" },
               { href: "/morse-code-timing", label: "Timing guide" },
               { href: ROUTES.internationalVsAmerican, label: "International vs American" },
@@ -120,6 +122,8 @@ export default function InternationalMorseCodeReference() {
             ]}
           />
         </PageHero>
+
+        <InternationalMorseSourceNote />
 
         <SectionCard
           eyebrow="Browse"

@@ -3,6 +3,7 @@ import type { Route } from "./+types/morse-code-alphabet";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import InternationalMorseSourceNote from "~/client/components/shared/InternationalMorseSourceNote";
 import { CopyActionButton } from "~/client/components/shared/ActionControls";
 import {
   ActionLinks,
@@ -10,6 +11,7 @@ import {
 } from "~/client/components/shared/MorseLearningLayout";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import { LETTER_ITEMS } from "~/client/data/morseContent";
+import { TEXT_TO_MORSE } from "~/client/components/shared/morseUtils";
 import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 
@@ -219,7 +221,7 @@ export default function MorseCodeAlphabetRoute() {
 
   const letters: Entry[] = LETTER_ITEMS.map((item) => ({
     label: item.letter,
-    morse: item.morseValue,
+    morse: TEXT_TO_MORSE[item.letter] ?? item.morseValue,
     meaning: "Letter " + item.letter,
     category: "Letters" as const,
     href: item.path,
@@ -239,12 +241,15 @@ export default function MorseCodeAlphabetRoute() {
             { href: "#letters", label: "Letters A-Z", primary: true },
             { href: "/morse-code-chart", label: "Complete chart" },
             { href: "/morse-code-numbers", label: "Numbers 0-9" },
+            { href: "/morse-code-punctuation", label: "Punctuation" },
             { href: "/dictionary", label: "Dictionary" },
             { href: "/international-morse-code-reference", label: "Full reference" },
             { href: "#faq", label: "FAQ" },
           ]}
         />
       </PageHero>
+
+      <InternationalMorseSourceNote />
 
       <nav className="mb-8 mt-5 rounded-xl bg-[#fffdf8]/70 px-3 py-3">
         <div className="flex flex-wrap gap-2 text-sm">

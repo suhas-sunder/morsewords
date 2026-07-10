@@ -13,6 +13,7 @@ import {
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import InternationalMorseSourceNote from "~/client/components/shared/InternationalMorseSourceNote";
 import {
   ActionLinks,
   PageHero,
@@ -962,11 +963,14 @@ export function MorseNumbersPage({
           />
         </PageHero>
 
+        <InternationalMorseSourceNote />
+
         <section className="mt-6">
           <ToolOutputPanel label="Direct answer" badge="0-9" className="h-fit">
             <div className="mw-output-soft grid gap-4 px-4 pb-4 text-slate-200 lg:grid-cols-[minmax(0,0.72fr)_minmax(220px,0.28fr)]">
               <p className="max-w-[68ch] text-base leading-relaxed">
-                The Morse number chart is {chartSummary}.
+                The Morse number chart is {chartSummary}. In particular, 9 is
+                {" "}----.
               </p>
               <p className="mw-output-text max-w-[34ch] text-base leading-relaxed text-sky-100">
                 Learn them as one five-mark system instead of ten unrelated
@@ -1081,6 +1085,7 @@ export function MorseNumbersPage({
             links={[
               { href: "/morse-code-alphabet", label: "Alphabet", primary: true },
               { href: "/morse-code-chart", label: "Complete chart" },
+              { href: "/morse-code-punctuation", label: "Punctuation" },
               { href: "/dictionary", label: "Dictionary" },
               { href: "/audio", label: "Audio" },
               { href: "/practice", label: "Practice" },

@@ -5,6 +5,7 @@ import WordSeparatorTool from "~/client/components/morse-code-word-separator/Wor
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import InternationalMorseSourceNote from "~/client/components/shared/InternationalMorseSourceNote";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
   SectionCard,
@@ -175,6 +176,8 @@ export default function MorseCodeWordSeparator() {
             </StaticCodeBlock>
           </div>
         </SectionCard>
+
+        <InternationalMorseSourceNote />
 
         <ReferenceSupportSections
           guide={{
@@ -427,6 +430,7 @@ export default function MorseCodeWordSeparator() {
               "Once the written Morse is separated cleanly, move to the chart, reader, timing, or audio tools that match the next job.",
             links: [
               { href: ROUTES.reader, label: "Read cleaned Morse", primary: true },
+              { href: ROUTES.encoder, label: "Encode text" },
               { href: ROUTES.chart, label: "Morse code chart" },
               { href: ROUTES.alphabet, label: "Alphabet" },
               { href: ROUTES.punctuation, label: "Punctuation" },
