@@ -1,9 +1,9 @@
 import * as React from "react";
 
+import { PostPrimaryContentBannerAd } from "~/client/components/ads/AdSenseAds";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import Button from "~/client/components/shared/Button";
 import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
-import { UpperContentBannerAd } from "~/client/components/ads/AdSenseAds";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import {
   ToolOutputPanel,
@@ -924,9 +924,7 @@ export default function TypingPage({ jsonLd }: Props) {
           </div>
         </section>
       </div>
-
-      <UpperContentBannerAd className="mw-signal-typing-upper" />
-
+      <PostPrimaryContentBannerAd local />
       <HowItWorksTyping />
       <ReferenceSupportSections
         guide={{

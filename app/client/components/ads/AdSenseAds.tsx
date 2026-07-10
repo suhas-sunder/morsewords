@@ -107,6 +107,16 @@ const DENSE_POST_HERO_EXCLUDED_PATHS = new Set<string>([
   ROUTES.wordTrainer,
 ]);
 
+const LOCAL_POST_PRIMARY_CONTENT_PATHS = new Set<string>([
+  ROUTES.decoder,
+  ROUTES.encoder,
+  ROUTES.practice,
+  ROUTES.printableChart,
+  ROUTES.test,
+  ROUTES.typing,
+  ROUTES.wordSeparator,
+]);
+
 function normalizePathname(pathname: string) {
   if (pathname === "/") return pathname;
   return pathname.replace(/\/+$/, "");
@@ -199,6 +209,17 @@ function useViewportEligibility(rule: ViewportRule) {
   }, [rule.maxWidth, rule.minWidth]);
 
   return eligible;
+}
+
+export function isPostPrimaryContentAdEligiblePath(pathname: string) {
+  const normalizedPathname = normalizePathname(pathname);
+  return (
+    !isAdsExcludedPath(normalizedPathname) &&
+    normalizedPathname !== ROUTES.home &&
+    normalizedPathname !== ROUTES.audio &&
+    !isMorseBookRuntimePath(normalizedPathname) &&
+    !LOCAL_POST_PRIMARY_CONTENT_PATHS.has(normalizedPathname)
+  );
 }
 
 function cssSize(value: number | string | undefined) {
@@ -723,6 +744,43 @@ export function PostHeroBannerAd({ className = "" }: { className?: string }) {
       kind="banner"
       minWidth={0}
       placement="post-hero"
+      reservedSize={{ width: 970, height: 90 }}
+      slot={ADSENSE_SLOTS.postHeroBanner}
+    />
+  );
+}
+
+/**
+ * The shared second horizontal banner. It sits after route content so it never
+ * separates a page introduction from its primary tool or reference block.
+ * Home and Audio retain their established post-workspace placements.
+ */
+export function PostPrimaryContentBannerAd({
+  className = "",
+  local = false,
+}: {
+  className?: string;
+  local?: boolean;
+}) {
+  const { pathname } = useLocation();
+
+  if (
+    local
+      ? !isInContentAdEligiblePath(pathname)
+      : !isPostPrimaryContentAdEligiblePath(pathname)
+  ) {
+    return null;
+  }
+
+  return (
+    <AdSlot
+      className={["mw-signal-post-primary-content", className]
+        .filter(Boolean)
+        .join(" ")}
+      isPathEligible={local ? isInContentAdEligiblePath : isPostPrimaryContentAdEligiblePath}
+      kind="banner"
+      minWidth={0}
+      placement="post-primary-content"
       reservedSize={{ width: 970, height: 90 }}
       slot={ADSENSE_SLOTS.postHeroBanner}
     />

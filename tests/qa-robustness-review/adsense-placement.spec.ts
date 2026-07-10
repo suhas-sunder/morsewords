@@ -26,19 +26,31 @@ const SLOT_BY_PLACEMENT: Record<string, string> = {
   "optional-square": SLOTS.optionalSquare,
   "optional-vertical": SLOTS.optionalVertical,
   "post-hero": SLOTS.postHeroBanner,
+  "post-primary-content": SLOTS.postHeroBanner,
   "printable-chart-square": SLOTS.optionalSquare,
   "right-sidebar": SLOTS.rightSidebar,
   "seo-section-content": SLOTS.inContent,
   "seo-section-vertical": SLOTS.inContent,
   "toolkit-banner": SLOTS.toolkitBanner,
   "top-banner": SLOTS.topBanner,
-  "upper-content": SLOTS.postHeroBanner,
-  "upper-content-mobile": SLOTS.postHeroBanner,
 };
+
+const primaryOrderCases = [
+  ["/", "main textarea", "translator workspace"],
+  ["/audio", "main textarea", "audio controls"],
+  ["/morse-code-test", '[data-testid="morse-code-assessment"]', "skills test"],
+  ["/morse-code-encoder", "main textarea", "encoder workspace"],
+  ["/morse-code-decoder", "main textarea", "decoder workspace"],
+  ["/practice", 'input[aria-label="Practice answer"]', "practice session"],
+  ["/typing", "main textarea", "typing interface"],
+  ["/morse-code-printable-chart", "#builder", "printable builder"],
+  ["/morse-code-books/the-gold-bug", '[data-testid="morse-book-live-player"]', "book player"],
+  ["/morse-code-alphabet", "main section", "reference content"],
+] as const;
 
 type EligibleRouteSpec = {
   route: string;
-  upperPlacement: "post-hero" | "upper-content" | "book-player-banner";
+  upperPlacement: "post-hero" | "post-primary-content";
   supportPlacement:
     | "optional-square"
     | "printable-chart-square"
@@ -62,50 +74,50 @@ type RequestedAd = {
 
 const eligibleRoutes: EligibleRouteSpec[] = [
   ["/", "post-hero", "optional-square", "square aside in the translator support section"],
-  ["/how-to-use", "upper-content", "optional-square", "square aside in the workflow support guide"],
+  ["/how-to-use", "post-primary-content", "optional-square", "square aside in the workflow support guide"],
   ["/audio", "post-hero", "optional-square", "square aside in the audio settings support section"],
-  ["/typing", "upper-content", "optional-square", "square aside in the typing guide support section"],
-  ["/practice", "upper-content", "optional-square", "square aside in the practice guide support section"],
-  ["/dictionary", "upper-content", "optional-square", "square aside in the lookup support section"],
+  ["/typing", "post-primary-content", "optional-square", "square aside in the typing guide support section"],
+  ["/practice", "post-primary-content", "optional-square", "square aside in the practice guide support section"],
+  ["/dictionary", "post-primary-content", "optional-square", "square aside in the lookup support section"],
   [
     "/morse-code-printable-chart",
-    "upper-content",
+    "post-primary-content",
     "printable-chart-square",
     "square aside in the printable support block",
   ],
-  ["/morse-code-chart", "upper-content", "optional-square", "square aside in the chart usage support section"],
-  ["/morse-code-alphabet", "upper-content", "optional-square", "square aside in the alphabet support guide"],
-  ["/morse-code-numbers", "upper-content", "optional-square", "square aside in the number-pattern support section"],
-  ["/morse-code-punctuation", "upper-content", "optional-square", "square aside in the punctuation support guide"],
-  ["/morse-code-word-separator", "upper-content", "optional-square", "square aside in the spacing support guide"],
+  ["/morse-code-chart", "post-primary-content", "optional-square", "square aside in the chart usage support section"],
+  ["/morse-code-alphabet", "post-primary-content", "optional-square", "square aside in the alphabet support guide"],
+  ["/morse-code-numbers", "post-primary-content", "optional-square", "square aside in the number-pattern support section"],
+  ["/morse-code-punctuation", "post-primary-content", "optional-square", "square aside in the punctuation support guide"],
+  ["/morse-code-word-separator", "post-primary-content", "optional-square", "square aside in the spacing support guide"],
   [
     "/how-to-separate-words-in-morse-code",
-    "upper-content",
+    "post-primary-content",
     "optional-square",
     "square aside in the word-spacing guide content",
   ],
-  ["/morse-code-reader", "upper-content", "optional-square", "square aside in the reader support explanation"],
-  ["/morse-code-decoder", "upper-content", "optional-square", "square aside in the decoder support guide"],
-  ["/morse-code-encoder", "upper-content", "optional-square", "square aside in the encoder support guide"],
-  ["/morse-code-mp3-generator", "upper-content", "optional-square", "square aside in the MP3 support explanation"],
+  ["/morse-code-reader", "post-primary-content", "optional-square", "square aside in the reader support explanation"],
+  ["/morse-code-decoder", "post-primary-content", "optional-square", "square aside in the decoder support guide"],
+  ["/morse-code-encoder", "post-primary-content", "optional-square", "square aside in the encoder support guide"],
+  ["/morse-code-mp3-generator", "post-primary-content", "optional-square", "square aside in the MP3 support explanation"],
   [
     "/morse-code-word-search-builder",
-    "upper-content",
+    "post-primary-content",
     "optional-square",
     "square aside in the printable puzzle support guide",
   ],
-  ["/learn-morse-code", "upper-content", "optional-square", "square aside in the learning-path support section"],
-  ["/morse-code-books", "upper-content", "optional-square", "square aside in the book-library support copy"],
-  ["/morse-code-audiobooks", "upper-content", "optional-square", "square aside in the audiobook-library support copy"],
+  ["/learn-morse-code", "post-primary-content", "optional-square", "square aside in the learning-path support section"],
+  ["/morse-code-books", "post-primary-content", "optional-square", "square aside in the book-library support copy"],
+  ["/morse-code-audiobooks", "post-primary-content", "optional-square", "square aside in the audiobook-library support copy"],
   [
     "/morse-code-books/the-gold-bug",
-    "book-player-banner",
+    "post-primary-content",
     "optional-square",
     "square aside in the long book summary support section",
   ],
   [
     "/morse-code-audiobooks/the-gold-bug",
-    "book-player-banner",
+    "post-primary-content",
     "optional-square",
     "square aside in the long audiobook summary support section",
   ],
@@ -678,6 +690,52 @@ for (const spec of eligibleRoutes) {
     });
   }
 }
+
+test("the second banner follows primary page content without changing protected ad order", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1536, height: 1200 });
+
+  for (const [route, primarySelector, label] of primaryOrderCases) {
+    await gotoRouteForLayoutCheck(page, route);
+    const order = await page.evaluate(({ primarySelector }) => {
+      const primary = document.querySelector(primarySelector);
+      const secondBanner = document.querySelector(
+        '[data-mw-ad-placement="post-hero"], [data-mw-ad-placement="post-primary-content"]',
+      );
+      const topBanner = document.querySelector('[data-mw-ad-placement="top-banner"]');
+      return {
+        primaryBeforeSecond: Boolean(
+          primary &&
+            secondBanner &&
+            (primary.compareDocumentPosition(secondBanner) & Node.DOCUMENT_POSITION_FOLLOWING),
+        ),
+        topBeforePrimary: Boolean(
+          topBanner &&
+            primary &&
+            (topBanner.compareDocumentPosition(primary) & Node.DOCUMENT_POSITION_FOLLOWING),
+        ),
+      };
+    }, { primarySelector });
+
+    expect(order.primaryBeforeSecond, `${route}: ${label} precedes the second banner`).toBe(true);
+    expect(order.topBeforePrimary, `${route}: top banner remains before page content`).toBe(true);
+    await expect(page.locator(".mw-side-rail")).toHaveCount(2);
+    await expectNoHorizontalOverflow(page);
+  }
+});
+
+test("the skills test banner follows its panel without an artificial gap", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 1200 });
+  await gotoRouteForLayoutCheck(page, "/morse-code-test");
+  const gap = await page.evaluate(() => {
+    const assessment = document.querySelector('[data-testid="morse-code-assessment"]');
+    const banner = document.querySelector('[data-mw-ad-placement="post-primary-content"]');
+    if (!assessment || !banner) return Number.POSITIVE_INFINITY;
+    return banner.getBoundingClientRect().top - assessment.getBoundingClientRect().bottom;
+  });
+  expect(gap).toBeLessThanOrEqual(64);
+});
 
 test("banner-like placements are centered on representative templates", async ({
   page,

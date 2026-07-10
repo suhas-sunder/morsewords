@@ -1,7 +1,7 @@
 import type { Route } from "./+types/morse-code-word-separator";
 
+import { PostPrimaryContentBannerAd } from "~/client/components/ads/AdSenseAds";
 import WordSeparatorTool from "~/client/components/morse-code-word-separator/WordSeparatorTool";
-import { UpperContentBannerAd } from "~/client/components/ads/AdSenseAds";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
@@ -134,9 +134,7 @@ export default function MorseCodeWordSeparator() {
     <main className="mw-non-home-page" style={styles.page}>
       <div style={styles.wrap}>
         <WordSeparatorTool />
-
-        <UpperContentBannerAd />
-
+        <PostPrimaryContentBannerAd local />
         <SectionCard
           eyebrow="Quick answer"
           title="Use spaces for letters and / for words"

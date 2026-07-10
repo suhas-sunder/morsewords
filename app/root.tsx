@@ -23,6 +23,7 @@ import "./app.css";
 import { PHogProvider } from "./client/providers/PHogProvider";
 import {
   AdSenseScriptLoader,
+  PostPrimaryContentBannerAd,
   SidebarRailAds,
   TopBannerAd,
 } from "./client/components/ads/AdSenseAds";
@@ -176,6 +177,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div className="mw-page-content relative z-10">
               <TopBannerAd />
               {children}
+              <PostPrimaryContentBannerAd />
               <div data-nosnippet>
                 <RelatedTools />
               </div>

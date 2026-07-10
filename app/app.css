@@ -499,6 +499,11 @@ html[data-mw-adsense-rendered="true"] .mw-signal-caption {
   margin-bottom: 2.75rem;
 }
 
+.mw-signal-post-primary-content {
+  margin-top: 2.75rem;
+  margin-bottom: 2.75rem;
+}
+
 .mw-signal-inline {
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -691,6 +696,7 @@ html[data-mw-adsense-rendered="true"] .mw-signal-caption {
 }
 
 .mw-signal-post + section,
+.mw-signal-post-primary-content + section,
 .mw-signal-inline + section,
 .mw-signal-toolkit + .mw-toolkit-groups {
   margin-top: 1rem !important;

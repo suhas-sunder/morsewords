@@ -1,9 +1,9 @@
 import * as React from "react";
 import type { Route } from "./+types/morse-code-encoder";
 
+import { PostPrimaryContentBannerAd } from "~/client/components/ads/AdSenseAds";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
-import { UpperContentBannerAd } from "~/client/components/ads/AdSenseAds";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import ReferenceSupportSections from "~/client/components/shared/ReferenceSupportSections";
 import styles from "~/client/components/shared/pageStyles";
@@ -120,9 +120,7 @@ export default function MorseCodeEncoder() {
           preferredDirection="encode"
           quietInputFocus
         />
-
-        <UpperContentBannerAd />
-
+        <PostPrimaryContentBannerAd local />
         <ReferenceSupportSections
           guide={{
             eyebrow: "Text to Morse",

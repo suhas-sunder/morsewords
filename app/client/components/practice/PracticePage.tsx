@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { UpperContentBannerAd } from "~/client/components/ads/AdSenseAds";
+import { PostPrimaryContentBannerAd } from "~/client/components/ads/AdSenseAds";
 import ToggleChip from "~/client/components/shared/ToggleChip";
 import { ActionButton } from "~/client/components/shared/ActionControls";
 import {
@@ -615,9 +615,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
         </div>
         </div>
       </section>
-
-      <UpperContentBannerAd className="mw-signal-practice-upper" />
-
+      <PostPrimaryContentBannerAd local />
       <HowItWorksPractice />
       <SectionCard
         eyebrow="Assessment"

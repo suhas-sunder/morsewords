@@ -11,6 +11,8 @@ import {
   SoundIcon,
 } from "~/client/assets/svg/Icons";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
+import MorseCodeTestAssessment from "~/client/components/morse-code-test/MorseCodeTestAssessment";
+import { PostPrimaryContentBannerAd } from "~/client/components/ads/AdSenseAds";
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
@@ -136,12 +138,12 @@ const decisionItems = [
 
 const howItWorksItems = [
   {
-    title: "Choose the test type",
-    text: "Pick listening, typing, visual, general practice, word review, or a plan based on what you need to assess today.",
+    title: "Take the skills test",
+    text: "Answer ten short letter, number, and common-punctuation prompts in both Morse-reading and Morse-writing directions.",
   },
   {
-    title: "Run the tool",
-    text: "Use the existing MorseWords page for that mode so results come from the actual practice or quiz flow.",
+    title: "Review each answer",
+    text: "Submit once to see whether the answer is right and check the correct pattern before moving forward.",
   },
   {
     title: "Review the result",
@@ -289,7 +291,7 @@ const faqItems = [
   {
     q: "Does this page run one official Morse code test?",
     a:
-      "No. This page is an assessment hub that routes you to existing MorseWords tools. It is not an official licensing exam or certification test.",
+      "It runs a short scored skills assessment for letters, numbers, and common punctuation. It is not an official licensing exam or certification test.",
   },
   {
     q: "Which test checks Morse listening skill?",
@@ -319,9 +321,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title: "Morse Code Test | Listening, Typing, Visual, and Speed Practice | MorseWords",
+    title: "Morse Code Skills Test | Listening, Typing, Visual, and Speed Practice | MorseWords",
     description:
-      "Choose a Morse listening test, typing test, visual quiz, practice plan, and review path while tracking accuracy, weak spots, and speed where supported.",
+      "Take a scored Morse code test for letters, numbers, and common punctuation, then continue with listening, typing, visual, and speed-focused practice.",
     path: CANONICAL_PATH,
     keywords:
       "morse code test, morse code practice test, morse listening test, morse typing test, morse code speed practice",
@@ -329,23 +331,27 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function MorseCodeTestRoute() {
-  const collectionJsonLd = {
+  const assessmentJsonLd = {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
+    "@type": "WebApplication",
     name: "Morse Code Test",
     url: CANONICAL_URL,
     description:
-      "A MorseWords assessment hub for choosing listening, typing, visual, practice, word trainer, and practice-plan flows.",
+      "A scored ten-question Morse Code Skills Test for letters, numbers, and common punctuation, with additional specialist test links.",
+    applicationCategory: "EducationalApplication",
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
-    mainEntity: {
-      "@type": "ItemList",
-      itemListElement: testChooserItems.map((item, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: item.title,
-        url: canonicalUrl(item.href),
-      })),
-    },
+  };
+
+  const specialistTestListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Specialist Morse code tests and practice",
+    itemListElement: testChooserItems.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.title,
+      url: canonicalUrl(item.href),
+    })),
   };
 
   const breadcrumbJsonLd = {
@@ -376,39 +382,38 @@ export default function MorseCodeTestRoute() {
     <div className="mw-non-home-page" style={styles.page}>
       <main style={styles.wrap}>
         <PageHero
-          eyebrow="Assessment hub"
-          title="Morse Code Test"
-          description="Choose the right Morse test for listening, typing, visual recognition, speed-focused practice, and weak-spot review without duplicating the existing practice tools."
+          eyebrow="Skills assessment"
+          title="Morse Code Skills Test"
+          description="Test character recognition and Morse recall with letters, numbers, and common punctuation."
           aside={
-            <DarkNote label="What this page does" value="Choose + test">
-              This is a test-routing hub, not an official licensing exam. Use it
-              to pick the right assessment, then review what the result actually
-              measured.
+            <DarkNote label="Skills assessment" value="10 questions">
+              Test character recognition and Morse recall in both directions.
+              This is not an official licensing exam or certification test.
             </DarkNote>
           }
         >
           <ActionLinks
             links={[
               {
-                href: "/morse-code-audio-quiz",
-                label: "Start listening test",
+                href: "#morse-code-assessment",
+                label: "Go to skills test",
                 primary: true,
+                icon: <CheckCircleIcon size={18} title={undefined} aria-hidden="true" />,
+              },
+              {
+                href: "/morse-code-audio-quiz",
+                label: "Listening test",
                 icon: <HeadphonesIcon size={18} title={undefined} aria-hidden="true" />,
               },
               {
-                href: "/typing",
-                label: "Start typing test",
-                icon: <KeyboardIcon size={18} title={undefined} aria-hidden="true" />,
-              },
-              {
                 href: "/morse-code-visual-quiz",
-                label: "Start visual test",
+                label: "Visual test",
                 icon: <LightBulbIcon size={18} title={undefined} aria-hidden="true" />,
               },
               {
-                href: "/practice",
-                label: "Start general practice",
-                icon: <CheckCircleIcon size={18} title={undefined} aria-hidden="true" />,
+                href: "/typing",
+                label: "Typing test",
+                icon: <KeyboardIcon size={18} title={undefined} aria-hidden="true" />,
               },
               {
                 href: "/morse-code-practice-plan",
@@ -418,6 +423,9 @@ export default function MorseCodeTestRoute() {
             ]}
           />
         </PageHero>
+
+        <MorseCodeTestAssessment />
+        <PostPrimaryContentBannerAd local />
 
         <section
           data-testid="morse-test-chooser"
@@ -429,23 +437,23 @@ export default function MorseCodeTestRoute() {
               <div className="flex items-center gap-3">
                 <span className="mw-eyebrow-line h-px w-8 bg-sky-800" />
                 <span className="mw-eyebrow-text font-mono text-xs font-bold uppercase tracking-[0.18em] text-sky-900">
-                  Choose a test
+                  Specialist tests
                 </span>
               </div>
               <h2
                 id="morse-test-chooser-heading"
                 className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
               >
-                Choose the right Morse code test
+                Continue with a specialist Morse test
               </h2>
               <p className="mw-text-muted mt-3 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-                Start with the skill you want to measure. A listening miss, a
-                typing miss, and a spacing miss point to different next drills.
+                Use these focused tools after the skills test when you want to
+                measure listening, typing, visual recognition, or a specific practice need.
               </p>
             </div>
-            <DarkNote label="Result rule" value="Measure one thing">
-              Pick one mode per run so you can tell whether mistakes came from
-              sound recognition, visual recall, spacing, typing, or rushing.
+            <DarkNote label="Use the result" value="Pick one next step">
+              A skills-test miss may point to a reference review; a specialist
+              test can isolate listening, visual, typing, or timing work.
             </DarkNote>
           </div>
 
@@ -494,8 +502,8 @@ export default function MorseCodeTestRoute() {
 
         <SectionCard
           eyebrow="Assessment loop"
-          title="How the Morse code test hub works"
-          description="This page does not duplicate the practice tools. It helps you choose one, read the result, and move to the next useful session."
+          title="How this Morse code test works"
+          description="Start with the on-page skills test, then use a specialist tool when your result points to a particular Morse skill."
           layout="stacked"
         >
           <div className="grid gap-x-12 gap-y-9 md:grid-cols-2 xl:grid-cols-4">
@@ -675,7 +683,7 @@ export default function MorseCodeTestRoute() {
           />
         </div>
 
-        <JsonLdScript jsonLd={[collectionJsonLd, breadcrumbJsonLd, faqJsonLd]} />
+        <JsonLdScript jsonLd={[assessmentJsonLd, specialistTestListJsonLd, breadcrumbJsonLd, faqJsonLd]} />
       </main>
       <BreadcrumbTrail current="Morse Code Test" placement="pageBottom" />
     </div>

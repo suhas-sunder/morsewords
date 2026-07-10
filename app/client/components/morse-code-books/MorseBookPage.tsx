@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link } from "react-router";
 
 import {
-  BookPlayerBannerAd,
+  PostPrimaryContentBannerAd,
   OptionalSquareAd,
 } from "~/client/components/ads/AdSenseAds";
 import {
@@ -2664,9 +2664,6 @@ function MorseBookWorkspace({
           ) : null}
         </div>
       </ToolPanel>
-
-      <BookPlayerBannerAd />
-
       <details className="mt-1">
         <summary className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-4 py-2 text-sm font-extrabold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">
           <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
@@ -3266,9 +3263,6 @@ function MorseBookWorkspace({
               ) : null}
             </div>
           </ToolPanel>
-
-          <BookPlayerBannerAd />
-
           <ToolPanel label="Player settings" badge="Saved locally">
             <div className="space-y-6 px-4 pb-4">
               <BookLiveProgressSettingsSummary
@@ -3682,6 +3676,8 @@ function MorseBookWorkspace({
         </ToolPanel>
       </section>
       )}
+
+      <PostPrimaryContentBannerAd local />
 
       <section
         className="mt-10 mw-static-surface rounded-xl p-5"

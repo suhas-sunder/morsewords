@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { PlayIcon } from "~/client/assets/svg/Icons";
-import { UpperContentBannerAd } from "~/client/components/ads/AdSenseAds";
 import { ActionLinkButton } from "./ActionControls";
 import {
   HERO_EYEBROW_LINE_CLASS,
@@ -60,7 +59,6 @@ export function PageHero({
           </div>
           {aside ? <div>{aside}</div> : null}
         </div>
-        <UpperContentBannerAd />
       </div>
     </section>
   );
