@@ -298,7 +298,7 @@ input[type="range"]:focus-visible {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  width: min(100%, var(--mw-ad-reserved-width));
+  width: 100%;
   min-height: var(--mw-ad-reserved-height);
   margin-left: auto;
   margin-right: auto;
@@ -310,13 +310,17 @@ input[type="range"]:focus-visible {
   isolation: isolate;
 }
 
+.mw-signal-slot[data-mw-ad-placement="top-banner"] {
+  width: min(100%, var(--mw-ad-reserved-width));
+}
+
 @media (max-width: 767.98px) {
   .mw-signal-slot:is(
       [data-mw-ad-kind="banner"]:not(
           [data-mw-ad-placement="top-banner"]
         )
     ) {
-    --mw-ad-reserved-height: min(100vw, 430px) !important;
+    --mw-ad-reserved-height: 100px !important;
   }
 }
 
@@ -359,34 +363,15 @@ input[type="range"]:focus-visible {
 .mw-signal-stage {
   position: relative;
   z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  min-height: 0;
+  min-height: var(--mw-ad-reserved-height);
   margin-left: auto;
   margin-right: auto;
   overflow: visible;
-}
-
-.mw-signal-slot[data-mw-ad-placeholder-visible="true"] {
-  height: var(--mw-ad-reserved-height);
-  min-height: var(--mw-ad-reserved-height);
-  overflow: hidden;
-}
-
-.mw-signal-slot[data-mw-ad-placeholder-visible="true"] .mw-signal-stage {
-  height: 100%;
-  max-height: 100%;
-  overflow: hidden;
-}
-
-.mw-signal-slot[data-mw-ad-placeholder-visible="true"] .mw-signal-unit {
-  height: 100% !important;
-  min-height: 0 !important;
-  max-height: 100% !important;
 }
 
 .mw-signal-slot > .adsbygoogle,
@@ -418,12 +403,16 @@ input[type="range"]:focus-visible {
 
 .mw-signal-caption {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  left: 50%;
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  width: min(100%, var(--mw-ad-reserved-width));
+  height: var(--mw-ad-reserved-height);
+  max-width: 100%;
   border: 2px dashed var(--mw-ad-border-color);
   border-radius: inherit;
   background: var(--mw-static-panel-soft-bg);
@@ -435,11 +424,18 @@ input[type="range"]:focus-visible {
   line-height: 1;
   pointer-events: none;
   text-transform: uppercase;
+  transform: translate(-50%, -50%);
 }
 
 .mw-signal-caption[hidden],
 .mw-signal-caption[data-mw-placement-label-hidden="true"] {
   display: none;
+}
+
+/* This mirrors the component-level global safety guard. A fallback frame may
+   never persist once a live creative has been observed anywhere on the page. */
+html[data-mw-adsense-rendered="true"] .mw-signal-caption {
+  display: none !important;
 }
 
 .mw-signal-slot[data-mw-ad-filled="true"],
@@ -665,8 +661,8 @@ input[type="range"]:focus-visible {
 }
 
 .mw-side-rail .mw-signal-unit {
-  width: var(--mw-ad-reserved-width);
-  min-height: var(--mw-ad-reserved-height);
+  width: 100%;
+  min-height: 0;
 }
 
 .mw-side-rail .mw-signal-stage {

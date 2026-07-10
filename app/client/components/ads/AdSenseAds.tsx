@@ -52,6 +52,7 @@ const TABLET_MIN_WIDTH = 768;
 const DESKTOP_MIN_WIDTH = 1280;
 const SIDEBAR_MIN_WIDTH = 1536;
 const ADSENSE_REQUEST_DELAY_MS = 1500;
+const ADSENSE_RENDERED_CONTENT_EVENT = "mw:adsense-rendered-content";
 
 function canAccessDOM() {
   return typeof window !== "undefined" && typeof document !== "undefined";
@@ -200,35 +201,9 @@ function useViewportEligibility(rule: ViewportRule) {
   return eligible;
 }
 
-function useViewportWidth() {
-  const [width, setWidth] = React.useState(0);
-
-  useIsomorphicLayoutEffect(() => {
-    if (!canAccessDOM()) return;
-
-    const update = () => {
-      const nextWidth = window.innerWidth;
-      setWidth((current) => (current === nextWidth ? current : nextWidth));
-    };
-
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
-  return width;
-}
-
 function cssSize(value: number | string | undefined) {
   if (value === undefined) return undefined;
   return typeof value === "number" ? `${value}px` : value;
-}
-
-function adFormatForKind(kind: AdKind) {
-  // Keep responsive units in the shape their placement was designed to hold.
-  if (kind === "banner") return "horizontal";
-  if (kind === "vertical") return "vertical";
-  return "rectangle";
 }
 
 function adViewportClassName(minWidth: number) {
@@ -254,9 +229,16 @@ function isDisplayedAdElement(element: Element) {
 }
 
 function hasRenderedAdContent(element: HTMLElement) {
-  return Array.from(element.querySelectorAll("iframe")).some(
-    isDisplayedAdElement,
+  const renderedChildren = element.querySelectorAll(
+    "iframe, [id^='aswift_'], [id^='google_ads_iframe']",
   );
+
+  if (Array.from(renderedChildren).some(isDisplayedAdElement)) return true;
+
+  return Array.from(element.children).some((child) => {
+    if (child.tagName.toLowerCase() === "script") return false;
+    return isDisplayedAdElement(child);
+  });
 }
 
 function hasAnyRenderedAdContent() {
@@ -272,6 +254,16 @@ function markAnyAdRendered() {
 
   window.__mwAdsenseAnyAdRendered = true;
   document.documentElement.dataset.mwAdsenseRendered = "true";
+  document
+    .querySelectorAll<HTMLElement>("[data-mw-ad-placement]")
+    .forEach((shell) => {
+      shell.dataset.mwAdPlaceholderVisible = "false";
+      const caption = shell.querySelector<HTMLElement>(".mw-signal-caption");
+      if (!caption) return;
+      caption.hidden = true;
+      caption.dataset.mwPlacementLabelHidden = "true";
+    });
+  window.dispatchEvent(new CustomEvent(ADSENSE_RENDERED_CONTENT_EVENT));
 }
 
 function syncAnyRenderedAdContent() {
@@ -373,6 +365,28 @@ function useAdStatus(
   }, [ref, requestKey, shouldRender]);
 
   return status;
+}
+
+function useAnyRenderedAdContent() {
+  const [anyAdRendered, setAnyAdRendered] = React.useState(() => {
+    if (!canAccessDOM()) return false;
+    return Boolean(window.__mwAdsenseAnyAdRendered);
+  });
+
+  React.useEffect(() => {
+    if (!canAccessDOM()) return;
+
+    const sync = () => {
+      setAnyAdRendered(Boolean(window.__mwAdsenseAnyAdRendered));
+    };
+
+    sync();
+    window.addEventListener(ADSENSE_RENDERED_CONTENT_EVENT, sync);
+    return () =>
+      window.removeEventListener(ADSENSE_RENDERED_CONTENT_EVENT, sync);
+  }, []);
+
+  return anyAdRendered;
 }
 
 function useAdResumeRevision(
@@ -585,27 +599,21 @@ export function AdSlot({
     (allowExcludedPaths || !isAdsExcludedPath(normalizedPathname)) &&
     (isPathEligible ? isPathEligible(normalizedPathname) : true);
   const viewportEligible = useViewportEligibility({ minWidth, maxWidth });
-  const viewportWidth = useViewportWidth();
   const shouldRequestAd = pathEligible && viewportEligible;
   const adRef = React.useRef<HTMLModElement | null>(null);
   const requestRevision = useAdResumeRevision(adRef, shouldRequestAd);
-  const compactViewport = viewportWidth > 0 && viewportWidth < TABLET_MIN_WIDTH;
-
-  function adFormatForSlot(slot: string) {
-    if (slot === ADSENSE_SLOTS.topBanner) return "horizontal";
-    if (kind === "square") return "rectangle";
-    if (compactViewport) return "auto";
-    if (kind === "banner") return "horizontal";
-    return "auto";
-  }
-
-  const adFormat = adFormatForSlot(slot);
-  const requestKey = `${requestRevision}:${adFormat}`;
+  const anyAdRendered = useAnyRenderedAdContent();
+  // Only the protected above-header placement is deliberately horizontal.
+  // Every other slot stays auto so AdSense can select a responsive creative.
+  const adFormat =
+    slot === ADSENSE_SLOTS.topBanner ? "horizontal" : "auto";
+  const requestKey = String(requestRevision);
   const status = useAdStatus(adRef, shouldRequestAd, requestKey);
   const isFilled = status === "filled";
-  // Filled state is placement-local. A creative in one slot must never hide
-  // the stable fallback for another pending, blocked, or unfilled slot.
-  const placeholderVisible = placeholder && viewportEligible && !isFilled;
+  // User-approved safety guard: once any live creative appears, remove every
+  // fallback layer before it can visually coexist with an AdSense creative.
+  const placeholderVisible =
+    placeholder && viewportEligible && !isFilled && !anyAdRendered;
 
   React.useEffect(() => {
     if (!shouldRequestAd || !adRef.current) return;
@@ -647,6 +655,7 @@ export function AdSlot({
         .filter(Boolean)
         .join(" ")}
       data-mw-ad-filled={status === "filled" ? "true" : "false"}
+      data-mw-ad-any-rendered={anyAdRendered ? "true" : "false"}
       data-mw-ad-fallback="placeholder"
       data-mw-ad-has-placeholder={placeholder ? "true" : "false"}
       data-mw-ad-kind={kind}

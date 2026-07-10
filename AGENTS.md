@@ -518,6 +518,23 @@ desktop sidebars or filled ads wrapped in fallback chrome.
 - Visual QA for AdSense changes must include simulated filled creatives and
   blocked/unfilled states at mobile and desktop widths. DOM assertions alone are
   not enough.
+- The user deliberately chose a page-wide fallback safety guard: once any live
+  creative is detected, hide every fallback frame and `Advertisements` label on
+  that page immediately. This is intentional protection against a real ad and
+  placeholder rendering together. Do not replace it with per-slot fallback
+  visibility without explicit user approval.
+- Only the above-header slot is deliberately non-auto (`horizontal`). Every
+  other AdSense unit must keep `data-ad-format="auto"` and
+  `data-full-width-responsive="true"` so AdSense can adapt the creative for
+  its container, including mobile. Do not reintroduce kind-based format
+  overrides such as `rectangle`, `vertical`, or `horizontal` for non-top slots.
+- Placeholder dimensions are visual fallback dimensions only. They may reserve
+  stable fallback space, but must never set a height, max-height, overflow clip,
+  or width cap on the live `ins.adsbygoogle` surface or creative. Keep all
+  fallback frames and filled creatives centered independently.
+- Treat user-authored AdSense lifecycle and mobile-delivery changes as
+  intentional protected behavior. Compare against the latest user commit before
+  modifying this area; do not revert them while fixing an adjacent regression.
 
 ## 20. Audio/video export pipeline rules
 

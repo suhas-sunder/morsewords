@@ -294,13 +294,10 @@ async function expectPlacementWidthWithinViewport(page: Page, placement: string)
 
 function expectedFormatForPlacement(
   placement: string,
-  kind: string,
-  width: number,
+  _kind: string,
+  _width: number,
 ) {
   if (placement === "top-banner") return "horizontal";
-  if (kind === "square") return "rectangle";
-  if (width < 768) return "auto";
-  if (kind === "banner") return "horizontal";
   return "auto";
 }
 
@@ -458,7 +455,7 @@ async function simulateFilledCreative(page: Page, placement: string) {
           ? 300
           : 728;
     const height = mobileBanner
-      ? document.documentElement.clientWidth
+      ? 100
       : kind === "vertical"
         ? 600
         : kind === "square"
@@ -491,18 +488,24 @@ async function expectFilledChromeHidden(page: Page, placement: string) {
   const metrics = await shell.evaluate((element) => {
     const style = getComputedStyle(element);
     const ins = element.querySelector<HTMLElement>("ins.adsbygoogle");
+    const stage = element.querySelector<HTMLElement>(".mw-signal-stage");
     const insStyle = ins ? getComputedStyle(ins) : null;
+    const stageStyle = stage ? getComputedStyle(stage) : null;
     return {
       maxHeight: style.maxHeight,
       overflow: style.overflow,
       insMaxHeight: insStyle?.maxHeight ?? "",
       insOverflow: insStyle?.overflow ?? "",
+      stageMaxHeight: stageStyle?.maxHeight ?? "",
+      stageOverflow: stageStyle?.overflow ?? "",
     };
   });
   expect(metrics.maxHeight).toBe("none");
   expect(metrics.overflow).toBe("visible");
   expect(metrics.insMaxHeight).toBe("none");
   expect(metrics.insOverflow).toBe("visible");
+  expect(metrics.stageMaxHeight).toBe("none");
+  expect(metrics.stageOverflow).toBe("visible");
 }
 
 test.beforeEach(async ({ page }) => {
@@ -548,7 +551,7 @@ const renderedAttributeCases = [
     width: 1280,
     placement: "post-hero",
     slot: SLOTS.postHeroBanner,
-    format: "horizontal",
+    format: "auto",
     fullWidthResponsive: "true",
   },
   {
@@ -556,7 +559,7 @@ const renderedAttributeCases = [
     width: 1280,
     placement: "optional-square",
     slot: SLOTS.optionalSquare,
-    format: "rectangle",
+    format: "auto",
     fullWidthResponsive: "true",
   },
   {
@@ -564,7 +567,7 @@ const renderedAttributeCases = [
     width: 1280,
     placement: "toolkit-banner",
     slot: SLOTS.toolkitBanner,
-    format: "horizontal",
+    format: "auto",
     fullWidthResponsive: "true",
   },
 ] as const;
@@ -638,25 +641,14 @@ async function assertEligibleRouteArchitecture(
         if (width < 768) {
           expect(
             ad.height,
-            `${spec.route}: ${ad.placement} should reserve its responsive mobile creative`,
-          ).toBeGreaterThanOrEqual(width - 1);
-          expect(ad.height).toBeLessThanOrEqual(width + 1);
+            `${spec.route}: ${ad.placement} should reserve its mobile fallback without constraining the creative`,
+          ).toBeGreaterThanOrEqual(100);
         } else {
           expect(
             ad.height,
             `${spec.route}: ${ad.placement} should stay banner-shaped`,
           ).toBeLessThanOrEqual(110);
         }
-      }
-      if (ad.kind === "square") {
-        expect(
-          ad.width,
-          `${spec.route}: ${ad.placement} should stay square-width`,
-        ).toBeLessThanOrEqual(320);
-        expect(
-          ad.height,
-          `${spec.route}: ${ad.placement} should stay square-height`,
-        ).toBeLessThanOrEqual(270);
       }
     } else {
       await expectSidebarFallbackVisible(page, ad.placement);
@@ -741,7 +733,7 @@ for (const route of protectedOnlyRoutes) {
   }
 }
 
-test("desktop sidebars request at wide width, keep stable fallback, and clean up when filled", async ({
+test("desktop sidebars request at wide width and remove fallback chrome globally when filled", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1536, height: 1100 });
@@ -754,9 +746,14 @@ test("desktop sidebars request at wide width, keep stable fallback, and clean up
     await expect(shell).toHaveAttribute("data-mw-ad-fallback", "placeholder");
     await expect(shell).toHaveAttribute("data-mw-ad-has-placeholder", "true");
     await expectSidebarFallbackVisible(page, placement);
+  }
 
-    await simulateFilledCreative(page, placement);
+  await simulateFilledCreative(page, "left-sidebar");
+  for (const placement of ["left-sidebar", "right-sidebar"]) {
+    const shell = adPlacement(page, placement);
+    await expect(shell).toHaveCount(1);
     await expect(shell).toHaveCSS("opacity", "1");
+    await expect(shell.locator(placementLabelSelector)).toBeHidden();
   }
 });
 
@@ -786,24 +783,50 @@ test("desktop sidebars keep stable fallback through pending, blocked, and unfill
   }
 });
 
-test("a filled creative never hides unrelated sidebar or content fallbacks", async ({
+test("a live creative hides every fallback frame before it can overlap an ad", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1536, height: 1100 });
   await gotoRouteForLayoutCheck(page, "/");
 
-  await expectSidebarFallbackVisible(page, "left-sidebar");
-  await expectSidebarFallbackVisible(page, "right-sidebar");
-  await expectPlaceholderVisible(page, "optional-square");
-
   await simulateFilledCreative(page, "top-banner");
-  await expectSidebarFallbackVisible(page, "left-sidebar");
-  await expectSidebarFallbackVisible(page, "right-sidebar");
-  await expectPlaceholderVisible(page, "optional-square");
+  for (const placement of [
+    "left-sidebar",
+    "right-sidebar",
+    "optional-square",
+    "toolkit-banner",
+  ]) {
+    const shell = adPlacement(page, placement);
+    await expect(shell).toHaveAttribute("data-mw-ad-any-rendered", "true");
+    await expect(shell.locator(placementLabelSelector)).toBeHidden();
+  }
+});
 
-  await simulateFilledCreative(page, "left-sidebar");
-  await expectSidebarFallbackVisible(page, "right-sidebar");
-  await expectPlaceholderVisible(page, "optional-square");
+test("a visible creative frame suppresses fallbacks before AdSense writes its final status", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 1100 });
+  await gotoRouteForLayoutCheck(page, "/");
+
+  await adPlacement(page, "post-hero").locator("ins").evaluate((element) => {
+    const frame = document.createElement("iframe");
+    frame.title = "Simulated responsive creative";
+    frame.style.display = "block";
+    frame.style.width = "100%";
+    frame.style.height = "120px";
+    element.append(frame);
+  });
+
+  await page.waitForFunction(
+    () => document.documentElement.dataset.mwAdsenseRendered === "true",
+  );
+
+  for (const placement of ["post-hero", "optional-square", "toolkit-banner"]) {
+    const shell = adPlacement(page, placement);
+    await expect(shell.locator(placementLabelSelector)).toBeHidden();
+    await expect(shell).toHaveAttribute("data-mw-ad-placeholder-visible", "false");
+  }
+  await expectNoHorizontalOverflow(page);
 });
 
 for (const width of [390, 430] as const) {
@@ -822,7 +845,7 @@ for (const width of [390, 430] as const) {
       await expect(ins).toHaveAttribute("data-mw-adsense-pushed", "true");
       await expect(ins).toHaveAttribute(
         "data-ad-format",
-        placement === "optional-square" ? "rectangle" : "auto",
+        "auto",
       );
       await expect(ins).toHaveAttribute("data-full-width-responsive", "true");
 
