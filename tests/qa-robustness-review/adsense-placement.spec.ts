@@ -2,6 +2,8 @@ import { expect, test, type Page } from "@playwright/test";
 
 import { gotoRoute } from "./helpers";
 
+test.setTimeout(90_000);
+
 const ADSENSE_CLIENT_ID = "ca-pub-4810616735714570";
 
 const SLOTS = {
@@ -218,7 +220,7 @@ async function requestedAds(page: Page) {
     () =>
       document.querySelectorAll<HTMLElement>("[data-mw-ad-placement]").length > 0,
     undefined,
-    { timeout: 10_000 },
+    { timeout: 30_000 },
   );
   await page.waitForFunction(
     () =>
@@ -226,7 +228,7 @@ async function requestedAds(page: Page) {
         (ad) => ad.dataset.mwAdRequestEligible === "true",
       ),
     undefined,
-    { timeout: 10_000 },
+    { timeout: 30_000 },
   );
   return page.evaluate(() =>
     [...document.querySelectorAll<HTMLElement>("[data-mw-ad-placement]")]
@@ -290,10 +292,20 @@ async function expectPlacementWidthWithinViewport(page: Page, placement: string)
   expect(box!.x + box!.width).toBeLessThanOrEqual((viewport?.width ?? 0) + 1);
 }
 
-function expectedFormatForKind(kind: string) {
+function expectedFormatForPlacement(
+  placement: string,
+  kind: string,
+  width: number,
+) {
+  if (placement === "top-banner") return "horizontal";
+  if (kind === "square") return "rectangle";
+  if (width < 768) return "auto";
   if (kind === "banner") return "horizontal";
-  if (kind === "vertical") return "vertical";
-  return "rectangle";
+  return "auto";
+}
+
+function expectedFullWidthResponsiveForPlacement(placement: string) {
+  return placement === "top-banner" ? "" : "true";
 }
 
 async function expectPlacementCentered(page: Page, placement: string) {
@@ -309,6 +321,63 @@ async function expectPlacementCentered(page: Page, placement: string) {
     );
   });
   expect(delta).toBeLessThanOrEqual(3);
+}
+
+async function expectAdContentCentered(page: Page, placement: string) {
+  const delta = await adPlacement(page, placement).evaluate((element) => {
+    const shellRect = element.getBoundingClientRect();
+    const unit = element.querySelector<HTMLElement>(".mw-signal-unit");
+    const firstChild = unit?.firstElementChild;
+    const target =
+      firstChild instanceof HTMLElement && firstChild.getBoundingClientRect().width > 0
+        ? firstChild
+        : unit;
+    if (!target) return 0;
+    const targetRect = target.getBoundingClientRect();
+    return Math.abs(
+      targetRect.x +
+        targetRect.width / 2 -
+        (shellRect.x + shellRect.width / 2),
+    );
+  });
+  expect(delta, `${placement} creative should be centered inside its ad shell`).toBeLessThanOrEqual(3);
+}
+
+async function placementGeometry(page: Page, placement: string) {
+  return adPlacement(page, placement).evaluate((element) => {
+    const rect = element.getBoundingClientRect();
+    const style = getComputedStyle(element);
+    return {
+      height: rect.height,
+      marginBottom: style.marginBottom,
+      marginTop: style.marginTop,
+      pageY: rect.top + window.scrollY,
+      width: rect.width,
+    };
+  });
+}
+
+async function waitForStablePlacementGeometry(page: Page, placement: string) {
+  let previous = await placementGeometry(page, placement);
+  let stableSamples = 0;
+
+  for (let attempt = 0; attempt < 30; attempt += 1) {
+    await page.waitForTimeout(100);
+    const current = await placementGeometry(page, placement);
+    const stable =
+      Math.abs(current.pageY - previous.pageY) <= 0.5 &&
+      Math.abs(current.height - previous.height) <= 0.5 &&
+      Math.abs(current.width - previous.width) <= 0.5;
+    if (stable) {
+      stableSamples += 1;
+      if (stableSamples >= 5) return current;
+    } else {
+      stableSamples = 0;
+    }
+    previous = current;
+  }
+
+  return previous;
 }
 
 async function expectPlaceholderVisible(page: Page, placement: string) {
@@ -380,8 +449,21 @@ async function simulateFilledCreative(page: Page, placement: string) {
     const host = element as HTMLElement;
     const wrapper = host.closest<HTMLElement>("[data-mw-ad-placement]");
     const kind = wrapper?.dataset.mwAdKind ?? "banner";
-    const width = kind === "vertical" ? 120 : kind === "square" ? 300 : 728;
-    const height = kind === "vertical" ? 600 : kind === "square" ? 250 : 90;
+    const mobileBanner = kind === "banner" && window.innerWidth < 768;
+    const width = mobileBanner
+      ? document.documentElement.clientWidth
+      : kind === "vertical"
+        ? 120
+        : kind === "square"
+          ? 300
+          : 728;
+    const height = mobileBanner
+      ? document.documentElement.clientWidth
+      : kind === "vertical"
+        ? 600
+        : kind === "square"
+          ? 250
+          : 90;
     host.innerHTML = "";
     const iframe = document.createElement("iframe");
     iframe.title = "Simulated filled advertisement";
@@ -443,20 +525,23 @@ const renderedAttributeCases = [
     placement: "top-banner",
     slot: SLOTS.topBanner,
     format: "horizontal",
+    fullWidthResponsive: "",
   },
   {
     route: "/",
     width: 1536,
     placement: "left-sidebar",
     slot: SLOTS.leftSidebar,
-    format: "vertical",
+    format: "auto",
+    fullWidthResponsive: "true",
   },
   {
     route: "/",
     width: 1536,
     placement: "right-sidebar",
     slot: SLOTS.rightSidebar,
-    format: "vertical",
+    format: "auto",
+    fullWidthResponsive: "true",
   },
   {
     route: "/",
@@ -464,6 +549,7 @@ const renderedAttributeCases = [
     placement: "post-hero",
     slot: SLOTS.postHeroBanner,
     format: "horizontal",
+    fullWidthResponsive: "true",
   },
   {
     route: "/",
@@ -471,6 +557,7 @@ const renderedAttributeCases = [
     placement: "optional-square",
     slot: SLOTS.optionalSquare,
     format: "rectangle",
+    fullWidthResponsive: "true",
   },
   {
     route: "/",
@@ -478,6 +565,7 @@ const renderedAttributeCases = [
     placement: "toolkit-banner",
     slot: SLOTS.toolkitBanner,
     format: "horizontal",
+    fullWidthResponsive: "true",
   },
 ] as const;
 
@@ -492,11 +580,15 @@ for (const attributeCase of renderedAttributeCases) {
     await expect(ins).toHaveAttribute("data-ad-client", ADSENSE_CLIENT_ID);
     await expect(ins).toHaveAttribute("data-ad-slot", attributeCase.slot);
     await expect(ins).toHaveAttribute("data-ad-format", attributeCase.format);
-    await expect(ins).toHaveAttribute("data-full-width-responsive", "true");
+    expect((await ins.getAttribute("data-full-width-responsive")) ?? "").toBe(
+      attributeCase.fullWidthResponsive,
+    );
     await expect(ins).toHaveCSS("display", "block");
     await expect(ins).toHaveCSS("overflow", "visible");
+    await expectAdContentCentered(page, attributeCase.placement);
     await setAdStatus(page, attributeCase.placement, "filled");
     await expectFilledChromeHidden(page, attributeCase.placement);
+    await expectAdContentCentered(page, attributeCase.placement);
     const metrics = await ins.evaluate((element) => {
       const rect = element.getBoundingClientRect();
       const style = getComputedStyle(element);
@@ -528,24 +620,33 @@ async function assertEligibleRouteArchitecture(
 
   for (const ad of ads) {
     expect(SLOT_BY_PLACEMENT[ad.placement]).toBe(ad.slot);
-    expect(ad.format, `${spec.route}: ${ad.placement} keeps its ad shape`).toBe(
-      expectedFormatForKind(ad.kind),
+    expect(ad.format, `${spec.route}: ${ad.placement} keeps its ad preset`).toBe(
+      expectedFormatForPlacement(ad.placement, ad.kind, width),
     );
     expect(
       ad.fullWidthResponsive,
-      `${spec.route}: ${ad.placement} remains responsive`,
-    ).toBe("true");
+      `${spec.route}: ${ad.placement} keeps its full-width-responsive preset`,
+    ).toBe(expectedFullWidthResponsiveForPlacement(ad.placement));
     await expect(adPlacement(page, ad.placement)).toHaveAttribute(
       "data-mw-ad-request-eligible",
       "true",
     );
+    await expectAdContentCentered(page, ad.placement);
     if (!ad.placement.includes("sidebar")) {
       await expectPlacementWidthWithinViewport(page, ad.placement);
       if (ad.kind === "banner") {
-        expect(
-          ad.height,
-          `${spec.route}: ${ad.placement} should stay banner-shaped`,
-        ).toBeLessThanOrEqual(width < 768 ? 120 : 110);
+        if (width < 768) {
+          expect(
+            ad.height,
+            `${spec.route}: ${ad.placement} should reserve its responsive mobile creative`,
+          ).toBeGreaterThanOrEqual(width - 1);
+          expect(ad.height).toBeLessThanOrEqual(width + 1);
+        } else {
+          expect(
+            ad.height,
+            `${spec.route}: ${ad.placement} should stay banner-shaped`,
+          ).toBeLessThanOrEqual(110);
+        }
       }
       if (ad.kind === "square") {
         expect(
@@ -683,6 +784,150 @@ test("desktop sidebars keep stable fallback through pending, blocked, and unfill
     await setAdStatus(page, placement, "unfilled");
     await expectSidebarFallbackVisible(page, placement);
   }
+});
+
+test("a filled creative never hides unrelated sidebar or content fallbacks", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1536, height: 1100 });
+  await gotoRouteForLayoutCheck(page, "/");
+
+  await expectSidebarFallbackVisible(page, "left-sidebar");
+  await expectSidebarFallbackVisible(page, "right-sidebar");
+  await expectPlaceholderVisible(page, "optional-square");
+
+  await simulateFilledCreative(page, "top-banner");
+  await expectSidebarFallbackVisible(page, "left-sidebar");
+  await expectSidebarFallbackVisible(page, "right-sidebar");
+  await expectPlaceholderVisible(page, "optional-square");
+
+  await simulateFilledCreative(page, "left-sidebar");
+  await expectSidebarFallbackVisible(page, "right-sidebar");
+  await expectPlaceholderVisible(page, "optional-square");
+});
+
+for (const width of [390, 430] as const) {
+  test(`mobile ad requests have measurable centered containers at ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 1100 });
+    await gotoRouteForLayoutCheck(page, "/");
+    await page.evaluate(() => document.fonts.ready);
+    await page.waitForTimeout(1_000);
+
+    for (const placement of ["post-hero", "optional-square", "toolkit-banner"]) {
+      const shell = adPlacement(page, placement);
+      const ins = shell.locator("ins.adsbygoogle");
+      await expect(shell).toHaveAttribute("data-mw-ad-request-eligible", "true");
+      await expect(ins).toHaveAttribute("data-mw-adsense-pushed", "true");
+      await expect(ins).toHaveAttribute(
+        "data-ad-format",
+        placement === "optional-square" ? "rectangle" : "auto",
+      );
+      await expect(ins).toHaveAttribute("data-full-width-responsive", "true");
+
+      const metrics = await ins.evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        const style = getComputedStyle(element);
+        return {
+          display: style.display,
+          visibility: style.visibility,
+          width: Math.round(rect.width),
+        };
+      });
+      expect(metrics.display).toBe("block");
+      expect(metrics.visibility).toBe("visible");
+      expect(metrics.width).toBeGreaterThan(0);
+      expect(metrics.width).toBeLessThanOrEqual(width);
+      await expectAdContentCentered(page, placement);
+    }
+
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test(`mobile fallback and filled creative keep stable geometry at ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 1100 });
+    await gotoRouteForLayoutCheck(page, "/");
+
+    for (const placement of ["post-hero", "optional-square", "toolkit-banner"]) {
+      await expect(adPlacement(page, placement).locator("ins.adsbygoogle")).toHaveAttribute(
+        "data-mw-adsense-pushed",
+        "true",
+      );
+      const before = await waitForStablePlacementGeometry(page, placement);
+      await simulateFilledCreative(page, placement);
+      const after = await placementGeometry(page, placement);
+      const geometry = {
+        after,
+        before,
+        placement,
+      };
+
+      expect(
+        Math.abs(after.pageY - before.pageY),
+        `${placement} should keep its vertical position when filled: ${JSON.stringify(geometry)}`,
+      ).toBeLessThanOrEqual(2);
+      expect(
+        Math.abs(after.height - before.height),
+        `${placement} should keep its reserved height when filled: ${JSON.stringify(geometry)}`,
+      ).toBeLessThanOrEqual(2);
+      await expectAdContentCentered(page, placement);
+    }
+
+    await expectNoHorizontalOverflow(page);
+  });
+}
+
+test("restored mobile pages re-request only non-filled measurable ad units", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 1100 });
+  await gotoRouteForLayoutCheck(page, "/");
+
+  const postHero = adPlacement(page, "post-hero");
+  const toolkit = adPlacement(page, "toolkit-banner");
+  await expect(postHero).toHaveAttribute("data-mw-ad-request-revision", "0");
+  await expect(postHero.locator("ins.adsbygoogle")).toHaveAttribute(
+    "data-mw-adsense-pushed",
+    "true",
+  );
+
+  await page.evaluate(() => {
+    const pageHide = new Event("pagehide");
+    Object.defineProperty(pageHide, "persisted", { value: true });
+    window.dispatchEvent(pageHide);
+    const pageShow = new Event("pageshow");
+    Object.defineProperty(pageShow, "persisted", { value: true });
+    window.dispatchEvent(pageShow);
+  });
+
+  await expect(postHero).toHaveAttribute("data-mw-ad-request-revision", "1");
+  await expect(postHero.locator("ins.adsbygoogle")).toHaveAttribute(
+    "data-mw-adsense-pushed",
+    "true",
+  );
+  await expectPlaceholderVisible(page, "post-hero");
+
+  await simulateFilledCreative(page, "toolkit-banner");
+  const filledRevision = await toolkit.getAttribute("data-mw-ad-request-revision");
+
+  await page.evaluate(() => {
+    const pageHide = new Event("pagehide");
+    Object.defineProperty(pageHide, "persisted", { value: true });
+    window.dispatchEvent(pageHide);
+    const pageShow = new Event("pageshow");
+    Object.defineProperty(pageShow, "persisted", { value: true });
+    window.dispatchEvent(pageShow);
+  });
+
+  await expect(toolkit).toHaveAttribute(
+    "data-mw-ad-request-revision",
+    filledRevision ?? "1",
+  );
+  await expectFilledChromeHidden(page, "toolkit-banner");
+  await expectNoHorizontalOverflow(page);
 });
 
 test("book detail support ad preserves readable summary text width", async ({

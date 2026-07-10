@@ -51,6 +51,7 @@ type AdSlotProps = ViewportRule & {
 const TABLET_MIN_WIDTH = 768;
 const DESKTOP_MIN_WIDTH = 1280;
 const SIDEBAR_MIN_WIDTH = 1536;
+const ADSENSE_REQUEST_DELAY_MS = 1500;
 
 function canAccessDOM() {
   return typeof window !== "undefined" && typeof document !== "undefined";
@@ -80,8 +81,6 @@ declare global {
     __mwAdsenseAnyAdRendered?: boolean;
   }
 }
-
-const ADSENSE_RENDERED_CONTENT_EVENT = "mw:adsense-rendered-content";
 
 const DENSE_POST_HERO_EXCLUDED_PATHS = new Set<string>([
   ROUTES.audioDecoder,
@@ -201,6 +200,25 @@ function useViewportEligibility(rule: ViewportRule) {
   return eligible;
 }
 
+function useViewportWidth() {
+  const [width, setWidth] = React.useState(0);
+
+  useIsomorphicLayoutEffect(() => {
+    if (!canAccessDOM()) return;
+
+    const update = () => {
+      const nextWidth = window.innerWidth;
+      setWidth((current) => (current === nextWidth ? current : nextWidth));
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return width;
+}
+
 function cssSize(value: number | string | undefined) {
   if (value === undefined) return undefined;
   return typeof value === "number" ? `${value}px` : value;
@@ -236,17 +254,9 @@ function isDisplayedAdElement(element: Element) {
 }
 
 function hasRenderedAdContent(element: HTMLElement) {
-  const renderedChildren = element.querySelectorAll(
-    "iframe, [id^='aswift_'], [id^='google_ads_iframe']",
+  return Array.from(element.querySelectorAll("iframe")).some(
+    isDisplayedAdElement,
   );
-
-  if (Array.from(renderedChildren).some(isDisplayedAdElement)) return true;
-
-  return Array.from(element.children).some((child) => {
-    if (child.classList.contains("mw-signal-caption")) return false;
-    if (child.tagName.toLowerCase() === "script") return false;
-    return isDisplayedAdElement(child);
-  });
 }
 
 function hasAnyRenderedAdContent() {
@@ -262,7 +272,6 @@ function markAnyAdRendered() {
 
   window.__mwAdsenseAnyAdRendered = true;
   document.documentElement.dataset.mwAdsenseRendered = "true";
-  window.dispatchEvent(new CustomEvent(ADSENSE_RENDERED_CONTENT_EVENT));
 }
 
 function syncAnyRenderedAdContent() {
@@ -301,6 +310,7 @@ function readAdStatus(element: HTMLElement | null): AdStatus {
 function useAdStatus(
   ref: React.RefObject<HTMLElement | null>,
   shouldRender: boolean,
+  requestKey: string,
 ) {
   const [status, setStatus] = React.useState<AdStatus>("pending");
 
@@ -313,6 +323,23 @@ function useAdStatus(
     const element = ref.current;
     const syncStatus = () => {
       const nextStatus = readAdStatus(ref.current);
+      if (nextStatus === "filled") {
+        const shell = element?.closest<HTMLElement>("[data-mw-ad-placement]");
+        const caption = shell?.querySelector<HTMLElement>(".mw-signal-caption");
+
+        // MutationObserver callbacks run before the next paint. Apply the
+        // filled presentation immediately so a creative and its fallback
+        // chrome cannot share even a transient rendered frame.
+        if (shell) {
+          shell.dataset.mwAdFilled = "true";
+          shell.dataset.mwAdStatus = "filled";
+          shell.dataset.mwAdPlaceholderVisible = "false";
+        }
+        if (caption) {
+          caption.hidden = true;
+          caption.dataset.mwPlacementLabelHidden = "true";
+        }
+      }
       setStatus(nextStatus);
       if (nextStatus === "filled") markAnyAdRendered();
     };
@@ -343,32 +370,60 @@ function useAdStatus(
       observer.disconnect();
       window.removeEventListener("mw:adsense-script-status", syncStatus);
     };
-  }, [ref, shouldRender]);
+  }, [ref, requestKey, shouldRender]);
 
   return status;
 }
 
-function useAnyRenderedAdContent() {
-  const [anyAdRendered, setAnyAdRendered] = React.useState(() => {
-    if (!canAccessDOM()) return false;
-    return Boolean(window.__mwAdsenseAnyAdRendered);
-  });
+function useAdResumeRevision(
+  ref: React.RefObject<HTMLElement | null>,
+  shouldRequestAd: boolean,
+) {
+  const [requestRevision, setRequestRevision] = React.useState(0);
 
   React.useEffect(() => {
-    if (!canAccessDOM()) return;
+    if (!shouldRequestAd || !canAccessDOM()) return;
 
-    const sync = () => {
-      setAnyAdRendered(Boolean(window.__mwAdsenseAnyAdRendered));
+    let resumePending = false;
+
+    const markPageSuspended = () => {
+      resumePending = true;
     };
 
-    sync();
-    window.addEventListener(ADSENSE_RENDERED_CONTENT_EVENT, sync);
+    const retryAfterResume = () => {
+      if (!resumePending) return;
+      resumePending = false;
+
+      const element = ref.current;
+      if (!element || readAdStatus(element) === "filled") return;
+
+      setRequestRevision((current) => current + 1);
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        markPageSuspended();
+        return;
+      }
+      if (document.visibilityState === "visible") retryAfterResume();
+    };
+
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) retryAfterResume();
+    };
+
+    window.addEventListener("pagehide", markPageSuspended);
+    window.addEventListener("pageshow", handlePageShow);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     return () => {
-      window.removeEventListener(ADSENSE_RENDERED_CONTENT_EVENT, sync);
+      window.removeEventListener("pagehide", markPageSuspended);
+      window.removeEventListener("pageshow", handlePageShow);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, []);
+  }, [ref, shouldRequestAd]);
 
-  return anyAdRendered;
+  return requestRevision;
 }
 
 function useRenderedAdContentDetector() {
@@ -441,6 +496,61 @@ function pushAdSenseRequest(element: HTMLElement) {
   }
 }
 
+function requestAdSenseWhenMeasurable(element: HTMLElement) {
+  let resizeObserver: ResizeObserver | undefined;
+  let animationFrameId: number | undefined;
+  let delayId: number | undefined;
+  let requestEnabled = false;
+
+  const stop = () => {
+    resizeObserver?.disconnect();
+    resizeObserver = undefined;
+    if (delayId !== undefined) {
+      window.clearTimeout(delayId);
+      delayId = undefined;
+    }
+    if (animationFrameId !== undefined) {
+      window.cancelAnimationFrame(animationFrameId);
+      animationFrameId = undefined;
+    }
+  };
+
+  const request = () => {
+    if (!requestEnabled) return;
+    if (!element.isConnected || element.dataset.mwAdsensePushed === "true") {
+      stop();
+      return;
+    }
+
+    const rect = element.getBoundingClientRect();
+    const style = getComputedStyle(element);
+    if (
+      rect.width > 0 &&
+      style.display !== "none" &&
+      style.visibility !== "hidden"
+    ) {
+      pushAdSenseRequest(element);
+      stop();
+    }
+  };
+
+  delayId = window.setTimeout(() => {
+    requestEnabled = true;
+    request();
+  }, ADSENSE_REQUEST_DELAY_MS);
+
+  request();
+  if (element.dataset.mwAdsensePushed === "true") return stop;
+
+  if (typeof ResizeObserver !== "undefined") {
+    resizeObserver = new ResizeObserver(request);
+    resizeObserver.observe(element);
+  }
+  animationFrameId = window.requestAnimationFrame(request);
+
+  return stop;
+}
+
 export function AdSenseScriptLoader() {
   useRenderedAdContentDetector();
 
@@ -475,17 +585,32 @@ export function AdSlot({
     (allowExcludedPaths || !isAdsExcludedPath(normalizedPathname)) &&
     (isPathEligible ? isPathEligible(normalizedPathname) : true);
   const viewportEligible = useViewportEligibility({ minWidth, maxWidth });
+  const viewportWidth = useViewportWidth();
   const shouldRequestAd = pathEligible && viewportEligible;
   const adRef = React.useRef<HTMLModElement | null>(null);
-  const status = useAdStatus(adRef, shouldRequestAd);
-  const anyAdRendered = useAnyRenderedAdContent();
+  const requestRevision = useAdResumeRevision(adRef, shouldRequestAd);
+  const compactViewport = viewportWidth > 0 && viewportWidth < TABLET_MIN_WIDTH;
+
+  function adFormatForSlot(slot: string) {
+    if (slot === ADSENSE_SLOTS.topBanner) return "horizontal";
+    if (kind === "square") return "rectangle";
+    if (compactViewport) return "auto";
+    if (kind === "banner") return "horizontal";
+    return "auto";
+  }
+
+  const adFormat = adFormatForSlot(slot);
+  const requestKey = `${requestRevision}:${adFormat}`;
+  const status = useAdStatus(adRef, shouldRequestAd, requestKey);
   const isFilled = status === "filled";
-  const placeholderVisible = placeholder && !isFilled && !anyAdRendered;
+  // Filled state is placement-local. A creative in one slot must never hide
+  // the stable fallback for another pending, blocked, or unfilled slot.
+  const placeholderVisible = placeholder && viewportEligible && !isFilled;
 
   React.useEffect(() => {
     if (!shouldRequestAd || !adRef.current) return;
-    pushAdSenseRequest(adRef.current);
-  }, [shouldRequestAd, slot]);
+    return requestAdSenseWhenMeasurable(adRef.current);
+  }, [adFormat, requestRevision, shouldRequestAd, slot]);
 
   if (!pathEligible) return null;
 
@@ -494,11 +619,6 @@ export function AdSlot({
     "--mw-ad-reserved-height": cssSize(reservedSize.height),
   } as React.CSSProperties;
   const placementTestId = `mw-ad-slot-${placement}`;
-
-  function adFormatForSlot(slot: string) {
-    if (slot === ADSENSE_SLOTS.topBanner) return "horizontal";
-    return "auto";
-  }
 
   function adStyleForSlot(slot: string): React.CSSProperties {
     if (slot === ADSENSE_SLOTS.topBanner) {
@@ -529,11 +649,12 @@ export function AdSlot({
       data-mw-ad-filled={status === "filled" ? "true" : "false"}
       data-mw-ad-fallback="placeholder"
       data-mw-ad-has-placeholder={placeholder ? "true" : "false"}
-      data-mw-ad-any-rendered={anyAdRendered ? "true" : "false"}
       data-mw-ad-kind={kind}
+      data-mw-ad-format={adFormat}
       data-mw-ad-placement={placement}
       data-mw-ad-placeholder-visible={placeholderVisible ? "true" : "false"}
       data-mw-ad-request-eligible={shouldRequestAd ? "true" : "false"}
+      data-mw-ad-request-revision={requestRevision}
       data-mw-ad-slot={slot}
       data-mw-ad-status={status}
       data-mw-ad-viewport-eligible={viewportEligible ? "true" : "false"}
@@ -542,16 +663,19 @@ export function AdSlot({
       style={customProperties}
     >
       {shouldRequestAd ? (
-        <ins
-          ref={adRef}
-          className="adsbygoogle mw-signal-unit"
-          style={adStyleForSlot(slot)}
-          data-ad-client={ADSENSE_CLIENT_ID}
-          data-ad-format={adFormatForSlot(slot)}
-          data-ad-slot={slot}
-          data-adtest={import.meta.env.DEV ? "on" : undefined}
-          data-full-width-responsive={fullWidthResponsiveForSlot(slot)}
-        />
+        <div className="mw-signal-stage">
+          <ins
+            key={`${slot}-${requestKey}`}
+            ref={adRef}
+            className="adsbygoogle mw-signal-unit"
+            style={adStyleForSlot(slot)}
+            data-ad-client={ADSENSE_CLIENT_ID}
+            data-ad-format={adFormat}
+            data-ad-slot={slot}
+            data-adtest={import.meta.env.DEV ? "on" : undefined}
+            data-full-width-responsive={fullWidthResponsiveForSlot(slot)}
+          />
+        </div>
       ) : null}
       {placeholder ? (
         <div
