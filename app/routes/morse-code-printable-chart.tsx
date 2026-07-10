@@ -207,7 +207,7 @@ export function meta() {
   return seoMeta({
     title: "Morse Code Printable Chart | Study Sheet and Reference PDF | MorseWords",
     description:
-      "Print a Morse code chart for studying, teaching, or offline reference, with tips for using it alongside practice tools.",
+      "Create and print a Morse code chart, worksheet, or practice sheet with optional answer keys, then export it for study, teaching, or offline use.",
     path: CANONICAL_PATH,
     keywords:
       "printable morse code chart, morse code worksheet, custom morse code worksheet, teacher morse code worksheet, morse code printable, morse code alphabet printable, morse code practice sheet",

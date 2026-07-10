@@ -18,6 +18,7 @@ const CANONICAL_URL = `${SITE_URL}${CANONICAL_PATH}`;
 const THEME_STORAGE_KEY = "morsewords-theme";
 
 const REQUIRED_LINKS = [
+  "/",
   "/morse-code-decoder",
   "/morse-code-audio-decoder",
   "/morse-code-encoder",
@@ -106,8 +107,8 @@ test.describe("Morse code reader", () => {
     const description = await page
       .locator('meta[name="description"]')
       .getAttribute("content");
-    expect(description).toContain("pasting Morse code");
-    expect(description).toContain("decoded text");
+    expect(description).toContain("written Morse code");
+    expect(description).toContain("clear text result");
     expect(description).toContain("spacing help");
     expect(description).toContain("audio tools");
 

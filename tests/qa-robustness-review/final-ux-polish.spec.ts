@@ -268,11 +268,23 @@ test("international translator is explicit about one-way transliteration", async
   const mainText = (await page.locator("main").innerText()).toLowerCase();
   expect(mainText).not.toContain("decode morse back to international");
   expect(mainText).not.toContain("morse back into world-language words");
+
+  for (const href of [
+    "/",
+    "/morse-code-by-language",
+    "/international-morse-code-reference",
+  ]) {
+    await expect(page.locator(`main a[href="${href}"]`).first()).toBeVisible();
+  }
 });
 
 test("print-style exports invoke print once per click", async ({ page }) => {
   await page.goto("/morse-code-printable-chart", { waitUntil: "domcontentloaded" });
   await waitForHydration(page);
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+    "content",
+    "Create and print a Morse code chart, worksheet, or practice sheet with optional answer keys, then export it for study, teaching, or offline use.",
+  );
   await expectSinglePrintForButton(page, "Download PDF");
 
   await page.goto("/morse-code-word-search-builder", {

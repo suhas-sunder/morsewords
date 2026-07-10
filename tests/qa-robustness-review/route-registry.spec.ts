@@ -24,6 +24,12 @@ const ROOT = process.cwd();
 const CRITICAL_ALIAS_EXPECTATIONS = [
   [ROUTES.translatorAlias, ROUTES.home],
   [ROUTES.morseCodeConverterAlias, ROUTES.home],
+  [ROUTES.morseCodeWorksheetAlias, ROUTES.printableChart],
+  [ROUTES.morseCodePracticeSheetAlias, ROUTES.printableChart],
+  [ROUTES.morseCodePracticeSheetsAlias, ROUTES.printableChart],
+  [ROUTES.morseCodeNumberSheetAlias, ROUTES.printableChart],
+  [ROUTES.morseCodeSheetNumbersAlias, ROUTES.printableChart],
+  [ROUTES.listeningTestAlias, ROUTES.audioQuiz],
   [ROUTES.typingTestAlias, ROUTES.typing],
   [ROUTES.wordGameAlias, ROUTES.wordTrainer],
   [ROUTES.dictionaryAlias, ROUTES.dictionary],
@@ -93,6 +99,22 @@ test.describe("route registry source of truth", () => {
     expect(REDIRECT_ALIASES[ROUTES.morseCodeConverterAlias]).not.toBe(
       ROUTES.internationalTranslator,
     );
+  });
+
+  test("keeps worksheet and listening-test aliases on their intent-specific tools", () => {
+    for (const aliasPath of [
+      ROUTES.morseCodeWorksheetAlias,
+      ROUTES.morseCodePracticeSheetAlias,
+      ROUTES.morseCodePracticeSheetsAlias,
+      ROUTES.morseCodeNumberSheetAlias,
+      ROUTES.morseCodeSheetNumbersAlias,
+    ]) {
+      expect(REDIRECT_ALIASES[aliasPath]).toBe(ROUTES.printableChart);
+      expect(REDIRECT_ALIASES[aliasPath]).not.toBe(ROUTES.printablePages);
+    }
+
+    expect(REDIRECT_ALIASES[ROUTES.listeningTestAlias]).toBe(ROUTES.audioQuiz);
+    expect(REDIRECT_ALIASES[ROUTES.listeningTestAlias]).not.toBe(ROUTES.test);
   });
 
   test("keeps critical aliases explicit and prevents alias chains", () => {

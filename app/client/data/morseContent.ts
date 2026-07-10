@@ -2910,7 +2910,7 @@ export const PHRASE_PAGES: Record<string, MorseLeafContent> = {
     displayTitle: "Hi in Morse Code",
     plainTextValue: "HI",
     answerSummary:
-      "HI in Morse code is .... ... for H I. It is a short greeting with H followed by I.",
+      "HI in Morse code is ....   .. for H I. It is a short greeting with H followed by I.",
     breakdownIntro:
       "HI is two letters, H and I. The whole phrase is compact, but the letter gap still matters.",
     contextTitle: "Using HI in Morse",
@@ -2921,7 +2921,7 @@ export const PHRASE_PAGES: Record<string, MorseLeafContent> = {
       },
       {
         title: "Keep H and I separate",
-        text: "H is .... and I is ... Keep the letter gap visible so the two dot groups do not collapse.",
+        text: "H is .... and I is .., so HI is ....   .. Keep the letter gap visible so the two dot groups do not collapse.",
       },
       {
         title: "Compare with HELLO",
@@ -2975,7 +2975,7 @@ export const PHRASE_PAGES: Record<string, MorseLeafContent> = {
     faqItems: [
       {
         q: "What is HI in Morse code?",
-        a: "HI in Morse code is .... ... for H I.",
+        a: "HI in Morse code is ....   .. for H I.",
       },
       {
         q: "Is HI shorter than HELLO in Morse code?",

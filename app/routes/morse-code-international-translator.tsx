@@ -9,6 +9,7 @@ import { transliterateForInternationalMorse } from "~/client/components/shared/i
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import styles from "~/client/components/shared/pageStyles";
 import TranslatorSectionsBasic from "~/client/components/shared/TranslatorSectionsBasic";
+import { ROUTES } from "~/client/data/routes";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 
@@ -173,6 +174,33 @@ export default function InternationalTranslator() {
           quietInputFocus
           allowDecode={false}
         />
+
+        <section className="pb-8">
+          <p className="max-w-3xl text-base leading-relaxed text-slate-700">
+            For broad two-way Morse translation, use the{" "}
+            <a
+              href={ROUTES.home}
+              className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+            >
+              main Morse translator
+            </a>
+            . For language adaptations, see{" "}
+            <a
+              href={ROUTES.morseCodeByLanguage}
+              className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+            >
+              Morse code by language
+            </a>
+            , or consult the{" "}
+            <a
+              href={ROUTES.internationalReference}
+              className="font-semibold text-sky-900 underline-offset-4 hover:underline"
+            >
+              International Morse code reference
+            </a>
+            .
+          </p>
+        </section>
 
         <section className="mw-static-surface-soft relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fffaf2]/40 py-8">
           <div className="mx-auto max-w-[1120px] px-5 sm:px-8">
