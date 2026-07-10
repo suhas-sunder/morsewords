@@ -22,6 +22,7 @@ import {
 const ROOT = process.cwd();
 
 const CRITICAL_ALIAS_EXPECTATIONS = [
+  [ROUTES.translatorAlias, ROUTES.home],
   [ROUTES.typingTestAlias, ROUTES.typing],
   [ROUTES.wordGameAlias, ROUTES.wordTrainer],
   [ROUTES.dictionaryAlias, ROUTES.dictionary],
@@ -76,6 +77,13 @@ function canonicalUrlsInText(text: string) {
 }
 
 test.describe("route registry source of truth", () => {
+  test("keeps the primary Morse code translator alias on the homepage", () => {
+    expect(REDIRECT_ALIASES[ROUTES.translatorAlias]).toBe(ROUTES.home);
+    expect(REDIRECT_ALIASES[ROUTES.translatorAlias]).not.toBe(
+      ROUTES.internationalTranslator,
+    );
+  });
+
   test("keeps critical aliases explicit and prevents alias chains", () => {
     for (const [aliasPath, canonicalPath] of CRITICAL_ALIAS_EXPECTATIONS) {
       expect(REDIRECT_ALIASES[aliasPath], aliasPath).toBe(canonicalPath);
