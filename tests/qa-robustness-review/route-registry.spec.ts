@@ -23,6 +23,7 @@ const ROOT = process.cwd();
 
 const CRITICAL_ALIAS_EXPECTATIONS = [
   [ROUTES.translatorAlias, ROUTES.home],
+  [ROUTES.morseCodeConverterAlias, ROUTES.home],
   [ROUTES.typingTestAlias, ROUTES.typing],
   [ROUTES.wordGameAlias, ROUTES.wordTrainer],
   [ROUTES.dictionaryAlias, ROUTES.dictionary],
@@ -80,6 +81,16 @@ test.describe("route registry source of truth", () => {
   test("keeps the primary Morse code translator alias on the homepage", () => {
     expect(REDIRECT_ALIASES[ROUTES.translatorAlias]).toBe(ROUTES.home);
     expect(REDIRECT_ALIASES[ROUTES.translatorAlias]).not.toBe(
+      ROUTES.internationalTranslator,
+    );
+  });
+
+  test("keeps the broad Morse code converter alias on the homepage", () => {
+    expect(REDIRECT_ALIASES[ROUTES.morseCodeConverterAlias]).toBe(ROUTES.home);
+    expect(REDIRECT_ALIASES[ROUTES.morseCodeConverterAlias]).not.toBe(
+      ROUTES.encoder,
+    );
+    expect(REDIRECT_ALIASES[ROUTES.morseCodeConverterAlias]).not.toBe(
       ROUTES.internationalTranslator,
     );
   });

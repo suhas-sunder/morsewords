@@ -1113,7 +1113,7 @@ export const REDIRECT_ALIASES = {
   [ROUTES.generateMorseCodeAlias]: ROUTES.encoder,
   [ROUTES.makeMorseCodeAlias]: ROUTES.encoder,
   [ROUTES.morsecodeMakerAlias]: ROUTES.encoder,
-  [ROUTES.morseCodeConverterAlias]: ROUTES.encoder,
+  [ROUTES.morseCodeConverterAlias]: ROUTES.home,
   [ROUTES.morseCodeToolAlias]: ROUTES.encoder,
   [ROUTES.morseCodeTextAlias]: ROUTES.encoder,
   [ROUTES.textMorseCodeAlias]: ROUTES.encoder,
