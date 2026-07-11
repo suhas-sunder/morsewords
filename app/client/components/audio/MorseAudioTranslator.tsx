@@ -19,7 +19,6 @@ import {
   ToolTextarea,
 } from "~/client/components/shared/ToolWorkspace";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
-import StatusMessage from "~/client/components/shared/ui/StatusMessage";
 import TogglePill from "~/client/components/shared/ui/TogglePill";
 import { AudioPresetOptions } from "~/client/components/shared/AudioPresetPicker";
 import { getAudioPresetDefaults } from "~/client/components/shared/audioPresetRegistry";
@@ -30,9 +29,11 @@ import {
   copyTextToClipboard,
 } from "~/client/components/shared/ActionControls";
 import {
-  downloadBlobFile,
-  sanitizeDownloadFilename,
-} from "~/client/components/shared/actionOutputUtils";
+  ExportJobStatus,
+  ExportPlanSummary,
+} from "~/client/components/shared/export/ExportPlanStatus";
+import { buildMorseExportPlan } from "~/client/components/shared/export/morseExportPlan";
+import { useMorseAudioExportJob } from "~/client/components/shared/export/useMorseAudioExportJob";
 import {
   getUnsupportedTextCharacters,
   normalizeMorseForDecoding,
@@ -133,11 +134,6 @@ export default function MorseAudioTranslator({
     React.useState<22050 | 44100 | 48000>(44100);
   const [tailMs, setTailMs] = React.useState<number>(120);
   const [sourceSaveNotice, setSourceSaveNotice] = React.useState("");
-  const [exportStatus, setExportStatus] = React.useState<null | {
-    kind: "working" | "success" | "error";
-    message: string;
-  }>(null);
-
   const [hydrated, setHydrated] = React.useState(false);
   const flashLamp = useFlashLampState(hydrated && flash);
   const { disableFlashEffects, flashAllowed } = flashLamp;
@@ -346,26 +342,37 @@ export default function MorseAudioTranslator({
   const renderedRepeat = hydrated ? repeat : false;
   const renderedFlash = hydrated ? effectiveFlash : false;
   const showStrobeWarning = flashLamp.shouldShowWholePageFlashWarning;
-  const isExportingWav = exportStatus?.kind === "working";
-
-  React.useEffect(() => {
-    if (!hydrated) return;
-    setExportStatus(null);
-  }, [
-    hydrated,
+  const wavExportPlan = React.useMemo(
+    () =>
+      buildMorseExportPlan({
+        baseFilename: fileName || "morse-audio",
+        charWpm: clampNum(charWpm, 5, 60),
+        farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+        format: "wav",
+        kind: "audio",
+        sampleRate,
+        source: sourceMode === "text" ? text : morse,
+        sourceMode,
+        tailPaddingMs: tailMs,
+      }),
+    [charWpm, farnsworthWpm, fileName, morse, sampleRate, sourceMode, tailMs, text],
+  );
+  const wavExportKey = JSON.stringify({
     activeCode,
+    attackMs,
     charWpm,
     farnsworthWpm,
-    toneHz,
-    volume,
+    fileName,
     preset,
-    attackMs,
     releaseMs,
     sampleRate,
-    tailMs,
-    fileName,
     soundOn,
-  ]);
+    tailMs,
+    toneHz,
+    volume,
+  });
+  const wavExport = useMorseAudioExportJob(wavExportKey);
+  const isExportingWav = wavExport.state.status === "running";
 
   const handleCharWpmChange = React.useCallback((value: number) => {
     const next = Math.round(
@@ -465,54 +472,23 @@ export default function MorseAudioTranslator({
 
   const handleExportWav = async () => {
     if (isExportingWav) return;
-    if (!canPlay) {
-      setExportStatus({
-        kind: "error",
-        message: "Enter text or valid dots and dashes before exporting audio.",
-      });
-      return;
-    }
-    if (!soundOn) {
-      setExportStatus({
-        kind: "error",
-        message: "Turn sound back on before exporting audio.",
-      });
-      return;
-    }
+    if (!canPlay || !soundOn) return;
     player.stop();
-
-    const safeBase = sanitizeFileBase(fileName || "morse-audio");
-    setExportStatus({ kind: "working", message: "Preparing WAV file..." });
-    try {
-      const blob = await player.renderWav({
-        code: activeCode,
-        wpm: clampNum(charWpm, 5, 60),
-        farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
-        hz: toneHz,
-        volume,
-        soundEnabled: true,
-        preset,
+    await wavExport.start({
+      plan: wavExportPlan,
+      settings: {
         attackMs,
+        charWpm: clampNum(charWpm, 5, 60),
+        farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+        format: "wav",
+        pitch: toneHz,
         releaseMs,
         sampleRate,
-        tailMs,
-      });
-
-      const download = downloadBlobFile({
-        blob,
-        filename: sanitizeDownloadFilename(`${safeBase}.wav`, "morse-audio.wav"),
-      });
-      if (!download.ok) {
-        setExportStatus({ kind: "error", message: download.message });
-        return;
-      }
-      setExportStatus({ kind: "success", message: "WAV download started." });
-    } catch {
-      setExportStatus({
-        kind: "error",
-        message: "WAV export failed. Try a shorter message or a lower sample rate.",
-      });
-    }
+        tailPaddingMs: tailMs,
+        tonePreset: preset,
+        volume,
+      },
+    });
   };
 
   return (
@@ -737,11 +713,12 @@ export default function MorseAudioTranslator({
                 </ToolButton>
               </div>
 
-              {exportStatus ? (
-                <StatusMessage className="mt-3" kind={exportStatus.kind} live>
-                  {exportStatus.message}
-                </StatusMessage>
-              ) : null}
+              <ExportJobStatus
+                state={wavExport.state}
+                onCancel={() => wavExport.cancel()}
+                onReset={wavExport.reset}
+                onRetry={() => void wavExport.retry()}
+              />
             </div>
 
             <div className="mt-6">
@@ -907,6 +884,7 @@ export default function MorseAudioTranslator({
 
               {exportOpen && (
                 <div className="mt-4 pt-4">
+                  <ExportPlanSummary plan={wavExportPlan} />
                   <div className="grid sm:grid-cols-2 gap-4">
                     <LabeledAudioInput
                       label="File name"
@@ -981,7 +959,6 @@ export default function MorseAudioTranslator({
     </div>
   );
 }
-
 function LabeledAudioSelect({
   label,
   value,
@@ -1069,16 +1046,4 @@ function formatMs(ms: number) {
   const m = Math.floor(s / 60);
   const r = s % 60;
   return `${m}m ${r}s`;
-}
-
-function sanitizeFileBase(name: string) {
-  return (
-    name
-      .trim()
-      .replace(/[\\/:*?"<>|]+/g, "-")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-")
-      .replace(/^-|-$/g, "")
-      .slice(0, 80) || "morse-audio"
-  );
 }

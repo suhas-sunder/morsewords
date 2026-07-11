@@ -1,7 +1,5 @@
 import type { BookSourceSection } from "./bookSourceTypes";
 import {
-  BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS,
-  BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES,
   BOOK_DEFAULT_PART_TARGET_MS,
   BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS,
   BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS,
@@ -18,6 +16,7 @@ import type {
 } from "./bookExportTypes";
 import { segmentBookText } from "./bookSegmentation";
 import type { BookVideoSettings } from "./bookVideoTypes";
+import { MORSE_EXPORT_THRESHOLDS } from "~/client/components/shared/export/morseExportPlan";
 
 export type BookExportPlan = {
   automaticSplit: boolean;
@@ -88,7 +87,7 @@ export function buildBookExportPlan({
       targetPartMs: settings.targetPartMinutes * 60_000,
       totalRuntimeMs: requestedRuntimeMs,
       unresolvedOversizedPart: requestedOversized?.part ?? null,
-      zipWorkflow: requestedParts.length > 1,
+      zipWorkflow: requestedParts.length > 1 && hasBookSidecars(settings),
     };
   }
 
@@ -133,19 +132,27 @@ export function buildBookExportPlan({
     targetPartMs,
     totalRuntimeMs: totalPartRuntimeMs(parts),
     unresolvedOversizedPart: unresolved?.part ?? null,
-    zipWorkflow: parts.length > 1,
+    zipWorkflow: parts.length > 1 && hasBookSidecars(settings),
   };
 }
 
 export function audioMaxPartMs(settings: BookExportSettings) {
-  const pcmLimitedMs = Math.floor(
-    (BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES /
-      Math.max(1, settings.sampleRate * Float32Array.BYTES_PER_ELEMENT)) *
-      1000,
-  );
+  const threshold = MORSE_EXPORT_THRESHOLDS[settings.outputFormat];
+  const byteLimitedMs =
+    settings.outputFormat === "wav"
+      ? Math.floor(
+          ((threshold.maxEstimatedBytes - 44) /
+            Math.max(1, settings.sampleRate * 2)) *
+            1000,
+        )
+      : Math.floor(
+          (((threshold.maxEstimatedBytes - 4096) * 8) /
+            Math.max(1, settings.mp3Bitrate * 1000)) *
+            1000,
+        );
   return Math.max(
     60_000,
-    Math.min(BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS, pcmLimitedMs),
+    Math.min(threshold.maxDurationMs, byteLimitedMs),
   );
 }
 
@@ -212,4 +219,14 @@ export function buildBookExportBatches(
 
 function totalPartRuntimeMs(parts: BookExportPart[]) {
   return parts.reduce((total, part) => total + Math.max(0, part.morseDurationMs), 0);
+}
+
+function hasBookSidecars(settings: BookExportSettings) {
+  return (
+    settings.includeCleanedText ||
+    settings.includeMorseTranscript ||
+    settings.includeManifest ||
+    settings.includeSettings ||
+    settings.includeReadme
+  );
 }

@@ -50,6 +50,7 @@ export function segmentBookText({
       ],
       settings,
       sourceTitle,
+      cleanedText.length,
     );
   }
 
@@ -70,7 +71,7 @@ export function segmentBookText({
     targetMs,
   });
 
-  return finalizeParts(parts, settings, sourceTitle);
+  return finalizeParts(parts, settings, sourceTitle, cleanedText.length);
 }
 
 function buildSectionUnits(
@@ -129,6 +130,7 @@ function collectPartsFromUnits({
 
     const combinedMs = currentMs + combinedUnitGapMs + unitMs;
     if (
+      (current.title && unit.title && current.title !== unit.title) ||
       combinedMs > splitLimitMs ||
       (combinedMs > targetMs && currentMs > targetMs * 0.55)
     ) {
@@ -208,28 +210,67 @@ function hardSplitUnit(
   settings: BookExportSettings,
   targetMs: number,
 ): TextUnit[] {
-  const averageMsPerChar = Math.max(
-    1,
-    estimateBookTextDurationMs(unit.text, settings) / Math.max(1, unit.text.length),
-  );
-  const chunkSize = Math.max(60, Math.floor(targetMs / averageMsPerChar));
+  const durationLimitMs = Math.max(1, targetMs);
   const parts: TextUnit[] = [];
+  let cursor = 0;
 
-  for (let start = 0; start < unit.text.length; start += chunkSize) {
-    const end = Math.min(unit.text.length, start + chunkSize);
-    const text = unit.text.slice(start, end).trim();
-    if (!text) continue;
-    const trimStart = unit.text.slice(start, end).search(/\S/);
-    const sourceStart = unit.start + start + Math.max(0, trimStart);
-    parts.push({
-      text,
-      start: sourceStart,
-      end: sourceStart + text.length,
-      title: unit.title,
-    });
+  while (cursor < unit.text.length) {
+    let low = nextCodePointEnd(unit.text, cursor);
+    let high = unit.text.length;
+    let bestEnd = low;
+
+    while (low <= high) {
+      const midpoint = Math.floor((low + high) / 2);
+      const candidateEnd = avoidSurrogateSplit(unit.text, cursor, midpoint);
+      if (candidateEnd <= cursor) {
+        low = midpoint + 1;
+        continue;
+      }
+      const candidate = unit.text.slice(cursor, candidateEnd).trim();
+      const candidateMs = candidate
+        ? estimateBookTextDurationMs(candidate, settings)
+        : 0;
+      if (candidateMs <= durationLimitMs) {
+        bestEnd = candidateEnd;
+        low = midpoint + 1;
+      } else {
+        high = midpoint - 1;
+      }
+    }
+
+    const rawText = unit.text.slice(cursor, bestEnd);
+    const text = rawText.trim();
+    if (text) {
+      const trimStart = rawText.search(/\S/);
+      const trailingWhitespace = rawText.length - rawText.trimEnd().length;
+      parts.push({
+        text,
+        start: unit.start + cursor + Math.max(0, trimStart),
+        end: unit.start + bestEnd - trailingWhitespace,
+        title: unit.title,
+      });
+    }
+    cursor = bestEnd;
   }
 
   return parts.length > 0 ? parts : [unit];
+}
+
+function nextCodePointEnd(text: string, start: number) {
+  const codePoint = text.codePointAt(start);
+  return Math.min(text.length, start + (codePoint !== undefined && codePoint > 0xffff ? 2 : 1));
+}
+
+function avoidSurrogateSplit(text: string, start: number, proposedEnd: number) {
+  let end = Math.max(start + 1, Math.min(text.length, proposedEnd));
+  if (
+    end < text.length &&
+    /[\uD800-\uDBFF]/.test(text[end - 1]) &&
+    /[\uDC00-\uDFFF]/.test(text[end])
+  ) {
+    end -= 1;
+  }
+  return end > start ? end : nextCodePointEnd(text, start);
 }
 
 function mergeTinyTrailingPart(
@@ -241,6 +282,7 @@ function mergeTinyTrailingPart(
   if (parts.length < 2) return parts;
   const last = parts[parts.length - 1];
   const previous = parts[parts.length - 2];
+  if (last.title && previous.title && last.title !== previous.title) return parts;
   const lastMs = estimateBookTextDurationMs(last.text, settings);
   if (lastMs >= targetMs * MIN_TRAILING_PART_RATIO) return parts;
 
@@ -260,9 +302,14 @@ function finalizeParts(
   rawParts: TextUnit[],
   settings: BookExportSettings,
   sourceTitle?: string,
+  sourceLength?: number,
 ): BookExportPart[] {
-  return rawParts
-    .filter((part) => part.text.trim())
+  const parts = rawParts.filter((part) => part.text.trim());
+  const normalizedParts = normalizeSourceCoverage(
+    parts,
+    Math.max(0, sourceLength ?? parts.at(-1)?.end ?? 0),
+  );
+  return normalizedParts
     .map((part, index) => {
       const partIndex = index + 1;
       const title = part.title
@@ -280,19 +327,44 @@ function finalizeParts(
           sourceTitle,
           partIndex,
           format: settings.outputFormat,
+          sectionTitle: part.title,
         }),
       };
     });
+}
+
+function normalizeSourceCoverage(parts: TextUnit[], sourceLength: number) {
+  let sourceStart = 0;
+  return parts.map((part, index) => {
+    const next = parts[index + 1];
+    const naturalEnd =
+      index === parts.length - 1
+        ? sourceLength
+        : Math.max(part.end, next?.start ?? part.end);
+    const sourceEnd = Math.max(
+      sourceStart,
+      Math.min(sourceLength, naturalEnd),
+    );
+    const normalized = {
+      ...part,
+      start: sourceStart,
+      end: sourceEnd,
+    };
+    sourceStart = sourceEnd;
+    return normalized;
+  });
 }
 
 export function buildPartFilename({
   sourceTitle,
   partIndex,
   format,
+  sectionTitle,
 }: {
   sourceTitle?: string;
   partIndex: number;
   format: "mp3" | "wav";
+  sectionTitle?: string;
 }) {
   const base = sanitizeDownloadFilename(
     sourceTitle || "morse-book",
@@ -300,7 +372,14 @@ export function buildPartFilename({
   )
     .replace(/\.(mp3|wav|zip|txt|json|m3u)$/i, "")
     .slice(0, MAX_FILENAME_BASE_LENGTH);
-  return `${base || "morse-book"}-part-${String(partIndex).padStart(3, "0")}.${format}`;
+  const sectionSlug = sectionTitle
+    ? sanitizeDownloadFilename(sectionTitle, "")
+        .replace(/^part-?\d+[-:]?/i, "")
+        .slice(0, 36)
+    : "";
+  return `${base || "morse-book"}-part-${String(partIndex).padStart(3, "0")}${
+    sectionSlug ? `-${sectionSlug}` : ""
+  }.${format}`;
 }
 
 export function buildSingleAudioFilename({

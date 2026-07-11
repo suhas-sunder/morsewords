@@ -44,6 +44,7 @@ import {
 } from "~/client/theme/themeStorage";
 
 import {
+  createBookAudioPartDownloads,
   createBookDownloadPackage,
   getBookDownloadKind,
 } from "./bookBundleExport";
@@ -568,6 +569,11 @@ export default function BookTranslatorTool() {
   } | null>(null);
   const exportVersionRef = React.useRef(0);
   const exportAbortRef = React.useRef<AbortController | null>(null);
+  const completedPartDownloadsRef = React.useRef<{
+    indexes: number[];
+    signature: string;
+    totalBytes: number;
+  }>({ indexes: [], signature: "", totalBytes: 0 });
   const exportProgressRef =
     React.useRef<BookExportProgress>(IDLE_EXPORT_PROGRESS);
   const visualPreviewIntervalRef = React.useRef<number | null>(null);
@@ -603,7 +609,6 @@ export default function BookTranslatorTool() {
     (message = "Download cancelled.") => {
       exportVersionRef.current += 1;
       exportAbortRef.current?.abort();
-      exportAbortRef.current = null;
       const nextProgress: BookExportProgress = {
         phase: "cancelled",
         message,
@@ -1190,7 +1195,7 @@ export default function BookTranslatorTool() {
       )}`
     : "";
   const longExportMessages =
-    zipBatchWorkflow
+    exportPlan.automaticSplit || zipBatchWorkflow
       ? [BOOK_LONG_EXPORT_MESSAGE, BOOK_LONG_EXPORT_KEEP_OPEN_MESSAGE]
       : [];
   const canAudioExport =
@@ -1242,8 +1247,10 @@ export default function BookTranslatorTool() {
       ? `Download ZIP ${selectedBatchLabel}`
       : downloadKind === "zip"
       ? "Download ZIP bundle"
+      : downloadKind === "parts"
+        ? `Download ${exportParts.length} MP3 parts`
       : exportParts.length > 1
-        ? `Download ZIP ${selectedBatchLabel}`
+        ? `Download ${exportParts.length} MP3 parts`
         : `Download ${downloadFormatLabel}`;
   const splitMode = activeSegmentationSettings.splitMode;
   const splitTargetPartMinutes = exportSettings.targetPartMinutes;
@@ -2152,6 +2159,7 @@ export default function BookTranslatorTool() {
   );
 
   const handleDownloadBook = React.useCallback(async () => {
+    if (exportAbortRef.current) return;
     if (!hasSource || exportParts.length === 0) {
       setExportStatus({
         kind: "error",
@@ -2182,7 +2190,6 @@ export default function BookTranslatorTool() {
       return;
     }
 
-    exportAbortRef.current?.abort();
     const controller = new AbortController();
     exportAbortRef.current = controller;
     const version = exportVersionRef.current + 1;
@@ -2221,62 +2228,96 @@ export default function BookTranslatorTool() {
           setExportProgress(progress);
         }
       };
-      const result = await createBookDownloadPackage({
-        allParts: exportParts,
-        batch: selectedExportBatch ?? undefined,
-        metadata,
-        parts: activeDownloadParts,
-        settings: activeSegmentationSettings,
-        signal: controller.signal,
-        totalSelectedRuntimeMs: exportAnalysis.totalRuntimeMs,
-        onProgress: progressHandler,
-      });
-      if (!mountedRef.current || exportVersionRef.current !== version) return;
-      const download = downloadBlobFile({
-        blob: result.blob,
-        filename: result.filename,
-      });
-      if (!download.ok) {
-        setExportProgress({
-          phase: "failed",
-          message: download.message,
-          currentPart: activeDownloadParts.length,
-          totalBatches,
-          totalParts: activeDownloadParts.length,
+      let completedFilename = "";
+      let completedSizeBytes = 0;
+      let completedContents: string[] = [];
+      if (downloadKind === "parts") {
+        const partSignature = JSON.stringify({
+          filenames: activeDownloadParts.map((part) => part.estimatedFilename),
+          settings: activeSegmentationSettings,
         });
-        setExportStatus({ kind: "error", message: download.message });
-        return;
+        if (completedPartDownloadsRef.current.signature !== partSignature) {
+          completedPartDownloadsRef.current = {
+            indexes: [],
+            signature: partSignature,
+            totalBytes: 0,
+          };
+        }
+        const sequential = await createBookAudioPartDownloads({
+          completedPartIndexes: completedPartDownloadsRef.current.indexes,
+          metadata,
+          parts: activeDownloadParts,
+          settings: activeSegmentationSettings,
+          signal: controller.signal,
+          onProgress: progressHandler,
+          onPartComplete: (partIndex) => {
+            completedPartDownloadsRef.current.indexes = [
+              ...new Set([
+                ...completedPartDownloadsRef.current.indexes,
+                partIndex,
+              ]),
+            ];
+          },
+          onPartReady: ({ blob, filename }) => {
+            const download = downloadBlobFile({ blob, filename });
+            if (!download.ok) throw new Error(download.message);
+            completedPartDownloadsRef.current.totalBytes += blob.size;
+          },
+        });
+        completedFilename = `${sequential.completedPartIndexes.length} ordered MP3 files`;
+        completedSizeBytes = completedPartDownloadsRef.current.totalBytes;
+        completedContents = sequential.contents;
+      } else {
+        const result = await createBookDownloadPackage({
+          allParts: exportParts,
+          batch: selectedExportBatch ?? undefined,
+          metadata,
+          parts: activeDownloadParts,
+          settings: activeSegmentationSettings,
+          signal: controller.signal,
+          totalSelectedRuntimeMs: exportAnalysis.totalRuntimeMs,
+          onProgress: progressHandler,
+        });
+        const download = downloadBlobFile({
+          blob: result.blob,
+          filename: result.filename,
+        });
+        if (!download.ok) throw new Error(download.message);
+        completedFilename = result.filename;
+        completedSizeBytes = result.blob.size;
+        completedContents = result.contents;
       }
+      if (!mountedRef.current || exportVersionRef.current !== version) return;
       const resultOutputFormat = "mp3";
       setCompletedExport({
         batchNumber: selectedExportBatch?.batchNumber,
-        filename: result.filename,
-        downloadKind: result.downloadKind,
+        filename: completedFilename,
+        downloadKind,
         outputFormat: resultOutputFormat,
         totalBatches,
         partCount: activeDownloadParts.length,
         runtimeLabel: formatDuration(
           selectedExportBatch?.runtimeMs ?? exportAnalysis.totalRuntimeMs,
         ),
-        sizeLabel: result.downloadKind === "zip"
-          ? formatBytes(result.blob.size)
-          : exportAnalysis.estimatedSizeLabel,
-        contents: result.contents,
+        sizeLabel: formatBytes(completedSizeBytes),
+        contents: completedContents,
       });
       setExportProgress({
         phase: "complete",
         message:
-          result.downloadKind === "zip"
+          downloadKind === "parts"
+            ? `${activeDownloadParts.length} ordered MP3 download requests sent.`
+            : downloadKind === "zip"
             ? zipBatchWorkflow && selectedExportBatch
-              ? `Batch ${selectedExportBatch.batchNumber} downloaded. ${
+              ? `Batch ${selectedExportBatch.batchNumber} download requested. ${
                   selectedExportBatch.batchNumber < totalBatches
                     ? `Batch ${selectedExportBatch.batchNumber + 1} is ready when you are.`
-                    : "All ZIP batches are complete."
+                    : "All ZIP batch download requests are sent."
                 }`
-            : `ZIP download started with ${activeDownloadParts.length} part${
+            : `ZIP download requested with ${activeDownloadParts.length} part${
                 activeDownloadParts.length === 1 ? "" : "s"
               }.`
-            : "MP3 download started.",
+            : "MP3 download requested.",
         batchNumber: selectedExportBatch?.batchNumber,
         batchPartCount: activeDownloadParts.length,
         batchPartIndex: activeDownloadParts.length,
@@ -2287,16 +2328,25 @@ export default function BookTranslatorTool() {
       setExportStatus({
         kind: "success",
         message:
-          result.downloadKind === "zip"
+          downloadKind === "parts"
+            ? `${activeDownloadParts.length} ordered MP3 download requests sent.`
+            : downloadKind === "zip"
             ? zipBatchWorkflow && selectedExportBatch
-              ? `Batch ${selectedExportBatch.batchNumber} downloaded. ${
+              ? `Batch ${selectedExportBatch.batchNumber} download requested. ${
                   selectedExportBatch.batchNumber < totalBatches
                     ? `Batch ${selectedExportBatch.batchNumber + 1} is ready when you are.`
-                    : "All ZIP batches are complete."
+                    : "All ZIP batch download requests are sent."
                 }`
-            : "ZIP download started."
-            : "MP3 download started.",
+            : "ZIP download requested."
+            : "MP3 download requested.",
       });
+      if (downloadKind === "parts") {
+        completedPartDownloadsRef.current = {
+          indexes: [],
+          signature: "",
+          totalBytes: 0,
+        };
+      }
       if (
         zipBatchWorkflow &&
         selectedExportBatch &&
@@ -2330,7 +2380,7 @@ export default function BookTranslatorTool() {
         message: failedMessage,
       });
     } finally {
-      if (exportVersionRef.current === version) {
+      if (exportAbortRef.current === controller) {
         exportAbortRef.current = null;
         setExportStartedAtMs(null);
       }

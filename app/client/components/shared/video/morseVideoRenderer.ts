@@ -5,7 +5,7 @@ import {
   oscillatorLayers,
 } from "~/client/components/shared/audioToneSynthesis";
 import {
-  buildMorseEvents,
+  buildMorseTimeline,
   normalizePlayableMorse,
 } from "~/client/components/shared/morseTiming";
 import {
@@ -271,25 +271,22 @@ export function buildMorseVideoTimelineFromMorse(
   text = "",
 ): MorseVideoTimeline {
   const normalizedMorse = normalizePlayableMorse(morse);
-  const timedEvents: MorseVideoTimedEvent[] = [];
-  let cursorMs = 0;
-
-  for (const event of buildMorseEvents(normalizedMorse, {
+  const canonicalTimeline = buildMorseTimeline(normalizedMorse, {
     charWpm: audioSettings.charWpm,
     farnsworthWpm: audioSettings.farnsworthWpm,
-  })) {
-    const startMs = cursorMs;
-    cursorMs += Math.max(0, event.ms);
-    timedEvents.push({
+    tailPaddingMs: audioSettings.tailPaddingMs,
+  });
+  const timedEvents: MorseVideoTimedEvent[] = canonicalTimeline.events.map(
+    (event) => ({
       type: event.type,
-      startMs,
-      endMs: cursorMs,
+      startMs: event.startMs,
+      endMs: event.endMs,
       symbol: event.type === "mark" ? event.symbol : undefined,
-    });
-  }
+    }),
+  );
 
-  const tailPaddingMs = Math.max(0, audioSettings.tailPaddingMs ?? 0);
-  const durationMs = Math.max(MIN_VIDEO_MS, cursorMs + tailPaddingMs);
+  const tailPaddingMs = canonicalTimeline.tailPaddingMs;
+  const durationMs = Math.max(MIN_VIDEO_MS, canonicalTimeline.durationMs);
   return {
     events: timedEvents,
     morse: normalizedMorse,
@@ -622,62 +619,89 @@ export async function recordMorseVideoCanvas({
 }) {
   throwIfAborted(signal);
   const stream = captureCanvasStream(canvas);
-  const audio = settings.includeAudioTrack
-    ? createMorseVideoAudioTrack({
-        audioSettings,
-        signal,
-      })
-    : null;
-
-  const tracks = [
-    ...stream.getVideoTracks(),
-    ...(audio?.stream.getAudioTracks() ?? []),
-  ];
-  const recordingStream = new MediaStream(tracks);
-  const frame = { width: canvas.width, height: canvas.height };
-  const recorder = new MediaRecorder(
-    recordingStream,
-    getMorseVideoRecordingOptions({
-      frame,
-      includeAudioTrack: settings.includeAudioTrack,
-      mimeType,
-    }),
-  );
+  let audio: ReturnType<typeof createMorseVideoAudioTrack> | null = null;
+  let recordingStream: MediaStream | null = null;
+  let recorder: MediaRecorder | null = null;
   const chunks: Blob[] = [];
 
-  const recording = new Promise<Blob>((resolve, reject) => {
-    recorder.ondataavailable = (event) => {
-      if (event.data.size > 0) chunks.push(event.data);
-    };
-    recorder.onerror = () => {
-      reject(new Error("Video recording failed in this browser."));
-    };
-    recorder.onstop = () => {
-      resolve(new Blob(chunks, { type: mimeType }));
-    };
-  });
-
-  const ctx = canvas.getContext("2d");
-  if (!ctx) {
-    cleanupStream(recordingStream, stream, audio?.context);
-    throw new Error("Canvas rendering is unavailable in this browser.");
-  }
-
-  const startDelayMs = audio ? 80 : 0;
-  renderMorseVideoFrame({
-    audioSettings,
-    ctx,
-    elapsedMs: 0,
-    frame,
-    settings,
-    timeline,
-    resolvedBackgroundStyle,
-  });
-
   try {
+    audio = settings.includeAudioTrack
+      ? createMorseVideoAudioTrack({
+          audioSettings,
+          signal,
+        })
+      : null;
+    const tracks = [
+      ...stream.getVideoTracks(),
+      ...(audio?.stream.getAudioTracks() ?? []),
+    ];
+    recordingStream = new MediaStream(tracks);
+    const frame = { width: canvas.width, height: canvas.height };
+    const activeRecorder = new MediaRecorder(
+      recordingStream,
+      getMorseVideoRecordingOptions({
+        frame,
+        includeAudioTrack: settings.includeAudioTrack,
+        mimeType,
+      }),
+    );
+    recorder = activeRecorder;
+    const requestedContainerType = mimeType.split(";", 1)[0].toLowerCase();
+    const observedChunkTypes = new Set<string>();
+    const recording = new Promise<Blob>((resolve, reject) => {
+      activeRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          if (event.data.type) {
+            observedChunkTypes.add(event.data.type.toLowerCase());
+          }
+          chunks.push(event.data);
+        }
+      };
+      activeRecorder.onerror = () => {
+        reject(new Error("Video recording failed in this browser."));
+      };
+      activeRecorder.onstop = () => {
+        const recorderType = activeRecorder.mimeType?.toLowerCase() || "";
+        const observedTypes = [...observedChunkTypes];
+        const actualType =
+          observedTypes[0] || recorderType || requestedContainerType;
+        const hasMismatchedType =
+          !actualType.startsWith(requestedContainerType) ||
+          observedTypes.some(
+            (type) => !type.startsWith(requestedContainerType),
+          );
+        if (hasMismatchedType) {
+          reject(
+            new Error(
+              "The browser returned a different video container than requested.",
+            ),
+          );
+          return;
+        }
+        resolve(new Blob(chunks, { type: actualType }));
+      };
+    });
+    void recording.catch(() => undefined);
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      throw new Error("Canvas rendering is unavailable in this browser.");
+    }
+
+    const startDelayMs = audio ? 80 : 0;
+    renderMorseVideoFrame({
+      audioSettings,
+      ctx,
+      elapsedMs: 0,
+      frame,
+      settings,
+      timeline,
+      resolvedBackgroundStyle,
+    });
+
     recorder.start(1000);
     if (audio) {
-      await audio.context.resume();
+      await resumeVideoAudioContext(audio.context, signal);
       scheduleMorseVideoAudio({
         audioSettings,
         context: audio.context,
@@ -697,20 +721,29 @@ export async function recordMorseVideoCanvas({
       timeline,
       onProgress,
     });
-  } catch (error) {
+    throwIfAborted(signal);
     if (recorder.state !== "inactive") recorder.stop();
+    const blob = await recording;
+    if (blob.size === 0) {
+      throw new Error("Video recording produced an empty file.");
+    }
+    return blob;
+  } finally {
+    if (recorder?.state !== "inactive") {
+      try {
+        recorder?.stop();
+      } catch {
+        // The recorder may already be stopping after a browser-side failure.
+      }
+    }
     cleanupStream(recordingStream, stream, audio?.context);
-    throw error;
+    if (recorder) {
+      recorder.ondataavailable = null;
+      recorder.onerror = null;
+      recorder.onstop = null;
+    }
+    chunks.length = 0;
   }
-
-  throwIfAborted(signal);
-  if (recorder.state !== "inactive") recorder.stop();
-  const blob = await recording;
-  cleanupStream(recordingStream, stream, audio?.context);
-  if (blob.size === 0) {
-    throw new Error("Video recording produced an empty file.");
-  }
-  return blob;
 }
 
 export function renderMorseVideoFrame({
@@ -840,6 +873,45 @@ function renderRealtimeFrames({
   let lastProgressMs = -1_000;
 
   return new Promise<void>((resolve, reject) => {
+    let animationFrameId: number | null = null;
+    let fallbackTimerId: number | null = null;
+    let settled = false;
+
+    const clearScheduledFrame = () => {
+      if (animationFrameId !== null) {
+        window.cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+      if (fallbackTimerId !== null) {
+        window.clearTimeout(fallbackTimerId);
+        fallbackTimerId = null;
+      }
+    };
+
+    const finish = (error?: unknown) => {
+      if (settled) return;
+      settled = true;
+      clearScheduledFrame();
+      if (error !== undefined) reject(error);
+      else resolve();
+    };
+
+    const scheduleFrame = () => {
+      let invoked = false;
+      const invoke = () => {
+        if (invoked || settled) return;
+        invoked = true;
+        clearScheduledFrame();
+        step();
+      };
+      animationFrameId = window.requestAnimationFrame(invoke);
+      // Browsers pause requestAnimationFrame in hidden/background tabs. A
+      // timer keeps the real-time recorder moving without synthesizing fake
+      // elapsed time; background timer throttling may make export slower, but
+      // it will not leave the job permanently stuck.
+      fallbackTimerId = window.setTimeout(invoke, Math.ceil(1000 / FRAME_RATE));
+    };
+
     const step = () => {
       try {
         throwIfAborted(signal);
@@ -858,16 +930,40 @@ function renderRealtimeFrames({
           onProgress?.(Math.min(durationMs, elapsedMs), durationMs);
         }
         if (elapsedMs >= durationMs) {
-          resolve();
+          finish();
           return;
         }
-        window.requestAnimationFrame(step);
+        scheduleFrame();
       } catch (error) {
-        reject(error);
+        finish(error);
       }
     };
-    window.requestAnimationFrame(step);
+    scheduleFrame();
   });
+}
+
+async function resumeVideoAudioContext(
+  context: AudioContext,
+  signal: AbortSignal,
+) {
+  let timeoutId: number | null = null;
+  const resumed = await Promise.race([
+    context.resume().then(() => context.state === "running"),
+    new Promise<boolean>((resolve) => {
+      timeoutId = window.setTimeout(
+        () => resolve(context.state === "running"),
+        2_000,
+      );
+    }),
+  ]).finally(() => {
+    if (timeoutId !== null) window.clearTimeout(timeoutId);
+  });
+  throwIfAborted(signal);
+  if (!resumed) {
+    throw new Error(
+      "The browser did not start the optional video audio track. Turn off Include audio and retry.",
+    );
+  }
 }
 
 function captureCanvasStream(canvas: HTMLCanvasElement) {
@@ -898,12 +994,17 @@ function createMorseVideoAudioTrack({
   const context = new AudioContextCtor({
     sampleRate: audioSettings.sampleRate,
   });
-  const destination = context.createMediaStreamDestination();
-  return {
-    context,
-    destination,
-    stream: destination.stream,
-  };
+  try {
+    const destination = context.createMediaStreamDestination();
+    return {
+      context,
+      destination,
+      stream: destination.stream,
+    };
+  } catch (error) {
+    void context.close().catch(() => undefined);
+    throw error;
+  }
 }
 
 function scheduleMorseVideoAudio({
@@ -962,11 +1063,11 @@ function scheduleMorseVideoAudio({
 }
 
 function cleanupStream(
-  recordingStream: MediaStream,
+  recordingStream: MediaStream | null,
   canvasStream: MediaStream,
   context?: AudioContext,
 ) {
-  recordingStream.getTracks().forEach((track) => track.stop());
+  recordingStream?.getTracks().forEach((track) => track.stop());
   canvasStream.getTracks().forEach((track) => track.stop());
   void context?.close().catch(() => undefined);
 }

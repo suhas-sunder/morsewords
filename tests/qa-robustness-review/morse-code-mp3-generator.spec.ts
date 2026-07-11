@@ -283,7 +283,13 @@ test.describe("Morse code MP3 generator", () => {
     await page.getByRole("button", { name: "Download MP3" }).click();
     const download = await mp3Download;
     expect(download.suggestedFilename()).toBe("morse-code.mp3");
-    await expect(page.getByText("MP3 download started.")).toBeVisible();
+    await expect(page.getByTestId("morse-export-job")).toHaveAttribute(
+      "data-export-status",
+      "complete",
+    );
+    await expect(
+      page.getByText("1 file generated; download request sent."),
+    ).toBeVisible();
 
     const mp3Blobs = await page.evaluate(
       () => (window as any).__mwDownloadBlobs as Array<{ size: number; type: string }>,

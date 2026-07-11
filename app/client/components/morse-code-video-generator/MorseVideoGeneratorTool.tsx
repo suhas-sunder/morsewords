@@ -6,6 +6,7 @@ import {
   DownloadIcon,
   EqualizerIcon,
   PlayIcon,
+  RefreshIcon,
   StopIcon,
   TrashIcon,
   TuneIcon,
@@ -55,9 +56,14 @@ import useMorseAudio from "~/client/components/shared/useMorseAudio";
 import {
   copyTextToClipboard,
   downloadBlobFile,
-  sanitizeDownloadFilename,
 } from "~/client/components/shared/actionOutputUtils";
-import { ROUTES } from "~/client/data/routes";
+import { ExportPlanSummary } from "~/client/components/shared/export/ExportPlanStatus";
+import { buildMorseExportPlan } from "~/client/components/shared/export/morseExportPlan";
+import {
+  normalizeExportError,
+  runSequentialExport,
+  summarizeCompletedPartFiles,
+} from "~/client/components/shared/export/sequentialExport";
 import {
   MORSE_VIDEO_BACKGROUND_LABELS,
   MORSE_VIDEO_INTENSITY_LABELS,
@@ -110,7 +116,6 @@ const SOURCE_MODES = ["text", "morse"] as const;
 const EXAMPLES = ["SOS", "HELLO WORLD", "HELP ME", "CQ CQ", "TEST 123"];
 const DEFAULT_TEXT = "sos help";
 const DEFAULT_MORSE = "... --- ...";
-const MAX_SHORT_VIDEO_MS = 180_000;
 const MIN_PREVIEW_RESTART_REMAINING_MS = 750;
 const DEFAULT_AUDIO = getAudioPresetDefaults("cw_radio");
 const DEFAULT_VIDEO_SETTINGS: MorseVideoSettings =
@@ -129,6 +134,11 @@ export default function MorseVideoGeneratorTool() {
   const previewStartedAtRef = React.useRef(0);
   const previewStartElapsedRef = React.useRef(0);
   const previewPlaybackSessionRef = React.useRef(0);
+  const completedVideoPartIndexesRef = React.useRef<number[]>([]);
+  const completedVideoFilesRef = React.useRef<
+    Map<number, { bytes: number; filename: string }>
+  >(new Map());
+  const currentVideoPartRef = React.useRef(1);
 
   const [sourceMode, setSourceMode] = React.useState<SourceMode>("text");
   const [text, setText] = React.useState(DEFAULT_TEXT);
@@ -165,6 +175,7 @@ export default function MorseVideoGeneratorTool() {
     durationMs: number;
     sizeBytes: number;
   } | null>(null);
+  const [failedVideoPart, setFailedVideoPart] = React.useState<number | null>(null);
   const previewAudioPlayer = useMorseAudio();
   const previewAudioPlayerRef = React.useRef(previewAudioPlayer);
 
@@ -184,7 +195,7 @@ export default function MorseVideoGeneratorTool() {
     setSampleRate(preferences.sampleRate);
     setFileName(preferences.fileName);
     setPreferencesLoaded(true);
-    setVideoSupport(detectMorseVideoSupport());
+    setVideoSupport(verifyNativeVideoSupport(detectMorseVideoSupport()));
     setHydrated(true);
   }, []);
 
@@ -287,7 +298,6 @@ export default function MorseVideoGeneratorTool() {
       }) + 160
     );
   }, [activeMorse, canRender, charWpm, farnsworthWpm]);
-  const tooLong = durationMs > MAX_SHORT_VIDEO_MS;
   const supportReady = hydrated && videoSupport !== null;
   const effectiveVideoSettings = React.useMemo(
     () =>
@@ -323,18 +333,42 @@ export default function MorseVideoGeneratorTool() {
     videoSupport,
     selectedVideoFormat,
   );
+  const videoExportPlan = React.useMemo(
+    () =>
+      buildMorseExportPlan({
+        baseFilename: fileName || "morse-code-video",
+        charWpm,
+        farnsworthWpm,
+        format: selectedVideoFormat,
+        kind: "video",
+        sampleRate,
+        source: sourceMode === "text" ? text : morse,
+        sourceMode,
+        tailPaddingMs: audioSettings.tailPaddingMs,
+      }),
+    [
+      audioSettings.tailPaddingMs,
+      charWpm,
+      farnsworthWpm,
+      fileName,
+      morse,
+      sampleRate,
+      selectedVideoFormat,
+      sourceMode,
+      text,
+    ],
+  );
   const baseDownloadDisabledReason = getDownloadDisabledReason({
     canRender,
     hasSourceCode,
     support: videoSupport,
     supportReady,
-    tooLong,
   });
   const downloadDisabledReason =
     baseDownloadDisabledReason ||
     (!selectedFormatSupport.supported ? selectedFormatSupport.reason : "");
   const canDownload =
-    !downloadDisabledReason && !downloadAbortRef.current && canRender;
+    !downloadDisabledReason && downloadStatus?.kind !== "working" && canRender;
   const progressPercent =
     downloadProgress.durationMs > 0
       ? Math.min(
@@ -489,7 +523,6 @@ export default function MorseVideoGeneratorTool() {
   React.useEffect(() => {
     if (downloadAbortRef.current) {
       downloadAbortRef.current.abort();
-      downloadAbortRef.current = null;
       downloadVersionRef.current += 1;
       setDownloadStatus({
         kind: "error",
@@ -498,12 +531,23 @@ export default function MorseVideoGeneratorTool() {
     } else {
       setDownloadStatus(null);
     }
+    completedVideoPartIndexesRef.current = [];
+    completedVideoFilesRef.current.clear();
+    currentVideoPartRef.current = 1;
+    setFailedVideoPart(null);
     setLastDownload(null);
     setDownloadProgress({ elapsedMs: 0, durationMs: 0 });
     stopPreviewPlayback(true);
   }, [settingsSignature, stopPreviewPlayback]);
 
-  React.useEffect(() => () => stopPreviewPlayback(true), [stopPreviewPlayback]);
+  React.useEffect(
+    () => () => {
+      downloadAbortRef.current?.abort();
+      downloadVersionRef.current += 1;
+      stopPreviewPlayback(true);
+    },
+    [stopPreviewPlayback],
+  );
 
   const updateVideoSettings = React.useCallback(
     (patch: Partial<MorseVideoSettings>) => {
@@ -619,36 +663,87 @@ export default function MorseVideoGeneratorTool() {
     if (previewPlaying) startPreviewPlayback(nextElapsed);
   };
 
-  const handleDownloadVideo = async () => {
-    if (!canDownload || !selectedFormatSupport.supported) return;
+  const handleDownloadVideo = async (resumeFailed = false) => {
+    if (
+      downloadAbortRef.current ||
+      !canDownload ||
+      !selectedFormatSupport.supported
+    ) {
+      return;
+    }
     const formatLabel = selectedFormatSupport.label;
+    if (!resumeFailed) {
+      completedVideoPartIndexesRef.current = [];
+      completedVideoFilesRef.current.clear();
+    }
     const version = downloadVersionRef.current + 1;
     downloadVersionRef.current = version;
     const controller = new AbortController();
     downloadAbortRef.current = controller;
-    setDownloadProgress({ elapsedMs: 0, durationMs });
+    setFailedVideoPart(null);
+    setDownloadProgress({ elapsedMs: 0, durationMs: videoExportPlan.totalDurationMs });
     setDownloadStatus({
       kind: "working",
-      message: `Starting ${formatLabel} video download...`,
+      message: `Preparing ${formatLabel} video export...`,
     });
 
     try {
-      const result = await createMorseVideoBlob({
-        audioSettings,
-        morse: activeMorse,
-        text: activeText,
-        resolvedBackgroundStyle,
-        settings: effectiveVideoSettings,
+      const result = await runSequentialExport({
+        completedPartIndexes: completedVideoPartIndexesRef.current,
+        parts: videoExportPlan.parts,
         signal: controller.signal,
-        support: selectedFormatSupport,
-        onProgress: (elapsedMs, nextDurationMs) => {
+        generatePart: async (part, signal, onPartProgress) => {
+          currentVideoPartRef.current = part.index;
+          const result = await createMorseVideoBlob({
+            audioSettings,
+            morse: part.morse,
+            text: part.text,
+            resolvedBackgroundStyle,
+            settings: effectiveVideoSettings,
+            signal,
+            support: selectedFormatSupport,
+            onProgress: (elapsedMs, nextDurationMs) => {
+              onPartProgress(
+                nextDurationMs > 0 ? elapsedMs / nextDurationMs : 0,
+                "rendering",
+              );
+            },
+          });
+          return result.blob;
+        },
+        finalizePart: (part, blob) => {
+          const download = downloadBlobFile({ blob, filename: part.filename });
+          if (!download.ok) throw new Error(download.message);
+          completedVideoFilesRef.current.set(part.index, {
+            bytes: blob.size,
+            filename: part.filename,
+          });
+          completedVideoPartIndexesRef.current = [
+            ...new Set([...completedVideoPartIndexesRef.current, part.index]),
+          ].sort((left, right) => left - right);
+        },
+        onProgress: (progress) => {
           if (downloadVersionRef.current !== version) return;
-          setDownloadProgress({ elapsedMs, durationMs: nextDurationMs });
+          if (
+            progress.completedParts >
+            completedVideoPartIndexesRef.current.length
+          ) {
+            completedVideoPartIndexesRef.current = videoExportPlan.parts
+              .slice(0, progress.completedParts)
+              .map((part) => part.index);
+          }
+          setDownloadProgress({
+            elapsedMs:
+              progress.overallProgress * videoExportPlan.totalDurationMs,
+            durationMs: videoExportPlan.totalDurationMs,
+          });
           setDownloadStatus({
             kind: "working",
-            message: `Recording ${formatLabel} video (${formatDuration(elapsedMs)} of ${formatDuration(
-              nextDurationMs,
-            )})...`,
+            message: `${capitalize(progress.stage)} ${formatLabel} part ${progress.currentPart} of ${progress.totalParts} · ${formatDuration(progress.elapsedMs)} elapsed${
+              progress.remainingMs !== undefined
+                ? ` · about ${formatDuration(progress.remainingMs)} remaining`
+                : ""
+            }`,
           });
         },
       });
@@ -659,31 +754,29 @@ export default function MorseVideoGeneratorTool() {
       ) {
         return;
       }
-
-      const filename = sanitizeDownloadFilename(
-        `${sanitizeFileBase(fileName || "morse-code-video")}.${selectedFormatSupport.extension}`,
-        `morse-code-video.${selectedFormatSupport.extension}`,
+      completedVideoPartIndexesRef.current = result.completedPartIndexes;
+      const completedFiles = summarizeCompletedPartFiles(
+        completedVideoFilesRef.current,
       );
-      const download = downloadBlobFile({
-        blob: result.blob,
-        filename,
-      });
-      if (!download.ok) {
-        setDownloadStatus({ kind: "error", message: download.message });
-        return;
-      }
       setLastDownload({
-        filename,
-        durationMs: result.durationMs,
-        sizeBytes: result.blob.size,
+        filename:
+          completedFiles.filenames.length === 1
+            ? completedFiles.filenames[0]
+            : `${completedFiles.filenames.length} ordered files`,
+        durationMs: videoExportPlan.totalDurationMs,
+        sizeBytes: completedFiles.totalBytes,
       });
       setDownloadStatus({
         kind: "success",
-        message: `${formatLabel} download started.`,
+        message: `${result.completedPartIndexes.length} ${formatLabel} file${
+          result.completedPartIndexes.length === 1 ? "" : "s"
+        } generated; download request${
+          result.completedPartIndexes.length === 1 ? "" : "s"
+        } sent.`,
       });
       setDownloadProgress({
-        elapsedMs: result.durationMs,
-        durationMs: result.durationMs,
+        elapsedMs: videoExportPlan.totalDurationMs,
+        durationMs: videoExportPlan.totalDurationMs,
       });
     } catch (error) {
       if (downloadVersionRef.current !== version) return;
@@ -694,14 +787,17 @@ export default function MorseVideoGeneratorTool() {
         });
         setDownloadProgress({ elapsedMs: 0, durationMs: 0 });
       } else {
+        setFailedVideoPart(currentVideoPartRef.current);
+        if (import.meta.env.DEV) {
+          console.error("Morse video export failed", error);
+        }
         setDownloadStatus({
           kind: "error",
-          message:
-            `${formatLabel} export failed. Try 720p, a shorter message, or silent video.`,
+          message: normalizeExportError(error, `${formatLabel} video export`),
         });
       }
     } finally {
-      if (downloadVersionRef.current === version) {
+      if (downloadAbortRef.current === controller) {
         downloadAbortRef.current = null;
       }
     }
@@ -769,6 +865,7 @@ export default function MorseVideoGeneratorTool() {
               <ToolTextarea
                 id={inputId}
                 aria-label="Message to turn into a Morse code video"
+                disabled={!hydrated}
                 value={text}
                 onChange={(event) => setText(event.target.value)}
                 placeholder="Type a message, for example HELLO WORLD"
@@ -790,6 +887,7 @@ export default function MorseVideoGeneratorTool() {
               <ToolTextarea
                 id={inputId}
                 aria-label="Morse code to turn into a video"
+                disabled={!hydrated}
                 value={morse}
                 onChange={(event) => setMorse(event.target.value)}
                 placeholder="Paste Morse, for example ... --- ..."
@@ -894,7 +992,7 @@ export default function MorseVideoGeneratorTool() {
               type="button"
               tone="light"
               hover="dark"
-              onClick={handleDownloadVideo}
+              onClick={() => void handleDownloadVideo(false)}
               disabled={!canDownload}
               aria-describedby={
                 downloadDisabledReason ? "video-download-disabled-reason" : undefined
@@ -916,7 +1014,38 @@ export default function MorseVideoGeneratorTool() {
                 Cancel download
               </ToolButton>
             ) : null}
+            {failedVideoPart !== null ? (
+              <ToolButton
+                type="button"
+                tone="dark"
+                onClick={() => void handleDownloadVideo(true)}
+                className="rounded-xl"
+              >
+                <RefreshIcon size={20} title={undefined} aria-hidden="true" />
+                Retry part {failedVideoPart}
+              </ToolButton>
+            ) : null}
+            {downloadStatus?.kind === "success" ? (
+              <ToolButton
+                type="button"
+                tone="light"
+                onClick={() => {
+                  completedVideoPartIndexesRef.current = [];
+                  completedVideoFilesRef.current.clear();
+                  setFailedVideoPart(null);
+                  setLastDownload(null);
+                  setDownloadProgress({ elapsedMs: 0, durationMs: 0 });
+                  setDownloadStatus(null);
+                }}
+                className="rounded-xl"
+              >
+                <DownloadIcon size={20} title={undefined} aria-hidden="true" />
+                Start new export
+              </ToolButton>
+            ) : null}
           </div>
+
+          <ExportPlanSummary plan={videoExportPlan} />
 
           <MorseVideoPreviewTimeline
             disabled={!canRender}
@@ -932,15 +1061,7 @@ export default function MorseVideoGeneratorTool() {
               id="video-download-disabled-reason"
               className="text-sm font-semibold leading-relaxed text-slate-600"
             >
-              {downloadDisabledReason}{" "}
-              {tooLong ? (
-                <a
-                  href={ROUTES.bookTranslator}
-                  className="font-semibold text-sky-900 underline-offset-4 hover:underline"
-                >
-                  Use the book translator for long-form export.
-                </a>
-              ) : null}
+              {downloadDisabledReason}
             </p>
           ) : (
             <p className="text-sm leading-relaxed text-slate-600">
@@ -1366,8 +1487,9 @@ function VideoFormatSelect({
       Video format
       <select
         value={selectedFormat}
+        disabled={support === null}
         onChange={(event) => onChange(event.target.value as MorseVideoFormat)}
-        className="mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+        className="mt-2 w-full rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold text-slate-900 hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 disabled:cursor-wait disabled:text-slate-400"
         aria-label="Video format"
       >
         {MORSE_VIDEO_FORMATS.map((format) => {
@@ -1458,19 +1580,14 @@ function getDownloadDisabledReason({
   hasSourceCode,
   support,
   supportReady,
-  tooLong,
 }: {
   canRender: boolean;
   hasSourceCode: boolean;
   support: MorseVideoSupport | null;
   supportReady: boolean;
-  tooLong: boolean;
 }) {
   if (!hasSourceCode) return "Add text or typed Morse before downloading.";
   if (!canRender) return "Enter text or valid dots and dashes before export.";
-  if (tooLong) {
-    return "This short-form video generator is capped at about 3 minutes.";
-  }
   if (!supportReady) return "Checking browser video export support.";
   if (!support?.supported) return support?.reason ?? "Video export unavailable.";
   return "";
@@ -1492,22 +1609,37 @@ function formatBytes(bytes: number) {
   return `${Math.round((bytes / (1024 * 1024)) * 10) / 10} MB`;
 }
 
-function sanitizeFileBase(name: string) {
-  return (
-    name
-      .trim()
-      .replace(/[\\/:*?"<>|]+/g, "-")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-")
-      .replace(/^-|-$/g, "")
-      .slice(0, 80) || "morse-code-video"
-  );
-}
-
 function isAbortError(error: unknown) {
   return error instanceof DOMException
     ? error.name === "AbortError"
     : error instanceof Error && /cancelled|aborted/i.test(error.message);
+}
+
+function verifyNativeVideoSupport(
+  support: MorseVideoSupport,
+): MorseVideoSupport {
+  if (typeof MediaRecorder === "undefined") return support;
+  if (typeof MediaRecorder.isTypeSupported === "function") {
+    return support;
+  }
+  const reason =
+    "This browser cannot verify a supported MediaRecorder video format.";
+  return {
+    ...support,
+    supported: false,
+    mimeType: "",
+    reason,
+    formats: support.formats.map((format) => ({
+      ...format,
+      supported: false,
+      mimeType: "",
+      reason: `${format.label} not supported in this browser.`,
+    })),
+  };
+}
+
+function capitalize(value: string) {
+  return `${value.slice(0, 1).toUpperCase()}${value.slice(1)}`;
 }
 
 function unique(values: string[]) {

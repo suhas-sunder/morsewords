@@ -6,6 +6,10 @@ import type {
 } from "./bookExportTypes";
 import type { MorseVideoFormat } from "~/client/components/shared/video/morseVideoSupport";
 import type { BookVideoSettings } from "./bookVideoTypes";
+import {
+  estimateExportBytes,
+  MORSE_EXPORT_THRESHOLDS,
+} from "~/client/components/shared/export/morseExportPlan";
 
 export const BOOK_OVERSIZED_EXPORT_MESSAGE =
   "A download part is still too large to render reliably. MorseWords could not split it smaller automatically.";
@@ -14,7 +18,7 @@ export const BOOK_LONG_EXPORT_MESSAGE =
   "This selection has a lot of text, so the download may take a while. MorseWords will prepare it in smaller parts to keep the export reliable.";
 
 export const BOOK_LONG_EXPORT_KEEP_OPEN_MESSAGE =
-  "Keep this tab open while the files are being prepared.";
+  "Keep this tab open while the files are being prepared. Your browser may ask you to allow multiple downloads; each file is requested when it is ready.";
 
 export const BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS = 60 * 60 * 1000;
 export const BOOK_DEFAULT_PART_TARGET_MINUTES = 30;
@@ -22,8 +26,9 @@ export const BOOK_DEFAULT_PART_TARGET_MS =
   BOOK_DEFAULT_PART_TARGET_MINUTES * 60 * 1000;
 export const BOOK_ZIP_BATCH_TARGET_MS = 2 * 60 * 60 * 1000;
 export const BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS =
-  BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS;
-export const BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES = 768 * 1024 * 1024;
+  MORSE_EXPORT_THRESHOLDS.mp3.maxDurationMs;
+export const BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES =
+  MORSE_EXPORT_THRESHOLDS.wav.maxEstimatedBytes;
 export const BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS = {
   "720p": BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS,
   "1080p": BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS,
@@ -53,16 +58,22 @@ export function findOversizedAudioExportPart(
 ): OversizedBookExportPart | null {
   for (const part of parts) {
     const runtimeMs = partRuntimeWithTail(part, settings.tailPaddingMs);
-    const estimatedBytes = estimateAudioPcmBytes(runtimeMs, settings.sampleRate);
+    const threshold = MORSE_EXPORT_THRESHOLDS[settings.outputFormat];
+    const estimatedBytes = estimateExportBytes({
+      durationMs: runtimeMs,
+      format: settings.outputFormat,
+      mp3Kbps: settings.mp3Bitrate,
+      sampleRate: settings.sampleRate,
+    });
     if (
-      runtimeMs > BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS ||
-      estimatedBytes > BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES
+      runtimeMs > threshold.maxDurationMs ||
+      estimatedBytes > threshold.maxEstimatedBytes
     ) {
       return {
         part,
         runtimeMs,
         estimatedBytes,
-        limitMs: BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS,
+        limitMs: threshold.maxDurationMs,
       };
     }
   }
@@ -81,11 +92,19 @@ export function assertBookAudioPartsWithinBrowserLimit(
 export function assertAudioRenderWithinBrowserLimit(
   runtimeMs: number,
   sampleRate: number,
+  format: "mp3" | "wav" = "wav",
+  mp3Kbps = 128,
 ) {
-  const estimatedBytes = estimateAudioPcmBytes(runtimeMs, sampleRate);
+  const threshold = MORSE_EXPORT_THRESHOLDS[format];
+  const estimatedBytes = estimateExportBytes({
+    durationMs: runtimeMs,
+    format,
+    mp3Kbps,
+    sampleRate,
+  });
   if (
-    runtimeMs > BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS ||
-    estimatedBytes > BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES
+    runtimeMs > threshold.maxDurationMs ||
+    estimatedBytes > threshold.maxEstimatedBytes
   ) {
     throw new Error(BOOK_OVERSIZED_EXPORT_MESSAGE);
   }

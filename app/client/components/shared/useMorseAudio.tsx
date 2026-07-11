@@ -18,6 +18,7 @@ import {
   oscillatorLayers,
   renderPresetPcmTone,
 } from "~/client/components/shared/audioToneSynthesis";
+import { renderMorseAudioBlob } from "~/client/components/shared/export/morseAudioExport";
 import {
   dispatchMorseFlash,
   dispatchFlashClear,
@@ -103,7 +104,6 @@ type InternalPosition = {
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
-
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 function setAudioParamValue(param: AudioParam, value: number, time: number) {
@@ -748,8 +748,26 @@ export default function useMorseAudio() {
   }
 
   async function renderWav(opts: RenderWavOptions): Promise<Blob> {
-    const rendered = await renderAudioBuffer(opts);
-    return audioBufferToWavBlob(rendered);
+    const safePreset = sanitizeAudioGeneratorPreset(opts.preset);
+    const safeWpm = clamp(opts.wpm, 5, 60);
+    return renderMorseAudioBlob({
+      morse: opts.code,
+      settings: {
+        attackMs: clamp(opts.attackMs ?? defaultAttackMs(safePreset), 0, 200),
+        charWpm: safeWpm,
+        farnsworthWpm: opts.farnsworthWpm
+          ? clampFarnsworthWpm(opts.farnsworthWpm, safeWpm)
+          : undefined,
+        format: "wav",
+        pitch: clamp(opts.hz, 200, 1600),
+        releaseMs: clamp(opts.releaseMs ?? defaultReleaseMs(safePreset), 0, 400),
+        sampleRate: sanitizeAudioSampleRate(opts.sampleRate),
+        tailPaddingMs: clamp(opts.tailMs ?? 120, 0, 400),
+        tonePreset: safePreset,
+        volume: opts.soundEnabled === false ? 0 : clamp(opts.volume, 0, 1),
+      },
+      signal: new AbortController().signal,
+    });
   }
 
   return {
@@ -764,66 +782,4 @@ export default function useMorseAudio() {
     renderAudioBuffer,
     estimateDurationMs,
   };
-}
-
-function audioBufferToWavBlob(buffer: AudioBuffer): Blob {
-  const numChannels = buffer.numberOfChannels;
-  const sampleRate = buffer.sampleRate;
-  const format = 1; // PCM
-  const bitDepth = 16;
-
-  const samples = buffer.length;
-  const blockAlign = (numChannels * bitDepth) / 8;
-  const byteRate = sampleRate * blockAlign;
-  const dataSize = samples * blockAlign;
-
-  const headerSize = 44;
-  const arrayBuffer = new ArrayBuffer(headerSize + dataSize);
-  const view = new DataView(arrayBuffer);
-
-  let offset = 0;
-  function writeString(s: string) {
-    for (let i = 0; i < s.length; i++) {
-      view.setUint8(offset + i, s.charCodeAt(i));
-    }
-    offset += s.length;
-  }
-
-  writeString("RIFF");
-  view.setUint32(offset, 36 + dataSize, true);
-  offset += 4;
-  writeString("WAVE");
-  writeString("fmt ");
-  view.setUint32(offset, 16, true);
-  offset += 4;
-  view.setUint16(offset, format, true);
-  offset += 2;
-  view.setUint16(offset, numChannels, true);
-  offset += 2;
-  view.setUint32(offset, sampleRate, true);
-  offset += 4;
-  view.setUint32(offset, byteRate, true);
-  offset += 4;
-  view.setUint16(offset, blockAlign, true);
-  offset += 2;
-  view.setUint16(offset, bitDepth, true);
-  offset += 2;
-  writeString("data");
-  view.setUint32(offset, dataSize, true);
-  offset += 4;
-
-  const channels: Float32Array[] = [];
-  for (let c = 0; c < numChannels; c++) channels.push(buffer.getChannelData(c));
-
-  let idx = 0;
-  for (let i = 0; i < samples; i++) {
-    for (let c = 0; c < numChannels; c++) {
-      const sample = clamp(channels[c][i], -1, 1);
-      const s = sample < 0 ? sample * 0x8000 : sample * 0x7fff;
-      view.setInt16(headerSize + idx, s, true);
-      idx += 2;
-    }
-  }
-
-  return new Blob([arrayBuffer], { type: "audio/wav" });
 }

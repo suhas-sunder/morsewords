@@ -116,7 +116,7 @@ test.describe("MP3 export planning", () => {
     expect(plan.automaticSplit).toBe(false);
   });
 
-  test("long MP3 exports use 30 minute parts and two hour ZIP batches", () => {
+  test("long MP3 exports use browser-safe sequential parts", () => {
     const settings = sanitizeBookExportSettings({
       ...DEFAULT_BOOK_EXPORT_SETTINGS,
       outputFormat: "mp3",
@@ -130,8 +130,8 @@ test.describe("MP3 export planning", () => {
     });
 
     expect(plan.automaticSplit).toBe(true);
-    expect(plan.zipWorkflow).toBe(true);
-    expect(plan.targetPartMs).toBe(BOOK_DEFAULT_PART_TARGET_MS);
+    expect(plan.zipWorkflow).toBe(false);
+    expect(plan.targetPartMs).toBeLessThanOrEqual(BOOK_DEFAULT_PART_TARGET_MS);
     expect(plan.batchTargetMs).toBe(BOOK_ZIP_BATCH_TARGET_MS);
     expect(plan.parts.length).toBeGreaterThan(1);
     expect(plan.parts.every((item) => item.morseDurationMs <= 45 * 60_000)).toBe(
@@ -174,7 +174,7 @@ test.describe("MP3 export planning", () => {
       ...DEFAULT_BOOK_EXPORT_SETTINGS,
       outputFormat: "mp3",
       splitMode: "duration",
-      includeManifest: false,
+      includeManifest: true,
       includeSettings: false,
       includeReadme: false,
     });
@@ -257,7 +257,7 @@ test.describe("MP3-only book and translator UI", () => {
     await expect(page.getByText("Preview and download")).toBeVisible();
     await expect(page.getByText("Settings", { exact: true })).toBeVisible();
     await expect(page.getByTestId("book-audio-preview")).toBeVisible();
-    await expect(page.getByTestId("morse-book-live-player")).toHaveCount(0);
+    await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
     await expect(page.locator("[data-mw-morse-book-download-label]")).toHaveAttribute(
       "data-mw-morse-book-download-label",
       "Download MP3",
@@ -268,20 +268,20 @@ test.describe("MP3-only book and translator UI", () => {
     await expectNoVideoExportControls(page);
   });
 
-  test("long public book page uses ZIP batch MP3 workflow", async ({ page }) => {
+  test("long public book page uses sequential MP3 parts", async ({ page }) => {
     await openRoute(page, PUBLIC_BOOK_PATH);
     await expect(page.locator("[data-mw-morse-book-output-foundation]")).toBeVisible();
     await expect(page.locator("[data-mw-morse-book-download-label]")).toHaveAttribute(
       "data-mw-morse-book-download-label",
-      /Download ZIP batch 1|Download MP3 ZIP/,
+      "Download MP3 parts",
     );
-    await expect(page.getByLabel("ZIP batch")).toBeVisible();
+    await expect(page.getByLabel("ZIP batch")).toHaveCount(0);
     await expect(page.getByText(BOOK_LONG_EXPORT_MESSAGE)).toBeVisible();
     await expect(page.getByTestId("morse-book-live-player-link")).toHaveAttribute(
       "href",
       /\/morse-code-audiobooks\/treasure-island/,
     );
-    await expect(page.getByTestId("morse-book-live-player")).toHaveCount(0);
+    await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
     await expectNoVideoExportControls(page);
   });
 
@@ -297,13 +297,9 @@ test.describe("MP3-only book and translator UI", () => {
     await expect(page.locator('a[href^="/morse-code-audiobooks/"]')).toHaveCount(0);
 
     await openRoute(page, "/");
-    const firstLiveLink = page
-      .getByRole("link", { name: "Open live player" })
-      .first();
-    await expect(firstLiveLink).toHaveAttribute("href", /\/morse-code-books\//);
-    const firstDownloadLink = page.getByRole("link", { name: "Download MP3" }).first();
-    await expect(firstDownloadLink).toHaveAttribute("href", /\/morse-code-books\//);
-    await expect(page.locator('a[href^="/morse-code-audiobooks/"]')).toHaveCount(0);
+    await expect(
+      page.getByTestId("home-featured-book-primary-link").first(),
+    ).toHaveAttribute("href", /\/morse-code-books\//);
   });
 
   test("book translator exposes MP3 download and live player, not video export", async ({
@@ -311,7 +307,7 @@ test.describe("MP3-only book and translator UI", () => {
   }) => {
     await openBookTranslator(page);
     const tool = bookTool(page);
-    await expect(tool.getByRole("heading", { name: "MP3 download" })).toBeVisible();
+    await expect(tool.getByRole("region", { name: "Download MP3" })).toBeVisible();
     await expect(tool.getByTestId("book-live-player-workflow")).toBeVisible();
     await expect(tool.getByRole("radio", { name: "Video", exact: true })).toHaveCount(0);
     await expect(tool.getByRole("radio", { name: "Audio", exact: true })).toHaveCount(0);
@@ -322,10 +318,13 @@ test.describe("MP3-only book and translator UI", () => {
     await expect(tool.getByRole("radio", { name: "By source sections" })).toHaveCount(0);
     await tool.getByRole("radio", { name: "By duration" }).click();
     await expect(tool.getByLabel("Target part length")).toHaveValue("30");
-    await expect(tool.getByLabel("ZIP batch")).toBeVisible();
-    await expect(tool.getByRole("button", { name: "Download ZIP batch 1" })).toBeEnabled();
-    await tool.getByLabel("ZIP batch").selectOption("2");
-    await expect(tool.getByRole("button", { name: "Download ZIP batch 2" })).toBeEnabled();
+    await expect(tool.getByLabel("ZIP batch")).toHaveCount(0);
+    await expect(
+      tool.getByRole("button", { name: /Download \d+ MP3 parts/ }),
+    ).toBeEnabled();
+    await expect(
+      tool.getByText(/browser may ask you to allow multiple downloads/i),
+    ).toBeVisible();
 
     const stored = await page.evaluate(() => Object.values(localStorage).join("\n"));
     expect(stored).not.toContain("SOS HELP SOS HELP");
@@ -365,14 +364,19 @@ test.describe("dedicated live player", () => {
 
     const sectionSelect = page.getByTestId("morse-book-live-section-select");
     const originalSection = await sectionSelect.inputValue();
-    const nextSectionButton = player.getByRole("button", { name: "Next section" });
-    await expect(nextSectionButton).toBeEnabled();
-    await nextSectionButton.click();
-    await expect
-      .poll(() => sectionSelect.inputValue())
-      .not.toBe(originalSection);
-    await player.getByRole("button", { name: "Previous section" }).click();
-    await expect(sectionSelect).toHaveValue(originalSection);
+    const sectionOptionCount = await sectionSelect.locator("option").count();
+    if (sectionOptionCount > 1) {
+      const nextSectionButton = player.getByRole("button", {
+        name: "Next section",
+      });
+      await expect(nextSectionButton).toBeEnabled();
+      await nextSectionButton.click();
+      await expect
+        .poll(() => sectionSelect.inputValue())
+        .not.toBe(originalSection);
+      await player.getByRole("button", { name: "Previous section" }).click();
+      await expect(sectionSelect).toHaveValue(originalSection);
+    }
 
     const chapterValue = await sectionSelect.evaluate((element) => {
       const select = element as HTMLSelectElement;

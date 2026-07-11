@@ -46,31 +46,51 @@ export async function createMorseVideoBlob({
   canvas.height = frame.height;
 
   const timeline = buildMorseVideoTimelineFromMorse(morse, audioSettings, text);
-  await waitForMorseVideoFonts();
-  const blob = await recordMorseVideoCanvas({
-    audioSettings,
-    canvas,
-    mimeType: support.mimeType,
-    resolvedBackgroundStyle,
-    settings,
-    signal,
-    timeline,
-    onProgress,
-  });
+  try {
+    await waitForMorseVideoFonts();
+    const blob = await recordMorseVideoCanvas({
+      audioSettings,
+      canvas,
+      mimeType: support.mimeType,
+      resolvedBackgroundStyle,
+      settings,
+      signal,
+      timeline,
+      onProgress,
+    });
+    const expectedContainer = `video/${support.extension}`;
+    if (!blob.type.toLowerCase().startsWith(expectedContainer)) {
+      throw new Error(
+        "The browser returned a different video container than requested.",
+      );
+    }
 
-  return { blob, durationMs: timeline.durationMs };
+    return { blob, durationMs: timeline.durationMs };
+  } finally {
+    // Release the backing frame buffer before a later sequential part starts.
+    canvas.width = 1;
+    canvas.height = 1;
+  }
 }
 
 async function waitForMorseVideoFonts() {
   if (typeof document === "undefined" || !("fonts" in document)) return;
   const fonts = document.fonts;
+  let timeoutId: number | null = null;
   try {
-    await Promise.all([
-      fonts.load('700 64px "Space Mono"'),
-      fonts.load('800 64px "Space Grotesk"'),
-      fonts.ready,
+    await Promise.race([
+      Promise.all([
+        fonts.load('700 64px "Space Mono"'),
+        fonts.load('800 64px "Space Grotesk"'),
+        fonts.ready,
+      ]),
+      new Promise<void>((resolve) => {
+        timeoutId = window.setTimeout(resolve, 2_000);
+      }),
     ]);
   } catch {
     // Browser font loading failures should not block an otherwise valid export.
+  } finally {
+    if (timeoutId !== null) window.clearTimeout(timeoutId);
   }
 }

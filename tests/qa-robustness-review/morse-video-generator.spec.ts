@@ -26,9 +26,9 @@ async function openVideoGenerator(page: Page) {
 
 async function installFastVideoRecorder(
   page: Page,
-  options: { mp4?: boolean } = {},
+  options: { mismatchedMp4?: boolean; mp4?: boolean } = {},
 ) {
-  await page.addInitScript((supportsMp4) => {
+  await page.addInitScript(({ mismatchedMp4, supportsMp4 }) => {
     Object.defineProperty(window, "__morseVideoRecorderMimeTypes", {
       configurable: true,
       value: [] as string[],
@@ -43,6 +43,58 @@ async function installFastVideoRecorder(
       configurable: true,
       value: [] as MediaRecorderOptions[],
       writable: true,
+    });
+    Object.defineProperty(window, "__morseVideoCleanupCounts", {
+      configurable: true,
+      value: { recorderStops: 0, trackStops: 0 },
+      writable: true,
+    });
+
+    class FakeMediaStreamTrack {
+      readonly kind: "audio" | "video";
+      private stopped = false;
+
+      constructor(kind: "audio" | "video") {
+        this.kind = kind;
+      }
+
+      stop() {
+        if (this.stopped) return;
+        this.stopped = true;
+        (
+          window as typeof window & {
+            __morseVideoCleanupCounts: {
+              recorderStops: number;
+              trackStops: number;
+            };
+          }
+        ).__morseVideoCleanupCounts.trackStops += 1;
+      }
+    }
+
+    class FakeMediaStream {
+      private readonly tracks: FakeMediaStreamTrack[];
+
+      constructor(tracks: FakeMediaStreamTrack[] = []) {
+        this.tracks = [...tracks];
+      }
+
+      getTracks() {
+        return [...this.tracks];
+      }
+
+      getVideoTracks() {
+        return this.tracks.filter((track) => track.kind === "video");
+      }
+
+      getAudioTracks() {
+        return this.tracks.filter((track) => track.kind === "audio");
+      }
+    }
+
+    Object.defineProperty(window, "MediaStream", {
+      configurable: true,
+      value: FakeMediaStream,
     });
 
     class FakeMediaRecorder {
@@ -78,14 +130,24 @@ async function installFastVideoRecorder(
       stop() {
         if (this.state === "inactive") return;
         this.state = "inactive";
+        (
+          window as typeof window & {
+            __morseVideoCleanupCounts: {
+              recorderStops: number;
+              trackStops: number;
+            };
+          }
+        ).__morseVideoCleanupCounts.recorderStops += 1;
+        const outputIsMp4 =
+          this.mimeType.startsWith("video/mp4") && !mismatchedMp4;
         const blob = new Blob(
           [
-            this.mimeType.startsWith("video/mp4")
+            outputIsMp4
               ? "MP4-MORSE-VIDEO"
               : "WEBM-MORSE-VIDEO",
           ],
           {
-            type: this.mimeType,
+            type: outputIsMp4 ? this.mimeType : "video/webm",
           },
         );
         window.setTimeout(() => {
@@ -108,9 +170,14 @@ async function installFastVideoRecorder(
         height: this.height,
         width: this.width,
       });
-      return new MediaStream();
+      return new MediaStream([
+        new FakeMediaStreamTrack("video") as unknown as MediaStreamTrack,
+      ]);
     };
-  }, Boolean(options.mp4));
+  }, {
+    mismatchedMp4: Boolean(options.mismatchedMp4),
+    supportsMp4: Boolean(options.mp4),
+  });
 }
 
 async function installUnsupportedVideoRecorder(page: Page) {
@@ -722,7 +789,9 @@ test.describe("Morse code video generator", () => {
     const video = await downloadVideoFile(page, testInfo);
     expect(video.filename).toBe("short-sos-video.webm");
     expect(video.bytes.toString("utf8")).toContain("WEBM-MORSE-VIDEO");
-    await expect(page.getByText("WebM download started.")).toBeVisible();
+    await expect(
+      page.getByText("1 WebM file generated; download request sent."),
+    ).toBeVisible();
     await expect(page.getByText("Last download")).toBeVisible();
 
     await page
@@ -741,7 +810,73 @@ test.describe("Morse code video generator", () => {
     await expect(
       page.getByText("Input or settings changed; video download cancelled."),
     ).toBeVisible();
-    await expect(page.getByText("WebM download started.")).toHaveCount(0);
+    await expect(
+      page.getByText("1 WebM file generated; download request sent."),
+    ).toHaveCount(0);
+  });
+
+  test("native MediaRecorder keeps real video MIME types aligned with filenames", async ({
+    page,
+  }, testInfo) => {
+    await page.addInitScript(() => {
+      const originalCreateObjectUrl = URL.createObjectURL.bind(URL);
+      const captures: Array<{ size: number; type: string }> = [];
+      URL.createObjectURL = (object: Blob | MediaSource) => {
+        if (object instanceof Blob) {
+          captures.push({ size: object.size, type: object.type });
+        }
+        return originalCreateObjectUrl(object);
+      };
+      Object.defineProperty(window, "__morseNativeVideoBlobs", {
+        configurable: true,
+        value: captures,
+      });
+    });
+    await openVideoGenerator(page);
+    await page.getByLabel("Video format").selectOption("webm");
+    await page.getByLabel("Message to turn into a Morse code video").fill("E");
+    await page.getByLabel("File name").fill("native-morse-video");
+
+    const webm = await downloadVideoFile(page, testInfo);
+    expect(webm.filename).toBe("native-morse-video.webm");
+    expect(webm.bytes.length).toBeGreaterThan(0);
+    const webmCapture = await page.evaluate(
+      () =>
+        (
+          window as typeof window & {
+            __morseNativeVideoBlobs?: Array<{ size: number; type: string }>;
+          }
+        ).__morseNativeVideoBlobs?.at(-1),
+    );
+    expect(webmCapture?.type).toMatch(/^video\/webm/i);
+    expect(webmCapture?.size ?? 0).toBeGreaterThan(0);
+
+    const mp4Option = page
+      .getByLabel("Video format")
+      .locator('option[value="mp4"]');
+    if (!(await mp4Option.isDisabled())) {
+      await page.getByLabel("Video format").selectOption("mp4");
+      const mp4Button = page.getByRole("button", { name: "Download MP4" });
+      await expect(mp4Button).toBeEnabled();
+      await page.getByLabel("File name").fill("native-morse-video-mp4");
+      const mp4 = await downloadVideoFile(page, testInfo, "Download MP4");
+      expect(mp4.filename).toBe("native-morse-video-mp4.mp4");
+      expect(mp4.bytes.length).toBeGreaterThan(0);
+      const mp4Capture = await page.evaluate(
+        () =>
+          (
+            window as typeof window & {
+              __morseNativeVideoBlobs?: Array<{ size: number; type: string }>;
+            }
+          ).__morseNativeVideoBlobs?.at(-1),
+      );
+      expect(mp4Capture?.type).toMatch(/^video\/mp4/i);
+      expect(mp4Capture?.size ?? 0).toBeGreaterThan(0);
+    } else {
+      await expect(
+        page.getByText("MP4 not supported in this browser."),
+      ).toBeVisible();
+    }
   });
 
   test("enables MP4 only when MediaRecorder reports real MP4 support", async ({
@@ -763,7 +898,62 @@ test.describe("Morse code video generator", () => {
       expect.stringMatching(/^video\/mp4/),
     );
     expect(video.filename).not.toMatch(/\.webm$/i);
-    await expect(page.getByText("MP4 download started.")).toBeVisible();
+    await expect(
+      page.getByText("1 MP4 file generated; download request sent."),
+    ).toBeVisible();
+  });
+
+  test("rejects WebM recorder output instead of saving it with an MP4 name", async ({
+    page,
+  }) => {
+    await installFastVideoRecorder(page, { mp4: true, mismatchedMp4: true });
+    await openVideoGenerator(page);
+    await page.getByLabel("Message to turn into a Morse code video").fill("SOS");
+    await expect(page.getByRole("button", { name: "Download MP4" })).toBeEnabled();
+    await page.getByRole("button", { name: "Download MP4" }).click();
+    await expect(page.getByRole("button", { name: "Retry part 1" })).toBeVisible();
+    await expect(
+      page.getByText("1 MP4 file generated; download request sent."),
+    ).toHaveCount(0);
+    await expect
+      .poll(() =>
+        page.evaluate(
+          () =>
+            (
+              window as typeof window & {
+                __morseVideoCleanupCounts?: {
+                  recorderStops: number;
+                  trackStops: number;
+                };
+              }
+            ).__morseVideoCleanupCounts,
+        ),
+      )
+      .toEqual({ recorderStops: 1, trackStops: 1 });
+  });
+
+  test("does not expose video formats when MIME support cannot be verified", async ({
+    page,
+  }) => {
+    await page.addInitScript(() => {
+      class UnverifiedMediaRecorder {
+        state = "inactive";
+      }
+      Object.defineProperty(window, "MediaRecorder", {
+        configurable: true,
+        value: UnverifiedMediaRecorder,
+      });
+      HTMLCanvasElement.prototype.captureStream = function captureStream() {
+        return new MediaStream();
+      };
+    });
+    await openVideoGenerator(page);
+    await expect(page.getByRole("button", { name: "Download WebM" })).toBeDisabled();
+    await expect(
+      page.getByText(
+        "This browser cannot verify a supported MediaRecorder video format.",
+      ),
+    ).toBeVisible();
   });
 
   test("dark preview Morse highlight and timeline marker stay readable", async ({
@@ -797,7 +987,7 @@ test.describe("Morse code video generator", () => {
     ).toHaveClass(/bg-sky-300/);
   });
 
-  test("long guard, mobile layout, and console stay clean", async ({
+  test("long input plans ordered parts, keeps mobile layout, and stays clean", async ({
     page,
   }, testInfo) => {
     const consoleEntries = collectConsoleErrors(page);
@@ -808,11 +998,17 @@ test.describe("Morse code video generator", () => {
     await page
       .getByLabel("Message to turn into a Morse code video")
       .fill("ALPHA BRAVO CHARLIE ".repeat(400));
-    await expect(page.getByText("capped at about 3 minutes")).toBeVisible();
+    const exportPlan = page.getByTestId("morse-export-plan");
+    await expect(exportPlan).toBeVisible();
+    await expect(exportPlan).toHaveAttribute("data-export-format", "webm");
+    await expect
+      .poll(async () => Number(await exportPlan.getAttribute("data-export-part-count")))
+      .toBeGreaterThan(1);
+    await expect(page.getByTestId("morse-export-split-note")).toBeVisible();
     await expect(
-      page.getByRole("link", { name: "Use the book translator for long-form export." }),
-    ).toHaveAttribute("href", ROUTES.bookTranslator);
-    await expect(page.getByRole("button", { name: "Download WebM" })).toBeDisabled();
+      page.getByText(/browser may ask you to allow multiple downloads/i),
+    ).toBeVisible();
+    await expect(page.getByRole("button", { name: "Download WebM" })).toBeEnabled();
 
     const overflow = await page.evaluate(
       () =>

@@ -59,6 +59,7 @@ import type {
 } from "~/client/components/shared/video/morseVideoTypes";
 import { getAppliedThemeMode, type ThemeMode } from "~/client/theme/themeStorage";
 import {
+  createBookAudioPartDownloads,
   createBookDownloadPackage,
   getBookDownloadKind,
 } from "~/client/components/morse-code-book-translator/bookBundleExport";
@@ -1171,6 +1172,12 @@ function MorseBookWorkspace({
   const activeLiveSectionIdRef = React.useRef(activeLiveSectionId);
   const activeLiveSegmentIndexRef = React.useRef(activeLiveSegmentIndex);
   const exportAbortRef = React.useRef<AbortController | null>(null);
+  const exportVersionRef = React.useRef(0);
+  const exportJobSignatureRef = React.useRef("");
+  const completedPartDownloadsRef = React.useRef<{
+    indexes: number[];
+    signature: string;
+  }>({ indexes: [], signature: "" });
   const restoredRuntimeSignatureRef = React.useRef<string | null>(null);
   const restoredBookLivePreviewProgressHashRef = React.useRef<string | null>(
     null,
@@ -1453,6 +1460,20 @@ function MorseBookWorkspace({
     zipBatchWorkflow
       ? "zip"
       : getBookDownloadKind(exportParts, exportSettings);
+  const exportJobSignature = JSON.stringify({
+    batchNumber: selectedExportBatch?.batchNumber ?? 0,
+    bookContentHash: book.contentHash,
+    downloadKind,
+    parts: activeDownloadParts.map((part) => [
+      part.index,
+      part.sourceStart,
+      part.sourceEnd,
+      part.morseDurationMs,
+      part.estimatedFilename,
+    ]),
+    scopeSectionIds,
+    settings: exportSettings,
+  });
   const downloadLabel = buildDownloadLabel({
     batchNumber: zipBatchWorkflow ? selectedExportBatch?.batchNumber : undefined,
     downloadKind,
@@ -1736,7 +1757,7 @@ function MorseBookWorkspace({
     : "";
   const totalBatches = exportBatches.length;
   const longExportMessages =
-    zipBatchWorkflow
+    exportPlan.automaticSplit || zipBatchWorkflow
       ? [BOOK_LONG_EXPORT_MESSAGE, BOOK_LONG_EXPORT_KEEP_OPEN_MESSAGE]
       : [];
   const activeDownloadLabel = exportRunning
@@ -2053,10 +2074,43 @@ function MorseBookWorkspace({
     stopVideoPreview,
   ]);
 
+  React.useEffect(() => {
+    const previousSignature = exportJobSignatureRef.current;
+    exportJobSignatureRef.current = exportJobSignature;
+    if (!previousSignature || previousSignature === exportJobSignature) return;
+
+    completedPartDownloadsRef.current = { indexes: [], signature: "" };
+    const controller = exportAbortRef.current;
+    if (!controller) return;
+    exportVersionRef.current += 1;
+    controller.abort();
+    setExportStartedAtMs(null);
+    setDownloadStatus({
+      kind: "error",
+      message: "Selection or settings changed; download cancelled.",
+    });
+    setExportProgress({
+      phase: "cancelled",
+      message: "Selection or settings changed; download cancelled.",
+      currentPart: 0,
+      batchNumber: selectedExportBatch?.batchNumber,
+      batchPartCount: activeDownloadParts.length,
+      batchPartIndex: 0,
+      totalBatches,
+      totalParts: activeDownloadParts.length,
+    });
+  }, [
+    activeDownloadParts.length,
+    exportJobSignature,
+    selectedExportBatch?.batchNumber,
+    totalBatches,
+  ]);
+
   React.useEffect(
     () => () => {
       stopAllPreviews(true);
       exportAbortRef.current?.abort();
+      exportVersionRef.current += 1;
     },
     [stopAllPreviews],
   );
@@ -2454,7 +2508,7 @@ function MorseBookWorkspace({
 
   const cancelDownload = React.useCallback(() => {
     exportAbortRef.current?.abort();
-    exportAbortRef.current = null;
+    exportVersionRef.current += 1;
     setExportStartedAtMs(null);
     setDownloadStatus({ kind: "error", message: "Download cancelled." });
     setExportProgress({
@@ -2470,6 +2524,7 @@ function MorseBookWorkspace({
   }, [activeDownloadParts.length, selectedExportBatch?.batchNumber, totalBatches]);
 
   const handleDownload = async () => {
+    if (exportAbortRef.current) return;
     if (downloadDisabled) {
       setDownloadStatus({
         kind: "error",
@@ -2480,9 +2535,10 @@ function MorseBookWorkspace({
       return;
     }
 
-    exportAbortRef.current?.abort();
     const controller = new AbortController();
     exportAbortRef.current = controller;
+    const version = exportVersionRef.current + 1;
+    exportVersionRef.current = version;
     const startedAtMs = performance.now();
     setExportStartedAtMs(startedAtMs);
     setExportElapsedMs(0);
@@ -2503,50 +2559,100 @@ function MorseBookWorkspace({
 
     try {
       const progressHandler = (progress: BookExportProgress) => {
+        if (
+          exportVersionRef.current !== version ||
+          controller.signal.aborted
+        ) {
+          return;
+        }
         setExportProgress(progress);
       };
       const metadata = buildBookMetadata(book);
-      const result = await createBookDownloadPackage({
-        allParts: exportParts,
-        batch: selectedExportBatch ?? undefined,
-        metadata,
-        parts: activeDownloadParts,
-        settings: exportSettings,
-        signal: controller.signal,
-        totalSelectedRuntimeMs: partSummary.totalRuntimeMs,
-        onProgress: progressHandler,
-      });
-      const download = downloadBlobFile({
-        blob: result.blob,
-        filename: result.filename,
-      });
-      if (!download.ok) {
-        setDownloadStatus({ kind: "error", message: download.message });
-        setExportProgress({
-          phase: "failed",
-          message: download.message,
-          currentPart: activeDownloadParts.length,
-          totalBatches,
-          totalParts: activeDownloadParts.length,
+      if (downloadKind === "parts") {
+        const partSignature = JSON.stringify({
+          filenames: activeDownloadParts.map((part) => part.estimatedFilename),
+          settings: exportSettings,
         });
+        if (completedPartDownloadsRef.current.signature !== partSignature) {
+          completedPartDownloadsRef.current = {
+            indexes: [],
+            signature: partSignature,
+          };
+        }
+        await createBookAudioPartDownloads({
+          completedPartIndexes: completedPartDownloadsRef.current.indexes,
+          metadata,
+          parts: activeDownloadParts,
+          settings: exportSettings,
+          signal: controller.signal,
+          onProgress: progressHandler,
+          onPartComplete: (partIndex) => {
+            if (exportVersionRef.current !== version) return;
+            completedPartDownloadsRef.current.indexes = [
+              ...new Set([
+                ...completedPartDownloadsRef.current.indexes,
+                partIndex,
+              ]),
+            ];
+          },
+          onPartReady: ({ blob, filename }) => {
+            if (
+              exportVersionRef.current !== version ||
+              controller.signal.aborted
+            ) {
+              throw new DOMException("Book download cancelled.", "AbortError");
+            }
+            const download = downloadBlobFile({ blob, filename });
+            if (!download.ok) throw new Error(download.message);
+          },
+        });
+      } else {
+        const packageResult = await createBookDownloadPackage({
+          allParts: exportParts,
+          batch: selectedExportBatch ?? undefined,
+          metadata,
+          parts: activeDownloadParts,
+          settings: exportSettings,
+          signal: controller.signal,
+          totalSelectedRuntimeMs: partSummary.totalRuntimeMs,
+          onProgress: progressHandler,
+        });
+        if (
+          exportVersionRef.current !== version ||
+          controller.signal.aborted
+        ) {
+          throw new DOMException("Book download cancelled.", "AbortError");
+        }
+        const download = downloadBlobFile({
+          blob: packageResult.blob,
+          filename: packageResult.filename,
+        });
+        if (!download.ok) throw new Error(download.message);
+      }
+      if (
+        exportVersionRef.current !== version ||
+        controller.signal.aborted
+      ) {
         return;
       }
       setDownloadStatus({
         kind: "success",
         message:
-          result.downloadKind === "zip"
+          downloadKind === "parts"
+            ? `${activeDownloadParts.length} ordered MP3 download requests sent.`
+            : downloadKind === "zip"
             ? zipBatchWorkflow && selectedExportBatch
-              ? `Batch ${selectedExportBatch.batchNumber} downloaded. ${
+              ? `Batch ${selectedExportBatch.batchNumber} download requested. ${
                   selectedExportBatch.batchNumber < totalBatches
                     ? `Batch ${selectedExportBatch.batchNumber + 1} is ready when you are.`
-                    : "All ZIP batches are complete."
+                    : "All ZIP batch download requests are sent."
                 }`
-              : "ZIP download started."
-            : "MP3 download started.",
+              : "ZIP download requested."
+            : "MP3 download requested.",
       });
       setExportProgress({
         phase: "complete",
-        message: "Download started.",
+        message: "Download request sent.",
         batchNumber: selectedExportBatch?.batchNumber,
         batchPartCount: activeDownloadParts.length,
         batchPartIndex: activeDownloadParts.length,
@@ -2554,6 +2660,9 @@ function MorseBookWorkspace({
         totalBatches,
         totalParts: activeDownloadParts.length,
       });
+      if (downloadKind === "parts") {
+        completedPartDownloadsRef.current = { indexes: [], signature: "" };
+      }
       if (
         zipBatchWorkflow &&
         selectedExportBatch &&
@@ -2562,6 +2671,7 @@ function MorseBookWorkspace({
         setSelectedBatchNumber(selectedExportBatch.batchNumber + 1);
       }
     } catch (error) {
+      if (exportVersionRef.current !== version) return;
       const message =
         error instanceof DOMException && error.name === "AbortError"
           ? "Download cancelled."
@@ -2578,8 +2688,12 @@ function MorseBookWorkspace({
         totalParts: activeDownloadParts.length,
       });
     } finally {
-      exportAbortRef.current = null;
-      setExportStartedAtMs(null);
+      if (exportAbortRef.current === controller) {
+        exportAbortRef.current = null;
+      }
+      if (exportVersionRef.current === version) {
+        setExportStartedAtMs(null);
+      }
     }
   };
 

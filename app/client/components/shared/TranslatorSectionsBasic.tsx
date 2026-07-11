@@ -39,9 +39,15 @@ import {
   copyTextToClipboard,
 } from "~/client/components/shared/ActionControls";
 import {
+  ExportJobStatus,
+  ExportPlanSummary,
+} from "~/client/components/shared/export/ExportPlanStatus";
+import {
   downloadBlobFile,
   sanitizeDownloadFilename,
 } from "~/client/components/shared/actionOutputUtils";
+import { buildMorseExportPlan } from "~/client/components/shared/export/morseExportPlan";
+import { useMorseAudioExportJob } from "~/client/components/shared/export/useMorseAudioExportJob";
 
 import {
   CheckCircleIcon,
@@ -351,6 +357,33 @@ export default function TranslatorSectionsBasic({
     () => hasPlayableMorse(activeMorseForPlayback),
     [activeMorseForPlayback],
   );
+  const translatorExportPlan = useMemo(
+    () =>
+      buildMorseExportPlan({
+        baseFilename: "morsewords",
+        charWpm: Math.round(
+          clampNumber(charWpm, TOOL_SPEED_RANGE.min, TOOL_SPEED_RANGE.max),
+        ),
+        farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, charWpm),
+        format: "wav",
+        kind: "audio",
+        sampleRate: 44_100,
+        source: direction === "encode" ? plainA : morseB,
+        sourceMode: direction === "encode" ? "text" : "morse",
+        tailPaddingMs: 120,
+      }),
+    [charWpm, direction, farnsworthWpm, morseB, plainA],
+  );
+  const translatorExportKey = JSON.stringify({
+    activeMorseForPlayback,
+    charWpm,
+    farnsworthWpm,
+    preset,
+    soundOn,
+    toneHz,
+    volume,
+  });
+  const translatorExport = useMorseAudioExportJob(translatorExportKey);
 
   const handlePlay = async () => {
     if (!canPlay) return;
@@ -404,27 +437,21 @@ export default function TranslatorSectionsBasic({
   const handleSaveAudio = async () => {
     if (!canPlay || !soundOn) return;
     player.stop();
-
-    try {
-      const blob = await player.renderWav({
-        code: activeMorseForPlayback,
-        wpm: Math.round(
+    await translatorExport.start({
+      plan: translatorExportPlan,
+      settings: {
+        charWpm: Math.round(
           clampNumber(charWpm, TOOL_SPEED_RANGE.min, TOOL_SPEED_RANGE.max),
         ),
         farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, charWpm),
-        hz: toneHz,
+        format: "wav",
+        pitch: toneHz,
+        sampleRate: 44_100,
+        tailPaddingMs: 120,
+        tonePreset: mapTranslatorAudioPreset(preset),
         volume,
-        soundEnabled: true,
-        preset,
-      });
-
-      downloadBlobFile({
-        blob,
-        filename: sanitizeDownloadFilename("morsewords.wav", "morsewords.wav"),
-      });
-    } catch (e) {
-      console.error("Save audio failed", e);
-    }
+      },
+    });
   };
 
   const handleShare = async () => {
@@ -820,7 +847,7 @@ export default function TranslatorSectionsBasic({
               <ActionButton
                 unstyled
                 onClick={handleSaveAudio}
-                disabled={!canPlay || !soundOn}
+                disabled={!canPlay || !soundOn || translatorExport.state.status === "running"}
                 className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${focusOutline} ${
                   canPlay && soundOn
                     ? isHome
@@ -837,6 +864,14 @@ export default function TranslatorSectionsBasic({
                 <span>Save Audio</span>
               </ActionButton>
             </div>
+
+            <ExportPlanSummary plan={translatorExportPlan} />
+            <ExportJobStatus
+              state={translatorExport.state}
+              onCancel={() => translatorExport.cancel()}
+              onReset={translatorExport.reset}
+              onRetry={() => void translatorExport.retry()}
+            />
 
             <div
               className={

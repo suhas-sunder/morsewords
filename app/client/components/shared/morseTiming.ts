@@ -10,6 +10,11 @@ export type MorseTimingEvent =
       symbol: "." | "-";
       units: number;
       ms: number;
+      startMs: number;
+      endMs: number;
+      eventIndex: number;
+      letterIndex: number;
+      wordIndex: number;
     }
   | {
       type: "gap";
@@ -17,7 +22,30 @@ export type MorseTimingEvent =
       gap: "intra-symbol" | "letter" | "word";
       units: number;
       ms: number;
+      startMs: number;
+      endMs: number;
+      eventIndex: number;
+      letterIndex: number;
+      wordIndex: number;
     };
+
+export type MorseTimeline = {
+  code: string;
+  durationMs: number;
+  events: MorseTimingEvent[];
+  markDurationMs: number;
+  tailPaddingMs: number;
+};
+
+type UntimedMorseEvent =
+  | Omit<
+      Extract<MorseTimingEvent, { type: "mark" }>,
+      "startMs" | "endMs" | "eventIndex" | "letterIndex" | "wordIndex"
+    >
+  | Omit<
+      Extract<MorseTimingEvent, { type: "gap" }>,
+      "startMs" | "endMs" | "eventIndex" | "letterIndex" | "wordIndex"
+    >;
 
 type MorseTimingOptions = {
   charWpm: number;
@@ -58,60 +86,101 @@ export function buildMorseEvents(
   code: string,
   options: MorseTimingOptions,
 ): MorseTimingEvent[] {
+  return buildMorseTimeline(code, options).events;
+}
+
+/**
+ * Canonical timing schedule shared by playback, flash state, estimates, audio
+ * export, video export, and split planning. Event timestamps are computed once
+ * so every consumer observes the same mark and gap boundaries.
+ */
+export function buildMorseTimeline(
+  code: string,
+  options: MorseTimingOptions & { tailPaddingMs?: number },
+): MorseTimeline {
+  const normalizedCode = normalizePlayableMorse(code);
   const words = parsePlayableMorse(code);
   const events: MorseTimingEvent[] = [];
   const dotMs = getDotMs(options.charWpm);
   const gapScale = farnsworthGapScale(options.charWpm, options.farnsworthWpm);
+  let cursorMs = 0;
+  let globalLetterIndex = 0;
+
+  const appendEvent = (
+    event: UntimedMorseEvent,
+    wordIndex: number,
+    letterIndex: number,
+  ) => {
+    const startMs = cursorMs;
+    cursorMs += Math.max(0, event.ms);
+    events.push({
+      ...event,
+      startMs,
+      endMs: cursorMs,
+      eventIndex: events.length,
+      letterIndex,
+      wordIndex,
+    } as MorseTimingEvent);
+  };
 
   words.forEach((word, wordIndex) => {
     word.forEach((letter, letterIndex) => {
+      const currentLetterIndex = globalLetterIndex;
       [...letter].forEach((rawSymbol, symbolIndex) => {
         const symbol: "." | "-" = rawSymbol === "-" ? "-" : ".";
         const units = symbol === "-" ? 3 : 1;
-        events.push({
+        appendEvent({
           type: "mark",
           on: true,
           symbol,
           units,
           ms: units * dotMs,
-        });
+        }, wordIndex, currentLetterIndex);
 
         if (symbolIndex < letter.length - 1) {
-          events.push({
+          appendEvent({
             type: "gap",
             on: false,
             gap: "intra-symbol",
             units: 1,
             ms: dotMs,
-          });
+          }, wordIndex, currentLetterIndex);
         }
       });
 
       if (letterIndex < word.length - 1) {
         const units = 3 * gapScale;
-        events.push({
+        appendEvent({
           type: "gap",
           on: false,
           gap: "letter",
           units,
           ms: units * dotMs,
-        });
+        }, wordIndex, currentLetterIndex);
       }
+      globalLetterIndex += 1;
     });
 
     if (wordIndex < words.length - 1) {
       const units = 7 * gapScale;
-      events.push({
+      appendEvent({
         type: "gap",
         on: false,
         gap: "word",
         units,
         ms: units * dotMs,
-      });
+      }, wordIndex, Math.max(0, globalLetterIndex - 1));
     }
   });
 
-  return events;
+  const tailPaddingMs = Math.max(0, options.tailPaddingMs ?? 0);
+  return {
+    code: normalizedCode,
+    durationMs: cursorMs + tailPaddingMs,
+    events,
+    markDurationMs: cursorMs,
+    tailPaddingMs,
+  };
 }
 
 export function getMorseEventDurationMs(
@@ -138,10 +207,7 @@ export function estimateMorseDurationMs(
   code: string,
   options: MorseTimingOptions,
 ): number {
-  return buildMorseEvents(code, options).reduce(
-    (total, event) => total + event.ms,
-    0,
-  );
+  return buildMorseTimeline(code, options).markDurationMs;
 }
 
 export function hasPlayableMorse(code: string): boolean {

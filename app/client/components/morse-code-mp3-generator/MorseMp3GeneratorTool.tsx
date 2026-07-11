@@ -2,9 +2,11 @@ import * as React from "react";
 
 import { copyTextToClipboard } from "~/client/components/shared/ActionControls";
 import {
-  downloadBlobFile,
-  sanitizeDownloadFilename,
-} from "~/client/components/shared/actionOutputUtils";
+  ExportJobStatus,
+  ExportPlanSummary,
+} from "~/client/components/shared/export/ExportPlanStatus";
+import { buildMorseExportPlan } from "~/client/components/shared/export/morseExportPlan";
+import { useMorseAudioExportJob } from "~/client/components/shared/export/useMorseAudioExportJob";
 import {
   getUnsupportedTextCharacters,
   normalizeMorseForDecoding,
@@ -111,13 +113,10 @@ export default function MorseMp3GeneratorTool() {
   );
   const [tailMs, setTailMs] = React.useState(120);
   const [mp3Kbps, setMp3Kbps] = React.useState(128);
+  const [plannedFormat, setPlannedFormat] = React.useState<"mp3" | "wav">("mp3");
   const [copied, setCopied] = React.useState(false);
   const [hydrated, setHydrated] = React.useState(false);
   const [sourceSaveNotice, setSourceSaveNotice] = React.useState("");
-  const [downloadStatus, setDownloadStatus] = React.useState<null | {
-    kind: "ok" | "error" | "working";
-    message: string;
-  }>(null);
 
   React.useEffect(() => {
     setSourceMode(readStoredEnum("mw_audio_source", SOURCE_MODES, "text"));
@@ -327,18 +326,6 @@ export default function MorseMp3GeneratorTool() {
     ],
   );
 
-  const exportAudioOptions = React.useMemo(
-    () => ({
-      ...previewAudioOptions,
-      soundEnabled: true,
-      repeat: false,
-      flash: false,
-      sampleRate,
-      tailMs: clampNum(tailMs, 0, 400),
-    }),
-    [previewAudioOptions, sampleRate, tailMs],
-  );
-
   React.useEffect(() => {
     if (!hydrated) return;
     const livePlayer = player as typeof player & {
@@ -356,21 +343,52 @@ export default function MorseMp3GeneratorTool() {
     livePlayer.setLiveOptions?.({ flash: false });
   }, [flashAllowed, player, previewAudioOptions]);
 
-  React.useEffect(() => {
-    setDownloadStatus(null);
-  }, [
+  const buildAudioPlan = React.useCallback(
+    (format: "mp3" | "wav") =>
+      buildMorseExportPlan({
+        baseFilename: fileName || "morse-code",
+        charWpm: clampNum(charWpm, 5, 60),
+        farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+        format,
+        kind: "audio",
+        mp3Kbps,
+        sampleRate,
+        source: sourceMode === "text" ? text : morse,
+        sourceMode,
+        tailPaddingMs: tailMs,
+      }),
+    [
+      charWpm,
+      farnsworthWpm,
+      fileName,
+      morse,
+      mp3Kbps,
+      sampleRate,
+      sourceMode,
+      tailMs,
+      text,
+    ],
+  );
+  const exportPlan = React.useMemo(
+    () => buildAudioPlan(plannedFormat),
+    [buildAudioPlan, plannedFormat],
+  );
+  const exportKey = JSON.stringify({
     activeCode,
+    attackMs,
     charWpm,
     farnsworthWpm,
-    toneHz,
-    volume,
+    fileName,
+    mp3Kbps,
     preset,
-    attackMs,
     releaseMs,
     sampleRate,
+    soundOn,
     tailMs,
-    mp3Kbps,
-  ]);
+    toneHz,
+    volume,
+  });
+  const audioExport = useMorseAudioExportJob(exportKey);
 
   const handlePickExample = (exampleText: string) => {
     if (sourceMode === "text") {
@@ -378,7 +396,6 @@ export default function MorseMp3GeneratorTool() {
     } else {
       setMorse(textToMorse(exampleText));
     }
-    setDownloadStatus(null);
   };
 
   const handleClear = () => {
@@ -388,7 +405,6 @@ export default function MorseMp3GeneratorTool() {
       setMorse("");
     }
     setCopied(false);
-    setDownloadStatus(null);
     player.stop();
   };
 
@@ -406,78 +422,36 @@ export default function MorseMp3GeneratorTool() {
     await player.play(previewAudioOptions);
   };
 
-  const renderAudioBuffer = () => player.renderAudioBuffer(exportAudioOptions);
-
-  const handleDownloadMp3 = async () => {
-    if (!hasSourceCode || !renderedSoundOn) return;
-    if (!canRender) {
-      setDownloadStatus({
-        kind: "error",
-        message: "Enter text or valid dots and dashes before exporting audio.",
-      });
+  const handleDownload = async (format: "mp3" | "wav") => {
+    if (
+      !hasSourceCode ||
+      !renderedSoundOn ||
+      audioExport.state.status === "running"
+    ) {
       return;
     }
     player.stop();
-    setDownloadStatus({ kind: "working", message: "Preparing MP3 file..." });
-    try {
-      const buffer = await renderAudioBuffer();
-      const { audioBufferToMp3Blob } = await import(
-        "~/client/components/audio/mp3Export"
-      );
-      const blob = await audioBufferToMp3Blob(buffer, mp3Kbps);
-      const download = downloadBlobFile({
-        blob,
-        filename: sanitizeDownloadFilename(
-          `${sanitizeFileBase(fileName || "morse-code")}.mp3`,
-          "morse-code.mp3",
-        ),
-      });
-      if (!download.ok) {
-        setDownloadStatus({ kind: "error", message: download.message });
-        return;
-      }
-      setDownloadStatus({ kind: "ok", message: "MP3 download started." });
-    } catch {
-      setDownloadStatus({
-        kind: "error",
-        message:
-          "MP3 export could not start in this browser. Try a shorter message or download WAV instead.",
-      });
-    }
+    setPlannedFormat(format);
+    await audioExport.start({
+      plan: buildAudioPlan(format),
+      settings: {
+        attackMs,
+        charWpm: clampNum(charWpm, 5, 60),
+        farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+        format,
+        mp3Kbps,
+        pitch: toneHz,
+        releaseMs,
+        sampleRate,
+        tailPaddingMs: tailMs,
+        tonePreset: preset,
+        volume,
+      },
+    });
   };
 
-  const handleDownloadWav = async () => {
-    if (!hasSourceCode || !renderedSoundOn) return;
-    if (!canRender) {
-      setDownloadStatus({
-        kind: "error",
-        message: "Enter text or valid dots and dashes before exporting audio.",
-      });
-      return;
-    }
-    player.stop();
-    setDownloadStatus({ kind: "working", message: "Preparing WAV file..." });
-    try {
-      const blob = await player.renderWav(exportAudioOptions);
-      const download = downloadBlobFile({
-        blob,
-        filename: sanitizeDownloadFilename(
-          `${sanitizeFileBase(fileName || "morse-code")}.wav`,
-          "morse-code.wav",
-        ),
-      });
-      if (!download.ok) {
-        setDownloadStatus({ kind: "error", message: download.message });
-        return;
-      }
-      setDownloadStatus({ kind: "ok", message: "WAV download started." });
-    } catch {
-      setDownloadStatus({
-        kind: "error",
-        message: "WAV export failed. Try a shorter message or lower sample rate.",
-      });
-    }
-  };
+  const handleDownloadMp3 = () => handleDownload("mp3");
+  const handleDownloadWav = () => handleDownload("wav");
 
   const setFeedback = React.useCallback(
     (key: "sound" | "repeat" | "flash", nextValue: boolean) => {
@@ -552,7 +526,6 @@ export default function MorseMp3GeneratorTool() {
                 value={text}
                 onChange={(event) => {
                   setText(event.target.value);
-                  setDownloadStatus(null);
                 }}
                 placeholder="Type a message, for example HELLO WORLD"
                 autoCapitalize="characters"
@@ -576,7 +549,6 @@ export default function MorseMp3GeneratorTool() {
                 value={morse}
                 onChange={(event) => {
                   setMorse(event.target.value);
-                  setDownloadStatus(null);
                 }}
                 placeholder="Paste Morse, for example ... --- ..."
                 autoCapitalize="off"
@@ -624,7 +596,7 @@ export default function MorseMp3GeneratorTool() {
                 type="button"
                 tone="darkPanel"
                 onClick={handleDownloadWav}
-                disabled={!hasSourceCode || !renderedSoundOn}
+                disabled={!hasSourceCode || !renderedSoundOn || audioExport.state.status === "running"}
                 className="rounded-lg"
               >
                 <DownloadIcon size={18} title={undefined} aria-hidden="true" />
@@ -690,7 +662,7 @@ export default function MorseMp3GeneratorTool() {
           type="button"
           tone="light"
           onClick={handleDownloadMp3}
-          disabled={!hasSourceCode || !renderedSoundOn}
+          disabled={!hasSourceCode || !renderedSoundOn || audioExport.state.status === "running"}
           hover="dark"
           className="rounded-xl"
         >
@@ -910,22 +882,20 @@ export default function MorseMp3GeneratorTool() {
         />
       </div>
 
+      <ExportPlanSummary plan={exportPlan} />
+      <ExportJobStatus
+        state={audioExport.state}
+        onCancel={() => audioExport.cancel()}
+        onReset={audioExport.reset}
+        onRetry={() => void audioExport.retry()}
+      />
       <div className="mt-4">
-        {downloadStatus ? (
-          <StatusMessage
-            kind={downloadStatus.kind === "ok" ? "success" : downloadStatus.kind}
-            live
-          >
-            {downloadStatus.message}
-          </StatusMessage>
-        ) : (
-          <StatusMessage>
-            MP3 encoding starts when you click download. Use MP3 for compact
-            clips and WAV when you need lossless audio or the most reliable
-            fallback. Preview, WAV, and MP3 use the same speed, spacing, tone,
-            volume, tone preset, and envelope settings.
-          </StatusMessage>
-        )}
+        <StatusMessage>
+          MP3 encoding starts when you click download. Use MP3 for compact
+          clips and WAV when you need lossless audio. Preview, WAV, and MP3 use
+          the same speed, spacing, tone, volume, tone preset, and envelope
+          settings.
+        </StatusMessage>
       </div>
     </section>
   );
@@ -1002,18 +972,6 @@ function formatMs(ms: number) {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
   return `${minutes}m ${remainingSeconds}s`;
-}
-
-function sanitizeFileBase(name: string) {
-  return (
-    name
-      .trim()
-      .replace(/[\\/:*?"<>|]+/g, "-")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-")
-      .replace(/^-|-$/g, "")
-      .slice(0, 80) || "morse-code"
-  );
 }
 
 function clampNum(value: number, min: number, max: number) {

@@ -40,6 +40,8 @@ type ExportBundleOptions = {
 };
 
 type ExportPartsOptions = ExportBundleOptions & {
+  completedPartIndexes?: number[];
+  onPartComplete?: (partIndex: number) => void;
   onPartReady: (part: BookDownloadPackage) => Promise<void> | void;
 };
 
@@ -79,7 +81,7 @@ export function getBookDownloadKind(
   settings: BookExportSettings,
 ): BookDownloadKind {
   if (hasBookDownloadSidecars(settings)) return "zip";
-  return parts.length === 1 ? "audio" : "zip";
+  return parts.length === 1 ? "audio" : "parts";
 }
 
 export function describeBookDownloadContents(
@@ -166,13 +168,16 @@ export async function createBookDownloadPackage({
 }
 
 export async function createBookAudioPartDownloads({
+  completedPartIndexes = [],
   metadata,
+  onPartComplete,
   onPartReady,
   onProgress,
   parts,
   settings,
   signal,
 }: ExportPartsOptions): Promise<{
+  completedPartIndexes: number[];
   contents: string[];
   filenames: string[];
   totalBytes: number;
@@ -183,10 +188,16 @@ export async function createBookAudioPartDownloads({
   }
   assertBookAudioPartsWithinBrowserLimit(parts, settings);
 
+  const completed = new Set(completedPartIndexes);
   const filenames: string[] = [];
   let totalBytes = 0;
   const totalDurationMs = totalRuntimeWithTail(parts, settings);
-  let completedDurationMs = 0;
+  let completedDurationMs = parts
+    .filter((part) => completed.has(part.index))
+    .reduce(
+      (total, part) => total + partRuntimeWithTail(part, settings.tailPaddingMs),
+      0,
+    );
   const formatLabel = settings.outputFormat.toUpperCase();
 
   onProgress?.({
@@ -201,6 +212,7 @@ export async function createBookAudioPartDownloads({
   await cooperativeYield(signal);
 
   for (const part of parts) {
+    if (completed.has(part.index)) continue;
     throwIfAborted(signal);
     const partRuntimeMs = partRuntimeWithTail(part, settings.tailPaddingMs);
     const progressForPart = ({
@@ -214,7 +226,7 @@ export async function createBookAudioPartDownloads({
         phase: "encoding",
         message: `Rendering ${formatLabel} part ${part.index} of ${parts.length} - ${percent}`,
         currentPart: part.index - 1,
-        completedParts: part.index - 1,
+        completedParts: completed.size,
         currentPartIndex: part.index,
         totalParts: parts.length,
         renderedDurationMs: aggregateRenderedMs,
@@ -227,6 +239,7 @@ export async function createBookAudioPartDownloads({
     try {
       blob = await renderBookPartAudio(part, settings, signal, progressForPart);
     } catch (error) {
+      if (isAbortError(error)) throw error;
       throw partFailure(part.index, error);
     }
 
@@ -234,7 +247,7 @@ export async function createBookAudioPartDownloads({
       phase: "bundling",
       message: `Finalizing part ${part.index} of ${parts.length}...`,
       currentPart: part.index - 1,
-      completedParts: part.index - 1,
+      completedParts: completed.size,
       currentPartIndex: part.index,
       totalParts: parts.length,
       renderedDurationMs: completedDurationMs + partRuntimeMs,
@@ -251,11 +264,13 @@ export async function createBookAudioPartDownloads({
     filenames.push(filename);
     totalBytes += blob.size;
     completedDurationMs += partRuntimeMs;
+    completed.add(part.index);
+    onPartComplete?.(part.index);
     onProgress?.({
       phase: "encoding",
-      message: `Part ${part.index} of ${parts.length} downloaded.`,
+      message: `Part ${part.index} of ${parts.length} download requested.`,
       currentPart: part.index,
-      completedParts: part.index,
+      completedParts: completed.size,
       currentPartIndex: part.index,
       totalParts: parts.length,
       renderedDurationMs: completedDurationMs,
@@ -266,7 +281,7 @@ export async function createBookAudioPartDownloads({
 
   onProgress?.({
     phase: "complete",
-    message: `${formatLabel} parts downloaded.`,
+    message: `${formatLabel} part download requests sent.`,
     currentPart: parts.length,
     completedParts: parts.length,
     currentPartIndex: parts.length,
@@ -276,6 +291,7 @@ export async function createBookAudioPartDownloads({
   });
 
   return {
+    completedPartIndexes: [...completed].sort((a, b) => a - b),
     contents: describeBookDownloadContents(parts, settings, "parts"),
     filenames,
     totalBytes,
@@ -495,7 +511,12 @@ async function renderBookPartMp3Blob(
   const lamejs = await loadLameJs();
   const encoder = new lamejs.Mp3Encoder(1, settings.sampleRate, settings.mp3Bitrate);
   const renderer = createChunkedSignalRenderer(text, settings);
-  assertAudioRenderWithinBrowserLimit(renderer.totalMs, settings.sampleRate);
+  assertAudioRenderWithinBrowserLimit(
+    renderer.totalMs,
+    settings.sampleRate,
+    "mp3",
+    settings.mp3Bitrate,
+  );
   const parts: Uint8Array[] = [];
   const mp3ChunkSize = 1152;
   let renderedSamples = 0;
@@ -539,7 +560,7 @@ async function renderBookPartWavBlob(
   onProgress?: (progress: AudioRenderProgress) => void,
 ) {
   const renderer = createChunkedSignalRenderer(text, settings);
-  assertAudioRenderWithinBrowserLimit(renderer.totalMs, settings.sampleRate);
+  assertAudioRenderWithinBrowserLimit(renderer.totalMs, settings.sampleRate, "wav");
   const dataSize = renderer.totalSamples * 2;
   const parts: ArrayBuffer[] = [buildWavHeader(dataSize, settings.sampleRate)];
   let renderedSamples = 0;
@@ -689,7 +710,12 @@ export async function renderBookPartPcm(
   const totalMs =
     events.reduce((sum, event) => sum + event.ms, 0) +
     (settings.tailPaddingMs ?? DEFAULT_TAIL_PADDING_MS);
-  assertAudioRenderWithinBrowserLimit(totalMs, sampleRate);
+  assertAudioRenderWithinBrowserLimit(
+    totalMs,
+    sampleRate,
+    settings.outputFormat,
+    settings.mp3Bitrate,
+  );
   const totalSamples = Math.max(1, Math.ceil((totalMs / 1000) * sampleRate));
   const output = new Float32Array(totalSamples);
   const amplitude = clamp(settings.volume, 0, 1) * 0.38;
@@ -1124,6 +1150,10 @@ function partFailure(partIndex: number, error: unknown) {
     `Part ${partIndex} failed. Retry the download; completed files can be kept.`,
     cause ? { cause } : undefined,
   );
+}
+
+function isAbortError(error: unknown) {
+  return error instanceof Error && error.name === "AbortError";
 }
 
 function floatToInt16(value: number) {

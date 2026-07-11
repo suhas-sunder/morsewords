@@ -21,6 +21,9 @@ test("heavy browser-only helpers stay behind user-triggered dynamic imports", ()
   const soundGenerator = readRepoFile(
     "app/client/components/morse-code-sound-generator/MorseAudioTranslator.tsx",
   );
+  const morseAudioExport = readRepoFile(
+    "app/client/components/shared/export/morseAudioExport.ts",
+  );
   const printableChart = readRepoFile("app/routes/morse-code-printable-chart.tsx");
   const wordSearch = readRepoFile("app/routes/morse-code-word-search-builder.tsx");
   const bookBundleExport = readRepoFile(
@@ -30,12 +33,14 @@ test("heavy browser-only helpers stay behind user-triggered dynamic imports", ()
   expect(mp3Generator).not.toContain(
     'import { audioBufferToMp3Blob } from "~/client/components/audio/mp3Export"',
   );
-  expectDynamicImport(mp3Generator, "~/client/components/audio/mp3Export");
+  expect(mp3Generator).not.toContain('from "@breezystack/lamejs"');
 
   expect(soundGenerator).not.toContain(
     "import { audioBufferToMp3Blob, type ExportFormat }",
   );
-  expectDynamicImport(soundGenerator, "~/client/components/audio/mp3Export");
+  expect(soundGenerator).not.toContain('from "@breezystack/lamejs"');
+  expect(morseAudioExport).not.toContain('from "@breezystack/lamejs"');
+  expectDynamicImport(morseAudioExport, "@breezystack/lamejs");
 
   expect(printableChart).not.toContain('import QRCode from "qrcode"');
   expect(wordSearch).not.toContain('import QRCode from "qrcode"');

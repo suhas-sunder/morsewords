@@ -226,8 +226,8 @@ const useCaseItems = [
 
 const safetyItems = [
   {
-    title: "Short-form guard",
-    text: "The route limits very long input. Use the book translator for chapter-length or book-length Morse video exports.",
+    title: "Automatic parts",
+    text: "Long messages are planned as ordered video parts and recorded one at a time so the browser does not retain a full long-form render in memory.",
     href: ROUTES.bookTranslator,
     badge: "Long form",
   },
