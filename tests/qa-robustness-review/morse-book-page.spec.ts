@@ -211,6 +211,7 @@ type LivePlayerTestHook = {
   completeCapturedSegment: (token: LivePlayerCompletionToken) => boolean;
   completeCurrentSegmentTwice: () => { first: boolean; second: boolean };
   getState: () => LivePlayerHookState;
+  nextSection: () => void;
   restartCurrentSegment: () => void;
   selectSegment: (segmentIndex: number) => void;
   startCurrentSegment: (elapsedMs?: number) => void;
@@ -2554,7 +2555,7 @@ test.describe("Morse book page foundation", () => {
     }
   });
 
-  test("loads an approved audiobook page with one whole-book JSON and live player controls", async ({
+  test("loads an approved audiobook page with one whole-book JSON and audio controls", async ({
     page,
   }) => {
     const bookJsonRequests: string[] = [];
@@ -2573,14 +2574,14 @@ test.describe("Morse book page foundation", () => {
     await expect(page.locator("h1")).toContainText(/Jekyll|Hyde/);
     await expect(page.locator("[data-testid='morse-audiobook-audio-first-panel']")).toBeVisible();
     await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
-    await expect(page.getByTestId("book-video-preview-workflow")).toBeVisible();
-    await expect(page.getByTestId("morse-book-live-section-select")).toBeVisible();
-    await expect(page.getByRole("button", { name: "Play live player" })).toBeVisible();
-    await expect(page.getByRole("button", { name: "Previous section" })).toBeVisible();
-    await expect(page.getByRole("button", { name: "Next section" })).toBeVisible();
-    await expect(page.getByTestId("morse-book-live-download-link")).toHaveAttribute(
+    await expect(page.getByTestId("morse-audiobook-section-chooser")).toBeVisible();
+    await expect(page.getByTestId("morse-audiobook-export-plan")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Play selection" })).toBeVisible();
+    await expect(page.getByTestId("book-video-preview-workflow")).not.toBeVisible();
+    await expect(page.getByTestId("morse-book-live-section-select")).not.toBeVisible();
+    await expect(page.getByTestId("morse-book-mp3-download-link")).toHaveAttribute(
       "href",
-      NETWORK_BOOK_PUBLIC_PATH,
+      "#book-mp3-download",
     );
     await expect(page.getByText(["Download", "MP4"].join(" "))).toHaveCount(0);
     await expect(page.getByText(["Download", "WebM"].join(" "))).toHaveCount(0);
@@ -2615,9 +2616,15 @@ test.describe("Morse book page foundation", () => {
     expect(audiobookSummaryAfterSource).toBe(true);
     expect(bookJsonRequests).toHaveLength(1);
 
-    const sectionSelect = page.getByTestId("morse-book-live-section-select");
-    await expect(sectionSelect).toBeVisible();
-    await sectionSelect.selectOption({ index: 1 });
+    const readableDefaults = page.locator(
+      "[data-mw-morse-book-select-all-default]",
+    );
+    await expect(readableDefaults).toBeChecked();
+    await readableDefaults.uncheck();
+    await expect(
+      page.locator("[data-mw-morse-book-translator-source-sections]"),
+    ).toHaveAttribute("data-mw-morse-book-translator-source-sections", "");
+    await readableDefaults.check();
     expect(bookJsonRequests).toHaveLength(1);
 
     const schemaText = await page
@@ -2631,7 +2638,7 @@ test.describe("Morse book page foundation", () => {
     expect(schemaText).not.toContain('"price"');
   });
 
-  test("keeps live player preview content inside the frame on mobile and tablet widths", async ({
+  test("keeps book previews and audiobook audio controls within mobile and desktop widths", async ({
     browser,
   }) => {
     const viewports = [
@@ -2671,24 +2678,36 @@ test.describe("Morse book page foundation", () => {
 
         const livePlayer = viewportPage.getByTestId("morse-book-live-player");
         await expect(livePlayer).toBeVisible();
-        await expect(
-          livePlayer.getByTestId("book-video-preview-frame"),
-        ).toBeVisible();
-        await expect(
-          livePlayer.getByRole("button", { name: "Play live player" }),
-        ).toBeVisible();
-        await expect(
-          livePlayer.getByTestId("book-video-preview-timing-strip"),
-        ).toBeVisible();
-        const sectionSelect = viewportPage.getByTestId(
-          "morse-book-live-section-select",
-        );
-        if (await sectionSelect.count()) {
-          await expect(sectionSelect).toBeVisible();
-        }
+        const isAudiobook = viewport.pathName.includes("/morse-code-audiobooks/");
+        if (isAudiobook) {
+          await expect(
+            livePlayer.getByRole("button", { name: "Play selection" }),
+          ).toBeVisible();
+          await expect(
+            livePlayer.getByTestId("book-video-preview-workflow"),
+          ).not.toBeVisible();
+          await expect(
+            viewportPage.getByTestId("morse-audiobook-section-chooser"),
+          ).toBeVisible();
+        } else {
+          await expect(
+            livePlayer.getByTestId("book-video-preview-frame"),
+          ).toBeVisible();
+          await expect(
+            livePlayer.getByRole("button", { name: "Play live player" }),
+          ).toBeVisible();
+          await expect(
+            livePlayer.getByTestId("book-video-preview-timing-strip"),
+          ).toBeVisible();
+          const metrics = await readPreviewFitMetrics(livePlayer);
+          expectPreviewFitsFrame(metrics);
 
-        const metrics = await readPreviewFitMetrics(livePlayer);
-        expectPreviewFitsFrame(metrics);
+          if (viewport.desktop) {
+            const ratio = metrics.frame.width / metrics.frame.height;
+            expect(ratio).toBeGreaterThan(1.65);
+            expect(ratio).toBeLessThan(1.9);
+          }
+        }
 
         const widthState = await viewportPage.evaluate(() => ({
           innerWidth: window.innerWidth,
@@ -2697,12 +2716,6 @@ test.describe("Morse book page foundation", () => {
         expect(widthState.scrollWidth).toBeLessThanOrEqual(
           widthState.innerWidth + 1,
         );
-
-        if (viewport.desktop) {
-          const ratio = metrics.frame.width / metrics.frame.height;
-          expect(ratio).toBeGreaterThan(1.65);
-          expect(ratio).toBeLessThan(1.9);
-        }
       } finally {
         await context.close();
       }
@@ -2956,7 +2969,7 @@ test.describe("Morse book page foundation", () => {
     expect(afterStaleCompletion.segmentIndex).toBe(0);
   });
 
-  test("invalidates audiobook live player completion on manual section change", async ({
+  test("invalidates audiobook live player completion on manual section advance", async ({
     page,
   }) => {
     await openPublicBook(page, NETWORK_AUDIOBOOK_PUBLIC_PATH);
@@ -2978,9 +2991,12 @@ test.describe("Morse book page foundation", () => {
     const runningToken = await captureLivePlayerCompletion(page);
 
     const nextSectionIndex = initialState.sectionIndex + 1;
-    await page
-      .getByTestId("morse-book-live-section-select")
-      .selectOption({ index: nextSectionIndex });
+    await page.evaluate(() => {
+      const hook = (window as LivePlayerTestWindow)
+        .__MORSEWORDS_BOOK_LIVE_PLAYER_TEST__;
+      if (!hook) throw new Error("Missing live player test hook.");
+      hook.nextSection();
+    });
     await expect
       .poll(async () => {
         const state = await readLivePlayerHookState(page);
@@ -3314,7 +3330,7 @@ test.describe("Morse book page foundation", () => {
       }),
     ).toHaveAttribute("href", "https://www.gutenberg.org/ebooks/11");
     await expect(page.getByText("Downloads are unavailable for this book.")).toHaveCount(0);
-    await expect(page.getByRole("button", { name: "Download ZIP batch 1" })).toBeEnabled();
+    await expect(page.getByRole("button", { name: "Download MP3 parts" })).toBeEnabled();
 
     const morsePreview = page.locator("[data-mw-morse-book-morse-preview]");
     const morseText = (await morsePreview.textContent()) ?? "";
@@ -3331,7 +3347,7 @@ test.describe("Morse book page foundation", () => {
     await openPreview(page);
 
     await expect(page.getByRole("button", { name: "No split" })).toBeVisible();
-    await expect(page.getByRole("button", { name: "Download ZIP batch 1" })).toBeEnabled();
+    await expect(page.getByRole("button", { name: "Download MP3 parts" })).toBeEnabled();
     await expect(
       page
         .locator("[data-mw-morse-book-long-export-note]")
@@ -4428,7 +4444,7 @@ test.describe("Morse book page foundation", () => {
     expect(audioDurationMs).toBeLessThanOrEqual(300_000);
   });
 
-  test("shows ZIP batch language for split media without old bundle copy", async ({
+  test("shows sequential part language for split media without ZIP bundle copy", async ({
     page,
   }) => {
     await openPreview(page);
@@ -4440,13 +4456,13 @@ test.describe("Morse book page foundation", () => {
       });
     }).toPass({ timeout: 10_000 });
     await page.getByLabel(/Target part length/).selectOption("15");
-    await expect(page.getByRole("button", { name: "Download ZIP batch 1" })).toBeVisible();
-    await expect(page.locator("[data-mw-morse-book-zip-warning]")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Download MP3 parts" })).toBeVisible();
+    await expect(page.locator("[data-mw-morse-book-zip-warning]")).toHaveCount(0);
     await expect(page.locator("[data-mw-morse-book-split-warning]")).toBeVisible();
 
     await page.getByRole("button", { name: "No split" }).click();
-    await expect(page.getByRole("button", { name: "Download ZIP batch 1" })).toBeVisible();
-    await expect(page.locator("[data-mw-morse-book-zip-warning]")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Download MP3 parts" })).toBeVisible();
+    await expect(page.locator("[data-mw-morse-book-zip-warning]")).toHaveCount(0);
     await expect(page.locator("[data-mw-morse-book-split-warning]")).toHaveCount(0);
   });
 

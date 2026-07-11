@@ -5,6 +5,7 @@ import {
   type MorseVideoAudioSettings,
   type ResolvedMorseVideoBackgroundStyle,
 } from "./morseVideoRenderer";
+import { waitForMorseVideoFonts } from "./morseVideoFonts";
 import type { MorseVideoFormatSupport } from "./morseVideoSupport";
 import type { MorseVideoSettings } from "./morseVideoTypes";
 
@@ -70,27 +71,5 @@ export async function createMorseVideoBlob({
     // Release the backing frame buffer before a later sequential part starts.
     canvas.width = 1;
     canvas.height = 1;
-  }
-}
-
-async function waitForMorseVideoFonts() {
-  if (typeof document === "undefined" || !("fonts" in document)) return;
-  const fonts = document.fonts;
-  let timeoutId: number | null = null;
-  try {
-    await Promise.race([
-      Promise.all([
-        fonts.load('700 64px "Space Mono"'),
-        fonts.load('800 64px "Space Grotesk"'),
-        fonts.ready,
-      ]),
-      new Promise<void>((resolve) => {
-        timeoutId = window.setTimeout(resolve, 2_000);
-      }),
-    ]);
-  } catch {
-    // Browser font loading failures should not block an otherwise valid export.
-  } finally {
-    if (timeoutId !== null) window.clearTimeout(timeoutId);
   }
 }

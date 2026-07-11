@@ -160,7 +160,7 @@ export function buildMorseExportPlan({
         morse,
         sourceEnd: range.end,
         sourceStart: range.start,
-        text: sourceMode === "text" ? text : morseToText(morse),
+        text: sourceMode === "text" ? text : decodeReliableMorseText(morse),
         timeline,
       };
     })
@@ -188,6 +188,14 @@ export function buildMorseExportPlan({
     threshold,
     totalDurationMs: parts.reduce((sum, part) => sum + part.durationMs, 0),
   };
+}
+
+function decodeReliableMorseText(morse: string) {
+  const decoded = morseToText(morse, {
+    returnResult: true,
+    unknownToken: "omit",
+  });
+  return decoded.issues.length === 0 ? decoded.value : "";
 }
 
 export function buildMorsePartFilename({

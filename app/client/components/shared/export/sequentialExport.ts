@@ -154,6 +154,9 @@ export function normalizeExportError(error: unknown, label = "export") {
   if (/part\s+\d+/i.test(raw)) {
     return `A ${label} part could not be completed. Retry that part to continue.`;
   }
+  if (/required fonts|prepare (its )?required fonts|font readiness/i.test(raw)) {
+    return `This ${label} could not prepare its required fonts. Refresh the page and try again.`;
+  }
   if (
     /allocation|array buffer|typed array|out of memory|memory|encoder|mediarecorder|quota/i.test(
       raw,

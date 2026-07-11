@@ -35,6 +35,8 @@ export const MORSE_VIDEO_RESOLUTION_LABELS: Record<
 > = {
   "720p": "720p (1280 x 720)",
   "1080p": "1080p (1920 x 1080)",
+  "1440p": "1440p (2560 x 1440)",
+  "4k": "4K (3840 x 2160)",
 };
 
 export const MORSE_VIDEO_BACKGROUND_LABELS: Record<

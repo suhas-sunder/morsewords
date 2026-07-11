@@ -129,7 +129,7 @@ const VIDEO_VISUAL_STYLES = [
   "full-frame",
   "morse-text",
 ] as const;
-const VIDEO_RESOLUTIONS = ["720p", "1080p"] as const;
+const VIDEO_RESOLUTIONS = ["720p", "1080p", "1440p", "4k"] as const;
 const VIDEO_BACKGROUNDS = [
   "site-theme",
   "warm-morsewords",

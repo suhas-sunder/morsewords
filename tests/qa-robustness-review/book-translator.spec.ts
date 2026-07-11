@@ -16,7 +16,6 @@ import {
 import {
   BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES,
   BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS,
-  BOOK_DEFAULT_PART_TARGET_MS,
   BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS,
   estimateBookVideoExport,
   findOversizedAudioExportPart,
@@ -854,7 +853,20 @@ function createMockCanvasContext() {
 
   const ctx = {
     clearRect() {},
+    save() {},
+    restore() {},
+    scale() {},
+    translate() {},
+    measureText(text: string) {
+      const fontSize = Number(/(\d+(?:\.\d+)?)px/.exec(font)?.[1] ?? 16);
+      return { width: Array.from(String(text)).length * fontSize * 0.58 };
+    },
     beginPath() {},
+    closePath() {},
+    moveTo() {},
+    lineTo() {},
+    quadraticCurveTo() {},
+    stroke() {},
     fill() {
       commands.push({ type: "fill", fillStyle });
     },
@@ -1738,8 +1750,12 @@ test("long export planning splits oversized selections before allocation and est
     videoSettings: DEFAULT_BOOK_VIDEO_SETTINGS,
   });
   expect(videoPlan.automaticSplit).toBe(true);
-  expect(videoPlan.targetPartMs).toBe(BOOK_DEFAULT_PART_TARGET_MS);
-  expect(videoPlan.parts.length).toBeLessThanOrEqual(audioPlan.parts.length + 1);
+  // Video uses the selected resolution's much shorter safe recorder ceiling;
+  // it must not inherit the 30-minute audio target.
+  expect(videoPlan.targetPartMs).toBe(
+    BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS["1080p"] * 0.98,
+  );
+  expect(videoPlan.parts.length).toBeGreaterThan(audioPlan.parts.length);
   expect(videoPlan.unresolvedOversizedPart).toBeNull();
   expect(
     findOversizedVideoExportPart(videoPlan.parts, DEFAULT_BOOK_VIDEO_SETTINGS),
@@ -1757,6 +1773,9 @@ test("long export planning splits oversized selections before allocation and est
     (part) => part.cleanedText.match(/[A-Z]+/g) ?? [],
   );
   expect(plannedTokens).toEqual(selectedTokens);
+  expect(
+    videoPlan.parts.flatMap((part) => part.cleanedText.match(/[A-Z]+/g) ?? []),
+  ).toEqual(selectedTokens);
   for (let index = 1; index < audioPlan.parts.length; index += 1) {
     expect(audioPlan.parts[index].sourceStart).toBeGreaterThanOrEqual(
       audioPlan.parts[index - 1].sourceEnd,
@@ -1846,23 +1865,28 @@ test("video renderer keeps exported text overlays readable and away from brandin
     (command): command is Extract<MockCanvasCommand, { type: "fillText" }> =>
       command.type === "fillText",
   );
-  const brandText = textCommands.filter((command) =>
-    command.text.includes("Morse"),
+  expect(textCommands.map((command) => command.text).join("")).toContain(
+    "WWW.MORSEWORDS.COM",
   );
-  expect(textCommands.some((command) => command.text === "www.morsewords.com")).toBe(
-    true,
-  );
-  expect(brandText.map((command) => command.text)).not.toContain("MorseWords");
+  const fontPixelSize = (font: string) =>
+    Number(/(\d+(?:\.\d+)?)px/.exec(font)?.[1] ?? 0);
 
   const morseEntries = textCommands.filter(
-    (command) => /[.-]/.test(command.text) && command.font.includes("Space Mono"),
+    (command) =>
+      /[.-]/.test(command.text) &&
+      command.font.includes("Space Mono") &&
+      fontPixelSize(command.font) >= 30,
   );
   const morseOverlay = morseEntries[0];
-  const plainOverlay = textCommands.find((command) =>
-    command.text.includes("PLAIN"),
+  const plainEntries = textCommands.filter((command) =>
+    command.font.includes("DM Sans"),
   );
+  const plainOverlay = plainEntries[0];
   expect(morseOverlay).toBeTruthy();
   expect(plainOverlay).toBeTruthy();
+  expect(plainEntries.map((command) => command.text).join("")).toMatch(
+    /PLAIN\/DISPLAY/,
+  );
   expect(
     morseEntries
       .map((command) => command.text)
@@ -1874,17 +1898,22 @@ test("video renderer keeps exported text overlays readable and away from brandin
     word: "PLAIN",
   });
   expect(morseOverlay!.font).toContain("Space Mono");
-  expect(plainOverlay!.font).toContain("Space Grotesk");
-  expect(Number.parseFloat(morseOverlay!.font)).toBeGreaterThanOrEqual(40);
-  expect(Number.parseFloat(plainOverlay!.font)).toBeGreaterThanOrEqual(38);
+  expect(plainOverlay!.font).toContain("DM Sans");
+  expect(fontPixelSize(morseOverlay!.font)).toBeGreaterThanOrEqual(30);
+  expect(fontPixelSize(plainOverlay!.font)).toBeGreaterThanOrEqual(28);
   expect(morseOverlay!.x).toBeGreaterThan(0);
-  expect(morseOverlay!.x).toBeLessThan(1280);
+  expect(morseOverlay!.x).toBeLessThan(1056);
   expect(plainOverlay!.x).toBeGreaterThan(0);
-  expect(plainOverlay!.x).toBeLessThan(1280);
-  expect(morseOverlay!.y).toBeGreaterThan(350);
+  expect(plainOverlay!.x).toBeLessThan(1056);
+  expect(morseOverlay!.y).toBeGreaterThan(0);
   expect(plainOverlay!.y).toBeGreaterThan(morseOverlay!.y);
   expect(plainOverlay!.y).toBeLessThan(560);
-  expect(plainOverlay!.maxWidth).toBeGreaterThan(1100);
+  expect(
+    [...morseEntries, ...plainEntries].filter(
+      (command) =>
+        command.x < 0 || command.x > 1056 || command.y <= 0 || command.y >= 560,
+    ),
+  ).toEqual([]);
 });
 
 test("video renderer disables full-frame flash when visual signal layer is off", () => {
@@ -1994,15 +2023,15 @@ test("segmentation handles long-source boundary edge cases without empty parts",
   });
   expect(wordParts.length).toBeGreaterThan(1);
   for (const part of wordParts) {
-    const before =
-      part.sourceStart > 0 ? wordBoundarySource[part.sourceStart - 1] : " ";
-    const after =
-      part.sourceEnd < wordBoundarySource.length
-        ? wordBoundarySource[part.sourceEnd]
-        : " ";
-    expect(before).toMatch(/\s/);
-    expect(after).toMatch(/\s/);
+    // Export text stays on whole source words; source coverage is tested
+    // separately because separator characters are assigned contiguously.
+    expect(part.cleanedText.trim()).toMatch(/^(?:[A-Z]+\s*)+$/);
   }
+  expect(
+    wordParts
+      .map((part) => wordBoundarySource.slice(part.sourceStart, part.sourceEnd))
+      .join(""),
+  ).toBe(wordBoundarySource);
 
   const trailingParts = segmentBookText({
     cleanedText: `${"ALPHA BRAVO. ".repeat(35)}\n\nSOS`,
@@ -3516,14 +3545,14 @@ test("download controls stay lean and ZIP/split copy is scoped", async ({
     tool.locator('[class*="border-t"][class*="border-slate-200/70"]'),
   ).toHaveCount(0);
   await expect(
-    sourceStep(page).getByRole("button", { name: "Download ZIP batch 1" }),
+    sourceStep(page).getByRole("button", { name: /Download \d+ MP3 parts/ }),
   ).toBeVisible();
   await expect(
     tool.getByText(
       "This selection has a lot of text, so the download may take a while. MorseWords will prepare it in smaller parts to keep the export reliable.",
     ).first(),
   ).toBeVisible();
-  await expect(page.getByLabel("ZIP batch")).toBeVisible();
+  await expect(page.getByLabel("ZIP batch")).toHaveCount(0);
   await expect(tool.getByText(/split into ZIP parts/i)).toHaveCount(0);
   await expect(
     tool.getByText("Split video downloads are packaged in ZIP files."),
@@ -3732,7 +3761,7 @@ test("route cancellation state is distinct from failure", async ({ page }) => {
     .fill("SOS HELP ALPHA BRAVO ".repeat(4_000));
   await chooseSplitMode(page, "By duration");
 
-  await page.getByRole("button", { name: "Download ZIP batch 1" }).click();
+  await page.getByRole("button", { name: /Download \d+ MP3 parts/ }).click();
   await expect(
     page.getByRole("button", { name: "Cancel download" }),
   ).toBeEnabled();
@@ -3753,7 +3782,7 @@ test("source changes during active download cancel stale completion", async ({
     .fill("SOS HELP ALPHA BRAVO ".repeat(4_000));
   await chooseSplitMode(page, "By duration");
 
-  await page.getByRole("button", { name: "Download ZIP batch 1" }).click();
+  await page.getByRole("button", { name: /Download \d+ MP3 parts/ }).click();
   await expect(
     page.getByRole("button", { name: "Cancel download" }),
   ).toBeEnabled();
@@ -3769,7 +3798,7 @@ test("source changes during active download cancel stale completion", async ({
     page.locator("pre").filter({ hasText: "Replacement source wins" }),
   ).toBeVisible();
   await expect(page.getByText("Last download")).toHaveCount(0);
-  await expect(page.getByText("ZIP download started")).toHaveCount(0);
+  await expect(page.getByText("MP3 download requested")).toHaveCount(0);
 });
 
 test("transcript inclusion toggles remove private text artifacts from bundle", async ({

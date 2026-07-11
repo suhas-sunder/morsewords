@@ -6,7 +6,7 @@ export type MorseVideoVisualStyle =
   | "full-frame"
   | "morse-text";
 
-export type MorseVideoResolution = "720p" | "1080p";
+export type MorseVideoResolution = "720p" | "1080p" | "1440p" | "4k";
 
 export type MorseVideoBackgroundStyle =
   | "site-theme"
@@ -51,6 +51,8 @@ export const MORSE_LIVE_PLAYER_VISUAL_STYLES = [
 export const MORSE_VIDEO_RESOLUTIONS = [
   "720p",
   "1080p",
+  "1440p",
+  "4k",
 ] as const satisfies readonly MorseVideoResolution[];
 
 export const MORSE_VIDEO_BACKGROUND_STYLES = [
@@ -81,7 +83,9 @@ export const MORSE_VIDEO_TARGET_PART_MINUTE_OPTIONS = [15, 30, 45, 60] as const;
 export const DEFAULT_MORSE_VIDEO_SETTINGS: MorseVideoSettings = {
   visualStyle: "lightbulb",
   includeAudioTrack: true,
-  resolution: "720p",
+  // 1080p is the practical default for a finished video. Larger frame sizes
+  // remain opt-in because they need more browser memory while rendering.
+  resolution: "1080p",
   backgroundStyle: "site-theme",
   intensity: "medium",
   showVisualSignal: true,

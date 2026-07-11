@@ -1,5 +1,6 @@
 import type { BookSourceSection } from "./bookSourceTypes";
 import {
+  BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES,
   BOOK_DEFAULT_PART_TARGET_MS,
   BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS,
   BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS,
@@ -54,7 +55,7 @@ export function buildBookExportPlan({
 }: BuildBookExportPlanOptions): BookExportPlan {
   const maxPartMs =
     outputType === "video"
-      ? BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS[videoSettings?.resolution ?? "720p"]
+      ? BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS[videoSettings?.resolution ?? "1080p"]
       : audioMaxPartMs(settings);
   const requestedParts = segmentBookText({
     cleanedText,
@@ -148,11 +149,19 @@ export function audioMaxPartMs(settings: BookExportSettings) {
       : Math.floor(
           (((threshold.maxEstimatedBytes - 4096) * 8) /
             Math.max(1, settings.mp3Bitrate * 1000)) *
-            1000,
+          1000,
         );
+  // Some book helpers still need a PCM representation (for example, local
+  // preview/analysis). Keep every planned part within that conservative
+  // Float32 buffer ceiling as well as its encoded-output ceiling.
+  const pcmByteLimitedMs = Math.floor(
+    (BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES /
+      Math.max(1, settings.sampleRate * Float32Array.BYTES_PER_ELEMENT)) *
+      1000,
+  ) - Math.max(0, settings.tailPaddingMs);
   return Math.max(
     60_000,
-    Math.min(threshold.maxDurationMs, byteLimitedMs),
+    Math.min(threshold.maxDurationMs, byteLimitedMs, pcmByteLimitedMs),
   );
 }
 

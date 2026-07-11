@@ -6,10 +6,12 @@ import type {
 } from "./bookExportTypes";
 import type { MorseVideoFormat } from "~/client/components/shared/video/morseVideoSupport";
 import type { BookVideoSettings } from "./bookVideoTypes";
+import type { BookVideoResolution } from "./bookVideoTypes";
 import {
   estimateExportBytes,
   MORSE_EXPORT_THRESHOLDS,
 } from "~/client/components/shared/export/morseExportPlan";
+import { getMorseVideoExportProfile } from "~/client/components/shared/video/morseVideoRenderer";
 
 export const BOOK_OVERSIZED_EXPORT_MESSAGE =
   "A download part is still too large to render reliably. MorseWords could not split it smaller automatically.";
@@ -29,10 +31,15 @@ export const BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS =
   MORSE_EXPORT_THRESHOLDS.mp3.maxDurationMs;
 export const BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES =
   MORSE_EXPORT_THRESHOLDS.wav.maxEstimatedBytes;
-export const BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS = {
-  "720p": BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS,
-  "1080p": BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS,
-} as const;
+export const BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS: Record<
+  BookVideoResolution,
+  number
+> = {
+  "720p": getMorseVideoExportProfile("720p").threshold.maxDurationMs,
+  "1080p": getMorseVideoExportProfile("1080p").threshold.maxDurationMs,
+  "1440p": getMorseVideoExportProfile("1440p").threshold.maxDurationMs,
+  "4k": getMorseVideoExportProfile("4k").threshold.maxDurationMs,
+};
 
 export type OversizedBookExportPart = {
   part: BookExportPart;
@@ -65,14 +72,16 @@ export function findOversizedAudioExportPart(
       mp3Kbps: settings.mp3Bitrate,
       sampleRate: settings.sampleRate,
     });
+    const pcmBytes = estimateAudioPcmBytes(runtimeMs, settings.sampleRate);
     if (
       runtimeMs > threshold.maxDurationMs ||
-      estimatedBytes > threshold.maxEstimatedBytes
+      estimatedBytes > threshold.maxEstimatedBytes ||
+      pcmBytes > BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES
     ) {
       return {
         part,
         runtimeMs,
-        estimatedBytes,
+        estimatedBytes: Math.max(estimatedBytes, pcmBytes),
         limitMs: threshold.maxDurationMs,
       };
     }
@@ -102,9 +111,11 @@ export function assertAudioRenderWithinBrowserLimit(
     mp3Kbps,
     sampleRate,
   });
+  const pcmBytes = estimateAudioPcmBytes(runtimeMs, sampleRate);
   if (
     runtimeMs > threshold.maxDurationMs ||
-    estimatedBytes > threshold.maxEstimatedBytes
+    estimatedBytes > threshold.maxEstimatedBytes ||
+    pcmBytes > BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES
   ) {
     throw new Error(BOOK_OVERSIZED_EXPORT_MESSAGE);
   }
@@ -161,14 +172,10 @@ export function estimateBookVideoExport(
       renderTimeLabel: "~0s",
     };
   }
+  // The recorder uses this same resolution profile, so the plan changes when
+  // users choose a larger frame instead of reporting a 720p-sized estimate.
   const baseVideoKbps =
-    settings.resolution === "1080p"
-      ? format === "mp4"
-        ? 5_000
-        : 4_500
-      : format === "mp4"
-        ? 2_400
-        : 2_000;
+    getMorseVideoExportProfile(settings.resolution).videoBitsPerSecond / 1000;
   const intensityMultiplier =
     settings.intensity === "high" ? 1.08 : settings.intensity === "low" ? 0.92 : 1;
   const layerMultiplier =
@@ -230,11 +237,17 @@ function estimateVideoRenderTimeLabel(
   settings: BookVideoSettings,
 ) {
   if (!Number.isFinite(runtimeMs) || runtimeMs <= 0) return "~0s";
-  const resolutionFactor = settings.resolution === "1080p" ? [1.6, 2.3] : [1.15, 1.55];
+  const resolutionFactor: Record<BookVideoResolution, [number, number]> = {
+    "720p": [1.15, 1.55],
+    "1080p": [1.6, 2.3],
+    "1440p": [2.4, 3.6],
+    "4k": [4.6, 7.5],
+  };
   const formatFactor = format === "mp4" ? 1.1 : 1;
   const audioFactor = settings.includeAudioTrack ? 1.05 : 1;
-  const minMs = runtimeMs * resolutionFactor[0] * formatFactor * audioFactor;
-  const maxMs = runtimeMs * resolutionFactor[1] * formatFactor * audioFactor;
+  const [minimumFactor, maximumFactor] = resolutionFactor[settings.resolution];
+  const minMs = runtimeMs * minimumFactor * formatFactor * audioFactor;
+  const maxMs = runtimeMs * maximumFactor * formatFactor * audioFactor;
   return `~${formatDuration(minMs)}-${formatDuration(maxMs)}`;
 }
 

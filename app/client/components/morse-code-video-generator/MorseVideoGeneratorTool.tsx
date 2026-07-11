@@ -81,7 +81,10 @@ import {
 import {
   createMorseVideoBlob,
 } from "~/client/components/shared/video/morseVideoExport";
-import type { MorseVideoAudioSettings } from "~/client/components/shared/video/morseVideoRenderer";
+import {
+  getMorseVideoExportProfile,
+  type MorseVideoAudioSettings,
+} from "~/client/components/shared/video/morseVideoRenderer";
 import {
   detectMorseVideoSupport,
   getMorseVideoFormatSupport,
@@ -277,6 +280,10 @@ export default function MorseVideoGeneratorTool() {
       : normalizedMorseInput.normalized.trim();
   const activeText =
     sourceMode === "text" ? textResult.normalizedInput : morseResult.value;
+  const englishOverlayAvailable =
+    sourceMode === "text"
+      ? Boolean(textResult.normalizedInput.trim())
+      : morseResult.issues.length === 0 && Boolean(morseResult.value.trim());
   const unsupportedPlain = React.useMemo(
     () => getUnsupportedTextCharacters(text),
     [text],
@@ -308,6 +315,22 @@ export default function MorseVideoGeneratorTool() {
       }),
     [audioTrackAvailable, videoSettings],
   );
+  const renderVideoSettings = React.useMemo(() => {
+    if (
+      englishOverlayAvailable ||
+      !effectiveVideoSettings.showPlainText
+    ) {
+      return effectiveVideoSettings;
+    }
+
+    return {
+      ...effectiveVideoSettings,
+      showPlainText: false,
+      textDisplayMode: effectiveVideoSettings.showMorseSymbols
+        ? ("morse" as const)
+        : ("none" as const),
+    };
+  }, [effectiveVideoSettings, englishOverlayAvailable]);
   const audioSettings = React.useMemo<MorseVideoAudioSettings>(
     () => ({
       charWpm,
@@ -321,8 +344,8 @@ export default function MorseVideoGeneratorTool() {
     [charWpm, farnsworthWpm, pitch, sampleRate, tonePreset, volume],
   );
   const preview = React.useMemo(
-    () => buildMorseVideoPreview(effectiveVideoSettings, activeText, audioSettings),
-    [activeText, audioSettings, effectiveVideoSettings],
+    () => buildMorseVideoPreview(renderVideoSettings, activeText, audioSettings),
+    [activeText, audioSettings, renderVideoSettings],
   );
   const previewDurationMs = Math.max(1, preview.durationMs);
   const resolvedBackgroundStyle =
@@ -332,6 +355,10 @@ export default function MorseVideoGeneratorTool() {
   const selectedFormatSupport = getMorseVideoFormatSupport(
     videoSupport,
     selectedVideoFormat,
+  );
+  const videoExportProfile = React.useMemo(
+    () => getMorseVideoExportProfile(effectiveVideoSettings.resolution),
+    [effectiveVideoSettings.resolution],
   );
   const videoExportPlan = React.useMemo(
     () =>
@@ -345,6 +372,8 @@ export default function MorseVideoGeneratorTool() {
         source: sourceMode === "text" ? text : morse,
         sourceMode,
         tailPaddingMs: audioSettings.tailPaddingMs,
+        threshold: videoExportProfile.threshold,
+        videoBitsPerSecond: videoExportProfile.videoBitsPerSecond,
       }),
     [
       audioSettings.tailPaddingMs,
@@ -356,6 +385,7 @@ export default function MorseVideoGeneratorTool() {
       selectedVideoFormat,
       sourceMode,
       text,
+      videoExportProfile,
     ],
   );
   const baseDownloadDisabledReason = getDownloadDisabledReason({
@@ -387,7 +417,10 @@ export default function MorseVideoGeneratorTool() {
     sampleRate,
     tonePreset,
     volume,
-    videoSettings: effectiveVideoSettings,
+    englishOverlayAvailable,
+    source: sourceMode === "text" ? text : morse,
+    sourceMode,
+    videoSettings: renderVideoSettings,
   });
 
   const clearPreviewAnimation = React.useCallback(() => {
@@ -699,7 +732,7 @@ export default function MorseVideoGeneratorTool() {
             morse: part.morse,
             text: part.text,
             resolvedBackgroundStyle,
-            settings: effectiveVideoSettings,
+            settings: renderVideoSettings,
             signal,
             support: selectedFormatSupport,
             onProgress: (elapsedMs, nextDurationMs) => {
@@ -961,7 +994,7 @@ export default function MorseVideoGeneratorTool() {
           isPlaying={previewPlaying}
           preview={preview}
           resolvedBackgroundStyle={resolvedBackgroundStyle}
-          settings={effectiveVideoSettings}
+          settings={renderVideoSettings}
           testIdPrefix="morse-video-preview"
           visualElapsedMs={previewElapsedMs}
         />
@@ -1133,6 +1166,7 @@ export default function MorseVideoGeneratorTool() {
           onVideoSettingsChange={updateVideoSettings}
           sampleRateId={sampleRateId}
           settings={videoSettings}
+          englishOverlayAvailable={englishOverlayAvailable}
           support={videoSupport}
           tonePresetId={tonePresetId}
         />
@@ -1144,6 +1178,7 @@ export default function MorseVideoGeneratorTool() {
 function VideoSettingsEditor({
   audioSettings,
   audioTrackAvailable,
+  englishOverlayAvailable,
   fileName,
   fileNameId,
   onAudioSettingsChange,
@@ -1156,6 +1191,7 @@ function VideoSettingsEditor({
 }: {
   audioSettings: MorseVideoAudioSettings;
   audioTrackAvailable: boolean;
+  englishOverlayAvailable: boolean;
   fileName: string;
   fileNameId: string;
   onAudioSettingsChange: {
@@ -1241,6 +1277,16 @@ function VideoSettingsEditor({
                 />
               ))}
             </div>
+            {settings.resolution === "4k" ? (
+              <p
+                className="mt-3 max-w-[58ch] text-sm leading-relaxed text-slate-600"
+                data-testid="morse-video-4k-warning"
+              >
+                4K uses a much larger frame. It can take longer and use more
+                memory while each part is prepared, so it may not complete on
+                every device.
+              </p>
+            ) : null}
           </fieldset>
 
           <fieldset>
@@ -1288,7 +1334,7 @@ function VideoSettingsEditor({
           </fieldset>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-2">
           <TogglePill
             checked={settings.includeAudioTrack && audioTrackAvailable}
             disabled={!audioTrackAvailable}
@@ -1306,14 +1352,26 @@ function VideoSettingsEditor({
             rounded="lg"
           />
           <TogglePill
-            checked={settings.showMorseOverlay}
+            checked={settings.showMorseSymbols}
             label="Show Morse text overlay"
             onChange={(value) =>
               onVideoSettingsChange({
                 showMorseOverlay: value,
-                textDisplayMode: value ? "morse" : "none",
+                showMorseSymbols: value,
               })
             }
+            rounded="lg"
+          />
+          <TogglePill
+            checked={settings.showPlainText && englishOverlayAvailable}
+            describedBy={
+              englishOverlayAvailable
+                ? undefined
+                : "video-english-overlay-unavailable"
+            }
+            disabled={!englishOverlayAvailable}
+            label="Show English text overlay"
+            onChange={(value) => onVideoSettingsChange({ showPlainText: value })}
             rounded="lg"
           />
           <TogglePill
@@ -1323,6 +1381,15 @@ function VideoSettingsEditor({
             rounded="lg"
           />
         </div>
+
+        {!englishOverlayAvailable ? (
+          <p
+            id="video-english-overlay-unavailable"
+            className="text-sm leading-relaxed text-slate-600"
+          >
+            English text is available after the source can be decoded reliably.
+          </p>
+        ) : null}
 
         {!audioTrackAvailable ? (
           <p className="text-sm leading-relaxed text-slate-600">

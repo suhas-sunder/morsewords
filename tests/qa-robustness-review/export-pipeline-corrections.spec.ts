@@ -80,23 +80,6 @@ async function expectNoVideoExportControls(scope: Page | Locator) {
   await expect(scope.getByText("choose fewer chapters")).toHaveCount(0);
 }
 
-async function clickTimelineAt(page: Page, ratio: number, minValueMs = 1) {
-  const timeline = page.getByRole("slider", { name: "Live player timeline" });
-  await expect(timeline).toBeVisible();
-  const box = await timeline.boundingBox();
-  expect(box).not.toBeNull();
-  await timeline.click({
-    position: {
-      x: Math.max(4, Math.min(box!.width - 4, box!.width * ratio)),
-      y: box!.height / 2,
-    },
-  });
-  await expect
-    .poll(async () => Number(await timeline.getAttribute("aria-valuenow")))
-    .toBeGreaterThan(minValueMs - 1);
-  return timeline;
-}
-
 test.describe("MP3 export planning", () => {
   test("short MP3 exports plan as one direct file", () => {
     const settings = sanitizeBookExportSettings({
@@ -331,107 +314,50 @@ test.describe("MP3-only book and translator UI", () => {
   });
 });
 
-test.describe("dedicated live player", () => {
-  test("audiobook route plays, seeks, navigates sections, saves, and resets progress", async ({
+test.describe("audiobook audio workflow", () => {
+  test("keeps playback audio-only and exposes the local multipart export plan", async ({
     page,
   }) => {
     await openRoute(page, PUBLIC_AUDIOBOOK_PATH);
-    await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
-    await expect(page.getByTestId("book-video-preview-workflow")).toBeVisible();
-    await expect(page.getByTestId("morse-book-live-section-select")).toBeVisible();
-    await expect(page.getByTestId("morse-book-live-download-link")).toHaveAttribute(
-      "href",
-      /\/morse-code-books\/treasure-island/,
-    );
-    await expectNoVideoExportControls(page);
-    const playerBounds = await page
-      .getByTestId("book-video-preview-frame")
-      .boundingBox();
-    const livePanelBounds = await page
-      .getByTestId("morse-book-live-player")
-      .boundingBox();
-    expect(playerBounds?.width ?? 0).toBeGreaterThan(
-      (livePanelBounds?.width ?? 0) * 0.7,
-    );
 
     const player = page.getByTestId("morse-book-live-player");
-    await player.getByRole("button", { name: "Play live player" }).click();
-    await expect(page.getByTestId("book-video-preview")).toHaveAttribute(
-      "data-preview-playing",
-      "true",
+    const exportPlan = page.getByTestId("morse-audiobook-export-plan");
+    await expect(player).toBeVisible();
+    await expect(
+      player.getByRole("button", { name: "Play selection" }),
+    ).toBeVisible();
+    await expect(player.getByTestId("book-video-preview-workflow")).not.toBeVisible();
+    await expect(
+      player.getByTestId("morse-book-live-section-select"),
+    ).not.toBeVisible();
+    await expect(exportPlan).toBeVisible();
+    await expect(exportPlan.getByText("Export plan", { exact: true })).toBeVisible();
+    await expect(
+      exportPlan.getByText("Selection duration", { exact: true }),
+    ).toBeVisible();
+    await expect(exportPlan.getByText("Audio settings", { exact: true })).toBeVisible();
+    await expectNoVideoExportControls(page);
+
+    const source = page.locator(
+      "[data-mw-morse-book-translator-source-sections]",
     );
-    await player.getByRole("button", { name: "Pause live player" }).click();
+    await expect(
+      page.locator("[data-mw-morse-book-select-all-default]"),
+    ).toBeChecked();
+    await expect(
+      player.getByRole("button", { name: "Play selection" }),
+    ).toBeEnabled();
 
-    const sectionSelect = page.getByTestId("morse-book-live-section-select");
-    const originalSection = await sectionSelect.inputValue();
-    const sectionOptionCount = await sectionSelect.locator("option").count();
-    if (sectionOptionCount > 1) {
-      const nextSectionButton = player.getByRole("button", {
-        name: "Next section",
-      });
-      await expect(nextSectionButton).toBeEnabled();
-      await nextSectionButton.click();
-      await expect
-        .poll(() => sectionSelect.inputValue())
-        .not.toBe(originalSection);
-      await player.getByRole("button", { name: "Previous section" }).click();
-      await expect(sectionSelect).toHaveValue(originalSection);
-    }
-
-    const chapterValue = await sectionSelect.evaluate((element) => {
-      const select = element as HTMLSelectElement;
-      const options = Array.from(select.options);
-      return (
-        options.find((option) => /chapter/i.test(option.textContent ?? "")) ??
-        options[Math.min(1, Math.max(0, options.length - 1))] ??
-        options[0]
-      ).value;
-    });
-    await sectionSelect.selectOption(chapterValue);
-    await expect(sectionSelect).toHaveValue(chapterValue);
-
-    await clickTimelineAt(page, 0.8, 5_000);
-    await expect
-      .poll(async () =>
-        page.evaluate(() => {
-          const elapsedValues = Object.entries(localStorage)
-            .filter(([key]) =>
-              key.startsWith("morsewords:book-runtime:settings:v1:"),
-            )
-            .map(([, value]) => {
-              try {
-                return JSON.parse(value)?.livePlayer?.elapsedMs ?? 0;
-              } catch {
-                return 0;
-              }
-            })
-            .filter((value) => typeof value === "number");
-          return Math.max(0, ...elapsedValues);
-        }),
-      )
-      .toBeGreaterThan(0);
-    const savedText = await page.evaluate(() =>
-      Object.entries(localStorage)
-        .filter(([key]) => key.startsWith("morsewords:book-runtime:settings:v1:"))
-        .map(([, value]) => value)
-        .join("\n"),
+    await page.getByRole("button", { name: "Clear selection" }).click();
+    await expect(source).toHaveAttribute(
+      "data-mw-morse-book-translator-source-sections",
+      "",
     );
-    expect(savedText).toContain('"livePlayer"');
-    expect(savedText).not.toContain("TREASURE ISLAND");
-
-    await page.reload({ waitUntil: "domcontentloaded" });
-    await waitForRouteReady(page);
-    await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
-    const restoredTimeline = page.getByRole("slider", { name: "Live player timeline" });
-    await expect
-      .poll(async () => Number(await restoredTimeline.getAttribute("aria-valuenow")))
-      .toBeGreaterThan(0);
-
-    await page.getByTestId("morse-book-live-reset-progress").click();
-    await expect(page.getByText("Saved player progress reset.")).toBeVisible();
-    await expect
-      .poll(async () => Number(await restoredTimeline.getAttribute("aria-valuenow")))
-      .toBe(0);
+    await expect(
+      exportPlan.getByRole("button", {
+        name: /Download MP3|Download MP3 parts|Download ZIP/,
+      }),
+    ).toBeDisabled();
   });
 });
 

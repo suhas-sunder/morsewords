@@ -110,8 +110,11 @@ export function renderBookVideoFrame({
   timeline: MorseVideoTimeline;
   resolvedBackgroundStyle: ResolvedMorseVideoBackgroundStyle;
 }) {
+  // Retain the book renderer signature while the shared export scene owns
+  // visual timing and geometry. Audio settings are used by the recorder, not
+  // paint.
+  void exportSettings;
   return renderMorseVideoFrame({
-    audioSettings: bookExportToVideoAudioSettings(exportSettings),
     ctx,
     elapsedMs,
     frame,

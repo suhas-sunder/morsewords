@@ -3,6 +3,13 @@ import fs from "node:fs";
 
 import { ROUTES, absoluteUrl } from "../../app/client/data/routes";
 import { VIDEO_GENERATOR_PREFERENCES_KEY } from "../../app/client/components/morse-code-video-generator/videoGeneratorPreferences";
+import { textToMorse } from "../../app/client/components/shared/morseUtils";
+import {
+  buildMorseVideoSceneSnapshot,
+  buildMorseVideoTimelineFromMorse,
+  getMorseVideoFrameSize,
+} from "../../app/client/components/shared/video/morseVideoRenderer";
+import { DEFAULT_MORSE_VIDEO_SETTINGS } from "../../app/client/components/shared/video/morseVideoTypes";
 import {
   blockExternalNetwork,
   collectConsoleErrors,
@@ -357,6 +364,145 @@ async function expectNoRawInputInStorage(page: Page, rawText: string) {
   expect(storageSnapshot).not.toContain(rawText);
 }
 
+async function decodeMostRecentNativeVideoFrame(page: Page) {
+  return page.evaluate(async () => {
+    const blobs = (
+      window as typeof window & { __morseNativeVideoBlobs?: Blob[] }
+    ).__morseNativeVideoBlobs;
+    const blob = blobs?.at(-1);
+    if (!blob) return null;
+
+    const url = URL.createObjectURL(blob);
+    try {
+      const video = document.createElement("video");
+      video.muted = true;
+      video.preload = "auto";
+      video.src = url;
+      await new Promise<void>((resolve, reject) => {
+        video.addEventListener("loadeddata", () => resolve(), { once: true });
+        video.addEventListener(
+          "error",
+          () => reject(new Error("The recorded video could not be decoded.")),
+          { once: true },
+        );
+      });
+      const canvas = document.createElement("canvas");
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const context = canvas.getContext("2d", { willReadFrequently: true });
+      if (!context) throw new Error("Canvas decode context is unavailable.");
+      context.drawImage(video, 0, 0);
+      const sample = (x: number, y: number) =>
+        Array.from(context.getImageData(x, y, 1, 1).data);
+      const brandingPixels = context.getImageData(
+        0,
+        Math.max(0, video.videoHeight - 120),
+        Math.min(420, video.videoWidth),
+        Math.min(120, video.videoHeight),
+      ).data;
+      let nonBackgroundBrandingPixelCount = 0;
+      for (let index = 0; index < brandingPixels.length; index += 4) {
+        const [red, green, blue] = brandingPixels.slice(index, index + 3);
+        if (red < 220 || green < 220 || blue < 220) {
+          nonBackgroundBrandingPixelCount += 1;
+        }
+      }
+      return {
+        containsRequestedFilename: (await blob.text()).includes(
+          "native-morse-video",
+        ),
+        corners: [
+          sample(4, 4),
+          sample(video.videoWidth - 5, 4),
+          sample(4, video.videoHeight - 5),
+          sample(video.videoWidth - 5, video.videoHeight - 5),
+        ],
+        height: video.videoHeight,
+        nonBackgroundBrandingPixelCount,
+        width: video.videoWidth,
+      };
+    } finally {
+      URL.revokeObjectURL(url);
+    }
+  });
+}
+
+async function readProtectedPreviewGeometry(page: Page) {
+  return page.evaluate(() => {
+    const readBox = (testId: string) => {
+      const element = document.querySelector(`[data-testid="${testId}"]`);
+      if (!element) return null;
+      const rect = element.getBoundingClientRect();
+      const style = window.getComputedStyle(element);
+      return {
+        font: style.font,
+        height: rect.height,
+        width: rect.width,
+        x: rect.x,
+        y: rect.y,
+      };
+    };
+    const frame = readBox("morse-video-preview-frame");
+    if (!frame) throw new Error("Protected preview frame is not present.");
+    const relative = (box: ReturnType<typeof readBox>) =>
+      box
+        ? {
+            centerX: (box.x - frame.x + box.width / 2) / frame.width,
+            centerY: (box.y - frame.y + box.height / 2) / frame.height,
+            height: box.height / frame.height,
+            width: box.width / frame.width,
+            x: (box.x - frame.x) / frame.width,
+            y: (box.y - frame.y) / frame.height,
+          }
+        : null;
+    const textLayers = document.querySelector(
+      '[data-testid="morse-video-preview-text-layers"]',
+    );
+    return {
+      activeCharacter: textLayers?.getAttribute("data-active-character") ?? "",
+      activeMorse: textLayers?.getAttribute("data-active-morse") ?? "",
+      activeMorseCharacter: relative(
+        readBox("morse-video-preview-active-morse-character"),
+      ),
+      activeMorseWord: relative(
+        readBox("morse-video-preview-active-morse-word"),
+      ),
+      activeTextCharacter: relative(
+        readBox("morse-video-preview-active-text-character"),
+      ),
+      activeTextWord: relative(
+        readBox("morse-video-preview-active-text-word"),
+      ),
+      frame: { height: frame.height, width: frame.width },
+      lightbulb: relative(readBox("morse-video-preview-lightbulb")),
+      morse: relative(readBox("morse-video-preview-morse-overlay")),
+      text: relative(readBox("morse-video-preview-text-overlay")),
+    };
+  });
+}
+
+async function seekProtectedPreviewTo(page: Page, elapsedMs: number) {
+  const timeline = page.getByLabel("Video preview timeline");
+  if (elapsedMs <= 1) {
+    await timeline.focus();
+    await timeline.press("Home");
+    await expect(timeline).toHaveAttribute("aria-valuenow", "0");
+    return 0;
+  }
+  const durationMs = Number(await timeline.getAttribute("aria-valuemax"));
+  const box = await timeline.boundingBox();
+  expect(box).not.toBeNull();
+  const progress = Math.max(0, Math.min(1, elapsedMs / Math.max(1, durationMs)));
+  await timeline.click({
+    position: {
+      x: 16 + (box!.width - 32) * progress,
+      y: box!.height / 2,
+    },
+  });
+  await expect.poll(() => timeline.getAttribute("aria-valuenow")).not.toBe("0");
+  return Number(await timeline.getAttribute("aria-valuenow"));
+}
+
 async function contrastAgainstRenderedBackground(
   page: Page,
   selector: string,
@@ -509,53 +655,47 @@ test.describe("Morse code video generator", () => {
     expect(jsonLd).toContain("WebApplication");
   });
 
-  test("exports with native 720p and 1080p canvas quality settings", async ({
+  test("exports every selected native canvas resolution at its real dimensions", async ({
     page,
   }, testInfo) => {
     await installFastVideoRecorder(page);
     await openVideoGenerator(page);
     await page
       .getByLabel("Message to turn into a Morse code video")
-      .fill("SOS VIDEO QUALITY");
+      .fill("E");
     await page.getByLabel("File name").fill("video-quality-check");
 
     await expect(
-      page.getByRole("radio", { name: "720p (1280 x 720)" }),
-    ).toHaveAttribute("aria-checked", "true");
-    await expect(
       page.getByRole("radio", { name: "1080p (1920 x 1080)" }),
-    ).toHaveAttribute("aria-checked", "false");
-    await expect(
-      page.getByText("Export quality: 720p (1280 x 720)."),
-    ).toBeVisible();
-
-    await downloadVideoFile(page, testInfo);
-    expect((await readCapturedVideoSizes(page)).at(-1)).toEqual({
-      height: 720,
-      width: 1280,
-    });
-    expect((await readRecordedVideoOptions(page)).at(-1)).toEqual(
-      expect.objectContaining({
-        mimeType: expect.stringMatching(/^video\/webm/),
-        videoBitsPerSecond: expect.any(Number),
-      }),
-    );
-    expect(
-      ((await readRecordedVideoOptions(page)).at(-1)?.videoBitsPerSecond ?? 0),
-    ).toBeGreaterThanOrEqual(5_000_000);
-
-    await page.getByRole("radio", { name: "1080p (1920 x 1080)" }).click();
+    ).toHaveAttribute("aria-checked", "true");
     await expect(
       page.getByText("Export quality: 1080p (1920 x 1080)."),
     ).toBeVisible();
-    await downloadVideoFile(page, testInfo);
-    expect((await readCapturedVideoSizes(page)).at(-1)).toEqual({
-      height: 1080,
-      width: 1920,
-    });
-    expect(
-      ((await readRecordedVideoOptions(page)).at(-1)?.videoBitsPerSecond ?? 0),
-    ).toBeGreaterThanOrEqual(9_000_000);
+
+    const allExpected = [
+      ["720p (1280 x 720)", { height: 720, width: 1280 }, 5_000_000],
+      ["1080p (1920 x 1080)", { height: 1080, width: 1920 }, 9_000_000],
+      ["1440p (2560 x 1440)", { height: 1440, width: 2560 }, 16_000_000],
+      ["4K (3840 x 2160)", { height: 2160, width: 3840 }, 32_000_000],
+    ] as const;
+    // A native 4K capture is exercised once on desktop. Mobile still checks
+    // its UI/planning path elsewhere without allocating an extra 4K canvas.
+    const expected =
+      testInfo.project.name === "mobile-chromium"
+        ? allExpected.filter(([label]) => !label.startsWith("4K"))
+        : allExpected;
+    for (const [label, size, minimumBitrate] of expected) {
+      await page.getByRole("radio", { name: label }).click();
+      await expect(page.getByText(`Export quality: ${label}.`)).toBeVisible();
+      if (label.startsWith("4K")) {
+        await expect(page.getByTestId("morse-video-4k-warning")).toBeVisible();
+      }
+      await downloadVideoFile(page, testInfo);
+      expect((await readCapturedVideoSizes(page)).at(-1)).toEqual(size);
+      expect(
+        ((await readRecordedVideoOptions(page)).at(-1)?.videoBitsPerSecond ?? 0),
+      ).toBeGreaterThanOrEqual(minimumBitrate);
+    }
   });
 
   test("alias and sitemaps use the canonical video generator URL", async ({
@@ -611,6 +751,7 @@ test.describe("Morse code video generator", () => {
       .getByLabel("Message to turn into a Morse code video")
       .fill(RAW_SECRET_TEXT);
     await page.getByRole("radio", { name: /Dot/ }).click();
+    await page.getByRole("radio", { name: "4K (3840 x 2160)" }).click();
     await page.getByLabel("File name").fill("private-video-title");
 
     await expect
@@ -618,6 +759,11 @@ test.describe("Morse code video generator", () => {
         page.evaluate((key) => localStorage.getItem(key), VIDEO_GENERATOR_PREFERENCES_KEY),
       )
       .toContain('"visualStyle":"dot"');
+    await expect
+      .poll(() =>
+        page.evaluate((key) => localStorage.getItem(key), VIDEO_GENERATOR_PREFERENCES_KEY),
+      )
+      .toContain('"resolution":"4k"');
     await expect
       .poll(() =>
         page.evaluate((key) => localStorage.getItem(key), VIDEO_GENERATOR_PREFERENCES_KEY),
@@ -631,6 +777,9 @@ test.describe("Morse code video generator", () => {
       page.locator("[data-mw-video-generator-ready='true']"),
     ).toBeVisible();
     await expect(page.getByTestId("morse-video-preview-dot")).toBeVisible();
+    await expect(
+      page.getByRole("radio", { name: "4K (3840 x 2160)" }),
+    ).toHaveAttribute("aria-checked", "true");
     await expect(page.getByLabel("Message to turn into a Morse code video")).not.toHaveValue(
       RAW_SECRET_TEXT,
     );
@@ -765,6 +914,188 @@ test.describe("Morse code video generator", () => {
     );
   });
 
+  test("keeps export geometry aligned to the protected DOM preview at canonical timestamps", async ({
+    page,
+  }, testInfo) => {
+    test.skip(
+      testInfo.project.name !== "desktop-chromium",
+      "This is the protected 1056 × 594 desktop DOM reference geometry.",
+    );
+    await installFastVideoRecorder(page);
+    await openVideoGenerator(page);
+    await page
+      .getByLabel("Message to turn into a Morse code video")
+      .fill("SOS HELP");
+    await page
+      .getByRole("button", { name: "Show English text overlay" })
+      .click();
+
+    const timeline = buildMorseVideoTimelineFromMorse(
+      textToMorse("SOS HELP", { wordSeparator: "spaces" }),
+      { charWpm: 18, farnsworthWpm: 12, tailPaddingMs: 160 },
+      "SOS HELP",
+    );
+    const checkpoints = [
+      { expectedCharacter: "S", progress: 0 },
+      { expectedCharacter: "O", progress: 0.2 },
+      {
+        expectedCharacter: "H",
+        progress: 0.5,
+      },
+    ];
+
+    for (const checkpoint of checkpoints) {
+      const pageDurationMs = Number(
+        await page
+          .getByLabel("Video preview timeline")
+          .getAttribute("aria-valuemax"),
+      );
+      const elapsedMs = await seekProtectedPreviewTo(
+        page,
+        pageDurationMs * checkpoint.progress,
+      );
+      const previewGeometry = await readProtectedPreviewGeometry(page);
+      const exportScene = buildMorseVideoSceneSnapshot({
+        elapsedMs: (elapsedMs / pageDurationMs) * timeline.durationMs,
+        frame: getMorseVideoFrameSize("1080p"),
+        resolvedBackgroundStyle: "warm-morsewords",
+        settings: {
+          ...DEFAULT_MORSE_VIDEO_SETTINGS,
+          backgroundStyle: "warm-morsewords",
+          resolution: "1080p",
+          showMorseSymbols: true,
+          showPlainText: true,
+          visualStyle: "lightbulb",
+        },
+        timeline,
+      });
+
+      expect(previewGeometry.frame).toEqual({ height: 594, width: 1056 });
+      expect(previewGeometry.activeCharacter).toBe(checkpoint.expectedCharacter);
+      expect(exportScene.frameState.activeCharacter).toBe(
+        previewGeometry.activeCharacter,
+      );
+      expect(exportScene.frameState.activeCharacterMorse).toBe(
+        previewGeometry.activeMorse,
+      );
+      expect(previewGeometry.lightbulb).toMatchObject({
+        centerX: 0.5,
+        centerY: 222 / 594,
+        height: 120 / 594,
+      });
+      expect(previewGeometry.morse).toMatchObject({
+        centerY: 322.5 / 594,
+        height: 49 / 594,
+        y: 298 / 594,
+      });
+      expect(previewGeometry.text).toMatchObject({
+        centerY: 379.5 / 594,
+        height: 49 / 594,
+        y: 355 / 594,
+      });
+      expect(previewGeometry.activeMorseWord?.height).toBeCloseTo(49 / 594, 5);
+      expect(previewGeometry.activeMorseCharacter?.height).toBeCloseTo(
+        45 / 594,
+        5,
+      );
+      expect(previewGeometry.activeTextWord?.height).toBeCloseTo(49 / 594, 5);
+      expect(previewGeometry.activeTextCharacter?.height).toBeCloseTo(
+        45 / 594,
+        5,
+      );
+      expect(exportScene.signal.centerY).toBeCloseTo(
+        previewGeometry.lightbulb!.centerY,
+        5,
+      );
+      expect(exportScene.layout.textStartY).toBeCloseTo(
+        previewGeometry.morse!.centerY,
+        5,
+      );
+      expect(exportScene.layout.textLineGap).toBeCloseTo(
+        previewGeometry.text!.centerY - previewGeometry.morse!.centerY,
+        5,
+      );
+    }
+  });
+
+  test("keeps Morse and English overlays independent without fabricating decoded text", async ({
+    page,
+  }) => {
+    await installFastVideoRecorder(page);
+    await openVideoGenerator(page);
+
+    const morseOverlay = page.getByRole("button", {
+      name: "Show Morse text overlay",
+    });
+    const englishOverlay = page.getByRole("button", {
+      name: "Show English text overlay",
+    });
+    await expect(morseOverlay).toHaveAttribute("aria-pressed", "true");
+    await expect(englishOverlay).toHaveAttribute("aria-pressed", "false");
+    await expect(page.getByTestId("morse-video-preview-text-overlay")).toHaveCount(0);
+
+    await englishOverlay.click();
+    await expect(englishOverlay).toHaveAttribute("aria-pressed", "true");
+    await expect(page.getByTestId("morse-video-preview-morse-overlay")).toBeVisible();
+    await expect(page.getByTestId("morse-video-preview-text-overlay")).toBeVisible();
+
+    await morseOverlay.click();
+    await expect(morseOverlay).toHaveAttribute("aria-pressed", "false");
+    await expect(page.getByTestId("morse-video-preview-morse-overlay")).toHaveCount(0);
+    await expect(page.getByTestId("morse-video-preview-text-overlay")).toBeVisible();
+
+    await englishOverlay.click();
+    await expect(page.getByTestId("morse-video-preview-text-layers")).toHaveCount(0);
+    await expect(
+      page.getByTestId("morse-video-preview-active-morse-word"),
+    ).toHaveCount(0);
+    await expect(
+      page.getByTestId("morse-video-preview-active-text-word"),
+    ).toHaveCount(0);
+
+    await morseOverlay.click();
+    await expect(page.getByTestId("morse-video-preview-morse-overlay")).toBeVisible();
+    await expect(page.getByTestId("morse-video-preview-text-overlay")).toHaveCount(0);
+
+    await englishOverlay.hover();
+    expect(
+      await englishOverlay.evaluate((element) => element.matches(":hover")),
+    ).toBe(true);
+    await englishOverlay.focus();
+    expect(
+      await englishOverlay.evaluate((element) => element === document.activeElement),
+    ).toBe(true);
+    expect(await englishOverlay.getAttribute("class")).toMatch(/focus-visible/);
+
+    await page.getByRole("radio", { name: "Dark MorseWords" }).click();
+    await englishOverlay.click();
+    await expect(page.getByTestId("morse-video-preview-text-overlay")).toBeVisible();
+    await expect(
+      page.getByTestId("morse-video-preview-active-text-word"),
+    ).toBeVisible();
+
+    await page.getByRole("button", { name: "Morse code to video" }).click();
+    const morseInput = page.getByLabel("Morse code to turn into a video");
+    await morseInput.fill("... --- ...");
+    await expect(englishOverlay).toBeEnabled();
+    await expect(page.getByTestId("morse-video-preview-text-overlay")).toContainText(
+      "SOS",
+    );
+
+    await morseInput.fill("... --- ... $");
+    await expect(englishOverlay).toBeDisabled();
+    await expect(englishOverlay).toHaveAttribute(
+      "aria-describedby",
+      "video-english-overlay-unavailable",
+    );
+    await expect(
+      page.getByText(
+        "English text is available after the source can be decoded reliably.",
+      ),
+    ).toBeVisible();
+    await expect(page.getByTestId("morse-video-preview-text-overlay")).toHaveCount(0);
+  });
+
   test("unsupported browser video APIs disable WebM export with a clear message", async ({
     page,
   }) => {
@@ -775,6 +1106,29 @@ test.describe("Morse code video generator", () => {
     await expect(
       page.getByText("This browser does not support MediaRecorder video export."),
     ).toBeVisible();
+  });
+
+  test("waits for required export fonts and fails cleanly before recording", async ({
+    page,
+  }) => {
+    await installFastVideoRecorder(page);
+    await page.addInitScript(() => {
+      Object.defineProperty(document, "fonts", {
+        configurable: true,
+        value: {
+          check: () => false,
+          load: () => Promise.reject(new Error("font unavailable")),
+          ready: Promise.resolve(),
+        },
+      });
+    });
+    await openVideoGenerator(page);
+
+    await page.getByRole("button", { name: "Download WebM" }).click();
+    await expect(page.getByRole("alert")).toContainText(
+      /could not prepare its required fonts/i,
+    );
+    expect(await readRecordedVideoMimeTypes(page)).toEqual([]);
   });
 
   test("downloads a direct WebM and cancels stale work", async ({
@@ -820,10 +1174,10 @@ test.describe("Morse code video generator", () => {
   }, testInfo) => {
     await page.addInitScript(() => {
       const originalCreateObjectUrl = URL.createObjectURL.bind(URL);
-      const captures: Array<{ size: number; type: string }> = [];
+      const captures: Blob[] = [];
       URL.createObjectURL = (object: Blob | MediaSource) => {
         if (object instanceof Blob) {
-          captures.push({ size: object.size, type: object.type });
+          captures.push(object);
         }
         return originalCreateObjectUrl(object);
       };
@@ -841,15 +1195,31 @@ test.describe("Morse code video generator", () => {
     expect(webm.filename).toBe("native-morse-video.webm");
     expect(webm.bytes.length).toBeGreaterThan(0);
     const webmCapture = await page.evaluate(
-      () =>
-        (
+      () => {
+        const blob = (
           window as typeof window & {
-            __morseNativeVideoBlobs?: Array<{ size: number; type: string }>;
+            __morseNativeVideoBlobs?: Blob[];
           }
-        ).__morseNativeVideoBlobs?.at(-1),
+        ).__morseNativeVideoBlobs?.at(-1);
+        return blob ? { size: blob.size, type: blob.type } : null;
+      },
     );
     expect(webmCapture?.type).toMatch(/^video\/webm/i);
     expect(webmCapture?.size ?? 0).toBeGreaterThan(0);
+    const webmFrame = await decodeMostRecentNativeVideoFrame(page);
+    expect(webmFrame).toMatchObject({
+      containsRequestedFilename: false,
+      height: 1080,
+      width: 1920,
+    });
+    expect(webmFrame?.nonBackgroundBrandingPixelCount ?? 0).toBeGreaterThan(0);
+    for (const corner of webmFrame?.corners ?? []) {
+      // A decoded warm frame reaches every edge; there is no encoded black
+      // pillarbox or letterbox to mistake for media-player chrome.
+      expect(corner[0]).toBeGreaterThan(230);
+      expect(corner[1]).toBeGreaterThan(225);
+      expect(corner[2]).toBeGreaterThan(220);
+    }
 
     const mp4Option = page
       .getByLabel("Video format")
@@ -863,15 +1233,28 @@ test.describe("Morse code video generator", () => {
       expect(mp4.filename).toBe("native-morse-video-mp4.mp4");
       expect(mp4.bytes.length).toBeGreaterThan(0);
       const mp4Capture = await page.evaluate(
-        () =>
-          (
+        () => {
+          const blob = (
             window as typeof window & {
-              __morseNativeVideoBlobs?: Array<{ size: number; type: string }>;
+              __morseNativeVideoBlobs?: Blob[];
             }
-          ).__morseNativeVideoBlobs?.at(-1),
+          ).__morseNativeVideoBlobs?.at(-1);
+          return blob ? { size: blob.size, type: blob.type } : null;
+        },
       );
       expect(mp4Capture?.type).toMatch(/^video\/mp4/i);
       expect(mp4Capture?.size ?? 0).toBeGreaterThan(0);
+      const mp4Frame = await decodeMostRecentNativeVideoFrame(page);
+      expect(mp4Frame).toMatchObject({
+        containsRequestedFilename: false,
+        height: 1080,
+        width: 1920,
+      });
+      for (const corner of mp4Frame?.corners ?? []) {
+        expect(corner[0]).toBeGreaterThan(230);
+        expect(corner[1]).toBeGreaterThan(225);
+        expect(corner[2]).toBeGreaterThan(220);
+      }
     } else {
       await expect(
         page.getByText("MP4 not supported in this browser."),

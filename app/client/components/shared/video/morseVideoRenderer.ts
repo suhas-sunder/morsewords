@@ -101,6 +101,8 @@ export type MorseVideoCanonicalFrameState = {
   activeTimedEvent: MorseVideoTimedEvent | null;
   batchEndWordIndex: number | null;
   batchStartWordIndex: number | null;
+  displayWindowEndWordIndex: number | null;
+  displayWindowStartWordIndex: number | null;
   bulbActive: boolean;
   elapsedMs: number;
   morseWindow: string;
@@ -111,7 +113,6 @@ export type MorseVideoCanonicalFrameState = {
 };
 
 type RenderFrameOptions = {
-  audioSettings: MorseVideoAudioSettings;
   ctx: CanvasRenderingContext2D;
   elapsedMs: number;
   frame: MorseVideoFrameSize;
@@ -143,6 +144,92 @@ export type MorseVideoRecordingOptions = {
   videoBitsPerSecond: number;
 };
 
+export type MorseVideoExportProfile = {
+  frame: MorseVideoFrameSize;
+  /**
+   * A practical MediaRecorder target, not a promise that every browser will
+   * encode at this rate. It is also used only for conservative planning.
+   */
+  videoBitsPerSecond: number;
+  /**
+   * Bound one active canvas/recorder part. Bigger resolutions get shorter
+   * parts so a browser never has to retain a long, high-pixel-count render.
+   */
+  threshold: {
+    targetDurationMs: number;
+    maxDurationMs: number;
+    maxEstimatedBytes: number;
+  };
+};
+
+export type MorseVideoSceneSnapshot = {
+  active: boolean;
+  background: {
+    color: string;
+    height: 1;
+    width: 1;
+    x: 0;
+    y: 0;
+  };
+  branding: {
+    enabled: boolean;
+    safeInset: number;
+    text: string;
+    x: number;
+    y: number;
+  };
+  frameState: Pick<
+    MorseVideoCanonicalFrameState,
+    | "activeCharacter"
+    | "activeCharacterMorse"
+    | "batchEndWordIndex"
+    | "batchStartWordIndex"
+    | "displayWindowEndWordIndex"
+    | "displayWindowStartWordIndex"
+    | "bulbActive"
+    | "toneState"
+  >;
+  layout: {
+    maxTextWidth: number;
+    signalCenterY: number;
+    textLineGap: number;
+    textStartY: number;
+    wordWindowLimit: number;
+  };
+  signal: {
+    active: boolean;
+    centerX: 0.5;
+    centerY: number;
+    enabled: boolean;
+    style: MorseVideoSettings["visualStyle"];
+  };
+  text: {
+    morseSeparator: "/";
+    showMorseSymbols: boolean;
+    showPlainText: boolean;
+    visibleWindowEndWordIndex: number | null;
+    visibleWindowStartWordIndex: number | null;
+    words: Array<{
+      active: boolean;
+      activeCharIndex: number;
+      morse: string;
+      text: string;
+      wordIndex: number;
+    }>;
+  };
+};
+
+type MorseVideoScene = {
+  active: boolean;
+  background: string;
+  framePlan: MorseVideoExportFramePlan;
+  muted: string;
+  padding: number;
+  palette: ReturnType<typeof getFramePalette>;
+  snapshot: MorseVideoSceneSnapshot;
+  text: string;
+};
+
 export type MorseVideoTimelineWordGroup = {
   wordIndex: number;
   text: string;
@@ -154,16 +241,79 @@ const MIN_VIDEO_MS = 600;
 const MIN_READABLE_MORSE_SYMBOLS = 6;
 const INLINE_PREVIEW_WORD_WINDOW_LIMIT = 168;
 const FULLSCREEN_PREVIEW_WORD_WINDOW_LIMIT = 190;
-const VIDEO_BITRATE_720P = 5_000_000;
-const VIDEO_BITRATE_1080P = 9_000_000;
+// Export frames need a bounded visual window rather than the broad preview
+// character batch. The four-word lead keeps the active word moving through
+// later rows before older content scrolls away, while remaining small enough
+// for the canvas to keep a readable long-form display.
+const EXPORT_DISPLAY_WINDOW_WORD_LIMIT = 12;
+const EXPORT_DISPLAY_WINDOW_LEAD_WORDS = 4;
 const AUDIO_BITRATE = 128_000;
+
+const MORSE_VIDEO_EXPORT_PROFILES: Record<
+  MorseVideoResolution,
+  MorseVideoExportProfile
+> = {
+  "720p": {
+    frame: { width: 1280, height: 720 },
+    videoBitsPerSecond: 5_000_000,
+    threshold: {
+      targetDurationMs: 90_000,
+      maxDurationMs: 120_000,
+      maxEstimatedBytes: 96 * 1024 * 1024,
+    },
+  },
+  "1080p": {
+    frame: { width: 1920, height: 1080 },
+    videoBitsPerSecond: 9_000_000,
+    threshold: {
+      targetDurationMs: 60_000,
+      maxDurationMs: 75_000,
+      maxEstimatedBytes: 96 * 1024 * 1024,
+    },
+  },
+  "1440p": {
+    frame: { width: 2560, height: 1440 },
+    videoBitsPerSecond: 16_000_000,
+    threshold: {
+      targetDurationMs: 35_000,
+      maxDurationMs: 45_000,
+      maxEstimatedBytes: 96 * 1024 * 1024,
+    },
+  },
+  "4k": {
+    frame: { width: 3840, height: 2160 },
+    videoBitsPerSecond: 32_000_000,
+    threshold: {
+      targetDurationMs: 18_000,
+      maxDurationMs: 24_000,
+      maxEstimatedBytes: 96 * 1024 * 1024,
+    },
+  },
+};
 
 export function getMorseVideoFrameSize(
   resolution: MorseVideoResolution,
 ): MorseVideoFrameSize {
-  return resolution === "1080p"
-    ? { width: 1920, height: 1080 }
-    : { width: 1280, height: 720 };
+  const frame = MORSE_VIDEO_EXPORT_PROFILES[resolution].frame;
+  return { ...frame };
+}
+
+export function getMorseVideoExportProfile(
+  resolution: MorseVideoResolution,
+): MorseVideoExportProfile {
+  const profile = MORSE_VIDEO_EXPORT_PROFILES[resolution];
+  return {
+    ...profile,
+    frame: { ...profile.frame },
+    threshold: { ...profile.threshold },
+  };
+}
+
+function resolutionForFrame(frame: MorseVideoFrameSize): MorseVideoResolution {
+  if (frame.width >= 3840 || frame.height >= 2160) return "4k";
+  if (frame.width >= 2560 || frame.height >= 1440) return "1440p";
+  if (frame.width >= 1920 || frame.height >= 1080) return "1080p";
+  return "720p";
 }
 
 export function getMorseVideoFrameRate() {
@@ -202,25 +352,39 @@ export function buildMorseVideoExportFramePlan({
   const textLayerCount =
     (settings.showMorseSymbols ? 1 : 0) + (settings.showPlainText ? 1 : 0);
   const signalVisible = settings.showVisualSignal;
-  const nonTextSignalVisible =
-    settings.showVisualSignal && settings.visualStyle !== "morse-text";
   const wordWindowLimit = getMorseVideoPreviewWordWindowLimit({
     fullscreen: false,
     signalVisible,
     textLayerCount,
   });
-  const frameState = getMorseVideoCanonicalFrameState(
+  const canonicalFrameState = getMorseVideoCanonicalFrameState(
     timeline,
     elapsedMs,
     wordWindowLimit,
   );
-  const textStartY = nonTextSignalVisible
-    ? textLayerCount <= 1
-      ? frame.height * 0.64
-      : frame.height * 0.585
-    : textLayerCount <= 1
-      ? frame.height * 0.52
-      : frame.height * 0.47;
+  const exportDisplayWindow = buildMorseVideoExportDisplayWindow(
+    timeline,
+    canonicalFrameState.activeMorseToken,
+  );
+  const frameState: MorseVideoCanonicalFrameState = {
+    ...canonicalFrameState,
+    displayWindowEndWordIndex: exportDisplayWindow.endWordIndex,
+    displayWindowStartWordIndex: exportDisplayWindow.startWordIndex,
+    morseWindow:
+      exportDisplayWindow.words
+        .map((word) => word.morse)
+        .join(MORSE_DISPLAY_WORD_SEPARATOR) || canonicalFrameState.morseWindow,
+    plainTextWindow:
+      exportDisplayWindow.words.map((word) => word.text).join(" ") ||
+      canonicalFrameState.plainTextWindow,
+    wordWindow: exportDisplayWindow.words,
+  };
+  const layout = getPreviewMatchedExportBaselineLayout({
+    activeTextRow: frameState.wordWindow.some((word) => word.active),
+    frame,
+    settings,
+    textLayerCount,
+  });
 
   return {
     activeHighlight: {
@@ -230,13 +394,10 @@ export function buildMorseVideoExportFramePlan({
     frame,
     frameState,
     layout: {
-      maxTextWidth: frame.width * (nonTextSignalVisible ? 0.84 : 0.86),
-      signalCenterY:
-        nonTextSignalVisible && textLayerCount > 0
-          ? frame.height * 0.36
-          : frame.height * 0.5,
-      textLineGap: frame.height * (nonTextSignalVisible ? 0.082 : 0.12),
-      textStartY,
+      maxTextWidth: layout.maxTextWidth,
+      signalCenterY: layout.signalCenterY,
+      textLineGap: layout.textLineGap,
+      textStartY: layout.textStartY,
       wordWindowLimit,
     },
     resolution: settings.resolution,
@@ -255,11 +416,139 @@ export function getMorseVideoRecordingOptions({
   return {
     ...(includeAudioTrack ? { audioBitsPerSecond: AUDIO_BITRATE } : {}),
     mimeType,
-    videoBitsPerSecond:
-      frame.width >= 1920 || frame.height >= 1080
-        ? VIDEO_BITRATE_1080P
-        : VIDEO_BITRATE_720P,
+    videoBitsPerSecond: getMorseVideoExportProfile(
+      resolutionForFrame(frame),
+    ).videoBitsPerSecond,
   };
+}
+
+/**
+ * The normalized 16:9 scene for exported frames. The on-page preview keeps
+ * its established DOM layout and is intentionally not rendered from this.
+ */
+export function buildMorseVideoScene({
+  elapsedMs,
+  frame,
+  settings,
+  timeline,
+  resolvedBackgroundStyle,
+}: {
+  elapsedMs: number;
+  frame: MorseVideoFrameSize;
+  settings: MorseVideoSettings;
+  timeline: MorseVideoTimeline;
+  resolvedBackgroundStyle: ResolvedMorseVideoBackgroundStyle;
+}): MorseVideoScene {
+  const palette = getFramePalette(resolvedBackgroundStyle);
+  const framePlan = buildMorseVideoExportFramePlan({
+    elapsedMs,
+    frame,
+    settings,
+    timeline,
+  });
+  const active = framePlan.frameState.bulbActive;
+  const flashFrame =
+    settings.showVisualSignal && settings.visualStyle === "full-frame" && active;
+  const background = flashFrame ? palette.flashBackground : palette.background;
+  const text = flashFrame ? palette.flashText : palette.text;
+  const muted = flashFrame ? palette.flashMuted : palette.muted;
+  const padding = frame.width * (20 / EXPORT_PREVIEW_VIRTUAL_WIDTH);
+  const brandingBaselineY =
+    frame.height - frame.width * (20 / EXPORT_PREVIEW_VIRTUAL_WIDTH);
+  const normaliseX = (value: number) => roundSceneCoordinate(value / frame.width);
+  const normaliseY = (value: number) => roundSceneCoordinate(value / frame.height);
+
+  return {
+    active,
+    background,
+    framePlan,
+    muted,
+    padding,
+    palette,
+    text,
+    snapshot: {
+      active,
+      background: {
+        color: background,
+        height: 1,
+        width: 1,
+        x: 0,
+        y: 0,
+      },
+      branding: {
+        enabled: settings.showBranding,
+        safeInset: normaliseX(padding),
+        text: "www.morsewords.com",
+        x: normaliseX(padding),
+        y: normaliseY(brandingBaselineY),
+      },
+      frameState: {
+        activeCharacter: framePlan.frameState.activeCharacter,
+        activeCharacterMorse: framePlan.frameState.activeCharacterMorse,
+        batchEndWordIndex: framePlan.frameState.batchEndWordIndex,
+        batchStartWordIndex: framePlan.frameState.batchStartWordIndex,
+        displayWindowEndWordIndex:
+          framePlan.frameState.displayWindowEndWordIndex,
+        displayWindowStartWordIndex:
+          framePlan.frameState.displayWindowStartWordIndex,
+        bulbActive: framePlan.frameState.bulbActive,
+        toneState: framePlan.frameState.toneState,
+      },
+      layout: {
+        maxTextWidth: normaliseX(framePlan.layout.maxTextWidth),
+        signalCenterY: normaliseY(framePlan.layout.signalCenterY),
+        textLineGap: normaliseY(framePlan.layout.textLineGap),
+        textStartY: normaliseY(framePlan.layout.textStartY),
+        wordWindowLimit: framePlan.layout.wordWindowLimit,
+      },
+      signal: {
+        active,
+        centerX: 0.5,
+        centerY: normaliseY(framePlan.layout.signalCenterY),
+        enabled: settings.showVisualSignal,
+        style: settings.visualStyle,
+      },
+      text: {
+        morseSeparator: "/",
+        showMorseSymbols: settings.showMorseSymbols,
+        showPlainText: settings.showPlainText,
+        visibleWindowEndWordIndex:
+          framePlan.frameState.displayWindowEndWordIndex,
+        visibleWindowStartWordIndex:
+          framePlan.frameState.displayWindowStartWordIndex,
+        words: framePlan.frameState.wordWindow.map((word) => ({
+          active: word.active,
+          activeCharIndex: word.activeCharIndex,
+          morse: word.morse,
+          text: word.text,
+          wordIndex: word.wordIndex,
+        })),
+      },
+    },
+  };
+}
+
+/**
+ * A resolution-independent export geometry record for deterministic checks.
+ */
+export function buildMorseVideoSceneSnapshot(options: {
+  elapsedMs: number;
+  frame: MorseVideoFrameSize;
+  settings: MorseVideoSettings;
+  timeline: MorseVideoTimeline;
+  resolvedBackgroundStyle: ResolvedMorseVideoBackgroundStyle;
+}): MorseVideoSceneSnapshot {
+  return buildMorseVideoScene(options).snapshot;
+}
+
+export function serializeMorseVideoSceneSnapshot(
+  snapshot: MorseVideoSceneSnapshot,
+) {
+  return JSON.stringify(snapshot);
+}
+
+function roundSceneCoordinate(value: number) {
+  return Number(value.toFixed(6));
 }
 
 export function buildMorseVideoTimelineFromMorse(
@@ -375,6 +664,45 @@ export function getMorseVideoFrameWordBatch(
     getMorseVideoActiveToken(timeline, elapsedMs),
     limit,
   );
+}
+
+/**
+ * Export-only viewport selection. The DOM preview keeps its existing broad
+ * batch/window behavior; recorded frames use this smaller local word window
+ * so wrapped rows progress as the canonical active token advances.
+ */
+export function buildMorseVideoExportDisplayWindow(
+  timeline: MorseVideoTimeline,
+  activeToken: MorseVideoTimelineToken | null,
+) {
+  const groups = buildTimelineWordGroups(timeline);
+  if (groups.length === 0) {
+    return {
+      endWordIndex: null,
+      startWordIndex: null,
+      words: [] as MorseVideoFrameWordWindowItem[],
+    };
+  }
+  const activeOffset = groups.findIndex(
+    (group) => group.wordIndex === activeToken?.wordIndex,
+  );
+  const safeActiveOffset = activeOffset >= 0 ? activeOffset : 0;
+  const maxStart = Math.max(0, groups.length - EXPORT_DISPLAY_WINDOW_WORD_LIMIT);
+  const startOffset = Math.min(
+    maxStart,
+    Math.max(0, safeActiveOffset - EXPORT_DISPLAY_WINDOW_LEAD_WORDS),
+  );
+  const endOffset = Math.min(
+    groups.length,
+    startOffset + EXPORT_DISPLAY_WINDOW_WORD_LIMIT,
+  );
+  const visibleGroups = groups.slice(startOffset, endOffset);
+
+  return {
+    endWordIndex: visibleGroups.at(-1)?.wordIndex ?? null,
+    startWordIndex: visibleGroups[0]?.wordIndex ?? null,
+    words: buildWordWindowItems(visibleGroups, activeToken),
+  };
 }
 
 function buildWordWindowItems(
@@ -507,6 +835,8 @@ export function getMorseVideoCanonicalFrameState(
     activeTimedEvent,
     batchEndWordIndex: wordBatch?.batchEndWordIndex ?? null,
     batchStartWordIndex: wordBatch?.batchStartWordIndex ?? null,
+    displayWindowEndWordIndex: wordBatch?.batchEndWordIndex ?? null,
+    displayWindowStartWordIndex: wordBatch?.batchStartWordIndex ?? null,
     bulbActive: activeTimedEvent?.type === "mark",
     elapsedMs: safeElapsed,
     morseWindow,
@@ -690,7 +1020,6 @@ export async function recordMorseVideoCanvas({
 
     const startDelayMs = audio ? 80 : 0;
     renderMorseVideoFrame({
-      audioSettings,
       ctx,
       elapsedMs: 0,
       frame,
@@ -711,7 +1040,6 @@ export async function recordMorseVideoCanvas({
       });
     }
     await renderRealtimeFrames({
-      audioSettings,
       ctx,
       frame,
       resolvedBackgroundStyle,
@@ -747,7 +1075,6 @@ export async function recordMorseVideoCanvas({
 }
 
 export function renderMorseVideoFrame({
-  audioSettings,
   ctx,
   elapsedMs,
   frame,
@@ -755,100 +1082,32 @@ export function renderMorseVideoFrame({
   timeline,
   resolvedBackgroundStyle,
 }: RenderFrameOptions) {
-  const palette = getFramePalette(resolvedBackgroundStyle);
-  const framePlan = buildMorseVideoExportFramePlan({
+  const scene = buildMorseVideoScene({
     elapsedMs,
     frame,
     settings,
     timeline,
+    resolvedBackgroundStyle,
   });
-  const frameState = framePlan.frameState;
-  const active = frameState.bulbActive;
-  const flashFrame =
-    settings.showVisualSignal && settings.visualStyle === "full-frame" && active;
-  const background = flashFrame ? palette.flashBackground : palette.background;
-  const text = flashFrame ? palette.flashText : palette.text;
-  const accent = flashFrame ? palette.flashAccent : palette.accent;
-  const muted = flashFrame ? palette.flashMuted : palette.muted;
-  const padding = Math.round(frame.width * 0.045);
 
   ctx.clearRect(0, 0, frame.width, frame.height);
   ctx.imageSmoothingEnabled = false;
   ctx.imageSmoothingQuality = "high";
-  ctx.fillStyle = background;
-  ctx.fillRect(0, 0, frame.width, frame.height);
-
-  if (settings.showVisualSignal) {
-    if (settings.visualStyle === "dot") {
-      drawDot(
-        ctx,
-        frame,
-        active,
-        accent,
-        muted,
-        settings.intensity,
-        framePlan.layout.signalCenterY,
-      );
-    } else if (settings.visualStyle === "full-frame") {
-      drawFullFrameSignal(
-        ctx,
-        frame,
-        active,
-        accent,
-        muted,
-        settings.intensity,
-        framePlan.layout.signalCenterY,
-      );
-    } else if (settings.visualStyle === "morse-text") {
-      drawAnimatedMorseText(
-        ctx,
-        frame,
-        framePlan,
-        timeline,
-        elapsedMs,
-        text,
-        accent,
-        muted,
-        settings,
-        palette,
-      );
-    } else {
-      drawLightbulb(
-        ctx,
-        frame,
-        active,
-        accent,
-        muted,
-        settings.intensity,
-        framePlan.layout.signalCenterY,
-      );
-    }
-  }
-
-  if (settings.visualStyle !== "morse-text" || !settings.showVisualSignal) {
-    drawTextDisplay(
-      ctx,
-      frame,
-      framePlan,
-      timeline,
-      elapsedMs,
-      settings,
-      text,
-      muted,
-      padding,
-      palette,
-    );
-  }
-
-  if (settings.showBranding) {
-    drawFrameBranding(ctx, frame, muted, padding);
-  }
+  drawPreviewMatchedExportFrame({
+    active: scene.active,
+    ctx,
+    elapsedMs,
+    frame,
+    framePlan: scene.framePlan,
+    resolvedBackgroundStyle,
+    settings,
+    timeline,
+  });
 
   ctx.textAlign = "left";
 }
 
 function renderRealtimeFrames({
-  audioSettings,
   ctx,
   frame,
   resolvedBackgroundStyle,
@@ -858,7 +1117,6 @@ function renderRealtimeFrames({
   timeline,
   onProgress,
 }: {
-  audioSettings: MorseVideoAudioSettings;
   ctx: CanvasRenderingContext2D;
   frame: MorseVideoFrameSize;
   resolvedBackgroundStyle: ResolvedMorseVideoBackgroundStyle;
@@ -917,7 +1175,6 @@ function renderRealtimeFrames({
         throwIfAborted(signal);
         const elapsedMs = Math.max(0, performance.now() - startAt);
         renderMorseVideoFrame({
-          audioSettings,
           ctx,
           elapsedMs: Math.min(durationMs, elapsedMs),
           frame,
@@ -1072,6 +1329,865 @@ function cleanupStream(
   void context?.close().catch(() => undefined);
 }
 
+// The protected inline preview has a 1056 × 594 desktop content box at the
+// 1440px reference viewport. These values reproduce that existing DOM/CSS
+// composition in the export canvas only; the preview itself remains DOM based.
+const EXPORT_PREVIEW_VIRTUAL_WIDTH = 1056;
+const EXPORT_PREVIEW_VIRTUAL_HEIGHT = 594;
+const EXPORT_PREVIEW_FRAME_PADDING = 24;
+const EXPORT_PREVIEW_CONTENT_PADDING_TOP = 8;
+const EXPORT_PREVIEW_CONTENT_PADDING_BOTTOM = 36;
+const EXPORT_PREVIEW_TEXT_WIDTH =
+  EXPORT_PREVIEW_VIRTUAL_WIDTH - EXPORT_PREVIEW_FRAME_PADDING * 2;
+const EXPORT_PREVIEW_BRANDING_BASELINE_Y = 574;
+const EXPORT_LIGHTBULB_PATH =
+  "M7 20h4c0 1.1-.9 2-2 2s-2-.9-2-2m-2-1h8v-2H5zm11.5-9.5c0 3.82-2.66 5.86-3.77 6.5H5.27c-1.11-.64-3.77-2.68-3.77-6.5C1.5 5.36 4.86 2 9 2s7.5 3.36 7.5 7.5m4.87-2.13L20 8l1.37.63L22 10l.63-1.37L24 8l-1.37-.63L22 6zM19 6l.94-2.06L22 3l-2.06-.94L19 0l-.94 2.06L16 3l2.06.94z";
+
+type ExportPreviewTextKind = "morse" | "plain";
+
+type ExportPreviewTextStyle = {
+  activeCharacterPaddingX: number;
+  activeWordPaddingX: number;
+  activeWordPaddingY: number;
+  font: string;
+  fontSize: number;
+  lineHeight: number;
+  separatorMargin: number;
+  separatorWidth: number;
+  wordMargin: number;
+};
+
+type ExportPreviewWordMetrics = {
+  activeSegmentIndex: number;
+  advance: number;
+  boxWidth: number;
+  internalSeparatorWidth: number;
+  segmentWidths: number[];
+  segments: string[];
+};
+
+type ExportPreviewLineItem = {
+  metrics: ExportPreviewWordMetrics;
+  word: MorseVideoFrameWordWindowItem;
+};
+
+type ExportPreviewLine = {
+  items: ExportPreviewLineItem[];
+  width: number;
+};
+
+type ExportPreviewRow = {
+  kind: ExportPreviewTextKind;
+  lineHeights: number[];
+  lines: ExportPreviewLine[];
+  style: ExportPreviewTextStyle;
+};
+
+let exportLightbulbPath: Path2D | null | undefined;
+
+function getPreviewMatchedExportBaselineLayout({
+  activeTextRow,
+  frame,
+  settings,
+  textLayerCount,
+}: {
+  activeTextRow: boolean;
+  frame: MorseVideoFrameSize;
+  settings: MorseVideoSettings;
+  textLayerCount: number;
+}) {
+  const scale = frame.width / EXPORT_PREVIEW_VIRTUAL_WIDTH;
+  const visualHeight = settings.showVisualSignal
+    ? exportPreviewVisualHeight(settings.visualStyle, 1)
+    : 0;
+  const textRowHeight = 45 + (activeTextRow ? 4 : 0);
+  const textHeight =
+    textLayerCount * textRowHeight + Math.max(0, textLayerCount - 1) * 8;
+  const visualGap = visualHeight > 0 && textLayerCount > 0 ? 16 : 0;
+  const totalHeight = visualHeight + visualGap + textHeight;
+  const contentHeight =
+    EXPORT_PREVIEW_VIRTUAL_HEIGHT - EXPORT_PREVIEW_FRAME_PADDING * 2;
+  const usableContentHeight =
+    contentHeight -
+    EXPORT_PREVIEW_CONTENT_PADDING_TOP -
+    EXPORT_PREVIEW_CONTENT_PADDING_BOTTOM;
+  const top =
+    EXPORT_PREVIEW_FRAME_PADDING +
+    EXPORT_PREVIEW_CONTENT_PADDING_TOP +
+    (usableContentHeight - totalHeight) / 2;
+  const textTop = top + visualHeight + visualGap;
+
+  return {
+    maxTextWidth: EXPORT_PREVIEW_TEXT_WIDTH * scale,
+    signalCenterY: (top + visualHeight / 2) * scale,
+    textLineGap: (textRowHeight + 8) * scale,
+    textStartY:
+      (textLayerCount > 0 ? textTop + textRowHeight / 2 : top + totalHeight / 2) *
+      scale,
+  };
+}
+
+/**
+ * Canvas cannot capture the protected DOM preview. This export-only painter
+ * mirrors its established desktop inline 16:9 layout in a virtual 1120×630
+ * surface, then scales that scene to the selected output resolution.
+ */
+function drawPreviewMatchedExportFrame({
+  active,
+  ctx,
+  elapsedMs,
+  frame,
+  framePlan,
+  resolvedBackgroundStyle,
+  settings,
+  timeline,
+}: {
+  active: boolean;
+  ctx: CanvasRenderingContext2D;
+  elapsedMs: number;
+  frame: MorseVideoFrameSize;
+  framePlan: MorseVideoExportFramePlan;
+  resolvedBackgroundStyle: ResolvedMorseVideoBackgroundStyle;
+  settings: MorseVideoSettings;
+  timeline: MorseVideoTimeline;
+}) {
+  const scale = frame.width / EXPORT_PREVIEW_VIRTUAL_WIDTH;
+  const fullFrameActive =
+    settings.showVisualSignal && settings.visualStyle === "full-frame" && active;
+  const palette = getExportPreviewPalette({
+    fullFrameActive,
+    resolvedBackgroundStyle,
+  });
+
+  ctx.save();
+  ctx.scale(scale, scale);
+  ctx.fillStyle = palette.background;
+  ctx.fillRect(
+    0,
+    0,
+    EXPORT_PREVIEW_VIRTUAL_WIDTH,
+    frame.height / scale,
+  );
+
+  let composition = buildExportPreviewComposition({
+    ctx,
+    elapsedMs,
+    fontScale: 1,
+    framePlan,
+    settings,
+    timeline,
+  });
+  const availableHeight =
+    EXPORT_PREVIEW_VIRTUAL_HEIGHT - EXPORT_PREVIEW_FRAME_PADDING * 2;
+  if (composition.height > availableHeight) {
+    composition = buildExportPreviewComposition({
+      ctx,
+      elapsedMs,
+      fontScale: availableHeight / composition.height,
+      framePlan,
+      settings,
+      timeline,
+    });
+  }
+
+  const usableContentHeight =
+    availableHeight -
+    EXPORT_PREVIEW_CONTENT_PADDING_TOP -
+    EXPORT_PREVIEW_CONTENT_PADDING_BOTTOM;
+  let cursorY =
+    EXPORT_PREVIEW_FRAME_PADDING +
+    EXPORT_PREVIEW_CONTENT_PADDING_TOP +
+    (usableContentHeight - composition.height) / 2;
+  if (composition.visualHeight > 0) {
+    drawExportPreviewVisual({
+      active,
+      centerY: cursorY + composition.visualHeight / 2,
+      ctx,
+      fontScale: composition.fontScale,
+      framePlan,
+      palette,
+      settings,
+      timeline,
+    });
+    cursorY += composition.visualHeight;
+    if (composition.rows.length > 0) cursorY += composition.visualGap;
+  }
+
+  composition.rows.forEach((row, rowIndex) => {
+    cursorY = drawExportPreviewRow({
+      ctx,
+      palette,
+      row,
+      top: cursorY,
+    });
+    if (rowIndex < composition.rows.length - 1) {
+      cursorY += composition.rowGap;
+    }
+  });
+
+  if (settings.showBranding) {
+    drawExportPreviewBranding(ctx, palette.text);
+  }
+  ctx.restore();
+}
+
+function buildExportPreviewComposition({
+  ctx,
+  elapsedMs,
+  fontScale,
+  framePlan,
+  settings,
+  timeline,
+}: {
+  ctx: CanvasRenderingContext2D;
+  elapsedMs: number;
+  fontScale: number;
+  framePlan: MorseVideoExportFramePlan;
+  settings: MorseVideoSettings;
+  timeline: MorseVideoTimeline;
+}) {
+  const rows = buildExportPreviewRows({
+    ctx,
+    elapsedMs,
+    fontScale,
+    framePlan,
+    settings,
+    timeline,
+  });
+  const visualHeight = settings.showVisualSignal
+    ? exportPreviewVisualHeight(settings.visualStyle, fontScale)
+    : 0;
+  const visualGap = visualHeight > 0 && rows.length > 0 ? 16 * fontScale : 0;
+  const rowGap = rows.length > 1 ? 8 * fontScale : 0;
+  const rowHeight = rows.reduce(
+    (total, row) =>
+      total + row.lineHeights.reduce((lineTotal, height) => lineTotal + height, 0),
+    0,
+  );
+
+  return {
+    fontScale,
+    height: visualHeight + visualGap + rowHeight + rowGap * Math.max(0, rows.length - 1),
+    rowGap,
+    rows,
+    visualGap,
+    visualHeight,
+  };
+}
+
+function buildExportPreviewRows({
+  ctx,
+  elapsedMs,
+  fontScale,
+  framePlan,
+  settings,
+  timeline,
+}: {
+  ctx: CanvasRenderingContext2D;
+  elapsedMs: number;
+  fontScale: number;
+  framePlan: MorseVideoExportFramePlan;
+  settings: MorseVideoSettings;
+  timeline: MorseVideoTimeline;
+}) {
+  const rows: ExportPreviewRow[] = [];
+  const textState = getMorseVideoFrameTextState(timeline, elapsedMs);
+  const maxWidth = EXPORT_PREVIEW_TEXT_WIDTH;
+  const plainTextLength =
+    framePlan.frameState.plainTextWindow.length || textState.plainText.length;
+
+  if (settings.showMorseSymbols) {
+    const row = createExportPreviewRow({
+      ctx,
+      fallback: framePlan.frameState.morseWindow || textState.morseText,
+      fontScale,
+      kind: "morse",
+      maxWidth,
+      plainTextLength,
+      words: framePlan.frameState.wordWindow,
+    });
+    if (row) rows.push(row);
+  }
+  if (settings.showPlainText) {
+    const row = createExportPreviewRow({
+      ctx,
+      fallback:
+        framePlan.frameState.plainTextWindow ||
+        currentTextExcerpt(timeline, elapsedMs, 220) ||
+        textState.plainText,
+      fontScale,
+      kind: "plain",
+      maxWidth,
+      plainTextLength,
+      words: framePlan.frameState.wordWindow,
+    });
+    if (row) rows.push(row);
+  }
+
+  return rows;
+}
+
+function createExportPreviewRow({
+  ctx,
+  fallback,
+  fontScale,
+  kind,
+  maxWidth,
+  plainTextLength,
+  words,
+}: {
+  ctx: CanvasRenderingContext2D;
+  fallback: string;
+  fontScale: number;
+  kind: ExportPreviewTextKind;
+  maxWidth: number;
+  plainTextLength: number;
+  words: MorseVideoFrameWordWindowItem[];
+}): ExportPreviewRow | null {
+  const visibleWords = words.filter((word) =>
+    Boolean(kind === "morse" ? word.morse : word.text),
+  );
+  const rowWords =
+    visibleWords.length > 0
+      ? visibleWords
+      : fallback.trim()
+        ? [
+            {
+              active: false,
+              activeCharacter: "",
+              activeCharacterMorse: "",
+              activeCharIndex: -1,
+              morse: kind === "morse" ? fallback : "",
+              text: kind === "plain" ? fallback : "",
+              wordIndex: 0,
+            },
+          ]
+        : [];
+  if (rowWords.length === 0) return null;
+
+  const style = getExportPreviewTextStyle({
+    fontScale,
+    kind,
+    plainTextLength,
+  });
+  ctx.font = style.font;
+  const lines = layoutExportPreviewWords(ctx, rowWords, kind, style, maxWidth);
+  return {
+    kind,
+    lineHeights: lines.map((line) =>
+      line.items.some(({ word }) => word.active)
+        ? style.lineHeight + style.activeWordPaddingY * 2
+        : style.lineHeight,
+    ),
+    lines,
+    style,
+  };
+}
+
+function getExportPreviewTextStyle({
+  fontScale,
+  kind,
+  plainTextLength,
+}: {
+  fontScale: number;
+  kind: ExportPreviewTextKind;
+  plainTextLength: number;
+}): ExportPreviewTextStyle {
+  const fontSize =
+    kind === "morse"
+      ? 36 * fontScale
+      : (plainTextLength > 44 ? 30 : 36) * fontScale;
+  return {
+    activeCharacterPaddingX: 4 * fontScale,
+    activeWordPaddingX: 6 * fontScale,
+    activeWordPaddingY: 2 * fontScale,
+    font: `${kind === "morse" ? 700 : 800} ${fontSize}px "${
+      kind === "morse" ? "Space Mono" : "DM Sans"
+    }", ${kind === "morse" ? "monospace" : "sans-serif"}`,
+    fontSize,
+    lineHeight: fontSize * 1.25,
+    separatorMargin: kind === "morse" ? fontSize * 0.1 : 4 * fontScale,
+    separatorWidth: 0,
+    wordMargin: 4 * fontScale,
+  };
+}
+
+function layoutExportPreviewWords(
+  ctx: CanvasRenderingContext2D,
+  words: MorseVideoFrameWordWindowItem[],
+  kind: ExportPreviewTextKind,
+  style: ExportPreviewTextStyle,
+  maxWidth: number,
+) {
+  const separatorWidth =
+    measureCanvasTextWidth(ctx, "/") + style.separatorMargin * 2;
+  style.separatorWidth = separatorWidth;
+  const lines: ExportPreviewLine[] = [];
+  let currentItems: ExportPreviewLineItem[] = [];
+  let currentWidth = 0;
+
+  words.forEach((word) => {
+    const metrics = measureExportPreviewWord(ctx, word, kind, style);
+    const separator = currentItems.length > 0 ? separatorWidth : 0;
+    if (
+      currentItems.length > 0 &&
+      currentWidth + separator + metrics.advance > maxWidth
+    ) {
+      lines.push({ items: currentItems, width: currentWidth });
+      currentItems = [{ metrics, word }];
+      currentWidth = metrics.advance;
+      return;
+    }
+    currentItems.push({ metrics, word });
+    currentWidth += separator + metrics.advance;
+  });
+  if (currentItems.length > 0) {
+    lines.push({ items: currentItems, width: currentWidth });
+  }
+  return lines;
+}
+
+function measureExportPreviewWord(
+  ctx: CanvasRenderingContext2D,
+  word: MorseVideoFrameWordWindowItem,
+  kind: ExportPreviewTextKind,
+  style: ExportPreviewTextStyle,
+): ExportPreviewWordMetrics {
+  const source = kind === "morse" ? word.morse : word.text;
+  const segments =
+    kind === "morse"
+      ? source.split(" ").filter(Boolean)
+      : Array.from(source);
+  const activeSegmentIndex = word.active ? word.activeCharIndex : -1;
+  const internalSeparatorWidth =
+    kind === "morse" ? measureCanvasTextWidth(ctx, " ") : 0;
+  const segmentWidths = segments.map((segment) => measureCanvasTextWidth(ctx, segment));
+  let contentWidth = segmentWidths.reduce((total, width) => total + width, 0);
+  if (segments.length > 1) {
+    contentWidth += internalSeparatorWidth * (segments.length - 1);
+  }
+  if (activeSegmentIndex >= 0 && activeSegmentIndex < segments.length) {
+    contentWidth += style.activeCharacterPaddingX * 2;
+  }
+  const boxWidth =
+    contentWidth + (word.active ? style.activeWordPaddingX * 2 : 0);
+
+  return {
+    activeSegmentIndex,
+    advance: boxWidth + style.wordMargin * 2,
+    boxWidth,
+    internalSeparatorWidth,
+    segmentWidths,
+    segments,
+  };
+}
+
+function drawExportPreviewRow({
+  ctx,
+  palette,
+  row,
+  top,
+}: {
+  ctx: CanvasRenderingContext2D;
+  palette: ReturnType<typeof getExportPreviewPalette>;
+  row: ExportPreviewRow;
+  top: number;
+}) {
+  let cursorY = top;
+  ctx.font = row.style.font;
+  ctx.textAlign = "left";
+  ctx.textBaseline = "middle";
+  row.lines.forEach((line, lineIndex) => {
+    const lineHeight = row.lineHeights[lineIndex] ?? row.style.lineHeight;
+    drawExportPreviewLine({
+      centerY: cursorY + lineHeight / 2,
+      ctx,
+      line,
+      lineHeight,
+      palette,
+      row,
+    });
+    cursorY += lineHeight;
+  });
+  return cursorY;
+}
+
+function drawExportPreviewLine({
+  centerY,
+  ctx,
+  line,
+  lineHeight,
+  palette,
+  row,
+}: {
+  centerY: number;
+  ctx: CanvasRenderingContext2D;
+  line: ExportPreviewLine;
+  lineHeight: number;
+  palette: ReturnType<typeof getExportPreviewPalette>;
+  row: ExportPreviewRow;
+}) {
+  let x = (EXPORT_PREVIEW_VIRTUAL_WIDTH - line.width) / 2;
+  line.items.forEach((item, index) => {
+    if (index > 0) {
+      ctx.save();
+      ctx.globalAlpha = row.kind === "morse" ? 0.7 : 0.55;
+      ctx.fillStyle = palette.text;
+      ctx.fillText("/", x + row.style.separatorMargin, centerY);
+      ctx.restore();
+      x += row.style.separatorWidth;
+    }
+    drawExportPreviewWord({
+      centerY,
+      ctx,
+      item,
+      lineHeight,
+      palette,
+      row,
+      x,
+    });
+    x += item.metrics.advance;
+  });
+}
+
+function drawExportPreviewWord({
+  centerY,
+  ctx,
+  item,
+  lineHeight,
+  palette,
+  row,
+  x,
+}: {
+  centerY: number;
+  ctx: CanvasRenderingContext2D;
+  item: ExportPreviewLineItem;
+  lineHeight: number;
+  palette: ReturnType<typeof getExportPreviewPalette>;
+  row: ExportPreviewRow;
+  x: number;
+}) {
+  const { metrics, word } = item;
+  const boxX = x + row.style.wordMargin;
+  const wordBoxHeight = lineHeight;
+  const wordBoxY = centerY - wordBoxHeight / 2;
+  const contentX = boxX + (word.active ? row.style.activeWordPaddingX : 0);
+
+  if (word.active) {
+    drawExportRoundedRect({
+      ctx,
+      fill: palette.activeWordFill,
+      height: wordBoxHeight,
+      lineWidth: Math.max(1, row.style.fontSize / 36),
+      radius: 8 * (row.style.wordMargin / 4),
+      stroke: palette.activeWordStroke,
+      width: metrics.boxWidth,
+      x: boxX,
+      y: wordBoxY,
+    });
+  }
+
+  let segmentX = contentX;
+  metrics.segments.forEach((segment, index) => {
+    const segmentWidth = metrics.segmentWidths[index];
+    const activeCharacter =
+      word.active && metrics.activeSegmentIndex === index;
+    if (activeCharacter) {
+      drawExportRoundedRect({
+        ctx,
+        fill: palette.activeCharacterFill,
+        height: row.style.lineHeight,
+        lineWidth: 0,
+        radius: 6 * (row.style.wordMargin / 4),
+        stroke: palette.activeCharacterFill,
+        width: segmentWidth + row.style.activeCharacterPaddingX * 2,
+        x: segmentX - row.style.activeCharacterPaddingX,
+        y: centerY - row.style.lineHeight / 2,
+      });
+    }
+    ctx.fillStyle = activeCharacter
+      ? palette.activeCharacterText
+      : word.active
+        ? palette.activeWordText
+        : palette.text;
+    ctx.fillText(segment, segmentX, centerY);
+    segmentX += segmentWidth;
+    if (index < metrics.segments.length - 1) {
+      segmentX += metrics.internalSeparatorWidth;
+    }
+  });
+}
+
+function drawExportPreviewVisual({
+  active,
+  centerY,
+  ctx,
+  fontScale,
+  framePlan,
+  palette,
+  settings,
+  timeline,
+}: {
+  active: boolean;
+  centerY: number;
+  ctx: CanvasRenderingContext2D;
+  fontScale: number;
+  framePlan: MorseVideoExportFramePlan;
+  palette: ReturnType<typeof getExportPreviewPalette>;
+  settings: MorseVideoSettings;
+  timeline: MorseVideoTimeline;
+}) {
+  const centerX = EXPORT_PREVIEW_VIRTUAL_WIDTH / 2;
+  if (settings.visualStyle === "morse-text") {
+    const symbolText =
+      framePlan.frameState.morseWindow ||
+      recentMorseSymbols(timeline, framePlan.frameState.elapsedMs, 44) ||
+      "...";
+    ctx.save();
+    ctx.fillStyle = active ? "#7dd3fc" : palette.text;
+    ctx.font = `700 ${60 * fontScale}px "Space Mono", monospace`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(
+      truncateExportPreviewText(ctx, symbolText, EXPORT_PREVIEW_TEXT_WIDTH),
+      centerX,
+      centerY,
+    );
+    ctx.restore();
+    return;
+  }
+
+  const opacity = exportPreviewIntensityAlpha(settings.intensity);
+  if (settings.visualStyle === "lightbulb") {
+    drawExportPreviewLightbulb({
+      active,
+      centerX,
+      centerY,
+      color: active ? "#0ea5e9" : "#94a3b8",
+      ctx,
+      opacity,
+      size: 120 * fontScale,
+    });
+    return;
+  }
+
+  const radius = 72 * fontScale;
+  ctx.save();
+  ctx.globalAlpha = opacity;
+  if (active) {
+    ctx.fillStyle = "#bae6fd";
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius + 4 * fontScale, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.fillStyle = active ? "#7dd3fc" : "#94a3b8";
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawExportPreviewLightbulb({
+  active,
+  centerX,
+  centerY,
+  color,
+  ctx,
+  opacity,
+  size,
+}: {
+  active: boolean;
+  centerX: number;
+  centerY: number;
+  color: string;
+  ctx: CanvasRenderingContext2D;
+  opacity: number;
+  size: number;
+}) {
+  const path = getExportLightbulbPath();
+  ctx.save();
+  ctx.globalAlpha = opacity;
+  ctx.fillStyle = color;
+  ctx.translate(centerX - size / 2, centerY - size / 2);
+  ctx.scale(size / 24, size / 24);
+  if (path) {
+    ctx.fill(path);
+  } else {
+    // This fallback is only for browsers without Path2D SVG parsing.
+    ctx.beginPath();
+    ctx.arc(9, 9.5, 7.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillRect(5, 15, 8, 2);
+    ctx.fillRect(7, 18, 4, 1);
+    drawSignalSparkles(ctx, 9, 9, 7.5, color);
+  }
+  ctx.restore();
+}
+
+function getExportLightbulbPath() {
+  if (exportLightbulbPath !== undefined) return exportLightbulbPath;
+  if (typeof Path2D === "undefined") {
+    exportLightbulbPath = null;
+    return exportLightbulbPath;
+  }
+  try {
+    exportLightbulbPath = new Path2D(EXPORT_LIGHTBULB_PATH);
+  } catch {
+    exportLightbulbPath = null;
+  }
+  return exportLightbulbPath;
+}
+
+function drawExportPreviewBranding(
+  ctx: CanvasRenderingContext2D,
+  color: string,
+) {
+  const text = "WWW.MORSEWORDS.COM";
+  ctx.save();
+  ctx.fillStyle = color;
+  ctx.globalAlpha = 0.7;
+  ctx.font = '700 11px "Space Mono", monospace';
+  ctx.textAlign = "left";
+  ctx.textBaseline = "alphabetic";
+  drawTrackedExportPreviewText(
+    ctx,
+    text,
+    20,
+    EXPORT_PREVIEW_BRANDING_BASELINE_Y,
+    11 * 0.14,
+  );
+  ctx.restore();
+}
+
+function drawTrackedExportPreviewText(
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  x: number,
+  y: number,
+  tracking: number,
+) {
+  let cursor = x;
+  for (const character of text) {
+    ctx.fillText(character, cursor, y);
+    cursor += measureCanvasTextWidth(ctx, character) + tracking;
+  }
+}
+
+function drawExportRoundedRect({
+  ctx,
+  fill,
+  height,
+  lineWidth,
+  radius,
+  stroke,
+  width,
+  x,
+  y,
+}: {
+  ctx: CanvasRenderingContext2D;
+  fill: string;
+  height: number;
+  lineWidth: number;
+  radius: number;
+  stroke: string;
+  width: number;
+  x: number;
+  y: number;
+}) {
+  const safeRadius = Math.min(radius, width / 2, height / 2);
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(x + safeRadius, y);
+  ctx.lineTo(x + width - safeRadius, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + safeRadius);
+  ctx.lineTo(x + width, y + height - safeRadius);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - safeRadius, y + height);
+  ctx.lineTo(x + safeRadius, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - safeRadius);
+  ctx.lineTo(x, y + safeRadius);
+  ctx.quadraticCurveTo(x, y, x + safeRadius, y);
+  ctx.closePath();
+  ctx.fillStyle = fill;
+  ctx.fill();
+  if (lineWidth > 0) {
+    ctx.strokeStyle = stroke;
+    ctx.lineWidth = lineWidth;
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function getExportPreviewPalette({
+  fullFrameActive,
+  resolvedBackgroundStyle,
+}: {
+  fullFrameActive: boolean;
+  resolvedBackgroundStyle: ResolvedMorseVideoBackgroundStyle;
+}) {
+  const dark = resolvedBackgroundStyle === "dark-morsewords";
+  if (fullFrameActive) {
+    return {
+      activeCharacterFill: dark ? "#ffffff" : "#ffffff",
+      activeCharacterText: "#08324f",
+      activeWordFill: withAlpha("#082f49", 0.2),
+      activeWordStroke: withAlpha("#082f49", 0.2),
+      activeWordText: "#08324f",
+      background: dark ? "#e0f2fe" : "#08324f",
+      text: dark ? "#08324f" : "#f8fafc",
+    };
+  }
+  if (dark) {
+    return {
+      activeCharacterFill: "#ffffff",
+      activeCharacterText: "#020617",
+      activeWordFill: "#7dd3fc",
+      activeWordStroke: withAlpha("#e0f2fe", 0.8),
+      activeWordText: "#020617",
+      background: "#020617",
+      text: "#e0f2fe",
+    };
+  }
+  return {
+    activeCharacterFill: "#7dd3fc",
+    activeCharacterText: "#020617",
+    activeWordFill: "#e0f2fe",
+    activeWordStroke: withAlpha("#7dd3fc", 0.7),
+    activeWordText: "#08324f",
+    background: "#fffdf8",
+    text: "#08324f",
+  };
+}
+
+function exportPreviewVisualHeight(
+  visualStyle: MorseVideoSettings["visualStyle"],
+  fontScale: number,
+) {
+  if (visualStyle === "morse-text") return 72 * fontScale;
+  if (visualStyle === "lightbulb") return 120 * fontScale;
+  return 144 * fontScale;
+}
+
+function exportPreviewIntensityAlpha(
+  intensity: MorseVideoSettings["intensity"],
+) {
+  if (intensity === "low") return 0.6;
+  if (intensity === "high") return 1;
+  return 0.8;
+}
+
+function truncateExportPreviewText(
+  ctx: CanvasRenderingContext2D,
+  value: string,
+  maxWidth: number,
+) {
+  if (measureCanvasTextWidth(ctx, value) <= maxWidth) return value;
+  let truncated = value;
+  while (truncated.length > 1 && measureCanvasTextWidth(ctx, `${truncated}…`) > maxWidth) {
+    truncated = truncated.slice(0, -1);
+  }
+  return `${truncated}…`;
+}
+
 function getFramePalette(
   resolvedBackgroundStyle: ResolvedMorseVideoBackgroundStyle,
 ) {
@@ -1168,7 +2284,7 @@ function drawAnimatedMorseText(
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillStyle = symbols ? text : muted;
-  ctx.font = `${Math.round(frame.width * 0.05)}px "Space Mono", monospace`;
+  ctx.font = `700 ${frame.width * 0.05}px "Space Mono", monospace`;
   if (wordWindow.length > 0) {
     drawCenteredWordWindow(
       ctx,
@@ -1197,7 +2313,7 @@ function drawAnimatedMorseText(
   }
   if (settings.showPlainText) {
     ctx.fillStyle = muted;
-    ctx.font = `${Math.round(frame.width * 0.028)}px "Space Grotesk", sans-serif`;
+    ctx.font = `700 ${frame.width * 0.028}px "Space Grotesk", sans-serif`;
     if (wordWindow.length > 0) {
       drawCenteredWordWindow(
         ctx,
@@ -1320,7 +2436,7 @@ function drawTextDisplay(
         : visibleRows.length === 1
           ? 0.058
           : 0.048;
-    ctx.font = `${Math.round(frame.width * scale)}px "${
+    ctx.font = `700 ${frame.width * scale}px "${
       isMorseRow ? "Space Mono" : "Space Grotesk"
     }", ${isMorseRow ? "monospace" : "sans-serif"}`;
     if (wordWindow.length > 0) {
@@ -1384,6 +2500,7 @@ function drawCenteredWordWindow(
   const separator = kind === "morse" ? MORSE_DISPLAY_WORD_SEPARATOR : " ";
   const parts = words.map((word) => ({
     active: word.active,
+    activeCharIndex: word.activeCharIndex,
     text: kind === "morse" ? word.morse : word.text,
   }));
   const lines: Array<typeof parts> = [];
@@ -1433,6 +2550,16 @@ function drawCenteredWordWindow(
           activeHighlight.fill,
           activeHighlight.stroke,
         );
+        drawActiveCharacterMarker({
+          activeCharIndex: part.activeCharIndex,
+          activeHighlight,
+          ctx,
+          kind,
+          lineHeight,
+          text: part.text,
+          x,
+          y,
+        });
       }
       ctx.fillStyle =
         part.active && activeHighlight
@@ -1449,6 +2576,50 @@ function drawCenteredWordWindow(
       }
     });
   });
+}
+
+function drawActiveCharacterMarker({
+  activeCharIndex,
+  activeHighlight,
+  ctx,
+  kind,
+  lineHeight,
+  text,
+  x,
+  y,
+}: {
+  activeCharIndex: number;
+  activeHighlight: { fill: string; stroke: string; textFill: string };
+  ctx: CanvasRenderingContext2D;
+  kind: "morse" | "plain";
+  lineHeight: number;
+  text: string;
+  x: number;
+  y: number;
+}) {
+  const segments =
+    kind === "morse" ? text.split(" ").filter(Boolean) : [...text];
+  const activeSegment = segments[activeCharIndex];
+  if (!activeSegment) return;
+  const separator = kind === "morse" ? " " : "";
+  const prefix = segments.slice(0, activeCharIndex).join(separator);
+  const prefixWidth = prefix
+    ? measureCanvasTextWidth(ctx, `${prefix}${separator}`)
+    : 0;
+  const segmentWidth = measureCanvasTextWidth(ctx, activeSegment);
+  const fontSize = Number.parseFloat(ctx.font) || 24;
+  const paddingX = Math.max(4, fontSize * 0.09);
+  const markerHeight = Math.min(lineHeight * 0.8, fontSize * 1.2);
+  drawRoundedRect(
+    ctx,
+    x + prefixWidth - paddingX,
+    y - markerHeight / 2,
+    segmentWidth + paddingX * 2,
+    markerHeight,
+    Math.max(4, fontSize * 0.16),
+    activeHighlight.stroke,
+    activeHighlight.stroke,
+  );
 }
 
 function drawSignalSparkles(
@@ -1518,7 +2689,7 @@ function drawFrameBranding(
   padding: number,
 ) {
   ctx.fillStyle = muted;
-  ctx.font = `${Math.round(frame.width * 0.016)}px "Space Mono", monospace`;
+  ctx.font = `700 ${frame.width * 0.016}px "Space Mono", monospace`;
   ctx.textAlign = "left";
   ctx.textBaseline = "bottom";
   ctx.fillText("www.morsewords.com", padding, frame.height - padding * 0.72);
