@@ -1,4 +1,8 @@
-import { formatBytes, formatDuration } from "./bookDurationEstimate";
+import {
+  formatBytes,
+  formatDuration,
+  getBookPartAudioDurationMs,
+} from "./bookDurationEstimate";
 import type {
   BookExportPart,
   BookExportSettings,
@@ -64,7 +68,7 @@ export function findOversizedAudioExportPart(
   settings: BookExportSettings,
 ): OversizedBookExportPart | null {
   for (const part of parts) {
-    const runtimeMs = partRuntimeWithTail(part, settings.tailPaddingMs);
+    const runtimeMs = getBookPartAudioDurationMs(part, settings);
     const threshold = MORSE_EXPORT_THRESHOLDS[settings.outputFormat];
     const estimatedBytes = estimateExportBytes({
       durationMs: runtimeMs,
@@ -219,7 +223,7 @@ export function friendlyBookExportErrorMessage(
 
   return outputType === "video"
     ? "Video export failed. Retry the download, use 720p, or try silent video."
-    : "Book download failed. Retry the download, use MP3 output, or shorten the part length.";
+    : "Book download failed. Retry the download or choose a shorter part duration.";
 }
 
 export function oversizedExportDetailsLabel(
@@ -249,8 +253,4 @@ function estimateVideoRenderTimeLabel(
   const minMs = runtimeMs * minimumFactor * formatFactor * audioFactor;
   const maxMs = runtimeMs * maximumFactor * formatFactor * audioFactor;
   return `~${formatDuration(minMs)}-${formatDuration(maxMs)}`;
-}
-
-function partRuntimeWithTail(part: BookExportPart, tailPaddingMs: number) {
-  return Math.max(0, part.morseDurationMs) + Math.max(0, tailPaddingMs);
 }

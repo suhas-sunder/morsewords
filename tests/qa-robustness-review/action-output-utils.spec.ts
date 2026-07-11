@@ -140,10 +140,17 @@ test.describe("action output route smoke", () => {
   });
 
   test("word separator copy button shows success status", async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, "clipboard", {
+        configurable: true,
+        value: { writeText: async () => undefined },
+      });
+    });
     await page.goto("/morse-code-word-separator", {
       waitUntil: "domcontentloaded",
     });
     await waitForRouteReady(page);
+    await page.locator('[data-mw-word-separator-ready="true"]').waitFor();
 
     await page.getByRole("button", { name: "Copy output" }).click();
     await expect(page.getByText("Copied", { exact: true })).toBeVisible();
@@ -160,6 +167,7 @@ test.describe("action output route smoke", () => {
     await sourceInput.fill("");
     await expect(sourceInput).toHaveValue("");
     await expect(page.getByRole("button", { name: "Download MP3" }).first()).toBeDisabled();
+    await page.getByLabel("Output format").selectOption("wav");
     await expect(page.getByRole("button", { name: "Download WAV" }).first()).toBeDisabled();
   });
 });

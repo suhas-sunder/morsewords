@@ -184,7 +184,7 @@ function pageContent(page: Page) {
 }
 
 function soundInput(page: Page) {
-  return page.getByRole("textbox", { name: "Example: Hello world" });
+  return page.getByLabel("Message to turn into a Morse tone");
 }
 
 test.describe("Morse code sound generator", () => {
@@ -225,9 +225,6 @@ test.describe("Morse code sound generator", () => {
     await expect(page.getByRole("button", { name: "Play sound" })).toBeVisible();
     await expect(
       page.getByRole("button", { name: "Download MP3" }).first(),
-    ).toBeVisible();
-    await expect(
-      page.getByRole("button", { name: "Download WAV" }).first(),
     ).toBeVisible();
     await expect(
       page.getByRole("button", { name: "Copy Output" }).first(),
@@ -383,6 +380,9 @@ test.describe("Morse code sound generator", () => {
     await page.addInitScript(() => window.localStorage.clear());
     await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
+    await page.waitForFunction(
+      () => window.localStorage.getItem("mw_sound_generator_source") === "text",
+    );
 
     await soundInput(page).fill("CQ SOUND");
     await expect(

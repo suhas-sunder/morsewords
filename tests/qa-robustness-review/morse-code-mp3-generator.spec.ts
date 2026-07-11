@@ -195,7 +195,11 @@ test.describe("Morse code MP3 generator", () => {
     await expect(page.getByLabel("Message to turn into MP3 audio")).toBeVisible();
     await expect(page.getByRole("button", { name: "Play audio" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Download MP3" })).toBeVisible();
-    await expect(page.getByRole("button", { name: "Download WAV" })).toBeVisible();
+    await expect(page.getByLabel("Output format")).toHaveValue("mp3");
+    await expect(page.getByLabel("Output format").locator("option")).toHaveText([
+      "MP3",
+      "WAV",
+    ]);
     await expect(page.getByRole("button", { name: "Copy Morse" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Clear" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Sound" })).toBeVisible();
@@ -298,8 +302,10 @@ test.describe("Morse code MP3 generator", () => {
     expect(mp3Blob?.type).toBe("audio/mpeg");
     expect(mp3Blob?.size ?? 0).toBeGreaterThan(100);
 
+    await page.getByLabel("Output format").selectOption("wav");
+    await expect(page.getByLabel("Output format")).toHaveValue("wav");
     const wavDownload = page.waitForEvent("download", { timeout: 30_000 });
-    await page.getByRole("button", { name: "Download WAV" }).click();
+    await page.getByRole("button", { name: "Download WAV" }).first().click();
     const wav = await wavDownload;
     expect(wav.suggestedFilename()).toBe("morse-code.wav");
 

@@ -5,7 +5,15 @@ import {
   ExportJobStatus,
   ExportPlanSummary,
 } from "~/client/components/shared/export/ExportPlanStatus";
-import { buildMorseExportPlan } from "~/client/components/shared/export/morseExportPlan";
+import AudioExportFormatSplitControls from "~/client/components/shared/export/AudioExportFormatSplitControls";
+import {
+  buildMorseExportPlan,
+  getMorseAudioNoSplitSafetyMessage,
+  getMorseAudioSplitTargetDurationMs,
+  MORSE_AUDIO_SPLIT_PRESET_MINUTES,
+  validateCustomMorseAudioSplitMinutes,
+  type MorseAudioSplitMode,
+} from "~/client/components/shared/export/morseExportPlan";
 import { useMorseAudioExportJob } from "~/client/components/shared/export/useMorseAudioExportJob";
 import {
   getUnsupportedTextCharacters,
@@ -15,6 +23,7 @@ import {
 import { hasPlayableMorse } from "~/client/components/shared/morseTiming";
 import {
   AUDIO_ATTACK_RANGE,
+  AUDIO_LEAD_IN_RANGE,
   AUDIO_PITCH_RANGE,
   AUDIO_RELEASE_RANGE,
   AUDIO_SAMPLE_RATES,
@@ -84,6 +93,7 @@ const DEFAULT_TEXT = "sos help";
 const DEFAULT_MORSE = "... --- ...";
 const STROBE_WARNING_ID = "mp3-generator-strobe-warning";
 const FLASH_DISABLED_NOTICE_ID = "mp3-generator-flash-disabled";
+const AUDIO_SPLIT_MODES = ["none", "duration", "custom"] as const;
 
 export default function MorseMp3GeneratorTool() {
   const player = useMorseAudio();
@@ -111,9 +121,13 @@ export default function MorseMp3GeneratorTool() {
   const [sampleRate, setSampleRate] = React.useState<22050 | 44100 | 48000>(
     44100,
   );
+  const [leadInMs, setLeadInMs] = React.useState(0);
   const [tailMs, setTailMs] = React.useState(120);
   const [mp3Kbps, setMp3Kbps] = React.useState(128);
   const [plannedFormat, setPlannedFormat] = React.useState<"mp3" | "wav">("mp3");
+  const [splitMode, setSplitMode] = React.useState<MorseAudioSplitMode>("none");
+  const [splitPresetMinutes, setSplitPresetMinutes] = React.useState(15);
+  const [customSplitMinutes, setCustomSplitMinutes] = React.useState("");
   const [copied, setCopied] = React.useState(false);
   const [hydrated, setHydrated] = React.useState(false);
   const [sourceSaveNotice, setSourceSaveNotice] = React.useState("");
@@ -183,6 +197,14 @@ export default function MorseMp3GeneratorTool() {
       readStoredString("mw_mp3_filename", "morse-code", { maxLength: 120 }),
     );
     setSampleRate(readStoredNumberEnum("mw_audio_sr", AUDIO_SAMPLE_RATES, 44100));
+    setLeadInMs(
+      readStoredNumber("mw_audio_lead_in", {
+        fallback: 0,
+        min: AUDIO_LEAD_IN_RANGE.min,
+        max: AUDIO_LEAD_IN_RANGE.max,
+        integer: true,
+      }),
+    );
     setTailMs(
       readStoredNumber("mw_audio_tail", {
         fallback: 120,
@@ -192,6 +214,18 @@ export default function MorseMp3GeneratorTool() {
       }),
     );
     setMp3Kbps(readStoredNumberEnum("mw_mp3_kbps", MP3_BITRATES, 128));
+    setPlannedFormat(readStoredEnum("mw_mp3_format", ["mp3", "wav"], "mp3"));
+    setSplitMode(readStoredEnum("mw_mp3_split_mode", AUDIO_SPLIT_MODES, "none"));
+    setSplitPresetMinutes(
+      readStoredNumberEnum(
+        "mw_mp3_split_minutes",
+        MORSE_AUDIO_SPLIT_PRESET_MINUTES,
+        15,
+      ),
+    );
+    setCustomSplitMinutes(
+      readStoredString("mw_mp3_custom_split_minutes", "", { maxLength: 12 }),
+    );
     setHydrated(true);
   }, []);
 
@@ -253,9 +287,14 @@ export default function MorseMp3GeneratorTool() {
     writeBool("mw_audio_flash", flash);
     writeBool("mw_audio_adv_open", advancedOpen);
     writeNum("mw_audio_sr", sampleRate);
+    writeNum("mw_audio_lead_in", leadInMs);
     writeNum("mw_audio_tail", tailMs);
     writeStr("mw_mp3_filename", fileName);
     writeNum("mw_mp3_kbps", mp3Kbps);
+    writeStr("mw_mp3_format", plannedFormat);
+    writeStr("mw_mp3_split_mode", splitMode);
+    writeNum("mw_mp3_split_minutes", splitPresetMinutes);
+    writeStr("mw_mp3_custom_split_minutes", customSplitMinutes);
   }, [
     hydrated,
     sourceMode,
@@ -273,9 +312,14 @@ export default function MorseMp3GeneratorTool() {
     flash,
     advancedOpen,
     sampleRate,
+    leadInMs,
     tailMs,
     fileName,
     mp3Kbps,
+    plannedFormat,
+    splitMode,
+    splitPresetMinutes,
+    customSplitMinutes,
   ]);
 
   const unsupportedPlain = React.useMemo(
@@ -351,22 +395,33 @@ export default function MorseMp3GeneratorTool() {
         farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
         format,
         kind: "audio",
+        leadInMs,
         mp3Kbps,
         sampleRate,
         source: sourceMode === "text" ? text : morse,
         sourceMode,
+        splitMode,
         tailPaddingMs: tailMs,
+        targetPartDurationMs: getMorseAudioSplitTargetDurationMs({
+          customMinutes: customSplitMinutes,
+          mode: splitMode,
+          presetMinutes: splitPresetMinutes,
+        }),
       }),
     [
       charWpm,
       farnsworthWpm,
       fileName,
+      leadInMs,
       morse,
       mp3Kbps,
       sampleRate,
       sourceMode,
+      splitMode,
+      splitPresetMinutes,
       tailMs,
       text,
+      customSplitMinutes,
     ],
   );
   const exportPlan = React.useMemo(
@@ -384,11 +439,29 @@ export default function MorseMp3GeneratorTool() {
     releaseMs,
     sampleRate,
     soundOn,
+    leadInMs,
     tailMs,
     toneHz,
     volume,
+    plannedFormat,
+    splitMode,
+    splitPresetMinutes,
+    customSplitMinutes,
   });
   const audioExport = useMorseAudioExportJob(exportKey);
+  const customSplitError =
+    splitMode === "custom"
+      ? validateCustomMorseAudioSplitMinutes(customSplitMinutes)
+      : "";
+  const exportBlockedMessage = exportPlan.singleFileUnsafe
+    ? getMorseAudioNoSplitSafetyMessage(plannedFormat)
+    : customSplitError;
+  const exportControlsLocked = audioExport.isActive;
+  const showExportPlan =
+    splitMode !== "none" ||
+    exportPlan.multiPart ||
+    exportPlan.singleFileUnsafe ||
+    audioExport.state.status !== "idle";
 
   const handlePickExample = (exampleText: string) => {
     if (sourceMode === "text") {
@@ -423,22 +496,26 @@ export default function MorseMp3GeneratorTool() {
   };
 
   const handleDownload = async (format: "mp3" | "wav") => {
+    const plan = buildAudioPlan(format);
     if (
       !hasSourceCode ||
       !renderedSoundOn ||
-      audioExport.state.status === "running"
+      audioExport.isActive ||
+      plan.singleFileUnsafe ||
+      customSplitError
     ) {
       return;
     }
     player.stop();
     setPlannedFormat(format);
     await audioExport.start({
-      plan: buildAudioPlan(format),
+      plan,
       settings: {
         attackMs,
         charWpm: clampNum(charWpm, 5, 60),
         farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
         format,
+        leadInMs,
         mp3Kbps,
         pitch: toneHz,
         releaseMs,
@@ -450,8 +527,20 @@ export default function MorseMp3GeneratorTool() {
     });
   };
 
-  const handleDownloadMp3 = () => handleDownload("mp3");
-  const handleDownloadWav = () => handleDownload("wav");
+  const handleDownloadSelected = () => handleDownload(plannedFormat);
+
+  const restoreExportDefaults = React.useCallback(() => {
+    setFileName("morse-code");
+    setSampleRate(44100);
+    setLeadInMs(0);
+    setTailMs(120);
+    setMp3Kbps(128);
+    setPlannedFormat("mp3");
+    setSplitMode("none");
+    setSplitPresetMinutes(15);
+    setCustomSplitMinutes("");
+    audioExport.reset();
+  }, [audioExport]);
 
   const setFeedback = React.useCallback(
     (key: "sound" | "repeat" | "flash", nextValue: boolean) => {
@@ -592,16 +681,6 @@ export default function MorseMp3GeneratorTool() {
                 )}
                 {copied ? "Copied" : "Copy Morse"}
               </ToolButton>
-              <ToolButton
-                type="button"
-                tone="darkPanel"
-                onClick={handleDownloadWav}
-                disabled={!hasSourceCode || !renderedSoundOn || audioExport.state.status === "running"}
-                className="rounded-lg"
-              >
-                <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-                Download WAV
-              </ToolButton>
             </div>
           }
         >
@@ -661,13 +740,13 @@ export default function MorseMp3GeneratorTool() {
         <ToolButton
           type="button"
           tone="light"
-          onClick={handleDownloadMp3}
-          disabled={!hasSourceCode || !renderedSoundOn || audioExport.state.status === "running"}
+          onClick={handleDownloadSelected}
+          disabled={!hydrated || !hasSourceCode || !renderedSoundOn || exportControlsLocked || Boolean(exportBlockedMessage)}
           hover="dark"
           className="rounded-xl"
         >
           <DownloadIcon size={20} title={undefined} aria-hidden="true" />
-          Download MP3
+          {`Download ${plannedFormat.toUpperCase()}`}
         </ToolButton>
       </div>
 
@@ -769,6 +848,20 @@ export default function MorseMp3GeneratorTool() {
         <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" />
       ) : null}
 
+      <div className="mt-4">
+        <ToolButton
+          type="button"
+          tone="light"
+          hover="dark"
+          onClick={() => setAdvancedOpen((value) => !value)}
+          className="w-full rounded-lg"
+          aria-expanded={advancedOpen}
+        >
+          <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
+          {advancedOpen ? "Hide advanced settings" : "Show advanced settings"}
+        </ToolButton>
+      </div>
+
       {advancedOpen ? (
         <div className="mt-4 pt-4">
           <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
@@ -815,27 +908,30 @@ export default function MorseMp3GeneratorTool() {
         </div>
       ) : null}
 
-      <div className="mt-4">
-        <ToolButton
-          type="button"
-          tone="light"
-          hover="dark"
-          onClick={() => setAdvancedOpen((value) => !value)}
-          className="w-full rounded-lg"
-          aria-expanded={advancedOpen}
-        >
-          <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
-          {advancedOpen ? "Hide advanced settings" : "Show advanced settings"}
-        </ToolButton>
-      </div>
-
+      {advancedOpen ? (
+        <>
       <div className="mt-7">
         <h2 className="mw-heading text-base font-extrabold text-sky-950">
           Export settings
         </h2>
       </div>
 
-      <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_150px_150px_220px] lg:items-end">
+      <div className="mt-4">
+        <AudioExportFormatSplitControls
+          idPrefix="mw-mp3"
+          format={plannedFormat}
+          splitMode={splitMode}
+          presetMinutes={splitPresetMinutes}
+          customMinutes={customSplitMinutes}
+          disabled={!hydrated || exportControlsLocked}
+          onFormatChange={setPlannedFormat}
+          onSplitModeChange={setSplitMode}
+          onPresetMinutesChange={setSplitPresetMinutes}
+          onCustomMinutesChange={setCustomSplitMinutes}
+        />
+      </div>
+
+      <div className="mt-4 grid gap-4 md:grid-cols-2 lg:items-end">
         <LabeledInput
           id={fileNameId}
           label="File name"
@@ -843,20 +939,22 @@ export default function MorseMp3GeneratorTool() {
           onChange={(event) => setFileName(event.target.value)}
           placeholder="morse-code"
         />
-        <LabeledSelect
-          id={mp3KbpsId}
-          label="MP3 kbps"
-          value={String(mp3Kbps)}
-          onChange={(event) =>
-            setMp3Kbps(sanitizeMp3Bitrate(Number(event.target.value)))
-          }
-        >
-          {MP3_BITRATES.map((bitrate) => (
-            <option key={bitrate} value={bitrate}>
-              {MP3_BITRATE_LABELS[bitrate]}
-            </option>
-          ))}
-        </LabeledSelect>
+        {plannedFormat === "mp3" ? (
+          <LabeledSelect
+            id={mp3KbpsId}
+            label="MP3 kbps"
+            value={String(mp3Kbps)}
+            onChange={(event) =>
+              setMp3Kbps(sanitizeMp3Bitrate(Number(event.target.value)))
+            }
+          >
+            {MP3_BITRATES.map((bitrate) => (
+              <option key={bitrate} value={bitrate}>
+                {MP3_BITRATE_LABELS[bitrate]}
+              </option>
+            ))}
+          </LabeledSelect>
+        ) : null}
         <LabeledSelect
           id={sampleRateId}
           label="Sample rate"
@@ -870,6 +968,17 @@ export default function MorseMp3GeneratorTool() {
           <option value={48000}>48000</option>
         </LabeledSelect>
         <SliderRow
+          label="Lead-in silence"
+          value={leadInMs}
+          min={AUDIO_LEAD_IN_RANGE.min}
+          max={AUDIO_LEAD_IN_RANGE.max}
+          step={50}
+          unit="ms"
+          onChange={setLeadInMs}
+          disabled={exportControlsLocked}
+          help="Silence before each downloaded file."
+        />
+        <SliderRow
           label="Tail padding"
           value={tailMs}
           min={0}
@@ -877,14 +986,20 @@ export default function MorseMp3GeneratorTool() {
           step={10}
           unit="ms"
           onChange={setTailMs}
-          disabled={!renderedSoundOn}
+          disabled={exportControlsLocked}
           help="Extra silence to avoid clipped tails."
         />
       </div>
 
-      <ExportPlanSummary plan={exportPlan} />
+      {showExportPlan ? <ExportPlanSummary plan={exportPlan} /> : null}
+      {exportBlockedMessage ? (
+        <p role="alert" className="mt-3 text-sm font-semibold text-slate-700">
+          {exportBlockedMessage}
+        </p>
+      ) : null}
       <ExportJobStatus
         state={audioExport.state}
+        isActive={audioExport.isActive}
         onCancel={() => audioExport.cancel()}
         onReset={audioExport.reset}
         onRetry={() => void audioExport.retry()}
@@ -897,6 +1012,19 @@ export default function MorseMp3GeneratorTool() {
           settings.
         </StatusMessage>
       </div>
+      <div className="mt-3">
+        <ToolButton
+          type="button"
+          tone="light"
+          onClick={restoreExportDefaults}
+          disabled={exportControlsLocked}
+          className="rounded-lg"
+        >
+          Restore defaults
+        </ToolButton>
+      </div>
+        </>
+      ) : null}
     </section>
   );
 }

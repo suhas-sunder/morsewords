@@ -18,6 +18,7 @@ import {
   downloadBlobFile,
 } from "~/client/components/shared/actionOutputUtils";
 import {
+  AUDIO_LEAD_IN_RANGE,
   AUDIO_SPEED_RANGE,
   sanitizeAudioSampleRate,
   sanitizeMp3Bitrate,
@@ -36,6 +37,8 @@ import {
   ToolTextarea,
   toolControlButtonClass,
 } from "~/client/components/shared/ToolWorkspace";
+import AudioExportFormatSplitControls from "~/client/components/shared/export/AudioExportFormatSplitControls";
+import { validateCustomMorseAudioSplitMinutes } from "~/client/components/shared/export/morseExportPlan";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import StatusMessage from "~/client/components/shared/ui/StatusMessage";
 import {
@@ -52,6 +55,7 @@ import {
   buildExportAnalysis,
   formatBytes,
   formatDuration,
+  getBookPartAudioDurationMs,
 } from "./bookDurationEstimate";
 import {
   bookExportProgressDetail as exportProgressDetail,
@@ -79,6 +83,7 @@ import {
   applyBookPreset,
   BOOK_EXPORT_PRESET_DETAILS,
   BOOK_EXPORT_PRESET_NAMES,
+  BOOK_TARGET_PART_MINUTE_OPTIONS,
   DEFAULT_BOOK_EXPORT_SETTINGS,
   describeBookExportSettings,
   sanitizeBookExportSettings,
@@ -152,7 +157,6 @@ import {
   sanitizeBookLivePlayerSettings,
   type BookVideoSettings,
 } from "./bookVideoTypes";
-import type { BookSplitMode } from "./bookExportTypes";
 
 type ParseStatus = "idle" | "parsing" | "ready" | "error";
 type ExportStatusKind = "info" | "success" | "error" | "working";
@@ -175,11 +179,6 @@ const IDLE_EXPORT_PROGRESS: BookExportProgress = {
   message: "",
   currentPart: 0,
   totalParts: 0,
-};
-
-const BOOK_SPLIT_MODE_LABELS: Record<BookSplitMode, string> = {
-  none: "No split",
-  duration: "By duration",
 };
 
 type BookPreviewStatus =
@@ -525,6 +524,9 @@ export default function BookTranslatorTool() {
   const [outputType, setOutputType] = React.useState<BookOutputType>("audio");
   const [exportSettings, setExportSettings] =
     React.useState<BookExportSettings>(DEFAULT_BOOK_EXPORT_SETTINGS);
+  const [customSplitMinutes, setCustomSplitMinutes] = React.useState(
+    String(DEFAULT_BOOK_EXPORT_SETTINGS.targetPartMinutes),
+  );
   const [videoSettings, setVideoSettings] = React.useState<BookVideoSettings>(
     () => sanitizeBookLivePlayerSettings(DEFAULT_BOOK_VIDEO_SETTINGS),
   );
@@ -553,6 +555,9 @@ export default function BookTranslatorTool() {
     null,
   );
   const [exportElapsedMs, setExportElapsedMs] = React.useState(0);
+  // Cancellation is asynchronous. Keep export controls locked until the active
+  // renderer has returned and its controller is released in `finally`.
+  const [exportUnwinding, setExportUnwinding] = React.useState(false);
   const [selectedBatchNumber, setSelectedBatchNumber] = React.useState(1);
   const [exportStatus, setExportStatus] = React.useState<{
     kind: ExportStatusKind;
@@ -685,6 +690,7 @@ export default function BookTranslatorTool() {
     const preferences = loadBookExportPreferences();
     setOutputType(preferences.outputType);
     setExportSettings(preferences.exportSettings);
+    setCustomSplitMinutes(String(preferences.exportSettings.targetPartMinutes));
     setVideoSettings(sanitizeBookLivePlayerSettings(preferences.videoSettings));
     setExportProgress(
       IDLE_EXPORT_PROGRESS,
@@ -796,10 +802,7 @@ export default function BookTranslatorTool() {
   );
 
   const activeSegmentationSettings = React.useMemo<BookExportSettings>(() => {
-    return sanitizeBookExportSettings({
-      ...exportSettings,
-      outputFormat: "mp3",
-    });
+    return sanitizeBookExportSettings(exportSettings);
   }, [exportSettings]);
   const effectiveVideoSettings = React.useMemo<BookVideoSettings>(
     () =>
@@ -949,6 +952,7 @@ export default function BookTranslatorTool() {
     : [];
   const exportWarnings = exportAnalysis.warnings.filter(Boolean);
   const exportRunning = isExportRunning(exportProgress);
+  const exportControlsLocked = exportRunning || exportUnwinding;
   const isAudioOutput = true;
   const splitEnabled =
     activeSegmentationSettings.splitMode !== "none" || exportPlan.automaticSplit;
@@ -1189,19 +1193,27 @@ export default function BookTranslatorTool() {
   );
   const activeOversizedExportPart = oversizedAudioExportPart;
   const unresolvedOversizedExportPart = exportPlan.unresolvedOversizedPart;
+  const splitMode = activeSegmentationSettings.splitMode;
   const oversizedExportMessage = unresolvedOversizedExportPart
-    ? `${BOOK_OVERSIZED_EXPORT_MESSAGE} ${oversizedExportDetailsLabel(
-        activeOversizedExportPart,
-      )}`
+    ? exportPlan.singleFileUnsafe
+      ? `This ${exportSettings.outputFormat.toUpperCase()} export is too large for one reliable browser file. Choose Split by duration before generating it.`
+      : `${BOOK_OVERSIZED_EXPORT_MESSAGE} ${oversizedExportDetailsLabel(
+          activeOversizedExportPart,
+        )}`
     : "";
   const longExportMessages =
-    exportPlan.automaticSplit || zipBatchWorkflow
+    ((splitMode !== "none" && exportParts.length > 1) || zipBatchWorkflow)
       ? [BOOK_LONG_EXPORT_MESSAGE, BOOK_LONG_EXPORT_KEEP_OPEN_MESSAGE]
       : [];
+  const customSplitError =
+    splitMode === "custom"
+      ? validateCustomMorseAudioSplitMinutes(customSplitMinutes)
+      : "";
   const canAudioExport =
     hasSource &&
     exportParts.length > 0 &&
-    !exportRunning &&
+    !exportControlsLocked &&
+    !customSplitError &&
     !unresolvedOversizedExportPart;
   const canExport = canAudioExport;
   const exportDisabledReason = !hasSource
@@ -1210,10 +1222,14 @@ export default function BookTranslatorTool() {
       ? "Cleaned source is empty. Adjust source cleanup or add downloadable text."
       : exportParts.length === 0
         ? "Review the source text before downloading."
+        : customSplitError
+          ? customSplitError
         : unresolvedOversizedExportPart
           ? oversizedExportMessage
-          : exportRunning
-            ? "Download is currently running."
+        : exportControlsLocked
+            ? exportRunning
+              ? "Download is currently running."
+              : "Download is stopping. Please wait before starting another export."
             : "";
   const sourcePreviewStatus = !hasSource
     ? "No source loaded"
@@ -1248,26 +1264,10 @@ export default function BookTranslatorTool() {
       : downloadKind === "zip"
       ? "Download ZIP bundle"
       : downloadKind === "parts"
-        ? `Download ${exportParts.length} MP3 parts`
+        ? `Download ${exportParts.length} ${downloadFormatLabel} parts`
       : exportParts.length > 1
-        ? `Download ${exportParts.length} MP3 parts`
+        ? `Download ${exportParts.length} ${downloadFormatLabel} parts`
         : `Download ${downloadFormatLabel}`;
-  const splitMode = activeSegmentationSettings.splitMode;
-  const splitTargetPartMinutes = exportSettings.targetPartMinutes;
-  const splitSummaryText =
-    splitMode === "none"
-      ? exportPlan.automaticSplit
-        ? `${BOOK_LONG_EXPORT_MESSAGE} Estimated parts: ${formatNumber(
-            exportParts.length,
-          )}.`
-        : downloadKind === "zip"
-        ? "No split is selected. A ZIP is still required because selected sidecar files need to travel with the media."
-        : `No split is selected. This can download as one ${downloadFormatLabel} file.`
-      : `Using ${formatDuration(
-          exportPlan.targetPartMs,
-        )} target parts and safe text boundaries. Estimated parts: ${formatNumber(
-          exportParts.length,
-        )}.`;
   const customRuleMatchesById = React.useMemo(
     () =>
       new Map(preflight.customRuleMatches.map((match) => [match.id, match])),
@@ -2153,6 +2153,8 @@ export default function BookTranslatorTool() {
         tonePreset,
         pitch: defaults.pitchHz,
         volume: defaults.volume,
+        attackMs: defaults.attackMs,
+        releaseMs: defaults.releaseMs,
       });
     },
     [updateExportSettings],
@@ -2163,7 +2165,7 @@ export default function BookTranslatorTool() {
     if (!hasSource || exportParts.length === 0) {
       setExportStatus({
         kind: "error",
-        message: "Add source text before downloading MP3 audio.",
+        message: "Add source text before downloading audio.",
       });
       return;
     }
@@ -2173,6 +2175,11 @@ export default function BookTranslatorTool() {
         kind: "error",
         message: "Cleaned source is empty. Adjust cleanup before downloading.",
       });
+      return;
+    }
+
+    if (customSplitError) {
+      setExportStatus({ kind: "error", message: customSplitError });
       return;
     }
 
@@ -2192,6 +2199,7 @@ export default function BookTranslatorTool() {
 
     const controller = new AbortController();
     exportAbortRef.current = controller;
+    setExportUnwinding(true);
     const version = exportVersionRef.current + 1;
     exportVersionRef.current = version;
     const startedAtMs = performance.now();
@@ -2204,7 +2212,7 @@ export default function BookTranslatorTool() {
     });
     const initialProgress: BookExportProgress = {
       phase: "analyzing",
-      message: "Preparing cleaned source for MP3 download...",
+      message: `Preparing cleaned source for ${exportSettings.outputFormat.toUpperCase()} download...`,
       currentPart: 0,
       batchNumber: selectedExportBatch?.batchNumber,
       batchPartCount: activeDownloadParts.length,
@@ -2264,7 +2272,7 @@ export default function BookTranslatorTool() {
             completedPartDownloadsRef.current.totalBytes += blob.size;
           },
         });
-        completedFilename = `${sequential.completedPartIndexes.length} ordered MP3 files`;
+        completedFilename = `${sequential.completedPartIndexes.length} ordered ${exportSettings.outputFormat.toUpperCase()} files`;
         completedSizeBytes = completedPartDownloadsRef.current.totalBytes;
         completedContents = sequential.contents;
       } else {
@@ -2288,7 +2296,7 @@ export default function BookTranslatorTool() {
         completedContents = result.contents;
       }
       if (!mountedRef.current || exportVersionRef.current !== version) return;
-      const resultOutputFormat = "mp3";
+      const resultOutputFormat = exportSettings.outputFormat;
       setCompletedExport({
         batchNumber: selectedExportBatch?.batchNumber,
         filename: completedFilename,
@@ -2306,7 +2314,7 @@ export default function BookTranslatorTool() {
         phase: "complete",
         message:
           downloadKind === "parts"
-            ? `${activeDownloadParts.length} ordered MP3 download requests sent.`
+            ? `${activeDownloadParts.length} ordered ${downloadFormatLabel} download requests sent.`
             : downloadKind === "zip"
             ? zipBatchWorkflow && selectedExportBatch
               ? `Batch ${selectedExportBatch.batchNumber} download requested. ${
@@ -2317,7 +2325,7 @@ export default function BookTranslatorTool() {
             : `ZIP download requested with ${activeDownloadParts.length} part${
                 activeDownloadParts.length === 1 ? "" : "s"
               }.`
-            : "MP3 download requested.",
+            : `${downloadFormatLabel} download requested.`,
         batchNumber: selectedExportBatch?.batchNumber,
         batchPartCount: activeDownloadParts.length,
         batchPartIndex: activeDownloadParts.length,
@@ -2329,7 +2337,7 @@ export default function BookTranslatorTool() {
         kind: "success",
         message:
           downloadKind === "parts"
-            ? `${activeDownloadParts.length} ordered MP3 download requests sent.`
+            ? `${activeDownloadParts.length} ordered ${downloadFormatLabel} download requests sent.`
             : downloadKind === "zip"
             ? zipBatchWorkflow && selectedExportBatch
               ? `Batch ${selectedExportBatch.batchNumber} download requested. ${
@@ -2338,7 +2346,7 @@ export default function BookTranslatorTool() {
                     : "All ZIP batch download requests are sent."
                 }`
             : "ZIP download requested."
-            : "MP3 download requested.",
+            : `${downloadFormatLabel} download requested.`,
       });
       if (downloadKind === "parts") {
         completedPartDownloadsRef.current = {
@@ -2383,11 +2391,13 @@ export default function BookTranslatorTool() {
       if (exportAbortRef.current === controller) {
         exportAbortRef.current = null;
         setExportStartedAtMs(null);
+        setExportUnwinding(false);
       }
     }
   }, [
     activeSegmentationSettings,
     activeDownloadParts,
+    customSplitError,
     downloadKind,
     exportAnalysis.estimatedSizeLabel,
     exportAnalysis.totalRuntimeMs,
@@ -2685,17 +2695,6 @@ export default function BookTranslatorTool() {
                       </div>
                     </div>
 
-                    <fieldset>
-                      <legend className="text-base font-extrabold text-sky-950">
-                        Output format
-                      </legend>
-                      <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-700">
-                        Book downloads are MP3-only on this page. Long sources
-                        still use 30-minute MP3 parts inside ZIP batches with a
-                        manifest.
-                      </p>
-                    </fieldset>
-
                     <div>
                       <div className="flex flex-wrap items-end justify-between gap-3">
                         <div>
@@ -2715,6 +2714,10 @@ export default function BookTranslatorTool() {
                         className="mt-5"
                         context="bookExport"
                         idPrefix="book-download-audio"
+                        attackMs={exportSettings.attackMs}
+                        onAttackMsChange={(value) =>
+                          updateExportSettings({ attackMs: value })
+                        }
                         preset={exportSettings.tonePreset}
                         onPresetChange={handleTonePresetChange}
                         charWpm={exportSettings.charWpm}
@@ -2726,6 +2729,10 @@ export default function BookTranslatorTool() {
                         pitch={exportSettings.pitch}
                         onPitchChange={(value) =>
                           updateExportSettings({ pitch: value })
+                        }
+                        releaseMs={exportSettings.releaseMs}
+                        onReleaseMsChange={(value) =>
+                          updateExportSettings({ releaseMs: value })
                         }
                         volume={exportSettings.volume}
                         onVolumeChange={(value) =>
@@ -2748,7 +2755,67 @@ export default function BookTranslatorTool() {
                         onTailMsChange={(value) =>
                           updateExportSettings({ tailPaddingMs: value })
                         }
+                        showEnvelope
                       />
+                      <div className="mt-5 max-w-md">
+                        <SliderRow
+                          label="Lead-in silence"
+                          value={exportSettings.leadInMs}
+                          min={AUDIO_LEAD_IN_RANGE.min}
+                          max={AUDIO_LEAD_IN_RANGE.max}
+                          step={10}
+                          unit="ms"
+                          onChange={(value) =>
+                            updateExportSettings({ leadInMs: value })
+                          }
+                          help="Silence before the first Morse mark in each downloaded file."
+                        />
+                      </div>
+                      <div className="mt-5">
+                        <AudioExportFormatSplitControls
+                          customMinutes={customSplitMinutes}
+                          disabled={exportControlsLocked}
+                          format={exportSettings.outputFormat}
+                          idPrefix="book-download"
+                          onCustomMinutesChange={(value) => {
+                            setCustomSplitMinutes(value);
+                            if (!validateCustomMorseAudioSplitMinutes(value)) {
+                              updateExportSettings({
+                                splitMode: "custom",
+                                splitAudio: true,
+                                targetPartMinutes: Number(value),
+                              });
+                            }
+                          }}
+                          onFormatChange={(outputFormat) =>
+                            updateExportSettings({ outputFormat })
+                          }
+                          onPresetMinutesChange={(targetPartMinutes) =>
+                            updateExportSettings({ targetPartMinutes })
+                          }
+                          onSplitModeChange={(nextSplitMode) => {
+                            if (nextSplitMode === "custom") {
+                              setCustomSplitMinutes(
+                                String(exportSettings.targetPartMinutes),
+                              );
+                            }
+                            const targetPartMinutes =
+                              nextSplitMode === "duration" &&
+                              !BOOK_TARGET_PART_MINUTE_OPTIONS.includes(
+                                exportSettings.targetPartMinutes as (typeof BOOK_TARGET_PART_MINUTE_OPTIONS)[number],
+                              )
+                                ? 15
+                                : exportSettings.targetPartMinutes;
+                            updateExportSettings({
+                              splitMode: nextSplitMode,
+                              splitAudio: nextSplitMode !== "none",
+                              targetPartMinutes,
+                            });
+                          }}
+                          presetMinutes={exportSettings.targetPartMinutes}
+                          splitMode={splitMode}
+                        />
+                      </div>
                     </div>
 
                     <div>
@@ -2877,7 +2944,7 @@ export default function BookTranslatorTool() {
           <section
             id="book-download-controls"
             className="scroll-mt-24"
-            aria-label="Download MP3"
+            aria-label={`Download ${downloadFormatLabel}`}
             data-testid="book-download-controls"
           >
             <ToolPanel
@@ -2938,59 +3005,12 @@ export default function BookTranslatorTool() {
                   />
                 ) : null}
 
-                <fieldset>
-                  <legend className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                    Split mode
-                  </legend>
-                  <div
-                    className="mt-2 flex flex-wrap gap-2"
-                    role="radiogroup"
-                    aria-label="Split mode"
-                  >
-                    {(["none", "duration"] as const).map((mode) => (
-                      <button
-                        key={mode}
-                        type="button"
-                        role="radio"
-                        aria-checked={splitMode === mode}
-                        onClick={() =>
-                          updateExportSettings({ splitMode: mode })
-                        }
-                        className={toolControlButtonClass({
-                          active: splitMode === mode,
-                          size: "sm",
-                        })}
-                      >
-                        {BOOK_SPLIT_MODE_LABELS[mode]}
-                      </button>
-                    ))}
-                  </div>
-                  <p className="mt-2 max-w-[68ch] text-sm leading-relaxed text-slate-600">
-                    {splitSummaryText}
-                  </p>
-                  {splitMode !== "none" ? (
-                    <LabeledSelect
-                      label="Target part length"
-                      value={String(splitTargetPartMinutes)}
-                      onChange={(value) => {
-                        const targetPartMinutes = Number(value);
-                        updateExportSettings({ targetPartMinutes });
-                      }}
-                    >
-                      <option value="15">15 minutes</option>
-                      <option value="30">30 minutes recommended</option>
-                      <option value="45">45 minutes</option>
-                      <option value="60">60 minutes experimental</option>
-                    </LabeledSelect>
-                  ) : null}
-                </fieldset>
-
                 <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
                   {zipBatchWorkflow && totalBatches > 0 ? (
                     <LabeledSelect
                       label="ZIP batch"
                       value={String(selectedExportBatch?.batchNumber ?? 1)}
-                      disabled={exportRunning}
+                      disabled={exportControlsLocked}
                       onChange={(value) => setSelectedBatchNumber(Number(value))}
                     >
                       {exportBatches.map((batch) => (
@@ -3737,7 +3757,7 @@ export default function BookTranslatorTool() {
             ? exportPlan.automaticSplit
               ? "Long selections are prepared as ordered duration-based parts, grouped into ZIP batches, using clean text boundaries where possible."
               : "Parts are based on the target part length and safe paragraph, sentence, or word boundaries."
-            : "MP3 downloads stay as one file by default. Choose a split mode in the Download MP3 section when you want timed parts."}
+            : `${downloadFormatLabel} downloads stay as one file by default. Choose Split by duration in the Download audio section when you want timed parts.`}
         </p>
         {isSegmentedOutput ? (
           exportParts.length > 0 ? (
@@ -3752,7 +3772,12 @@ export default function BookTranslatorTool() {
                       {part.title}
                     </h3>
                     <span className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
-                      {formatDuration(part.morseDurationMs)}
+                      {formatDuration(
+                        getBookPartAudioDurationMs(
+                          part,
+                          activeSegmentationSettings,
+                        ),
+                      )}
                     </span>
                   </div>
                   <p className="mt-2 break-words font-mono text-xs font-bold text-slate-600">
@@ -3940,7 +3965,7 @@ function BookPreviewSection({
               data-testid="book-preview-download-mp3-link"
             >
               <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-              Download MP3
+              {`Download ${exportSettings.outputFormat.toUpperCase()}`}
             </a>
           </div>
           {audioPreview ? (
@@ -4011,7 +4036,7 @@ function BookPreviewSection({
               data-testid="book-preview-download-mp3-link"
             >
               <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-              Download MP3
+              {`Download ${exportSettings.outputFormat.toUpperCase()}`}
             </a>
             <MorseLivePreviewFullscreenControl
               disabled={actionDisabled}
@@ -4364,7 +4389,7 @@ function BookVideoSettingsEditor({
             </h4>
             <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
               Character speed and Farnsworth spacing use the same Morse timing
-              layer as MP3 export. Tone controls apply when live audio is on.
+            layer as audio export. Tone controls apply when live audio is on.
             </p>
           </div>
           <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">

@@ -5,10 +5,16 @@ import {
   envelopeAt,
   samplePresetWaveform,
 } from "~/client/components/shared/audioToneSynthesis";
+import {
+  AUDIO_ATTACK_RANGE,
+  AUDIO_LEAD_IN_RANGE,
+  AUDIO_RELEASE_RANGE,
+} from "~/client/components/shared/morseSettings";
 
 import {
   buildMorseTranscript,
   formatDuration,
+  getBookPartAudioDurationMs,
   splitParagraphRanges,
   splitSentenceRanges,
 } from "./bookDurationEstimate";
@@ -80,6 +86,10 @@ export function getBookDownloadKind(
   parts: BookExportPart[],
   settings: BookExportSettings,
 ): BookDownloadKind {
+  // No split is a direct audio-file contract. Sidecar options are meaningful
+  // for a multipart/ZIP workflow, but must never turn a one-file MP3/WAV
+  // request into an unexpected bundle.
+  if (settings.splitMode === "none" && parts.length === 1) return "audio";
   if (hasBookDownloadSidecars(settings)) return "zip";
   return parts.length === 1 ? "audio" : "parts";
 }
@@ -195,7 +205,7 @@ export async function createBookAudioPartDownloads({
   let completedDurationMs = parts
     .filter((part) => completed.has(part.index))
     .reduce(
-      (total, part) => total + partRuntimeWithTail(part, settings.tailPaddingMs),
+      (total, part) => total + getBookPartAudioDurationMs(part, settings),
       0,
     );
   const formatLabel = settings.outputFormat.toUpperCase();
@@ -214,7 +224,7 @@ export async function createBookAudioPartDownloads({
   for (const part of parts) {
     if (completed.has(part.index)) continue;
     throwIfAborted(signal);
-    const partRuntimeMs = partRuntimeWithTail(part, settings.tailPaddingMs);
+    const partRuntimeMs = getBookPartAudioDurationMs(part, settings);
     const progressForPart = ({
       renderedMs,
       totalMs,
@@ -313,7 +323,7 @@ export async function createBookExportZip({
   const totalBatches = batch?.totalBatches ?? 1;
   const selectedParts = allParts && allParts.length > 0 ? allParts : parts;
   const selectedRuntimeMs =
-    totalSelectedRuntimeMs ?? selectedParts.reduce((sum, part) => sum + part.morseDurationMs, 0);
+    totalSelectedRuntimeMs ?? totalRuntimeWithTail(selectedParts, settings);
   const batchTotalDurationMs = totalRuntimeWithTail(parts, settings);
   let completedDurationMs = 0;
   onProgress?.({
@@ -340,7 +350,7 @@ export async function createBookExportZip({
   for (const [batchPartOffset, part] of parts.entries()) {
     throwIfAborted(signal);
     const batchPartIndex = batchPartOffset + 1;
-    const partRuntimeMs = partRuntimeWithTail(part, settings.tailPaddingMs);
+    const partRuntimeMs = getBookPartAudioDurationMs(part, settings);
     const progressForPart = ({
       renderedMs,
       totalMs,
@@ -449,8 +459,11 @@ export async function createBookExportZip({
           tonePreset: settings.tonePreset,
           pitch: settings.pitch,
           volume: settings.volume,
+          attackMs: settings.attackMs,
+          releaseMs: settings.releaseMs,
           mp3Bitrate: settings.mp3Bitrate,
           sampleRate: settings.sampleRate,
+          leadInMs: settings.leadInMs,
           tailPaddingMs: settings.tailPaddingMs,
           splitMode: settings.splitMode,
           splitAudio: settings.splitAudio,
@@ -595,10 +608,7 @@ function createChunkedSignalRenderer(
   settings: BookExportSettings,
 ) {
   const sampleRate = settings.sampleRate;
-  const events = [
-    ...buildBookSignalEvents(text, settings),
-    { type: "gap" as const, ms: settings.tailPaddingMs ?? DEFAULT_TAIL_PADDING_MS },
-  ].map((event) => ({
+  const events = buildBookAudioEvents(text, settings).map((event) => ({
     ...event,
     samples: Math.max(0, Math.round((event.ms / 1000) * sampleRate)),
   }));
@@ -608,8 +618,8 @@ function createChunkedSignalRenderer(
   );
   const totalMs = (totalSamples / sampleRate) * 1000;
   const amplitude = clamp(settings.volume, 0, 1) * 0.38;
-  const attackMs = defaultAttackMs(settings.tonePreset);
-  const releaseMs = defaultReleaseMs(settings.tonePreset);
+  const attackMs = resolveAttackMs(settings);
+  const releaseMs = resolveReleaseMs(settings);
   let eventIndex = 0;
   let sampleInEvent = 0;
   let globalSampleIndex = 0;
@@ -705,11 +715,9 @@ export async function renderBookPartPcm(
   onProgress?: (progress: AudioRenderProgress) => void,
 ): Promise<Float32Array> {
   throwIfAborted(signal);
-  const events = buildBookSignalEvents(text, settings);
+  const events = buildBookAudioEvents(text, settings);
   const sampleRate = settings.sampleRate;
-  const totalMs =
-    events.reduce((sum, event) => sum + event.ms, 0) +
-    (settings.tailPaddingMs ?? DEFAULT_TAIL_PADDING_MS);
+  const totalMs = events.reduce((sum, event) => sum + event.ms, 0);
   assertAudioRenderWithinBrowserLimit(
     totalMs,
     sampleRate,
@@ -719,6 +727,8 @@ export async function renderBookPartPcm(
   const totalSamples = Math.max(1, Math.ceil((totalMs / 1000) * sampleRate));
   const output = new Float32Array(totalSamples);
   const amplitude = clamp(settings.volume, 0, 1) * 0.38;
+  const attackMs = resolveAttackMs(settings);
+  const releaseMs = resolveReleaseMs(settings);
   let offset = 0;
   let renderedMs = 0;
   onProgress?.({ renderedMs: 0, totalMs });
@@ -736,7 +746,9 @@ export async function renderBookPartPcm(
         sampleRate,
         hz: settings.pitch,
         amplitude,
+        attackMs,
         preset: settings.tonePreset,
+        releaseMs,
       });
     }
 
@@ -793,6 +805,30 @@ export function buildBookSignalEvents(
   return events;
 }
 
+function buildBookAudioEvents(
+  text: string,
+  settings: BookExportSettings,
+): SignalEvent[] {
+  const requestedLeadInMs = Number(settings.leadInMs ?? 0);
+  const leadInMs = Number.isFinite(requestedLeadInMs)
+    ? Math.max(
+        AUDIO_LEAD_IN_RANGE.min,
+        Math.min(AUDIO_LEAD_IN_RANGE.max, requestedLeadInMs),
+      )
+    : 0;
+  const tailPaddingMs = Math.max(
+    0,
+    settings.tailPaddingMs ?? DEFAULT_TAIL_PADDING_MS,
+  );
+  return [
+    ...(leadInMs > 0 ? [{ type: "gap" as const, ms: leadInMs }] : []),
+    ...buildBookSignalEvents(text, settings),
+    ...(tailPaddingMs > 0
+      ? [{ type: "gap" as const, ms: tailPaddingMs }]
+      : []),
+  ];
+}
+
 function sentencePauseMs(settings: BookExportSettings) {
   return wordGapMs(settings) * settings.sentencePauseMultiplier;
 }
@@ -810,30 +846,60 @@ function wordGapMs(settings: BookExportSettings) {
   return events.find((event) => event.type === "gap" && event.gap === "word")?.ms ?? 0;
 }
 
+function resolveAttackMs(settings: BookExportSettings) {
+  return clampEnvelopeMs(
+    settings.attackMs,
+    AUDIO_ATTACK_RANGE,
+    defaultAttackMs(settings.tonePreset),
+  );
+}
+
+function resolveReleaseMs(settings: BookExportSettings) {
+  return clampEnvelopeMs(
+    settings.releaseMs,
+    AUDIO_RELEASE_RANGE,
+    defaultReleaseMs(settings.tonePreset),
+  );
+}
+
+function clampEnvelopeMs(
+  value: number,
+  range: { min: number; max: number },
+  fallback: number,
+) {
+  const requested = Number(value);
+  if (!Number.isFinite(requested)) return fallback;
+  return Math.max(range.min, Math.min(range.max, requested));
+}
+
 function writeTone({
   amplitude,
+  attackMs,
   hz,
   offset,
   output,
   preset,
+  releaseMs,
   sampleRate,
   samples,
 }: {
   amplitude: number;
+  attackMs: number;
   hz: number;
   offset: number;
   output: Float32Array;
   preset: BookExportSettings["tonePreset"];
+  releaseMs: number;
   sampleRate: number;
   samples: number;
 }) {
   const attackSamples = Math.min(
     samples / 2,
-    (sampleRate * defaultAttackMs(preset)) / 1000,
+    (sampleRate * attackMs) / 1000,
   );
   const releaseSamples = Math.min(
     samples / 2,
-    (sampleRate * defaultReleaseMs(preset)) / 1000,
+    (sampleRate * releaseMs) / 1000,
   );
 
   for (let localIndex = 0; localIndex < samples; localIndex += 1) {
@@ -994,7 +1060,7 @@ function buildManifest({
   settings: BookExportSettings;
   totalBatches: number;
 }) {
-  const runtimeMs = parts.reduce((sum, part) => sum + part.morseDurationMs, 0);
+  const runtimeMs = totalRuntimeWithTail(parts, settings);
   return {
     app: "MorseWords",
     generatedAt,
@@ -1031,12 +1097,15 @@ function buildManifest({
       tonePreset: settings.tonePreset,
       pitch: settings.pitch,
       volume: settings.volume,
+      attackMs: settings.attackMs,
+      releaseMs: settings.releaseMs,
       paragraphPauseMultiplier: settings.paragraphPauseMultiplier,
       sentencePauseMultiplier: settings.sentencePauseMultiplier,
       punctuationMode: settings.punctuationMode,
       outputFormat: settings.outputFormat,
       mp3Bitrate: settings.mp3Bitrate,
       sampleRate: settings.sampleRate,
+      leadInMs: settings.leadInMs,
       tailPaddingMs: settings.tailPaddingMs,
       splitMode: settings.splitMode,
       splitAudio: settings.splitAudio,
@@ -1064,8 +1133,8 @@ function buildManifest({
         sourceEnd: part.sourceEnd,
         excerpt: part.cleanedExcerpt,
       },
-      runtimeEstimate: formatDuration(part.morseDurationMs),
-      runtimeMs: part.morseDurationMs,
+      runtimeEstimate: formatDuration(getBookPartAudioDurationMs(part, settings)),
+      runtimeMs: getBookPartAudioDurationMs(part, settings),
       excerpt: part.cleanedExcerpt,
     })),
     allParts: allParts.map((part) => ({
@@ -1073,8 +1142,8 @@ function buildManifest({
       title: part.title,
       sourceStart: part.sourceStart,
       sourceEnd: part.sourceEnd,
-      runtimeEstimate: formatDuration(part.morseDurationMs),
-      runtimeMs: part.morseDurationMs,
+      runtimeEstimate: formatDuration(getBookPartAudioDurationMs(part, settings)),
+      runtimeMs: getBookPartAudioDurationMs(part, settings),
     })),
   };
 }
@@ -1093,7 +1162,7 @@ function buildReadme({
   settings: BookExportSettings;
 }) {
   const title = metadata.title || metadata.filename || "MorseWords book download";
-  const runtimeMs = parts.reduce((sum, part) => sum + part.morseDurationMs, 0);
+  const runtimeMs = totalRuntimeWithTail(parts, settings);
   return [
     `${title}`,
     metadata.author ? `Author: ${metadata.author}` : "",
@@ -1130,13 +1199,9 @@ function buildReadme({
 
 function totalRuntimeWithTail(parts: BookExportPart[], settings: BookExportSettings) {
   return parts.reduce(
-    (total, part) => total + partRuntimeWithTail(part, settings.tailPaddingMs),
+    (total, part) => total + getBookPartAudioDurationMs(part, settings),
     0,
   );
-}
-
-function partRuntimeWithTail(part: BookExportPart, tailPaddingMs: number) {
-  return Math.max(0, part.morseDurationMs) + Math.max(0, tailPaddingMs);
 }
 
 function percentLabel(renderedMs: number, totalMs: number) {

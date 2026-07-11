@@ -557,8 +557,16 @@ const audioPreferenceKeys = (prefix: "mw_audio" | "mw_sound_generator") => [
   preferenceKey(`${prefix}_export_open`, `${prefix} export settings open`, "boolean-string", "1", "booleanString", isBooleanString),
   sourceMetadataKey(`${prefix}_filename`, `${prefix} export filename`, prefix === "mw_audio" ? "morse-audio" : "morse-sound"),
   preferenceKey(`${prefix}_sr`, `${prefix} sample rate`, "number-string", "44100", "audioSampleRate", numberEnum(AUDIO_SAMPLE_RATES)),
+  preferenceKey(`${prefix}_lead_in`, `${prefix} export lead-in silence`, "number-string", "0", "integerRange0To2000", numberString({ min: 0, max: 2000, integer: true })),
   preferenceKey(`${prefix}_tail`, `${prefix} tail padding`, "number-string", "120", "integerRange0To400", numberString({ min: 0, max: 400, integer: true })),
   preferenceKey(`${prefix}_mp3_kbps`, `${prefix} MP3 bitrate`, "number-string", "128", "mp3Bitrate", numberEnum(MP3_BITRATES)),
+  preferenceKey(`${prefix}_format`, `${prefix} export format`, "enum-string", "mp3", "audioExportFormat", enumString(["mp3", "wav"] as const)),
+  preferenceKey(`${prefix}_split_mode`, `${prefix} export split mode`, "enum-string", "none", "audioSplitMode", enumString(["none", "duration", "custom"] as const)),
+  preferenceKey(`${prefix}_split_minutes`, `${prefix} export split duration`, "number-string", "15", "splitMinutes", numberEnum([5, 10, 15, 30, 45, 60] as const)),
+  preferenceKey(`${prefix}_custom_split_minutes`, `${prefix} custom split duration`, "string", "", "stringMax12", stringWithMax(12), {
+    maxLength: 12,
+    normalizeForWrite: normalizeCappedString(12),
+  }),
 ] as const;
 
 export const STORAGE_KEY_REGISTRY: readonly StorageKeyDefinition[] = [
@@ -583,10 +591,31 @@ export const STORAGE_KEY_REGISTRY: readonly StorageKeyDefinition[] = [
   preferenceKey("mw_flash", "translator flash enabled", "boolean-string", "0", "booleanString", isBooleanString),
   preferenceKey("mw_preset", "translator tone preset", "enum-string", "cw_radio", "translatorAudioPreset", enumString(TRANSLATOR_PRESETS)),
   preferenceKey("mw_adv_open", "translator advanced settings open", "boolean-string", "0", "booleanString", isBooleanString),
+  preferenceKey("mw_export_format", "translator export format", "enum-string", "wav", "audioExportFormat", enumString(["mp3", "wav"] as const)),
+  preferenceKey("mw_export_split_mode", "translator export split mode", "enum-string", "none", "audioSplitMode", enumString(["none", "duration", "custom"] as const)),
+  preferenceKey("mw_export_split_minutes", "translator export split duration", "number-string", "15", "splitMinutes", numberEnum([5, 10, 15, 30, 45, 60] as const)),
+  preferenceKey("mw_export_custom_split_minutes", "translator custom split duration", "string", "", "stringMax12", stringWithMax(12), {
+    maxLength: 12,
+    normalizeForWrite: normalizeCappedString(12),
+  }),
+  sourceMetadataKey("mw_export_filename", "translator export filename", "morsewords"),
+  preferenceKey("mw_export_sample_rate", "translator export sample rate", "number-string", "44100", "audioSampleRate", numberEnum(AUDIO_SAMPLE_RATES)),
+  preferenceKey("mw_export_mp3_kbps", "translator export MP3 bitrate", "number-string", "128", "mp3Bitrate", numberEnum(MP3_BITRATES)),
+  preferenceKey("mw_export_attack_ms", "translator export attack envelope", "number-string", "8", "integerRange0To40", numberString({ min: 0, max: 40, integer: true })),
+  preferenceKey("mw_export_release_ms", "translator export release envelope", "number-string", "12", "integerRange0To80", numberString({ min: 0, max: 80, integer: true })),
+  preferenceKey("mw_export_lead_in_ms", "translator export lead-in silence", "number-string", "0", "integerRange0To2000", numberString({ min: 0, max: 2000, integer: true })),
+  preferenceKey("mw_export_tail_ms", "translator export tail padding", "number-string", "120", "integerRange0To400", numberString({ min: 0, max: 400, integer: true })),
 
   ...audioPreferenceKeys("mw_audio"),
   sourceMetadataKey("mw_mp3_filename", "MP3 generator filename", "morse-code"),
   preferenceKey("mw_mp3_kbps", "MP3 generator bitrate", "number-string", "128", "mp3Bitrate", numberEnum(MP3_BITRATES)),
+  preferenceKey("mw_mp3_format", "MP3 generator export format", "enum-string", "mp3", "audioExportFormat", enumString(["mp3", "wav"] as const)),
+  preferenceKey("mw_mp3_split_mode", "MP3 generator export split mode", "enum-string", "none", "audioSplitMode", enumString(["none", "duration", "custom"] as const)),
+  preferenceKey("mw_mp3_split_minutes", "MP3 generator export split duration", "number-string", "15", "splitMinutes", numberEnum([5, 10, 15, 30, 45, 60] as const)),
+  preferenceKey("mw_mp3_custom_split_minutes", "MP3 generator custom split duration", "string", "", "stringMax12", stringWithMax(12), {
+    maxLength: 12,
+    normalizeForWrite: normalizeCappedString(12),
+  }),
   ...audioPreferenceKeys("mw_sound_generator"),
 
   preferenceKey("mw_typing_input_mode", "typing input mode", "enum-string", "dotdash", "typingInputMode", enumString(TYPING_INPUT_MODES)),

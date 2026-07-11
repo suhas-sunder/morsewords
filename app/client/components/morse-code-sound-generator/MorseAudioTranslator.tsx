@@ -26,7 +26,15 @@ import {
   ExportJobStatus,
   ExportPlanSummary,
 } from "~/client/components/shared/export/ExportPlanStatus";
-import { buildMorseExportPlan } from "~/client/components/shared/export/morseExportPlan";
+import AudioExportFormatSplitControls from "~/client/components/shared/export/AudioExportFormatSplitControls";
+import {
+  buildMorseExportPlan,
+  getMorseAudioNoSplitSafetyMessage,
+  getMorseAudioSplitTargetDurationMs,
+  MORSE_AUDIO_SPLIT_PRESET_MINUTES,
+  validateCustomMorseAudioSplitMinutes,
+  type MorseAudioSplitMode,
+} from "~/client/components/shared/export/morseExportPlan";
 import { useMorseAudioExportJob } from "~/client/components/shared/export/useMorseAudioExportJob";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import TogglePill from "~/client/components/shared/ui/TogglePill";
@@ -41,9 +49,11 @@ import {
   normalizeMorseForDecoding,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
+import { readQueryPrefillValue } from "~/client/components/shared/queryPrefill";
 import { hasPlayableMorse } from "~/client/components/shared/morseTiming";
 import {
   AUDIO_ATTACK_RANGE,
+  AUDIO_LEAD_IN_RANGE,
   AUDIO_PITCH_RANGE,
   AUDIO_RELEASE_RANGE,
   AUDIO_SAMPLE_RATES,
@@ -84,11 +94,15 @@ type PageIntent = "audio" | "sound";
 const SOURCE_MODES = ["text", "morse"] as const;
 const STROBE_WARNING_ID = "sound-generator-strobe-warning";
 const FLASH_DISABLED_NOTICE_ID = "sound-generator-flash-disabled";
+const AUDIO_SPLIT_MODES = ["none", "duration", "custom"] as const;
+const DEFAULT_EXPORT_FORMATS: readonly ExportFormat[] = ["mp3", "wav"];
 
 type MorseAudioTranslatorProps = {
   heading?: string;
   lead?: string;
   defaultText?: string;
+  /** Preserve `/audio?text=` and `/audio?morse=` links from content routes. */
+  enableQueryPrefill?: boolean;
   defaultMorse?: string;
   defaultFileName?: string;
   storagePrefix?: string;
@@ -100,14 +114,15 @@ type MorseAudioTranslatorProps = {
   secondaryExampleText?: string;
   morseExample?: string;
   pageIntent?: PageIntent;
-  exportFormats?: ExportFormat[];
+  exportFormats?: readonly ExportFormat[];
   introEyebrow?: string;
 };
 
 export default function MorseAudioTranslator({
   heading = "Morse Audio Generator",
-  lead = "Convert text or Morse into audio. Adjust speed, pitch, waveform, and export a WAV file.",
+  lead = "Convert text or Morse into audio. Adjust speed, pitch, waveform, and download MP3 or WAV.",
   defaultText = "sos help",
+  enableQueryPrefill = false,
   defaultMorse = "... --- ...",
   defaultFileName = "morse-audio",
   storagePrefix = "mw_audio",
@@ -119,10 +134,11 @@ export default function MorseAudioTranslator({
   secondaryExampleText,
   morseExample,
   pageIntent = "audio",
-  exportFormats = ["wav"],
+  exportFormats = DEFAULT_EXPORT_FORMATS,
   introEyebrow = "Audio tool",
 }: MorseAudioTranslatorProps = {}) {
   const player = useMorseAudio();
+  const queryPrefillApplied = React.useRef(false);
   const storageKey = React.useCallback(
     (suffix: string) => `${storagePrefix}_${suffix}`,
     [storagePrefix],
@@ -156,15 +172,18 @@ export default function MorseAudioTranslator({
   const [soundOn, setSoundOn] = React.useState<boolean>(true);
   const [flash, setFlash] = React.useState<boolean>(false);
   const [advancedOpen, setAdvancedOpen] = React.useState<boolean>(true);
-  const [exportOpen, setExportOpen] = React.useState<boolean>(true);
   const [fileName, setFileName] = React.useState(defaultFileName);
   const [sampleRate, setSampleRate] =
     React.useState<22050 | 44100 | 48000>(44100);
+  const [leadInMs, setLeadInMs] = React.useState<number>(0);
   const [tailMs, setTailMs] = React.useState<number>(120);
   const [mp3Kbps, setMp3Kbps] = React.useState<number>(128);
   const [plannedFormat, setPlannedFormat] = React.useState<ExportFormat>(() =>
     exportFormats.includes("mp3") ? "mp3" : exportFormats[0] ?? "wav",
   );
+  const [splitMode, setSplitMode] = React.useState<MorseAudioSplitMode>("none");
+  const [splitPresetMinutes, setSplitPresetMinutes] = React.useState(15);
+  const [customSplitMinutes, setCustomSplitMinutes] = React.useState("");
   const [sourceSaveNotice, setSourceSaveNotice] = React.useState("");
   const [hydrated, setHydrated] = React.useState(false);
   const flashLamp = useFlashLampState(hydrated && flash);
@@ -233,13 +252,20 @@ export default function MorseAudioTranslator({
     setSoundOn(readStoredBoolean(storageKey("sound"), true));
     setFlash(readStoredBoolean(storageKey("flash"), false));
     setAdvancedOpen(readStoredBoolean(storageKey("adv_open"), true));
-    setExportOpen(readStoredBoolean(storageKey("export_open"), true));
     setFileName(
       readStoredString(storageKey("filename"), defaultFileName, {
         maxLength: 120,
       }),
     );
     setSampleRate(readStoredNumberEnum(storageKey("sr"), AUDIO_SAMPLE_RATES, 44100));
+    setLeadInMs(
+      readStoredNumber(storageKey("lead_in"), {
+        fallback: 0,
+        min: AUDIO_LEAD_IN_RANGE.min,
+        max: AUDIO_LEAD_IN_RANGE.max,
+        integer: true,
+      }),
+    );
     setTailMs(
       readStoredNumber(storageKey("tail"), {
         fallback: 120,
@@ -251,8 +277,42 @@ export default function MorseAudioTranslator({
     setMp3Kbps(
       readStoredNumberEnum(storageKey("mp3_kbps"), MP3_BITRATES, 128),
     );
+    setPlannedFormat(
+      readStoredEnum(
+        storageKey("format"),
+        exportFormats,
+        exportFormats.includes("mp3") ? "mp3" : exportFormats[0] ?? "wav",
+      ),
+    );
+    setSplitMode(readStoredEnum(storageKey("split_mode"), AUDIO_SPLIT_MODES, "none"));
+    setSplitPresetMinutes(
+      readStoredNumberEnum(
+        storageKey("split_minutes"),
+        MORSE_AUDIO_SPLIT_PRESET_MINUTES,
+        15,
+      ),
+    );
+    setCustomSplitMinutes(readStoredString(storageKey("custom_split_minutes"), "", { maxLength: 12 }));
     setHydrated(true);
-  }, [defaultFileName, defaultMorse, defaultText, storageKey]);
+  }, [defaultFileName, defaultMorse, defaultText, exportFormats, storageKey]);
+
+  React.useEffect(() => {
+    if (!enableQueryPrefill || queryPrefillApplied.current) return;
+    queryPrefillApplied.current = true;
+    if (typeof window === "undefined") return;
+
+    const textParam = readQueryPrefillValue(window.location.search, "text");
+    const morseParam = readQueryPrefillValue(window.location.search, "morse");
+    if (textParam) {
+      setSourceMode("text");
+      setText(textParam);
+      return;
+    }
+    if (morseParam) {
+      setSourceMode("morse");
+      setMorse(morseParam);
+    }
+  }, [enableQueryPrefill]);
 
   React.useEffect(() => {
     if (!hydrated) return;
@@ -294,12 +354,16 @@ export default function MorseAudioTranslator({
     writeBool(storageKey("sound"), soundOn);
     writeBool(storageKey("flash"), flash);
     writeBool(storageKey("adv_open"), advancedOpen);
-    writeBool(storageKey("export_open"), exportOpen);
     writeStr(storageKey("filename"), fileName);
     writeNum(storageKey("sr"), sampleRate);
+    writeNum(storageKey("lead_in"), leadInMs);
     writeNum(storageKey("tail"), tailMs);
     writeNum(storageKey("mp3_kbps"), mp3Kbps);
-  }, [hydrated, sourceMode, text, morse, charWpm, farnsworthWpm, toneHz, volume, preset, attackMs, releaseMs, repeat, soundOn, flash, advancedOpen, exportOpen, fileName, sampleRate, tailMs, mp3Kbps, storageKey]);
+    writeStr(storageKey("format"), plannedFormat);
+    writeStr(storageKey("split_mode"), splitMode);
+    writeNum(storageKey("split_minutes"), splitPresetMinutes);
+    writeStr(storageKey("custom_split_minutes"), customSplitMinutes);
+  }, [hydrated, sourceMode, text, morse, charWpm, farnsworthWpm, toneHz, volume, preset, attackMs, releaseMs, repeat, soundOn, flash, advancedOpen, fileName, sampleRate, leadInMs, tailMs, mp3Kbps, plannedFormat, splitMode, splitPresetMinutes, customSplitMinutes, storageKey]);
 
   const canPlay = React.useMemo(
     () => hasPlayableMorse(activeCode),
@@ -322,23 +386,34 @@ export default function MorseAudioTranslator({
         farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
         format,
         kind: "audio",
+        leadInMs,
         mp3Kbps,
         sampleRate,
         source: sourceMode === "text" ? text : morse,
         sourceMode,
+        splitMode,
         tailPaddingMs: tailMs,
+        targetPartDurationMs: getMorseAudioSplitTargetDurationMs({
+          customMinutes: customSplitMinutes,
+          mode: splitMode,
+          presetMinutes: splitPresetMinutes,
+        }),
       }),
     [
       charWpm,
       defaultFileName,
       farnsworthWpm,
       fileName,
+      leadInMs,
       morse,
       mp3Kbps,
       sampleRate,
       sourceMode,
+      splitMode,
+      splitPresetMinutes,
       tailMs,
       text,
+      customSplitMinutes,
     ],
   );
   const exportPlan = React.useMemo(
@@ -356,11 +431,29 @@ export default function MorseAudioTranslator({
     releaseMs,
     sampleRate,
     soundOn,
+    leadInMs,
     tailMs,
     toneHz,
     volume,
+    plannedFormat,
+    splitMode,
+    splitPresetMinutes,
+    customSplitMinutes,
   });
   const audioExport = useMorseAudioExportJob(exportKey);
+  const customSplitError =
+    splitMode === "custom"
+      ? validateCustomMorseAudioSplitMinutes(customSplitMinutes)
+      : "";
+  const exportBlockedMessage = exportPlan.singleFileUnsafe
+    ? getMorseAudioNoSplitSafetyMessage(plannedFormat)
+    : customSplitError;
+  const exportControlsLocked = audioExport.isActive;
+  const showExportPlan =
+    splitMode !== "none" ||
+    exportPlan.multiPart ||
+    exportPlan.singleFileUnsafe ||
+    audioExport.state.status !== "idle";
 
   const handleCharWpmChange = React.useCallback((value: number) => {
     const next = Math.round(
@@ -433,16 +526,24 @@ export default function MorseAudioTranslator({
   };
 
   const handleExport = async (format: ExportFormat) => {
-    if (!activeCode.trim() || !soundOn || audioExport.state.status === "running") return;
+    const plan = buildAudioPlan(format);
+    if (
+      !activeCode.trim() ||
+      !soundOn ||
+      audioExport.isActive ||
+      plan.singleFileUnsafe ||
+      customSplitError
+    ) return;
     player.stop();
     setPlannedFormat(format);
     await audioExport.start({
-      plan: buildAudioPlan(format),
+      plan,
       settings: {
         attackMs,
         charWpm: clampNum(charWpm, 5, 60),
         farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
         format,
+        leadInMs,
         mp3Kbps,
         pitch: toneHz,
         releaseMs,
@@ -453,6 +554,19 @@ export default function MorseAudioTranslator({
       },
     });
   };
+
+  const restoreExportDefaults = React.useCallback(() => {
+    setFileName(defaultFileName);
+    setSampleRate(44100);
+    setLeadInMs(0);
+    setTailMs(120);
+    setMp3Kbps(128);
+    setPlannedFormat(exportFormats.includes("mp3") ? "mp3" : "wav");
+    setSplitMode("none");
+    setSplitPresetMinutes(15);
+    setCustomSplitMinutes("");
+    audioExport.reset();
+  }, [audioExport, defaultFileName, exportFormats]);
 
   const updateFeedbackToggle = React.useCallback(
     (key: "sound" | "repeat" | "flash", next: boolean) => {
@@ -514,6 +628,7 @@ export default function MorseAudioTranslator({
                     <>
                       <ToolTextarea
                         id={sourceInputId}
+                        aria-label={textInputLabel}
                         value={text}
                         onChange={(e) => setText(e.target.value)}
                         placeholder="Example: Hello world"
@@ -531,6 +646,7 @@ export default function MorseAudioTranslator({
                     <>
                       <ToolTextarea
                         id={sourceInputId}
+                        aria-label={morseInputLabel}
                         value={morse}
                         onChange={(e) => setMorse(e.target.value)}
                         placeholder="Example: ... --- ..."
@@ -602,13 +718,13 @@ export default function MorseAudioTranslator({
                 </ToolButton>
 
                 <ToolButton
-                  onClick={() => handleExport(exportFormats.includes("mp3") ? "mp3" : "wav")}
-                  disabled={!canAttemptExport}
+                  onClick={() => handleExport(plannedFormat)}
+                  disabled={!hydrated || !canAttemptExport || Boolean(exportBlockedMessage) || exportControlsLocked}
                   tone="light"
                   className="flex items-center justify-center gap-2 rounded-xl py-2.5"
                 >
                   <SaveIcon size={22} title="Export audio" />
-                  <span>{exportFormats.includes("mp3") ? "Download MP3" : "Export WAV"}</span>
+                  <span>{`Download ${plannedFormat.toUpperCase()}`}</span>
                 </ToolButton>
               </div>
             </div>
@@ -626,14 +742,51 @@ export default function MorseAudioTranslator({
                 <SliderRow label="Volume" value={Math.round(volume * 100)} min={0} max={100} step={1} unit="%" onChange={(v) => setVolume(v / 100)} disabled={!soundOn} />
               </div>
 
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                <TogglePill label="Sound" checked={soundOn} onChange={(v) => updateFeedbackToggle("sound", v)} icon={<SoundIcon size={16} title="Sound" />} rounded="lg" />
+                <TogglePill label="Repeat" checked={repeat} onChange={(v) => updateFeedbackToggle("repeat", v)} icon={<LoopIcon size={16} title="Repeat" />} rounded="lg" />
+                <TogglePill label="Flash Light" checked={effectiveFlash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title={undefined} aria-hidden="true" />} describedBy={disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : showStrobeWarning ? STROBE_WARNING_ID : undefined} disabled={!flashAllowed} rounded="lg" />
+                <FlashLamp active={flashLamp.active} disabled={!flashAllowed} label="Morse audio flash lamp" size="sm" />
+              </div>
+
+              {disableFlashEffects ? <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} className="mt-3" /> : showStrobeWarning ? <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" /> : null}
+
+              <div className="mt-4">
+                <button
+                  type="button"
+                  onClick={() => setAdvancedOpen((v) => !v)}
+                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95"
+                  aria-expanded={advancedOpen}
+                >
+                  {advancedOpen ? "Hide advanced" : "Show advanced"}
+                </button>
+              </div>
+
               {advancedOpen ? (
                 <div className="mt-4 pt-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor={tonePresetId} className="text-sm font-semibold text-slate-700">Tone preset</label>
                       <select id={tonePresetId} value={preset} disabled={!hydrated} onChange={(e) => handlePresetChange(sanitizeAudioGeneratorPreset(e.target.value))} className="mt-2 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 py-2 font-semibold hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none disabled:cursor-wait disabled:text-slate-400">
                         <AudioPresetOptions context="soundGenerator" />
                       </select>
+                    </div>
+
+                    <div className="mt-4">
+                      <AudioExportFormatSplitControls
+                        idPrefix={safePrefix}
+                        format={plannedFormat}
+                        splitMode={splitMode}
+                        presetMinutes={splitPresetMinutes}
+                        customMinutes={customSplitMinutes}
+                        disabled={!hydrated || exportControlsLocked}
+                        onFormatChange={(next) => {
+                          if (exportFormats.includes(next)) setPlannedFormat(next);
+                        }}
+                        onSplitModeChange={setSplitMode}
+                        onPresetMinutesChange={setSplitPresetMinutes}
+                        onCustomMinutesChange={setCustomSplitMinutes}
+                      />
                     </div>
                     <div className="grid grid-cols-2 gap-3">
                       <SliderRow label="Attack" value={attackMs} min={0} max={40} step={1} unit="ms" onChange={setAttackMs} disabled={!soundOn || !presetSupportsPitchControl(preset)} help="Softens clicks at the start." />
@@ -641,26 +794,10 @@ export default function MorseAudioTranslator({
                     </div>
                   </div>
 
-                  <div className="mt-4 flex flex-wrap items-center gap-2">
-                    <TogglePill label="Sound" checked={soundOn} onChange={(v) => updateFeedbackToggle("sound", v)} icon={<SoundIcon size={16} title="Sound" />} rounded="lg" />
-                    <TogglePill label="Repeat" checked={repeat} onChange={(v) => updateFeedbackToggle("repeat", v)} icon={<LoopIcon size={16} title="Repeat" />} rounded="lg" />
-                    <TogglePill label="Flash Light" checked={effectiveFlash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title={undefined} aria-hidden="true" />} describedBy={disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : showStrobeWarning ? STROBE_WARNING_ID : undefined} disabled={!flashAllowed} rounded="lg" />
-                    <FlashLamp active={flashLamp.active} disabled={!flashAllowed} label="Morse audio flash lamp" size="sm" />
-                  </div>
-
-                  {disableFlashEffects ? <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} className="mt-3" /> : showStrobeWarning ? <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" /> : null}
                 </div>
               ) : null}
 
-              <div className="mt-4">
-                  <button type="button" onClick={() => setAdvancedOpen((v) => !v)} className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95">
-                  {advancedOpen ? "Hide advanced" : "Show advanced"}
-                </button>
-              </div>
-
-              
-
-              {exportOpen ? (
+              {advancedOpen ? (
                 <div className="mt-4 pt-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
@@ -676,11 +813,12 @@ export default function MorseAudioTranslator({
                           <option value={48000}>48000</option>
                         </select>
                       </div>
-                      <SliderRow label="Tail padding" value={tailMs} min={0} max={400} step={10} unit="ms" onChange={setTailMs} help="Extra silence to avoid clipped tails." disabled={!soundOn} />
+                      <SliderRow label="Lead-in silence" value={leadInMs} min={AUDIO_LEAD_IN_RANGE.min} max={AUDIO_LEAD_IN_RANGE.max} step={50} unit="ms" onChange={setLeadInMs} help="Silence before each downloaded file." disabled={exportControlsLocked} />
+                      <SliderRow label="Tail padding" value={tailMs} min={0} max={400} step={10} unit="ms" onChange={setTailMs} help="Extra silence to avoid clipped tails." disabled={exportControlsLocked} />
                     </div>
                   </div>
 
-                  {exportFormats.includes("mp3") ? (
+                  {plannedFormat === "mp3" ? (
                     <div className="mt-4 rounded-2xl bg-[#fffdf8] p-4">
                       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                         <div>
@@ -702,14 +840,26 @@ export default function MorseAudioTranslator({
 
                   
 
-                  <ExportPlanSummary plan={exportPlan} />
+                  {showExportPlan ? <ExportPlanSummary plan={exportPlan} /> : null}
+                  {exportBlockedMessage ? (
+                    <p role="alert" className="mt-3 text-sm font-semibold text-slate-700">
+                      {exportBlockedMessage}
+                    </p>
+                  ) : null}
                   <div className="mt-4 flex flex-wrap gap-2">
-                    {exportFormats.includes("wav") ? <ExportButton label="Download WAV" onClick={() => handleExport("wav")} disabled={!canAttemptExport || audioExport.state.status === "running"} /> : null}
-                    {exportFormats.includes("mp3") ? <ExportButton label="Download MP3" onClick={() => handleExport("mp3")} disabled={!canAttemptExport || audioExport.state.status === "running"} /> : null}
+                    <button
+                      type="button"
+                      onClick={restoreExportDefaults}
+                      disabled={exportControlsLocked}
+                      className="min-h-10 cursor-pointer rounded-lg bg-[#fffdf8] px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-[#fffaf2] hover:text-sky-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      Restore defaults
+                    </button>
                   </div>
 
                   <ExportJobStatus
                     state={audioExport.state}
+                    isActive={audioExport.isActive}
                     onCancel={() => audioExport.cancel()}
                     onReset={audioExport.reset}
                     onRetry={() => void audioExport.retry()}
@@ -717,13 +867,12 @@ export default function MorseAudioTranslator({
                 </div>
               ) : null}
 
-              <div className="mt-4">
-                  <button type="button" onClick={() => setExportOpen((v) => !v)} className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95">
-                  {exportOpen ? "Hide export" : "Show export"}
-                </button>
-              </div>
-
-              <p className="mt-4 text-xs text-slate-500">Audio is generated in your browser. WAV rendering is local. MP3 download is encoded in the browser when selected.</p>
+              {advancedOpen ? (
+                <p className="mt-4 text-xs text-slate-500">
+                  Audio is generated in your browser. WAV rendering is local.
+                  MP3 download is encoded in the browser when selected.
+                </p>
+              ) : null}
               </div>
             </div>
       </section>
@@ -751,15 +900,6 @@ export default function MorseAudioTranslator({
               ) : null}
             </div>
     </div>
-  );
-}
-
-function ExportButton({ label, onClick, disabled }: { label: string; onClick: () => void; disabled: boolean }) {
-  return (
-    <button type="button" onClick={onClick} disabled={disabled} className={`inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 font-semibold transition focus:outline-none active:scale-95 ${!disabled ? "bg-[#fffdf8] text-slate-700 hover:bg-slate-900 hover:text-sky-100" : "cursor-not-allowed text-slate-400"}`}>
-      <SaveIcon size={18} title={label} />
-      <span>{label}</span>
-    </button>
   );
 }
 

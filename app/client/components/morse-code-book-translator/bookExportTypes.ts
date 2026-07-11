@@ -21,7 +21,13 @@ export type BookDownloadKind = "audio" | "video" | "parts" | "zip";
 
 export type BookPunctuationMode = "preserve" | "simplify";
 
-export type BookSplitMode = "none" | "duration";
+/**
+ * Explicit public splitting policy for book and audiobook downloads.
+ *
+ * `none` is intentionally a promise to request one file. Long selections
+ * must be blocked before rendering rather than silently becoming parts.
+ */
+export type BookSplitMode = "none" | "duration" | "custom";
 
 export type BookExportSettings = {
   presetName: BookExportPresetName;
@@ -30,9 +36,13 @@ export type BookExportSettings = {
   tonePreset: AudioGeneratorPreset;
   pitch: number;
   volume: number;
+  attackMs: number;
+  releaseMs: number;
   outputFormat: BookExportFormat;
   mp3Bitrate: Mp3Bitrate;
   sampleRate: AudioSampleRate;
+  /** Silence inserted before the first Morse mark in each generated file. */
+  leadInMs: number;
   tailPaddingMs: number;
   splitMode: BookSplitMode;
   splitAudio: boolean;

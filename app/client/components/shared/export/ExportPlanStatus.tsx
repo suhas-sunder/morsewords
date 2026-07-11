@@ -4,6 +4,7 @@ import { DownloadIcon, RefreshIcon, StopIcon } from "~/client/assets/svg/Icons";
 import { ToolButton } from "~/client/components/shared/ToolWorkspace";
 
 import type { MorseExportPlan } from "./morseExportPlan";
+import { getMorseAudioNoSplitSafetyMessage } from "./morseExportPlan";
 import type { MorseAudioExportJobState } from "./useMorseAudioExportJob";
 
 export function ExportPlanSummary({ plan }: { plan: MorseExportPlan }) {
@@ -30,6 +31,11 @@ export function ExportPlanSummary({ plan }: { plan: MorseExportPlan }) {
             : ""
         }`}
       />
+      {plan.singleFileUnsafe && (plan.format === "mp3" || plan.format === "wav") ? (
+        <p className="sm:col-span-2 lg:col-span-4" role="alert" data-testid="morse-export-no-split-warning">
+          {getMorseAudioNoSplitSafetyMessage(plan.format)}
+        </p>
+      ) : null}
       {plan.multiPart ? (
         <p className="sm:col-span-2 lg:col-span-4" data-testid="morse-export-split-note">
           This selection has a lot of text, so the download may take a while.
@@ -44,11 +50,14 @@ export function ExportPlanSummary({ plan }: { plan: MorseExportPlan }) {
 }
 
 export function ExportJobStatus({
+  isActive = false,
   onCancel,
   onReset,
   onRetry,
   state,
 }: {
+  /** Remains true while a cancelled renderer is releasing its resources. */
+  isActive?: boolean;
   onCancel: () => void;
   onReset: () => void;
   onRetry: () => void;
@@ -82,13 +91,13 @@ export function ExportJobStatus({
             </ToolButton>
           ) : null}
           {state.status === "failed" && state.failedPart !== null ? (
-            <ToolButton className="min-h-10 px-3 py-1.5 text-sm" tone="dark" onClick={onRetry}>
+            <ToolButton className="min-h-10 px-3 py-1.5 text-sm" tone="dark" onClick={onRetry} disabled={isActive}>
               <RefreshIcon size={16} title={undefined} aria-hidden="true" />
               Retry part {state.failedPart}
             </ToolButton>
           ) : null}
           {state.status === "complete" || state.status === "cancelled" ? (
-            <ToolButton className="min-h-10 px-3 py-1.5 text-sm" tone="light" onClick={onReset}>
+            <ToolButton className="min-h-10 px-3 py-1.5 text-sm" tone="light" onClick={onReset} disabled={isActive}>
               <DownloadIcon size={16} title={undefined} aria-hidden="true" />
               Start new export
             </ToolButton>

@@ -31,12 +31,25 @@ import {
   ToolPanel,
   toolControlButtonClass,
 } from "~/client/components/shared/ToolWorkspace";
+import AudioExportFormatSplitControls from "~/client/components/shared/export/AudioExportFormatSplitControls";
+import { validateCustomMorseAudioSplitMinutes } from "~/client/components/shared/export/morseExportPlan";
 import {
   safeReadStorage,
   safeRemoveStorage,
   safeWriteStorage,
 } from "~/client/components/shared/settingsStorage";
+import {
+  AUDIO_ATTACK_RANGE,
+  AUDIO_SAMPLE_RATES,
+  AUDIO_LEAD_IN_RANGE,
+  AUDIO_RELEASE_RANGE,
+  AUDIO_TAIL_RANGE,
+  MP3_BITRATES,
+  sanitizeAudioSampleRate,
+  sanitizeMp3Bitrate,
+} from "~/client/components/shared/morseSettings";
 import useMorseAudio from "~/client/components/shared/useMorseAudio";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import type { ResolvedMorseVideoBackgroundStyle } from "~/client/components/shared/video/morseVideoRenderer";
 import type { MorseVideoPreview } from "~/client/components/shared/video/morseVideoPreview";
@@ -68,6 +81,7 @@ import {
   estimateBundleBytes,
   formatBytes,
   formatDuration,
+  getBookPartAudioDurationMs,
 } from "~/client/components/morse-code-book-translator/bookDurationEstimate";
 import {
   BOOK_LONG_EXPORT_KEEP_OPEN_MESSAGE,
@@ -80,6 +94,7 @@ import {
   bookExportProgressPercent as exportProgressPercent,
 } from "~/client/components/morse-code-book-translator/bookExportProgressCopy";
 import {
+  BOOK_TARGET_PART_MINUTE_OPTIONS,
   DEFAULT_BOOK_EXPORT_SETTINGS,
   sanitizeBookExportSettings,
 } from "~/client/components/morse-code-book-translator/bookExportPresets";
@@ -90,7 +105,6 @@ import type {
   BookExportPart,
   BookExportProgress,
   BookExportSettings,
-  BookSplitMode,
 } from "~/client/components/morse-code-book-translator/bookExportTypes";
 import {
   buildBookAudioPreview,
@@ -171,10 +185,6 @@ const IDLE_EXPORT_PROGRESS: BookExportProgress = {
   totalParts: 0,
 };
 
-const splitModeLabels: Record<BookSplitMode, string> = {
-  none: "No split",
-  duration: "By duration",
-};
 const visualStyleLabels: Record<
   (typeof MORSE_LIVE_PLAYER_VISUAL_STYLES)[number],
   string
@@ -718,16 +728,17 @@ function buildDownloadLabel({
   downloadKind: BookDownloadKind;
   exportSettings: BookExportSettings;
 }) {
+  const formatLabel = exportSettings.outputFormat.toUpperCase();
   if (downloadKind === "zip" && batchNumber) {
     return `Download ZIP batch ${batchNumber}`;
   }
   if (downloadKind === "zip") {
-    return "Download MP3 ZIP";
+    return `Download ${formatLabel} ZIP`;
   }
   if (downloadKind === "parts") {
-    return "Download MP3 parts";
+    return `Download ${formatLabel} parts`;
   }
-  return "Download MP3";
+  return `Download ${formatLabel}`;
 }
 
 function runningDownloadLabel(
@@ -753,8 +764,14 @@ function estimatedRenderTimeLabel(
   return `~${formatDuration(minMs)}-${formatDuration(maxMs)}`;
 }
 
-function getSelectedPartSummary(parts: BookExportPart[]) {
-  const totalRuntimeMs = parts.reduce((sum, part) => sum + part.morseDurationMs, 0);
+function getSelectedPartSummary(
+  parts: BookExportPart[],
+  settings: BookExportSettings,
+) {
+  const totalRuntimeMs = parts.reduce(
+    (sum, part) => sum + getBookPartAudioDurationMs(part, settings),
+    0,
+  );
   const totalCharacters = parts.reduce(
     (sum, part) => sum + part.cleanedText.length,
     0,
@@ -1160,6 +1177,9 @@ function MorseBookWorkspace({
   const [exportSettings, setExportSettings] = React.useState<BookExportSettings>(
     () => sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS),
   );
+  const [customSplitMinutes, setCustomSplitMinutes] = React.useState(
+    String(DEFAULT_BOOK_EXPORT_SETTINGS.targetPartMinutes),
+  );
   const [videoSettings, setVideoSettings] = React.useState<MorseVideoSettings>(
     () => sanitizeMorseLivePlayerSettings(DEFAULT_MORSE_VIDEO_SETTINGS),
   );
@@ -1173,6 +1193,9 @@ function MorseBookWorkspace({
     null,
   );
   const [exportElapsedMs, setExportElapsedMs] = React.useState(0);
+  // A cancellation request is asynchronous. Keep controls locked until the
+  // active encoder unwinds and clears its controller in `finally`.
+  const [exportUnwinding, setExportUnwinding] = React.useState(false);
   const [selectedBatchNumber, setSelectedBatchNumber] = React.useState(1);
   const [audioPreviewElapsedMs, setAudioPreviewElapsedMs] = React.useState(0);
   const [audioPreviewPlaying, setAudioPreviewPlaying] = React.useState(false);
@@ -1263,6 +1286,7 @@ function MorseBookWorkspace({
         : saved.selectedSectionIds[0] ?? defaultLiveSectionId;
       setSelectedSectionIds(new Set(saved.selectedSectionIds));
       setExportSettings(saved.exportSettings);
+      setCustomSplitMinutes(String(saved.exportSettings.targetPartMinutes));
       setVideoSettings(saved.videoSettings);
       setActiveLiveSectionId(restoredLiveSectionId);
       setActiveLiveSegmentIndex(
@@ -1279,7 +1303,11 @@ function MorseBookWorkspace({
     } else {
       pendingRestoredLiveElapsedRef.current = null;
       setSelectedSectionIds(new Set(defaultSectionIds));
-      setExportSettings(sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS));
+      const defaultExportSettings = sanitizeBookExportSettings(
+        DEFAULT_BOOK_EXPORT_SETTINGS,
+      );
+      setExportSettings(defaultExportSettings);
+      setCustomSplitMinutes(String(defaultExportSettings.targetPartMinutes));
       setVideoSettings(sanitizeMorseLivePlayerSettings(DEFAULT_MORSE_VIDEO_SETTINGS));
       setActiveLiveSectionId(
         isAudiobook ? initialSection.sectionId : defaultLiveSectionId,
@@ -1511,7 +1539,7 @@ function MorseBookWorkspace({
     downloadKind,
     exportSettings,
   });
-  const partSummary = getSelectedPartSummary(exportParts);
+  const partSummary = getSelectedPartSummary(exportParts, exportSettings);
   const estimatedBytes = estimateBundleBytes(
     partSummary.totalRuntimeMs,
     exportSettings,
@@ -1783,13 +1811,21 @@ function MorseBookWorkspace({
     (videoSettings.showMorseSymbols ? 1 : 0) +
     (videoSettings.showPlainText ? 1 : 0);
   const exportRunning = downloadStatus.kind === "working";
+  const exportControlsLocked = exportRunning || exportUnwinding;
   const unresolvedOversizedExportPart = exportPlan.unresolvedOversizedPart;
+  const splitMode = exportSettings.splitMode;
+  const customSplitError =
+    splitMode === "custom"
+      ? validateCustomMorseAudioSplitMinutes(customSplitMinutes)
+      : "";
   const oversizedExportMessage = unresolvedOversizedExportPart
-    ? BOOK_OVERSIZED_EXPORT_MESSAGE
+    ? exportPlan.singleFileUnsafe
+      ? `This ${exportSettings.outputFormat.toUpperCase()} export is too large for one reliable browser file. Choose Split by duration before generating it.`
+      : BOOK_OVERSIZED_EXPORT_MESSAGE
     : "";
   const totalBatches = exportBatches.length;
   const longExportMessages =
-    exportPlan.automaticSplit || zipBatchWorkflow
+    ((splitMode !== "none" && exportParts.length > 1) || zipBatchWorkflow)
       ? [BOOK_LONG_EXPORT_MESSAGE, BOOK_LONG_EXPORT_KEEP_OPEN_MESSAGE]
       : [];
   const activeDownloadLabel = exportRunning
@@ -1800,9 +1836,13 @@ function MorseBookWorkspace({
   const progressPercent = exportProgressPercent(exportProgress);
   const downloadBlockedMessage = fullBookLoading
     ? "Full book sections are still loading."
-    : publishReady
-    ? oversizedExportMessage
-    : "Downloads are unavailable for this book.";
+    : !publishReady
+      ? "Downloads are unavailable for this book."
+      : customSplitError ||
+        oversizedExportMessage ||
+        (exportControlsLocked
+          ? "Download is stopping. Please wait before starting another export."
+          : "");
   const renderEstimateLabel = estimatedRenderTimeLabel(
     partSummary.totalRuntimeMs,
     exportSettings.outputFormat,
@@ -1812,7 +1852,8 @@ function MorseBookWorkspace({
     fullBookLoading ||
     !scopeReady ||
     exportParts.length === 0 ||
-    exportRunning ||
+    exportControlsLocked ||
+    Boolean(customSplitError) ||
     Boolean(unresolvedOversizedExportPart);
   const canShowZipCopy = downloadKind === "zip";
   const selectionLabel =
@@ -2191,7 +2232,11 @@ function MorseBookWorkspace({
     activeLiveSectionIdRef.current = resetLiveSectionId;
     activeLiveSegmentIndexRef.current = 0;
     setSelectedSectionIds(new Set(defaultSectionIds));
-    setExportSettings(sanitizeBookExportSettings(DEFAULT_BOOK_EXPORT_SETTINGS));
+    const defaultExportSettings = sanitizeBookExportSettings(
+      DEFAULT_BOOK_EXPORT_SETTINGS,
+    );
+    setExportSettings(defaultExportSettings);
+    setCustomSplitMinutes(String(defaultExportSettings.targetPartMinutes));
     setVideoSettings(sanitizeMorseLivePlayerSettings(DEFAULT_MORSE_VIDEO_SETTINGS));
     setActiveLiveSectionId(resetLiveSectionId);
     setActiveLiveSegmentIndex(0);
@@ -2571,6 +2616,7 @@ function MorseBookWorkspace({
 
     const controller = new AbortController();
     exportAbortRef.current = controller;
+    setExportUnwinding(true);
     const version = exportVersionRef.current + 1;
     exportVersionRef.current = version;
     const startedAtMs = performance.now();
@@ -2673,7 +2719,7 @@ function MorseBookWorkspace({
         kind: "success",
         message:
           downloadKind === "parts"
-            ? `${activeDownloadParts.length} ordered MP3 download requests sent.`
+            ? `${activeDownloadParts.length} ordered ${exportSettings.outputFormat.toUpperCase()} download requests sent.`
             : downloadKind === "zip"
             ? zipBatchWorkflow && selectedExportBatch
               ? `Batch ${selectedExportBatch.batchNumber} download requested. ${
@@ -2682,7 +2728,7 @@ function MorseBookWorkspace({
                     : "All ZIP batch download requests are sent."
                 }`
               : "ZIP download requested."
-            : "MP3 download requested.",
+            : `${exportSettings.outputFormat.toUpperCase()} download requested.`,
       });
       setExportProgress({
         phase: "complete",
@@ -2724,6 +2770,7 @@ function MorseBookWorkspace({
     } finally {
       if (exportAbortRef.current === controller) {
         exportAbortRef.current = null;
+        setExportUnwinding(false);
       }
       if (exportVersionRef.current === version) {
         setExportStartedAtMs(null);
@@ -2751,7 +2798,7 @@ function MorseBookWorkspace({
                 data-testid="morse-book-live-download-link"
               >
                 <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-                Download Audiobook MP3
+                Download audio
               </a>
             }
             elapsedMs={videoPreviewElapsedMs}
@@ -2885,7 +2932,7 @@ function MorseBookWorkspace({
             <>
               Export readable book sections by default, choose chapters when you
               need a different scope, preview the Morse text, and download MP3
-              audio for offline listening.
+              or WAV audio for offline listening.
             </>
           )
         }
@@ -3005,8 +3052,6 @@ function MorseBookWorkspace({
             ) : null}
           </div>
 
-          <ContentSuitabilityNotice profile={suitabilityProfile} />
-
           {isAudiobook ? (
             <div
               className="mw-static-panel rounded-xl p-4"
@@ -3094,7 +3139,7 @@ function MorseBookWorkspace({
                     data-testid="morse-book-download-audiobook-link"
                   >
                     <DownloadIcon size={18} title={undefined} aria-hidden="true" />
-                    Download Audiobook MP3
+                    Download audio
                   </a>
                 </>
               )}
@@ -3441,63 +3486,13 @@ function MorseBookWorkspace({
               </p>
             ) : null}
 
-            <div>
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                Split mode
-              </p>
-              <div
-                className="mt-2 flex flex-wrap gap-2"
-                role="group"
-                aria-label="Split mode"
-              >
-                {(["none", "duration"] as const).map((mode) => (
-                  <button
-                    key={mode}
-                    type="button"
-                    className={toolControlButtonClass({
-                      active: exportSettings.splitMode === mode,
-                      size: "sm",
-                    })}
-                    onClick={() =>
-                      updateExportSettings({
-                        splitMode: mode,
-                        splitAudio: mode !== "none",
-                        preferSourceSections: true,
-                      })
-                    }
-                  >
-                    {splitModeLabels[mode]}
-                  </button>
-                ))}
-              </div>
-              {exportSettings.splitMode !== "none" ? (
-                <label className="mt-3 block text-sm font-semibold text-slate-700">
-                  Target part length
-                  <select
-                    value={exportSettings.targetPartMinutes}
-                    onChange={(event) =>
-                      updateExportSettings({
-                        targetPartMinutes: Number(event.target.value),
-                      })
-                    }
-                    className="ml-0 mt-1 w-32 rounded-lg bg-white px-3 py-2 text-slate-950 sm:ml-2"
-                  >
-                    <option value={15}>15 min</option>
-                    <option value={30}>30 min recommended</option>
-                    <option value={45}>45 min</option>
-                    <option value={60}>60 min experimental</option>
-                  </select>
-                </label>
-              ) : null}
-            </div>
-
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
               {zipBatchWorkflow && totalBatches > 0 ? (
                 <label className="min-w-[12rem] text-sm font-semibold text-slate-700">
                   ZIP batch
                   <select
                     value={selectedExportBatch?.batchNumber ?? 1}
-                    disabled={exportRunning}
+                    disabled={exportControlsLocked}
                     onChange={(event) =>
                       setSelectedBatchNumber(Number(event.target.value))
                     }
@@ -3608,10 +3603,7 @@ function MorseBookWorkspace({
           </div>
         </ToolPanel>
 
-        <ToolPanel
-          label={isAudiobook ? "Audio settings" : "Settings"}
-          badge="No split default"
-        >
+        <ToolPanel label={isAudiobook ? "Audio settings" : "Settings"}>
           <div className="space-y-6 px-4 pb-4">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="max-w-[58ch] text-sm leading-relaxed text-slate-700">
@@ -3639,6 +3631,49 @@ function MorseBookWorkspace({
                 {savedSettingsStatus}
               </p>
             ) : null}
+
+            <AudioExportFormatSplitControls
+              customMinutes={customSplitMinutes}
+              disabled={exportControlsLocked || !settingsRestored}
+              format={exportSettings.outputFormat}
+              idPrefix={isAudiobook ? "morse-audiobook-download" : "morse-book-download"}
+              onCustomMinutesChange={(value) => {
+                setCustomSplitMinutes(value);
+                if (!validateCustomMorseAudioSplitMinutes(value)) {
+                  updateExportSettings({
+                    splitMode: "custom",
+                    splitAudio: true,
+                    targetPartMinutes: Number(value),
+                  });
+                }
+              }}
+              onFormatChange={(outputFormat) =>
+                updateExportSettings({ outputFormat })
+              }
+              onPresetMinutesChange={(targetPartMinutes) =>
+                updateExportSettings({ targetPartMinutes })
+              }
+              onSplitModeChange={(nextSplitMode) => {
+                if (nextSplitMode === "custom") {
+                  setCustomSplitMinutes(String(exportSettings.targetPartMinutes));
+                }
+                const targetPartMinutes =
+                  nextSplitMode === "duration" &&
+                  !BOOK_TARGET_PART_MINUTE_OPTIONS.includes(
+                    exportSettings.targetPartMinutes as (typeof BOOK_TARGET_PART_MINUTE_OPTIONS)[number],
+                  )
+                    ? 15
+                    : exportSettings.targetPartMinutes;
+                updateExportSettings({
+                  splitMode: nextSplitMode,
+                  splitAudio: nextSplitMode !== "none",
+                  preferSourceSections: true,
+                  targetPartMinutes,
+                });
+              }}
+              presetMinutes={exportSettings.targetPartMinutes}
+              splitMode={splitMode}
+            />
 
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="text-sm font-semibold text-slate-700">
@@ -3696,6 +3731,42 @@ function MorseBookWorkspace({
                   className="mt-1 w-full rounded-lg bg-white px-3 py-2 text-slate-950"
                 />
               </label>
+              <label className="text-sm font-semibold text-slate-700">
+                Attack
+                <input
+                  type="number"
+                  min={AUDIO_ATTACK_RANGE.min}
+                  max={AUDIO_ATTACK_RANGE.max}
+                  step={1}
+                  value={exportSettings.attackMs}
+                  disabled={exportControlsLocked}
+                  onChange={(event) =>
+                    updateExportSettings({ attackMs: Number(event.target.value) })
+                  }
+                  className="mt-1 w-full rounded-lg bg-white px-3 py-2 text-slate-950 disabled:cursor-not-allowed disabled:opacity-60"
+                />
+                <span className="mt-1 block text-xs font-medium text-slate-500">
+                  milliseconds
+                </span>
+              </label>
+              <label className="text-sm font-semibold text-slate-700">
+                Release
+                <input
+                  type="number"
+                  min={AUDIO_RELEASE_RANGE.min}
+                  max={AUDIO_RELEASE_RANGE.max}
+                  step={1}
+                  value={exportSettings.releaseMs}
+                  disabled={exportControlsLocked}
+                  onChange={(event) =>
+                    updateExportSettings({ releaseMs: Number(event.target.value) })
+                  }
+                  className="mt-1 w-full rounded-lg bg-white px-3 py-2 text-slate-950 disabled:cursor-not-allowed disabled:opacity-60"
+                />
+                <span className="mt-1 block text-xs font-medium text-slate-500">
+                  milliseconds
+                </span>
+              </label>
             </div>
 
             <div>
@@ -3716,6 +3787,89 @@ function MorseBookWorkspace({
                   </option>
                 ))}
               </select>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              {exportSettings.outputFormat === "mp3" ? (
+                <label className="text-sm font-semibold text-slate-700">
+                  MP3 bitrate
+                  <select
+                    value={exportSettings.mp3Bitrate}
+                    disabled={exportControlsLocked}
+                    onChange={(event) =>
+                      updateExportSettings({
+                        mp3Bitrate: sanitizeMp3Bitrate(Number(event.target.value)),
+                      })
+                    }
+                    className="mt-1 w-full cursor-pointer rounded-lg bg-white px-3 py-2 text-slate-950 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {MP3_BITRATES.map((bitrate) => (
+                      <option key={bitrate} value={bitrate}>
+                        {bitrate} kbps
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ) : null}
+              <label className="text-sm font-semibold text-slate-700">
+                Sample rate
+                <select
+                  value={exportSettings.sampleRate}
+                  disabled={exportControlsLocked}
+                  onChange={(event) =>
+                    updateExportSettings({
+                      sampleRate: sanitizeAudioSampleRate(Number(event.target.value)),
+                    })
+                  }
+                  className="mt-1 w-full cursor-pointer rounded-lg bg-white px-3 py-2 text-slate-950 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {AUDIO_SAMPLE_RATES.map((sampleRate) => (
+                    <option key={sampleRate} value={sampleRate}>
+                      {sampleRate} Hz
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="text-sm font-semibold text-slate-700">
+                Lead-in silence
+                <input
+                  type="number"
+                  min={AUDIO_LEAD_IN_RANGE.min}
+                  max={AUDIO_LEAD_IN_RANGE.max}
+                  step={10}
+                  value={exportSettings.leadInMs}
+                  disabled={exportControlsLocked}
+                  onChange={(event) =>
+                    updateExportSettings({
+                      leadInMs: Number(event.target.value),
+                    })
+                  }
+                  className="mt-1 w-full rounded-lg bg-white px-3 py-2 text-slate-950 disabled:cursor-not-allowed disabled:opacity-60"
+                />
+                <span className="mt-1 block text-xs font-medium text-slate-500">
+                  milliseconds before the first Morse mark in each file
+                </span>
+              </label>
+              <label className="text-sm font-semibold text-slate-700">
+                Trailing silence
+                <input
+                  type="number"
+                  min={AUDIO_TAIL_RANGE.min}
+                  max={AUDIO_TAIL_RANGE.max}
+                  step={10}
+                  value={exportSettings.tailPaddingMs}
+                  disabled={exportControlsLocked}
+                  onChange={(event) =>
+                    updateExportSettings({
+                      tailPaddingMs: Number(event.target.value),
+                    })
+                  }
+                  className="mt-1 w-full rounded-lg bg-white px-3 py-2 text-slate-950 disabled:cursor-not-allowed disabled:opacity-60"
+                />
+                <span className="mt-1 block text-xs font-medium text-slate-500">
+                  milliseconds
+                </span>
+              </label>
             </div>
 
           </div>
@@ -3766,19 +3920,23 @@ function MorseBookWorkspace({
         </div>
       </section>
 
-      {seoSummary ? (
-        <section
-          id="book-summary"
-          className="mt-10 scroll-mt-24"
-          aria-labelledby="morse-book-summary-heading"
-          data-testid="morse-book-seo-summary"
+      <section
+        id="book-summary"
+        className="mt-10 scroll-mt-24"
+        aria-labelledby="morse-book-summary-heading"
+        data-testid="morse-book-seo-summary"
+      >
+        <h2
+          id="morse-book-summary-heading"
+          className="mw-heading text-2xl font-extrabold text-sky-950"
         >
-          <h2
-            id="morse-book-summary-heading"
-            className="mw-heading text-2xl font-extrabold text-sky-950"
-          >
-            About this Morse book
-          </h2>
+          About &ldquo;{displayTitle}&rdquo; as a Morse Code{" "}
+          {isAudiobook ? "Audiobook" : "Book"}
+        </h2>
+        <div className="mt-4">
+          <ContentSuitabilityNotice profile={suitabilityProfile} />
+        </div>
+        {seoSummary ? (
           <div
             className="text-base leading-relaxed text-slate-700"
             data-testid="morse-book-seo-summary-body"
@@ -3792,6 +3950,7 @@ function MorseBookWorkspace({
                 .join(" ")}
             >
               <div
+                data-testid="morse-book-seo-summary-columns"
                 className={
                   shouldShowSeoSummaryAd
                     ? "max-w-[68ch] space-y-3"
@@ -3812,8 +3971,8 @@ function MorseBookWorkspace({
               ) : null}
             </div>
           </div>
-        </section>
-      ) : null}
+        ) : null}
+      </section>
 
       {collectionContext ? (
         <MorseBookCollectionNav context={collectionContext} mode={mode} />
@@ -4226,7 +4385,7 @@ function BookLiveAudioSettings({
           </h3>
           <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-slate-700">
             Character speed and Farnsworth spacing use the same Morse timing
-            layer as MP3 export. Tone controls apply when live audio is on.
+            layer as audio export. Tone controls apply when live audio is on.
           </p>
         </div>
         <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500">

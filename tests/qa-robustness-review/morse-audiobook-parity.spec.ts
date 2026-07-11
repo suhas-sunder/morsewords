@@ -30,10 +30,9 @@ async function waitForAudiobookReady(page: Page) {
     "data-mw-morse-book-settings-restored",
     "true",
   );
-  await expect(page.locator("[data-mw-morse-book-loading-sections]")).toHaveCount(
-    0,
-    { timeout: 90_000 },
-  );
+  await expect(
+    page.locator("[data-mw-morse-book-loading-sections]"),
+  ).toHaveCount(0, { timeout: 90_000 });
 }
 
 function selectedSectionIds(value: string | null) {
@@ -46,7 +45,9 @@ test.describe("audiobook detail parity", () => {
   }) => {
     await openAudiobook(page);
 
-    const selectionChooser = page.getByTestId("morse-audiobook-section-chooser");
+    const selectionChooser = page.getByTestId(
+      "morse-audiobook-section-chooser",
+    );
     const source = page.locator(
       "[data-mw-morse-book-translator-source-sections]",
     );
@@ -55,7 +56,9 @@ test.describe("audiobook detail parity", () => {
     );
 
     await expect(selectionChooser).toBeVisible();
-    await expect(selectionChooser.getByText("Chapters and sections")).toBeVisible();
+    await expect(
+      selectionChooser.getByText("Chapters and sections"),
+    ).toBeVisible();
     await expect(readableDefaults).toBeChecked();
 
     const initialSelection = await source.getAttribute(
@@ -75,14 +78,16 @@ test.describe("audiobook detail parity", () => {
       audioPlayer.getByTestId("morse-book-live-section-select"),
     ).not.toBeVisible();
 
-    await selectionChooser.getByRole("button", { name: "Clear selection" }).click();
+    await selectionChooser
+      .getByRole("button", { name: "Clear selection" })
+      .click();
     await expect(source).toHaveAttribute(
       "data-mw-morse-book-translator-source-sections",
       "",
     );
     await expect(
       page.getByTestId("morse-audiobook-export-plan").getByRole("button", {
-        name: /Download MP3|Download MP3 parts|Download ZIP/,
+        name: /Download (?:MP3|WAV)(?: parts)?|Download ZIP/,
       }),
     ).toBeDisabled();
 
@@ -94,17 +99,18 @@ test.describe("audiobook detail parity", () => {
 
     await selectionChooser.getByRole("button", { name: "Select all" }).click();
     await expect
-      .poll(async () =>
-        selectedSectionIds(
-          await source.getAttribute(
-            "data-mw-morse-book-translator-source-sections",
-          ),
-        ).length,
+      .poll(
+        async () =>
+          selectedSectionIds(
+            await source.getAttribute(
+              "data-mw-morse-book-translator-source-sections",
+            ),
+          ).length,
       )
       .toBeGreaterThan(selectedSectionIds(initialSelection).length);
   });
 
-  test("provides local audio actions and the existing multipart export controls", async ({
+  test("provides local audio actions plus MP3/WAV and explicit split controls", async ({
     page,
   }) => {
     await openAudiobook(page);
@@ -117,28 +123,96 @@ test.describe("audiobook detail parity", () => {
     ).toHaveAttribute("href", "#book-mp3-download");
     await expect(
       page.getByTestId("morse-audiobook-equivalent-book-link"),
-    ).toHaveAttribute("href", "/morse-code-books/alices-adventures-in-wonderland");
-    await expect(page.getByTestId("morse-book-mp3-download-link")).toHaveAttribute(
+    ).toHaveAttribute(
       "href",
-      "#book-mp3-download",
+      "/morse-code-books/alices-adventures-in-wonderland",
     );
+    await expect(
+      page.getByTestId("morse-book-mp3-download-link"),
+    ).toHaveAttribute("href", "#book-mp3-download");
     await expect(page.getByTestId("morse-book-rights-basis")).toHaveText(
       "Rights basis recorded in this book manifest: public domain in the United States.",
     );
     const exportPlan = page.getByTestId("morse-audiobook-export-plan");
     await expect(exportPlan).toBeVisible();
-    await expect(exportPlan.getByText("Download audio", { exact: true })).toBeVisible();
-    await expect(exportPlan.getByText("Export plan", { exact: true })).toBeVisible();
-    await expect(exportPlan.getByText("Selection duration", { exact: true })).toBeVisible();
-    await expect(exportPlan.getByText("Audio settings", { exact: true })).toBeVisible();
+    await expect(
+      exportPlan.getByText("Download audio", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      exportPlan.getByText("Export plan", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      exportPlan.getByText("Selection duration", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      exportPlan.getByText("Audio settings", { exact: true }),
+    ).toBeVisible();
+    await expect(exportPlan.getByLabel("Attack")).toBeVisible();
+    await expect(exportPlan.getByLabel("Release")).toBeVisible();
+    const formatSplitControls = exportPlan.getByTestId(
+      "audio-export-format-split-controls",
+    );
+    await expect(formatSplitControls.getByLabel("Output format")).toHaveValue(
+      "mp3",
+    );
+    await expect(
+      formatSplitControls.getByLabel("Output format").locator("option"),
+    ).toHaveText(["MP3", "WAV"]);
+    await expect(
+      formatSplitControls.getByRole("radio", { name: "No split" }),
+    ).toHaveAttribute("aria-checked", "true");
+    await expect(
+      formatSplitControls.getByRole("radio", { name: "Split by duration" }),
+    ).toBeVisible();
+    await expect(
+      formatSplitControls.getByRole("radio", { name: /Custom split time/ }),
+    ).toBeVisible();
+
+    await formatSplitControls
+      .getByRole("radio", { name: "Split by duration" })
+      .click();
+    const partDuration = formatSplitControls.getByLabel("Part duration");
+    await expect(partDuration.locator("option")).toHaveText([
+      "5 minutes",
+      "10 minutes",
+      "15 minutes",
+      "30 minutes",
+      "45 minutes",
+      "60 minutes",
+    ]);
+    await partDuration.selectOption("60");
     await expect(
       exportPlan.getByRole("button", {
-        name: /Download MP3|Download MP3 parts|Download ZIP/,
+        name: /Download MP3(?: parts)?|Download ZIP/,
       }),
     ).toBeEnabled();
 
-    await expect(page.getByText("Download MP4", { exact: true })).toHaveCount(0);
-    await expect(page.getByText("Download WebM", { exact: true })).toHaveCount(0);
+    await formatSplitControls
+      .getByRole("radio", { name: /Custom split time/ })
+      .click();
+    const customDuration = formatSplitControls.getByLabel(
+      "Custom part duration",
+    );
+    await customDuration.fill("0");
+    await expect(formatSplitControls.getByRole("alert")).toContainText(
+      "positive duration",
+    );
+    await customDuration.fill("12");
+    await expect(formatSplitControls.getByRole("alert")).toHaveCount(0);
+
+    await formatSplitControls.getByLabel("Output format").selectOption("wav");
+    await expect(
+      exportPlan.getByRole("button", {
+        name: /Download WAV(?: parts)?|Download ZIP/,
+      }),
+    ).toBeEnabled();
+
+    await expect(page.getByText("Download MP4", { exact: true })).toHaveCount(
+      0,
+    );
+    await expect(page.getByText("Download WebM", { exact: true })).toHaveCount(
+      0,
+    );
   });
 
   test("migrates legacy single-section audiobook scopes without losing current custom scopes", async ({
@@ -150,7 +224,9 @@ test.describe("audiobook detail parity", () => {
       "[data-mw-morse-book-translator-source-sections]",
     );
     const defaultIds = selectedSectionIds(
-      await source.getAttribute("data-mw-morse-book-translator-source-sections"),
+      await source.getAttribute(
+        "data-mw-morse-book-translator-source-sections",
+      ),
     );
     expect(defaultIds.length).toBeGreaterThan(1);
 

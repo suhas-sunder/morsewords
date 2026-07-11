@@ -5,6 +5,7 @@ import {
   envelopeAt,
   samplePresetWaveform,
 } from "~/client/components/shared/audioToneSynthesis";
+import { AUDIO_LEAD_IN_RANGE } from "~/client/components/shared/morseSettings";
 import { buildMorseTimeline } from "~/client/components/shared/morseTiming";
 
 import type { MorseExportFormat } from "./morseExportPlan";
@@ -16,6 +17,8 @@ export type MorseAudioExportSettings = {
   charWpm: number;
   farnsworthWpm?: number;
   format: Extract<MorseExportFormat, "mp3" | "wav">;
+  /** Silence added before the first Morse element in every generated file. */
+  leadInMs?: number;
   mp3Kbps?: number;
   pitch: number;
   releaseMs?: number;
@@ -70,13 +73,26 @@ export function createMorsePcmChunkRenderer(
     ...event,
     samples: Math.max(0, Math.round((event.ms / 1000) * sampleRate)),
   }));
+  const requestedLeadInMs = Number(settings.leadInMs ?? 0);
+  const leadInMs = Number.isFinite(requestedLeadInMs)
+    ? Math.max(
+        AUDIO_LEAD_IN_RANGE.min,
+        Math.min(AUDIO_LEAD_IN_RANGE.max, Math.round(requestedLeadInMs)),
+      )
+    : 0;
+  const leadInSamples = Math.max(
+    0,
+    Math.round((leadInMs / 1000) * sampleRate),
+  );
   const tailSamples = Math.max(
     0,
     Math.round((timeline.tailPaddingMs / 1000) * sampleRate),
   );
   const totalSamples = Math.max(
     1,
-    events.reduce((sum, event) => sum + event.samples, 0) + tailSamples,
+    leadInSamples +
+      events.reduce((sum, event) => sum + event.samples, 0) +
+      tailSamples,
   );
   const amplitude = Math.max(0, Math.min(1, settings.volume)) * 0.38;
   const attackMs = Math.max(
@@ -94,6 +110,11 @@ export function createMorsePcmChunkRenderer(
   const renderInt16Chunk = (requestedSamples: number) => {
     const output = new Int16Array(requestedSamples);
     for (let index = 0; index < requestedSamples; index += 1) {
+      if (globalSampleIndex < leadInSamples) {
+        globalSampleIndex += 1;
+        continue;
+      }
+
       while (
         eventIndex < events.length &&
         sampleInEvent >= events[eventIndex].samples
@@ -116,7 +137,9 @@ export function createMorsePcmChunkRenderer(
         value =
           samplePresetWaveform({
             preset: settings.tonePreset,
-            sampleIndex: globalSampleIndex,
+            // The audible signal begins at the same waveform phase regardless
+            // of the optional export-only lead-in silence.
+            sampleIndex: globalSampleIndex - leadInSamples,
             localSampleIndex: sampleInEvent,
             samples: event.samples,
             hz: settings.pitch,

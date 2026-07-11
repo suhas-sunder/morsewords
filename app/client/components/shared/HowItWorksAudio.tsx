@@ -19,7 +19,7 @@ const workedExamples = [
   {
     title: "Short alert",
     input: "SOS",
-    body: "SOS is compact and recognizable, so it is useful for testing tone, volume, and WAV export.",
+    body: "SOS is compact and recognizable, so it is useful for testing tone, volume, and either MP3 or WAV export.",
   },
 ];
 
@@ -38,7 +38,7 @@ const settingRows = [
   },
   {
     name: "Attack, release, and tail padding",
-    body: "Soften clicks and leave enough room so the final symbol is not clipped in the exported WAV.",
+    body: "Soften clicks and leave enough room so the final symbol is not clipped in either exported format.",
   },
 ];
 
@@ -46,12 +46,12 @@ const audioToolRows = [
   {
     title: "Morse code sound generator",
     href: ROUTES.soundGenerator,
-    body: "Use it when you mainly want to shape the beep, tone preset, waveform, WAV, or MP3 sound for a short practice signal.",
+    body: "Use it when you mainly want to shape the beep, tone preset, waveform, MP3, or WAV sound for a short practice signal.",
   },
   {
     title: "Morse code MP3 generator",
     href: ROUTES.mp3Generator,
-    body: "Use it when the final deliverable should be a compact MP3 instead of the larger WAV file exported on this page.",
+    body: "Use it when a compact MP3 or editable WAV download is the main job, including bitrate and file-size choices.",
   },
   {
     title: "Morse code audio decoder",
@@ -98,15 +98,15 @@ export default function HowItWorksAudio() {
 
             <p className="mt-4 max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               This is the MorseWords audio hub. Type text or paste Morse,
-              listen to the signal, tune the timing and tone, then export a WAV
-              file or move to the right audio, MP3, decoder, book, video, or
+              listen to the signal, tune the timing and tone, then export an MP3
+              or WAV file or move to the right decoder, book, video, or
               listening-practice tool.
             </p>
           </div>
 
           <p className="max-w-[30ch] text-base leading-relaxed text-slate-700">
-            Playback and WAV export happen locally in your browser; your message
-            is not uploaded.
+            Playback, MP3 encoding, and WAV export happen locally in your browser;
+            your message is not uploaded.
           </p>
         </div>
 
@@ -117,7 +117,7 @@ export default function HowItWorksAudio() {
             </h3>
             <p className="mt-2 max-w-[34ch] text-base leading-relaxed text-slate-700">
               Use it when you want to hear a complete Morse message or save a
-              WAV file for practice, lessons, demos, timing checks, videos, or
+              MP3 or WAV file for practice, lessons, demos, timing checks, videos, or
               sharing.
             </p>
           </section>
@@ -137,9 +137,9 @@ export default function HowItWorksAudio() {
               What it exports
             </h3>
             <p className="mt-2 max-w-[34ch] text-base leading-relaxed text-slate-700">
-              WAV export is rendered locally, so the saved file preserves the
-              same speed, Farnsworth spacing, pitch, volume, and tone you
-              preview.
+              MP3 and WAV export are rendered locally, so the saved file preserves
+              the same speed, Farnsworth spacing, pitch, volume, and tone you
+              preview. MP3 is smaller; WAV is uncompressed.
             </p>
           </section>
         </div>
@@ -159,7 +159,7 @@ export default function HowItWorksAudio() {
                 <li>Choose text input or Morse input.</li>
                 <li>Enter the message and verify the generated Morse preview.</li>
                 <li>Set speed, Farnsworth spacing, pitch, waveform, and volume.</li>
-                <li>Play the audio, then export WAV when the timing sounds right.</li>
+                <li>Choose MP3 or WAV, then download when the timing sounds right.</li>
               </ol>
 
               <OptionalSquareAd className="mw-signal-audio-seo" />
@@ -328,15 +328,16 @@ export default function HowItWorksAudio() {
             <p className="max-w-[58ch] text-base leading-relaxed text-slate-700 sm:text-lg">
               Use WAV when you want clean timing, short dits, and editable
               audio. WAV files are larger because they are not compressed. Use
-              the{" "}
+              MP3 for smaller shareable files; both formats are available above.
+              The{" "}
               <a
                 href={ROUTES.mp3Generator}
                 className="font-semibold text-sky-900 underline-offset-4 hover:underline"
               >
                 Morse code MP3 generator
               </a>{" "}
-              when you need a smaller downloadable file for sharing or
-              embedding. For longer source text, use the{" "}
+              has bitrate guidance for compact downloads. For longer source text,
+              use the{" "}
               <a
                 href={ROUTES.bookTranslator}
                 className="font-semibold text-sky-900 underline-offset-4 hover:underline"
@@ -377,8 +378,13 @@ export default function HowItWorksAudio() {
                 characters or the decoded text.
               </li>
               <li>
-                Playback and WAV export run locally in the browser; no remote
-                URL import or server upload is required here.
+                Playback, MP3 encoding, and WAV export run locally in the browser;
+                no remote URL import or server upload is required here.
+              </li>
+              <li>
+                No split requests one file only. Split by duration plans ordered
+                files at safe Morse boundaries; your browser may ask permission
+                for multiple download requests.
               </li>
             </ul>
           </section>

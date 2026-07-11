@@ -8,9 +8,7 @@ import {
 } from "../../app/client/components/morse-code-book-translator/bookExportPlan";
 import { createBookDownloadPackage } from "../../app/client/components/morse-code-book-translator/bookBundleExport";
 import {
-  BOOK_DEFAULT_PART_TARGET_MS,
   BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS,
-  BOOK_LONG_EXPORT_MESSAGE,
   BOOK_ZIP_BATCH_TARGET_MS,
 } from "../../app/client/components/morse-code-book-translator/bookExportSafety";
 import {
@@ -62,7 +60,9 @@ async function openRoute(page: Page, path: string) {
 
 async function openBookTranslator(page: Page) {
   await openRoute(page, ROUTES.bookTranslator);
-  await expect(page.locator("[data-mw-book-export-ready='true']")).toBeVisible();
+  await expect(
+    page.locator("[data-mw-book-export-ready='true']"),
+  ).toBeVisible();
 }
 
 function bookTool(page: Page) {
@@ -73,14 +73,18 @@ async function expectNoVideoExportControls(scope: Page | Locator) {
   await expect(scope.getByText(["Download", "MP4"].join(" "))).toHaveCount(0);
   await expect(scope.getByText(["Download", "WebM"].join(" "))).toHaveCount(0);
   await expect(scope.getByText(["Download", "video"].join(" "))).toHaveCount(0);
-  await expect(scope.getByText(["Rendering", "video"].join(" "))).toHaveCount(0);
+  await expect(scope.getByText(["Rendering", "video"].join(" "))).toHaveCount(
+    0,
+  );
   await expect(scope.getByText(["Video", "format"].join(" "))).toHaveCount(0);
-  await expect(scope.getByText(["Available", "after export"].join(" "))).toHaveCount(0);
+  await expect(
+    scope.getByText(["Available", "after export"].join(" ")),
+  ).toHaveCount(0);
   await expect(scope.getByText("browser-safe file")).toHaveCount(0);
   await expect(scope.getByText("choose fewer chapters")).toHaveCount(0);
 }
 
-test.describe("MP3 export planning", () => {
+test.describe("book audio export planning", () => {
   test("short MP3 exports plan as one direct file", () => {
     const settings = sanitizeBookExportSettings({
       ...DEFAULT_BOOK_EXPORT_SETTINGS,
@@ -93,13 +97,15 @@ test.describe("MP3 export planning", () => {
       settings,
     });
 
-    expect(plan.directFileRuntimeLimitMs).toBe(BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS);
+    expect(plan.directFileRuntimeLimitMs).toBe(
+      BOOK_DIRECT_FILE_RUNTIME_LIMIT_MS,
+    );
     expect(plan.parts).toHaveLength(1);
     expect(plan.zipWorkflow).toBe(false);
     expect(plan.automaticSplit).toBe(false);
   });
 
-  test("long MP3 exports use browser-safe sequential parts", () => {
+  test("long No split MP3 exports block before rendering while duration mode plans safe parts", () => {
     const settings = sanitizeBookExportSettings({
       ...DEFAULT_BOOK_EXPORT_SETTINGS,
       outputFormat: "mp3",
@@ -112,14 +118,28 @@ test.describe("MP3 export planning", () => {
       settings,
     });
 
-    expect(plan.automaticSplit).toBe(true);
-    expect(plan.zipWorkflow).toBe(false);
-    expect(plan.targetPartMs).toBeLessThanOrEqual(BOOK_DEFAULT_PART_TARGET_MS);
-    expect(plan.batchTargetMs).toBe(BOOK_ZIP_BATCH_TARGET_MS);
-    expect(plan.parts.length).toBeGreaterThan(1);
-    expect(plan.parts.every((item) => item.morseDurationMs <= 45 * 60_000)).toBe(
-      true,
-    );
+    expect(plan.automaticSplit).toBe(false);
+    expect(plan.singleFileUnsafe).toBe(true);
+    expect(plan.parts).toHaveLength(1);
+
+    const durationPlan = buildBookExportPlan({
+      cleanedText: longText(1_200),
+      outputType: "audio",
+      settings: sanitizeBookExportSettings({
+        ...DEFAULT_BOOK_EXPORT_SETTINGS,
+        outputFormat: "mp3",
+        splitMode: "duration",
+        targetPartMinutes: 30,
+      }),
+    });
+    expect(durationPlan.automaticSplit).toBe(false);
+    expect(durationPlan.singleFileUnsafe).toBe(false);
+    expect(durationPlan.zipWorkflow).toBe(false);
+    expect(durationPlan.batchTargetMs).toBe(BOOK_ZIP_BATCH_TARGET_MS);
+    expect(durationPlan.parts.length).toBeGreaterThan(1);
+    expect(
+      durationPlan.parts.every((item) => item.morseDurationMs <= 45 * 60_000),
+    ).toBe(true);
   });
 
   test("example durations produce the expected ZIP batch counts", () => {
@@ -231,39 +251,70 @@ test.describe("MP3 export planning", () => {
   });
 });
 
-test.describe("MP3-only book and translator UI", () => {
-  test("short book page offers direct MP3 and links to the live player", async ({
+test.describe("book and translator audio format UI", () => {
+  test("short book page offers direct MP3/WAV controls and links to the live player", async ({
     page,
   }) => {
     await openRoute(page, TEST_BOOK_PATH);
-    await expect(page.locator("[data-mw-morse-book-output-foundation]")).toBeVisible();
+    await expect(
+      page.locator("[data-mw-morse-book-output-foundation]"),
+    ).toBeVisible();
     await expect(page.getByText("Preview and download")).toBeVisible();
     await expect(page.getByText("Settings", { exact: true })).toBeVisible();
     await expect(page.getByTestId("book-audio-preview")).toBeVisible();
     await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
-    await expect(page.locator("[data-mw-morse-book-download-label]")).toHaveAttribute(
-      "data-mw-morse-book-download-label",
-      "Download MP3",
+    await expect(
+      page.locator("[data-mw-morse-book-download-label]"),
+    ).toHaveAttribute("data-mw-morse-book-download-label", "Download MP3");
+    const formatControls = page.getByTestId(
+      "audio-export-format-split-controls",
     );
     await expect(
+      formatControls.getByLabel("Output format").locator("option"),
+    ).toHaveText(["MP3", "WAV"]);
+    await expect(formatControls.getByLabel("Output format")).toBeEnabled();
+    await formatControls.getByLabel("Output format").selectOption("wav");
+    await expect(
+      page.getByRole("button", { name: "Download WAV" }),
+    ).toBeEnabled();
+    await expect(
       page.getByTestId("morse-book-live-player-link"),
-    ).toHaveAttribute("href", /\/morse-code-audiobooks\/test-published-morse-book/);
+    ).toHaveAttribute(
+      "href",
+      /\/morse-code-audiobooks\/test-published-morse-book/,
+    );
     await expectNoVideoExportControls(page);
   });
 
-  test("long public book page uses sequential MP3 parts", async ({ page }) => {
+  test("long public book page requires explicit duration splitting before sequential parts", async ({
+    page,
+  }) => {
     await openRoute(page, PUBLIC_BOOK_PATH);
-    await expect(page.locator("[data-mw-morse-book-output-foundation]")).toBeVisible();
-    await expect(page.locator("[data-mw-morse-book-download-label]")).toHaveAttribute(
-      "data-mw-morse-book-download-label",
-      "Download MP3 parts",
+    await expect(
+      page.locator("[data-mw-morse-book-output-foundation]"),
+    ).toBeVisible();
+    await expect(
+      page.locator("[data-mw-morse-book-download-label]"),
+    ).toHaveAttribute("data-mw-morse-book-download-label", "Download MP3");
+    await expect(
+      page.getByRole("button", { name: "Download MP3" }),
+    ).toBeDisabled();
+    await expect(
+      page.locator("[data-mw-morse-book-download-blocked]"),
+    ).toContainText("Choose Split by duration");
+    const formatControls = page.getByTestId(
+      "audio-export-format-split-controls",
     );
+    await formatControls
+      .getByRole("radio", { name: "Split by duration" })
+      .click();
+    await expect(
+      page.getByRole("button", { name: "Download MP3 parts" }),
+    ).toBeEnabled();
     await expect(page.getByLabel("ZIP batch")).toHaveCount(0);
-    await expect(page.getByText(BOOK_LONG_EXPORT_MESSAGE)).toBeVisible();
-    await expect(page.getByTestId("morse-book-live-player-link")).toHaveAttribute(
-      "href",
-      /\/morse-code-audiobooks\/treasure-island/,
-    );
+    await expect(
+      page.getByTestId("morse-book-live-player-link"),
+    ).toHaveAttribute("href", /\/morse-code-audiobooks\/treasure-island/);
     await expect(page.getByTestId("morse-book-live-player")).toBeVisible();
     await expectNoVideoExportControls(page);
   });
@@ -273,11 +324,10 @@ test.describe("MP3-only book and translator UI", () => {
   }) => {
     await openRoute(page, "/morse-code-books");
     const firstBookCard = page.getByTestId("morse-book-card").first();
-    await expect(firstBookCard).toHaveAttribute(
-      "href",
-      /\/morse-code-books\//,
-    );
-    await expect(page.locator('a[href^="/morse-code-audiobooks/"]')).toHaveCount(0);
+    await expect(firstBookCard).toHaveAttribute("href", /\/morse-code-books\//);
+    await expect(
+      page.locator('a[href^="/morse-code-audiobooks/"]'),
+    ).toHaveCount(0);
 
     await openRoute(page, "/");
     await expect(
@@ -285,22 +335,41 @@ test.describe("MP3-only book and translator UI", () => {
     ).toHaveAttribute("href", /\/morse-code-books\//);
   });
 
-  test("book translator exposes MP3 download and live player, not video export", async ({
+  test("book translator exposes MP3/WAV download and live player, not video export", async ({
     page,
   }) => {
     await openBookTranslator(page);
     const tool = bookTool(page);
-    await expect(tool.getByRole("region", { name: "Download MP3" })).toBeVisible();
+    await expect(
+      tool.getByRole("region", { name: "Download MP3" }),
+    ).toBeVisible();
     await expect(tool.getByTestId("book-live-player-workflow")).toBeVisible();
-    await expect(tool.getByRole("radio", { name: "Video", exact: true })).toHaveCount(0);
-    await expect(tool.getByRole("radio", { name: "Audio", exact: true })).toHaveCount(0);
+    await expect(
+      tool.getByRole("radio", { name: "Video", exact: true }),
+    ).toHaveCount(0);
+    await expect(
+      tool.getByRole("radio", { name: "Audio", exact: true }),
+    ).toHaveCount(0);
     await expectNoVideoExportControls(tool);
 
     await page.getByLabel("Paste long-form source text").fill(longText(2_500));
-    await tool.locator("summary").filter({ hasText: "Download settings" }).click();
-    await expect(tool.getByRole("radio", { name: "By source sections" })).toHaveCount(0);
-    await tool.getByRole("radio", { name: "By duration" }).click();
-    await expect(tool.getByLabel("Target part length")).toHaveValue("30");
+    await tool
+      .locator("summary")
+      .filter({ hasText: "Download settings" })
+      .click();
+    await expect(
+      tool.getByRole("radio", { name: "By source sections" }),
+    ).toHaveCount(0);
+    const formatControls = tool.getByTestId(
+      "audio-export-format-split-controls",
+    );
+    await expect(
+      formatControls.getByLabel("Output format").locator("option"),
+    ).toHaveText(["MP3", "WAV"]);
+    await formatControls
+      .getByRole("radio", { name: "Split by duration" })
+      .click();
+    await expect(formatControls.getByLabel("Part duration")).toHaveValue("30");
     await expect(tool.getByLabel("ZIP batch")).toHaveCount(0);
     await expect(
       tool.getByRole("button", { name: /Download \d+ MP3 parts/ }),
@@ -309,7 +378,14 @@ test.describe("MP3-only book and translator UI", () => {
       tool.getByText(/browser may ask you to allow multiple downloads/i),
     ).toBeVisible();
 
-    const stored = await page.evaluate(() => Object.values(localStorage).join("\n"));
+    await formatControls.getByLabel("Output format").selectOption("wav");
+    await expect(
+      tool.getByRole("button", { name: /Download \d+ WAV parts/ }),
+    ).toBeEnabled();
+
+    const stored = await page.evaluate(() =>
+      Object.values(localStorage).join("\n"),
+    );
     expect(stored).not.toContain("SOS HELP SOS HELP");
   });
 });
@@ -326,16 +402,22 @@ test.describe("audiobook audio workflow", () => {
     await expect(
       player.getByRole("button", { name: "Play selection" }),
     ).toBeVisible();
-    await expect(player.getByTestId("book-video-preview-workflow")).not.toBeVisible();
+    await expect(
+      player.getByTestId("book-video-preview-workflow"),
+    ).not.toBeVisible();
     await expect(
       player.getByTestId("morse-book-live-section-select"),
     ).not.toBeVisible();
     await expect(exportPlan).toBeVisible();
-    await expect(exportPlan.getByText("Export plan", { exact: true })).toBeVisible();
+    await expect(
+      exportPlan.getByText("Export plan", { exact: true }),
+    ).toBeVisible();
     await expect(
       exportPlan.getByText("Selection duration", { exact: true }),
     ).toBeVisible();
-    await expect(exportPlan.getByText("Audio settings", { exact: true })).toBeVisible();
+    await expect(
+      exportPlan.getByText("Audio settings", { exact: true }),
+    ).toBeVisible();
     await expectNoVideoExportControls(page);
 
     const source = page.locator(
@@ -355,7 +437,7 @@ test.describe("audiobook audio workflow", () => {
     );
     await expect(
       exportPlan.getByRole("button", {
-        name: /Download MP3|Download MP3 parts|Download ZIP/,
+        name: /Download (?:MP3|WAV)(?: parts)?|Download ZIP/,
       }),
     ).toBeDisabled();
   });
@@ -383,7 +465,9 @@ test.describe("canonical live visual state", () => {
           maxWords: 1_000,
         },
       );
-      const mark = preview.timeline.events.find((event) => event.type === "mark");
+      const mark = preview.timeline.events.find(
+        (event) => event.type === "mark",
+      );
       const gap = preview.timeline.events.find((event) => event.type === "gap");
       expect(mark).toBeTruthy();
       expect(gap).toBeTruthy();
@@ -412,7 +496,10 @@ test.describe("canonical live visual state", () => {
         Math.max(0, preview.durationMs - 120),
       ]) {
         const frame = getMorseVideoPreviewFrame(preview, elapsedMs);
-        const state = getMorseVideoCanonicalFrameState(preview.timeline, elapsedMs);
+        const state = getMorseVideoCanonicalFrameState(
+          preview.timeline,
+          elapsedMs,
+        );
         expect(frame.active).toBe(state.bulbActive);
         expect(frame.textExcerpt).not.toMatch(/S O HHELP/i);
         expect(frame.textExcerpt).not.toMatch(/\b(\w+)\s+\1\s+\1\b/i);

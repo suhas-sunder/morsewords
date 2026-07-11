@@ -26,6 +26,8 @@ export const PRACTICE_PITCH_RANGE = { min: 300, max: 1000 } as const;
 export const VOLUME_RANGE = { min: 0, max: 1 } as const;
 export const AUDIO_ATTACK_RANGE = { min: 0, max: 40 } as const;
 export const AUDIO_RELEASE_RANGE = { min: 0, max: 80 } as const;
+/** Export-only silence before each generated file. */
+export const AUDIO_LEAD_IN_RANGE = { min: 0, max: 2000 } as const;
 export const AUDIO_TAIL_RANGE = { min: 0, max: 400 } as const;
 
 export type AudioGeneratorPreset = AudioTonePresetId;

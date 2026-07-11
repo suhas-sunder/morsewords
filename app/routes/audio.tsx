@@ -40,8 +40,8 @@ const audioToolPathItems = [
     badge: "Sound",
   },
   {
-    title: "Download MP3",
-    text: "Use the MP3 generator when you need a smaller shareable file instead of the WAV export on this page.",
+    title: "MP3 and WAV generator",
+    text: "Use the dedicated generator when compact MP3 or editable WAV files are the main job, with the same local browser export model.",
     href: ROUTES.mp3Generator,
     badge: "MP3",
   },
@@ -96,11 +96,15 @@ const faqItems: AudioFaqItem[] = [
   },
   {
     q: "Can I download the audio from this page?",
-    a: "Yes. This page exports a WAV file rendered in your browser, so the saved file matches the timing and tone settings you preview.",
+    a: "Yes. Choose MP3 for a smaller compressed download or WAV for an uncompressed waveform. Both are rendered locally in your browser from the selected Morse timing and tone settings.",
   },
   {
-    q: "When should I use the MP3 generator instead?",
-    a: "Use the Morse code MP3 generator when you need a smaller downloadable MP3 for sharing, embedding, or sending. Use this page when you want quick playback or a clean WAV export.",
+    q: "How do No split and Split by duration work?",
+    a: "No split requests exactly one file. If that file would be too large for a reliable browser render, MorseWords stops before generation and asks you to choose Split by duration. Split by duration plans ordered parts at a selected duration using safe text and Morse boundaries. Custom split time is experimental and validates the minutes before planning.",
+  },
+  {
+    q: "Will my browser download every multipart file automatically?",
+    a: "MorseWords generates and requests each file one at a time, releasing the previous part before continuing. Browsers can ask permission for multiple downloads. Completion means a download was requested; browser acceptance cannot be detected by the page.",
   },
   {
     q: "Can I convert a whole book into Morse audio?",
@@ -112,7 +116,7 @@ const faqItems: AudioFaqItem[] = [
   },
   {
     q: "Can I make a Morse code video?",
-    a: "Yes, use the Morse code video generator when you need visual dots and dashes with an optional audio track. This page focuses on playable audio and WAV export.",
+    a: "Yes, use the Morse code video generator when you need visual dots and dashes with an optional audio track. This page focuses on playable MP3 and WAV audio export.",
   },
   {
     q: "Which audio format should I use, MP3 or WAV?",
@@ -120,7 +124,7 @@ const faqItems: AudioFaqItem[] = [
   },
   {
     q: "Is my text or audio uploaded to a server?",
-    a: "No. Playback and WAV export happen locally in your browser. Your message is not uploaded to MorseWords servers or stored in a database. The audio source may be saved only in this browser on this device and can be cleared from site settings.",
+    a: "No. Playback, MP3 encoding, and WAV export happen locally in your browser. Your message is not uploaded to MorseWords servers or stored in a database. The audio source may be saved only in this browser on this device and can be cleared from site settings.",
   },
 ];
 
@@ -157,14 +161,14 @@ export default function AudioRoute() {
         operatingSystem: "All",
         url: CANONICAL_URL,
         description:
-          "Browser-based Morse code audio hub for playing messages, tuning listening settings, exporting WAV practice audio, and finding related MP3, decoder, book, video, and listening tools.",
+          "Browser-based Morse code audio hub for playing messages, tuning listening settings, exporting MP3 or WAV practice audio, and finding related decoder, book, video, and listening tools.",
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
         featureList: [
           "Text to Morse audio playback",
           "Pasted Morse code audio playback",
           "Adjustable WPM and Farnsworth spacing",
           "Adjustable pitch, waveform, volume, attack, and release",
-          "Local WAV export",
+          "Local MP3 and WAV export",
           "Browser-based audio generation",
           "Canonical links to Morse MP3, audio decoder, book, video, and listening practice tools",
         ],

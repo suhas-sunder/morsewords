@@ -179,7 +179,9 @@ test.describe("consolidated audio behavior", () => {
 
       await expect(page.getByRole("button", { name: /Play/ }).first()).toBeVisible();
       await expect(
-        page.getByRole("button", { name: /Download WAV|Export WAV/ }).first(),
+        page
+          .getByRole("button", { name: /Save MP3 audio|Download MP3|Export MP3/ })
+          .first(),
       ).toBeVisible();
     });
   }
@@ -245,6 +247,7 @@ test.describe("consolidated audio behavior", () => {
     await source.fill("SOS");
     await expect(source).toHaveValue("SOS");
 
+    await page.getByLabel("Output format").selectOption("wav");
     const wavDownload = page.waitForEvent("download", { timeout: 30_000 });
     await page.getByRole("button", { name: "Download WAV" }).first().click();
     const wav = await wavDownload;
@@ -254,6 +257,7 @@ test.describe("consolidated audio behavior", () => {
     expect(wavBlobs.at(-1)?.type).toBe("audio/wav");
     expect(wavBlobs.at(-1)?.size ?? 0).toBeGreaterThan(100);
 
+    await page.getByLabel("Output format").selectOption("mp3");
     const mp3Download = page.waitForEvent("download", { timeout: 30_000 });
     await page.getByRole("button", { name: "Download MP3" }).first().click();
     const mp3 = await mp3Download;

@@ -25,6 +25,8 @@ import {
   readStoredBoolean,
   readStoredEnum,
   readStoredNumber,
+  readStoredNumberEnum,
+  readStoredString,
   safeWriteStorage,
 } from "~/client/components/shared/settingsStorage";
 import useAudio, { type SoundPreset } from "~/client/components/shared/useAudio";
@@ -42,11 +44,21 @@ import {
   ExportJobStatus,
   ExportPlanSummary,
 } from "~/client/components/shared/export/ExportPlanStatus";
+import AudioExportFormatSplitControls, {
+  type AudioExportFormat,
+} from "~/client/components/shared/export/AudioExportFormatSplitControls";
 import {
   downloadBlobFile,
   sanitizeDownloadFilename,
 } from "~/client/components/shared/actionOutputUtils";
-import { buildMorseExportPlan } from "~/client/components/shared/export/morseExportPlan";
+import {
+  buildMorseExportPlan,
+  getMorseAudioNoSplitSafetyMessage,
+  getMorseAudioSplitTargetDurationMs,
+  MORSE_AUDIO_SPLIT_PRESET_MINUTES,
+  validateCustomMorseAudioSplitMinutes,
+  type MorseAudioSplitMode,
+} from "~/client/components/shared/export/morseExportPlan";
 import { useMorseAudioExportJob } from "~/client/components/shared/export/useMorseAudioExportJob";
 
 import {
@@ -104,6 +116,7 @@ const DARK_PANEL_BUTTON =
   "mw-button-dark-panel bg-slate-700/95 text-slate-100 hover:bg-slate-800 hover:text-white";
 const DARK_PANEL_DISABLED =
   "mw-button-dark-panel-disabled cursor-not-allowed bg-slate-800/60 text-slate-500";
+const HOME_EXPORT_FORMATS = ["mp3", "wav"] as const satisfies readonly AudioExportFormat[];
 
 export default function TranslatorSectionsBasic({
   plainA,
@@ -144,6 +157,11 @@ export default function TranslatorSectionsBasic({
   const [charWpm, setCharWpm] = useState<number>(20);
   const [farnsworthWpm, setFarnsworthWpm] = useState<number>(20);
   const [advancedOpen, setAdvancedOpen] = useState<boolean>(false);
+  const [exportFormat, setExportFormat] = useState<AudioExportFormat>("wav");
+  const [exportSplitMode, setExportSplitMode] =
+    useState<MorseAudioSplitMode>("none");
+  const [exportSplitPresetMinutes, setExportSplitPresetMinutes] = useState(15);
+  const [exportCustomSplitMinutes, setExportCustomSplitMinutes] = useState("");
 
   useEffect(() => {
     setToneHz(
@@ -190,6 +208,24 @@ export default function TranslatorSectionsBasic({
       }),
     );
     setAdvancedOpen(readStoredBoolean("mw_adv_open", false));
+    setExportFormat(readStoredEnum("mw_export_format", HOME_EXPORT_FORMATS, "wav"));
+    setExportSplitMode(
+      readStoredEnum(
+        "mw_export_split_mode",
+        ["none", "duration", "custom"] as const,
+        "none",
+      ),
+    );
+    setExportSplitPresetMinutes(
+      readStoredNumberEnum(
+        "mw_export_split_minutes",
+        MORSE_AUDIO_SPLIT_PRESET_MINUTES,
+        15,
+      ),
+    );
+    setExportCustomSplitMinutes(
+      readStoredString("mw_export_custom_split_minutes", "", { maxLength: 12 }),
+    );
     setIsHydrated(true);
   }, []);
 
@@ -227,6 +263,10 @@ export default function TranslatorSectionsBasic({
     writeNum("mw_char_wpm", charWpm);
     writeNum("mw_fwpm", farnsworthWpm);
     writeBool("mw_adv_open", advancedOpen);
+    writeStr("mw_export_format", exportFormat);
+    writeStr("mw_export_split_mode", exportSplitMode);
+    writeNum("mw_export_split_minutes", exportSplitPresetMinutes);
+    writeStr("mw_export_custom_split_minutes", exportCustomSplitMinutes);
   }, [
     isHydrated,
     toneHz,
@@ -238,6 +278,10 @@ export default function TranslatorSectionsBasic({
     charWpm,
     farnsworthWpm,
     advancedOpen,
+    exportFormat,
+    exportSplitMode,
+    exportSplitPresetMinutes,
+    exportCustomSplitMinutes,
   ]);
 
   useEffect(() => {
@@ -365,18 +409,47 @@ export default function TranslatorSectionsBasic({
           clampNumber(charWpm, TOOL_SPEED_RANGE.min, TOOL_SPEED_RANGE.max),
         ),
         farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, charWpm),
-        format: "wav",
+        format: exportFormat,
         kind: "audio",
+        leadInMs: 0,
+        mp3Kbps: 128,
         sampleRate: 44_100,
         source: direction === "encode" ? plainA : morseB,
         sourceMode: direction === "encode" ? "text" : "morse",
+        splitMode: exportSplitMode,
         tailPaddingMs: 120,
+        targetPartDurationMs: getMorseAudioSplitTargetDurationMs({
+          customMinutes: exportCustomSplitMinutes,
+          mode: exportSplitMode,
+          presetMinutes: exportSplitPresetMinutes,
+        }),
       }),
-    [charWpm, direction, farnsworthWpm, morseB, plainA],
+    [
+      charWpm,
+      direction,
+      exportCustomSplitMinutes,
+      exportFormat,
+      exportSplitMode,
+      exportSplitPresetMinutes,
+      farnsworthWpm,
+      morseB,
+      plainA,
+    ],
   );
+  const exportCustomSplitError =
+    exportSplitMode === "custom"
+      ? validateCustomMorseAudioSplitMinutes(exportCustomSplitMinutes)
+      : "";
+  const exportBlockedMessage = translatorExportPlan.singleFileUnsafe
+    ? getMorseAudioNoSplitSafetyMessage(exportFormat)
+    : exportCustomSplitError;
   const translatorExportKey = JSON.stringify({
     activeMorseForPlayback,
     charWpm,
+    exportCustomSplitMinutes,
+    exportFormat,
+    exportSplitMode,
+    exportSplitPresetMinutes,
     farnsworthWpm,
     preset,
     soundOn,
@@ -384,6 +457,12 @@ export default function TranslatorSectionsBasic({
     volume,
   });
   const translatorExport = useMorseAudioExportJob(translatorExportKey);
+  const exportControlsLocked = translatorExport.isActive;
+  const showTranslatorExportPlan =
+    exportSplitMode !== "none" ||
+    translatorExportPlan.multiPart ||
+    translatorExportPlan.singleFileUnsafe ||
+    translatorExport.state.status !== "idle";
 
   const handlePlay = async () => {
     if (!canPlay) return;
@@ -435,17 +514,28 @@ export default function TranslatorSectionsBasic({
   ]);
 
   const handleSaveAudio = async () => {
-    if (!canPlay || !soundOn) return;
+    if (
+      !canPlay ||
+      !soundOn ||
+      exportControlsLocked ||
+      Boolean(exportBlockedMessage)
+    ) {
+      return;
+    }
     player.stop();
     await translatorExport.start({
       plan: translatorExportPlan,
       settings: {
+        attackMs: getAudioPresetDefaults(mapTranslatorAudioPreset(preset)).attackMs,
         charWpm: Math.round(
           clampNumber(charWpm, TOOL_SPEED_RANGE.min, TOOL_SPEED_RANGE.max),
         ),
         farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, charWpm),
-        format: "wav",
+        format: exportFormat,
+        leadInMs: 0,
+        mp3Kbps: 128,
         pitch: toneHz,
+        releaseMs: getAudioPresetDefaults(mapTranslatorAudioPreset(preset)).releaseMs,
         sampleRate: 44_100,
         tailPaddingMs: 120,
         tonePreset: mapTranslatorAudioPreset(preset),
@@ -847,7 +937,12 @@ export default function TranslatorSectionsBasic({
               <ActionButton
                 unstyled
                 onClick={handleSaveAudio}
-                disabled={!canPlay || !soundOn || translatorExport.state.status === "running"}
+                disabled={
+                  !canPlay ||
+                  !soundOn ||
+                  exportControlsLocked ||
+                  Boolean(exportBlockedMessage)
+                }
                 className={`flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-semibold transition active:scale-95 ${focusOutline} ${
                   canPlay && soundOn
                     ? isHome
@@ -861,17 +956,9 @@ export default function TranslatorSectionsBasic({
                   <DownloadIcon size={22} title={undefined} aria-hidden="true" />
                 }
               >
-                <span>Save Audio</span>
+                <span>{`Save ${exportFormat.toUpperCase()} audio`}</span>
               </ActionButton>
             </div>
-
-            <ExportPlanSummary plan={translatorExportPlan} />
-            <ExportJobStatus
-              state={translatorExport.state}
-              onCancel={() => translatorExport.cancel()}
-              onReset={translatorExport.reset}
-              onRetry={() => void translatorExport.retry()}
-            />
 
             <div
               className={
@@ -983,7 +1070,8 @@ export default function TranslatorSectionsBasic({
                 <button
                   type="button"
                   onClick={() => setAdvancedOpen((v) => !v)}
-                  className={`inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-2 transition active:scale-95 sm:w-auto ${focusOutline} ${
+                  disabled={!isHydrated}
+                  className={`inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-2 transition active:scale-95 disabled:cursor-wait disabled:opacity-60 sm:w-auto ${focusOutline} ${
                     isHome
                       ? HOME_SOFT_CONTROL_DARK
                       : SOFT_CONTROL_DARK
@@ -1040,6 +1128,47 @@ export default function TranslatorSectionsBasic({
                       crisp while adding extra spacing between characters and
                       words.
                     </p>
+
+                    <section
+                      aria-label="Audio download settings"
+                      className="grid gap-4 border-t border-slate-200/80 pt-4"
+                      data-testid="translator-audio-export-settings"
+                    >
+                      <h4 className="mw-heading text-base font-extrabold text-sky-950">
+                        Audio export
+                      </h4>
+
+                      <div className="grid gap-4">
+                        <AudioExportFormatSplitControls
+                          idPrefix="translator-audio-export"
+                          format={exportFormat}
+                          splitMode={exportSplitMode}
+                          presetMinutes={exportSplitPresetMinutes}
+                          customMinutes={exportCustomSplitMinutes}
+                          disabled={exportControlsLocked}
+                          onFormatChange={setExportFormat}
+                          onSplitModeChange={setExportSplitMode}
+                          onPresetMinutesChange={setExportSplitPresetMinutes}
+                          onCustomMinutesChange={setExportCustomSplitMinutes}
+                        />
+
+                      {showTranslatorExportPlan ? (
+                        <ExportPlanSummary plan={translatorExportPlan} />
+                      ) : null}
+                      {exportCustomSplitError ? (
+                        <p role="alert" className="text-sm font-semibold text-slate-700">
+                          {exportCustomSplitError}
+                        </p>
+                      ) : null}
+                      <ExportJobStatus
+                        state={translatorExport.state}
+                        isActive={translatorExport.isActive}
+                        onCancel={() => translatorExport.cancel()}
+                        onReset={translatorExport.reset}
+                        onRetry={() => void translatorExport.retry()}
+                      />
+                      </div>
+                    </section>
                   </div>
                 )}
               </div>

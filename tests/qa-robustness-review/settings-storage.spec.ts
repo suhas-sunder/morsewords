@@ -218,9 +218,21 @@ test.describe("storage registry policy", () => {
       STORAGE_KEYS.fullPageFlash,
       "mw_audio_text",
       "mw_audio_morse",
+      "mw_audio_format",
+      "mw_audio_split_mode",
+      "mw_audio_split_minutes",
+      "mw_audio_custom_split_minutes",
       "mw_sound_generator_text",
       "mw_sound_generator_morse",
+      "mw_sound_generator_format",
+      "mw_sound_generator_split_mode",
+      "mw_sound_generator_split_minutes",
+      "mw_sound_generator_custom_split_minutes",
       "mw_mp3_kbps",
+      "mw_mp3_format",
+      "mw_mp3_split_mode",
+      "mw_mp3_split_minutes",
+      "mw_mp3_custom_split_minutes",
       "mw_word_trainer_custom_words",
       STORAGE_KEYS.bookExportPreferences,
       STORAGE_KEYS.bookCacheIndex,
@@ -263,6 +275,14 @@ test.describe("storage registry policy", () => {
     expect(validateStorageRegistryValue("mw_audio_sr", "96000")).toBe(false);
     expect(validateStorageRegistryValue("mw_audio_preset", "warm_tone")).toBe(true);
     expect(validateStorageRegistryValue("mw_audio_preset", "old_square")).toBe(false);
+    expect(validateStorageRegistryValue("mw_audio_format", "wav")).toBe(true);
+    expect(validateStorageRegistryValue("mw_audio_format", "opus")).toBe(false);
+    expect(validateStorageRegistryValue("mw_audio_split_mode", "custom")).toBe(true);
+    expect(validateStorageRegistryValue("mw_audio_split_mode", "automatic")).toBe(false);
+    expect(validateStorageRegistryValue("mw_audio_split_minutes", "60")).toBe(true);
+    expect(validateStorageRegistryValue("mw_audio_split_minutes", "90")).toBe(false);
+    expect(validateStorageRegistryValue("mw_mp3_custom_split_minutes", "120")).toBe(true);
+    expect(validateStorageRegistryValue("mw_mp3_custom_split_minutes", "x".repeat(13))).toBe(false);
     expect(validateStorageRegistryValue(STORAGE_KEYS.bookExportPreferences, "{bad")).toBe(false);
     expect(
       validateStorageRegistryValue(

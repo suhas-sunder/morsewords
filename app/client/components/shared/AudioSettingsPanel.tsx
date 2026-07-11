@@ -165,10 +165,10 @@ export default function AudioSettingsPanel({
           ))}
         </LabeledSelect>
       ) : null}
-      {outputFormat === "wav" && sampleRate && onSampleRateChange ? (
+      {sampleRate && onSampleRateChange ? (
         <LabeledSelect
-          id={`${idPrefix}-wav-sample-rate`}
-          label="WAV sample rate"
+          id={`${idPrefix}-sample-rate`}
+          label="Sample rate"
           value={String(sampleRate)}
           onChange={(value) => onSampleRateChange(Number(value) as AudioSampleRate)}
         >
@@ -179,7 +179,7 @@ export default function AudioSettingsPanel({
           ))}
         </LabeledSelect>
       ) : null}
-      {outputFormat === "wav" && typeof tailMs === "number" && onTailMsChange ? (
+      {typeof tailMs === "number" && onTailMsChange ? (
         <SliderRow
           label="Tail padding"
           value={tailMs}

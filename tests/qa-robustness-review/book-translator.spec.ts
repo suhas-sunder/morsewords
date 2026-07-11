@@ -136,15 +136,21 @@ function livePlayerSettingsToggle(page: Page) {
 }
 
 function downloadSettingsPanel(page: Page) {
-  return bookTool(page).locator("details").filter({ hasText: "Download settings" });
+  return bookTool(page)
+    .locator("details")
+    .filter({ hasText: "Download settings" });
 }
 
 function livePlayerSettingsPanel(page: Page) {
-  return bookTool(page).locator("details").filter({ hasText: "Live player settings" });
+  return bookTool(page)
+    .locator("details")
+    .filter({ hasText: "Live player settings" });
 }
 
 function playerDetailsPanel(page: Page) {
-  return previewSection(page).locator("details").filter({ hasText: "Player details" });
+  return previewSection(page)
+    .locator("details")
+    .filter({ hasText: "Player details" });
 }
 
 async function openPlayerDetails(page: Page) {
@@ -203,11 +209,17 @@ function outputTypeRadio(page: Page, outputType: "audio" | "video") {
 
 async function chooseSplitMode(
   page: Page,
-  mode: "No split" | "By duration",
+  mode: "No split" | "Split by duration" | "Custom split time",
 ) {
-  const downloadSection = page.locator("#book-download-controls");
-  await expect(downloadSection).toBeVisible();
-  await downloadSection.getByRole("radio", { name: mode, exact: true }).click();
+  const downloadSettings = downloadSettingsPanel(page);
+  await expect(downloadSettings).toBeVisible();
+  const radioName = mode === "Custom split time" ? /Custom split time/ : mode;
+  await downloadSettings
+    .getByRole("radio", {
+      name: radioName,
+      exact: mode !== "Custom split time",
+    })
+    .click();
 }
 
 function previewSection(page: Page) {
@@ -421,7 +433,8 @@ async function expectActivePreviewHighlights(
       morseCharacterRect: rectFor(morseCharacter),
       morseCharacterStyle: styleFor(morseCharacter),
       morseCharacterText: morseCharacter?.textContent?.trim() ?? "",
-      morseOverlayText: morseOverlay?.textContent?.replace(/\s+/g, " ").trim() ?? "",
+      morseOverlayText:
+        morseOverlay?.textContent?.replace(/\s+/g, " ").trim() ?? "",
       morseRect: rectFor(morseWord),
       morseStyle: styleFor(morseWord),
       morseText: morseWord?.textContent?.replace(/\s+/g, " ").trim() ?? "",
@@ -442,9 +455,11 @@ async function expectActivePreviewHighlights(
     highlight.textStyle.backgroundColor,
   );
   expect(highlight.morseStyle.borderRadius).toBeGreaterThan(0);
-  expect(Math.abs(
-    highlight.morseStyle.borderRadius - highlight.textStyle.borderRadius,
-  )).toBeLessThanOrEqual(1);
+  expect(
+    Math.abs(
+      highlight.morseStyle.borderRadius - highlight.textStyle.borderRadius,
+    ),
+  ).toBeLessThanOrEqual(1);
   expect(highlight.textCharacterText.length).toBeGreaterThan(0);
   expect(highlight.morseCharacterStyle.backgroundColor).not.toBe(
     "rgba(0, 0, 0, 0)",
@@ -463,17 +478,23 @@ async function expectActivePreviewHighlights(
   );
   expect(highlight.morseCharacterStyle.borderRadius).toBeGreaterThan(0);
   expect(highlight.textCharacterStyle.borderRadius).toBeGreaterThan(0);
-  expect(Math.abs(
-    highlight.textStyle.paddingLeft - highlight.textStyle.paddingRight,
-  )).toBeLessThanOrEqual(1);
-  expect(Math.abs(
-    highlight.textCharacterStyle.paddingLeft -
-      highlight.textCharacterStyle.paddingRight,
-  )).toBeLessThanOrEqual(1);
-  expect(Math.abs(
-    highlight.morseCharacterStyle.paddingLeft -
-      highlight.morseCharacterStyle.paddingRight,
-  )).toBeLessThanOrEqual(1);
+  expect(
+    Math.abs(
+      highlight.textStyle.paddingLeft - highlight.textStyle.paddingRight,
+    ),
+  ).toBeLessThanOrEqual(1);
+  expect(
+    Math.abs(
+      highlight.textCharacterStyle.paddingLeft -
+        highlight.textCharacterStyle.paddingRight,
+    ),
+  ).toBeLessThanOrEqual(1);
+  expect(
+    Math.abs(
+      highlight.morseCharacterStyle.paddingLeft -
+        highlight.morseCharacterStyle.paddingRight,
+    ),
+  ).toBeLessThanOrEqual(1);
   expect(highlight.morseOverlayText).toContain(highlight.morseText);
   expect(highlight.morseOverlayText).not.toBe(highlight.morseText);
   expect(highlight.morseRect.width).toBeGreaterThan(0);
@@ -715,7 +736,9 @@ async function installPreviewAudioProbe(page: Page) {
       }
 
       createMediaStreamDestination() {
-        return Object.assign(new FakeAudioNode(), { stream: new MediaStream() });
+        return Object.assign(new FakeAudioNode(), {
+          stream: new MediaStream(),
+        });
       }
 
       resume() {
@@ -741,8 +764,9 @@ async function installPreviewAudioProbe(page: Page) {
 
 async function readPreviewAudioEvents(page: Page) {
   return page.evaluate(
-    () => (window as typeof window & { __morsePreviewAudioEvents?: string[] })
-      .__morsePreviewAudioEvents ?? [],
+    () =>
+      (window as typeof window & { __morsePreviewAudioEvents?: string[] })
+        .__morsePreviewAudioEvents ?? [],
   );
 }
 
@@ -826,7 +850,10 @@ function repeatTextForRuntime(
   minRuntimeMs: number,
   settings = BOOK_EXPORT_PRESETS["Reader Quick Start"],
 ) {
-  const phraseRuntimeMs = Math.max(1, estimateBookTextDurationMs(phrase, settings));
+  const phraseRuntimeMs = Math.max(
+    1,
+    estimateBookTextDurationMs(phrase, settings),
+  );
   return phrase.repeat(Math.ceil(minRuntimeMs / phraseRuntimeMs));
 }
 
@@ -1055,8 +1082,9 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
     preview.getByRole("heading", { name: "Live preview" }),
   ).toHaveCount(0);
   await expect(visualPreview).toBeVisible();
-  await expect(preview.getByRole("button", { name: "Play live player" }))
-    .toBeVisible();
+  await expect(
+    preview.getByRole("button", { name: "Play live player" }),
+  ).toBeVisible();
   await expect(previewDownloadLink).toBeVisible();
   await expect(previewDownloadLink).toHaveText("Download MP3");
   await expect(previewDownloadLink).toHaveAttribute(
@@ -1094,16 +1122,16 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
     "720p",
     "1080p",
   ]) {
-    await expect(liveSettings.getByText(retiredLabel, { exact: true })).toHaveCount(
-      0,
-    );
+    await expect(
+      liveSettings.getByText(retiredLabel, { exact: true }),
+    ).toHaveCount(0);
   }
-  await expect(liveSettings.getByText(/Split mode|Split download/)).toHaveCount(0);
+  await expect(liveSettings.getByText(/Split mode|Split download/)).toHaveCount(
+    0,
+  );
   await expect(page.getByTestId("book-video-preview-branding")).toHaveCount(0);
   await expect(preview.getByText(/morsewords\.com/i)).toHaveCount(0);
-  await expect(
-    downloadRow.getByText("Preview and download"),
-  ).toBeVisible();
+  await expect(downloadRow.getByText("Preview and download")).toBeVisible();
   await expect(
     downloadRow.getByRole("radiogroup", { name: "Split mode" }),
   ).toBeVisible();
@@ -1111,14 +1139,15 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
     downloadRow.getByRole("radio", { name: "No split" }),
   ).toBeVisible();
   await expect(
-    downloadRow.getByRole("radio", { name: "By duration" }),
+    downloadRow.getByRole("radio", { name: "Split by duration" }),
   ).toBeVisible();
   await expect(sourceDetails).toBeVisible();
   await expect(sourceDetails.getByText("Active chars")).toBeVisible();
   await expect(sourceDetails.getByText("Copy extracted text")).toBeVisible();
   await expect(sourceDetails.getByText("Copy cleaned text")).toBeVisible();
-  await expect(sourceDetails.getByRole("button", { name: "Clear source" }))
-    .toBeVisible();
+  await expect(
+    sourceDetails.getByRole("button", { name: "Clear source" }),
+  ).toBeVisible();
 
   const uploadBox = await uploadRow.boundingBox();
   const inputBox = await sourceTextRow.boundingBox();
@@ -1156,9 +1185,9 @@ test("translator rows run upload, source text, live preview, settings, then MP3 
     )
     .toBeLessThan(220);
 
-  await expect(
-    page.getByRole("link", { name: "Open audio tool" }),
-  ).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Open audio tool" })).toHaveCount(
+    0,
+  );
   await expect(
     page.getByRole("link", { name: "Create MP3 audio" }),
   ).toHaveCount(0);
@@ -1295,7 +1324,9 @@ test("large extracted edit mode uses apply and cancel without downloading draft 
     page.getByRole("button", { name: "Cancel edits" }),
   ).toBeVisible();
   await expect(
-    page.getByRole("button", { name: /Download (MP3|WAV)|Download ZIP (?:bundle|batch \d+)/ }),
+    page.getByRole("button", {
+      name: /Download (MP3|WAV)|Download ZIP (?:bundle|batch \d+)/,
+    }),
   ).toBeEnabled();
 
   await page
@@ -1408,7 +1439,9 @@ test("source preview actions copy, edit, and clear uploaded content", async ({
     page.getByRole("button", { name: "Copy cleaned text" }),
   ).toBeEnabled();
   await expect(
-    page.getByRole("button", { name: /Download (MP3|WAV)|Download ZIP (?:bundle|batch \d+)/ }),
+    page.getByRole("button", {
+      name: /Download (MP3|WAV)|Download ZIP (?:bundle|batch \d+)/,
+    }),
   ).toBeEnabled();
   await expect(page.getByRole("button", { name: "Apply edits" })).toBeVisible();
   await expect(
@@ -1432,7 +1465,9 @@ test("source preview actions copy, edit, and clear uploaded content", async ({
   ).toHaveCount(0);
   await expect(page.getByText("Audio file summary")).toBeVisible();
   await expect(
-    page.getByRole("button", { name: /Download (MP3|WAV)|Download ZIP (?:bundle|batch \d+)/ }),
+    page.getByRole("button", {
+      name: /Download (MP3|WAV)|Download ZIP (?:bundle|batch \d+)/,
+    }),
   ).toBeDisabled();
   await expect(page.getByText("Last download")).toHaveCount(0);
 });
@@ -1548,12 +1583,13 @@ test("duration estimates and segmentation use shared Morse timing", async () => 
 });
 
 test("legacy splitAudio preferences do not silently enable split mode", async () => {
-  const legacySettings: Partial<(typeof BOOK_EXPORT_PRESETS)["Reader Quick Start"]> =
-    {
-      ...BOOK_EXPORT_PRESETS["Reader Quick Start"],
-      splitAudio: true,
-      preferSourceSections: true,
-    };
+  const legacySettings: Partial<
+    (typeof BOOK_EXPORT_PRESETS)["Reader Quick Start"]
+  > = {
+    ...BOOK_EXPORT_PRESETS["Reader Quick Start"],
+    splitAudio: true,
+    preferSourceSections: true,
+  };
   delete legacySettings.splitMode;
   const sanitized = sanitizeBookExportSettings({
     ...legacySettings,
@@ -1613,9 +1649,9 @@ test("live visual timeline uses shared timing", () => {
   });
   const firstMark = preview.events.find((event) => event.type === "mark");
   expect(firstMark).toBeTruthy();
-  expect(getMorseVideoPreviewFrame(preview, firstMark!.startMs + 1).active).toBe(
-    true,
-  );
+  expect(
+    getMorseVideoPreviewFrame(preview, firstMark!.startMs + 1).active,
+  ).toBe(true);
   expect(getMorseVideoPreviewFrame(preview, preview.durationMs).active).toBe(
     false,
   );
@@ -1666,12 +1702,10 @@ test("live preview frames keep stable display batches and a start buffer", () =>
   expect(lastFrameInBatch.batchStartWordIndex).toBe(
     firstFrame.batchStartWordIndex,
   );
-  expect(lastFrameInBatch.batchEndWordIndex).toBe(
-    firstFrame.batchEndWordIndex,
+  expect(lastFrameInBatch.batchEndWordIndex).toBe(firstFrame.batchEndWordIndex);
+  expect(lastFrameInBatch.words.find((word) => word.active)?.wordIndex).toBe(
+    lastVisibleWord.wordIndex,
   );
-  expect(
-    lastFrameInBatch.words.find((word) => word.active)?.wordIndex,
-  ).toBe(lastVisibleWord.wordIndex);
 
   const nextBatchToken = preview.timeline.tokens.find(
     (token) => token.wordIndex > lastVisibleWord.wordIndex,
@@ -1685,9 +1719,7 @@ test("live preview frames keep stable display batches and a start buffer", () =>
   expect(nextFrame.words.map((word) => word.wordIndex)).not.toEqual(
     firstWindowWordIds,
   );
-  expect(nextFrame.words[0].wordIndex).toBeGreaterThan(
-    firstWindowWordIds[0],
-  );
+  expect(nextFrame.words[0].wordIndex).toBeGreaterThan(firstWindowWordIds[0]);
   expect(nextFrame.batchStartWordIndex).toBe(batches[1].batchStartWordIndex);
   expect(nextFrame.batchEndWordIndex).toBe(batches[1].batchEndWordIndex);
 
@@ -1701,7 +1733,7 @@ test("live preview frames keep stable display batches and a start buffer", () =>
   expect(getLivePreviewStartDelayMs(0, LIVE_PREVIEW_START_BUFFER_MS)).toBe(0);
 });
 
-test("long export planning splits oversized selections before allocation and estimates video size", () => {
+test("long audio no-split plans block before allocation while duration and video plans stay safe", () => {
   const settings = BOOK_EXPORT_PRESETS["Reader Quick Start"];
   const noSplitSettings = {
     ...settings,
@@ -1726,20 +1758,40 @@ test("long export planning splits oversized selections before allocation and est
     sourceSections: [longSection],
     sourceTitle: "Long Manual",
   });
-  expect(audioPlan.automaticSplit).toBe(true);
-  expect(audioPlan.parts.length).toBeGreaterThan(1);
-  expect(audioPlan.unresolvedOversizedPart).toBeNull();
-  expect(findOversizedAudioExportPart(audioPlan.parts, settings)).toBeNull();
+  expect(audioPlan.automaticSplit).toBe(false);
+  expect(audioPlan.parts).toHaveLength(1);
+  expect(audioPlan.singleFileUnsafe).toBe(true);
+  expect(audioPlan.unresolvedOversizedPart).not.toBeNull();
+
+  const splitAudioPlan = buildBookExportPlan({
+    cleanedText: longText,
+    outputType: "audio",
+    settings: {
+      ...settings,
+      splitMode: "duration",
+      splitAudio: true,
+      targetPartMinutes: 30,
+    },
+    sourceSections: [longSection],
+    sourceTitle: "Long Manual",
+  });
+  expect(splitAudioPlan.automaticSplit).toBe(false);
+  expect(splitAudioPlan.singleFileUnsafe).toBe(false);
+  expect(splitAudioPlan.parts.length).toBeGreaterThan(1);
+  expect(splitAudioPlan.unresolvedOversizedPart).toBeNull();
   expect(
-    audioPlan.parts.every(
+    findOversizedAudioExportPart(splitAudioPlan.parts, settings),
+  ).toBeNull();
+  expect(
+    splitAudioPlan.parts.every(
       (part) =>
         part.morseDurationMs + settings.tailPaddingMs <=
         BOOK_AUDIO_SINGLE_EXPORT_LIMIT_MS,
     ),
   ).toBe(true);
-  expect(estimateLargestAudioPartPcmBytes(audioPlan.parts, settings)).toBeLessThanOrEqual(
-    BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES,
-  );
+  expect(
+    estimateLargestAudioPartPcmBytes(splitAudioPlan.parts, settings),
+  ).toBeLessThanOrEqual(BOOK_AUDIO_SINGLE_EXPORT_MAX_PCM_BYTES);
 
   const videoPlan = buildBookExportPlan({
     cleanedText: longText,
@@ -1755,7 +1807,7 @@ test("long export planning splits oversized selections before allocation and est
   expect(videoPlan.targetPartMs).toBe(
     BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS["1080p"] * 0.98,
   );
-  expect(videoPlan.parts.length).toBeGreaterThan(audioPlan.parts.length);
+  expect(videoPlan.parts.length).toBeGreaterThan(splitAudioPlan.parts.length);
   expect(videoPlan.unresolvedOversizedPart).toBeNull();
   expect(
     findOversizedVideoExportPart(videoPlan.parts, DEFAULT_BOOK_VIDEO_SETTINGS),
@@ -1764,21 +1816,23 @@ test("long export planning splits oversized selections before allocation and est
     videoPlan.parts.every(
       (part) =>
         part.morseDurationMs <=
-        BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS[DEFAULT_BOOK_VIDEO_SETTINGS.resolution],
+        BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS[
+          DEFAULT_BOOK_VIDEO_SETTINGS.resolution
+        ],
     ),
   ).toBe(true);
 
   const selectedTokens = longText.match(/[A-Z]+/g) ?? [];
-  const plannedTokens = audioPlan.parts.flatMap(
+  const plannedTokens = splitAudioPlan.parts.flatMap(
     (part) => part.cleanedText.match(/[A-Z]+/g) ?? [],
   );
   expect(plannedTokens).toEqual(selectedTokens);
   expect(
     videoPlan.parts.flatMap((part) => part.cleanedText.match(/[A-Z]+/g) ?? []),
   ).toEqual(selectedTokens);
-  for (let index = 1; index < audioPlan.parts.length; index += 1) {
-    expect(audioPlan.parts[index].sourceStart).toBeGreaterThanOrEqual(
-      audioPlan.parts[index - 1].sourceEnd,
+  for (let index = 1; index < splitAudioPlan.parts.length; index += 1) {
+    expect(splitAudioPlan.parts[index].sourceStart).toBeGreaterThanOrEqual(
+      splitAudioPlan.parts[index - 1].sourceEnd,
     );
   }
 
@@ -1790,6 +1844,7 @@ test("long export planning splits oversized selections before allocation and est
   });
   expect(smallPlan.automaticSplit).toBe(false);
   expect(smallPlan.parts).toHaveLength(1);
+  expect(smallPlan.singleFileUnsafe).toBe(false);
 
   const normalPart = makeVideoPart(1, "SOS HELP");
   const oversizedAudioPart = {
@@ -1799,17 +1854,25 @@ test("long export planning splits oversized selections before allocation and est
   const oversizedVideoPart = {
     ...normalPart,
     morseDurationMs:
-      BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS[DEFAULT_BOOK_VIDEO_SETTINGS.resolution] +
-      1_000,
+      BOOK_VIDEO_SINGLE_EXPORT_LIMIT_MS[
+        DEFAULT_BOOK_VIDEO_SETTINGS.resolution
+      ] + 1_000,
   };
 
   expect(findOversizedAudioExportPart([normalPart], settings)).toBeNull();
-  expect(findOversizedVideoExportPart([normalPart], DEFAULT_BOOK_VIDEO_SETTINGS)).toBeNull();
-  expect(findOversizedAudioExportPart([oversizedAudioPart], settings)).toMatchObject({
+  expect(
+    findOversizedVideoExportPart([normalPart], DEFAULT_BOOK_VIDEO_SETTINGS),
+  ).toBeNull();
+  expect(
+    findOversizedAudioExportPart([oversizedAudioPart], settings),
+  ).toMatchObject({
     part: expect.objectContaining({ title: normalPart.title }),
   });
   expect(
-    findOversizedVideoExportPart([oversizedVideoPart], DEFAULT_BOOK_VIDEO_SETTINGS),
+    findOversizedVideoExportPart(
+      [oversizedVideoPart],
+      DEFAULT_BOOK_VIDEO_SETTINGS,
+    ),
   ).toMatchObject({
     part: expect.objectContaining({ title: normalPart.title }),
   });
@@ -1835,7 +1898,9 @@ test("long export planning splits oversized selections before allocation and est
   );
   expect(estimate.sizeLabel).toMatch(/^~\d+(?:\.\d+)? (?:KB|MB|GB)$/);
   expect(estimate.renderTimeLabel).toMatch(/^~/);
-  expect(estimate.sizeLabel).not.toContain(["Available", "after export"].join(" "));
+  expect(estimate.sizeLabel).not.toContain(
+    ["Available", "after export"].join(" "),
+  );
 });
 
 test("video renderer keeps exported text overlays readable and away from branding", () => {
@@ -2153,7 +2218,7 @@ test("preset settings, reset, and safe route preferences persist", async ({
   );
   await openDownloadSettings(page);
   const tool = bookTool(page);
-  await expect(tool.getByText("Compact MP3 settings")).toBeVisible();
+  await expect(tool.getByText("Choose download style")).toBeVisible();
 
   await tool.getByRole("button", { name: "Practice Copy" }).click();
   await expect(tool.getByText("Slower Farnsworth spacing")).toBeVisible();
@@ -2161,7 +2226,7 @@ test("preset settings, reset, and safe route preferences persist", async ({
   await expect(
     tool.getByText("20/10 WPM, CW radio, MP3 48 kbps, single audio file."),
   ).toBeVisible();
-  const downloadControls = page.locator("#book-download-controls");
+  const downloadControls = downloadSettingsPanel(page);
   await expect(
     downloadControls.getByRole("radiogroup", { name: "Split mode" }),
   ).toBeVisible();
@@ -2169,29 +2234,71 @@ test("preset settings, reset, and safe route preferences persist", async ({
     downloadControls.getByRole("radio", { name: "No split" }),
   ).toHaveAttribute("aria-checked", "true");
   await expect(
-    downloadControls.getByRole("radio", { name: "By duration" }),
+    downloadControls.getByRole("radio", { name: "Split by duration" }),
+  ).toBeVisible();
+  await expect(
+    downloadControls.getByRole("radio", { name: /Custom split time/ }),
   ).toBeVisible();
   await expect(
     downloadControls.getByRole("radio", { name: "By source sections" }),
   ).toHaveCount(0);
-  await expect(downloadControls.getByLabel("Target part length")).toHaveCount(0);
-  await chooseSplitMode(page, "By duration");
-  await expect(downloadControls.getByLabel("Target part length")).toBeVisible();
+  await expect(downloadControls.getByLabel("Part duration")).toHaveCount(0);
+  await chooseSplitMode(page, "Split by duration");
+  await expect(downloadControls.getByLabel("Part duration")).toBeVisible();
+  await expect(
+    downloadControls.getByLabel("Part duration").locator("option"),
+  ).toHaveText([
+    "5 minutes",
+    "10 minutes",
+    "15 minutes",
+    "30 minutes",
+    "45 minutes",
+    "60 minutes",
+  ]);
   const downloadSettings = downloadSettingsPanel(page);
-  await expect(downloadSettings.getByLabel("Tone preset")).toHaveValue("cw_radio");
+  await expect(downloadSettings.getByLabel("Tone preset")).toHaveValue(
+    "cw_radio",
+  );
   await expect(page.getByLabel("MP3 bitrate")).toBeVisible();
-  await expect(page.getByLabel("WAV sample rate")).toHaveCount(0);
-  await expect(page.getByLabel("Tail padding")).toHaveCount(0);
+  await expect(page.getByLabel("Sample rate")).toBeVisible();
+  await expect(page.getByLabel("Tail padding")).toBeVisible();
 
   const settingsToggle = downloadSettingsToggle(page);
   await expect(settingsToggle).toHaveAttribute("aria-expanded", "true");
   await expect(page.getByLabel("Include Morse transcript")).toBeVisible();
-  await expect(page.getByRole("radio", { name: "WAV" })).toHaveCount(0);
+  await expect(downloadControls.getByLabel("Output format")).toHaveValue("mp3");
   await expect(page.getByLabel("MP3 bitrate")).toBeVisible();
-  await expect(page.getByLabel("WAV sample rate")).toHaveCount(0);
-  await expect(page.getByLabel("Tail padding")).toHaveCount(0);
+  await expect(page.getByLabel("Sample rate")).toBeVisible();
+  await expect(page.getByLabel("Tail padding")).toBeVisible();
   await page.getByLabel("MP3 bitrate").selectOption("96");
   await expect(page.getByText("Modified from preset")).toBeVisible();
+
+  await downloadControls.getByLabel("Output format").selectOption("wav");
+  await expect(downloadControls.getByLabel("Output format")).toHaveValue("wav");
+  await expect(page.getByLabel("MP3 bitrate")).toHaveCount(0);
+  await expect(page.getByLabel("Sample rate")).toBeVisible();
+  await expect(
+    page
+      .getByTestId("book-download-controls")
+      .getByRole("button", { name: /Download WAV|Download ZIP bundle/ }),
+  ).toBeVisible();
+
+  await chooseSplitMode(page, "Custom split time");
+  const customPartDuration = downloadControls.getByLabel(
+    "Custom part duration",
+  );
+  await customPartDuration.fill("0");
+  await expect(downloadControls.getByRole("alert")).toContainText(
+    "positive duration",
+  );
+  await customPartDuration.fill("17");
+  await expect(downloadControls.getByRole("alert")).toHaveCount(0);
+  await expect(
+    downloadControls.getByText("minutes", { exact: true }),
+  ).toBeVisible();
+
+  await downloadControls.getByLabel("Output format").selectOption("mp3");
+  await chooseSplitMode(page, "No split");
 
   await downloadSettings.getByLabel("Tone preset").selectOption("warm_tone");
   await expect(downloadSettings.getByLabel("Tone preset")).toHaveValue(
@@ -2218,7 +2325,7 @@ test("preset settings, reset, and safe route preferences persist", async ({
 
   await page.getByRole("button", { name: "Reset preset" }).click();
   await expect(page.getByText("Modified from preset")).toHaveCount(0);
-  await expect(page.getByRole("radio", { name: /WAV/ })).toHaveCount(0);
+  await expect(downloadControls.getByLabel("Output format")).toHaveValue("mp3");
   await expect(page.getByLabel("MP3 bitrate")).toBeVisible();
   await expect
     .poll(() =>
@@ -2235,7 +2342,7 @@ test("preset settings, reset, and safe route preferences persist", async ({
     page.locator("[data-mw-book-export-ready='true']"),
   ).toBeVisible();
   await openDownloadSettings(page);
-  await expect(page.getByRole("radio", { name: /WAV/ })).toHaveCount(0);
+  await expect(downloadControls.getByLabel("Output format")).toHaveValue("mp3");
   await expect(page.getByLabel("MP3 bitrate")).toBeVisible();
 });
 
@@ -2320,7 +2427,7 @@ test("legacy saved split preference renders the safe no-split default", async ({
     "aria-checked",
     "true",
   );
-  await expect(page.getByLabel("Target part length")).toHaveCount(0);
+  await expect(page.getByLabel("Part duration")).toHaveCount(0);
   await expect(
     sourceStep(page).getByRole("button", { name: "Download MP3" }),
   ).toBeVisible();
@@ -2342,24 +2449,26 @@ test("split mode controls expose duration controls without public source-section
     "aria-checked",
     "true",
   );
-  await expect(page.getByLabel("Target part length")).toHaveCount(0);
+  await expect(page.getByLabel("Part duration")).toHaveCount(0);
   await expect(
     page.getByRole("radio", { name: "By source sections" }),
   ).toHaveCount(0);
 
   await chooseSplitMode(page, "No split");
-  await expect(page.getByLabel("Target part length")).toHaveCount(0);
+  await expect(page.getByLabel("Part duration")).toHaveCount(0);
   await expect(page.getByTestId("book-split-section-fallback")).toHaveCount(0);
 
-  await chooseSplitMode(page, "By duration");
-  await expect(page.getByLabel("Target part length")).toBeVisible();
-  await expect(page.getByLabel("Target part length")).toHaveValue("30");
+  await chooseSplitMode(page, "Split by duration");
+  await expect(page.getByLabel("Part duration")).toBeVisible();
+  await expect(page.getByLabel("Part duration")).toHaveValue("30");
   await expect(page.getByTestId("book-split-section-fallback")).toHaveCount(0);
 
   await openLivePlayerSettings(page);
   const liveSettings = livePlayerSettingsPanel(page);
-  await expect(liveSettings.getByRole("radio", { name: "No split" })).toHaveCount(0);
-  await expect(liveSettings.getByLabel("Target part length")).toHaveCount(0);
+  await expect(
+    liveSettings.getByRole("radio", { name: "No split" }),
+  ).toHaveCount(0);
+  await expect(liveSettings.getByLabel("Part duration")).toHaveCount(0);
 });
 
 test("live player previews current cleaned source and updates with audio settings", async ({
@@ -2401,12 +2510,14 @@ test("live player previews current cleaned source and updates with audio setting
   await expect(preview.getByText("600 Hz")).toBeVisible();
   await expect(preview.getByText("68%")).toBeVisible();
   await expectPreviewReady(page);
-  await expect(
-    downloadSettings.getByLabel("Tone preset"),
-  ).toHaveValue("sine");
+  await expect(downloadSettings.getByLabel("Tone preset")).toHaveValue("sine");
   await expect(previewFrame).toBeVisible();
-  await expect(page.getByTestId("book-video-preview-morse-overlay")).toBeVisible();
-  await expect(page.getByTestId("book-video-preview-text-overlay")).toBeVisible();
+  await expect(
+    page.getByTestId("book-video-preview-morse-overlay"),
+  ).toBeVisible();
+  await expect(
+    page.getByTestId("book-video-preview-text-overlay"),
+  ).toBeVisible();
   const liveTimeline = preview.getByRole("slider", {
     name: "Live player timeline",
   });
@@ -2421,7 +2532,9 @@ test("live player previews current cleaned source and updates with audio setting
     },
   });
   await expect(liveTimeline).not.toHaveAttribute("aria-valuenow", "0");
-  const scrubbedElapsed = Number(await liveTimeline.getAttribute("aria-valuenow"));
+  const scrubbedElapsed = Number(
+    await liveTimeline.getAttribute("aria-valuenow"),
+  );
   expect(scrubbedElapsed).toBeGreaterThan(0);
 
   const playButton = preview.getByRole("button", { name: "Play live player" });
@@ -2434,7 +2547,9 @@ test("live player previews current cleaned source and updates with audio setting
     "true",
   );
   await expect(sourceInput).toHaveValue(sourceText);
-  const previewDownloadLink = preview.getByTestId("book-preview-download-mp3-link");
+  const previewDownloadLink = preview.getByTestId(
+    "book-preview-download-mp3-link",
+  );
   await expect(previewDownloadLink).toHaveText("Download MP3");
   await previewDownloadLink.click();
   await expect(page.getByTestId("book-video-preview")).toHaveAttribute(
@@ -2469,11 +2584,8 @@ test("live player previews current cleaned source and updates with audio setting
     "true",
   );
   await expect
-    .poll(
-      async () =>
-        Number(
-          (await liveTimeline.getAttribute("aria-valuenow")) ?? "0",
-        ),
+    .poll(async () =>
+      Number((await liveTimeline.getAttribute("aria-valuenow")) ?? "0"),
     )
     .toBeGreaterThan(10_000);
   const playedTimelineBox = await liveTimeline.boundingBox();
@@ -2510,7 +2622,9 @@ test("live player previews current cleaned source and updates with audio setting
       };
     });
   expect(["none", "solid"]).toContain(clickedFocusStyle.outlineStyle);
-  expect(Number.parseFloat(clickedFocusStyle.outlineWidth)).toBeGreaterThanOrEqual(0);
+  expect(
+    Number.parseFloat(clickedFocusStyle.outlineWidth),
+  ).toBeGreaterThanOrEqual(0);
 
   await sourceInput.fill("Changed preview SOS");
   await expect(
@@ -2541,7 +2655,9 @@ test("long and short live previews report a safe seekable duration", async ({
     name: "Live player timeline",
   });
   await expect(liveTimeline).toBeVisible();
-  const longDurationMs = Number(await liveTimeline.getAttribute("aria-valuemax"));
+  const longDurationMs = Number(
+    await liveTimeline.getAttribute("aria-valuemax"),
+  );
   expect(longDurationMs).toBeGreaterThan(0);
   expect(longDurationMs).toBeGreaterThan(30 * 60 * 1000);
   expect(longDurationMs).toBeLessThanOrEqual(60 * 60 * 1000);
@@ -2657,8 +2773,9 @@ test("live preview progress restores only for the same translator source hash", 
   await expect
     .poll(async () => Number(await liveTimeline.getAttribute("aria-valuenow")))
     .toBe(0);
-  await expect(preview.getByTestId("book-live-preview-segment-select"))
-    .toHaveCount(0);
+  await expect(
+    preview.getByTestId("book-live-preview-segment-select"),
+  ).toHaveCount(0);
   await expectNoRawSourceInStorage(page, finalWord);
   await expect(page.getByText("Download MP4")).toHaveCount(0);
   await expect(page.getByText("Download WebM")).toHaveCount(0);
@@ -2677,11 +2794,13 @@ test("live preview fullscreen preserves translator source and progress", async (
   const preview = previewSection(page);
   await expectPreviewReady(page);
   await expect(preview.getByTestId("book-video-preview-frame")).toBeVisible();
-  await expect(preview.getByTestId("book-video-preview-fullscreen-button")).toBeVisible();
+  await expect(
+    preview.getByTestId("book-video-preview-fullscreen-button"),
+  ).toBeVisible();
   const embeddedMorseText = await preview
     .getByTestId("book-video-preview-morse-overlay")
-    .evaluate(
-      (element) => (element as HTMLElement).innerText.replace(/\s+/g, " "),
+    .evaluate((element) =>
+      (element as HTMLElement).innerText.replace(/\s+/g, " "),
     );
   expect(embeddedMorseText).toMatch(/[.-]{1,5}\s+[.-]{1,5}/);
   expect(embeddedMorseText).toContain("/");
@@ -2715,22 +2834,24 @@ test("live preview fullscreen preserves translator source and progress", async (
   await expect(
     page.getByTestId("book-live-preview-fullscreen-segment-select"),
   ).toHaveValue(finalSegmentValue);
-  const fullscreenFrame = page.getByTestId("book-video-preview-fullscreen-frame");
+  const fullscreenFrame = page.getByTestId(
+    "book-video-preview-fullscreen-frame",
+  );
   const fullscreenMorse = page.getByTestId(
     "book-video-preview-fullscreen-morse-overlay",
   );
   const fullscreenText = page.getByTestId(
     "book-video-preview-fullscreen-text-overlay",
   );
-  const fullscreenMorseText = await fullscreenMorse.evaluate(
-    (element) => (element as HTMLElement).innerText.replace(/\s+/g, " "),
+  const fullscreenMorseText = await fullscreenMorse.evaluate((element) =>
+    (element as HTMLElement).innerText.replace(/\s+/g, " "),
   );
   expect(fullscreenMorseText).toMatch(/[.-]{1,5}\s+[.-]{1,5}/);
   expect(fullscreenMorseText).toContain("/");
   const fullscreenActiveTextWord = await page
     .getByTestId("book-video-preview-fullscreen-active-text-word")
-    .evaluate(
-      (element) => (element as HTMLElement).innerText.replace(/\s+/g, " "),
+    .evaluate((element) =>
+      (element as HTMLElement).innerText.replace(/\s+/g, " "),
     );
   expect(fullscreenActiveTextWord).not.toMatch(
     /[A-Za-z]\s+[A-Za-z]\s+[A-Za-z]/,
@@ -2749,10 +2870,7 @@ test("live preview fullscreen preserves translator source and progress", async (
     name: "Fullscreen live player timeline",
   });
   await overlay.getByRole("button", { name: "Play live player" }).click();
-  await expect(fullscreenFrame).toHaveAttribute(
-    "data-preview-playing",
-    "true",
-  );
+  await expect(fullscreenFrame).toHaveAttribute("data-preview-playing", "true");
   await expect(overlay).toHaveAttribute(
     "data-fullscreen-controls-visible",
     "false",
@@ -2801,7 +2919,9 @@ test("live preview fullscreen preserves translator source and progress", async (
     .toBeGreaterThan(0);
 
   await exitFullscreenButton.click();
-  await expect(page.getByTestId("book-video-preview-fullscreen-overlay")).toHaveCount(0);
+  await expect(
+    page.getByTestId("book-video-preview-fullscreen-overlay"),
+  ).toHaveCount(0);
   await expect(preview.getByTestId("book-video-preview-frame")).toBeVisible();
   await expect(sourceInput).toHaveValue(source);
   await expect(segmentSelect).toHaveValue(finalSegmentValue);
@@ -2815,7 +2935,7 @@ test("live preview fullscreen preserves translator source and progress", async (
   await expect(page.getByText("Download WebM")).toHaveCount(0);
 });
 
-test("MP3 download stays primary while the live visual player remains available", async ({
+test("audio download formats stay scoped while the live visual player remains available", async ({
   page,
 }) => {
   await openBookTranslator(page);
@@ -2827,9 +2947,13 @@ test("MP3 download stays primary while the live visual player remains available"
   await expect(outputTypeRadio(page, "audio")).toHaveCount(0);
   await expect(outputTypeRadio(page, "video")).toHaveCount(0);
   await expect(
-    page.getByTestId("book-download-controls").getByText("Preview and download"),
+    page
+      .getByTestId("book-download-controls")
+      .getByText("Preview and download"),
   ).toBeVisible();
-  await expect(sourceStep(page).getByRole("button", { name: "Download MP3" })).toBeEnabled();
+  await expect(
+    sourceStep(page).getByRole("button", { name: "Download MP3" }),
+  ).toBeEnabled();
   await expect(page.getByText(["Download", "MP4"].join(" "))).toHaveCount(0);
   await expect(page.getByText(["Download", "WebM"].join(" "))).toHaveCount(0);
   await expect(page.getByText(["Video", "format"].join(" "))).toHaveCount(0);
@@ -2867,10 +2991,9 @@ test("MP3 download stays primary while the live visual player remains available"
   await expect(liveSettings.getByLabel("Character speed")).toHaveValue("22");
   await openPlayerDetails(page);
   await expect(playerDetailsPanel(page).getByText("22/12 WPM")).toBeVisible();
-  await expect(liveSettings.getByRole("radio", { name: /Lightbulb/ })).toHaveAttribute(
-    "aria-checked",
-    "true",
-  );
+  await expect(
+    liveSettings.getByRole("radio", { name: /Lightbulb/ }),
+  ).toHaveAttribute("aria-checked", "true");
   await expect(page.getByLabel("Show visual signal")).toBeChecked();
   await expect(page.getByLabel("Show Morse symbols")).toBeChecked();
   await expect(page.getByLabel("Show plain text")).toBeChecked();
@@ -2878,24 +3001,43 @@ test("MP3 download stays primary while the live visual player remains available"
     previewSection(page).getByText("Visual signal: Lightbulb signal on"),
   ).toHaveCount(0);
   await openPlayerDetails(page);
-  await expect(playerDetailsPanel(page).getByText("Visual signal")).toBeVisible();
-  await expect(playerDetailsPanel(page).getByText("Morse symbols")).toBeVisible();
+  await expect(
+    playerDetailsPanel(page).getByText("Visual signal"),
+  ).toBeVisible();
+  await expect(
+    playerDetailsPanel(page).getByText("Morse symbols"),
+  ).toBeVisible();
   await expect(playerDetailsPanel(page).getByText("Plain text")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-lightbulb")).toBeVisible();
-  await expect(page.getByTestId("book-video-preview-morse-overlay")).toBeVisible();
-  await expect(page.getByTestId("book-video-preview-text-overlay")).toBeVisible();
+  await expect(
+    page.getByTestId("book-video-preview-morse-overlay"),
+  ).toBeVisible();
+  await expect(
+    page.getByTestId("book-video-preview-text-overlay"),
+  ).toBeVisible();
   await expect(
     previewSection(page).getByTestId("book-preview-download-mp3-link"),
   ).toBeVisible();
   await expect(
     liveSettings.getByRole("button", { name: "Reset progress" }),
   ).toHaveCount(0);
-  await expect(downloadSettingsPanel(page).getByLabel("MP3 bitrate")).toBeVisible();
-  await expect(liveSettings.getByRole("radio", { name: "No split" })).toHaveCount(0);
-  await expect(liveSettings.getByLabel("Target part length")).toHaveCount(0);
-  await expect(page.getByLabel("WAV sample rate")).toHaveCount(0);
-  await expect(page.getByRole("radio", { name: /MP3/ })).toHaveCount(0);
-  await expect(page.getByRole("radio", { name: /WAV/ })).toHaveCount(0);
+  await expect(
+    downloadSettingsPanel(page).getByLabel("MP3 bitrate"),
+  ).toBeVisible();
+  await expect(
+    liveSettings.getByRole("radio", { name: "No split" }),
+  ).toHaveCount(0);
+  await expect(liveSettings.getByLabel("Part duration")).toHaveCount(0);
+  const exportControls = downloadSettingsPanel(page).getByTestId(
+    "audio-export-format-split-controls",
+  );
+  await expect(exportControls.getByLabel("Output format")).toHaveValue("mp3");
+  await expect(
+    exportControls.getByLabel("Output format").locator("option"),
+  ).toHaveText(["MP3", "WAV"]);
+  await expect(
+    downloadSettingsPanel(page).getByLabel("Sample rate"),
+  ).toBeVisible();
   await expect(page.getByLabel("Paste long-form source text")).toHaveValue(
     `${RAW_SECRET_TEXT} live player SOS`,
   );
@@ -2950,14 +3092,16 @@ test("live visual preview settings hide obsolete video controls and keep layers 
     "720p",
     "1080p",
   ]) {
-    await expect(liveSettings.getByText(retiredLabel, { exact: true })).toHaveCount(
-      0,
-    );
+    await expect(
+      liveSettings.getByText(retiredLabel, { exact: true }),
+    ).toHaveCount(0);
   }
   await expect(page.getByTestId("book-video-preview")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-lightbulb")).toBeVisible();
   await expect(page.getByTestId("book-video-preview-branding")).toHaveCount(0);
-  await expect(previewSection(page).getByText(/morsewords\.com/i)).toHaveCount(0);
+  await expect(previewSection(page).getByText(/morsewords\.com/i)).toHaveCount(
+    0,
+  );
   await expect(page.getByTestId("book-video-full-frame-warning")).toHaveCount(
     0,
   );
@@ -3018,18 +3162,25 @@ test("live visual preview settings hide obsolete video controls and keep layers 
   expect(nudgedMetrics.batchStartWordIndex).toBe(
     defaultMetrics.batchStartWordIndex,
   );
-  expect(nudgedMetrics.batchEndWordIndex).toBe(defaultMetrics.batchEndWordIndex);
+  expect(nudgedMetrics.batchEndWordIndex).toBe(
+    defaultMetrics.batchEndWordIndex,
+  );
   await expect(
     sourceStep(page).getByRole("button", { name: "Download MP3" }),
   ).toBeVisible();
-  await expect(page.getByRole("button", { name: /Download MP4|Download WebM/ }))
-    .toHaveCount(0);
+  await expect(
+    page.getByRole("button", { name: /Download MP4|Download WebM/ }),
+  ).toHaveCount(0);
   await expect(page.getByText(/\bMP4\b|\bWebM\b/)).toHaveCount(0);
 
   await page.getByLabel("Show visual signal").uncheck();
   await expect(page.getByTestId("book-video-preview-lightbulb")).toHaveCount(0);
-  await expect(page.getByTestId("book-video-preview-morse-overlay")).toBeVisible();
-  await expect(page.getByTestId("book-video-preview-text-overlay")).toBeVisible();
+  await expect(
+    page.getByTestId("book-video-preview-morse-overlay"),
+  ).toBeVisible();
+  await expect(
+    page.getByTestId("book-video-preview-text-overlay"),
+  ).toBeVisible();
   const noSignalMetrics = await readPreviewLayerMetrics(preview);
   expect(noSignalMetrics.windowLimit).toBeGreaterThan(
     defaultMetrics.windowLimit,
@@ -3073,9 +3224,9 @@ test("live visual preview settings hide obsolete video controls and keep layers 
   await expect(
     page.getByTestId("book-video-preview-morse-overlay"),
   ).toBeVisible();
-  await expect(
-    page.getByTestId("book-video-preview-text-overlay"),
-  ).toHaveCount(0);
+  await expect(page.getByTestId("book-video-preview-text-overlay")).toHaveCount(
+    0,
+  );
   const morseOnlyMetrics = await readPreviewLayerMetrics(preview);
   expect(morseOnlyMetrics.windowLimit).toBeGreaterThan(
     noSignalMetrics.windowLimit,
@@ -3102,8 +3253,9 @@ test("live visual preview settings hide obsolete video controls and keep layers 
   expect(fullscreenMetrics.morse!.fontSize).toBeLessThanOrEqual(72);
   expectMorseGroupsSeparated(fullscreenMetrics.morse!.text);
   await page.getByRole("button", { name: "Exit fullscreen" }).click();
-  await expect(page.getByTestId("book-video-preview-fullscreen-overlay"))
-    .toHaveCount(0);
+  await expect(
+    page.getByTestId("book-video-preview-fullscreen-overlay"),
+  ).toHaveCount(0);
 
   await page.getByLabel("Show plain text").check();
   await expect(
@@ -3278,10 +3430,9 @@ test("visual preview visibly animates and stops stale playback", async ({
     "data-preview-active",
     "false",
   );
-  await expect(page.getByTestId("book-video-preview-lightbulb")).toHaveAttribute(
-    "data-preview-active",
-    "false",
-  );
+  await expect(
+    page.getByTestId("book-video-preview-lightbulb"),
+  ).toHaveAttribute("data-preview-active", "false");
   await expect
     .poll(async () =>
       (await readPreviewAudioEvents(page)).includes("oscillator-start"),
@@ -3315,7 +3466,9 @@ test("visual preview visibly animates and stops stale playback", async ({
     .click();
   await expect
     .poll(() =>
-      page.getByTestId("book-video-preview-dot").getAttribute("data-preview-active"),
+      page
+        .getByTestId("book-video-preview-dot")
+        .getAttribute("data-preview-active"),
     )
     .toBe("true");
   await stopLivePlayerIfVisible();
@@ -3352,10 +3505,16 @@ test("visual preview visibly animates and stops stale playback", async ({
       .getByTestId("book-video-preview-timeline")
       .getAttribute("data-active-morse"),
   );
-  await expect(page.getByTestId("book-video-preview-active-morse-word")).toBeVisible();
-  await expect(page.getByTestId("book-video-preview-active-text-word")).toBeVisible();
+  await expect(
+    page.getByTestId("book-video-preview-active-morse-word"),
+  ).toBeVisible();
+  await expect(
+    page.getByTestId("book-video-preview-active-text-word"),
+  ).toBeVisible();
   await expectActivePreviewHighlights(previewSection(page));
-  await expect(page.getByTestId("book-video-preview-active-token")).toHaveCount(0);
+  await expect(page.getByTestId("book-video-preview-active-token")).toHaveCount(
+    0,
+  );
   const seekedActiveMorse = await page
     .getByTestId("book-video-preview-text-layers")
     .getAttribute("data-active-morse");
@@ -3398,7 +3557,7 @@ test("visual preview visibly animates and stops stale playback", async ({
   ).toBeVisible();
 });
 
-test("empty source, cleaned-empty source, large MP3, and progress semantics are clear", async ({
+test("empty source, cleaned-empty source, MP3/WAV settings, and progress semantics are clear", async ({
   page,
 }) => {
   await openBookTranslator(page);
@@ -3412,7 +3571,9 @@ test("empty source, cleaned-empty source, large MP3, and progress semantics are 
     }),
   ).toHaveCount(1);
   await expect(
-    page.getByTestId("book-download-controls").getByText("Preview and download"),
+    page
+      .getByTestId("book-download-controls")
+      .getByText("Preview and download"),
   ).toBeVisible();
   await expect(page.getByText("Review export")).toHaveCount(0);
   const sourceInput = page.getByLabel("Paste long-form source text");
@@ -3456,8 +3617,8 @@ test("empty source, cleaned-empty source, large MP3, and progress semantics are 
   await expect(page.getByText("WAV output may be very large")).toHaveCount(0);
   await openDownloadSettings(page);
   await expect(settingsToggle).toHaveAttribute("aria-expanded", "true");
-  await expect(page.getByLabel("WAV sample rate")).toHaveCount(0);
-  await expect(page.getByLabel("Tail padding")).toHaveCount(0);
+  await expect(page.getByLabel("Sample rate")).toBeVisible();
+  await expect(page.getByLabel("Tail padding")).toBeVisible();
   await expect(page.getByLabel("MP3 bitrate")).toBeVisible();
 
   await expect(
@@ -3510,8 +3671,8 @@ test("download controls stay lean and ZIP/split copy is scoped", async ({
     presetBox!.y + presetBox!.height + 2,
   );
 
-  await chooseSplitMode(page, "By duration");
-  await page.getByLabel("Target part length").selectOption("15");
+  await chooseSplitMode(page, "Split by duration");
+  await page.getByLabel("Part duration").selectOption("15");
   await expect(
     tool.getByText(/Using 15m 0s target parts and safe text boundaries/),
   ).toBeVisible();
@@ -3535,22 +3696,22 @@ test("download controls stay lean and ZIP/split copy is scoped", async ({
 
   await page
     .getByLabel("Paste long-form source text")
-    .fill(
-      repeatTextForRuntime(
-        "ALPHA BRAVO SOS HELP. ",
-        65 * 60 * 1000,
-      ),
-    );
+    .fill(repeatTextForRuntime("ALPHA BRAVO SOS HELP. ", 65 * 60 * 1000));
   await expect(
     tool.locator('[class*="border-t"][class*="border-slate-200/70"]'),
   ).toHaveCount(0);
   await expect(
-    sourceStep(page).getByRole("button", { name: /Download \d+ MP3 parts/ }),
+    sourceStep(page).getByRole("button", { name: "Download MP3" }),
+  ).toBeDisabled();
+  await expect(
+    tool.getByText(/Choose Split by duration before generating it\./),
   ).toBeVisible();
   await expect(
-    tool.getByText(
-      "This selection has a lot of text, so the download may take a while. MorseWords will prepare it in smaller parts to keep the export reliable.",
-    ).first(),
+    tool
+      .getByText(
+        "This selection has a lot of text, so the download may take a while. MorseWords will prepare it in smaller parts to keep the export reliable.",
+      )
+      .first(),
   ).toBeVisible();
   await expect(page.getByLabel("ZIP batch")).toHaveCount(0);
   await expect(tool.getByText(/split into ZIP parts/i)).toHaveCount(0);
@@ -3563,18 +3724,26 @@ test("download controls stay lean and ZIP/split copy is scoped", async ({
     ),
   ).toHaveCount(0);
 
-  await chooseSplitMode(page, "By duration");
-  await page.getByLabel("Target part length").selectOption("15");
+  await chooseSplitMode(page, "Split by duration");
+  await page.getByLabel("Part duration").selectOption("15");
   await expect(
-    tool.getByText(
-      "This selection has a lot of text, so the download may take a while. MorseWords will prepare it in smaller parts to keep the export reliable.",
-    ).first(),
+    sourceStep(page).getByRole("button", { name: /Download \d+ MP3 parts/ }),
+  ).toBeEnabled();
+  await expect(
+    tool
+      .getByText(
+        "This selection has a lot of text, so the download may take a while. MorseWords will prepare it in smaller parts to keep the export reliable.",
+      )
+      .first(),
   ).toBeVisible();
   await expect(
     tool.getByText("Split video downloads are packaged in ZIP files."),
   ).toHaveCount(0);
 
   await chooseSplitMode(page, "No split");
+  await expect(
+    sourceStep(page).getByRole("button", { name: "Download MP3" }),
+  ).toBeDisabled();
   await expect(
     tool.getByText("Split video downloads are packaged in ZIP files."),
   ).toHaveCount(0);
@@ -3605,7 +3774,7 @@ test("route downloads a direct MP3 by default when no sidecars are selected", as
     "aria-checked",
     "true",
   );
-  await chooseSplitMode(page, "By duration");
+  await chooseSplitMode(page, "Split by duration");
   await expect(page.getByText("Last download")).toHaveCount(0);
 });
 
@@ -3619,7 +3788,7 @@ test("route downloads MP3 ZIP bundles with transcripts, manifest, settings, and 
   await openDownloadSettings(page);
   const downloadSettings = downloadSettingsPanel(page);
   await page.getByRole("button", { name: "Practice Copy" }).click();
-  await chooseSplitMode(page, "By duration");
+  await chooseSplitMode(page, "Split by duration");
   await downloadSettings.getByLabel("Tone preset").selectOption("warm_tone");
   await downloadSettings.getByLabel("Pitch").fill("590");
   await downloadSettings.getByLabel("Volume").fill("64");
@@ -3726,7 +3895,7 @@ test("route downloads uploaded extracted text without persisting raw source", as
   await expectWorkflowReadyNearSource(page);
   await openDownloadSettings(page);
   await page.getByRole("button", { name: "Practice Copy" }).click();
-  await chooseSplitMode(page, "By duration");
+  await chooseSplitMode(page, "Split by duration");
 
   const zip = await downloadZip(page, testInfo);
   expect(zipText(zip.entries, "cleaned-text.txt")).toContain(
@@ -3759,9 +3928,16 @@ test("route cancellation state is distinct from failure", async ({ page }) => {
   await page
     .getByLabel("Paste long-form source text")
     .fill("SOS HELP ALPHA BRAVO ".repeat(4_000));
-  await chooseSplitMode(page, "By duration");
+  await chooseSplitMode(page, "Split by duration");
 
+  const formatSplitControls = downloadSettingsPanel(page).getByTestId(
+    "audio-export-format-split-controls",
+  );
   await page.getByRole("button", { name: /Download \d+ MP3 parts/ }).click();
+  await expect(formatSplitControls.getByLabel("Output format")).toBeDisabled();
+  await expect(
+    formatSplitControls.getByRole("radio", { name: "Split by duration" }),
+  ).toBeDisabled();
   await expect(
     page.getByRole("button", { name: "Cancel download" }),
   ).toBeEnabled();
@@ -3771,6 +3947,10 @@ test("route cancellation state is distinct from failure", async ({ page }) => {
   });
   await expect(page.getByText("Last download")).toHaveCount(0);
   await expect(page.getByText("Download failed.")).toHaveCount(0);
+  await expect(formatSplitControls.getByLabel("Output format")).toBeEnabled();
+  await expect(
+    formatSplitControls.getByRole("radio", { name: "Split by duration" }),
+  ).toBeEnabled();
 });
 
 test("source changes during active download cancel stale completion", async ({
@@ -3780,7 +3960,7 @@ test("source changes during active download cancel stale completion", async ({
   await page
     .getByLabel("Paste long-form source text")
     .fill("SOS HELP ALPHA BRAVO ".repeat(4_000));
-  await chooseSplitMode(page, "By duration");
+  await chooseSplitMode(page, "Split by duration");
 
   await page.getByRole("button", { name: /Download \d+ MP3 parts/ }).click();
   await expect(
@@ -4051,9 +4231,9 @@ test("mobile route smoke has no horizontal overflow or console regressions", asy
     "720p",
     "1080p",
   ]) {
-    await expect(liveSettings.getByText(retiredLabel, { exact: true })).toHaveCount(
-      0,
-    );
+    await expect(
+      liveSettings.getByText(retiredLabel, { exact: true }),
+    ).toHaveCount(0);
   }
   await liveSettings.getByRole("radio", { name: /Dot signal/ }).click();
   await expect(page.getByTestId("book-video-preview")).toBeVisible();

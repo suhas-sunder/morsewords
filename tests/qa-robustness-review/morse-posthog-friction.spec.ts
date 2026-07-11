@@ -22,20 +22,23 @@ test.describe("PostHog friction follow-up checks", () => {
     });
   });
 
-  test("/audio WAV export shows clear completion feedback", async ({ page }) => {
+  test("/audio WAV export shows clear download-request feedback", async ({ page }) => {
     await page.goto("/audio", { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
     await page.waitForFunction(
       () => window.localStorage.getItem("mw_audio_source") === "text",
     );
 
-    const exportButton = page.getByRole("button", { name: "Export WAV" });
+    await page.getByLabel("Output format").selectOption("wav");
+    const exportButton = page.getByRole("button", { name: "Save WAV audio" });
     await expect(exportButton).toBeEnabled();
 
     await exportButton.click();
 
     await expect(
-      page.getByRole("status").filter({ hasText: "WAV download started." }),
+      page
+        .getByRole("status")
+        .filter({ hasText: "1 file generated; download request sent." }),
     ).toBeVisible({ timeout: 30_000 });
     await expect(exportButton).toBeEnabled();
 

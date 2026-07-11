@@ -3,10 +3,15 @@ import {
   farnsworthGapScale,
   getDotMs,
 } from "~/client/components/shared/morseTiming";
+import { AUDIO_LEAD_IN_RANGE } from "~/client/components/shared/morseSettings";
 import { getUnsupportedTextCharacters, textToMorse } from "~/client/components/shared/morseUtils";
 
 import type { PreflightSummary } from "./bookSourceTypes";
-import type { BookExportAnalysis, BookExportSettings } from "./bookExportTypes";
+import type {
+  BookExportAnalysis,
+  BookExportPart,
+  BookExportSettings,
+} from "./bookExportTypes";
 
 export const MORSE_TRANSCRIPT_PREVIEW_LIMIT = 1_800;
 export const SAMPLE_EXPORT_CHARACTER_LIMIT = 420;
@@ -87,6 +92,30 @@ export function getWordGapMs(settings: BookExportSettings) {
   );
 }
 
+/**
+ * Audio exports deliberately add this silence once per file. Keeping it here
+ * gives the planner, safety checks, and user-facing estimates one definition
+ * of the rendered duration.
+ */
+export function getBookAudioFilePaddingMs(settings: BookExportSettings) {
+  const leadInMs = Number(settings.leadInMs);
+  return (
+    (Number.isFinite(leadInMs)
+      ? Math.max(
+          AUDIO_LEAD_IN_RANGE.min,
+          Math.min(AUDIO_LEAD_IN_RANGE.max, leadInMs),
+        )
+      : 0) + Math.max(0, settings.tailPaddingMs)
+  );
+}
+
+export function getBookPartAudioDurationMs(
+  part: Pick<BookExportPart, "morseDurationMs">,
+  settings: BookExportSettings,
+) {
+  return Math.max(0, part.morseDurationMs) + getBookAudioFilePaddingMs(settings);
+}
+
 export function buildExportAnalysis({
   preflight,
   settings,
@@ -102,7 +131,7 @@ export function buildExportAnalysis({
   );
   const totalRuntimeMs =
     estimateBookTextDurationMs(cleanedText, settings) +
-    Math.max(0, partCount) * (settings.tailPaddingMs ?? 0);
+    Math.max(0, partCount) * getBookAudioFilePaddingMs(settings);
   const estimatedBytes = estimateBundleBytes(totalRuntimeMs, settings, partCount);
   const warnings: string[] = [];
 

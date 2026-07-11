@@ -6,7 +6,10 @@ import {
   renderMorseAudioBlob,
   type MorseAudioExportSettings,
 } from "./morseAudioExport";
-import type { MorseExportPlan } from "./morseExportPlan";
+import {
+  getMorseAudioNoSplitSafetyMessage,
+  type MorseExportPlan,
+} from "./morseExportPlan";
 import {
   normalizeExportError,
   runSequentialExport,
@@ -43,6 +46,10 @@ const INITIAL_STATE: MorseAudioExportJobState = {
 
 export function useMorseAudioExportJob(resetKey: string) {
   const [state, setState] = React.useState<MorseAudioExportJobState>(INITIAL_STATE);
+  // `state.status` switches to cancelled immediately so the UI can report the
+  // cancellation. Keep this separate from the controller lifetime: encoders
+  // and renderers may still be releasing resources after that status change.
+  const [isActive, setIsActive] = React.useState(false);
   const controllerRef = React.useRef<AbortController | null>(null);
   const mountedRef = React.useRef(false);
   const requestRef = React.useRef<AudioExportRequest | null>(null);
@@ -99,10 +106,24 @@ export function useMorseAudioExportJob(resetKey: string) {
       }));
       return;
     }
+    if (
+      request.plan.singleFileUnsafe &&
+      (request.plan.format === "mp3" || request.plan.format === "wav")
+    ) {
+      setState((current) => ({
+        ...current,
+        errorMessage: getMorseAudioNoSplitSafetyMessage(
+          request.plan.format === "mp3" ? "mp3" : "wav",
+        ),
+        status: "failed",
+      }));
+      return;
+    }
 
     requestRef.current = request;
     const controller = new AbortController();
     controllerRef.current = controller;
+    if (mountedRef.current) setIsActive(true);
     const version = versionRef.current + 1;
     versionRef.current = version;
     let currentPart = request.plan.parts.find(
@@ -186,7 +207,10 @@ export function useMorseAudioExportJob(resetKey: string) {
         totalBytes: completed.totalBytes,
       }));
     } finally {
-      if (controllerRef.current === controller) controllerRef.current = null;
+      if (controllerRef.current === controller) {
+        controllerRef.current = null;
+        if (mountedRef.current) setIsActive(false);
+      }
     }
   }, []);
 
@@ -206,5 +230,5 @@ export function useMorseAudioExportJob(resetKey: string) {
     await execute(requestRef.current);
   }, [execute]);
 
-  return { cancel, reset, retry, start, state };
+  return { cancel, isActive, reset, retry, start, state };
 }

@@ -6,10 +6,17 @@ import {
   buildMorseTimeline,
   type MorseTimeline,
 } from "~/client/components/shared/morseTiming";
+import { AUDIO_LEAD_IN_RANGE } from "~/client/components/shared/morseSettings";
 
 export type MorseExportKind = "audio" | "video";
 export type MorseExportFormat = "mp3" | "wav" | "mp4" | "webm";
 export type MorseExportSourceMode = "text" | "morse";
+export type MorseAudioSplitMode = "none" | "duration" | "custom";
+
+/** Normal, non-experimental audio-part targets exposed by the export UI. */
+export const MORSE_AUDIO_SPLIT_PRESET_MINUTES = [5, 10, 15, 30, 45, 60] as const;
+export const MORSE_AUDIO_CUSTOM_SPLIT_MINUTES_MIN = 1;
+export const MORSE_AUDIO_CUSTOM_SPLIT_MINUTES_MAX = 240;
 
 export type MorseExportThreshold = {
   /** Preferred part size. Parts may be smaller at natural boundaries. */
@@ -38,6 +45,9 @@ export type MorseExportPlan = {
   kind: MorseExportKind;
   multiPart: boolean;
   parts: MorseExportPlanPart[];
+  /** A No split request that exceeds the safe single-render ceiling. */
+  singleFileUnsafe: boolean;
+  splitMode: "automatic" | MorseAudioSplitMode;
   threshold: MorseExportThreshold;
   totalDurationMs: number;
 };
@@ -76,11 +86,21 @@ type BuildMorseExportPlanOptions = {
   farnsworthWpm?: number;
   format: MorseExportFormat;
   kind: MorseExportKind;
+  /** Export-only silence at the start of each generated part. */
+  leadInMs?: number;
   mp3Kbps?: number;
   sampleRate?: number;
   source: string;
   sourceMode: MorseExportSourceMode;
+  /**
+   * Omit this to retain the existing automatic-safe behavior used by video and
+   * older callers. Audio controls pass an explicit public mode.
+   */
+  splitMode?: "automatic" | MorseAudioSplitMode;
   tailPaddingMs?: number;
+  /** Target one duration-part at natural boundaries. The hard format ceiling
+   * still wins for every mode except No split, which blocks before rendering. */
+  targetPartDurationMs?: number;
   threshold?: MorseExportThreshold;
   videoBitsPerSecond?: number;
 };
@@ -93,23 +113,39 @@ export function buildMorseExportPlan({
   farnsworthWpm,
   format,
   kind,
+  leadInMs = 0,
   mp3Kbps = 128,
   sampleRate = 44_100,
   source,
   sourceMode,
+  splitMode = "automatic",
   tailPaddingMs = 0,
+  targetPartDurationMs,
   threshold = MORSE_EXPORT_THRESHOLDS[format],
   videoBitsPerSecond,
 }: BuildMorseExportPlanOptions): MorseExportPlan {
   const safeSource = source ?? "";
+  const requestedLeadInMs = Number(leadInMs);
+  const safeLeadInMs = Number.isFinite(requestedLeadInMs)
+    ? Math.max(
+        AUDIO_LEAD_IN_RANGE.min,
+        Math.min(AUDIO_LEAD_IN_RANGE.max, Math.round(requestedLeadInMs)),
+      )
+    : 0;
   const timelineForRange = (range: SourceRange) => {
     const value = safeSource.slice(range.start, range.end).trim();
     const morse = sourceMode === "text" ? textToMorse(value) : value;
-    return buildMorseTimeline(morse, {
+    const timeline = buildMorseTimeline(morse, {
       charWpm,
       farnsworthWpm,
       tailPaddingMs,
     });
+    // A multipart audio export deliberately has a small lead-in on every
+    // requested download. Include it in planning so runtime and size remain
+    // honest without changing the shared preview timeline.
+    return safeLeadInMs > 0
+      ? { ...timeline, durationMs: timeline.durationMs + safeLeadInMs }
+      : timeline;
   };
   const fullRange = { start: 0, end: safeSource.length };
   const fullTimeline = timelineForRange(fullRange);
@@ -120,15 +156,34 @@ export function buildMorseExportPlan({
     sampleRate,
     videoBitsPerSecond,
   });
-  const needsSplit =
+  const exceedsSingleFileCeiling =
     fullTimeline.durationMs > threshold.maxDurationMs ||
     fullEstimatedBytes > threshold.maxEstimatedBytes;
+  const requestedTargetDurationMs = normalizeTargetDurationMs(
+    targetPartDurationMs,
+    threshold,
+  );
+  const targetThreshold: MorseExportThreshold = {
+    ...threshold,
+    targetDurationMs: requestedTargetDurationMs ?? threshold.targetDurationMs,
+  };
+  const shouldUseTarget =
+    splitMode === "duration" || splitMode === "custom";
+  const needsSplit =
+    splitMode === "automatic"
+      ? exceedsSingleFileCeiling
+      : shouldUseTarget
+        ? exceedsSingleFileCeiling ||
+          fullTimeline.durationMs > targetThreshold.targetDurationMs ||
+          fullEstimatedBytes > targetThreshold.maxEstimatedBytes
+        : false;
   const ranges = needsSplit
     ? splitSourceRanges({
         source: safeSource,
         sourceMode,
         timelineForRange,
-        threshold,
+        preferTarget: shouldUseTarget,
+        threshold: targetThreshold,
         estimateBytes: (durationMs) =>
           estimateExportBytes({
             durationMs,
@@ -143,11 +198,7 @@ export function buildMorseExportPlan({
     .map((range) => {
       const text = safeSource.slice(range.start, range.end).trim();
       const morse = sourceMode === "text" ? textToMorse(text) : text;
-      const timeline = buildMorseTimeline(morse, {
-        charWpm,
-        farnsworthWpm,
-        tailPaddingMs,
-      });
+      const timeline = timelineForRange(range);
       return {
         durationMs: timeline.durationMs,
         estimatedBytes: estimateExportBytes({
@@ -185,9 +236,46 @@ export function buildMorseExportPlan({
     kind,
     multiPart: parts.length > 1,
     parts,
-    threshold,
+    singleFileUnsafe: splitMode === "none" && exceedsSingleFileCeiling,
+    splitMode,
+    threshold: targetThreshold,
     totalDurationMs: parts.reduce((sum, part) => sum + part.durationMs, 0),
   };
+}
+
+export function getMorseAudioNoSplitSafetyMessage(format: "mp3" | "wav") {
+  return `This ${format.toUpperCase()} export is too large for one reliable browser file. Choose Split by duration before generating it.`;
+}
+
+export function validateCustomMorseAudioSplitMinutes(value: string | number) {
+  const numeric = typeof value === "number" ? value : Number(value.trim());
+  if (!Number.isFinite(numeric) || numeric <= 0) {
+    return "Enter a positive duration in minutes.";
+  }
+  if (numeric < MORSE_AUDIO_CUSTOM_SPLIT_MINUTES_MIN) {
+    return `Use at least ${MORSE_AUDIO_CUSTOM_SPLIT_MINUTES_MIN} minute so each part has a practical Morse boundary.`;
+  }
+  if (numeric > MORSE_AUDIO_CUSTOM_SPLIT_MINUTES_MAX) {
+    return `Use ${MORSE_AUDIO_CUSTOM_SPLIT_MINUTES_MAX} minutes or less.`;
+  }
+  return "";
+}
+
+export function getMorseAudioSplitTargetDurationMs({
+  customMinutes,
+  mode,
+  presetMinutes,
+}: {
+  customMinutes: string | number;
+  mode: MorseAudioSplitMode;
+  presetMinutes: number;
+}) {
+  if (mode === "none") return undefined;
+  const minutes =
+    mode === "custom"
+      ? Number(customMinutes)
+      : Number(presetMinutes);
+  return Number.isFinite(minutes) && minutes > 0 ? minutes * 60_000 : undefined;
 }
 
 function decodeReliableMorseText(morse: string) {
@@ -253,12 +341,14 @@ export function estimateExportBytes({
 
 function splitSourceRanges({
   estimateBytes,
+  preferTarget,
   source,
   sourceMode,
   threshold,
   timelineForRange,
 }: {
   estimateBytes: (durationMs: number) => number;
+  preferTarget: boolean;
   source: string;
   sourceMode: MorseExportSourceMode;
   threshold: MorseExportThreshold;
@@ -282,24 +372,51 @@ function splitSourceRanges({
   let pending: SourceRange[] = levels[0];
   const final: SourceRange[] = [];
 
-  const splitOversized = (range: SourceRange, levelIndex: number): SourceRange[] => {
-    if (fits(range)) return [range];
+  const splitOversized = (
+    range: SourceRange,
+    levelIndex: number,
+    target = false,
+  ): SourceRange[] => {
+    if (fits(range, target)) return [range];
     const nextLevel = levels[Math.min(levelIndex + 1, levels.length - 1)].filter(
       (candidate) => candidate.start >= range.start && candidate.end <= range.end,
     );
-    if (nextLevel.length <= 1 || levelIndex >= levels.length - 1) return [range];
-    return packRanges(nextLevel, fits).flatMap((candidate) =>
-      fits(candidate) ? [candidate] : splitOversized(candidate, levelIndex + 1),
+    if (levelIndex >= levels.length - 1) return [range];
+    // A single long paragraph or sentence still needs to descend to words
+    // (and finally Morse-safe characters) when an explicit duration target
+    // is shorter than that natural boundary.
+    if (nextLevel.length <= 1) {
+      return splitOversized(range, levelIndex + 1, target);
+    }
+    return packRanges(nextLevel, (candidate) => fits(candidate, target)).flatMap((candidate) =>
+      fits(candidate, target)
+        ? [candidate]
+        : splitOversized(candidate, levelIndex + 1, target),
     );
   };
 
-  pending = pending.flatMap((range) => splitOversized(range, 0));
-  for (const range of packRanges(pending, fits)) {
-    final.push(...(fits(range) ? [range] : splitOversized(range, levels.length - 2)));
+  pending = pending.flatMap((range) => splitOversized(range, 0, preferTarget));
+  for (const range of packRanges(pending, (candidate) => fits(candidate, preferTarget))) {
+    final.push(
+      ...(fits(range, preferTarget)
+        ? [range]
+        : splitOversized(range, levels.length - 2, preferTarget)),
+    );
   }
   return final.length > 0
     ? normalizeCoverage(final, source.length)
     : [{ start: 0, end: source.length }];
+}
+
+function normalizeTargetDurationMs(
+  requestedDurationMs: number | undefined,
+  threshold: MorseExportThreshold,
+) {
+  if (!Number.isFinite(requestedDurationMs) || (requestedDurationMs ?? 0) <= 0) {
+    return undefined;
+  }
+  // Never let an exposed target loosen the hard per-file runtime ceiling.
+  return Math.max(1_000, Math.min(threshold.maxDurationMs, requestedDurationMs!));
 }
 
 function packRanges(

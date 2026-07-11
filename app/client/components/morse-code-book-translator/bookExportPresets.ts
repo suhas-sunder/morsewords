@@ -1,5 +1,8 @@
 import {
+  AUDIO_ATTACK_RANGE,
   AUDIO_PITCH_RANGE,
+  AUDIO_LEAD_IN_RANGE,
+  AUDIO_RELEASE_RANGE,
   AUDIO_SAMPLE_RATES,
   AUDIO_SPEED_RANGE,
   AUDIO_TAIL_RANGE,
@@ -28,13 +31,16 @@ export const BOOK_EXPORT_PRESET_NAMES = [
   "Faithful Source",
 ] as const satisfies readonly BookExportPresetName[];
 
-export const BOOK_EXPORT_FORMATS = ["mp3"] as const;
+export const BOOK_EXPORT_FORMATS = ["mp3", "wav"] as const;
 export const BOOK_PUNCTUATION_MODES = ["preserve", "simplify"] as const;
 export const BOOK_SPLIT_MODES = [
   "none",
   "duration",
+  "custom",
 ] as const satisfies readonly BookSplitMode[];
-export const BOOK_TARGET_PART_MINUTE_OPTIONS = [15, 30, 45, 60] as const;
+export const BOOK_TARGET_PART_MINUTE_OPTIONS = [5, 10, 15, 30, 45, 60] as const;
+export const BOOK_CUSTOM_PART_MINUTES_MIN = 1;
+export const BOOK_CUSTOM_PART_MINUTES_MAX = 240;
 
 export const BOOK_EXPORT_PRESET_DETAILS: Record<
   BookExportPresetName,
@@ -42,12 +48,12 @@ export const BOOK_EXPORT_PRESET_DETAILS: Record<
 > = {
   "Reader Quick Start": {
     description:
-      "Compact MP3 settings for turning a chapter or short book into listenable Morse audio.",
+      "Compact audio settings for turning a chapter or short book into listenable Morse audio.",
     bestFor: "Most first downloads",
   },
   "Long Listen": {
     description:
-      "A softer MP3 tone with fewer transcript extras for extended listening.",
+      "A softer tone with fewer transcript extras for extended listening.",
     bestFor: "Long books and relaxed listening",
   },
   "Practice Copy": {
@@ -57,12 +63,12 @@ export const BOOK_EXPORT_PRESET_DETAILS: Record<
   },
   "Faithful Source": {
     description:
-      "Preserves supported punctuation and source sections when possible while keeping MP3 output.",
+      "Preserves supported punctuation and source sections when possible.",
     bestFor: "Closer source structure",
   },
   "Archive Export": {
     description:
-      "Legacy internal preset retained for compatibility with older saved settings. Public book downloads now use MP3 only.",
+      "Legacy internal preset retained for compatibility with older saved settings.",
     bestFor: "Legacy saved settings",
   },
 };
@@ -78,9 +84,12 @@ export const BOOK_EXPORT_PRESETS: Record<
     tonePreset: "cw_radio",
     pitch: 650,
     volume: 0.75,
+    attackMs: 8,
+    releaseMs: 12,
     outputFormat: "mp3",
     mp3Bitrate: 32,
     sampleRate: 44100,
+    leadInMs: 0,
     tailPaddingMs: 180,
     splitMode: "none",
     splitAudio: false,
@@ -102,9 +111,12 @@ export const BOOK_EXPORT_PRESETS: Record<
     tonePreset: "sine",
     pitch: 600,
     volume: 0.68,
+    attackMs: 10,
+    releaseMs: 14,
     outputFormat: "mp3",
     mp3Bitrate: 32,
     sampleRate: 44100,
+    leadInMs: 0,
     tailPaddingMs: 180,
     splitMode: "none",
     splitAudio: false,
@@ -126,9 +138,12 @@ export const BOOK_EXPORT_PRESETS: Record<
     tonePreset: "cw_radio",
     pitch: 700,
     volume: 0.78,
+    attackMs: 8,
+    releaseMs: 12,
     outputFormat: "mp3",
     mp3Bitrate: 48,
     sampleRate: 44100,
+    leadInMs: 0,
     tailPaddingMs: 180,
     splitMode: "none",
     splitAudio: false,
@@ -150,9 +165,12 @@ export const BOOK_EXPORT_PRESETS: Record<
     tonePreset: "triangle",
     pitch: 620,
     volume: 0.72,
+    attackMs: 12,
+    releaseMs: 18,
     outputFormat: "mp3",
     mp3Bitrate: 64,
     sampleRate: 44100,
+    leadInMs: 0,
     tailPaddingMs: 180,
     splitMode: "none",
     splitAudio: false,
@@ -174,9 +192,12 @@ export const BOOK_EXPORT_PRESETS: Record<
     tonePreset: "sine",
     pitch: 650,
     volume: 0.74,
+    attackMs: 10,
+    releaseMs: 14,
     outputFormat: "wav",
     mp3Bitrate: 64,
     sampleRate: 48000,
+    leadInMs: 0,
     tailPaddingMs: 220,
     splitMode: "none",
     splitAudio: false,
@@ -232,7 +253,11 @@ export function sanitizeBookExportSettings(
       charWpm,
     ),
   );
-  const outputFormat: BookExportFormat = "mp3";
+  const outputFormat: BookExportFormat = BOOK_EXPORT_FORMATS.includes(
+    settings.outputFormat as BookExportFormat,
+  )
+    ? (settings.outputFormat as BookExportFormat)
+    : fallback.outputFormat;
   const punctuationMode: BookPunctuationMode =
     settings.punctuationMode === "preserve" ||
     settings.punctuationMode === "simplify"
@@ -271,11 +296,32 @@ export function sanitizeBookExportSettings(
           VOLUME_RANGE.max,
         ) * 100,
       ) / 100,
+    attackMs: Math.round(
+      clampNumber(
+        settings.attackMs ?? fallback.attackMs,
+        AUDIO_ATTACK_RANGE.min,
+        AUDIO_ATTACK_RANGE.max,
+      ),
+    ),
+    releaseMs: Math.round(
+      clampNumber(
+        settings.releaseMs ?? fallback.releaseMs,
+        AUDIO_RELEASE_RANGE.min,
+        AUDIO_RELEASE_RANGE.max,
+      ),
+    ),
     outputFormat,
     mp3Bitrate: sanitizeMp3Bitrate(settings.mp3Bitrate ?? fallback.mp3Bitrate),
     sampleRate: AUDIO_SAMPLE_RATES.includes(settings.sampleRate as never)
       ? sanitizeAudioSampleRate(settings.sampleRate)
       : fallback.sampleRate,
+    leadInMs: Math.round(
+      clampNumber(
+        settings.leadInMs ?? fallback.leadInMs,
+        AUDIO_LEAD_IN_RANGE.min,
+        AUDIO_LEAD_IN_RANGE.max,
+      ),
+    ),
     tailPaddingMs: Math.round(
       clampNumber(
         settings.tailPaddingMs ?? fallback.tailPaddingMs,
@@ -287,6 +333,7 @@ export function sanitizeBookExportSettings(
     splitAudio: splitMode !== "none",
     targetPartMinutes: sanitizeTargetPartMinutes(
       settings.targetPartMinutes ?? fallback.targetPartMinutes,
+      splitMode,
     ),
     preferSourceSections: Boolean(
       settings.preferSourceSections ?? fallback.preferSourceSections,
@@ -320,8 +367,15 @@ export function sanitizeBookExportSettings(
   };
 }
 
-function sanitizeTargetPartMinutes(value: number) {
-  const clamped = clampNumber(value, 15, 60);
+function sanitizeTargetPartMinutes(value: number, splitMode: BookSplitMode) {
+  if (splitMode === "custom") {
+    return clampNumber(
+      value,
+      BOOK_CUSTOM_PART_MINUTES_MIN,
+      BOOK_CUSTOM_PART_MINUTES_MAX,
+    );
+  }
+  const clamped = clampNumber(value, 5, 60);
   return BOOK_TARGET_PART_MINUTE_OPTIONS.reduce((best, option) =>
     Math.abs(option - clamped) < Math.abs(best - clamped) ? option : best,
   );
@@ -341,9 +395,12 @@ export function describeBookExportSettings(settings: BookExportSettings) {
   const split =
     settings.splitMode === "duration"
       ? `${settings.targetPartMinutes} minute target parts`
+      : settings.splitMode === "custom"
+        ? `custom ${settings.targetPartMinutes} minute target parts`
       : "single audio file";
   const tone = getAudioPresetShortLabel(settings.tonePreset);
-  return `${settings.charWpm}/${settings.farnsworthWpm} WPM, ${tone}, ${format}, ${split}.`;
+  const leadIn = settings.leadInMs > 0 ? `, ${settings.leadInMs}ms lead-in` : "";
+  return `${settings.charWpm}/${settings.farnsworthWpm} WPM, ${tone}, ${format}, ${split}${leadIn}.`;
 }
 
 export function settingsMatchBookPreset(settings: BookExportSettings) {

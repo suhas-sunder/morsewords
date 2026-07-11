@@ -17,7 +17,7 @@ const EXPECTED_AUDIO_TOOL_LINKS = [
     href: "/morse-code-sound-generator",
   },
   {
-    title: "Download MP3",
+    title: "MP3 and WAV generator",
     href: "/morse-code-mp3-generator",
   },
   {
@@ -182,7 +182,7 @@ test.describe("Morse code audio hub", () => {
     await expect(page.getByLabel("Character speed")).toBeVisible();
     await expect(page.getByLabel("Farnsworth spacing")).toBeVisible();
     await expect(page.getByLabel("Tone preset")).toBeVisible();
-    await expect(page.getByRole("button", { name: "Export WAV" }).first()).toBeVisible();
+    await expect(page.getByRole("button", { name: "Save MP3 audio" })).toBeVisible();
 
     await expect(page.getByText("This is the MorseWords audio hub.")).toBeVisible();
     await expect(
@@ -258,6 +258,10 @@ test.describe("Morse code audio hub", () => {
     expect(schemaQuestions).toContain("Can I translate text into Morse code audio?");
     expect(schemaQuestions).toContain("Can I decode Morse audio back into text?");
     expect(schemaQuestions).toContain("Can I make a Morse code video?");
+    expect(schemaQuestions).toContain("How do No split and Split by duration work?");
+    expect(schemaQuestions).toContain(
+      "Will my browser download every multipart file automatically?",
+    );
     for (const schemaQuestion of schemaQuestions) {
       expect(
         visibleQuestions,
@@ -276,6 +280,9 @@ test.describe("Morse code audio hub", () => {
     await page.addInitScript(() => window.localStorage.clear());
     await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
+    await page.waitForFunction(
+      () => window.localStorage.getItem("mw_audio_source") === "text",
+    );
 
     await page.getByLabel("Input (Text)").fill("CQ");
     await expect(
