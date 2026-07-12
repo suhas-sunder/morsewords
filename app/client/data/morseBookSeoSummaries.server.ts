@@ -61,4 +61,14 @@ export function getMorseBookSeoDescriptionsBySlug(slugs: readonly string[]) {
   return descriptions;
 }
 
+export function getMorseBookSeoSummariesBySlug(slugs: readonly string[]) {
+  const summaries: Record<string, MorseBookSeoSummary> = {};
+  const summariesBySlug = loadMorseBookSeoSummaryBySlug();
+  slugs.forEach((slug) => {
+    const summary = summariesBySlug.get(slug);
+    if (summary) summaries[slug] = summary;
+  });
+  return summaries;
+}
+
 export type { MorseBookSeoSummary };

@@ -4,6 +4,9 @@
     "server.js",
     "vite.config.ts",
     "scripts/books/**/*.ts",
+    "app/client/data/morseBookCardDescriptions.ts",
+    "app/client/data/morseBookSeoSummaries.ts",
+    "app/client/data/morseBookTypes.ts",
     "app/client/components/shared/morseUtils.ts"
   ],
   "compilerOptions": {

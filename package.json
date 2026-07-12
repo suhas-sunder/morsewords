@@ -102,6 +102,7 @@
     "books:content-risk-profile-audit:strict": "node --experimental-strip-types scripts/books/book-content-risk-profile-audit.ts --strict",
     "books:cloudflare-updated-export": "node --experimental-strip-types scripts/books/book-content-safety-and-completeness-sweep.ts --write-updated-export",
     "books:story-title-display-audit": "node --experimental-strip-types scripts/books/story-title-display-integrity-audit.ts",
+    "books:featured-card-description-audit": "tsx scripts/books/home-featured-book-card-description-audit.ts",
     "books:sitemap-sync": "node --experimental-strip-types scripts/books/sync-book-sitemap.ts",
     "books:linking-sitemap-audit": "node --experimental-strip-types scripts/books/book-sitemap-nav-internal-linking-audit.ts",
     "pages:planned-non-book-audit": "node --experimental-strip-types scripts/audit-planned-non-book-pages.ts",

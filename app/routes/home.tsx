@@ -14,6 +14,7 @@ import {
   getPublishedMorseBookSummaries,
   morseBookPath,
 } from "~/client/data/morseBooks";
+import { getMorseBookCardDescription } from "~/client/data/morseBookCardDescriptions";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import { canonicalUrl, seoMeta } from "~/client/seo";
 
@@ -143,10 +144,28 @@ function formatFeaturedBookValueLine(sectionCount: number, wordCount: number) {
   )} / ${formatCompactWordCount(wordCount)} words`;
 }
 
-function getFeaturedBookDescription(description: string | undefined) {
-  const trimmed = description?.trim();
-  if (trimmed) return trimmed;
-  return "A Morse-friendly classic with readable sections, live playback, and audio options for short practice sessions.";
+export async function loader() {
+  const featuredBooks = getPublishedMorseBookSummaries().slice(
+    0,
+    FEATURED_BOOK_LIMIT,
+  );
+  const { getMorseBookSeoSummariesBySlug } = await import(
+    "~/client/data/morseBookSeoSummaries.server"
+  );
+  const seoSummariesBySlug = getMorseBookSeoSummariesBySlug(
+    featuredBooks.map((book) => book.slug),
+  );
+  const featuredBookDescriptionsBySlug = Object.fromEntries(
+    featuredBooks.map((book) => [
+      book.slug,
+      getMorseBookCardDescription({
+        book,
+        seoSummary: seoSummariesBySlug[book.slug] ?? null,
+      }),
+    ]),
+  );
+
+  return { featuredBookDescriptionsBySlug };
 }
 
 function SectionEyebrow({ children }: { children: React.ReactNode }) {
@@ -214,7 +233,11 @@ function OfferingsSection() {
   );
 }
 
-function FeaturedBooksSection() {
+function FeaturedBooksSection({
+  descriptionsBySlug,
+}: {
+  descriptionsBySlug: Record<string, string>;
+}) {
   const featuredBooks = React.useMemo(
     () => getPublishedMorseBookSummaries().slice(0, FEATURED_BOOK_LIMIT),
     [],
@@ -268,7 +291,7 @@ function FeaturedBooksSection() {
               book.stats.includedSectionCount,
               book.stats.wordCount,
             );
-            const description = getFeaturedBookDescription(book.description);
+            const description = descriptionsBySlug[book.slug] ?? "";
             const wideScreenOnly = index >= 4;
 
             return (
@@ -325,12 +348,14 @@ function FeaturedBooksSection() {
                       </div>
 
                       <div className="mt-auto min-w-0 pt-5">
-                        <p
-                          className="line-clamp-4 text-sm leading-relaxed text-slate-700"
-                          data-testid="home-featured-book-description"
-                        >
-                          {description}
-                        </p>
+                        {description ? (
+                          <p
+                            className="line-clamp-4 text-sm leading-relaxed text-slate-700"
+                            data-testid="home-featured-book-description"
+                          >
+                            {description}
+                          </p>
+                        ) : null}
                         <div className="mt-3 min-w-0 space-y-2">
                           <p
                             className="mw-muted-label font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500 xl:whitespace-nowrap xl:text-[10px] xl:tracking-normal"
@@ -434,7 +459,7 @@ export function meta({}: Route.MetaArgs) {
   });
 }
 
-export default function Home() {
+export default function Home({ loaderData }: Route.ComponentProps) {
   const [plainA, setPlainA] = React.useState("sos help");
   const morseA = React.useMemo(() => textToMorse(plainA), [plainA]);
 
@@ -518,7 +543,9 @@ export default function Home() {
       <PostHeroBannerAd />
 
       <OfferingsSection />
-      <FeaturedBooksSection />
+      <FeaturedBooksSection
+        descriptionsBySlug={loaderData.featuredBookDescriptionsBySlug}
+      />
       <PrintableAndTrustSection />
       <HowItWorks />
 

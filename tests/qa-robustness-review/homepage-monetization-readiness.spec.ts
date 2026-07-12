@@ -2,12 +2,21 @@ import { expect, test, type Page } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
 
+import {
+  MORSE_BOOK_CARD_DESCRIPTION_MAX_CHARS,
+  extractMorseBookSeoCardDescription,
+  getMorseBookCardDescription,
+} from "../../app/client/data/morseBookCardDescriptions";
 import { formatMorseBookAuthors } from "../../app/client/data/morseBookDisplay";
+import type {
+  MorseBookSeoSummary,
+  MorseBookSeoSummaryData,
+} from "../../app/client/data/morseBookSeoSummaries";
 import { ROUTES } from "../../app/client/data/routes";
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 const ROOT = process.cwd();
-const publicManifest = JSON.parse(
+const libraryManifest = JSON.parse(
   fs.readFileSync(
     path.join(
       ROOT,
@@ -15,8 +24,8 @@ const publicManifest = JSON.parse(
       "client",
       "assets",
       "books",
-      "cloudflare-export",
-      "public-manifest.json",
+      "generated",
+      "library-manifest.json",
     ),
     "utf8",
   ),
@@ -41,7 +50,7 @@ const publicManifest = JSON.parse(
   }>;
 };
 
-const approvedBooks = publicManifest.books
+const approvedBooks = libraryManifest.books
   .filter((book) => {
     const approvedBySource =
       book.source.approvalSource === "file-evidence" ||
@@ -63,9 +72,26 @@ const approvedBookSlugs = new Set(approvedBooks.map((book) => book.slug));
 const approvedBooksBySlug = new Map(
   approvedBooks.map((book) => [book.slug, book]),
 );
+const seoSummaries = JSON.parse(
+  fs.readFileSync(
+    path.join(
+      ROOT,
+      "app",
+      "client",
+      "assets",
+      "books",
+      "seo-summaries",
+      "book-seo-summaries.json",
+    ),
+    "utf8",
+  ),
+) as MorseBookSeoSummaryData;
+const seoSummariesBySlug = new Map(
+  seoSummaries.summaries.map((summary) => [summary.slug, summary]),
+);
 const FEATURED_BOOK_COUNT = 8;
 const PRIMARY_VISIBLE_FEATURED_BOOK_COUNT = 4;
-const FEATURED_BOOK_FALLBACK_DESCRIPTION =
+const OLD_FEATURED_BOOK_FALLBACK_DESCRIPTION =
   "A Morse-friendly classic with readable sections, live playback, and audio options for short practice sessions.";
 
 async function gotoHome(page: Page) {
@@ -165,11 +191,17 @@ function expectFeaturedBookCardsToMatchApprovedRecords(
     expect(card.primaryTitle).toBe(`Open ${book!.title}`);
     expect(card.affordanceText).toBe("Read and listen ->");
 
-    const expectedDescription =
-      book!.description.trim() || FEATURED_BOOK_FALLBACK_DESCRIPTION;
+    const expectedDescription = getMorseBookCardDescription({
+      book: book!,
+      seoSummary: seoSummariesBySlug.get(card.slug) ?? null,
+    });
     expect(card.description).toBe(expectedDescription);
+    expect(card.description).not.toBe(OLD_FEATURED_BOOK_FALLBACK_DESCRIPTION);
     expect(card.description).not.toMatch(
       /processed public books|cleaned chapter sources|source content|text-first study/i,
+    );
+    expect(card.description.length).toBeLessThanOrEqual(
+      MORSE_BOOK_CARD_DESCRIPTION_MAX_CHARS,
     );
     expect(card.valueLine).toMatch(
       /^\d[\d,]* sections? \/ (?:\d[\d,]*|\d+(?:\.\d)?k) words$/,
@@ -193,6 +225,82 @@ function expectFeaturedBookCardsToMatchApprovedRecords(
     expect(card.descriptionClass).toContain("line-clamp-4");
   });
 }
+
+test.describe("featured book card description source", () => {
+  test("keeps reviewed library descriptions before SEO descriptions", () => {
+    const book = approvedBooks.find((candidate) => candidate.description.trim());
+    expect(book, "expected at least one reviewed library description").toBeDefined();
+    const description = getMorseBookCardDescription({
+      book: book!,
+      seoSummary: seoSummariesBySlug.get(book!.slug) ?? null,
+    });
+    expect(description).toBe(book!.description.trim());
+    expect(description).not.toBe(OLD_FEATURED_BOOK_FALLBACK_DESCRIPTION);
+  });
+
+  test("uses reviewed SEO descriptions when library descriptions are empty", () => {
+    const book = approvedBooks.find(
+      (candidate) =>
+        !candidate.description.trim() &&
+        Boolean(seoSummariesBySlug.get(candidate.slug)?.description),
+    );
+    expect(book, "expected an empty-description featured-source book").toBeDefined();
+    const seoSummary = seoSummariesBySlug.get(book!.slug)!;
+    expect(getMorseBookCardDescription({ book: book!, seoSummary })).toBe(
+      seoSummary.description,
+    );
+  });
+
+  test("extracts concise complete-sentence copy when only a summary is present", () => {
+    const seoSummary: Pick<MorseBookSeoSummary, "description" | "summary"> = {
+      description: "",
+      summary:
+        "Étude No. 1 opens with a quiet room, a careful listener, and a signal repeated until it becomes familiar. The second sentence stays available but is not needed for a compact card.",
+    };
+    const description = extractMorseBookSeoCardDescription(seoSummary, 120);
+    expect(description).toBe(
+      "Étude No. 1 opens with a quiet room, a careful listener, and a signal repeated until it becomes familiar.",
+    );
+    expect(description).toMatch(/[.!?]$/);
+    expect(description).not.toContain("\uFFFD");
+  });
+
+  test("keeps long SEO summaries concise without cutting words", () => {
+    const seoSummary: Pick<MorseBookSeoSummary, "description" | "summary"> = {
+      description: "",
+      summary:
+        "This unusually long opening sentence describes a title-specific practice scene with careful punctuation, several concrete details, and enough extra language to exceed a compact card ceiling before the sentence naturally comes to a close. A shorter second sentence works.",
+    };
+    const description = extractMorseBookSeoCardDescription(seoSummary, 80);
+    expect(description).toBe("A shorter second sentence works.");
+    expect(description.length).toBeLessThanOrEqual(80);
+    expect(description).not.toMatch(/\s$/);
+  });
+
+  test("fails safely when descriptive content is missing", () => {
+    const book = {
+      ...approvedBooks[0],
+      description: "",
+      slug: "missing-summary-fixture",
+    };
+    const description = getMorseBookCardDescription({
+      book,
+      seoSummary: null,
+    });
+    expect(description).toBe("");
+    expect(description).not.toBe(OLD_FEATURED_BOOK_FALLBACK_DESCRIPTION);
+  });
+
+  test("does not retain the old fallback in homepage source or helper source", () => {
+    for (const relativePath of [
+      "app/routes/home.tsx",
+      "app/client/data/morseBookCardDescriptions.ts",
+    ]) {
+      const source = fs.readFileSync(path.join(ROOT, relativePath), "utf8");
+      expect(source).not.toContain(OLD_FEATURED_BOOK_FALLBACK_DESCRIPTION);
+    }
+  });
+});
 
 function flattenJsonLd(value: unknown): Record<string, unknown>[] {
   if (Array.isArray(value)) return value.flatMap(flattenJsonLd);
