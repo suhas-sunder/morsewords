@@ -162,7 +162,7 @@ const ROUTE_GROUPS: RouteGroup[] = [
       {
         title: "Printable Morse Worksheets",
         description:
-          "Build printable charts, learner templates, and teacher-ready handouts.",
+          "Build printable worksheets, learner templates, and teacher-ready handouts.",
         href: ROUTES.printableChart,
         badge: "Worksheets",
       },
@@ -371,7 +371,7 @@ const FEATURED_LINKS = [
     label: "Drills",
   },
   {
-    title: "Printable chart",
+    title: "Printable worksheets",
     href: ROUTES.printableChart,
     label: "Worksheets",
   },
@@ -466,7 +466,7 @@ const TOOLKIT_CONFIG: Record<ToolkitVariant, ToolkitConfig> = {
   },
   full: {
     description:
-      "Jump between the translator, encoder, decoder, practice pages, printable charts, audio tools, and Morse code reference guides.",
+      "Jump between the translator, encoder, decoder, practice pages, printable worksheets, audio tools, and Morse code reference guides.",
     classNames: {
       primaryCard:
         "mw-button-outline mw-related-tool-link mw-surface-card group flex min-h-[150px] cursor-pointer items-start justify-between gap-4 rounded-xl bg-[#fffdf8]/86 px-4 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",

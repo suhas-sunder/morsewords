@@ -436,7 +436,7 @@ export default function MorseCodeAlphabetRoute() {
                 { href: "/practice", label: "Practice letters", primary: true },
                 { href: "/morse-code-numbers", label: "Review numbers" },
                 { href: "/morse-code-punctuation", label: "Review punctuation" },
-                { href: "/morse-code-printable-chart", label: "Printable chart" },
+                { href: "/morse-code-printable-chart", label: "Printable worksheet" },
                 { href: "/morse-code-audio-practice", label: "Audio practice" },
                 { href: "/morse-code-by-language", label: "Morse by language" },
                 { href: "/typing", label: "Typing rhythm" },

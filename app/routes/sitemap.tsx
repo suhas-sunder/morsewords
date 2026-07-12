@@ -367,7 +367,7 @@ const GROUPS: SitemapGroup[] = [
         label: "Morse Code Chart",
         to: ROUTES.chart,
         description:
-          "Use one complete chart for A-Z letters, 0-9 numbers, supported punctuation, spacing notes, audio checks, and printable chart next steps.",
+          "Use one complete chart for A-Z letters, 0-9 numbers, supported punctuation, spacing notes, audio checks, and printable worksheet next steps.",
       },
       {
         label: "Morse Code Alphabet",

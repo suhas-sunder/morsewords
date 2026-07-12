@@ -129,7 +129,7 @@ const CHALLENGE_SENTENCES = [
 ];
 
 const DEFAULT_DIRECTIONS =
-  "Use the chart to complete each section. Write neatly, keep spaces between Morse letters, and use a slash between written Morse words.";
+  "Use the reference guide to complete each section. Write neatly, keep spaces between Morse letters, and use a slash between written Morse words.";
 
 const LETTERS: CharacterRow[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   .split("")
@@ -209,35 +209,35 @@ export function links() {
 
 export function meta() {
   return seoMeta({
-    title: "Morse Code Printable Chart | Study Sheet and Reference PDF | MorseWords",
+    title: "Printable Morse Code Worksheet | Practice Sheet Generator | MorseWords",
     description:
-      "Create and print a Morse code chart, worksheet, or practice sheet with optional answer keys, then export it for study, teaching, or offline use.",
+      "Create a printable Morse code worksheet with custom words, sentences, student fields, optional answer keys, and PDF or image export for class or solo practice.",
     path: CANONICAL_PATH,
     keywords:
-      "printable morse code chart, morse code worksheet, custom morse code worksheet, teacher morse code worksheet, morse code printable, morse code alphabet printable, morse code practice sheet",
+      "printable morse code worksheet, morse code worksheet, custom morse code worksheet, teacher morse code worksheet, morse code printable, morse code alphabet printable, morse code practice sheet",
   });
 }
 
 const faqItems = [
   {
-    q: "Can I print the Morse code chart?",
-    a: "Yes. Use the builder to create a chart, worksheet, or combined packet, then choose PDF export to open the browser print dialog.",
+    q: "Can I print the Morse code worksheet?",
+    a: "Yes. Use the builder to create a worksheet, reference guide, or combined packet, then choose PDF export to open the browser print dialog.",
   },
   {
-    q: "Is this printable chart for beginners?",
+    q: "Is this printable worksheet for beginners?",
     a: "Yes. The beginner preset focuses the handout on shorter practice content and can leave numbers and punctuation out until the learner is ready.",
   },
   {
-    q: "Does the printable chart replace the dictionary?",
-    a: "No. The chart is best for offline study and classroom handouts. Use the Morse code dictionary when you need quick lookup across more entries.",
+    q: "Does the printable worksheet replace the dictionary?",
+    a: "No. The worksheet is best for guided practice and classroom handouts. Use the Morse code dictionary when you need quick lookup across more entries.",
   },
   {
     q: "Should I print letters only or include more symbols?",
     a: "Start with letters only for brand-new learners. Add numbers and punctuation once the student can read the A-Z patterns reliably.",
   },
   {
-    q: "What should I do after printing the chart?",
-    a: "Use the chart beside short practice drills, a word search activity, or the practice plan so the handout supports real recall instead of passive review.",
+    q: "What should I do after printing the worksheet?",
+    a: "Use the worksheet beside short practice drills, a word search activity, or the practice plan so the handout supports real recall instead of passive review.",
   },
 ];
 
@@ -326,8 +326,15 @@ function mergeSettings(value: unknown): PrintableSettings {
       typeof incoming.brandName === "string"
         ? normalizeBrandName(incoming.brandName)
         : DEFAULT_SETTINGS.brandName,
-    customLogoDataUrl: "",
-    customLogoName: "",
+    customLogoDataUrl:
+      typeof incoming.customLogoDataUrl === "string" &&
+      incoming.customLogoDataUrl.startsWith("data:image/")
+        ? incoming.customLogoDataUrl
+        : DEFAULT_SETTINGS.customLogoDataUrl,
+    customLogoName:
+      typeof incoming.customLogoName === "string"
+        ? clampText(incoming.customLogoName, 120)
+        : DEFAULT_SETTINGS.customLogoName,
     includeAnswerKey:
       typeof incoming.includeAnswerKey === "boolean"
         ? incoming.includeAnswerKey
@@ -817,7 +824,7 @@ function buildReferenceGuidePageHtml(
         title: "Printable Morse Code Reference Guide",
         subtitle:
           "A clean reference for letters, numbers, punctuation, and spacing rules.",
-        badge: "Reference Chart",
+        badge: "Reference Guide",
       })}
 
       ${buildStudentMetaHtml(settings)}
@@ -1943,7 +1950,7 @@ function downloadBlob({
 }) {
   return downloadBlobFile({
     blob,
-    filename: sanitizeDownloadFilename(filename, "morse-code-chart-and-worksheet.png"),
+    filename: sanitizeDownloadFilename(filename, "morse-code-worksheet.png"),
   });
 }
 
@@ -2077,7 +2084,7 @@ async function exportPrintableImage(
 
   return downloadBlob({
     blob,
-    filename: `morse-code-chart-and-worksheet.${getImageExtension(format)}`,
+    filename: `morse-code-worksheet.${getImageExtension(format)}`,
   });
 }
 
@@ -2691,12 +2698,12 @@ export default function MorseCodePrintableChart() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LearningResource",
-    name: "Morse Code Printable Chart",
+    name: "Printable Morse Code Worksheet",
     url: CANONICAL_URL,
     description:
-      "A printable Morse code chart and worksheet builder for study sheets, classroom handouts, offline reference, and practice packets.",
+      "A printable Morse code worksheet builder for practice sheets, classroom handouts, offline reference guides, and answer-key packets.",
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
-    learningResourceType: ["Worksheet", "Reference chart"],
+    learningResourceType: ["Worksheet", "Study sheet", "Reference guide"],
     educationalUse: ["Practice", "Classroom activity", "Self-study"],
     teaches:
       "International Morse code letters, numbers, punctuation, spacing, encoding, and decoding",
@@ -2709,7 +2716,7 @@ export default function MorseCodePrintableChart() {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Morse Code Printable Chart",
+        name: "Printable Morse Code Worksheet",
         item: CANONICAL_URL,
       },
     ],
@@ -3024,9 +3031,9 @@ export default function MorseCodePrintableChart() {
 
       <main className="mw-printable-chart-page" style={styles.wrap}>
         <PageHero
-          eyebrow="Printable chart"
-          title="Morse Code Printable Chart"
-          description="Build a study sheet, classroom handout, or offline Morse reference with chart, worksheet, answer key, PDF, and image export controls."
+          eyebrow="Printable worksheet"
+          title="Printable Morse Code Worksheet"
+          description="Build a study sheet, classroom handout, or offline Morse reference with worksheet, answer key, PDF, and image export controls."
           aside={
             <DarkNote label="Print defaults" value="PDF">
               <p>Answer keys stay off until you include them.</p>
@@ -3035,7 +3042,7 @@ export default function MorseCodePrintableChart() {
         >
           <ActionLinks
             links={[
-              { href: "#builder", label: "Build printable", primary: true },
+              { href: "#builder", label: "Build worksheet", primary: true },
               { href: "/morse-code-chart", label: "Complete chart" },
               { href: "/morse-code-word-search-builder", label: "Word search" },
               { href: "/morse-code-alphabet", label: "Alphabet chart" },
@@ -3054,7 +3061,7 @@ export default function MorseCodePrintableChart() {
                   MorseWords
                 </div>
                 <p className="mt-1 break-words text-2xl font-black leading-tight text-slate-950 sm:text-3xl">
-                  Printable Morse Code Chart and Worksheet Builder
+                  Printable Morse Code Worksheet Builder
                 </p>
                 <p className="mt-2 max-w-3xl break-words text-sm leading-relaxed text-slate-600">
                   Create a clean teacher-ready printable with student fields,
@@ -3451,7 +3458,7 @@ export default function MorseCodePrintableChart() {
                 />
               </div>
               <p className="mt-3 break-words text-xs leading-relaxed text-slate-500">
-                The QR links to the MorseWords printable chart page. It does not
+                The QR links to the MorseWords printable worksheet page. It does not
                 include your worksheet settings, custom text, practice words, or
                 answer key.
               </p>
@@ -3572,28 +3579,28 @@ export default function MorseCodePrintableChart() {
           showSupportAd={false}
           guide={{
             eyebrow: "Teaching export",
-            title: "How to use the printable Morse chart",
+            title: "How to use the printable Morse worksheet",
             description:
               "Use this page when the output needs to leave the screen as a study sheet, class handout, or offline reference.",
             items: [
               {
                 title: "Who it is for",
-                text: "Teachers, parents, club leaders, and learners who want a printable Morse chart or worksheet for practice away from the live tools.",
+                text: "Teachers, parents, club leaders, and learners who want a printable Morse worksheet for practice away from the live tools.",
               },
               {
                 title: "What it includes",
-                text: "Choose chart-only, worksheet-only, or a packet with letters, optional numbers, optional punctuation, custom words, answer keys, and export controls.",
+                text: "Choose reference-only, worksheet-only, or a packet with letters, optional numbers, optional punctuation, custom words, answer keys, and export controls.",
               },
               {
                 title: "How to use it",
-                text: "Pick a preset, trim the chart to the learner's level, add practice words or sentences, then export the version you want to print or share.",
+                text: "Pick a preset, choose the sections that fit the learner's level, add practice words or sentences, then export the version you want to print or share.",
               },
             ],
           }}
           examples={{
-            title: "Printable chart scenarios",
+            title: "Printable worksheet scenarios",
             description:
-              "These are the main ways the chart supports teaching and self-study.",
+              "These are the main ways the worksheet supports teaching and self-study.",
             items: [
               {
                 title: "Student study sheet",
@@ -3643,7 +3650,7 @@ export default function MorseCodePrintableChart() {
             ],
           }}
           mistakes={{
-            title: "Common printable chart mistakes",
+            title: "Common printable worksheet mistakes",
             description:
               "A good handout should match the learner's level and the activity that follows it.",
             items: [
@@ -3669,7 +3676,7 @@ export default function MorseCodePrintableChart() {
                 title: "Using it as the only activity",
                 children: (
                   <p>
-                    A chart helps lookup, but recall grows through practice.
+                    A reference guide helps lookup, but recall grows through practice.
                     Follow the printout with short drills or a puzzle.
                   </p>
                 ),
@@ -3678,13 +3685,13 @@ export default function MorseCodePrintableChart() {
           }}
           comparison={{
             eyebrow: "Choose an export",
-            title: "Printable chart vs word search vs lookup pages",
+            title: "Printable worksheet vs word search vs lookup pages",
             description:
               "Use the export page that matches the classroom or study job.",
             items: [
               {
-                title: "Printable chart",
-                text: "Use this page for static reference sheets, worksheets, answer keys, and printable study packets.",
+                title: "Printable worksheet",
+                text: "Use this page for worksheets, answer keys, reference-guide pages, and printable study packets.",
                 href: "/morse-code-printable-chart",
                 badge: "Handout",
               },
@@ -3721,11 +3728,11 @@ export default function MorseCodePrintableChart() {
           }}
         />
 
-        <FaqSectionGeneric title="Printable chart FAQ" items={faqItems} />
+        <FaqSectionGeneric title="Printable worksheet FAQ" items={faqItems} />
 
         <JsonLdScript jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd]} />
       </main>
-      <BreadcrumbTrail current="Morse Code Printable Chart" />
+      <BreadcrumbTrail current="Printable Morse Code Worksheet" />
     </div>
   );
 }

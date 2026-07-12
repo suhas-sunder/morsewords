@@ -176,8 +176,8 @@ const faqItems = [
     a: "No. The prosign section is a short educational reference based on the existing MorseWords prosign data. It does not claim that the translator treats every prosign as a separate typed character.",
   },
   {
-    q: "Should I use the printable chart instead?",
-    a: "Use this page for quick on-screen lookup, copying, and listening. Use the printable chart when you need a worksheet, classroom handout, PDF, or image export.",
+    q: "Should I use the printable worksheet instead?",
+    a: "Use this page for quick on-screen lookup, copying, and listening. Use the printable worksheet when you need a classroom handout, PDF, or image export.",
   },
   {
     q: "What should I do after using the chart?",
@@ -193,7 +193,7 @@ export function meta() {
   return seoMeta({
     title: "Morse Code Chart | A-Z, Numbers, Punctuation, and Audio | MorseWords",
     description:
-      "Use a complete International Morse code chart for A-Z letters, numbers, punctuation, copy and audio actions, and a printable chart reference.",
+      "Use a complete International Morse code chart for A-Z letters, numbers, punctuation, copy and audio actions, and printable worksheet next steps.",
     path: CANONICAL_PATH,
     keywords:
       "morse code chart, morse code alphabet chart, morse code chart A-Z 0-9, international morse code chart",
@@ -433,7 +433,7 @@ export default function MorseCodeChartRoute() {
     name: "Morse Code Chart",
     url: CANONICAL_URL,
     description:
-      "A complete Morse code chart reference hub for A-Z letters, numbers, supported punctuation, spacing guidance, copy actions, audio checks, and printable chart next steps.",
+      "A complete Morse code chart reference hub for A-Z letters, numbers, supported punctuation, spacing guidance, copy actions, audio checks, and printable worksheet next steps.",
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
     hasPart: [
       { "@type": "WebPageElement", name: "A-Z Morse code chart" },
@@ -584,7 +584,7 @@ export default function MorseCodeChartRoute() {
                 },
                 {
                   title: "Print when the chart leaves the screen",
-                  text: "Use the printable chart for class handouts, PDFs, worksheets, and offline study instead of copying this page manually.",
+                  text: "Use the printable worksheet for class handouts, PDFs, worksheets, and offline study instead of copying this page manually.",
                   href: "/morse-code-printable-chart",
                   badge: "Print",
                 },

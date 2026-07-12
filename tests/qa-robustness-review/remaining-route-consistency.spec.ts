@@ -112,7 +112,7 @@ test.describe("remaining route consistency pass", () => {
     await expect(page.locator("main")).toContainText(" / ");
   });
 
-  test("chart and printable chart punctuation stay tied to the shared map", async ({
+  test("chart and printable worksheet punctuation stay tied to the shared map", async ({
     page,
   }) => {
     const chartSource = readRepoFile("app/routes/morse-code-chart.tsx");

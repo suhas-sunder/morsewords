@@ -108,7 +108,7 @@ const offeringSections = [
       "Create printable Morse pages, printable reference charts, and word-search style learning materials for paper practice or saved PDFs.",
     links: [
       { href: ROUTES.printablePages, label: "Printable pages" },
-      { href: ROUTES.printableChart, label: "Printable chart" },
+      { href: ROUTES.printableChart, label: "Printable worksheet" },
       { href: ROUTES.wordSearchBuilder, label: "Word search" },
     ],
   },

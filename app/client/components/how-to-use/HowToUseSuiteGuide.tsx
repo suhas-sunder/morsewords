@@ -70,7 +70,7 @@ export default function HowToUseSuiteGuide() {
             },
             {
               title: "I need printables",
-              text: "Use the printable chart for reference sheets and the word search builder for classroom or practice handouts.",
+              text: "Use the printable worksheet for practice sheets and the word search builder for classroom or practice handouts.",
               href: "/morse-code-printable-chart",
               badge: "Print",
             },

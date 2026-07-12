@@ -283,7 +283,7 @@ test("print-style exports invoke print once per click", async ({ page }) => {
   await waitForHydration(page);
   await expect(page.locator('meta[name="description"]')).toHaveAttribute(
     "content",
-    "Create and print a Morse code chart, worksheet, or practice sheet with optional answer keys, then export it for study, teaching, or offline use.",
+    "Create a printable Morse code worksheet with custom words, sentences, student fields, optional answer keys, and PDF or image export for class or solo practice.",
   );
   await expectSinglePrintForButton(page, "Download PDF");
 

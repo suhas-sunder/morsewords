@@ -156,7 +156,7 @@ test("visual practice shows strobe warning when whole-page flash is enabled", as
   await expect(sawPageFlash).resolves.toBe(true);
 });
 
-test("printable chart content limits are hidden until content is actually omitted", async ({ page }) => {
+test("printable worksheet content limits are hidden until content is actually omitted", async ({ page }) => {
   await page.goto("/morse-code-printable-chart");
   await waitForRouteReady(page);
   await expect(page.getByText("Content limits")).toHaveCount(0);
@@ -199,7 +199,7 @@ test("word search Generate new puzzle changes the grid", async ({ page }) => {
   }).toPass({ timeout: 15_000 });
 });
 
-test("printable chart accepts SVG logo upload with no visible size/dimension warning", async ({ page }) => {
+test("printable worksheet accepts SVG logo upload with no visible size/dimension warning", async ({ page }) => {
   await ensureUploadFixtures();
   await page.goto("/morse-code-printable-chart");
   await waitForRouteReady(page);

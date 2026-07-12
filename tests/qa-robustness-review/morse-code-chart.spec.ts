@@ -104,7 +104,7 @@ test.describe("Morse code chart route", () => {
     expect(description).toContain("numbers");
     expect(description).toContain("punctuation");
     expect(description).toContain("audio");
-    expect(description).toContain("printable chart");
+    expect(description).toContain("printable worksheet");
 
     for (const name of [
       "Letters A-Z",

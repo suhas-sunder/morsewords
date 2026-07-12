@@ -1226,7 +1226,7 @@ export default function MorseCodeWordSearchBuilder() {
  label:"Practice word lists",
  primary: true,
  },
- { href:"/morse-code-printable-chart", label:"Printable chart"},
+ { href:"/morse-code-printable-chart", label:"Printable worksheet"},
  { href:"/morse-code-words", label:"Common words"},
  ]}
  />
@@ -1677,8 +1677,8 @@ export default function MorseCodeWordSearchBuilder() {
  }}
  comparison={{
  eyebrow:"Choose an activity",
- title:"Word search vs printable chart vs word trainer",
- description:"Pick the page based on whether you need a static reference, a printable puzzle, or active word repetition.",
+ title:"Word search vs printable worksheet vs word trainer",
+ description:"Pick the page based on whether you need a worksheet handout, a printable puzzle, or active word repetition.",
  items:[
  {
  title:"Word search builder",
@@ -1687,8 +1687,8 @@ export default function MorseCodeWordSearchBuilder() {
  badge:"Puzzle",
  },
  {
- title:"Printable chart",
- text:"Use the chart builder when learners need a reference sheet, worksheet packet, or answer-key handout.",
+ title:"Printable worksheet",
+ text:"Use the worksheet builder when learners need a practice sheet, reference guide, or answer-key handout.",
  href:"/morse-code-printable-chart",
  badge:"Handout",
  },
@@ -1704,7 +1704,7 @@ export default function MorseCodeWordSearchBuilder() {
  title:"Best next step after building a puzzle",
  description:"Connect the printable activity to a short practice loop so learners reinforce the same words.",
  links:[
- { href:"/morse-code-printable-chart", label:"Print a reference chart", primary:true },
+ { href:"/morse-code-printable-chart", label:"Print a worksheet", primary:true },
  { href:"/morse-code-word-trainer", label:"Practice the word list" },
  { href:"/morse-code-words", label:"Find common Morse words" },
  { href:"/practice", label:"Start general practice" },

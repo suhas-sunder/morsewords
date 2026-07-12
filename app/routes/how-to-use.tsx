@@ -48,7 +48,7 @@ export default function HowToUse() {
     },
     {
       q: "What should I use for printing or teaching?",
-      a: "Use the printable chart for reference sheets and the word search builder for classroom or practice handouts.",
+      a: "Use the printable worksheet for practice sheets and the word search builder for classroom or practice handouts.",
     },
   ];
 

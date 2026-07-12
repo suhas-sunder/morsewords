@@ -45,7 +45,7 @@ const REFERENCE_ROUTES = [
   },
   {
     path: "/morse-code-printable-chart",
-    heading: "Morse Code Printable Chart",
+    heading: "Printable Morse Code Worksheet",
     referenceHeading: "Build the printable",
   },
 ] as const;

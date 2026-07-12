@@ -71,7 +71,7 @@ const ROUTES = [
   },
   {
     path: "/morse-code-printable-chart",
-    h1: "Morse Code Printable Chart",
+    h1: "Printable Morse Code Worksheet",
     finalPath: "/morse-code-printable-chart",
   },
   {

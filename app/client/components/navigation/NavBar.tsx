@@ -40,7 +40,12 @@ const MAIN_ITEMS: NavItem[] = [
   { label: "Translator", href: ROUTES.home },
   { label: "Audio", href: ROUTES.audio },
   { label: "Practice", href: ROUTES.practice },
-  { label: "Worksheets", href: ROUTES.printableChart },
+  {
+    label: "Worksheets",
+    href: ROUTES.printableChart,
+    searchKeywords:
+      "worksheet worksheets print printable teacher student classroom practice sheet",
+  },
   { label: "Typing", href: ROUTES.typing },
   { label: "How to use", href: ROUTES.howToUse },
 ];

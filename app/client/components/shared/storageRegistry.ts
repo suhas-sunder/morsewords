@@ -408,14 +408,14 @@ function sanitizePrintablePayloadForStorage(
   value: string,
 ): StorageWritePolicyResult {
   const parsed = parseJsonObject(value);
-  if (!parsed) return block("invalid", "Printable chart settings must be JSON objects.");
+  if (!parsed) return block("invalid", "Printable worksheet settings must be JSON objects.");
 
   const sanitized = sanitizePrintableSettingsLikeObject(parsed);
   const serialized = JSON.stringify(sanitized);
   if (serialized.length > STORAGE_LIMITS.printableChartJsonMaxLength) {
     return block(
       "too-large",
-      `Printable chart settings are too large to save locally. Keep saved worksheet text under ${STORAGE_LIMITS.printableChartJsonMaxLength.toLocaleString()} characters.`,
+      `Printable worksheet settings are too large to save locally. Keep saved worksheet text under ${STORAGE_LIMITS.printableChartJsonMaxLength.toLocaleString()} characters.`,
       STORAGE_LIMITS.printableChartJsonMaxLength,
     );
   }
@@ -426,7 +426,7 @@ function sanitizePrintablePresetsForStorage(
   value: string,
 ): StorageWritePolicyResult {
   const parsed = parseJsonObject(value);
-  if (!parsed) return block("invalid", "Printable chart presets must be JSON objects.");
+  if (!parsed) return block("invalid", "Printable worksheet presets must be JSON objects.");
 
   const sanitized: Record<string, unknown> = {};
   for (const [key, preset] of Object.entries(parsed)) {
@@ -438,7 +438,7 @@ function sanitizePrintablePresetsForStorage(
   if (serialized.length > STORAGE_LIMITS.printableChartJsonMaxLength) {
     return block(
       "too-large",
-      `Printable chart presets are too large to save locally. Keep saved preset text under ${STORAGE_LIMITS.printableChartJsonMaxLength.toLocaleString()} characters.`,
+      `Printable worksheet presets are too large to save locally. Keep saved preset text under ${STORAGE_LIMITS.printableChartJsonMaxLength.toLocaleString()} characters.`,
       STORAGE_LIMITS.printableChartJsonMaxLength,
     );
   }
@@ -651,9 +651,9 @@ export const STORAGE_KEY_REGISTRY: readonly StorageKeyDefinition[] = [
 
   {
     key: STORAGE_KEYS.printableChartSettings,
-    routeScope: "printable chart settings",
+    routeScope: "printable worksheet settings",
     valueType: "json-object",
-    defaultValue: "default printable chart settings",
+    defaultValue: "default printable worksheet settings",
     validatorName: "printableSettingsJsonObjectNoPersistedLogoData",
     validate: validateJsonObjectMax(STORAGE_LIMITS.printableChartJsonMaxLength),
     sensitivity: "source text",
@@ -665,9 +665,9 @@ export const STORAGE_KEY_REGISTRY: readonly StorageKeyDefinition[] = [
   },
   {
     key: STORAGE_KEYS.printableChartPresets,
-    routeScope: "printable chart saved presets",
+    routeScope: "printable worksheet saved presets",
     valueType: "json-object",
-    defaultValue: "default printable chart presets",
+    defaultValue: "default printable worksheet presets",
     validatorName: "printablePresetJsonObjectNoPersistedLogoData",
     validate: validateJsonObjectMax(STORAGE_LIMITS.printableChartJsonMaxLength),
     sensitivity: "source text",

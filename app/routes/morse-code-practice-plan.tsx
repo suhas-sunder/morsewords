@@ -549,8 +549,8 @@ export default function MorseCodePracticePlan() {
             linkedItemStyle="inline"
             items={[
               {
-                title: "Printable chart",
-                text: "Use this for a compact reference sheet when you are checking letters, numbers, punctuation, or spacing.",
+                title: "Printable worksheet",
+                text: "Use this for worksheet practice or a compact reference guide when you are checking letters, numbers, punctuation, or spacing.",
                 href: ROUTES.printableChart,
                 badge: "Reference",
               },
