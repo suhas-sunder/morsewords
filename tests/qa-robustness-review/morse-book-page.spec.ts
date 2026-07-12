@@ -208,6 +208,29 @@ const CLUSTER_A_REMOVED_BOILERPLATE = [
   "because these pieces often depend on repeated actions",
 ] as const;
 
+const CLUSTER_B_SUMMARY_SLUGS = [
+  "cool-air", "the-dream-of-little-tuk", "the-false-collar", "the-naughty-boy",
+  "the-red-shoes", "the-shadow", "the-story-of-a-mother", "the-ugly-duckling",
+  "the-adventures-of-chanticleer-and-partlet", "jorinda-and-jorindel", "mother-holle", "rapunzel",
+  "the-juniper-tree", "the-seven-ravens", "the-wedding-of-mrs-fox", "the-adventures-of-kintaro-the-golden-boy",
+  "the-bamboo-cutter-and-the-moon-child", "the-goblin-of-adachigahara", "the-jelly-fish-and-the-monkey", "the-tongue-cut-sparrow",
+  "ole-luk-oie-the-dream-god", "clever-hans", "the-fisherman-and-his-wife", "the-story-of-the-old-man-who-made-withered-trees-to-flower",
+  "the-story-of-urashima-taro-the-fisher-lad", "the-story-of-the-man-who-did-not-wish-to-die", "the-happy-hunter-and-the-skillful-fisher", "the-conceited-apple-branch",
+  "the-darning-needle", "the-greenies", "the-loving-pair", "little-ida-s-flowers",
+  "the-roses-and-the-sparrows", "the-steadfast-tin-soldier", "shock-tactics", "canossa",
+  "the-oversight", "the-penance", "mark", "quail-seed", "cat-and-mouse-in-partnership",
+  "cat-skin", "clever-elsie", "clever-gretel", "doctor-knowall", "frederick-and-catherine",
+  "fundevogel", "hans-in-luck", "hansel-and-gretel", "iron-hans",
+] as const;
+
+const CLUSTER_B_REMOVED_BOILERPLATE = [
+  "search-useful context",
+  "for a typing-practice session",
+  "a learner can slow down",
+  "because these pieces often depend on repeated actions",
+  "the important details are the public-facing ones",
+] as const;
+
 const ALICE_PREVIEW_PATH = `${ALICE_PUBLIC_PATH}?preview=unpublished`;
 const TEST_BOOK_PUBLIC_PATH = `/morse-code-books/${TEST_BOOK_SLUG}`;
 const TEST_BOOK_PREVIEW_PATH = `${TEST_BOOK_PUBLIC_PATH}?preview=test-published`;
@@ -1478,6 +1501,57 @@ test.describe("Morse book page foundation", () => {
     expect(highestSimilarity).toBeLessThanOrEqual(0.04);
   });
 
+  test("keeps cluster B summaries distinct from each other and cluster A", () => {
+    type SeoSummary = { slug: string; title: string; author: string[]; summary: string };
+    type LibraryBook = { slug: string; title: string; author: string[] };
+    const seo = readJson<{ summaries: SeoSummary[] }>(
+      "app/client/assets/books/seo-summaries/book-seo-summaries.json",
+    );
+    const library = readJson<{ books: LibraryBook[] }>(
+      "app/client/assets/books/generated/library-manifest.json",
+    );
+    const bySlug = new Map(seo.summaries.map((summary) => [summary.slug, summary]));
+    const clusterB = CLUSTER_B_SUMMARY_SLUGS.map((slug) => bySlug.get(slug)!);
+    const clusterA = CLUSTER_A_SUMMARY_SLUGS.map((slug) => bySlug.get(slug)!);
+
+    expect(CLUSTER_B_SUMMARY_SLUGS).toHaveLength(50);
+    expect(new Set(CLUSTER_B_SUMMARY_SLUGS).size).toBe(50);
+    expect(clusterB.every(Boolean)).toBe(true);
+    for (const summary of clusterB) {
+      const book = library.books.find((candidate) => candidate.slug === summary.slug);
+      expect(book, `missing generated manifest for ${summary.slug}`).toBeTruthy();
+      expect(summary.title).toBe(book!.title);
+      expect(summary.author).toEqual(book!.author);
+      expect(summary.summary.trim()).not.toBe("");
+      for (const phrase of [...CLUSTER_A_REMOVED_BOILERPLATE, ...CLUSTER_B_REMOVED_BOILERPLATE]) {
+        expect(summary.summary.toLowerCase()).not.toContain(phrase);
+      }
+    }
+
+    const clusterBSentences = new Map<string, string[]>();
+    for (const summary of clusterB) {
+      for (const sentence of substantiveNormalizedSentences(summary.summary)) {
+        clusterBSentences.set(sentence, [...(clusterBSentences.get(sentence) ?? []), summary.slug]);
+      }
+    }
+    expect([...clusterBSentences.values()].filter((owners) => owners.length > 1)).toEqual([]);
+    const clusterASentences = new Set(clusterA.flatMap((summary) => substantiveNormalizedSentences(summary.summary)));
+    expect([...clusterBSentences.keys()].filter((sentence) => clusterASentences.has(sentence))).toEqual([]);
+
+    let highestWithinClusterB = 0;
+    let highestCrossCluster = 0;
+    for (let index = 0; index < clusterB.length; index += 1) {
+      for (let peerIndex = index + 1; peerIndex < clusterB.length; peerIndex += 1) {
+        highestWithinClusterB = Math.max(highestWithinClusterB, jaccardSimilarity(summaryFourGrams(clusterB[index].summary), summaryFourGrams(clusterB[peerIndex].summary)));
+      }
+      for (const summaryA of clusterA) {
+        highestCrossCluster = Math.max(highestCrossCluster, jaccardSimilarity(summaryFourGrams(clusterB[index].summary), summaryFourGrams(summaryA.summary)));
+      }
+    }
+    expect(highestWithinClusterB).toBeLessThanOrEqual(0.02);
+    expect(highestCrossCluster).toBeLessThanOrEqual(0.04);
+  });
+
   test("renders rewritten cluster A summaries on book and audiobook pages", async ({
     page,
   }) => {
@@ -1495,6 +1569,23 @@ test.describe("Morse book page foundation", () => {
     await expect(audiobookSummary).toContainText("Dr. John Watson");
     await expect(audiobookSummary).toContainText("Sherlock Holmes");
     await expect(page.locator("h1")).toContainText("A Study in Scarlet");
+  });
+
+  test("renders rewritten cluster B summaries on book and audiobook pages", async ({
+    page,
+  }) => {
+    await openPublicBook(page, "/morse-code-books/cool-air");
+    const bookSummary = page.getByTestId("morse-book-seo-summary");
+    await expect(bookSummary).toBeVisible();
+    await expect(bookSummary).toContainText("Dr. Muñoz");
+    await expect(bookSummary).toContainText("boarding house");
+
+    await gotoPublicBookPage(page, "/morse-code-audiobooks/hansel-and-gretel");
+    await waitForApprovedBookWorkspace(page);
+    const audiobookSummary = page.getByTestId("morse-book-seo-summary");
+    await expect(audiobookSummary).toBeVisible();
+    await expect(audiobookSummary).toContainText("woodcutter's family");
+    await expect(audiobookSummary).toContainText("great forest");
   });
 
   test("defines Sherlock Adventures collection context without a parent route", () => {
