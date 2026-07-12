@@ -1,10 +1,13 @@
 // Test-only fictional evidence. None of these claims describe a real Morse system.
 import assert from "node:assert/strict";
+import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 import test from "node:test";
 import {
   analyzeInternationalMorseResearch,
   assertResearchReadyForPromotion,
   inspectUnicode,
+  validateInternationalMorseResearch,
   type CandidateMapping,
   type CandidateSystem,
   type InternationalMorseResearchDataset,
@@ -13,7 +16,7 @@ import {
   type ReviewDecision,
   type UnicodeIdentity,
 } from "../../scripts/morse/internationalMorseResearch.ts";
-import { INTERNATIONAL_MORSE_RESEARCH_IMPORT } from "../../scripts/morse/internationalMorseResearchData.ts";
+import { CURRENT_PRODUCTION_COLLISION_BASELINE, INTERNATIONAL_MORSE_RESEARCH_IMPORT } from "../../scripts/morse/internationalMorseResearchData.ts";
 import { DEFAULT_GLOBAL_FORWARD_MAP, MORSE_COLLISION_GROUPS, MORSE_REGISTRY_ENTRIES } from "../../app/client/components/shared/morseRegistry.ts";
 
 const identity: UnicodeIdentity = { canonical: "¤", acceptedForms: ["¤"], script: "Test", direction: "ltr", caseBehavior: "caseless", normalization: "NFC" };
@@ -23,7 +26,7 @@ const independent: ResearchSource = { id: "source-independent", title: "Test ind
 const candidate: CandidateMapping = { id: "candidate-one", systemId: system.id, languageId: "x-test", category: "letter", unicode: identity, claimIds: ["claim-primary", "claim-independent"], requestedReverseEligibility: "selected-system" };
 const directClaim = (id: string, sourceId: string, pattern = ".-"): MappingClaim => ({ id, sourceId, candidateId: candidate.id, systemId: system.id, unicode: identity, characterOrToken: "¤", pattern, mappingKind: "direct", temporalStatus: "current", confidence: "high", extractionStatus: "verified-transcription" });
 const decision: ReviewDecision = { id: "decision-one", candidateId: candidate.id, decision: "approved-for-system-scoped-reverse", evidenceState: "independently-corroborated", approvedCharacter: "¤", approvedPattern: ".-", approvedSystemId: system.id, approvedNormalization: "NFC", reverseEligibility: "selected-system", reviewerId: "test-reviewer", decidedOn: "2026-07-12", sourceSummary: "Test-only independent corroboration." };
-const dataset = (overrides: Partial<InternationalMorseResearchDataset> = {}): InternationalMorseResearchDataset => ({ systems: [system], sources: [primary, independent], candidates: [candidate], claims: [directClaim("claim-primary", primary.id), directClaim("claim-independent", independent.id)], decisions: [decision], ...overrides });
+const dataset = (overrides: Partial<InternationalMorseResearchDataset> = {}): InternationalMorseResearchDataset => ({ systems: [system], sources: [primary, independent], candidates: [candidate], claims: [directClaim("claim-primary", primary.id), directClaim("claim-independent", independent.id)], recommendations: [], decisions: [decision], ...overrides });
 
 test("independently corroborated fictional evidence produces one deterministic system-scoped vector", () => {
   const analysis = assertResearchReadyForPromotion(dataset());
@@ -69,6 +72,47 @@ test("unapproved, transliteration-only, and historical candidates cannot become 
   assert.ok(analysis.issues.some((issue) => issue.code === "direct-transliteration-confusion"));
 });
 
+test("research validation accepts structurally valid pending evidence while strict promotion requires human decisions", () => {
+  const pending = dataset({
+    recommendations: [{ id: "recommendation-one", candidateId: candidate.id, evidenceState: "singly-attested", recommendedImplementationState: "approved-for-registry", recommendedReverseEligibility: "selected-system", sourceSummary: "Test-only source review.", unresolvedQuestions: ["A human reviewer must make the final decision."] }],
+    decisions: [],
+  });
+  assert.equal(validateInternationalMorseResearch(pending).summary.approved, 0);
+  assert.throws(() => assertResearchReadyForPromotion(pending), /promotion-missing-human-decision/);
+});
+
+test("research validation rejects unsafe leads without treating recommendations as approvals", () => {
+  const noEvidence = { ...candidate, claimIds: [] };
+  const hypothetical = { ...primary, id: "hypothetical-standard", title: "Hypothetical standard", independenceGroupId: "" };
+  const unsafe = dataset({
+    sources: [hypothetical, independent],
+    candidates: [noEvidence],
+    claims: [{ ...directClaim("claim-primary", hypothetical.id), sourceId: hypothetical.id, assertsGlobalReverseSafety: true, notes: "approximate mapping" }],
+    recommendations: [{ id: "recommendation-one", candidateId: noEvidence.id, evidenceState: "singly-attested", recommendedImplementationState: "approved-for-registry", recommendedReverseEligibility: "default-global", sourceSummary: "Test-only lead.", unresolvedQuestions: ["Needs review."] }],
+    decisions: [],
+  });
+  const codes = analyzeInternationalMorseResearch(unsafe).issues.map((issue) => issue.code);
+  for (const code of ["hypothetical-source", "missing-source-independence-group", "candidate-missing-evidence", "approximate-pattern"]) assert.ok(codes.includes(code));
+});
+
+test("a claim cannot call a cross-system Morse pattern globally reverse-safe", () => {
+  const otherSystem = { ...system, id: "test-system-two", sourceIds: [primary.id, independent.id] };
+  const otherCandidate = { ...candidate, id: "candidate-two", systemId: otherSystem.id, claimIds: ["claim-two"], unicode: { ...identity, canonical: "X", acceptedForms: ["X"] } };
+  const analysis = analyzeInternationalMorseResearch(dataset({
+    systems: [system, otherSystem],
+    candidates: [candidate, otherCandidate],
+    claims: [
+      { ...directClaim("claim-primary", primary.id), assertsGlobalReverseSafety: true },
+      { ...directClaim("claim-independent", independent.id) },
+      { ...directClaim("claim-two", independent.id), candidateId: otherCandidate.id, systemId: otherSystem.id, unicode: otherCandidate.unicode, characterOrToken: "X" },
+    ],
+    recommendations: [],
+    decisions: [],
+  }));
+  assert.ok(analysis.conflicts.some((conflict) => conflict.kind === "cross-system-reverse-ambiguity"));
+  assert.ok(analysis.issues.some((issue) => issue.code === "unsafe-global-reverse-assertion"));
+});
+
 test("research validation flags aliases and unsupported status claims without changing production data", () => {
   const alias = { ...candidate, id: "alias-one", category: "alias" as const, aliasOfCandidateId: "alias-two" };
   const aliasTwo = { ...candidate, id: "alias-two", category: "alias" as const, aliasOfCandidateId: "alias-one" };
@@ -77,9 +121,35 @@ test("research validation flags aliases and unsupported status claims without ch
   assert.ok(codes.includes("circular-or-broken-alias"));
   assert.ok(codes.includes("incomplete-source-claimed-complete"));
   assert.ok(codes.includes("current-claim-historical-source-only"));
-  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.claims.length, 0);
+  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.systems.length, 4);
+  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.length, 121);
+  assert.deepEqual(INTERNATIONAL_MORSE_RESEARCH_IMPORT.systems.map((item) => INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.filter((candidate) => candidate.systemId === item.id).length), [53, 11, 33, 24]);
+  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.claims.length, 60);
+  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.recommendations.length, 121);
+  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.decisions.length, 0);
+  assert.equal(validateInternationalMorseResearch(INTERNATIONAL_MORSE_RESEARCH_IMPORT).issues.filter((issue) => issue.severity === "error").length, 0);
+  assert.ok(INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.every((candidate) => candidate.claimIds.length > 0 || candidate.unresolvedEvidence));
+  assert.ok(INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.every((candidate) => candidate.unicode.unicodeNameStatus === "verified" && candidate.unicode.unicodeName && candidate.unicode.codePoints?.every((codePoint) => /^U\+[0-9A-F]{4,6}$/.test(codePoint))));
+  assert.ok(INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.every((candidate) => candidate.unicode.nfc === candidate.unicode.canonical.normalize("NFC") && candidate.unicode.nfd === candidate.unicode.canonical.normalize("NFD")));
+  const latinA = INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.find((candidate) => candidate.unicode.canonical === "A")!;
+  const greekAlpha = INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.find((candidate) => candidate.unicode.canonical === "Α")!;
+  const cyrillicA = INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.find((candidate) => candidate.unicode.canonical === "А")!;
+  assert.notEqual(latinA.unicode.codePoints?.[0], greekAlpha.unicode.codePoints?.[0]);
+  assert.notEqual(latinA.unicode.codePoints?.[0], cyrillicA.unicode.codePoints?.[0]);
   assert.equal(MORSE_REGISTRY_ENTRIES.length, 121);
   assert.equal(Object.keys(DEFAULT_GLOBAL_FORWARD_MAP).length, 53);
   assert.equal(MORSE_COLLISION_GROUPS.length, 30);
+  assert.equal(CURRENT_PRODUCTION_COLLISION_BASELINE.length, 30);
+  assert.equal(CURRENT_PRODUCTION_COLLISION_BASELINE.filter((group) => group.sameSystemCollisionSystemIds.length > 0).length, 1);
+  assert.ok(CURRENT_PRODUCTION_COLLISION_BASELINE.every((group) => group.defaultGlobalReverseSafe));
   assert.ok(MORSE_REGISTRY_ENTRIES.every((entry) => entry.provenance.verificationStatus === "repository-migrated"));
+});
+
+test("research records stay Node-only and the saved report is never imported", () => {
+  const files = readdirSync("app", { recursive: true }).filter((item) => String(item).endsWith(".ts") || String(item).endsWith(".tsx"));
+  for (const file of files) {
+    const source = readFileSync(join("app", String(file)), "utf8");
+    assert.ok(!source.includes("internationalMorseResearch"));
+    assert.ok(!source.includes("deep-research-report"));
+  }
 });

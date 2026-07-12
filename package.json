@@ -125,6 +125,7 @@
     "test:e2e": "playwright test",
     "test:fuzz": "playwright test tests/qa-robustness-review/morse-utils.fuzz.spec.ts",
     "morse:verify-international-research": "node --experimental-strip-types scripts/morse/verifyInternationalMorseResearch.ts",
+    "morse:verify-international-promotion": "node --experimental-strip-types scripts/morse/verifyInternationalMorsePromotion.ts",
     "test:morse:research": "node --experimental-strip-types --test tests/node/internationalMorseResearch.test.ts",
     "test:smoke": "playwright test tests/qa-robustness-review/route-registry.spec.ts tests/qa-robustness-review/route-smoke-core.spec.ts tests/qa-robustness-review/runtime-performance-hardening.spec.ts --project=desktop-chromium",
     "typecheck": "react-router typegen && tsc -b"

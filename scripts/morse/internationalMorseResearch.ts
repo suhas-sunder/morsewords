@@ -29,6 +29,10 @@ export type UnicodeIdentity = {
   canonical: string; acceptedForms: readonly string[]; script: string; direction: WritingDirection;
   caseBehavior: "uppercase" | "lowercase" | "bicameral" | "caseless";
   normalization: "none" | "NFC" | "NFD" | "NFKC"; compatibilityChangesMeaning?: boolean;
+  codePoints?: readonly string[]; unicodeName?: string; unicodeNameStatus?: "verified" | "pending-review";
+  sourceIds?: readonly string[];
+  uppercaseForm?: string; lowercaseForm?: string; nfc?: string; nfd?: string; nfkcPolicy?: "accept" | "reject" | "review";
+  visuallySimilarButDistinct?: readonly string[];
 };
 
 export type CandidateSystem = {
@@ -45,11 +49,36 @@ export type MappingClaim = {
   mappingKind: "direct" | "transliteration" | "romanization" | "sending-convention" | "receiving-convention";
   temporalStatus: "current" | "historical" | "uncertain"; spacingSensitive?: boolean; confidence: "high" | "medium" | "low";
   extractionStatus: "verified-transcription" | "needs-review" | "machine-extracted"; claimsCompleteAlphabet?: boolean; notes?: string;
+  assertsGlobalReverseSafety?: boolean;
+};
+
+export type UnresolvedEvidence = {
+  reason: string; requiredEvidence: readonly string[]; leadSourceIds?: readonly string[];
+};
+
+export type SurfaceEligibility = {
+  translator: "existing" | "not-applicable" | "requires-review";
+  audio: "existing" | "not-applicable" | "requires-review";
+  practice: "existing" | "not-applicable" | "requires-review";
+  examples: "existing" | "not-applicable" | "requires-review";
+  studySheet: "existing" | "not-applicable" | "requires-review";
+  route: "existing" | "not-applicable" | "requires-review";
 };
 
 export type CandidateMapping = {
   id: string; systemId: string; languageId?: string; category: "letter" | "digit" | "punctuation" | "prosign" | "control-token" | "alias";
   unicode: UnicodeIdentity; claimIds: readonly string[]; requestedReverseEligibility: ReverseEligibility; aliasOfCandidateId?: string;
+  unresolvedEvidence?: UnresolvedEvidence; existingSurfaceEligibility?: SurfaceEligibility;
+};
+
+export type ResearchRecommendation = {
+  id: string; candidateId: string; evidenceState: EvidenceState;
+  recommendedImplementationState: ImplementationState; recommendedReverseEligibility: ReverseEligibility;
+  sourceSummary: string; unresolvedQuestions: readonly string[]; conflictDispositionRecommendation?: string;
+};
+
+export type RejectedResearchClaim = {
+  id: string; candidateId?: string; reason: string; sourceReference?: string;
 };
 
 export type ReviewDecision = {
@@ -62,7 +91,8 @@ export type ReviewDecision = {
 
 export type InternationalMorseResearchDataset = {
   systems: readonly CandidateSystem[]; sources: readonly ResearchSource[]; candidates: readonly CandidateMapping[];
-  claims: readonly MappingClaim[]; decisions: readonly ReviewDecision[];
+  claims: readonly MappingClaim[]; recommendations: readonly ResearchRecommendation[]; decisions: readonly ReviewDecision[];
+  rejectedClaims?: readonly RejectedResearchClaim[];
 };
 
 export type ResearchIssue = { code: string; message: string; ids?: readonly string[]; severity: "error" | "warning" };
@@ -98,16 +128,18 @@ export function analyzeInternationalMorseResearch(dataset: InternationalMorseRes
   const issues: ResearchIssue[] = [];
   const conflicts: ResearchConflict[] = [];
   const sources = new Map<string, ResearchSource>(); const systems = new Map<string, CandidateSystem>();
-  const candidates = new Map<string, CandidateMapping>(); const claims = new Map<string, MappingClaim>(); const decisions = new Map<string, ReviewDecision>();
+  const candidates = new Map<string, CandidateMapping>(); const claims = new Map<string, MappingClaim>(); const recommendations = new Map<string, ResearchRecommendation>(); const decisions = new Map<string, ReviewDecision>();
   const addUnique = <T extends { id: string }>(map: Map<string, T>, value: T, kind: string) => { if (map.has(value.id)) issues.push({ code: `duplicate-${kind}-id`, message: `Duplicate ${kind} id ${value.id}`, ids: [value.id], severity: "error" }); map.set(value.id, value); };
   dataset.sources.forEach((item) => addUnique(sources, item, "source")); dataset.systems.forEach((item) => addUnique(systems, item, "system"));
-  dataset.candidates.forEach((item) => addUnique(candidates, item, "candidate")); dataset.claims.forEach((item) => addUnique(claims, item, "claim")); dataset.decisions.forEach((item) => addUnique(decisions, item, "decision"));
+  dataset.candidates.forEach((item) => addUnique(candidates, item, "candidate")); dataset.claims.forEach((item) => addUnique(claims, item, "claim")); dataset.recommendations.forEach((item) => addUnique(recommendations, item, "recommendation")); dataset.decisions.forEach((item) => addUnique(decisions, item, "decision"));
 
   for (const source of dataset.sources) {
     if (!source.locator.trim()) issues.push({ code: "missing-citation-locator", message: `Source ${source.id} has no locator`, ids: [source.id], severity: "error" });
     if (source.url && !isUrl(source.url)) issues.push({ code: "invalid-source-url", message: `Source ${source.id} has invalid URL`, ids: [source.id], severity: "error" });
     if (source.archivedUrl && !isUrl(source.archivedUrl)) issues.push({ code: "invalid-archive-url", message: `Source ${source.id} has invalid archive URL`, ids: [source.id], severity: "error" });
     for (const parent of source.reproducesSourceIds ?? []) if (!sources.has(parent)) issues.push({ code: "broken-source-dependency", message: `Source ${source.id} references missing source ${parent}`, ids: [source.id, parent], severity: "error" });
+    if (!source.independenceGroupId.trim()) issues.push({ code: "missing-source-independence-group", message: `Source ${source.id} has no independence group`, ids: [source.id], severity: "error" });
+    if (/hypothetical|placeholder/i.test(`${source.id} ${source.title} ${source.documentIdentifier ?? ""}`)) issues.push({ code: "hypothetical-source", message: `Source ${source.id} is marked as hypothetical or placeholder`, ids: [source.id], severity: "error" });
   }
   const sourceIdentity = new Set<string>();
   for (const source of dataset.sources) {
@@ -119,7 +151,11 @@ export function analyzeInternationalMorseResearch(dataset: InternationalMorseRes
   for (const candidate of dataset.candidates) {
     if (!systems.has(candidate.systemId)) issues.push({ code: "unknown-system", message: `Candidate ${candidate.id} uses unknown system`, ids: [candidate.id], severity: "error" });
     issues.push(...inspectUnicode(candidate.unicode));
+    for (const sourceId of candidate.unicode.sourceIds ?? []) if (!sources.has(sourceId)) issues.push({ code: "unknown-unicode-source", message: `Candidate ${candidate.id} references missing Unicode source ${sourceId}`, ids: [candidate.id, sourceId], severity: "error" });
     for (const claimId of candidate.claimIds) if (!claims.has(claimId)) issues.push({ code: "missing-claim", message: `Candidate ${candidate.id} references missing claim`, ids: [candidate.id, claimId], severity: "error" });
+    if (!candidate.claimIds.length && !candidate.unresolvedEvidence) issues.push({ code: "candidate-missing-evidence", message: `Candidate ${candidate.id} has neither claims nor unresolved evidence`, ids: [candidate.id], severity: "error" });
+    if (candidate.unresolvedEvidence && (!candidate.unresolvedEvidence.reason.trim() || !candidate.unresolvedEvidence.requiredEvidence.length)) issues.push({ code: "invalid-unresolved-evidence", message: `Candidate ${candidate.id} has incomplete unresolved evidence`, ids: [candidate.id], severity: "error" });
+    for (const sourceId of candidate.unresolvedEvidence?.leadSourceIds ?? []) if (!sources.has(sourceId)) issues.push({ code: "unknown-unresolved-evidence-source", message: `Candidate ${candidate.id} references missing evidence lead ${sourceId}`, ids: [candidate.id, sourceId], severity: "error" });
     if (candidate.category === "alias" && !candidate.aliasOfCandidateId) issues.push({ code: "alias-missing-target", message: `Alias ${candidate.id} has no canonical candidate`, ids: [candidate.id], severity: "error" });
   }
   for (const candidate of dataset.candidates.filter((item) => item.category === "alias")) {
@@ -134,6 +170,7 @@ export function analyzeInternationalMorseResearch(dataset: InternationalMorseRes
     if (claim.temporalStatus === "current" && claimSource?.temporalStatus === "historical") issues.push({ code: "current-claim-historical-source-only", message: `Claim ${claim.id} needs current evidence`, ids: [claim.id], severity: "error" });
     if (claim.mappingKind !== "direct" && claim.mappingKind !== "receiving-convention" && claim.mappingKind !== "sending-convention" && claim.characterOrToken === claim.unicode.canonical) issues.push({ code: "direct-transliteration-confusion", message: `Claim ${claim.id} classifies a direct Unicode character as a transform`, ids: [claim.id], severity: "warning" });
     issues.push(...inspectUnicode(claim.unicode));
+    if (/approx/i.test(claim.pattern) || /approx/i.test(claim.notes ?? "")) issues.push({ code: "approximate-pattern", message: `Claim ${claim.id} uses an approximate pattern`, ids: [claim.id], severity: "error" });
   }
   const claimGroups = new Map<string, MappingClaim[]>();
   for (const claim of dataset.claims) claimGroups.set(`${claim.systemId}\0${claim.unicode.canonical}`, [...(claimGroups.get(`${claim.systemId}\0${claim.unicode.canonical}`) ?? []), claim]);
@@ -141,6 +178,22 @@ export function analyzeInternationalMorseResearch(dataset: InternationalMorseRes
   const reverseGroups = new Map<string, MappingClaim[]>();
   for (const claim of dataset.claims.filter((claim) => claim.mappingKind === "direct")) reverseGroups.set(`${claim.systemId}\0${claim.pattern}`, [...(reverseGroups.get(`${claim.systemId}\0${claim.pattern}`) ?? []), claim]);
   for (const group of reverseGroups.values()) if (unique(group.map((claim) => claim.unicode.canonical)).length > 1) conflicts.push({ kind: "same-system-reverse-ambiguity", candidateIds: unique(group.map((claim) => claim.candidateId)).sort(), claimIds: group.map((claim) => claim.id).sort(), message: `Reverse ambiguity for ${group[0].pattern} in ${group[0].systemId}` });
+  const globalReverseGroups = new Map<string, MappingClaim[]>();
+  for (const claim of dataset.claims.filter((claim) => claim.mappingKind === "direct")) globalReverseGroups.set(claim.pattern, [...(globalReverseGroups.get(claim.pattern) ?? []), claim]);
+  for (const group of globalReverseGroups.values()) {
+    const systemsForPattern = unique(group.map((claim) => claim.systemId));
+    if (systemsForPattern.length > 1) conflicts.push({ kind: "cross-system-reverse-ambiguity", candidateIds: unique(group.map((claim) => claim.candidateId)).sort(), claimIds: group.map((claim) => claim.id).sort(), message: `Cross-system ambiguity for ${group[0].pattern}` });
+  }
+  for (const claim of dataset.claims.filter((item) => item.assertsGlobalReverseSafety)) {
+    const group = globalReverseGroups.get(claim.pattern) ?? [];
+    if (unique(group.map((item) => item.systemId)).length > 1) issues.push({ code: "unsafe-global-reverse-assertion", message: `Claim ${claim.id} calls a cross-system pattern globally reverse-safe`, ids: [claim.id], severity: "error" });
+  }
+  for (const recommendation of dataset.recommendations) {
+    const candidate = candidates.get(recommendation.candidateId);
+    if (!candidate) issues.push({ code: "unknown-recommendation-candidate", message: `Recommendation ${recommendation.id} has an unknown candidate`, ids: [recommendation.id], severity: "error" });
+    if (!recommendation.sourceSummary.trim() || !recommendation.unresolvedQuestions.length) issues.push({ code: "incomplete-recommendation", message: `Recommendation ${recommendation.id} needs a source summary and unresolved questions`, ids: [recommendation.id], severity: "error" });
+    if (recommendation.recommendedImplementationState === "not-reviewed") issues.push({ code: "invalid-recommendation-state", message: `Recommendation ${recommendation.id} cannot recommend not-reviewed`, ids: [recommendation.id], severity: "error" });
+  }
   for (const decision of dataset.decisions) {
     const candidate = candidates.get(decision.candidateId); const decisionClaims = candidate ? candidate.claimIds.map((id) => claims.get(id)).filter((claim): claim is MappingClaim => Boolean(claim)) : [];
     if (!candidate) issues.push({ code: "unknown-decision-candidate", message: `Decision ${decision.id} has unknown candidate`, ids: [decision.id], severity: "error" });
@@ -157,12 +210,20 @@ export function analyzeInternationalMorseResearch(dataset: InternationalMorseRes
   }
   const approvedCandidates = dataset.candidates.filter((candidate) => dataset.decisions.some((decision) => decision.candidateId === candidate.id && APPROVALS.has(decision.decision)) && !issues.some((issue) => issue.ids?.some((id) => dataset.decisions.some((decision) => decision.id === id && decision.candidateId === candidate.id))));
   const testVectors = approvedCandidates.flatMap((candidate) => dataset.decisions.filter((decision) => decision.candidateId === candidate.id && APPROVALS.has(decision.decision)).map((decision) => ({ decisionId: decision.id, systemId: decision.approvedSystemId ?? candidate.systemId, ...(candidate.languageId ? { languageId: candidate.languageId } : {}), input: decision.approvedCharacter ?? candidate.unicode.canonical, aliases: candidate.unicode.acceptedForms.filter((value) => value !== candidate.unicode.canonical), expectedMorse: decision.approvedPattern ?? claims.get(candidate.claimIds[0])?.pattern ?? "", ...(decision.reverseEligibility === "forward-only" ? {} : { expectedReverse: decision.approvedCharacter ?? candidate.unicode.canonical }), reverseEligibility: decision.reverseEligibility ?? candidate.requestedReverseEligibility }))).sort((a, b) => a.decisionId.localeCompare(b.decisionId));
-  return { issues, conflicts, approvedCandidates, testVectors, summary: { systems: dataset.systems.length, sources: dataset.sources.length, claims: dataset.claims.length, candidates: dataset.candidates.length, corroborated: dataset.decisions.filter((decision) => decision.evidenceState === "independently-corroborated").length, conflicting: conflicts.length, blocked: dataset.decisions.filter((decision) => decision.decision === "blocked-pending-review").length, approved: approvedCandidates.length, forwardOnly: testVectors.filter((vector) => vector.reverseEligibility === "forward-only").length, reverseApproved: testVectors.filter((vector) => vector.expectedReverse).length, unresolvedUnicodeIssues: issues.filter((issue) => issue.code.includes("unicode")).length, unresolvedSystemClassificationIssues: issues.filter((issue) => issue.code.includes("system")).length } };
+  return { issues, conflicts, approvedCandidates, testVectors, summary: { systems: dataset.systems.length, sources: dataset.sources.length, claims: dataset.claims.length, candidates: dataset.candidates.length, recommendations: dataset.recommendations.length, rejectedClaims: dataset.rejectedClaims?.length ?? 0, corroborated: dataset.decisions.filter((decision) => decision.evidenceState === "independently-corroborated").length, conflicting: conflicts.length, blocked: dataset.recommendations.filter((recommendation) => recommendation.recommendedImplementationState === "blocked-pending-review").length, approved: approvedCandidates.length, forwardOnly: testVectors.filter((vector) => vector.reverseEligibility === "forward-only").length, reverseApproved: testVectors.filter((vector) => vector.expectedReverse).length, unresolvedUnicodeIssues: issues.filter((issue) => issue.code.includes("unicode")).length, unresolvedSystemClassificationIssues: issues.filter((issue) => issue.code.includes("system")).length } };
 }
 
-export function assertResearchReadyForPromotion(dataset: InternationalMorseResearchDataset) {
+export function validateInternationalMorseResearch(dataset: InternationalMorseResearchDataset) {
   const analysis = analyzeInternationalMorseResearch(dataset);
   const blocking = analysis.issues.filter((issue) => issue.severity === "error");
   if (blocking.length) throw new Error(`International Morse research is not ready: ${blocking.map((issue) => issue.code).join(", ")}`);
+  return analysis;
+}
+
+export function assertResearchReadyForPromotion(dataset: InternationalMorseResearchDataset) {
+  const analysis = validateInternationalMorseResearch(dataset);
+  const approvedIds = new Set(dataset.decisions.filter((decision) => APPROVALS.has(decision.decision)).map((decision) => decision.candidateId));
+  const pending = dataset.candidates.filter((candidate) => !approvedIds.has(candidate.id));
+  if (pending.length) throw new Error(`International Morse promotion is blocked: promotion-missing-human-decision (${pending.length} candidate${pending.length === 1 ? "" : "s"})`);
   return analysis;
 }
