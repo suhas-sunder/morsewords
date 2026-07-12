@@ -32,6 +32,8 @@ const APPROVED_BOOK_SLUG = "treasure-island";
 const NETWORK_BOOK_SLUG = "dr-jekyll-and-mr-hyde";
 const STALE_CACHE_BOOK_SLUG = "the-call-of-the-wild";
 const ERROR_BOOK_SLUG = "the-jungle-book";
+const CHRISTMAS_CAROL_SLUG = "a-christmas-carol";
+const GREAT_GATSBY_SLUG = "the-great-gatsby";
 const TEST_BOOK_SLUG = "test-published-morse-book";
 const ART_OF_WAR_SLUG = "the-art-of-war";
 const ANNE_OF_GREEN_GABLES_SLUG = "anne-of-green-gables";
@@ -233,10 +235,13 @@ function readJson<T>(relativePath: string): T {
 
 type TestBookManifestSection = {
   id: string;
+  kind?: string;
   label?: string;
+  order?: number;
   sectionJsonPath?: string;
   title?: string | null;
   includeByDefault: boolean;
+  wordCount?: number;
 };
 
 type TestBookContentFixture = {
@@ -251,16 +256,26 @@ type TestBookContentFixture = {
 };
 
 type TestGeneratedBookManifestFixture = {
+  slug: string;
   title: string;
   author: string[];
+  contentVersion: string;
+  contentHash: string;
+  stats: {
+    sectionCount: number;
+    includedSectionCount: number;
+  };
   sections: TestBookManifestSection[];
 };
 
 type TestGeneratedBookSectionFixture = {
+  sectionId?: string;
+  includeByDefault?: boolean;
   label: string;
   title: string | null;
   displayText?: string;
   morseSourceText?: string;
+  wordCount?: number;
 };
 
 function defaultSectionIdsFromSections(sections: TestBookManifestSection[]) {
@@ -387,9 +402,28 @@ function readGeneratedBookSection(slug: string, sectionId: string) {
 }
 
 function readBookPreviewAsset(slug: string) {
-  return readJson<{ defaultSectionId: string; previewText: string }>(
+  return readJson<{
+    contentHash: string;
+    contentVersion: string;
+    defaultSectionId: string;
+    previewText: string;
+  }>(
     `public/book-previews/${slug}.preview.json`,
   );
+}
+
+function readGeneratedLibraryManifest() {
+  return readJson<{
+    books: Array<{
+      slug: string;
+      contentHash: string;
+      contentVersion: string;
+      stats: {
+        includedSectionCount: number;
+        sectionCount: number;
+      };
+    }>;
+  }>("app/client/assets/books/generated/library-manifest.json");
 }
 
 async function removeBookRuntimeSettings(page: Page, slug: string) {
@@ -3823,6 +3857,106 @@ test.describe("Morse book page foundation", () => {
     await expect(
       page.locator("[data-mw-morse-book-source-preview]"),
     ).not.toContainText("THE MILLENNIUM FULCRUM EDITION");
+  });
+
+  test("defaults published fallback-part books to their complete generated part set", () => {
+    const library = readGeneratedLibraryManifest();
+    const fallbackBooks = [
+      { slug: CHRISTMAS_CAROL_SLUG, expectedCount: 7 },
+      { slug: NETWORK_BOOK_SLUG, expectedCount: 6 },
+      { slug: GREAT_GATSBY_SLUG, expectedCount: 11 },
+    ];
+
+    for (const { slug, expectedCount } of fallbackBooks) {
+      const manifest = readGeneratedBookManifest(slug);
+      const defaultSectionIds = defaultSectionIdsFromSections(
+        manifest.sections,
+      );
+      const partSectionIds = manifest.sections
+        .filter((section) => section.kind === "part")
+        .map((section) => section.id);
+      const libraryEntry = library.books.find((book) => book.slug === slug);
+      const preview = readBookPreviewAsset(slug);
+
+      expect(defaultSectionIds).toEqual(partSectionIds);
+      expect(defaultSectionIds).toHaveLength(expectedCount);
+      expect(new Set(defaultSectionIds).size).toBe(defaultSectionIds.length);
+      expect(manifest.stats.includedSectionCount).toBe(defaultSectionIds.length);
+      expect(libraryEntry?.stats.includedSectionCount).toBe(
+        defaultSectionIds.length,
+      );
+      expect(libraryEntry?.contentVersion).toBe(manifest.contentVersion);
+      expect(libraryEntry?.contentHash).toBe(manifest.contentHash);
+      expect(preview.defaultSectionId).toBe(defaultSectionIds[0]);
+      expect(preview.contentVersion).toBe(manifest.contentVersion);
+      expect(preview.contentHash).toBe(manifest.contentHash);
+
+      for (const sectionId of defaultSectionIds) {
+        const section = readGeneratedBookSection(slug, sectionId);
+        expect(section.includeByDefault).toBe(true);
+        expect(section.wordCount ?? 0).toBeGreaterThan(0);
+        expect(
+          (section.morseSourceText ?? section.displayText)?.trim(),
+        ).toBeTruthy();
+      }
+    }
+  });
+
+  test("keeps generated default-section metadata internally consistent across the published corpus", () => {
+    const library = readGeneratedLibraryManifest();
+    expect(library.books).toHaveLength(526);
+
+    for (const book of library.books) {
+      const manifest = readGeneratedBookManifest(book.slug);
+      const defaultSectionIds = defaultSectionIdsFromSections(
+        manifest.sections,
+      );
+
+      expect(manifest.stats.sectionCount).toBe(manifest.sections.length);
+      expect(book.stats.sectionCount).toBe(manifest.stats.sectionCount);
+      expect(manifest.stats.includedSectionCount).toBe(
+        defaultSectionIds.length,
+      );
+      expect(book.stats.includedSectionCount).toBe(defaultSectionIds.length);
+      expect(new Set(defaultSectionIds).size).toBe(defaultSectionIds.length);
+      if (manifest.sections.some((section) => (section.wordCount ?? 0) > 0)) {
+        expect(defaultSectionIds.length).toBeGreaterThan(0);
+      }
+
+      for (const sectionId of defaultSectionIds) {
+        const summary = manifest.sections.find(
+          (section) => section.id === sectionId,
+        );
+        expect(summary?.wordCount ?? 0).toBeGreaterThan(0);
+        const section = readGeneratedBookSection(book.slug, sectionId);
+        expect(section.includeByDefault).toBe(true);
+        expect(
+          (section.morseSourceText ?? section.displayText)?.trim(),
+        ).toBeTruthy();
+      }
+    }
+  });
+
+  test("renders printable fallback-part books with the generated section count", async ({
+    page,
+  }) => {
+    await blockExternalNetwork(page);
+    const response = await page.goto(
+      `/morse-code-books/${GREAT_GATSBY_SLUG}/print`,
+      {
+        waitUntil: "domcontentloaded",
+      },
+    );
+    await waitForRouteReady(page);
+    expect(response?.ok()).toBe(true);
+
+    const printRoot = page.locator('[data-mw-print-source="approved-book-json"]');
+    await expect(printRoot).toHaveAttribute(
+      "data-mw-print-section-count",
+      "11",
+    );
+    await expect(page.getByText("11 sections").first()).toBeVisible();
+    await expect(page.locator("body")).not.toContainText(/0\s+sections/i);
   });
 
   test("defaults Violet Fairy Book preview to story sections without preface material", async ({

@@ -1328,7 +1328,11 @@ function chunkFallbackSections(
       metadata,
     );
     if (section) {
-      sections.push({ ...section, id: `part-${String(order).padStart(3, "0")}` });
+      sections.push({
+        ...section,
+        id: `part-${String(order).padStart(3, "0")}`,
+        includeByDefault: !metadata.defaults.excludeKinds.includes("part"),
+      });
     }
 
     start = end;

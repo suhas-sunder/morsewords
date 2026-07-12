@@ -976,21 +976,26 @@ export async function getMorseBookSections(
   }
 
   const sections = new Map<string, MorseBookSectionJson>();
-  const missingIds = [...uniqueSectionIds];
 
-  if (missingIds.length > 0 && import.meta.env.DEV) {
+  if (
+    uniqueSectionIds.some((sectionId) => !sections.has(sectionId)) &&
+    import.meta.env.DEV
+  ) {
     const reviewSections = await Promise.all(
-      missingIds.map((id) => loadReviewBookSection(book, id)),
+      uniqueSectionIds.map((id) => loadReviewBookSection(book, id)),
     );
     reviewSections.forEach((section) => {
       if (section) sections.set(section.sectionId, section);
     });
   }
 
-  if (missingIds.length > 0 && isMorseBookPublishReady(book)) {
+  if (
+    uniqueSectionIds.some((sectionId) => !sections.has(sectionId)) &&
+    isMorseBookPublishReady(book)
+  ) {
     const publicSections = await loadPublicBookSectionMap(book);
     if (publicSections) {
-      missingIds
+      uniqueSectionIds
         .filter((sectionId) => !sections.has(sectionId))
         .forEach((sectionId) => {
           const section = publicSections.get(sectionId);

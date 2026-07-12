@@ -601,6 +601,32 @@ License text should not be included by default.
     expect(supportKinds).toContainEqual(["source-license", false]);
   });
 
+  test("defaults generated fallback parts when preferred section kind is unavailable", () => {
+    const metadata = baseMetadata("fallback-parts");
+    const fallbackText = Array.from({ length: 220 }, (_, index) =>
+      [
+        `Fallback prose paragraph ${index + 1}.`,
+        "This sample intentionally has no chapter headings, so the detector must chunk it into fallback parts.",
+        "Every fallback part is readable story text and should be selected by default when chapter sections are unavailable.",
+      ].join(" "),
+    ).join("\n\n");
+
+    const result = detectBookSections(fallbackText, metadata);
+    const fallbackParts = result.sections.filter(
+      (section) => section.kind === "part",
+    );
+
+    expect(result.warnings).toContain(
+      "No chapter headings were detected; generated fallback parts instead.",
+    );
+    expect(fallbackParts.length).toBeGreaterThan(1);
+    expect(result.sections).toEqual(fallbackParts);
+    expect(fallbackParts.every((section) => section.wordCount > 0)).toBe(true);
+    expect(fallbackParts.map((section) => section.includeByDefault)).toEqual(
+      fallbackParts.map(() => true),
+    );
+  });
+
   test("applies manual rename, kind, include, split, and merge overrides", () => {
     const metadata = {
       ...baseMetadata("override-sample"),

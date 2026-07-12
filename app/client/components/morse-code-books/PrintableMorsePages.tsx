@@ -33,6 +33,8 @@ import type {
 } from "~/client/data/morseBookTypes";
 import {
   getMorseBookPublicContent,
+  getMorseBookManifest,
+  getMorseBookSections,
   morseAudiobookPath,
   morseBookPath,
   morseBookPrintPath,
@@ -178,6 +180,48 @@ function initialPrintableSectionIds(book: PrintableBookMetadata) {
   return defaultSectionIds(book).slice(0, INITIAL_BOOK_PRINT_SECTION_LIMIT);
 }
 
+async function loadPrintableBookContent(book: PrintableBookMetadata) {
+  try {
+    const content = await getMorseBookPublicContent(book.slug);
+    if (content?.manifest.slug === book.slug && content.sections.length > 0) {
+      return content;
+    }
+  } catch {
+    // Fall through to the generated-review fallback in development.
+  }
+
+  if (!import.meta.env.DEV) return null;
+
+  const generatedBook = await getMorseBookManifest(book.slug, {
+    includeUnpublished: true,
+  });
+  if (!generatedBook || generatedBook.slug !== book.slug) return null;
+
+  const sections = await getMorseBookSections(
+    generatedBook,
+    generatedBook.sections.map((section) => section.id),
+  );
+  if (sections.length === 0) return null;
+
+  return {
+    schemaVersion: 1,
+    slug: generatedBook.slug,
+    contentVersion: generatedBook.contentVersion,
+    contentHash: generatedBook.contentHash,
+    manifest: generatedBook,
+    sections,
+    ...("contentSuitability" in generatedBook
+      ? { contentSuitability: generatedBook.contentSuitability }
+      : {}),
+    ...("strictReviewCandidate" in generatedBook
+      ? { strictReviewCandidate: generatedBook.strictReviewCandidate }
+      : {}),
+    ...("contentNote" in generatedBook
+      ? { contentNote: generatedBook.contentNote }
+      : {}),
+  } satisfies MorseBookPublicContentJson;
+}
+
 function useQrCode(url: string) {
   const [qrCodeUrl, setQrCodeUrl] = React.useState("");
   const [failed, setFailed] = React.useState(false);
@@ -315,7 +359,7 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
 
     let cancelled = false;
     setBookContentStatus("loading");
-    getMorseBookPublicContent(initialBook.slug)
+    loadPrintableBookContent(initialBook)
       .then((content) => {
         if (cancelled) return;
         if (content?.manifest.slug === initialBook.slug) {

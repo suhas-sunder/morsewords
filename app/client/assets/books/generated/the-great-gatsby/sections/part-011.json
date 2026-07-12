@@ -6,7 +6,7 @@
   "label": "Part 11",
   "title": null,
   "order": 11,
-  "includeByDefault": false,
+  "includeByDefault": true,
   "displayText": "So we beat on, boats against the current, borne back ceaselessly into\nthe past.",
   "morseSourceText": "So we beat on, boats against the current, borne back ceaselessly into\nthe past.",
   "paragraphs": [

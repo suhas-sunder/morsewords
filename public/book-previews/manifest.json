@@ -17,12 +17,12 @@
     {
       "slug": "a-christmas-carol",
       "path": "/book-previews/a-christmas-carol.preview.json",
-      "contentVersion": "7aa2c3f3504d04dd",
-      "contentHash": "7aa2c3f3504d04dd1ff2a221be80ef81c40929ce8c7e4faaa8f768047f36fd33",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11604,
-      "previewCharacterCount": 10465,
-      "estimatedRuntimeSeconds": 3774,
+      "contentVersion": "5ac624e6006546db",
+      "contentHash": "5ac624e6006546dbb05f5342eedb4cc21b451e3960f217d2acde018728f844d8",
+      "defaultSectionId": "part-001",
+      "previewBytes": 1406,
+      "previewCharacterCount": 647,
+      "estimatedRuntimeSeconds": 234,
       "truncated": true
     },
     {
@@ -138,12 +138,12 @@
     {
       "slug": "dr-jekyll-and-mr-hyde",
       "path": "/book-previews/dr-jekyll-and-mr-hyde.preview.json",
-      "contentVersion": "15c792a791222168",
-      "contentHash": "15c792a791222168d9e832e1e804af7dc2daebcdf6e0f31eee27a0b625944b09",
-      "defaultSectionId": "part-002",
-      "previewBytes": 11719,
-      "previewCharacterCount": 10574,
-      "estimatedRuntimeSeconds": 3807,
+      "contentVersion": "d490fe209b41a4cf",
+      "contentHash": "d490fe209b41a4cff48832a8c34b752b5518dbc61926311e76bc64992b99c1dd",
+      "defaultSectionId": "part-001",
+      "previewBytes": 1602,
+      "previewCharacterCount": 830,
+      "estimatedRuntimeSeconds": 299,
       "truncated": true
     },
     {
@@ -479,12 +479,12 @@
     {
       "slug": "the-great-gatsby",
       "path": "/book-previews/the-great-gatsby.preview.json",
-      "contentVersion": "7cd9e66cba157e14",
-      "contentHash": "7cd9e66cba157e14fa0dc3ebe9856db6f477626e44855f5ff488b4c24ba8ed8f",
-      "defaultSectionId": "part-002",
-      "previewBytes": 12106,
-      "previewCharacterCount": 10839,
-      "estimatedRuntimeSeconds": 3878,
+      "contentVersion": "3fd2c195689fd6ba",
+      "contentHash": "3fd2c195689fd6baffec7daa45168be4fb3f2df8edc6f82bfac73381aa78fe19",
+      "defaultSectionId": "part-001",
+      "previewBytes": 1595,
+      "previewCharacterCount": 810,
+      "estimatedRuntimeSeconds": 289,
       "truncated": true
     },
     {

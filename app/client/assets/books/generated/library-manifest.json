@@ -56,8 +56,8 @@
       "author": [
         "Charles Dickens"
       ],
-      "contentVersion": "7aa2c3f3504d04dd",
-      "contentHash": "7aa2c3f3504d04dd1ff2a221be80ef81c40929ce8c7e4faaa8f768047f36fd33",
+      "contentVersion": "5ac624e6006546db",
+      "contentHash": "5ac624e6006546dbb05f5342eedb4cc21b451e3960f217d2acde018728f844d8",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -89,7 +89,7 @@
         "cleanedCharacterCount": 158411,
         "wordCount": 28642,
         "sectionCount": 7,
-        "includedSectionCount": 0
+        "includedSectionCount": 7
       },
       "defaults": {
         "includeKinds": [
@@ -599,8 +599,8 @@
       "author": [
         "Robert Louis Stevenson"
       ],
-      "contentVersion": "15c792a791222168",
-      "contentHash": "15c792a791222168d9e832e1e804af7dc2daebcdf6e0f31eee27a0b625944b09",
+      "contentVersion": "d490fe209b41a4cf",
+      "contentHash": "d490fe209b41a4cff48832a8c34b752b5518dbc61926311e76bc64992b99c1dd",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -632,7 +632,7 @@
         "cleanedCharacterCount": 138804,
         "wordCount": 25890,
         "sectionCount": 6,
-        "includedSectionCount": 0
+        "includedSectionCount": 6
       },
       "defaults": {
         "includeKinds": [
@@ -2121,8 +2121,8 @@
       "author": [
         "F. Scott Fitzgerald"
       ],
-      "contentVersion": "7cd9e66cba157e14",
-      "contentHash": "7cd9e66cba157e14fa0dc3ebe9856db6f477626e44855f5ff488b4c24ba8ed8f",
+      "contentVersion": "3fd2c195689fd6ba",
+      "contentHash": "3fd2c195689fd6baffec7daa45168be4fb3f2df8edc6f82bfac73381aa78fe19",
       "language": "en",
       "description": "",
       "subjects": [],
@@ -2154,7 +2154,7 @@
         "cleanedCharacterCount": 270698,
         "wordCount": 49791,
         "sectionCount": 11,
-        "includedSectionCount": 0
+        "includedSectionCount": 11
       },
       "defaults": {
         "includeKinds": [

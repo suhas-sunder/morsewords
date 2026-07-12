@@ -5,8 +5,8 @@
   "author": [
     "Robert Louis Stevenson"
   ],
-  "contentVersion": "15c792a791222168",
-  "contentHash": "15c792a791222168d9e832e1e804af7dc2daebcdf6e0f31eee27a0b625944b09",
+  "contentVersion": "d490fe209b41a4cf",
+  "contentHash": "d490fe209b41a4cff48832a8c34b752b5518dbc61926311e76bc64992b99c1dd",
   "language": "en",
   "description": "",
   "subjects": [],
@@ -38,7 +38,7 @@
     "cleanedCharacterCount": 138804,
     "wordCount": 25890,
     "sectionCount": 6,
-    "includedSectionCount": 0
+    "includedSectionCount": 6
   },
   "defaults": {
     "includeKinds": [
@@ -53,7 +53,7 @@
       "label": "Part 1",
       "title": null,
       "order": 1,
-      "includeByDefault": false,
+      "includeByDefault": true,
       "sectionJsonPath": "sections/part-001.json",
       "characterCount": 29159,
       "wordCount": 5468,
@@ -68,7 +68,7 @@
       "label": "Part 2",
       "title": null,
       "order": 2,
-      "includeByDefault": false,
+      "includeByDefault": true,
       "sectionJsonPath": "sections/part-002.json",
       "characterCount": 29330,
       "wordCount": 5463,
@@ -83,7 +83,7 @@
       "label": "Part 3",
       "title": null,
       "order": 3,
-      "includeByDefault": false,
+      "includeByDefault": true,
       "sectionJsonPath": "sections/part-003.json",
       "characterCount": 29623,
       "wordCount": 5563,
@@ -98,7 +98,7 @@
       "label": "Part 4",
       "title": null,
       "order": 4,
-      "includeByDefault": false,
+      "includeByDefault": true,
       "sectionJsonPath": "sections/part-004.json",
       "characterCount": 29014,
       "wordCount": 5388,
@@ -113,7 +113,7 @@
       "label": "Part 5",
       "title": null,
       "order": 5,
-      "includeByDefault": false,
+      "includeByDefault": true,
       "sectionJsonPath": "sections/part-005.json",
       "characterCount": 20208,
       "wordCount": 3730,
@@ -128,7 +128,7 @@
       "label": "Part 6",
       "title": null,
       "order": 6,
-      "includeByDefault": false,
+      "includeByDefault": true,
       "sectionJsonPath": "sections/part-006.json",
       "characterCount": 1460,
       "wordCount": 278,
