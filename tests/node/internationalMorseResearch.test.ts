@@ -1,0 +1,85 @@
+// Test-only fictional evidence. None of these claims describe a real Morse system.
+import assert from "node:assert/strict";
+import test from "node:test";
+import {
+  analyzeInternationalMorseResearch,
+  assertResearchReadyForPromotion,
+  inspectUnicode,
+  type CandidateMapping,
+  type CandidateSystem,
+  type InternationalMorseResearchDataset,
+  type MappingClaim,
+  type ResearchSource,
+  type ReviewDecision,
+  type UnicodeIdentity,
+} from "../../scripts/morse/internationalMorseResearch.ts";
+import { INTERNATIONAL_MORSE_RESEARCH_IMPORT } from "../../scripts/morse/internationalMorseResearchData.ts";
+import { DEFAULT_GLOBAL_FORWARD_MAP, MORSE_COLLISION_GROUPS, MORSE_REGISTRY_ENTRIES } from "../../app/client/components/shared/morseRegistry.ts";
+
+const identity: UnicodeIdentity = { canonical: "¤", acceptedForms: ["¤"], script: "Test", direction: "ltr", caseBehavior: "caseless", normalization: "NFC" };
+const system: CandidateSystem = { id: "test-system", displayName: "Test-only system", classification: "national-adaptation", relationshipToInternational: "adaptation", languageIds: ["x-test"], script: "Test", direction: "ltr", completeCoverage: "documented-subset", inheritedPunctuation: "unknown", inheritedDigits: "unknown", inheritedProsigns: "unknown", spacingConvention: "standard", mixedSystemSafe: false, sourceIds: ["source-primary", "source-independent"] };
+const primary: ResearchSource = { id: "source-primary", title: "Test primary", locator: "Table 1", language: "en", category: "international-standard", authorityTier: "primary-authority", primaryOrSecondary: "primary", temporalStatus: "current", directlyDefinesMapping: true, independenceGroupId: "primary", citationNote: "Test-only citation.", verificationStatus: "checked", url: "https://example.test/primary" };
+const independent: ResearchSource = { id: "source-independent", title: "Test independent", locator: "Section 2", language: "en", category: "recognized-technical-reference", authorityTier: "independent-secondary", primaryOrSecondary: "secondary", temporalStatus: "current", directlyDefinesMapping: true, independenceGroupId: "independent", citationNote: "Test-only citation.", verificationStatus: "checked", url: "https://example.test/secondary" };
+const candidate: CandidateMapping = { id: "candidate-one", systemId: system.id, languageId: "x-test", category: "letter", unicode: identity, claimIds: ["claim-primary", "claim-independent"], requestedReverseEligibility: "selected-system" };
+const directClaim = (id: string, sourceId: string, pattern = ".-"): MappingClaim => ({ id, sourceId, candidateId: candidate.id, systemId: system.id, unicode: identity, characterOrToken: "¤", pattern, mappingKind: "direct", temporalStatus: "current", confidence: "high", extractionStatus: "verified-transcription" });
+const decision: ReviewDecision = { id: "decision-one", candidateId: candidate.id, decision: "approved-for-system-scoped-reverse", evidenceState: "independently-corroborated", approvedCharacter: "¤", approvedPattern: ".-", approvedSystemId: system.id, approvedNormalization: "NFC", reverseEligibility: "selected-system", reviewerId: "test-reviewer", decidedOn: "2026-07-12", sourceSummary: "Test-only independent corroboration." };
+const dataset = (overrides: Partial<InternationalMorseResearchDataset> = {}): InternationalMorseResearchDataset => ({ systems: [system], sources: [primary, independent], candidates: [candidate], claims: [directClaim("claim-primary", primary.id), directClaim("claim-independent", independent.id)], decisions: [decision], ...overrides });
+
+test("independently corroborated fictional evidence produces one deterministic system-scoped vector", () => {
+  const analysis = assertResearchReadyForPromotion(dataset());
+  assert.equal(analysis.issues.filter((issue) => issue.severity === "error").length, 0);
+  assert.deepEqual(analysis.testVectors, [{ decisionId: "decision-one", systemId: "test-system", languageId: "x-test", input: "¤", aliases: [], expectedMorse: ".-", expectedReverse: "¤", reverseEligibility: "selected-system" }]);
+});
+
+test("dependent secondary sources and incomplete exceptions cannot silently approve a mapping", () => {
+  const dependent = { ...independent, id: "source-dependent", authorityTier: "dependent-secondary" as const, independenceGroupId: "primary", reproducesSourceIds: [primary.id] };
+  const weak = dataset({ systems: [{ ...system, sourceIds: [primary.id, dependent.id] }], sources: [primary, dependent], candidates: [{ ...candidate, claimIds: ["claim-primary", "claim-dependent"] }], claims: [directClaim("claim-primary", primary.id), directClaim("claim-dependent", dependent.id)] });
+  const codes = analyzeInternationalMorseResearch(weak).issues.map((issue) => issue.code);
+  assert.ok(codes.includes("approval-insufficient-corroboration"));
+  assert.throws(() => assertResearchReadyForPromotion(weak));
+  const exception = dataset({ systems: [{ ...system, sourceIds: [primary.id] }], sources: [primary], candidates: [{ ...candidate, claimIds: ["claim-primary"] }], claims: [directClaim("claim-primary", primary.id)], decisions: [{ ...decision, exception: { reason: "Test-only surviving source", reviewerId: "test-reviewer", decidedOn: "2026-07-12", evidenceSummary: "Test-only review", approvedScope: "forward-only" }, reverseEligibility: "forward-only" }] });
+  assert.equal(assertResearchReadyForPromotion(exception).testVectors[0].expectedReverse, undefined);
+});
+
+test("conflicts preserve claims and block unqualified default reverse approval", () => {
+  const conflicting = { ...candidate, id: "candidate-two", claimIds: ["claim-two"] };
+  const characterConflict = directClaim("claim-character-conflict", independent.id, "-..");
+  const conflictClaim = { ...directClaim("claim-two", independent.id, ".-"), candidateId: conflicting.id, characterOrToken: "¥", unicode: { ...identity, canonical: "¥", acceptedForms: ["¥"] } };
+  const unsafe = dataset({ candidates: [{ ...candidate, claimIds: ["claim-primary", "claim-independent", "claim-character-conflict"] }, conflicting], claims: [directClaim("claim-primary", primary.id), directClaim("claim-independent", independent.id), characterConflict, conflictClaim], decisions: [{ ...decision, reverseEligibility: "default-global", decision: "approved-for-registry" }] });
+  const analysis = analyzeInternationalMorseResearch(unsafe);
+  assert.ok(analysis.conflicts.some((conflict) => conflict.kind === "same-system-character-pattern-conflict"));
+  assert.ok(analysis.conflicts.some((conflict) => conflict.kind === "same-system-reverse-ambiguity"));
+  assert.ok(analysis.issues.some((issue) => issue.code === "approval-unresolved-conflict"));
+});
+
+test("source, claim, Unicode, and review validation rejects malformed research records", () => {
+  const malformed = dataset({ sources: [{ ...primary, locator: "", url: "not-a-url" }], claims: [{ ...directClaim("claim-primary", primary.id), pattern: "x", sourceId: "missing" }], decisions: [{ ...decision, reviewerId: undefined, decidedOn: undefined }] });
+  const codes = analyzeInternationalMorseResearch(malformed).issues.map((issue) => issue.code);
+  for (const code of ["missing-citation-locator", "invalid-source-url", "broken-claim-reference", "malformed-morse-pattern", "approval-missing-reviewer"]) assert.ok(codes.includes(code));
+  assert.ok(inspectUnicode({ ...identity, canonical: "\ud800", acceptedForms: ["\ud800"] }).some((issue) => issue.code === "malformed-unicode"));
+  assert.equal(inspectUnicode({ canonical: "e\u0301", acceptedForms: ["é", "e\u0301"], script: "Latin", direction: "ltr", caseBehavior: "bicameral", normalization: "NFC" }).length, 0);
+  assert.equal(inspectUnicode({ canonical: "א", acceptedForms: ["א"], script: "Hebrew", direction: "rtl", caseBehavior: "caseless", normalization: "NFC" }).length, 0);
+});
+
+test("unapproved, transliteration-only, and historical candidates cannot become production vectors", () => {
+  const transliteration = dataset({ claims: [{ ...directClaim("claim-primary", primary.id), mappingKind: "transliteration", characterOrToken: "¤" }], decisions: [{ ...decision, decision: "blocked-pending-review", evidenceState: "practical-transliteration-only" }] });
+  const analysis = analyzeInternationalMorseResearch(transliteration);
+  assert.equal(analysis.approvedCandidates.length, 0);
+  assert.equal(analysis.testVectors.length, 0);
+  assert.ok(analysis.issues.some((issue) => issue.code === "direct-transliteration-confusion"));
+});
+
+test("research validation flags aliases and unsupported status claims without changing production data", () => {
+  const alias = { ...candidate, id: "alias-one", category: "alias" as const, aliasOfCandidateId: "alias-two" };
+  const aliasTwo = { ...candidate, id: "alias-two", category: "alias" as const, aliasOfCandidateId: "alias-one" };
+  const invalid = dataset({ candidates: [candidate, alias, aliasTwo], claims: [{ ...directClaim("claim-primary", primary.id), claimsCompleteAlphabet: true, temporalStatus: "current" }], sources: [{ ...primary, temporalStatus: "historical" }] });
+  const codes = analyzeInternationalMorseResearch(invalid).issues.map((issue) => issue.code);
+  assert.ok(codes.includes("circular-or-broken-alias"));
+  assert.ok(codes.includes("incomplete-source-claimed-complete"));
+  assert.ok(codes.includes("current-claim-historical-source-only"));
+  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.claims.length, 0);
+  assert.equal(MORSE_REGISTRY_ENTRIES.length, 121);
+  assert.equal(Object.keys(DEFAULT_GLOBAL_FORWARD_MAP).length, 53);
+  assert.equal(MORSE_COLLISION_GROUPS.length, 30);
+  assert.ok(MORSE_REGISTRY_ENTRIES.every((entry) => entry.provenance.verificationStatus === "repository-migrated"));
+});
