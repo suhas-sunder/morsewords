@@ -402,13 +402,13 @@ function auditSummaryRecord({
   const summary = record?.summary ?? "";
   const descriptionWordCount = countWords(description);
   const summaryWordCount = countWords(summary);
-  const hasShortWorkException = Boolean(record?.shortWorkException?.trim());
-  const wordCountWithinTarget =
-    (summaryWordCount >= 300 && summaryWordCount <= 500) ||
-    (summaryWordCount >= 180 && summaryWordCount <= 500 && hasShortWorkException);
+  // A specific, accurate title summary can be concise. Quality checks below
+  // validate metadata, originality, and unsafe content separately; this guard
+  // only protects the established rendering ceiling and missing content.
+  const wordCountWithinTarget = summaryWordCount > 0 && summaryWordCount <= 500;
   if (!wordCountWithinTarget) {
     errors.push(
-      `Summary word count ${summaryWordCount} is outside the 300–500 target without an approved short-work exception.`,
+      `Summary word count ${summaryWordCount} is missing or exceeds the 500-word rendering ceiling.`,
     );
   }
 

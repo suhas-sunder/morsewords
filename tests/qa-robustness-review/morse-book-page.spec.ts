@@ -148,6 +148,66 @@ const SOURCE_RISK_REMOVED_BOOK_SLUGS = [
   "wood-folk-at-school",
   "jabberwocky",
 ] as const;
+const CLUSTER_A_SUMMARY_SLUGS = [
+  "the-lady-of-the-lake",
+  "the-lurking-fear",
+  "metamorphosis",
+  "the-monkey-s-paw",
+  "the-hound",
+  "the-red-room",
+  "from-beyond",
+  "the-other-gods",
+  "the-statement-of-randolph-carter",
+  "the-silver-key",
+  "six-girls-a-home-story",
+  "the-regent-s-daughter",
+  "winnie-the-pooh",
+  "a-study-in-scarlet",
+  "dagon",
+  "deep-sea-plunderings",
+  "five-little-peppers-at-school",
+  "pickman-s-model",
+  "quo-vadis",
+  "the-amateur-cracksman",
+  "the-black-star-passes",
+  "the-blue-castle",
+  "the-brothers-karamazov",
+  "the-buccaneer",
+  "the-cats-of-ulthar",
+  "the-festival",
+  "the-history-of-sir-richard-calmady-a-romance",
+  "the-nameless-city",
+  "the-three-taps-a-detective-story-without-a-moral",
+  "the-turmoil",
+  "under-the-red-dragon",
+  "kidnapped",
+  "oliver-twist",
+  "the-benson-murder-case",
+  "the-inspector-french-s-greatest-case",
+  "murder-in-the-maze",
+  "the-house-of-arden-a-story-for-children",
+  "the-shadow-over-innsmouth",
+  "the-thing-on-the-door-step",
+  "at-the-mountains-of-madness",
+  "the-remarkable-case-of-davidson-s-eyes",
+  "the-haunter-of-the-dark",
+  "the-innocence-of-father-brown",
+  "astounding-stories-of-super-science",
+  "a-story-of-the-stone-age",
+  "the-magic-shop",
+  "the-man-who-could-work-miracles",
+  "the-truth-about-pyecraft",
+  "filmer",
+  "two-in-a-sack",
+] as const;
+
+const CLUSTER_A_REMOVED_BOILERPLATE = [
+  "search-useful context",
+  "for a typing-practice session",
+  "a learner can slow down",
+  "because these pieces often depend on repeated actions",
+] as const;
+
 const ALICE_PREVIEW_PATH = `${ALICE_PUBLIC_PATH}?preview=unpublished`;
 const TEST_BOOK_PUBLIC_PATH = `/morse-code-books/${TEST_BOOK_SLUG}`;
 const TEST_BOOK_PREVIEW_PATH = `${TEST_BOOK_PUBLIC_PATH}?preview=test-published`;
@@ -231,6 +291,38 @@ function readJson<T>(relativePath: string): T {
   return JSON.parse(
     fs.readFileSync(path.join(ROOT, relativePath), "utf8"),
   ) as T;
+}
+
+function normalizedSummaryWords(value: string) {
+  return value.toLowerCase().match(/[a-z0-9]+/g) ?? [];
+}
+
+function summaryFourGrams(value: string) {
+  const words = normalizedSummaryWords(value);
+  const grams = new Set<string>();
+  for (let index = 0; index <= words.length - 4; index += 1) {
+    grams.add(words.slice(index, index + 4).join(" "));
+  }
+  return grams;
+}
+
+function jaccardSimilarity(
+  left: ReadonlySet<string>,
+  right: ReadonlySet<string>,
+) {
+  let intersection = 0;
+  for (const value of left) {
+    if (right.has(value)) intersection += 1;
+  }
+  return intersection / (left.size + right.size - intersection);
+}
+
+function substantiveNormalizedSentences(value: string) {
+  return value
+    .split(/[.!?]+/)
+    .map((sentence) => normalizedSummaryWords(sentence))
+    .filter((words) => words.length >= 8)
+    .map((words) => words.join(" "));
 }
 
 type TestBookManifestSection = {
@@ -1300,6 +1392,109 @@ test.describe("Morse book page foundation", () => {
     );
     expect(normalizedManifest.title).toBe("The Elderbush");
     expect(normalizedManifest.cover.alt).toContain("The Elderbush");
+  });
+
+  test("keeps cluster A book summaries specific, unique, and metadata-aligned", () => {
+    type SeoSummary = {
+      slug: string;
+      title: string;
+      author: string[];
+      summary: string;
+    };
+    type LibraryBook = {
+      slug: string;
+      title: string;
+      author: string[];
+    };
+    const seo = readJson<{
+      expectedSummaryCount: number;
+      summaries: SeoSummary[];
+    }>("app/client/assets/books/seo-summaries/book-seo-summaries.json");
+    const library = readJson<{ books: LibraryBook[] }>(
+      "app/client/assets/books/generated/library-manifest.json",
+    );
+    const summariesBySlug = new Map(
+      seo.summaries.map((summary) => [summary.slug, summary]),
+    );
+    const clusterSummaries = CLUSTER_A_SUMMARY_SLUGS.map((slug) => {
+      const summary = summariesBySlug.get(slug);
+      expect(summary, `missing cluster A summary for ${slug}`).toBeTruthy();
+      return summary!;
+    });
+
+    expect(CLUSTER_A_SUMMARY_SLUGS).toHaveLength(50);
+    expect(new Set(CLUSTER_A_SUMMARY_SLUGS).size).toBe(50);
+    expect(seo.summaries).toHaveLength(EXPECTED_GENERATED_BOOK_COUNT);
+    expect(seo.expectedSummaryCount).toBe(EXPECTED_GENERATED_BOOK_COUNT);
+    expect(new Set(seo.summaries.map((summary) => summary.summary)).size).toBe(
+      EXPECTED_GENERATED_BOOK_COUNT,
+    );
+
+    for (const summary of clusterSummaries) {
+      const book = library.books.find(
+        (candidate) => candidate.slug === summary.slug,
+      );
+      expect(
+        book,
+        `missing generated manifest for ${summary.slug}`,
+      ).toBeTruthy();
+      expect(summary.title).toBe(book!.title);
+      expect(summary.author).toEqual(book!.author);
+      expect(summary.summary.trim()).not.toBe("");
+      for (const phrase of CLUSTER_A_REMOVED_BOILERPLATE) {
+        expect(summary.summary.toLowerCase()).not.toContain(phrase);
+      }
+    }
+
+    const sentenceOwners = new Map<string, string[]>();
+    for (const summary of clusterSummaries) {
+      for (const sentence of substantiveNormalizedSentences(summary.summary)) {
+        sentenceOwners.set(sentence, [
+          ...(sentenceOwners.get(sentence) ?? []),
+          summary.slug,
+        ]);
+      }
+    }
+    expect(
+      [...sentenceOwners.values()].filter((owners) => owners.length > 1),
+    ).toEqual([]);
+
+    let highestSimilarity = 0;
+    for (let index = 0; index < clusterSummaries.length; index += 1) {
+      for (
+        let peerIndex = index + 1;
+        peerIndex < clusterSummaries.length;
+        peerIndex += 1
+      ) {
+        highestSimilarity = Math.max(
+          highestSimilarity,
+          jaccardSimilarity(
+            summaryFourGrams(clusterSummaries[index].summary),
+            summaryFourGrams(clusterSummaries[peerIndex].summary),
+          ),
+        );
+      }
+    }
+    expect(highestSimilarity).toBeLessThanOrEqual(0.04);
+  });
+
+  test("renders rewritten cluster A summaries on book and audiobook pages", async ({
+    page,
+  }) => {
+    await openPublicBook(page, "/morse-code-books/the-lurking-fear");
+    const bookSummary = page.getByTestId("morse-book-seo-summary");
+    await expect(bookSummary).toBeVisible();
+    await expect(bookSummary).toContainText("Tempest Mountain");
+    await expect(bookSummary).toContainText("Martense mansion");
+    await expect(page.locator("h1")).toContainText("The lurking fear");
+
+    await gotoPublicBookPage(page, "/morse-code-audiobooks/a-study-in-scarlet");
+    await waitForApprovedBookWorkspace(page);
+    const audiobookSummary = page.getByTestId("morse-book-seo-summary");
+    await expect(audiobookSummary).toBeVisible();
+    await expect(audiobookSummary).toContainText("Dr. John Watson");
+    await expect(audiobookSummary).toContainText("Sherlock Holmes");
+    await expect(page.locator("h1")).toContainText("A Study in Scarlet");
   });
 
   test("defines Sherlock Adventures collection context without a parent route", () => {
