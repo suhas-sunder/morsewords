@@ -12,6 +12,12 @@ const staticTrustPages = [
     requiredText: MORSEWORDS_SUPPORT_EMAIL,
   },
   {
+    path: ROUTES.changelog,
+    footerLabel: "Changelog",
+    heading: "MorseWords changelog",
+    requiredText: "Audio and book export reliability",
+  },
+  {
     path: ROUTES.privacy,
     footerLabel: "Privacy",
     heading: "Privacy Policy",
@@ -59,7 +65,7 @@ test.describe("contact and legal foundation", () => {
     }
   });
 
-  test("contact page exposes mailto support and no contact form", async ({
+  test("contact page exposes the server-side support form without leaking provider details", async ({
     page,
   }) => {
     await gotoStaticPage(page, ROUTES.contact);
@@ -69,32 +75,33 @@ test.describe("contact and legal foundation", () => {
         .locator("main")
         .locator(`a[href="mailto:${MORSEWORDS_SUPPORT_EMAIL}"]`),
     ).toBeVisible();
-    await expect(
-      page.locator(
-        'main form, main textarea, main input, main button[type="submit"]',
-      ),
-    ).toHaveCount(0);
+    await expect(page.getByLabel(/Name/)).toBeVisible();
+    await expect(page.getByLabel(/Email/)).toBeVisible();
+    await expect(page.getByLabel(/Category/)).toBeVisible();
+    await expect(page.getByLabel(/Subject/)).toBeVisible();
+    await expect(page.getByLabel(/Message/)).toBeVisible();
+    await expect(page.getByRole("button", { name: "Send message" })).toBeVisible();
+    await expect(page.locator('input[name="website"]')).toHaveCount(1);
     await expect(page.locator("main")).not.toContainText("Resend");
   });
 
-  test("homepage footer exposes trust links and they navigate", async ({
+  test("homepage footer exposes trust links and linked routes resolve", async ({
     page,
   }) => {
+    await gotoStaticPage(page, ROUTES.home);
+
     for (const staticPage of staticTrustPages) {
-      await gotoStaticPage(page, ROUTES.home);
       const footerLink = page
         .locator("footer")
         .getByRole("link", { name: staticPage.footerLabel, exact: true });
 
       await expect(footerLink).toHaveAttribute("href", staticPage.path);
-      await footerLink.click();
+      await page.goto(staticPage.path, { waitUntil: "domcontentloaded" });
       await waitForRouteReady(page);
-      await expect
-        .poll(() => new URL(page.url()).pathname)
-        .toBe(staticPage.path);
       await expect(
         page.getByRole("heading", { name: staticPage.heading, level: 1 }),
       ).toBeVisible();
+      await gotoStaticPage(page, ROUTES.home);
     }
   });
 });

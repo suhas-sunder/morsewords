@@ -757,8 +757,8 @@ function runAudit(): AuditResult {
       /source concerns/i.test(sourcesSource) || /source status should be reviewed/i.test(sourcesSource),
     contactHasReportTopics:
       /Bug reports/i.test(contactSource) &&
-      /Copyright, public-domain, or source concerns/i.test(contactSource),
-    contactHasAccessibilityConcernPath: /Accessibility issues/i.test(contactSource),
+      /Source, content, or copyright concerns/i.test(contactSource),
+    contactHasAccessibilityConcernPath: /accessibility concern/i.test(contactSource),
   };
 
   const accessiblePrivacyPolicy = requiredPages.some(
