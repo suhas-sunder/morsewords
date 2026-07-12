@@ -195,7 +195,8 @@ test.describe("canonical long-form export pipeline", () => {
       ...DEFAULT_BOOK_EXPORT_SETTINGS,
       charWpm: 5,
       farnsworthWpm: 5,
-      splitMode: "none",
+      splitMode: "duration",
+      targetPartMinutes: 15,
       preferSourceSections: true,
     });
     const plan = buildBookExportPlan({
@@ -300,7 +301,8 @@ test.describe("canonical long-form export pipeline", () => {
       ...DEFAULT_BOOK_EXPORT_SETTINGS,
       charWpm: 5,
       farnsworthWpm: 5,
-      splitMode: "none",
+      splitMode: "duration",
+      targetPartMinutes: 15,
     });
     const plan = buildBookExportPlan({
       cleanedText: source,
