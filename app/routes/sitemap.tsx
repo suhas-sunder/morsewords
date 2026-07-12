@@ -471,6 +471,12 @@ const GROUPS: SitemapGroup[] = [
           "Send MorseWords feedback, correction requests, bug reports, and classroom notes.",
       },
       {
+        label: "Changelog",
+        to: ROUTES.changelog,
+        description:
+          "Read verified user-facing updates to MorseWords tools, exports, books, practice, and references.",
+      },
+      {
         label: "Privacy Policy",
         to: ROUTES.privacy,
         description:

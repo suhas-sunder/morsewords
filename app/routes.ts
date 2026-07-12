@@ -419,6 +419,7 @@ export default [
   route("ampersand-in-morse-code", "routes/ampersand-in-morse-code.tsx"),
   route("underscore-in-morse-code", "routes/underscore-in-morse-code.tsx"),
   route("contact", "routes/contact.tsx"),
+  route("changelog", "routes/changelog.tsx"),
   route("sitemap", "routes/sitemap.tsx"),
 
   // Redirects for old URLs. Ignore these routes

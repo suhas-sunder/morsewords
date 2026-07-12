@@ -127,7 +127,7 @@ const reportDir = path.join(
 const reportJsonPath = path.join(reportDir, "adsense-contact-readiness.json");
 const reportMdPath = path.join(reportDir, "adsense-contact-readiness.md");
 
-const EXPECTED_NON_BOOK_COUNT = 129;
+const EXPECTED_NON_BOOK_COUNT = 130;
 
 const BOOK_PATTERN = /^\/morse-code-books\/([^/]+)$/;
 const AUDIOBOOK_PATTERN = /^\/morse-code-audiobooks\/([^/]+)$/;

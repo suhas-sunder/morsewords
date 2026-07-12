@@ -61,9 +61,10 @@ export default function PrivacyPolicyRoute() {
           </h2>
           <p>
             MorseWords lets users type, paste, upload, listen to, print, and
-            practice Morse-related content depending on the tool. Tool input may
-            be processed locally in your browser and may be held temporarily in
-            browser memory or browser storage so the feature can work.
+            practice Morse-related content depending on the tool. Tool input is
+            processed in your browser where the tool supports a local workflow.
+            Raw text, Morse, learner answers, worksheet text, imported files,
+            filenames, and generated media are not sent to MorseWords analytics.
           </p>
           <p>
             MorseWords does not currently provide user accounts, login, or a
@@ -81,8 +82,10 @@ export default function PrivacyPolicyRoute() {
             the text you choose to paste or upload.
           </p>
           <p>
-            If you email MorseWords, we may receive your email address and the
-            information you choose to include in the message.
+            When you use the contact form, your name, email address, category,
+            subject, and message are transmitted to the server only to deliver
+            the message through Resend to the MorseWords support inbox. Contact
+            messages are not sent to analytics.
           </p>
           </section>
 
@@ -91,10 +94,11 @@ export default function PrivacyPolicyRoute() {
             Browser storage, preferences, and progress
           </h2>
           <p>
-            MorseWords may use cookies, localStorage, sessionStorage, IndexedDB,
-            or similar browser storage for preferences, saved settings,
-            playback/progress state, and tool behavior. Clearing browser storage
-            may reset those preferences or progress.
+            MorseWords uses cookies and localStorage for display preferences,
+            saved settings, selected source text where a tool offers local
+            saving, book-cache data, and local playback/progress state. It does
+            not currently use IndexedDB. Clearing site data in your browser can
+            reset these local preferences and cached content.
           </p>
           </section>
 
@@ -103,15 +107,17 @@ export default function PrivacyPolicyRoute() {
             Analytics, ads, and third-party services
           </h2>
           <p>
-            MorseWords may use analytics to understand site usage and improve
-            the tools. MorseWords may also show ads. Analytics and advertising
-            providers may use cookies or similar technologies according to their
-            own policies and settings.
+            MorseWords uses PostHog for page-view analytics with automatic
+            interaction capture disabled. It uses Google AdSense for advertising.
+            These providers may set or receive cookies according to their own
+            policies. MorseWords has no accounts, payments, or affiliate-link
+            program.
           </p>
           <p>
-            Third-party services may also be used for hosting, analytics, ads,
-            security, and email/contact handling later. This policy does not
-            replace the terms or privacy policies of those third parties.
+            Current relevant third parties are hosting providers, PostHog,
+            Google AdSense, Project Gutenberg for linked public-domain sources,
+            and Resend for contact delivery. Their policies apply to their own
+            services.
           </p>
           </section>
 

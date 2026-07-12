@@ -8,6 +8,7 @@ type PostHogClient = {
       api_host: string;
       person_profiles: "identified_only";
       capture_pageview: boolean;
+      autocapture: boolean;
     },
   ) => void;
 };
@@ -29,6 +30,7 @@ export function PHogProvider({ children }: { children: ReactNode }) {
         api_host: "https://us.i.posthog.com",
         person_profiles: "identified_only",
         capture_pageview: true,
+        autocapture: false,
       });
     });
 

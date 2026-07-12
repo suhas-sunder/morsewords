@@ -10,6 +10,7 @@ export const CANONICAL_ROUTES = {
   dictionary: "/dictionary",
   about: "/about",
   contact: "/contact",
+  changelog: "/changelog",
   sitemap: "/sitemap",
   sources: "/sources",
   misc: "/misc",

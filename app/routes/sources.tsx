@@ -106,6 +106,36 @@ export default function SourcesRoute() {
             should be checked against the relevant reference page when accuracy
             matters.
           </p>
+          <p>
+            The International Morse mapping used by the core tools is checked
+            against{" "}
+            <a href="https://www.itu.int/rec/R-REC-M.1677-1-200910-I/en" className="font-semibold text-sky-900 underline-offset-4 hover:underline">
+              ITU-R Recommendation M.1677-1
+            </a>
+            . MorseWords is not an
+            official standards organization; written slash notation and some
+            training conventions are identified as conventions rather than
+            standards rules.
+          </p>
+          </section>
+
+          <section className="space-y-3">
+          <h2 className="text-2xl font-extrabold text-sky-950">
+            How MorseWords applies sources
+          </h2>
+          <p>
+            International Morse mappings, supported punctuation, and the 1–3–7
+            timing model are implemented through shared Morse utilities.
+            Farnsworth is a training option that lengthens gaps without changing
+            the dot-and-dash shape of a character. A slash is readable written
+            notation for a word break, not an extra sound in timed Morse.
+          </p>
+          <p>
+            Generated Morse, audio, video, and printables are MorseWords
+            software outputs. They do not change the original authorship of a
+            source work. Unsupported characters and ambiguous unspaced Morse
+            are kept visible rather than silently guessed.
+          </p>
           </section>
 
           <section className="space-y-3">

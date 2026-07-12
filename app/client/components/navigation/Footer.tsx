@@ -7,6 +7,7 @@ import SocialLinks from "./SocialLinks";
 const footerLinks = [
   { label: "About", to: ROUTES.about },
   { label: "Contact", to: ROUTES.contact },
+  { label: "Changelog", to: ROUTES.changelog },
   { label: "Sitemap", to: ROUTES.sitemap },
   { label: "Sources", to: ROUTES.sources },
   { label: "Socials", to: ROUTES.miscSocials },
