@@ -231,6 +231,10 @@ const CLUSTER_B_REMOVED_BOILERPLATE = [
   "the important details are the public-facing ones",
 ] as const;
 
+const LIGHTER_REPETITION_SUMMARY_SLUGS = [
+  "a-descent-into-the-maelstrom", "berenice", "hop-frog", "jimmy-goggles-the-god", "ligeia", "miss-winchelsea-s-heart", "morella", "moti", "mr-brisher-s-treasure", "mr-ledbetter-s-vacation", "mr-skelmersdale-in-fairyland", "ms-found-in-a-bottle", "schippeitaro", "some-words-with-a-mummy", "stan-bolovan", "the-battle-of-the-birds", "the-believing-husbands", "the-black-cat", "the-bones-of-djulung", "the-boys-with-the-golden-stars", "the-brown-bear-of-norway", "the-cask-of-amontillado", "the-castle-of-kerglas", "the-child-who-came-from-an-egg", "the-enchanted-deer", "the-enchanted-knife", "the-envious-neighbour", "the-escape-of-the-mouse", "the-facts-in-the-case-of-m-valdemar", "the-fairy-nurse", "the-fall-of-the-house-of-usher", "the-false-prince-and-the-true", "the-finest-liar-in-the-world", "the-four-gifts", "the-frog", "the-goat-s-ears-of-the-emperor-trojan", "the-grateful-prince", "the-groac-h-of-the-isle-of-lok", "the-headless-dwarfs", "the-heart-of-a-monkey", "the-hoodie-crow", "the-jogi-s-punishment", "the-king-of-the-waterfalls", "the-lute-player", "the-maiden-with-the-wooden-helmet", "the-man-of-the-crowd", "the-monkey-and-the-jelly-fish", "the-murders-in-the-rue-morgue", "the-nine-pea-hens-and-the-golden-apples", "the-nunda-eater-of-people", "the-oblong-box", "the-one-handed-girl", "the-oval-portrait", "the-pit-and-the-pendulum", "the-premature-burial", "the-prince-who-wanted-to-see-the-world", "the-princess-who-was-hidden-underground", "the-purloined-letter", "the-raspberry-worm", "the-rich-brother-and-the-poor-brother", "the-sphinx", "the-story-of-a-gazelle", "the-story-of-halfman", "the-story-of-hassebu", "the-story-of-three-wonderful-beggars", "the-system-of-doctor-tarr-and-professor-fether", "the-tell-tale-heart", "the-three-princes-and-their-beasts", "the-two-frogs", "the-underground-workers", "the-young-man-who-would-have-his-eyes-opened", "thou-art-the-man", "william-wilson",
+] as const;
+
 const ALICE_PREVIEW_PATH = `${ALICE_PUBLIC_PATH}?preview=unpublished`;
 const TEST_BOOK_PUBLIC_PATH = `/morse-code-books/${TEST_BOOK_SLUG}`;
 const TEST_BOOK_PREVIEW_PATH = `${TEST_BOOK_PUBLIC_PATH}?preview=test-published`;
@@ -1550,6 +1554,27 @@ test.describe("Morse book page foundation", () => {
     }
     expect(highestWithinClusterB).toBeLessThanOrEqual(0.02);
     expect(highestCrossCluster).toBeLessThanOrEqual(0.04);
+  });
+
+  test("removes the reproduced lighter-repetition boilerplate", () => {
+    const seo = readJson<{
+      summaries: Array<{ slug: string; summary: string }>;
+    }>("app/client/assets/books/seo-summaries/book-seo-summaries.json");
+    const bySlug = new Map(seo.summaries.map((summary) => [summary.slug, summary]));
+    const summaries = LIGHTER_REPETITION_SUMMARY_SLUGS.map((slug) => bySlug.get(slug)!);
+    expect(LIGHTER_REPETITION_SUMMARY_SLUGS).toHaveLength(73);
+    expect(new Set(LIGHTER_REPETITION_SUMMARY_SLUGS).size).toBe(73);
+    expect(summaries.every(Boolean)).toBe(true);
+    for (const summary of summaries) {
+      expect(summary.summary).not.toMatch(/replaying that portion|that routine keeps the literary setting/i);
+    }
+    const owners = new Map<string, string[]>();
+    for (const summary of summaries) {
+      for (const sentence of substantiveNormalizedSentences(summary.summary)) {
+        owners.set(sentence, [...(owners.get(sentence) ?? []), summary.slug]);
+      }
+    }
+    expect([...owners.values()].filter((slugs) => slugs.length > 1)).toEqual([]);
   });
 
   test("renders rewritten cluster A summaries on book and audiobook pages", async ({
