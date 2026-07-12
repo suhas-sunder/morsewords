@@ -1,14 +1,11 @@
+import {
+  getLanguageReferenceCharacters,
+  getMorseRegistryEntries,
+  type LanguageReferenceCharacter,
+} from "~/client/components/shared/morseRegistry";
 import { ROUTES } from "./routes";
 
-export type MorseLanguageCharacter = {
-  id: string;
-  reference: string;
-  target: string;
-  reading?: string;
-  morse: string;
-  label: string;
-  notes?: string;
-};
+export type MorseLanguageCharacter = LanguageReferenceCharacter;
 
 export type InternationalMorseLetter = {
   letter: string;
@@ -30,203 +27,14 @@ export type MorseLanguagePage = {
   characters: MorseLanguageCharacter[];
 };
 
-export const INTERNATIONAL_MORSE_A_TO_Z: InternationalMorseLetter[] = [
-  ["A", ".-"],
-  ["B", "-..."],
-  ["C", "-.-."],
-  ["D", "-.."],
-  ["E", "."],
-  ["F", "..-."],
-  ["G", "--."],
-  ["H", "...."],
-  ["I", ".."],
-  ["J", ".---"],
-  ["K", "-.-"],
-  ["L", ".-.."],
-  ["M", "--"],
-  ["N", "-."],
-  ["O", "---"],
-  ["P", ".--."],
-  ["Q", "--.-"],
-  ["R", ".-."],
-  ["S", "..."],
-  ["T", "-"],
-  ["U", "..-"],
-  ["V", "...-"],
-  ["W", ".--"],
-  ["X", "-..-"],
-  ["Y", "-.--"],
-  ["Z", "--.."],
-].map(([letter, morse]) => ({ letter, morse }));
+export const INTERNATIONAL_MORSE_A_TO_Z: InternationalMorseLetter[] =
+  getMorseRegistryEntries({ systemId: "international", category: "letter" }).map(
+    (entry) => ({ letter: entry.character, morse: entry.pattern }),
+  );
 
-const JAPANESE_KANA: MorseLanguageCharacter[] = [
-  {
-    id: "ja-a",
-    reference: "Romaji a",
-    target: "ア",
-    reading: "a",
-    morse: "--.--",
-    label: "Katakana ア in Wabun code",
-  },
-  {
-    id: "ja-i",
-    reference: "Romaji i",
-    target: "イ",
-    reading: "i",
-    morse: ".-",
-    label: "Katakana イ in Wabun code",
-  },
-  {
-    id: "ja-u",
-    reference: "Romaji u",
-    target: "ウ",
-    reading: "u",
-    morse: "..-",
-    label: "Katakana ウ in Wabun code",
-  },
-  {
-    id: "ja-e",
-    reference: "Romaji e",
-    target: "エ",
-    reading: "e",
-    morse: "-.---",
-    label: "Katakana エ in Wabun code",
-  },
-  {
-    id: "ja-o",
-    reference: "Romaji o",
-    target: "オ",
-    reading: "o",
-    morse: ".-...",
-    label: "Katakana オ in Wabun code",
-  },
-  {
-    id: "ja-ka",
-    reference: "Romaji ka",
-    target: "カ",
-    reading: "ka",
-    morse: ".-..",
-    label: "Katakana カ in Wabun code",
-  },
-  {
-    id: "ja-ki",
-    reference: "Romaji ki",
-    target: "キ",
-    reading: "ki",
-    morse: "-.-..",
-    label: "Katakana キ in Wabun code",
-  },
-  {
-    id: "ja-ku",
-    reference: "Romaji ku",
-    target: "ク",
-    reading: "ku",
-    morse: "...-",
-    label: "Katakana ク in Wabun code",
-  },
-  {
-    id: "ja-ke",
-    reference: "Romaji ke",
-    target: "ケ",
-    reading: "ke",
-    morse: "-.--",
-    label: "Katakana ケ in Wabun code",
-  },
-  {
-    id: "ja-ko",
-    reference: "Romaji ko",
-    target: "コ",
-    reading: "ko",
-    morse: "----",
-    label: "Katakana コ in Wabun code",
-  },
-  {
-    id: "ja-n",
-    reference: "Romaji n",
-    target: "ン",
-    reading: "n",
-    morse: ".-.-.",
-    label: "Katakana ン in Wabun code",
-  },
-];
-
-const RUSSIAN_CYRILLIC: MorseLanguageCharacter[] = ([
-  ["А", "A", ".-"],
-  ["Б", "B", "-..."],
-  ["В", "V", ".--"],
-  ["Г", "G", "--."],
-  ["Д", "D", "-.."],
-  ["Е", "E", "."],
-  ["Ё", "Yo", ".", "Often sent with the same Morse pattern as Е in practical tables."],
-  ["Ж", "Zh", "...-"],
-  ["З", "Z", "--.."],
-  ["И", "I", ".."],
-  ["Й", "J", ".---"],
-  ["К", "K", "-.-"],
-  ["Л", "L", ".-.."],
-  ["М", "M", "--"],
-  ["Н", "N", "-."],
-  ["О", "O", "---"],
-  ["П", "P", ".--."],
-  ["Р", "R", ".-."],
-  ["С", "S", "..."],
-  ["Т", "T", "-"],
-  ["У", "U", "..-"],
-  ["Ф", "F", "..-."],
-  ["Х", "Kh", "...."],
-  ["Ц", "Ts", "-.-."],
-  ["Ч", "Ch", "---."],
-  ["Ш", "Sh", "----"],
-  ["Щ", "Shch", "--.-"],
-  ["Ъ", "Hard sign", "--.--"],
-  ["Ы", "Y", "-.--"],
-  ["Ь", "Soft sign", "-..-"],
-  ["Э", "E", "..-.."],
-  ["Ю", "Yu", "..--"],
-  ["Я", "Ya", ".-.-"],
-] as const).map(([target, reading, morse, notes]) => ({
-  id: `ru-${target}`,
-  reference: `Latin reading ${reading}`,
-  target,
-  reading,
-  morse,
-  label: `Cyrillic ${target}`,
-  notes,
-}));
-
-const GREEK_ALPHABET: MorseLanguageCharacter[] = ([
-  ["Α", "Alpha", "A", ".-"],
-  ["Β", "Beta", "B", "-..."],
-  ["Γ", "Gamma", "G", "--."],
-  ["Δ", "Delta", "D", "-.."],
-  ["Ε", "Epsilon", "E", "."],
-  ["Ζ", "Zeta", "Z", "--.."],
-  ["Η", "Eta", "H", "...."],
-  ["Θ", "Theta", "Th", "-.-."],
-  ["Ι", "Iota", "I", ".."],
-  ["Κ", "Kappa", "K", "-.-"],
-  ["Λ", "Lambda", "L", ".-.."],
-  ["Μ", "Mu", "M", "--"],
-  ["Ν", "Nu", "N", "-."],
-  ["Ξ", "Xi", "X", "-..-"],
-  ["Ο", "Omicron", "O", "---"],
-  ["Π", "Pi", "P", ".--."],
-  ["Ρ", "Rho", "R", ".-."],
-  ["Σ", "Sigma", "S", "..."],
-  ["Τ", "Tau", "T", "-"],
-  ["Υ", "Upsilon", "Y", "-.--"],
-  ["Φ", "Phi", "F", "..-."],
-  ["Χ", "Chi", "Ch", "----"],
-  ["Ψ", "Psi", "Ps", "--.-"],
-  ["Ω", "Omega", "O", ".--"],
-] as const).map(([target, name, reading, morse]) => ({
-  id: `el-${target}`,
-  reference: `${name} / ${reading}`,
-  target,
-  reading,
-  morse,
-  label: `Greek ${name}`,
-}));
+const JAPANESE_KANA = [...getLanguageReferenceCharacters("japanese-wabun-starter")];
+const RUSSIAN_CYRILLIC = [...getLanguageReferenceCharacters("russian-cyrillic-reference")];
+const GREEK_ALPHABET = [...getLanguageReferenceCharacters("greek-reference")];
 
 export const MORSE_LANGUAGE_PAGES: MorseLanguagePage[] = [
   {

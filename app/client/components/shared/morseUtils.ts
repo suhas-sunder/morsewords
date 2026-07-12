@@ -1,66 +1,15 @@
+import {
+  DEFAULT_GLOBAL_FORWARD_MAP,
+  DEFAULT_GLOBAL_REVERSE_MAP,
+} from "./morseRegistry";
+
 export const MORSE_LETTER_GAP = "   ";
 export const MORSE_WORD_GAP = "       ";
 
-// Canonical character map used by every text/Morse conversion path.
-export const TEXT_TO_MORSE: Record<string, string> = {
-  A: ".-",
-  B: "-...",
-  C: "-.-.",
-  D: "-..",
-  E: ".",
-  F: "..-.",
-  G: "--.",
-  H: "....",
-  I: "..",
-  J: ".---",
-  K: "-.-",
-  L: ".-..",
-  M: "--",
-  N: "-.",
-  O: "---",
-  P: ".--.",
-  Q: "--.-",
-  R: ".-.",
-  S: "...",
-  T: "-",
-  U: "..-",
-  V: "...-",
-  W: ".--",
-  X: "-..-",
-  Y: "-.--",
-  Z: "--..",
-  0: "-----",
-  1: ".----",
-  2: "..---",
-  3: "...--",
-  4: "....-",
-  5: ".....",
-  6: "-....",
-  7: "--...",
-  8: "---..",
-  9: "----.",
-  ".": ".-.-.-",
-  ",": "--..--",
-  "?": "..--..",
-  "/": "-..-.",
-  "'": ".----.",
-  "!": "-.-.--",
-  "-": "-....-",
-  "@": ".--.-.",
-  ":": "---...",
-  ";": "-.-.-.",
-  "=": "-...-",
-  "+": ".-.-.",
-  '"': ".-..-.",
-  "(": "-.--.",
-  ")": "-.--.-",
-  "&": ".-...",
-  "_": "..--.-",
-};
-
-export const MORSE_TO_TEXT: Record<string, string> = Object.fromEntries(
-  Object.entries(TEXT_TO_MORSE).map(([k, v]) => [v, k]),
-);
+// Compatibility maps remain the public default: only the legacy global
+// International Morse entries participate in existing converters.
+export const TEXT_TO_MORSE: Record<string, string> = DEFAULT_GLOBAL_FORWARD_MAP;
+export const MORSE_TO_TEXT: Record<string, string> = DEFAULT_GLOBAL_REVERSE_MAP;
 
 export const SUPPORTED_TEXT_CHARACTERS = Object.freeze(
   Object.keys(TEXT_TO_MORSE),

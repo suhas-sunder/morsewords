@@ -1,3 +1,6 @@
+// These transforms intentionally produce Latin text for the existing
+// international translator. They are not direct character-to-Morse registry
+// entries and must stay separate from system-aware decoding.
 const EXACT_TRANSLITERATIONS: Record<string, string> = {
   "\u0936\u093f\u0915\u094d\u0937\u0915": "shikshak",
   "\u5148\u751f": "sensei",

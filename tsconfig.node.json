@@ -7,7 +7,8 @@
     "app/client/data/morseBookCardDescriptions.ts",
     "app/client/data/morseBookSeoSummaries.ts",
     "app/client/data/morseBookTypes.ts",
-    "app/client/components/shared/morseUtils.ts"
+    "app/client/components/shared/morseUtils.ts",
+    "app/client/components/shared/morseRegistry.ts"
   ],
   "compilerOptions": {
     "composite": true,
