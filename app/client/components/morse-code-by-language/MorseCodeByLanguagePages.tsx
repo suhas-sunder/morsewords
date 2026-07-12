@@ -1,9 +1,14 @@
 import * as React from "react";
 import { Link } from "react-router";
 
-import { PlayIcon, PrintIcon, QrCodeIcon } from "~/client/assets/svg/Icons";
+import { DownloadIcon, PlayIcon, PrintIcon, QrCodeIcon } from "~/client/assets/svg/Icons";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
+import {
+  createLanguageStudySheetPrintRoot,
+  saveLanguageStudySheetImage,
+  waitForLanguageStudySheetReady,
+} from "~/client/components/morse-code-by-language/languageStudySheetExport";
 import {
   ActionLinks,
   Eyebrow,
@@ -71,31 +76,48 @@ function PrintStyles() {
   return (
     <style>{`
       @media print {
-        @page { margin: 0.5in; size: letter; }
+        @page { margin: 0.35in; size: letter landscape; }
         html, body { background: #ffffff !important; }
-        .mw-nav-shell,
-        [data-nosnippet],
-        .mw-language-print-actions,
-        .mw-language-print-hide {
+        body > *:not(.mw-language-sheet-print-root) {
           display: none !important;
         }
-        .mw-page-content,
-        .mw-language-main {
+        .mw-language-sheet-print-root {
           display: block !important;
-          max-width: none !important;
+          background: #ffffff !important;
+          left: auto !important;
           padding: 0 !important;
           margin: 0 !important;
           overflow: visible !important;
+          pointer-events: auto !important;
+          position: static !important;
+          top: auto !important;
+          width: auto !important;
+          z-index: auto !important;
         }
-        .mw-language-print-sheet {
+        .mw-language-sheet-print-root .mw-language-print-sheet {
           background: #ffffff !important;
           box-shadow: none !important;
           border: 0 !important;
           margin: 0 !important;
           max-width: none !important;
-          padding: 0 !important;
+          padding: 0.1in !important;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+        .mw-language-sheet-print-root .mw-language-sheet-table-grid {
+          display: grid !important;
+          grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr) !important;
+        }
+        .mw-language-sheet-print-root table,
+        .mw-language-sheet-print-root tr {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+        .mw-language-sheet-print-root thead {
+          display: table-header-group;
         }
       }
+      .mw-language-sheet-print-root { display: none; }
     `}</style>
   );
 }
@@ -235,6 +257,12 @@ export function MorseLanguageDetailPage({
   const canonical = canonicalUrl(language.path);
   const { failed: qrFailed, qrCodeUrl } = useQrCode(canonical);
   const [audioSettings, setAudioSettings] = React.useState(DEFAULT_AUDIO_SETTINGS);
+  const [isSavingSheet, setIsSavingSheet] = React.useState(false);
+  const [isPrintingSheet, setIsPrintingSheet] = React.useState(false);
+  const [sheetActionError, setSheetActionError] = React.useState("");
+  const sheetRef = React.useRef<HTMLElement | null>(null);
+  const printCleanupRef = React.useRef<(() => void) | null>(null);
+  const printTimerRef = React.useRef<number | null>(null);
   const jsonLd = [
     {
       "@context": "https://schema.org",
@@ -252,8 +280,71 @@ export function MorseLanguageDetailPage({
     breadcrumbJsonLd(`${language.languageName} Morse Code`, language.path),
   ];
 
-  function printSheet() {
-    if (typeof window !== "undefined") window.print();
+  React.useEffect(
+    () => () => {
+      printCleanupRef.current?.();
+      if (printTimerRef.current !== null && typeof window !== "undefined") {
+        window.clearTimeout(printTimerRef.current);
+      }
+    },
+    [],
+  );
+
+  async function saveSheetImage() {
+    if (!sheetRef.current || isSavingSheet) return;
+
+    setIsSavingSheet(true);
+    setSheetActionError("");
+
+    try {
+      if (!qrCodeUrl || qrFailed) {
+        throw new Error("The QR code is not ready yet. Try again in a moment.");
+      }
+      await saveLanguageStudySheetImage({ sheet: sheetRef.current, slug: language.slug });
+    } catch (error) {
+      setSheetActionError(
+        error instanceof Error ? error.message : "The sheet image could not be saved.",
+      );
+    } finally {
+      setIsSavingSheet(false);
+    }
+  }
+
+  async function printSheet() {
+    if (!sheetRef.current || isPrintingSheet || typeof window === "undefined") return;
+
+    setIsPrintingSheet(true);
+    setSheetActionError("");
+
+    try {
+      if (!qrCodeUrl || qrFailed) {
+        throw new Error("The QR code is not ready yet. Try again in a moment.");
+      }
+      await waitForLanguageStudySheetReady(sheetRef.current);
+      const cleanup = await createLanguageStudySheetPrintRoot(sheetRef.current);
+      printCleanupRef.current = cleanup;
+
+      const finish = () => {
+        cleanup();
+        printCleanupRef.current = null;
+        if (printTimerRef.current !== null) {
+          window.clearTimeout(printTimerRef.current);
+          printTimerRef.current = null;
+        }
+        setIsPrintingSheet(false);
+      };
+
+      window.addEventListener("afterprint", finish, { once: true });
+      window.print();
+      printTimerRef.current = window.setTimeout(finish, 1500);
+    } catch (error) {
+      printCleanupRef.current?.();
+      printCleanupRef.current = null;
+      setSheetActionError(
+        error instanceof Error ? error.message : "The sheet could not be prepared for printing.",
+      );
+      setIsPrintingSheet(false);
+    }
   }
 
   function playPattern(pattern: string) {
@@ -376,16 +467,45 @@ export function MorseLanguageDetailPage({
               this exact page.
             </p>
           </div>
-          <ToolButton onClick={printSheet} tone="dark" data-testid="language-print-button">
-            <PrintIcon aria-hidden="true" />
-            Print sheet
-          </ToolButton>
+          <div className="flex flex-wrap gap-2">
+            <ToolButton
+              onClick={saveSheetImage}
+              disabled={isSavingSheet || isPrintingSheet}
+              aria-busy={isSavingSheet}
+              aria-describedby="language-sheet-action-status"
+              data-testid="language-save-image-button"
+            >
+              <DownloadIcon aria-hidden="true" />
+              {isSavingSheet ? "Saving image..." : "Save image"}
+            </ToolButton>
+            <ToolButton
+              onClick={printSheet}
+              tone="dark"
+              disabled={isSavingSheet || isPrintingSheet}
+              aria-busy={isPrintingSheet}
+              aria-describedby="language-sheet-action-status"
+              data-testid="language-print-button"
+            >
+              <PrintIcon aria-hidden="true" />
+              {isPrintingSheet ? "Preparing print..." : "Print sheet"}
+            </ToolButton>
+          </div>
         </div>
+
+        <p id="language-sheet-action-status" className="sr-only" aria-live="polite">
+          {sheetActionError || (isSavingSheet ? "Saving sheet image." : isPrintingSheet ? "Preparing sheet for print." : "")}
+        </p>
+        {sheetActionError ? (
+          <p className="mt-3 text-sm font-semibold text-slate-700" role="alert">
+            {sheetActionError}
+          </p>
+        ) : null}
 
         <PrintableLanguageSheet
           language={language}
           qrCodeUrl={qrCodeUrl}
           qrFailed={qrFailed}
+          sheetRef={sheetRef}
         />
       </section>
 
@@ -644,14 +764,17 @@ function PrintableLanguageSheet({
   language,
   qrCodeUrl,
   qrFailed,
+  sheetRef,
 }: {
   language: MorseLanguagePage;
   qrCodeUrl: string;
   qrFailed: boolean;
+  sheetRef: React.Ref<HTMLElement>;
 }) {
   const targetUrl = absoluteUrl(language.path);
   return (
     <article
+      ref={sheetRef}
       className="mw-language-print-sheet mx-auto max-w-[8.5in] rounded-xl bg-white p-5 text-slate-950 shadow-sm sm:p-8"
       data-testid="language-printable-sheet"
     >
@@ -687,7 +810,7 @@ function PrintableLanguageSheet({
       </header>
 
       <div className="mt-5 overflow-x-auto">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(220px,0.42fr)]">
+        <div className="mw-language-sheet-table-grid grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(220px,0.42fr)]">
           <PrintableLanguageTable language={language} />
           <PrintableEnglishTable />
         </div>
