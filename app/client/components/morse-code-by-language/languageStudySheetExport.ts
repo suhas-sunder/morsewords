@@ -3,9 +3,36 @@ import { downloadBlobFile } from "~/client/components/shared/actionOutputUtils";
 const MIN_EXPORT_WIDTH = 816;
 const PREFERRED_PIXEL_RATIO = 2;
 const MAX_EXPORT_PIXELS = 24_000_000;
+const JPEG_QUALITY = 0.92;
 
-export function languageStudySheetFilename(slug: string) {
-  return `${slug}-morse-code-language-sheet.png`;
+type ImageExtension = "jpg" | "png";
+
+type ImageCandidate = {
+  blob: Blob;
+  extension: ImageExtension;
+};
+
+export function languageStudySheetFilename(slug: string, extension: ImageExtension = "png") {
+  return `${slug}-morse-code-language-sheet.${extension}`;
+}
+
+export function chooseLanguageStudySheetImageCandidate({
+  jpeg,
+  png,
+}: {
+  jpeg: Blob | null;
+  png: Blob | null;
+}): ImageCandidate {
+  if (!png || png.size === 0) {
+    if (jpeg && jpeg.size > 0) return { blob: jpeg, extension: "jpg" };
+    throw new Error("The sheet image could not be created.");
+  }
+
+  if (jpeg && jpeg.size > 0 && jpeg.size < png.size) {
+    return { blob: jpeg, extension: "jpg" };
+  }
+
+  return { blob: png, extension: "png" };
 }
 
 export async function saveLanguageStudySheetImage({
@@ -19,29 +46,42 @@ export async function saveLanguageStudySheetImage({
 
   try {
     const { toBlob } = await import("html-to-image");
-    const bounds = exportCopy.getBoundingClientRect();
-    const width = Math.ceil(Math.max(exportCopy.scrollWidth, bounds.width));
-    const height = Math.ceil(Math.max(exportCopy.scrollHeight, bounds.height));
-    const blob = await toBlob(exportCopy, {
-      backgroundColor: "#ffffff",
-      cacheBust: false,
-      height,
-      pixelRatio: getLanguageStudySheetPixelRatio(width, height),
-      width,
-    });
-
-    if (!blob || blob.size === 0) {
-      throw new Error("The sheet image could not be created.");
-    }
+    const options = getLanguageStudySheetExportOptions(exportCopy);
+    const [png, jpeg] = await Promise.all([
+      toBlob(exportCopy, {
+        ...options,
+        type: "image/png",
+      }),
+      toBlob(exportCopy, {
+        ...options,
+        quality: JPEG_QUALITY,
+        type: "image/jpeg",
+      }),
+    ]);
+    const image = chooseLanguageStudySheetImageCandidate({ jpeg, png });
 
     const result = downloadBlobFile({
-      blob,
-      filename: languageStudySheetFilename(slug),
+      blob: image.blob,
+      filename: languageStudySheetFilename(slug, image.extension),
     });
     if (!result.ok) throw new Error(result.message);
   } finally {
     exportCopy.parentElement?.remove();
   }
+}
+
+function getLanguageStudySheetExportOptions(exportCopy: HTMLElement) {
+  const bounds = exportCopy.getBoundingClientRect();
+  const width = Math.ceil(Math.max(exportCopy.scrollWidth, bounds.width));
+  const height = Math.ceil(Math.max(exportCopy.scrollHeight, bounds.height));
+
+  return {
+    backgroundColor: "#ffffff",
+    cacheBust: false,
+    height,
+    pixelRatio: getLanguageStudySheetPixelRatio(width, height),
+    width,
+  };
 }
 
 export async function createLanguageStudySheetPrintRoot(sheet: HTMLElement) {
@@ -102,6 +142,7 @@ async function createLanguageStudySheetCopy(
   copy.style.margin = "0";
   copy.style.maxWidth = "none";
   copy.style.width = "100%";
+  normalizeLanguageStudySheetExportCopy(copy);
 
   root.append(copy);
   document.body.append(root);
@@ -113,6 +154,23 @@ async function createLanguageStudySheetCopy(
 function getLanguageStudySheetExportWidth(sheet: HTMLElement) {
   const bounds = sheet.getBoundingClientRect();
   return Math.ceil(Math.max(MIN_EXPORT_WIDTH, sheet.scrollWidth, bounds.width));
+}
+
+function normalizeLanguageStudySheetExportCopy(copy: HTMLElement) {
+  copy.style.backgroundColor = "#ffffff";
+  copy.style.overflow = "visible";
+
+  for (const element of Array.from(copy.querySelectorAll<HTMLElement>("*"))) {
+    element.style.setProperty("scrollbar-width", "none");
+    if (
+      element.classList.contains("overflow-x-auto") ||
+      element.classList.contains("mw-language-sheet-scroll")
+    ) {
+      element.style.overflow = "visible";
+      element.style.overflowX = "visible";
+      element.style.overflowY = "visible";
+    }
+  }
 }
 
 async function waitForImages(sheet: HTMLElement) {

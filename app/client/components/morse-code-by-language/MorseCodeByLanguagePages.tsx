@@ -108,6 +108,12 @@ function PrintStyles() {
           display: grid !important;
           grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr) !important;
         }
+        .mw-language-sheet-print-root .mw-language-sheet-scroll {
+          overflow: visible !important;
+        }
+        .mw-language-sheet-print-root * {
+          scrollbar-width: none !important;
+        }
         .mw-language-sheet-print-root table,
         .mw-language-sheet-print-root tr {
           break-inside: avoid;
@@ -117,6 +123,7 @@ function PrintStyles() {
           display: table-header-group;
         }
       }
+      .mw-language-sheet-print-root ::-webkit-scrollbar { display: none !important; }
       .mw-language-sheet-print-root { display: none; }
     `}</style>
   );
@@ -809,7 +816,7 @@ function PrintableLanguageSheet({
         </div>
       </header>
 
-      <div className="mt-5 overflow-x-auto">
+      <div className="mw-language-sheet-scroll mt-5 overflow-x-auto">
         <div className="mw-language-sheet-table-grid grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(220px,0.42fr)]">
           <PrintableLanguageTable language={language} />
           <PrintableEnglishTable />
