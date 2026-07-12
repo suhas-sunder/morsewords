@@ -9,12 +9,15 @@ import type {
   InternationalMorseResearchDataset,
   MappingClaim,
   ResearchRecommendation,
+  ReviewDecision,
   UnicodeIdentity,
 } from "./internationalMorseResearch.ts";
 
 const ITU_SOURCE_ID = "itu-r-m1677-1";
 const JARL_SOURCE_ID = "jarl-wabun-morse-table";
 const UNICODE_SOURCE_ID = "unicode-ucd-unicode-data";
+const RUSSIAN_SOURCE_ID = "russian-minpromtorg-order-4682-2023";
+const GREEK_SOURCE_ID = "raag-gtc-club-statement";
 const ITU_WRITTEN_CHARACTERS = new Set([".", ",", ":", "?", "'", "-", "/", "(", ")", '"', "=", "+", "@"]);
 const ASCII_SYMBOL_NAMES: Record<string, string> = { ".": "FULL STOP", ",": "COMMA", "?": "QUESTION MARK", "/": "SOLIDUS", "'": "APOSTROPHE", "!": "EXCLAMATION MARK", "-": "HYPHEN-MINUS", "@": "COMMERCIAL AT", ":": "COLON", ";": "SEMICOLON", "=": "EQUALS SIGN", "+": "PLUS SIGN", '"': "QUOTATION MARK", "(": "LEFT PARENTHESIS", ")": "RIGHT PARENTHESIS", "&": "AMPERSAND", "_": "LOW LINE" };
 const CYRILLIC_NAMES: Record<string, string> = { "А": "A", "Б": "BE", "В": "VE", "Г": "GHE", "Д": "DE", "Е": "IE", "Ё": "IO", "Ж": "ZHE", "З": "ZE", "И": "I", "Й": "SHORT I", "К": "KA", "Л": "EL", "М": "EM", "Н": "EN", "О": "O", "П": "PE", "Р": "ER", "С": "ES", "Т": "TE", "У": "U", "Ф": "EF", "Х": "HA", "Ц": "TSE", "Ч": "CHE", "Ш": "SHA", "Щ": "SHCHA", "Ъ": "HARD SIGN", "Ы": "YERU", "Ь": "SOFT SIGN", "Э": "E", "Ю": "YU", "Я": "YA" };
@@ -160,6 +163,68 @@ export const CURRENT_PRODUCTION_COLLISION_BASELINE = MORSE_COLLISION_GROUPS.map(
   defaultGlobalReverseSafe: group.defaultGlobalCandidates.length <= 1,
 }));
 
+const sourceIdsForDecision = (candidate: CandidateMapping) => {
+  if (candidate.claimIds.length) return [...new Set(candidate.claimIds.map((claimId) => CURRENT_INTERNATIONAL_MORSE_BASELINE_CLAIMS.find((claim) => claim.id === claimId)!.sourceId))];
+  if (candidate.systemId === "international") return [ITU_SOURCE_ID];
+  return [candidate.systemId === "russian-cyrillic-reference" ? RUSSIAN_SOURCE_ID : GREEK_SOURCE_ID];
+};
+
+export const CURRENT_INTERNATIONAL_MORSE_FINAL_DECISIONS: readonly ReviewDecision[] = CURRENT_INTERNATIONAL_MORSE_BASELINE_CANDIDATES.map((candidate) => {
+  const directlyAttested = candidate.claimIds.length > 0;
+  const systemIsInternational = candidate.systemId === "international";
+  if (directlyAttested) {
+    return {
+      id: `objective-${candidate.id}`,
+      candidateId: candidate.id,
+      decision: systemIsInternational ? "approved-for-registry" : "approved-for-system-scoped-reverse",
+      evidenceState: "singly-attested",
+      approvedSystemId: candidate.systemId,
+      approvedNormalization: candidate.unicode.normalization,
+      reverseEligibility: "selected-system",
+      sourceSummary: systemIsInternational
+        ? "The current entry is directly transcribed from the official ITU-R written-character table."
+        : "The current starter entry is directly transcribed from JARL's official Wabun table.",
+      caveats: systemIsInternational
+        ? "Default-global is existing compatibility behavior, not a claim that the pattern is unambiguous across every registered system."
+        : "Approved only as the current starter subset, not as a complete Wabun inventory.",
+      conflictDisposition: "Cross-system pattern reuse is intentional. Reverse decoding is approved only with selected-system context; the existing compatibility default is not a global-unambiguity claim.",
+      origin: "objective-source-adjudication",
+      method: "direct controlling-source transcription with documented single-source exception",
+      supportingClaimIds: candidate.claimIds,
+      supportingSourceIds: sourceIdsForDecision(candidate),
+      decisionActor: "codex-source-verification",
+      decisionDate: "2026-07-12",
+      productApprovalRequired: false,
+      evidenceException: {
+        kind: "single-controlling-source",
+        justification: "The identified source directly defines the mapping and no conflicting authoritative source was found during the targeted search.",
+        limitation: "This factual adjudication does not expand the registered system or imply broader language coverage.",
+      },
+    };
+  }
+  const subject = candidate.systemId === "international" ? "The ITU table does not define this as a written character." : candidate.systemId === "russian-cyrillic-reference" ? "Targeted Russian government and standards searches did not yield a defining character-to-pattern table with an exact authoritative locator." : "Targeted Greek government and national amateur-radio searches did not yield a defining character-to-pattern table with an exact authoritative locator.";
+  return {
+    id: `objective-${candidate.id}`,
+    candidateId: candidate.id,
+    decision: "rejected-as-unsupported",
+    evidenceState: "rejected",
+    reverseEligibility: "display-only",
+    sourceSummary: subject,
+    caveats: "The current production entry is intentionally unchanged here; a later behavior-correction branch is required before this factual outcome can alter public conversion behavior.",
+    origin: "objective-source-adjudication",
+    method: "targeted authoritative-source search with no qualifying defining table located",
+    supportingClaimIds: [],
+    supportingSourceIds: sourceIdsForDecision(candidate),
+    decisionActor: "codex-source-verification",
+    decisionDate: "2026-07-12",
+    productApprovalRequired: false,
+  };
+});
+
+export const CURRENT_INTERNATIONAL_MORSE_REJECTED_CLAIMS = CURRENT_INTERNATIONAL_MORSE_FINAL_DECISIONS
+  .filter((decision) => decision.decision === "rejected-as-unsupported")
+  .map((decision) => ({ id: `rejected-claim-${decision.candidateId}`, candidateId: decision.candidateId, reason: decision.sourceSummary ?? "No qualifying source evidence.", sourceReference: decision.supportingSourceIds.join(",") }));
+
 export const INTERNATIONAL_MORSE_RESEARCH_IMPORT: InternationalMorseResearchDataset = {
   systems: CURRENT_INTERNATIONAL_MORSE_BASELINE_SYSTEMS,
   sources: [{
@@ -219,10 +284,50 @@ export const INTERNATIONAL_MORSE_RESEARCH_IMPORT: InternationalMorseResearchData
     limitations: "This is an official national amateur-radio-organization reference, not a verified Japanese national-standard citation; it is not evidence of complete Wabun coverage.",
     citationNote: "Independently checked against the JARL page during this research pass.",
     verificationStatus: "checked",
+  }, {
+    id: RUSSIAN_SOURCE_ID,
+    title: "Order of the Ministry of Industry and Trade of the Russian Federation No. 4682",
+    issuingOrganization: "Ministry of Industry and Trade of the Russian Federation",
+    documentIdentifier: "Order No. 4682 (04 December 2023)",
+    publicationDate: "2023-12-04",
+    accessedDate: "2026-07-12",
+    url: "https://base.garant.ru/408582755/",
+    locator: "Training programme bibliography and control-question list, entries 'Russian Morse alphabet' and 'International Morse code'",
+    language: "ru",
+    jurisdiction: "Russia",
+    category: "government-or-military-manual",
+    authorityTier: "dependent-secondary",
+    primaryOrSecondary: "secondary",
+    temporalStatus: "current",
+    directlyDefinesMapping: false,
+    independenceGroupId: "russian-minpromtorg-order-4682-2023",
+    reliabilityNotes: "The accessible record identifies an official training programme but does not reproduce a character-to-pattern table.",
+    limitations: "It cannot support any particular Russian entry; it is retained only to document the targeted search boundary.",
+    citationNote: "Independently inspected during this research pass; no mapping table was present.",
+    verificationStatus: "checked",
+  }, {
+    id: GREEK_SOURCE_ID,
+    title: "Greek Telegraphy Club statement",
+    issuingOrganization: "Radio Amateur Association of Greece",
+    accessedDate: "2026-07-12",
+    url: "https://raag.org/gtc-club-en/",
+    locator: "Greek Telegraphy Club page, introductory statement and objectives",
+    language: "en",
+    jurisdiction: "Greece",
+    category: "national-amateur-radio-organization",
+    authorityTier: "independent-secondary",
+    primaryOrSecondary: "secondary",
+    temporalStatus: "current",
+    directlyDefinesMapping: false,
+    independenceGroupId: "raag-gtc-club-statement",
+    reliabilityNotes: "Official national amateur-radio organization page confirms a Greek telegraphy organization but provides no Greek alphabet mapping table.",
+    limitations: "It cannot support any particular Greek entry or establish a current national adaptation.",
+    citationNote: "Independently inspected during this research pass; no mapping table was present.",
+    verificationStatus: "checked",
   }],
   candidates: CURRENT_INTERNATIONAL_MORSE_BASELINE_CANDIDATES,
   claims: CURRENT_INTERNATIONAL_MORSE_BASELINE_CLAIMS,
   recommendations: CURRENT_INTERNATIONAL_MORSE_BASELINE_RECOMMENDATIONS,
-  decisions: [],
-  rejectedClaims: [],
+  decisions: CURRENT_INTERNATIONAL_MORSE_FINAL_DECISIONS,
+  rejectedClaims: CURRENT_INTERNATIONAL_MORSE_REJECTED_CLAIMS,
 };

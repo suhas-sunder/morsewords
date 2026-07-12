@@ -10,7 +10,7 @@ export type SourceCategory =
   | "recognized-technical-reference" | "secondary-compilation" | "unsourced-web-table";
 export type AuthorityTier = "primary-authority" | "primary-historical" | "independent-secondary" | "dependent-secondary" | "unverified";
 export type EvidenceState = "discovered" | "source-located" | "singly-attested" | "independently-corroborated" | "conflicting" | "historically-attested" | "current-standard" | "practical-transliteration-only" | "rejected" | "blocked-pending-review";
-export type ImplementationState = "not-reviewed" | "approved-for-registry" | "approved-for-forward-only" | "approved-for-system-scoped-reverse" | "rejected" | "blocked-pending-review";
+export type ImplementationState = "not-reviewed" | "approved-for-registry" | "approved-for-forward-only" | "approved-for-system-scoped-reverse" | "approved-display-only" | "rejected" | "rejected-as-unsupported" | "rejected-as-conflicting" | "rejected-as-mistranscribed" | "rejected-as-obsolete" | "product-policy-decision-required" | "blocked-pending-review";
 export type SystemClassification = "core-international" | "international-extension" | "national-adaptation" | "related-separate-system" | "historical-telegraph-alphabet" | "transliteration-method" | "romanization-only" | "unsupported-or-speculative";
 export type ReverseEligibility = "default-global" | "selected-system" | "forward-only" | "ambiguous-candidate" | "display-only" | "transliteration-only" | "historical-only";
 export type WritingDirection = "ltr" | "rtl" | "neutral";
@@ -87,6 +87,10 @@ export type ReviewDecision = {
   reverseEligibility?: ReverseEligibility; sourceSummary?: string; conflictDisposition?: string; caveats?: string;
   reviewerId?: string; decidedOn?: string; exception?: { reason: string; reviewerId: string; decidedOn: string; evidenceSummary: string; approvedScope: ReverseEligibility };
   supersedesDecisionId?: string; implementationNotes?: string;
+  origin: "objective-source-adjudication" | "human-product-decision" | "documented-policy-exception";
+  method: string; supportingClaimIds: readonly string[]; supportingSourceIds: readonly string[];
+  decisionActor: string; decisionDate: string; productApprovalRequired: boolean;
+  evidenceException?: { kind: "single-controlling-source"; justification: string; limitation: string };
 };
 
 export type InternationalMorseResearchDataset = {
@@ -102,6 +106,7 @@ export type ResearchAnalysis = { issues: readonly ResearchIssue[]; conflicts: re
 
 const PATTERN = /^[.-]+$/;
 const APPROVALS = new Set<ImplementationState>(["approved-for-registry", "approved-for-forward-only", "approved-for-system-scoped-reverse"]);
+const FINAL_OUTCOMES = new Set<ImplementationState>([...APPROVALS, "approved-display-only", "rejected", "rejected-as-unsupported", "rejected-as-conflicting", "rejected-as-mistranscribed", "rejected-as-obsolete"]);
 const isUrl = (value: string) => { try { const url = new URL(value); return url.protocol === "https:" || url.protocol === "http:"; } catch { return false; } };
 const unique = <T>(values: readonly T[]) => [...new Set(values)];
 
@@ -197,12 +202,18 @@ export function analyzeInternationalMorseResearch(dataset: InternationalMorseRes
   for (const decision of dataset.decisions) {
     const candidate = candidates.get(decision.candidateId); const decisionClaims = candidate ? candidate.claimIds.map((id) => claims.get(id)).filter((claim): claim is MappingClaim => Boolean(claim)) : [];
     if (!candidate) issues.push({ code: "unknown-decision-candidate", message: `Decision ${decision.id} has unknown candidate`, ids: [decision.id], severity: "error" });
+    if (!decision.method.trim() || !decision.decisionActor.trim() || !decision.decisionDate.trim()) issues.push({ code: "incomplete-decision-record", message: `Decision ${decision.id} lacks method, actor, or date`, ids: [decision.id], severity: "error" });
+    if (!decision.supportingSourceIds.length || decision.supportingSourceIds.some((sourceId) => !sources.has(sourceId))) issues.push({ code: "invalid-decision-sources", message: `Decision ${decision.id} references no valid source`, ids: [decision.id], severity: "error" });
+    if (decision.supportingClaimIds.some((claimId) => !claims.has(claimId))) issues.push({ code: "invalid-decision-claims", message: `Decision ${decision.id} references a missing claim`, ids: [decision.id], severity: "error" });
+    if (decision.origin === "objective-source-adjudication" && /^suhas/i.test(decision.decisionActor)) issues.push({ code: "objective-decision-impersonates-human", message: `Decision ${decision.id} uses a human actor for objective adjudication`, ids: [decision.id], severity: "error" });
+    if (decision.productApprovalRequired && decision.decision !== "product-policy-decision-required") issues.push({ code: "inconsistent-product-policy-decision", message: `Decision ${decision.id} requires product approval without the matching outcome`, ids: [decision.id], severity: "error" });
     if (APPROVALS.has(decision.decision)) {
-      if (!decision.reviewerId || !decision.decidedOn) issues.push({ code: "approval-missing-reviewer", message: `Approval ${decision.id} requires reviewer and date`, ids: [decision.id], severity: "error" });
+      if (decision.origin === "human-product-decision" && (!decision.reviewerId || !decision.decidedOn)) issues.push({ code: "approval-missing-reviewer", message: `Human approval ${decision.id} requires reviewer and date`, ids: [decision.id], severity: "error" });
       const independentGroups = unique(decisionClaims.map((claim) => sources.get(claim.sourceId)?.independenceGroupId).filter(Boolean) as string[]);
       const hasPrimary = decisionClaims.some((claim) => sources.get(claim.sourceId)?.authorityTier.startsWith("primary"));
       const unresolved = conflicts.some((conflict) => conflict.candidateIds.includes(decision.candidateId));
-      if ((!hasPrimary || independentGroups.length < 2) && !decision.exception) issues.push({ code: "approval-insufficient-corroboration", message: `Approval ${decision.id} needs a primary and independent corroboration or exception`, ids: [decision.id], severity: "error" });
+      const hasObjectiveException = decision.origin === "objective-source-adjudication" && decision.evidenceException?.kind === "single-controlling-source" && decision.evidenceException.justification && decision.evidenceException.limitation;
+      if ((!hasPrimary || independentGroups.length < 2) && !decision.exception && !hasObjectiveException) issues.push({ code: "approval-insufficient-corroboration", message: `Approval ${decision.id} needs a primary and independent corroboration or documented exception`, ids: [decision.id], severity: "error" });
       if (unresolved && !decision.conflictDisposition) issues.push({ code: "approval-unresolved-conflict", message: `Approval ${decision.id} leaves a conflict unresolved`, ids: [decision.id], severity: "error" });
       if (decision.exception && (!decision.exception.reason || !decision.exception.reviewerId || !decision.exception.decidedOn || !decision.exception.evidenceSummary)) issues.push({ code: "invalid-approval-exception", message: `Decision ${decision.id} has incomplete exception`, ids: [decision.id], severity: "error" });
       if (decision.reverseEligibility === "default-global" && unresolved) issues.push({ code: "unsafe-default-reverse", message: `Decision ${decision.id} cannot approve ambiguous default reverse decoding`, ids: [decision.id], severity: "error" });
@@ -222,8 +233,8 @@ export function validateInternationalMorseResearch(dataset: InternationalMorseRe
 
 export function assertResearchReadyForPromotion(dataset: InternationalMorseResearchDataset) {
   const analysis = validateInternationalMorseResearch(dataset);
-  const approvedIds = new Set(dataset.decisions.filter((decision) => APPROVALS.has(decision.decision)).map((decision) => decision.candidateId));
-  const pending = dataset.candidates.filter((candidate) => !approvedIds.has(candidate.id));
-  if (pending.length) throw new Error(`International Morse promotion is blocked: promotion-missing-human-decision (${pending.length} candidate${pending.length === 1 ? "" : "s"})`);
+  const finalIds = new Set(dataset.decisions.filter((decision) => FINAL_OUTCOMES.has(decision.decision) && !decision.productApprovalRequired).map((decision) => decision.candidateId));
+  const pending = dataset.candidates.filter((candidate) => !finalIds.has(candidate.id));
+  if (pending.length) throw new Error(`International Morse promotion is blocked: promotion-unresolved-final-outcome (${pending.length} candidate${pending.length === 1 ? "" : "s"})`);
   return analysis;
 }

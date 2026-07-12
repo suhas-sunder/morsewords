@@ -35,7 +35,11 @@ export type MorseStandardizationStatus =
 
 export type MorseProvenance = {
   kind: "repository-legacy-map" | "repository-language-reference";
-  verificationStatus: "repository-migrated" | "pending-external-verification";
+  verificationStatus: "repository-migrated" | "pending-external-verification" | "objectively-source-verified" | "objectively-unsupported";
+  verificationDecisionId?: string;
+  sourceCategorySummary?: "international-standard" | "national-amateur-radio-organization" | "insufficient-authoritative-evidence";
+  reverseEligibility?: "selected-system" | "compatibility-default" | "not-source-verified";
+  caveatFlags?: readonly string[];
   sourceTitle?: string;
   issuingOrganization?: string;
   documentIdentifier?: string;
@@ -126,6 +130,24 @@ const languageReferenceProvenance: MorseProvenance = {
   verificationStatus: "repository-migrated",
 };
 
+const ITU_WRITTEN_CHARACTERS = new Set([".", ",", ":", "?", "'", "-", "/", "(", ")", '"', "=", "+", "@"]);
+
+function researchProvenance(
+  base: MorseProvenance,
+  entryId: string,
+  verified: boolean,
+  sourceCategorySummary: MorseProvenance["sourceCategorySummary"],
+): MorseProvenance {
+  return {
+    ...base,
+    verificationStatus: verified ? "objectively-source-verified" : "objectively-unsupported",
+    verificationDecisionId: `objective-${entryId}`,
+    sourceCategorySummary,
+    reverseEligibility: verified ? "selected-system" : "not-source-verified",
+    ...(verified ? {} : { caveatFlags: ["requires-production-correction"] }),
+  };
+}
+
 export const MORSE_SYSTEMS: readonly MorseSystem[] = Object.freeze([
   {
     id: "international",
@@ -202,8 +224,10 @@ function globalEntry(
       : category === "digit"
         ? `digit-${character}`
         : `punctuation-${character.codePointAt(0)!.toString(16)}`;
+  const id = `international-${descriptor}`;
+  const isItuWrittenCharacter = category === "letter" || category === "digit" || ITU_WRITTEN_CHARACTERS.has(character);
   return canonicalEntry({
-    id: `international-${descriptor}`,
+    id,
     character,
     displayLabel: character,
     normalizedInputs: [character],
@@ -219,7 +243,7 @@ function globalEntry(
     normalization: "NFKC",
     collisionPolicy: "allow-cross-system",
     standardizationStatus: "legacy-repository",
-    provenance: legacyMapProvenance,
+    provenance: researchProvenance(legacyMapProvenance, id, isItuWrittenCharacter, isItuWrittenCharacter ? "international-standard" : "insufficient-authoritative-evidence"),
   });
 }
 
@@ -302,7 +326,7 @@ const japaneseEntries = JAPANESE_REFERENCE_DATA.map(
       normalization: "NFC",
       collisionPolicy: "allow-cross-system",
       standardizationStatus: "unverified-reference",
-      provenance: languageReferenceProvenance,
+      provenance: researchProvenance(languageReferenceProvenance, id, true, "national-amateur-radio-organization"),
       presentation: { reference, reading, label },
     }),
 );
@@ -331,7 +355,7 @@ const russianEntries = RUSSIAN_REFERENCE_DATA.map(
           ? "allow-same-system"
           : "allow-cross-system",
       standardizationStatus: "unverified-reference",
-      provenance: languageReferenceProvenance,
+      provenance: researchProvenance(languageReferenceProvenance, `ru-${target}`, false, "insufficient-authoritative-evidence"),
       presentation: {
         reference: `Latin reading ${reading}`,
         reading,
@@ -360,7 +384,7 @@ const greekEntries = GREEK_REFERENCE_DATA.map(
       normalization: "NFC",
       collisionPolicy: "allow-cross-system",
       standardizationStatus: "unverified-reference",
-      provenance: languageReferenceProvenance,
+      provenance: researchProvenance(languageReferenceProvenance, `el-${target}`, false, "insufficient-authoritative-evidence"),
       presentation: { reference: `${name} / ${reading}`, reading, label: `Greek ${name}` },
     }),
 );

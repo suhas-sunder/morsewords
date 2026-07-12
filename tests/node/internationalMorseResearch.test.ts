@@ -25,7 +25,7 @@ const primary: ResearchSource = { id: "source-primary", title: "Test primary", l
 const independent: ResearchSource = { id: "source-independent", title: "Test independent", locator: "Section 2", language: "en", category: "recognized-technical-reference", authorityTier: "independent-secondary", primaryOrSecondary: "secondary", temporalStatus: "current", directlyDefinesMapping: true, independenceGroupId: "independent", citationNote: "Test-only citation.", verificationStatus: "checked", url: "https://example.test/secondary" };
 const candidate: CandidateMapping = { id: "candidate-one", systemId: system.id, languageId: "x-test", category: "letter", unicode: identity, claimIds: ["claim-primary", "claim-independent"], requestedReverseEligibility: "selected-system" };
 const directClaim = (id: string, sourceId: string, pattern = ".-"): MappingClaim => ({ id, sourceId, candidateId: candidate.id, systemId: system.id, unicode: identity, characterOrToken: "¤", pattern, mappingKind: "direct", temporalStatus: "current", confidence: "high", extractionStatus: "verified-transcription" });
-const decision: ReviewDecision = { id: "decision-one", candidateId: candidate.id, decision: "approved-for-system-scoped-reverse", evidenceState: "independently-corroborated", approvedCharacter: "¤", approvedPattern: ".-", approvedSystemId: system.id, approvedNormalization: "NFC", reverseEligibility: "selected-system", reviewerId: "test-reviewer", decidedOn: "2026-07-12", sourceSummary: "Test-only independent corroboration." };
+const decision: ReviewDecision = { id: "decision-one", candidateId: candidate.id, decision: "approved-for-system-scoped-reverse", evidenceState: "independently-corroborated", approvedCharacter: "¤", approvedPattern: ".-", approvedSystemId: system.id, approvedNormalization: "NFC", reverseEligibility: "selected-system", reviewerId: "test-reviewer", decidedOn: "2026-07-12", sourceSummary: "Test-only independent corroboration.", origin: "human-product-decision", method: "test-only independent review", supportingClaimIds: ["claim-primary", "claim-independent"], supportingSourceIds: [primary.id, independent.id], decisionActor: "test-reviewer", decisionDate: "2026-07-12", productApprovalRequired: false };
 const dataset = (overrides: Partial<InternationalMorseResearchDataset> = {}): InternationalMorseResearchDataset => ({ systems: [system], sources: [primary, independent], candidates: [candidate], claims: [directClaim("claim-primary", primary.id), directClaim("claim-independent", independent.id)], recommendations: [], decisions: [decision], ...overrides });
 
 test("independently corroborated fictional evidence produces one deterministic system-scoped vector", () => {
@@ -40,7 +40,7 @@ test("dependent secondary sources and incomplete exceptions cannot silently appr
   const codes = analyzeInternationalMorseResearch(weak).issues.map((issue) => issue.code);
   assert.ok(codes.includes("approval-insufficient-corroboration"));
   assert.throws(() => assertResearchReadyForPromotion(weak));
-  const exception = dataset({ systems: [{ ...system, sourceIds: [primary.id] }], sources: [primary], candidates: [{ ...candidate, claimIds: ["claim-primary"] }], claims: [directClaim("claim-primary", primary.id)], decisions: [{ ...decision, exception: { reason: "Test-only surviving source", reviewerId: "test-reviewer", decidedOn: "2026-07-12", evidenceSummary: "Test-only review", approvedScope: "forward-only" }, reverseEligibility: "forward-only" }] });
+  const exception = dataset({ systems: [{ ...system, sourceIds: [primary.id] }], sources: [primary], candidates: [{ ...candidate, claimIds: ["claim-primary"] }], claims: [directClaim("claim-primary", primary.id)], decisions: [{ ...decision, supportingClaimIds: ["claim-primary"], supportingSourceIds: [primary.id], exception: { reason: "Test-only surviving source", reviewerId: "test-reviewer", decidedOn: "2026-07-12", evidenceSummary: "Test-only review", approvedScope: "forward-only" }, reverseEligibility: "forward-only" }] });
   assert.equal(assertResearchReadyForPromotion(exception).testVectors[0].expectedReverse, undefined);
 });
 
@@ -78,7 +78,7 @@ test("research validation accepts structurally valid pending evidence while stri
     decisions: [],
   });
   assert.equal(validateInternationalMorseResearch(pending).summary.approved, 0);
-  assert.throws(() => assertResearchReadyForPromotion(pending), /promotion-missing-human-decision/);
+  assert.throws(() => assertResearchReadyForPromotion(pending), /promotion-unresolved-final-outcome/);
 });
 
 test("research validation rejects unsafe leads without treating recommendations as approvals", () => {
@@ -126,7 +126,7 @@ test("research validation flags aliases and unsupported status claims without ch
   assert.deepEqual(INTERNATIONAL_MORSE_RESEARCH_IMPORT.systems.map((item) => INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.filter((candidate) => candidate.systemId === item.id).length), [53, 11, 33, 24]);
   assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.claims.length, 60);
   assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.recommendations.length, 121);
-  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.decisions.length, 0);
+  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.decisions.length, 121);
   assert.equal(validateInternationalMorseResearch(INTERNATIONAL_MORSE_RESEARCH_IMPORT).issues.filter((issue) => issue.severity === "error").length, 0);
   assert.ok(INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.every((candidate) => candidate.claimIds.length > 0 || candidate.unresolvedEvidence));
   assert.ok(INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.every((candidate) => candidate.unicode.unicodeNameStatus === "verified" && candidate.unicode.unicodeName && candidate.unicode.codePoints?.every((codePoint) => /^U\+[0-9A-F]{4,6}$/.test(codePoint))));
@@ -142,7 +142,18 @@ test("research validation flags aliases and unsupported status claims without ch
   assert.equal(CURRENT_PRODUCTION_COLLISION_BASELINE.length, 30);
   assert.equal(CURRENT_PRODUCTION_COLLISION_BASELINE.filter((group) => group.sameSystemCollisionSystemIds.length > 0).length, 1);
   assert.ok(CURRENT_PRODUCTION_COLLISION_BASELINE.every((group) => group.defaultGlobalReverseSafe));
-  assert.ok(MORSE_REGISTRY_ENTRIES.every((entry) => entry.provenance.verificationStatus === "repository-migrated"));
+  assert.equal(MORSE_REGISTRY_ENTRIES.filter((entry) => entry.provenance.verificationStatus === "objectively-source-verified").length, 60);
+  assert.equal(MORSE_REGISTRY_ENTRIES.filter((entry) => entry.provenance.verificationStatus === "objectively-unsupported").length, 61);
+  assert.ok(MORSE_REGISTRY_ENTRIES.every((entry) => entry.provenance.verificationDecisionId === `objective-${entry.id}`));
+});
+
+test("objective source adjudication resolves current evidence without impersonating a human reviewer", () => {
+  const analysis = assertResearchReadyForPromotion(INTERNATIONAL_MORSE_RESEARCH_IMPORT);
+  assert.equal(analysis.approvedCandidates.length, 60);
+  assert.equal(analysis.testVectors.length, 60);
+  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.decisions.filter((decision) => decision.decision === "rejected-as-unsupported").length, 61);
+  assert.ok(INTERNATIONAL_MORSE_RESEARCH_IMPORT.decisions.every((decision) => decision.origin === "objective-source-adjudication" && decision.decisionActor === "codex-source-verification"));
+  assert.ok(INTERNATIONAL_MORSE_RESEARCH_IMPORT.decisions.every((decision) => decision.decision !== "blocked-pending-review" && decision.decision !== "product-policy-decision-required"));
 });
 
 test("research records stay Node-only and the saved report is never imported", () => {
