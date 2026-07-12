@@ -361,11 +361,11 @@ test.describe("homepage monetization readiness", () => {
     await gotoHome(page);
 
     await expect(page).toHaveTitle(
-      "Morse Code Translator, Audio, Practice, Books, and Printables | MorseWords",
+      "Morse Code Translator | Text to Morse and Morse to Text | MorseWords",
     );
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       "content",
-      "Translate Morse code, hear audio, create MP3 and video exports, practice, read Morse books and audiobooks, and print study pages with browser-based tools.",
+      "Convert text to Morse code or decode Morse to text, then copy, play, or continue with audio and practice tools in your browser.",
     );
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
@@ -377,6 +377,18 @@ test.describe("homepage monetization readiness", () => {
         exact: true,
       }),
     ).toBeVisible();
+    const homeJsonLd = await parsePageJsonLd(page);
+    const homeGraph = homeJsonLd.flatMap((entry) => entry["@graph"] ?? []);
+    expect(homeGraph).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          "@type": "WebPage",
+          name: "Morse Code Translator",
+          description:
+            "MorseWords converts text to Morse code and decodes Morse to text, with browser-based copy, playback, audio, and practice paths.",
+        }),
+      ]),
+    );
 
     await page.goto(ROUTES.audio, { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
@@ -421,6 +433,11 @@ test.describe("homepage monetization readiness", () => {
     await expect(morseOutput).toHaveValue("....   .   .-..   .-..   ---");
 
     const hero = page.locator("main").first();
+    await expect(hero).toContainText("Convert text to Morse code");
+    await expect(hero).toContainText("decode Morse to text");
+    await expect(hero).toContainText(
+      "supported letters, numbers, and punctuation",
+    );
     await expect(hero).toContainText("audio");
     await expect(hero).toContainText("video");
     await expect(hero).toContainText("practice");
@@ -466,6 +483,52 @@ test.describe("homepage monetization readiness", () => {
         name: "Practical tools with clear source notes",
       }),
     ).toBeVisible();
+
+    const toolkit = page.locator(
+      '[aria-labelledby="morsewords-offerings-title"]',
+    );
+    const audioTranslatorLink = toolkit.getByRole("link", {
+      name: "Morse code audio translator",
+      exact: true,
+    });
+    const soundGeneratorLink = toolkit.getByRole("link", {
+      name: "Morse code sound generator",
+      exact: true,
+    });
+    const alphabetLink = toolkit.getByRole("link", {
+      name: "Morse code alphabet A to Z",
+      exact: true,
+    });
+    const numbersLink = toolkit.getByRole("link", {
+      name: "Morse code numbers",
+      exact: true,
+    });
+    await expect(audioTranslatorLink).toHaveAttribute("href", ROUTES.audio);
+    await expect(soundGeneratorLink).toHaveAttribute(
+      "href",
+      ROUTES.soundGenerator,
+    );
+    await expect(alphabetLink).toHaveAttribute("href", ROUTES.alphabet);
+    await expect(numbersLink).toHaveAttribute("href", ROUTES.numbers);
+    await expect(
+      toolkit.locator(`a[href="${ROUTES.printableChart}"]`),
+    ).toHaveText("Printable worksheet");
+    const linkedPaths = await toolkit.locator("a[href]").evaluateAll((links) =>
+      links.map((link) =>
+        new URL(
+          (link as HTMLAnchorElement).getAttribute("href") ?? "",
+          window.location.origin,
+        ).pathname,
+      ),
+    );
+    expect(
+      linkedPaths.filter((pathname) => pathname === ROUTES.audio),
+      "homepage should link to the audio translator once from main content",
+    ).toHaveLength(1);
+    expect(
+      linkedPaths.filter((pathname) => pathname === ROUTES.soundGenerator),
+      "homepage should link to the sound generator once from main content",
+    ).toHaveLength(1);
   });
 
   test("keeps light toolkit card hover states readable", async ({ page }) => {
@@ -577,9 +640,14 @@ test.describe("homepage monetization readiness", () => {
     expectFeaturedBookCardsToMatchApprovedRecords(
       await readFeaturedBookCards(page),
     );
+    const viewportWidth = page.viewportSize()?.width ?? 0;
+    const expectedVisibleFeaturedBookCount =
+      viewportWidth >= 1280
+        ? FEATURED_BOOK_COUNT
+        : PRIMARY_VISIBLE_FEATURED_BOOK_COUNT;
     expect(
       (await readFeaturedBookCards(page)).filter((card) => card.visible),
-    ).toHaveLength(FEATURED_BOOK_COUNT);
+    ).toHaveLength(expectedVisibleFeaturedBookCount);
     await expect(section.getByText("Open book")).toHaveCount(0);
     await expect(section.getByText("Download MP3")).toHaveCount(0);
     await expect(

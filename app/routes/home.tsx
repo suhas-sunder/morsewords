@@ -55,7 +55,7 @@ const offeringSections = [
   {
     title: "Translator and conversion tools",
     description:
-      "Use the main translator for quick text and Morse conversion, then move into encoder, decoder, separator, and copy-ready formatting tools when you need more control.",
+      "Use the main translator to convert text to Morse code or decode Morse to text, then move into encoder, decoder, separator, and copy-ready formatting tools when you need more control.",
     links: [
       { href: ROUTES.encoder, label: "Encoder" },
       { href: ROUTES.decoder, label: "Decoder" },
@@ -67,9 +67,9 @@ const offeringSections = [
     description:
       "Listen to Morse with tone, speed, and Farnsworth settings, or generate downloadable MP3/WAV audio from messages and longer source text.",
     links: [
-      { href: ROUTES.audio, label: "Audio tool" },
+      { href: ROUTES.audio, label: "Morse code audio translator" },
       { href: ROUTES.mp3Generator, label: "MP3 generator" },
-      { href: ROUTES.soundGenerator, label: "Sound generator" },
+      { href: ROUTES.soundGenerator, label: "Morse code sound generator" },
     ],
   },
   {
@@ -85,9 +85,10 @@ const offeringSections = [
   {
     title: "Reference and lookup",
     description:
-      "Check alphabets, numbers, punctuation, prosigns, Q-codes, dictionary entries, and language-specific Morse adaptations when you need a reliable pattern.",
+      "Check the Morse code alphabet A to Z, number patterns, punctuation, prosigns, Q-codes, dictionary entries, and language-specific Morse adaptations when you need a reliable pattern.",
     links: [
-      { href: ROUTES.alphabet, label: "Alphabet" },
+      { href: ROUTES.alphabet, label: "Morse code alphabet A to Z" },
+      { href: ROUTES.numbers, label: "Morse code numbers" },
       { href: ROUTES.dictionary, label: "Dictionary" },
       { href: ROUTES.morseCodeByLanguage, label: "By language" },
     ],
@@ -105,7 +106,7 @@ const offeringSections = [
   {
     title: "Printables and word search",
     description:
-      "Create printable Morse pages, printable reference charts, and word-search style learning materials for paper practice or saved PDFs.",
+      "Create printable Morse pages, printable worksheets, and word-search style learning materials for paper practice or saved PDFs.",
     links: [
       { href: ROUTES.printablePages, label: "Printable pages" },
       { href: ROUTES.printableChart, label: "Printable worksheet" },
@@ -449,10 +450,9 @@ export function links() {
 
 export function meta({}: Route.MetaArgs) {
   return seoMeta({
-    title:
-      "Morse Code Translator, Audio, Practice, Books, and Printables | MorseWords",
+    title: "Morse Code Translator | Text to Morse and Morse to Text | MorseWords",
     description:
-      "Translate Morse code, hear audio, create MP3 and video exports, practice, read Morse books and audiobooks, and print study pages with browser-based tools.",
+      "Convert text to Morse code or decode Morse to text, then copy, play, or continue with audio and practice tools in your browser.",
     path: CANONICAL_PATH,
     keywords:
       "morse code translator, text to morse code, morse to text, morse code decoder, morse code audio, morse code books, morse code printables",
@@ -485,11 +485,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       {
         "@type": "WebPage",
         "@id": `${canonicalUrl(CANONICAL_PATH)}#webpage`,
-        name: "Morse Code Translator, Audio, Practice, Books, and Printables",
+        name: "Morse Code Translator",
         url: canonicalUrl(CANONICAL_PATH),
         isPartOf: { "@id": `${canonicalUrl(CANONICAL_PATH)}#website` },
         description:
-          "MorseWords is a browser-based Morse code toolkit for translating, listening, practicing, reading processed public books, and printing study pages.",
+          "MorseWords converts text to Morse code and decodes Morse to text, with browser-based copy, playback, audio, and practice paths.",
       },
     ],
   };
@@ -532,9 +532,10 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           enableQueryPrefill
           subtitle={
             <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
-              Translate plain text, decode Morse, listen to the signal, then
-              keep going with audio, video, practice, books, audiobooks, and
-              printable study pages.
+              Convert text to Morse code or decode Morse to text with the
+              MorseWords translator. Enter supported letters, numbers, and
+              punctuation, then copy, play, or generate Morse output for the
+              next practice step.
             </p>
           }
         />
