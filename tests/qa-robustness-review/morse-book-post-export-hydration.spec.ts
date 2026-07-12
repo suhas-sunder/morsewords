@@ -1,5 +1,9 @@
 import { expect, test, type Page } from "@playwright/test";
 
+import {
+  countAvailableChapterSections,
+  shouldShowSectionKindMetadataLabel,
+} from "../../app/client/components/morse-code-books/sectionSelectorMetadata";
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 type LiveBookExpectation = {
@@ -126,5 +130,29 @@ test.describe("Morse book post-export hydration", () => {
     );
     await expect(page.locator("[data-mw-morse-book-source-preview]")).not.toHaveText("");
     await expect(page.locator("[data-mw-morse-book-morse-preview]")).not.toHaveText("");
+  });
+
+  test("single available chapter keeps its stored number without the chapter metadata label", async ({ page }) => {
+    await gotoBook(page, "the-bottle-imp");
+    const row = page.locator("[data-mw-morse-book-section-row]");
+    await expect(row).toHaveCount(1);
+    await expect(row.locator("[data-mw-morse-book-section-kind]")).toHaveCount(0);
+    await expect(row).toContainText(/\d[\s\S]*WORDS[\s\S]*INCLUDED/i);
+    await expect(row.locator("[data-mw-morse-book-section-select]")).toBeChecked();
+  });
+
+  test("chapter metadata label visibility follows available chapter count", () => {
+    const singleChapter = [{ kind: "chapter" as const, label: "2" }];
+    const multipleChapters = [
+      { kind: "chapter" as const, label: "1" },
+      { kind: "chapter" as const, label: "2" },
+    ];
+
+    expect(countAvailableChapterSections(singleChapter)).toBe(1);
+    expect(shouldShowSectionKindMetadataLabel("chapter", 1)).toBe(false);
+    expect(singleChapter[0].label).toBe("2");
+    expect(countAvailableChapterSections(multipleChapters)).toBe(2);
+    expect(shouldShowSectionKindMetadataLabel("chapter", 2)).toBe(true);
+    expect(shouldShowSectionKindMetadataLabel("preface", 1)).toBe(true);
   });
 });

@@ -171,6 +171,10 @@ import type {
 import { ROUTES } from "~/client/data/routes";
 
 import { createBookTranslatorSourceFromSections } from "./bookTranslatorSource";
+import {
+  countAvailableChapterSections,
+  shouldShowSectionKindMetadataLabel,
+} from "./sectionSelectorMetadata";
 
 const DISPLAY_TEXT_PREVIEW_LIMIT = 3600;
 const MORSE_SOURCE_PREVIEW_LIMIT = 1200;
@@ -1868,6 +1872,7 @@ function MorseBookWorkspace({
     scopeSectionIds.length > 0 &&
     (!scopeReady || sectionStatus === "loading");
   const sectionControlsDisabled = fullBookLoading;
+  const availableChapterCount = countAvailableChapterSections(book.sections);
 
   React.useEffect(() => {
     if (!exportRunning || exportStartedAtMs === null) return undefined;
@@ -3293,9 +3298,14 @@ function MorseBookWorkspace({
                           {sectionDisplayName(section)}
                         </span>
                         <span className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-[0.12em] opacity-75">
-                          <span data-mw-morse-book-section-kind="true">
-                            {sectionKindLabels[section.kind]}
-                          </span>
+                          {shouldShowSectionKindMetadataLabel(
+                            section.kind,
+                            availableChapterCount,
+                          ) ? (
+                            <span data-mw-morse-book-section-kind="true">
+                              {sectionKindLabels[section.kind]}
+                            </span>
+                          ) : null}
                           <span>{formatNumber(section.wordCount)} words</span>
                           <span data-mw-morse-book-section-selection-state="true">
                             {sectionStateLabel(section, selected)}
