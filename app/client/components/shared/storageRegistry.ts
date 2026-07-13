@@ -1,3 +1,5 @@
+import { CHARACTER_SPEED_RANGE } from "~/client/components/shared/morseSettings";
+
 export type StorageSensitivity =
   | "preference"
   | "source text"
@@ -350,12 +352,27 @@ function validateVideoGeneratorPreferences(raw: string | null) {
   ) {
     return false;
   }
-  if (value.charWpm !== undefined && !numberRangeValue(value.charWpm, 5, 60, true)) {
+  if (
+    value.charWpm !== undefined &&
+    !numberRangeValue(
+      value.charWpm,
+      CHARACTER_SPEED_RANGE.min,
+      CHARACTER_SPEED_RANGE.max,
+      true,
+    )
+  ) {
     return false;
   }
   if (
     value.farnsworthWpm !== undefined &&
-    !numberRangeValue(value.farnsworthWpm, 5, 60, true)
+    !numberRangeValue(
+      value.farnsworthWpm,
+      CHARACTER_SPEED_RANGE.min,
+      typeof value.charWpm === "number"
+        ? value.charWpm
+        : CHARACTER_SPEED_RANGE.max,
+      true,
+    )
   ) {
     return false;
   }

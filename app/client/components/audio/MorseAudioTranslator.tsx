@@ -267,8 +267,11 @@ export default function MorseAudioTranslator({
 
     player.setLiveOptions({
       code: activeCode,
-      wpm: clampNum(charWpm, 5, 60),
-      farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+      wpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+      farnsworthWpm: clampFarnsworthWpm(
+        farnsworthWpm,
+        clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+      ),
       hz: toneHz,
       volume,
       soundEnabled: soundOn,
@@ -362,8 +365,11 @@ export default function MorseAudioTranslator({
     if (!canPlay) return 0;
     return player.estimateDurationMs({
       code: activeCode,
-      wpm: clampNum(charWpm, 5, 60),
-      farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+      wpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+      farnsworthWpm: clampFarnsworthWpm(
+        farnsworthWpm,
+        clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+      ),
     });
   }, [player, activeCode, canPlay, charWpm, farnsworthWpm]);
 
@@ -375,8 +381,11 @@ export default function MorseAudioTranslator({
     () =>
       buildMorseExportPlan({
         baseFilename: fileName || "morse-audio",
-        charWpm: clampNum(charWpm, 5, 60),
-        farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+        charWpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+        farnsworthWpm: clampFarnsworthWpm(
+          farnsworthWpm,
+          clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+        ),
         format: plannedFormat,
         kind: "audio",
         mp3Kbps: 128,
@@ -523,8 +532,11 @@ export default function MorseAudioTranslator({
 
     await player.play({
       code: activeCode,
-      wpm: clampNum(charWpm, 5, 60),
-      farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+      wpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+      farnsworthWpm: clampFarnsworthWpm(
+        farnsworthWpm,
+        clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+      ),
       hz: toneHz,
       volume,
       soundEnabled: soundOn,
@@ -544,8 +556,11 @@ export default function MorseAudioTranslator({
       plan: audioExportPlan,
       settings: {
         attackMs,
-        charWpm: clampNum(charWpm, 5, 60),
-        farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+        charWpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+        farnsworthWpm: clampFarnsworthWpm(
+          farnsworthWpm,
+          clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+        ),
         format: plannedFormat,
         mp3Kbps: 128,
         pitch: toneHz,
@@ -848,8 +863,8 @@ export default function MorseAudioTranslator({
                 <SliderRow
                   label="Character speed"
                   value={charWpm}
-                  min={5}
-                  max={60}
+                  min={AUDIO_SPEED_RANGE.min}
+                  max={AUDIO_SPEED_RANGE.max}
                   step={1}
                   unit="WPM"
                   onChange={handleCharWpmChange}
@@ -857,8 +872,8 @@ export default function MorseAudioTranslator({
                 <SliderRow
                   label="Farnsworth spacing"
                   value={farnsworthWpm}
-                  min={5}
-                  max={Math.max(5, charWpm)}
+                  min={AUDIO_SPEED_RANGE.min}
+                  max={Math.max(AUDIO_SPEED_RANGE.min, charWpm)}
                   step={1}
                   unit="WPM"
                   onChange={handleFarnsworthWpmChange}

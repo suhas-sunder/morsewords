@@ -81,6 +81,18 @@ test.describe("interactive state and Morse settings contracts", () => {
     expect(clampFarnsworthWpm(-1, 24)).toBe(5);
     expect(sanitizeMorseNumericSetting("characterSpeed", "Infinity")).toBe(5);
     expect(sanitizeMorseNumericSetting("pitch", 2_000)).toBe(1_600);
+
+    for (const filePath of [
+      "app/client/components/audio/MorseAudioTranslator.tsx",
+      "app/client/components/morse-code-sound-generator/MorseAudioTranslator.tsx",
+      "app/client/components/morse-code-mp3-generator/MorseMp3GeneratorTool.tsx",
+    ]) {
+      const source = readRepoFile(filePath);
+      expect(source, filePath).toContain("AUDIO_SPEED_RANGE.max");
+      expect(source, filePath).toContain("clampFarnsworthWpm");
+      expect(source, filePath).not.toContain("clampNum(charWpm, 5, 60)");
+      expect(source, filePath).not.toContain("clampNum(farnsworthWpm, 5, 60)");
+    }
   });
 
   test("keeps timing finite and shared at 100 WPM", () => {

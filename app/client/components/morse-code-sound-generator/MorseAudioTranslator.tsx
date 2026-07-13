@@ -318,8 +318,8 @@ export default function MorseAudioTranslator({
     if (!hydrated) return;
     player.setLiveOptions({
       code: activeCode,
-      wpm: clampNum(charWpm, 5, 60),
-      farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+      wpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+      farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max)),
       hz: toneHz,
       volume,
       soundEnabled: soundOn,
@@ -374,16 +374,16 @@ export default function MorseAudioTranslator({
     if (!canPlay) return 0;
     return player.estimateDurationMs({
       code: activeCode,
-      wpm: clampNum(charWpm, 5, 60),
-      farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+      wpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+      farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max)),
     });
   }, [player, activeCode, canPlay, charWpm, farnsworthWpm]);
   const buildAudioPlan = React.useCallback(
     (format: ExportFormat) =>
       buildMorseExportPlan({
         baseFilename: fileName || defaultFileName || "morse-audio",
-        charWpm: clampNum(charWpm, 5, 60),
-        farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+        charWpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+        farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max)),
         format,
         kind: "audio",
         leadInMs,
@@ -512,8 +512,8 @@ export default function MorseAudioTranslator({
     if (!canPlay) return;
     await player.play({
       code: activeCode,
-      wpm: clampNum(charWpm, 5, 60),
-      farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+      wpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+      farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max)),
       hz: toneHz,
       volume,
       soundEnabled: soundOn,
@@ -540,8 +540,8 @@ export default function MorseAudioTranslator({
       plan,
       settings: {
         attackMs,
-        charWpm: clampNum(charWpm, 5, 60),
-        farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+        charWpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+        farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max)),
         format,
         leadInMs,
         mp3Kbps,

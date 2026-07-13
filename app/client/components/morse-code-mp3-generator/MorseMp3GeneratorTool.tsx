@@ -337,16 +337,16 @@ export default function MorseMp3GeneratorTool() {
     if (!canRender) return 0;
     return player.estimateDurationMs({
       code: activeCode,
-      wpm: clampNum(charWpm, 5, 60),
-      farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+      wpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+      farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max)),
     });
   }, [activeCode, canRender, charWpm, farnsworthWpm, player]);
 
   const previewAudioOptions = React.useMemo(
     () => ({
       code: activeCode,
-      wpm: clampNum(charWpm, 5, 60),
-      farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+      wpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+      farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max)),
       hz: clampNum(toneHz, 200, 1600),
       volume: clampNum(volume, 0, 1),
       soundEnabled: soundOn,
@@ -392,8 +392,8 @@ export default function MorseMp3GeneratorTool() {
     (format: "mp3" | "wav") =>
       buildMorseExportPlan({
         baseFilename: fileName || "morse-code",
-        charWpm: clampNum(charWpm, 5, 60),
-        farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+        charWpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+        farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max)),
         format,
         kind: "audio",
         leadInMs,
@@ -513,8 +513,8 @@ export default function MorseMp3GeneratorTool() {
       plan,
       settings: {
         attackMs,
-        charWpm: clampNum(charWpm, 5, 60),
-        farnsworthWpm: clampNum(farnsworthWpm, 5, 60),
+        charWpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
+        farnsworthWpm: clampFarnsworthWpm(farnsworthWpm, clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max)),
         format,
         leadInMs,
         mp3Kbps,
@@ -802,8 +802,8 @@ export default function MorseMp3GeneratorTool() {
         <SliderRow
           label="Character speed"
           value={charWpm}
-          min={5}
-          max={60}
+          min={AUDIO_SPEED_RANGE.min}
+          max={AUDIO_SPEED_RANGE.max}
           step={1}
           unit="WPM"
           onChange={handleCharWpmChange}
@@ -811,8 +811,8 @@ export default function MorseMp3GeneratorTool() {
         <SliderRow
           label="Farnsworth spacing"
           value={farnsworthWpm}
-          min={5}
-          max={Math.max(5, charWpm)}
+          min={AUDIO_SPEED_RANGE.min}
+          max={Math.max(AUDIO_SPEED_RANGE.min, charWpm)}
           step={1}
           unit="WPM"
           onChange={handleFarnsworthWpmChange}

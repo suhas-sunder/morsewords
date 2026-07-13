@@ -59,11 +59,11 @@
   --mw-button-home-soft-strong-bg: rgba(255, 255, 255, 0.88);
   --mw-button-outline-border: transparent;
   --mw-button-disabled-bg: rgba(255, 255, 255, 0.55);
-  --mw-button-disabled-text: #94a3b8;
+  --mw-button-disabled-text: #64748b;
   --mw-button-dark-panel-bg: rgba(51, 65, 85, 0.95);
   --mw-button-dark-panel-hover: #1e293b;
   --mw-button-dark-panel-disabled-bg: rgba(30, 41, 59, 0.6);
-  --mw-button-dark-panel-disabled-text: #64748b;
+  --mw-button-dark-panel-disabled-text: #94a3b8;
   --mw-input-bg: rgba(255, 255, 255, 0.88);
   --mw-input-bg-soft: rgba(255, 255, 255, 0.85);
   --mw-input-hover-bg: #f7f4ee;
@@ -90,6 +90,7 @@
   --mw-surface-border: #e6e8ef;
   --mw-focus-ring: #38bdf8;
   --mw-focus-visible: #075985;
+  --mw-native-control-accent: #075985;
   --mw-selection-bg: #075985;
   --mw-selection-text: #f0f9ff;
   --mw-focus-ring-muted: rgba(11, 36, 71, 0.34);
@@ -180,11 +181,11 @@
   --mw-button-home-soft-strong-bg: rgba(24, 48, 76, 0.92);
   --mw-button-outline-border: transparent;
   --mw-button-disabled-bg: rgba(30, 45, 66, 0.62);
-  --mw-button-disabled-text: #6f839b;
+  --mw-button-disabled-text: #cbd5e1;
   --mw-button-dark-panel-bg: rgba(30, 51, 76, 0.95);
   --mw-button-dark-panel-hover: #25415f;
   --mw-button-dark-panel-disabled-bg: rgba(22, 33, 49, 0.7);
-  --mw-button-dark-panel-disabled-text: #64748b;
+  --mw-button-dark-panel-disabled-text: #94a3b8;
   --mw-input-bg: rgba(10, 23, 40, 0.9);
   --mw-input-bg-soft: rgba(13, 29, 49, 0.88);
   --mw-input-hover-bg: #162b45;
@@ -211,6 +212,7 @@
   --mw-surface-border: transparent;
   --mw-focus-ring: #7dd3fc;
   --mw-focus-visible: #7dd3fc;
+  --mw-native-control-accent: #7dd3fc;
   --mw-selection-bg: #bae6fd;
   --mw-selection-text: #031524;
   --mw-focus-ring-muted: rgba(125, 211, 252, 0.48);
@@ -276,8 +278,22 @@ body {
   font-family: inherit;
 }
 
-input[type="range"] {
-  accent-color: var(--mw-accent);
+input[type="range"],
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--mw-native-control-accent) !important;
+}
+
+.mw-page-content
+  :where([class*="bg-slate-9"], [class*="bg-neutral-9"])
+  input[type="range"],
+.mw-page-content
+  :where([class*="bg-slate-9"], [class*="bg-neutral-9"])
+  input[type="checkbox"],
+.mw-page-content
+  :where([class*="bg-slate-9"], [class*="bg-neutral-9"])
+  input[type="radio"] {
+  accent-color: #7dd3fc !important;
 }
 
 input[type="range"]:focus-visible {
@@ -1436,6 +1452,10 @@ body
   cursor: not-allowed;
 }
 
+.mw-page-content :where(input, textarea, select):disabled {
+  color: var(--mw-button-disabled-text) !important;
+}
+
 .mw-page-content
   :where(
     button:not(:disabled),
@@ -1791,7 +1811,7 @@ body
 
 .mw-page-content
   :where(input[type="checkbox"], input[type="radio"]):focus-visible {
-  accent-color: var(--mw-accent) !important;
+  accent-color: var(--mw-native-control-accent) !important;
   background-color: var(--mw-focus-range-bg) !important;
   filter: saturate(1.18);
 }

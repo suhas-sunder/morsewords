@@ -133,11 +133,15 @@ function CopyButton({
  setCopied(true);
  window.setTimeout(() => setCopied(false), 800);
  }}
- className={["rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold cursor-pointer transition-colors focus-visible:outline-none","hover:bg-slate-900 hover:text-sky-100 active:bg-[#fffaf2]",
- compact ?"text-sm":"text-base",
- copied ?"bg-sky-50":"",
- kind ==="Label"?"bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white active:bg-slate-900":"",
- ].join("")}
+ className={[
+ "rounded-lg px-3 py-2 font-semibold cursor-pointer transition-colors focus-visible:outline-none",
+ compact ? "text-sm" : "text-base",
+ copied
+ ? "bg-sky-50 text-sky-950"
+ : kind === "Label"
+ ? "bg-slate-950 text-sky-100 hover:bg-slate-800 hover:text-white active:bg-slate-900"
+ : "bg-[#fffdf8] text-slate-900 hover:bg-[#f7f4ee] active:bg-[#fffaf2]",
+ ].join(" ")}
  style={{ whiteSpace:"nowrap"}}
  aria-label={`Copy ${kind}`}
  >

@@ -417,6 +417,7 @@ function SourceUploadDropzone({
         id="book-source-file"
         type="file"
         accept=".txt,.md,.markdown,.epub,.pdf,text/plain,text/markdown,application/epub+zip,application/pdf"
+        aria-label="Choose source document"
         onChange={onFileInputChange}
         className="sr-only"
         aria-describedby="book-source-file-help"
