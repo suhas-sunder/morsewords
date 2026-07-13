@@ -229,6 +229,7 @@ async function readVisibleFeaturedBookLayoutMetrics(page: Page) {
             href: link.getAttribute("href") ?? "",
             ariaLabel: link.getAttribute("aria-label") ?? "",
             cardHeight: cardBox.height,
+            cardTop: cardBox.top,
             linkHeight: linkBox.height,
             coverHeight: coverBox.height,
             coverWidth: coverBox.width,
@@ -242,6 +243,52 @@ async function readVisibleFeaturedBookLayoutMetrics(page: Page) {
     );
 
   return { cards, horizontalOverflow };
+}
+
+type FeaturedBookLayoutCard = Awaited<
+  ReturnType<typeof readVisibleFeaturedBookLayoutMetrics>
+>["cards"][number];
+
+function groupFeaturedBookRows(cards: FeaturedBookLayoutCard[]) {
+  const rowTolerancePx = 4;
+  const rows: Array<{ top: number; cards: FeaturedBookLayoutCard[] }> = [];
+
+  for (const card of [...cards].sort(
+    (left, right) => left.cardTop - right.cardTop || left.index - right.index,
+  )) {
+    const row = rows.find(
+      (candidate) => Math.abs(candidate.top - card.cardTop) <= rowTolerancePx,
+    );
+    if (row) {
+      row.cards.push(card);
+    } else {
+      rows.push({ top: card.cardTop, cards: [card] });
+    }
+  }
+
+  return rows.map((row) => row.cards);
+}
+
+function expectFeaturedBookRowsToShareHeight(
+  cards: FeaturedBookLayoutCard[],
+  expectedCardsPerRow: number,
+  label: string,
+) {
+  const rows = groupFeaturedBookRows(cards);
+  expect(rows.length, `${label} row count`).toBe(
+    cards.length / expectedCardsPerRow,
+  );
+
+  for (const [rowIndex, row] of rows.entries()) {
+    expect(row, `${label} row ${rowIndex + 1} card count`).toHaveLength(
+      expectedCardsPerRow,
+    );
+    const heights = row.map((card) => card.cardHeight);
+    expect(
+      Math.max(...heights) - Math.min(...heights),
+      `${label} row ${rowIndex + 1} equalizes to its tallest card`,
+    ).toBeLessThanOrEqual(1.5);
+  }
 }
 
 function expectFeaturedBookCardsToMatchApprovedRecords(
@@ -777,6 +824,11 @@ test.describe("homepage monetization readiness", () => {
           "Open ",
         );
       }
+      expectFeaturedBookRowsToShareHeight(
+        cards,
+        4,
+        `${width}px large desktop featured books`,
+      );
     }
   });
 
@@ -836,6 +888,34 @@ test.describe("homepage monetization readiness", () => {
             card.description,
             `${theme} ${width}px ${card.slug} description`,
           ).not.toBe("");
+        }
+
+        if (width >= 768) {
+          expectFeaturedBookRowsToShareHeight(
+            cards,
+            2,
+            `${theme} ${width}px featured books`,
+          );
+          for (const card of cards) {
+            expect(
+              card.linkHeight,
+              `${theme} ${width}px ${card.slug} link fills row-height card`,
+            ).toBeCloseTo(card.cardHeight, 0);
+            expect(
+              card.coverHeight,
+              `${theme} ${width}px ${card.slug} cover fills row-height card`,
+            ).toBeCloseTo(card.cardHeight - 24, 0);
+          }
+        } else {
+          const rows = groupFeaturedBookRows(cards);
+          expect(
+            rows.every((row) => row.length === 1),
+            `${theme} ${width}px featured books remain single column`,
+          ).toBe(true);
+          expect(
+            rows,
+            `${theme} ${width}px single-column cards do not share a grid row`,
+          ).toHaveLength(cards.length);
         }
       }
     }

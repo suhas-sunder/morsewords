@@ -284,7 +284,7 @@ function FeaturedBooksSection({
           </div>
         </div>
 
-        <div className="mt-8 grid items-start gap-4 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch">
+        <div className="mt-8 grid items-start gap-4 md:grid-cols-2 md:items-stretch xl:grid-cols-4">
           {featuredBooks.map((book, index) => {
             const bookPath = morseBookPath(book.slug);
             const authorText = formatMorseBookAuthors(book.author);
@@ -298,7 +298,7 @@ function FeaturedBooksSection({
             return (
               <article
                 key={book.slug}
-                className={`min-w-0 xl:h-full ${wideScreenOnly ? "hidden xl:block" : ""}`}
+                className={`min-w-0 md:h-full ${wideScreenOnly ? "hidden xl:block" : ""}`}
                 data-testid="home-featured-book-card"
                 data-mw-home-book-slug={book.slug}
                 data-mw-home-book-title={book.title}
@@ -309,13 +309,13 @@ function FeaturedBooksSection({
               >
                 <Link
                   to={bookPath}
-                  className="mw-static-surface group block min-w-0 cursor-pointer rounded-xl bg-[#fffdf8] p-3 text-slate-900 no-underline shadow-[var(--mw-shadow-soft)] ring-1 ring-slate-950/10 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 xl:h-full"
+                  className="mw-static-surface group block min-w-0 cursor-pointer rounded-xl bg-[#fffdf8] p-3 text-slate-900 no-underline shadow-[var(--mw-shadow-soft)] ring-1 ring-slate-950/10 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 md:h-full"
                   aria-label={`Open ${book.title} by ${authorText}`}
                   title={`Open ${book.title}`}
                   data-testid="home-featured-book-primary-link"
                 >
                   <div
-                    className="mw-static-tile relative flex min-h-0 w-full overflow-hidden rounded-lg bg-[#f2eee6] px-5 py-5 xl:aspect-[3/5]"
+                    className="mw-static-tile relative flex min-h-0 w-full overflow-hidden rounded-lg bg-[#f2eee6] px-5 py-5 md:h-full xl:aspect-[3/5]"
                     data-testid="home-featured-book-cover"
                   >
                     <span
@@ -348,7 +348,7 @@ function FeaturedBooksSection({
                         </p>
                       </div>
 
-                      <div className="min-w-0 pt-5 xl:mt-auto">
+                      <div className="min-w-0 pt-5">
                         {description ? (
                           <p
                             className="line-clamp-4 text-sm leading-relaxed text-slate-700"
@@ -357,20 +357,20 @@ function FeaturedBooksSection({
                             {description}
                           </p>
                         ) : null}
-                        <div className="mt-3 min-w-0 space-y-2">
-                          <p
-                            className="mw-muted-label font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500 xl:whitespace-nowrap xl:text-[10px] xl:tracking-normal"
-                            data-testid="home-featured-book-value-line"
-                          >
-                            {valueLine}
-                          </p>
-                          <span
-                            className="block text-sm font-bold text-sky-900"
-                            data-testid="home-featured-book-affordance"
-                          >
-                            Read and listen -&gt;
-                          </span>
-                        </div>
+                      </div>
+                      <div className="mt-3 min-w-0 space-y-2 md:mt-auto">
+                        <p
+                          className="mw-muted-label font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500 xl:whitespace-nowrap xl:text-[10px] xl:tracking-normal"
+                          data-testid="home-featured-book-value-line"
+                        >
+                          {valueLine}
+                        </p>
+                        <span
+                          className="block text-sm font-bold text-sky-900"
+                          data-testid="home-featured-book-affordance"
+                        >
+                          Read and listen -&gt;
+                        </span>
                       </div>
                     </div>
                   </div>
