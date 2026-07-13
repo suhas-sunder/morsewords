@@ -20,6 +20,7 @@ import {
 } from "~/client/components/shared/ToolWorkspace";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import PlaybackToggleGroup from "~/client/components/shared/PlaybackToggleGroup";
+import AdvancedSettingsToggle from "~/client/components/shared/AdvancedSettingsToggle";
 import { AudioPresetOptions } from "~/client/components/shared/AudioPresetPicker";
 import { getAudioPresetDefaults } from "~/client/components/shared/audioPresetRegistry";
 import { presetSupportsPitchControl } from "~/client/components/shared/audioToneSynthesis";
@@ -821,12 +822,14 @@ export default function MorseAudioTranslator({
                           : undefined,
                       disabled: !flashAllowed,
                     }}
-                  />
-                  <FlashLamp
-                    active={flashLamp.active}
-                    disabled={!flashAllowed}
-                    label="Morse audio flash lamp"
-                    size="sm"
+                    trailing={
+                      <FlashLamp
+                        active={flashLamp.active}
+                        disabled={!flashAllowed}
+                        label="Morse audio flash lamp"
+                        size="sm"
+                      />
+                    }
                   />
                 </div>
               </div>
@@ -882,16 +885,10 @@ export default function MorseAudioTranslator({
               ) : null}
 
               <div className="mt-4">
-                <ActionButton
-                  unstyled
-                  onClick={() => setAdvancedOpen((v) => !v)}
-                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95"
-                  leadingIcon={
-                    <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
-                  }
-                >
-                  {advancedOpen ? "Hide advanced" : "Show advanced"}
-                </ActionButton>
+                <AdvancedSettingsToggle
+                  onToggle={() => setAdvancedOpen((value) => !value)}
+                  open={advancedOpen}
+                />
               </div>
 
               {advancedOpen && (

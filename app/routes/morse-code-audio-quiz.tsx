@@ -17,7 +17,9 @@ import StrobeWarning, {
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
-import TogglePill from "~/client/components/shared/ui/TogglePill";
+import PlaybackToggleGroup from "~/client/components/shared/PlaybackToggleGroup";
+import AdvancedSettingsToggle from "~/client/components/shared/AdvancedSettingsToggle";
+import { AudioPresetOptions } from "~/client/components/shared/AudioPresetPicker";
 import FlashLamp from "~/client/components/shared/FlashLamp";
 import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import {
@@ -34,7 +36,11 @@ import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
 import {
+  AUDIO_ATTACK_RANGE,
+  AUDIO_PITCH_RANGE,
+  AUDIO_RELEASE_RANGE,
   TOOL_SPEED_RANGE,
+  VOLUME_RANGE,
   clampFarnsworthWpm,
   sanitizeAudioGeneratorPreset,
 } from "~/client/components/shared/morseSettings";
@@ -46,11 +52,9 @@ import {
 } from "~/client/components/shared/settingsStorage";
 import {
   CheckCircleIcon,
-  LightBulbIcon,
   LoopIcon,
   PlayIcon,
   RefreshIcon,
-  SoundIcon,
   StopIcon,
 } from "~/client/assets/svg/Icons";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
@@ -625,8 +629,8 @@ export default function MorseCodeAudioQuiz() {
                 label="Character speed"
                 labelTone="sky"
                 value={charWpm}
-                min={5}
-                max={40}
+                min={TOOL_SPEED_RANGE.min}
+                max={TOOL_SPEED_RANGE.max}
                 step={1}
                 unit="WPM"
                 onChange={handleCharWpmChange}
@@ -635,19 +639,18 @@ export default function MorseCodeAudioQuiz() {
                 label="Farnsworth spacing"
                 labelTone="sky"
                 value={farnsworthWpm}
-                min={5}
-                max={Math.max(5, charWpm)}
+                min={TOOL_SPEED_RANGE.min}
+                max={Math.max(TOOL_SPEED_RANGE.min, charWpm)}
                 step={1}
                 unit="WPM"
                 onChange={handleFarnsworthWpmChange}
-                help="Slows spacing only."
               />
               <SliderRow
                 label="Pitch"
                 labelTone="sky"
                 value={toneHz}
-                min={300}
-                max={1000}
+                min={AUDIO_PITCH_RANGE.min}
+                max={AUDIO_PITCH_RANGE.max}
                 step={10}
                 unit="Hz"
                 onChange={setToneHz}
@@ -657,40 +660,38 @@ export default function MorseCodeAudioQuiz() {
                 label="Volume"
                 labelTone="sky"
                 value={Math.round(volume * 100)}
-                min={0}
-                max={100}
+                min={VOLUME_RANGE.min * 100}
+                max={VOLUME_RANGE.max * 100}
                 step={1}
                 unit="%"
                 onChange={(value) => setVolume(value / 100)}
                 disabled={!soundOn}
               />
-              <SliderRow
-                label="Attack"
-                labelTone="sky"
-                value={attackMs}
-                min={0}
-                max={40}
-                step={1}
-                unit="ms"
-                onChange={setAttackMs}
-                disabled={!soundOn || preset === "sounder"}
-              />
-              <SliderRow
-                label="Release"
-                labelTone="sky"
-                value={releaseMs}
-                min={0}
-                max={80}
-                step={1}
-                unit="ms"
-                onChange={setReleaseMs}
-                disabled={!soundOn || preset === "sounder"}
+            </div>
+
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <PlaybackToggleGroup
+                sound={{ checked: soundOn, onChange: setSoundOn }}
+                repeat={{ checked: repeat, onChange: setRepeat }}
+                flash={{
+                  checked: effectiveFlash,
+                  onChange: (value) => setFlash(value && flashAllowed),
+                  describedBy: disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : showStrobeWarning ? STROBE_WARNING_ID : undefined,
+                  disabled: !flashAllowed,
+                }}
+                trailing={<FlashLamp active={flashLamp.active} disabled={!flashAllowed} label="Morse audio quiz flash lamp" size="sm" />}
               />
             </div>
 
+            {disableFlashEffects ? (
+              <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} className="mt-4" />
+            ) : showStrobeWarning ? (
+              <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" />
+            ) : null}
+
             {advancedOpen ? (
               <div className="mt-5">
-                <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_2fr] md:items-end">
+                <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_2fr]">
                   <label className="block">
                     <span className="text-sm font-extrabold text-sky-950">
                       Sound preset
@@ -702,77 +703,19 @@ export default function MorseCodeAudioQuiz() {
                       }
                 className="mt-2 min-h-11 w-full cursor-pointer rounded-xl bg-[#fffdf8] px-3 font-semibold text-slate-950 transition hover:bg-[#f7f4ee] focus:outline-none focus:ring-0 focus-visible:outline-none"
                     >
-                      <option value="cw_radio">CW (Radio)</option>
-                      <option value="sine">Sine</option>
-                      <option value="square">Square</option>
-                      <option value="triangle">Triangle</option>
-                      <option value="sawtooth">Sawtooth</option>
-                      <option value="sounder">Telegraph sounder</option>
+                      <AudioPresetOptions context="livePlayback" />
                     </select>
                   </label>
 
-                  <div className="flex flex-wrap items-center gap-2">
-                    <TogglePill
-                      label="Sound"
-                      checked={soundOn}
-                      onChange={setSoundOn}
-                      icon={<SoundIcon size={16} title="Sound" />}
-                      hover="soft"
-                    />
-                    <TogglePill
-                      label="Repeat"
-                      checked={repeat}
-                      onChange={setRepeat}
-                      icon={<LoopIcon size={16} title="Repeat" />}
-                      hover="soft"
-                    />
-                    <TogglePill
-                      label="Flash Light"
-                      checked={effectiveFlash}
-                      onChange={(value) => setFlash(value && flashAllowed)}
-                      icon={
-                        <LightBulbIcon
-                          size={16}
-                          title={undefined}
-                          aria-hidden="true"
-                        />
-                      }
-                      describedBy={
-                        disableFlashEffects
-                          ? FLASH_DISABLED_NOTICE_ID
-                          : showStrobeWarning
-                            ? STROBE_WARNING_ID
-                          : undefined
-                      }
-                      disabled={!flashAllowed}
-                      hover="soft"
-                    />
-                    <FlashLamp
-                      active={flashLamp.active}
-                      disabled={!flashAllowed}
-                      label="Morse audio quiz flash lamp"
-                      size="sm"
-                    />
+                  <div className="grid grid-cols-2 gap-3">
+                    <SliderRow label="Attack" labelTone="sky" value={attackMs} min={AUDIO_ATTACK_RANGE.min} max={AUDIO_ATTACK_RANGE.max} step={1} unit="ms" onChange={setAttackMs} disabled={!soundOn || preset === "sounder"} />
+                    <SliderRow label="Release" labelTone="sky" value={releaseMs} min={AUDIO_RELEASE_RANGE.min} max={AUDIO_RELEASE_RANGE.max} step={1} unit="ms" onChange={setReleaseMs} disabled={!soundOn || preset === "sounder"} />
                   </div>
                 </div>
-                {disableFlashEffects ? (
-                  <FlashEffectsDisabledNotice
-                    id={FLASH_DISABLED_NOTICE_ID}
-                    className="mt-4"
-                  />
-                ) : showStrobeWarning ? (
-                  <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" />
-                ) : null}
               </div>
             ) : null}
 
-            <button
-              type="button"
-              onClick={() => setAdvancedOpen((value) => !value)}
-              className="mt-5 min-h-11 w-full cursor-pointer rounded-lg bg-[#fffdf8] px-4 py-2 font-semibold text-slate-900 transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none"
-            >
-              {advancedOpen ? "Hide advanced settings" : "Show advanced settings"}
-            </button>
+            <AdvancedSettingsToggle className="mt-5" onToggle={() => setAdvancedOpen((value) => !value)} open={advancedOpen} />
           </div>
         </section>
 

@@ -41,6 +41,7 @@ import {
   copyTextToClipboard,
 } from "~/client/components/shared/ActionControls";
 import { ToolOutputTextarea } from "~/client/components/shared/ToolWorkspace";
+import AdvancedSettingsToggle from "~/client/components/shared/AdvancedSettingsToggle";
 import PlaybackToggleGroup from "~/client/components/shared/PlaybackToggleGroup";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import {
@@ -986,22 +987,24 @@ export default function TranslatorSectionsBasic({
                             : undefined,
                         disabled: !flashAllowed,
                       }}
-                    />
-                    <FlashLamp
-                      active={flashLamp.active}
-                      disabled={!flashAllowed}
-                      label="Morse translator flash lamp"
-                      size="sm"
+                      trailing={
+                        <FlashLamp
+                          active={flashLamp.active}
+                          disabled={!flashAllowed}
+                          label="Morse translator flash lamp"
+                          size="sm"
+                        />
+                      }
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                   <SliderRow
-                    label="Speed"
+                    label="Character speed"
                     value={charWpm}
-                    min={5}
-                    max={40}
+                    min={TOOL_SPEED_RANGE.min}
+                    max={TOOL_SPEED_RANGE.max}
                     step={1}
                     unit="WPM"
                     onChange={handleCharWpmChange}
@@ -1010,8 +1013,8 @@ export default function TranslatorSectionsBasic({
                   <SliderRow
                     label="Pitch"
                     value={toneHz}
-                    min={300}
-                    max={900}
+                    min={TRANSLATOR_PITCH_RANGE.min}
+                    max={TRANSLATOR_PITCH_RANGE.max}
                     step={10}
                     unit="Hz"
                     onChange={setToneHz}
@@ -1021,9 +1024,9 @@ export default function TranslatorSectionsBasic({
                   <SliderRow
                     label="Volume"
                     value={Math.round(volume * 100)}
-                    min={0}
-                    max={100}
-                    step={5}
+                    min={VOLUME_RANGE.min * 100}
+                    max={VOLUME_RANGE.max * 100}
+                    step={1}
                     unit="%"
                     onChange={(v) => setVolume(v / 100)}
                     disabled={!soundOn}
@@ -1037,25 +1040,11 @@ export default function TranslatorSectionsBasic({
                   <StrobeWarning id={STROBE_WARNING_ID} />
                 ) : null}
 
-                <button
-                  type="button"
-                  onClick={() => setAdvancedOpen((v) => !v)}
+                <AdvancedSettingsToggle
                   disabled={!isHydrated}
-                  className={`inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-2 transition active:scale-95 disabled:cursor-wait disabled:opacity-60 sm:w-auto ${focusOutline} ${
-                    isHome
-                      ? HOME_SOFT_CONTROL_DARK
-                      : SOFT_CONTROL_DARK
-                  }`}
-                  aria-expanded={advancedOpen}
-                >
-                  <TuneIcon size={16} title={undefined} aria-hidden="true" />
-                  <span className="text-sm font-semibold text-current">
-                    Advanced settings
-                  </span>
-                  <span aria-hidden className="text-current opacity-80">
-                    {advancedOpen ? "▴" : "▾"}
-                  </span>
-                </button>
+                  onToggle={() => setAdvancedOpen((value) => !value)}
+                  open={advancedOpen}
+                />
 
                 {advancedOpen && (
                   <div className="grid gap-4 pt-4">
@@ -1082,8 +1071,8 @@ export default function TranslatorSectionsBasic({
                       <SliderRow
                         label="Farnsworth"
                         value={farnsworthWpm}
-                        min={5}
-                        max={Math.max(5, charWpm)}
+                        min={TOOL_SPEED_RANGE.min}
+                        max={Math.max(TOOL_SPEED_RANGE.min, charWpm)}
                         step={1}
                         unit="WPM"
                         onChange={handleFarnsworthWpmChange}

@@ -1765,9 +1765,9 @@ body
   cursor: pointer;
 }
 
-.mw-page-content :where(input:not([type="range"]), textarea, select):focus,
+.mw-page-content :where(input:not([type="range"]), select):focus,
 .mw-page-content
-  :where(input:not([type="range"]), textarea, select):focus-within {
+  :where(input:not([type="range"]), select):focus-within {
   border-color: transparent !important;
   outline: none !important;
   outline-offset: 0 !important;
@@ -1778,7 +1778,7 @@ body
 }
 
 .mw-page-content
-  :where(input:not([type="range"]), textarea, select):focus-visible {
+  :where(input:not([type="range"]), select):focus-visible {
   background-color: var(--mw-focus-field-bg) !important;
   border-color: transparent !important;
   caret-color: var(--mw-accent);
@@ -1788,6 +1788,15 @@ body
   --tw-ring-color: transparent !important;
   --tw-ring-offset-shadow: 0 0 #0000 !important;
   --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+/* Textareas keep their document surface while keyboard focus stays outside it. */
+.mw-page-content textarea.mw-stable-textarea:focus,
+.mw-page-content textarea.mw-stable-textarea:focus-visible {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 .mw-page-content
@@ -1807,6 +1816,12 @@ body
   color: var(--mw-output-text) !important;
   caret-color: var(--mw-accent);
   box-shadow: none !important;
+}
+
+.mw-page-content .mw-output-panel textarea.mw-output-text:where(:focus, :focus-visible, :disabled) {
+  background-color: transparent !important;
+  color: var(--mw-output-text) !important;
+  -webkit-text-fill-color: var(--mw-output-text);
 }
 
 .mw-page-content

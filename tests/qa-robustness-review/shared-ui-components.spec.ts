@@ -82,8 +82,15 @@ async function expectCleanFieldFocus(locator: Locator) {
   const focused = await readFocusArtifactSnapshot(locator);
 
   expectNoOutlineRingOrBorder(focused);
-  expect(focused.boxShadow).toBe("none");
-  expect(focused.backgroundColor).not.toBe(before.backgroundColor);
+  expect(focused.boxShadow).toMatch(
+    /^(?:none|(?:rgba\(0, 0, 0, 0\)[^,]*(?:,\s*)?)+)$/,
+  );
+  const tagName = await locator.evaluate((element) => element.tagName.toLowerCase());
+  if (tagName === "textarea") {
+    expect(focused.backgroundColor).toBe(before.backgroundColor);
+  } else {
+    expect(focused.backgroundColor).not.toBe(before.backgroundColor);
+  }
 }
 
 async function expectCleanControlFocus(locator: Locator) {
@@ -282,7 +289,7 @@ test("shared UI control primitives keep accessibility and disabled-state contrac
 
   const appCss = readRepoFile("app/app.css");
   expect(appCss).toMatch(
-    /\.mw-page-content\s+:where\(input:not\(\[type="range"\]\), textarea, select\):focus-visible/,
+    /\.mw-page-content\s+:where\(input:not\(\[type="range"\]\), select\):focus-visible/,
   );
   expect(appCss).toMatch(
     /background-color: var\(--mw-focus-field-bg\) !important;/,
@@ -296,6 +303,7 @@ test("shared UI control primitives keep accessibility and disabled-state contrac
   expect(appCss).toMatch(
     /:where\(\s*textarea\[readonly\],\s*textarea\[readonly\]:focus,\s*textarea\[readonly\]:focus-visible\s*\)\s*\{[^}]*background-color: transparent !important;/s,
   );
+  expect(appCss).toMatch(/textarea\.mw-stable-textarea:focus-visible\s*\{[^}]*background-color: transparent !important;/s);
   expect(appCss).toMatch(/--mw-focus-control-inset:/);
   expect(appCss).toMatch(/:focus-visible\s*\{[^}]*outline:\s*2px/s);
 
@@ -352,6 +360,8 @@ test("homepage-equivalent playback routes keep Sound, Repeat, and Flash Light ou
     "/audio",
     "/morse-code-sound-generator",
     "/morse-code-mp3-generator",
+    "/morse-code-audio-practice",
+    "/morse-code-audio-quiz",
   ]) {
     await page.goto(route, { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);

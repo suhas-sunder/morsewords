@@ -26,6 +26,7 @@ const ROOT = process.cwd();
 const INTERACTION_PRIMITIVE_OWNERS = [
   "app/client/components/shared/ToolWorkspace.tsx",
   "app/client/components/shared/PlaybackToggleGroup.tsx",
+  "app/client/components/shared/AdvancedSettingsToggle.tsx",
   "app/client/components/shared/ui/SliderRow.tsx",
   "app/client/components/shared/ui/TogglePill.tsx",
   "app/client/components/shared/ActionControls.tsx",
@@ -84,6 +85,8 @@ test.describe("interactive state and Morse settings contracts", () => {
       "app/client/components/audio/MorseAudioTranslator.tsx",
       "app/client/components/morse-code-sound-generator/MorseAudioTranslator.tsx",
       "app/client/components/morse-code-mp3-generator/MorseMp3GeneratorTool.tsx",
+      "app/routes/morse-code-audio-practice.tsx",
+      "app/routes/morse-code-audio-quiz.tsx",
     ] as const;
     const bannedSettingHints = [
       "Slows spacing only.",
@@ -96,6 +99,7 @@ test.describe("interactive state and Morse settings contracts", () => {
     for (const filePath of playbackConsumers) {
       const source = readRepoFile(filePath);
       expect(source, filePath).toContain("PlaybackToggleGroup");
+      expect(source, filePath).toContain("AdvancedSettingsToggle");
       expect(source, filePath).not.toContain("<TogglePill");
       for (const hint of bannedSettingHints) {
         expect(source, `${filePath}: ${hint}`).not.toContain(hint);
@@ -112,19 +116,42 @@ test.describe("interactive state and Morse settings contracts", () => {
     expect(sanitizeMorseNumericSetting("pitch", 2_000)).toBe(1_600);
 
     for (const filePath of [
+      "app/client/components/shared/TranslatorSectionsBasic.tsx",
       "app/client/components/audio/MorseAudioTranslator.tsx",
       "app/client/components/morse-code-sound-generator/MorseAudioTranslator.tsx",
       "app/client/components/morse-code-mp3-generator/MorseMp3GeneratorTool.tsx",
+      "app/routes/morse-code-audio-practice.tsx",
+      "app/routes/morse-code-audio-quiz.tsx",
     ]) {
       const source = readRepoFile(filePath);
-      expect(source, filePath).toContain("AUDIO_SPEED_RANGE.max");
+      expect(source, filePath).toMatch(/(?:AUDIO|TOOL)_SPEED_RANGE\.max/);
       expect(source, filePath).toContain("clampFarnsworthWpm");
-      expect(source, filePath).toContain("AUDIO_PITCH_RANGE.min");
+      expect(source, filePath).toMatch(/(?:AUDIO|TRANSLATOR)_PITCH_RANGE\.min/);
       expect(source, filePath).toContain("VOLUME_RANGE.min * 100");
-      expect(source, filePath).toContain("AUDIO_ATTACK_RANGE.min");
-      expect(source, filePath).toContain("AUDIO_RELEASE_RANGE.min");
+      if (!filePath.endsWith("TranslatorSectionsBasic.tsx")) {
+        expect(source, filePath).toContain("AUDIO_ATTACK_RANGE.min");
+        expect(source, filePath).toContain("AUDIO_RELEASE_RANGE.min");
+      }
       expect(source, filePath).not.toContain("clampNum(charWpm, 5, 60)");
       expect(source, filePath).not.toContain("clampNum(farnsworthWpm, 5, 60)");
+      expect(source, filePath).not.toMatch(/max=\{40\}/);
+    }
+  });
+
+  test("keeps the advanced disclosure labels and tone options on shared primitives", () => {
+    const advancedToggle = readRepoFile(
+      "app/client/components/shared/AdvancedSettingsToggle.tsx",
+    );
+    expect(advancedToggle).toContain("Show advanced settings");
+    expect(advancedToggle).toContain("Hide advanced settings");
+
+    for (const filePath of [
+      "app/routes/morse-code-audio-practice.tsx",
+      "app/routes/morse-code-audio-quiz.tsx",
+    ]) {
+      const source = readRepoFile(filePath);
+      expect(source, filePath).toContain('<AudioPresetOptions context="livePlayback" />');
+      expect(source, filePath).not.toContain('<option value="cw_radio">');
     }
   });
 

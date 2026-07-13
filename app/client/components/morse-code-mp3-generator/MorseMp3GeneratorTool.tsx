@@ -71,6 +71,7 @@ import {
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import StatusMessage from "~/client/components/shared/ui/StatusMessage";
 import PlaybackToggleGroup from "~/client/components/shared/PlaybackToggleGroup";
+import AdvancedSettingsToggle from "~/client/components/shared/AdvancedSettingsToggle";
 import {
   CheckCircleIcon,
   CopyIcon,
@@ -767,12 +768,14 @@ export default function MorseMp3GeneratorTool() {
                   : undefined,
               disabled: !flashAllowed,
             }}
-          />
-          <FlashLamp
-            active={flashLamp.active}
-            disabled={!flashAllowed}
-            label="Morse MP3 preview flash lamp"
-            size="sm"
+            trailing={
+              <FlashLamp
+                active={flashLamp.active}
+                disabled={!flashAllowed}
+                label="Morse MP3 preview flash lamp"
+                size="sm"
+              />
+            }
           />
         </div>
       </div>
@@ -829,17 +832,10 @@ export default function MorseMp3GeneratorTool() {
       ) : null}
 
       <div className="mt-4">
-        <ToolButton
-          type="button"
-          tone="light"
-          hover="dark"
-          onClick={() => setAdvancedOpen((value) => !value)}
-          className="w-full rounded-lg"
-          aria-expanded={advancedOpen}
-        >
-          <EqualizerIcon size={18} title={undefined} aria-hidden="true" />
-          {advancedOpen ? "Hide advanced settings" : "Show advanced settings"}
-        </ToolButton>
+        <AdvancedSettingsToggle
+          onToggle={() => setAdvancedOpen((value) => !value)}
+          open={advancedOpen}
+        />
       </div>
 
       {advancedOpen ? (

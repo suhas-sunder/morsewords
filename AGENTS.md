@@ -370,6 +370,18 @@ Approved button treatment is centralized by `app/app.css` and
   non-home route.
 - Shared Morse utilities should remain the source for Morse encoding, decoding,
   spacing, timing, and reference behavior.
+- Equivalent engine features must share one canonical range, step, default,
+  formatter, sanitizer, persistence/migration behavior, and engine-consumed
+  value. Do not introduce weaker route-local caps or preset subsets.
+- Tone presets come from the canonical preset registry. A route may use a narrow
+  adapter only for a documented engine limitation and must test that exception.
+- Validate parity in rendered browsers, including persistence across equivalent
+  routes, rather than relying only on source-level constants.
+- Shared components must be placement-neutral. They own behavior and semantics;
+  routes retain composition where their task genuinely differs.
+- Use the homepage as the visual source when the workflow is equivalent, while
+  preserving a stronger capability found on another route by sharing it.
+- Commit history does not override an explicit current product requirement.
 
 ## 12. Content/product-positioning rules
 
@@ -410,6 +422,16 @@ Approved button treatment is centralized by `app/app.css` and
   audio-only practice if you are sensitive to strobing.`
 - Place strobe warnings before or directly beside controls that can start
   flashing.
+- Editable textareas must retain the same content fill and internal geometry on
+  focus. Put keyboard focus outside the content surface; do not add internal
+  blue lines, pale fills, or focus tint.
+- Read-only Morse outputs must keep a high-contrast deep output surface in all
+  states. Do not allow browser input, focus, disabled, or text-fill styling to
+  turn them pale or reduce readability.
+- On equivalent playback workflows, Sound, Repeat, and Flash Light remain in
+  the primary controls. Secondary synthesis choices stay in the shared advanced
+  disclosure, with customization labels such as `Flash color` when applicable;
+  never leave an orphan swatch or indicator.
 
 ## 14. Privacy/analytics rules
 

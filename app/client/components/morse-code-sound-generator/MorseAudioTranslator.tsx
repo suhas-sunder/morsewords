@@ -38,6 +38,7 @@ import {
 import { useMorseAudioExportJob } from "~/client/components/shared/export/useMorseAudioExportJob";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import PlaybackToggleGroup from "~/client/components/shared/PlaybackToggleGroup";
+import AdvancedSettingsToggle from "~/client/components/shared/AdvancedSettingsToggle";
 import { AudioPresetOptions } from "~/client/components/shared/AudioPresetPicker";
 import {
   getAudioPresetDefaults,
@@ -746,9 +747,16 @@ export default function MorseAudioTranslator({
                         : undefined,
                     disabled: !flashAllowed,
                   }}
+                  trailing={
+                    <FlashLamp
+                      active={flashLamp.active}
+                      disabled={!flashAllowed}
+                      label="Morse audio flash lamp"
+                      size="sm"
+                    />
+                  }
                   rounded="lg"
                 />
-                <FlashLamp active={flashLamp.active} disabled={!flashAllowed} label="Morse audio flash lamp" size="sm" />
               </div>
 
               <div className="mt-4 grid sm:grid-cols-2 gap-4">
@@ -761,14 +769,10 @@ export default function MorseAudioTranslator({
               {disableFlashEffects ? <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} className="mt-3" /> : showStrobeWarning ? <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" /> : null}
 
               <div className="mt-4">
-                <button
-                  type="button"
-                  onClick={() => setAdvancedOpen((v) => !v)}
-                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#fffdf8] px-3 py-2 font-semibold transition hover:bg-slate-900 hover:text-sky-100 focus:outline-none active:scale-95"
-                  aria-expanded={advancedOpen}
-                >
-                  {advancedOpen ? "Hide advanced" : "Show advanced"}
-                </button>
+                <AdvancedSettingsToggle
+                  onToggle={() => setAdvancedOpen((value) => !value)}
+                  open={advancedOpen}
+                />
               </div>
 
               {advancedOpen ? (
