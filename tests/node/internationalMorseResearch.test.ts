@@ -122,38 +122,57 @@ test("research validation flags aliases and unsupported status claims without ch
   assert.ok(codes.includes("incomplete-source-claimed-complete"));
   assert.ok(codes.includes("current-claim-historical-source-only"));
   assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.systems.length, 4);
-  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.length, 121);
-  assert.deepEqual(INTERNATIONAL_MORSE_RESEARCH_IMPORT.systems.map((item) => INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.filter((candidate) => candidate.systemId === item.id).length), [53, 11, 33, 24]);
-  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.claims.length, 60);
-  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.recommendations.length, 121);
-  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.decisions.length, 121);
+  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.length, 175);
+  assert.deepEqual(INTERNATIONAL_MORSE_RESEARCH_IMPORT.systems.map((item) => INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.filter((candidate) => candidate.systemId === item.id).length), [53, 65, 33, 24]);
+  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.claims.length, 164);
+  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.recommendations.length, 175);
+  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.decisions.length, 175);
   assert.equal(validateInternationalMorseResearch(INTERNATIONAL_MORSE_RESEARCH_IMPORT).issues.filter((issue) => issue.severity === "error").length, 0);
   assert.ok(INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.every((candidate) => candidate.claimIds.length > 0 || candidate.unresolvedEvidence));
-  assert.ok(INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.every((candidate) => candidate.unicode.unicodeNameStatus === "verified" && candidate.unicode.unicodeName && candidate.unicode.codePoints?.every((codePoint) => /^U\+[0-9A-F]{4,6}$/.test(codePoint))));
+  assert.ok(INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.filter((candidate) => candidate.requestedReverseEligibility !== "display-only").every((candidate) => candidate.unicode.unicodeNameStatus === "verified" && candidate.unicode.unicodeName && candidate.unicode.codePoints?.every((codePoint) => /^U\+[0-9A-F]{4,6}$/.test(codePoint))));
   assert.ok(INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.every((candidate) => candidate.unicode.nfc === candidate.unicode.canonical.normalize("NFC") && candidate.unicode.nfd === candidate.unicode.canonical.normalize("NFD")));
   const latinA = INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.find((candidate) => candidate.unicode.canonical === "A")!;
   const greekAlpha = INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.find((candidate) => candidate.unicode.canonical === "Α")!;
   const cyrillicA = INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.find((candidate) => candidate.unicode.canonical === "А")!;
   assert.notEqual(latinA.unicode.codePoints?.[0], greekAlpha.unicode.codePoints?.[0]);
   assert.notEqual(latinA.unicode.codePoints?.[0], cyrillicA.unicode.codePoints?.[0]);
-  assert.equal(MORSE_REGISTRY_ENTRIES.length, 121);
+  assert.equal(MORSE_REGISTRY_ENTRIES.length, 172);
   assert.equal(Object.keys(DEFAULT_GLOBAL_FORWARD_MAP).length, 53);
-  assert.equal(MORSE_COLLISION_GROUPS.length, 30);
-  assert.equal(CURRENT_PRODUCTION_COLLISION_BASELINE.length, 30);
+  assert.equal(MORSE_COLLISION_GROUPS.length, 48);
+  assert.equal(CURRENT_PRODUCTION_COLLISION_BASELINE.length, 48);
   assert.equal(CURRENT_PRODUCTION_COLLISION_BASELINE.filter((group) => group.sameSystemCollisionSystemIds.length > 0).length, 1);
   assert.ok(CURRENT_PRODUCTION_COLLISION_BASELINE.every((group) => group.defaultGlobalReverseSafe));
-  assert.equal(MORSE_REGISTRY_ENTRIES.filter((entry) => entry.provenance.verificationStatus === "objectively-source-verified").length, 60);
+  assert.equal(MORSE_REGISTRY_ENTRIES.filter((entry) => entry.provenance.verificationStatus === "objectively-source-verified").length, 111);
   assert.equal(MORSE_REGISTRY_ENTRIES.filter((entry) => entry.provenance.verificationStatus === "objectively-unsupported").length, 61);
   assert.ok(MORSE_REGISTRY_ENTRIES.every((entry) => entry.provenance.verificationDecisionId === `objective-${entry.id}`));
 });
 
 test("objective source adjudication resolves current evidence without impersonating a human reviewer", () => {
   const analysis = assertResearchReadyForPromotion(INTERNATIONAL_MORSE_RESEARCH_IMPORT);
-  assert.equal(analysis.approvedCandidates.length, 60);
-  assert.equal(analysis.testVectors.length, 60);
+  assert.equal(analysis.approvedCandidates.length, 111);
+  assert.equal(analysis.testVectors.length, 111);
   assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.decisions.filter((decision) => decision.decision === "rejected-as-unsupported").length, 61);
+  assert.equal(INTERNATIONAL_MORSE_RESEARCH_IMPORT.decisions.filter((decision) => decision.decision === "approved-display-only").length, 3);
   assert.ok(INTERNATIONAL_MORSE_RESEARCH_IMPORT.decisions.every((decision) => decision.origin === "objective-source-adjudication" && decision.decisionActor === "codex-source-verification"));
   assert.ok(INTERNATIONAL_MORSE_RESEARCH_IMPORT.decisions.every((decision) => decision.decision !== "blocked-pending-review" && decision.decision !== "product-policy-decision-required"));
+});
+
+test("complete Wabun evidence keeps JARL as the controlling table and procedural rows out of production vectors", () => {
+  const jarl = INTERNATIONAL_MORSE_RESEARCH_IMPORT.sources.find((source) => source.id === "jarl-wabun-morse-table");
+  const egov = INTERNATIONAL_MORSE_RESEARCH_IMPORT.sources.find((source) => source.id === "japan-e-gov-radio-station-operation-rules");
+  assert.ok(jarl);
+  assert.equal(jarl.issuingOrganization, "Japan Amateur Radio League, Inc.");
+  assert.equal(jarl.locator, "モールス符号 page, 和文 table: all 48 kana, 濁点, 半濁点, 数字（欧文も同じ）, and 記号 rows");
+  assert.equal(jarl.independenceGroupId, "jarl-wabun-morse-table");
+  assert.ok(egov && egov.independenceGroupId !== jarl.independenceGroupId);
+
+  const wabun = INTERNATIONAL_MORSE_RESEARCH_IMPORT.candidates.filter((candidate) => candidate.systemId === "japanese-wabun");
+  assert.equal(wabun.filter((candidate) => candidate.category === "letter").length, 48);
+  assert.equal(wabun.filter((candidate) => candidate.category === "digit").length, 10);
+  assert.equal(wabun.filter((candidate) => candidate.category === "punctuation").length, 2);
+  assert.equal(wabun.filter((candidate) => candidate.category === "control-token").length, 5);
+  assert.equal(wabun.filter((candidate) => candidate.requestedReverseEligibility === "display-only").length, 3);
+  assert.equal(assertResearchReadyForPromotion(INTERNATIONAL_MORSE_RESEARCH_IMPORT).testVectors.filter((vector) => vector.systemId === "japanese-wabun").length, 62);
 });
 
 test("research records stay Node-only and the saved report is never imported", () => {

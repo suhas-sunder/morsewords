@@ -1,6 +1,8 @@
 import {
   getLanguageReferenceCharacters,
+  getLanguageReferenceCharactersByIds,
   getMorseRegistryEntries,
+  JAPANESE_WABUN_STARTER_ENTRY_IDS,
   type LanguageReferenceCharacter,
 } from "~/client/components/shared/morseRegistry";
 import { ROUTES } from "./routes";
@@ -32,7 +34,9 @@ export const INTERNATIONAL_MORSE_A_TO_Z: InternationalMorseLetter[] =
     (entry) => ({ letter: entry.character, morse: entry.pattern }),
   );
 
-const JAPANESE_KANA = [...getLanguageReferenceCharacters("japanese-wabun-starter")];
+// The registry contains complete Wabun data, while this existing public page
+// intentionally remains the reviewed eleven-row starter presentation.
+const JAPANESE_KANA = [...getLanguageReferenceCharactersByIds(JAPANESE_WABUN_STARTER_ENTRY_IDS)];
 const RUSSIAN_CYRILLIC = [...getLanguageReferenceCharacters("russian-cyrillic-reference")];
 const GREEK_ALPHABET = [...getLanguageReferenceCharacters("greek-reference")];
 

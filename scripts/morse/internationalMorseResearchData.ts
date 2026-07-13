@@ -15,6 +15,7 @@ import type {
 
 const ITU_SOURCE_ID = "itu-r-m1677-1";
 const JARL_SOURCE_ID = "jarl-wabun-morse-table";
+const E_GOV_SOURCE_ID = "japan-e-gov-radio-station-operation-rules";
 const UNICODE_SOURCE_ID = "unicode-ucd-unicode-data";
 const RUSSIAN_SOURCE_ID = "russian-minpromtorg-order-4682-2023";
 const GREEK_SOURCE_ID = "raag-gtc-club-statement";
@@ -31,12 +32,26 @@ const unicodeNameFor = (entry: MorseRegistryEntry) => {
   if (CYRILLIC_NAMES[character]) return `CYRILLIC CAPITAL LETTER ${CYRILLIC_NAMES[character]}`;
   if (GREEK_NAMES[character]) return `GREEK CAPITAL LETTER ${GREEK_NAMES[character]}`;
   const reading = entry.presentation?.reading;
-  if (entry.systemId === "japanese-wabun-starter" && reading) return `KATAKANA LETTER ${reading.toUpperCase()}`;
+  if (entry.systemId === "japanese-wabun" && reading) return `KATAKANA LETTER ${reading.toUpperCase()}`;
+  if (entry.systemId === "japanese-wabun" && entry.character === "゛") return "KATAKANA-HIRAGANA VOICED SOUND MARK";
+  if (entry.systemId === "japanese-wabun" && entry.character === "゜") return "KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK";
+  if (entry.systemId === "japanese-wabun" && entry.character === "ー") return "KATAKANA-HIRAGANA PROLONGED SOUND MARK";
+  if (entry.systemId === "japanese-wabun" && entry.character === "、") return "IDEOGRAPHIC COMMA";
   throw new Error(`Missing Unicode name for current production entry ${entry.id}`);
 };
 
 const categoryFor = (entry: MorseRegistryEntry): CandidateMapping["category"] =>
-  entry.category === "digit" ? "digit" : entry.category === "punctuation" ? "punctuation" : "letter";
+  entry.category === "digit"
+    ? "digit"
+    : entry.category === "punctuation"
+      ? "punctuation"
+      : entry.category === "control-token"
+        ? "control-token"
+        : entry.category === "prosign"
+          ? "prosign"
+          : entry.category === "input-alias" || entry.category === "transliteration-alias"
+            ? "alias"
+            : "letter";
 
 const unicodeFor = (entry: MorseRegistryEntry): UnicodeIdentity => ({
   canonical: entry.character,
@@ -56,22 +71,22 @@ const unicodeFor = (entry: MorseRegistryEntry): UnicodeIdentity => ({
 
 const systemFor = (id: CandidateSystem["id"]): CandidateSystem => {
   const system = MORSE_SYSTEMS.find((item) => item.id === id)!;
-  const classification = id === "international" ? "core-international" : id === "japanese-wabun-starter" ? "related-separate-system" : "national-adaptation";
+  const classification = id === "international" ? "core-international" : id === "japanese-wabun" ? "related-separate-system" : "national-adaptation";
   return {
     id: system.id,
     displayName: system.displayName,
     classification,
-    relationshipToInternational: id === "international" ? "base" : id === "japanese-wabun-starter" ? "related" : "adaptation",
+    relationshipToInternational: id === "international" ? "base" : id === "japanese-wabun" ? "related" : "adaptation",
     languageIds: system.languageIds,
     script: system.script,
     direction: "ltr",
-    completeCoverage: "documented-subset",
-    inheritedPunctuation: "unknown",
-    inheritedDigits: "unknown",
+    completeCoverage: id === "japanese-wabun" ? "complete" : "documented-subset",
+    inheritedPunctuation: id === "japanese-wabun" ? "redefines" : "unknown",
+    inheritedDigits: id === "japanese-wabun" ? "inherits" : "unknown",
     inheritedProsigns: "unknown",
-    spacingConvention: "unknown",
+    spacingConvention: id === "japanese-wabun" ? "system-specific" : "unknown",
     mixedSystemSafe: false,
-    sourceIds: id === "international" ? [ITU_SOURCE_ID] : id === "japanese-wabun-starter" ? [JARL_SOURCE_ID] : [],
+    sourceIds: id === "international" ? [ITU_SOURCE_ID] : id === "japanese-wabun" ? [JARL_SOURCE_ID, E_GOV_SOURCE_ID] : [],
   };
 };
 
@@ -79,9 +94,17 @@ const isWrittenItuCharacter = (entry: MorseRegistryEntry) =>
   entry.systemId === "international" && (entry.category === "letter" || entry.category === "digit" || ITU_WRITTEN_CHARACTERS.has(entry.character));
 
 const isDirectlyAttested = (entry: MorseRegistryEntry) =>
-  isWrittenItuCharacter(entry) || entry.systemId === "japanese-wabun-starter";
+  isWrittenItuCharacter(entry) || entry.systemId === "japanese-wabun";
 
-const sourceIdFor = (entry: MorseRegistryEntry) => entry.systemId === "japanese-wabun-starter" ? JARL_SOURCE_ID : ITU_SOURCE_ID;
+const directSourceIdsFor = (entry: MorseRegistryEntry) => {
+  if (entry.systemId !== "japanese-wabun") return [ITU_SOURCE_ID];
+  return entry.category === "language-letter" || entry.category === "control-token"
+    ? [JARL_SOURCE_ID, E_GOV_SOURCE_ID]
+    : [JARL_SOURCE_ID];
+};
+
+const directClaimIdsFor = (entry: MorseRegistryEntry) =>
+  directSourceIdsFor(entry).map((sourceId) => `claim-${entry.id}-${sourceId}`);
 
 const unresolvedFor = (entry: MorseRegistryEntry) => ({
   reason: entry.systemId === "international"
@@ -92,15 +115,39 @@ const unresolvedFor = (entry: MorseRegistryEntry) => ({
     : ["An official or primary system table with an exact page, table, or appendix locator.", "A human review of reverse-decoding scope and any same-system ambiguity."],
 });
 
+// JARL includes these procedural table rows, but does not define them as
+// ordinary Unicode characters for converter input. Keep their evidence in the
+// Node-only dataset so table completeness never turns into a speculative map.
+const WABUN_DISPLAY_ONLY_SOURCE_ROWS = [
+  { id: "ja-display-paragraph", token: "段落", pattern: ".-.-..", label: "Wabun paragraph procedure" },
+  { id: "ja-display-lower-bracket", token: "下向括弧", pattern: "-.--.-", label: "Wabun lower bracket procedure" },
+  { id: "ja-display-upper-bracket", token: "上向括弧", pattern: ".-..-.", label: "Wabun upper bracket procedure" },
+] as const;
+
+const displayOnlyUnicode = (token: string): UnicodeIdentity => ({
+  canonical: token,
+  acceptedForms: [token],
+  script: "Source table label",
+  direction: "ltr",
+  caseBehavior: "caseless",
+  normalization: "NFC",
+  codePoints: Array.from(token, (value) => `U+${value.codePointAt(0)!.toString(16).toUpperCase().padStart(4, "0")}`),
+  unicodeNameStatus: "pending-review",
+  sourceIds: [UNICODE_SOURCE_ID, JARL_SOURCE_ID],
+  nfc: token.normalize("NFC"),
+  nfd: token.normalize("NFD"),
+  nfkcPolicy: "reject",
+});
+
 export const CURRENT_INTERNATIONAL_MORSE_BASELINE_SYSTEMS = MORSE_SYSTEMS.map((system) => systemFor(system.id));
 
-export const CURRENT_INTERNATIONAL_MORSE_BASELINE_CANDIDATES: readonly CandidateMapping[] = MORSE_REGISTRY_ENTRIES.map((entry) => ({
+const registryCandidates: readonly CandidateMapping[] = MORSE_REGISTRY_ENTRIES.map((entry) => ({
   id: entry.id,
   systemId: entry.systemId,
   ...(entry.languageIds[0] === "en" ? {} : { languageId: entry.languageIds[0] }),
   category: categoryFor(entry),
   unicode: unicodeFor(entry),
-  claimIds: isDirectlyAttested(entry) ? [`claim-${entry.id}`] : [],
+  claimIds: isDirectlyAttested(entry) ? directClaimIdsFor(entry) : [],
   requestedReverseEligibility: entry.defaultGlobal ? "default-global" : "selected-system",
   ...(isDirectlyAttested(entry) ? {} : { unresolvedEvidence: unresolvedFor(entry) }),
   existingSurfaceEligibility: {
@@ -113,11 +160,34 @@ export const CURRENT_INTERNATIONAL_MORSE_BASELINE_CANDIDATES: readonly Candidate
   },
 }));
 
-export const CURRENT_INTERNATIONAL_MORSE_BASELINE_CLAIMS: readonly MappingClaim[] = MORSE_REGISTRY_ENTRIES
+const wabunDisplayOnlyCandidates: readonly CandidateMapping[] = WABUN_DISPLAY_ONLY_SOURCE_ROWS.map((row) => ({
+  id: row.id,
+  systemId: "japanese-wabun",
+  languageId: "ja",
+  category: "control-token",
+  unicode: displayOnlyUnicode(row.token),
+  claimIds: [`claim-${row.id}-${JARL_SOURCE_ID}`],
+  requestedReverseEligibility: "display-only",
+  existingSurfaceEligibility: {
+    translator: "requires-review",
+    audio: "requires-review",
+    practice: "requires-review",
+    examples: "requires-review",
+    studySheet: "requires-review",
+    route: "requires-review",
+  },
+}));
+
+export const CURRENT_INTERNATIONAL_MORSE_BASELINE_CANDIDATES: readonly CandidateMapping[] = [
+  ...registryCandidates,
+  ...wabunDisplayOnlyCandidates,
+];
+
+const registryClaims: readonly MappingClaim[] = MORSE_REGISTRY_ENTRIES
   .filter(isDirectlyAttested)
-  .map((entry) => ({
-    id: `claim-${entry.id}`,
-    sourceId: sourceIdFor(entry),
+  .flatMap((entry) => directSourceIdsFor(entry).map((sourceId) => ({
+    id: `claim-${entry.id}-${sourceId}`,
+    sourceId,
     candidateId: entry.id,
     systemId: entry.systemId,
     unicode: unicodeFor(entry),
@@ -129,27 +199,58 @@ export const CURRENT_INTERNATIONAL_MORSE_BASELINE_CLAIMS: readonly MappingClaim[
     extractionStatus: "verified-transcription",
     notes: entry.systemId === "international"
       ? "Verified against the ITU written-character table only; this is not a global reverse-decoding claim."
-      : "Verified against the JARL Wabun table only; this is not a claim of complete Wabun coverage.",
-  }));
+      : sourceId === E_GOV_SOURCE_ID
+        ? "Verified against Japan's Radio Station Operation Rules Appendix 1; this is selected-system Wabun evidence only."
+        : "Verified against JARL's Wabun table; this is selected-system Wabun evidence only.",
+  })));
+
+const wabunDisplayOnlyClaims: readonly MappingClaim[] = WABUN_DISPLAY_ONLY_SOURCE_ROWS.map((row) => ({
+  id: `claim-${row.id}-${JARL_SOURCE_ID}`,
+  sourceId: JARL_SOURCE_ID,
+  candidateId: row.id,
+  systemId: "japanese-wabun",
+  unicode: displayOnlyUnicode(row.token),
+  characterOrToken: `JARL procedure: ${row.token}`,
+  pattern: row.pattern,
+  mappingKind: "sending-convention",
+  temporalStatus: "current",
+  confidence: "high",
+  extractionStatus: "verified-transcription",
+  notes: "JARL documents this as a procedural table row, not an ordinary converter character.",
+}));
+
+export const CURRENT_INTERNATIONAL_MORSE_BASELINE_CLAIMS: readonly MappingClaim[] = [
+  ...registryClaims,
+  ...wabunDisplayOnlyClaims,
+];
 
 export const CURRENT_INTERNATIONAL_MORSE_BASELINE_RECOMMENDATIONS: readonly ResearchRecommendation[] = CURRENT_INTERNATIONAL_MORSE_BASELINE_CANDIDATES.map((candidate) => {
+  const displayOnly = candidate.requestedReverseEligibility === "display-only";
   const directlyAttested = candidate.claimIds.length > 0;
   return {
     id: `recommendation-${candidate.id}`,
     candidateId: candidate.id,
     evidenceState: directlyAttested ? "singly-attested" : "blocked-pending-review",
-    recommendedImplementationState: directlyAttested ? "approved-for-registry" : "blocked-pending-review",
-    recommendedReverseEligibility: directlyAttested ? "selected-system" : candidate.requestedReverseEligibility,
-    sourceSummary: directlyAttested
-      ? candidate.systemId === "international"
-        ? "One official ITU-R source directly defines this written character and pattern; independent corroboration and a human decision remain required."
-        : "One official JARL Wabun table directly defines this starter entry; an exact national-standard source and a human decision remain required."
-      : candidate.unresolvedEvidence!.reason,
-    unresolvedQuestions: directlyAttested
-      ? candidate.systemId === "international"
-        ? ["Confirm independent corroboration or document a human-reviewed exception.", "Confirm that default compatibility decoding is not presented as globally unambiguous."]
-        : ["Find an exact national-standard or government source if available.", "Confirm selected-system reverse behavior and the starter-subset boundary."]
-      : candidate.unresolvedEvidence!.requiredEvidence,
+    recommendedImplementationState: displayOnly ? "approved-display-only" : directlyAttested ? "approved-for-registry" : "blocked-pending-review",
+    recommendedReverseEligibility: displayOnly ? "display-only" : directlyAttested ? "selected-system" : candidate.requestedReverseEligibility,
+    sourceSummary: directlyAttested ? (
+      displayOnly
+        ? "JARL directly documents this Wabun procedure, which remains display-only rather than an ordinary converter mapping."
+        : candidate.systemId === "international"
+          ? "One official ITU-R source directly defines this written character and pattern; independent corroboration and a human decision remain required."
+          : candidate.claimIds.length > 1
+            ? "JARL and Japan's Radio Station Operation Rules independently define this Wabun entry and pattern."
+            : "JARL directly defines this Wabun punctuation entry and pattern; the documented controlling-source exception applies."
+    ) : candidate.unresolvedEvidence!.reason,
+    unresolvedQuestions: directlyAttested ? (
+      displayOnly
+        ? ["Keep this source-table procedure outside ordinary character encoding and reverse decoding."]
+        : candidate.systemId === "international"
+          ? ["Confirm independent corroboration or document a human-reviewed exception.", "Confirm that default compatibility decoding is not presented as globally unambiguous."]
+          : candidate.claimIds.length > 1
+            ? ["Keep reverse decoding selected-system only; Wabun patterns are not globally unambiguous."]
+            : ["Retain the documented single-controlling-source exception and selected-system boundary."]
+    ) : candidate.unresolvedEvidence!.requiredEvidence,
   };
 });
 
@@ -172,21 +273,49 @@ const sourceIdsForDecision = (candidate: CandidateMapping) => {
 export const CURRENT_INTERNATIONAL_MORSE_FINAL_DECISIONS: readonly ReviewDecision[] = CURRENT_INTERNATIONAL_MORSE_BASELINE_CANDIDATES.map((candidate) => {
   const directlyAttested = candidate.claimIds.length > 0;
   const systemIsInternational = candidate.systemId === "international";
+  const displayOnly = candidate.requestedReverseEligibility === "display-only";
+  if (displayOnly) {
+    return {
+      id: `objective-${candidate.id}`,
+      candidateId: candidate.id,
+      decision: "approved-display-only",
+      evidenceState: "singly-attested",
+      approvedSystemId: candidate.systemId,
+      approvedNormalization: candidate.unicode.normalization,
+      reverseEligibility: "display-only",
+      sourceSummary: "JARL directly documents this source-table procedure, but not as an ordinary Unicode character mapping.",
+      caveats: "This row is deliberately excluded from production forward and reverse character vectors.",
+      origin: "objective-source-adjudication",
+      method: "direct controlling-source transcription with display-only classification",
+      supportingClaimIds: candidate.claimIds,
+      supportingSourceIds: sourceIdsForDecision(candidate),
+      decisionActor: "codex-source-verification",
+      decisionDate: "2026-07-13",
+      productApprovalRequired: false,
+      evidenceException: {
+        kind: "single-controlling-source",
+        justification: "JARL directly defines the procedure and no conflicting authoritative table was found during targeted research.",
+        limitation: "The procedure remains display-only and cannot create a production character mapping.",
+      },
+    };
+  }
   if (directlyAttested) {
     return {
       id: `objective-${candidate.id}`,
       candidateId: candidate.id,
       decision: systemIsInternational ? "approved-for-registry" : "approved-for-system-scoped-reverse",
-      evidenceState: "singly-attested",
+      evidenceState: candidate.claimIds.length > 1 ? "independently-corroborated" : "singly-attested",
       approvedSystemId: candidate.systemId,
       approvedNormalization: candidate.unicode.normalization,
       reverseEligibility: "selected-system",
       sourceSummary: systemIsInternational
         ? "The current entry is directly transcribed from the official ITU-R written-character table."
-        : "The current starter entry is directly transcribed from JARL's official Wabun table.",
+        : candidate.claimIds.length > 1
+          ? "The Wabun entry is directly corroborated by JARL and Japan's Radio Station Operation Rules."
+          : "The Wabun punctuation entry is directly transcribed from JARL's official table.",
       caveats: systemIsInternational
         ? "Default-global is existing compatibility behavior, not a claim that the pattern is unambiguous across every registered system."
-        : "Approved only as the current starter subset, not as a complete Wabun inventory.",
+        : "Approved only for selected-system Wabun behavior; it is never a default-global mapping.",
       conflictDisposition: "Cross-system pattern reuse is intentional. Reverse decoding is approved only with selected-system context; the existing compatibility default is not a global-unambiguity claim.",
       origin: "objective-source-adjudication",
       method: "direct controlling-source transcription with documented single-source exception",
@@ -195,11 +324,13 @@ export const CURRENT_INTERNATIONAL_MORSE_FINAL_DECISIONS: readonly ReviewDecisio
       decisionActor: "codex-source-verification",
       decisionDate: "2026-07-12",
       productApprovalRequired: false,
-      evidenceException: {
-        kind: "single-controlling-source",
-        justification: "The identified source directly defines the mapping and no conflicting authoritative source was found during the targeted search.",
-        limitation: "This factual adjudication does not expand the registered system or imply broader language coverage.",
-      },
+      ...(candidate.claimIds.length > 1 ? {} : {
+        evidenceException: {
+          kind: "single-controlling-source" as const,
+          justification: "The identified source directly defines the mapping and no conflicting authoritative source was found during the targeted search.",
+          limitation: "This factual adjudication does not expand the registered system or imply default-global reverse behavior.",
+        },
+      }),
     };
   }
   const subject = candidate.systemId === "international" ? "The ITU table does not define this as a written character." : candidate.systemId === "russian-cyrillic-reference" ? "Targeted Russian government and standards searches did not yield a defining character-to-pattern table with an exact authoritative locator." : "Targeted Greek government and national amateur-radio searches did not yield a defining character-to-pattern table with an exact authoritative locator.";
@@ -269,9 +400,10 @@ export const INTERNATIONAL_MORSE_RESEARCH_IMPORT: InternationalMorseResearchData
     id: JARL_SOURCE_ID,
     title: "Q symbols and abbreviations: Morse code table",
     issuingOrganization: "Japan Amateur Radio League, Inc.",
-    accessedDate: "2026-07-12",
+    accessedDate: "2026-07-13",
     url: "https://www.jarl.org/Japanese/A_Shiryo/A-C_Morse/morse.htm",
-    locator: "Morse code page, 和文 table, entries ア, イ, ウ, エ, オ, カ, キ, ク, ケ, コ, and ン",
+    archivedUrl: "https://www.jarl.org/Japanese/A_Shiryo/A-C_Morse/morse_2017.pdf",
+    locator: "モールス符号 page, 和文 table: all 48 kana, 濁点, 半濁点, 数字（欧文も同じ）, and 記号 rows",
     language: "ja",
     jurisdiction: "Japan",
     category: "national-amateur-radio-organization",
@@ -280,9 +412,28 @@ export const INTERNATIONAL_MORSE_RESEARCH_IMPORT: InternationalMorseResearchData
     temporalStatus: "uncertain",
     directlyDefinesMapping: true,
     independenceGroupId: "jarl-wabun-morse-table",
-    reliabilityNotes: "Official JARL page directly displays the eleven current starter entries and their dot-dash patterns.",
-    limitations: "This is an official national amateur-radio-organization reference, not a verified Japanese national-standard citation; it is not evidence of complete Wabun coverage.",
-    citationNote: "Independently checked against the JARL page during this research pass.",
+    reliabilityNotes: "Official JARL page directly defines the complete current Wabun table used here, including its kana, modifier, digit, and punctuation rows.",
+    limitations: "The table does not define a general mixed-system decoder or a universal Latin/Wabun mode-inference rule.",
+    citationNote: "Independently checked against the JARL HTML page and its published quick-reference PDF during this research pass.",
+    verificationStatus: "checked",
+  }, {
+    id: E_GOV_SOURCE_ID,
+    title: "Radio Station Operation Rules (無線局運用規則)",
+    issuingOrganization: "Government of Japan e-Gov Law Search",
+    accessedDate: "2026-07-13",
+    url: "https://laws.e-gov.go.jp/law/325M50080000017",
+    locator: "Appendix 1, Morse code (Article 12), section 1 和文: rows イ through ン plus 濁点 and 半濁点",
+    language: "ja",
+    jurisdiction: "Japan",
+    category: "national-telecommunications-authority",
+    authorityTier: "primary-authority",
+    primaryOrSecondary: "primary",
+    temporalStatus: "current",
+    directlyDefinesMapping: true,
+    independenceGroupId: "japan-e-gov-radio-station-operation-rules",
+    reliabilityNotes: "The official Japanese rule independently corroborates the Wabun kana and voiced-mark patterns used by the registry.",
+    limitations: "This source is used only for the rows it directly defines. It is not used to infer Wabun punctuation or a mixed-system decoder.",
+    citationNote: "Independently inspected during this research pass through the official e-Gov legal record.",
     verificationStatus: "checked",
   }, {
     id: RUSSIAN_SOURCE_ID,

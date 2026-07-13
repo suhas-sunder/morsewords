@@ -8,7 +8,7 @@ export const DEFAULT_MORSE_SYSTEM_ID = "international" as const;
 
 export type MorseSystemId =
   | "international"
-  | "japanese-wabun-starter"
+  | "japanese-wabun"
   | "russian-cyrillic-reference"
   | "greek-reference";
 
@@ -37,7 +37,7 @@ export type MorseProvenance = {
   kind: "repository-legacy-map" | "repository-language-reference";
   verificationStatus: "repository-migrated" | "pending-external-verification" | "objectively-source-verified" | "objectively-unsupported";
   verificationDecisionId?: string;
-  sourceCategorySummary?: "international-standard" | "national-amateur-radio-organization" | "insufficient-authoritative-evidence";
+  sourceCategorySummary?: "international-standard" | "national-amateur-radio-organization" | "national-telecommunications-authority" | "insufficient-authoritative-evidence";
   reverseEligibility?: "selected-system" | "compatibility-default" | "not-source-verified";
   caveatFlags?: readonly string[];
   sourceTitle?: string;
@@ -108,6 +108,15 @@ export type MorseSystem = {
   implementationStatus: "active-compatibility" | "reference-only";
 };
 
+export type MorseSystemInputSequence = {
+  id: string;
+  systemId: MorseSystemId;
+  character: string;
+  normalizedInputs: readonly string[];
+  expansionEntryIds: readonly string[];
+  canonicalOutput: string;
+};
+
 export type LanguageReferenceCharacter = {
   id: string;
   reference: string;
@@ -163,8 +172,8 @@ export const MORSE_SYSTEMS: readonly MorseSystem[] = Object.freeze([
     implementationStatus: "active-compatibility",
   },
   {
-    id: "japanese-wabun-starter",
-    displayName: "Japanese Wabun starter reference",
+    id: "japanese-wabun",
+    displayName: "Japanese Wabun system",
     script: "Kana",
     languageIds: ["ja"],
     relationship: "language-reference",
@@ -270,18 +279,40 @@ const GLOBAL_MORSE_DATA: ReadonlyArray<
   ["&", ".-...", "punctuation"], ["_", "..--.-", "punctuation"],
 ];
 
-const JAPANESE_REFERENCE_DATA = [
-  ["ja-a", "Romaji a", "ア", "a", "--.--", "Katakana ア in Wabun code"],
-  ["ja-i", "Romaji i", "イ", "i", ".-", "Katakana イ in Wabun code"],
-  ["ja-u", "Romaji u", "ウ", "u", "..-", "Katakana ウ in Wabun code"],
-  ["ja-e", "Romaji e", "エ", "e", "-.---", "Katakana エ in Wabun code"],
-  ["ja-o", "Romaji o", "オ", "o", ".-...", "Katakana オ in Wabun code"],
-  ["ja-ka", "Romaji ka", "カ", "ka", ".-..", "Katakana カ in Wabun code"],
-  ["ja-ki", "Romaji ki", "キ", "ki", "-.-..", "Katakana キ in Wabun code"],
-  ["ja-ku", "Romaji ku", "ク", "ku", "...-", "Katakana ク in Wabun code"],
-  ["ja-ke", "Romaji ke", "ケ", "ke", "-.--", "Katakana ケ in Wabun code"],
-  ["ja-ko", "Romaji ko", "コ", "ko", "----", "Katakana コ in Wabun code"],
-  ["ja-n", "Romaji n", "ン", "n", ".-.-.", "Katakana ン in Wabun code"],
+export const JAPANESE_WABUN_STARTER_ENTRY_IDS = [
+  "ja-a", "ja-i", "ja-u", "ja-e", "ja-o", "ja-ka", "ja-ki", "ja-ku", "ja-ke", "ja-ko", "ja-n",
+] as const;
+
+// JARL's current Wabun table uses Katakana. Hiragana pairs are accepted as
+// Unicode aliases, but never become the system's reverse-decoding output.
+const JAPANESE_WABUN_DATA = [
+  ["ja-e", "エ", "え", "e", "-.---"], ["ja-i", "イ", "い", "i", ".-"], ["ja-te", "テ", "て", "te", ".-.--"], ["ja-ro", "ロ", "ろ", "ro", ".-.-"],
+  ["ja-a", "ア", "あ", "a", "--.--"], ["ja-ha", "ハ", "は", "ha", "-..."], ["ja-sa", "サ", "さ", "sa", "-.-.-"], ["ja-ni", "ニ", "に", "ni", "-.-."],
+  ["ja-ki", "キ", "き", "ki", "-.-.."], ["ja-ho", "ホ", "ほ", "ho", "-.."], ["ja-yu", "ユ", "ゆ", "yu", "-..--"], ["ja-he", "ヘ", "へ", "he", "."],
+  ["ja-me", "メ", "め", "me", "-...-"], ["ja-to", "ト", "と", "to", "..-.."], ["ja-mi", "ミ", "み", "mi", "..-.-"], ["ja-chi", "チ", "ち", "chi", "..-."],
+  ["ja-shi", "シ", "し", "shi", "--.-."], ["ja-ri", "リ", "り", "ri", "--."], ["ja-we", "ヱ", "ゑ", "we", ".--.."], ["ja-nu", "ヌ", "ぬ", "nu", "...."],
+  ["ja-hi", "ヒ", "ひ", "hi", "--..-"], ["ja-ru", "ル", "る", "ru", "-.--."], ["ja-mo", "モ", "も", "mo", "-..-."], ["ja-wo", "ヲ", "を", "wo", ".---"],
+  ["ja-se", "セ", "せ", "se", ".---."], ["ja-wa", "ワ", "わ", "wa", "-.-"], ["ja-su", "ス", "す", "su", "---.-"], ["ja-ka", "カ", "か", "ka", ".-.."],
+  ["ja-n", "ン", "ん", "n", ".-.-."], ["ja-yo", "ヨ", "よ", "yo", "--"], ["ja-ta", "タ", "た", "ta", "-."], ["ja-re", "レ", "れ", "re", "---"],
+  ["ja-so", "ソ", "そ", "so", "---."], ["ja-tsu", "ツ", "つ", "tsu", ".--."], ["ja-ne", "ネ", "ね", "ne", "--.-"], ["ja-na", "ナ", "な", "na", ".-."],
+  ["ja-ra", "ラ", "ら", "ra", "..."], ["ja-mu", "ム", "む", "mu", "-"], ["ja-u", "ウ", "う", "u", "..-"], ["ja-wi", "ヰ", "ゐ", "wi", ".-..-"],
+  ["ja-no", "ノ", "の", "no", "..--"], ["ja-o", "オ", "お", "o", ".-..."], ["ja-ku", "ク", "く", "ku", "...-"], ["ja-ya", "ヤ", "や", "ya", ".--"],
+  ["ja-ma", "マ", "ま", "ma", "-..-"], ["ja-ke", "ケ", "け", "ke", "-.--"], ["ja-fu", "フ", "ふ", "fu", "--.."], ["ja-ko", "コ", "こ", "ko", "----"],
+] as const;
+
+const JAPANESE_WABUN_DIGITS = [
+  ["0", "-----"], ["1", ".----"], ["2", "..---"], ["3", "...--"], ["4", "....-"],
+  ["5", "....."], ["6", "-...."], ["7", "--..."], ["8", "---.."], ["9", "----."],
+] as const;
+
+const JAPANESE_WABUN_PUNCTUATION = [
+  ["ja-long-vowel", "ー", ".--.-", "Wabun prolonged sound mark"],
+  ["ja-comma", "、", ".-.-.-", "Wabun comma"],
+] as const;
+
+const JAPANESE_WABUN_MODIFIERS = [
+  ["ja-dakuten", "゛", "..", "Wabun voiced sound mark"],
+  ["ja-handakuten", "゜", "..--.", "Wabun semi-voiced sound mark"],
 ] as const;
 
 const RUSSIAN_REFERENCE_DATA = [
@@ -307,16 +338,16 @@ const GREEK_REFERENCE_DATA = [
   ["Χ", "Chi", "Ch", "----"], ["Ψ", "Psi", "Ps", "--.-"], ["Ω", "Omega", "O", ".--"],
 ] as const;
 
-const japaneseEntries = JAPANESE_REFERENCE_DATA.map(
-  ([id, reference, target, reading, pattern, label]) =>
+const japaneseEntries = JAPANESE_WABUN_DATA.map(
+  ([id, target, hiragana, reading, pattern]) =>
     canonicalEntry({
       id,
       character: target,
-      displayLabel: label,
-      normalizedInputs: [target],
+      displayLabel: `Katakana ${target} in Wabun code`,
+      normalizedInputs: [target, hiragana],
       pattern,
       category: "language-letter",
-      systemId: "japanese-wabun-starter",
+      systemId: "japanese-wabun",
       languageIds: ["ja"],
       script: "Kana",
       forwardEncoding: true,
@@ -327,8 +358,97 @@ const japaneseEntries = JAPANESE_REFERENCE_DATA.map(
       collisionPolicy: "allow-cross-system",
       standardizationStatus: "unverified-reference",
       provenance: researchProvenance(languageReferenceProvenance, id, true, "national-amateur-radio-organization"),
-      presentation: { reference, reading, label },
+      presentation: { reference: `Romaji ${reading}`, reading, label: `Katakana ${target} in Wabun code` },
     }),
+);
+
+const japaneseDigitEntries = JAPANESE_WABUN_DIGITS.map(([character, pattern]) =>
+  canonicalEntry({
+    id: `ja-digit-${character}`,
+    character,
+    displayLabel: `Digit ${character} in Wabun code`,
+    normalizedInputs: [character],
+    pattern,
+    category: "digit",
+    systemId: "japanese-wabun",
+    languageIds: ["ja"],
+    script: "Common",
+    forwardEncoding: true,
+    reverseDecoding: true,
+    defaultGlobal: false,
+    caseBehavior: "none",
+    normalization: "NFC",
+    collisionPolicy: "allow-cross-system",
+    standardizationStatus: "unverified-reference",
+    provenance: researchProvenance(languageReferenceProvenance, `ja-digit-${character}`, true, "national-amateur-radio-organization"),
+  }),
+);
+
+const japanesePunctuationEntries = JAPANESE_WABUN_PUNCTUATION.map(([id, character, pattern, label]) =>
+  canonicalEntry({
+    id,
+    character,
+    displayLabel: label,
+    normalizedInputs: [character],
+    pattern,
+    category: "punctuation",
+    systemId: "japanese-wabun",
+    languageIds: ["ja"],
+    script: "Kana",
+    forwardEncoding: true,
+    reverseDecoding: true,
+    defaultGlobal: false,
+    caseBehavior: "none",
+    normalization: "NFC",
+    collisionPolicy: "allow-cross-system",
+    standardizationStatus: "unverified-reference",
+    provenance: researchProvenance(languageReferenceProvenance, id, true, "national-amateur-radio-organization"),
+  }),
+);
+
+const japaneseModifierEntries = JAPANESE_WABUN_MODIFIERS.map(([id, character, pattern, label]) =>
+  canonicalEntry({
+    id,
+    character,
+    displayLabel: label,
+    normalizedInputs: [character],
+    pattern,
+    category: "control-token",
+    systemId: "japanese-wabun",
+    languageIds: ["ja"],
+    script: "Kana",
+    forwardEncoding: true,
+    reverseDecoding: true,
+    defaultGlobal: false,
+    caseBehavior: "none",
+    normalization: "NFC",
+    collisionPolicy: "allow-cross-system",
+    standardizationStatus: "unverified-reference",
+    provenance: researchProvenance(languageReferenceProvenance, id, true, "national-amateur-radio-organization"),
+  }),
+);
+
+const WABUN_VOICED_SEQUENCE_DATA = [
+  ["ja-seq-vu", "ヴ", ["ヴ", "ゔ"], ["ja-u", "ja-dakuten"]],
+  ["ja-seq-ga", "ガ", ["ガ", "が"], ["ja-ka", "ja-dakuten"]], ["ja-seq-gi", "ギ", ["ギ", "ぎ"], ["ja-ki", "ja-dakuten"]], ["ja-seq-gu", "グ", ["グ", "ぐ"], ["ja-ku", "ja-dakuten"]], ["ja-seq-ge", "ゲ", ["ゲ", "げ"], ["ja-ke", "ja-dakuten"]], ["ja-seq-go", "ゴ", ["ゴ", "ご"], ["ja-ko", "ja-dakuten"]],
+  ["ja-seq-za", "ザ", ["ザ", "ざ"], ["ja-sa", "ja-dakuten"]], ["ja-seq-ji", "ジ", ["ジ", "じ"], ["ja-shi", "ja-dakuten"]], ["ja-seq-zu", "ズ", ["ズ", "ず"], ["ja-su", "ja-dakuten"]], ["ja-seq-ze", "ゼ", ["ゼ", "ぜ"], ["ja-se", "ja-dakuten"]], ["ja-seq-zo", "ゾ", ["ゾ", "ぞ"], ["ja-so", "ja-dakuten"]],
+  ["ja-seq-da", "ダ", ["ダ", "だ"], ["ja-ta", "ja-dakuten"]], ["ja-seq-di", "ヂ", ["ヂ", "ぢ"], ["ja-chi", "ja-dakuten"]], ["ja-seq-du", "ヅ", ["ヅ", "づ"], ["ja-tsu", "ja-dakuten"]], ["ja-seq-de", "デ", ["デ", "で"], ["ja-te", "ja-dakuten"]], ["ja-seq-do", "ド", ["ド", "ど"], ["ja-to", "ja-dakuten"]],
+  ["ja-seq-ba", "バ", ["バ", "ば"], ["ja-ha", "ja-dakuten"]], ["ja-seq-bi", "ビ", ["ビ", "び"], ["ja-hi", "ja-dakuten"]], ["ja-seq-bu", "ブ", ["ブ", "ぶ"], ["ja-fu", "ja-dakuten"]], ["ja-seq-be", "ベ", ["ベ", "べ"], ["ja-he", "ja-dakuten"]], ["ja-seq-bo", "ボ", ["ボ", "ぼ"], ["ja-ho", "ja-dakuten"]],
+  ["ja-seq-pa", "パ", ["パ", "ぱ"], ["ja-ha", "ja-handakuten"]], ["ja-seq-pi", "ピ", ["ピ", "ぴ"], ["ja-hi", "ja-handakuten"]], ["ja-seq-pu", "プ", ["プ", "ぷ"], ["ja-fu", "ja-handakuten"]], ["ja-seq-pe", "ペ", ["ペ", "ぺ"], ["ja-he", "ja-handakuten"]], ["ja-seq-po", "ポ", ["ポ", "ぽ"], ["ja-ho", "ja-handakuten"]],
+  ["ja-seq-va", "ヷ", ["ヷ"], ["ja-wa", "ja-dakuten"]], ["ja-seq-vi", "ヸ", ["ヸ"], ["ja-wi", "ja-dakuten"]], ["ja-seq-ve", "ヹ", ["ヹ"], ["ja-we", "ja-dakuten"]], ["ja-seq-vo", "ヺ", ["ヺ"], ["ja-wo", "ja-dakuten"]],
+] as const;
+
+export const MORSE_SYSTEM_INPUT_SEQUENCES: readonly MorseSystemInputSequence[] = Object.freeze(
+  WABUN_VOICED_SEQUENCE_DATA.map(([id, character, normalizedInputs, expansionEntryIds]) =>
+    Object.freeze({
+      id,
+      systemId: "japanese-wabun" as const,
+      character,
+      normalizedInputs,
+      expansionEntryIds,
+      canonicalOutput: character,
+    }),
+  ),
 );
 
 const russianEntries = RUSSIAN_REFERENCE_DATA.map(
@@ -392,6 +512,9 @@ const greekEntries = GREEK_REFERENCE_DATA.map(
 export const MORSE_REGISTRY_ENTRIES: readonly MorseRegistryEntry[] = Object.freeze([
   ...GLOBAL_MORSE_DATA.map(([character, pattern, category]) => globalEntry(character, pattern, category)),
   ...japaneseEntries,
+  ...japaneseDigitEntries,
+  ...japanesePunctuationEntries,
+  ...japaneseModifierEntries,
   ...russianEntries,
   ...greekEntries,
 ]);
@@ -415,7 +538,10 @@ export type MorseRegistryValidationIssue = {
     | "duplicate-canonical-character"
     | "unsafe-same-system-collision"
     | "duplicate-default-global-reverse"
-    | "unsupported-category-system";
+    | "unsupported-category-system"
+    | "invalid-input-sequence"
+    | "invalid-sequence-expansion"
+    | "duplicate-sequence-input";
   message: string;
   entryIds?: string[];
 };
@@ -423,6 +549,7 @@ export type MorseRegistryValidationIssue = {
 export function validateMorseRegistry(
   entries: readonly MorseRegistryEntry[] = MORSE_REGISTRY_ENTRIES,
   systems: readonly MorseSystem[] = MORSE_SYSTEMS,
+  inputSequences: readonly MorseSystemInputSequence[] = MORSE_SYSTEM_INPUT_SEQUENCES,
 ): MorseRegistryValidationIssue[] {
   const issues: MorseRegistryValidationIssue[] = [];
   const systemIds = new Set(systems.map((system) => system.id));
@@ -474,14 +601,41 @@ export function validateMorseRegistry(
   for (const candidates of defaultPatterns.values()) {
     if (candidates.length > 1) issues.push({ code: "duplicate-default-global-reverse", message: `Duplicate default-global reverse pattern ${candidates[0].pattern}`, entryIds: candidates.map((entry) => entry.id) });
   }
+  const sequenceInputs = new Map<string, MorseSystemInputSequence>();
+  for (const sequence of inputSequences) {
+    if (!systemIds.has(sequence.systemId) || !sequence.character || !sequence.canonicalOutput || !sequence.normalizedInputs.length || !sequence.expansionEntryIds.length) {
+      issues.push({ code: "invalid-input-sequence", message: `Input sequence ${sequence.id} is incomplete or uses an unknown system`, entryIds: [sequence.id] });
+      continue;
+    }
+    for (const input of sequence.normalizedInputs) {
+      const key = `${sequence.systemId}\u0000${input}`;
+      const direct = bySystemCharacter.get(key);
+      const previous = sequenceInputs.get(key);
+      if (direct || previous) {
+        issues.push({
+          code: "duplicate-sequence-input",
+          message: `Input sequence ${sequence.id} duplicates ${direct?.id ?? previous!.id} for ${input}`,
+          entryIds: [sequence.id, direct?.id ?? previous!.id],
+        });
+      }
+      sequenceInputs.set(key, sequence);
+    }
+    for (const entryId of sequence.expansionEntryIds) {
+      const entry = byId.get(entryId);
+      if (!entry || entry.systemId !== sequence.systemId || !entry.forwardEncoding || entry.kind !== "canonical") {
+        issues.push({ code: "invalid-sequence-expansion", message: `Input sequence ${sequence.id} expands through invalid entry ${entryId}`, entryIds: [sequence.id, entryId] });
+      }
+    }
+  }
   return issues;
 }
 
 export function assertValidMorseRegistry(
   entries: readonly MorseRegistryEntry[] = MORSE_REGISTRY_ENTRIES,
   systems: readonly MorseSystem[] = MORSE_SYSTEMS,
+  inputSequences: readonly MorseSystemInputSequence[] = MORSE_SYSTEM_INPUT_SEQUENCES,
 ): void {
-  const issues = validateMorseRegistry(entries, systems);
+  const issues = validateMorseRegistry(entries, systems, inputSequences);
   if (issues.length) throw new Error(`Invalid Morse registry: ${issues.map((issue) => issue.message).join("; ")}`);
 }
 
@@ -511,6 +665,12 @@ const entriesBySystem = new Map<MorseSystemId, readonly MorseRegistryEntry[]>(
   MORSE_SYSTEMS.map((system) => [system.id, Object.freeze(MORSE_REGISTRY_ENTRIES.filter((entry) => entry.systemId === system.id))]),
 );
 const entriesById = new Map(MORSE_REGISTRY_ENTRIES.map((entry) => [entry.id, entry]));
+const inputSequencesBySystem = new Map<MorseSystemId, readonly MorseSystemInputSequence[]>(
+  MORSE_SYSTEMS.map((system) => [
+    system.id,
+    Object.freeze(MORSE_SYSTEM_INPUT_SEQUENCES.filter((sequence) => sequence.systemId === system.id)),
+  ]),
+);
 const entriesByPattern = new Map<string, readonly MorseRegistryEntry[]>();
 for (const entry of MORSE_REGISTRY_ENTRIES.filter((entry) => entry.reverseDecoding)) {
   entriesByPattern.set(entry.pattern, Object.freeze([...(entriesByPattern.get(entry.pattern) ?? []), entry]));
@@ -566,19 +726,33 @@ export function getMorseRegistryEntries(filters: {
 
 export function getLanguageReferenceCharacters(systemId: MorseSystemId): readonly LanguageReferenceCharacter[] {
   return Object.freeze(
-    getMorseRegistryEntries({ systemId, category: "language-letter" }).map((entry) => {
-      if (!entry.presentation) throw new Error(`Language reference entry ${entry.id} is missing presentation data`);
-      return Object.freeze({
-        id: entry.id,
-        reference: entry.presentation.reference,
-        target: entry.character,
-        reading: entry.presentation.reading,
-        morse: entry.pattern,
-        label: entry.presentation.label,
-        ...(entry.presentation.notes ? { notes: entry.presentation.notes } : {}),
-      });
-    }),
+    getMorseRegistryEntries({ systemId, category: "language-letter" }).map(toLanguageReferenceCharacter),
   );
+}
+
+export function getLanguageReferenceCharactersByIds(entryIds: readonly string[]): readonly LanguageReferenceCharacter[] {
+  return Object.freeze(entryIds.map((entryId) => {
+    const entry = getMorseRegistryEntry(entryId);
+    if (!entry) throw new Error(`Language reference entry ${entryId} is missing`);
+    return toLanguageReferenceCharacter(entry);
+  }));
+}
+
+function toLanguageReferenceCharacter(entry: MorseRegistryEntry): LanguageReferenceCharacter {
+  if (!entry.presentation) throw new Error(`Language reference entry ${entry.id} is missing presentation data`);
+  return Object.freeze({
+    id: entry.id,
+    reference: entry.presentation.reference,
+    target: entry.character,
+    reading: entry.presentation.reading,
+    morse: entry.pattern,
+    label: entry.presentation.label,
+    ...(entry.presentation.notes ? { notes: entry.presentation.notes } : {}),
+  });
+}
+
+export function getMorseSystemInputSequences(systemId: MorseSystemId): readonly MorseSystemInputSequence[] {
+  return MORSE_SYSTEM_INPUT_SEQUENCES.filter((sequence) => sequence.systemId === systemId);
 }
 
 export function getMorseForwardMap(systemId: MorseSystemId): Readonly<Record<string, string>> {
@@ -616,7 +790,7 @@ export type MorseEncodeWithSystemResult = {
   normalizedInput: string;
   consumedCharacters: readonly string[];
   unsupportedCharacters: readonly MorseEncodeIssue[];
-  aliasResolutions: readonly { input: string; entryId: string; canonicalEntryId: string }[];
+  aliasResolutions: readonly { input: string; entryId: string; canonicalEntryIds: readonly string[] }[];
   usedSystemIds: readonly MorseSystemId[];
   mixedSystem: false;
 };
@@ -652,8 +826,14 @@ export function encodeMorseWithSystem(
   const normalizedInput = normalizeForSystem(input, system);
   const entries = entriesBySystem.get(systemId)!.filter((entry) => entry.forwardEncoding);
   const byInput = new Map(entries.flatMap((entry) => entry.normalizedInputs.map((value) => [value, entry] as const)));
+  const sequenceByInput = new Map(
+    (inputSequencesBySystem.get(systemId) ?? []).flatMap((sequence) =>
+      sequence.normalizedInputs.map((value) => [value, sequence] as const),
+    ),
+  );
   const unsupportedCharacters: MorseEncodeIssue[] = [];
   const consumedCharacters: string[] = [];
+  const aliasResolutions: Array<{ input: string; entryId: string; canonicalEntryIds: readonly string[] }> = [];
   const words = normalizedInput.split(/\s+/).filter(Boolean).map((word) => {
     const patterns: string[] = [];
     Array.from(word).forEach((character, index) => {
@@ -661,6 +841,21 @@ export function encodeMorseWithSystem(
       if (entry) {
         patterns.push(entry.pattern);
         consumedCharacters.push(character);
+        return;
+      }
+      const sequence = sequenceByInput.get(character);
+      if (sequence) {
+        const expandedEntries = sequence.expansionEntryIds.map((entryId) => entriesById.get(entryId));
+        if (expandedEntries.some((expanded) => !expanded || !expanded.forwardEncoding)) {
+          throw new Error(`Invalid input sequence ${sequence.id}`);
+        }
+        patterns.push(...expandedEntries.map((expanded) => expanded!.pattern));
+        consumedCharacters.push(character);
+        aliasResolutions.push({
+          input: character,
+          entryId: sequence.id,
+          canonicalEntryIds: sequence.expansionEntryIds,
+        });
       } else {
         unsupportedCharacters.push({ type: "unsupported-character", value: character, index });
         if (options.unsupportedText === "placeholder") patterns.push(DEFAULT_GLOBAL_FORWARD_MAP["?"]);
@@ -674,7 +869,7 @@ export function encodeMorseWithSystem(
     normalizedInput,
     consumedCharacters,
     unsupportedCharacters,
-    aliasResolutions: [],
+    aliasResolutions,
     usedSystemIds: consumedCharacters.length ? [systemId] : [],
     mixedSystem: false,
   };
@@ -711,22 +906,43 @@ export function decodeMorseWithSystem(
   const selectedSystemId = options.systemId ?? (useDefaultGlobalFallback ? DEFAULT_MORSE_SYSTEM_ID : undefined);
   const unknownToken = options.unknownToken ?? "placeholder";
   const tokens: MorseDecodeTokenResult[] = [];
-  const decoded = normalizedInput.split("       ").filter(Boolean).map((word) =>
-    word.split(" ").filter(Boolean).map((token) => {
+  const outputSequences = inputSequencesBySystem.get(selectedSystemId ?? DEFAULT_MORSE_SYSTEM_ID) ?? [];
+  const decoded = normalizedInput.split("       ").filter(Boolean).map((word) => {
+    const wordTokens = word.split(" ").filter(Boolean).map((token) => {
       const candidates = getMorseReverseCandidates(token, selectedSystemId);
       if (candidates.length === 1) {
         const result: MorseDecodeTokenResult = { token, status: "decoded", value: candidates[0].character, candidates };
         tokens.push(result);
-        return result.value;
+        return result;
       }
       if (candidates.length > 1) {
-        tokens.push({ token, status: "ambiguous", candidates });
-        return unknownToken === "placeholder" ? "?" : "";
+        const result: MorseDecodeTokenResult = { token, status: "ambiguous", candidates };
+        tokens.push(result);
+        return result;
       }
-      tokens.push({ token, status: "unknown", candidates: [] });
-      return unknownToken === "placeholder" ? "?" : "";
-    }).join("")
-  ).filter(Boolean).join(" ");
+      const result: MorseDecodeTokenResult = { token, status: "unknown", candidates: [] };
+      tokens.push(result);
+      return result;
+    });
+    let output = "";
+    for (let index = 0; index < wordTokens.length;) {
+      const sequence = outputSequences.find((candidate) =>
+        candidate.expansionEntryIds.every((entryId, offset) =>
+          wordTokens[index + offset]?.candidates.length === 1 &&
+          wordTokens[index + offset]?.candidates[0]?.id === entryId,
+        ),
+      );
+      if (sequence) {
+        output += sequence.canonicalOutput;
+        index += sequence.expansionEntryIds.length;
+        continue;
+      }
+      const token = wordTokens[index];
+      output += token.status === "decoded" ? token.value : unknownToken === "placeholder" ? "?" : "";
+      index += 1;
+    }
+    return output;
+  }).filter(Boolean).join(" ");
   return {
     value: decoded,
     selectedSystemId,
