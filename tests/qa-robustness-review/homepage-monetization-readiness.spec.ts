@@ -166,6 +166,84 @@ async function readFeaturedBookCards(page: Page) {
     );
 }
 
+async function readVisibleFeaturedBookLayoutMetrics(page: Page) {
+  const section = page.locator('[aria-labelledby="featured-morse-books-title"]');
+  const horizontalOverflow = await page.evaluate(
+    () =>
+      document.documentElement.scrollWidth -
+      document.documentElement.clientWidth,
+  );
+
+  const cards = await section
+    .locator('[data-testid="home-featured-book-card"]')
+    .evaluateAll((nodes) =>
+      nodes
+        .filter(
+          (card) =>
+            card.getClientRects().length > 0 &&
+            window.getComputedStyle(card).display !== "none",
+        )
+        .map((card, index) => {
+          const required = <T extends Element>(selector: string) => {
+            const element = card.querySelector<T>(selector);
+            if (!element) {
+              throw new Error(`Missing featured book card element ${selector}`);
+            }
+            return element;
+          };
+          const link = required<HTMLAnchorElement>(
+            '[data-testid="home-featured-book-primary-link"]',
+          );
+          const cover = required<HTMLElement>(
+            '[data-testid="home-featured-book-cover"]',
+          );
+          const title = required<HTMLElement>(
+            '[data-testid="home-featured-book-title"]',
+          );
+          const author = required<HTMLElement>(
+            '[data-testid="home-featured-book-author"]',
+          );
+          const description = required<HTMLElement>(
+            '[data-testid="home-featured-book-description"]',
+          );
+          const affordance = required<HTMLElement>(
+            '[data-testid="home-featured-book-affordance"]',
+          );
+          const valueLine = required<HTMLElement>(
+            '[data-testid="home-featured-book-value-line"]',
+          );
+          const cardBox = card.getBoundingClientRect();
+          const linkBox = link.getBoundingClientRect();
+          const coverBox = cover.getBoundingClientRect();
+          const titleBox = title.getBoundingClientRect();
+          const authorBox = author.getBoundingClientRect();
+          const descriptionBox = description.getBoundingClientRect();
+          const affordanceBox = affordance.getBoundingClientRect();
+          const valueLineBox = valueLine.getBoundingClientRect();
+
+          return {
+            index,
+            slug: card.getAttribute("data-mw-home-book-slug") ?? "",
+            title: title.textContent?.trim() ?? "",
+            description: description.textContent?.trim() ?? "",
+            href: link.getAttribute("href") ?? "",
+            ariaLabel: link.getAttribute("aria-label") ?? "",
+            cardHeight: cardBox.height,
+            linkHeight: linkBox.height,
+            coverHeight: coverBox.height,
+            coverWidth: coverBox.width,
+            titleHeight: titleBox.height,
+            descriptionHeight: descriptionBox.height,
+            authorToDescriptionGap: descriptionBox.top - authorBox.bottom,
+            contentBottomGap: coverBox.bottom - affordanceBox.bottom,
+            valueToAffordanceGap: affordanceBox.top - valueLineBox.bottom,
+          };
+        }),
+    );
+
+  return { cards, horizontalOverflow };
+}
+
 function expectFeaturedBookCardsToMatchApprovedRecords(
   cards: Awaited<ReturnType<typeof readFeaturedBookCards>>,
 ) {
@@ -657,6 +735,136 @@ test.describe("homepage monetization readiness", () => {
       section.locator('[data-testid="home-featured-book-mp3-link"]'),
     ).toHaveCount(0);
     await expect(section).not.toContainText("Test Published Morse Book");
+  });
+
+  test("preserves the large-desktop featured book card poster layout", async ({
+    page,
+  }) => {
+    for (const width of [1440, 1280] as const) {
+      await page.setViewportSize({ width, height: 1000 });
+      await gotoHome(page);
+
+      const { cards, horizontalOverflow } =
+        await readVisibleFeaturedBookLayoutMetrics(page);
+      expect(cards, `${width}px visible featured cards`).toHaveLength(
+        FEATURED_BOOK_COUNT,
+      );
+      expect(horizontalOverflow, `${width}px horizontal overflow`).toBeLessThanOrEqual(
+        1,
+      );
+
+      for (const card of cards) {
+        expect(
+          card.cardHeight,
+          `${width}px ${card.slug} keeps approved desktop card height`,
+        ).toBeGreaterThanOrEqual(390);
+        expect(
+          card.cardHeight,
+          `${width}px ${card.slug} keeps approved desktop card height`,
+        ).toBeLessThanOrEqual(420);
+        expect(
+          card.coverHeight / card.coverWidth,
+          `${width}px ${card.slug} keeps desktop cover proportions`,
+        ).toBeCloseTo(5 / 3, 1);
+        expect(
+          card.linkHeight,
+          `${width}px ${card.slug} link fills the approved desktop card`,
+        ).toBeCloseTo(card.cardHeight, 0);
+        expect(card.href, `${width}px ${card.slug} link href`).toMatch(
+          /^\/morse-code-books\//,
+        );
+        expect(card.ariaLabel, `${width}px ${card.slug} accessible link`).toContain(
+          "Open ",
+        );
+      }
+    }
+  });
+
+  test("uses content-led featured book card height below desktop", async ({
+    page,
+  }) => {
+    const viewports = [1024, 768, 600, 390, 320] as const;
+
+    for (const theme of ["light", "dark"] as const) {
+      for (const width of viewports) {
+        await page.setViewportSize({ width, height: 1000 });
+        await page.addInitScript((selectedTheme) => {
+          window.localStorage.setItem("morsewords-theme", selectedTheme);
+          document.documentElement.dataset.theme = selectedTheme;
+        }, theme);
+        await gotoHome(page);
+        await expect(page.locator("html")).toHaveAttribute(
+          "data-theme",
+          theme,
+        );
+
+        const { cards, horizontalOverflow } =
+          await readVisibleFeaturedBookLayoutMetrics(page);
+        expect(cards, `${theme} ${width}px visible featured cards`).toHaveLength(
+          PRIMARY_VISIBLE_FEATURED_BOOK_COUNT,
+        );
+        expect(
+          horizontalOverflow,
+          `${theme} ${width}px horizontal overflow`,
+        ).toBeLessThanOrEqual(1);
+
+        for (const card of cards) {
+          expect(
+            card.cardHeight,
+            `${theme} ${width}px ${card.slug} avoids desktop-scale height`,
+          ).toBeLessThanOrEqual(width === 320 ? 390 : 360);
+          expect(
+            card.authorToDescriptionGap,
+            `${theme} ${width}px ${card.slug} removes the pinned blank region`,
+          ).toBeLessThanOrEqual(32);
+          expect(
+            card.contentBottomGap,
+            `${theme} ${width}px ${card.slug} keeps content inside the card`,
+          ).toBeGreaterThanOrEqual(12);
+          expect(
+            card.contentBottomGap,
+            `${theme} ${width}px ${card.slug} avoids hidden bottom padding`,
+          ).toBeLessThanOrEqual(32);
+          expect(
+            card.valueToAffordanceGap,
+            `${theme} ${width}px ${card.slug} preserves metadata spacing`,
+          ).toBeGreaterThanOrEqual(6);
+          expect(card.title, `${theme} ${width}px ${card.slug} title`).not.toBe(
+            "",
+          );
+          expect(
+            card.description,
+            `${theme} ${width}px ${card.slug} description`,
+          ).not.toBe("");
+        }
+      }
+    }
+  });
+
+  test("keeps featured book cards usable with varied content and keyboard focus", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 320, height: 1000 });
+    await gotoHome(page);
+
+    const { cards } = await readVisibleFeaturedBookLayoutMetrics(page);
+    expect(cards).toHaveLength(PRIMARY_VISIBLE_FEATURED_BOOK_COUNT);
+    expect(new Set(cards.map((card) => card.title)).size).toBe(cards.length);
+    expect(
+      Math.max(...cards.map((card) => card.titleHeight)),
+      "at least one title wraps on narrow mobile",
+    ).toBeGreaterThan(Math.min(...cards.map((card) => card.titleHeight)) + 8);
+    expect(
+      Math.max(...cards.map((card) => card.descriptionHeight)),
+      "description area remains bounded",
+    ).toBeLessThanOrEqual(96);
+
+    const firstLink = page
+      .locator('[data-testid="home-featured-book-primary-link"]')
+      .first();
+    await firstLink.focus();
+    await expect(firstLink).toBeFocused();
+    await expect(firstLink).toHaveClass(/focus-visible:outline/);
   });
 
   test("keeps featured book cards deterministic without hydration swapping", async ({

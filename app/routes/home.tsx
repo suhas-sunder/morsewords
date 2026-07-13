@@ -284,7 +284,7 @@ function FeaturedBooksSection({
           </div>
         </div>
 
-        <div className="mt-8 grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-8 grid items-start gap-4 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch">
           {featuredBooks.map((book, index) => {
             const bookPath = morseBookPath(book.slug);
             const authorText = formatMorseBookAuthors(book.author);
@@ -298,7 +298,7 @@ function FeaturedBooksSection({
             return (
               <article
                 key={book.slug}
-                className={`h-full min-w-0 ${wideScreenOnly ? "hidden xl:block" : ""}`}
+                className={`min-w-0 xl:h-full ${wideScreenOnly ? "hidden xl:block" : ""}`}
                 data-testid="home-featured-book-card"
                 data-mw-home-book-slug={book.slug}
                 data-mw-home-book-title={book.title}
@@ -309,13 +309,13 @@ function FeaturedBooksSection({
               >
                 <Link
                   to={bookPath}
-                  className="mw-static-surface group block h-full min-w-0 cursor-pointer rounded-xl bg-[#fffdf8] p-3 text-slate-900 no-underline shadow-[var(--mw-shadow-soft)] ring-1 ring-slate-950/10 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                  className="mw-static-surface group block min-w-0 cursor-pointer rounded-xl bg-[#fffdf8] p-3 text-slate-900 no-underline shadow-[var(--mw-shadow-soft)] ring-1 ring-slate-950/10 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 xl:h-full"
                   aria-label={`Open ${book.title} by ${authorText}`}
                   title={`Open ${book.title}`}
                   data-testid="home-featured-book-primary-link"
                 >
                   <div
-                    className="mw-static-tile relative flex aspect-[2/3] min-h-0 w-full overflow-hidden rounded-lg bg-[#f2eee6] px-5 py-5 xl:aspect-[3/5]"
+                    className="mw-static-tile relative flex min-h-0 w-full overflow-hidden rounded-lg bg-[#f2eee6] px-5 py-5 xl:aspect-[3/5]"
                     data-testid="home-featured-book-cover"
                   >
                     <span
@@ -348,7 +348,7 @@ function FeaturedBooksSection({
                         </p>
                       </div>
 
-                      <div className="mt-auto min-w-0 pt-5">
+                      <div className="min-w-0 pt-5 xl:mt-auto">
                         {description ? (
                           <p
                             className="line-clamp-4 text-sm leading-relaxed text-slate-700"
