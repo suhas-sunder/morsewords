@@ -43,6 +43,7 @@ import { clampNumber } from "~/client/components/shared/settingsStorage";
 import {
   ToolButton,
   ToolModeButton,
+  ToolOutputTextarea,
   ToolOutputPanel,
   ToolPanel,
   ToolSampleButtons,
@@ -978,7 +979,7 @@ export default function MorseVideoGeneratorTool() {
             </div>
           }
         >
-          <textarea
+          <ToolOutputTextarea
             aria-label="Generated Morse output"
             readOnly
             value={activeMorse}

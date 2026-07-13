@@ -256,7 +256,7 @@ export function readStoredBoolean(
   if (normalized === "1" || normalized === "true") return true;
   if (normalized === "0" || normalized === "false") return false;
 
-  if (options.selfHeal) safeWriteStorage(key, fallback ? "1" : "0");
+  if (options.selfHeal !== false) safeWriteStorage(key, fallback ? "1" : "0");
   return fallback;
 }
 
@@ -272,12 +272,12 @@ export function readStoredNumber(
   const parsed = Number(raw);
   if (!Number.isFinite(parsed)) {
     const fallback = normalizeStoredNumber(options.fallback, options);
-    if (options.selfHeal) safeWriteStorage(key, String(fallback));
+    if (options.selfHeal !== false) safeWriteStorage(key, String(fallback));
     return fallback;
   }
 
   const normalized = normalizeStoredNumber(parsed, options);
-  if (options.selfHeal && normalized !== parsed) {
+  if (options.selfHeal !== false && normalized !== parsed) {
     safeWriteStorage(key, String(normalized));
   }
   return normalized;
@@ -292,12 +292,12 @@ export function readStoredString(
   if (raw === null) return normalizeStoredString(fallback, options);
   if (options.allowEmpty === false && raw.trim() === "") {
     const normalizedFallback = normalizeStoredString(fallback, options);
-    if (options.selfHeal) safeWriteStorage(key, normalizedFallback);
+    if (options.selfHeal !== false) safeWriteStorage(key, normalizedFallback);
     return normalizedFallback;
   }
 
   const normalized = normalizeStoredString(raw, options);
-  if (options.selfHeal && normalized !== raw) {
+  if (options.selfHeal !== false && normalized !== raw) {
     safeWriteStorage(key, normalized);
   }
   return normalized;
@@ -313,7 +313,7 @@ export function readStoredEnum<const T extends readonly string[]>(
   const value = raw?.trim();
   if (value && allowed.includes(value as T[number])) return value as T[number];
 
-  if (raw !== null && options.selfHeal) safeWriteStorage(key, fallback);
+  if (raw !== null && options.selfHeal !== false) safeWriteStorage(key, fallback);
   return fallback;
 }
 
@@ -329,7 +329,7 @@ export function readStoredNumberEnum<const T extends readonly number[]>(
     return value as T[number];
   }
 
-  if (raw !== null && options.selfHeal) safeWriteStorage(key, String(fallback));
+  if (raw !== null && options.selfHeal !== false) safeWriteStorage(key, String(fallback));
   return fallback;
 }
 

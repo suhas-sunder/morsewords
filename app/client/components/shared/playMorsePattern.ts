@@ -2,6 +2,7 @@ import {
   buildMorseEvents,
   estimateMorseDurationMs,
 } from "~/client/components/shared/morseTiming";
+import { CHARACTER_SPEED_RANGE } from "~/client/components/shared/morseSettings";
 
 type PlayPatternOptions = {
   wpm?: number;
@@ -14,12 +15,22 @@ function clamp(n: number, min: number, max: number) {
 }
 
 function timingOptions(wpm = 18, farnsworthWpm?: number) {
-  const charWpm = clamp(wpm, 5, 35);
+  const charWpm = clamp(
+    wpm,
+    CHARACTER_SPEED_RANGE.min,
+    CHARACTER_SPEED_RANGE.max,
+  );
 
   return {
     charWpm,
     farnsworthWpm:
-      farnsworthWpm === undefined ? undefined : clamp(farnsworthWpm, 5, 35),
+      farnsworthWpm === undefined
+        ? undefined
+        : clamp(
+            farnsworthWpm,
+            CHARACTER_SPEED_RANGE.min,
+            charWpm,
+          ),
   };
 }
 

@@ -40,6 +40,7 @@ import {
   ActionRow,
   copyTextToClipboard,
 } from "~/client/components/shared/ActionControls";
+import { ToolOutputTextarea } from "~/client/components/shared/ToolWorkspace";
 import {
   ExportJobStatus,
   ExportPlanSummary,
@@ -111,7 +112,7 @@ const ACTIVE_CONTROL =
 const SOFT_PANEL =
   "mw-input-panel overflow-hidden rounded-xl bg-white/88";
 const DARK_PANEL =
-  "mw-panel-dark overflow-hidden rounded-xl bg-slate-950";
+  "mw-panel-dark mw-noneditable-output overflow-hidden rounded-xl bg-slate-950";
 const DARK_PANEL_BUTTON =
   "mw-button-dark-panel bg-slate-700/95 text-slate-100 hover:bg-slate-800 hover:text-white";
 const DARK_PANEL_DISABLED =
@@ -803,7 +804,7 @@ export default function TranslatorSectionsBasic({
                   </span>
                 </div>
 
-                <textarea
+                <ToolOutputTextarea
                   id="mw_output"
                   className="mw-output-text mw-input-placeholder min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sky-100 outline-none placeholder:text-slate-400 focus:ring-0 focus-visible:outline-none"
                   value={outputValue}

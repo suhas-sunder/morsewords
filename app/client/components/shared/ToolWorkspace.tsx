@@ -235,6 +235,89 @@ export function ToolTextarea({
   );
 }
 
+/**
+ * Read-only results use an explicit Copy action. Clear native selection without
+ * preventing focus, keyboard navigation, scrolling, or textarea resizing.
+ */
+export function ToolOutputTextarea({
+  onFocus,
+  onPointerDown,
+  onPointerMove,
+  onPointerUp,
+  onMouseDown,
+  onMouseUp,
+  onClick,
+  onSelect,
+  ...props
+}: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
+  const clearSelection = (element: HTMLTextAreaElement) => {
+    const cursor = element.value.length;
+    element.setSelectionRange(cursor, cursor);
+  };
+  const clearSelectionAfterNativePointerWork = (element: HTMLTextAreaElement) => {
+    clearSelection(element);
+    if (typeof window !== "undefined") {
+      window.requestAnimationFrame(() => clearSelection(element));
+    }
+  };
+  const isResizeGrip = (event: React.PointerEvent<HTMLTextAreaElement>) => {
+    if (event.pointerType !== "mouse") return false;
+    const rect = event.currentTarget.getBoundingClientRect();
+    return rect.right - event.clientX < 20 && rect.bottom - event.clientY < 20;
+  };
+  const isMouseResizeGrip = (event: React.MouseEvent<HTMLTextAreaElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    return rect.right - event.clientX < 20 && rect.bottom - event.clientY < 20;
+  };
+
+  return (
+    <textarea
+      {...props}
+      readOnly
+      onFocus={(event) => {
+        clearSelection(event.currentTarget);
+        onFocus?.(event);
+      }}
+      onPointerDown={(event) => {
+        clearSelection(event.currentTarget);
+        if (!isResizeGrip(event)) {
+          event.currentTarget.focus({ preventScroll: true });
+          event.preventDefault();
+        }
+        onPointerDown?.(event);
+      }}
+      onPointerMove={(event) => {
+        clearSelection(event.currentTarget);
+        onPointerMove?.(event);
+      }}
+      onMouseDown={(event) => {
+        clearSelection(event.currentTarget);
+        if (!isMouseResizeGrip(event)) {
+          event.currentTarget.focus({ preventScroll: true });
+          event.preventDefault();
+        }
+        onMouseDown?.(event);
+      }}
+      onPointerUp={(event) => {
+        clearSelectionAfterNativePointerWork(event.currentTarget);
+        onPointerUp?.(event);
+      }}
+      onMouseUp={(event) => {
+        clearSelectionAfterNativePointerWork(event.currentTarget);
+        onMouseUp?.(event);
+      }}
+      onClick={(event) => {
+        clearSelectionAfterNativePointerWork(event.currentTarget);
+        onClick?.(event);
+      }}
+      onSelect={(event) => {
+        clearSelectionAfterNativePointerWork(event.currentTarget);
+        onSelect?.(event);
+      }}
+    />
+  );
+}
+
 export function ToolOutputPanel({
   label,
   badge = "Result",
@@ -250,7 +333,7 @@ export function ToolOutputPanel({
 }) {
   return (
     <div
-      className={["mw-panel-dark mw-output-panel overflow-hidden rounded-xl bg-slate-950", className]
+      className={["mw-panel-dark mw-output-panel mw-noneditable-output overflow-hidden rounded-xl bg-slate-950", className]
         .filter(Boolean)
         .join(" ")}
     >

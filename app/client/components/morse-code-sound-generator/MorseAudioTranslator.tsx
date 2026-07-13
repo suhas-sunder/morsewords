@@ -736,10 +736,10 @@ export default function MorseAudioTranslator({
               </div>
 
               <div className="mt-4 grid sm:grid-cols-2 gap-4">
-                <SliderRow label="Character speed" value={charWpm} min={5} max={60} step={1} unit="WPM" onChange={handleCharWpmChange} />
-                <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={5} max={Math.max(5, charWpm)} step={1} unit="WPM" onChange={handleFarnsworthWpmChange} help="Slower spacing, same character speed" />
-                <SliderRow label="Pitch" value={toneHz} min={200} max={1600} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || !presetSupportsPitchControl(preset)} />
-                <SliderRow label="Volume" value={Math.round(volume * 100)} min={0} max={100} step={1} unit="%" onChange={(v) => setVolume(v / 100)} disabled={!soundOn} />
+                <SliderRow label="Character speed" value={charWpm} min={AUDIO_SPEED_RANGE.min} max={AUDIO_SPEED_RANGE.max} step={1} unit="WPM" onChange={handleCharWpmChange} />
+                <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={AUDIO_SPEED_RANGE.min} max={Math.max(AUDIO_SPEED_RANGE.min, charWpm)} step={1} unit="WPM" onChange={handleFarnsworthWpmChange} help="Slower spacing, same character speed" />
+                <SliderRow label="Pitch" value={toneHz} min={AUDIO_PITCH_RANGE.min} max={AUDIO_PITCH_RANGE.max} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || !presetSupportsPitchControl(preset)} />
+                <SliderRow label="Volume" value={Math.round(volume * 100)} min={VOLUME_RANGE.min * 100} max={VOLUME_RANGE.max * 100} step={1} unit="%" onChange={(v) => setVolume(v / 100)} disabled={!soundOn} />
               </div>
 
               <div className="mt-4 flex flex-wrap items-center gap-2">

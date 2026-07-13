@@ -23,6 +23,7 @@ import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
 import {
+  AUDIO_PITCH_RANGE,
   TOOL_SPEED_RANGE,
   clampFarnsworthWpm,
   sanitizeAudioGeneratorPreset,
@@ -573,9 +574,9 @@ export default function MorseCodeAudioPractice() {
               </span>
             </div>
             <div className="mt-4 grid gap-5 md:grid-cols-3">
-              <SliderRow label="Character speed" value={charWpm} min={5} max={40} step={1} unit="WPM" onChange={handleCharWpmChange} labelTone="sky" />
-              <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={5} max={Math.max(5, charWpm)} step={1} unit="WPM" onChange={handleFarnsworthWpmChange} help="Slower spacing, same character speed." labelTone="sky" />
-              <SliderRow label="Pitch" value={toneHz} min={300} max={1000} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || preset === "sounder"} labelTone="sky" />
+              <SliderRow label="Character speed" value={charWpm} min={TOOL_SPEED_RANGE.min} max={TOOL_SPEED_RANGE.max} step={1} unit="WPM" onChange={handleCharWpmChange} labelTone="sky" />
+              <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={TOOL_SPEED_RANGE.min} max={Math.max(TOOL_SPEED_RANGE.min, charWpm)} step={1} unit="WPM" onChange={handleFarnsworthWpmChange} help="Slower spacing, same character speed." labelTone="sky" />
+              <SliderRow label="Pitch" value={toneHz} min={AUDIO_PITCH_RANGE.min} max={AUDIO_PITCH_RANGE.max} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || preset === "sounder"} labelTone="sky" />
               <SliderRow label="Volume" value={Math.round(volume * 100)} min={0} max={100} step={1} unit="%" onChange={(value) => setVolume(value / 100)} disabled={!soundOn} labelTone="sky" />
               <SliderRow label="Attack" value={attackMs} min={0} max={40} step={1} unit="ms" onChange={setAttackMs} disabled={!soundOn || preset === "sounder"} labelTone="sky" />
               <SliderRow label="Release" value={releaseMs} min={0} max={80} step={1} unit="ms" onChange={setReleaseMs} disabled={!soundOn || preset === "sounder"} labelTone="sky" />

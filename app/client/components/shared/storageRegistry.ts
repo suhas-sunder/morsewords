@@ -541,8 +541,8 @@ const audioPreferenceKeys = (prefix: "mw_audio" | "mw_sound_generator") => [
   preferenceKey(`${prefix}_source`, `${prefix} source mode`, "enum-string", "text", "sourceMode", enumString(SOURCE_MODES)),
   sourceTextKey(`${prefix}_text`, `${prefix} text source`, "sos help"),
   sourceTextKey(`${prefix}_morse`, `${prefix} Morse source`, "... --- ..."),
-  preferenceKey(`${prefix}_wpm`, `${prefix} audio speed`, "number-string", "18", "integerRange5To60", numberString({ min: 5, max: 60, integer: true })),
-  preferenceKey(`${prefix}_fwpm`, `${prefix} Farnsworth spacing`, "number-string", "12", "integerRange5To60", numberString({ min: 5, max: 60, integer: true }), {
+  preferenceKey(`${prefix}_wpm`, `${prefix} audio speed`, "number-string", "18", "integerRange5To100", numberString({ min: 5, max: 100, integer: true })),
+  preferenceKey(`${prefix}_fwpm`, `${prefix} Farnsworth spacing`, "number-string", "12", "integerRange5To100", numberString({ min: 5, max: 100, integer: true }), {
     notes: "Read helpers also clamp this value against character WPM.",
   }),
   preferenceKey(`${prefix}_hz`, `${prefix} pitch`, "number-string", "650", "integerRange200To1600", numberString({ min: 200, max: 1600, integer: true })),
@@ -577,11 +577,11 @@ export const STORAGE_KEY_REGISTRY: readonly StorageKeyDefinition[] = [
   preferenceKey(STORAGE_KEYS.disableFlashEffects, "site display", "boolean-string", "0", "booleanString", isBooleanString),
   preferenceKey(STORAGE_KEYS.fullPageFlash, "site display", "boolean-string", "0", "booleanString", isBooleanString),
 
-  preferenceKey("mw_wpm", "translator legacy speed", "number-string", "20", "integerRange5To40", numberString({ min: 5, max: 40, integer: true }), {
+  preferenceKey("mw_wpm", "translator legacy speed", "number-string", "20", "integerRange5To100", numberString({ min: 5, max: 100, integer: true }), {
     notes: "Legacy translator speed key mirrored by mw_char_wpm for compatibility.",
   }),
-  preferenceKey("mw_char_wpm", "translator character speed", "number-string", "20", "integerRange5To40", numberString({ min: 5, max: 40, integer: true })),
-  preferenceKey("mw_fwpm", "translator Farnsworth spacing", "number-string", "20", "integerRange5To40", numberString({ min: 5, max: 40, integer: true }), {
+  preferenceKey("mw_char_wpm", "translator character speed", "number-string", "20", "integerRange5To100", numberString({ min: 5, max: 100, integer: true })),
+  preferenceKey("mw_fwpm", "translator Farnsworth spacing", "number-string", "20", "integerRange5To100", numberString({ min: 5, max: 100, integer: true }), {
     notes: "Read helpers also clamp this value against character WPM.",
   }),
   preferenceKey("mw_hz", "translator pitch", "number-string", "600", "integerRange300To900", numberString({ min: 300, max: 900, integer: true })),

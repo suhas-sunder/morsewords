@@ -61,9 +61,9 @@ async function readFocusArtifactSnapshot(locator: Locator) {
 }
 
 function expectNoOutlineRingOrBorder(snapshot: FocusArtifactSnapshot) {
-  expect(snapshot.outlineStyle).toBe("none");
-  if (snapshot.outlineStyle !== "none") {
-    expect(snapshot.outlineWidth).toBe("0px");
+  expect(["none", "solid"]).toContain(snapshot.outlineStyle);
+  if (snapshot.outlineStyle === "solid") {
+    expect(snapshot.outlineWidth).toBe("2px");
   }
   expect(snapshot.borderTopWidth).toBe("0px");
   expect(snapshot.borderRightWidth).toBe("0px");
@@ -293,10 +293,10 @@ test("shared UI control primitives keep accessibility and disabled-state contrac
     /\.mw-page-content\s+:where\(\.mw-panel-dark, \.mw-output-panel\):where\(:hover, :focus-within\)/,
   );
   expect(appCss).toMatch(
-    /:where\(textarea\[readonly\], textarea\[readonly\]:focus, textarea\[readonly\]:focus-visible\)\s*\{[^}]*background-color: transparent !important;/s,
+    /:where\(\s*textarea\[readonly\],\s*textarea\[readonly\]:focus,\s*textarea\[readonly\]:focus-visible\s*\)\s*\{[^}]*background-color: transparent !important;/s,
   );
   expect(appCss).toMatch(/--mw-focus-control-inset:/);
-  expect(appCss).not.toMatch(/:focus-visible\s*\{[^}]*outline:\s*2px/s);
+  expect(appCss).toMatch(/:focus-visible\s*\{[^}]*outline:\s*2px/s);
 
   const togglePill = readRepoFile(
     "app/client/components/shared/ui/TogglePill.tsx",

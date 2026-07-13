@@ -89,6 +89,9 @@
   --mw-neutral-border: #e2e8f0;
   --mw-surface-border: #e6e8ef;
   --mw-focus-ring: #38bdf8;
+  --mw-focus-visible: #075985;
+  --mw-selection-bg: #075985;
+  --mw-selection-text: #f0f9ff;
   --mw-focus-ring-muted: rgba(11, 36, 71, 0.34);
   --mw-range-focus-ring: rgba(11, 36, 71, 0.38);
   --mw-focus-control-tint: color-mix(in srgb, var(--mw-accent) 8%, transparent);
@@ -207,6 +210,9 @@
   --mw-neutral-border: transparent;
   --mw-surface-border: transparent;
   --mw-focus-ring: #7dd3fc;
+  --mw-focus-visible: #7dd3fc;
+  --mw-selection-bg: #bae6fd;
+  --mw-selection-text: #031524;
   --mw-focus-ring-muted: rgba(125, 211, 252, 0.48);
   --mw-range-focus-ring: rgba(125, 211, 252, 0.46);
   --mw-shadow-soft:
@@ -2056,4 +2062,53 @@ body
     margin: 0 0 1.75rem;
     padding: 0;
   }
+}
+
+::selection {
+  background-color: var(--mw-selection-bg);
+  color: var(--mw-selection-text);
+}
+
+::-moz-selection {
+  background-color: var(--mw-selection-bg);
+  color: var(--mw-selection-text);
+}
+
+.mw-noneditable-output {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.mw-noneditable-output textarea[readonly] {
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+/* Output panels are copied through their explicit action, rather than browser selection. */
+.mw-noneditable-output :where(button, a, input, select, textarea:not([readonly])) {
+  -webkit-user-select: auto;
+  user-select: auto;
+}
+
+.mw-page-content
+  :where(
+    a[href],
+    button,
+    summary,
+    input,
+    textarea,
+    select,
+    [role="button"],
+    [role="checkbox"],
+    [role="radio"],
+    [role="slider"],
+    [role="switch"],
+    [role="tab"],
+    [role="menuitem"]
+  ):focus-visible {
+  outline: 2px solid var(--mw-focus-visible) !important;
+  outline-offset: 2px !important;
+  outline-style: solid !important;
+  outline-width: 2px !important;
 }

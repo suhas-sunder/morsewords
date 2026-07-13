@@ -6,6 +6,12 @@ import {
   type MorseTimingEvent,
 } from "~/client/components/shared/morseTiming";
 import {
+  AUDIO_ATTACK_RANGE,
+  AUDIO_PITCH_RANGE,
+  AUDIO_RELEASE_RANGE,
+  AUDIO_SPEED_RANGE,
+  AUDIO_TAIL_RANGE,
+  VOLUME_RANGE,
   clampFarnsworthWpm,
   sanitizeAudioGeneratorPreset,
   sanitizeAudioSampleRate,
@@ -134,7 +140,10 @@ function getAudioContextCtor() {
 }
 
 function hasAudibleOutput(opts: PlayOptions) {
-  return opts.soundEnabled !== false && clamp(opts.volume, 0, 1) > 0.000001;
+  return (
+    opts.soundEnabled !== false &&
+    clamp(opts.volume, VOLUME_RANGE.min, VOLUME_RANGE.max) > 0.000001
+  );
 }
 
 function playbackEventMs(event: MorseTimingEvent, opts: PlayOptions) {
@@ -278,7 +287,7 @@ export default function useMorseAudio() {
 
   function sanitizeOpts(opts: PlayOptions): PlayOptions {
     const safePreset: SoundPreset = sanitizeAudioGeneratorPreset(opts.preset);
-    const safeWpm = clamp(opts.wpm, 5, 60);
+    const safeWpm = clamp(opts.wpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max);
 
     return {
       ...opts,
@@ -288,14 +297,22 @@ export default function useMorseAudio() {
         opts.farnsworthWpm === undefined
           ? undefined
           : clampFarnsworthWpm(opts.farnsworthWpm, safeWpm),
-      hz: clamp(opts.hz, 200, 1600),
-      volume: clamp(opts.volume, 0, 1),
+      hz: clamp(opts.hz, AUDIO_PITCH_RANGE.min, AUDIO_PITCH_RANGE.max),
+      volume: clamp(opts.volume, VOLUME_RANGE.min, VOLUME_RANGE.max),
       repeat: !!opts.repeat,
       flash: !!opts.flash && isFlashAllowedNow(),
       vibrate: false,
       soundEnabled: opts.soundEnabled !== false,
-      attackMs: clamp(opts.attackMs ?? defaultAttackMs(safePreset), 0, 200),
-      releaseMs: clamp(opts.releaseMs ?? defaultReleaseMs(safePreset), 0, 400),
+      attackMs: clamp(
+        opts.attackMs ?? defaultAttackMs(safePreset),
+        AUDIO_ATTACK_RANGE.min,
+        AUDIO_ATTACK_RANGE.max,
+      ),
+      releaseMs: clamp(
+        opts.releaseMs ?? defaultReleaseMs(safePreset),
+        AUDIO_RELEASE_RANGE.min,
+        AUDIO_RELEASE_RANGE.max,
+      ),
     };
   }
 
@@ -671,7 +688,7 @@ export default function useMorseAudio() {
 
   async function renderAudioBuffer(opts: RenderAudioOptions): Promise<AudioBuffer> {
     const safePreset: SoundPreset = sanitizeAudioGeneratorPreset(opts.preset);
-    const safeWpm = clamp(opts.wpm, 5, 60);
+    const safeWpm = clamp(opts.wpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max);
 
     const safe: RenderAudioOptions = {
       ...opts,
@@ -680,13 +697,21 @@ export default function useMorseAudio() {
       farnsworthWpm: opts.farnsworthWpm
         ? clampFarnsworthWpm(opts.farnsworthWpm, safeWpm)
         : undefined,
-      hz: clamp(opts.hz, 200, 1600),
-      volume: clamp(opts.volume, 0, 1),
+      hz: clamp(opts.hz, AUDIO_PITCH_RANGE.min, AUDIO_PITCH_RANGE.max),
+      volume: clamp(opts.volume, VOLUME_RANGE.min, VOLUME_RANGE.max),
       soundEnabled: opts.soundEnabled !== false,
-      attackMs: clamp(opts.attackMs ?? defaultAttackMs(safePreset), 0, 200),
-      releaseMs: clamp(opts.releaseMs ?? defaultReleaseMs(safePreset), 0, 400),
+      attackMs: clamp(
+        opts.attackMs ?? defaultAttackMs(safePreset),
+        AUDIO_ATTACK_RANGE.min,
+        AUDIO_ATTACK_RANGE.max,
+      ),
+      releaseMs: clamp(
+        opts.releaseMs ?? defaultReleaseMs(safePreset),
+        AUDIO_RELEASE_RANGE.min,
+        AUDIO_RELEASE_RANGE.max,
+      ),
       sampleRate: sanitizeAudioSampleRate(opts.sampleRate),
-      tailMs: clamp(opts.tailMs ?? 120, 0, 400),
+      tailMs: clamp(opts.tailMs ?? 120, AUDIO_TAIL_RANGE.min, AUDIO_TAIL_RANGE.max),
     };
 
     const events = buildMorseEvents(safe.code, {
@@ -695,7 +720,7 @@ export default function useMorseAudio() {
     });
     const totalMs =
       events.reduce((total, event) => total + event.ms, 0) +
-      clamp(safe.tailMs ?? 120, 0, 2000);
+      clamp(safe.tailMs ?? 120, AUDIO_TAIL_RANGE.min, AUDIO_TAIL_RANGE.max);
 
     const sr = safe.sampleRate ?? 44100;
     const length = Math.ceil((totalMs / 1000) * sr);
@@ -704,7 +729,9 @@ export default function useMorseAudio() {
     const master = offline.createGain();
 
     const effective =
-      safe.soundEnabled === false ? 0 : clamp(safe.volume, 0, 1) * 0.38;
+      safe.soundEnabled === false
+        ? 0
+        : clamp(safe.volume, VOLUME_RANGE.min, VOLUME_RANGE.max) * 0.38;
 
     master.gain.value = effective;
     master.connect(offline.destination);
@@ -716,13 +743,17 @@ export default function useMorseAudio() {
       const samples = Math.max(1, Math.ceil(durS * offline.sampleRate));
       const pcm = renderPresetPcmTone({
         amplitude: 1,
-        attackMs: clamp(safe.attackMs ?? defaultAttackMs(safePreset), 0, 200),
+        attackMs: clamp(
+          safe.attackMs ?? defaultAttackMs(safePreset),
+          AUDIO_ATTACK_RANGE.min,
+          AUDIO_ATTACK_RANGE.max,
+        ),
         releaseMs: clamp(
           safe.releaseMs ?? defaultReleaseMs(safePreset),
-          0,
-          400,
+          AUDIO_RELEASE_RANGE.min,
+          AUDIO_RELEASE_RANGE.max,
         ),
-        hz: clamp(safe.hz, 200, 1600),
+        hz: clamp(safe.hz, AUDIO_PITCH_RANGE.min, AUDIO_PITCH_RANGE.max),
         preset: safe.preset ?? "cw_radio",
         sampleRate: offline.sampleRate,
         samples,
@@ -749,22 +780,37 @@ export default function useMorseAudio() {
 
   async function renderWav(opts: RenderWavOptions): Promise<Blob> {
     const safePreset = sanitizeAudioGeneratorPreset(opts.preset);
-    const safeWpm = clamp(opts.wpm, 5, 60);
+    const safeWpm = clamp(opts.wpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max);
     return renderMorseAudioBlob({
       morse: opts.code,
       settings: {
-        attackMs: clamp(opts.attackMs ?? defaultAttackMs(safePreset), 0, 200),
+        attackMs: clamp(
+          opts.attackMs ?? defaultAttackMs(safePreset),
+          AUDIO_ATTACK_RANGE.min,
+          AUDIO_ATTACK_RANGE.max,
+        ),
         charWpm: safeWpm,
         farnsworthWpm: opts.farnsworthWpm
           ? clampFarnsworthWpm(opts.farnsworthWpm, safeWpm)
           : undefined,
         format: "wav",
-        pitch: clamp(opts.hz, 200, 1600),
-        releaseMs: clamp(opts.releaseMs ?? defaultReleaseMs(safePreset), 0, 400),
+        pitch: clamp(opts.hz, AUDIO_PITCH_RANGE.min, AUDIO_PITCH_RANGE.max),
+        releaseMs: clamp(
+          opts.releaseMs ?? defaultReleaseMs(safePreset),
+          AUDIO_RELEASE_RANGE.min,
+          AUDIO_RELEASE_RANGE.max,
+        ),
         sampleRate: sanitizeAudioSampleRate(opts.sampleRate),
-        tailPaddingMs: clamp(opts.tailMs ?? 120, 0, 400),
+        tailPaddingMs: clamp(
+          opts.tailMs ?? 120,
+          AUDIO_TAIL_RANGE.min,
+          AUDIO_TAIL_RANGE.max,
+        ),
         tonePreset: safePreset,
-        volume: opts.soundEnabled === false ? 0 : clamp(opts.volume, 0, 1),
+        volume:
+          opts.soundEnabled === false
+            ? 0
+            : clamp(opts.volume, VOLUME_RANGE.min, VOLUME_RANGE.max),
       },
       signal: new AbortController().signal,
     });

@@ -62,6 +62,7 @@ import useMorseAudio, {
 import {
   ToolButton,
   ToolModeButton,
+  ToolOutputTextarea,
   ToolOutputPanel,
   ToolPanel,
   ToolSampleButtons,
@@ -684,7 +685,7 @@ export default function MorseMp3GeneratorTool() {
             </div>
           }
         >
-          <textarea
+          <ToolOutputTextarea
             aria-label="Generated Morse output"
             readOnly
             value={activeCode.trim()}

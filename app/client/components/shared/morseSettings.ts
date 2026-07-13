@@ -16,16 +16,84 @@ export const AUDIO_SAMPLE_RATES = [22050, 44100, 48000] as const;
 export const MP3_BITRATES = [32, 48, 64, 96, 128, 192, 256] as const;
 export const TYPING_DURATIONS = [10, 30, 60, 120, 300, 1800] as const;
 
-export const AUDIO_SPEED_RANGE = { min: 5, max: 60 } as const;
-export const TOOL_SPEED_RANGE = { min: 5, max: 40 } as const;
-export const VISUAL_SPEED_RANGE = { min: 6, max: 30 } as const;
-export const WORD_TRAINER_SPEED_RANGE = { min: 5, max: 35 } as const;
-export const AUDIO_PITCH_RANGE = { min: 200, max: 1600 } as const;
-export const TRANSLATOR_PITCH_RANGE = { min: 300, max: 900 } as const;
-export const PRACTICE_PITCH_RANGE = { min: 300, max: 1000 } as const;
-export const VOLUME_RANGE = { min: 0, max: 1 } as const;
-export const AUDIO_ATTACK_RANGE = { min: 0, max: 40 } as const;
-export const AUDIO_RELEASE_RANGE = { min: 0, max: 80 } as const;
+export type MorseNumericSettingId =
+  | "characterSpeed"
+  | "pitch"
+  | "volume"
+  | "attack"
+  | "release";
+
+export type MorseNumericSettingContract = Readonly<{
+  defaultValue: number;
+  id: MorseNumericSettingId;
+  integer: boolean;
+  max: number;
+  min: number;
+  step: number;
+  unit: string;
+}>;
+
+/** Shared limits for settings that drive the same timing and synthesis engines. */
+export const MORSE_NUMERIC_SETTING_CONTRACTS = {
+  characterSpeed: {
+    id: "characterSpeed",
+    min: 5,
+    max: 100,
+    step: 1,
+    defaultValue: 18,
+    unit: "WPM",
+    integer: true,
+  },
+  pitch: {
+    id: "pitch",
+    min: 200,
+    max: 1600,
+    step: 10,
+    defaultValue: 600,
+    unit: "Hz",
+    integer: true,
+  },
+  volume: {
+    id: "volume",
+    min: 0,
+    max: 1,
+    step: 0.01,
+    defaultValue: 0.75,
+    unit: "",
+    integer: false,
+  },
+  attack: {
+    id: "attack",
+    min: 0,
+    max: 40,
+    step: 1,
+    defaultValue: 8,
+    unit: "ms",
+    integer: true,
+  },
+  release: {
+    id: "release",
+    min: 0,
+    max: 80,
+    step: 1,
+    defaultValue: 12,
+    unit: "ms",
+    integer: true,
+  },
+} as const satisfies Record<MorseNumericSettingId, MorseNumericSettingContract>;
+
+export const CHARACTER_SPEED_RANGE = MORSE_NUMERIC_SETTING_CONTRACTS.characterSpeed;
+export const AUDIO_SPEED_RANGE = CHARACTER_SPEED_RANGE;
+// Legacy exports preserve route imports while using the canonical contract.
+export const TOOL_SPEED_RANGE = CHARACTER_SPEED_RANGE;
+export const VISUAL_SPEED_RANGE = CHARACTER_SPEED_RANGE;
+export const WORD_TRAINER_SPEED_RANGE = CHARACTER_SPEED_RANGE;
+export const AUDIO_PITCH_RANGE = MORSE_NUMERIC_SETTING_CONTRACTS.pitch;
+export const TRANSLATOR_PITCH_RANGE = AUDIO_PITCH_RANGE;
+export const PRACTICE_PITCH_RANGE = AUDIO_PITCH_RANGE;
+export const VOLUME_RANGE = MORSE_NUMERIC_SETTING_CONTRACTS.volume;
+export const AUDIO_ATTACK_RANGE = MORSE_NUMERIC_SETTING_CONTRACTS.attack;
+export const AUDIO_RELEASE_RANGE = MORSE_NUMERIC_SETTING_CONTRACTS.release;
 /** Export-only silence before each generated file. */
 export const AUDIO_LEAD_IN_RANGE = { min: 0, max: 2000 } as const;
 export const AUDIO_TAIL_RANGE = { min: 0, max: 400 } as const;
@@ -90,4 +158,14 @@ export function clampFarnsworthWpm(
   min = AUDIO_SPEED_RANGE.min,
 ): number {
   return Math.round(clampNumber(value, min, Math.max(min, charWpm)));
+}
+
+export function sanitizeMorseNumericSetting(
+  id: MorseNumericSettingId,
+  value: unknown,
+  max = MORSE_NUMERIC_SETTING_CONTRACTS[id].max,
+) {
+  const contract = MORSE_NUMERIC_SETTING_CONTRACTS[id];
+  const sanitized = clampNumber(value, contract.min, Math.max(contract.min, max));
+  return contract.integer ? Math.round(sanitized) : sanitized;
 }

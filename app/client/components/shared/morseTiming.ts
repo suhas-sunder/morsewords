@@ -52,7 +52,7 @@ type MorseTimingOptions = {
   farnsworthWpm?: number;
 };
 
-export function clampMorseWpm(value: number, min = 1, max = 80): number {
+export function clampMorseWpm(value: number, min = 1, max = 100): number {
   const safeMin = Number.isFinite(min) ? min : 1;
   const safeMax = Number.isFinite(max) ? max : 80;
   const low = Math.min(safeMin, safeMax);
