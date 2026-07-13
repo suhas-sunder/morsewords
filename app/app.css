@@ -2112,3 +2112,25 @@ body
   outline-style: solid !important;
   outline-width: 2px !important;
 }
+
+body
+  :is(
+    a[href],
+    button,
+    summary,
+    input,
+    textarea,
+    select,
+    [role="button"],
+    [role="checkbox"],
+    [role="radio"],
+    [role="slider"],
+    [role="switch"],
+    [role="tab"],
+    [role="menuitem"]
+  ):focus-visible {
+  outline: 2px solid var(--mw-focus-visible) !important;
+  outline-offset: 2px !important;
+  outline-style: solid !important;
+  outline-width: 2px !important;
+}
