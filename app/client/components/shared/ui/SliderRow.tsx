@@ -13,6 +13,7 @@ export default function SliderRow({
   max,
   min,
   onChange,
+  quietInputFocus = false,
   step,
   unit,
   value,
@@ -27,6 +28,7 @@ export default function SliderRow({
   max: number;
   min: number;
   onChange: (value: number) => void;
+  quietInputFocus?: boolean;
   step: number;
   unit: string;
   value: number;
@@ -61,7 +63,7 @@ export default function SliderRow({
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
         disabled={disabled}
-        className={`mt-2 w-full rounded-full focus:outline-none focus:ring-0 ${
+        className={`mt-2 w-full rounded-full ${quietInputFocus ? "focus:outline-none focus:ring-0 focus-visible:outline-none" : "mw-focus-ring focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"} ${
           disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
         }`}
       />

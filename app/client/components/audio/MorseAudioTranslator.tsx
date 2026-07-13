@@ -19,7 +19,7 @@ import {
   ToolTextarea,
 } from "~/client/components/shared/ToolWorkspace";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
-import TogglePill from "~/client/components/shared/ui/TogglePill";
+import PlaybackToggleGroup from "~/client/components/shared/PlaybackToggleGroup";
 import { AudioPresetOptions } from "~/client/components/shared/AudioPresetPicker";
 import { getAudioPresetDefaults } from "~/client/components/shared/audioPresetRegistry";
 import { presetSupportsPitchControl } from "~/client/components/shared/audioToneSynthesis";
@@ -78,14 +78,10 @@ import {
   CopyIcon,
   DownloadIcon,
   EqualizerIcon,
-  LoopIcon,
   PauseIcon,
   PlayIcon,
   StopIcon,
   TrashIcon,
-  LightBulbIcon,
-  VolumeIcon,
-  VolumeOffIcon,
 } from "~/client/assets/svg/Icons";
 
 type SourceMode = "text" | "morse";
@@ -811,44 +807,20 @@ export default function MorseAudioTranslator({
                   Audio controls
                 </h2>
 
-                <div className="flex flex-wrap items-center gap-2 sm:justify-end">
-                  <TogglePill
-                    label="Sound"
-                    checked={renderedSoundOn}
-                    onChange={(v) => setFeedback("sound", v)}
-                    icon={
-                      renderedSoundOn ? (
-                        <VolumeIcon size={16} title={undefined} aria-hidden="true" />
-                      ) : (
-                        <VolumeOffIcon size={16} title={undefined} aria-hidden="true" />
-                      )
-                    }
-                  />
-                  <TogglePill
-                    label="Repeat"
-                    checked={renderedRepeat}
-                    onChange={(v) => setFeedback("repeat", v)}
-                    icon={<LoopIcon size={16} title="Repeat" />}
-                  />
-                  <TogglePill
-                    label="Flash Light"
-                    checked={renderedFlash}
-                    onChange={(v) => setFeedback("flash", v)}
-                    icon={
-                      <LightBulbIcon
-                        size={16}
-                        title={undefined}
-                        aria-hidden="true"
-                      />
-                    }
-                    describedBy={
-                      disableFlashEffects
+                <div className="sm:justify-end">
+                  <PlaybackToggleGroup
+                    sound={{ checked: renderedSoundOn, onChange: (value) => setFeedback("sound", value) }}
+                    repeat={{ checked: renderedRepeat, onChange: (value) => setFeedback("repeat", value) }}
+                    flash={{
+                      checked: renderedFlash,
+                      onChange: (value) => setFeedback("flash", value),
+                      describedBy: disableFlashEffects
                         ? FLASH_DISABLED_NOTICE_ID
                         : showStrobeWarning
                           ? STROBE_WARNING_ID
-                          : undefined
-                    }
-                    disabled={!flashAllowed}
+                          : undefined,
+                      disabled: !flashAllowed,
+                    }}
                   />
                   <FlashLamp
                     active={flashLamp.active}
@@ -881,8 +853,8 @@ export default function MorseAudioTranslator({
                 <SliderRow
                   label="Pitch"
                   value={toneHz}
-                  min={200}
-                  max={1600}
+                  min={AUDIO_PITCH_RANGE.min}
+                  max={AUDIO_PITCH_RANGE.max}
                   step={10}
                   unit="Hz"
                   onChange={setToneHz}
@@ -891,8 +863,8 @@ export default function MorseAudioTranslator({
                 <SliderRow
                   label="Volume"
                   value={Math.round(volume * 100)}
-                  min={0}
-                  max={100}
+                  min={VOLUME_RANGE.min * 100}
+                  max={VOLUME_RANGE.max * 100}
                   step={1}
                   unit="%"
                   onChange={(v) => setVolume(v / 100)}
@@ -941,24 +913,22 @@ export default function MorseAudioTranslator({
                       <SliderRow
                         label="Attack"
                         value={attackMs}
-                        min={0}
-                        max={40}
+                        min={AUDIO_ATTACK_RANGE.min}
+                        max={AUDIO_ATTACK_RANGE.max}
                         step={1}
                         unit="ms"
                         onChange={setAttackMs}
                         disabled={!renderedSoundOn || !presetSupportsPitchControl(preset)}
-                        help="Softens clicks at the start."
                       />
                       <SliderRow
                         label="Release"
                         value={releaseMs}
-                        min={0}
-                        max={80}
+                        min={AUDIO_RELEASE_RANGE.min}
+                        max={AUDIO_RELEASE_RANGE.max}
                         step={1}
                         unit="ms"
                         onChange={setReleaseMs}
                         disabled={!renderedSoundOn || !presetSupportsPitchControl(preset)}
-                        help="Softens clicks at the end."
                       />
                     </div>
                   </div>
@@ -1013,12 +983,11 @@ export default function MorseAudioTranslator({
                       <SliderRow
                         label="Tail padding"
                         value={tailMs}
-                        min={0}
-                        max={400}
+                        min={AUDIO_TAIL_RANGE.min}
+                        max={AUDIO_TAIL_RANGE.max}
                         step={10}
                         unit="ms"
                         onChange={setTailMs}
-                        help="Extra silence to avoid clipped tails."
                         disabled={!renderedSoundOn}
                       />
                     </div>

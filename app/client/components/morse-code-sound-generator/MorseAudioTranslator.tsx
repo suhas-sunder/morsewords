@@ -37,7 +37,7 @@ import {
 } from "~/client/components/shared/export/morseExportPlan";
 import { useMorseAudioExportJob } from "~/client/components/shared/export/useMorseAudioExportJob";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
-import TogglePill from "~/client/components/shared/ui/TogglePill";
+import PlaybackToggleGroup from "~/client/components/shared/PlaybackToggleGroup";
 import { AudioPresetOptions } from "~/client/components/shared/AudioPresetPicker";
 import {
   getAudioPresetDefaults,
@@ -80,13 +80,10 @@ import {
 
 import {
   CopyIcon,
-  LoopIcon,
   PauseIcon,
   PlayIcon,
   SaveIcon,
-  SoundIcon,
   StopIcon,
-  LightBulbIcon,
 } from "~/client/assets/svg/Icons";
 
 type SourceMode = "text" | "morse";
@@ -735,18 +732,30 @@ export default function MorseAudioTranslator({
                 <span className="text-sm text-slate-600">{player.isSupported ? player.state === "idle" ? "Ready" : player.state === "playing" ? "Playing" : "Paused" : "Unavailable"}</span>
               </div>
 
-              <div className="mt-4 grid sm:grid-cols-2 gap-4">
-                <SliderRow label="Character speed" value={charWpm} min={AUDIO_SPEED_RANGE.min} max={AUDIO_SPEED_RANGE.max} step={1} unit="WPM" onChange={handleCharWpmChange} />
-                <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={AUDIO_SPEED_RANGE.min} max={Math.max(AUDIO_SPEED_RANGE.min, charWpm)} step={1} unit="WPM" onChange={handleFarnsworthWpmChange} help="Slower spacing, same character speed" />
-                <SliderRow label="Pitch" value={toneHz} min={AUDIO_PITCH_RANGE.min} max={AUDIO_PITCH_RANGE.max} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || !presetSupportsPitchControl(preset)} />
-                <SliderRow label="Volume" value={Math.round(volume * 100)} min={VOLUME_RANGE.min * 100} max={VOLUME_RANGE.max * 100} step={1} unit="%" onChange={(v) => setVolume(v / 100)} disabled={!soundOn} />
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                <PlaybackToggleGroup
+                  sound={{ checked: soundOn, onChange: (value) => updateFeedbackToggle("sound", value) }}
+                  repeat={{ checked: repeat, onChange: (value) => updateFeedbackToggle("repeat", value) }}
+                  flash={{
+                    checked: effectiveFlash,
+                    onChange: (value) => updateFeedbackToggle("flash", value),
+                    describedBy: disableFlashEffects
+                      ? FLASH_DISABLED_NOTICE_ID
+                      : showStrobeWarning
+                        ? STROBE_WARNING_ID
+                        : undefined,
+                    disabled: !flashAllowed,
+                  }}
+                  rounded="lg"
+                />
+                <FlashLamp active={flashLamp.active} disabled={!flashAllowed} label="Morse audio flash lamp" size="sm" />
               </div>
 
-              <div className="mt-4 flex flex-wrap items-center gap-2">
-                <TogglePill label="Sound" checked={soundOn} onChange={(v) => updateFeedbackToggle("sound", v)} icon={<SoundIcon size={16} title="Sound" />} rounded="lg" />
-                <TogglePill label="Repeat" checked={repeat} onChange={(v) => updateFeedbackToggle("repeat", v)} icon={<LoopIcon size={16} title="Repeat" />} rounded="lg" />
-                <TogglePill label="Flash Light" checked={effectiveFlash} onChange={(v) => updateFeedbackToggle("flash", v)} icon={<LightBulbIcon size={16} title={undefined} aria-hidden="true" />} describedBy={disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : showStrobeWarning ? STROBE_WARNING_ID : undefined} disabled={!flashAllowed} rounded="lg" />
-                <FlashLamp active={flashLamp.active} disabled={!flashAllowed} label="Morse audio flash lamp" size="sm" />
+              <div className="mt-4 grid sm:grid-cols-2 gap-4">
+                <SliderRow label="Character speed" value={charWpm} min={AUDIO_SPEED_RANGE.min} max={AUDIO_SPEED_RANGE.max} step={1} unit="WPM" onChange={handleCharWpmChange} />
+                <SliderRow label="Farnsworth spacing" value={farnsworthWpm} min={AUDIO_SPEED_RANGE.min} max={Math.max(AUDIO_SPEED_RANGE.min, charWpm)} step={1} unit="WPM" onChange={handleFarnsworthWpmChange} />
+                <SliderRow label="Pitch" value={toneHz} min={AUDIO_PITCH_RANGE.min} max={AUDIO_PITCH_RANGE.max} step={10} unit="Hz" onChange={setToneHz} disabled={!soundOn || !presetSupportsPitchControl(preset)} />
+                <SliderRow label="Volume" value={Math.round(volume * 100)} min={VOLUME_RANGE.min * 100} max={VOLUME_RANGE.max * 100} step={1} unit="%" onChange={(v) => setVolume(v / 100)} disabled={!soundOn} />
               </div>
 
               {disableFlashEffects ? <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} className="mt-3" /> : showStrobeWarning ? <StrobeWarning id={STROBE_WARNING_ID} className="mt-3" /> : null}
@@ -789,8 +798,8 @@ export default function MorseAudioTranslator({
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-3">
-                      <SliderRow label="Attack" value={attackMs} min={0} max={40} step={1} unit="ms" onChange={setAttackMs} disabled={!soundOn || !presetSupportsPitchControl(preset)} help="Softens clicks at the start." />
-                      <SliderRow label="Release" value={releaseMs} min={0} max={80} step={1} unit="ms" onChange={setReleaseMs} disabled={!soundOn || !presetSupportsPitchControl(preset)} help="Softens clicks at the end." />
+                      <SliderRow label="Attack" value={attackMs} min={AUDIO_ATTACK_RANGE.min} max={AUDIO_ATTACK_RANGE.max} step={1} unit="ms" onChange={setAttackMs} disabled={!soundOn || !presetSupportsPitchControl(preset)} />
+                      <SliderRow label="Release" value={releaseMs} min={AUDIO_RELEASE_RANGE.min} max={AUDIO_RELEASE_RANGE.max} step={1} unit="ms" onChange={setReleaseMs} disabled={!soundOn || !presetSupportsPitchControl(preset)} />
                     </div>
                   </div>
 
@@ -813,8 +822,8 @@ export default function MorseAudioTranslator({
                           <option value={48000}>48000</option>
                         </select>
                       </div>
-                      <SliderRow label="Lead-in silence" value={leadInMs} min={AUDIO_LEAD_IN_RANGE.min} max={AUDIO_LEAD_IN_RANGE.max} step={50} unit="ms" onChange={setLeadInMs} help="Silence before each downloaded file." disabled={exportControlsLocked} />
-                      <SliderRow label="Tail padding" value={tailMs} min={0} max={400} step={10} unit="ms" onChange={setTailMs} help="Extra silence to avoid clipped tails." disabled={exportControlsLocked} />
+                      <SliderRow label="Lead-in silence" value={leadInMs} min={AUDIO_LEAD_IN_RANGE.min} max={AUDIO_LEAD_IN_RANGE.max} step={50} unit="ms" onChange={setLeadInMs} disabled={exportControlsLocked} />
+                      <SliderRow label="Tail padding" value={tailMs} min={AUDIO_TAIL_RANGE.min} max={AUDIO_TAIL_RANGE.max} step={10} unit="ms" onChange={setTailMs} disabled={exportControlsLocked} />
                     </div>
                   </div>
 

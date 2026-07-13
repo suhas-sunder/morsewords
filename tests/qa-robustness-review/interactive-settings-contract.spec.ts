@@ -25,6 +25,7 @@ const ROOT = process.cwd();
 
 const INTERACTION_PRIMITIVE_OWNERS = [
   "app/client/components/shared/ToolWorkspace.tsx",
+  "app/client/components/shared/PlaybackToggleGroup.tsx",
   "app/client/components/shared/ui/SliderRow.tsx",
   "app/client/components/shared/ui/TogglePill.tsx",
   "app/client/components/shared/ActionControls.tsx",
@@ -67,11 +68,39 @@ test.describe("interactive state and Morse settings contracts", () => {
     expect(readRepoFile("app/client/components/shared/ToolWorkspace.tsx")).toContain(
       "mw-noneditable-output",
     );
+    expect(readRepoFile("app/client/components/shared/ToolWorkspace.tsx")).toContain(
+      '"mw-output-text mw-input-placeholder',
+    );
     expect(readRepoFile("app/client/components/shared/TranslatorSectionsBasic.tsx")).toContain(
       "mw-noneditable-output",
     );
     expect(readRepoFile("app/app.css")).toContain("::selection");
     expect(readRepoFile("app/app.css")).toContain("--mw-focus-visible");
+  });
+
+  test("keeps equivalent playback toggles and concise setting rows on shared contracts", () => {
+    const playbackConsumers = [
+      "app/client/components/shared/TranslatorSectionsBasic.tsx",
+      "app/client/components/audio/MorseAudioTranslator.tsx",
+      "app/client/components/morse-code-sound-generator/MorseAudioTranslator.tsx",
+      "app/client/components/morse-code-mp3-generator/MorseMp3GeneratorTool.tsx",
+    ] as const;
+    const bannedSettingHints = [
+      "Slows spacing only.",
+      "Slower spacing, same character speed",
+      "Softens clicks at the start.",
+      "Softens clicks at the end.",
+      "Extra silence to avoid clipped tails.",
+    ];
+
+    for (const filePath of playbackConsumers) {
+      const source = readRepoFile(filePath);
+      expect(source, filePath).toContain("PlaybackToggleGroup");
+      expect(source, filePath).not.toContain("<TogglePill");
+      for (const hint of bannedSettingHints) {
+        expect(source, `${filePath}: ${hint}`).not.toContain(hint);
+      }
+    }
   });
 
   test("uses one speed contract and a dynamic Farnsworth ceiling", () => {
@@ -90,6 +119,10 @@ test.describe("interactive state and Morse settings contracts", () => {
       const source = readRepoFile(filePath);
       expect(source, filePath).toContain("AUDIO_SPEED_RANGE.max");
       expect(source, filePath).toContain("clampFarnsworthWpm");
+      expect(source, filePath).toContain("AUDIO_PITCH_RANGE.min");
+      expect(source, filePath).toContain("VOLUME_RANGE.min * 100");
+      expect(source, filePath).toContain("AUDIO_ATTACK_RANGE.min");
+      expect(source, filePath).toContain("AUDIO_RELEASE_RANGE.min");
       expect(source, filePath).not.toContain("clampNum(charWpm, 5, 60)");
       expect(source, filePath).not.toContain("clampNum(farnsworthWpm, 5, 60)");
     }

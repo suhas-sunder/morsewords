@@ -41,6 +41,8 @@ import {
   copyTextToClipboard,
 } from "~/client/components/shared/ActionControls";
 import { ToolOutputTextarea } from "~/client/components/shared/ToolWorkspace";
+import PlaybackToggleGroup from "~/client/components/shared/PlaybackToggleGroup";
+import SliderRow from "~/client/components/shared/ui/SliderRow";
 import {
   ExportJobStatus,
   ExportPlanSummary,
@@ -66,16 +68,12 @@ import {
   CheckCircleIcon,
   CopyIcon,
   DownloadIcon,
-  LightBulbIcon,
-  LoopIcon,
   PauseIcon,
   PlayIcon,
   ShareIcon,
   StopIcon,
   TrashIcon,
   TuneIcon,
-  VolumeIcon,
-  VolumeOffIcon,
 } from "../../assets/svg/Icons";
 
 interface Props {
@@ -974,49 +972,20 @@ export default function TranslatorSectionsBasic({
                     Playback Settings
                   </h3>
 
-                  <div className="flex flex-wrap items-center gap-2 sm:justify-end">
-                    <TogglePill
-                      label="Sound"
-                      checked={soundOn}
-                      onChange={setSoundOn}
-                      icon={
-                        soundOn ? (
-                          <VolumeIcon size={16} title={undefined} aria-hidden="true" />
-                        ) : (
-                          <VolumeOffIcon size={16} title={undefined} aria-hidden="true" />
-                        )
-                      }
-                      isHome={isHome}
-                    />
-
-                    <TogglePill
-                      label="Repeat"
-                      checked={repeat}
-                      onChange={setRepeat}
-                      icon={<LoopIcon size={16} title="Repeat" />}
-                      isHome={isHome}
-                    />
-
-                    <TogglePill
-                      label="Flash Light"
-                      checked={effectiveFlash}
-                      onChange={(value) => setFlash(value && flashAllowed)}
-                      icon={
-                        <LightBulbIcon
-                          size={16}
-                          title={undefined}
-                          aria-hidden="true"
-                        />
-                      }
-                      describedBy={
-                        disableFlashEffects
+                  <div className="sm:justify-end">
+                    <PlaybackToggleGroup
+                      sound={{ checked: soundOn, onChange: setSoundOn }}
+                      repeat={{ checked: repeat, onChange: setRepeat }}
+                      flash={{
+                        checked: effectiveFlash,
+                        onChange: (value) => setFlash(value && flashAllowed),
+                        describedBy: disableFlashEffects
                           ? FLASH_DISABLED_NOTICE_ID
                           : showStrobeWarning
                             ? STROBE_WARNING_ID
-                            : undefined
-                      }
-                      disabled={!flashAllowed}
-                      isHome={isHome}
+                            : undefined,
+                        disabled: !flashAllowed,
+                      }}
                     />
                     <FlashLamp
                       active={flashLamp.active}
@@ -1118,17 +1087,9 @@ export default function TranslatorSectionsBasic({
                         step={1}
                         unit="WPM"
                         onChange={handleFarnsworthWpmChange}
-                        help="Slows spacing only."
                         quietInputFocus={quietInputFocus}
                       />
                     </div>
-
-                    <p className="mw-text-soft text-xs leading-relaxed text-slate-600">
-                      Tip: set a higher <strong>Character speed</strong> and a
-                      lower <strong>Farnsworth</strong> to keep dits and dahs
-                      crisp while adding extra spacing between characters and
-                      words.
-                    </p>
 
                     <section
                       aria-label="Audio download settings"
@@ -1181,108 +1142,6 @@ export default function TranslatorSectionsBasic({
   );
 }
 
-function TogglePill({
-  label,
-  checked,
-  onChange,
-  icon,
-  describedBy,
-  disabled = false,
-  isHome = false,
-}: {
-  label: string;
-  checked: boolean;
-  onChange: (v: boolean) => void;
-  icon?: React.ReactNode;
-  describedBy?: string;
-  disabled?: boolean;
-  isHome?: boolean;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        if (!disabled) onChange(!checked);
-      }}
-      disabled={disabled}
-      className={`mw-focus-ring flex ${disabled ? "cursor-not-allowed" : "cursor-pointer"} items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
-        isHome ? "" : "min-h-10 sm:min-h-0"
-      } ${
-        disabled
-          ? DISABLED_CONTROL
-          : checked
-          ? `${ACTIVE_CONTROL} mw-button-primary-global-hover hover:bg-slate-900 hover:text-white`
-          : isHome
-            ? HOME_SOFT_CONTROL
-            : SOFT_CONTROL
-      }`}
-      aria-pressed={checked}
-      aria-describedby={describedBy}
-    >
-      {icon}
-      <span>{label}</span>
-    </button>
-  );
-}
-
-function SliderRow({
-  label,
-  value,
-  min,
-  max,
-  step,
-  unit,
-  onChange,
-  help,
-  disabled,
-  quietInputFocus = false,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  unit: string;
-  onChange: (v: number) => void;
-  help?: string;
-  disabled?: boolean;
-  quietInputFocus?: boolean;
-}) {
-  const id = React.useId();
-  const inputFocusClass = quietInputFocus
-    ? "focus:outline-none focus:ring-0 focus-visible:outline-none"
-    : "mw-focus-ring focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
-
-  return (
-    <div>
-      <div className="flex items-baseline justify-between gap-3">
-        <label htmlFor={id} className="mw-text-muted text-sm font-semibold text-slate-700">
-          {label}
-        </label>
-        <span className="mw-text-soft text-sm text-slate-600">
-          {value} {unit}
-        </span>
-      </div>
-
-      {help && <p className="mw-text-faint mt-0.5 text-xs text-slate-500">{help}</p>}
-
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-        disabled={disabled}
-        style={{ accentColor: "var(--mw-accent)" }}
-        className={`mt-2 w-full rounded-full ${inputFocusClass} ${
-          disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
-        }`}
-      />
-    </div>
-  );
-}
 
 function writeNum(key: string, value: number) {
   safeWriteStorage(key, String(value));

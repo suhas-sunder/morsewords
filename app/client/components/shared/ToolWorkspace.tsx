@@ -240,6 +240,7 @@ export function ToolTextarea({
  * preventing focus, keyboard navigation, scrolling, or textarea resizing.
  */
 export function ToolOutputTextarea({
+  className = "",
   onFocus,
   onPointerDown,
   onPointerMove,
@@ -274,6 +275,12 @@ export function ToolOutputTextarea({
     <textarea
       {...props}
       readOnly
+      className={[
+        "mw-output-text mw-input-placeholder min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sky-100 outline-none placeholder:text-slate-400 focus:ring-0 focus-visible:outline-none",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
       onFocus={(event) => {
         clearSelection(event.currentTarget);
         onFocus?.(event);

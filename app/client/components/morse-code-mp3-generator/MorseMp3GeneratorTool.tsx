@@ -70,20 +70,17 @@ import {
 } from "~/client/components/shared/ToolWorkspace";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import StatusMessage from "~/client/components/shared/ui/StatusMessage";
-import TogglePill from "~/client/components/shared/ui/TogglePill";
+import PlaybackToggleGroup from "~/client/components/shared/PlaybackToggleGroup";
 import {
   CheckCircleIcon,
   CopyIcon,
   DownloadIcon,
   EqualizerIcon,
-  LightBulbIcon,
-  LoopIcon,
   PauseIcon,
   PlayIcon,
   StopIcon,
   TrashIcon,
   VolumeIcon,
-  VolumeOffIcon,
 } from "~/client/assets/svg/Icons";
 
 type SourceMode = "text" | "morse";
@@ -756,38 +753,20 @@ export default function MorseMp3GeneratorTool() {
           Audio controls
         </h2>
 
-        <div className="flex flex-wrap items-center gap-2 sm:justify-end">
-          <TogglePill
-            label="Sound"
-            checked={renderedSoundOn}
-            onChange={(value) => setFeedback("sound", value)}
-            icon={
-              renderedSoundOn ? (
-                <VolumeIcon size={16} title={undefined} aria-hidden="true" />
-              ) : (
-                <VolumeOffIcon size={16} title={undefined} aria-hidden="true" />
-              )
-            }
-          />
-          <TogglePill
-            label="Repeat"
-            checked={renderedRepeat}
-            onChange={(value) => setFeedback("repeat", value)}
-            icon={<LoopIcon size={16} title={undefined} aria-hidden="true" />}
-          />
-          <TogglePill
-            label="Flash Light"
-            checked={renderedFlash}
-            onChange={(value) => setFeedback("flash", value)}
-            icon={<LightBulbIcon size={16} title={undefined} aria-hidden="true" />}
-            describedBy={
-              disableFlashEffects
+        <div className="sm:justify-end">
+          <PlaybackToggleGroup
+            sound={{ checked: renderedSoundOn, onChange: (value) => setFeedback("sound", value) }}
+            repeat={{ checked: renderedRepeat, onChange: (value) => setFeedback("repeat", value) }}
+            flash={{
+              checked: renderedFlash,
+              onChange: (value) => setFeedback("flash", value),
+              describedBy: disableFlashEffects
                 ? FLASH_DISABLED_NOTICE_ID
                 : showStrobeWarning
                   ? STROBE_WARNING_ID
-                  : undefined
-            }
-            disabled={!flashAllowed}
+                  : undefined,
+              disabled: !flashAllowed,
+            }}
           />
           <FlashLamp
             active={flashLamp.active}
@@ -820,8 +799,8 @@ export default function MorseMp3GeneratorTool() {
         <SliderRow
           label="Pitch"
           value={toneHz}
-          min={200}
-          max={1600}
+          min={AUDIO_PITCH_RANGE.min}
+          max={AUDIO_PITCH_RANGE.max}
           step={10}
           unit="Hz"
           onChange={setToneHz}
@@ -830,8 +809,8 @@ export default function MorseMp3GeneratorTool() {
         <SliderRow
           label="Volume"
           value={Math.round(volume * 100)}
-          min={0}
-          max={100}
+          min={VOLUME_RANGE.min * 100}
+          max={VOLUME_RANGE.max * 100}
           step={1}
           unit="%"
           onChange={(nextValue) => setVolume(nextValue / 100)}
@@ -884,24 +863,22 @@ export default function MorseMp3GeneratorTool() {
               <SliderRow
                 label="Attack"
                 value={attackMs}
-                min={0}
-                max={40}
+                min={AUDIO_ATTACK_RANGE.min}
+                max={AUDIO_ATTACK_RANGE.max}
                 step={1}
                 unit="ms"
                 onChange={setAttackMs}
                 disabled={!renderedSoundOn || !presetSupportsPitchControl(preset)}
-                help="Softens clicks at the start."
               />
               <SliderRow
                 label="Release"
                 value={releaseMs}
-                min={0}
-                max={80}
+                min={AUDIO_RELEASE_RANGE.min}
+                max={AUDIO_RELEASE_RANGE.max}
                 step={1}
                 unit="ms"
                 onChange={setReleaseMs}
                 disabled={!renderedSoundOn || !presetSupportsPitchControl(preset)}
-                help="Softens clicks at the end."
               />
             </div>
           </div>
@@ -977,18 +954,16 @@ export default function MorseMp3GeneratorTool() {
           unit="ms"
           onChange={setLeadInMs}
           disabled={exportControlsLocked}
-          help="Silence before each downloaded file."
         />
         <SliderRow
           label="Tail padding"
           value={tailMs}
-          min={0}
-          max={400}
+          min={AUDIO_TAIL_RANGE.min}
+          max={AUDIO_TAIL_RANGE.max}
           step={10}
           unit="ms"
           onChange={setTailMs}
           disabled={exportControlsLocked}
-          help="Extra silence to avoid clipped tails."
         />
       </div>
 

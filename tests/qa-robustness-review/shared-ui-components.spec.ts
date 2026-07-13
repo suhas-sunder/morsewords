@@ -7,6 +7,7 @@ import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 const ROOT = process.cwd();
 
 const sharedComponentFiles = [
+  "app/client/components/shared/PlaybackToggleGroup.tsx",
   "app/client/components/shared/ui/TogglePill.tsx",
   "app/client/components/shared/ui/SliderRow.tsx",
   "app/client/components/shared/ui/StatusMessage.tsx",
@@ -343,6 +344,30 @@ test("targeted routes reuse shared controls instead of route-local copies", () =
   }
 });
 
+test("homepage-equivalent playback routes keep Sound, Repeat, and Flash Light outside advanced settings", async ({
+  page,
+}) => {
+  for (const route of [
+    "/",
+    "/audio",
+    "/morse-code-sound-generator",
+    "/morse-code-mp3-generator",
+  ]) {
+    await page.goto(route, { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+
+    for (const name of ["Sound", "Repeat", "Flash Light"]) {
+      const control = page.getByRole("button", { name, exact: true });
+      await expect(control, `${route}: ${name}`).toHaveCount(1);
+      await expect(control).toBeVisible();
+      expect(
+        await control.evaluate((element) => Boolean(element.closest("details"))),
+        `${route}: ${name} should remain in the primary playback controls`,
+      ).toBe(false);
+    }
+  }
+});
+
 test.describe("shared route controls", () => {
   test.beforeEach(async ({ page }) => {
     await blockExternalNetwork(page);
@@ -517,6 +542,10 @@ test.describe("shared route controls", () => {
       await page.getByRole("button", { name: /Show advanced/i }).click();
       tonePreset = page.getByLabel("Tone preset").first();
     }
+    if (await tonePreset.isDisabled()) {
+      await page.getByRole("button", { name: "Sound", exact: true }).click();
+      await expect(tonePreset).toBeEnabled();
+    }
     await expectCleanFieldFocus(tonePreset);
 
     await page.goto("/morse-code-sound-generator", {
@@ -527,6 +556,10 @@ test.describe("shared route controls", () => {
     if (!(await tonePreset.isVisible())) {
       await page.getByRole("button", { name: /Show advanced/i }).click();
       tonePreset = page.getByLabel("Tone preset").first();
+    }
+    if (await tonePreset.isDisabled()) {
+      await page.getByRole("button", { name: "Sound", exact: true }).click();
+      await expect(tonePreset).toBeEnabled();
     }
     await expectCleanFieldFocus(tonePreset);
 
@@ -564,6 +597,30 @@ test.describe("shared route controls", () => {
     await expectStableReadableOutputPanel({
       panel: audioPanel,
       text: audioPanel.locator("pre").first(),
+    });
+
+    await page.goto("/morse-code-mp3-generator", {
+      waitUntil: "domcontentloaded",
+    });
+    await waitForRouteReady(page);
+    const mp3Output = page.getByLabel("Generated Morse output");
+    await expect(mp3Output).toBeVisible();
+    await expectStableReadableOutputPanel({
+      focusTarget: mp3Output,
+      panel: mp3Output.locator("xpath=ancestor::div[contains(@class, 'mw-output-panel')][1]"),
+      text: mp3Output,
+    });
+
+    await page.goto("/morse-code-video-generator", {
+      waitUntil: "domcontentloaded",
+    });
+    await waitForRouteReady(page);
+    const videoOutput = page.getByLabel("Generated Morse output");
+    await expect(videoOutput).toBeVisible();
+    await expectStableReadableOutputPanel({
+      focusTarget: videoOutput,
+      panel: videoOutput.locator("xpath=ancestor::div[contains(@class, 'mw-output-panel')][1]"),
+      text: videoOutput,
     });
 
     await page.goto("/morse-code-word-separator", {

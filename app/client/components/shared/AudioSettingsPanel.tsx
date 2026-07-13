@@ -188,7 +188,6 @@ export default function AudioSettingsPanel({
           step={10}
           unit="ms"
           onChange={onTailMsChange}
-          help="Extra silence to avoid clipped tails."
         />
       ) : null}
       {showEnvelope &&
@@ -206,7 +205,6 @@ export default function AudioSettingsPanel({
             unit="ms"
             onChange={onAttackMsChange}
             disabled={!pitchEditable}
-            help="Softens clicks at the start."
           />
           <SliderRow
             label="Release"
@@ -217,7 +215,6 @@ export default function AudioSettingsPanel({
             unit="ms"
             onChange={onReleaseMsChange}
             disabled={!pitchEditable}
-            help="Softens clicks at the end."
           />
         </>
       ) : null}
