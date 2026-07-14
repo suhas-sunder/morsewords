@@ -90,6 +90,16 @@ function expectNoOutlineRingOrBorder(snapshot: FocusArtifactSnapshot) {
   expect(snapshot.ringOffsetShadow).toMatch(/^(?:0 0 #0000|none)?$/);
 }
 
+function expectNoFieldOutlineRingOrBorder(snapshot: FocusArtifactSnapshot) {
+  expect(snapshot.outlineStyle).toBe("none");
+  expect(snapshot.borderTopWidth).toBe("0px");
+  expect(snapshot.borderRightWidth).toBe("0px");
+  expect(snapshot.borderBottomWidth).toBe("0px");
+  expect(snapshot.borderLeftWidth).toBe("0px");
+  expect(snapshot.ringShadow).toMatch(/^(?:0 0 #0000|none)?$/);
+  expect(snapshot.ringOffsetShadow).toMatch(/^(?:0 0 #0000|none)?$/);
+}
+
 async function expectCleanFieldFocus(locator: Locator) {
   const before = await readFocusArtifactSnapshot(locator);
 
@@ -97,7 +107,7 @@ async function expectCleanFieldFocus(locator: Locator) {
   await expect(locator).toBeFocused();
   const focused = await readFocusArtifactSnapshot(locator);
 
-  expectNoOutlineRingOrBorder(focused);
+  expectNoFieldOutlineRingOrBorder(focused);
   expect(focused.boxShadow).toMatch(
     /^(?:none|(?:rgba\(0, 0, 0, 0\)[^,]*(?:,\s*)?)+)$/,
   );
@@ -335,6 +345,10 @@ test("shared UI control primitives keep accessibility and disabled-state contrac
   );
   expect(appCss).toMatch(
     /\.mw-page-content\s+:where\(input\[type="range"\]\):focus-visible/,
+  );
+  expect(appCss).not.toContain("--mw-textarea-focus-outline");
+  expect(appCss).not.toMatch(
+    /:has\(textarea\.mw-tool-(?:input|output)-surface:focus-visible/,
   );
   expect(appCss).toContain(".mw-tool-output-surface");
   expect(appCss).toMatch(
@@ -601,7 +615,7 @@ test.describe("shared route controls", () => {
       await input.fill("MAESTRO");
       const inputAfter = await readFocusArtifactSnapshot(input);
       expect(inputAfter.backgroundColor).toBe(inputBefore.backgroundColor);
-      expectNoOutlineRingOrBorder(inputAfter);
+      expectNoFieldOutlineRingOrBorder(inputAfter);
 
       await expect(output).toHaveValue(/--/);
       const outputBefore = await output.evaluate((element) => {

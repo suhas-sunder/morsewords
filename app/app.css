@@ -94,7 +94,6 @@
   --mw-selection-bg: #075985;
   --mw-selection-text: #f0f9ff;
   --mw-focus-ring-muted: rgba(11, 36, 71, 0.34);
-  --mw-textarea-focus-outline: rgba(15, 23, 42, 0.48);
   --mw-range-focus-ring: rgba(11, 36, 71, 0.38);
   --mw-focus-control-tint: color-mix(in srgb, var(--mw-accent) 8%, transparent);
   --mw-focus-field-bg: color-mix(
@@ -199,7 +198,6 @@
   --mw-output-bright: #f4fbff;
   --mw-output-soft: #c9d8e7;
   --mw-output-muted: #9fb2c7;
-  --mw-textarea-focus-outline: rgba(203, 213, 225, 0.58);
   --mw-code-bg: #0b1828;
   --mw-code-text: #d9ecff;
   --mw-success-bg: #062f1d;
@@ -1823,11 +1821,10 @@ body
 .mw-page-content textarea.mw-tool-input-surface:focus,
 .mw-page-content textarea.mw-tool-output-surface:focus {
   outline: none !important;
-}
-
-.mw-page-content :where(.mw-input-panel, .mw-panel-dark, .mw-output-panel):has(textarea.mw-tool-input-surface:focus-visible, textarea.mw-tool-output-surface:focus-visible) {
-  outline: 2px solid var(--mw-textarea-focus-outline);
-  outline-offset: 2px;
+  outline-color: transparent !important;
+  outline-offset: 0 !important;
+  outline-style: none !important;
+  outline-width: 0 !important;
 }
 
 .mw-page-content
@@ -2137,9 +2134,6 @@ body
     a[href],
     button,
     summary,
-    input,
-    textarea,
-    select,
     [role="button"],
     [role="checkbox"],
     [role="radio"],
@@ -2159,9 +2153,6 @@ body
     a[href],
     button,
     summary,
-    input,
-    textarea,
-    select,
     [role="button"],
     [role="checkbox"],
     [role="radio"],
@@ -2174,4 +2165,17 @@ body
   outline-offset: 2px !important;
   outline-style: solid !important;
   outline-width: 2px !important;
+}
+
+.mw-page-content :where(input, textarea, select):where(:focus, :focus-visible),
+body :is(input, textarea, select):where(:focus, :focus-visible) {
+  outline: none !important;
+  outline-color: transparent !important;
+  outline-offset: 0 !important;
+  outline-style: none !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-offset-shadow: 0 0 #0000 !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
 }

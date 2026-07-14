@@ -426,8 +426,9 @@ Approved button treatment is centralized by `app/app.css` and
 - Place strobe warnings before or directly beside controls that can start
   flashing.
 - Editable textareas must retain the same content fill and internal geometry on
-  focus. Put keyboard focus outside the content surface; do not add internal
-  blue lines, pale fills, or focus tint.
+  focus. Do not add focus outlines, focus rings, border outlines, panel
+  outlines, internal blue lines, pale fills, or focus tint to input fields,
+  textareas, selects, or their containing input/output panels.
 - Read-only Morse outputs must keep a high-contrast deep output surface in all
   states. Do not allow browser input, focus, disabled, or text-fill styling to
   turn them pale or reduce readability.
