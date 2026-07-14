@@ -94,6 +94,7 @@
   --mw-selection-bg: #075985;
   --mw-selection-text: #f0f9ff;
   --mw-focus-ring-muted: rgba(11, 36, 71, 0.34);
+  --mw-textarea-focus-outline: rgba(15, 23, 42, 0.48);
   --mw-range-focus-ring: rgba(11, 36, 71, 0.38);
   --mw-focus-control-tint: color-mix(in srgb, var(--mw-accent) 8%, transparent);
   --mw-focus-field-bg: color-mix(
@@ -198,6 +199,7 @@
   --mw-output-bright: #f4fbff;
   --mw-output-soft: #c9d8e7;
   --mw-output-muted: #9fb2c7;
+  --mw-textarea-focus-outline: rgba(203, 213, 225, 0.58);
   --mw-code-bg: #0b1828;
   --mw-code-text: #d9ecff;
   --mw-success-bg: #062f1d;
@@ -1790,38 +1792,42 @@ body
   --tw-ring-shadow: 0 0 #0000 !important;
 }
 
-/* Textareas keep their document surface while keyboard focus stays outside it. */
-.mw-page-content textarea.mw-stable-textarea:focus,
-.mw-page-content textarea.mw-stable-textarea:focus-visible {
+/* Tool textareas own their native states so form defaults cannot alter the panel surface. */
+.mw-page-content textarea.mw-tool-input-surface,
+.mw-page-content textarea.mw-tool-input-surface:where(:hover, :focus, :focus-visible, :active, :-webkit-autofill) {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background: transparent !important;
   background-color: transparent !important;
-  border-color: transparent !important;
+  border: 0 !important;
   box-shadow: none !important;
+  color: var(--mw-input-text) !important;
+  -webkit-text-fill-color: var(--mw-input-text);
+  caret-color: var(--mw-input-text);
+}
+
+.mw-page-content textarea.mw-tool-output-surface,
+.mw-page-content textarea.mw-tool-output-surface:where(:hover, :focus, :focus-visible, :active, :disabled) {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background: var(--mw-panel-dark) !important;
+  background-color: var(--mw-panel-dark) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  caret-color: transparent;
+  color: var(--mw-output-text) !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: var(--mw-output-text) !important;
+}
+
+.mw-page-content textarea.mw-tool-input-surface:focus,
+.mw-page-content textarea.mw-tool-output-surface:focus {
   outline: none !important;
 }
 
-.mw-page-content
-  :where(.mw-panel-dark, .mw-output-panel):where(:hover, :focus-within) {
-  background: var(--mw-panel-dark) !important;
-  color: var(--mw-output-text) !important;
-}
-
-.mw-page-content
-  :where(.mw-panel-dark, .mw-output-panel)
-  :where(
-    textarea[readonly],
-    textarea[readonly]:focus,
-    textarea[readonly]:focus-visible
-  ) {
-  background-color: transparent !important;
-  color: var(--mw-output-text) !important;
-  caret-color: var(--mw-accent);
-  box-shadow: none !important;
-}
-
-.mw-page-content .mw-output-panel textarea.mw-output-text:where(:focus, :focus-visible, :disabled) {
-  background-color: transparent !important;
-  color: var(--mw-output-text) !important;
-  -webkit-text-fill-color: var(--mw-output-text);
+.mw-page-content :where(.mw-input-panel, .mw-panel-dark, .mw-output-panel):has(textarea.mw-tool-input-surface:focus-visible, textarea.mw-tool-output-surface:focus-visible) {
+  outline: 2px solid var(--mw-textarea-focus-outline);
+  outline-offset: 2px;
 }
 
 .mw-page-content

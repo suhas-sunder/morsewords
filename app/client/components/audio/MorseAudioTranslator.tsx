@@ -773,6 +773,10 @@ export default function MorseAudioTranslator({
                     flash={{
                       checked: renderedFlash,
                       onChange: (value) => setFeedback("flash", value),
+                      lamp: {
+                        active: flashLamp.active,
+                        label: "Audio translator flash lamp",
+                      },
                       describedBy: disableFlashEffects
                         ? FLASH_DISABLED_NOTICE_ID
                         : showStrobeWarning

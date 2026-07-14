@@ -1,7 +1,18 @@
-import { expect, test, type Locator, type Page } from "@playwright/test";
+import {
+  devices,
+  expect,
+  test,
+  type Locator,
+  type Page,
+  webkit,
+} from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
 
+import {
+  AUDIO_TONE_PRESET_REGISTRY,
+  getAudioPresetsForContext,
+} from "../../app/client/components/shared/audioPresetRegistry";
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 const ROOT = process.cwd();
@@ -39,6 +50,11 @@ type FocusArtifactSnapshot = {
   outlineWidth: string;
   ringShadow: string;
   ringOffsetShadow: string;
+};
+
+type PresetOptionSnapshot = {
+  groups: string[];
+  options: Array<{ id: string; label: string }>;
 };
 
 async function readFocusArtifactSnapshot(locator: Locator) {
@@ -91,6 +107,29 @@ async function expectCleanFieldFocus(locator: Locator) {
   } else {
     expect(focused.backgroundColor).not.toBe(before.backgroundColor);
   }
+}
+
+async function readPresetOptions(select: Locator): Promise<PresetOptionSnapshot> {
+  return select.evaluate((element) => ({
+    groups: Array.from(element.querySelectorAll("optgroup")).map(
+      (group) => group.label,
+    ),
+    options: Array.from(element.options).map((option) => ({
+      id: option.value,
+      label: option.text,
+    })),
+  }));
+}
+
+function canonicalLivePlaybackPresetOptions(): PresetOptionSnapshot {
+  const presets = getAudioPresetsForContext("livePlayback");
+  return {
+    groups: ["Standard Morse tones", "Creative synthesized tones"],
+    options: presets.map((id) => ({
+      id,
+      label: AUDIO_TONE_PRESET_REGISTRY[id].label,
+    })),
+  };
 }
 
 async function expectCleanControlFocus(locator: Locator) {
@@ -297,13 +336,14 @@ test("shared UI control primitives keep accessibility and disabled-state contrac
   expect(appCss).toMatch(
     /\.mw-page-content\s+:where\(input\[type="range"\]\):focus-visible/,
   );
+  expect(appCss).toContain(".mw-tool-output-surface");
   expect(appCss).toMatch(
-    /\.mw-page-content\s+:where\(\.mw-panel-dark, \.mw-output-panel\):where\(:hover, :focus-within\)/,
+    /textarea\.mw-tool-output-surface[^}]*background-color: var\(--mw-panel-dark\) !important;/s,
   );
   expect(appCss).toMatch(
-    /:where\(\s*textarea\[readonly\],\s*textarea\[readonly\]:focus,\s*textarea\[readonly\]:focus-visible\s*\)\s*\{[^}]*background-color: transparent !important;/s,
+    /textarea\.mw-tool-input-surface[^}]*background-color: transparent !important;/s,
   );
-  expect(appCss).toMatch(/textarea\.mw-stable-textarea:focus-visible\s*\{[^}]*background-color: transparent !important;/s);
+  expect(appCss).toMatch(/-webkit-text-fill-color: var\(--mw-output-text\) !important;/);
   expect(appCss).toMatch(/--mw-focus-control-inset:/);
   expect(appCss).toMatch(/:focus-visible\s*\{[^}]*outline:\s*2px/s);
 
@@ -321,6 +361,13 @@ test("shared UI control primitives keep accessibility and disabled-state contrac
   );
   expect(flashSafety).toContain("shouldShowWholePageFlashWarning");
   expect(flashSafety).toContain("fullPageFlash && flashEnabled");
+
+  const playbackToggleGroup = readRepoFile(
+    "app/client/components/shared/PlaybackToggleGroup.tsx",
+  );
+  expect(playbackToggleGroup).toContain('data-testid="mw-flash-control"');
+  expect(playbackToggleGroup).toContain("FlashLamp");
+  expect(playbackToggleGroup).toContain("flex-nowrap");
 
   const sliderRow = readRepoFile(
     "app/client/components/shared/ui/SliderRow.tsx",
@@ -416,9 +463,221 @@ test.describe("shared route controls", () => {
           exact: false,
         }),
       ).toHaveCount(0);
-      await expect(page.getByTestId("mw-flash-lamp")).toHaveCount(0);
+      await expect(page.getByTestId("mw-flash-lamp")).toHaveCount(1);
     });
   }
+
+  test("shared Flash Light controls keep their lamp in one non-wrapping compound control", async ({
+    page,
+  }) => {
+    for (const route of [
+      "/",
+      "/audio",
+      "/morse-code-sound-generator",
+      "/morse-code-mp3-generator",
+      "/morse-code-audio-practice",
+      "/morse-code-audio-quiz",
+    ]) {
+      await page.goto(route, { waitUntil: "domcontentloaded" });
+      await waitForRouteReady(page);
+
+      const compound = page.getByTestId("mw-flash-control");
+      const flash = page.getByRole("button", { name: "Flash Light", exact: true });
+      const lamp = page.getByTestId("mw-flash-lamp");
+      await expect(compound, route).toHaveCount(1);
+      await expect(flash, route).toHaveCount(1);
+      await expect(lamp, route).toHaveCount(1);
+      expect(
+        await flash.evaluate((element) => element.parentElement?.dataset.testid),
+      ).toBe("mw-flash-control");
+      expect(
+        await lamp.evaluate((element) => element.parentElement?.dataset.testid),
+      ).toBe("mw-flash-control");
+
+      const geometry = await compound.evaluate((element) => {
+        const [button, indicator] = Array.from(element.children).map((child) =>
+          child.getBoundingClientRect(),
+        );
+        const style = window.getComputedStyle(element);
+        return {
+          button,
+          indicator,
+          flexWrap: style.flexWrap,
+        };
+      });
+
+      expect(geometry.flexWrap).toBe("nowrap");
+      expect(Math.abs(
+        geometry.button.top + geometry.button.height / 2 -
+          (geometry.indicator.top + geometry.indicator.height / 2),
+      )).toBeLessThanOrEqual(2);
+      expect(geometry.indicator.left).toBeGreaterThan(geometry.button.right);
+    }
+  });
+
+  test("the shared Flash Light compound stays together at every responsive breakpoint", async ({
+    page,
+  }) => {
+    for (const width of [1440, 1024, 768, 600, 390, 320]) {
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto("/", { waitUntil: "domcontentloaded" });
+      await waitForRouteReady(page);
+
+      const compound = page.getByTestId("mw-flash-control");
+      const flash = page.getByRole("button", { name: "Flash Light", exact: true });
+      const lamp = page.getByTestId("mw-flash-lamp");
+      await expect(compound, `${width}px`).toBeVisible();
+
+      const geometry = await Promise.all([
+        compound.boundingBox(),
+        flash.boundingBox(),
+        lamp.boundingBox(),
+      ]);
+      const [compoundBox, flashBox, lampBox] = geometry;
+      expect(compoundBox, `${width}px compound`).not.toBeNull();
+      expect(flashBox, `${width}px flash`).not.toBeNull();
+      expect(lampBox, `${width}px lamp`).not.toBeNull();
+      if (!compoundBox || !flashBox || !lampBox) continue;
+
+      expect(lampBox.x).toBeGreaterThanOrEqual(flashBox.x + flashBox.width);
+      expect(lampBox.y).toBeGreaterThanOrEqual(compoundBox.y);
+      expect(lampBox.y + lampBox.height).toBeLessThanOrEqual(
+        compoundBox.y + compoundBox.height,
+      );
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      );
+      expect(overflow, `${width}px horizontal overflow`).toBeLessThanOrEqual(1);
+    }
+  });
+
+  test("equivalent playback routes render the exact canonical preset groups and order", async ({
+    page,
+  }) => {
+    const expected = canonicalLivePlaybackPresetOptions();
+    for (const route of [
+      "/",
+      "/audio",
+      "/morse-code-sound-generator",
+      "/morse-code-mp3-generator",
+      "/morse-code-audio-practice",
+      "/morse-code-audio-quiz",
+    ]) {
+      await page.goto(route, { waitUntil: "domcontentloaded" });
+      await waitForRouteReady(page);
+      const advanced = page.getByRole("button", {
+        name: "Show advanced settings",
+      });
+      if (await advanced.isVisible().catch(() => false)) await advanced.click();
+
+      const select = page.locator('select:has(option[value="cw_radio"])').first();
+      await expect(select, route).toBeVisible();
+      expect(await readPresetOptions(select), route).toEqual(expected);
+    }
+  });
+
+  test("WebKit mobile preserves textarea surfaces and the shared playback controls", async () => {
+    const browser = await webkit.launch();
+    try {
+      const context = await browser.newContext({
+        ...devices["iPhone 13"],
+        viewport: { width: 390, height: 844 },
+      });
+      const page = await context.newPage();
+      await blockExternalNetwork(page);
+      const port = process.env.PLAYWRIGHT_PORT ?? process.env.PORT ?? "3101";
+      await page.goto(`http://127.0.0.1:${port}/`, {
+        waitUntil: "domcontentloaded",
+      });
+      await waitForRouteReady(page);
+
+      const input = page.getByLabel("Input (Text)");
+      const output = page.locator("#mw_output");
+      const panel = output.locator(
+        "xpath=ancestor::div[contains(@class, 'mw-panel-dark')][1]",
+      );
+      const inputBefore = await readFocusArtifactSnapshot(input);
+      await input.click();
+      await input.fill("MAESTRO");
+      const inputAfter = await readFocusArtifactSnapshot(input);
+      expect(inputAfter.backgroundColor).toBe(inputBefore.backgroundColor);
+      expectNoOutlineRingOrBorder(inputAfter);
+
+      await expect(output).toHaveValue(/--/);
+      const outputBefore = await output.evaluate((element) => {
+        const style = window.getComputedStyle(element);
+        const panelStyle = window.getComputedStyle(
+          element.closest(".mw-panel-dark") as Element,
+        );
+        return {
+          background: style.backgroundColor,
+          borderTop: style.borderTopWidth,
+          color: style.color,
+          outline: style.outlineStyle,
+          textFill: style.getPropertyValue("-webkit-text-fill-color"),
+          panelBackground: panelStyle.backgroundColor,
+        };
+      });
+      await output.click();
+      const outputAfter = await output.evaluate((element) => {
+        const style = window.getComputedStyle(element);
+        return {
+          background: style.backgroundColor,
+          borderTop: style.borderTopWidth,
+          color: style.color,
+          outline: style.outlineStyle,
+          textFill: style.getPropertyValue("-webkit-text-fill-color"),
+        };
+      });
+      expect(outputBefore.background).toBe(outputBefore.panelBackground);
+      expect(outputAfter).toEqual({
+        background: outputBefore.background,
+        borderTop: "0px",
+        color: outputBefore.color,
+        outline: "none",
+        textFill: outputBefore.textFill,
+      });
+      expect(
+        contrastRatio(outputBefore.background, outputBefore.color),
+      ).toBeGreaterThan(7);
+
+      await page.evaluate(() => {
+        window.localStorage.setItem("morsewords-theme", "dark");
+        document.documentElement.dataset.theme = "dark";
+      });
+      await page.reload({ waitUntil: "domcontentloaded" });
+      await waitForRouteReady(page);
+      await page.getByLabel("Input (Text)").fill("MAESTRO");
+      const darkOutput = page.locator("#mw_output");
+      const darkSurface = await darkOutput.evaluate((element) => {
+        const style = window.getComputedStyle(element);
+        const panelStyle = window.getComputedStyle(
+          element.closest(".mw-panel-dark") as Element,
+        );
+        return {
+          background: style.backgroundColor,
+          color: style.color,
+          panelBackground: panelStyle.backgroundColor,
+        };
+      });
+      expect(darkSurface.background).toBe(darkSurface.panelBackground);
+      expect(
+        contrastRatio(darkSurface.background, darkSurface.color),
+      ).toBeGreaterThan(7);
+
+      const compound = page.getByTestId("mw-flash-control");
+      const lamp = page.getByTestId("mw-flash-lamp");
+      await expect(compound).toBeVisible();
+      await expect(lamp).toBeVisible();
+      await page.getByRole("button", { name: "Show advanced settings" }).click();
+      expect(await readPresetOptions(
+        page.locator('select:has(option[value="cw_radio"])').first(),
+      )).toEqual(canonicalLivePlaybackPresetOptions());
+      await context.close();
+    } finally {
+      await browser.close();
+    }
+  });
 
   test("whole-page flash warning stays readable in dark mode on mobile", async ({
     page,

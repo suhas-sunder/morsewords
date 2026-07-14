@@ -226,7 +226,7 @@ export function ToolTextarea({
     <textarea
       {...props}
       className={[
-        "mw-input-text mw-input-placeholder mw-stable-textarea min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 focus-visible:outline-none",
+        "mw-input-text mw-input-placeholder mw-tool-input-surface min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 focus-visible:outline-none",
         className,
       ]
         .filter(Boolean)
@@ -276,7 +276,7 @@ export function ToolOutputTextarea({
       {...props}
       readOnly
       className={[
-        "mw-output-text mw-input-placeholder mw-stable-textarea min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sky-100 outline-none placeholder:text-slate-400 focus:ring-0 focus-visible:outline-none",
+        "mw-output-text mw-input-placeholder mw-tool-output-surface min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sky-100 outline-none placeholder:text-slate-400 focus:ring-0 focus-visible:outline-none",
         className,
       ]
         .filter(Boolean)

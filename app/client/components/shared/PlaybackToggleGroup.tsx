@@ -4,6 +4,7 @@ import {
   VolumeIcon,
   VolumeOffIcon,
 } from "~/client/assets/svg/Icons";
+import FlashLamp from "~/client/components/shared/FlashLamp";
 import TogglePill from "~/client/components/shared/ui/TogglePill";
 
 export default function PlaybackToggleGroup({
@@ -19,6 +20,7 @@ export default function PlaybackToggleGroup({
     checked: boolean;
     describedBy?: string;
     disabled?: boolean;
+    lamp: { active: boolean; label?: string };
     onChange: (value: boolean) => void;
   };
   repeat: { checked: boolean; onChange: (value: boolean) => void };
@@ -50,16 +52,27 @@ export default function PlaybackToggleGroup({
         size={size}
         icon={<LoopIcon size={16} title={undefined} aria-hidden="true" />}
       />
-      <TogglePill
-        label="Flash Light"
-        checked={flash.checked}
-        onChange={flash.onChange}
-        describedBy={flash.describedBy}
-        disabled={flash.disabled}
-        rounded={rounded}
-        size={size}
-        icon={<LightBulbIcon size={16} title={undefined} aria-hidden="true" />}
-      />
+      <div
+        data-testid="mw-flash-control"
+        className="inline-flex shrink-0 flex-nowrap items-center gap-1.5"
+      >
+        <TogglePill
+          label="Flash Light"
+          checked={flash.checked}
+          onChange={flash.onChange}
+          describedBy={flash.describedBy}
+          disabled={flash.disabled}
+          rounded={rounded}
+          size={size}
+          icon={<LightBulbIcon size={16} title={undefined} aria-hidden="true" />}
+        />
+        <FlashLamp
+          active={flash.lamp.active}
+          disabled={flash.disabled}
+          label={flash.lamp.label}
+          size={size}
+        />
+      </div>
     </div>
   );
 }

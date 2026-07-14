@@ -375,6 +375,9 @@ Approved button treatment is centralized by `app/app.css` and
   value. Do not introduce weaker route-local caps or preset subsets.
 - Tone presets come from the canonical preset registry. A route may use a narrow
   adapter only for a documented engine limitation and must test that exception.
+- Equivalent tone-engine consumers render the complete registry with the same
+  groups, IDs, labels, order, persistence, and engine configuration. Do not
+  retain route-local preset subsets.
 - Validate parity in rendered browsers, including persistence across equivalent
   routes, rather than relying only on source-level constants.
 - Shared components must be placement-neutral. They own behavior and semantics;
@@ -432,6 +435,13 @@ Approved button treatment is centralized by `app/app.css` and
   the primary controls. Secondary synthesis choices stay in the shared advanced
   disclosure, with customization labels such as `Flash color` when applicable;
   never leave an orphan swatch or indicator.
+- The existing Flash Light status lamp stays immediately beside its toggle in
+  one non-wrapping compound control. It is a passive indicator, not a separate
+  row or an invented control.
+- Tool input and read-only output textareas own their complete native focus,
+  active, disabled, and WebKit state styling. Keep keyboard focus outside the
+  content surface with a restrained neutral treatment, and verify equivalent
+  textarea surfaces in mobile WebKit as well as Chromium.
 
 ## 14. Privacy/analytics rules
 

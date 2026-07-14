@@ -743,7 +743,7 @@ export default function TranslatorSectionsBasic({
 
                 <textarea
                   id={liveInputId}
-                  className="mw-input-text mw-input-placeholder min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 focus-visible:outline-none"
+                  className="mw-input-text mw-input-placeholder mw-tool-input-surface min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-slate-950 outline-none focus:ring-0 focus-visible:outline-none"
                   value={inputValue}
                   onChange={(e) =>
                     direction === "encode"
@@ -802,7 +802,6 @@ export default function TranslatorSectionsBasic({
 
                 <ToolOutputTextarea
                   id="mw_output"
-                  className="mw-output-text mw-input-placeholder min-h-[10rem] w-full resize-y border-0 bg-transparent p-4 font-mono text-sky-100 outline-none placeholder:text-slate-400 focus:ring-0 focus-visible:outline-none"
                   value={outputValue}
                   readOnly
                   placeholder={
@@ -977,6 +976,10 @@ export default function TranslatorSectionsBasic({
                       flash={{
                         checked: effectiveFlash,
                         onChange: (value) => setFlash(value && flashAllowed),
+                        lamp: {
+                          active: flashLamp.active,
+                          label: "Morse translator flash lamp",
+                        },
                         describedBy: disableFlashEffects
                           ? FLASH_DISABLED_NOTICE_ID
                           : showStrobeWarning

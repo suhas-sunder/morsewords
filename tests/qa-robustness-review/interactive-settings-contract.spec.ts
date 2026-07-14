@@ -209,7 +209,7 @@ test.describe("interactive state and Morse settings contracts", () => {
     );
   });
 
-  test("routes using the shared live playback engine have no detached lamp or legacy preset subset", () => {
+  test("routes using the shared live playback engine provide lamp state through the shared compound control", () => {
     for (const filePath of [
       "app/client/components/shared/TranslatorSectionsBasic.tsx",
       "app/client/components/audio/MorseAudioTranslator.tsx",
@@ -221,6 +221,8 @@ test.describe("interactive state and Morse settings contracts", () => {
       const source = readRepoFile(filePath);
       expect(source, filePath).toContain("PlaybackToggleGroup");
       expect(source, filePath).not.toContain("<FlashLamp");
+      expect(source, filePath).toContain("lamp: {");
+      expect(source, filePath).toContain("active: flashLamp.active");
     }
 
     for (const filePath of [

@@ -623,6 +623,10 @@ export default function MorseCodeAudioPractice() {
                 flash={{
                   checked: effectiveFlash,
                   onChange: (value) => setFlash(value && flashAllowed),
+                  lamp: {
+                    active: flashLamp.active,
+                    label: "Audio practice flash lamp",
+                  },
                   describedBy: disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : showStrobeWarning ? STROBE_WARNING_ID : undefined,
                   disabled: !flashAllowed,
                 }}

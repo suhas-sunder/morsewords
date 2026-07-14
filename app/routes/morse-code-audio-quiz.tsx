@@ -709,6 +709,10 @@ export default function MorseCodeAudioQuiz() {
                 flash={{
                   checked: effectiveFlash,
                   onChange: (value) => setFlash(value && flashAllowed),
+                  lamp: {
+                    active: flashLamp.active,
+                    label: "Audio quiz flash lamp",
+                  },
                   describedBy: disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : showStrobeWarning ? STROBE_WARNING_ID : undefined,
                   disabled: !flashAllowed,
                 }}

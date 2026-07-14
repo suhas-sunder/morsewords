@@ -721,6 +721,10 @@ export default function MorseMp3GeneratorTool() {
             flash={{
               checked: renderedFlash,
               onChange: (value) => setFeedback("flash", value),
+              lamp: {
+                active: flashLamp.active,
+                label: "MP3 generator flash lamp",
+              },
               describedBy: disableFlashEffects
                 ? FLASH_DISABLED_NOTICE_ID
                 : showStrobeWarning
