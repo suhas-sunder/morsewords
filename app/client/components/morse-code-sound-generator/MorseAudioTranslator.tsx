@@ -4,8 +4,12 @@ import styles from "~/client/components/shared/audioStyles";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
-import FlashLamp from "~/client/components/shared/FlashLamp";
 import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
+import {
+  SHARED_AUDIO_PREFERENCE_KEYS,
+  readSharedAudioPreferences,
+  DEFAULT_SHARED_AUDIO_PREFERENCES,
+} from "~/client/components/shared/audioPreferenceStorage";
 import StrobeWarning, {
   FlashEffectsDisabledNotice,
 } from "~/client/components/shared/StrobeWarning";
@@ -138,7 +142,22 @@ export default function MorseAudioTranslator({
   const player = useMorseAudio();
   const queryPrefillApplied = React.useRef(false);
   const storageKey = React.useCallback(
-    (suffix: string) => `${storagePrefix}_${suffix}`,
+    (suffix: string) => {
+      const sharedKey = ({
+        wpm: SHARED_AUDIO_PREFERENCE_KEYS.characterSpeed,
+        fwpm: SHARED_AUDIO_PREFERENCE_KEYS.farnsworthSpeed,
+        hz: SHARED_AUDIO_PREFERENCE_KEYS.pitch,
+        vol: SHARED_AUDIO_PREFERENCE_KEYS.volume,
+        preset: SHARED_AUDIO_PREFERENCE_KEYS.preset,
+        attack: SHARED_AUDIO_PREFERENCE_KEYS.attack,
+        release: SHARED_AUDIO_PREFERENCE_KEYS.release,
+        repeat: SHARED_AUDIO_PREFERENCE_KEYS.repeat,
+        sound: SHARED_AUDIO_PREFERENCE_KEYS.sound,
+        flash: SHARED_AUDIO_PREFERENCE_KEYS.flash,
+        adv_open: SHARED_AUDIO_PREFERENCE_KEYS.advancedOpen,
+      } as Record<string, string>)[suffix];
+      return sharedKey ?? `${storagePrefix}_${suffix}`;
+    },
     [storagePrefix],
   );
   const safePrefix = storagePrefix.replace(/[^a-zA-Z0-9_-]/g, "_");
@@ -159,17 +178,17 @@ export default function MorseAudioTranslator({
   );
 
   const [copied, setCopied] = React.useState<null | "morse">(null);
-  const [charWpm, setCharWpm] = React.useState<number>(18);
-  const [farnsworthWpm, setFarnsworthWpm] = React.useState<number>(12);
-  const [toneHz, setToneHz] = React.useState<number>(650);
-  const [volume, setVolume] = React.useState<number>(0.75);
+  const [charWpm, setCharWpm] = React.useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.charWpm);
+  const [farnsworthWpm, setFarnsworthWpm] = React.useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.farnsworthWpm);
+  const [toneHz, setToneHz] = React.useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.toneHz);
+  const [volume, setVolume] = React.useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.volume);
   const [preset, setPreset] = React.useState<SoundPreset>("cw_radio");
-  const [attackMs, setAttackMs] = React.useState<number>(8);
-  const [releaseMs, setReleaseMs] = React.useState<number>(12);
+  const [attackMs, setAttackMs] = React.useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.attackMs);
+  const [releaseMs, setReleaseMs] = React.useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.releaseMs);
   const [repeat, setRepeat] = React.useState<boolean>(false);
   const [soundOn, setSoundOn] = React.useState<boolean>(true);
   const [flash, setFlash] = React.useState<boolean>(false);
-  const [advancedOpen, setAdvancedOpen] = React.useState<boolean>(true);
+  const [advancedOpen, setAdvancedOpen] = React.useState<boolean>(false);
   const [fileName, setFileName] = React.useState(defaultFileName);
   const [sampleRate, setSampleRate] =
     React.useState<22050 | 44100 | 48000>(44100);
@@ -195,61 +214,32 @@ export default function MorseAudioTranslator({
     setMorse(
       readStoredString(storageKey("morse"), defaultMorse, { maxLength: 25000 }),
     );
-    const storedCharWpm = readStoredNumber(storageKey("wpm"), {
-      fallback: 18,
-      min: AUDIO_SPEED_RANGE.min,
-      max: AUDIO_SPEED_RANGE.max,
-      integer: true,
+    const preferences = readSharedAudioPreferences({
+      legacyKeys: {
+        characterSpeed: `${storagePrefix}_wpm`,
+        farnsworthSpeed: `${storagePrefix}_fwpm`,
+        pitch: `${storagePrefix}_hz`,
+        volume: `${storagePrefix}_vol`,
+        preset: `${storagePrefix}_preset`,
+        attack: `${storagePrefix}_attack`,
+        release: `${storagePrefix}_release`,
+        repeat: `${storagePrefix}_repeat`,
+        sound: `${storagePrefix}_sound`,
+        flash: `${storagePrefix}_flash`,
+        advancedOpen: `${storagePrefix}_adv_open`,
+      },
     });
-    setCharWpm(storedCharWpm);
-    setFarnsworthWpm(
-      readStoredNumber(storageKey("fwpm"), {
-        fallback: 12,
-        min: AUDIO_SPEED_RANGE.min,
-        max: storedCharWpm,
-        integer: true,
-      }),
-    );
-    setToneHz(
-      readStoredNumber(storageKey("hz"), {
-        fallback: 650,
-        min: AUDIO_PITCH_RANGE.min,
-        max: AUDIO_PITCH_RANGE.max,
-        integer: true,
-      }),
-    );
-    setVolume(
-      readStoredNumber(storageKey("vol"), {
-        fallback: 0.75,
-        min: VOLUME_RANGE.min,
-        max: VOLUME_RANGE.max,
-      }),
-    );
-    setPreset(
-      sanitizeAudioGeneratorPreset(
-        readStoredString(storageKey("preset"), "cw_radio", { maxLength: 64 }),
-      ),
-    );
-    setAttackMs(
-      readStoredNumber(storageKey("attack"), {
-        fallback: 8,
-        min: AUDIO_ATTACK_RANGE.min,
-        max: AUDIO_ATTACK_RANGE.max,
-        integer: true,
-      }),
-    );
-    setReleaseMs(
-      readStoredNumber(storageKey("release"), {
-        fallback: 12,
-        min: AUDIO_RELEASE_RANGE.min,
-        max: AUDIO_RELEASE_RANGE.max,
-        integer: true,
-      }),
-    );
-    setRepeat(readStoredBoolean(storageKey("repeat"), false));
-    setSoundOn(readStoredBoolean(storageKey("sound"), true));
-    setFlash(readStoredBoolean(storageKey("flash"), false));
-    setAdvancedOpen(readStoredBoolean(storageKey("adv_open"), true));
+    setCharWpm(preferences.charWpm);
+    setFarnsworthWpm(preferences.farnsworthWpm);
+    setToneHz(preferences.toneHz);
+    setVolume(preferences.volume);
+    setPreset(preferences.preset);
+    setAttackMs(preferences.attackMs);
+    setReleaseMs(preferences.releaseMs);
+    setRepeat(preferences.repeat);
+    setSoundOn(preferences.soundOn);
+    setFlash(preferences.flash);
+    setAdvancedOpen(preferences.advancedOpen);
     setFileName(
       readStoredString(storageKey("filename"), defaultFileName, {
         maxLength: 120,
@@ -292,7 +282,7 @@ export default function MorseAudioTranslator({
     );
     setCustomSplitMinutes(readStoredString(storageKey("custom_split_minutes"), "", { maxLength: 12 }));
     setHydrated(true);
-  }, [defaultFileName, defaultMorse, defaultText, exportFormats, storageKey]);
+  }, [defaultFileName, defaultMorse, defaultText, exportFormats, storageKey, storagePrefix]);
 
   React.useEffect(() => {
     if (!enableQueryPrefill || queryPrefillApplied.current) return;
@@ -733,30 +723,27 @@ export default function MorseAudioTranslator({
                 <span className="text-sm text-slate-600">{player.isSupported ? player.state === "idle" ? "Ready" : player.state === "playing" ? "Playing" : "Paused" : "Unavailable"}</span>
               </div>
 
-              <div className="mt-4 flex flex-wrap items-center gap-2">
-                <PlaybackToggleGroup
-                  sound={{ checked: soundOn, onChange: (value) => updateFeedbackToggle("sound", value) }}
-                  repeat={{ checked: repeat, onChange: (value) => updateFeedbackToggle("repeat", value) }}
-                  flash={{
-                    checked: effectiveFlash,
-                    onChange: (value) => updateFeedbackToggle("flash", value),
-                    describedBy: disableFlashEffects
-                      ? FLASH_DISABLED_NOTICE_ID
-                      : showStrobeWarning
-                        ? STROBE_WARNING_ID
-                        : undefined,
-                    disabled: !flashAllowed,
-                  }}
-                  trailing={
-                    <FlashLamp
-                      active={flashLamp.active}
-                      disabled={!flashAllowed}
-                      label="Morse audio flash lamp"
-                      size="sm"
-                    />
-                  }
-                  rounded="lg"
-                />
+              <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <h2 className="text-base font-extrabold text-sky-950">
+                  Playback Settings
+                </h2>
+                <div className="sm:justify-end">
+                  <PlaybackToggleGroup
+                    sound={{ checked: soundOn, onChange: (value) => updateFeedbackToggle("sound", value) }}
+                    repeat={{ checked: repeat, onChange: (value) => updateFeedbackToggle("repeat", value) }}
+                    flash={{
+                      checked: effectiveFlash,
+                      onChange: (value) => updateFeedbackToggle("flash", value),
+                      describedBy: disableFlashEffects
+                        ? FLASH_DISABLED_NOTICE_ID
+                        : showStrobeWarning
+                          ? STROBE_WARNING_ID
+                          : undefined,
+                      disabled: !flashAllowed,
+                    }}
+                    rounded="lg"
+                  />
+                </div>
               </div>
 
               <div className="mt-4 grid sm:grid-cols-2 gap-4">
@@ -770,6 +757,7 @@ export default function MorseAudioTranslator({
 
               <div className="mt-4">
                 <AdvancedSettingsToggle
+                  disabled={!hydrated}
                   onToggle={() => setAdvancedOpen((value) => !value)}
                   open={advancedOpen}
                 />

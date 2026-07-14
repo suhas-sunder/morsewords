@@ -19,6 +19,12 @@ import {
   readStoredNumber,
   safeReadStorage,
 } from "../../app/client/components/shared/settingsStorage";
+import {
+  SHARED_AUDIO_PREFERENCE_KEYS,
+  readSharedAudioPreferences,
+  writeSharedAudioPreferences,
+} from "../../app/client/components/shared/audioPreferenceStorage";
+import { AUDIO_TONE_PRESETS } from "../../app/client/components/shared/audioPresetRegistry";
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 const ROOT = process.cwd();
@@ -146,12 +152,86 @@ test.describe("interactive state and Morse settings contracts", () => {
     expect(advancedToggle).toContain("Hide advanced settings");
 
     for (const filePath of [
+      "app/client/components/shared/TranslatorSectionsBasic.tsx",
       "app/routes/morse-code-audio-practice.tsx",
       "app/routes/morse-code-audio-quiz.tsx",
     ]) {
       const source = readRepoFile(filePath);
       expect(source, filePath).toContain('<AudioPresetOptions context="livePlayback" />');
       expect(source, filePath).not.toContain('<option value="cw_radio">');
+    }
+  });
+
+  test("uses one preference namespace and migrates legacy translator values", () => {
+    withMockStorage(
+      {
+        mw_wpm: "100",
+        mw_fwpm: "72",
+        mw_hz: "980",
+        mw_vol: "0.42",
+        mw_preset: "smooth_sine",
+        mw_sound: "0",
+        mw_repeat: "1",
+        mw_flash: "1",
+        mw_adv_open: "1",
+      },
+      (store) => {
+        const preferences = readSharedAudioPreferences({
+          legacyKeys: {
+            characterSpeed: ["mw_char_wpm", "mw_wpm"],
+            farnsworthSpeed: "mw_fwpm",
+            pitch: "mw_hz",
+            volume: "mw_vol",
+            preset: "mw_preset",
+            sound: "mw_sound",
+            repeat: "mw_repeat",
+            flash: "mw_flash",
+            advancedOpen: "mw_adv_open",
+          },
+        });
+        expect(preferences).toMatchObject({
+          charWpm: 100,
+          farnsworthWpm: 72,
+          toneHz: 980,
+          volume: 0.42,
+          preset: "sine",
+          soundOn: false,
+          repeat: true,
+          flash: true,
+          advancedOpen: true,
+        });
+        expect(store.get(SHARED_AUDIO_PREFERENCE_KEYS.characterSpeed)).toBe("100");
+        expect(store.get(SHARED_AUDIO_PREFERENCE_KEYS.preset)).toBe("sine");
+
+        writeSharedAudioPreferences({ ...preferences, charWpm: 88 });
+        expect(store.get(SHARED_AUDIO_PREFERENCE_KEYS.characterSpeed)).toBe("88");
+      },
+    );
+  });
+
+  test("routes using the shared live playback engine have no detached lamp or legacy preset subset", () => {
+    for (const filePath of [
+      "app/client/components/shared/TranslatorSectionsBasic.tsx",
+      "app/client/components/audio/MorseAudioTranslator.tsx",
+      "app/client/components/morse-code-sound-generator/MorseAudioTranslator.tsx",
+      "app/client/components/morse-code-mp3-generator/MorseMp3GeneratorTool.tsx",
+      "app/routes/morse-code-audio-practice.tsx",
+      "app/routes/morse-code-audio-quiz.tsx",
+    ]) {
+      const source = readRepoFile(filePath);
+      expect(source, filePath).toContain("PlaybackToggleGroup");
+      expect(source, filePath).not.toContain("<FlashLamp");
+    }
+
+    for (const filePath of [
+      "app/client/components/shared/TranslatorSectionsBasic.tsx",
+      "app/client/components/audio/MorseAudioTranslator.tsx",
+      "app/client/components/morse-code-sound-generator/MorseAudioTranslator.tsx",
+      "app/client/components/morse-code-mp3-generator/MorseMp3GeneratorTool.tsx",
+      "app/routes/morse-code-audio-practice.tsx",
+      "app/routes/morse-code-audio-quiz.tsx",
+    ]) {
+      expect(readRepoFile(filePath), filePath).toContain("readSharedAudioPreferences");
     }
   });
 
@@ -188,6 +268,94 @@ test.describe("interactive state and Morse settings contracts", () => {
       ).toBe(18);
       expect(safeReadStorage("malformed")).toBe("18");
     });
+  });
+
+  test("shares the canonical character-speed preference across equivalent routes", async ({ page }) => {
+    await blockExternalNetwork(page);
+    await page.addInitScript(() => {
+      const marker = "mw-test-shared-preferences-initialized";
+      if (sessionStorage.getItem(marker)) return;
+      window.localStorage.clear();
+      sessionStorage.setItem(marker, "1");
+    });
+
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await expect(page.getByRole("button", { name: "Show advanced settings" })).toBeEnabled();
+    const homeSpeed = page.getByLabel("Character speed").first();
+    await expect(homeSpeed).toBeVisible();
+    await homeSpeed.focus();
+    await page.keyboard.press("End");
+    await expect(homeSpeed).toHaveValue("100");
+    await expect
+      .poll(() => page.evaluate(() => localStorage.getItem("mw_audio_wpm")))
+      .toBe("100");
+
+    for (const route of ["/audio", "/morse-code-audio-practice"] as const) {
+      await page.goto(route, { waitUntil: "domcontentloaded" });
+      await waitForRouteReady(page);
+      await expect(page.getByLabel("Character speed").first()).toHaveValue("100");
+    }
+
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await waitForRouteReady(page);
+    await expect(page.getByLabel("Character speed").first()).toHaveValue("100");
+  });
+
+  test("renders the canonical shared settings and preset inventory on every equivalent route", async ({ page }) => {
+    await blockExternalNetwork(page);
+    await page.addInitScript((preferences) => {
+      window.localStorage.clear();
+      for (const [key, value] of Object.entries(preferences)) {
+        window.localStorage.setItem(key, value);
+      }
+    }, {
+      mw_audio_wpm: "73",
+      mw_audio_fwpm: "41",
+      mw_audio_hz: "980",
+      mw_audio_vol: "0.43",
+      mw_audio_preset: "warm_tone",
+      mw_audio_attack: "17",
+      mw_audio_release: "29",
+      mw_audio_repeat: "1",
+      mw_audio_sound: "1",
+      mw_audio_flash: "1",
+      mw_audio_adv_open: "1",
+    });
+
+    for (const route of [
+      "/",
+      "/audio",
+      "/morse-code-sound-generator",
+      "/morse-code-mp3-generator",
+      "/morse-code-audio-practice",
+      "/morse-code-audio-quiz",
+    ] as const) {
+      await page.goto(route, { waitUntil: "domcontentloaded" });
+      await waitForRouteReady(page);
+      await expect(
+        page.getByRole("button", { name: "Hide advanced settings" }),
+        route,
+      ).toBeVisible();
+      await expect(page.getByLabel("Character speed").first(), route).toHaveValue("73");
+      await expect(page.getByLabel(/Farnsworth/).first(), route).toHaveValue("41");
+      await expect(page.getByLabel("Pitch").first(), route).toHaveValue("980");
+      await expect(page.getByLabel("Volume").first(), route).toHaveValue("43");
+      await expect(page.getByLabel("Attack").first(), route).toHaveValue("17");
+      await expect(page.getByLabel("Release").first(), route).toHaveValue("29");
+      await expect(page.getByRole("button", { name: "Sound", exact: true }), route).toHaveAttribute("aria-pressed", "true");
+      await expect(page.getByRole("button", { name: "Repeat", exact: true }), route).toHaveAttribute("aria-pressed", "true");
+      await expect(page.getByRole("button", { name: "Flash Light", exact: true }), route).toHaveAttribute("aria-pressed", "true");
+
+      const preset = page.getByLabel(/(?:Tone|Sound) preset/i).first();
+      await expect(preset, route).toHaveValue("warm_tone");
+      const optionValues = await preset
+        .locator("option")
+        .evaluateAll((options) =>
+          options.map((option) => (option as HTMLOptionElement).value),
+        );
+      expect(optionValues, route).toEqual(AUDIO_TONE_PRESETS);
+    }
   });
 
   for (const theme of ["light", "dark"] as const) {

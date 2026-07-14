@@ -4,8 +4,11 @@ import styles from "~/client/components/shared/audioStyles";
 import useMorseAudio, {
   type SoundPreset,
 } from "~/client/components/shared/useMorseAudio";
-import FlashLamp from "~/client/components/shared/FlashLamp";
 import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
+import {
+  DEFAULT_SHARED_AUDIO_PREFERENCES,
+  readSharedAudioPreferences,
+} from "~/client/components/shared/audioPreferenceStorage";
 import StrobeWarning, {
   FlashEffectsDisabledNotice,
 } from "~/client/components/shared/StrobeWarning";
@@ -122,18 +125,18 @@ export default function MorseAudioTranslator({
 
   const [copied, setCopied] = React.useState<null | "morse">(null);
 
-  const [charWpm, setCharWpm] = React.useState<number>(18);
-  const [farnsworthWpm, setFarnsworthWpm] = React.useState<number>(12);
-  const [toneHz, setToneHz] = React.useState<number>(650);
-  const [volume, setVolume] = React.useState<number>(0.75);
+  const [charWpm, setCharWpm] = React.useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.charWpm);
+  const [farnsworthWpm, setFarnsworthWpm] = React.useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.farnsworthWpm);
+  const [toneHz, setToneHz] = React.useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.toneHz);
+  const [volume, setVolume] = React.useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.volume);
   const [preset, setPreset] = React.useState<SoundPreset>("cw_radio");
 
-  const [attackMs, setAttackMs] = React.useState<number>(8);
-  const [releaseMs, setReleaseMs] = React.useState<number>(12);
+  const [attackMs, setAttackMs] = React.useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.attackMs);
+  const [releaseMs, setReleaseMs] = React.useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.releaseMs);
   const [repeat, setRepeat] = React.useState<boolean>(false);
   const [soundOn, setSoundOn] = React.useState<boolean>(true);
   const [flash, setFlash] = React.useState<boolean>(false);
-  const [advancedOpen, setAdvancedOpen] = React.useState<boolean>(true);
+  const [advancedOpen, setAdvancedOpen] = React.useState<boolean>(false);
   const [fileName, setFileName] = React.useState("morse-audio");
   const [sampleRate, setSampleRate] =
     React.useState<22050 | 44100 | 48000>(44100);
@@ -154,63 +157,18 @@ export default function MorseAudioTranslator({
     setMorse(
       readStoredString("mw_audio_morse", "... --- ...", { maxLength: 25000 }),
     );
-    const storedCharWpm = readStoredNumber("mw_audio_wpm", {
-      fallback: 18,
-      min: AUDIO_SPEED_RANGE.min,
-      max: AUDIO_SPEED_RANGE.max,
-      integer: true,
-    });
-    setCharWpm(storedCharWpm);
-    setFarnsworthWpm(
-      readStoredNumber("mw_audio_fwpm", {
-        fallback: 12,
-        min: AUDIO_SPEED_RANGE.min,
-        max: storedCharWpm,
-        integer: true,
-      }),
-    );
-    setToneHz(
-      readStoredNumber("mw_audio_hz", {
-        fallback: 650,
-        min: AUDIO_PITCH_RANGE.min,
-        max: AUDIO_PITCH_RANGE.max,
-        integer: true,
-      }),
-    );
-    setVolume(
-      readStoredNumber("mw_audio_vol", {
-        fallback: 0.75,
-        min: VOLUME_RANGE.min,
-        max: VOLUME_RANGE.max,
-      }),
-    );
-    setPreset(
-      sanitizeAudioGeneratorPreset(
-        readStoredString("mw_audio_preset", "cw_radio", {
-          maxLength: 64,
-        }),
-      ),
-    );
-    setAttackMs(
-      readStoredNumber("mw_audio_attack", {
-        fallback: 8,
-        min: AUDIO_ATTACK_RANGE.min,
-        max: AUDIO_ATTACK_RANGE.max,
-        integer: true,
-      }),
-    );
-    setReleaseMs(
-      readStoredNumber("mw_audio_release", {
-        fallback: 12,
-        min: AUDIO_RELEASE_RANGE.min,
-        max: AUDIO_RELEASE_RANGE.max,
-        integer: true,
-      }),
-    );
-    setRepeat(readStoredBoolean("mw_audio_repeat", false));
-    setSoundOn(readStoredBoolean("mw_audio_sound", true));
-    setFlash(readStoredBoolean("mw_audio_flash", false));
-    setAdvancedOpen(readStoredBoolean("mw_audio_adv_open", true));
+    const preferences = readSharedAudioPreferences();
+    setCharWpm(preferences.charWpm);
+    setFarnsworthWpm(preferences.farnsworthWpm);
+    setToneHz(preferences.toneHz);
+    setVolume(preferences.volume);
+    setPreset(preferences.preset);
+    setAttackMs(preferences.attackMs);
+    setReleaseMs(preferences.releaseMs);
+    setRepeat(preferences.repeat);
+    setSoundOn(preferences.soundOn);
+    setFlash(preferences.flash);
+    setAdvancedOpen(preferences.advancedOpen);
     setFileName(
       readStoredString("mw_audio_filename", "morse-audio", { maxLength: 120 }),
     );
@@ -805,7 +763,7 @@ export default function MorseAudioTranslator({
             <div className="mt-6">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <h2 className="text-base font-extrabold text-sky-950">
-                  Audio controls
+                  Playback Settings
                 </h2>
 
                 <div className="sm:justify-end">
@@ -822,14 +780,6 @@ export default function MorseAudioTranslator({
                           : undefined,
                       disabled: !flashAllowed,
                     }}
-                    trailing={
-                      <FlashLamp
-                        active={flashLamp.active}
-                        disabled={!flashAllowed}
-                        label="Morse audio flash lamp"
-                        size="sm"
-                      />
-                    }
                   />
                 </div>
               </div>
@@ -886,6 +836,7 @@ export default function MorseAudioTranslator({
 
               <div className="mt-4">
                 <AdvancedSettingsToggle
+                  disabled={!hydrated}
                   onToggle={() => setAdvancedOpen((value) => !value)}
                   open={advancedOpen}
                 />

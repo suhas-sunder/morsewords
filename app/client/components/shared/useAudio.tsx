@@ -5,14 +5,12 @@ import useMorseAudio, {
   type RenderWavOptions as MorseRenderWavOptions,
   type SoundPreset as MorseSoundPreset,
 } from "~/client/components/shared/useMorseAudio";
-import { sanitizeTranslatorAudioPreset } from "~/client/components/shared/morseSettings";
-import { mapTranslatorAudioPreset } from "~/client/components/shared/audioPresetRegistry";
+import {
+  sanitizeAudioGeneratorPreset,
+} from "~/client/components/shared/morseSettings";
+import type { AudioTonePresetId } from "~/client/components/shared/audioPresetRegistry";
 
-export type SoundPreset =
-  | "cw_radio"
-  | "smooth_sine"
-  | "bright_square"
-  | "telegraph_sounder";
+export type SoundPreset = AudioTonePresetId;
 
 export type MorsePlayerState = "idle" | "playing" | "paused";
 
@@ -28,6 +26,8 @@ export type PlayOptions = {
   volume: number;
   preset?: SoundPreset;
   repeat?: boolean;
+  attackMs?: number;
+  releaseMs?: number;
   /** Flash the screen on dits/dahs (mobile-friendly). */
   flash?: boolean;
 
@@ -45,9 +45,7 @@ export type PlayOptions = {
 };
 
 function mapPreset(preset: unknown): MorseSoundPreset {
-  return mapTranslatorAudioPreset(
-    sanitizeTranslatorAudioPreset(preset),
-  ) as MorseSoundPreset;
+  return sanitizeAudioGeneratorPreset(preset) as MorseSoundPreset;
 }
 
 function toMorseOptions(opts: PlayOptions): MorsePlayOptions {
@@ -77,9 +75,9 @@ function toMorsePartialOptions(
 /**
  * Compatibility wrapper for the original translator audio API.
  *
- * `useMorseAudio` is the single playback/export engine. This wrapper only maps
- * the old translator preset names onto the shared engine so existing callers and
- * localStorage values remain compatible.
+ * `useMorseAudio` is the single playback/export engine. This compatibility
+ * wrapper preserves the original translator API while accepting the canonical
+ * preset registry, including legacy preset aliases stored by older pages.
  */
 export default function useAudio() {
   const player = useMorseAudio();

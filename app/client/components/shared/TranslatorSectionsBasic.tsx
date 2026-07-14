@@ -8,29 +8,32 @@ import {
 import { readQueryPrefillValue } from "~/client/components/shared/queryPrefill";
 import {
   TOOL_SPEED_RANGE,
-  TRANSLATOR_AUDIO_PRESETS,
   TRANSLATOR_PITCH_RANGE,
   VOLUME_RANGE,
+  AUDIO_ATTACK_RANGE,
+  AUDIO_RELEASE_RANGE,
   clampFarnsworthWpm,
-  sanitizeTranslatorAudioPreset,
+  sanitizeAudioGeneratorPreset,
 } from "~/client/components/shared/morseSettings";
-import { TranslatorAudioPresetOptions } from "~/client/components/shared/AudioPresetPicker";
+import { AudioPresetOptions } from "~/client/components/shared/AudioPresetPicker";
 import {
+  audioPresetAllowsPitchControl,
   getAudioPresetDefaults,
-  mapTranslatorAudioPreset,
 } from "~/client/components/shared/audioPresetRegistry";
 import { hasPlayableMorse } from "~/client/components/shared/morseTiming";
 import {
   clampNumber,
-  readStoredBoolean,
   readStoredEnum,
-  readStoredNumber,
   readStoredNumberEnum,
   readStoredString,
   safeWriteStorage,
 } from "~/client/components/shared/settingsStorage";
+import {
+  DEFAULT_SHARED_AUDIO_PREFERENCES,
+  readSharedAudioPreferences,
+  writeSharedAudioPreferences,
+} from "~/client/components/shared/audioPreferenceStorage";
 import useAudio, { type SoundPreset } from "~/client/components/shared/useAudio";
-import FlashLamp from "~/client/components/shared/FlashLamp";
 import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import StrobeWarning, {
   FlashEffectsDisabledNotice,
@@ -145,8 +148,8 @@ export default function TranslatorSectionsBasic({
 
   const [isHydrated, setIsHydrated] = useState(false);
 
-  const [toneHz, setToneHz] = useState<number>(600);
-  const [volume, setVolume] = useState<number>(0.75);
+  const [toneHz, setToneHz] = useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.toneHz);
+  const [volume, setVolume] = useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.volume);
   const [soundOn, setSoundOn] = useState<boolean>(true);
   const [repeat, setRepeat] = useState<boolean>(false);
   const [flash, setFlash] = useState<boolean>(false);
@@ -154,60 +157,43 @@ export default function TranslatorSectionsBasic({
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const [preset, setPreset] = useState<SoundPreset>("cw_radio");
-  const [charWpm, setCharWpm] = useState<number>(20);
-  const [farnsworthWpm, setFarnsworthWpm] = useState<number>(20);
+  const [charWpm, setCharWpm] = useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.charWpm);
+  const [farnsworthWpm, setFarnsworthWpm] = useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.farnsworthWpm);
+  const [attackMs, setAttackMs] = useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.attackMs);
+  const [releaseMs, setReleaseMs] = useState<number>(DEFAULT_SHARED_AUDIO_PREFERENCES.releaseMs);
   const [advancedOpen, setAdvancedOpen] = useState<boolean>(false);
   const [exportFormat, setExportFormat] = useState<AudioExportFormat>("wav");
   const [exportSplitMode, setExportSplitMode] =
     useState<MorseAudioSplitMode>("none");
   const [exportSplitPresetMinutes, setExportSplitPresetMinutes] = useState(15);
   const [exportCustomSplitMinutes, setExportCustomSplitMinutes] = useState("");
+  const tonePresetId = React.useId();
 
   useEffect(() => {
-    setToneHz(
-      readStoredNumber("mw_hz", {
-        fallback: 600,
-        min: TRANSLATOR_PITCH_RANGE.min,
-        max: TRANSLATOR_PITCH_RANGE.max,
-        integer: true,
-      }),
-    );
-    setVolume(
-      readStoredNumber("mw_vol", {
-        fallback: 0.75,
-        min: VOLUME_RANGE.min,
-        max: VOLUME_RANGE.max,
-      }),
-    );
-    setSoundOn(readStoredBoolean("mw_sound", true));
-    setRepeat(readStoredBoolean("mw_repeat", false));
-    setFlash(readStoredBoolean("mw_flash", false));
-    setPreset(
-      readStoredEnum("mw_preset", TRANSLATOR_AUDIO_PRESETS, "cw_radio"),
-    );
-
-    const legacyWpm = readStoredNumber("mw_wpm", {
-      fallback: 20,
-      min: TOOL_SPEED_RANGE.min,
-      max: TOOL_SPEED_RANGE.max,
-      integer: true,
+    const preferences = readSharedAudioPreferences({
+      legacyKeys: {
+        characterSpeed: ["mw_char_wpm", "mw_wpm"],
+        farnsworthSpeed: "mw_fwpm",
+        pitch: "mw_hz",
+        volume: "mw_vol",
+        preset: "mw_preset",
+        repeat: "mw_repeat",
+        sound: "mw_sound",
+        flash: "mw_flash",
+        advancedOpen: "mw_adv_open",
+      },
     });
-    const storedCharWpm = readStoredNumber("mw_char_wpm", {
-      fallback: legacyWpm,
-      min: TOOL_SPEED_RANGE.min,
-      max: TOOL_SPEED_RANGE.max,
-      integer: true,
-    });
-    setCharWpm(storedCharWpm);
-    setFarnsworthWpm(
-      readStoredNumber("mw_fwpm", {
-        fallback: 20,
-        min: TOOL_SPEED_RANGE.min,
-        max: storedCharWpm,
-        integer: true,
-      }),
-    );
-    setAdvancedOpen(readStoredBoolean("mw_adv_open", false));
+    setToneHz(preferences.toneHz);
+    setVolume(preferences.volume);
+    setSoundOn(preferences.soundOn);
+    setRepeat(preferences.repeat);
+    setFlash(preferences.flash);
+    setPreset(preferences.preset);
+    setCharWpm(preferences.charWpm);
+    setFarnsworthWpm(preferences.farnsworthWpm);
+    setAttackMs(preferences.attackMs);
+    setReleaseMs(preferences.releaseMs);
+    setAdvancedOpen(preferences.advancedOpen);
     setExportFormat(readStoredEnum("mw_export_format", HOME_EXPORT_FORMATS, "wav"));
     setExportSplitMode(
       readStoredEnum(
@@ -253,16 +239,19 @@ export default function TranslatorSectionsBasic({
   useEffect(() => {
     if (!isHydrated) return;
 
-    writeNum("mw_wpm", charWpm);
-    writeNum("mw_hz", toneHz);
-    writeNum("mw_vol", volume);
-    writeBool("mw_sound", soundOn);
-    writeBool("mw_repeat", repeat);
-    writeBool("mw_flash", flash);
-    writeStr("mw_preset", preset);
-    writeNum("mw_char_wpm", charWpm);
-    writeNum("mw_fwpm", farnsworthWpm);
-    writeBool("mw_adv_open", advancedOpen);
+    writeSharedAudioPreferences({
+      charWpm,
+      farnsworthWpm,
+      toneHz,
+      volume,
+      preset,
+      attackMs,
+      releaseMs,
+      repeat,
+      soundOn,
+      flash,
+      advancedOpen,
+    });
     writeStr("mw_export_format", exportFormat);
     writeStr("mw_export_split_mode", exportSplitMode);
     writeNum("mw_export_split_minutes", exportSplitPresetMinutes);
@@ -277,6 +266,8 @@ export default function TranslatorSectionsBasic({
     preset,
     charWpm,
     farnsworthWpm,
+    attackMs,
+    releaseMs,
     advancedOpen,
     exportFormat,
     exportSplitMode,
@@ -339,8 +330,8 @@ export default function TranslatorSectionsBasic({
   );
 
   const handlePresetChange = React.useCallback((value: string) => {
-    const nextPreset = sanitizeTranslatorAudioPreset(value);
-    const defaults = getAudioPresetDefaults(mapTranslatorAudioPreset(nextPreset));
+    const nextPreset = sanitizeAudioGeneratorPreset(value);
+    const defaults = getAudioPresetDefaults(nextPreset);
     setPreset(nextPreset);
     setToneHz(
       Math.round(
@@ -352,6 +343,8 @@ export default function TranslatorSectionsBasic({
       ),
     );
     setVolume(defaults.volume);
+    setAttackMs(defaults.attackMs);
+    setReleaseMs(defaults.releaseMs);
   }, []);
 
   const handleCopy = async (text: string, label: string) => {
@@ -482,6 +475,8 @@ export default function TranslatorSectionsBasic({
       preset,
       repeat,
       flash: effectiveFlash,
+      attackMs,
+      releaseMs,
     });
   };
 
@@ -510,6 +505,8 @@ export default function TranslatorSectionsBasic({
     preset,
     repeat,
     effectiveFlash,
+    attackMs,
+    releaseMs,
     player,
   ]);
 
@@ -526,7 +523,7 @@ export default function TranslatorSectionsBasic({
     await translatorExport.start({
       plan: translatorExportPlan,
       settings: {
-        attackMs: getAudioPresetDefaults(mapTranslatorAudioPreset(preset)).attackMs,
+        attackMs,
         charWpm: Math.round(
           clampNumber(charWpm, TOOL_SPEED_RANGE.min, TOOL_SPEED_RANGE.max),
         ),
@@ -535,10 +532,10 @@ export default function TranslatorSectionsBasic({
         leadInMs: 0,
         mp3Kbps: 128,
         pitch: toneHz,
-        releaseMs: getAudioPresetDefaults(mapTranslatorAudioPreset(preset)).releaseMs,
+        releaseMs,
         sampleRate: 44_100,
         tailPaddingMs: 120,
-        tonePreset: mapTranslatorAudioPreset(preset),
+        tonePreset: preset,
         volume,
       },
     });
@@ -987,14 +984,6 @@ export default function TranslatorSectionsBasic({
                             : undefined,
                         disabled: !flashAllowed,
                       }}
-                      trailing={
-                        <FlashLamp
-                          active={flashLamp.active}
-                          disabled={!flashAllowed}
-                          label="Morse translator flash lamp"
-                          size="sm"
-                        />
-                      }
                     />
                   </div>
                 </div>
@@ -1018,7 +1007,7 @@ export default function TranslatorSectionsBasic({
                     step={10}
                     unit="Hz"
                     onChange={setToneHz}
-                    disabled={!soundOn}
+                    disabled={!soundOn || !audioPresetAllowsPitchControl(preset)}
                     quietInputFocus={quietInputFocus}
                   />
                   <SliderRow
@@ -1050,11 +1039,15 @@ export default function TranslatorSectionsBasic({
                   <div className="grid gap-4 pt-4">
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                       <div>
-                        <label className="mw-text-muted text-sm font-semibold text-slate-700">
+                        <label
+                          htmlFor={tonePresetId}
+                          className="mw-text-muted text-sm font-semibold text-slate-700"
+                        >
                           Tone preset
                         </label>
 
                         <select
+                          id={tonePresetId}
                           value={preset}
                           onChange={(e) => handlePresetChange(e.target.value)}
                           disabled={!soundOn}
@@ -1064,7 +1057,7 @@ export default function TranslatorSectionsBasic({
                             : "cursor-not-allowed opacity-60"
                           }`}
                         >
-                          <TranslatorAudioPresetOptions />
+                          <AudioPresetOptions context="livePlayback" />
                         </select>
                       </div>
 
@@ -1076,6 +1069,28 @@ export default function TranslatorSectionsBasic({
                         step={1}
                         unit="WPM"
                         onChange={handleFarnsworthWpmChange}
+                        quietInputFocus={quietInputFocus}
+                      />
+                      <SliderRow
+                        label="Attack"
+                        value={attackMs}
+                        min={AUDIO_ATTACK_RANGE.min}
+                        max={AUDIO_ATTACK_RANGE.max}
+                        step={AUDIO_ATTACK_RANGE.step}
+                        unit="ms"
+                        onChange={setAttackMs}
+                        disabled={!soundOn || !audioPresetAllowsPitchControl(preset)}
+                        quietInputFocus={quietInputFocus}
+                      />
+                      <SliderRow
+                        label="Release"
+                        value={releaseMs}
+                        min={AUDIO_RELEASE_RANGE.min}
+                        max={AUDIO_RELEASE_RANGE.max}
+                        step={AUDIO_RELEASE_RANGE.step}
+                        unit="ms"
+                        onChange={setReleaseMs}
+                        disabled={!soundOn || !audioPresetAllowsPitchControl(preset)}
                         quietInputFocus={quietInputFocus}
                       />
                     </div>
@@ -1134,10 +1149,6 @@ export default function TranslatorSectionsBasic({
 
 function writeNum(key: string, value: number) {
   safeWriteStorage(key, String(value));
-}
-
-function writeBool(key: string, value: boolean) {
-  safeWriteStorage(key, value ? "1" : "0");
 }
 
 function writeStr(key: string, value: string) {

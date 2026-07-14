@@ -79,12 +79,6 @@ export const BOOK_SECTION_CACHE_KEY_PREFIX =
   "morsewords:book-section-cache:item:v1:";
 
 const SOURCE_MODES = ["text", "morse"] as const;
-const TRANSLATOR_PRESETS = [
-  "cw_radio",
-  "smooth_sine",
-  "bright_square",
-  "telegraph_sounder",
-] as const;
 const AUDIO_PRESETS = [
   "cw_radio",
   "sine",
@@ -559,10 +553,10 @@ const audioPreferenceKeys = (prefix: "mw_audio" | "mw_sound_generator") => [
   sourceTextKey(`${prefix}_text`, `${prefix} text source`, "sos help"),
   sourceTextKey(`${prefix}_morse`, `${prefix} Morse source`, "... --- ..."),
   preferenceKey(`${prefix}_wpm`, `${prefix} audio speed`, "number-string", "18", "integerRange5To100", numberString({ min: 5, max: 100, integer: true })),
-  preferenceKey(`${prefix}_fwpm`, `${prefix} Farnsworth spacing`, "number-string", "12", "integerRange5To100", numberString({ min: 5, max: 100, integer: true }), {
+  preferenceKey(`${prefix}_fwpm`, `${prefix} Farnsworth spacing`, "number-string", "18", "integerRange5To100", numberString({ min: 5, max: 100, integer: true }), {
     notes: "Read helpers also clamp this value against character WPM.",
   }),
-  preferenceKey(`${prefix}_hz`, `${prefix} pitch`, "number-string", "650", "integerRange200To1600", numberString({ min: 200, max: 1600, integer: true })),
+  preferenceKey(`${prefix}_hz`, `${prefix} pitch`, "number-string", "600", "integerRange200To1600", numberString({ min: 200, max: 1600, integer: true })),
   preferenceKey(`${prefix}_vol`, `${prefix} volume`, "number-string", "0.75", "numberRange0To1", numberString({ min: 0, max: 1 })),
   preferenceKey(`${prefix}_preset`, `${prefix} tone preset`, "enum-string", "cw_radio", "audioTonePresetOrLegacyAlias", enumString(AUDIO_PRESETS)),
   preferenceKey(`${prefix}_attack`, `${prefix} attack envelope`, "number-string", "8", "integerRange0To40", numberString({ min: 0, max: 40, integer: true })),
@@ -570,7 +564,7 @@ const audioPreferenceKeys = (prefix: "mw_audio" | "mw_sound_generator") => [
   preferenceKey(`${prefix}_repeat`, `${prefix} repeat playback`, "boolean-string", "0", "booleanString", isBooleanString),
   preferenceKey(`${prefix}_sound`, `${prefix} sound enabled`, "boolean-string", "1", "booleanString", isBooleanString),
   preferenceKey(`${prefix}_flash`, `${prefix} flash enabled`, "boolean-string", "0", "booleanString", isBooleanString),
-  preferenceKey(`${prefix}_adv_open`, `${prefix} advanced settings open`, "boolean-string", "1", "booleanString", isBooleanString),
+  preferenceKey(`${prefix}_adv_open`, `${prefix} advanced settings open`, "boolean-string", "0", "booleanString", isBooleanString),
   preferenceKey(`${prefix}_export_open`, `${prefix} export settings open`, "boolean-string", "1", "booleanString", isBooleanString),
   sourceMetadataKey(`${prefix}_filename`, `${prefix} export filename`, prefix === "mw_audio" ? "morse-audio" : "morse-sound"),
   preferenceKey(`${prefix}_sr`, `${prefix} sample rate`, "number-string", "44100", "audioSampleRate", numberEnum(AUDIO_SAMPLE_RATES)),
@@ -601,12 +595,16 @@ export const STORAGE_KEY_REGISTRY: readonly StorageKeyDefinition[] = [
   preferenceKey("mw_fwpm", "translator Farnsworth spacing", "number-string", "20", "integerRange5To100", numberString({ min: 5, max: 100, integer: true }), {
     notes: "Read helpers also clamp this value against character WPM.",
   }),
-  preferenceKey("mw_hz", "translator pitch", "number-string", "600", "integerRange300To900", numberString({ min: 300, max: 900, integer: true })),
+  preferenceKey("mw_hz", "translator legacy pitch", "number-string", "600", "integerRange200To1600", numberString({ min: 200, max: 1600, integer: true }), {
+    notes: "Migrated to mw_audio_hz when no canonical shared preference exists.",
+  }),
   preferenceKey("mw_vol", "translator volume", "number-string", "0.75", "numberRange0To1", numberString({ min: 0, max: 1 })),
   preferenceKey("mw_sound", "translator sound enabled", "boolean-string", "1", "booleanString", isBooleanString),
   preferenceKey("mw_repeat", "translator repeat playback", "boolean-string", "0", "booleanString", isBooleanString),
   preferenceKey("mw_flash", "translator flash enabled", "boolean-string", "0", "booleanString", isBooleanString),
-  preferenceKey("mw_preset", "translator tone preset", "enum-string", "cw_radio", "translatorAudioPreset", enumString(TRANSLATOR_PRESETS)),
+  preferenceKey("mw_preset", "translator legacy tone preset", "enum-string", "cw_radio", "audioTonePresetOrLegacyAlias", enumString(AUDIO_PRESETS), {
+    notes: "Migrated to mw_audio_preset when no canonical shared preference exists.",
+  }),
   preferenceKey("mw_adv_open", "translator advanced settings open", "boolean-string", "0", "booleanString", isBooleanString),
   preferenceKey("mw_export_format", "translator export format", "enum-string", "wav", "audioExportFormat", enumString(["mp3", "wav"] as const)),
   preferenceKey("mw_export_split_mode", "translator export split mode", "enum-string", "none", "audioSplitMode", enumString(["none", "duration", "custom"] as const)),

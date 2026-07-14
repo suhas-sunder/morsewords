@@ -416,7 +416,7 @@ test.describe("shared route controls", () => {
           exact: false,
         }),
       ).toHaveCount(0);
-      await expect(page.getByTestId("mw-flash-lamp")).toBeVisible();
+      await expect(page.getByTestId("mw-flash-lamp")).toHaveCount(0);
     });
   }
 
@@ -547,36 +547,35 @@ test.describe("shared route controls", () => {
 
     await page.goto("/audio", { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
-    let tonePreset = page.getByLabel("Tone preset").first();
-    if (!(await tonePreset.isVisible())) {
-      await page.getByRole("button", { name: /Show advanced/i }).click();
-      tonePreset = page.getByLabel("Tone preset").first();
-    }
-    if (await tonePreset.isDisabled()) {
-      await page.getByRole("button", { name: "Sound", exact: true }).click();
-      await expect(tonePreset).toBeEnabled();
-    }
-    await expectCleanFieldFocus(tonePreset);
+    const audioAdvanced = page.getByRole("button", {
+      name: "Show advanced settings",
+    });
+    await expect(audioAdvanced).toBeEnabled();
+    await expectCleanControlFocus(
+      audioAdvanced,
+    );
 
     await page.goto("/morse-code-sound-generator", {
       waitUntil: "domcontentloaded",
     });
     await waitForRouteReady(page);
-    tonePreset = page.getByLabel("Tone preset").first();
-    if (!(await tonePreset.isVisible())) {
-      await page.getByRole("button", { name: /Show advanced/i }).click();
-      tonePreset = page.getByLabel("Tone preset").first();
-    }
-    if (await tonePreset.isDisabled()) {
-      await page.getByRole("button", { name: "Sound", exact: true }).click();
-      await expect(tonePreset).toBeEnabled();
-    }
-    await expectCleanFieldFocus(tonePreset);
+    const soundAdvanced = page.getByRole("button", {
+      name: "Show advanced settings",
+    });
+    await expect(soundAdvanced).toBeEnabled();
+    await expectCleanControlFocus(
+      soundAdvanced,
+    );
 
     await page.goto("/morse-code-mp3-generator", {
       waitUntil: "domcontentloaded",
     });
     await waitForRouteReady(page);
+    const mp3Advanced = page.getByRole("button", {
+      name: "Show advanced settings",
+    });
+    await expect(mp3Advanced).toBeEnabled();
+    await mp3Advanced.click();
     await expectCleanFieldFocus(page.getByLabel("Sample rate").first());
   });
 

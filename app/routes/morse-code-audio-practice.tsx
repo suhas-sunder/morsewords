@@ -19,7 +19,11 @@ import SliderRow from "~/client/components/shared/ui/SliderRow";
 import PlaybackToggleGroup from "~/client/components/shared/PlaybackToggleGroup";
 import AdvancedSettingsToggle from "~/client/components/shared/AdvancedSettingsToggle";
 import { AudioPresetOptions } from "~/client/components/shared/AudioPresetPicker";
-import FlashLamp from "~/client/components/shared/FlashLamp";
+import {
+  DEFAULT_SHARED_AUDIO_PREFERENCES,
+  readSharedAudioPreferences,
+  writeSharedAudioPreferences,
+} from "~/client/components/shared/audioPreferenceStorage";
 import { useFlashLampState } from "~/client/components/shared/useFlashSafety";
 import useMorseAudio, {
   type SoundPreset,
@@ -134,13 +138,13 @@ export default function MorseCodeAudioPractice() {
   const [streak, setStreak] = React.useState(0);
   const [bestStreak, setBestStreak] = React.useState(0);
 
-  const [charWpm, setCharWpm] = React.useState(18);
-  const [farnsworthWpm, setFarnsworthWpm] = React.useState(12);
-  const [toneHz, setToneHz] = React.useState(650);
-  const [volume, setVolume] = React.useState(0.75);
+  const [charWpm, setCharWpm] = React.useState(DEFAULT_SHARED_AUDIO_PREFERENCES.charWpm);
+  const [farnsworthWpm, setFarnsworthWpm] = React.useState(DEFAULT_SHARED_AUDIO_PREFERENCES.farnsworthWpm);
+  const [toneHz, setToneHz] = React.useState(DEFAULT_SHARED_AUDIO_PREFERENCES.toneHz);
+  const [volume, setVolume] = React.useState(DEFAULT_SHARED_AUDIO_PREFERENCES.volume);
   const [preset, setPreset] = React.useState<SoundPreset>("cw_radio");
-  const [attackMs, setAttackMs] = React.useState(8);
-  const [releaseMs, setReleaseMs] = React.useState(12);
+  const [attackMs, setAttackMs] = React.useState(DEFAULT_SHARED_AUDIO_PREFERENCES.attackMs);
+  const [releaseMs, setReleaseMs] = React.useState(DEFAULT_SHARED_AUDIO_PREFERENCES.releaseMs);
   const [repeat, setRepeat] = React.useState(false);
   const [soundOn, setSoundOn] = React.useState(true);
   const [flash, setFlash] = React.useState(false);
@@ -191,6 +195,18 @@ export default function MorseCodeAudioPractice() {
     setDifficulty(storedDifficulty);
     setBestStreak(readStoredInt(BEST_STREAK_STORAGE_KEY, 0));
     setPrompt(pickPrompt(getAudioPrompts(storedDifficulty)));
+    const preferences = readSharedAudioPreferences();
+    setCharWpm(preferences.charWpm);
+    setFarnsworthWpm(preferences.farnsworthWpm);
+    setToneHz(preferences.toneHz);
+    setVolume(preferences.volume);
+    setPreset(preferences.preset);
+    setAttackMs(preferences.attackMs);
+    setReleaseMs(preferences.releaseMs);
+    setRepeat(preferences.repeat);
+    setSoundOn(preferences.soundOn);
+    setFlash(preferences.flash);
+    setAdvancedOpen(preferences.advancedOpen);
     setHydrated(true);
   }, []);
 
@@ -203,6 +219,23 @@ export default function MorseCodeAudioPractice() {
     if (!hydrated) return;
     safeWriteStorage(BEST_STREAK_STORAGE_KEY, String(bestStreak));
   }, [bestStreak, hydrated]);
+
+  React.useEffect(() => {
+    if (!hydrated) return;
+    writeSharedAudioPreferences({
+      charWpm,
+      farnsworthWpm,
+      toneHz,
+      volume,
+      preset,
+      attackMs,
+      releaseMs,
+      repeat,
+      soundOn,
+      flash,
+      advancedOpen,
+    });
+  }, [hydrated, charWpm, farnsworthWpm, toneHz, volume, preset, attackMs, releaseMs, repeat, soundOn, flash, advancedOpen]);
 
   React.useEffect(() => {
     if (!hydrated) return;
@@ -570,7 +603,7 @@ export default function MorseCodeAudioPractice() {
           <div className="mt-7">
             <div className="flex items-center justify-between gap-3">
               <h3 className="text-base font-extrabold text-sky-950">
-                Audio practice settings
+                Playback Settings
               </h3>
               <span className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
                 {player.state === "idle" ? "Ready" : player.state}
@@ -593,7 +626,6 @@ export default function MorseCodeAudioPractice() {
                   describedBy: disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : showStrobeWarning ? STROBE_WARNING_ID : undefined,
                   disabled: !flashAllowed,
                 }}
-                trailing={<FlashLamp active={flashLamp.active} disabled={!flashAllowed} label="Morse audio practice flash lamp" size="sm" />}
               />
             </div>
 
@@ -629,7 +661,7 @@ export default function MorseCodeAudioPractice() {
               </div>
             ) : null}
 
-            <AdvancedSettingsToggle className="mt-5" onToggle={() => setAdvancedOpen((value) => !value)} open={advancedOpen} />
+            <AdvancedSettingsToggle className="mt-5" disabled={!hydrated} onToggle={() => setAdvancedOpen((value) => !value)} open={advancedOpen} />
           </div>
         </section>
 

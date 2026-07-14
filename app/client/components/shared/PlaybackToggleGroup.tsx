@@ -13,7 +13,6 @@ export default function PlaybackToggleGroup({
   rounded = "full",
   size = "sm",
   sound,
-  trailing,
 }: {
   className?: string;
   flash: {
@@ -26,7 +25,6 @@ export default function PlaybackToggleGroup({
   rounded?: "lg" | "xl" | "full";
   size?: "sm" | "md" | "lg";
   sound: { checked: boolean; onChange: (value: boolean) => void };
-  trailing?: React.ReactNode;
 }) {
   return (
     <div className={["flex flex-wrap items-center gap-2", className].filter(Boolean).join(" ")}>
@@ -62,7 +60,6 @@ export default function PlaybackToggleGroup({
         size={size}
         icon={<LightBulbIcon size={16} title={undefined} aria-hidden="true" />}
       />
-      {trailing}
     </div>
   );
 }
