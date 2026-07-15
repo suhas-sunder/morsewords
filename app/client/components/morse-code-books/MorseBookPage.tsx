@@ -2471,6 +2471,7 @@ function MorseBookWorkspace({
       activeVisualPreview.durationMs,
     );
     if (startDelayMs > 0) {
+      if (playWithAudio) previewAudioPlayerRef.current.resume();
       videoPreviewStartDelayTimeoutRef.current = window.setTimeout(() => {
         videoPreviewStartDelayTimeoutRef.current = null;
         beginPlayback();

@@ -1628,6 +1628,7 @@ export default function BookTranslatorTool() {
       visualPreviewDurationMs,
     );
     if (startDelayMs > 0) {
+      if (playWithAudio) previewAudioPlayer.resume();
       visualPreviewTimeoutRef.current = window.setTimeout(() => {
         visualPreviewTimeoutRef.current = null;
         beginPlayback();

@@ -358,14 +358,15 @@ export default function useMorseAudio() {
   async function ensureRunning() {
     const ctx = ensureCtx();
     if (!ctx) return null;
-    if (ctx.state === "suspended") {
+    const state = ctx.state as AudioContextState | "interrupted";
+    if (state !== "running" && state !== "closed") {
       try {
         await ctx.resume();
       } catch {
-        // ignore
+        return null;
       }
     }
-    return ctx;
+    return ctx.state === "running" ? ctx : null;
   }
 
   function applyMasterFromLive(opts: PlayOptions) {
@@ -599,6 +600,10 @@ export default function useMorseAudio() {
   }
 
   async function play(opts: PlayOptions) {
+    // Initiate AudioContext activation before playback setup can consume the
+    // transient user gesture required by mobile Safari and other mobile
+    // browsers. Await it only after the synchronous session state is ready.
+    const runningContext = ensureRunning();
     cancelCurrentPlayback();
     const sessionId = sessionRef.current;
     const safeOpts = sanitizeOpts(opts);
@@ -619,7 +624,17 @@ export default function useMorseAudio() {
 
     setPlayerState("playing");
 
-    await ensureRunning();
+    const ctx = await runningContext;
+    if (!ctx || !isActiveSession(sessionId)) {
+      if (sessionRef.current === sessionId) {
+        playingRef.current = false;
+        pausedRef.current = false;
+        stopRef.current = false;
+        repeatRef.current = false;
+        setPlayerState("idle");
+      }
+      return;
+    }
     applyMasterFromLive(safeOpts);
     safeOpts.onPlaybackStart?.(performance.now());
 
@@ -646,6 +661,7 @@ export default function useMorseAudio() {
   }
 
   function resume() {
+    void ensureRunning();
     if (!playingRef.current) return;
     pausedRef.current = false;
 

@@ -10,6 +10,9 @@ type PlayPatternOptions = {
   farnsworthWpm?: number;
 };
 
+let patternAudioContext: AudioContext | null = null;
+let patternResumePromise: Promise<boolean> | null = null;
+
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
@@ -34,24 +37,48 @@ function timingOptions(wpm = 18, farnsworthWpm?: number) {
   };
 }
 
-export function playMorsePattern(
-  pattern: string,
-  options?: PlayPatternOptions,
+function getPatternAudioContext() {
+  if (typeof window === "undefined") return null;
+
+  if (patternAudioContext?.state === "closed") {
+    patternAudioContext = null;
+    patternResumePromise = null;
+  }
+
+  if (!patternAudioContext) {
+    const AudioContextCtor =
+      window.AudioContext ||
+      (window as typeof window & { webkitAudioContext?: typeof AudioContext })
+        .webkitAudioContext;
+    if (!AudioContextCtor) return null;
+    patternAudioContext = new AudioContextCtor();
+  }
+
+  return patternAudioContext;
+}
+
+function ensurePatternContextRunning(ctx: AudioContext) {
+  if (ctx.state === "running") return Promise.resolve(true);
+  if (ctx.state === "closed") return Promise.resolve(false);
+  if (patternResumePromise) return patternResumePromise;
+
+  patternResumePromise = ctx
+    .resume()
+    .then(() => ctx.state === "running")
+    .catch(() => false)
+    .finally(() => {
+      patternResumePromise = null;
+    });
+  return patternResumePromise;
+}
+
+function scheduleMorsePattern(
+  ctx: AudioContext,
+  events: ReturnType<typeof buildMorseEvents>,
+  frequency: number,
 ) {
-  if (typeof window === "undefined") return;
+  if (ctx.state !== "running") return;
 
-  const AudioContextCtor =
-    window.AudioContext ||
-    (window as typeof window & { webkitAudioContext?: typeof AudioContext })
-      .webkitAudioContext;
-  if (!AudioContextCtor) return;
-
-  const events = buildMorseEvents(
-    pattern,
-    timingOptions(options?.wpm, options?.farnsworthWpm),
-  );
-  const frequency = clamp(options?.frequency ?? 560, 220, 1000);
-  const ctx = new AudioContextCtor();
   const master = ctx.createGain();
   master.gain.value = 0.18;
   master.connect(ctx.destination);
@@ -80,8 +107,36 @@ export function playMorsePattern(
   }
 
   window.setTimeout(() => {
-    void ctx.close();
+    master.disconnect?.();
   }, Math.max(250, (cursor - ctx.currentTime + 0.2) * 1000));
+}
+
+export function playMorsePattern(
+  pattern: string,
+  options?: PlayPatternOptions,
+) {
+  const ctx = getPatternAudioContext();
+  if (!ctx) return;
+
+  // Calling this helper starts resume() synchronously while the click/tap still
+  // owns transient user activation. Event construction remains unchanged and
+  // scheduling waits for the context only when the browser suspended it.
+  const runningContext = ensurePatternContextRunning(ctx);
+
+  const events = buildMorseEvents(
+    pattern,
+    timingOptions(options?.wpm, options?.farnsworthWpm),
+  );
+  const frequency = clamp(options?.frequency ?? 560, 220, 1000);
+
+  if (ctx.state === "running") {
+    scheduleMorsePattern(ctx, events, frequency);
+    return;
+  }
+
+  void runningContext.then((running) => {
+    if (running) scheduleMorsePattern(ctx, events, frequency);
+  });
 }
 
 export function morseDurationMs(
