@@ -62,14 +62,43 @@ function ensurePatternContextRunning(ctx: AudioContext) {
   if (ctx.state === "closed") return Promise.resolve(false);
   if (patternResumePromise) return patternResumePromise;
 
-  patternResumePromise = ctx
-    .resume()
+  let resumePromise: Promise<void>;
+  try {
+    resumePromise = ctx.resume();
+  } catch {
+    return Promise.resolve(false);
+  }
+  primePatternAudioContext(ctx);
+
+  patternResumePromise = resumePromise
     .then(() => ctx.state === "running")
     .catch(() => false)
     .finally(() => {
       patternResumePromise = null;
     });
   return patternResumePromise;
+}
+
+function primePatternAudioContext(ctx: AudioContext) {
+  try {
+    const source = ctx.createBufferSource();
+    source.buffer = ctx.createBuffer(1, 1, ctx.sampleRate || 44100);
+    source.connect(ctx.destination);
+    source.addEventListener?.(
+      "ended",
+      () => {
+        try {
+          source.disconnect();
+        } catch {
+          // ignore unlock cleanup races
+        }
+      },
+      { once: true },
+    );
+    source.start(0);
+  } catch {
+    // If the browser refuses the warm-up source, playback still fails safely.
+  }
 }
 
 function scheduleMorsePattern(

@@ -355,13 +355,42 @@ export default function useMorseAudio() {
     dispatchMorseFlash(ms);
   }
 
+  function primeAudioContextOutput(ctx: AudioContext) {
+    try {
+      const source = ctx.createBufferSource();
+      source.buffer = ctx.createBuffer(1, 1, ctx.sampleRate || 44100);
+      source.connect(ctx.destination);
+      source.addEventListener?.(
+        "ended",
+        () => {
+          try {
+            source.disconnect();
+          } catch {
+            // ignore unlock cleanup races
+          }
+        },
+        { once: true },
+      );
+      source.start(0);
+    } catch {
+      // The real playback path will still fail safely if the browser blocks this.
+    }
+  }
+
   async function ensureRunning() {
     const ctx = ensureCtx();
     if (!ctx) return null;
     const state = ctx.state as AudioContextState | "interrupted";
     if (state !== "running" && state !== "closed") {
+      let resumePromise: Promise<void>;
       try {
-        await ctx.resume();
+        resumePromise = ctx.resume();
+      } catch {
+        return null;
+      }
+      primeAudioContextOutput(ctx);
+      try {
+        await resumePromise;
       } catch {
         return null;
       }

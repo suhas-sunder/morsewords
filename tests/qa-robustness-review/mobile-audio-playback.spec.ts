@@ -145,6 +145,7 @@ type HarnessOptions = {
 };
 
 type HarnessState = {
+  audibleBufferStarts: number;
   bufferSources: number;
   contexts: number;
   events: string[];
@@ -153,6 +154,9 @@ type HarnessState = {
   resumes: number;
   starts: number;
   startsWhileNotRunning: number;
+  unlockStartUserActivation: boolean[];
+  unlockStarts: number;
+  unlockStartsWhileNotRunning: number;
   unhandledRejectionMessages: string[];
   unhandledRejections: number;
 };
@@ -164,6 +168,7 @@ async function installAudioContextHarness(
   await page.addInitScript(
     ({ initialState = "suspended", resumeMode = "resolve" }) => {
       const harness: HarnessState = {
+        audibleBufferStarts: 0,
         bufferSources: 0,
         contexts: 0,
         events: [],
@@ -172,6 +177,9 @@ async function installAudioContextHarness(
         resumes: 0,
         starts: 0,
         startsWhileNotRunning: 0,
+        unlockStartUserActivation: [],
+        unlockStarts: 0,
+        unlockStartsWhileNotRunning: 0,
         unhandledRejectionMessages: [],
         unhandledRejections: 0,
       };
@@ -224,6 +232,8 @@ async function installAudioContextHarness(
         }
       }
 
+      type FakeAudioNodeKind = "buffer" | "oscillator" | "other";
+
       class FakeAudioNode extends EventTarget {
         buffer: unknown = null;
         frequency = new FakeAudioParam();
@@ -232,7 +242,10 @@ async function installAudioContextHarness(
         Q = new FakeAudioParam();
         type = "sine";
 
-        constructor(private context: FakeAudioContext) {
+        constructor(
+          private context: FakeAudioContext,
+          private kind: FakeAudioNodeKind = "other",
+        ) {
           super();
         }
 
@@ -243,8 +256,25 @@ async function installAudioContextHarness(
         disconnect() {}
 
         start() {
+          const bufferLength =
+            this.buffer && typeof this.buffer === "object"
+              ? (this.buffer as { length?: number }).length
+              : undefined;
+          const isUnlockSource = this.kind === "buffer" && bufferLength === 1;
+          if (isUnlockSource) {
+            harness.events.push("source:start:unlock");
+            harness.unlockStarts += 1;
+            harness.unlockStartUserActivation.push(
+              navigator.userActivation?.isActive ?? false,
+            );
+            if (this.context.state !== "running") {
+              harness.unlockStartsWhileNotRunning += 1;
+            }
+            return;
+          }
           harness.events.push("source:start");
           harness.starts += 1;
+          if (this.kind === "buffer") harness.audibleBufferStarts += 1;
           if (this.context.state !== "running") {
             harness.startsWhileNotRunning += 1;
           }
@@ -286,13 +316,16 @@ async function installAudioContextHarness(
             { length: channels },
             () => new Float32Array(length),
           );
-          return { getChannelData: (index: number) => data[index] ?? data[0] };
+          return {
+            getChannelData: (index: number) => data[index] ?? data[0],
+            length,
+          };
         }
 
         createBufferSource() {
           harness.bufferSources += 1;
           harness.events.push("source:create:buffer");
-          return new FakeAudioNode(this);
+          return new FakeAudioNode(this, "buffer");
         }
 
         createGain() {
@@ -306,7 +339,7 @@ async function installAudioContextHarness(
         createOscillator() {
           harness.oscillators += 1;
           harness.events.push("source:create:oscillator");
-          return new FakeAudioNode(this);
+          return new FakeAudioNode(this, "oscillator");
         }
 
         resume() {
@@ -404,10 +437,15 @@ test("shared playback unlocks before scheduling and reuses one context", async (
   expect(state.contexts).toBe(1);
   expect(state.resumes).toBe(1);
   expect(state.resumeUserActivation).toEqual([true]);
+  expect(state.unlockStarts).toBe(1);
+  expect(state.unlockStartUserActivation).toEqual([true]);
   expect(state.starts).toBeGreaterThan(0);
   expect(state.startsWhileNotRunning).toBe(0);
   expect(state.events.indexOf("context:resume")).toBeLessThan(
-    state.events.findIndex((event) => event.startsWith("source:create")),
+    state.events.indexOf("source:start:unlock"),
+  );
+  expect(state.events.indexOf("source:start:unlock")).toBeLessThan(
+    state.events.indexOf("source:create:oscillator"),
   );
 
   await page.getByLabel("Input (Text)").fill("TEST TEST TEST");
@@ -447,6 +485,8 @@ test("pause, resume, startup stop, rejection, and unsupported browsers stay safe
   expect(state.contexts).toBe(1);
   expect(state.resumes).toBe(2);
   expect(state.resumeUserActivation).toEqual([true, true]);
+  expect(state.unlockStarts).toBe(2);
+  expect(state.unlockStartUserActivation).toEqual([true, true]);
 
   const deferredPage = await context.newPage();
   await blockExternalNetwork(deferredPage);
@@ -464,6 +504,9 @@ test("pause, resume, startup stop, rejection, and unsupported browsers stay safe
   ).toBeEnabled();
   state = await readHarness(deferredPage);
   expect(state.starts).toBe(0);
+  expect(state.unlockStarts).toBe(1);
+  expect(state.startsWhileNotRunning).toBe(0);
+  expect(state.unlockStartsWhileNotRunning).toBe(1);
   await deferredPage.close();
 
   const rejectedPage = await context.newPage();
@@ -476,6 +519,7 @@ test("pause, resume, startup stop, rejection, and unsupported browsers stay safe
   ).toBeEnabled();
   state = await readHarness(rejectedPage);
   expect(state.starts).toBe(0);
+  expect(state.unlockStarts).toBe(1);
   expect(state.unhandledRejectionMessages).toEqual([]);
   await rejectedPage.close();
 
@@ -516,6 +560,7 @@ test("mute, repeat, sounder, and oscillator presets keep their existing paths", 
   await expect(page.getByRole("button", { name: /Play/ }).first()).toBeEnabled();
   let state = await readHarness(page);
   expect(state.starts).toBe(0);
+  expect(state.unlockStarts).toBe(1);
 
   await page.getByRole("button", { name: "Sound" }).click();
   await page.getByRole("button", { name: "Repeat" }).click();
@@ -543,7 +588,7 @@ test("mute, repeat, sounder, and oscillator presets keep their existing paths", 
   }
 
   state = await readHarness(page);
-  expect(state.bufferSources).toBeGreaterThan(0);
+  expect(state.audibleBufferStarts).toBeGreaterThan(0);
   expect(state.oscillators).toBeGreaterThan(0);
   expect(state.contexts).toBe(1);
 });
@@ -564,6 +609,8 @@ test("reference playback resumes under the tap and reuses its context", async ({
   expect(state.contexts).toBe(1);
   expect(state.resumes).toBe(1);
   expect(state.resumeUserActivation).toEqual([true]);
+  expect(state.unlockStarts).toBe(1);
+  expect(state.unlockStartUserActivation).toEqual([true]);
   expect(state.starts).toBeGreaterThan(0);
   expect(state.startsWhileNotRunning).toBe(0);
 
@@ -581,6 +628,7 @@ test("reference playback resumes under the tap and reuses its context", async ({
   await rejectedPlay.click();
   state = await readHarness(rejectedPage);
   expect(state.starts).toBe(0);
+  expect(state.unlockStarts).toBe(1);
   expect(state.unhandledRejectionMessages).toEqual([]);
   await rejectedPage.close();
 });
@@ -614,6 +662,10 @@ test("every shared-engine route activates audio under its original click", async
         activation.resumes,
         `${route} resumes before its start timer`,
       ).toBe(mobilePolicy ? 1 : 0);
+      expect(
+        activation.unlockStarts,
+        `${route} warms audio before its start timer`,
+      ).toBe(mobilePolicy ? 1 : 0);
     }
     await expect
       .poll(async () => (await readHarness(page)).starts, {
@@ -627,8 +679,11 @@ test("every shared-engine route activates audio under its original click", async
     if (mobilePolicy) {
       expect(state.resumes, route).toBe(1);
       expect(state.resumeUserActivation, route).toEqual([true]);
+      expect(state.unlockStarts, route).toBe(1);
+      expect(state.unlockStartUserActivation, route).toEqual([true]);
     } else {
       expect(state.resumes, route).toBe(0);
+      expect(state.unlockStarts, route).toBe(0);
     }
   }
 });
@@ -662,8 +717,11 @@ for (let start = 0; start < PATTERN_AUDIO_ROUTES.length; start += 10) {
       if (mobilePolicy) {
         expect(state.resumes, route).toBe(1);
         expect(state.resumeUserActivation, route).toEqual([true]);
+        expect(state.unlockStarts, route).toBe(1);
+        expect(state.unlockStartUserActivation, route).toEqual([true]);
       } else {
         expect(state.resumes, route).toBe(0);
+        expect(state.unlockStarts, route).toBe(0);
       }
     }
   });
