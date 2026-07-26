@@ -1,0 +1,14 @@
+http://{$APEX_DOMAIN} {
+  redir https://{$DOMAIN}{uri} 301
+}
+
+https://{$APEX_DOMAIN} {
+  redir https://{$DOMAIN}{uri} 301
+}
+
+{$DOMAIN} {
+  reverse_proxy app:{$APP_PORT:3000} {
+    header_up Host {host}
+    header_up X-Real-IP {remote_host}
+  }
+}

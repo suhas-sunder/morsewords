@@ -4,7 +4,6 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
-    "build:netlify": "react-router build",
     "books:build": "node --experimental-strip-types scripts/books/build-book-library.ts",
     "books:apply-review": "node --experimental-strip-types scripts/books/apply-book-review-approvals.ts",
     "books:audit-pass-1": "node --experimental-strip-types scripts/books/audit-book-processing-pass-1.ts",
@@ -95,7 +94,6 @@
     "books:post-export-book-route-validation": "node --experimental-strip-types scripts/books/post-export-book-route-validation.ts",
     "books:payload-hydration-completeness-audit": "node --experimental-strip-types scripts/books/book-payload-hydration-completeness-audit.ts",
     "books:production-book-payload-validation": "node --experimental-strip-types scripts/books/production-book-payload-validation.ts",
-    "books:netlify-function-size-audit": "node --experimental-strip-types scripts/books/netlify-function-size-audit.ts",
     "books:no-cloudflare-export-app-imports": "node --experimental-strip-types scripts/books/assert-no-app-cloudflare-export-imports.ts",
     "books:content-safety-completeness-sweep": "node --experimental-strip-types scripts/books/book-content-safety-and-completeness-sweep.ts",
     "books:content-risk-profile-audit": "node --experimental-strip-types scripts/books/book-content-risk-profile-audit.ts",
@@ -112,7 +110,6 @@
     "pages:adsense-contact-readiness-audit": "tsx scripts/audit-adsense-contact-readiness.ts",
     "site:local-final-validation": "tsx scripts/local-final-validation.ts",
     "site:final-production-sanity-check": "tsx scripts/final-production-sanity-check.ts",
-    "site:production-deploy-staleness-diagnosis": "tsx scripts/production-deploy-staleness-diagnosis.ts",
     "books:build-previews": "node --experimental-strip-types scripts/books/build-book-previews.ts",
     "books:candidate-report": "node --experimental-strip-types scripts/books/generate-first-publication-candidate-report.ts",
     "books:enrich-metadata": "node --experimental-strip-types scripts/books/enrich-book-metadata.ts",
@@ -153,7 +150,6 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
-    "@netlify/vite-plugin-react-router": "^1.0.1",
     "@playwright/test": "^1.59.1",
     "@react-router/dev": "^7.14.2",
     "@tailwindcss/vite": "^4.1.4",

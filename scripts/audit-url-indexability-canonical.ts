@@ -66,7 +66,6 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."
 const appRoutesPath = path.join(repoRoot, "app", "routes.ts");
 const sitemapPath = path.join(repoRoot, "public", "sitemap.xml");
 const robotsPath = path.join(repoRoot, "public", "robots.txt");
-const netlifyConfigPath = path.join(repoRoot, "netlify.toml");
 const generatedManifestPath = path.join(
   repoRoot,
   "app",
@@ -520,13 +519,8 @@ function audit() {
   const robotsSitemapResult = robots.includes(`Sitemap: ${SITE_ORIGIN}/sitemap.xml`)
     ? "pass"
     : "fail";
-  const netlify = fs.existsSync(netlifyConfigPath)
-    ? fs.readFileSync(netlifyConfigPath, "utf8")
-    : "";
   const root = fs.readFileSync(path.join(repoRoot, "app", "root.tsx"), "utf8");
   const trailingSlashRedirectResult =
-    netlify.includes('from = "/*/"') &&
-    netlify.includes('to = "/:splat"') &&
     root.includes("needsStrip") &&
     root.includes("return redirect(url.pathname + url.search")
       ? "pass"

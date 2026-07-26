@@ -1,0 +1,78 @@
+services:
+  app:
+    image: ${IMAGE_NAME:?Set IMAGE_NAME in .env.production}:${IMAGE_TAG:-latest}
+    env_file:
+      - .env.production
+    environment:
+      NODE_ENV: production
+      PORT: ${PORT:-3000}
+    expose:
+      - "${PORT:-3000}"
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:' + (process.env.PORT || '3000') + '/').then((response) => process.exit(response.ok ? 0 : 1)).catch(() => process.exit(1))"
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: local
+      options:
+        max-size: 10m
+        max-file: "3"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - application
+      - application-egress
+
+  caddy:
+    image: caddy:2-alpine
+    environment:
+      DOMAIN: ${DOMAIN:?Set DOMAIN in .env.production}
+      APEX_DOMAIN: ${APEX_DOMAIN:?Set APEX_DOMAIN in .env.production}
+      APP_PORT: ${PORT:-3000}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    restart: unless-stopped
+    depends_on:
+      app:
+        condition: service_healthy
+    logging:
+      driver: local
+      options:
+        max-size: 10m
+        max-file: "3"
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - edge
+      - application
+
+networks:
+  edge:
+    name: morsewords_edge
+  application:
+    internal: true
+    name: morsewords_application
+  application-egress:
+    name: morsewords_application_egress
+
+volumes:
+  caddy_data:
+  caddy_config:

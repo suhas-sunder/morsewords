@@ -64,7 +64,7 @@ const expectedManifestCount = 2;
 const expectedNonBookSitemapCount = 129;
 const expectedRouteInventoryCount = 702;
 const localDeferredStatement =
-  "Production Netlify route validation is deferred and was not used as a blocker in this local completion branch.";
+  "Production deployment route validation is deferred and was not used as a blocker in this local completion branch.";
 
 const generatedManifestPath = path.join(
   repoRoot,
@@ -649,8 +649,8 @@ function buildMarkdown(report: Record<string, unknown>) {
       String(report.localOnlyScopeStatement),
     ),
     section(
-      "4. Production Netlify validation deferred statement",
-      String(report.productionNetlifyValidationDeferredStatement),
+      "4. Production deployment validation deferred statement",
+      String(report.productionDeploymentValidationDeferredStatement),
     ),
     section(
       "5. Book subsystem final local state",
@@ -928,8 +928,8 @@ async function main() {
     requiredCompletionCommit,
     requiredCompletionCommitPresent,
     localOnlyScopeStatement:
-      "This branch completed repo-local readiness checks using local files, local app serving, and the ignored local Cloudflare updated export folder. It did not wait for or validate Netlify production route deployment.",
-    productionNetlifyValidationDeferredStatement: localDeferredStatement,
+      "This branch completed repo-local readiness checks using local files, local app serving, and the ignored local Cloudflare updated export folder. It did not wait for or validate a production route deployment.",
+    productionDeploymentValidationDeferredStatement: localDeferredStatement,
     assetHostPolicy: {
       productionAssetHost: MORSE_BOOK_CONTENT_BASE_URL,
       productionPageHost: SITE_ORIGIN,
@@ -1018,9 +1018,9 @@ async function main() {
     remainingBlockers: localBlockers,
     finalLocalReadiness: localBlockers.length
       ? "Local final readiness is blocked by the listed local blockers."
-      : "Local repo readiness passed. Production Netlify route validation remains deferred.",
+      : "Local repo readiness passed. Production deployment route validation remains deferred.",
     requiredFutureProductionCheck:
-      "After Netlify is known to be serving the latest main, run the separate production-only route and remote content-safety/suitability validation. Do not treat that deferred production check as a blocker for this local completion branch.",
+      "After production is known to be serving the latest main, run the separate production-only route and remote content-safety/suitability validation. Do not treat that deferred production check as a blocker for this local completion branch.",
     checks,
   };
 
