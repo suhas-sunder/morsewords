@@ -65,7 +65,7 @@ export default function CookiesPolicy() {
       <UtilityPageHeader
         eyebrow="MorseWords policy"
         title="Cookies Policy"
-        updated="Last updated January 10, 2026"
+        updated="Last updated July 29, 2026"
       >
         <p className="flex flex-col gap-4 py-2">
           This Cookie Policy explains how https://www.morsewords.com ("Company",
@@ -124,16 +124,17 @@ export default function CookiesPolicy() {
             Analytics and performance cookies
           </h2>
           <p>
-            These cookies (and similar technologies) collect information that is
-            used either in aggregate form to help us understand how our Website
-            is being used, to improve site performance, and to help diagnose
-            errors. We currently use PostHog for analytics, which may set
-            cookies or use similar identifiers depending on your browser and our
-            configuration.
+            We use PostHog for limited page-view analytics. PostHog runs in
+            always-cookieless mode and does not create cookies, localStorage,
+            sessionStorage, or IndexedDB entries on this Website. Automatic
+            interaction capture, session recording, surveys, feature flags,
+            experiments, and person profiles are disabled.
           </p>
           <p>
-            Note: The specific cookies and identifiers used can vary over time
-            (for example, based on configuration changes or vendor updates).
+            Page-view payloads include the route path but exclude query strings,
+            fragments, and text entered into MorseWords tools. Because this
+            configuration does not use browser storage, MorseWords does not show
+            a PostHog analytics opt-in banner.
           </p>
         </section>
 

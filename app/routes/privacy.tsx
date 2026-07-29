@@ -45,7 +45,7 @@ export default function PrivacyPolicyRoute() {
         <UtilityPageHeader
           eyebrow="MorseWords privacy"
           title="Privacy Policy"
-          updated="Last updated June 14, 2026"
+          updated="Last updated July 29, 2026"
         >
           <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
             MorseWords provides Morse code tools, book and audio tools, and
@@ -107,11 +107,18 @@ export default function PrivacyPolicyRoute() {
             Analytics, ads, and third-party services
           </h2>
           <p>
-            MorseWords uses PostHog for page-view analytics with automatic
-            interaction capture disabled. It uses Google AdSense for advertising.
-            These providers may set or receive cookies according to their own
-            policies. MorseWords has no accounts, payments, or affiliate-link
-            program.
+            MorseWords uses PostHog for cookieless page-view analytics.
+            PostHog does not store cookies, localStorage, sessionStorage, or
+            IndexedDB data on this site. Automatic interaction capture, session
+            recording, surveys, feature flags, experiments, and person profiles
+            are disabled. Page-view payloads use the route path only and exclude
+            query strings, fragments, and text entered into MorseWords tools.
+          </p>
+          <p>
+            MorseWords also uses Google AdSense for advertising. Advertising
+            providers may set or receive cookies according to their own
+            policies and consent requirements. MorseWords has no accounts,
+            payments, or affiliate-link program.
           </p>
           <p>
             Current relevant third parties are hosting providers, PostHog,

@@ -45,7 +45,7 @@ export default function CookiePolicyRoute() {
         <UtilityPageHeader
           eyebrow="MorseWords cookies"
           title="Cookie Policy"
-          updated="Last updated June 14, 2026"
+          updated="Last updated July 29, 2026"
         >
           <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-slate-700 sm:text-lg">
             This page explains how MorseWords may use cookies, localStorage, and
@@ -86,10 +86,16 @@ export default function CookiePolicyRoute() {
             Analytics and ads
           </h2>
           <p>
-            Analytics and advertising services may use cookies or similar
-            technologies to measure usage, understand performance, show ads, or
-            limit repeated ads. Those providers may process information under
-            their own policies.
+            MorseWords configures PostHog in always-cookieless mode for
+            page-view analytics. PostHog does not create cookies, localStorage,
+            sessionStorage, or IndexedDB entries on this site, and MorseWords
+            does not show an analytics opt-in banner.
+          </p>
+          <p>
+            Advertising services such as Google AdSense may use cookies or
+            similar technologies to show ads, measure performance, or limit
+            repeated ads. Those providers may process information under their
+            own policies and consent requirements.
           </p>
           </section>
 

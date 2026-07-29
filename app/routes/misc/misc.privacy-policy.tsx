@@ -53,7 +53,7 @@ export default function PrivacyPolicy() {
         eyebrow="MorseWords privacy"
         eyebrowClassName="mt-6"
         title="Privacy Policy"
-        updated="Last updated January 10, 2026"
+        updated="Last updated July 29, 2026"
       >
         <div className="flex flex-col gap-4 py-2">
           <span>
@@ -244,13 +244,12 @@ export default function PrivacyPolicy() {
 
           <p>
             Analytics. We use PostHog to help us understand usage and improve
-            the Services. PostHog may collect information such as your device
-            and browser details, pages viewed, interactions, and approximate
-            location (based on IP).{" "}
-            <span>
-              If available, you may be able to limit analytics collection via
-              cookie preferences or browser settings.
-            </span>
+            the Services. PostHog runs in always-cookieless mode for page-view
+            analytics and does not create cookies, localStorage, sessionStorage,
+            or IndexedDB entries on this Website. Automatic interaction capture,
+            session recording, surveys, feature flags, experiments, and person
+            profiles are disabled. Page-view payloads exclude query strings,
+            fragments, and text entered into MorseWords tools.
           </p>
 
           <div className="flex flex-col gap-4">
