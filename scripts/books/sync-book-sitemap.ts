@@ -90,14 +90,10 @@ function main() {
   const audiobookLines = slugs.map((slug) =>
     sitemapUrlLine(`${siteUrl}/morse-code-audiobooks/${slug}`),
   );
-  const printLines = slugs.map((slug) =>
-    sitemapUrlLine(`${siteUrl}/morse-code-books/${slug}/print`),
-  );
   const output = [
     ...preservedLines,
     ...bookLines,
     ...audiobookLines,
-    ...printLines,
     "</urlset>",
     "",
   ].join("\n");
@@ -106,7 +102,7 @@ function main() {
   console.log(`Book sitemap sync complete: ${books.length} accepted books.`);
   console.log(`Book detail URLs: ${bookLines.length}`);
   console.log(`Audiobook detail URLs: ${audiobookLines.length}`);
-  console.log(`Printable book URLs: ${printLines.length}`);
+  console.log("Printable book URLs: 0 (excluded from indexable sitemap inventory).");
 }
 
 main();

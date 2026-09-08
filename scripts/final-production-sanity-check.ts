@@ -387,9 +387,9 @@ function readExpectedReleaseCounts() {
       `local sitemap has ${sitemapAudiobookCount} audiobook URLs but generated manifest has ${bookCount} books`,
     );
   }
-  if (sitemapPrintCount !== bookCount) {
+  if (sitemapPrintCount !== 0) {
     localEvidenceIssues.push(
-      `local sitemap has ${sitemapPrintCount} print URLs but generated manifest has ${bookCount} books`,
+      `local sitemap has ${sitemapPrintCount} print URLs; print routes must stay out of indexable sitemap inventory`,
     );
   }
   if (localEvidenceIssues.length) {
