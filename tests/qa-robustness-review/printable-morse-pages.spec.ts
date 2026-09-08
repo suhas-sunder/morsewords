@@ -11,6 +11,7 @@ const PUBLIC_TEMP_BOOK_SLUG = "alices-adventures-in-wonderland";
 const MISSING_BOOK_SLUG = "missing-temp-book";
 const PRINTABLE_PATH = ROUTES.printablePages;
 const APPROVED_BOOK_PATH = `${ROUTES.morseBooks}/${APPROVED_BOOK_SLUG}`;
+const APPROVED_AUDIOBOOK_PATH = `${ROUTES.morseAudiobooks}/${APPROVED_BOOK_SLUG}`;
 const APPROVED_PRINT_PATH = `${APPROVED_BOOK_PATH}/print`;
 const PUBLIC_TEMP_PRINT_PATH = `${ROUTES.morseBooks}/${PUBLIC_TEMP_BOOK_SLUG}/print`;
 const MISSING_PRINT_PATH = `${ROUTES.morseBooks}/${MISSING_BOOK_SLUG}/print`;
@@ -116,6 +117,10 @@ test.describe("printable Morse pages foundation", () => {
       "href",
       absoluteUrl(APPROVED_PRINT_PATH),
     );
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+      "content",
+      "noindex,follow",
+    );
     await expect(page.getByTestId("printable-morse-pages")).toHaveAttribute(
       "data-mw-print-source",
       "approved-book-json",
@@ -175,15 +180,26 @@ test.describe("printable Morse pages foundation", () => {
 
     const bookResponse = await gotoPrintable(page, APPROVED_BOOK_PATH);
     expect(bookResponse?.ok()).toBe(true);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+      "content",
+      "index,follow",
+    );
     await expect(page.getByTestId("morse-book-print-link")).toHaveAttribute(
       "href",
       APPROVED_PRINT_PATH,
     );
 
+    const audiobookResponse = await gotoPrintable(page, APPROVED_AUDIOBOOK_PATH);
+    expect(audiobookResponse?.ok()).toBe(true);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+      "content",
+      "index,follow",
+    );
+
     const xml = await (await request.get("/sitemap.xml")).text();
     expect(xml).toContain(absoluteUrl(PRINTABLE_PATH));
-    expect(xml).toContain(absoluteUrl(APPROVED_PRINT_PATH));
-    expect(xml).toContain(absoluteUrl(PUBLIC_TEMP_PRINT_PATH));
+    expect(xml).not.toContain(absoluteUrl(APPROVED_PRINT_PATH));
+    expect(xml).not.toContain(absoluteUrl(PUBLIC_TEMP_PRINT_PATH));
     expect(xml).not.toContain(absoluteUrl(MISSING_PRINT_PATH));
 
     const staticSitemap = fs.readFileSync(
@@ -191,12 +207,12 @@ test.describe("printable Morse pages foundation", () => {
       "utf8",
     );
     expect(staticSitemap).toContain(absoluteUrl(PRINTABLE_PATH));
-    expect(staticSitemap).toContain(absoluteUrl(APPROVED_PRINT_PATH));
-    expect(staticSitemap).toContain(absoluteUrl(PUBLIC_TEMP_PRINT_PATH));
+    expect(staticSitemap).not.toContain(absoluteUrl(APPROVED_PRINT_PATH));
+    expect(staticSitemap).not.toContain(absoluteUrl(PUBLIC_TEMP_PRINT_PATH));
     expect(staticSitemap).not.toContain(absoluteUrl(MISSING_PRINT_PATH));
 
     await gotoPrintable(page, ROUTES.sitemap);
-    const htmlLinks = await page.locator("a[href]").evaluateAll((anchors) =>
+    const htmlLinks = await page.locator("main a[href]").evaluateAll((anchors) =>
       anchors.map((anchor) =>
         new URL(
           (anchor as HTMLAnchorElement).getAttribute("href") || "",
@@ -205,8 +221,8 @@ test.describe("printable Morse pages foundation", () => {
       ),
     );
     expect(htmlLinks).toContain(PRINTABLE_PATH);
-    expect(htmlLinks).toContain(APPROVED_PRINT_PATH);
-    expect(htmlLinks).toContain(PUBLIC_TEMP_PRINT_PATH);
+    expect(htmlLinks).not.toContain(APPROVED_PRINT_PATH);
+    expect(htmlLinks).not.toContain(PUBLIC_TEMP_PRINT_PATH);
     expect(htmlLinks).not.toContain(MISSING_PRINT_PATH);
   });
 });

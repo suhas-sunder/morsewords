@@ -10,19 +10,19 @@ Sitemap count and print-page indexability reconciliation passed
 
 ## 3. Local sitemap count
 
-Current local XML sitemap URLs: 1707.
+Current local XML sitemap URLs: 1182.
 
-Prior local audit count before this reconciliation: 1651.
+Prior local audit count before this reconciliation: 1708.
 
 ## 4. URL category breakdown
 
-Current: 129 non-book, 526 book, 526 audiobook, 526 print.
+Current: 130 non-book, 526 book, 526 audiobook, 0 print.
 
-Prior: 125 non-book, 519 book, 519 audiobook, 488 print.
+Prior: 130 non-book, 526 book, 526 audiobook, 526 print.
 
 ## 5. Non-book URL explanation
 
-129 canonical non-book routes remain in the sitemap. No noindex support route is included.
+130 canonical non-book routes remain in the sitemap. No noindex support route is included.
 
 ## 6. Book/audiobook URL explanation
 
@@ -30,17 +30,21 @@ Prior: 125 non-book, 519 book, 519 audiobook, 488 print.
 
 ## 7. Print URL indexability decision
 
-Print pages stay in the XML sitemap. They are self-canonical, indexable for accepted books, and provide distinct printable value.
+Print pages are noindex,follow and self-canonical. They stay crawlable and functional but are omitted from XML and HTML sitemap inventory.
 
 ## 8. Print page canonical result
 
 pass
 
-## 9. Print page distinct printable value result
+## 9. Print page robots result
 
 pass
 
-## 10. Redirect/noindex/duplicate/malformed URL result
+## 10. Print page distinct printable value result
+
+pass
+
+## 11. Redirect/noindex/duplicate/malformed URL result
 
 Noindex/support URLs in sitemap: 0.
 
@@ -50,22 +54,22 @@ Duplicate URL count: 0.
 
 Malformed URL count: 0.
 
-## 11. Exact 1,650 vs local count explanation
+## 12. GSC vs local count explanation
 
-The owner-reported GSC count is 1650. The prior local sitemap count was 1651, exactly 125 non-book + 519 book + 519 audiobook + 488 print. That prior local state had no duplicate or malformed URLs, but it was missing 31 print URLs for accepted publish-ready books. This branch corrected the local sitemap to 1707, exactly 129 non-book + 526 book + 526 audiobook + 526 print. Because the local XML has no noindex, redirect-only, duplicate, malformed, or host-mismatched URL, the exact one-URL GSC delta is not identifiable from the local repository alone. GSC count stale or based on a different submitted sitemap snapshot; the local sitemap has no duplicate, malformed, noindex, or redirect-only URL that explains a one-URL drop.
+The owner-reported GSC count is 1650. The prior local sitemap count was 1708, exactly 130 non-book + 526 book + 526 audiobook + 526 print. This change reduces the local sitemap to 1182, exactly 130 non-book + 526 book + 526 audiobook + 0 print. The XML has no noindex, redirect-only, duplicate, malformed, or host-mismatched URL. GSC will reflect the smaller submitted footprint only after the updated sitemap is deployed and recrawled.
 
-## 12. Fixes made
+## 13. Fixes made
 
-- Rewrote public/sitemap.xml from the accepted generated-book manifest using books:sitemap-sync.
-- Normalized generated sitemap URL lines that had adjacent <url> entries on one line.
-- Added the missing print URLs for accepted publish-ready books, moving print coverage from 488 to 519.
-- Updated local final-validation expected sitemap and print counts for the corrected sitemap.
+- Set valid published print routes to noindex,follow while retaining their self-canonical and printable UI.
+- Removed generated print URLs from the XML sitemap source and regenerated public/sitemap.xml.
+- Removed the comprehensive print-route group from the HTML sitemap.
+- Updated release-count validation for zero print URLs in sitemap inventory.
 
-## 13. Remaining blockers
+## 14. Remaining blockers
 
 None.
 
-## 14. Protected folder status
+## 15. Protected folder status
 
 - temp-books: clean
 - generated books: clean
@@ -75,6 +79,6 @@ None.
 - cloudflare-export tracked files: 0
 - cloudflare-updated-export tracked files: 0
 
-## 15. Recommended next step
+## 16. Recommended next step
 
-Proceed to `morsewords-adsense-contact-readiness-jun-2026` after this branch is reviewed and merged.
+Review the uncommitted indexing-footprint recovery diff before any commit or deployment.

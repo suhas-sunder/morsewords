@@ -14,7 +14,6 @@ import {
   getDiscoverableMorseBookSummaries,
   morseAudiobookPath,
   morseBookPath,
-  morseBookPrintPath,
 } from "~/client/data/morseBooks";
 import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
 import { MORSE_LANGUAGE_PAGES } from "~/client/data/morseLanguages";
@@ -61,12 +60,6 @@ const morseAudiobookSitemapLinks = discoverableMorseBooks.map((book) => ({
   label: `${book.title} Live Morse Player`,
   to: morseAudiobookPath(book.slug),
   description: `Open ${book.title} by ${formatMorseBookAuthors(book.author)} as a live browser Morse player with chapter selection, scrubbing, and saved progress.`,
-}));
-
-const morseBookPrintSitemapLinks = discoverableMorseBooks.map((book) => ({
-  label: `${book.title} Printable Morse Pages`,
-  to: morseBookPrintPath(book.slug),
-  description: `Print ${book.title} by ${formatMorseBookAuthors(book.author)} as text and Morse study pages with QR and source notes.`,
 }));
 
 const morseLanguageSitemapLinks = [
@@ -206,16 +199,6 @@ const GROUPS: SitemapGroup[] = [
           description:
             "Processed Project Gutenberg reference texts available as browser-generated Morse audiobook pages.",
           links: morseAudiobookSitemapLinks,
-        },
-      ]
-    : []),
-  ...(morseBookPrintSitemapLinks.length > 0
-    ? [
-        {
-          title: "Printable Morse book pages",
-          description:
-            "Processed Project Gutenberg reference texts prepared as print-friendly Morse study pages.",
-          links: morseBookPrintSitemapLinks,
         },
       ]
     : []),
