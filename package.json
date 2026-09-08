@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
+    "build:netlify": "react-router build",
     "books:build": "node --experimental-strip-types scripts/books/build-book-library.ts",
     "books:apply-review": "node --experimental-strip-types scripts/books/apply-book-review-approvals.ts",
     "books:audit-pass-1": "node --experimental-strip-types scripts/books/audit-book-processing-pass-1.ts",
@@ -150,6 +151,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
+    "@netlify/vite-plugin-react-router": "^1.0.1",
     "@playwright/test": "^1.59.1",
     "@react-router/dev": "^7.14.2",
     "@tailwindcss/vite": "^4.1.4",
