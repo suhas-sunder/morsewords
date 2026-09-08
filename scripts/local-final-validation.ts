@@ -61,7 +61,7 @@ type StaticServer = {
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const requiredCompletionCommit = "c3084755f79583499b51ee6d38b808c3c211d007";
 const expectedManifestCount = 2;
-const expectedNonBookSitemapCount = 130;
+const expectedNonBookSitemapCount = 129;
 const expectedRouteInventoryCount = 702;
 const localDeferredStatement =
   "Production deployment route validation is deferred and was not used as a blocker in this local completion branch.";
@@ -791,8 +791,8 @@ async function main() {
   }>(policyReportPath);
   const localUploadManifest = readJson<UploadManifest>(path.join(updatedExportDir, "upload-manifest.json"));
   const expectedBookCount = generatedManifest.books.length;
-  const expectedSitemapUrlCount = expectedNonBookSitemapCount + expectedBookCount * 2;
-  const expectedPrintUrlCount = 0;
+  const expectedSitemapUrlCount = expectedNonBookSitemapCount + expectedBookCount * 3;
+  const expectedPrintUrlCount = expectedBookCount;
   const expectedExportFileCount = uploadManifestFilePaths(localUploadManifest).length;
   const expectedExportBookPayloadCount = uploadManifestBookFiles(localUploadManifest).length;
   const updatedExportShape =

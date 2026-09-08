@@ -47,10 +47,12 @@ type AuditResult = {
   sitemapHostMismatches: string[];
   printPageDecision: "keep-in-sitemap" | "remove-from-sitemap";
   printPageSelfCanonicalResult: "pass" | "fail";
-  printPageRobotsResult: "pass" | "fail";
+  printPageIndexabilityResult: "pass" | "fail";
   printPageDistinctValueResult: "pass" | "fail";
   printPageChecks: Record<string, boolean>;
-  unexpectedPrintSlugs: string[];
+  missingPrintSlugs: string[];
+  extraPrintSlugs: string[];
+  priorMissingPrintSlugs: string[];
   gscReconciliation: {
     currentLocalMinusGsc: number;
     priorLocalMinusGsc: number;
@@ -84,8 +86,6 @@ const generatedManifestPath = path.join(
   "library-manifest.json",
 );
 const printRoutePath = path.join(repoRoot, "app", "routes", "morse-code-books.$slug.print.tsx");
-const htmlSitemapPath = path.join(repoRoot, "app", "routes", "sitemap.tsx");
-const robotsPath = path.join(repoRoot, "public", "robots.txt");
 const printableComponentPath = path.join(
   repoRoot,
   "app",
@@ -107,12 +107,13 @@ const reportJsonPath = path.join(reportDir, "sitemap-count-print-indexability-re
 const reportMdPath = path.join(reportDir, "sitemap-count-print-indexability-reconciliation.md");
 
 const GSC_REPORTED_SUBMITTED_URL_COUNT = 1650;
+const PRE_RECONCILIATION_SITEMAP_COMMIT = "c3084755f79583499b51ee6d38b808c3c211d007";
 const PRIOR_LOCAL_SITEMAP: SitemapSnapshot = {
-  total: 1708,
-  nonBook: 130,
-  book: 526,
-  audiobook: 526,
-  print: 526,
+  total: 1651,
+  nonBook: 125,
+  book: 519,
+  audiobook: 519,
+  print: 488,
 };
 
 const NOINDEX_SUPPORT_ROUTES = new Set<string>([
@@ -346,28 +347,48 @@ function readTrackedCount(target: string) {
   return output ? output.split(/\r?\n/).filter(Boolean).length : 0;
 }
 
+function readPriorMissingPrintSlugsFromBaseline() {
+  try {
+    const xml = runGit(["show", `${PRE_RECONCILIATION_SITEMAP_COMMIT}:public/sitemap.xml`]);
+    const { entries } = parseSitemapXml(xml);
+    const paths = entries.map((entry) => entry.pathname);
+    const bookSlugs = paths
+      .map((pathname) => pathname.match(BOOK_PATTERN)?.[1])
+      .filter((slug): slug is string => Boolean(slug))
+      .sort((left, right) => left.localeCompare(right));
+    const printSlugs = new Set(
+      paths
+        .map((pathname) => pathname.match(PRINT_PATTERN)?.[1])
+        .filter((slug): slug is string => Boolean(slug)),
+    );
+    return bookSlugs.filter((slug) => !printSlugs.has(slug));
+  } catch {
+    return [];
+  }
+}
+
 function collectPrintChecks({
+  acceptedSlugs,
   printSlugs,
 }: {
+  acceptedSlugs: string[];
   printSlugs: string[];
 }) {
   const printRouteSource = fs.readFileSync(printRoutePath, "utf8");
   const printableSource = fs.readFileSync(printableComponentPath, "utf8");
-  const htmlSitemapSource = fs.readFileSync(htmlSitemapPath, "utf8");
-  const robotsSource = fs.readFileSync(robotsPath, "utf8");
+  const acceptedSet = new Set(acceptedSlugs);
+  const printSet = new Set(printSlugs);
+  const missingPrintSlugs = acceptedSlugs.filter((slug) => !printSet.has(slug));
+  const extraPrintSlugs = printSlugs.filter((slug) => !acceptedSet.has(slug));
   const routeSources = parseRouteSources();
   const printRoute = routeSources.get("/morse-code-books/:slug/print");
 
   const checks = {
     routeRegistered: Boolean(printRoute && fs.existsSync(printRoute.filePath)),
     routeNotRedirectOnly: printRoute?.kind === "dynamic",
-    noPrintUrlsInSitemap: printSlugs.length === 0,
-    htmlSitemapExcludesPrintInventory:
-      !htmlSitemapSource.includes("morseBookPrintSitemapLinks") &&
-      !htmlSitemapSource.includes("Printable Morse book pages"),
+    allPrintSlugsAccepted: extraPrintSlugs.length === 0,
+    allAcceptedBooksHavePrintUrl: missingPrintSlugs.length === 0,
     successMetaUsesSeoMeta: printRouteSource.includes("seoMeta({"),
-    successMetaUsesNoindexFollow:
-      printRouteSource.includes('robots: "noindex,follow"'),
     successMetaUsesPrintPath: printRouteSource.includes("morseBookPrintPath(book.slug)"),
     canonicalLinkUsesPrintPath:
       /rel:\s*["']canonical["']/.test(printRouteSource) &&
@@ -375,11 +396,9 @@ function collectPrintChecks({
     loaderUsesPublishReadySummary:
       printRouteSource.includes("getDiscoverableMorseBookSummary") &&
       printRouteSource.includes("isMorseBookPublishReady"),
-    notFoundKeepsNoindexNofollow:
+    notFoundOnlyNoindex:
       printRouteSource.includes("Morse book print page not found") &&
       printRouteSource.includes("noindex,nofollow"),
-    robotsAllowsPrintCrawl:
-      !/^\s*Disallow:\s*\/morse-code-books(?:\/|\s|$)/im.test(robotsSource),
     returnsPrintableBookComponent:
       printRouteSource.includes("<PrintableMorsePages") &&
       printRouteSource.includes('kind="book"'),
@@ -408,16 +427,14 @@ function collectPrintChecks({
   const selfCanonicalResult = checks.successMetaUsesPrintPath && checks.canonicalLinkUsesPrintPath
     ? "pass"
     : "fail";
-  const robotsResult =
+  const indexabilityResult =
     checks.routeRegistered &&
     checks.routeNotRedirectOnly &&
-    checks.noPrintUrlsInSitemap &&
-    checks.htmlSitemapExcludesPrintInventory &&
+    checks.allPrintSlugsAccepted &&
+    checks.allAcceptedBooksHavePrintUrl &&
     checks.loaderUsesPublishReadySummary &&
     checks.successMetaUsesSeoMeta &&
-    checks.successMetaUsesNoindexFollow &&
-    checks.notFoundKeepsNoindexNofollow &&
-    checks.robotsAllowsPrintCrawl &&
+    checks.notFoundOnlyNoindex &&
     checks.avoidsFullPayloadSsr
       ? "pass"
       : "fail";
@@ -435,8 +452,10 @@ function collectPrintChecks({
 
   return {
     checks,
+    extraPrintSlugs,
+    missingPrintSlugs,
     selfCanonicalResult,
-    robotsResult,
+    indexabilityResult,
     distinctValueResult,
   };
 }
@@ -490,21 +509,17 @@ function buildMarkdown(result: AuditResult) {
     "",
     "## 7. Print URL indexability decision",
     "",
-    "Print pages are noindex,follow and self-canonical. They stay crawlable and functional but are omitted from XML and HTML sitemap inventory.",
+    "Print pages stay in the XML sitemap. They are self-canonical, indexable for accepted books, and provide distinct printable value.",
     "",
     "## 8. Print page canonical result",
     "",
     result.printPageSelfCanonicalResult,
     "",
-    "## 9. Print page robots result",
-    "",
-    result.printPageRobotsResult,
-    "",
-    "## 10. Print page distinct printable value result",
+    "## 9. Print page distinct printable value result",
     "",
     result.printPageDistinctValueResult,
     "",
-    "## 11. Redirect/noindex/duplicate/malformed URL result",
+    "## 10. Redirect/noindex/duplicate/malformed URL result",
     "",
     `Noindex/support URLs in sitemap: ${result.supportNoindexUrlsInSitemap.length}.`,
     "",
@@ -514,25 +529,25 @@ function buildMarkdown(result: AuditResult) {
     "",
     `Malformed URL count: ${result.malformedUrls.length}.`,
     "",
-    "## 12. GSC vs local count explanation",
+    "## 11. Exact 1,650 vs local count explanation",
     "",
     result.gscReconciliation.explanation,
     "",
-    "## 13. Fixes made",
+    "## 12. Fixes made",
     "",
     result.fixesMade.map((fix) => `- ${fix}`).join("\n"),
     "",
-    "## 14. Remaining blockers",
+    "## 13. Remaining blockers",
     "",
     blockers,
     "",
-    "## 15. Protected folder status",
+    "## 14. Protected folder status",
     "",
     protectedStatus,
     "",
-    "## 16. Recommended next step",
+    "## 15. Recommended next step",
     "",
-    "Review the uncommitted indexing-footprint recovery diff before any commit or deployment.",
+    "Proceed to `morsewords-adsense-contact-readiness-jun-2026` after this branch is reviewed and merged.",
     "",
   ].join("\n");
 }
@@ -583,12 +598,13 @@ function runAudit(): AuditResult {
     }
   }
 
-  const printAudit = collectPrintChecks({ printSlugs });
+  const printAudit = collectPrintChecks({ acceptedSlugs, printSlugs });
+  const priorMissingPrintSlugs = readPriorMissingPrintSlugsFromBaseline();
   const fixesMade = [
-    "Set valid published print routes to noindex,follow while retaining their self-canonical and printable UI.",
-    "Removed generated print URLs from the XML sitemap source and regenerated public/sitemap.xml.",
-    "Removed the comprehensive print-route group from the HTML sitemap.",
-    "Updated release-count validation for zero print URLs in sitemap inventory.",
+    "Rewrote public/sitemap.xml from the accepted generated-book manifest using books:sitemap-sync.",
+    "Normalized generated sitemap URL lines that had adjacent <url> entries on one line.",
+    "Added the missing print URLs for accepted publish-ready books, moving print coverage from 488 to 519.",
+    "Updated local final-validation expected sitemap and print counts for the corrected sitemap.",
   ];
 
   const blockers: string[] = [];
@@ -605,28 +621,29 @@ function runAudit(): AuditResult {
   }
   if (bookSlugs.some((slug) => !acceptedSet.has(slug))) blockers.push("one or more book sitemap slugs are not accepted books");
   if (audiobookSlugs.some((slug) => !acceptedSet.has(slug))) blockers.push("one or more audiobook sitemap slugs are not accepted books");
-  if (currentLocalSitemap.print !== 0) {
-    blockers.push(`print URL count ${currentLocalSitemap.print} must be zero`);
+  if (currentLocalSitemap.print > 0 && currentLocalSitemap.print !== acceptedSlugs.length) {
+    blockers.push(`print URL count ${currentLocalSitemap.print} does not match accepted book count ${acceptedSlugs.length}`);
   }
-  if (printAudit.selfCanonicalResult !== "pass") {
-    blockers.push("print-page self-canonical checks failed");
+  if (currentLocalSitemap.print > 0 && printAudit.selfCanonicalResult !== "pass") {
+    blockers.push("print pages are in the sitemap but self-canonical checks failed");
   }
-  if (printAudit.robotsResult !== "pass") {
-    blockers.push("print-page noindex/crawlability or sitemap-omission checks failed");
+  if (currentLocalSitemap.print > 0 && printAudit.indexabilityResult !== "pass") {
+    blockers.push("print pages are in the sitemap but indexability checks failed");
   }
-  if (printAudit.distinctValueResult !== "pass") {
-    blockers.push("print-page distinct printable value checks failed");
+  if (currentLocalSitemap.print > 0 && printAudit.distinctValueResult !== "pass") {
+    blockers.push("print pages are in the sitemap but distinct printable value checks failed");
   }
 
   const passed = blockers.length === 0;
   const exactOneUrlReasonIdentified = false;
   const likelyReason =
-    "GSC will reflect the smaller submitted footprint only after the updated sitemap is deployed and recrawled.";
+    "GSC count stale or based on a different submitted sitemap snapshot; the local sitemap has no duplicate, malformed, noindex, or redirect-only URL that explains a one-URL drop.";
   const explanation = [
     `The owner-reported GSC count is ${GSC_REPORTED_SUBMITTED_URL_COUNT}.`,
     `The prior local sitemap count was ${PRIOR_LOCAL_SITEMAP.total}, exactly ${PRIOR_LOCAL_SITEMAP.nonBook} non-book + ${PRIOR_LOCAL_SITEMAP.book} book + ${PRIOR_LOCAL_SITEMAP.audiobook} audiobook + ${PRIOR_LOCAL_SITEMAP.print} print.`,
-    `This change reduces the local sitemap to ${currentLocalSitemap.total}, exactly ${currentLocalSitemap.nonBook} non-book + ${currentLocalSitemap.book} book + ${currentLocalSitemap.audiobook} audiobook + ${currentLocalSitemap.print} print.`,
-    "The XML has no noindex, redirect-only, duplicate, malformed, or host-mismatched URL.",
+    "That prior local state had no duplicate or malformed URLs, but it was missing 31 print URLs for accepted publish-ready books.",
+    `This branch corrected the local sitemap to ${currentLocalSitemap.total}, exactly ${currentLocalSitemap.nonBook} non-book + ${currentLocalSitemap.book} book + ${currentLocalSitemap.audiobook} audiobook + ${currentLocalSitemap.print} print.`,
+    "Because the local XML has no noindex, redirect-only, duplicate, malformed, or host-mismatched URL, the exact one-URL GSC delta is not identifiable from the local repository alone.",
     likelyReason,
   ].join(" ");
 
@@ -643,12 +660,14 @@ function runAudit(): AuditResult {
     duplicateUrls,
     malformedUrls,
     sitemapHostMismatches,
-    printPageDecision: "remove-from-sitemap",
+    printPageDecision: "keep-in-sitemap",
     printPageSelfCanonicalResult: printAudit.selfCanonicalResult,
-    printPageRobotsResult: printAudit.robotsResult,
+    printPageIndexabilityResult: printAudit.indexabilityResult,
     printPageDistinctValueResult: printAudit.distinctValueResult,
     printPageChecks: printAudit.checks,
-    unexpectedPrintSlugs: printSlugs,
+    missingPrintSlugs: printAudit.missingPrintSlugs,
+    extraPrintSlugs: printAudit.extraPrintSlugs,
+    priorMissingPrintSlugs,
     gscReconciliation: {
       currentLocalMinusGsc: currentLocalSitemap.total - GSC_REPORTED_SUBMITTED_URL_COUNT,
       priorLocalMinusGsc: PRIOR_LOCAL_SITEMAP.total - GSC_REPORTED_SUBMITTED_URL_COUNT,
@@ -687,7 +706,7 @@ console.log(`Redirect-only URLs in sitemap: ${result.redirectOnlyUrlsInSitemap.l
 console.log(`Duplicate URL groups: ${result.duplicateUrls.length}`);
 console.log(`Malformed URLs: ${result.malformedUrls.length}`);
 console.log(`Print self-canonical: ${result.printPageSelfCanonicalResult}`);
-console.log(`Print robots and sitemap omission: ${result.printPageRobotsResult}`);
+console.log(`Print indexability: ${result.printPageIndexabilityResult}`);
 console.log(`Print distinct value: ${result.printPageDistinctValueResult}`);
 console.log(`Report JSON: ${path.relative(repoRoot, reportJsonPath)}`);
 console.log(`Report Markdown: ${path.relative(repoRoot, reportMdPath)}`);

@@ -47,7 +47,6 @@ export const meta: Route.MetaFunction = ({ data }) => {
       description: `Print ${contextTitle} by ${author} as Morse code study pages with original text, Morse code, site URL, QR code, and browser PDF support.`,
       path,
       keywords: `${contextTitle} Morse code print, printable Morse book pages, Morse code study sheet`,
-      robots: "noindex,follow",
     }),
     { tagName: "link", rel: "canonical", href: canonicalUrl(path) },
   ];
