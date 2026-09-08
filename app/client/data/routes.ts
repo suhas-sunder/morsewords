@@ -707,7 +707,7 @@ export const REDIRECT_ALIASES = {
   [ROUTES.dictionaryAlias]: ROUTES.dictionary,
   [ROUTES.wordGameAlias]: ROUTES.wordTrainer,
   [ROUTES.audioTranslatorAlias]: ROUTES.audio,
-  [ROUTES.audioGeneratorAlias]: ROUTES.soundGenerator,
+  [ROUTES.audioGeneratorAlias]: ROUTES.audio,
   [ROUTES.generatorAudioAlias]: ROUTES.soundGenerator,
   [ROUTES.audioMakerAlias]: ROUTES.soundGenerator,
   [ROUTES.soundMakerAlias]: ROUTES.soundGenerator,

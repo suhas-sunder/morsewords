@@ -23,6 +23,7 @@ const ROOT = process.cwd();
 
 const CRITICAL_ALIAS_EXPECTATIONS = [
   [ROUTES.translatorAlias, ROUTES.home],
+  [ROUTES.audioGeneratorAlias, ROUTES.audio],
   [ROUTES.morseCodeConverterAlias, ROUTES.home],
   [ROUTES.morseCodeWorksheetAlias, ROUTES.printableChart],
   [ROUTES.morseCodePracticeSheetAlias, ROUTES.printableChart],
@@ -43,6 +44,7 @@ const QUERY_PRESERVING_ALIAS_EXPECTATIONS = [
   ],
   [ROUTES.morseToTextAlias, ROUTES.decoder, "?morse=...---..."],
   [ROUTES.morseCodeAudioAlias, ROUTES.audio, "?text=sos"],
+  [ROUTES.audioGeneratorAlias, ROUTES.audio, "?text=HELLO+WORLD&utm_source=test"],
 ] as const;
 
 const REPRESENTATIVE_CANONICAL_PATHS = [
@@ -84,6 +86,26 @@ function canonicalUrlsInText(text: string) {
 }
 
 test.describe("route registry source of truth", () => {
+  test("keeps the historical audio generator alias directly on the audio page", async ({
+    request,
+  }) => {
+    expect(REDIRECT_ALIASES[ROUTES.audioGeneratorAlias]).toBe(ROUTES.audio);
+    expect(REDIRECT_ALIASES[ROUTES.audioGeneratorAlias]).not.toBe(
+      ROUTES.soundGenerator,
+    );
+    expect(getCanonicalRoutePath(ROUTES.audioGeneratorAlias)).toBe(ROUTES.audio);
+
+    const response = await request.get(ROUTES.audioGeneratorAlias, {
+      maxRedirects: 0,
+    });
+    expect(response.status()).toBe(301);
+    expect(response.headers().location).toBe(ROUTES.audio);
+
+    const destination = await request.get(ROUTES.audio, { maxRedirects: 0 });
+    expect(destination.status()).toBe(200);
+    expect(destination.headers().location).toBeUndefined();
+  });
+
   test("keeps the primary Morse code translator alias on the homepage", () => {
     expect(REDIRECT_ALIASES[ROUTES.translatorAlias]).toBe(ROUTES.home);
     expect(REDIRECT_ALIASES[ROUTES.translatorAlias]).not.toBe(
