@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import crypto from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -157,6 +158,11 @@ type BookAuditResult = {
     nearDuplicateSlugSlugs: string[];
     duplicateGutenbergIdSlugs: string[];
   };
+  duplicateBodyAudit: {
+    status: "available" | "unavailable" | "error";
+    normalizedBodyHash: string | null;
+    reason: string | null;
+  };
   metadataConfidence: "high" | "medium" | "low";
   metadataWarnings: string[];
   rawSourceAvailability: {
@@ -237,7 +243,11 @@ type AuditReport = {
     }>;
   };
   duplicateNearDuplicateFindings: Array<{
-    type: "duplicate-title" | "near-duplicate-slug" | "duplicate-gutenberg-id";
+    type:
+      | "duplicate-title"
+      | "near-duplicate-slug"
+      | "duplicate-gutenberg-id"
+      | "duplicate-body";
     key: string;
     slugs: string[];
   }>;
@@ -553,6 +563,73 @@ function readOptionalJson<T>(filePath: string): T | null {
 
 function sectionText(section: GeneratedBookSectionJson | null | undefined) {
   return section?.displayText || section?.morseSourceText || section?.textPreview || "";
+}
+
+function duplicateBodyAudit(
+  manifest: GeneratedBookManifest,
+  sectionById: Map<string, GeneratedBookSectionJson>,
+): BookAuditResult["duplicateBodyAudit"] {
+  const includedSections = manifest.sections
+    .filter((section) => section.includeByDefault)
+    .sort((left, right) => left.order - right.order);
+  if (includedSections.length === 0) {
+    return {
+      status: "unavailable",
+      normalizedBodyHash: null,
+      reason: "No includeByDefault sections are available for body comparison.",
+    };
+  }
+
+  const bodyParts: string[] = [];
+  for (const section of includedSections) {
+    const sectionJson = sectionById.get(section.id);
+    if (!sectionJson) {
+      return {
+        status: "unavailable",
+        normalizedBodyHash: null,
+        reason: `Section ${section.id} is missing from the generated payload.`,
+      };
+    }
+    const text =
+      typeof sectionJson.displayText === "string"
+        ? sectionJson.displayText
+        : typeof sectionJson.morseSourceText === "string"
+          ? sectionJson.morseSourceText
+          : null;
+    if (text === null) {
+      return {
+        status: "unavailable",
+        normalizedBodyHash: null,
+        reason: `Section ${section.id} has no displayText or morseSourceText field.`,
+      };
+    }
+    if (!normalizeWords(text)) {
+      return {
+        status: "error",
+        normalizedBodyHash: null,
+        reason: `Section ${section.id} has an empty body after normalization.`,
+      };
+    }
+    bodyParts.push(text);
+  }
+
+  const normalizedBody = normalizeWords(bodyParts.join("\n\n"));
+  if (!normalizedBody) {
+    return {
+      status: "error",
+      normalizedBodyHash: null,
+      reason: "The generated body is empty after normalization.",
+    };
+  }
+
+  return {
+    status: "available",
+    normalizedBodyHash: crypto
+      .createHash("sha256")
+      .update(normalizedBody)
+      .digest("hex"),
+    reason: null,
+  };
 }
 
 function looksLikeTocListing(text: string) {
@@ -1002,6 +1079,7 @@ function main() {
   }
 
   const books: BookAuditResult[] = [];
+  const duplicateBodyGroups = new Map<string, string[]>();
   for (const libraryBook of [...libraryManifest.books].sort((a, b) =>
     a.slug.localeCompare(b.slug),
   )) {
@@ -1039,6 +1117,13 @@ function main() {
       ) {
         emptyOrMalformedSections.push(section.id);
       }
+    }
+
+    const duplicateBody = duplicateBodyAudit(manifest, sectionById);
+    if (duplicateBody.status === "available" && duplicateBody.normalizedBodyHash) {
+      const matchingSlugs = duplicateBodyGroups.get(duplicateBody.normalizedBodyHash) ?? [];
+      matchingSlugs.push(slug);
+      duplicateBodyGroups.set(duplicateBody.normalizedBodyHash, matchingSlugs);
     }
 
     const previewEntry = previewManifestBySlug.get(slug) ?? null;
@@ -1265,6 +1350,7 @@ function main() {
         nearDuplicateSlugSlugs,
         duplicateGutenbergIdSlugs,
       },
+      duplicateBodyAudit: duplicateBody,
       metadataConfidence,
       metadataWarnings,
       rawSourceAvailability: {
@@ -1439,6 +1525,17 @@ function main() {
       .map((book) => ({ slug: book.slug, note: book.rawSourceComparisonNote }))
       .sort((a, b) => a.slug.localeCompare(b.slug)),
   };
+
+  for (const [normalizedBodyHash, slugs] of duplicateBodyGroups) {
+    const uniqueSlugs = sortedUnique(slugs);
+    if (uniqueSlugs.length > 1) {
+      duplicateFindings.push({
+        type: "duplicate-body",
+        key: normalizedBodyHash,
+        slugs: uniqueSlugs,
+      });
+    }
+  }
 
   const recentBooks = books.filter((book) =>
     (recentBatch21To23Slugs as readonly string[]).includes(book.slug),

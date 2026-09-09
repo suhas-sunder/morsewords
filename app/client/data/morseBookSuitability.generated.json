@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "generatedFrom": "scripts/books/book-content-risk-profile-audit.ts",
-  "booksReviewed": 519,
+  "booksReviewed": 517,
   "normalRiskLevelCounts": {
     "low": 98,
-    "moderate": 311,
-    "elevated": 110,
+    "moderate": 310,
+    "elevated": 109,
     "owner-review": 0
   },
-  "strictReviewCandidateCount": 429,
+  "strictReviewCandidateCount": 427,
   "profiles": {
     "a-bread-and-butter-miss": {
       "contentSuitability": "moderate",
@@ -176,11 +176,6 @@
       "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
     },
     "anne-of-green-gables": {
-      "contentSuitability": "moderate",
-      "strictReviewCandidate": true,
-      "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
-    },
-    "anne-of-green-gables-gutenberg-45": {
       "contentSuitability": "moderate",
       "strictReviewCandidate": true,
       "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
@@ -1151,11 +1146,6 @@
       "contentNote": "Historical public-domain text. May include period language, mature themes, or intense scenes. Review before classroom or younger-user use."
     },
     "the-count-of-monte-cristo": {
-      "contentSuitability": "elevated",
-      "strictReviewCandidate": true,
-      "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."
-    },
-    "the-count-of-monte-cristo-gutenberg-1184": {
       "contentSuitability": "elevated",
       "strictReviewCandidate": true,
       "contentNote": "Historical public-domain text with elevated content-suitability concerns. Review before classroom or younger-user use."

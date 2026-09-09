@@ -5,7 +5,8 @@
   "manualReviewRequired": true,
   "title": "The Count of Monte Cristo",
   "author": [
-    "Alexandre Dumas Auguste Maquet"
+    "Alexandre Dumas",
+    "Auguste Maquet"
   ],
   "language": "en",
   "source": {
@@ -44,7 +45,7 @@
     "extractionConfidence": "gutenberg-header",
     "extracted": {
       "title": "The Count of Monte Cristo",
-      "author": "Alexandre Dumas Auguste Maquet",
+      "author": "Alexandre Dumas, Auguste Maquet",
       "language": "English",
       "releaseDate": "January 1, 1998",
       "lastUpdated": "August 9, 2025",

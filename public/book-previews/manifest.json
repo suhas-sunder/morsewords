@@ -59,17 +59,6 @@
       "truncated": true
     },
     {
-      "slug": "anne-of-green-gables-gutenberg-45",
-      "path": "/book-previews/anne-of-green-gables-gutenberg-45.preview.json",
-      "contentVersion": "4621719fbbaa2ff8",
-      "contentHash": "4621719fbbaa2ff8357fe37f52ebb537f579424c64a0bf9f8223834dff5cedb3",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 10981,
-      "previewCharacterCount": 9856,
-      "estimatedRuntimeSeconds": 3557,
-      "truncated": true
-    },
-    {
       "slug": "around-the-world-in-eighty-days",
       "path": "/book-previews/around-the-world-in-eighty-days.preview.json",
       "contentVersion": "ff29490018281f84",
@@ -384,17 +373,6 @@
       "contentHash": "3ab5dcd163bfd0db73a921e765e3276d17904f3e37de2e3247783a64e78709ab",
       "defaultSectionId": "chapter-001",
       "previewBytes": 12198,
-      "previewCharacterCount": 10973,
-      "estimatedRuntimeSeconds": 3600,
-      "truncated": true
-    },
-    {
-      "slug": "the-count-of-monte-cristo-gutenberg-1184",
-      "path": "/book-previews/the-count-of-monte-cristo-gutenberg-1184.preview.json",
-      "contentVersion": "d24d25f4f088b65f",
-      "contentHash": "d24d25f4f088b65f4a509e7c37b60f7c49ee7c43a4061f5321b70704a6f50e4d",
-      "defaultSectionId": "chapter-001",
-      "previewBytes": 12213,
       "previewCharacterCount": 10973,
       "estimatedRuntimeSeconds": 3600,
       "truncated": true

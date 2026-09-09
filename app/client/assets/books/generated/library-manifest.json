@@ -250,55 +250,6 @@
       "manifestPath": "anne-of-green-gables/manifest.json"
     },
     {
-      "slug": "anne-of-green-gables-gutenberg-45",
-      "title": "Anne of Green Gables",
-      "author": [
-        "L. M. Montgomery"
-      ],
-      "contentVersion": "4621719fbbaa2ff8",
-      "contentHash": "4621719fbbaa2ff8357fe37f52ebb537f579424c64a0bf9f8223834dff5cedb3",
-      "language": "en",
-      "description": "",
-      "subjects": [],
-      "source": {
-        "provider": "Project Gutenberg",
-        "gutenbergId": "45",
-        "releaseDate": "June 27, 2008",
-        "sourceUrl": "https://www.gutenberg.org/ebooks/45",
-        "rawTextUrl": null,
-        "rightsBasis": "public-domain-us",
-        "rightsReviewed": true,
-        "publishReady": true,
-        "rightsStatus": "approved",
-        "processingAllowed": true,
-        "approvalSource": "external-authority",
-        "duplicateResolutionSource": "deterministic-file-match",
-        "rightsReportPath": "rights_report.json",
-        "processedBookPath": "processed_book.json",
-        "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
-      },
-      "cover": {
-        "src": null,
-        "placeholder": true,
-        "alt": "Placeholder cover for Anne of Green Gables"
-      },
-      "stats": {
-        "originalCharacterCount": 580332,
-        "cleanedCharacterCount": 561065,
-        "wordCount": 106781,
-        "sectionCount": 39,
-        "includedSectionCount": 38
-      },
-      "defaults": {
-        "includeKinds": [
-          "chapter"
-        ],
-        "preferredPreset": "main-narrative"
-      },
-      "manifestPath": "anne-of-green-gables-gutenberg-45/manifest.json"
-    },
-    {
       "slug": "around-the-world-in-eighty-days",
       "title": "Around the World in Eighty Days",
       "author": [
@@ -1676,7 +1627,8 @@
       "slug": "the-count-of-monte-cristo",
       "title": "The Count of Monte Cristo",
       "author": [
-        "Alexandre Dumas Auguste Maquet"
+        "Alexandre Dumas",
+        "Auguste Maquet"
       ],
       "contentVersion": "3ab5dcd163bfd0db",
       "contentHash": "3ab5dcd163bfd0db73a921e765e3276d17904f3e37de2e3247783a64e78709ab",
@@ -1720,56 +1672,6 @@
         "preferredPreset": "main-narrative"
       },
       "manifestPath": "the-count-of-monte-cristo/manifest.json"
-    },
-    {
-      "slug": "the-count-of-monte-cristo-gutenberg-1184",
-      "title": "The Count of Monte Cristo",
-      "author": [
-        "Alexandre Dumas",
-        "Auguste Maquet"
-      ],
-      "contentVersion": "d24d25f4f088b65f",
-      "contentHash": "d24d25f4f088b65f4a509e7c37b60f7c49ee7c43a4061f5321b70704a6f50e4d",
-      "language": "und",
-      "description": "",
-      "subjects": [],
-      "source": {
-        "provider": "Project Gutenberg",
-        "gutenbergId": "1184",
-        "releaseDate": null,
-        "sourceUrl": "https://www.gutenberg.org/ebooks/1184",
-        "rawTextUrl": null,
-        "rightsBasis": "public-domain-us",
-        "rightsReviewed": true,
-        "publishReady": true,
-        "rightsStatus": "approved",
-        "processingAllowed": true,
-        "approvalSource": "external-authority",
-        "duplicateResolutionSource": "manual-review",
-        "rightsReportPath": "rights_report.json",
-        "processedBookPath": "processed_book.json",
-        "cleanedBookPath": "cleaned_book.json",
-        "rightsNotes": "Processed from the reference Project Gutenberg text for public MorseWords book, audiobook, and printable-page workflows. Detailed source and rights notes remain in the generated reports."
-      },
-      "cover": {
-        "src": null,
-        "placeholder": true,
-        "alt": "Placeholder cover for The Count of Monte Cristo"
-      },
-      "stats": {
-        "originalCharacterCount": 2646649,
-        "cleanedCharacterCount": 2622634,
-        "wordCount": 461790,
-        "sectionCount": 117,
-        "includedSectionCount": 117
-      },
-      "defaults": {
-        "includeKinds": [
-          "chapter"
-        ],
-        "preferredPreset": "main-narrative"
-      },
-      "manifestPath": "the-count-of-monte-cristo-gutenberg-1184/manifest.json"
     },
     {
       "slug": "the-divine-comedy",

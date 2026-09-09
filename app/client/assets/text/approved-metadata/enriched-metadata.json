@@ -1656,23 +1656,6 @@
       "approvalSource": "external-authority"
     },
     {
-      "bookSlug": "anne-of-green-gables-gutenberg-45",
-      "title": "Anne of Green Gables",
-      "originalPublicationYear": 1908,
-      "evidence": [
-        {
-          "field": "originalPublicationYear",
-          "value": 1908,
-          "sourceType": "wikidata",
-          "sourceId": "Q565911",
-          "sourceUrl": "https://www.wikidata.org/wiki/Q565911",
-          "matchedBy": "exact-title-and-author",
-          "confidence": "high"
-        }
-      ],
-      "approvalSource": "external-authority"
-    },
-    {
       "bookSlug": "around-the-world-in-eighty-days",
       "title": "Around the World in Eighty Days",
       "originalPublicationYear": 1872,
