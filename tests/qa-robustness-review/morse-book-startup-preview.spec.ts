@@ -3,6 +3,7 @@ import path from "node:path";
 
 import { expect, test } from "@playwright/test";
 
+import { getMorseBookPreviewAssetRequestUrl } from "../../app/client/data/morseBookPreviewUrl.server";
 import { createMorseBookPreviewRuntimeContent } from "../../app/client/data/morseBookPreviews";
 import {
   isStructurallyReadableMorseBookStartupSection,
@@ -119,4 +120,25 @@ test("accepts ordinary narrative uses of notes, contents, and introduction", () 
   for (const text of validText) {
     expect(isValidMorseBookStartupPreviewText(text), text).toBe(true);
   }
+});
+
+test("uses the direct Netlify site origin for production preview fetches", () => {
+  expect(
+    getMorseBookPreviewAssetRequestUrl(
+      "the-time-machine",
+      "https://www.morsewords.com/morse-code-books/the-time-machine",
+      "morsewords",
+    ),
+  ).toBe(
+    "https://morsewords.netlify.app/book-previews/the-time-machine.preview.json",
+  );
+  expect(
+    getMorseBookPreviewAssetRequestUrl(
+      "the-time-machine",
+      "http://localhost:9998/morse-code-books/the-time-machine",
+      undefined,
+    ),
+  ).toBe(
+    "http://localhost:9998/book-previews/the-time-machine.preview.json",
+  );
 });

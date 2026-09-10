@@ -3,9 +3,9 @@ import type { Route } from "./+types/morse-code-books.$slug";
 import MorseBookPage from "~/client/components/morse-code-books/MorseBookPage";
 import JsonLdScript from "~/client/components/shared/JsonLdScript";
 import {
-  getMorseBookPreviewAssetUrl,
   getMorseBookPreviewRuntimeContentFromUrl,
 } from "~/client/data/morseBookPreviews";
+import { getMorseBookPreviewAssetRequestUrl } from "~/client/data/morseBookPreviewUrl.server";
 import {
   TEST_PUBLISHED_BOOK_PREVIEW_VALUE,
   TEST_PUBLISHED_BOOK_SLUG,
@@ -57,10 +57,10 @@ async function loadInitialPreviewContent(
   request: Request,
   summary: NonNullable<ReturnType<typeof getDiscoverableMorseBookSummary>>,
 ) {
-  const previewUrl = new URL(
-    getMorseBookPreviewAssetUrl(summary.slug),
+  const previewUrl = getMorseBookPreviewAssetRequestUrl(
+    summary.slug,
     request.url,
-  ).toString();
+  );
   return getMorseBookPreviewRuntimeContentFromUrl(summary, previewUrl);
 }
 
