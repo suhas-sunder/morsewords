@@ -9,6 +9,11 @@ import type {
   GeneratedBookSectionJson,
   GeneratedLibraryManifest,
 } from "./bookManifestTypes.ts";
+import {
+  getMorseBookStartupPreviewSourceText,
+  isStructurallyReadableMorseBookStartupSection,
+  isValidMorseBookStartupPreviewText,
+} from "../../app/client/data/morseBookStartupPreviewValidation.ts";
 
 const TARGET_RUNTIME_SECONDS = 3_600;
 const PREVIEW_BASE_PATH = "/book-previews";
@@ -138,57 +143,7 @@ const reportRoot = path.join(
 const libraryManifestPath = path.join(generatedRoot, "library-manifest.json");
 const previewManifestPath = path.join(previewRoot, "manifest.json");
 
-const defaultReadableExcludedSectionKinds = new Set<BookSectionKind>([
-  "title-page",
-  "dedication",
-  "epigraph",
-  "preface",
-  "introduction",
-  "epilogue",
-  "appendix",
-  "notes",
-  "glossary",
-  "index",
-  "transcriber-note",
-  "source-license",
-  "advertisement",
-]);
-
-const nonMainMaterialPattern =
-  /\b(table of contents|list of illustrations|illustrations?|title page|copyright|license|source note|publisher|preface|introduction|footnotes?|notes?|appendix|bibliography|index|end matter|project gutenberg|gutenberg|transcriber|produced by|production note|distributed proofreading|pgdp\.net|release date|ebook|reference file does not include body text|book route is available|missing source content|generic placeholder|placeholder)\b/i;
-
-const nonMainMaterialAtStartPattern =
-  /^(?:table of contents|contents|list of illustrations|illustrations?|title page|copyright|license|source note|publisher|preface|introduction|footnotes?|notes?|appendix|bibliography|index|end matter|project gutenberg|gutenberg|transcriber|produced by|production note|distributed proofreading|pgdp\.net|release date|ebook|reference file does not include body text|book route is available|missing source content|generic placeholder|placeholder)\b/i;
-
-const sourceBoilerplateAnywherePattern =
-  /\b(project gutenberg|gutenberg license|distributed proofreading|pgdp\.net|release date|generic placeholder|placeholder)\b/i;
-
-const earlyEmbeddedFrontMatterPattern =
-  /\b(table of contents|list of illustrations|frontispiece|illustrations?|title page|copyright|published|all rights reserved|preface)\b/i;
-
-const frontMatterPublishedContextPattern =
-  /\b(first published|published by|published for|published at|published in (?:london|new york|\d{4})|publisher|publication date)\b/i;
-
-const earlyShortMatterPattern =
-  /\b(cover|frontispiece|by\s+[a-z]|published|copyright|all rights reserved|contents|table of contents)\b/i;
-
-const dedicationStartPattern = /\b(to the memory of|i dedicate)\b/i;
-
 const sosHelpPattern = /\bSOS\s+Help!?\b/i;
-
-function looksLikeContentsListing(text: string) {
-  const normalized = normalizedSectionText(text);
-  const match = /\bcontents\b/i.exec(normalized);
-  if (!match) return false;
-  const wordsBeforeContents = countWords(normalized.slice(0, match.index));
-  const listingSample = normalized.slice(match.index + match[0].length, match.index + match[0].length + 180);
-  return (
-    wordsBeforeContents <= 24 &&
-    /\b(?:chapter|story|search|incident|case|letter|narrative|statement|book|part|volume|preface|contents)\b/i.test(
-      listingSample,
-    )
-  );
-}
 
 function readJson<T>(filePath: string) {
   return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
@@ -248,59 +203,12 @@ function textFromSection(section: GeneratedBookSectionJson | null) {
   return (section?.morseSourceText || section?.displayText || "").trim();
 }
 
-function normalizedSectionText(
-  ...parts: Array<string | null | undefined>
-) {
-  return parts
-    .filter((part): part is string => Boolean(part))
-    .join(" ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .toLowerCase();
-}
-
-function hasEarlyEmbeddedFrontMatter(text: string) {
-  const match = earlyEmbeddedFrontMatterPattern.exec(text);
-  if (!match) return false;
-  if (match[0].toLowerCase() === "published") {
-    const context = text.slice(Math.max(0, match.index - 40), match.index + 120);
-    if (!frontMatterPublishedContextPattern.test(context)) return false;
-  }
-  return countWords(text.slice(0, match.index)) <= 80;
-}
-
-function sectionEvidenceText(section: BookSectionSummary) {
-  return normalizedSectionText(
-    section.label,
-    section.title,
-    section.textPreview,
-  );
-}
-
-function sectionNameText(section: BookSectionSummary) {
-  return normalizedSectionText(section.label, section.title);
-}
-
 function looksLikeNonMainMaterial(section: BookSectionSummary) {
-  const nameText = sectionNameText(section);
-  const previewText = normalizedSectionText(section.textPreview);
-  if (defaultReadableExcludedSectionKinds.has(section.kind)) return true;
-  if (nonMainMaterialPattern.test(nameText)) return true;
-  if (sourceBoilerplateAnywherePattern.test(previewText)) return true;
-  if (nonMainMaterialAtStartPattern.test(previewText)) return true;
-  if (section.order <= 4 && hasEarlyEmbeddedFrontMatter(previewText)) return true;
-  if (looksLikeContentsListing(nameText) || looksLikeContentsListing(previewText)) return true;
-  if (section.order <= 4 && dedicationStartPattern.test(previewText)) return true;
-  if (section.order <= 4 && section.wordCount < 90) {
-    return earlyShortMatterPattern.test(`${nameText} ${previewText}`);
-  }
-  return false;
+  return !isStructurallyReadableMorseBookStartupSection(section);
 }
 
 function isDefaultReadableBookSection(section: BookSectionSummary) {
-  if (looksLikeNonMainMaterial(section)) return false;
-  if (section.order <= 4 && section.wordCount < 35) return false;
-  return section.wordCount > 0;
+  return isStructurallyReadableMorseBookStartupSection(section);
 }
 
 function getDefaultSectionIds(book: GeneratedBookManifest) {
@@ -389,11 +297,7 @@ function clampBoundary(text: string, targetLength: number) {
 }
 
 function startupPreviewSourceText(bookSlug: string, section: GeneratedBookSectionJson) {
-  const text = textFromSection(section);
-  if (bookSlug !== "the-leavenworth-case") return text;
-
-  const narrativeStart = text.indexOf("I had been a junior partner");
-  return narrativeStart >= 0 ? text.slice(narrativeStart).trim() : text;
+  return getMorseBookStartupPreviewSourceText(bookSlug, textFromSection(section));
 }
 
 function previewTextForSection(
@@ -471,13 +375,7 @@ function previewStartsWithSection(
 }
 
 function hasGenericOrBoilerplateStart(text: string) {
-  const start = compactText(text, 280);
-  return (
-    sosHelpPattern.test(start) ||
-    sourceBoilerplateAnywherePattern.test(start) ||
-    nonMainMaterialAtStartPattern.test(start) ||
-    looksLikeContentsListing(start)
-  );
+  return !isValidMorseBookStartupPreviewText(text);
 }
 
 function detectFirstContentIssue(
@@ -617,7 +515,7 @@ function auditBook(summary: GeneratedLibraryManifest["books"][number]) {
     ? readSection(book.slug, firstDefaultSummary)
     : null;
   const firstDefaultSnippet = firstDefaultSection
-    ? compactText(textFromSection(firstDefaultSection))
+    ? compactText(startupPreviewSourceText(book.slug, firstDefaultSection))
     : null;
   const firstDefaultSectionLooksLikeNonMainMaterial = firstDefaultSummary
     ? looksLikeNonMainMaterial(firstDefaultSummary) ||

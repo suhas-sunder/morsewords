@@ -5,6 +5,7 @@
     "vite.config.ts",
     "scripts/morse/**/*.ts",
     "scripts/books/**/*.ts",
+    "app/client/data/morseBookStartupPreviewValidation.ts",
     "app/client/data/morseBookCardDescriptions.ts",
     "app/client/data/morseBookSeoSummaries.ts",
     "app/client/data/morseBookTypes.ts",

@@ -6,6 +6,7 @@ import type {
   MorseBookSectionSummary,
 } from "./morseBookTypes";
 import { isDefaultReadableMorseBookSection } from "./morseBookSectionDefaults";
+import { isValidMorseBookStartupPreviewText } from "./morseBookStartupPreviewValidation";
 
 export const MORSE_BOOK_PREVIEW_BASE_PATH = "/book-previews";
 
@@ -61,20 +62,12 @@ function previewParagraphs(previewText: string) {
     .filter(Boolean);
 }
 
-const genericBookPreviewPlaceholderPattern = /\bSOS\s+Help!?\b/i;
-
-const nonBookStartupPreviewPattern =
-  /\b(table of contents|contents|list of illustrations|title page|copyright|license|source note|project gutenberg|gutenberg|transcriber|produced by|production note|distributed proofreading|pgdp\.net|release date|ebook|reference file does not include body text|book route is available|missing source content|generic placeholder|placeholder)\b/i;
-
 function isValidBookStartupPreview(
   preview: MorseBookPreviewAsset,
   sectionSummary: MorseBookSectionSummary,
 ) {
   const previewText = preview.previewText.trim();
-  if (!previewText) return false;
-  if (genericBookPreviewPlaceholderPattern.test(previewText)) return false;
-  const previewStart = previewText.replace(/\s+/g, " ").trim().slice(0, 360);
-  if (nonBookStartupPreviewPattern.test(previewStart)) return false;
+  if (!isValidMorseBookStartupPreviewText(previewText)) return false;
   return isDefaultReadableMorseBookSection(sectionSummary);
 }
 

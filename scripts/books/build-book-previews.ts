@@ -8,6 +8,11 @@ import type {
   GeneratedBookManifest,
   GeneratedBookSectionJson,
 } from "./bookManifestTypes.ts";
+import {
+  getMorseBookStartupPreviewSourceText,
+  isStructurallyReadableMorseBookStartupSection,
+  isValidMorseBookStartupPreviewText,
+} from "../../app/client/data/morseBookStartupPreviewValidation.ts";
 
 const TARGET_RUNTIME_SECONDS = 3_600;
 const PREVIEW_BASE_PATH = "/book-previews";
@@ -118,73 +123,8 @@ function compactTextPreview(text: string) {
   return text.replace(/\s+/g, " ").trim().slice(0, 180);
 }
 
-const defaultReadableExcludedSectionKinds = new Set<BookSectionKind>([
-  "title-page",
-  "dedication",
-  "epigraph",
-  "preface",
-  "introduction",
-  "epilogue",
-  "appendix",
-  "notes",
-  "glossary",
-  "index",
-  "transcriber-note",
-  "source-license",
-  "advertisement",
-]);
-
-const asideDefaultNameExclusionPattern =
-  /\b(table of contents|contents|list of illustrations|illustrations?|title page|copyright|license|source|publisher|preface|introduction|footnotes?|notes?|appendix|bibliography|index|end matter)\b/;
-
-const asideDefaultEvidenceExclusionPattern =
-  /\b(project gutenberg|gutenberg|transcriber|produced by|production note|copyright|license|preface|introduction|footnotes?|notes?|appendix|bibliography|index|end matter)\b/;
-
-function normalizedSectionText(
-  ...parts: Array<string | null | undefined>
-) {
-  return parts
-    .filter((part): part is string => Boolean(part))
-    .join(" ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .toLowerCase();
-}
-
-function sectionEvidenceText(section: BookSectionSummary) {
-  return normalizedSectionText(
-    section.label,
-    section.title,
-    section.textPreview,
-  );
-}
-
-function sectionNameText(section: BookSectionSummary) {
-  return normalizedSectionText(section.label, section.title);
-}
-
 function isDefaultReadableBookSection(section: BookSectionSummary) {
-  if (defaultReadableExcludedSectionKinds.has(section.kind)) return false;
-
-  const nameText = sectionNameText(section);
-  if (asideDefaultNameExclusionPattern.test(nameText)) return false;
-
-  const labelText = sectionEvidenceText(section);
-  if (asideDefaultEvidenceExclusionPattern.test(labelText)) return false;
-
-  const earlySection = section.order <= 4;
-  if (earlySection && section.wordCount < 35) return false;
-  if (
-    earlySection &&
-    section.wordCount < 90 &&
-    /\b(cover|frontispiece|by\s+[a-z]|published|copyright|all rights reserved)\b/.test(
-      labelText,
-    )
-  ) {
-    return false;
-  }
-
-  return section.wordCount > 0;
+  return isStructurallyReadableMorseBookStartupSection(section);
 }
 
 function getDefaultPreviewSectionIds(
@@ -224,8 +164,11 @@ function clampBoundary(text: string, targetLength: number) {
   return text.slice(0, targetLength).trim();
 }
 
-function previewTextForSection(section: GeneratedBookSectionJson) {
-  const text = (section.morseSourceText || section.displayText).trim();
+function previewTextForSection(slug: string, section: GeneratedBookSectionJson) {
+  const text = getMorseBookStartupPreviewSourceText(
+    slug,
+    section.morseSourceText || section.displayText,
+  );
   if (!text) return "";
 
   const estimatedRuntimeSeconds = Math.max(
@@ -257,12 +200,22 @@ function buildPreviewAsset(
     null;
   if (!sectionSummary || !section) return null;
 
-  const previewText = previewTextForSection(section);
-  if (!previewText) return null;
+  const previewText = previewTextForSection(content.slug, section);
+  if (!isValidMorseBookStartupPreviewText(previewText)) return null;
 
   const ratio = Math.min(
     1,
-    Math.max(0, previewText.length / Math.max(1, section.morseSourceText.length)),
+    Math.max(
+      0,
+      previewText.length /
+        Math.max(
+          1,
+          getMorseBookStartupPreviewSourceText(
+            content.slug,
+            section.morseSourceText || section.displayText,
+          ).length,
+        ),
+    ),
   );
   const estimatedRuntimeSeconds = Math.max(
     1,

@@ -20,9 +20,9 @@
       "contentVersion": "5ac624e6006546db",
       "contentHash": "5ac624e6006546dbb05f5342eedb4cc21b451e3960f217d2acde018728f844d8",
       "defaultSectionId": "part-001",
-      "previewBytes": 1406,
-      "previewCharacterCount": 647,
-      "estimatedRuntimeSeconds": 234,
+      "previewBytes": 11585,
+      "previewCharacterCount": 10489,
+      "estimatedRuntimeSeconds": 3879,
       "truncated": true
     },
     {
@@ -130,9 +130,9 @@
       "contentVersion": "d490fe209b41a4cf",
       "contentHash": "d490fe209b41a4cff48832a8c34b752b5518dbc61926311e76bc64992b99c1dd",
       "defaultSectionId": "part-001",
-      "previewBytes": 1602,
-      "previewCharacterCount": 830,
-      "estimatedRuntimeSeconds": 299,
+      "previewBytes": 11240,
+      "previewCharacterCount": 10190,
+      "estimatedRuntimeSeconds": 3715,
       "truncated": true
     },
     {
@@ -460,9 +460,9 @@
       "contentVersion": "3fd2c195689fd6ba",
       "contentHash": "3fd2c195689fd6baffec7daa45168be4fb3f2df8edc6f82bfac73381aa78fe19",
       "defaultSectionId": "part-001",
-      "previewBytes": 1595,
-      "previewCharacterCount": 810,
-      "estimatedRuntimeSeconds": 289,
+      "previewBytes": 11171,
+      "previewCharacterCount": 10141,
+      "estimatedRuntimeSeconds": 3689,
       "truncated": true
     },
     {
