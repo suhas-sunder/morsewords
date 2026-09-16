@@ -1,3 +1,4 @@
+import PrintableCharts from "~/client/components/shared/PrintableCharts";
 import type { ReactNode } from "react";
 import type { Route } from "./+types/learn-morse-code";
 
@@ -346,6 +347,7 @@ export default function LearnMorseCode() {
         >
           <ActionLinks
             links={[
+              { href: "#printable-charts", label: "Printable charts" },
               { href: "/morse-code-audio-practice", label: "Start with sound", primary: true },
               { href: "/morse-code-alphabet", label: "Open alphabet" },
               { href: "/morse-code-practice-plan", label: "Practice plan" },
@@ -598,6 +600,8 @@ export default function LearnMorseCode() {
             </StaticTile>
           </div>
         </SectionCard>
+
+        <PrintableCharts path="/learn-morse-code" />
 
         <FaqSectionGeneric title="Learn Morse Code FAQ" items={faqItems} />
 

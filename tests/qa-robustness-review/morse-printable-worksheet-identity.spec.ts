@@ -5,7 +5,7 @@ import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 const ROUTE = "/morse-code-printable-chart";
 const CANONICAL_URL = `https://www.morsewords.com${ROUTE}`;
 const DESCRIPTION =
-  "Create a printable Morse code worksheet with custom words, sentences, student fields, optional answer keys, and PDF or image export for class or solo practice.";
+  "Download ready-made Morse code charts or build custom worksheets with words, sentences, optional answer keys, and PDF or image export for class or solo practice.";
 
 async function gotoWorksheet(page: Page) {
   await blockExternalNetwork(page);
@@ -24,16 +24,16 @@ async function jsonLd(page: Page) {
 }
 
 test.describe("printable Morse worksheet identity", () => {
-  test("uses worksheet identity while preserving the existing canonical URL", async ({
+  test("includes charts and worksheets while preserving the existing canonical URL", async ({
     page,
   }) => {
     await gotoWorksheet(page);
 
     await expect(page).toHaveTitle(
-      "Printable Morse Code Worksheet | Practice Sheet Generator | MorseWords",
+      "Printable Morse Code Charts & Worksheets | MorseWords",
     );
-    await expect(page.locator("h1")).toHaveText("Printable Morse Code Worksheet");
-    await expect(page.getByText("Printable worksheet").first()).toBeVisible();
+    await expect(page.locator("h1")).toHaveText("Printable Morse Code Charts & Worksheets");
+    await expect(page.getByText("Printable charts and worksheets", { exact: true })).toBeVisible();
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
       CANONICAL_URL,
@@ -44,7 +44,7 @@ test.describe("printable Morse worksheet identity", () => {
     );
     await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
       "content",
-      /Printable Morse Code Worksheet/,
+      /Printable Morse Code Charts & Worksheets/,
     );
     await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
       "content",
@@ -72,7 +72,8 @@ test.describe("printable Morse worksheet identity", () => {
     await expect(page.locator('option[value="chart"]')).toHaveText(
       "Reference guide only",
     );
-    await expect(page.locator("main")).not.toContainText("Printable chart");
+    await expect(page.getByRole("link", { name: "Printable charts", exact: true })).toHaveAttribute("href", "#printable-charts");
+    await expect(page.locator("[data-printable-chart]")).toHaveCount(17);
   });
 
   test("publishes worksheet schema and breadcrumb wording", async ({ page }) => {

@@ -1,3 +1,4 @@
+import PrintableCharts from "~/client/components/shared/PrintableCharts";
 import type { ReactNode } from "react";
 import type { Route } from "./+types/morse-code-amateur-radio-cw";
 
@@ -370,6 +371,7 @@ export default function MorseCodeAmateurRadioCw() {
         >
           <ActionLinks
             links={[
+              { href: "#printable-charts", label: "Printable charts" },
               {
                 href: ROUTES.audioPractice,
                 label: "Practice by sound",
@@ -501,6 +503,8 @@ export default function MorseCodeAmateurRadioCw() {
             ))}
           </div>
         </SectionCard>
+
+        <PrintableCharts path="/morse-code-amateur-radio-cw" />
 
         <JsonLdScript jsonLd={jsonLd} />
       </main>

@@ -1,3 +1,4 @@
+import PrintableCharts from "~/client/components/shared/PrintableCharts";
 import type { Route } from "./+types/international-morse-code-reference";
 
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
@@ -110,6 +111,7 @@ export default function InternationalMorseCodeReference() {
         >
           <ActionLinks
             links={[
+              { href: "#printable-charts", label: "Printable charts" },
               { href: "/dictionary", label: "Dictionary", primary: true },
               { href: "/morse-code-alphabet", label: "Alphabet chart" },
               { href: "/morse-code-numbers", label: "Number chart" },
@@ -155,6 +157,8 @@ export default function InternationalMorseCodeReference() {
             <ReferenceTable items={Q_CODES.slice(0, 6)} onPlay={(morse) => playMorsePattern(morse)} />
           </div>
         </SectionCard>
+
+        <PrintableCharts path="/international-morse-code-reference" />
 
         <ReferenceSupportSections
           guide={{

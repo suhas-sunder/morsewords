@@ -1,3 +1,4 @@
+import PrintableCharts from "~/client/components/shared/PrintableCharts";
 import type { Route } from "./+types/morse-code-prosigns";
 
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
@@ -107,6 +108,7 @@ export default function MorseCodeProsigns() {
         >
           <ActionLinks
             links={[
+              { href: "#printable-charts", label: "Printable charts" },
               { href: "/morse-code-sos", label: "Open SOS page", primary: true },
               { href: "/morse-code-audio-practice", label: "Practice by audio" },
               { href: "/practice", label: "Practice drills" },
@@ -126,6 +128,8 @@ export default function MorseCodeProsigns() {
             onPlay={(morse) => playMorsePattern(morse)}
           />
         </SectionCard>
+
+        <PrintableCharts path="/morse-code-prosigns" />
 
         <ReferenceSupportSections
           guide={{

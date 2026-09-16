@@ -15,7 +15,7 @@ export const meta: Route.MetaFunction = () =>
   seoMeta({
     title: "Morse Code by Language | Wabun, Cyrillic, Greek | MorseWords",
     description:
-      "Explore Morse code by language with starter Japanese Wabun kana, Russian Cyrillic Morse, Greek Morse, audio cards, and printable reference sheets.",
+      "Explore Japanese Wabun, Russian Cyrillic, and Greek Morse with audio cards, plus 22 downloadable charts for language adaptations and localized references.",
     path: CANONICAL_PATH,
     keywords:
       "Morse code by language, Wabun code, Japanese Morse code, Russian Morse code, Greek Morse code, Cyrillic Morse",

@@ -1,3 +1,4 @@
+import PrintableCharts from "~/client/components/shared/PrintableCharts";
 import * as React from "react";
 
 import { PlayIcon } from "~/client/assets/svg/Icons";
@@ -954,6 +955,7 @@ export function MorseNumbersPage({
         >
           <ActionLinks
             links={[
+              { href: "#printable-charts", label: "Printable charts" },
               { href: "#number-chart", label: "0-9 chart", primary: true },
               { href: "/morse-code-chart", label: "Complete chart" },
               { href: "/morse-code-alphabet", label: "Alphabet" },
@@ -1093,6 +1095,8 @@ export function MorseNumbersPage({
             ]}
           />
         </SectionCard>
+
+        <PrintableCharts path="/morse-code-numbers" />
 
         <FaqSectionGeneric
           title="Morse Code Numbers FAQ"

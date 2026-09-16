@@ -1,3 +1,4 @@
+import PrintableCharts from "~/client/components/shared/PrintableCharts";
 import * as React from "react";
 import type { Route } from "./+types/morse-code-alphabet";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
@@ -238,6 +239,7 @@ export default function MorseCodeAlphabetRoute() {
       >
         <ActionLinks
           links={[
+            { href: "#printable-charts", label: "Printable charts" },
             { href: "#letters", label: "Letters A-Z", primary: true },
             { href: "/morse-code-chart", label: "Complete chart" },
             { href: "/morse-code-numbers", label: "Numbers 0-9" },
@@ -290,6 +292,8 @@ export default function MorseCodeAlphabetRoute() {
           description="Use this section to review and copy the standard International Morse letter alphabet."
           items={letters}
         />
+
+        <PrintableCharts path="/morse-code-alphabet" />
 
         <div id="examples">
           <ReferenceSupportSections

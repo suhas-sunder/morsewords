@@ -1,3 +1,4 @@
+import PrintableCharts from "~/client/components/shared/PrintableCharts";
 import type { Route } from "./+types/morse-code-punctuation";
 
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
@@ -109,6 +110,7 @@ export default function MorseCodePunctuation() {
         >
           <ActionLinks
             links={[
+              { href: "#printable-charts", label: "Printable charts" },
               { href: "/morse-code-encoder", label: "Encode text", primary: true },
               { href: "/morse-code-chart", label: "Complete chart" },
               { href: "/question-mark-in-morse-code", label: "Question mark" },
@@ -161,6 +163,8 @@ export default function MorseCodePunctuation() {
             ]}
           />
         </SectionCard>
+
+        <PrintableCharts path="/morse-code-punctuation" />
 
         <ReferenceSupportSections
           guide={{

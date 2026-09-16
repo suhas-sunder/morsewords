@@ -1,3 +1,4 @@
+import PrintableCharts from "~/client/components/shared/PrintableCharts";
 import type { Route } from "./+types/morse-code-q-codes";
 
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
@@ -107,6 +108,7 @@ export default function MorseCodeQCodes() {
         >
           <ActionLinks
             links={[
+              { href: "#printable-charts", label: "Printable charts" },
               { href: "/morse-code-word-trainer", label: "Train Q-codes", primary: true },
               { href: "/morse-code-audio-practice", label: "Audio practice" },
               { href: "/practice", label: "Practice drills" },
@@ -126,6 +128,8 @@ export default function MorseCodeQCodes() {
             onPlay={(morse) => playMorsePattern(morse)}
           />
         </SectionCard>
+
+        <PrintableCharts path="/morse-code-q-codes" />
 
         <ReferenceSupportSections
           guide={{

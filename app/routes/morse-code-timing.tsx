@@ -1,3 +1,4 @@
+import PrintableCharts from "~/client/components/shared/PrintableCharts";
 import type { Route } from "./+types/morse-code-timing";
 
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
@@ -216,6 +217,7 @@ export default function MorseCodeTiming() {
         >
           <ActionLinks
             links={[
+              { href: "#printable-charts", label: "Printable charts" },
               { href: ROUTES.farnsworth, label: "Farnsworth timing", primary: true },
               { href: ROUTES.wordSeparator, label: "Spacing guide" },
               { href: ROUTES.audio, label: "Try audio timing" },
@@ -296,6 +298,8 @@ export default function MorseCodeTiming() {
         >
           <SimpleGrid items={timingSettingItems} linkedItemStyle="inline" />
         </SectionCard>
+
+        <PrintableCharts path="/morse-code-timing" />
 
         <ReferenceSupportSections
           guide={{

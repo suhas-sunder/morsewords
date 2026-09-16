@@ -1,3 +1,4 @@
+import PrintableCharts from "~/client/components/shared/PrintableCharts";
 import * as React from "react";
 import { Link } from "react-router";
 
@@ -164,6 +165,7 @@ export function MorseCodeByLanguageHub() {
       >
         <ActionLinks
           links={[
+            { href: "#printable-charts", label: "Printable language charts" },
             { href: ROUTES.home, label: "Open translator", primary: true },
             { href: ROUTES.audio, label: "Hear Morse audio" },
             { href: ROUTES.internationalReference, label: "International reference" },
@@ -173,17 +175,17 @@ export function MorseCodeByLanguageHub() {
 
       <section className="mt-8 sm:mt-10" aria-labelledby="language-list">
         <div className="max-w-[68ch]">
-          <Eyebrow>Supported first set</Eyebrow>
+          <Eyebrow>Interactive language references</Eyebrow>
           <h2
             id="language-list"
             className="mw-heading mt-3 text-3xl font-extrabold tracking-tight text-sky-950 sm:text-4xl"
           >
-            Start with three clear Morse adaptations
+            Hear and explore three Morse adaptations
           </h2>
           <p className="mw-text-muted mt-3 text-base leading-relaxed text-slate-700 sm:text-lg">
-            This foundation keeps the list intentionally small so each page can
-            be accurate, interactive, and printable. The copy is in English,
-            with the target-language characters shown directly in the cards.
+            Explore Japanese, Russian, and Greek with audio cards and generated
+            study sheets. The separate printable collection below includes 22
+            charts for more languages and scripts; the page guides remain in English.
           </p>
         </div>
 
@@ -250,6 +252,8 @@ export function MorseCodeByLanguageHub() {
           </div>
         </StaticPanel>
       </section>
+
+      <PrintableCharts path={canonicalPath} />
 
       <BreadcrumbTrail current="Morse Code by Language" placement="contentFooter" />
     </main>
@@ -374,6 +378,7 @@ export function MorseLanguageDetailPage({
         <ActionLinks
           links={[
             { href: ROUTES.morseCodeByLanguage, label: "All language pages", primary: true },
+            ...(language.slug === "greek" ? [] : [{ href: "#printable-charts", label: "Printable charts" }]),
             { href: ROUTES.audio, label: "Hear Morse audio" },
             { href: ROUTES.practice, label: "Practice Morse" },
           ]}
@@ -565,6 +570,8 @@ export function MorseLanguageDetailPage({
           </div>
         </StaticPanel>
       </section>
+
+      <PrintableCharts path={language.path} />
 
       <BreadcrumbTrail
         current={`${language.languageName} Morse Code`}

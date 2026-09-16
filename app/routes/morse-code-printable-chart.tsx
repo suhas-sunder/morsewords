@@ -1,3 +1,4 @@
+import PrintableCharts from "~/client/components/shared/PrintableCharts";
 import * as React from "react";
 
 import { DownloadIcon, ShareIcon, WarningIcon } from "~/client/assets/svg/Icons";
@@ -209,9 +210,9 @@ export function links() {
 
 export function meta() {
   return seoMeta({
-    title: "Printable Morse Code Worksheet | Practice Sheet Generator | MorseWords",
+    title: "Printable Morse Code Charts & Worksheets | MorseWords",
     description:
-      "Create a printable Morse code worksheet with custom words, sentences, student fields, optional answer keys, and PDF or image export for class or solo practice.",
+      "Download ready-made Morse code charts or build custom worksheets with words, sentences, optional answer keys, and PDF or image export for class or solo practice.",
     path: CANONICAL_PATH,
     keywords:
       "printable morse code worksheet, morse code worksheet, custom morse code worksheet, teacher morse code worksheet, morse code printable, morse code alphabet printable, morse code practice sheet",
@@ -3031,9 +3032,9 @@ export default function MorseCodePrintableChart() {
 
       <main className="mw-printable-chart-page" style={styles.wrap}>
         <PageHero
-          eyebrow="Printable worksheet"
-          title="Printable Morse Code Worksheet"
-          description="Build a study sheet, classroom handout, or offline Morse reference with worksheet, answer key, PDF, and image export controls."
+          eyebrow="Printable charts and worksheets"
+          title="Printable Morse Code Charts & Worksheets"
+          description="Download ready-made Morse reference charts or build a study sheet, classroom handout, or custom worksheet with answer keys, PDF, and image export controls."
           aside={
             <DarkNote label="Print defaults" value="PDF">
               <p>Answer keys stay off until you include them.</p>
@@ -3042,6 +3043,7 @@ export default function MorseCodePrintableChart() {
         >
           <ActionLinks
             links={[
+              { href: "#printable-charts", label: "Printable charts" },
               { href: "#builder", label: "Build worksheet", primary: true },
               { href: "/morse-code-chart", label: "Complete chart" },
               { href: "/morse-code-word-search-builder", label: "Word search" },
@@ -3575,6 +3577,8 @@ export default function MorseCodePrintableChart() {
         </section>
 
         <PostPrimaryContentBannerAd local />
+        <PrintableCharts path="/morse-code-printable-chart" />
+
         <ReferenceSupportSections
           showSupportAd={false}
           guide={{

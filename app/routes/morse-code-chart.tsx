@@ -1,3 +1,4 @@
+import PrintableCharts from "~/client/components/shared/PrintableCharts";
 import * as React from "react";
 
 import {
@@ -331,6 +332,7 @@ function TimingReference() {
         <div className="mt-5">
           <ActionLinks
             links={[
+              { href: "#printable-charts", label: "Printable charts" },
               {
                 href: "/morse-code-word-separator",
                 label: "Word separator",
@@ -498,6 +500,7 @@ export default function MorseCodeChartRoute() {
             className="grid-cols-[repeat(auto-fit,minmax(10.5rem,1fr))]"
             links={[
               { href: "#letters", label: "Letters A-Z", primary: true },
+              { href: "#printable-charts", label: "Printable charts" },
               { href: "#numbers", label: "Numbers 0-9" },
               { href: "#punctuation", label: "Punctuation" },
               { href: "#reference-signals", label: "Prosigns / reference signals" },
@@ -551,6 +554,8 @@ export default function MorseCodeChartRoute() {
         <div id="reference-signals">
           <ProsignReference />
         </div>
+
+        <PrintableCharts path="/morse-code-chart" />
 
         <TimingReference />
 

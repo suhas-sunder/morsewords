@@ -1,3 +1,4 @@
+import PrintableCharts from "~/client/components/shared/PrintableCharts";
 import type { Route } from "./+types/morse-code-word-separator";
 
 import { PostPrimaryContentBannerAd } from "~/client/components/ads/AdSenseAds";
@@ -135,6 +136,7 @@ export default function MorseCodeWordSeparator() {
     <main className="mw-non-home-page" style={styles.page}>
       <div style={styles.wrap}>
         <WordSeparatorTool />
+        <p className="mt-4"><a href="#printable-charts" className="font-semibold text-sky-900 underline-offset-4 hover:underline">Printable word-spacing chart</a></p>
         <PostPrimaryContentBannerAd local />
         <SectionCard
           eyebrow="Quick answer"
@@ -178,6 +180,8 @@ export default function MorseCodeWordSeparator() {
         </SectionCard>
 
         <InternationalMorseSourceNote />
+
+        <PrintableCharts path="/morse-code-word-separator" />
 
         <ReferenceSupportSections
           guide={{
