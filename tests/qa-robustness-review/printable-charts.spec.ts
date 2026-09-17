@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { PDFDocument } from "pdf-lib";
 import { expect, test } from "@playwright/test";
 import { PRINTABLE_CHARTS, getPrintableChartsForPage } from "../../app/client/data/printableCharts";
 import { CANONICAL_ROUTE_PATHS } from "../../app/client/data/routes";
@@ -72,7 +73,7 @@ for (const [path, count] of [["/morse-code-printable-chart", 17], ["/morse-code-
     const section = page.locator("#printable-charts");
     await section.scrollIntoViewIfNeeded();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    const link = section.getByRole("link", { name: /^Open \/ download/ }).first();
+    const link = section.getByRole("link", { name: "Open full-size PNG", exact: true }).first();
     await expect(link).toHaveAttribute("target", "_blank");
     await expect(link).not.toHaveAttribute("download");
     await link.focus();
@@ -81,3 +82,54 @@ for (const [path, count] of [["/morse-code-printable-chart", 17], ["/morse-code-
     else await expect(page.locator("#language-list")).toBeVisible();
   });
 }
+
+test("downloads real files in every offered format and recovers from an asset failure", async ({ page }) => {
+  await blockExternalNetwork(page);
+  await page.goto("/morse-code-timing");
+  const png = await page.evaluate(() => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 32;
+    canvas.height = 48;
+    const context = canvas.getContext("2d")!;
+    context.fillStyle = "#ffffff";
+    context.fillRect(0, 0, 32, 48);
+    context.fillStyle = "#000000";
+    context.fillRect(8, 8, 16, 32);
+    return canvas.toDataURL("image/png").split(",")[1];
+  });
+  let fail = false;
+  await page.route("https://assets.morsewords.com/printable-charts/**", route => route.fulfill({
+    status: fail ? 403 : 200,
+    contentType: fail ? "text/html" : "image/png",
+    headers: { "access-control-allow-origin": "*" },
+    body: fail ? "Unavailable" : Buffer.from(png, "base64"),
+  }));
+  const figure = page.locator('[data-printable-chart="timing-spacing"]');
+  for (const format of ["pdf", "png", "jpg", "webp"]) {
+    await figure.getByLabel("Download format").selectOption(format);
+    const downloadPromise = page.waitForEvent("download");
+    await figure.getByRole("button", { name: `Download ${format.toUpperCase()}` }).click();
+    const download = await downloadPromise;
+    expect(download.suggestedFilename()).toBe(`morsewords-timing-spacing-chart.${format}`);
+    const bytes = fs.readFileSync((await download.path())!);
+    if (format === "pdf") {
+      const pdf = await PDFDocument.load(bytes);
+      expect(pdf.getPageCount()).toBe(1);
+      expect(pdf.getPage(0).getWidth()).toBeCloseTo(595.28);
+      expect(pdf.getPage(0).getHeight()).toBeCloseTo(841.89);
+    } else if (format === "png") {
+      expect(bytes.equals(Buffer.from(png, "base64"))).toBe(true);
+    } else if (format === "jpg") {
+      expect([...bytes.subarray(0, 3)]).toEqual([255, 216, 255]);
+    } else {
+      expect(bytes.subarray(0, 4).toString()).toBe("RIFF");
+      expect(bytes.subarray(8, 12).toString()).toBe("WEBP");
+    }
+    await expect(figure.getByRole("status")).toHaveText("Download started.");
+  }
+  fail = true;
+  await figure.getByRole("button", { name: "Download WEBP" }).click();
+  await expect(figure.getByRole("status")).toContainText("Try again");
+  await expect(figure.getByRole("button", { name: "Download WEBP" })).toBeEnabled();
+  await expect(figure.getByRole("link", { name: "Open full-size PNG", exact: true })).toHaveAttribute("href", /assets\.morsewords\.com/);
+});

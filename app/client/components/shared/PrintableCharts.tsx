@@ -1,9 +1,29 @@
-import { ActionLinkButton } from "./ActionControls";
+import { useId, useState } from "react";
+import { ActionButton } from "./ActionControls";
+import type { PrintableChartFormat } from "./printableChartExport.client";
 import { SectionCard } from "./MorseLearningLayout";
 import { getPrintableChartsForPage, type PrintableChart } from "~/client/data/printableCharts";
 
 function PrintableChartFigure({ chart, compact }: { chart: PrintableChart; compact: boolean }) {
   const Heading = compact ? "h4" : "h3";
+  const formatId = useId();
+  const [format, setFormat] = useState<PrintableChartFormat>("pdf");
+  const [busy, setBusy] = useState(false);
+  const [status, setStatus] = useState("");
+  async function download() {
+    if (busy) return;
+    setBusy(true);
+    setStatus("");
+    try {
+      const { downloadPrintableChart } = await import("./printableChartExport.client");
+      await downloadPrintableChart(chart, format);
+      setStatus("Download started.");
+    } catch {
+      setStatus("The download could not be prepared. Try again, or open the original PNG below.");
+    } finally {
+      setBusy(false);
+    }
+  }
   return (
     <figure data-printable-chart={chart.id} className="min-w-0">
       <a
@@ -20,11 +40,24 @@ function PrintableChartFigure({ chart, compact }: { chart: PrintableChart; compa
         <Heading className={`mw-heading font-extrabold text-sky-950 ${compact ? "text-xl" : "text-2xl"}`}>{chart.title}</Heading>
         <p className="mw-text-muted mt-2 max-w-[58ch] text-base leading-relaxed text-slate-700">{chart.description}</p>
         {chart.note ? <p className="mw-text-muted mt-3 max-w-[58ch] text-sm leading-relaxed text-slate-600">{chart.note}</p> : null}
-        <div className="mt-4">
-          <ActionLinkButton href={chart.url} target="_blank" rel="noopener noreferrer" size="sm" aria-label={`Open / download ${chart.title} PNG (new tab)`}>
-            Open / download PNG
-          </ActionLinkButton>
+        <div className="mt-4 flex flex-wrap items-end gap-3">
+          <div>
+            <label htmlFor={formatId} className="mb-1 block text-sm font-semibold text-slate-700">Download format</label>
+            <select id={formatId} value={format} disabled={busy}
+              onChange={(event) => { setFormat(event.target.value as PrintableChartFormat); setStatus(""); }}
+              className="min-h-10 max-w-full cursor-pointer rounded-lg border-0 bg-[#fffdf8] px-3 py-2 text-sm text-slate-950 disabled:cursor-default disabled:text-slate-500">
+              <option value="pdf">PDF</option>
+              <option value="png">PNG (original)</option>
+              <option value="jpg">JPG / JPEG</option>
+              <option value="webp">WebP</option>
+            </select>
+          </div>
+          <ActionButton size="sm" onClick={download} disabled={busy} aria-busy={busy} aria-describedby={`${formatId}-status`}>
+            {busy ? "Preparing…" : `Download ${format.toUpperCase()}`}
+          </ActionButton>
         </div>
+        <p id={`${formatId}-status`} role="status" className="mt-2 max-w-[58ch] text-sm leading-relaxed text-slate-600">{status}</p>
+        <a href={chart.url} target="_blank" rel="noopener noreferrer" className="mt-2 block font-semibold text-sky-900 underline-offset-4 hover:underline">Open full-size PNG</a>
         <a href={chart.referencePath} className="mt-3 inline-block font-semibold text-sky-900 underline-offset-4 hover:underline">{chart.referenceLabel}</a>
       </figcaption>
     </figure>
@@ -49,10 +82,10 @@ export default function PrintableCharts({ path }: { path: string }) {
           ? "Browse 22 printable references, including established adaptations, traditional extensions, and localized or transliteration conventions. These are not all separate ITU alphabets."
           : isGallery
             ? "Choose from 17 ready-made charts for quick lookup, learning, timing, and radio study. For your own messages and exercises, use the worksheet builder above."
-            : "Keep a reference beside your practice notes. Open a full-size PNG, then use your browser’s save or print option. Return to the interactive reference to hear and check patterns."}
+            : "Keep a reference beside your practice notes. Download a PDF for printing or an image for a study document. Return to the interactive reference to hear and check patterns."}
         layout="stacked"
       >
-        {grouped ? <p className="mb-6 max-w-[68ch] text-base leading-relaxed text-slate-700">Open any PNG in a new tab, then use your browser’s save image or print option. The full-size file is the same chart shown in the preview.</p> : null}
+        <p className="mb-6 max-w-[68ch] text-base leading-relaxed text-slate-700">Choose PDF, the original PNG, JPG/JPEG, or WebP. Your browser prepares the download from the full-size chart. PDFs fit the complete chart on one A4 page; image downloads keep the original pixel dimensions.</p>
         <p className="mb-6 flex flex-wrap gap-x-6 gap-y-3">
           {!isGallery ? <a className="font-semibold text-sky-900 underline-offset-4 hover:underline" href="/morse-code-printable-chart#printable-charts">All printable charts and worksheets</a> : null}
           {!isLanguageHub ? <a className="font-semibold text-sky-900 underline-offset-4 hover:underline" href="/morse-code-by-language#printable-charts">Printable charts by language</a> : <a className="font-semibold text-sky-900 underline-offset-4 hover:underline" href="/international-morse-code-reference">International Morse reference</a>}

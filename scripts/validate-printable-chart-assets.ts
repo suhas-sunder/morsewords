@@ -5,13 +5,18 @@ let failures = 0;
 for (let offset = 0; offset < PRINTABLE_CHARTS.length; offset += 4) {
   const results = await Promise.all(PRINTABLE_CHARTS.slice(offset, offset + 4).map(async (chart) => {
     try {
-      const response = await fetch(chart.url, { signal: AbortSignal.timeout(30_000) });
+      const response = await fetch(chart.url, {
+        signal: AbortSignal.timeout(30_000),
+        headers: { origin: "https://www.morsewords.com", referer: "https://www.morsewords.com/" },
+      });
       const body = Buffer.from(await response.arrayBuffer());
       const isPng = body.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
       const type = response.headers.get("content-type")?.split(";")[0];
+      const cors = response.headers.get("access-control-allow-origin");
       const passed = response.ok && type === "image/png" && isPng &&
+        (cors === "https://www.morsewords.com" || cors === "*") &&
         body.readUInt32BE(16) === chart.width && body.readUInt32BE(20) === chart.height;
-      return { key: chart.key, status: response.status, type, bytes: body.length, passed };
+      return { key: chart.key, status: response.status, type, cors, bytes: body.length, passed };
     } catch (error) {
       return { key: chart.key, passed: false, error: String(error) };
     }
