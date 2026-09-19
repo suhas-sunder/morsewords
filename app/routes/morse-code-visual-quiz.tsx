@@ -742,7 +742,7 @@ export default function MorseCodeVisualQuiz() {
                 primary: true,
               },
               {
-                href: "/morse-code-printable-chart",
+                href: "/morse-code-printable-worksheets",
                 label: "Worksheet generator",
               },
             ]}

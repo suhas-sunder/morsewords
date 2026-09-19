@@ -67,6 +67,7 @@ export const PRIMARY_TOOL_ROUTES = [
   ROUTES.videoGenerator,
   ROUTES.wordSearchBuilder,
   ROUTES.printableChart,
+  ROUTES.printableWorksheets,
 ] as const;
 
 const CORE_ROUTES = [

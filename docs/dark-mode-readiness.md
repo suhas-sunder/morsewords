@@ -117,7 +117,7 @@ Dark values now exist in `app/app.css` for the core token groups:
 
 ### Route-Local Surfaces Left Local
 
-- Printable/export CSS in `morse-code-printable-chart.tsx` stays light because
+- Printable/export CSS in `morse-code-printable-worksheets.tsx` stays light because
   it defines generated printable/PDF/image output, not the page theme surface.
 - Generated SVG and image output colors remain unchanged because changing them
   would alter tool output behavior.
@@ -151,6 +151,7 @@ themes, desktop and mobile, for these routes:
 - `/practice`
 - `/typing`
 - `/morse-code-printable-chart`
+- `/morse-code-printable-worksheets`
 - `/contact`
 - `/misc/privacy-policy`
 
@@ -199,6 +200,7 @@ Routes visually checked in that matrix:
 - `/morse-code-visual-practice`
 - `/morse-code-visual-quiz`
 - `/morse-code-printable-chart`
+- `/morse-code-printable-worksheets`
 - `/contact`
 - `/about`
 - `/how-to-use`

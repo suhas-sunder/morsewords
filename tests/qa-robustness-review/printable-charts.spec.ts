@@ -2,7 +2,7 @@ import fs from "node:fs";
 import { PDFDocument } from "pdf-lib";
 import { expect, test } from "@playwright/test";
 import { PRINTABLE_CHARTS, getPrintableChartsForPage } from "../../app/client/data/printableCharts";
-import { CANONICAL_ROUTE_PATHS } from "../../app/client/data/routes";
+import { CANONICAL_ROUTE_PATHS, REDIRECT_ALIASES, ROUTES } from "../../app/client/data/routes";
 import { blockExternalNetwork } from "./helpers";
 
 const placements: Record<string, string[]> = {
@@ -22,10 +22,10 @@ const placements: Record<string, string[]> = {
   "/morse-code-by-language/greek": [],
 };
 
-test("chart manifest preserves remote keys, placements, and the existing URL footprint", () => {
+test("chart manifest preserves remote keys, placements, and the intentionally expanded URL footprint", () => {
   expect(PRINTABLE_CHARTS).toHaveLength(39);
   for (const field of ["id", "key", "url"] as const) expect(new Set(PRINTABLE_CHARTS.map(c => c[field])).size).toBe(39);
-  expect(getPrintableChartsForPage("/morse-code-printable-chart")).toHaveLength(17);
+  expect(getPrintableChartsForPage("/morse-code-printable-chart")).toHaveLength(39);
   expect(getPrintableChartsForPage("/morse-code-by-language")).toHaveLength(22);
   for (const [path, ids] of Object.entries(placements)) expect(getPrintableChartsForPage(path).map(c => c.id)).toEqual(ids);
   for (const chart of PRINTABLE_CHARTS) {
@@ -41,12 +41,13 @@ test("chart manifest preserves remote keys, placements, and the existing URL foo
   expect(PRINTABLE_CHARTS.find(c => c.id === "cw-abbreviations")!.key).toBe("morese-cod-cw-abbreviation-printable-chart.png");
   expect(PRINTABLE_CHARTS.find(c => c.id === "german")!.key).toBe("international-morse-code-deustsches-morsealphabet-printable-chart.png");
   const sitemap = fs.readFileSync("public/sitemap.xml", "utf8");
-  expect(sitemap.match(/<loc>/g)).toHaveLength(1178);
+  expect(sitemap.match(/<loc>/g)).toHaveLength(1179);
   expect(sitemap).not.toContain("assets.morsewords.com");
   expect(sitemap).not.toContain("/printable-charts/");
 });
 
 test("each existing page exposes precisely its charts in server-rendered HTML", async ({ request }) => {
+  test.setTimeout(120_000);
   for (const path of ["/morse-code-printable-chart", "/morse-code-by-language", ...Object.keys(placements)]) {
     const response = await request.get(path);
     expect(response.status(), path).toBe(200);
@@ -58,7 +59,30 @@ test("each existing page exposes precisely its charts in server-rendered HTML", 
   }
 });
 
-for (const [path, count] of [["/morse-code-printable-chart", 17], ["/morse-code-by-language", 22]] as const) {
+test("printable products have distinct canonical identities and direct intent-specific aliases", async ({ request }) => {
+  for (const [path, title] of [
+    [ROUTES.printableChart, "Printable Morse Code Charts"],
+    [ROUTES.printableWorksheets, "Printable Morse Code Worksheets"],
+    [ROUTES.printablePages, "Printable Morse"],
+  ]) {
+    const response = await request.get(path);
+    expect(response.status()).toBe(200);
+    const html = await response.text();
+    expect(html).toContain(title);
+    expect(html).toContain(`href="https://www.morsewords.com${path}"`);
+    expect(html).toMatch(/name="robots" content="index,\s*follow"/);
+    expect(html.includes('id="builder"')).toBe(path === ROUTES.printableWorksheets);
+    expect(html.includes('data-printable-chart=')).toBe(path === ROUTES.printableChart);
+  }
+  for (const [alias, target] of Object.entries(REDIRECT_ALIASES).filter(([, target]) => target === ROUTES.printableChart || target === ROUTES.printableWorksheets)) {
+    const response = await request.get(`${alias}?print=1`, { maxRedirects: 0 });
+    expect(response.status(), alias).toBe(301);
+    expect(new URL(response.headers().location, "https://www.morsewords.com").pathname, alias).toBe(target);
+    expect(response.headers().location).toContain("?print=1");
+  }
+});
+
+for (const [path, count] of [["/morse-code-printable-chart", 39], ["/morse-code-by-language", 22]] as const) {
   test(`${path} reserves lazy preview space and keeps download links usable`, async ({ page }) => {
     await blockExternalNetwork(page);
     await page.goto(path);
@@ -78,7 +102,7 @@ for (const [path, count] of [["/morse-code-printable-chart", 17], ["/morse-code-
     await expect(link).not.toHaveAttribute("download");
     await link.focus();
     await expect(link).toBeFocused();
-    if (path === "/morse-code-printable-chart") await expect(page.locator("#builder")).toHaveCount(1);
+    if (path === "/morse-code-printable-chart") await expect(page.locator("#builder")).toHaveCount(0);
     else await expect(page.locator("#language-list")).toBeVisible();
   });
 }

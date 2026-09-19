@@ -71,7 +71,7 @@ export default function HowToUseSuiteGuide() {
             {
               title: "I need printables",
               text: "Use the printable worksheet for practice sheets and the word search builder for classroom or practice handouts.",
-              href: "/morse-code-printable-chart",
+              href: "/morse-code-printable-worksheets",
               badge: "Print",
             },
           ]}
@@ -253,7 +253,7 @@ export default function HowToUseSuiteGuide() {
             { href: "/", label: "Main translator", primary: true },
             { href: "/morse-code-decoder", label: "Decode dots and dashes" },
             { href: "/audio", label: "Hear Morse" },
-            { href: "/morse-code-printable-chart", label: "Print resources" },
+            { href: "/morse-code-printable-worksheets", label: "Print resources" },
           ],
         }}
       />

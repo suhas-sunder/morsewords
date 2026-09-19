@@ -17,6 +17,8 @@ const sectionLinks = [
   ["Books collection", ROUTES.morseBooks],
   ["Audiobooks collection", ROUTES.morseAudiobooks],
   ["Printable Morse pages", ROUTES.printablePages],
+  ["Printable Morse Code Charts", ROUTES.printableChart],
+  ["Printable Morse Code Worksheets", ROUTES.printableWorksheets],
   ["Morse Code by Language", ROUTES.morseCodeByLanguage],
   ["Japanese Wabun code", ROUTES.morseCodeJapanese],
   ["Russian Cyrillic Morse", ROUTES.morseCodeRussian],
@@ -63,6 +65,8 @@ ${representativeBooks.map(([label, path]) => `- ${label}: ${absoluteUrl(path)}`)
 Use ${absoluteUrl(ROUTES.morseBooks)} and ${absoluteUrl(ROUTES.morseAudiobooks)} for the canonical collections. Use the sitemap for the complete book, audiobook, and printable book page lists.
 
 ## Printables
+Ready-made charts provide downloadable alphabet, timing, radio, and language references. The separate worksheet builder creates custom exercises, classroom fields, and optional answer keys. Chart and worksheet exports are prepared in the browser.
+
 Printable pages let users paste custom text or open approved book print pages, choose a study layout, include site URL or QR support, and print or save as PDF through the browser print dialog. MorseWords does not publish generated PDF files as static downloads.
 
 ## Morse Code by Language

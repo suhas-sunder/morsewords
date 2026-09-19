@@ -493,7 +493,7 @@ export default function MorseCodeVisualPractice() {
             links={[
               { href: "/morse-code-visual-quiz", label: "Visual quiz", primary: true },
               { href: "/morse-code-timing", label: "Timing guide" },
-              { href: "/morse-code-printable-chart", label: "Print review" },
+              { href: "/morse-code-printable-worksheets", label: "Print review" },
             ]}
           />
         </SectionCard>

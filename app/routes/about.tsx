@@ -205,7 +205,7 @@ export default function About() {
               {
                 title: "Teachers",
                 text: "Use printable worksheets, word searches, and practice pages for handouts, warm-ups, and low-prep classroom activities.",
-                href: "/morse-code-printable-chart",
+                href: "/morse-code-printable-worksheets",
               },
               {
                 title: "Casual users",

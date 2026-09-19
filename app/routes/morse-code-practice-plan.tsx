@@ -551,7 +551,7 @@ export default function MorseCodePracticePlan() {
               {
                 title: "Printable worksheet",
                 text: "Use this for worksheet practice or a compact reference guide when you are checking letters, numbers, punctuation, or spacing.",
-                href: ROUTES.printableChart,
+                href: ROUTES.printableWorksheets,
                 badge: "Reference",
               },
               {

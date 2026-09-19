@@ -436,7 +436,7 @@ export default function MorseCodeWordTrainer() {
  links={[
  { href:"/morse-code-words", label:"Word chart", primary: true },
  { href:"/morse-code-audio-practice", label:"Audio practice"},
- { href:"/morse-code-printable-chart", label:"Make worksheet"},
+ { href:"/morse-code-printable-worksheets", label:"Make worksheet"},
  ]}
  />
  </PageHero>
@@ -822,7 +822,7 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
  <MiniLink href="/morse-code-word-search-builder">
  Word search
  </MiniLink>
- <MiniLink href="/morse-code-printable-chart">
+ <MiniLink href="/morse-code-printable-worksheets">
  Worksheet
  </MiniLink>
  <MiniLink href="/morse-code-audio-practice">
@@ -1026,7 +1026,7 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
  label:"Practice plan",
  primary: true,
  },
- { href:"/morse-code-printable-chart", label:"Worksheet builder"},
+ { href:"/morse-code-printable-worksheets", label:"Worksheet builder"},
  { href:"/morse-code-audio-practice", label:"Audio practice"},
  ]}
  />

@@ -20,7 +20,7 @@ const REPRESENTATIVE_THEME_ROUTES = [
   "/a-in-morse-code",
   "/practice",
   "/typing",
-  "/morse-code-printable-chart",
+  "/morse-code-printable-worksheets",
   "/contact",
   "/misc/privacy-policy",
   "/sitemap",
@@ -32,7 +32,7 @@ const STORAGE_FALLBACK_ROUTES = [
   "/practice",
   "/typing",
   "/morse-code-word-trainer",
-  "/morse-code-printable-chart",
+  "/morse-code-printable-worksheets",
 ] as const;
 const STORED_SETTING_HYDRATION_ROUTES = [
   {
@@ -261,7 +261,7 @@ test.describe("navbar theme mode", () => {
   test("dark theme cookie is rendered on the server before hydration", async ({
     page,
   }) => {
-    for (const route of ["/morse-code-printable-chart", "/typing"]) {
+    for (const route of ["/morse-code-printable-worksheets", "/typing"]) {
       const response = await page.request.get(route, {
         headers: { Cookie: `${THEME_STORAGE_KEY}=dark` },
       });
@@ -491,7 +491,7 @@ test.describe("navbar theme mode", () => {
     await expectRootTheme(page, "dark");
 
     const worksheetCard = page
-      .locator('#morse-code-navigation a[href="/morse-code-printable-chart"]')
+      .locator('#morse-code-navigation a[href="/morse-code-printable-worksheets"]')
       .first();
     await worksheetCard.hover();
     const worksheetCardColors = await renderedColors(worksheetCard);

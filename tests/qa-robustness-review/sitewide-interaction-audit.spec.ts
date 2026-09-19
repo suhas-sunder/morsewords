@@ -84,7 +84,7 @@ const EXPECTED_SOURCE_INTERACTION_INVENTORY: Readonly<Record<string, number>> = 
   "app/routes/morse-code-books.tsx": 7,
   "app/routes/morse-code-chart.tsx": 1,
   "app/routes/morse-code-international-translator.tsx": 3,
-  "app/routes/morse-code-printable-chart.tsx": 23,
+  "app/routes/morse-code-printable-worksheets.tsx": 23,
   "app/routes/morse-code-visual-practice.tsx": 5,
   "app/routes/morse-code-visual-quiz.tsx": 12,
   "app/routes/morse-code-word-search-builder.tsx": 19,

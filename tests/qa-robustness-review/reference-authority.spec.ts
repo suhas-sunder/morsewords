@@ -44,7 +44,7 @@ const REFERENCE_ROUTES = [
     referenceHeading: "A-Z Morse code letters",
   },
   {
-    path: "/morse-code-printable-chart",
+    path: "/morse-code-printable-worksheets",
     heading: "Printable Morse Code Worksheet",
     referenceHeading: "Build the printable",
   },
@@ -198,7 +198,7 @@ test.describe("reference-page authority and canonical mappings", () => {
       await expect(page.locator(`a[href="${href}"]`).first()).toBeVisible();
     }
 
-    await page.goto("/morse-code-printable-chart", { waitUntil: "domcontentloaded" });
+    await page.goto("/morse-code-printable-worksheets", { waitUntil: "domcontentloaded" });
     await expect(page.locator('a[href="/morse-code-chart"]').first()).toBeVisible();
     await expect(page.locator('a[href="/morse-code-word-search-builder"]').first()).toBeVisible();
   });

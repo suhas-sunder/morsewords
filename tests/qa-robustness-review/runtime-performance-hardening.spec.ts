@@ -24,7 +24,7 @@ test("heavy browser-only helpers stay behind user-triggered dynamic imports", ()
   const morseAudioExport = readRepoFile(
     "app/client/components/shared/export/morseAudioExport.ts",
   );
-  const printableChart = readRepoFile("app/routes/morse-code-printable-chart.tsx");
+  const printableChart = readRepoFile("app/routes/morse-code-printable-worksheets.tsx");
   const wordSearch = readRepoFile("app/routes/morse-code-word-search-builder.tsx");
   const bookBundleExport = readRepoFile(
     "app/client/components/morse-code-book-translator/bookBundleExport.ts",

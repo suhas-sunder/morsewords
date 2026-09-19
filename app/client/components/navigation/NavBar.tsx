@@ -42,7 +42,7 @@ const MAIN_ITEMS: NavItem[] = [
   { label: "Practice", href: ROUTES.practice },
   {
     label: "Worksheets",
-    href: ROUTES.printableChart,
+    href: ROUTES.printableWorksheets,
     searchKeywords:
       "worksheet worksheets print printable teacher student classroom practice sheet",
   },
@@ -162,6 +162,7 @@ const MORE_GROUPS: NavGroup[] = [
   {
     title: "Reference and lookup",
     items: [
+      { label: "Printable Morse code charts", href: ROUTES.printableChart, description: "Download 39 ready-made reference charts as PDF or images." },
       {
         label: "Morse code alphabet",
         href: ROUTES.alphabet,

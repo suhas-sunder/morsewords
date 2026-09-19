@@ -70,9 +70,9 @@ const ROUTES = [
     finalPath: "/morse-code-chart",
   },
   {
-    path: "/morse-code-printable-chart",
+    path: "/morse-code-printable-worksheets",
     h1: "Printable Morse Code Worksheet",
-    finalPath: "/morse-code-printable-chart",
+    finalPath: "/morse-code-printable-worksheets",
   },
   {
     path: "/morse-code-reader",

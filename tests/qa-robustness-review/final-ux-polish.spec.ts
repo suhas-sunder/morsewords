@@ -279,11 +279,12 @@ test("international translator is explicit about one-way transliteration", async
 });
 
 test("print-style exports invoke print once per click", async ({ page }) => {
-  await page.goto("/morse-code-printable-chart", { waitUntil: "domcontentloaded" });
+  await page.goto("/morse-code-printable-worksheets", { waitUntil: "domcontentloaded" });
   await waitForHydration(page);
+  await page.waitForLoadState("networkidle");
   await expect(page.locator('meta[name="description"]')).toHaveAttribute(
     "content",
-    "Create a printable Morse code worksheet with custom words, sentences, student fields, optional answer keys, and PDF or image export for class or solo practice.",
+    "Create custom Morse worksheets with words, sentences, student and teacher fields, optional answer keys, and PDF or image export for class or solo practice.",
   );
   await expectSinglePrintForButton(page, "Download PDF");
 
@@ -291,6 +292,7 @@ test("print-style exports invoke print once per click", async ({ page }) => {
     waitUntil: "domcontentloaded",
   });
   await waitForHydration(page);
+  await page.waitForLoadState("networkidle");
   await expectSinglePrintForButton(page, "Print selected output");
 });
 

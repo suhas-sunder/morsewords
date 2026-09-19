@@ -69,6 +69,7 @@ export default [
   route("8-in-morse-code", "routes/8-in-morse-code.tsx"),
   route("9-in-morse-code", "routes/9-in-morse-code.tsx"),
   route("morse-code-printable-chart", "routes/morse-code-printable-chart.tsx"),
+  route("morse-code-printable-worksheets", "routes/morse-code-printable-worksheets.tsx"),
   route(
     "morse-code-international-translator",
     "routes/morse-code-international-translator.tsx",

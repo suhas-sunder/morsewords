@@ -636,7 +636,7 @@ test.describe("homepage monetization readiness", () => {
     await expect(alphabetLink).toHaveAttribute("href", ROUTES.alphabet);
     await expect(numbersLink).toHaveAttribute("href", ROUTES.numbers);
     await expect(
-      toolkit.locator(`a[href="${ROUTES.printableChart}"]`),
+      toolkit.locator(`a[href="${ROUTES.printableWorksheets}"]`),
     ).toHaveText("Printable worksheet");
     const linkedPaths = await toolkit.locator("a[href]").evaluateAll((links) =>
       links.map((link) =>

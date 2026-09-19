@@ -854,7 +854,7 @@ const CORRUPTED_STORAGE_ROUTES = [
   "/morse-code-audio-quiz",
   "/morse-code-visual-quiz",
   "/morse-code-word-trainer",
-  "/morse-code-printable-chart",
+  "/morse-code-printable-worksheets",
   "/morse-code-book-translator",
   "/morse-code-video-generator",
   "/morse-code-word-search-builder",

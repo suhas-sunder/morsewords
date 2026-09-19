@@ -157,7 +157,7 @@ test("visual practice shows strobe warning when whole-page flash is enabled", as
 });
 
 test("printable worksheet content limits are hidden until content is actually omitted", async ({ page }) => {
-  await page.goto("/morse-code-printable-chart");
+  await page.goto("/morse-code-printable-worksheets");
   await waitForRouteReady(page);
   await expect(page.getByText("Content limits")).toHaveCount(0);
 
@@ -201,7 +201,7 @@ test("word search Generate new puzzle changes the grid", async ({ page }) => {
 
 test("printable worksheet accepts SVG logo upload with no visible size/dimension warning", async ({ page }) => {
   await ensureUploadFixtures();
-  await page.goto("/morse-code-printable-chart");
+  await page.goto("/morse-code-printable-worksheets");
   await waitForRouteReady(page);
   await page.locator('input[type="file"]').setInputFiles({
     name: "inert-logo.svg",

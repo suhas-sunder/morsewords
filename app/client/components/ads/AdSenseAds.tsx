@@ -94,7 +94,7 @@ const DENSE_POST_HERO_EXCLUDED_PATHS = new Set<string>([
   ROUTES.mp3Generator,
   ROUTES.morseAudiobooks,
   ROUTES.morseBooks,
-  ROUTES.printableChart,
+  ROUTES.printableWorksheets,
   ROUTES.printablePages,
   ROUTES.reader,
   ROUTES.soundGenerator,
@@ -111,7 +111,7 @@ const LOCAL_POST_PRIMARY_CONTENT_PATHS = new Set<string>([
   ROUTES.decoder,
   ROUTES.encoder,
   ROUTES.practice,
-  ROUTES.printableChart,
+  ROUTES.printableWorksheets,
   ROUTES.test,
   ROUTES.typing,
   ROUTES.wordSeparator,
@@ -160,13 +160,13 @@ export function isBookPlayerAdEligiblePath(pathname: string) {
 }
 
 export function isPrintableChartSquareAdEligiblePath(pathname: string) {
-  return normalizePathname(pathname) === ROUTES.printableChart;
+  return normalizePathname(pathname) === ROUTES.printableWorksheets;
 }
 
 export function isOptionalSquareAdEligiblePath(pathname: string) {
   const normalizedPathname = normalizePathname(pathname);
   return (
-    normalizedPathname !== ROUTES.printableChart &&
+    normalizedPathname !== ROUTES.printableWorksheets &&
     isInContentAdEligiblePath(normalizedPathname)
   );
 }

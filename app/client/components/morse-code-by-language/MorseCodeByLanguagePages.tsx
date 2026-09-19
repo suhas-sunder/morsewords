@@ -216,6 +216,8 @@ export function MorseCodeByLanguageHub() {
         </div>
       </section>
 
+      <PrintableCharts path={canonicalPath} />
+
       <section className="mt-10 grid gap-5 lg:grid-cols-[minmax(0,0.62fr)_minmax(260px,0.38fr)]">
         <StaticPanel as="section">
           <Eyebrow>Adaptation vs transliteration</Eyebrow>
@@ -252,8 +254,6 @@ export function MorseCodeByLanguageHub() {
           </div>
         </StaticPanel>
       </section>
-
-      <PrintableCharts path={canonicalPath} />
 
       <BreadcrumbTrail current="Morse Code by Language" placement="contentFooter" />
     </main>

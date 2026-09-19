@@ -24,6 +24,7 @@ const TOKEN_QA_ROUTES = [
   "/practice",
   "/typing",
   "/morse-code-printable-chart",
+  "/morse-code-printable-worksheets",
   "/misc/privacy-policy",
 ] as const;
 

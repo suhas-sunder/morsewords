@@ -43,7 +43,7 @@ const primaryOrderCases = [
   ["/morse-code-decoder", "main textarea", "decoder workspace"],
   ["/practice", 'input[aria-label="Practice answer"]', "practice session"],
   ["/typing", "main textarea", "typing interface"],
-  ["/morse-code-printable-chart", "#builder", "printable builder"],
+  ["/morse-code-printable-worksheets", "#builder", "printable builder"],
   ["/morse-code-books/the-gold-bug", '[data-testid="morse-book-live-player"]', "book player"],
   ["/morse-code-alphabet", "main section", "reference content"],
 ] as const;
@@ -80,7 +80,7 @@ const eligibleRoutes: EligibleRouteSpec[] = [
   ["/practice", "post-primary-content", "optional-square", "square aside in the practice guide support section"],
   ["/dictionary", "post-primary-content", "optional-square", "square aside in the lookup support section"],
   [
-    "/morse-code-printable-chart",
+    "/morse-code-printable-worksheets",
     "post-primary-content",
     "printable-chart-square",
     "square aside in the printable support block",
@@ -130,7 +130,7 @@ const eligibleRoutes: EligibleRouteSpec[] = [
 }));
 
 eligibleRoutes.find(
-  (spec) => spec.route === "/morse-code-printable-chart",
+  (spec) => spec.route === "/morse-code-printable-worksheets",
 )!.supportSlot = SLOTS.optionalSquare;
 
 const protectedOnlyRoutes = [
@@ -148,7 +148,7 @@ const visualRoutes = [
   "/typing",
   "/practice",
   "/dictionary",
-  "/morse-code-printable-chart",
+  "/morse-code-printable-worksheets",
   "/morse-code-chart",
   "/morse-code-alphabet",
   "/morse-code-numbers",
@@ -1150,7 +1150,7 @@ test("ads stay outside forms, player, output, and action-control clusters", asyn
     "/",
     "/audio",
     "/dictionary",
-    "/morse-code-printable-chart",
+    "/morse-code-printable-worksheets",
     "/morse-code-reader",
     "/morse-code-books",
     "/morse-code-books/the-gold-bug",

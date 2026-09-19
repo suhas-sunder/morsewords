@@ -329,8 +329,13 @@ const GROUPS: SitemapGroup[] = [
           "Learn letter gaps, word gaps, slash separators, timing gaps, and decoder-safe spacing.",
       },
       {
-        label: "Printable Morse Code Worksheets",
+        label: "Printable Morse Code Charts",
         to: ROUTES.printableChart,
+        description: "Download ready-made reference charts as PDF, PNG, JPG, or WebP.",
+      },
+      {
+        label: "Printable Morse Code Worksheets",
+        to: ROUTES.printableWorksheets,
         description:
           "Print or download learner, teacher, and classroom Morse code templates.",
       },

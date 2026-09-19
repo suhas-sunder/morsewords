@@ -160,10 +160,16 @@ const ROUTE_GROUPS: RouteGroup[] = [
         badge: "Languages",
       },
       {
+        title: "Printable Morse Code Charts",
+        description: "Download ready-made alphabet, timing, radio, and language charts.",
+        href: ROUTES.printableChart,
+        badge: "Charts",
+      },
+      {
         title: "Printable Morse Worksheets",
         description:
           "Build printable worksheets, learner templates, and teacher-ready handouts.",
-        href: ROUTES.printableChart,
+        href: ROUTES.printableWorksheets,
         badge: "Worksheets",
       },
       {
@@ -372,7 +378,7 @@ const FEATURED_LINKS = [
   },
   {
     title: "Printable worksheets",
-    href: ROUTES.printableChart,
+    href: ROUTES.printableWorksheets,
     label: "Worksheets",
   },
   {

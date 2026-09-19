@@ -590,7 +590,7 @@ export default function MorseCodeChartRoute() {
                 {
                   title: "Print when the chart leaves the screen",
                   text: "Use the printable worksheet for class handouts, PDFs, worksheets, and offline study instead of copying this page manually.",
-                  href: "/morse-code-printable-chart",
+                  href: "/morse-code-printable-worksheets",
                   badge: "Print",
                 },
                 {

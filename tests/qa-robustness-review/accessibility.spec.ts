@@ -23,6 +23,7 @@ const ACCESSIBILITY_ROUTES = [
   "/typing",
   "/morse-code-chart",
   "/morse-code-printable-chart",
+  "/morse-code-printable-worksheets",
   "/morse-code-word-search-builder",
   "/morse-code-word-trainer",
   "/morse-code-audio-quiz",

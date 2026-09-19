@@ -2,10 +2,10 @@ import { expect, test, type Page } from "@playwright/test";
 
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
-const ROUTE = "/morse-code-printable-chart";
+const ROUTE = "/morse-code-printable-worksheets";
 const CANONICAL_URL = `https://www.morsewords.com${ROUTE}`;
 const DESCRIPTION =
-  "Download ready-made Morse code charts or build custom worksheets with words, sentences, optional answer keys, and PDF or image export for class or solo practice.";
+  "Create custom Morse worksheets with words, sentences, student and teacher fields, optional answer keys, and PDF or image export for class or solo practice.";
 
 async function gotoWorksheet(page: Page) {
   await blockExternalNetwork(page);
@@ -24,16 +24,32 @@ async function jsonLd(page: Page) {
 }
 
 test.describe("printable Morse worksheet identity", () => {
-  test("includes charts and worksheets while preserving the existing canonical URL", async ({
+  test("loads existing saved settings and presets after the route move", async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem("morsewords-printable-chart-settings-v6", JSON.stringify({
+        studentName: "Sam", teacherName: "Alex", customWords: "CAT, DOG", printMode: "worksheet", includeAnswerKey: true,
+      }));
+      localStorage.setItem("morsewords-printable-chart-presets-v3", JSON.stringify({
+        beginner: { worksheetTitle: "Saved beginner sheet", customWords: "SUN" },
+      }));
+    });
+    await gotoWorksheet(page);
+    await expect(page.getByLabel("Student name", { exact: false })).toHaveValue("Sam");
+    await expect(page.getByLabel("Teacher name", { exact: false })).toHaveValue("Alex");
+    await expect(page.getByLabel("Print format", { exact: false })).toHaveValue("worksheet");
+    await expect(page.getByLabel("Include answer key as the last page")).toBeChecked();
+    expect(await page.evaluate(() => JSON.parse(localStorage.getItem("morsewords-printable-chart-presets-v3")!).beginner.customWords)).toBe("SUN");
+  });
+  test("publishes a worksheet-specific identity on its new canonical URL", async ({
     page,
   }) => {
     await gotoWorksheet(page);
 
     await expect(page).toHaveTitle(
-      "Printable Morse Code Charts & Worksheets | MorseWords",
+      "Printable Morse Code Worksheets | Custom Practice Sheets | MorseWords",
     );
-    await expect(page.locator("h1")).toHaveText("Printable Morse Code Charts & Worksheets");
-    await expect(page.getByText("Printable charts and worksheets", { exact: true })).toBeVisible();
+    await expect(page.locator("h1")).toHaveText("Printable Morse Code Worksheets");
+    await expect(page.getByText("Custom practice sheets", { exact: true })).toBeVisible();
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
       CANONICAL_URL,
@@ -44,7 +60,7 @@ test.describe("printable Morse worksheet identity", () => {
     );
     await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
       "content",
-      /Printable Morse Code Charts & Worksheets/,
+      /Printable Morse Code Worksheets/,
     );
     await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
       "content",
@@ -72,8 +88,8 @@ test.describe("printable Morse worksheet identity", () => {
     await expect(page.locator('option[value="chart"]')).toHaveText(
       "Reference guide only",
     );
-    await expect(page.getByRole("link", { name: "Printable charts", exact: true })).toHaveAttribute("href", "#printable-charts");
-    await expect(page.locator("[data-printable-chart]")).toHaveCount(17);
+    await expect(page.getByRole("link", { name: "Browse printable Morse code charts", exact: true })).toHaveAttribute("href", "/morse-code-printable-chart");
+    await expect(page.locator("[data-printable-chart]")).toHaveCount(0);
   });
 
   test("publishes worksheet schema and breadcrumb wording", async ({ page }) => {
@@ -102,6 +118,7 @@ test.describe("printable Morse worksheet identity", () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
+    await page.waitForLoadState("networkidle");
 
     await page.getByRole("button", { name: "Open navigation" }).click();
     const navDialog = page.getByRole("dialog", { name: "Mobile navigation" });

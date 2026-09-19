@@ -20,7 +20,7 @@ import {
 const SITE_URL = "https://www.morsewords.com";
 const TARGET_ROUTES = [
   "/morse-code-chart",
-  "/morse-code-printable-chart",
+  "/morse-code-printable-worksheets",
   "/morse-code-reader",
   "/dictionary",
   "/morse-code-word-separator",
@@ -116,7 +116,7 @@ test.describe("remaining route consistency pass", () => {
     page,
   }) => {
     const chartSource = readRepoFile("app/routes/morse-code-chart.tsx");
-    const printableSource = readRepoFile("app/routes/morse-code-printable-chart.tsx");
+    const printableSource = readRepoFile("app/routes/morse-code-printable-worksheets.tsx");
     const punctuationEntries = Object.entries(TEXT_TO_MORSE).filter(
       ([character]) => !/^[A-Z0-9]$/.test(character),
     );
@@ -138,7 +138,7 @@ test.describe("remaining route consistency pass", () => {
       );
     }
 
-    await page.goto("/morse-code-printable-chart", {
+    await page.goto("/morse-code-printable-worksheets", {
       waitUntil: "domcontentloaded",
     });
     await waitForPageReady(page);

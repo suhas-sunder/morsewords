@@ -85,7 +85,7 @@ const ADDED_LINKS = [
   },
   {
     source: "/morse-code-alphabet",
-    href: "/morse-code-printable-chart",
+    href: "/morse-code-printable-worksheets",
     label: "Printable worksheet",
   },
   {

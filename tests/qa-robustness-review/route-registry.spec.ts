@@ -25,11 +25,11 @@ const CRITICAL_ALIAS_EXPECTATIONS = [
   [ROUTES.translatorAlias, ROUTES.home],
   [ROUTES.audioGeneratorAlias, ROUTES.audio],
   [ROUTES.morseCodeConverterAlias, ROUTES.home],
-  [ROUTES.morseCodeWorksheetAlias, ROUTES.printableChart],
-  [ROUTES.morseCodePracticeSheetAlias, ROUTES.printableChart],
-  [ROUTES.morseCodePracticeSheetsAlias, ROUTES.printableChart],
-  [ROUTES.morseCodeNumberSheetAlias, ROUTES.printableChart],
-  [ROUTES.morseCodeSheetNumbersAlias, ROUTES.printableChart],
+  [ROUTES.morseCodeWorksheetAlias, ROUTES.printableWorksheets],
+  [ROUTES.morseCodePracticeSheetAlias, ROUTES.printableWorksheets],
+  [ROUTES.morseCodePracticeSheetsAlias, ROUTES.printableWorksheets],
+  [ROUTES.morseCodeNumberSheetAlias, ROUTES.printableWorksheets],
+  [ROUTES.morseCodeSheetNumbersAlias, ROUTES.printableWorksheets],
   [ROUTES.listeningTestAlias, ROUTES.audioQuiz],
   [ROUTES.typingTestAlias, ROUTES.typing],
   [ROUTES.wordGameAlias, ROUTES.wordTrainer],
@@ -131,7 +131,7 @@ test.describe("route registry source of truth", () => {
       ROUTES.morseCodeNumberSheetAlias,
       ROUTES.morseCodeSheetNumbersAlias,
     ]) {
-      expect(REDIRECT_ALIASES[aliasPath]).toBe(ROUTES.printableChart);
+      expect(REDIRECT_ALIASES[aliasPath]).toBe(ROUTES.printableWorksheets);
       expect(REDIRECT_ALIASES[aliasPath]).not.toBe(ROUTES.printablePages);
     }
 
@@ -277,7 +277,7 @@ test.describe("route registry source of truth", () => {
       ROUTES.dictionary,
       ROUTES.wordTrainer,
       ROUTES.audio,
-      ROUTES.printableChart,
+      ROUTES.printableWorksheets,
     ]) {
       expect(pageHrefPaths, `${routePath} appears on home surfaces`).toContain(
         routePath,

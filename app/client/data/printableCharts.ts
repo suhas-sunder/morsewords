@@ -679,6 +679,7 @@ const chartDefinitions: Omit<PrintableChart, "url">[] = [
 
 export const PRINTABLE_CHARTS: readonly PrintableChart[] = chartDefinitions.map((chart) => ({
   ...chart,
+  placements: [...new Set(["/morse-code-printable-chart", ...chart.placements])],
   url: PRINTABLE_CHART_ASSET_BASE + "/" + encodeURIComponent(chart.key).replace(/\x27/g, "%27"),
 }));
 

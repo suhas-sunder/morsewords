@@ -12,6 +12,8 @@ const links = [
   ["Morse books", ROUTES.morseBooks],
   ["Morse audiobooks", ROUTES.morseAudiobooks],
   ["Printable pages", ROUTES.printablePages],
+  ["Printable Morse Code Charts", ROUTES.printableChart],
+  ["Printable Morse Code Worksheets", ROUTES.printableWorksheets],
   ["Morse Code by Language", ROUTES.morseCodeByLanguage],
   ["HTML sitemap", ROUTES.sitemap],
   ["Contact and support", ROUTES.contact],
