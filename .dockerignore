@@ -25,3 +25,4 @@ README.md
 compose.production.yml
 Caddyfile
 .digitalocean-last-image-tag
+ai-issues/
