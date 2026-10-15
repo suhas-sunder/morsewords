@@ -6,6 +6,15 @@
 **Code-tree baseline:** 40b83a2969a54d3c10c7748a259b104ccd1674cc
 **Status:** RESEARCH AND RELEASE PLANNING ONLY. No production implementation, SEO directive, sitemap, existing issue, or content changed.
 
+## Owner directive: AdSense placeholder overlap prevention (all ad-supported sites)
+
+**PRODUCTION-SAFETY REQUIREMENT — overrides cosmetic ad-placeholder proposals in this report.** The owner previously observed a serious production failure: loading/empty-ad placeholders visibly **overlaid actual rendered advertisements**, despite agent reports claiming the UI was fixed. Such overlap creates material advertising-account/policy risk. The owner's deliberate protective behavior is to **hide all placeholders once the first real advertisement renders**, accepting somewhat less polished empty-space UX in exchange for a safer production state. This policy applies across the owner's ad-supported sites, not just this repository.
+
+- **Preserve the existing global first-ad-render → hide-placeholders safety behavior** wherever placeholders exist. Do **not** reintroduce per-slot placeholders, placeholder overlays, independently reappearing fallbacks, or “fix” empty ad gaps by undoing the global suppression. Do not change ad fill detection, race handling, hydration transitions, or sitewide hiding as an incidental styling/SEO improvement.
+- Any ad layout/spacing adjustment is **investigation-only** unless it can demonstrably retain this invariant. Never overlay placeholders on creatives, permit ads to be confused with primary actions, cover a rendered ad with an element, or allow layout collapse/re-expansion to shift active creatives into controls. A genuinely absent/disabled ad may have unused wrapper spacing investigated, but speculative changes to temporarily empty or slow-loading ad slots are prohibited.
+- **Approval gate:** request an explicit owner decision before modifying placeholder display policy. To propose an alternative, first obtain real production-equivalent proof across ads blocked, pending, unfilled, first fill, multiple fills, delayed fills, navigation, resize, mobile/desktop, and site theme states; include screenshots/video/DOM stacking checks, actual ad-network behavior, and a rollback. Passing local mocks or an agent PASS report alone is **not** enough. Never represent any unverified implementation as guaranteed AdSense-compliant.
+- In release plans, prioritize **ad-account safety over minor whitespace/cosmetic gains**. This requirement does not prevent unrelated SEO/content/tool work; avoid touching the ad lifecycle for those tasks.
+
 ## Executive diagnosis
 
 MorseWords is already a substantive product: two-way Morse translation, standalone encoding/decoding, reading, hearing and exporting Morse audio, MP3/video, audio decoding, charts, technical standards and other alphabets, flash/visual practice, quizzes, typing, teaching aids, printables, books and Morse audiobooks. This audit is about a search-visibility collapse rather than proposing routine aesthetic changes, generic generated content, or a second copy of existing features.
@@ -138,7 +147,7 @@ MorseWords discusses “three spaces between letters” and “seven spaces betw
 ### MW-T10. Ads timing and page-experience check, without post hoc blame
 **P2.**
 
-First July7 AdSense source commit occurred close to or after the reported cliff onset. Check actual deployed chronology before attributing cause. Measure mobile first viewport, ad placeholders, LCP/CLS/INP, blocked/unfilled ads, interaction time-to-first Morse result and sitewide content accessibility. No ad-position or RPM “fix” in search-recovery stage unless verified. Keep creatives separate from tool actions.
+First July7 AdSense source commit occurred close to or after the reported cliff onset. Check actual deployed chronology before attributing cause. Measure mobile first viewport, LCP/CLS/INP, blocked/unfilled ads, interaction time-to-first Morse result and sitewide content accessibility. **The current all-placeholders-disappear-after-first-real-ad-render rule is a deliberate owner-enforced safety workaround for verified production placeholder-over-creative overlays, not a UX defect.** Preserve it: never re-enable per-slot placeholders or allow any placeholder to cover a live ad for the sake of tidier spacing. Any proposed alternative requires the explicit owner approval and production-state acceptance gate above. No ad-position or RPM “fix” in search-recovery stage unless verified. Keep creatives separate from tool actions.
 
 ### MW-T11. Real sources, truthful expertise and useful provenance
 **P2 editorial trust.**
