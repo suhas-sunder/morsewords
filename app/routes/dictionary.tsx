@@ -369,12 +369,7 @@ export default function DictionaryRoute() {
  ]}
  />
  </PageHero>
- <InternationalMorseSourceNote includesExtensions />
- <p className="mt-3 max-w-[68ch] text-sm leading-relaxed text-slate-600" data-testid="dictionary-character-source">
-   A–Z and 0–9 follow ITU-R M.1677-1, Annex 1, Part I, sections 1.1.1 and 1.1.2.
-   Punctuation follows section 1.1.3 where listed. Inline notes identify compatibility
-   extensions and patterns also used as operating signals.
- </p>
+ <InternationalMorseSourceNote characterOverview />
 
  <div className="mw-static-panel mb-4 mt-3 rounded-xl bg-[#fffdf8]/80 p-4">
  <div className="mb-2 flex flex-wrap items-center justify-between gap-3">

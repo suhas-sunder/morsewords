@@ -48,7 +48,8 @@ test("dictionary filtering and copy preserve punctuation while exposing scope", 
   await page.getByRole('button', { name: 'Clear filter' }).click();
   await page.locator('#dictionary-filter').fill('Letter A');
   await expect(page.locator('[data-mw-reference-character="A"]')).toHaveCount(0);
-  await expect(page.getByTestId('dictionary-character-source')).toContainText('sections 1.1.1 and 1.1.2');
+  await expect(page.getByTestId('international-morse-source-note')).toHaveCount(1);
+  await expect(page.getByTestId('international-morse-source-note')).toContainText('sections 1.1.1 and 1.1.2');
   await page.getByRole('button', { name: 'Clear filter' }).click();
   expect(await page.locator('[data-mw-reference-character]:visible').count()).toBeLessThanOrEqual(7);
   await page.locator('#dictionary-filter').fill('Plus');
