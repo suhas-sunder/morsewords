@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   countTextWords,
   formatMorseWords,
+  morseToText,
   splitMorseWords,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
@@ -21,12 +22,16 @@ import {
   toolControlButtonClass,
 } from "~/client/components/shared/ToolWorkspace";
 import {
+  ActionButton,
+  ActionRow,
   CopyActionButton,
   copyTextToClipboard,
 } from "~/client/components/shared/ActionControls";
 
 type OutputSep = "standard" | "slash" | "pipe" | "newline";
 type Mode = "normalizeMorse" | "englishToMorse";
+
+const countLabel = (count: number, label: string) => `${count} ${label}${count === 1 ? "" : "s"}`;
 
 function formatMorse(words: string[][], sep: OutputSep): string {
   const wordSeparatorByMode: Record<OutputSep, string> = {
@@ -63,6 +68,10 @@ export default function WordSeparatorTool() {
     () => formatMorse(morseWords, sep),
     [morseWords, sep],
   );
+
+  const analysis = React.useMemo(() => morseToText(morseInput, { returnResult: true }), [morseInput]);
+  const unknownCount = analysis.issues.filter((issue) => issue.type === "unknown-morse-token").length;
+  const ignoredCount = analysis.issues.filter((issue) => issue.type === "invalid-morse-character").length;
 
   const englishOut = React.useMemo(() => {
     const effectiveSep: Exclude<OutputSep, "newline"> =
@@ -175,7 +184,7 @@ export default function WordSeparatorTool() {
           label={mode === "normalizeMorse" ? "Paste Morse" : "English input"}
           badge={
             mode === "normalizeMorse"
-              ? `Words: ${wordCount} | Letters: ${letterCount}`
+              ? `Words: ${wordCount} | Groups: ${letterCount}`
               : `Words: ${wordCount}`
           }
         >
@@ -255,6 +264,41 @@ export default function WordSeparatorTool() {
           </div>
         </ToolOutputPanel>
       </div>
+
+      {mode === "normalizeMorse" && (
+        <section className="mt-7" aria-labelledby="spacing-analysis-title">
+          <h2 id="spacing-analysis-title" className="text-2xl font-extrabold text-sky-950">What your spacing means</h2>
+          <p className="mt-3 text-slate-700" role="status" aria-live="polite">
+            {countLabel(morseWords.length, "word")} · {countLabel(letterCount, "group")} · {countLabel(unknownCount, "unknown group")} · {countLabel(ignoredCount, "ignored character")}
+          </p>
+          {ignoredCount > 0 && <p className="mt-3 max-w-[68ch] break-words text-sm leading-relaxed text-slate-700">Ignored input characters: <strong>{analysis.invalidChars?.slice(0, 20).map((character) => JSON.stringify(character)).join(", ")}{(analysis.invalidChars?.length ?? 0) > 20 ? " …" : ""}</strong>. Check the original before copying: removing an unsupported character can join marks that were not meant to be one group.</p>}
+          {morseWords.length ? (
+            <div className="mw-static-surface mt-4 overflow-hidden rounded-xl px-4 py-2">
+              <table className="w-full table-fixed text-left text-sm">
+                <caption className="sr-only">Parsed Morse words and their interpretation</caption>
+                <thead><tr className="text-sky-950"><th scope="col" className="w-14 py-3 pr-2">Word</th><th scope="col" className="px-2 py-3">Morse groups</th><th scope="col" className="py-3 pl-2">Reads as</th></tr></thead>
+                <tbody>{morseWords.slice(0, 12).map((word, index) => {
+                  const shown = word.slice(0, 24);
+                  const visibleMorse = shown.join(" ");
+                  return <tr key={index} className="border-t border-slate-200 text-slate-700"><th scope="row" className="py-3 pr-2 align-top">{index + 1}</th><td className="break-all px-2 py-3 align-top font-mono">{visibleMorse.slice(0, 240)}{visibleMorse.length > 240 ? " …" : ""}{word.length > shown.length ? ` … (${word.length - shown.length} more groups)` : ""}</td><td className="break-all py-3 pl-2 align-top font-mono">{morseToText(shown.join(" "))}{word.length > shown.length ? " …" : ""}</td></tr>;
+                })}</tbody>
+              </table>
+            </div>
+          ) : <p className="mt-3 text-sm text-slate-700">Paste some dots and dashes to inspect their boundaries.</p>}
+          <p className="mt-3 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+            {morseWords.length > 12 || morseWords.some((word) => word.length > 24 || word.join(" ").length > 240) ? "The table previews the first 12 words, up to 24 groups and 240 Morse characters per word; counts and copied output include the full input. " : ""}
+            A question mark in this interpretation marks an unknown group; the actual question-mark pattern <span className="font-mono">..--..</span> also reads as ?. Unknown groups remain in the formatted Morse output.
+          </p>
+          <p className="mt-3 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+            Formatting cannot recover missing letter boundaries. <span className="font-mono">... --- ...</span> reads as SOS, while <span className="font-mono">...---...</span> is one continuous group. For ordinary text, restore the gaps from your source; a continuous SOS can instead be an intentional distress signal.
+          </p>
+          <ActionRow className="mt-4">
+            <ActionButton size="sm" onClick={() => setMorseInput("... --- ... / .... . .-.. .--.")}>Well-spaced SOS HELP</ActionButton>
+            <ActionButton size="sm" onClick={() => setMorseInput("...---...")}>Missing letter gaps</ActionButton>
+            <ActionButton size="sm" onClick={() => setMorseInput("... / ........")}>Unknown group</ActionButton>
+          </ActionRow>
+        </section>
+      )}
 
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
         {[
