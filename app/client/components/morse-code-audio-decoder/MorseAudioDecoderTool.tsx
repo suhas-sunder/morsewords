@@ -20,6 +20,7 @@ import {
   ToolPanel,
 } from "~/client/components/shared/ToolWorkspace";
 import { clampNumber } from "~/client/components/shared/settingsStorage";
+import { DEFAULT_SHARED_AUDIO_PREFERENCES } from "~/client/components/shared/audioPreferenceStorage";
 import {
   analyzeSamplesToMorse,
   AUDIO_DECODER_LIMITS,
@@ -58,6 +59,7 @@ const EMPTY_RESULT: AudioDecodeResult = {
 type DecodePhase = "idle" | "ready" | "processing" | "done" | "error";
 
 export default function MorseAudioDecoderTool() {
+  const [hydrated, setHydrated] = React.useState(false);
   const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const [phase, setPhase] = React.useState<DecodePhase>("idle");
   const [result, setResult] = React.useState<AudioDecodeResult>(EMPTY_RESULT);
@@ -74,12 +76,28 @@ export default function MorseAudioDecoderTool() {
   const inputRef = React.useRef<HTMLInputElement | null>(null);
   const decodeJobRef = React.useRef(0);
   const mountedRef = React.useRef(false);
+  const sampleAbortRef = React.useRef<AbortController | null>(null);
+  const previewRef = React.useRef<HTMLAudioElement | null>(null);
+  const [sampleLoading, setSampleLoading] = React.useState(false);
+  const [previewUrl, setPreviewUrl] = React.useState("");
+
+  React.useEffect(() => {
+    if (!selectedFile || !validateAudioDecoderFile(selectedFile).ok) {
+      setPreviewUrl("");
+      return;
+    }
+    const url = URL.createObjectURL(selectedFile);
+    setPreviewUrl(url);
+    return () => URL.revokeObjectURL(url);
+  }, [selectedFile]);
 
   React.useEffect(() => {
     mountedRef.current = true;
+    setHydrated(true);
     return () => {
       mountedRef.current = false;
       decodeJobRef.current += 1;
+      sampleAbortRef.current?.abort();
     };
   }, []);
 
@@ -90,6 +108,9 @@ export default function MorseAudioDecoderTool() {
     : "#";
 
   const setNextFile = React.useCallback((file: File | null) => {
+    sampleAbortRef.current?.abort();
+    setSampleLoading(false);
+    previewRef.current?.pause();
     decodeJobRef.current += 1;
     setSelectedFile(file);
 
@@ -115,7 +136,38 @@ export default function MorseAudioDecoderTool() {
     );
   }, []);
 
+  const loadSample = React.useCallback(async () => {
+    sampleAbortRef.current?.abort();
+    const controller = new AbortController();
+    sampleAbortRef.current = controller;
+    setSampleLoading(true);
+    try {
+      const { renderMorseAudioBlob } = await import("~/client/components/shared/export/morseAudioExport");
+      const defaults = DEFAULT_SHARED_AUDIO_PREFERENCES;
+      const blob = await renderMorseAudioBlob({
+        morse: "... --- ... / .... . .-.. .--.",
+        signal: controller.signal,
+        settings: {
+          format: "wav", charWpm: defaults.charWpm, farnsworthWpm: defaults.charWpm,
+          pitch: defaults.toneHz, volume: defaults.volume, tonePreset: defaults.preset,
+          attackMs: defaults.attackMs, releaseMs: defaults.releaseMs,
+          sampleRate: 22050, leadInMs: 200, tailPaddingMs: 200,
+        },
+      });
+      if (controller.signal.aborted || !mountedRef.current) return;
+      setNextFile(new File([blob], "morsewords-sos-help.wav", { type: "audio/wav" }));
+      if (inputRef.current) inputRef.current.value = "";
+    } catch {
+      if (controller.signal.aborted || !mountedRef.current) return;
+      setPhase("error");
+      setResult(createAudioDecodeResult("unsupported-file", ["The sample could not be prepared. Try again or choose a recording from your device."]));
+    } finally {
+      if (mountedRef.current && sampleAbortRef.current === controller) setSampleLoading(false);
+    }
+  }, [setNextFile]);
+
   const processFile = React.useCallback(async () => {
+    previewRef.current?.pause();
     const file = selectedFile;
     const jobId = decodeJobRef.current + 1;
     decodeJobRef.current = jobId;
@@ -266,7 +318,7 @@ export default function MorseAudioDecoderTool() {
   const showErrorMessage = phase === "error" && statusMessage.trim().length > 0;
 
   return (
-    <section className="mt-5 sm:mt-6" aria-label="Morse audio decoder tool">
+    <section className="mt-5 sm:mt-6" aria-label="Morse audio decoder tool" data-mw-audio-decoder-ready={hydrated ? "true" : "false"}>
       <div className="grid gap-4 lg:grid-cols-[minmax(0,0.88fr)_minmax(360px,0.72fr)] lg:items-stretch">
         <ToolPanel label="Upload Morse audio" badge="File">
           <div className="px-4 pb-4">
@@ -342,12 +394,25 @@ export default function MorseAudioDecoderTool() {
             </div>
 
             <div className="mt-4">
+              <ActionButton onClick={loadSample} disabled={sampleLoading || phase === "processing"}>
+                {sampleLoading ? "Preparing sample..." : "Try a clean sample"}
+              </ActionButton>
+              <p className="mt-2 max-w-[58ch] text-sm leading-relaxed text-slate-700">
+                The sample sends SOS HELP at {DEFAULT_SHARED_AUDIO_PREFERENCES.charWpm} WPM.
+                Listen, then choose Decode audio to test the same detector used for your recordings.
+              </p>
+              {previewUrl && (
+                <div className="my-4">
+                  <p className="mb-2 text-sm font-semibold text-sky-950">Listen to selected recording</p>
+                  <audio ref={previewRef} aria-label="Listen to selected recording" controls preload="metadata" src={previewUrl} className="w-full" />
+                </div>
+              )}
               {liveStatusMessage && (
                 <p role="status" aria-live="polite" className="sr-only">
                   {liveStatusMessage}
                 </p>
               )}
-              <ActionRow>
+              <ActionRow className="mt-4">
                 <ActionButton
                   onClick={processFile}
                   disabled={phase === "processing"}
