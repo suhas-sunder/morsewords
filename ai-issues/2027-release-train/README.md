@@ -11,3 +11,7 @@ Run gates from a clean checkout with `npm ci`. Current local gate requires `npm 
 `npm run test:core-product` checks the twenty named core owners in desktop and 390px mobile Chromium. Existing tests continue to own deeper playback/export/preview/ad behavior. Raw SSR and a successful build do not replace these browser tests.
 
 Preview rules: use only deploy previews/branch previews, record exact SHA, and do not infer publication from a successful Git push. If Netlify does not create a preview for a stacked base branch, use local production-equivalent validation and state the limitation. No auto-merge or weekly production deployment is authorized.
+
+## Completed tranche A
+
+All eight weekly branches are pushed as stacked draft PRs #2–#9 and remain unmerged. Read [FINAL-REVIEW.md](FINAL-REVIEW.md) for the complete A–H report, exact implementation SHAs, all 52 roadmap rows, preview evidence, limits and owner decisions. W01 has an exact-SHA ready Netlify preview; W02–W08 use the documented local Netlify-equivalent fallback because no deployments/checks appeared for those stacked PRs. The final W08 documentation-only commit reconciles the ledger without changing the tested application. W09 is not started.

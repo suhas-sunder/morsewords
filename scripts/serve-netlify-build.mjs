@@ -4,10 +4,11 @@ import { pathToFileURL } from "node:url";
 import path from "node:path";
 
 /** Local-only harness for the actual adapter output. Never a deployment entrypoint. */
-export async function startNetlifyBuildServer(port = 0) {
+export async function startNetlifyBuildServer(port = 0, { configure } = {}) {
   process.env.NODE_ENV ??= "production";
   const { default: handler } = await import(pathToFileURL(path.resolve("build/server/server.js")).href);
   const app = express();
+  configure?.(app);
   app.use(express.static("build/client"));
   app.use(async (req, res) => {
     try {
