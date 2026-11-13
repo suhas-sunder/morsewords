@@ -1022,7 +1022,7 @@ function MorseBookRuntimeState({
   const rightsCopy = summary ? bookRightsBasisCopy(summary.source) : null;
 
   return (
-    <main className="mx-auto w-full max-w-[1120px] px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+    <main className="mx-auto w-full max-w-[1120px] px-4 pb-12 pt-2 sm:px-6 sm:pt-4 lg:px-8">
       <ToolHero
         eyebrow={isAudiobook ? "Morse audiobook" : "Morse book"}
         title={title}
@@ -1035,7 +1035,7 @@ function MorseBookRuntimeState({
         }
       />
       <section
-        className="mw-static-surface mt-6 rounded-xl p-5"
+        className={`mw-static-surface mt-6 rounded-xl p-5${status === "loading" ? " min-h-[min(44rem,75svh)] sm:min-h-[min(36rem,70svh)]" : ""}`}
         aria-live="polite"
         data-nosnippet=""
         data-testid={

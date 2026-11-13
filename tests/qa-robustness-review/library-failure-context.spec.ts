@@ -67,6 +67,7 @@ for (const mode of ["books", "audiobooks"]) {
     expect(ssr.canonical).toBe(`https://www.morsewords.com/morse-code-${mode}/${slug}`);
     expect(ssr.h1s).toBe(1);
     await expect(page.getByTestId("morse-book-load-error")).toBeVisible();
+    await expect(page.getByTestId("morse-book-load-error")).toHaveCSS("min-height", "0px");
     expect((await new AxeBuilder({ page }).include('[data-testid="morse-book-load-error"]').include('[data-testid="morse-book-failure-context"]').analyze()).violations).toEqual([]);
     await expect(page.getByTestId("morse-book-failure-context").getByRole("link", { name: /Source:/ })).toHaveAttribute("href", "https://www.gutenberg.org/ebooks/11");
     await expect(page.getByRole("link", { name: mode === "books" ? "Translate your own text" : "Make Morse audio from your text" })).toHaveAttribute("href", mode === "books" ? "/morse-code-book-translator" : "/audio");
