@@ -17,6 +17,7 @@ import { getMorseBookContextTitle } from "~/client/data/morseBookCollectionConte
 import { morseBookAuthorSchemaPeople } from "~/client/data/morseBookDisplay";
 import { absoluteUrl } from "~/client/data/routes";
 import { SITE_URL } from "~/client/seo";
+import { morseAudiobookDescription } from "~/client/data/morseAudiobookMetadata";
 
 const DUPLICATE_DISCOVERABLE_BOOK_TITLES = new Set(
   [...getDiscoverableMorseBookSummaries().reduce((counts, book) => {
@@ -41,11 +42,11 @@ function audiobookMetaTitle(book: { slug: string; title: string }) {
   return `${getMorseBookContextTitle(book)}${duplicateTitleVariant(book)} Live Morse Player | MorseWords`;
 }
 
-function audiobookMetaDescription(book: { slug: string; title: string }) {
+function audiobookMetaDescription(book: { slug: string; title: string }, reviewedDescription?: string | null) {
   const variant = duplicateTitleVariant(book).replace(/[()]/g, "").trim();
   const contextTitle = getMorseBookContextTitle(book);
   const title = variant ? `${contextTitle} ${variant}` : contextTitle;
-  return `Listen to ${title} as a live Morse audiobook with chapter selection, playback controls, and MP3 download.`;
+  return morseAudiobookDescription(title, reviewedDescription);
 }
 
 async function loadMorseBookSeoSummary(slug: string) {
@@ -99,10 +100,7 @@ export const meta: Route.MetaFunction = ({ data }) => {
   const path = morseAudiobookPath(book.slug);
   const canonical = absoluteUrl(path);
   const seoSummary = data.seoSummary;
-  const fallbackDescription =
-    seoSummary?.description ??
-    `Live browser-generated Morse player controls for ${getMorseBookContextTitle(book)}.`;
-  const description = audiobookMetaDescription(book) || fallbackDescription;
+  const description = audiobookMetaDescription(book, seoSummary?.description);
   return [
     { title: audiobookMetaTitle(book) },
     {
@@ -125,10 +123,7 @@ export default function MorseAudiobookRoute({
   const contextTitle = getMorseBookContextTitle(book);
   const author = morseBookAuthorSchemaPeople(book.author);
   const seoSummary = loaderData.seoSummary;
-  const fallbackDescription =
-    seoSummary?.description ??
-    `Live browser-generated Morse player controls for ${contextTitle}.`;
-  const description = audiobookMetaDescription(book) || fallbackDescription;
+  const description = audiobookMetaDescription(book, seoSummary?.description);
   const detailJsonLd = [
     {
       "@context": "https://schema.org",
