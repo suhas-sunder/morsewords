@@ -101,13 +101,13 @@ export default function WordSeparatorTool() {
   const sepOptions: Array<[string, OutputSep]> =
     mode === "normalizeMorse"
       ? [
-          ["7 spaces", "standard"],
+          ["7-space text notation", "standard"],
           ["/", "slash"],
           ["|", "pipe"],
           ["new lines", "newline"],
         ]
       : [
-          ["7 spaces", "standard"],
+          ["7-space text notation", "standard"],
           ["/", "slash"],
           ["|", "pipe"],
         ];
@@ -129,7 +129,7 @@ export default function WordSeparatorTool() {
         </h1>
         <p className={HERO_LEAD_CLASS}>
           Normalize Morse word breaks and format English to Morse separators
-          using <strong>7 spaces</strong>, <strong>/</strong>,{" "}
+          using <strong>7-space text notation</strong>, <strong>/</strong>,{" "}
           <strong>|</strong>, or <strong>new lines</strong>.
         </p>
       </div>
@@ -303,8 +303,8 @@ export default function WordSeparatorTool() {
       <div className="mt-7 grid gap-4 sm:grid-cols-3">
         {[
           [
-            "Standard spacing",
-            "Letters are separated by a single space. Words are separated by 7 spaces.",
+            "MorseWords text spacing",
+            "This tool writes one literal space between letter groups and seven between words. These are text separators, not timed pauses.",
           ],
           [
             "Slash separator",
@@ -326,6 +326,11 @@ export default function WordSeparatorTool() {
           </div>
         ))}
       </div>
+      <p className="mt-4 max-w-[68ch] text-sm leading-relaxed text-slate-700">
+        In transmitted Morse, the standard silence between characters is three dot
+        units; between words it is seven dot units. A count of typed spaces does
+        not set audio timing. Use the timing controls when you play Morse aloud.
+      </p>
       </div>
     </section>
   );

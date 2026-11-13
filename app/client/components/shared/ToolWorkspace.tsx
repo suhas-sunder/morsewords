@@ -18,7 +18,7 @@ export const HOME_TOOL_EXAMPLES = [
 ];
 
 export const TOOL_SPACING_HELPER =
-  "3 spaces = letters · 7 = words · / = word break";
+  "Text: 3 spaces = letters · 7 = words · / = word break";
 
 const focusClass =
   "mw-focus-ring focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500";
