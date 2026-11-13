@@ -309,6 +309,7 @@ async function openAudioDecoder(page: Page) {
   await page.goto(CANONICAL_PATH, { waitUntil: "domcontentloaded" });
   await expect(page.locator("h1")).toHaveText("Morse Code Audio Decoder");
   await waitForRouteReady(page);
+  await expect(page.locator('[data-mw-audio-decoder-ready="true"]')).toBeVisible();
 }
 
 async function installDelayedAudioContextStub(page: Page) {
