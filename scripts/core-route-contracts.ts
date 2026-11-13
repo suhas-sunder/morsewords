@@ -1,0 +1,23 @@
+/** Explicit product owners: a moved or blank route must fail the gate. */
+export const CORE_ROUTE_CONTRACTS = [
+  ["/", "Morse Code Translator", "textarea"],
+  ["/audio", "Morse Code Audio Generator", "textarea"],
+  ["/practice", "Morse Code Practice", "input"],
+  ["/morse-code-sound-generator", "Morse Code Sound Generator", "textarea"],
+  ["/morse-code-mp3-generator", "Morse Code MP3 Generator", "textarea"],
+  ["/morse-code-decoder", "Morse Code Decoder", "textarea"],
+  ["/morse-code-encoder", "Morse Code Encoder", "textarea"],
+  ["/morse-code-audio-decoder", "Morse Code Audio Decoder", "input[type=file]"],
+  ["/morse-code-alphabet", "Morse Code Alphabet", "button"],
+  ["/morse-code-numbers", "Morse Code Numbers", "button"],
+  ["/morse-code-punctuation", "Morse Code Punctuation", "button"],
+  ["/morse-code-word-separator", "Morse code word separator", "textarea"],
+  ["/dictionary", "Morse Code Dictionary", "input"],
+  ["/learn-morse-code", "Learn Morse Code", "a[href='/morse-code-audio-practice']"],
+  ["/morse-code-timing", "Morse Code Timing", "a[href='/audio']"],
+  ["/morse-code-prosigns", "Morse Code Prosigns", "button"],
+  ["/morse-code-q-codes", "Morse Code Q-Codes", "button"],
+  ["/morse-code-printable-chart", "Printable Morse Code Charts", "select"],
+  ["/morse-code-printable-worksheets", "Printable Morse Code Worksheets", "button"],
+  ["/morse-code-by-language", "Morse Code by Language", "a[href='/morse-code-by-language/japanese']"],
+] as const;
