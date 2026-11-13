@@ -1,6 +1,7 @@
 import { TEXT_TO_MORSE } from "~/client/components/shared/morseUtils";
 
 export type ReferenceItem = {
+  referenceCharacter?: string;
   label: string;
   morse: string;
   description: string;
@@ -58,6 +59,7 @@ const punctuationDefinitions = [
 
 export const PUNCTUATION: ReferenceItem[] = punctuationDefinitions.map(
   ([label, character, description, example]) => ({
+      referenceCharacter: character,
     label,
     morse: TEXT_TO_MORSE[character],
     description,

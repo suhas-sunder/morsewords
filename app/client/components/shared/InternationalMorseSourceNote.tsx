@@ -1,7 +1,9 @@
 export default function InternationalMorseSourceNote({
   className = "",
+  includesExtensions = false,
 }: {
   className?: string;
+  includesExtensions?: boolean;
 }) {
   return (
     <p
@@ -10,8 +12,7 @@ export default function InternationalMorseSourceNote({
         .filter(Boolean)
         .join(" ")}
     >
-      MorseWords is not an official standards body. These mappings are
-      referenced against{" "}
+      MorseWords is not an official standards body. {includesExtensions ? "The written-character labels distinguish ITU entries from compatibility extensions supported by this tool. Compare their scope with " : "These mappings are referenced against "}
       <a
         href="https://www.itu.int/rec/R-REC-M.1677-1-200910-I/"
         className="cursor-pointer font-semibold text-sky-900 underline-offset-4 hover:underline"

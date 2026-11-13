@@ -123,15 +123,17 @@ export default function MorseCodePunctuation() {
           />
         </PageHero>
 
-        <InternationalMorseSourceNote />
+        <InternationalMorseSourceNote includesExtensions />
 
         <SectionCard
           eyebrow="Lookup table"
           title="Morse punctuation chart"
+          layout="stacked"
           description="MorseWords supports these punctuation marks in the translator, decoder, audio generator, and worksheet tools. Specialized or local variants may differ, so check the context before treating an uncommon symbol as universal."
         >
           <ReferenceTable
             items={PUNCTUATION}
+            showSources
             onPlay={(morse) => playMorsePattern(morse)}
           />
         </SectionCard>

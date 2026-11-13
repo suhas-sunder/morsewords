@@ -45,7 +45,7 @@ const REFERENCE_ROUTES = [
   },
   {
     path: "/morse-code-printable-worksheets",
-    heading: "Printable Morse Code Worksheet",
+    heading: "Printable Morse Code Worksheets",
     referenceHeading: "Build the printable",
   },
 ] as const;
@@ -105,7 +105,9 @@ test.describe("reference-page authority and canonical mappings", () => {
         const sourceNote = page.getByTestId("international-morse-source-note");
         await expect(sourceNote).toBeVisible();
         await expect(sourceNote).toContainText(
-          "MorseWords is not an official standards body. These mappings are referenced against ITU-R Recommendation M.1677-1, International Morse code.",
+          route.path === "/morse-code-punctuation"
+            ? "MorseWords is not an official standards body. The written-character labels distinguish ITU entries from compatibility extensions supported by this tool. Compare their scope with ITU-R Recommendation M.1677-1, International Morse code."
+            : "MorseWords is not an official standards body. These mappings are referenced against ITU-R Recommendation M.1677-1, International Morse code.",
         );
         await expect(
           sourceNote.getByRole("link", { name: "ITU-R Recommendation M.1677-1" }),
