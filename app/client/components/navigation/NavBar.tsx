@@ -21,6 +21,7 @@ import {
 } from "~/client/utils/searchNormalization";
 import DisplaySettingsToggle from "./DisplaySettingsToggle";
 import ThemeToggle from "./ThemeToggle";
+import { useDialogFocus } from "../shared/useDialogFocus";
 
 type NavItem = {
   label: string;
@@ -31,6 +32,7 @@ type NavItem = {
 
 type NavGroup = {
   title: string;
+  includeTitleInSearch?: boolean;
   items: NavItem[];
   itemGridClassName?: string;
   sectionClassName?: string;
@@ -264,6 +266,11 @@ const MORE_GROUPS: NavGroup[] = [
         label: "Morse code decoder",
         href: ROUTES.decoder,
         description: "Decode dots, dashes, spaces, and separators.",
+      },
+      {
+        label: "Morse audio decoder",
+        href: ROUTES.audioDecoder,
+        description: "Upload a recording of Morse tones to recover dots, dashes, and text.",
         searchKeywords:
           "Audio decoder Morse code audio decoder audio to text sound decoder MP3 decoder WAV decoder",
       },
@@ -346,6 +353,7 @@ const MORE_GROUPS: NavGroup[] = [
   },
   {
     title: "Books and audiobooks",
+    includeTitleInSearch: false,
     sectionClassName: "lg:col-span-3 xl:col-span-5",
     itemGridClassName: "mt-2 grid gap-1.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5",
     items: [
@@ -456,6 +464,12 @@ export default function NavBar(props: {
   const moreWrapRef = React.useRef<HTMLDivElement | null>(null);
   const moreDialogRef = React.useRef<HTMLDivElement | null>(null);
   const moreSearchRef = React.useRef<HTMLInputElement | null>(null);
+  const moreTriggerRef = React.useRef<HTMLButtonElement | null>(null);
+  const mobileDialogRef = React.useRef<HTMLDivElement | null>(null);
+  const mobileTriggerRef = React.useRef<HTMLButtonElement | null>(null);
+  const mobileSearchRef = React.useRef<HTMLInputElement | null>(null);
+  useDialogFocus({ open: moreOpen, dialogRef: moreDialogRef, triggerRef: moreTriggerRef, initialFocusRef: moreSearchRef, onClose: () => setMoreOpen(false) });
+  useDialogFocus({ open, dialogRef: mobileDialogRef, triggerRef: mobileTriggerRef, initialFocusRef: mobileSearchRef, modal: true, onClose: () => setOpen(false) });
 
   React.useEffect(() => {
     setOpen(false);
@@ -476,9 +490,11 @@ export default function NavBar(props: {
   }, [open]);
 
   React.useEffect(() => {
-    if (!moreOpen) return;
-    window.setTimeout(() => moreSearchRef.current?.focus(), 0);
-  }, [moreOpen]);
+    const desktop = window.matchMedia("(min-width: 1180px)");
+    const closeHiddenMobileDialog = () => { if (desktop.matches) setOpen(false); };
+    desktop.addEventListener("change", closeHiddenMobileDialog);
+    return () => desktop.removeEventListener("change", closeHiddenMobileDialog);
+  }, []);
 
   React.useEffect(() => {
     if (!moreOpen) return;
@@ -497,10 +513,6 @@ export default function NavBar(props: {
       }
 
       setMoreOpen(false);
-    }
-
-    function onDocKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setMoreOpen(false);
     }
 
     function onPageScroll(e: Event) {
@@ -525,7 +537,6 @@ export default function NavBar(props: {
     }
 
     document.addEventListener("mousedown", onDocMouseDown);
-    document.addEventListener("keydown", onDocKeyDown);
     const scrollCloseTimer = window.setTimeout(() => {
       window.addEventListener("scroll", onPageScroll, { passive: true });
     }, 150);
@@ -533,7 +544,6 @@ export default function NavBar(props: {
     return () => {
       window.clearTimeout(scrollCloseTimer);
       document.removeEventListener("mousedown", onDocMouseDown);
-      document.removeEventListener("keydown", onDocKeyDown);
       window.removeEventListener("scroll", onPageScroll);
     };
   }, [moreOpen]);
@@ -548,7 +558,7 @@ export default function NavBar(props: {
         if (isActive(pathname, item.href)) return false;
         if (!normalizedQuery) return true;
 
-        const haystack = `${group.title} ${item.label} ${
+        const haystack = `${group.includeTitleInSearch === false ? "" : group.title} ${item.label} ${
           item.description ?? ""
         } ${item.searchKeywords ?? ""} ${item.href}`;
         return matchesNormalizedSearch(haystack, normalizedQuery);
@@ -634,6 +644,7 @@ export default function NavBar(props: {
 
             <div ref={moreWrapRef} className="relative">
               <button
+                ref={moreTriggerRef}
                 type="button"
                 onClick={() => setMoreOpen((v) => !v)}
                 className={
@@ -759,6 +770,7 @@ export default function NavBar(props: {
             ) : null}
 
             <button
+              ref={mobileTriggerRef}
               type="button"
               onClick={() => setOpen((v) => !v)}
               className="mw-nav-link inline-flex shrink-0 cursor-pointer items-center justify-center px-3 py-2 text-sm font-semibold text-white transition hover:text-sky-200 min-[1180px]:hidden"
@@ -774,6 +786,8 @@ export default function NavBar(props: {
         {open && typeof document !== "undefined" ? (
           createPortal(
           <div
+            ref={mobileDialogRef}
+            tabIndex={-1}
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
@@ -830,6 +844,7 @@ export default function NavBar(props: {
               <label className="block px-3">
                 <span className="sr-only">Search MorseWords tools</span>
                 <input
+                  ref={mobileSearchRef}
                   value={mobileQuery}
                   onChange={(event) => setMobileQuery(event.target.value)}
                   type="search"
