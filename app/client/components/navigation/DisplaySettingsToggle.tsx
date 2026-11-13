@@ -11,6 +11,7 @@ import {
   resetMorseWordsSettings,
 } from "~/client/components/shared/settingsStorage";
 import { resetThemeModeToDefault } from "~/client/theme/themeStorage";
+import { useDialogFocus } from "../shared/useDialogFocus";
 
 type DisplaySettingsToggleProps = {
   className?: string;
@@ -24,6 +25,9 @@ export default function DisplaySettingsToggle({
   const [open, setOpen] = React.useState(false);
   const [statusMessage, setStatusMessage] = React.useState("");
   const wrapperRef = React.useRef<HTMLDivElement | null>(null);
+  const dialogRef = React.useRef<HTMLDivElement | null>(null);
+  const triggerRef = React.useRef<HTMLButtonElement | null>(null);
+  useDialogFocus({ open, dialogRef, triggerRef, onClose: () => setOpen(false) });
   const {
     disableFlashEffects,
     fullPageFlash,
@@ -42,16 +46,10 @@ export default function DisplaySettingsToggle({
       setOpen(false);
     }
 
-    function onDocKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpen(false);
-    }
-
     document.addEventListener("mousedown", onDocMouseDown);
-    document.addEventListener("keydown", onDocKeyDown);
 
     return () => {
       document.removeEventListener("mousedown", onDocMouseDown);
-      document.removeEventListener("keydown", onDocKeyDown);
     };
   }, [open]);
 
@@ -120,6 +118,7 @@ export default function DisplaySettingsToggle({
   return (
     <div ref={wrapperRef} className="relative inline-flex shrink-0">
       <button
+        ref={triggerRef}
         type="button"
         className={`mw-nav-icon-button inline-flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full ${className}`}
         onClick={toggleOpen}
@@ -132,6 +131,7 @@ export default function DisplaySettingsToggle({
 
       {open ? (
         <div
+          ref={dialogRef}
           role="dialog"
           aria-label="Display settings"
           className="mw-display-settings-panel fixed left-4 right-4 top-20 z-[10000] w-auto rounded-2xl p-4 text-sky-100 sm:absolute sm:left-auto sm:right-0 sm:top-12 sm:w-[min(20rem,calc(100vw-2rem))]"
