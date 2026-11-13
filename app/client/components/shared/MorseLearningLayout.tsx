@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { PlayIcon } from "~/client/assets/svg/Icons";
 import { ActionLinkButton } from "./ActionControls";
+import MorseReferenceSource from "./MorseReferenceSource";
 import {
   HERO_EYEBROW_LINE_CLASS,
   HERO_EYEBROW_ROW_CLASS,
@@ -351,13 +352,15 @@ export function SimpleGrid({
 export function ReferenceTable({
   items,
   onPlay,
+  showSources = false,
 }: {
-  items: Array<{ label: string; morse: string; description: string; example?: string }>;
+  items: Array<{ label: string; morse: string; description: string; example?: string; referenceCharacter?: string }>;
   onPlay?: (morse: string) => void;
+  showSources?: boolean;
 }) {
   return (
     <div className="mw-static-panel mw-reference-table overflow-hidden rounded-xl bg-[#fffdf8]">
-      <div className="mw-static-surface-soft mw-muted-label grid grid-cols-[1fr_1fr] bg-[#fffaf2] px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] text-slate-500 sm:grid-cols-[180px_1fr_2fr_120px]">
+      <div className={`mw-static-surface-soft ${showSources ? "mw-text-soft text-slate-600" : "mw-muted-label text-slate-500"} grid grid-cols-[1fr_1fr] bg-[#fffaf2] px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] sm:grid-cols-[180px_1fr_2fr_120px]`}>
         <span>Name</span>
         <span>Morse</span>
         <span className="hidden sm:block">Use</span>
@@ -371,7 +374,7 @@ export function ReferenceTable({
           <div>
             <p className="mw-heading font-bold text-sky-950">{item.label}</p>
             {item.example ? (
-              <p className="mw-muted-label mt-1 font-mono text-xs font-bold uppercase tracking-[0.08em] text-slate-500">
+              <p className={`${showSources ? "mw-text-soft text-slate-600" : "mw-muted-label text-slate-500"} mt-1 font-mono text-xs font-bold uppercase tracking-[0.08em]`}>
                 {item.example}
               </p>
             ) : null}
@@ -379,7 +382,7 @@ export function ReferenceTable({
           <p className="mw-input-text font-mono text-base font-bold tracking-[0.16em] text-slate-950">
             {item.morse}
           </p>
-          <p className="mw-text-muted text-sm leading-relaxed text-slate-700">{item.description}</p>
+          <p className="mw-text-muted text-sm leading-relaxed text-slate-700">{item.description}{showSources && item.referenceCharacter && <MorseReferenceSource character={item.referenceCharacter} />}</p>
           <button
             type="button"
             onClick={() => onPlay?.(item.morse)}
