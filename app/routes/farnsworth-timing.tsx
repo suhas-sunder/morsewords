@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import MorseTimingLab from "~/client/components/shared/MorseTimingLab";
 import type { Route } from "./+types/farnsworth-timing";
 
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
@@ -361,6 +362,8 @@ export default function FarnsworthTiming() {
             ]}
           />
         </PageHero>
+
+        <MorseTimingLab />
 
         <SectionCard
           eyebrow="Short version"

@@ -1,4 +1,5 @@
 import PrintableCharts from "~/client/components/shared/PrintableCharts";
+import MorseTimingLab from "~/client/components/shared/MorseTimingLab";
 import type { Route } from "./+types/morse-code-timing";
 
 import FaqSectionGeneric from "~/client/components/shared/FaqSectionGeneric";
@@ -227,6 +228,8 @@ export default function MorseCodeTiming() {
             ]}
           />
         </PageHero>
+
+        <MorseTimingLab />
 
         <SectionCard
           eyebrow="Quick answer"
