@@ -965,6 +965,7 @@ export default function MorseBookPage({
         mode={mode}
         status={runtimeState.status}
         summary={bookSummary}
+        seoSummary={seoSummary}
         onRetry={() => setRetryKey((value) => value + 1)}
       />
     );
@@ -974,6 +975,8 @@ export default function MorseBookPage({
     <MorseBookWorkspace
       book={runtimeState.book}
       fullBookLoading={runtimeState.fullBookLoading}
+      isPreviewContent={runtimeState.status === "preview"}
+      onRetry={() => setRetryKey((value) => value + 1)}
       initialSection={runtimeState.initialSection}
       mode={mode}
       previewMode={previewMode}
@@ -988,12 +991,14 @@ function MorseBookRuntimeState({
   onRetry,
   status,
   summary,
+  seoSummary,
 }: {
   message: string;
   mode: "book" | "audiobook";
   onRetry: () => void;
   status: "loading" | "error";
   summary: MorseBookLibrarySummary | null;
+  seoSummary: MorseBookSeoSummary | null;
 }) {
   const isAudiobook = mode === "audiobook";
   const title = summary
@@ -1012,6 +1017,9 @@ function MorseBookRuntimeState({
   }, [status]);
 
   const loadingMessage = LOADING_STATUS_MESSAGES[loadingStep];
+  const summaryParagraph = getMorseBookSeoSummaryParagraphs(seoSummary)[0];
+  const sourceHref = summary ? bookSourceMetadataHref(summary.source) : "";
+  const rightsCopy = summary ? bookRightsBasisCopy(summary.source) : null;
 
   return (
     <main className="mx-auto w-full max-w-[1120px] px-4 pb-12 pt-6 sm:px-6 lg:px-8">
@@ -1061,29 +1069,6 @@ function MorseBookRuntimeState({
             <span>{loadingMessage}</span>
           </div>
         ) : null}
-        {status === "loading" ? (
-          <div
-            className="mt-5 space-y-3"
-            aria-hidden="true"
-            data-testid="morse-book-loading-player-placeholder"
-          >
-            <div className="relative flex min-h-[16rem] w-full flex-col overflow-hidden rounded-xl bg-[#fffdf8] p-3 sm:min-h-[28rem] sm:p-6 lg:aspect-video lg:min-h-[20rem]">
-              <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-3 text-center sm:gap-5">
-                <div className="h-16 w-16 rounded-full bg-slate-200/80 sm:h-28 sm:w-28" />
-                <div className="w-full max-w-[34rem] space-y-2">
-                  <div className="mx-auto h-4 w-3/4 rounded-full bg-slate-200/80 sm:h-6" />
-                  <div className="mx-auto h-3 w-1/2 rounded-full bg-slate-200/70 sm:h-5" />
-                </div>
-              </div>
-            </div>
-            <div className="grid gap-2 sm:grid-cols-3">
-              <div className="h-11 rounded-lg bg-slate-200/70" />
-              <div className="h-11 rounded-lg bg-slate-200/70" />
-              <div className="h-11 rounded-lg bg-slate-200/70" />
-            </div>
-            <div className="h-14 rounded-lg bg-[#fffdf8]/80" />
-          </div>
-        ) : null}
         {status === "error" ? (
           <div className="mt-4 flex flex-wrap gap-2">
             <ToolButton
@@ -1095,6 +1080,12 @@ function MorseBookRuntimeState({
               Retry
             </ToolButton>
             <Link
+              to={isAudiobook ? ROUTES.audio : ROUTES.bookTranslator}
+              className={toolControlButtonClass({ rounded: "xl" })}
+            >
+              {isAudiobook ? "Make Morse audio from your text" : "Translate your own text"}
+            </Link>
+            <Link
               to={isAudiobook ? ROUTES.morseAudiobooks : ROUTES.morseBooks}
               className={toolControlButtonClass({ rounded: "xl" })}
             >
@@ -1103,6 +1094,17 @@ function MorseBookRuntimeState({
           </div>
         ) : null}
       </section>
+      {summary ? (
+        <section className="mt-8 max-w-[68ch] space-y-3" aria-label="About this work" data-testid="morse-book-failure-context">
+          <h2 className="text-2xl font-extrabold text-sky-950">About this work</h2>
+          <p className="font-semibold text-slate-700">By {formatMorseBookAuthors(summary.author)}</p>
+          {summaryParagraph ? <p className="text-base leading-relaxed text-slate-700">{summaryParagraph}</p> : null}
+          <p className="text-sm leading-relaxed text-slate-700">
+            {sourceHref ? <a href={sourceHref} target="_blank" rel="noopener noreferrer" className={metadataLinkClass}>Source: {bookSourceMetadataLabel(summary.source)}</a> : "A source link is not recorded for this edition."}
+          </p>
+          {rightsCopy ? <p className="text-sm leading-relaxed text-slate-600">{rightsCopy}</p> : null}
+        </section>
+      ) : null}
       <MorseBookBreadcrumb mode={mode} title={title} />
     </main>
   );
@@ -1111,6 +1113,8 @@ function MorseBookRuntimeState({
 function MorseBookWorkspace({
   book,
   fullBookLoading,
+  isPreviewContent,
+  onRetry,
   initialSection,
   mode,
   previewMode,
@@ -1118,6 +1122,8 @@ function MorseBookWorkspace({
 }: {
   book: MorseBookManifest;
   fullBookLoading: boolean;
+  isPreviewContent: boolean;
+  onRetry: () => void;
   initialSection: MorseBookSectionJson;
   mode: "book" | "audiobook";
   previewMode: "unpublished" | "test-published" | null;
@@ -1253,7 +1259,7 @@ function MorseBookWorkspace({
   }, [activeLiveSegmentIndex]);
 
   const bookRuntimeSignature = `${book.slug}:${book.contentVersion}:${book.contentHash}:${
-    fullBookLoading ? "preview" : "full"
+    isPreviewContent ? "preview" : "full"
   }:${book.sections.length}`;
   const defaultSectionIds = React.useMemo(
     () => defaultSectionIdsForBook(book, initialSection.sectionId),
@@ -1271,7 +1277,7 @@ function MorseBookWorkspace({
     setSettingsRestored(false);
     setSettingsRestoredSignature(null);
     setLoadedSections(new Map([[initialSection.sectionId, initialSection]]));
-    const saved = fullBookLoading
+    const saved = isPreviewContent
       ? null
       : loadSavedMorseBookRuntimeSettings(
           book,
@@ -1330,7 +1336,7 @@ function MorseBookWorkspace({
     bookRuntimeSignature,
     defaultLiveSectionId,
     defaultSectionIds,
-    fullBookLoading,
+    isPreviewContent,
     initialSection.sectionId,
     isAudiobook,
   ]);
@@ -1362,7 +1368,9 @@ function MorseBookWorkspace({
   React.useEffect(() => {
     if (!settingsRestored) return;
     if (settingsRestoredSignature !== bookRuntimeSignature) return;
-    if (fullBookLoading) return;
+    // A failed full fetch leaves a valid excerpt, not a complete selection model.
+    // Never filter or overwrite saved full-book selections against that excerpt.
+    if (isPreviewContent) return;
     const savedForMerge =
       isAudiobook && persistedLiveElapsedMs === 0
         ? loadSavedMorseBookRuntimeSettings(
@@ -1403,7 +1411,7 @@ function MorseBookWorkspace({
     completedLiveSectionIds,
     defaultSectionIds,
     exportSettings,
-    fullBookLoading,
+    isPreviewContent,
     isAudiobook,
     persistedLiveElapsedMs,
     runtimeSettingsResetVersion,
@@ -1720,7 +1728,7 @@ function MorseBookWorkspace({
     videoPreviewBaseElapsedRef.current = 0;
   }, [activeLiveSegmentIndex, liveSegments.length]);
   React.useEffect(() => {
-    if (isAudiobook || fullBookLoading || !settingsRestored) return;
+    if (isAudiobook || isPreviewContent || !settingsRestored) return;
     if (
       restoredBookLivePreviewProgressHashRef.current ===
       livePreviewProgressContentHash
@@ -1751,7 +1759,7 @@ function MorseBookWorkspace({
     videoPreviewBaseElapsedRef.current = restoredElapsedMs;
   }, [
     book,
-    fullBookLoading,
+    isPreviewContent,
     isAudiobook,
     livePreviewProgressContentHash,
     liveSegments,
@@ -1760,7 +1768,7 @@ function MorseBookWorkspace({
   React.useEffect(() => {
     if (
       isAudiobook ||
-      fullBookLoading ||
+      isPreviewContent ||
       !settingsRestored ||
       liveSegments.length === 0 ||
       restoredBookLivePreviewProgressHashRef.current !==
@@ -1790,7 +1798,7 @@ function MorseBookWorkspace({
   }, [
     activeLiveSegmentIndex,
     book,
-    fullBookLoading,
+    isPreviewContent,
     isAudiobook,
     livePreviewProgressContentHash,
     liveSegments.length,
@@ -2922,7 +2930,7 @@ function MorseBookWorkspace({
       data-mw-morse-book-available={publishReady ? "true" : "false"}
       data-mw-morse-book-full-loading={fullBookLoading ? "true" : "false"}
       data-mw-morse-book-preview-mode={previewMode ?? "public"}
-      data-mw-morse-book-preview-state={fullBookLoading ? "preview" : "ready"}
+      data-mw-morse-book-preview-state={isPreviewContent ? "preview" : "ready"}
       data-mw-morse-book-settings-restored={settingsRestored ? "true" : "loading"}
     >
       <ToolHero
@@ -2951,6 +2959,15 @@ function MorseBookWorkspace({
         >
           {collectionLabel}
         </p>
+      ) : null}
+
+      {isPreviewContent && !fullBookLoading ? (
+        <section className="mt-5 space-y-3" aria-label="Starter excerpt availability" data-testid="morse-book-excerpt-only">
+          <p role="status" className="max-w-[68ch] text-base leading-relaxed text-slate-700">
+            The full book could not be loaded. Only the starter excerpt is available for playback and download. Your saved full-book settings are unchanged.
+          </p>
+          <ToolButton type="button" tone="dark" onClick={onRetry}>Retry full book</ToolButton>
+        </section>
       ) : null}
 
       <nav
@@ -3079,7 +3096,7 @@ function MorseBookWorkspace({
             <Metric label="Words" value={formatNumber(book.stats.wordCount)} />
             <Metric
               label="Availability"
-              value={publishReady ? "Available" : "Unavailable"}
+              value={publishReady ? isPreviewContent ? "Starter excerpt" : "Available" : "Unavailable"}
             />
           </div>
 
