@@ -7,6 +7,7 @@ import { chromium, type Browser, type Page } from "playwright";
 import type { MorseBookLibraryManifest, MorseBookLibrarySummary, MorseBookManifest, MorseBookPreviewAsset, MorseBookPublicContentJson, MorseBookPublicManifest } from "../../app/client/data/morseBookTypes.ts";
 import type { MorseBookSeoSummaryData } from "../../app/client/data/morseBookSeoSummaries.ts";
 import { MORSE_BOOK_CONTENT_BASE_URL } from "../../app/client/data/morseBookContentConfig.ts";
+import { compactLibraryEvidence, type EvidenceBaseline } from "./library-quality-artifacts.ts";
 
 const SAMPLE_SLUGS = ["the-time-machine", "the-war-of-the-worlds", "alices-adventures-in-wonderland", "a-christmas-carol", "anne-of-green-gables", "the-count-of-monte-cristo"];
 const SITE = "https://www.morsewords.com";
@@ -89,10 +90,12 @@ async function probePayload(book: MorseBookLibrarySummary, liveManifest: MorseBo
   } catch (error) { return { state: "unavailable", url: url.href, reason: error instanceof Error ? error.message : String(error) }; }
 }
 
-export async function generateLibraryQualityReport(options: { ssr: "none" | "sample" | "all"; payloads: "none" | "sample" | "all"; output: string; baseUrl?: string }) {
+export async function generateLibraryQualityReport(options: { ssr: "none" | "sample" | "all"; payloads: "none" | "sample" | "all"; output: string; baseUrl?: string; fullSnapshot?: boolean; baseline?: string }) {
   const root = process.cwd();
   const output = path.resolve(root, options.output);
   if (path.relative(root, output).startsWith("..") || !output.endsWith(".json")) throw new Error("Report output must be a JSON file inside the checkout.");
+  if (output === path.resolve(root, "ai-issues/2027-release-train/evidence/library-quality-inventory.json")) throw new Error("The historical W07 snapshot is immutable. Choose a new compact output path.");
+  if (options.fullSnapshot && !path.relative(path.join(root, "output"), output).match(/^(?!\.\.)[^:]+$/)) throw new Error("Full snapshots must stay in ignored output/; archive them outside Git if needed.");
   const generated = path.join(root, "app/client/assets/books/generated");
   const library = await readJson<MorseBookLibraryManifest>(path.join(generated, "library-manifest.json"));
   const reviews = await readJson<MorseBookSeoSummaryData>(path.join(root, "app/client/assets/books/seo-summaries/book-seo-summaries.json"));
@@ -171,7 +174,12 @@ export async function generateLibraryQualityReport(options: { ssr: "none" | "sam
   } finally { await browser?.close(); await server?.close(); }
   const report = { schemaVersion: 1, generatedAt: new Date().toISOString(), checkoutSha: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(), worktreeChanges: execFileSync("git", ["diff", "--name-only"], { encoding: "utf8" }).trim().split(/\r?\n/).filter(Boolean), scope: { ssr: options.ssr, payloads: options.payloads, ssrOrigin: options.baseUrl ?? "local built Netlify handler", liveAssetOrigin: MORSE_BOOK_CONTENT_BASE_URL, liveManifestState, sampleSlugs: SAMPLE_SLUGS }, policy: "Evidence only: no numeric score, automatic index decision, sitemap mutation or rights-policy change.", totals: { titles: records.length, detailPages: records.length * 2, sitemapUrls: sitemapUrls.size, sourceLinksMissing: records.filter((record) => !record.source.url).length, titlesWithFindings: records.filter((record) => record.findings.length).length, ssrObserved: records.flatMap((record) => record.pages).filter((page) => page.ssr.state === "observed").length, payloadsObserved: records.filter((record) => record.payload.state === "observed").length }, limitations: ["Local built SSR is not a deployed-SHA assertion.", "Unprobed payloads and browser interactions remain unknown, not passes.", "Summary uniqueness is textual identity only; usefulness requires human review.", "Same source can be a legitimate excerpt/edition; duplicates require investigation.", "Rights records must be checked against source evidence and jurisdiction before policy changes."], records };
   await fs.mkdir(path.dirname(output), { recursive: true });
-  await fs.writeFile(output, JSON.stringify(report, null, 2) + "\n");
+  const baseline = options.baseline ? await readJson<EvidenceBaseline>(path.resolve(root, options.baseline)) : undefined;
+  if (options.baseline && !baseline) throw new Error("Baseline report could not be read; refusing to invent a delta.");
+  const artifacts = compactLibraryEvidence(report, baseline ?? undefined);
+  await fs.writeFile(output, JSON.stringify(artifacts.compact, null, 2) + "\n");
+  await fs.writeFile(output.replace(/\.json$/, ".md"), artifacts.markdown);
+  if (options.fullSnapshot) await fs.writeFile(output.replace(/\.json$/, ".full.json"), artifacts.fullJson);
   console.log(JSON.stringify(report.totals));
   return report;
 }
@@ -180,5 +188,5 @@ if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.ar
   const value = (name: string, fallback: string) => process.argv.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3) ?? fallback;
   const ssr = value("ssr", "sample"), payloads = value("payloads", "sample");
   if (!["none", "sample", "all"].includes(ssr) || !["none", "sample", "all"].includes(payloads)) throw new Error("Scopes must be none, sample or all.");
-  await generateLibraryQualityReport({ ssr: ssr as "none" | "sample" | "all", payloads: payloads as "none" | "sample" | "all", output: value("output", "output/quality/library-quality-report.json"), baseUrl: value("base-url", "") || undefined });
+  await generateLibraryQualityReport({ ssr: ssr as "none" | "sample" | "all", payloads: payloads as "none" | "sample" | "all", output: value("output", "output/quality/library-quality-report.json"), baseUrl: value("base-url", "") || undefined, fullSnapshot: process.argv.includes("--full-snapshot"), baseline: value("baseline", "") || undefined });
 }
