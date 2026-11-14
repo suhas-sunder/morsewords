@@ -24,14 +24,14 @@ Every row requires a fresh current-main candidate, immutable exact-SHA non-produ
 | S12 | 2027-03-21 | 10:00 America/Toronto | W14 | W12, W13 | `ship/2027-W14-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
 | S13 | 2027-03-28 | 10:00 America/Toronto | W15 | W03, W12, W14 | `ship/2027-W15-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
 | S14 | 2027-04-04 | 10:00 America/Toronto | W16 | W09, W10, W11, W12, W13, W14, W15 | `ship/2027-W16-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
-| S15 | 2027-04-11 | 10:00 America/Toronto | W17 | W16 | `ship/2027-W17-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
+| S15 | 2027-04-11 | 10:00 America/Toronto | W17 | W16, TRANCHE-B-HARDENING | `ship/2027-W17-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
 | S16 | 2027-04-18 | 10:00 America/Toronto | W18 | W17 | `ship/2027-W18-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
 | S17 | 2027-04-25 | 10:00 America/Toronto | W19 | W18 | `ship/2027-W19-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
 | S18 | 2027-05-02 | 10:00 America/Toronto | W20 | W19 | `ship/2027-W20-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
 | S19 | 2027-05-09 | 10:00 America/Toronto | W21 | W20 | `ship/2027-W21-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
 | S20 | 2027-05-16 | 10:00 America/Toronto | W22 | W21 | `ship/2027-W22-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
-| S21 | 2027-05-23 | 10:00 America/Toronto | W23 | W19, W22 | `ship/2027-W23-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
-| S22 | 2027-05-30 | 10:00 America/Toronto | W24 | W17, W23 | `ship/2027-W24-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
+| S21 | 2027-05-23 | 10:00 America/Toronto | W23 | W22 | `ship/2027-W23-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
+| S22 | 2027-05-30 | 10:00 America/Toronto | W24 | W17, W20, W21, W22, W23 | `ship/2027-W24-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
 | S23 | 2027-06-06 | 10:00 America/Toronto | W25 | W06, W24 | `ship/2027-W25-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
 | S24 | 2027-06-13 | 10:00 America/Toronto | W26 | W25 | `ship/2027-W26-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
 | S25 | 2027-06-20 | 10:00 America/Toronto | W27 | W26 | `ship/2027-W27-theme` | Required, exact SHA | Required | PLANNED / NOT RELEASED | S |
@@ -64,3 +64,5 @@ Every row requires a fresh current-main candidate, immutable exact-SHA non-produ
 | S52 | 2027-12-26 | 10:00 America/Toronto | Unassigned contingency | Owner-selected scope + proven dependencies | `ship/2027-S52-approved-repair` | Required, exact SHA | Required | UNASSIGNED / DEFAULT SKIP | S |
 
 Each completed row must later link the actual candidate/base SHA, selected original/amendment SHAs, preview ID/URL/checks, owner decision, production deploy SHA/ID and live smoke. Empty fields are not permission to release.
+
+W17 isolates library detail payload; W18 starts learning; W19 explains answers; W20 reviews weak spots; W21 completes short sessions; W22 adds optional sound-first progression; W23 verifies non-flash practice; W24 combines local portability with cumulative learning review. W25 onward retains its established sequence.
