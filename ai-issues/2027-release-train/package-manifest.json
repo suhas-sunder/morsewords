@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "revisedAt": "2026-11-13",
+  "revisedAt": "2026-11-14",
   "purpose": "Reviewed package mapping; never execute as a blind production script",
   "historicalAuditBase": "8c83c8214d515565c314ff99bc3df8af88e73121",
   "releaseBaseRule": "Fresh current origin/main at each actual release",
@@ -784,13 +784,15 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED",
-      "acceptance": "Measured raw/gzip client reduction without SSR inflation; all 524 identity/eligibility contracts, related titles, preview/full/fallback/retry, selection, settings, playback, segmented export and print noindex preserved.",
+      "status": "VALIDATED",
+      "acceptance": "Measured raw/gzip client reduction without material SSR inflation; all 524 identity/eligibility contracts, related titles, preview/full/fallback/retry, selection, settings, playback, segmented export and print noindex preserved.",
       "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
-      "implementationCommits": [],
+      "implementationCommits": [
+        "6b059417459a40c3c243d18748aecd3e13d24860"
+      ],
       "documentationCommits": [],
-      "reviewBranch": null,
-      "draftPr": null,
+      "reviewBranch": "release/2027-W17-library-detail-payload",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/20",
       "commonGates": [
         "npm run typecheck",
         "npm test",
@@ -805,8 +807,16 @@
         "npm run books:navigation-index:check",
         "npm run test:release-integrity"
       ],
-      "packageSpecificGates": [],
-      "evidence": []
+      "packageSpecificGates": [
+        "npm run release:check-library-payload",
+        "npm run release:check-library-details",
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/library-detail-payload.spec.ts tests/qa-robustness-review/library-failure-context.spec.ts tests/qa-robustness-review/library-loading-stability.spec.ts tests/qa-robustness-review/morse-book-startup-preview.spec.ts tests/qa-robustness-review/morse-audiobook-parity.spec.ts tests/qa-robustness-review/morse-book-suitability.spec.ts tests/qa-robustness-review/morse-book-duplicate-consolidation.spec.ts",
+        "npx playwright test tests/qa-robustness-review/morse-book-live-player-segment-advance.spec.ts tests/qa-robustness-review/morse-book-print-ux.spec.ts tests/qa-robustness-review/long-form-export-pipeline.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W17.md",
+        "ai-issues/2027-release-train/evidence/w17-library-payload.json"
+      ]
     },
     {
       "packageId": "W18",
@@ -2192,7 +2202,9 @@
         "949f27729626f445cdeb3764cffd34191b314503"
       ],
       "amendmentCommits": [],
-      "documentationCommits": [],
+      "documentationCommits": [
+        "bc73402dbc2cee734dfb80a0c9cb7405ac0a3f3b"
+      ],
       "dependencies": [
         "W16"
       ],
@@ -2257,7 +2269,9 @@
     "689d8ea38965b37d70138d761f5407cd01bffcb1",
     "602802276910ddf5fe3ca083c11acc1155217a77",
     "050fd3c12146145acbc5b7129c51a8840139b806",
-    "949f27729626f445cdeb3764cffd34191b314503"
+    "949f27729626f445cdeb3764cffd34191b314503",
+    "bc73402dbc2cee734dfb80a0c9cb7405ac0a3f3b",
+    "6b059417459a40c3c243d18748aecd3e13d24860"
   ],
   "persistentGates": [
     {

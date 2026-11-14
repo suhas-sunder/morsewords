@@ -1,12 +1,12 @@
+import { getDiscoverableMorseBookSummary, getMorseBookSuitability } from "~/client/data/morseBookDetail.server";
 import type { Route } from "./+types/morse-code-books.$slug.print";
 
 import PrintableMorsePages from "~/client/components/morse-code-books/PrintableMorsePages";
 import {
-  getDiscoverableMorseBookSummary,
   isMorseBookPublishReady,
   morseBookPath,
   morseBookPrintPath,
-} from "~/client/data/morseBooks";
+} from "~/client/data/morseBookRuntime";
 import { getMorseBookContextTitle } from "~/client/data/morseBookCollectionContext";
 import {
   formatMorseBookAuthors,
@@ -26,7 +26,7 @@ export async function loader({ params }: Route.LoaderArgs) {
     throw new Response("Morse book print page not found", { status: 404 });
   }
 
-  return { bookSummary: summary };
+  return { bookSummary: { ...summary, ...getMorseBookSuitability(summary.slug) } };
 }
 
 export const meta: Route.MetaFunction = ({ data }) => {

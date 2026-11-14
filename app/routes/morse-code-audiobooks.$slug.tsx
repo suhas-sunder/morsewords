@@ -1,3 +1,4 @@
+import { getDiscoverableMorseBookSummary, getMorseBookDetailContext } from "~/client/data/morseBookDetail.server";
 import type { Route } from "./+types/morse-code-audiobooks.$slug";
 
 import MorseBookPage from "~/client/components/morse-code-books/MorseBookPage";
@@ -7,43 +8,22 @@ import {
 } from "~/client/data/morseBookPreviews";
 import { getMorseBookPreviewAssetRequestUrl } from "~/client/data/morseBookPreviewUrl.server";
 import {
-  getDiscoverableMorseBookSummaries,
-  getDiscoverableMorseBookSummary,
   isMorseBookPublishReady,
   morseAudiobookPath,
   morseBookPath,
-} from "~/client/data/morseBooks";
+} from "~/client/data/morseBookRuntime";
 import { getMorseBookContextTitle } from "~/client/data/morseBookCollectionContext";
 import { morseBookAuthorSchemaPeople } from "~/client/data/morseBookDisplay";
 import { absoluteUrl } from "~/client/data/routes";
 import { SITE_URL } from "~/client/seo";
 import { morseAudiobookDescription } from "~/client/data/morseAudiobookMetadata";
 
-const DUPLICATE_DISCOVERABLE_BOOK_TITLES = new Set(
-  [...getDiscoverableMorseBookSummaries().reduce((counts, book) => {
-    const key = book.title.trim().toLowerCase();
-    counts.set(key, (counts.get(key) ?? 0) + 1);
-    return counts;
-  }, new Map<string, number>())]
-    .filter(([, count]) => count > 1)
-    .map(([title]) => title),
-);
-
-function duplicateTitleVariant(book: { slug: string; title: string }) {
-  if (!DUPLICATE_DISCOVERABLE_BOOK_TITLES.has(book.title.trim().toLowerCase())) {
-    return "";
-  }
-  return book.slug.includes("-gutenberg-")
-    ? " (Gutenberg source)"
-    : " (MorseWords source)";
+function audiobookMetaTitle(book: { slug: string; title: string }, variant: string) {
+  return `${getMorseBookContextTitle(book)}${variant} Live Morse Player | MorseWords`;
 }
 
-function audiobookMetaTitle(book: { slug: string; title: string }) {
-  return `${getMorseBookContextTitle(book)}${duplicateTitleVariant(book)} Live Morse Player | MorseWords`;
-}
-
-function audiobookMetaDescription(book: { slug: string; title: string }, reviewedDescription?: string | null) {
-  const variant = duplicateTitleVariant(book).replace(/[()]/g, "").trim();
+function audiobookMetaDescription(book: { slug: string; title: string }, reviewedDescription?: string | null, titleVariant = "") {
+  const variant = titleVariant.replace(/[()]/g, "").trim();
   const contextTitle = getMorseBookContextTitle(book);
   const title = variant ? `${contextTitle} ${variant}` : contextTitle;
   return morseAudiobookDescription(title, reviewedDescription);
@@ -79,6 +59,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   }
 
   return {
+    ...getMorseBookDetailContext(summary),
     bookSummary: summary,
     book: null,
     initialSection: null,
@@ -100,9 +81,9 @@ export const meta: Route.MetaFunction = ({ data }) => {
   const path = morseAudiobookPath(book.slug);
   const canonical = absoluteUrl(path);
   const seoSummary = data.seoSummary;
-  const description = audiobookMetaDescription(book, seoSummary?.description);
+  const description = audiobookMetaDescription(book, seoSummary?.description, data.titleVariant);
   return [
-    { title: audiobookMetaTitle(book) },
+    { title: audiobookMetaTitle(book, data.titleVariant) },
     {
       name: "description",
       content: description,
@@ -123,7 +104,7 @@ export default function MorseAudiobookRoute({
   const contextTitle = getMorseBookContextTitle(book);
   const author = morseBookAuthorSchemaPeople(book.author);
   const seoSummary = loaderData.seoSummary;
-  const description = audiobookMetaDescription(book, seoSummary?.description);
+  const description = audiobookMetaDescription(book, seoSummary?.description, loaderData.titleVariant);
   const detailJsonLd = [
     {
       "@context": "https://schema.org",
@@ -176,6 +157,8 @@ export default function MorseAudiobookRoute({
     <>
       <JsonLdScript jsonLd={detailJsonLd} />
       <MorseBookPage
+        relatedBooks={loaderData.relatedBooks}
+        suitabilityProfile={loaderData.suitabilityProfile}
         book={loaderData.book}
         bookSummary={book}
         initialSection={loaderData.initialSection}

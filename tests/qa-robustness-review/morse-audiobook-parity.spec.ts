@@ -1,11 +1,23 @@
 import { expect, test, type Page } from "@playwright/test";
 
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
+import fs from "node:fs/promises";
 
 const AUDIOBOOK_PATH = "/morse-code-audiobooks/alices-adventures-in-wonderland";
 
 async function openAudiobook(page: Page) {
   await blockExternalNetwork(page);
+  // Production serves books from the asset origin. The default DEV suite uses
+  // its local content route; built-handler review must explicitly supply the
+  // same approved fixture instead of accepting a failed one-section excerpt.
+  if (process.env.MW_REVIEW_BUILT_ONLY === "1") {
+    await page.route("https://assets.morsewords.com/**", async route => {
+      const pathname = new URL(route.request().url()).pathname;
+      if (pathname !== "/public-manifest.json" && pathname !== "/books/alices-adventures-in-wonderland.json") return route.abort();
+      const body = await fs.readFile(`app/client/assets/books/cloudflare-export${pathname}`);
+      return route.fulfill({ contentType: "application/json", body, headers: { "access-control-allow-origin": "*" } });
+    });
+  }
   const response = await page.goto(AUDIOBOOK_PATH, {
     waitUntil: "domcontentloaded",
   });
@@ -30,6 +42,7 @@ async function waitForAudiobookReady(page: Page) {
     "data-mw-morse-book-settings-restored",
     "true",
   );
+  await expect(workspace).toHaveAttribute("data-mw-morse-book-preview-state", "ready");
   await expect(
     page.locator("[data-mw-morse-book-loading-sections]"),
   ).toHaveCount(0, { timeout: 90_000 });
