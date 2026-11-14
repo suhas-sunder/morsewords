@@ -1,0 +1,282 @@
+{
+  "method": "Chromium local lab; deterministic 600 Hz pulses, 48 kHz mono, 30/180 seconds, one cold plus five warm runs. Not field CWV or physical mobile.",
+  "bounds": {
+    "bins": 512,
+    "svgPaths": 4,
+    "durationSeconds": 180,
+    "monoInputBytesAt48kHz": 34560000,
+    "resultBytes180s": 20510,
+    "sampleChunk": 65536,
+    "targetSliceMs": 8
+  },
+  "caveat": "4x CDP blank-page control with no analyzer showed timer gaps up to 296.5 ms. Throttled total elapsed and input latency are inconclusive; no mobile speedup claimed.",
+  "before": {
+    "method": "Chromium lab synchronous analyzer; deterministic 600 Hz pulses; fixed 48 kHz mono; one cold and five warm runs; 4x CDP is simulated CPU slowdown, not a physical mobile device",
+    "rows": [
+      {
+        "rate": 1,
+        "rows": [
+          {
+            "duration": 30,
+            "sampleRate": 48000,
+            "inputBytes": 5760000,
+            "coldMs": 19.700000002980232,
+            "warmMs": [
+              21,
+              15.400000005960464,
+              15.199999988079071,
+              16.299999997019768,
+              14.799999997019768
+            ],
+            "resultBytes": 474,
+            "status": "low-confidence",
+            "tones": 63,
+            "inspectionBins": 0
+          },
+          {
+            "duration": 180,
+            "sampleRate": 48000,
+            "inputBytes": 34560000,
+            "coldMs": 98.70000000298023,
+            "warmMs": [
+              95.5,
+              93.5,
+              93.90000000596046,
+              97.5,
+              93.20000000298023
+            ],
+            "resultBytes": 806,
+            "status": "low-confidence",
+            "tones": 375,
+            "inspectionBins": 0
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "rows": [
+          {
+            "duration": 30,
+            "sampleRate": 48000,
+            "inputBytes": 5760000,
+            "coldMs": 87.80000001192093,
+            "warmMs": [
+              80.5,
+              64.40000000596046,
+              74.70000000298023,
+              70.40000000596046,
+              75.40000000596046
+            ],
+            "resultBytes": 474,
+            "status": "low-confidence",
+            "tones": 63,
+            "inspectionBins": 0
+          },
+          {
+            "duration": 180,
+            "sampleRate": 48000,
+            "inputBytes": 34560000,
+            "coldMs": 714.5999999940395,
+            "warmMs": [
+              717,
+              732.5,
+              730.8999999910593,
+              740.2000000029802,
+              722.7999999970198
+            ],
+            "resultBytes": 806,
+            "status": "low-confidence",
+            "tones": 375,
+            "inspectionBins": 0
+          }
+        ]
+      }
+    ]
+  },
+  "after": {
+    "method": "Chromium lab cooperative analyzer with timer heartbeat; deterministic 600 Hz pulses; fixed 48 kHz mono; one cold and five warm runs; 4x CDP is simulated CPU slowdown, not a physical mobile device",
+    "rows": [
+      {
+        "rate": 1,
+        "rows": [
+          {
+            "maxHeartbeatGapMs": 9.299999997019768,
+            "heartbeatCount": 89,
+            "duration": 30,
+            "sampleRate": 48000,
+            "inputBytes": 5760000,
+            "coldMs": 9.299999997019768,
+            "warmMs": [
+              9.299999997019768,
+              3.7999999970197678,
+              3.5,
+              3.699999988079071,
+              3.7000000029802322
+            ],
+            "resultBytes": 13966,
+            "status": "low-confidence",
+            "tones": 63,
+            "inspectionBins": 512
+          },
+          {
+            "maxHeartbeatGapMs": 24.299999997019768,
+            "heartbeatCount": 109,
+            "duration": 180,
+            "sampleRate": 48000,
+            "inputBytes": 34560000,
+            "coldMs": 49.099999994039536,
+            "warmMs": [
+              46.1000000089407,
+              46.29999999701977,
+              44.20000000298023,
+              43.5,
+              44.6000000089407
+            ],
+            "resultBytes": 20510,
+            "status": "low-confidence",
+            "tones": 375,
+            "inspectionBins": 512
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "rows": [
+          {
+            "maxHeartbeatGapMs": 198.40000000596046,
+            "heartbeatCount": 42,
+            "duration": 30,
+            "sampleRate": 48000,
+            "inputBytes": 5760000,
+            "coldMs": 36.099999994039536,
+            "warmMs": [
+              39,
+              119.20000000298023,
+              24,
+              22.099999994039536,
+              22.200000002980232
+            ],
+            "resultBytes": 13966,
+            "status": "low-confidence",
+            "tones": 63,
+            "inspectionBins": 512
+          },
+          {
+            "maxHeartbeatGapMs": 331.90000000596046,
+            "heartbeatCount": 203,
+            "duration": 180,
+            "sampleRate": 48000,
+            "inputBytes": 34560000,
+            "coldMs": 980.7999999970198,
+            "warmMs": [
+              685.4000000059605,
+              967.4000000059605,
+              792.1000000089407,
+              562.8000000119209,
+              702.2000000029802
+            ],
+            "resultBytes": 20510,
+            "status": "low-confidence",
+            "tones": 375,
+            "inspectionBins": 512
+          }
+        ]
+      }
+    ]
+  },
+  "sliceProbe": {
+    "method": "Chromium isolated same-origin robots document, cooperative analyzer with timer heartbeat; deterministic 600 Hz pulses; fixed 48 kHz mono; one cold and five warm runs; 4x CDP is simulated CPU slowdown, not a physical mobile device",
+    "rows": [
+      {
+        "rate": 1,
+        "rows": [
+          {
+            "maxStepMs": 2.1000000089406967,
+            "maxHeartbeatGapMs": 9.400000005960464,
+            "heartbeatCount": 87,
+            "duration": 30,
+            "sampleRate": 48000,
+            "inputBytes": 5760000,
+            "coldMs": 9.400000005960464,
+            "warmMs": [
+              5.799999997019768,
+              4.200000002980232,
+              3.7000000029802322,
+              4,
+              3.699999988079071
+            ],
+            "resultBytes": 13966,
+            "status": "low-confidence",
+            "tones": 63,
+            "inspectionBins": 512
+          },
+          {
+            "maxStepMs": 18.099999994039536,
+            "maxHeartbeatGapMs": 21.899999991059303,
+            "heartbeatCount": 109,
+            "duration": 180,
+            "sampleRate": 48000,
+            "inputBytes": 34560000,
+            "coldMs": 45.20000000298023,
+            "warmMs": [
+              45.1000000089407,
+              42.29999999701977,
+              43.3999999910593,
+              43.19999998807907,
+              41.70000000298023
+            ],
+            "resultBytes": 20510,
+            "status": "low-confidence",
+            "tones": 375,
+            "inspectionBins": 512
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "rows": [
+          {
+            "maxStepMs": 11.299999997019768,
+            "maxHeartbeatGapMs": 297.40000000596046,
+            "heartbeatCount": 36,
+            "duration": 30,
+            "sampleRate": 48000,
+            "inputBytes": 5760000,
+            "coldMs": 39.5,
+            "warmMs": [
+              24.799999997019768,
+              318.29999999701977,
+              24.099999994039536,
+              94.6000000089407,
+              58.900000005960464
+            ],
+            "resultBytes": 13966,
+            "status": "low-confidence",
+            "tones": 63,
+            "inspectionBins": 512
+          },
+          {
+            "maxStepMs": 140.19999998807907,
+            "maxHeartbeatGapMs": 451.8999999910593,
+            "heartbeatCount": 172,
+            "duration": 180,
+            "sampleRate": 48000,
+            "inputBytes": 34560000,
+            "coldMs": 623.8999999910593,
+            "warmMs": [
+              609.6000000089407,
+              761.7999999970198,
+              1284.2000000029802,
+              376.79999999701977,
+              668.0999999940395
+            ],
+            "resultBytes": 20510,
+            "status": "low-confidence",
+            "tones": 375,
+            "inspectionBins": 512
+          }
+        ]
+      }
+    ]
+  }
+}
