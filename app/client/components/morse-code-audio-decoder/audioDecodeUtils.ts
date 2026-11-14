@@ -37,7 +37,18 @@ export type AudioTimingSummary = {
   toneCount: number;
 };
 
+export type SignalInspection = {
+  /** Peak RMS per equal-duration bin; at most 512 bins, never raw samples. */
+  envelope: number[];
+  toneCoverage: number[];
+  offThreshold: number;
+  timingSource: "selected" | "estimated";
+  letterThresholdMs?: number;
+  wordThresholdMs?: number;
+};
+
 export type AudioDecodeResult = {
+  inspection?: SignalInspection;
   confidence: number;
   decodedText: string;
   messages: string[];
@@ -286,11 +297,66 @@ export function classifySilenceGap(
   return "symbol";
 }
 
+/** Synchronous adapter retained for deterministic engine consumers and tests. */
 export function analyzeSamplesToMorse(
+  samples: Float32Array, sampleRate: number, options: AudioDecoderOptions = {},
+): AudioDecodeResult {
+  const steps = analyzeSamplesSteps(samples, sampleRate, options);
+  let step = steps.next();
+  while (!step.done) step = steps.next();
+  return step.value;
+}
+
+/** Same arithmetic as the synchronous adapter, yielding between bounded sample chunks. */
+export function analyzeSamplesToMorseAsync(
+  samples: Float32Array, sampleRate: number, options: AudioDecoderOptions,
+  signal: AbortSignal,
+): Promise<AudioDecodeResult> {
+  return consumeAnalysisSteps(analyzeSamplesSteps(samples, sampleRate, options), signal);
+}
+
+export function mixAudioBufferToMonoAsync(audioBuffer: AudioBuffer, signal: AbortSignal) {
+  return consumeAnalysisSteps(mixSteps(audioBuffer), signal);
+}
+
+function* mixSteps(audioBuffer: AudioBuffer): Generator<void, Float32Array> {
+  if (audioBuffer.numberOfChannels === 1) return audioBuffer.getChannelData(0);
+  const mono = new Float32Array(audioBuffer.length);
+  for (let channel = 0; channel < audioBuffer.numberOfChannels; channel += 1) {
+    const data = audioBuffer.getChannelData(channel);
+    for (let start = 0; start < mono.length; start += 65_536) {
+      const end = Math.min(mono.length, start + 65_536);
+      for (let index = start; index < end; index += 1) mono[index] += data[index] / audioBuffer.numberOfChannels;
+      yield;
+    }
+  }
+  return mono;
+}
+
+async function consumeAnalysisSteps<T>(steps: Generator<void, T>, signal: AbortSignal): Promise<T> {
+  // Bound CPU work to short slices. A timer yields to input/render tasks as well as timers;
+  // MessageChannel alone can monopolize its task queue under browser throttling.
+  try {
+    let sliceStart = performance.now();
+    while (true) {
+      if (signal.aborted) throw new DOMException("Analysis cancelled.", "AbortError");
+      const step = steps.next();
+      if (step.done) return step.value;
+      if (performance.now() - sliceStart >= 8) {
+        await new Promise<void>((resolve) => setTimeout(resolve, 0));
+        sliceStart = performance.now();
+      }
+    }
+  } finally {
+    steps.return(undefined as T);
+  }
+}
+
+function* analyzeSamplesSteps(
   samples: Float32Array,
   sampleRate: number,
   options: AudioDecoderOptions = {},
-): AudioDecodeResult {
+): Generator<void, AudioDecodeResult> {
   const resolved = sanitizeAudioDecoderOptions({ ...DEFAULT_OPTIONS, ...options });
   const durationSeconds =
     sampleRate > 0 && samples.length > 0 ? samples.length / sampleRate : 0;
@@ -335,23 +401,23 @@ export function analyzeSamplesToMorse(
     );
   }
 
-  const sampleStats = calculateSampleStats(samples);
+  const sampleStats = yield* calculateSampleStats(samples);
   const envelope = smoothEnvelope(
-    buildEnvelope(samples, sampleRate, resolved.windowMs, sampleStats.mean),
+    yield* buildEnvelope(samples, sampleRate, resolved.windowMs, sampleStats.mean),
   );
+  yield;
   const peakLevel = maxValue(envelope);
   const noiseFloor = percentile(envelope, 0.2);
+  yield;
   const signalSeparation =
     peakLevel > 0 ? (peakLevel - noiseFloor) / peakLevel : 0;
 
   if (peakLevel < 0.0005) {
-    return createAudioDecodeResult(
-      "no-tones",
-      [
-        "No clear tone was detected. Try a louder, cleaner single-tone recording.",
-      ],
-      { ...emptyTiming, noiseFloor, peakLevel },
-    );
+    return {
+      ...createAudioDecodeResult("no-tones", ["No clear tone was detected. Try a louder, cleaner single-tone recording."],
+        { ...emptyTiming, noiseFloor, peakLevel }),
+      inspection: buildInspection(envelope, [], durationSeconds, 0, resolved.expectedWpm),
+    };
   }
 
   const threshold = chooseThreshold(peakLevel, noiseFloor, resolved.sensitivity);
@@ -372,7 +438,7 @@ export function analyzeSamplesToMorse(
   const gapCount = contentSegments.filter((segment) => segment.kind === "silence").length;
 
   if (toneCount === 0) {
-    return createAudioDecodeResult(
+    return { ...createAudioDecodeResult(
       "no-tones",
       [
         "No clear Morse-like tones remained after filtering clicks and noise.",
@@ -385,9 +451,10 @@ export function analyzeSamplesToMorse(
         threshold,
         toneCount,
       },
-    );
+    ), inspection: buildInspection(envelope, segments, durationSeconds, offThreshold, resolved.expectedWpm) };
   }
 
+  yield;
   const estimatedUnitMs =
     resolved.expectedWpm > 0
       ? 1200 / resolved.expectedWpm
@@ -433,12 +500,17 @@ export function analyzeSamplesToMorse(
     confidence < 0.58 || unknownTokenCount > 0 ? "low-confidence" : "success";
   const messages = [
     status === "success"
-      ? "Decoded successfully."
-      : "Decoded with low confidence. Check the raw Morse against the audio.",
+      ? "Morse detected. Check the text against the recording."
+      : "Detected Morse needs review. Check the raw Morse against the audio.",
     ...warnings,
   ];
 
   return {
+    inspection: {
+      ...buildInspection(envelope, segments, durationSeconds, offThreshold, resolved.expectedWpm),
+      letterThresholdMs: gapTimingModel.letterThresholdMs,
+      wordThresholdMs: gapTimingModel.wordThresholdMs,
+    },
     confidence,
     decodedText,
     messages,
@@ -457,7 +529,7 @@ export function analyzeSamplesToMorse(
   };
 }
 
-function buildEnvelope(
+function* buildEnvelope(
   samples: Float32Array,
   sampleRate: number,
   windowMs: number,
@@ -465,6 +537,7 @@ function buildEnvelope(
 ) {
   const windowSize = Math.max(1, Math.round((sampleRate * windowMs) / 1000));
   const envelope: number[] = [];
+  let lastYield = 0;
 
   for (let start = 0; start < samples.length; start += windowSize) {
     const end = Math.min(samples.length, start + windowSize);
@@ -474,6 +547,7 @@ function buildEnvelope(
       sumSquares += sample * sample;
     }
     envelope.push(Math.sqrt(sumSquares / Math.max(1, end - start)));
+    if (end - lastYield >= 65_536) { lastYield = end; yield; }
   }
 
   return envelope;
@@ -913,12 +987,16 @@ function sanitizeAudioDecoderOptions(
   };
 }
 
-function calculateSampleStats(samples: Float32Array) {
+function* calculateSampleStats(samples: Float32Array) {
   let sum = 0;
 
-  for (const sample of samples) {
-    const safeSample = Number.isFinite(sample) ? sample : 0;
-    sum += safeSample;
+  for (let start = 0; start < samples.length; start += 65_536) {
+    const end = Math.min(samples.length, start + 65_536);
+    for (let index = start; index < end; index += 1) {
+      const sample = samples[index];
+      sum += Number.isFinite(sample) ? sample : 0;
+    }
+    yield;
   }
 
   return {
@@ -990,4 +1068,26 @@ function formatBytes(bytes: number) {
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
+}
+
+function buildInspection(envelope: number[], segments: Segment[], durationSeconds: number,
+  offThreshold: number, expectedWpm: number): SignalInspection {
+  const count = Math.min(512, envelope.length);
+  const peaks = Array<number>(count).fill(0);
+  const toneCoverage = Array<number>(count).fill(0);
+  for (let i = 0; i < envelope.length; i += 1) {
+    const bin = Math.min(count - 1, Math.floor(i * count / envelope.length));
+    peaks[bin] = Math.max(peaks[bin], envelope[i]);
+  }
+  const binMs = durationSeconds * 1000 / count;
+  for (const segment of segments) {
+    if (segment.kind !== "tone") continue;
+    const first = Math.max(0, Math.floor(segment.startMs / binMs));
+    const last = Math.min(count - 1, Math.ceil(segment.endMs / binMs) - 1);
+    for (let bin = first; bin <= last; bin += 1) {
+      const overlap = Math.max(0, Math.min(segment.endMs, (bin + 1) * binMs) - Math.max(segment.startMs, bin * binMs));
+      toneCoverage[bin] = Math.min(1, toneCoverage[bin] + overlap / binMs);
+    }
+  }
+  return { envelope: peaks, toneCoverage, offThreshold, timingSource: expectedWpm > 0 ? "selected" : "estimated" };
 }
