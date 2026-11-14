@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useNavigate } from "react-router";
+import { HANDOFF_LIMIT, stageDecoderDraft } from "../shared/morseHandoff";
 
 import {
   CodeIcon,
@@ -103,9 +105,7 @@ export default function MorseAudioDecoderTool() {
 
   const hasDecodedText = result.decodedText.trim().length > 0;
   const hasRawMorse = result.rawMorse.trim().length > 0;
-  const decoderHref = hasRawMorse
-    ? `/morse-code-decoder?morse=${encodeURIComponent(result.rawMorse)}`
-    : "#";
+  const navigate = useNavigate();
 
   const setNextFile = React.useCallback((file: File | null) => {
     sampleAbortRef.current?.abort();
@@ -485,8 +485,12 @@ export default function MorseAudioDecoderTool() {
                 tone="darkPanel"
               />
               <ActionLinkButton
-                href={decoderHref}
-                disabled={!hasRawMorse}
+                href="/morse-code-decoder"
+                onClick={(event) => {
+                  event.preventDefault();
+                  if (stageDecoderDraft(result.rawMorse)) navigate("/morse-code-decoder");
+                }}
+                disabled={!hasRawMorse || result.rawMorse.length > HANDOFF_LIMIT}
                 tone="darkPanel"
                 leadingIcon={<CodeIcon size={16} title={undefined} aria-hidden="true" />}
               >

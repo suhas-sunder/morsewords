@@ -1,4 +1,7 @@
 import * as React from "react";
+import { useNavigate } from "react-router";
+import MorseBoundaryDiagnostics from "../shared/MorseBoundaryDiagnostics";
+import { hasMorseReturn, returnMorseDraft, useMorseHandoff } from "../shared/morseHandoff";
 import {
   countTextWords,
   formatMorseWords,
@@ -57,6 +60,8 @@ export default function WordSeparatorTool() {
   const [englishInput, setEnglishInput] = React.useState<string>(
     "the quick brown fox jumps over the lazy dog",
   );
+  const navigate = useNavigate();
+  useMorseHandoff(setMorseInput);
   const [copied, setCopied] = React.useState(false);
 
   const morseWords = React.useMemo(
@@ -271,7 +276,9 @@ export default function WordSeparatorTool() {
           <p className="mt-3 text-slate-700" role="status" aria-live="polite">
             {countLabel(morseWords.length, "word")} · {countLabel(letterCount, "group")} · {countLabel(unknownCount, "unknown group")} · {countLabel(ignoredCount, "ignored character")}
           </p>
-          {ignoredCount > 0 && <p className="mt-3 max-w-[68ch] break-words text-sm leading-relaxed text-slate-700">Ignored input characters: <strong>{analysis.invalidChars?.slice(0, 20).map((character) => JSON.stringify(character)).join(", ")}{(analysis.invalidChars?.length ?? 0) > 20 ? " …" : ""}</strong>. Check the original before copying: removing an unsupported character can join marks that were not meant to be one group.</p>}
+          <div className="mt-3"><MorseBoundaryDiagnostics value={morseInput} handoff={false} /></div>
+          {hydrated && hasMorseReturn() && <ActionButton className="mt-3" size="sm" onClick={() => { const path = returnMorseDraft(morseOut); if (path) navigate(path); }}>Use formatted Morse in original tool</ActionButton>}
+
           {morseWords.length ? (
             <div className="mw-static-surface mt-4 overflow-hidden rounded-xl px-4 py-2">
               <table className="w-full table-fixed text-left text-sm">

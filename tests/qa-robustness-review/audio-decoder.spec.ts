@@ -699,8 +699,11 @@ test.describe("Morse code audio decoder route", () => {
     );
     await expect(page.getByRole("link", { name: "Open in Morse decoder" })).toHaveAttribute(
       "href",
-      "/morse-code-decoder?morse=...%20---%20...%20%2F%20....%20.%20.-..%20.--.",
+      "/morse-code-decoder",
     );
+    await page.getByRole("link", { name: "Open in Morse decoder" }).click();
+    await expect(page.locator("#morseB")).toHaveValue("... --- ... / .... . .-.. .--.");
+    expect(new URL(page.url()).search).toBe("");
   });
 
   test("selecting a second file resets stale errors before decoding", async ({ page }) => {

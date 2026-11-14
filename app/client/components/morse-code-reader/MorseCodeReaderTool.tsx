@@ -1,4 +1,6 @@
 import * as React from "react";
+import MorseBoundaryDiagnostics from "../shared/MorseBoundaryDiagnostics";
+import { useMorseHandoff } from "../shared/morseHandoff";
 
 import { TrashIcon } from "~/client/assets/svg/Icons";
 import {
@@ -31,6 +33,7 @@ export default function MorseCodeReaderTool() {
   const [morseInput, setMorseInput] = React.useState<string>(
     READER_EXAMPLES[1].morse,
   );
+  useMorseHandoff(setMorseInput);
   const result = React.useMemo(() => readMorseInput(morseInput), [morseInput]);
   const handleMorseInput = React.useCallback(
     (
@@ -87,6 +90,7 @@ export default function MorseCodeReaderTool() {
                 <p className="mw-text-soft text-sm leading-relaxed text-slate-600">
                   Spaces = letters; / = words.
                 </p>
+                <MorseBoundaryDiagnostics value={morseInput} />
                 {result.feedback.length > 0 ? (
                   <p
                     className="mw-text-muted text-xs font-medium leading-relaxed text-slate-700"
@@ -185,12 +189,6 @@ function readMorseInput(input: string): ReaderResult {
   if (invalidChars.length > 0) {
     feedback.push(
       `Ignored characters: ${invalidChars.join(" ")}. Use periods, hyphens, spaces, and slashes for typed Morse.`,
-    );
-  }
-
-  if (decodedText.includes("?")) {
-    feedback.push(
-      "Reader note: ? marks a dot-dash group that is not in the supported Morse table.",
     );
   }
 

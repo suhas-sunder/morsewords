@@ -284,9 +284,13 @@ test.describe("Morse code reader", () => {
 
     for (const routePath of CONTEXTUAL_SOURCE_ROUTES) {
       await page.goto(routePath, { waitUntil: "domcontentloaded" });
+      // Some routes expose the reader in the shared expanded toolkit. Open its
+      // real disclosure before requiring a visible canonical destination.
+      const toolkit = page.locator("details").filter({ has: page.locator(`a[href="${CANONICAL_PATH}"]`) }).first();
+      if (await toolkit.count() && (await toolkit.getAttribute("open")) === null) await toolkit.locator("summary").first().click();
       await expect(
-        page.locator(`a[href="${CANONICAL_PATH}"]`).first(),
-        `${routePath} links to reader`,
+        page.locator(`a[href="${CANONICAL_PATH}"]:visible`).first(),
+        `${routePath} visibly links to reader`,
       ).toBeVisible();
       linkedPathnames = await getLinkedPathnames(page);
       for (const alias of READER_ALIAS_PATHS) {

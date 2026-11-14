@@ -39,7 +39,7 @@ const faqItems = [
   },
   {
     q: "Why did my decoded text show a question mark?",
-    a: "A question mark appears when a dot-dash group does not match a supported Morse character. The decoder keeps the uncertainty visible instead of guessing silently.",
+    a: "The supported pattern ..--.. decodes to a real question mark. An unknown dot-dash group also produces a ? placeholder; input diagnostics distinguish these and preserve the failed group without guessing.",
   },
   {
     q: "How many spaces should I use between Morse letters?",
