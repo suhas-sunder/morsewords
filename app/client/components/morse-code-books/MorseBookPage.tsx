@@ -2328,10 +2328,10 @@ function MorseBookWorkspace({
           startElapsedMs: safeStartElapsed,
           onPlaybackStart: startAudioClock,
         })
-        .then(() => {
+        .then((outcome) => {
           if (audioPreviewSessionRef.current !== timerSession) return;
           clearAudioPreviewTimers();
-          setAudioPreviewElapsedMs(audioPreview.durationMs);
+          if (outcome === "completed") setAudioPreviewElapsedMs(audioPreview.durationMs);
           setAudioPreviewPlaying(false);
         })
         .catch(() => {
@@ -2464,8 +2464,10 @@ function MorseBookWorkspace({
           onPlaybackStart: startVideoClock,
           onPlaybackProgress: syncVideoClock,
         })
-        .then(() => {
-          finishVideoPreviewRun(playbackCompletion);
+        .then((outcome) => {
+          if (videoPreviewSessionRef.current !== timerSession) return;
+          if (outcome === "completed") finishVideoPreviewRun(playbackCompletion);
+          else { clearVideoPreviewTimer(); setVideoPreviewPlaying(false); }
         })
         .catch(() => {
           if (videoPreviewSessionRef.current !== timerSession) return;

@@ -1409,7 +1409,7 @@ export default function BookTranslatorTool() {
         startElapsedMs: safeStartElapsed,
         onPlaybackStart: startAudioClock,
       })
-      .then(() => {
+      .then((outcome) => {
         if (
           !mountedRef.current ||
           audioPreviewSessionRef.current !== timerSession
@@ -1417,7 +1417,7 @@ export default function BookTranslatorTool() {
           return;
         }
         clearAudioPreviewTimers();
-        setAudioPreviewElapsedMs(audioPreview.durationMs);
+        if (outcome === "completed") setAudioPreviewElapsedMs(audioPreview.durationMs);
         setPreviewStatus("stopped");
       })
       .catch(() => {
@@ -1595,7 +1595,7 @@ export default function BookTranslatorTool() {
           onPlaybackStart: startVisualClock,
           onPlaybackProgress: syncVisualClock,
         })
-        .then(() => {
+        .then((outcome) => {
           if (
             !mountedRef.current ||
             visualPreviewSessionRef.current !== timerSession
@@ -1603,7 +1603,7 @@ export default function BookTranslatorTool() {
             return;
           }
           clearVisualPreviewTimers();
-          setVisualPreviewElapsedMs(visualPreviewDurationMs);
+          if (outcome === "completed") setVisualPreviewElapsedMs(visualPreviewDurationMs);
           setVisualPreviewPlaying(false);
           setPreviewStatus("stopped");
         })

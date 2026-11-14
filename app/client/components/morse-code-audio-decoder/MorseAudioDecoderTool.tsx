@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useNavigate } from "react-router";
+import { claimPlayback, releasePlayback } from "../shared/playbackOwnership";
 import { HANDOFF_LIMIT, stageDecoderDraft } from "../shared/morseHandoff";
 
 import {
@@ -92,6 +93,11 @@ export default function MorseAudioDecoderTool() {
     setPreviewUrl(url);
     return () => URL.revokeObjectURL(url);
   }, [selectedFile]);
+
+  React.useEffect(() => {
+    const media = previewRef.current;
+    return () => { if (media) { media.pause(); releasePlayback(media); } };
+  }, [previewUrl]);
 
   React.useEffect(() => {
     mountedRef.current = true;
@@ -404,7 +410,10 @@ export default function MorseAudioDecoderTool() {
               {previewUrl && (
                 <div className="my-4">
                   <p className="mb-2 text-sm font-semibold text-sky-950">Listen to selected recording</p>
-                  <audio ref={previewRef} aria-label="Listen to selected recording" controls preload="metadata" src={previewUrl} className="w-full" />
+                  <audio ref={previewRef}
+                  onPlay={(event) => { const media = event.currentTarget; claimPlayback(media, () => media.pause()); }}
+                  onPause={(event) => releasePlayback(event.currentTarget)}
+                  onEnded={(event) => releasePlayback(event.currentTarget)} aria-label="Listen to selected recording" controls preload="metadata" src={previewUrl} className="w-full" />
                 </div>
               )}
               {liveStatusMessage && (

@@ -523,10 +523,10 @@ export default function MorseVideoGeneratorTool() {
             startPreviewClock(startElapsed, startedAtMs);
           },
         })
-        .then(() => {
+        .then((outcome) => {
           if (previewPlaybackSessionRef.current !== session) return;
           clearPreviewAnimation();
-          setPreviewElapsedMs(previewDurationMs);
+          if (outcome === "completed") setPreviewElapsedMs(previewDurationMs);
           setPreviewPlaying(false);
         })
         .catch(() => {

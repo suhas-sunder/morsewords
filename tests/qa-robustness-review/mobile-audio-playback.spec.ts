@@ -574,6 +574,10 @@ test("mute, repeat, sounder, and oscillator presets keep their existing paths", 
   await page.getByRole("button", { name: "Repeat" }).click();
   await page.getByRole("button", { name: "Show advanced settings" }).click();
   const preset = page.getByLabel("Tone preset");
+  // A single E at 40 WPM ends in 30ms, before a polling assertion can click
+  // Stop. Use a sustained real message to verify cancellation for every preset.
+  await page.getByLabel("Input (Text)").fill("TTTT");
+  await page.getByLabel("Character speed").fill("5");
   for (const value of AUDIO_PRESETS) {
     const before = await readHarness(page);
     await preset.selectOption(value);
@@ -774,4 +778,27 @@ test("real-time activation remains independent from WAV export and keeps its API
   expect(patternSource).toContain('osc.type = "sine"');
   expect(patternSource).toContain("cursor + 0.006");
   expect(patternSource).toContain("cursor + seconds - 0.008");
+});
+
+
+test("late reference context resume cannot revive replaced or departed playback", async ({ page }) => {
+  await installAudioContextHarness(page, { resumeMode: "deferred" });
+  await page.goto("/a-in-morse-code", { waitUntil: "networkidle" });
+  const play = page.getByRole("button", { name: "Play Morse", exact: true });
+  await waitForReactHandler(play);
+  await play.click();
+  await play.click();
+  await page.evaluate(() => (window as unknown as { __mwResolveAudioResume: () => void }).__mwResolveAudioResume());
+  await expect.poll(async () => (await readHarness(page)).starts).toBe(2);
+  expect((await readHarness(page)).contexts).toBe(1);
+
+  await page.goto("/a-in-morse-code", { waitUntil: "networkidle" });
+  await waitForReactHandler(play);
+  await play.click();
+  await page.getByRole("banner").getByRole("link").first().click();
+  await expect(page).toHaveURL(/\/$/);
+  await page.evaluate(() => (window as unknown as { __mwResolveAudioResume: () => void }).__mwResolveAudioResume());
+  // Flush both resume and scheduler microtasks without a time-based guess.
+  await page.evaluate(() => new Promise<void>(r => requestAnimationFrame(() => requestAnimationFrame(() => r()))));
+  expect((await readHarness(page)).starts).toBe(0);
 });
