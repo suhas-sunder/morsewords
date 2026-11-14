@@ -116,6 +116,8 @@ export type BookExportProgress = {
   message: string;
   currentPart: number;
   renderedDurationMs?: number;
+  /** Work completed before this attempt; excluded from its time estimate. */
+  resumedDurationMs?: number;
   totalBatches?: number;
   totalDurationMs?: number;
   totalParts: number;

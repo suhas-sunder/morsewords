@@ -64,7 +64,8 @@ export async function runSequentialExport<
   parts: TPart[];
   signal: AbortSignal;
 }): Promise<SequentialExportResult> {
-  const completed = new Set(completedPartIndexes);
+  const validIndexes = new Set(parts.map(part => part.index));
+  const completed = new Set(completedPartIndexes.filter(index => validIndexes.has(index)));
   const filenames: string[] = [];
   let totalBytes = 0;
   const startedAt = performanceNow();
@@ -75,6 +76,9 @@ export async function runSequentialExport<
   let completedWeight = parts
     .filter((part) => completed.has(part.index))
     .reduce((sum, part) => sum + Math.max(1, part.durationMs), 0);
+
+  const resumedWeight = completedWeight;
+  const attemptWeight = Math.max(1, totalWeight - resumedWeight);
 
   const emit = (
     part: TPart,
@@ -90,9 +94,10 @@ export async function runSequentialExport<
           totalWeight,
       ),
     );
+    const attemptProgress = Math.max(0, (weightedProgress * totalWeight - resumedWeight) / attemptWeight);
     const remainingMs =
-      weightedProgress >= 0.08 && elapsedMs >= 2_000
-        ? Math.max(0, elapsedMs * (1 / weightedProgress - 1))
+      attemptProgress >= 0.08 && elapsedMs >= 2_000
+        ? Math.max(0, elapsedMs * (1 / attemptProgress - 1))
         : undefined;
     onProgress?.({
       completedParts: completed.size,
@@ -110,17 +115,24 @@ export async function runSequentialExport<
     if (completed.has(part.index)) continue;
     throwIfAborted(signal);
     emit(part, 0, "preparing");
+    throwIfAborted(signal);
+    let acceptingProgress = true;
+    let lastPartProgress = 0;
     let blob: Blob | null = null;
     try {
       blob = await generatePart(part, signal, (progress, stage) => {
-        emit(part, Math.max(0, Math.min(0.99, progress)), stage);
+        if (!acceptingProgress || signal.aborted || !Number.isFinite(progress)) return;
+        lastPartProgress = Math.max(lastPartProgress, Math.max(0, Math.min(0.99, progress)));
+        emit(part, lastPartProgress, stage);
       });
+      acceptingProgress = false;
       throwIfAborted(signal);
       // Keep aggregate progress below 100% until the finalizer has actually
       // returned. For browser downloads, finalization means the request was
       // handed to the browser; it does not imply that the browser accepted it.
       emit(part, 0.999, "finalizing");
       emit(part, 0.999, "requesting");
+      throwIfAborted(signal);
       await finalizePart(part, blob);
       filenames.push(part.filename);
       totalBytes += blob.size;
@@ -130,6 +142,7 @@ export async function runSequentialExport<
       // download this part twice if a later part fails or the job is stopped.
       emit(part, 0, "requesting");
     } finally {
+      acceptingProgress = false;
       // Dropping the only heavy reference here lets each part be reclaimed
       // before the next encoder/canvas is created.
       blob = null;

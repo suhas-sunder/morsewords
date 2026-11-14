@@ -208,6 +208,7 @@ export async function createBookAudioPartDownloads({
       (total, part) => total + getBookPartAudioDurationMs(part, settings),
       0,
     );
+  const resumedDurationMs = completedDurationMs;
   const formatLabel = settings.outputFormat.toUpperCase();
 
   onProgress?.({
@@ -216,8 +217,9 @@ export async function createBookAudioPartDownloads({
     currentPart: 0,
     currentPartIndex: 0,
     totalParts: parts.length,
-    renderedDurationMs: 0,
+    renderedDurationMs: completedDurationMs,
     totalDurationMs,
+    resumedDurationMs,
   });
   await cooperativeYield(signal);
 
@@ -241,6 +243,7 @@ export async function createBookAudioPartDownloads({
         totalParts: parts.length,
         renderedDurationMs: aggregateRenderedMs,
         totalDurationMs,
+        resumedDurationMs,
       });
     };
 
@@ -262,15 +265,20 @@ export async function createBookAudioPartDownloads({
       totalParts: parts.length,
       renderedDurationMs: completedDurationMs + partRuntimeMs,
       totalDurationMs,
+      resumedDurationMs,
     });
 
     const filename = part.estimatedFilename;
-    await onPartReady({
-      blob,
-      filename,
-      downloadKind: "parts",
-      contents: describeBookDownloadContents(parts, settings, "parts"),
-    });
+    throwIfAborted(signal);
+    try {
+      await onPartReady({
+        blob, filename, downloadKind: "parts",
+        contents: describeBookDownloadContents(parts, settings, "parts"),
+      });
+    } catch (error) {
+      if (isAbortError(error)) throw error;
+      throw partFailure(part.index, error);
+    }
     filenames.push(filename);
     totalBytes += blob.size;
     completedDurationMs += partRuntimeMs;
@@ -285,6 +293,7 @@ export async function createBookAudioPartDownloads({
       totalParts: parts.length,
       renderedDurationMs: completedDurationMs,
       totalDurationMs,
+      resumedDurationMs,
     });
     await cooperativeYield(signal);
   }
@@ -298,6 +307,7 @@ export async function createBookAudioPartDownloads({
     totalParts: parts.length,
     renderedDurationMs: totalDurationMs,
     totalDurationMs,
+    resumedDurationMs,
   });
 
   return {

@@ -155,6 +155,9 @@ export function useMorseAudioExportJob(resetKey: string) {
           });
         },
         finalizePart: (part, blob) => {
+          if (!mountedRef.current || versionRef.current !== version || controller.signal.aborted) {
+            throw new DOMException("Export cancelled.", "AbortError");
+          }
           const download = downloadBlobFile({ blob, filename: part.filename });
           if (!download.ok) throw new Error(download.message);
           completedFilesRef.current.set(part.index, {
@@ -167,12 +170,9 @@ export function useMorseAudioExportJob(resetKey: string) {
         },
         onProgress: (progress) => {
           if (!mountedRef.current || versionRef.current !== version) return;
-          if (progress.completedParts > completedRef.current.length) {
-            completedRef.current = request.plan.parts
-              .slice(0, progress.completedParts)
-              .map((part) => part.index);
-          }
-          setState((current) => ({ ...current, progress }));
+          const completed = summarizeCompletedPartFiles(completedFilesRef.current);
+          setState((current) => ({ ...current, progress, completedFiles: completed.filenames,
+            completedPartIndexes: completed.indexes, totalBytes: completed.totalBytes }));
         },
       });
       if (!mountedRef.current || versionRef.current !== version) return;
@@ -209,7 +209,13 @@ export function useMorseAudioExportJob(resetKey: string) {
     } finally {
       if (controllerRef.current === controller) {
         controllerRef.current = null;
-        if (mountedRef.current) setIsActive(false);
+        if (mountedRef.current) {
+          setIsActive(false);
+          const completed = summarizeCompletedPartFiles(completedFilesRef.current);
+          setState(current => current.status === "cancelled" ? { ...current,
+            completedFiles: completed.filenames, completedPartIndexes: completed.indexes,
+            totalBytes: completed.totalBytes } : current);
+        }
       }
     }
   }, []);

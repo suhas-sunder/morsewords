@@ -403,7 +403,7 @@ export default function MorseVideoGeneratorTool() {
   const progressPercent =
     downloadProgress.durationMs > 0
       ? Math.min(
-          100,
+          downloadStatus?.kind === "success" ? 100 : 99,
           Math.round(
             (downloadProgress.elapsedMs / downloadProgress.durationMs) * 100,
           ),
@@ -746,6 +746,9 @@ export default function MorseVideoGeneratorTool() {
           return result.blob;
         },
         finalizePart: (part, blob) => {
+          if (downloadVersionRef.current !== version || controller.signal.aborted) {
+            throw new DOMException("Video download cancelled.", "AbortError");
+          }
           const download = downloadBlobFile({ blob, filename: part.filename });
           if (!download.ok) throw new Error(download.message);
           completedVideoFilesRef.current.set(part.index, {
@@ -758,14 +761,6 @@ export default function MorseVideoGeneratorTool() {
         },
         onProgress: (progress) => {
           if (downloadVersionRef.current !== version) return;
-          if (
-            progress.completedParts >
-            completedVideoPartIndexesRef.current.length
-          ) {
-            completedVideoPartIndexesRef.current = videoExportPlan.parts
-              .slice(0, progress.completedParts)
-              .map((part) => part.index);
-          }
           setDownloadProgress({
             elapsedMs:
               progress.overallProgress * videoExportPlan.totalDurationMs,
@@ -815,6 +810,7 @@ export default function MorseVideoGeneratorTool() {
     } catch (error) {
       if (downloadVersionRef.current !== version) return;
       if (isAbortError(error)) {
+        setFailedVideoPart(currentVideoPartRef.current);
         setDownloadStatus({
           kind: "error",
           message: "Video download cancelled.",
@@ -1053,10 +1049,11 @@ export default function MorseVideoGeneratorTool() {
                 type="button"
                 tone="dark"
                 onClick={() => void handleDownloadVideo(true)}
+                disabled={Boolean(downloadAbortRef.current) || !canDownload}
                 className="rounded-xl"
               >
                 <RefreshIcon size={20} title={undefined} aria-hidden="true" />
-                Retry part {failedVideoPart}
+                {downloadStatus?.message === "Video download cancelled." ? "Continue remaining parts" : `Retry part ${failedVideoPart}`}
               </ToolButton>
             ) : null}
             {downloadStatus?.kind === "success" ? (
@@ -1118,6 +1115,7 @@ export default function MorseVideoGeneratorTool() {
               live
             >
               {downloadStatus.message}
+              {completedVideoFilesRef.current.size > 0 ? ` ${completedVideoFilesRef.current.size} download requests already sent; Retry or Continue skips them.` : ""}
             </StatusMessage>
           ) : null}
 
