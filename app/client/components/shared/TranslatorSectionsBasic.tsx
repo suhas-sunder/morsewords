@@ -764,7 +764,7 @@ export default function TranslatorSectionsBasic({
 
                 <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3">
                   <p className="mw-text-soft text-sm leading-relaxed text-slate-600">
-                    3 spaces = letters · 7 = words · / = word break
+                    Text: 3 spaces = letters · 7 = words · / = word break
                   </p>
 
                   {direction === "encode" &&

@@ -9,6 +9,9 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("word separators share the canonical parser and preserve formatted output", async ({ page }) => {
+  await expect(page.getByRole("button", { name: "7-space text notation", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByText("MorseWords text spacing", { exact: true })).toBeVisible();
+  await expect(page.getByText(/In transmitted Morse, the standard silence/)).toContainText("three dot units; between words it is seven dot units");
   const errors = collectConsoleErrors(page);
   const analysis = page.getByRole("region", { name: "What your spacing means" });
   for (const separator of [" / ", " | ", "\n", "       "]) {

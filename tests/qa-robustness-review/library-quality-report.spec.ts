@@ -1,5 +1,22 @@
 import { expect, test } from "@playwright/test";
 import { inspectSsrHtml, localQualityFindings, payloadVersionEvidence } from "../../scripts/books/library-quality-report";
+import { canonicalEvidenceJson, compactLibraryEvidence } from "../../scripts/books/library-quality-artifacts";
+import { createHash } from "node:crypto";
+
+test("compact evidence preserves unknowns, deterministic full hashes and actionable deltas", () => {
+  const report = { scope: { ssr: "all", payloads: "sample" }, totals: { titles: 1, detailPages: 2 }, limitations: ["Not interaction tested"], records: [{ slug: "test", findings: ["source-link-missing"], payload: { state: "not-probed" }, pages: [{ mode: "books", ssr: { state: "observed" } }, { mode: "audiobooks", ssr: { state: "unavailable" } }] }] };
+  const first = compactLibraryEvidence(report);
+  expect(first.compact.records[0].payload).toBe("not-probed");
+  expect(first.compact.records[0].ssr.audiobooks).toBe("unavailable");
+  expect(first.compact.findingInventory["source-link-missing"]).toEqual(["test"]);
+  expect(first.compact.fullReport.sha256).toBe(createHash("sha256").update(first.fullJson).digest("hex"));
+  expect(canonicalEvidenceJson({ b: 2, a: 1 })).toBe(canonicalEvidenceJson({ a: 1, b: 2 }));
+  expect(compactLibraryEvidence(report, first.compact).compact.delta!.changed).toEqual([]);
+  const changed = structuredClone(report); changed.records[0].payload.state = "unavailable";
+  expect(compactLibraryEvidence(changed, first.compact).compact.delta!.changed).toHaveLength(1);
+  expect(compactLibraryEvidence(report, report).compact.delta!.removed).toEqual([]);
+  expect(first.markdown).toContain("Scope changes are not improvements");
+});
 
 test("export envelope hashes are compared separately from source-content hashes", () => {
   expect(payloadVersionEvidence({ contentHash: "export-v2", manifest: { contentHash: "source-v1" } }, "export-v2", "source-v1")).toEqual({ exportHashMatchesLiveManifest: true, sourceHashMatchesCheckout: true });

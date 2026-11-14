@@ -175,7 +175,7 @@ function DesktopTable({ items }: { items: Entry[] }) {
  {e.label}
  </td>
  <td className="px-4 py-3 font-mono text-slate-900">{e.morse}</td>
- <td className="px-4 py-3 text-slate-700">{e.meaning}{e.referenceCharacter && <MorseReferenceSource character={e.referenceCharacter} />}</td>
+ <td className="px-4 py-3 text-slate-700">{e.meaning}{e.referenceCharacter && <MorseReferenceSource character={e.referenceCharacter} detail="exceptions" />}</td>
  <td className="px-4 py-3">
  <div className="flex justify-end gap-2">
  <CopyButton kind="Morse" value={e.morse} compact />
@@ -218,7 +218,7 @@ function MobileCards({ items }: { items: Entry[] }) {
  <div className="text-xs font-semibold tracking-wide text-slate-500">
  Meaning
  </div>
- <div className="text-base text-slate-700">{e.meaning}{e.referenceCharacter && <MorseReferenceSource character={e.referenceCharacter} />}</div>
+ <div className="text-base text-slate-700">{e.meaning}{e.referenceCharacter && <MorseReferenceSource character={e.referenceCharacter} detail="exceptions" />}</div>
  </div>
 
  <div className="grid grid-cols-2 gap-3 pt-1">
@@ -369,7 +369,7 @@ export default function DictionaryRoute() {
  ]}
  />
  </PageHero>
- <InternationalMorseSourceNote includesExtensions />
+ <InternationalMorseSourceNote characterOverview />
 
  <div className="mw-static-panel mb-4 mt-3 rounded-xl bg-[#fffdf8]/80 p-4">
  <div className="mb-2 flex flex-wrap items-center justify-between gap-3">

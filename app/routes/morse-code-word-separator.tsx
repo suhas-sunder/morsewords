@@ -109,10 +109,10 @@ export default function MorseCodeWordSeparator() {
     "@id": `${CANONICAL_URL}#webapp`,
     url: CANONICAL_URL,
     description:
-      "Tool and guide for normalizing Morse code letter spaces, slash word separators, timing-style word gaps, pipes, and new lines.",
+      "Tool and guide for normalizing Morse code letter spaces, slash word separators, seven-space text notation, pipes, and new lines.",
     featureList: [
       "Normalize written Morse letter and word separators",
-      "Convert English text to Morse with slash, pipe, or timing-style spacing",
+      "Convert English text to Morse with slash, pipe, or seven-space text notation",
       "Explain slash word separators versus timed audio word gaps",
       "Show copy-ready Morse examples with spaces and slash notation",
     ],
@@ -200,7 +200,7 @@ export default function MorseCodeWordSeparator() {
               },
               {
                 title: "Spaces versus slashes",
-                text: "Spaces separate letters. A slash separates words. Seven spaces can also show a timing-style word gap, but slashes are easier to see.",
+                text: "This tool uses one literal space between letter groups. A slash or seven literal spaces separates words. Audio uses silence measured in dot units, not typed spaces.",
               },
               {
                 title: "Pipes and line breaks",

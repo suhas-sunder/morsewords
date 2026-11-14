@@ -1,15 +1,25 @@
 # Library evidence and index-value decisions
 
-`library-quality-inventory.json` contains one record per retained title and two page observations per record. It is an inspectable evidence inventory, not an automatic quality grade or index recommendation. The report changes no application data, sitemap, robots, redirects, rights decisions, or remote assets.
+`library-quality-inventory.json` is the immutable historical W07 snapshot at commit `ee780f083f25b300102897f143032d0190b1e5a0`: one record per retained title and two page observations per record. Do not overwrite it or routinely commit another multi-megabyte full snapshot. It is evidence, not an automatic quality grade or index recommendation. The report changes no application data, sitemap, robots, redirects, rights decisions, or remote assets.
 
 Run after building, with no concurrent build deleting its chunks:
 
 ```powershell
 npm run build:netlify
-npm run books:quality-report -- --ssr=all --payloads=sample --output=ai-issues/2027-release-train/evidence/library-quality-inventory.json
+npm run books:quality-report -- --ssr=all --payloads=sample --output=output/quality/library-quality-report.json
 ```
 
 Defaults use six representative titles for SSR and live payloads. `--ssr=none|sample|all` and `--payloads=none|sample|all` are independent. `--base-url=https://...` can probe an explicitly chosen deployed preview instead of the local built handler. Verify that deployment's SHA separately; the report's checkout SHA does not certify a remote deploy. Without `--base-url`, the actual built Netlify handler is used, not the legacy server entry point. The installed Playwright Chromium runtime parses inert response HTML; it does not execute/hydrate it. No live browser metrics are claimed.
+
+## Sustainable retention (schema 2, November owner amendment)
+
+The default JSON is compact: metadata, scope, totals, per-title evidence hashes, explicit payload/SSR probe states, and actionable finding-to-slug inventories. Its sibling Markdown file is the human summary. `fullReport` records the byte count, serialization and SHA-256 of the complete canonical report without committing duplicate HTML-derived inventories. Hashes are reproducible for the same observation object; a new timestamp or genuinely different probe result changes the full artifact hash. `evidenceDigest` excludes run metadata and compares the title observations.
+
+Use `--baseline=path/to/previous.json` for added/removed/changed title evidence. Both the historical full schema and compact schema are supported. A scope change from observed to not-probed is an unknown, never an improvement. Compare matching scopes when assessing changes.
+
+Use explicit `--full-snapshot` only for a forensic run. It writes a `.full.json` alongside the compact JSON, only under ignored `output/`. Archive that artifact outside Git when required, identified by the manifest hash and exact checkout/build/deploy provenance. Commit small reviewed summaries, actionable deltas and hashes when they support an owner decision. Keep the existing historical snapshot in its original commit; do not rewrite history to reduce it.
+
+No report is imported by application code. Release packaging must assert zero evidence/report entries in browser assets and the Netlify function ZIP. A successful report does not certify runtime packaging; that is a separate gate.
 
 The full run covers 524 titles, 1,048 paired detail URLs and the current 1,179-URL sitemap. There are 131 other sitemap routes and no printable book details. Six live payload probes cover short/long works and chapter structures. The other 518 payloads remain **not probed**. A transient network failure is **unavailable**, not a false success. Successful SSR, a visible button, or an available payload does not prove successful browser playback/export.
 

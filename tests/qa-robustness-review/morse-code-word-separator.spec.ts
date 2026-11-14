@@ -194,7 +194,7 @@ test.describe("Morse code word separator", () => {
     await expect(page.getByLabel("Paste Morse")).toBeVisible();
     await expect(page.getByRole("button", { name: "Normalize Morse" })).toBeVisible();
     await expect(page.getByRole("button", { name: "English to Morse" })).toBeVisible();
-    await expect(page.getByRole("button", { name: "7 spaces" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "7-space text notation" })).toBeVisible();
     await expect(page.getByRole("button", { name: "/", exact: true })).toBeVisible();
     await expect(page.getByRole("button", { name: "Copy output" })).toBeVisible();
 
