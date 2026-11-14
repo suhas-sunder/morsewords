@@ -135,7 +135,9 @@
     "typecheck": "npm run books:navigation-index:check && react-router typegen && tsc -b",
     "release:validate-package-manifest": "node --experimental-strip-types scripts/release/validate-package-manifest.ts",
     "release:select-gates": "node --experimental-strip-types scripts/release/select-package-gates.ts",
-    "test:release-integrity": "node --experimental-strip-types --test tests/node/packageManifest.test.ts tests/node/navigationIndex.test.ts"
+    "test:release-integrity": "node --experimental-strip-types --test tests/node/packageManifest.test.ts tests/node/navigationIndex.test.ts",
+    "release:check-library-payload": "node scripts/release/check-library-payload.mjs",
+    "release:check-library-details": "node scripts/release/check-library-details.mjs"
   },
   "dependencies": {
     "@breezystack/lamejs": "^1.2.7",

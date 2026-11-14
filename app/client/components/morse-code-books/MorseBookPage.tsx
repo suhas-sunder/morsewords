@@ -125,13 +125,12 @@ import type { BookSourceSection } from "~/client/components/morse-code-book-tran
 import {
   getDefaultMorseBookSectionId,
   getMorseBookPublicContent,
-  getRelatedMorseBooksByAuthor,
   getMorseBookSections,
   isMorseBookPublishReady,
   morseAudiobookPath,
   morseBookPath,
   morseBookPrintPath,
-} from "~/client/data/morseBooks";
+} from "~/client/data/morseBookRuntime";
 import {
   getMorseBookCollectionContext,
   getMorseBookCollectionLabel,
@@ -157,10 +156,10 @@ import {
   getMorseBookAuthorDisplay,
 } from "~/client/data/morseBookDisplay";
 import {
-  getMorseBookSuitability,
+  DEFAULT_PROFILE,
   morseBookSuitabilityLabel,
   type MorseBookSuitabilityProfile,
-} from "~/client/data/morseBookSuitability";
+} from "~/client/data/morseBookSuitabilityDisplay";
 import type {
   MorseBookLibrarySummary,
   MorseBookManifest,
@@ -232,7 +231,11 @@ type DownloadStatus =
   | { kind: "success"; message: string }
   | { kind: "error"; message: string };
 
+type RelatedBook = { slug: string; title: string };
+
 type MorseBookPageProps = {
+  relatedBooks?: RelatedBook[];
+  suitabilityProfile?: MorseBookSuitabilityProfile;
   book: MorseBookManifest | null;
   bookSummary: MorseBookLibrarySummary | null;
   initialSection: MorseBookSectionJson | null;
@@ -784,6 +787,8 @@ function getSelectedPartSummary(
 }
 
 export default function MorseBookPage({
+  relatedBooks = [],
+  suitabilityProfile = DEFAULT_PROFILE,
   book,
   bookSummary,
   initialSection,
@@ -894,7 +899,7 @@ export default function MorseBookPage({
       let content: Awaited<ReturnType<typeof getMorseBookPublicContent>> | null =
         null;
       try {
-        content = await getMorseBookPublicContent(bookSummary.slug);
+        content = await getMorseBookPublicContent(bookSummary, suitabilityProfile);
       } catch {
         publicContentError = true;
       }
@@ -956,7 +961,7 @@ export default function MorseBookPage({
     return () => {
       cancelled = true;
     };
-  }, [book, bookSummary, initialPreviewContent, initialSection, mode, retryKey]);
+  }, [book, bookSummary, initialPreviewContent, initialSection, mode, retryKey, suitabilityProfile]);
 
   if (runtimeState.status !== "ready" && runtimeState.status !== "preview") {
     return (
@@ -973,6 +978,8 @@ export default function MorseBookPage({
 
   return (
     <MorseBookWorkspace
+      relatedAuthorBooks={relatedBooks}
+      suitabilityProfile={suitabilityProfile}
       book={runtimeState.book}
       fullBookLoading={runtimeState.fullBookLoading}
       isPreviewContent={runtimeState.status === "preview"}
@@ -1111,6 +1118,8 @@ function MorseBookRuntimeState({
 }
 
 function MorseBookWorkspace({
+  relatedAuthorBooks,
+  suitabilityProfile,
   book,
   fullBookLoading,
   isPreviewContent,
@@ -1120,6 +1129,8 @@ function MorseBookWorkspace({
   previewMode,
   seoSummary,
 }: {
+  relatedAuthorBooks: RelatedBook[];
+  suitabilityProfile: MorseBookSuitabilityProfile;
   book: MorseBookManifest;
   fullBookLoading: boolean;
   isPreviewContent: boolean;
@@ -1144,18 +1155,9 @@ function MorseBookWorkspace({
     [seoSummary],
   );
   const shouldShowSeoSummaryAd = seoSummaryParagraphs.length >= 3;
-  const relatedAuthorKey = book.author.join("\u0000");
-  const relatedAuthorBooks = React.useMemo(
-    () => getRelatedMorseBooksByAuthor(book.slug, book.author),
-    [book.slug, relatedAuthorKey],
-  );
   const sourceMetadataLabel = bookSourceMetadataLabel(book.source);
   const sourceMetadataHref = bookSourceMetadataHref(book.source);
   const sourceRightsBasis = bookRightsBasisCopy(book.source);
-  const suitabilityProfile = React.useMemo(
-    () => getMorseBookSuitability(book.slug),
-    [book.slug],
-  );
   const themeMode = useAppliedThemeMode();
   const resolvedVideoBackgroundStyle =
     resolveBookVideoBackgroundStyle(themeMode);

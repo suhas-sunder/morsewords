@@ -22,9 +22,9 @@ import {
 } from "~/client/data/morseBookDisplay";
 import { getMorseBookContextTitle } from "~/client/data/morseBookCollectionContext";
 import {
-  getMorseBookSuitability,
+  getMorseBookSuitabilityFromMetadata,
   morseBookSuitabilityLabel,
-} from "~/client/data/morseBookSuitability";
+} from "~/client/data/morseBookSuitabilityDisplay";
 import type {
   MorseBookLibrarySummary,
   MorseBookManifest,
@@ -33,12 +33,12 @@ import type {
 } from "~/client/data/morseBookTypes";
 import {
   getMorseBookPublicContent,
-  getMorseBookManifest,
+  getMorseBookReviewManifest,
   getMorseBookSections,
   morseAudiobookPath,
   morseBookPath,
   morseBookPrintPath,
-} from "~/client/data/morseBooks";
+} from "~/client/data/morseBookRuntime";
 import { ROUTES, absoluteUrl } from "~/client/data/routes";
 
 type PrintableLayout = "study-sheet" | "morse-only" | "side-by-side";
@@ -182,7 +182,7 @@ function initialPrintableSectionIds(book: PrintableBookMetadata) {
 
 async function loadPrintableBookContent(book: PrintableBookMetadata) {
   try {
-    const content = await getMorseBookPublicContent(book.slug);
+    const content = await getMorseBookPublicContent(book);
     if (content?.manifest.slug === book.slug && content.sections.length > 0) {
       return content;
     }
@@ -192,9 +192,7 @@ async function loadPrintableBookContent(book: PrintableBookMetadata) {
 
   if (!import.meta.env.DEV) return null;
 
-  const generatedBook = await getMorseBookManifest(book.slug, {
-    includeUnpublished: true,
-  });
+  const generatedBook = await getMorseBookReviewManifest(book);
   if (!generatedBook || generatedBook.slug !== book.slug) return null;
 
   const sections = await getMorseBookSections(
@@ -329,7 +327,7 @@ export default function PrintableMorsePages(props: PrintableMorsePagesProps) {
   >(() => (isBook && !bookSource?.sections?.length ? "loading" : "loaded"));
   const book = bookContent?.manifest ?? initialBook;
   const allSections = bookContent?.sections ?? bookSource?.sections ?? [];
-  const suitabilityProfile = book ? getMorseBookSuitability(book.slug) : null;
+  const suitabilityProfile = book ? getMorseBookSuitabilityFromMetadata(book) : null;
   const [customText, setCustomText] = React.useState(CUSTOM_SAMPLE);
   const [layout, setLayout] = React.useState<PrintableLayout>("study-sheet");
   const [outputMode, setOutputMode] = React.useState<OutputMode>("pairs");

@@ -1,3 +1,4 @@
+import { getDiscoverableMorseBookSummary, getMorseBookManifest, getMorseBookSection, getMorseBookDetailContext } from "~/client/data/morseBookDetail.server";
 import type { Route } from "./+types/morse-code-books.$slug";
 
 import MorseBookPage from "~/client/components/morse-code-books/MorseBookPage";
@@ -12,38 +13,15 @@ import {
   UNPUBLISHED_BOOK_PREVIEW_PARAM,
   UNPUBLISHED_BOOK_PREVIEW_VALUE,
   getDefaultMorseBookSectionId,
-  getDiscoverableMorseBookSummaries,
-  getDiscoverableMorseBookSummary,
-  getMorseBookManifest,
-  getMorseBookSection,
   isMorseBookPublishReady,
   morseBookPath,
-} from "~/client/data/morseBooks";
+} from "~/client/data/morseBookRuntime";
 import { getMorseBookContextTitle } from "~/client/data/morseBookCollectionContext";
 import { absoluteUrl } from "~/client/data/routes";
 import { SITE_URL } from "~/client/seo";
 
-const DUPLICATE_DISCOVERABLE_BOOK_TITLES = new Set(
-  [...getDiscoverableMorseBookSummaries().reduce((counts, book) => {
-    const key = book.title.trim().toLowerCase();
-    counts.set(key, (counts.get(key) ?? 0) + 1);
-    return counts;
-  }, new Map<string, number>())]
-    .filter(([, count]) => count > 1)
-    .map(([title]) => title),
-);
-
-function duplicateTitleVariant(book: { slug: string; title: string }) {
-  if (!DUPLICATE_DISCOVERABLE_BOOK_TITLES.has(book.title.trim().toLowerCase())) {
-    return "";
-  }
-  return book.slug.includes("-gutenberg-")
-    ? " (Gutenberg source)"
-    : " (MorseWords source)";
-}
-
-function bookMetaTitle(book: { slug: string; title: string }) {
-  return `${getMorseBookContextTitle(book)}${duplicateTitleVariant(book)} in Morse Code | MorseWords`;
+function bookMetaTitle(book: { slug: string; title: string }, variant: string) {
+  return `${getMorseBookContextTitle(book)}${variant} in Morse Code | MorseWords`;
 }
 
 async function loadMorseBookSeoSummary(slug: string) {
@@ -99,6 +77,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     }
 
     return {
+      ...getMorseBookDetailContext(summary),
       bookSummary: summary,
       book: null,
       initialSection: null,
@@ -137,6 +116,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
       : null;
 
   return {
+    ...getMorseBookDetailContext(book),
     bookSummary: null,
     book,
     initialSection,
@@ -184,7 +164,7 @@ export const meta: Route.MetaFunction = ({ data }) => {
   const canonical = absoluteUrl(path);
   const seoSummary = data.seoSummary;
   return [
-    { title: bookMetaTitle(book) },
+    { title: bookMetaTitle(book, data.titleVariant) },
     {
       name: "description",
       content:
@@ -226,6 +206,8 @@ export default function MorseBookRoute({ loaderData }: Route.ComponentProps) {
     <>
       {detailJsonLd ? <JsonLdScript jsonLd={detailJsonLd} /> : null}
       <MorseBookPage
+        relatedBooks={loaderData.relatedBooks}
+        suitabilityProfile={loaderData.suitabilityProfile}
         book={loaderData.book}
         bookSummary={loaderData.bookSummary}
         initialSection={loaderData.initialSection}
