@@ -2187,8 +2187,10 @@
     },
     {
       "packageId": "TRANCHE-B-HARDENING",
-      "status": "IN_PROGRESS",
-      "implementationCommits": [],
+      "status": "VALIDATED",
+      "implementationCommits": [
+        "949f27729626f445cdeb3764cffd34191b314503"
+      ],
       "amendmentCommits": [],
       "documentationCommits": [],
       "dependencies": [
@@ -2196,7 +2198,27 @@
       ],
       "evidence": [
         "ai-issues/2027-release-train/TRANCHE-B-HARDENING.md"
-      ]
+      ],
+      "reviewBranch": "review/2027-tranche-b-hardening",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/19",
+      "packageSpecificGates": [
+        "npm run test:release-integrity"
+      ],
+      "commonGates": [
+        "npm run typecheck",
+        "npm test",
+        "npm run build:netlify",
+        "npm run site:local-final-validation",
+        "npm run test:core-product",
+        "npm run pages:url-indexability-canonical-audit",
+        "npm run pages:gsc-meta-content-quality-audit",
+        "npm run pages:sitemap-count-print-indexability-audit",
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
+      ],
+      "rollback": "Reviewed revert on fresh current main; preserve user data and subsequent fixes."
     }
   ],
   "commitOrder": [
@@ -2234,7 +2256,8 @@
     "754c83c0627f7afa770b0c5848977aec8f11db48",
     "689d8ea38965b37d70138d761f5407cd01bffcb1",
     "602802276910ddf5fe3ca083c11acc1155217a77",
-    "050fd3c12146145acbc5b7129c51a8840139b806"
+    "050fd3c12146145acbc5b7129c51a8840139b806",
+    "949f27729626f445cdeb3764cffd34191b314503"
   ],
   "persistentGates": [
     {
