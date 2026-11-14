@@ -396,7 +396,7 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "AUTHORIZED; NOT IMPLEMENTED",
+      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
       "testCommands": [
         "npm run typecheck",
         "npm test",
@@ -409,7 +409,10 @@
         "git diff --check"
       ],
       "acceptance": "Rapid Play/Stop, message/settings changes, hidden tab, suspended/resumed context, unmount, stale timers/oscillators and browser unlock; document WebKit limits.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "c6df055b86a7bd08c4dd31ebe6e0a42189bbbd07"
+      ]
     },
     {
       "packageId": "W13",
@@ -794,7 +797,7 @@
         "npm run pages:sitemap-count-print-indexability-audit",
         "git diff --check"
       ],
-      "acceptance": "All A\u2013Z canonical mappings, one playback owner, meaningful accessible labels.",
+      "acceptance": "All A–Z canonical mappings, one playback owner, meaningful accessible labels.",
       "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
     },
     {
@@ -993,7 +996,7 @@
         "npm run pages:sitemap-count-print-indexability-audit",
         "git diff --check"
       ],
-      "acceptance": "Web/print/playback mappings agree; exceptions explicit; no invented \u201cofficial certification.\u201d",
+      "acceptance": "Web/print/playback mappings agree; exceptions explicit; no invented “official certification.”",
       "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
     },
     {
@@ -1433,7 +1436,7 @@
         "W47"
       ],
       "affectedRoutes": [],
-      "plannedScope": "W41\u2013W47 assets/flows and integration tests.",
+      "plannedScope": "W41–W47 assets/flows and integration tests.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
