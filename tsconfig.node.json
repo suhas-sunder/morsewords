@@ -10,6 +10,9 @@
     "app/client/data/morseBookSeoSummaries.ts",
     "app/client/data/morseBookTypes.ts",
     "app/client/data/morseBookContentConfig.ts",
+    "app/client/data/morseBookEligibility.ts",
+    "app/client/data/morseBookCollectionContext.ts",
+    "app/client/data/morseBookDisplay.ts",
     "app/client/components/shared/morseUtils.ts",
     "app/client/components/shared/morseRegistry.ts"
   ],

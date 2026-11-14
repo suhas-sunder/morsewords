@@ -3,16 +3,7 @@ import { createPortal } from "react-dom";
 import { useLocation } from "react-router";
 
 import logoUrl from "~/client/assets/images/logo.png";
-import {
-  getPublishedMorseBookSummaries,
-  morseBookPath,
-} from "~/client/data/morseBooks";
-import {
-  getMorseBookCollectionSearchText,
-  getMorseBookContextSortTitle,
-  getMorseBookContextTitle,
-} from "~/client/data/morseBookCollectionContext";
-import { formatMorseBookAuthors } from "~/client/data/morseBookDisplay";
+import { loadNavigationBooks, type NavigationBook } from "./navigationBooks";
 import { ROUTES } from "~/client/data/routes";
 import type { ThemeMode } from "~/client/theme/themeStorage";
 import {
@@ -51,19 +42,6 @@ const MAIN_ITEMS: NavItem[] = [
   { label: "Typing", href: ROUTES.typing },
   { label: "How to use", href: ROUTES.howToUse },
 ];
-
-const PUBLIC_BOOK_ITEMS: NavItem[] = [...getPublishedMorseBookSummaries()]
-  .sort((left, right) =>
-    getMorseBookContextSortTitle(left).localeCompare(
-      getMorseBookContextSortTitle(right),
-    ),
-  )
-  .map((book) => ({
-    label: getMorseBookContextTitle(book),
-    href: morseBookPath(book.slug),
-    description: formatMorseBookAuthors(book.author),
-    searchKeywords: getMorseBookCollectionSearchText(book),
-  }));
 
 const MORE_GROUPS: NavGroup[] = [
   {
@@ -367,7 +345,6 @@ const MORE_GROUPS: NavGroup[] = [
         href: ROUTES.morseAudiobooks,
         description: "Browse processed audio-first Morse book pages.",
       },
-      ...PUBLIC_BOOK_ITEMS,
     ],
   },
 ];
@@ -449,6 +426,17 @@ function ChevronDown(props: { open: boolean }) {
   );
 }
 
+function BookSearchStatus({ state, count, onRetry }: { state: "idle" | "loading" | "ready" | "error"; count: number; onRetry: () => void }) {
+  return <div className="px-3 pb-4 pt-2 text-sm leading-relaxed text-sky-100" data-mw-book-search-state={state}>
+    <p role="status">{state === "error" ? "Book search could not load. Tool links are still available." : state === "ready" ? `Search ${count} book titles and authors.` : "Loading book search. Tool links are ready."}</p>
+    {state === "error" && <div className="mt-2 flex flex-wrap gap-3">
+      <button type="button" onClick={onRetry} className="mw-nav-link cursor-pointer rounded-lg bg-neutral-800 px-3 py-2 font-semibold hover:bg-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Retry book search</button>
+      <a href={ROUTES.morseBooks} className="mw-nav-link cursor-pointer py-2 font-semibold underline underline-offset-4 hover:text-white">Book library</a>
+      <a href={ROUTES.morseAudiobooks} className="mw-nav-link cursor-pointer py-2 font-semibold underline underline-offset-4 hover:text-white">Audiobook library</a>
+    </div>}
+  </div>;
+}
+
 export default function NavBar(props: {
   pathname?: string;
   initialTheme?: ThemeMode;
@@ -457,6 +445,19 @@ export default function NavBar(props: {
   const [moreOpen, setMoreOpen] = React.useState(false);
   const [moreQuery, setMoreQuery] = React.useState("");
   const [mobileQuery, setMobileQuery] = React.useState("");
+  const [bookItems, setBookItems] = React.useState<NavigationBook[]>([]);
+  const [bookSearchState, setBookSearchState] = React.useState<"idle" | "loading" | "ready" | "error">("idle");
+  const [bookRetry, setBookRetry] = React.useState(0);
+  const menuOpen = open || moreOpen;
+  React.useEffect(() => {
+    if (!menuOpen) return;
+    let current = true;
+    setBookSearchState("loading");
+    void loadNavigationBooks().then(items => {
+      if (current) { setBookItems(items); setBookSearchState("ready"); }
+    }, () => { if (current) setBookSearchState("error"); });
+    return () => { current = false; };
+  }, [menuOpen, bookRetry]);
 
   const location = useLocation();
   const pathname = normalizePathname(props.pathname ?? location.pathname);
@@ -554,7 +555,7 @@ export default function NavBar(props: {
 
     return groups.map((group) => ({
       ...group,
-      items: group.items.filter((item) => {
+      items: [...group.items, ...(normalizedQuery && group.title === "Books and audiobooks" ? bookItems : [])].filter((item) => {
         if (isActive(pathname, item.href)) return false;
         if (!normalizedQuery) return true;
 
@@ -684,6 +685,7 @@ export default function NavBar(props: {
                   </div>
 
                   <div className="mw-nav-menu-scroll max-h-[70vh] overflow-y-auto px-5 pb-5 pt-2">
+                    <BookSearchStatus state={bookSearchState} count={bookItems.length} onRetry={() => { setBookRetry(value => value + 1); moreSearchRef.current?.focus(); }} />
                     {filteredMoreGroups.length > 0 ? (
                       <div className="grid gap-x-8 gap-y-6 lg:grid-cols-3 xl:grid-cols-5">
                         {filteredMoreGroups.map((group) => (
@@ -853,6 +855,7 @@ export default function NavBar(props: {
                 />
               </label>
 
+              <BookSearchStatus state={bookSearchState} count={bookItems.length} onRetry={() => { setBookRetry(value => value + 1); mobileSearchRef.current?.focus(); }} />
               {filteredMobileGroups.length > 0 ? (
                 filteredMobileGroups.map((group) => (
                 <div key={group.title} className="mt-7">

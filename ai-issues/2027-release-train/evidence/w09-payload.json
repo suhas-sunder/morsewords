@@ -1,0 +1,1202 @@
+{
+  "method": "Local built Netlify handler; Chromium, external services blocked; loaded JavaScript body bytes and gzip; unthrottled lab, not field CWV",
+  "baseline": "ffce7ae259a600c418ad210a6399a0a9c18a587e",
+  "navigationIndexBytes": 42220,
+  "navigationIndexGzip": 12182,
+  "before": [
+    {
+      "width": 390,
+      "path": "/",
+      "status": 200,
+      "htmlBytes": 221380,
+      "htmlGzip": 45608,
+      "jsBytes": 1650605,
+      "jsGzip": 357828,
+      "ssr": {
+        "h1": [
+          "Morse Code Translator"
+        ],
+        "canonical": "https://www.morsewords.com/",
+        "mainText": 9929,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/audio",
+      "status": 200,
+      "htmlBytes": 207802,
+      "htmlGzip": 43083,
+      "jsBytes": 1645549,
+      "jsGzip": 356737,
+      "ssr": {
+        "h1": [
+          "Morse Code Audio Generator"
+        ],
+        "canonical": "https://www.morsewords.com/audio",
+        "mainText": 9577,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/practice",
+      "status": 200,
+      "htmlBytes": 178505,
+      "htmlGzip": 38890,
+      "jsBytes": 1598975,
+      "jsGzip": 338633,
+      "ssr": {
+        "h1": [
+          "Morse Code Practice"
+        ],
+        "canonical": "https://www.morsewords.com/practice",
+        "mainText": 3753,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/morse-code-alphabet",
+      "status": 200,
+      "htmlBytes": 250257,
+      "htmlGzip": 41559,
+      "jsBytes": 1797873,
+      "jsGzip": 382687,
+      "ssr": {
+        "h1": [
+          "Morse Code Alphabet"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-alphabet",
+        "mainText": 7076,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/morse-code-books/alices-adventures-in-wonderland",
+      "status": 200,
+      "htmlBytes": 397574,
+      "htmlGzip": 59608,
+      "jsBytes": 1740868,
+      "jsGzip": 381718,
+      "ssr": {
+        "h1": [
+          "Alice's Adventures in Wonderland"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-books/alices-adventures-in-wonderland",
+        "mainText": 12288,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/morse-code-audiobooks/alices-adventures-in-wonderland",
+      "status": 200,
+      "htmlBytes": 296030,
+      "htmlGzip": 54115,
+      "jsBytes": 1741198,
+      "jsGzip": 381879,
+      "ssr": {
+        "h1": [
+          "Alice's Adventures in Wonderland"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-audiobooks/alices-adventures-in-wonderland",
+        "mainText": 11155,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/",
+      "status": 200,
+      "htmlBytes": 221380,
+      "htmlGzip": 45608,
+      "jsBytes": 1650605,
+      "jsGzip": 357828,
+      "ssr": {
+        "h1": [
+          "Morse Code Translator"
+        ],
+        "canonical": "https://www.morsewords.com/",
+        "mainText": 9929,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/audio",
+      "status": 200,
+      "htmlBytes": 207802,
+      "htmlGzip": 43083,
+      "jsBytes": 1645549,
+      "jsGzip": 356737,
+      "ssr": {
+        "h1": [
+          "Morse Code Audio Generator"
+        ],
+        "canonical": "https://www.morsewords.com/audio",
+        "mainText": 9577,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/practice",
+      "status": 200,
+      "htmlBytes": 178505,
+      "htmlGzip": 38890,
+      "jsBytes": 1598975,
+      "jsGzip": 338633,
+      "ssr": {
+        "h1": [
+          "Morse Code Practice"
+        ],
+        "canonical": "https://www.morsewords.com/practice",
+        "mainText": 3753,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/morse-code-alphabet",
+      "status": 200,
+      "htmlBytes": 250257,
+      "htmlGzip": 41559,
+      "jsBytes": 1797873,
+      "jsGzip": 382687,
+      "ssr": {
+        "h1": [
+          "Morse Code Alphabet"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-alphabet",
+        "mainText": 7076,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/morse-code-books/alices-adventures-in-wonderland",
+      "status": 200,
+      "htmlBytes": 397574,
+      "htmlGzip": 59608,
+      "jsBytes": 1740868,
+      "jsGzip": 381718,
+      "ssr": {
+        "h1": [
+          "Alice's Adventures in Wonderland"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-books/alices-adventures-in-wonderland",
+        "mainText": 12288,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/morse-code-audiobooks/alices-adventures-in-wonderland",
+      "status": 200,
+      "htmlBytes": 296030,
+      "htmlGzip": 54115,
+      "jsBytes": 1741198,
+      "jsGzip": 381879,
+      "ssr": {
+        "h1": [
+          "Alice's Adventures in Wonderland"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-audiobooks/alices-adventures-in-wonderland",
+        "mainText": 11155,
+        "navLinks": 8
+      },
+      "errors": []
+    }
+  ],
+  "beforeChunks": [
+    [
+      "/assets/index-gOGwZKHn.js",
+      {
+        "bytes": 3918,
+        "gzip": 1539
+      }
+    ],
+    [
+      "/assets/jsx-runtime-D_zvdyIk.js",
+      {
+        "bytes": 725,
+        "gzip": 460
+      }
+    ],
+    [
+      "/assets/root-8vmAlFJ-.js",
+      {
+        "bytes": 89797,
+        "gzip": 38009
+      }
+    ],
+    [
+      "/assets/preload-helper-ckwbz45p.js",
+      {
+        "bytes": 1142,
+        "gzip": 663
+      }
+    ],
+    [
+      "/assets/AdSenseAds-UwoSJaaO.js",
+      {
+        "bytes": 10644,
+        "gzip": 3716
+      }
+    ],
+    [
+      "/assets/entry.client-Dq3MWT5c.js",
+      {
+        "bytes": 183222,
+        "gzip": 58381
+      }
+    ],
+    [
+      "/assets/chunk-EVOBXE3Y-BRwPdPpa.js",
+      {
+        "bytes": 127706,
+        "gzip": 42866
+      }
+    ],
+    [
+      "/assets/routes-BPmZh3ko.js",
+      {
+        "bytes": 32293,
+        "gzip": 6421
+      }
+    ],
+    [
+      "/assets/Icons-Kq5UUHau.js",
+      {
+        "bytes": 34449,
+        "gzip": 11925
+      }
+    ],
+    [
+      "/assets/morseBookCollectionContext-C9chkAhM.js",
+      {
+        "bytes": 2009,
+        "gzip": 803
+      }
+    ],
+    [
+      "/assets/searchNormalization-e1LlyGc5.js",
+      {
+        "bytes": 855,
+        "gzip": 488
+      }
+    ],
+    [
+      "/assets/useFlashSafety-CFTNRvfh.js",
+      {
+        "bytes": 3815,
+        "gzip": 1353
+      }
+    ],
+    [
+      "/assets/themeStorage-CONIaiK9.js",
+      {
+        "bytes": 1384,
+        "gzip": 644
+      }
+    ],
+    [
+      "/assets/SectionEyebrow-CLJyKwpX.js",
+      {
+        "bytes": 295,
+        "gzip": 219
+      }
+    ],
+    [
+      "/assets/heroStyles-BIStbdZQ.js",
+      {
+        "bytes": 464,
+        "gzip": 298
+      }
+    ],
+    [
+      "/assets/settingsStorage-D0F50La2.js",
+      {
+        "bytes": 30173,
+        "gzip": 8249
+      }
+    ],
+    [
+      "/assets/pageStyles-BTm8JH2R.js",
+      {
+        "bytes": 371,
+        "gzip": 300
+      }
+    ],
+    [
+      "/assets/home-mwZD0GWy.js",
+      {
+        "bytes": 31173,
+        "gzip": 8317
+      }
+    ],
+    [
+      "/assets/FaqSectionGeneric-DT6nMVN4.js",
+      {
+        "bytes": 3038,
+        "gzip": 1045
+      }
+    ],
+    [
+      "/assets/TranslatorSectionsBasic-Cf7N07eI.js",
+      {
+        "bytes": 21284,
+        "gzip": 7656
+      }
+    ],
+    [
+      "/assets/JsonLdScript-YqNsdv2D.js",
+      {
+        "bytes": 188,
+        "gzip": 178
+      }
+    ],
+    [
+      "/assets/morseUtils-DpWrSjjt.js",
+      {
+        "bytes": 2969,
+        "gzip": 1248
+      }
+    ],
+    [
+      "/assets/seo-G41R3ija.js",
+      {
+        "bytes": 669,
+        "gzip": 335
+      }
+    ],
+    [
+      "/assets/morseBooks-B0pwdTvH.js",
+      {
+        "bytes": 832633,
+        "gzip": 83322
+      }
+    ],
+    [
+      "/assets/queryPrefill-CmxWV7wV.js",
+      {
+        "bytes": 533,
+        "gzip": 346
+      }
+    ],
+    [
+      "/assets/morseTiming-B_ygHf4W.js",
+      {
+        "bytes": 1522,
+        "gzip": 743
+      }
+    ],
+    [
+      "/assets/useMorseAudio-DG4OuzEw.js",
+      {
+        "bytes": 10346,
+        "gzip": 3774
+      }
+    ],
+    [
+      "/assets/morseAudioExport-BntvfCjN.js",
+      {
+        "bytes": 6586,
+        "gzip": 2677
+      }
+    ],
+    [
+      "/assets/audioPreferenceStorage-BRLDfH04.js",
+      {
+        "bytes": 2333,
+        "gzip": 899
+      }
+    ],
+    [
+      "/assets/StrobeWarning-C8Rg0Fcq.js",
+      {
+        "bytes": 927,
+        "gzip": 540
+      }
+    ],
+    [
+      "/assets/ActionControls-Bf1K_2lB.js",
+      {
+        "bytes": 1815,
+        "gzip": 894
+      }
+    ],
+    [
+      "/assets/PlaybackToggleGroup-Blesn7CP.js",
+      {
+        "bytes": 1612,
+        "gzip": 712
+      }
+    ],
+    [
+      "/assets/ToolWorkspace-CQQ-KAfC.js",
+      {
+        "bytes": 18633,
+        "gzip": 6110
+      }
+    ],
+    [
+      "/assets/FlashLamp-C_k6ed2B.js",
+      {
+        "bytes": 973,
+        "gzip": 556
+      }
+    ],
+    [
+      "/assets/TogglePill-BO2u0pn6.js",
+      {
+        "bytes": 526,
+        "gzip": 373
+      }
+    ],
+    [
+      "/assets/SliderRow-yk4W43Ag.js",
+      {
+        "bytes": 1166,
+        "gzip": 620
+      }
+    ],
+    [
+      "/assets/sequentialExport-C-LeOkVa.js",
+      {
+        "bytes": 6089,
+        "gzip": 2608
+      }
+    ],
+    [
+      "/assets/AudioExportFormatSplitControls-JTZPhCmq.js",
+      {
+        "bytes": 3827,
+        "gzip": 1282
+      }
+    ],
+    [
+      "/assets/morseExportPlan-DDSBDyP7.js",
+      {
+        "bytes": 5133,
+        "gzip": 2255
+      }
+    ],
+    [
+      "/assets/useMorseAudioExportJob-tRsU-sYk.js",
+      {
+        "bytes": 3266,
+        "gzip": 1339
+      }
+    ],
+    [
+      "/assets/array.no-external-DjYu26aL.js",
+      {
+        "bytes": 170102,
+        "gzip": 53665
+      }
+    ]
+  ],
+  "beforeNavigation": [
+    {
+      "width": 390,
+      "run": 0,
+      "temperature": "cold",
+      "openMs": 80.56920000000014,
+      "searchMs": 19.204200000000128,
+      "resourceCount": 52
+    },
+    {
+      "width": 390,
+      "run": 0,
+      "temperature": "warm",
+      "openMs": 59.794000000000096,
+      "searchMs": 6.9003999999999905,
+      "resourceCount": 53
+    },
+    {
+      "width": 390,
+      "run": 1,
+      "temperature": "cold",
+      "openMs": 58.95199999999977,
+      "searchMs": 15.414999999999964,
+      "resourceCount": 52
+    },
+    {
+      "width": 390,
+      "run": 1,
+      "temperature": "warm",
+      "openMs": 49.66120000000001,
+      "searchMs": 7.269900000000234,
+      "resourceCount": 53
+    },
+    {
+      "width": 390,
+      "run": 2,
+      "temperature": "cold",
+      "openMs": 58.939400000000205,
+      "searchMs": 15.741300000000138,
+      "resourceCount": 52
+    },
+    {
+      "width": 390,
+      "run": 2,
+      "temperature": "warm",
+      "openMs": 52.0317,
+      "searchMs": 5.785800000000108,
+      "resourceCount": 53
+    },
+    {
+      "width": 1440,
+      "run": 0,
+      "temperature": "cold",
+      "openMs": 85.39670000000024,
+      "searchMs": 21.483799999999974,
+      "resourceCount": 51
+    },
+    {
+      "width": 1440,
+      "run": 0,
+      "temperature": "warm",
+      "openMs": 34.637800000000425,
+      "searchMs": 11.553400000000693,
+      "resourceCount": 51
+    },
+    {
+      "width": 1440,
+      "run": 1,
+      "temperature": "cold",
+      "openMs": 74.03610000000026,
+      "searchMs": 21.699499999999716,
+      "resourceCount": 51
+    },
+    {
+      "width": 1440,
+      "run": 1,
+      "temperature": "warm",
+      "openMs": 34.58610000000044,
+      "searchMs": 6.1203999999997905,
+      "resourceCount": 51
+    },
+    {
+      "width": 1440,
+      "run": 2,
+      "temperature": "cold",
+      "openMs": 73.76770000000033,
+      "searchMs": 21.6854000000003,
+      "resourceCount": 51
+    },
+    {
+      "width": 1440,
+      "run": 2,
+      "temperature": "warm",
+      "openMs": 33.815700000000106,
+      "searchMs": 6.064400000000205,
+      "resourceCount": 51
+    }
+  ],
+  "after": [
+    {
+      "width": 390,
+      "path": "/",
+      "status": 200,
+      "htmlBytes": 222663,
+      "htmlGzip": 46021,
+      "jsBytes": 817620,
+      "jsGzip": 274126,
+      "ssr": {
+        "h1": [
+          "Morse Code Translator"
+        ],
+        "canonical": "https://www.morsewords.com/",
+        "mainText": 9929,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/audio",
+      "status": 200,
+      "htmlBytes": 207514,
+      "htmlGzip": 43023,
+      "jsBytes": 812963,
+      "jsGzip": 273281,
+      "ssr": {
+        "h1": [
+          "Morse Code Audio Generator"
+        ],
+        "canonical": "https://www.morsewords.com/audio",
+        "mainText": 9577,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/practice",
+      "status": 200,
+      "htmlBytes": 178217,
+      "htmlGzip": 38830,
+      "jsBytes": 766389,
+      "jsGzip": 255177,
+      "ssr": {
+        "h1": [
+          "Morse Code Practice"
+        ],
+        "canonical": "https://www.morsewords.com/practice",
+        "mainText": 3753,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/morse-code-alphabet",
+      "status": 200,
+      "htmlBytes": 249969,
+      "htmlGzip": 41502,
+      "jsBytes": 965287,
+      "jsGzip": 299231,
+      "ssr": {
+        "h1": [
+          "Morse Code Alphabet"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-alphabet",
+        "mainText": 7076,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/morse-code-books/alices-adventures-in-wonderland",
+      "status": 200,
+      "htmlBytes": 397432,
+      "htmlGzip": 59604,
+      "jsBytes": 1742702,
+      "jsGzip": 382527,
+      "ssr": {
+        "h1": [
+          "Alice's Adventures in Wonderland"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-books/alices-adventures-in-wonderland",
+        "mainText": 12288,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/morse-code-audiobooks/alices-adventures-in-wonderland",
+      "status": 200,
+      "htmlBytes": 295888,
+      "htmlGzip": 54115,
+      "jsBytes": 1743032,
+      "jsGzip": 382688,
+      "ssr": {
+        "h1": [
+          "Alice's Adventures in Wonderland"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-audiobooks/alices-adventures-in-wonderland",
+        "mainText": 11155,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/",
+      "status": 200,
+      "htmlBytes": 222663,
+      "htmlGzip": 46021,
+      "jsBytes": 817620,
+      "jsGzip": 274126,
+      "ssr": {
+        "h1": [
+          "Morse Code Translator"
+        ],
+        "canonical": "https://www.morsewords.com/",
+        "mainText": 9929,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/audio",
+      "status": 200,
+      "htmlBytes": 207514,
+      "htmlGzip": 43023,
+      "jsBytes": 812963,
+      "jsGzip": 273281,
+      "ssr": {
+        "h1": [
+          "Morse Code Audio Generator"
+        ],
+        "canonical": "https://www.morsewords.com/audio",
+        "mainText": 9577,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/practice",
+      "status": 200,
+      "htmlBytes": 178217,
+      "htmlGzip": 38830,
+      "jsBytes": 766389,
+      "jsGzip": 255177,
+      "ssr": {
+        "h1": [
+          "Morse Code Practice"
+        ],
+        "canonical": "https://www.morsewords.com/practice",
+        "mainText": 3753,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/morse-code-alphabet",
+      "status": 200,
+      "htmlBytes": 249969,
+      "htmlGzip": 41502,
+      "jsBytes": 965287,
+      "jsGzip": 299231,
+      "ssr": {
+        "h1": [
+          "Morse Code Alphabet"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-alphabet",
+        "mainText": 7076,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/morse-code-books/alices-adventures-in-wonderland",
+      "status": 200,
+      "htmlBytes": 397432,
+      "htmlGzip": 59604,
+      "jsBytes": 1742702,
+      "jsGzip": 382527,
+      "ssr": {
+        "h1": [
+          "Alice's Adventures in Wonderland"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-books/alices-adventures-in-wonderland",
+        "mainText": 12288,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/morse-code-audiobooks/alices-adventures-in-wonderland",
+      "status": 200,
+      "htmlBytes": 295888,
+      "htmlGzip": 54115,
+      "jsBytes": 1743032,
+      "jsGzip": 382688,
+      "ssr": {
+        "h1": [
+          "Alice's Adventures in Wonderland"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-audiobooks/alices-adventures-in-wonderland",
+        "mainText": 11155,
+        "navLinks": 8
+      },
+      "errors": []
+    }
+  ],
+  "afterChunks": [
+    [
+      "/assets/jsx-runtime-D_zvdyIk.js",
+      {
+        "bytes": 725,
+        "gzip": 460
+      }
+    ],
+    [
+      "/assets/index-gOGwZKHn.js",
+      {
+        "bytes": 3918,
+        "gzip": 1539
+      }
+    ],
+    [
+      "/assets/preload-helper-ckwbz45p.js",
+      {
+        "bytes": 1142,
+        "gzip": 663
+      }
+    ],
+    [
+      "/assets/AdSenseAds-UwoSJaaO.js",
+      {
+        "bytes": 10644,
+        "gzip": 3716
+      }
+    ],
+    [
+      "/assets/searchNormalization-e1LlyGc5.js",
+      {
+        "bytes": 855,
+        "gzip": 488
+      }
+    ],
+    [
+      "/assets/root-DYLXgiM1.js",
+      {
+        "bytes": 91853,
+        "gzip": 38678
+      }
+    ],
+    [
+      "/assets/chunk-EVOBXE3Y-BRwPdPpa.js",
+      {
+        "bytes": 127706,
+        "gzip": 42866
+      }
+    ],
+    [
+      "/assets/routes-BPmZh3ko.js",
+      {
+        "bytes": 32293,
+        "gzip": 6421
+      }
+    ],
+    [
+      "/assets/Icons-Kq5UUHau.js",
+      {
+        "bytes": 34449,
+        "gzip": 11925
+      }
+    ],
+    [
+      "/assets/themeStorage-CONIaiK9.js",
+      {
+        "bytes": 1384,
+        "gzip": 644
+      }
+    ],
+    [
+      "/assets/SectionEyebrow-CLJyKwpX.js",
+      {
+        "bytes": 295,
+        "gzip": 219
+      }
+    ],
+    [
+      "/assets/entry.client-Dq3MWT5c.js",
+      {
+        "bytes": 183222,
+        "gzip": 58381
+      }
+    ],
+    [
+      "/assets/useFlashSafety-CFTNRvfh.js",
+      {
+        "bytes": 3815,
+        "gzip": 1353
+      }
+    ],
+    [
+      "/assets/pageStyles-BTm8JH2R.js",
+      {
+        "bytes": 371,
+        "gzip": 300
+      }
+    ],
+    [
+      "/assets/heroStyles-BIStbdZQ.js",
+      {
+        "bytes": 464,
+        "gzip": 298
+      }
+    ],
+    [
+      "/assets/FaqSectionGeneric-DT6nMVN4.js",
+      {
+        "bytes": 3038,
+        "gzip": 1045
+      }
+    ],
+    [
+      "/assets/settingsStorage-D0F50La2.js",
+      {
+        "bytes": 30173,
+        "gzip": 8249
+      }
+    ],
+    [
+      "/assets/JsonLdScript-YqNsdv2D.js",
+      {
+        "bytes": 188,
+        "gzip": 178
+      }
+    ],
+    [
+      "/assets/morseUtils-DpWrSjjt.js",
+      {
+        "bytes": 2969,
+        "gzip": 1248
+      }
+    ],
+    [
+      "/assets/seo-G41R3ija.js",
+      {
+        "bytes": 669,
+        "gzip": 335
+      }
+    ],
+    [
+      "/assets/queryPrefill-CmxWV7wV.js",
+      {
+        "bytes": 533,
+        "gzip": 346
+      }
+    ],
+    [
+      "/assets/morseTiming-B_ygHf4W.js",
+      {
+        "bytes": 1522,
+        "gzip": 743
+      }
+    ],
+    [
+      "/assets/home-LGPPNyXV.js",
+      {
+        "bytes": 30774,
+        "gzip": 8071
+      }
+    ],
+    [
+      "/assets/audioPreferenceStorage-BRLDfH04.js",
+      {
+        "bytes": 2333,
+        "gzip": 899
+      }
+    ],
+    [
+      "/assets/StrobeWarning-C8Rg0Fcq.js",
+      {
+        "bytes": 927,
+        "gzip": 540
+      }
+    ],
+    [
+      "/assets/ActionControls-Bf1K_2lB.js",
+      {
+        "bytes": 1815,
+        "gzip": 894
+      }
+    ],
+    [
+      "/assets/TranslatorSectionsBasic-Cf7N07eI.js",
+      {
+        "bytes": 21284,
+        "gzip": 7656
+      }
+    ],
+    [
+      "/assets/PlaybackToggleGroup-Blesn7CP.js",
+      {
+        "bytes": 1612,
+        "gzip": 712
+      }
+    ],
+    [
+      "/assets/FlashLamp-C_k6ed2B.js",
+      {
+        "bytes": 973,
+        "gzip": 556
+      }
+    ],
+    [
+      "/assets/TogglePill-BO2u0pn6.js",
+      {
+        "bytes": 526,
+        "gzip": 373
+      }
+    ],
+    [
+      "/assets/SliderRow-yk4W43Ag.js",
+      {
+        "bytes": 1166,
+        "gzip": 620
+      }
+    ],
+    [
+      "/assets/sequentialExport-C-LeOkVa.js",
+      {
+        "bytes": 6089,
+        "gzip": 2608
+      }
+    ],
+    [
+      "/assets/useMorseAudio-DG4OuzEw.js",
+      {
+        "bytes": 10346,
+        "gzip": 3774
+      }
+    ],
+    [
+      "/assets/morseAudioExport-BntvfCjN.js",
+      {
+        "bytes": 6586,
+        "gzip": 2677
+      }
+    ],
+    [
+      "/assets/ToolWorkspace-CQQ-KAfC.js",
+      {
+        "bytes": 18633,
+        "gzip": 6110
+      }
+    ],
+    [
+      "/assets/morseExportPlan-DDSBDyP7.js",
+      {
+        "bytes": 5133,
+        "gzip": 2255
+      }
+    ],
+    [
+      "/assets/useMorseAudioExportJob-tRsU-sYk.js",
+      {
+        "bytes": 3266,
+        "gzip": 1339
+      }
+    ],
+    [
+      "/assets/AudioExportFormatSplitControls-JTZPhCmq.js",
+      {
+        "bytes": 3827,
+        "gzip": 1282
+      }
+    ],
+    [
+      "/assets/array.no-external-DjYu26aL.js",
+      {
+        "bytes": 170102,
+        "gzip": 53665
+      }
+    ]
+  ],
+  "afterNavigation": [
+    {
+      "width": 390,
+      "run": 0,
+      "temperature": "cold",
+      "openMs": 71.33429999999998,
+      "searchMs": 22.037399999999934,
+      "resourceCount": 51
+    },
+    {
+      "width": 390,
+      "run": 0,
+      "temperature": "warm",
+      "openMs": 48.33219999999983,
+      "searchMs": 6.192700000000059,
+      "resourceCount": 52
+    },
+    {
+      "width": 390,
+      "run": 1,
+      "temperature": "cold",
+      "openMs": 52.444400000000314,
+      "searchMs": 14.843200000000252,
+      "resourceCount": 51
+    },
+    {
+      "width": 390,
+      "run": 1,
+      "temperature": "warm",
+      "openMs": 64.03560000000016,
+      "searchMs": 5.574000000000069,
+      "resourceCount": 52
+    },
+    {
+      "width": 390,
+      "run": 2,
+      "temperature": "cold",
+      "openMs": 52.914700000000266,
+      "searchMs": 16.28560000000016,
+      "resourceCount": 51
+    },
+    {
+      "width": 390,
+      "run": 2,
+      "temperature": "warm",
+      "openMs": 61.385099999999966,
+      "searchMs": 5.623999999999796,
+      "resourceCount": 52
+    },
+    {
+      "width": 1440,
+      "run": 0,
+      "temperature": "cold",
+      "openMs": 58.08019999999942,
+      "searchMs": 17.473700000000463,
+      "resourceCount": 50
+    },
+    {
+      "width": 1440,
+      "run": 0,
+      "temperature": "warm",
+      "openMs": 38.99110000000019,
+      "searchMs": 6.355199999999968,
+      "resourceCount": 50
+    },
+    {
+      "width": 1440,
+      "run": 1,
+      "temperature": "cold",
+      "openMs": 56.319799999999304,
+      "searchMs": 18.34979999999996,
+      "resourceCount": 50
+    },
+    {
+      "width": 1440,
+      "run": 1,
+      "temperature": "warm",
+      "openMs": 54.67579999999998,
+      "searchMs": 7.220699999999852,
+      "resourceCount": 50
+    },
+    {
+      "width": 1440,
+      "run": 2,
+      "temperature": "cold",
+      "openMs": 43.125999999999294,
+      "searchMs": 18.14379999999983,
+      "resourceCount": 50
+    },
+    {
+      "width": 1440,
+      "run": 2,
+      "temperature": "warm",
+      "openMs": 56.68759999999929,
+      "searchMs": 6.6370999999999185,
+      "resourceCount": 50
+    }
+  ]
+}

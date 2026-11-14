@@ -7,6 +7,8 @@
     "build:netlify": "react-router build",
     "books:build": "node --experimental-strip-types scripts/books/build-book-library.ts",
     "books:quality-report": "node --experimental-strip-types scripts/books/library-quality-report.ts",
+    "books:navigation-index": "node --experimental-strip-types scripts/books/navigation-index.ts",
+    "books:navigation-index:check": "node --experimental-strip-types scripts/books/navigation-index.ts --check",
     "books:apply-review": "node --experimental-strip-types scripts/books/apply-book-review-approvals.ts",
     "books:audit-pass-1": "node --experimental-strip-types scripts/books/audit-book-processing-pass-1.ts",
     "books:audit-pass-2": "node --experimental-strip-types scripts/books/audit-book-processing-pass-2.ts",
@@ -130,7 +132,7 @@
     "morse:verify-international-promotion": "node --experimental-strip-types scripts/morse/verifyInternationalMorsePromotion.ts",
     "test:morse:research": "node --experimental-strip-types --test tests/node/internationalMorseResearch.test.ts",
     "test:smoke": "playwright test tests/qa-robustness-review/route-registry.spec.ts tests/qa-robustness-review/route-smoke-core.spec.ts tests/qa-robustness-review/runtime-performance-hardening.spec.ts --project=desktop-chromium",
-    "typecheck": "react-router typegen && tsc -b"
+    "typecheck": "npm run books:navigation-index:check && react-router typegen && tsc -b"
   },
   "dependencies": {
     "@breezystack/lamejs": "^1.2.7",
