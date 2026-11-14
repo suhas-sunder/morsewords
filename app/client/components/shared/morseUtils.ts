@@ -350,17 +350,18 @@ function resultOrValue(
   return options.returnResult ? result : result.value;
 }
 
+// The engine and source-position diagnostics use these exact paste repairs.
+export const PASTED_MARK_RULES: readonly (readonly [RegExp, string])[] = [
+  [/\u00c2\u00b7|\u00e2\u20ac\u00a2|\u00e2\u02c6\u2122/g, "."],
+  [/[\u00b7\u2022\u2219\u22c5]/g, "."],
+  [/\u00e2\u20ac[\u201c\u201d]|\u00e2\u02c6\u2019/g, "-"],
+  [/[\u2010-\u2015\u2212]/g, "-"],
+  [/\u00e2\u20ac[\u02dc\u2122\u203a]/g, "'"],
+  [/[\u2018\u2019\u2032\u2035]/g, "'"],
+  [/\u00e2\u20ac[\u0153\u009d]/g, '"'],
+  [/[\u201c\u201d]/g, '"'],
+];
+
 function normalizePastedMarks(input: string): string {
-  return input
-    .replace(/\u00c2\u00b7|\u00e2\u20ac\u00a2|\u00e2\u02c6\u2122/g, ".")
-    .replace(/[\u00b7\u2022\u2219\u22c5]/g, ".")
-    .replace(
-      /\u00e2\u20ac[\u201c\u201d]|\u00e2\u02c6\u2019/g,
-      "-",
-    )
-    .replace(/[\u2010-\u2015\u2212]/g, "-")
-    .replace(/\u00e2\u20ac[\u02dc\u2122\u203a]/g, "'")
-    .replace(/[\u2018\u2019\u2032\u2035]/g, "'")
-    .replace(/\u00e2\u20ac[\u0153\u009d]/g, '"')
-    .replace(/[\u201c\u201d]/g, '"');
+  return PASTED_MARK_RULES.reduce((value, [pattern, replacement]) => value.replace(pattern, replacement), input);
 }

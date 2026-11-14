@@ -1,7 +1,7 @@
 import * as React from "react";
+import TextInputDiagnostics from "./TextInputDiagnostics";
 import { useEffect, useMemo, useState } from "react";
 import {
-  getUnsupportedTextCharacters,
   normalizeMorseForDecoding,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
@@ -355,10 +355,6 @@ export default function TranslatorSectionsBasic({
     setCopied(label);
     setTimeout(() => setCopied(null), 1200);
   };
-
-  const unsupportedPlain = useMemo(() => {
-    return getUnsupportedTextCharacters(plainValidationValue ?? plainA);
-  }, [plainA, plainValidationValue]);
 
   const morseInputIssues = useMemo(() => {
     const issues: string[] = [];
@@ -767,16 +763,7 @@ export default function TranslatorSectionsBasic({
                     Text: 3 spaces = letters · 7 = words · / = word break
                   </p>
 
-                  {direction === "encode" &&
-                    Object.keys(unsupportedPlain).length > 0 && (
-                      <p className="mw-warning-text text-xs font-medium text-amber-700">
-                        Unsupported:{" "}
-                        {Object.entries(unsupportedPlain)
-                          .map(([ch, n]) => `${ch}×${n}`)
-                          .join(", ")}{" "}
-                        (ignored)
-                      </p>
-                    )}
+                  {direction === "encode" && <TextInputDiagnostics value={plainValidationValue ?? plainA} inputId={plainValidationValue === undefined ? liveInputId : "mw_transliterated"} transliterated={plainValidationValue !== undefined} />}
 
                   {direction === "decode" && morseInputIssues.length > 0 && (
                     <p className="mw-warning-text text-xs font-medium text-amber-700">
